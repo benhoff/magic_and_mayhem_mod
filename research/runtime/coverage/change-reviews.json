@@ -262432,6 +262432,353 @@
           "NR.drawing-session.runner-native-20261011"
         ]
       }
+    },
+    {
+      "id": "WORKING.retention-prior-journal-review-20261011",
+      "reason": "Reviewed HEAD parent-to-current committed file hashes for all 150 changed paths. Existing exact receipts cover source, behavior, evidence, census and fixture transitions. Added the missing exact append-only review-journal transition retrospectively; this does not assert a historical gate pass or renew any engine evidence. See working-retention-history-20261011.json.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "b9a4b19058545c748fa27066098d1e25afda4c81110b5b944d17a9fc355121ee",
+          "after_sha256": "28082f72b63e702a217c643b80b02b40deff43fb4984389e0df20182cfb10de6"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Historical append-only accounting metadata review only; engine changes already have their separate exact receipts and evidence, and no status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8472a4415a740d73d62f10f48d4b1e83e05f7ef3ce9d6f03e4d393ad7ff84fa3",
+          "before_sha256": "4b39fe698b56669f9318d65237f0a9221f4ec462c35d13a220e839811b5aa607",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "477b99c07b64cb668dde6d12a23da1549f3ab2bdb212fb7083385485e132ac82",
+          "before_sha256": "1e0849635278aa1acdad4437055481d9e4266d1148d56df93ebe03f30a8daafa",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "4ae454d76d6f75ef1bb9c7f55a84b996b73f90933e98fd18495f00ee5eea4a06",
+          "before_sha256": "c533a9ba211c63b9a70af4ed95e46a3e50dbf909346969e7a0e65704059aa421",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "ccc65db4018ca948e2da06336227c473677e7c634a4466dd1d20b6850c2ab8a6",
+          "before_sha256": "41930d98280816c09ffb518bc2c75422f9a36103f7e4525bfe39722f9884c7b5",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "6daf57918b881dc97df4b40c2679a633e495d900169bb2383157d46e4f0e30d7",
+          "before_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "5351c6d55b3d7d729268c4c21ecafe2b06dd0f950ed858698b40286210cb2e28",
+          "before_sha256": null,
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "66571f734437a44c224f39c8d61cb9d9f144b364f73821f85c73048879d8610e",
+          "before_sha256": "164fb811c25ffa284d4442ef8b00a3f98a9768ef8b02e1322c53aaaded79c99f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "403ed7f0fa9528bfe2682132da1c14848a2bcfeaef7c36a1cddd3afef3ac8eec",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-retention-20261011.json"
+        },
+        {
+          "after_sha256": "7003d5ea57c5583d92c8cc9af8c19e1acdd0b7b622fb356fa71392357d8dd174",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/working-retention-history-20261011.json"
+        },
+        {
+          "after_sha256": "29141905ed9772bf5468f024b7ac8bc6661403c168d6917914ae91d0f7a5e634",
+          "before_sha256": null,
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "68aa39b92ddea528a780025c28c6f324d004afb8bb4ab73d9e14f8cfee910369",
+          "before_sha256": null,
+          "path": "tools/working-retention.json"
+        },
+        {
+          "after_sha256": "38bf24d21f913883ae4cff3c6dda25bd1474da4968dd5fad081161cff96ca5cd",
+          "before_sha256": null,
+          "path": "tools/working-retention.py"
+        }
+      ],
+      "id": "WORKING.retention-budget-support-review-20261011",
+      "pending_gaps": [
+        "sources_without_behavior_links:34146d08887857e7ebddeced376a9bd813256f3627a31c6ae82b64dc17fc5daa",
+        "sources_without_behavior_links:801ddc60b16115539e3e533e31b908d41c9430d608fd87a20ceb226ce6b2ab37",
+        "sources_without_behavior_links:f76d182eebe96438a1d179e50e9003fe22faa57e4a829edcfeb23737b00ff825"
+      ],
+      "reason": "Reviewed the 200 GiB / 100 GiB free-space policy, conservative non-destructive inventory and opt-in command preflight. No originals, existing experiment outputs or registered worktrees are changed. Added retention workflow instructions, documentation and synthetic safety guards. Reviewed one refreshed source census and retained the exact preceding-commit history review. Three new census gaps are intentional unlinked housekeeping support files, not recovered engine behaviors. The shared AGENTS.md document changes fingerprints for GP.commander, GP.mana, GP.veterancy and TOOL.coverage-gate; their semantics and independent statuses remain unchanged.",
+      "validation": {
+        "status": "pending",
+        "reason": "Six storage safety tests pass: exact budget/reservation limits, evidence and worktree retention, no symlink traversal, pins, invalid policies, and refusal before command execution. Real working inventory completed without mutation and reports about 1120 GiB allocated; only about 3.25 GiB is eligible for further cleanup review. This support change does not rerun original comparison or live validation for behaviors linked through AGENTS.md. Historical evidence hashes and statuses remain preserved; current engine equivalence is not asserted. Filesystem quotas, adoption by all existing producers and actual archival/cleanup remain outstanding.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a2f1ccc13545d459ea1e4cd3fc6937cbabe16c50cab17721bc5b95f16846c7bc",
+          "before_sha256": "4b39fe698b56669f9318d65237f0a9221f4ec462c35d13a220e839811b5aa607",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "483bd6105518564fe262ef0b4d1676b5026979e2295800a4bed183246595ac14",
+          "before_sha256": "1e0849635278aa1acdad4437055481d9e4266d1148d56df93ebe03f30a8daafa",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "40f5916f77de37a01f109640a8296eaeae64a457330c6e9c54f8ca840220deeb",
+          "before_sha256": "c533a9ba211c63b9a70af4ed95e46a3e50dbf909346969e7a0e65704059aa421",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "74bdb964758f0039d99c78ac4060b65cfb6dea83627bb86d8a6e2d5aa3ca723c",
+          "before_sha256": "41930d98280816c09ffb518bc2c75422f9a36103f7e4525bfe39722f9884c7b5",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+          "before_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+          "before_sha256": null,
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "8172b299d5b0762e25d44b9fd91d51d4930654400b91b0cdccc23ec8ece22171",
+          "before_sha256": "164fb811c25ffa284d4442ef8b00a3f98a9768ef8b02e1322c53aaaded79c99f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "5144324950ef9ac97985acb6c3e98892d39414bf48f9415f0ff1c081d21d1ad8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-archive-20261011.json"
+        },
+        {
+          "after_sha256": "4ddf0e8fb69c367f1434f2a6761c01d26ac63bc3d0835d35ba125bdefda1a5a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-archive-final-20261011.json"
+        },
+        {
+          "after_sha256": "e8943fd801893c5e2b131866304461a44b4e4b8ffa426e77ad77674c5bb118c5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-free-space-20261011.json"
+        },
+        {
+          "after_sha256": "403ed7f0fa9528bfe2682132da1c14848a2bcfeaef7c36a1cddd3afef3ac8eec",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-retention-20261011.json"
+        },
+        {
+          "after_sha256": "7003d5ea57c5583d92c8cc9af8c19e1acdd0b7b622fb356fa71392357d8dd174",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/working-retention-history-20261011.json"
+        },
+        {
+          "after_sha256": "78355a9e9aefc64f87dfb5d2d98d82f24b67997ca55568ee03bdd0f0a6e2808a",
+          "before_sha256": null,
+          "path": "tests/test-working-archive.py"
+        },
+        {
+          "after_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+          "before_sha256": null,
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+          "before_sha256": null,
+          "path": "tools/working-retention.json"
+        },
+        {
+          "after_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+          "before_sha256": null,
+          "path": "tools/working-retention.py"
+        },
+        {
+          "after_sha256": "a8d0c4325a0dcea6467643ec0237eabb106cc8a7bda71e6945ee0b9dfb1ef145",
+          "before_sha256": null,
+          "path": "tools/working_archive.py"
+        }
+      ],
+      "id": "WORKING.free-space-guard-and-verified-archive-review-20261011",
+      "pending_gaps": [
+        "sources_without_behavior_links:34146d08887857e7ebddeced376a9bd813256f3627a31c6ae82b64dc17fc5daa",
+        "sources_without_behavior_links:6abd1db24464e89562acbbbead6dd9c697cf95aa80796f8da79dd5987007c7ba",
+        "sources_without_behavior_links:801ddc60b16115539e3e533e31b908d41c9430d608fd87a20ceb226ce6b2ab37",
+        "sources_without_behavior_links:e57d27e4038664003a54f4a337a3e4592c0bb6d3ee986c578aee29ce41a56bfc",
+        "sources_without_behavior_links:f76d182eebe96438a1d179e50e9003fe22faa57e4a829edcfeb23737b00ff825"
+      ],
+      "reason": "Reviewed verified content-addressed archival and restoration, then deferred further cleanup at the user request. The final policy raises working storage to 1280 GiB, disables automatic archiving and retains a 100 GiB free-space floor. Guarded launches preflight reservations and monitor free space every two seconds, terminating only their isolated process group on pressure, interruption or measurement failure. Archival independently verifies compressed and decoded hashes, durable receipts and unchanged sources before optional pruning; original files, registered worktree source and pinned/active runs remain protected. Reviewed the refreshed source census: five unlinked storage support/test files remain explicit housekeeping mapping gaps, without assigning invented engine contracts. The shared AGENTS.md update affects GP.commander, GP.mana, GP.veterancy and TOOL.coverage-gate fingerprints without changing their behavior scope or independent milestones. Prior census snapshots, source hashes and review receipts are preserved.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "All 130 synthetic tests pass: 10 retention tests cover reservation boundaries, references/worktrees/pins/symlinks, invalid policy, launch refusal, runtime pressure, forced shutdown, interruption, measurement failure and real healthy-command exit propagation; nine archive tests cover exact restoration, deduplication, CLI compression fallback, verification/receipt failures, changed data, corrupt archives and source/activity protections; existing coverage audit/gate suites pass 60 and 51 tests. Original-manifest verification passes for all 2927 files after the interrupted archive pass. The real raised-policy check passes with roughly 1128 GiB working usage and 198 GiB free. Actual archive preservation is separately reported under working/retention; cleanup has stopped and previous verified objects remain restorable. This support change does not establish current original-engine equivalence or rerun linked gameplay/coverage behavior execution; historical evidence and statuses are retained. Global filesystem quotas, unwrapped existing writers and full producer adoption remain outside this guard."
+      }
+    },
+    {
+      "id": "DRAW03.integration-history-journal-review-20261011-1",
+      "reason": "Reviewed both merged DRAW-03 commits and every exact parent/current file SHA-256. All source, research, register, census and evidence transitions already have exact receipts; append the omitted journal-file transitions retrospectively. Retained NR.drawing-session native-policy scope, synthetic execution evidence and explicit original/live gaps remain unchanged. Report: working/retention/draw03-integration-20261011-fgi4_sjy/history.json. No past gate pass or new execution is asserted.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "28082f72b63e702a217c643b80b02b40deff43fb4984389e0df20182cfb10de6",
+          "after_sha256": "3403d51a1fd03f16b2a28464655ce8031d2aec9aef2f158c3db90ac63294d5fa"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Retrospective append-only journal accounting only; all engine contracts, evidence fingerprints and independent statuses remain unchanged.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "DRAW03.integration-history-journal-review-20261011-2",
+      "reason": "Reviewed both merged DRAW-03 commits and every exact parent/current file SHA-256. All source, research, register, census and evidence transitions already have exact receipts; append the omitted journal-file transitions retrospectively. Retained NR.drawing-session native-policy scope, synthetic execution evidence and explicit original/live gaps remain unchanged. Report: working/retention/draw03-integration-20261011-fgi4_sjy/history.json. No past gate pass or new execution is asserted.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "3403d51a1fd03f16b2a28464655ce8031d2aec9aef2f158c3db90ac63294d5fa",
+          "after_sha256": "ead436a7325fae7e735c3fd1323f523056975cc9e825195e386d68146da0c9ac"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Retrospective append-only journal accounting only; all engine contracts, evidence fingerprints and independent statuses remain unchanged.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a2f1ccc13545d459ea1e4cd3fc6937cbabe16c50cab17721bc5b95f16846c7bc",
+          "before_sha256": "4b39fe698b56669f9318d65237f0a9221f4ec462c35d13a220e839811b5aa607",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "483bd6105518564fe262ef0b4d1676b5026979e2295800a4bed183246595ac14",
+          "before_sha256": "1e0849635278aa1acdad4437055481d9e4266d1148d56df93ebe03f30a8daafa",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "40f5916f77de37a01f109640a8296eaeae64a457330c6e9c54f8ca840220deeb",
+          "before_sha256": "c533a9ba211c63b9a70af4ed95e46a3e50dbf909346969e7a0e65704059aa421",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "74bdb964758f0039d99c78ac4060b65cfb6dea83627bb86d8a6e2d5aa3ca723c",
+          "before_sha256": "41930d98280816c09ffb518bc2c75422f9a36103f7e4525bfe39722f9884c7b5",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+          "before_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+          "before_sha256": null,
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "7d1dc6792daf0c1ad170ecbd49ddc9f4c8df2e4038e4f84318dcc7c3720b24cc",
+          "before_sha256": "2aba109fa23495622bba572cf4f3c1c5bfcbedc6cc14709f57034e94b7d714b0",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "66e8d5e3bd6ea52165c1d0a0e5c3027e33a49a21b22176944e6a428d1b837361",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw03-retention-integration-20261011.json"
+        },
+        {
+          "after_sha256": "5144324950ef9ac97985acb6c3e98892d39414bf48f9415f0ff1c081d21d1ad8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-archive-20261011.json"
+        },
+        {
+          "after_sha256": "4ddf0e8fb69c367f1434f2a6761c01d26ac63bc3d0835d35ba125bdefda1a5a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-archive-final-20261011.json"
+        },
+        {
+          "after_sha256": "e8943fd801893c5e2b131866304461a44b4e4b8ffa426e77ad77674c5bb118c5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-free-space-20261011.json"
+        },
+        {
+          "after_sha256": "403ed7f0fa9528bfe2682132da1c14848a2bcfeaef7c36a1cddd3afef3ac8eec",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-working-retention-20261011.json"
+        },
+        {
+          "after_sha256": "7003d5ea57c5583d92c8cc9af8c19e1acdd0b7b622fb356fa71392357d8dd174",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/working-retention-history-20261011.json"
+        },
+        {
+          "after_sha256": "78355a9e9aefc64f87dfb5d2d98d82f24b67997ca55568ee03bdd0f0a6e2808a",
+          "before_sha256": null,
+          "path": "tests/test-working-archive.py"
+        },
+        {
+          "after_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+          "before_sha256": null,
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+          "before_sha256": null,
+          "path": "tools/working-retention.json"
+        },
+        {
+          "after_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+          "before_sha256": null,
+          "path": "tools/working-retention.py"
+        },
+        {
+          "after_sha256": "a8d0c4325a0dcea6467643ec0237eabb106cc8a7bda71e6945ee0b9dfb1ef145",
+          "before_sha256": null,
+          "path": "tools/working_archive.py"
+        }
+      ],
+      "id": "DRAW03.integration-retained-local-census-review-20261011",
+      "pending_gaps": [
+        "sources_without_behavior_links:34146d08887857e7ebddeced376a9bd813256f3627a31c6ae82b64dc17fc5daa",
+        "sources_without_behavior_links:6abd1db24464e89562acbbbead6dd9c697cf95aa80796f8da79dd5987007c7ba",
+        "sources_without_behavior_links:801ddc60b16115539e3e533e31b908d41c9430d608fd87a20ceb226ce6b2ab37",
+        "sources_without_behavior_links:e57d27e4038664003a54f4a337a3e4592c0bb6d3ee986c578aee29ce41a56bfc",
+        "sources_without_behavior_links:f76d182eebe96438a1d179e50e9003fe22faa57e4a829edcfeb23737b00ff825"
+      ],
+      "reason": "Fast-forwarded master to the two reviewed DRAW-03 commits, preserved all local retention sources and append-only review entries, and reconciled their older census with the inherited drawing-session implementation/test/build links. The new census includes six DRAW-03 files, its changed CMake input, and the existing five unlinked retention support/test files; earlier snapshots are preserved. Exact local support transitions are reviewed under their retained WORKING receipts; this additional receipt binds the same uncommitted support state to the merged HEAD and combined census. No native-policy or recovered-engine scope/status change is introduced.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "The committed DRAW-03 merge passes the coverage gate against its actual former master base. Retained DRAW-03 execution reports remain unchanged; no new original, native or live experiment is claimed. The uncommitted storage support changes retain their previous WORKING validation boundaries. Shared AGENTS.md changes leave gameplay/coverage contracts pending for current execution; census reconciliation is indexing review only, with all historical evidence hashes and milestones preserved. Working-tree audit and gate are checked separately after this receipt."
+      }
     }
   ]
 }
