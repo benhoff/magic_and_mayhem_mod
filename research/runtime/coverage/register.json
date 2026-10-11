@@ -31414,6 +31414,90 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Selected original graphics/movie CALL boundaries and unresolved API target contracts",
+      "scope": "Exact outgoing CALL instructions from explicitly registered graphics/movie discovered ranges, bounded normal-return instruction graphs for three unassigned registered entries, the separately retained unassigned WORD-copy window, and whole-image exact imported graphics/DC/paint CALLs. Byte-checked rel32/register/register-memory/absolute-IAT modes and containing discovered owners; imported names only from exact pinned IAT identities. Indexed/other encodings remain unresolved. No inferred function recovery, COM interface, stack cleanup, runtime target, resource/borrow lifetime, complete writer or scenario coverage.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "scope": "Selected Lock wrapper outgoing CALL sites only; no full borrowed lifetime."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820832,
+          "scope": "Selected DC image wrapper outgoing CALL sites only; no GDI-command/pixel completeness."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4626480,
+          "scope": "Selected sample routine outgoing CALL boundaries; no actual runtime COM target/full playback."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/export-drawing-api-sites.py",
+        "tests/test-drawing-api-sites.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_sites.py",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-inventory.json"
+      ],
+      "evidence": [
+        "DRAW.graphics-api-sites.static-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Byte-checked selected graphics CALL-site export",
+      "scope": "Export exact outgoing CALL boundaries for pinned registered graphics/movie ranges, explicitly bounded normal-return instruction graphs for unassigned registered entries, the retained unassigned WORD-copy window, and whole-image exact imported graphics/DC/paint CALLs. Verify narrow FF/E8 encodings against disassembly operands and instruction extent, preserve indexed/prefixed/other indirect forms as unresolved, and bind exact IAT names without nearest-site guesses. Static exporter only; no inferred function recovery, runtime hook/API execution/stack contract/lifetime or DRAW-01 closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "tools/drawing_api_sites.py",
+        "tools/export-drawing-api-sites.py"
+      ],
+      "tests": [
+        "tests/test-drawing-api-sites.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-inventory.json"
+      ],
+      "evidence": [
+        "DRAW.graphics-api-sites.static-20261011",
+        "DRAW.graphics-api-sites.guards-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -60865,6 +60949,47 @@
           "equals": 54
         }
       ]
+    },
+    {
+      "id": "DRAW.graphics-api-sites.static-20261011",
+      "kind": "static",
+      "scope": "Selected exact outgoing CALL boundaries and unresolved semantics; no runtime API/lifetime or complete drawing census.",
+      "record": "research/runtime/drawing-api-sites-expanded-static-20261011.json",
+      "sha256": "1484165cd3535efe629a0243285bf798c2afcc01b76d7e131c8944a10e8cb73b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/calls",
+          "equals": 314
+        }
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-sites.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic byte/operand/extent, exact import, unassigned ownership and bounded instruction graph guards. Native static exporter tooling only; no original runtime API or graphics lifetime validation.",
+      "record": "research/runtime/drawing-api-sites-guards-20261011.json",
+      "sha256": "78c831b641c535aceb5af436dfa4912b71899df8980e4d1da8373396188d1aa3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/total_cases",
+          "equals": 12
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -69299,6 +69424,20 @@
       "evidence": [
         "DRAW.census.campaign-effects-observation-20261011"
       ]
+    },
+    {
+      "id": "drawing-api-site-byte-guards-20261011",
+      "level": "headless",
+      "scope": "Synthetic x86 CALL byte/operand mismatch and unresolved addressing/boundary/ownership/IAT guards for static export. Native tooling only; no original runtime API or lifetime execution.",
+      "behaviors": [
+        "TOOL.drawing-api-sites"
+      ],
+      "tests": [
+        "tests/test-drawing-api-sites.py"
+      ],
+      "evidence": [
+        "DRAW.graphics-api-sites.guards-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -69636,8 +69775,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-campaign-effects-20261011.json",
-    "sha256": "47fc22f4bb1dd102d36e9363a307e8083a3048501f90892f310cc311b6fdf25b"
+    "path": "research/runtime/coverage/source-index-draw01-api-sites-20261011.json",
+    "sha256": "ebacda8eda0d934485c82fedb8f11f2d489d8882eabbab1547200a18664c8ffe"
   },
   "claim_bindings_required": true
 }

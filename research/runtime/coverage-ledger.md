@@ -4548,3 +4548,18 @@ separate from semantic camera/tooltip and full effect-to-queue-to-pixel proof;
 all14scenario/four dispatch and caller/graphics/lifetime closure remains pending.
 Committed history4878427..92295c9 has15exact file and16behavior receipt matches,
 without missing intermediate versions; no retrospective validation is asserted.
+
+### DRAW-01 selected graphics API CALL boundaries — 2026-10-11
+
+The [static export](drawing-api-sites-expanded-static-20261011.json) retains
+314 selected original CALL instructions, 37 exact import identities and 15
+whole-image graphics-import calls outside the selected wrappers. Three registered
+entries have bounded normal-return instruction graphs with null discovered
+anchors; their function identity and exception/indirect flows remain unassigned.
+[Byte/ownership guards](drawing-api-sites-guards-20261011.json) pass 12 cases.
+[Scope and remaining contracts](draw01-graphics-api-boundaries.md) separate this
+static boundary evidence from concrete runtime targets, API results/cleanup,
+Lock/DC borrowing, resource ownership, failures and complete writer coverage.
+The central register seeds those touched contracts with independent statuses;
+no scenario or dispatch closure is promoted. Committed history92295c9..e4be448
+has exact intermediate file/behavior receipts without missing matches.
