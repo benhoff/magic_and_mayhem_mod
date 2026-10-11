@@ -1,0 +1,430 @@
+{
+  "scope": "Committed parent/current exact review before integrating glyph-state reconstruction, separate from the timed-out continuous run. No new validation/historical gate assertion.",
+  "ranges": [
+    "dd69a30..5e56515",
+    "577d293..eb3cd18"
+  ],
+  "transitions": [
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "apps/qt-shell/world_continuous_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "d38ffa11064d66079bcbc6548980c5ac5e993f89d890bbb4d38c950b119b5e83",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "d6a33acb2f948ba5e097d8d609acc641a8261cc597e71118a875c3c1b693a658",
+      "after_sha256": "2f5ab275b0adb2b6e5f80876353f22b80d75f7f2925f3e7717921cf54c6e2d8d",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "compat/legacy/canvas_world.hpp",
+      "before_sha256": "08e8a2ded094f232fae424f8f8435bcb7a3a6c299741b17f1cd46b54c7f81060",
+      "after_sha256": "0aefba932dca56aa5cd681a64ac9c00c49b2c26162d248be1e971cea3f54bf78",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "7ce63098d22d778f319683f302021665e471f0ad97197d1382eae7175aea04cf",
+      "after_sha256": "07a2574509bf033dbcd22497432c17a94aff6dcb03e9a30a13957e96b47e384f",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "compat/legacy/world_continuous.cpp",
+      "before_sha256": null,
+      "after_sha256": "7f0f1d6b472cae3e7883d08d25ff39e8189e17b6b31bf84a216640a830b075bb",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "compat/legacy/world_continuous.hpp",
+      "before_sha256": null,
+      "after_sha256": "41d3b45dd14181c9fc68f3a9241af569c2f796aa1879244be0dfe0b5cbcce916",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "compat/legacy/world_rolling_session.hpp",
+      "before_sha256": "fef759a34d16afec2b07d17f469cafdede7a2c1dec0656a8c51ff82c451624ad",
+      "after_sha256": "359ffdc199280e80c193845e8c95af16ce04da4b816bbd779c30cfd2de7554d1",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "protocols/include/mnm/world_continuous_v1.h",
+      "before_sha256": null,
+      "after_sha256": "f27290517c154a8febe041325734f8f9f9a59f66908a9cc0145cfadc5941c40d",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f2e4e9f8cf604a511caeceb85c56de28b3735f4055b9ce006126e0eea81d9d33",
+      "after_sha256": "767b704125cd0f05db8abf896a3915e2f896d23db5d2ed9813b5b4511123a1c7",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/coverage/native-world-continuous-prior-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0898ce79ecdef112a66fcf4f35e72c7c9516a56678e5a7fb798f0d4202644ff5",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0102aa0953045c3271891ae97d87498f08eb65d0ab7459958518c8f7db631333",
+      "after_sha256": "e279b0eb3c16266be1f52b86a4d6f04b4a81493531c9e8b106d2879311c5a1b4",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/coverage/source-index-world-continuous-probe-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "26cb188439725f95cb6df5b2564b5cc6686582bca6205b4b992a790c39bd2a94",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "830cbb7fb27a66fbcdd0fcae0c2b7d169227f05a535cd76ba25506c6c55ed626",
+      "after_sha256": "669fe234555745ee87e6cf72072597edc82b5e7b657ab5a517fdf99eaf707f90",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/native-world-continuous-64-probe-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b6033bf3bdf133136b5048eb7f642be042bd0992814d69c4ab385c2a5b9a7481",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/native-world-continuous-experiments-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "243b1dcba5808590f16081fad8e351aa9b85c1f1de1b395dac6679f140d645d6",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/native-world-continuous-ordering-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "19b1eced28390c5e2c81f6fc448ef3f18a96271e7598ae4b3879966b6cafb515",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "research/runtime/native-world-continuous.md",
+      "before_sha256": null,
+      "after_sha256": "bd132f792fde62f50ba9d5ce7b7ad38de99787aeacb99e080254b2446a00c5ff",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "23c5b78b576bf78f423dc905fd199612c0e70203f982aaecb443a3f12dacf584",
+      "after_sha256": "073365c1cf42cc399bfa463f84e0df746b036f3baf813173fdd9005ec451dcae",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "runtime/scene/world_continuous.c",
+      "before_sha256": null,
+      "after_sha256": "76a5e95c21e6a5d2ec973430702f384372efd35514a01e0ea16277c5c457c143",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "runtime/scene/world_raster_batch.c",
+      "before_sha256": "e53cf0826f8452525b0a1d53437ec2b95eb640dca93fa1cdaf11f270b709e7f5",
+      "after_sha256": "c3bcad72c2fddd3792b9f50c0e87101113414bd8d52f42c436013d6ff488e4ef",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "tests/world-continuous-channel-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "4d3121f571779ffd67d05e8eb527a91ee7f3747d3f4331bf73d8682c912fafa6",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "tools/build-scene-observer.py",
+      "before_sha256": "0eafa12efc0b87696d8b21f5aefd3c041434acf2210c20e8ee0687886534ed7f",
+      "after_sha256": "3def8a814225712f816afcdc62700f6c7d53e3feebbcec86620461818748998f",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "e90c7d8ae630fbad4ddc4a264bfc343880fd73264346874318aa59dff6081720",
+      "after_sha256": "b41b95d491b68165b181fdc54350298bbd2b93e7537f6388201562b3a62a09a6",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "cf6bad4dc1cafea2844c66cc1fc61459304a9a0273f5c4eb1aed34697aadb593",
+      "after_sha256": "1485fe655100b36b7b1e8560599ffd73d904d518c2a563f504045c1e8aa1b53a",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "5e56515",
+      "parent": "dd69a30",
+      "path": "tools/test-native-world-continuous.py",
+      "before_sha256": null,
+      "after_sha256": "2e2c8dbf9319cfcf46b7414a1f4f9a3e6255f3f256b833c31269be1ce151f4d1",
+      "reviews": [
+        "world-continuous-probe-source-review-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "4c643a691ac98380c3f55adbb160793444e8591cadf70201b367e656cb2798f1",
+      "after_sha256": "06da58d3b5c7ee3ed0df78cd7186841e81a7d9774b3bd2f73571bd6ed0d795d4",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "reconstruction/rendering/glyph_backend_state.c",
+      "before_sha256": null,
+      "after_sha256": "e10f3ec2ad7df0c9241ec3f2600b7f9b7f3fe64bcf92d17bdbd2302e8770703e",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "reconstruction/rendering/glyph_backend_state.h",
+      "before_sha256": null,
+      "after_sha256": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bf30dd32171573eba585eebab132b6577cbae30de7431a10e248c02a8c24563c",
+      "after_sha256": "9f24015bc81de2e12310bb4f4474e462f7f376a7712a61bc374aa659b6253d1d",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/coverage/glyph-backend-state-history-0191a55-577d293-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a3834024dcec8ecd2f885adaeb0d629a3caccac0e7fc0ce6b072510da92d26b5",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bdb23e6bd1037cb700db970f4ce963898fed7a4bdb7385803cda409f2ed074ee",
+      "after_sha256": "b78ce660c6ba994a6cf5fedb731698b0e2a586a5380c315f609cd2f841462e78",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/coverage/source-index-glyph-backend-state-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "858c8dc81bba7ad6cd4cd534ca06fd42ed77cbcdb5c4c258a20d59af387fbf6a",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6281be1ca7229b8f597171e314ad080afd320f33f714d63532097e17c837bb81",
+      "after_sha256": "bc91bece393da1638f2de54913fc3d55406a067a78e9cae3b98e1dded79bb7b0",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/glyph-backend-state-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/glyph-backend-state-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4dcbb65f1b3d87671ccaaa52ac4da979d26a9db01831117bb0e2e2f27073fb38",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/glyph-backend-state-run-fnntc2rk-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3e93bb13f61ab2019249a19834f9dcb6e5291d4fa3c76101bf32fb53d43c84a1",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/glyph-backend-state-run-wr8q__kt-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e28355d372beec93a2d3dca87ecbb1ffed559c440ee4cce392441fd5b266d112",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "research/runtime/glyph-backend-state.md",
+      "before_sha256": null,
+      "after_sha256": "9d9c6bc38942aaca04c6d712c00e40ce04bda62b3c2cedfb3f619d5273be3869",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "tests/glyph-backend-state-probe.S",
+      "before_sha256": null,
+      "after_sha256": "65b6b81ec4088f7396713c649f9a884f14c9fa4cc22d3490e37d9c8d41674995",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "tests/glyph-backend-state-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "d525a452608a331b25cafdba2cc26603258c2cfddc2e26023b28b3a73949fe95",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "tests/glyph-backend-state-test.c",
+      "before_sha256": null,
+      "after_sha256": "873c6ce9b464f41fd0e9ab9286584489de481f462accf8bf61be161e0288696a",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd18",
+      "parent": "577d293",
+      "path": "tools/test-glyph-backend-state.py",
+      "before_sha256": null,
+      "after_sha256": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

@@ -1,0 +1,279 @@
+{
+  "schema": 1,
+  "success": false,
+  "claims": [
+    {
+      "behavior": "RS.glyph-backend-state",
+      "contract_sha256": "f4e7bbc69c4b96cd259b67de70a846dc70cce5d5f4150c2d3116015e918424c9",
+      "scenarios": {
+        "glyph-backend-state-host-20261010": "d8a992237e09ae033c7693a3b732796ea9700b9f8d582be58502e8b85bbc7d78"
+      }
+    },
+    {
+      "behavior": "NR.glyph-backend-state-admission",
+      "contract_sha256": "e30e9f512eb6e33c9b4f5850e96f48e669356c567297a68eda6ece1cf21554a9",
+      "scenarios": {
+        "glyph-backend-state-host-20261010": "d8a992237e09ae033c7693a3b732796ea9700b9f8d582be58502e8b85bbc7d78"
+      }
+    }
+  ],
+  "sources": {
+    "reconstruction/rendering/glyph_backend_state.c": "2aa60f6ea78c4953f2f94d79869dc846806282836ecf05fe2a9d13131f950fa0",
+    "reconstruction/rendering/glyph_backend_state.h": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+    "tests/glyph-backend-state-probe.S": "0b2c594b25de19ceab24c82a50f8b7caf01018489fcd7c570f2ef0218665edf8",
+    "tests/glyph-backend-state-reference.cpp": "d525a452608a331b25cafdba2cc26603258c2cfddc2e26023b28b3a73949fe95",
+    "tests/glyph-backend-state-test.c": "fc63aa775b5d37ab607cd779d1b34d736bcef0707eda4d856da347df5e575359",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-font-glyph-raster.py": "29529321224d10f7122049bbef592158225f8f07471534b379031df1f07803ae",
+    "tools/test-glyph-backend-state.py": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "working/tests/glyph-backend-state/run-fnntc2rk",
+  "live_replacement": false,
+  "original_work_bypassed": false,
+  "scope": "Independent bounded glyph EAX/ECX/EDX, four rewritten stack arguments, callee GPRs/RET16/defined return flags/DF and exact64-float cold/initialized table effects. Selected original x87 state observations are not native FP emulation; safe two-active-slot diagnostics outside equivalence. Source/padding/guards, all installed font glyphs and native state atomic refusals. No pixel comparison, live bypass, whole text layout/lifecycle or arbitrary FP/Win32 claim.",
+  "disassembly": "\n/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n00581ec0 <.text+0x180ec0>:\n  581ec0:\t83 ec 28             \tsub    esp,0x28\n  581ec3:\t8b 44 24 30          \tmov    eax,DWORD PTR [esp+0x30]\n  581ec7:\t53                   \tpush   ebx\n  581ec8:\t55                   \tpush   ebp\n  581ec9:\t56                   \tpush   esi\n  581eca:\t8b 35 88 1f 6e 00    \tmov    esi,DWORD PTR ds:0x6e1f88\n  581ed0:\t57                   \tpush   edi\n  581ed1:\t8b f9                \tmov    edi,ecx\n  581ed3:\t8b da                \tmov    ebx,edx\n  581ed5:\t8b ce                \tmov    ecx,esi\n  581ed7:\t33 ed                \txor    ebp,ebp\n  581ed9:\tf7 d9                \tneg    ecx\n  581edb:\t99                   \tcdq\n  581edc:\td9 05 ac 5e 6f 00    \tfld    DWORD PTR ds:0x6f5eac\n  581ee2:\t1b c9                \tsbb    ecx,ecx\n  581ee4:\t83 e2 07             \tand    edx,0x7\n  581ee7:\t03 c2                \tadd    eax,edx\n  581ee9:\t83 c1 0b             \tadd    ecx,0xb\n  581eec:\tc1 f8 03             \tsar    eax,0x3\n  581eef:\tf7 de                \tneg    esi\n  581ef1:\t89 44 24 40          \tmov    DWORD PTR [esp+0x40],eax\n  581ef5:\t8b 44 24 44          \tmov    eax,DWORD PTR [esp+0x44]\n  581ef9:\t1b f6                \tsbb    esi,esi\n  581efb:\t89 7c 24 10          \tmov    DWORD PTR [esp+0x10],edi\n  581eff:\t83 e6 04             \tand    esi,0x4\n  581f02:\t89 6c 24 14          \tmov    DWORD PTR [esp+0x14],ebp\n  581f06:\t99                   \tcdq\n  581f07:\td8 1d b0 5b 5c 00    \tfcomp  DWORD PTR ds:0x5c5bb0\n  581f0d:\t83 c6 04             \tadd    esi,0x4\n  581f10:\t89 4c 24 1c          \tmov    DWORD PTR [esp+0x1c],ecx\n  581f14:\tf7 fe                \tidiv   esi\n  581f16:\t89 44 24 44          \tmov    DWORD PTR [esp+0x44],eax\n  581f1a:\t8b 44 24 48          \tmov    eax,DWORD PTR [esp+0x48]\n  581f1e:\t99                   \tcdq\n  581f1f:\t83 e2 07             \tand    edx,0x7\n  581f22:\t03 c2                \tadd    eax,edx\n  581f24:\tc1 f8 03             \tsar    eax,0x3\n  581f27:\t89 44 24 48          \tmov    DWORD PTR [esp+0x48],eax\n  581f2b:\tdf e0                \tfnstsw ax\n  581f2d:\tf6 c4 40             \ttest   ah,0x40\n  581f30:\t74 29                \tje     0x581f5b\n  581f32:\t89 6c 24 18          \tmov    DWORD PTR [esp+0x18],ebp\n  581f36:\tb8 ac 5d 6f 00       \tmov    eax,0x6f5dac\n  581f3b:\tdb 44 24 18          \tfild   DWORD PTR [esp+0x18]\n  581f3f:\t8b 54 24 18          \tmov    edx,DWORD PTR [esp+0x18]\n  581f43:\t83 c0 04             \tadd    eax,0x4\n  581f46:\t42                   \tinc    edx\n  581f47:\t3d ac 5e 6f 00       \tcmp    eax,0x6f5eac\n  581f4c:\td8 0d 60 78 5c 00    \tfmul   DWORD PTR ds:0x5c7860\n  581f52:\t89 54 24 18          \tmov    DWORD PTR [esp+0x18],edx\n  581f56:\td9 58 fc             \tfstp   DWORD PTR [eax-0x4]\n  581f59:\t7c e0                \tjl     0x581f3b\n  581f5b:\t8b 57 08             \tmov    edx,DWORD PTR [edi+0x8]\n  581f5e:\t3b d5                \tcmp    edx,ebp\n  581f60:\t89 54 24 18          \tmov    DWORD PTR [esp+0x18],edx\n  581f64:\t75 09                \tjne    0x581f6f\n  581f66:\t39 6f 04             \tcmp    DWORD PTR [edi+0x4],ebp\n  581f69:\t0f 84 8b 02 00 00    \tje     0x5821fa\n  581f6f:\t8b 47 0c             \tmov    eax,DWORD PTR [edi+0xc]\n  581f72:\t8b 6f 10             \tmov    ebp,DWORD PTR [edi+0x10]\n  581f75:\t2b d8                \tsub    ebx,eax\n  581f77:\t8b 44 24 3c          \tmov    eax,DWORD PTR [esp+0x3c]\n  581f7b:\t2b c5                \tsub    eax,ebp\n  581f7d:\t8b 6f 04             \tmov    ebp,DWORD PTR [edi+0x4]\n  581f80:\t8b 3d 08 00 6e 00    \tmov    edi,DWORD PTR ds:0x6e0008\n  581f86:\t8d 34 2b             \tlea    esi,[ebx+ebp*1]\n  581f89:\t3b f7                \tcmp    esi,edi\n  581f8b:\t89 74 24 24          \tmov    DWORD PTR [esp+0x24],esi\n  581f8f:\t0f 8e 65 02 00 00    \tjle    0x5821fa\n  581f95:\t8b 3d 6c bb 6c 00    \tmov    edi,DWORD PTR ds:0x6cbb6c\n  581f9b:\t8d 34 02             \tlea    esi,[edx+eax*1]\n  581f9e:\t3b f7                \tcmp    esi,edi\n  581fa0:\t89 74 24 20          \tmov    DWORD PTR [esp+0x20],esi\n  581fa4:\t0f 8e 50 02 00 00    \tjle    0x5821fa\n  581faa:\t3b 1d b8 49 6a 00    \tcmp    ebx,DWORD PTR ds:0x6a49b8\n  581fb0:\t0f 8d 44 02 00 00    \tjge    0x5821fa\n  581fb6:\t3b 05 18 66 65 00    \tcmp    eax,DWORD PTR ds:0x656618\n  581fbc:\t0f 8d 38 02 00 00    \tjge    0x5821fa\n  581fc2:\t33 f6                \txor    esi,esi\n  581fc4:\t3b c7                \tcmp    eax,edi\n  581fc6:\t89 54 24 3c          \tmov    DWORD PTR [esp+0x3c],edx\n  581fca:\t7d 04                \tjge    0x581fd0\n  581fcc:\t2b f8                \tsub    edi,eax\n  581fce:\t8b f7                \tmov    esi,edi\n  581fd0:\t8b 15 18 66 65 00    \tmov    edx,DWORD PTR ds:0x656618\n  581fd6:\t8b 7c 24 20          \tmov    edi,DWORD PTR [esp+0x20]\n  581fda:\t3b fa                \tcmp    edi,edx\n  581fdc:\t7e 06                \tjle    0x581fe4\n  581fde:\t2b d0                \tsub    edx,eax\n  581fe0:\t89 54 24 3c          \tmov    DWORD PTR [esp+0x3c],edx\n  581fe4:\t8b 54 24 18          \tmov    edx,DWORD PTR [esp+0x18]\n  581fe8:\t3b f2                \tcmp    esi,edx\n  581fea:\t72 08                \tjb     0x581ff4\n  581fec:\tc7 44 24 14 04 00 00 \tmov    DWORD PTR [esp+0x14],0x4\n  581ff3:\t00 \n  581ff4:\t39 54 24 3c          \tcmp    DWORD PTR [esp+0x3c],edx\n  581ff8:\t76 08                \tjbe    0x582002\n  581ffa:\tc7 44 24 14 05 00 00 \tmov    DWORD PTR [esp+0x14],0x5\n  582001:\t00 \n  582002:\t8d 14 06             \tlea    edx,[esi+eax*1]\n  582005:\ta1 c8 2d 6a 00       \tmov    eax,ds:0x6a2dc8\n  58200a:\t0f af d0             \timul   edx,eax\n  58200d:\t8b 3d 74 81 65 00    \tmov    edi,DWORD PTR ds:0x658174\n  582013:\t2b c5                \tsub    eax,ebp\n  582015:\t03 d3                \tadd    edx,ebx\n  582017:\t89 44 24 34          \tmov    DWORD PTR [esp+0x34],eax\n  58201b:\t8b 44 24 10          \tmov    eax,DWORD PTR [esp+0x10]\n  58201f:\tc7 44 24 18 00 00 00 \tmov    DWORD PTR [esp+0x18],0x0\n  582026:\t00 \n  582027:\t8d 3c 57             \tlea    edi,[edi+edx*2]\n  58202a:\t8d 54 f0 28          \tlea    edx,[eax+esi*8+0x28]\n  58202e:\ta1 08 00 6e 00       \tmov    eax,ds:0x6e0008\n  582033:\t3b d8                \tcmp    ebx,eax\n  582035:\t89 54 24 20          \tmov    DWORD PTR [esp+0x20],edx\n  582039:\t7d 08                \tjge    0x582043\n  58203b:\tc7 44 24 18 01 00 00 \tmov    DWORD PTR [esp+0x18],0x1\n  582042:\t00 \n  582043:\ta1 b8 49 6a 00       \tmov    eax,ds:0x6a49b8\n  582048:\t8b 5c 24 24          \tmov    ebx,DWORD PTR [esp+0x24]\n  58204c:\t3b d8                \tcmp    ebx,eax\n  58204e:\t0f 8f 97 01 00 00    \tjg     0x5821eb\n  582054:\t8b 44 24 18          \tmov    eax,DWORD PTR [esp+0x18]\n  582058:\t85 c0                \ttest   eax,eax\n  58205a:\t0f 85 8b 01 00 00    \tjne    0x5821eb\n  582060:\t8b 44 24 3c          \tmov    eax,DWORD PTR [esp+0x3c]\n  582064:\t3b f0                \tcmp    esi,eax\n  582066:\t0f 83 7f 01 00 00    \tjae    0x5821eb\n  58206c:\t2b c6                \tsub    eax,esi\n  58206e:\t89 44 24 18          \tmov    DWORD PTR [esp+0x18],eax\n  582072:\t8b 02                \tmov    eax,DWORD PTR [edx]\n  582074:\t8b 5c 24 10          \tmov    ebx,DWORD PTR [esp+0x10]\n  582078:\t8b 74 24 10          \tmov    esi,DWORD PTR [esp+0x10]\n  58207c:\t03 c3                \tadd    eax,ebx\n  58207e:\t8b 5a 04             \tmov    ebx,DWORD PTR [edx+0x4]\n  582081:\t03 de                \tadd    ebx,esi\n  582083:\t33 f6                \txor    esi,esi\n  582085:\t85 ed                \ttest   ebp,ebp\n  582087:\t0f 86 2e 01 00 00    \tjbe    0x5821bb\n  58208d:\t33 d2                \txor    edx,edx\n  58208f:\t8a 10                \tmov    dl,BYTE PTR [eax]\n  582091:\t40                   \tinc    eax\n  582092:\t03 f2                \tadd    esi,edx\n  582094:\t3b f5                \tcmp    esi,ebp\n  582096:\t8d 3c 57             \tlea    edi,[edi+edx*2]\n  582099:\t0f 83 18 01 00 00    \tjae    0x5821b7\n  58209f:\t33 d2                \txor    edx,edx\n  5820a1:\t8a 10                \tmov    dl,BYTE PTR [eax]\n  5820a3:\t40                   \tinc    eax\n  5820a4:\t03 f2                \tadd    esi,edx\n  5820a6:\t8b ea                \tmov    ebp,edx\n  5820a8:\t4a                   \tdec    edx\n  5820a9:\t89 44 24 30          \tmov    DWORD PTR [esp+0x30],eax\n  5820ad:\t85 ed                \ttest   ebp,ebp\n  5820af:\t89 74 24 2c          \tmov    DWORD PTR [esp+0x2c],esi\n  5820b3:\t0f 84 ef 00 00 00    \tje     0x5821a8\n  5820b9:\tdb 44 24 40          \tfild   DWORD PTR [esp+0x40]\n  5820bd:\tdb 44 24 44          \tfild   DWORD PTR [esp+0x44]\n  5820c1:\tdb 44 24 48          \tfild   DWORD PTR [esp+0x48]\n  5820c5:\t8b e9                \tmov    ebp,ecx\n  5820c7:\t81 e5 ff ff 00 00    \tand    ebp,0xffff\n  5820cd:\t42                   \tinc    edx\n  5820ce:\t89 6c 24 24          \tmov    DWORD PTR [esp+0x24],ebp\n  5820d2:\t89 54 24 3c          \tmov    DWORD PTR [esp+0x3c],edx\n  5820d6:\teb 08                \tjmp    0x5820e0\n  5820d8:\t8b 6c 24 24          \tmov    ebp,DWORD PTR [esp+0x24]\n  5820dc:\t8b 4c 24 1c          \tmov    ecx,DWORD PTR [esp+0x1c]\n  5820e0:\t66 8b 37             \tmov    si,WORD PTR [edi]\n  5820e3:\t66 a1 7c 1f 6e 00    \tmov    ax,ds:0x6e1f7c\n  5820e9:\t33 d2                \txor    edx,edx\n  5820eb:\t23 c6                \tand    eax,esi\n  5820ed:\t8a 13                \tmov    dl,BYTE PTR [ebx]\n  5820ef:\t43                   \tinc    ebx\n  5820f0:\t66 d3 e8             \tshr    ax,cl\n  5820f3:\td9 04 95 ac 5d 6f 00 \tfld    DWORD PTR [edx*4+0x6f5dac]\n  5820fa:\td9 c0                \tfld    st(0)\n  5820fc:\tdc 2d 90 53 5c 00    \tfsubr  QWORD PTR ds:0x5c5390\n  582102:\t25 ff ff 00 00       \tand    eax,0xffff\n  582107:\t89 44 24 28          \tmov    DWORD PTR [esp+0x28],eax\n  58210b:\tdb 44 24 28          \tfild   DWORD PTR [esp+0x28]\n  58210f:\td8 c9                \tfmul   st,st(1)\n  582111:\td9 c5                \tfld    st(5)\n  582113:\td8 cb                \tfmul   st,st(3)\n  582115:\tde c1                \tfaddp  st(1),st\n  582117:\te8 c4 9d 01 00       \tcall   0x59bee0\n  58211c:\t66 8b d0             \tmov    dx,ax\n  58211f:\t8b cd                \tmov    ecx,ebp\n  582121:\td3 e2                \tshl    edx,cl\n  582123:\t66 8b 0d 7e 1f 6e 00 \tmov    cx,WORD PTR ds:0x6e1f7e\n  58212a:\t66 8b c6             \tmov    ax,si\n  58212d:\t66 c1 e9 05          \tshr    cx,0x5\n  582131:\t66 c1 e8 05          \tshr    ax,0x5\n  582135:\t23 c8                \tand    ecx,eax\n  582137:\t81 e1 ff ff 00 00    \tand    ecx,0xffff\n  58213d:\t89 4c 24 28          \tmov    DWORD PTR [esp+0x28],ecx\n  582141:\tdb 44 24 28          \tfild   DWORD PTR [esp+0x28]\n  582145:\t8b ea                \tmov    ebp,edx\n  582147:\td8 c9                \tfmul   st,st(1)\n  582149:\td9 c4                \tfld    st(4)\n  58214b:\td8 cb                \tfmul   st,st(3)\n  58214d:\tde c1                \tfaddp  st(1),st\n  58214f:\te8 8c 9d 01 00       \tcall   0x59bee0\n  582154:\t66 8b 0d 80 1f 6e 00 \tmov    cx,WORD PTR ds:0x6e1f80\n  58215b:\t23 ce                \tand    ecx,esi\n  58215d:\t81 e1 ff ff 00 00    \tand    ecx,0xffff\n  582163:\t89 4c 24 28          \tmov    DWORD PTR [esp+0x28],ecx\n  582167:\tdb 44 24 28          \tfild   DWORD PTR [esp+0x28]\n  58216b:\tc1 e0 05             \tshl    eax,0x5\n  58216e:\t0b e8                \tor     ebp,eax\n  582170:\tde c9                \tfmulp  st(1),st\n  582172:\td9 c2                \tfld    st(2)\n  582174:\td8 ca                \tfmul   st,st(2)\n  582176:\tde c1                \tfaddp  st(1),st\n  582178:\te8 63 9d 01 00       \tcall   0x59bee0\n  58217d:\t0b e8                \tor     ebp,eax\n  58217f:\t8b 44 24 3c          \tmov    eax,DWORD PTR [esp+0x3c]\n  582183:\t66 89 2f             \tmov    WORD PTR [edi],bp\n  582186:\t83 c7 02             \tadd    edi,0x2\n  582189:\t48                   \tdec    eax\n  58218a:\tdd d8                \tfstp   st(0)\n  58218c:\t89 44 24 3c          \tmov    DWORD PTR [esp+0x3c],eax\n  582190:\t0f 85 42 ff ff ff    \tjne    0x5820d8\n  582196:\t8b 4c 24 1c          \tmov    ecx,DWORD PTR [esp+0x1c]\n  58219a:\t8b 74 24 2c          \tmov    esi,DWORD PTR [esp+0x2c]\n  58219e:\t8b 44 24 30          \tmov    eax,DWORD PTR [esp+0x30]\n  5821a2:\tdd d8                \tfstp   st(0)\n  5821a4:\tdd d8                \tfstp   st(0)\n  5821a6:\tdd d8                \tfstp   st(0)\n  5821a8:\t8b 54 24 10          \tmov    edx,DWORD PTR [esp+0x10]\n  5821ac:\t8b 6a 04             \tmov    ebp,DWORD PTR [edx+0x4]\n  5821af:\t3b f5                \tcmp    esi,ebp\n  5821b1:\t0f 82 d6 fe ff ff    \tjb     0x58208d\n  5821b7:\t8b 54 24 20          \tmov    edx,DWORD PTR [esp+0x20]\n  5821bb:\t8b 44 24 10          \tmov    eax,DWORD PTR [esp+0x10]\n  5821bf:\t8b 68 04             \tmov    ebp,DWORD PTR [eax+0x4]\n  5821c2:\t3b f5                \tcmp    esi,ebp\n  5821c4:\t74 08                \tje     0x5821ce\n  5821c6:\tc7 44 24 14 03 00 00 \tmov    DWORD PTR [esp+0x14],0x3\n  5821cd:\t00 \n  5821ce:\t8b 44 24 34          \tmov    eax,DWORD PTR [esp+0x34]\n  5821d2:\t83 c2 08             \tadd    edx,0x8\n  5821d5:\t89 54 24 20          \tmov    DWORD PTR [esp+0x20],edx\n  5821d9:\t8d 3c 47             \tlea    edi,[edi+eax*2]\n  5821dc:\t8b 44 24 18          \tmov    eax,DWORD PTR [esp+0x18]\n  5821e0:\t48                   \tdec    eax\n  5821e1:\t89 44 24 18          \tmov    DWORD PTR [esp+0x18],eax\n  5821e5:\t0f 85 87 fe ff ff    \tjne    0x582072\n  5821eb:\t66 8b 44 24 14       \tmov    ax,WORD PTR [esp+0x14]\n  5821f0:\t5f                   \tpop    edi\n  5821f1:\t5e                   \tpop    esi\n  5821f2:\t5d                   \tpop    ebp\n  5821f3:\t5b                   \tpop    ebx\n  5821f4:\t83 c4 28             \tadd    esp,0x28\n  5821f7:\tc2 10 00             \tret    0x10\n  5821fa:\t5f                   \tpop    edi\n  5821fb:\t5e                   \tpop    esi\n  5821fc:\t5d                   \tpop    ebp\n  5821fd:\t66 33 c0             \txor    ax,ax\n  582200:\t5b                   \tpop    ebx\n  582201:\t83 c4 28             \tadd    esp,0x28\n  582204:\tc2 10 00             \tret    0x10\n",
+  "atomic_result": "16 atomic state/table refusals; selected integer state and directed coverage rounding pass",
+  "pe32_undefined": "",
+  "compiled_project_sources": [
+    "reconstruction/rendering/glyph_backend_state.c",
+    "reconstruction/rendering/glyph_backend_state.h",
+    "tests/glyph-backend-state-probe.S",
+    "tests/glyph-backend-state-reference.cpp",
+    "tests/glyph-backend-state-test.c",
+    "tests/sprite-binary-reference.cpp",
+    "tools/original-manifest.sh",
+    "tools/test-font-glyph-raster.py",
+    "tools/test-glyph-backend-state.py"
+  ],
+  "error": "Command '['/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph-state-reference', '/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/cases.bin', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/results.bin']' returned non-zero exit status 1.",
+  "commands": [
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "original-assembly",
+      "argv": [
+        "objdump",
+        "-d",
+        "-Mintel",
+        "--start-address=0x581ec0",
+        "--stop-address=0x582207",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/original-assembly.log",
+      "sha256": "d0f1da07241510acf006e5e744988bbbfee8b660a4dd67c997065d8b2a7afc10"
+    },
+    {
+      "label": "glyph_backend_state",
+      "argv": [
+        "gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph_backend_state.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph_backend_state.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/glyph_backend_state.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph-backend-state-test",
+      "argv": [
+        "gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph-backend-state-test.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-state-test.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph-backend-state-test.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/glyph-backend-state-test.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "unit-link",
+      "argv": [
+        "gcc",
+        "-fsanitize=address,undefined",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph_backend_state.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph-backend-state-test.o",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/state-admission"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/unit-link.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "atomic-sanitized",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/state-admission"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/atomic-sanitized.log",
+      "sha256": "668d57656ea74bf834aa956ba404f69cc022bcd798ee39e1e72ed7bd50a604db"
+    },
+    {
+      "label": "pe32-model",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/pe32.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/state-pe32.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/pe32-model.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "pe32-imports",
+      "argv": [
+        "nm",
+        "-u",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/state-pe32.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/pe32-imports.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "model32",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/model32.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/model32.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/model32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "probe",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-state-probe.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/probe.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/probe.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "reference",
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/reference.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-state-reference.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/model32.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/probe.o",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph-state-reference"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/reference.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "original-state",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/glyph-state-reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/cases.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend-state/run-fnntc2rk/results.bin"
+      ],
+      "returncode": 1,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/original-state.log",
+      "sha256": "8f8d4cb883723cb7a2e8823587e4b072c64fda253fd116db4b6fa1ea04ac3013"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend-state/run-fnntc2rk/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "changed_sources": [],
+  "changed_inputs": [],
+  "sources_stable": true,
+  "inputs_stable": true,
+  "full_report": {
+    "path": "working/tests/glyph-backend-state/run-fnntc2rk/report.json",
+    "sha256": "d94efb4f3a221eef582e98e46ea74e07e29136333f8d288b3777d1e7644b5316"
+  }
+}
