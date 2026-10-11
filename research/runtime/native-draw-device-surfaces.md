@@ -159,3 +159,33 @@ now emits actual compiler dependencies, retaining existing manifest fields.
 The fresh full default gameplay attempt remains a recorded native presentation
 failure; it is not promoted to a pass because another selected journey passed.
 Universal19FPS,60FPS and whole-engine retirement remain outside these proofs.
+
+The fresh [full default NVIDIA journey](native-draw-public-default-full-nvidia-pass-20261011.json)
+passes casting/combat/movement, Fireball and refused spells, nine portrait
+cycles, Mini/resume and normal Quit. Actual Qt backend identifies TITAN RTX;
+real ddraw remains disabled/absent, with no unknown call/recovery/fallback.
+Combat command/paint rates are36.8339/25.2133FPS over118.152seconds; resumed
+57.9501/31.1704FPS over59.672seconds. Worst measured gameplay paint window is
+19.9456FPS; portrait17.694seconds yields20.0068FPS with maximum channel error1.
+All compiler/source/1111 installed input fingerprints and original manifests
+remain stable. This is a selected full default journey, not a controlled
+speedup or all-scene19/60FPS assertion. Previously recorded address-wait long
+BltFast ownership failures remain failures. Additional diagnostic stage stores
+alone cannot establish a causal scheduling fix. Original CPU drawing remains
+active in this public campaign; V4 World delivery has its own evidence.
+
+The [fully bound default rerun](native-draw-public-default-full-bound-nvidia-pass-20261011.json)
+also passes the full campaign, requiring44 actual render bridge compiler/builder
+inputs and28 generator/schema inputs in the prelaunch726-source declaration.
+It measures25.1780 combat paint FPS and30.9131 resumed paint FPS; worst measured
+active gameplay window19.8610FPS. The standalone shell uses the same120second
+first-frame allowance as native menus, avoiding cancellation during fresh prefix
+startup. Current eight copy/lock/DC/flip fixtures validate added stage diagnostics
+separately; phase labels distinguish preparation(2), original call(3), derived
+history commit(4), postprocessing(5), capture(6) and completion(7).
+
+The fresh [4096-frame World result](native-draw-final-4096-performance-failure-20261011.json)
+still fails full-path19FPS despite completed delivery/paint and resource bounds.
+Median World40ms, between-World14ms and8941 readability region queries identify
+remaining costs. This performance failure is preserved alongside earlier selected
+passes; neither public UI callback throughput nor GPU readback removal hides it.

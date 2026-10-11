@@ -4453,3 +4453,24 @@ cleanup. Live default NVIDIA gameplay is validated separately. Earlier shared
 source results retain their hashes and pending freshness. The eb52c3a commit
 receipt audit covers19 exact transitions, zero missing receipts, without a
 retrospective gate or new execution claim. [Details](opengl-copy-order.md).
+
+## Full default native NVIDIA campaign — 2026-10-11
+
+`NR.directdraw-public-native-menu` has fresh full default (no opt-in) execution
+on actual Qt/NVIDIA TITAN RTX: successful casting/combat/movement, spell refusal
+and Fireball, nine portrait cycles, Mini/resume and normal Quit, real ddraw
+absent and no unknown call/recovery/fallback. The19FPS gate passes with
+25.2133FPS combat paint,31.1704 resumed paint and worst measured gameplay
+window19.9456FPS. Compiler/source/installed inputs remain unchanged. Earlier
+long-ownership failures are retained; stage diagnostics do not establish a
+controlled fix or universal19/60FPS. Original CPU drawing in the public flow
+and separate V4 native World delivery remain distinct. [Fresh evidence](native-draw-public-default-full-nvidia-pass-20261011.json).
+
+The final strict public rerun additionally binds44 rendering compiler/builder
+and28 generator/schema inputs prospectively. Full casting/combat/portrait/resume/
+normal Quit passes with no fallback/recovery/real ddraw and active gameplay paint
+windows >=19.8610FPS. The separate current4096-World result fails full-path FPS:
+40ms median World work plus14ms between World frames,8941 region queries/frame.
+All deliveries and paints complete, but performance remains a failure. These
+milestones are recorded independently. The d29a37c receipt audit covers14 exact
+transitions without gaps or retrospective execution claims.

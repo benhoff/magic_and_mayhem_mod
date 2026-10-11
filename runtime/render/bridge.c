@@ -252,18 +252,24 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     COMMAND_CALLBACK(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))lookup(object)->original[7])(object,x,y,source,rect,flags));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((BltFast)lookup(object)->original[7])(object,x,y,source,rect,flags);game_copy_unobserved(object);return result;}
+    game_copy_stage(1);
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
     if(token && !c)history_gap(6);
+    game_copy_stage(2);
     struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);propagated.caller=caller;
+    game_copy_stage(3);
     SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
+    game_copy_stage(4);
     game_blit_after(&propagated,status);
+    game_copy_stage(5);
     render_failure("application_bltfast",status,object,t->kind,flags);
     end_draw(c,object,status);
     /* For a Fast event, left/top are x/y; right/bottom are deliberately zero. */
     u32 dest[4]={x,y,0,0};draw_event(2,caller,object,source,flags,status,dest,rect);
-    if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
+    game_copy_stage(6);
+    if(status>=0)capture(object);history_leave(token);game_copy_stage(7);SetLastError(error);return status;
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
     COMMAND_CALLBACK(((Flip)lookup(object)->original[11])(object,target,flags));
