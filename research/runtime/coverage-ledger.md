@@ -4367,3 +4367,32 @@ cache321, RSS growth9,097,216 bytes, World median38ms/p9544ms/max66ms and
 cold492.16ms pass unchanged bounds.18.6534 original/18.6580 Qt FPS still fail19;
 this is a functional sustained retirement slice, not a performance pass or
 original semantic COM quit proof.
+
+## DirectDraw-disabled peer failure and recovery —2026-10-11
+
+Both private consumer-death and original-producer-death controls pass at
+outstanding generation34 with ddraw disabled. Each requires the expected
+terminal refusal, no successful completion claim, stopped private Wine,
+unchanged MnmDraw.dll and96-byte diagnostics showing native factory/surface
+startup, real module absence and bounded resources. These are forced private
+process controls, not original semantic COM Quit.
+
+A fresh128-frame session after both controls completes all original returns
+and Qt presentations with zero World readbacks/replies/writebacks and zero
+GPU teardown resources. Every unchanged budget passes:19.5181 original/19.7385
+Qt FPS, World median35ms/p9539ms/max44ms,cold447.63ms,cache306 and RSS growth
+274,432 bytes. This establishes bounded fresh-session recovery/performance;
+previous4,096-frame18.6534FPS failure remains retained. Arbitrary-scene sustained
+19FPS,60FPS, original pixel equivalence, semantic Quit and public menu/gameplay
+DirectDraw-disabled coverage remain pending.
+
+The sustained current-source4,096-frame recovery then passes every unchanged
+performance/resource gate:19.5419 original/19.5453 Qt FPS, warm World median36ms/
+p9540ms/max61ms,cold439.45ms,cache366,RSS growth9,068,544 bytes. All4,096
+original returns/native completions/Qt presentations complete with zero World
+readbacks/replies/writebacks and zero GPU teardown resources. This proves the
+selected sustained19FPS milestone with the real backend absent; the retained
+other-scene18.6534FPS failure prevents an arbitrary-scene performance claim.
+The public native menus/campaign route still uses its older graphics bridge;
+its backend-disabled integration,60FPS and full gameplay/semantic Quit remain
+separate outstanding retirement work.

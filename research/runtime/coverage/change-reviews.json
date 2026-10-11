@@ -250595,6 +250595,184 @@
         "evidence": [],
         "reason": "Original engine/protocol and other affected source closures were not all re-executed; retain pending current-equivalence gaps and prior historical stages. Current native scoped tests/functional128 and4096 delivery are recorded separately;19FPS still fails and60FPS/full retirement/semantic COM quit/backend-disabled peer-death/recovery remain unproved."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "9e4ac0e12a779ed0ebafe3a54380dc299db3d717976d7ba23410aa97473d65c2",
+          "before_sha256": "c112225879232df66ed25cdb81118cca8fa7b2ce3127c175526f31b789417b18",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "2ae60bdb81669300829a4e1f14b01253b48d27bbef61cd52ffb7bc2a229304fc",
+          "before_sha256": "b883b9bfd1e7fb7cca7d8aba341919522ee64f4af9908db14b045e8196a6c0e7",
+          "id": "NR.world-gpu-ack-delivery"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d14142591f77fde3fdecc0c4dc86dd41f942c1b01f75e4a792b718c7d1342a2c",
+          "before_sha256": "591dfa0ae82cbeca35c83ccf8837e8c6ae3c8f6e0e25d0439806f729f4faeebf",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a6aab949609731c455536affb31c1a7cf9208ab87b05cad6ee5d533d5cb6aaf3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-cache-validity-20261011.json"
+        },
+        {
+          "after_sha256": "83836790f38f0c3c392473e4b776f0425aa958048d095dee0dafc37de628b243",
+          "before_sha256": "139f72acb231e71e139102bf2a066adb838b73fb6f86ab0121a94b2c537bd463",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "726bde4c58b84c272ad02e0a0c47af208c7f7564e66b8f9525af979c5b812f90",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-draw-peer-failure-20261011.json"
+        },
+        {
+          "after_sha256": "5d98641a3c72f43e701dbe7946c5f9ff39043bc17c548aff2b470b6ae38393e2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-draw-peer-failure-20261011.md"
+        },
+        {
+          "after_sha256": "1805abb0567aa25fbfeb467fa653235cc9296876d8fc07ddd36fed5e537f2602",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-consumer-death-pass-20261011.json"
+        },
+        {
+          "after_sha256": "1bca04769244b35dfc95a2c45db710f1e4cdf1286a57fefd5ccfb558a0f27159",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-producer-death-pass-20261011.json"
+        },
+        {
+          "after_sha256": "cdbf5cf8d110bd2735fc8f0c8b9b5ddc914336d47b46afd28b6c4d5b0945dd73",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-recovery128-performance-pass-20261011.json"
+        },
+        {
+          "after_sha256": "79d18a04df4167e49f3861df15f681620a875065ae75900168fe0335e182bbf5",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-recovery4096-performance-pass-20261011.json"
+        },
+        {
+          "after_sha256": "3d642834520bc530024515ae139dccd4ac6d467a5bddd60acbc902f6a5163b52",
+          "before_sha256": "6e4497d3012cbc5f7cbf8efba109bed5b029f9ad8e6e1dd1a8d264970f432280",
+          "path": "tools/test-native-world-continuous.py"
+        }
+      ],
+      "id": "change-44334b118e44c708-native",
+      "pending_gaps": [],
+      "reason": "Reviewed separate prospective backend-disabled peer-failure scenario and strict post-fault96-byte status/DLL/startup/module-absence/resource admission. Kills target only the owned native viewer PID or private original Wine prefix at outstanding generation34; normal live path/engine clocks/rules/source wire unchanged. Reviewed current census and preserved all historical sources/performance failures. Audited9eb9316 parent/current exact receipts for22 files, zero missing; no retrospective gate assertion.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.directdraw-retirement.consumer-death-20261011",
+          "NR.directdraw-retirement.producer-death-20261011",
+          "NR.directdraw-retirement.recovery128-performance-20261011",
+          "NR.directdraw-retirement.recovery4096-performance-20261011"
+        ],
+        "reason": "Both current-source death controls pass expected terminal refusal/no successful completion/stopped private Wine with unchanged native graphics DLL and real ddraw absent after native startup. Fresh128 and4096 TITAN RTX sessions complete all returns/presentations with zero World pixel roundtrips and zero GPU resources after teardown; every unchanged budget passes, sustained19.5419 original/19.5453 Qt FPS,median36/p9540/max61ms,cold439.45ms,cache366,RSS growth9,068,544 bytes. No arbitrary-scene/full gameplay/original pixel/semantic Quit/60FPS claim; prior18.6534FPS failed scene retained."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "9e4ac0e12a779ed0ebafe3a54380dc299db3d717976d7ba23410aa97473d65c2",
+          "before_sha256": "c112225879232df66ed25cdb81118cca8fa7b2ce3127c175526f31b789417b18",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "fc3f080259c4ffc192903ca80f7217e2543b64b2a3f2bdb867465d3045dfa840",
+          "before_sha256": "09429cfb7d9f9551f334dd1db16967e9c3d9a156e110e98178bdb1ddf6b03d0d",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "a4b10ab6cbf4c6349390e2751cfa4999afcc80cd5a9767c0d644c4353a3ddf70",
+          "before_sha256": "f878bbce383a96d06f464d95b3014bc18b42512aee3fac8a7b0582d7102a15f1",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "2ae60bdb81669300829a4e1f14b01253b48d27bbef61cd52ffb7bc2a229304fc",
+          "before_sha256": "b883b9bfd1e7fb7cca7d8aba341919522ee64f4af9908db14b045e8196a6c0e7",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "8db653c29990b9ae49d1da8b1145fb6ccfddbe54b4f23ea11a2359773d833e60",
+          "before_sha256": "5dd80576c9c406242552eccacaf8acda1414fb0a4b8436415c0971a67dec39b8",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "bc359acf2da17891a37cae09fc3f1dc81ae0a319afc115c030009387479572d1",
+          "before_sha256": "24cc19512f073a426ad6deb172abd0da9d1df82847c25f69723178349035936a",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d14142591f77fde3fdecc0c4dc86dd41f942c1b01f75e4a792b718c7d1342a2c",
+          "before_sha256": "591dfa0ae82cbeca35c83ccf8837e8c6ae3c8f6e0e25d0439806f729f4faeebf",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a6aab949609731c455536affb31c1a7cf9208ab87b05cad6ee5d533d5cb6aaf3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-cache-validity-20261011.json"
+        },
+        {
+          "after_sha256": "83836790f38f0c3c392473e4b776f0425aa958048d095dee0dafc37de628b243",
+          "before_sha256": "139f72acb231e71e139102bf2a066adb838b73fb6f86ab0121a94b2c537bd463",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "726bde4c58b84c272ad02e0a0c47af208c7f7564e66b8f9525af979c5b812f90",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-draw-peer-failure-20261011.json"
+        },
+        {
+          "after_sha256": "5d98641a3c72f43e701dbe7946c5f9ff39043bc17c548aff2b470b6ae38393e2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-draw-peer-failure-20261011.md"
+        },
+        {
+          "after_sha256": "1805abb0567aa25fbfeb467fa653235cc9296876d8fc07ddd36fed5e537f2602",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-consumer-death-pass-20261011.json"
+        },
+        {
+          "after_sha256": "1bca04769244b35dfc95a2c45db710f1e4cdf1286a57fefd5ccfb558a0f27159",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-producer-death-pass-20261011.json"
+        },
+        {
+          "after_sha256": "cdbf5cf8d110bd2735fc8f0c8b9b5ddc914336d47b46afd28b6c4d5b0945dd73",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-recovery128-performance-pass-20261011.json"
+        },
+        {
+          "after_sha256": "79d18a04df4167e49f3861df15f681620a875065ae75900168fe0335e182bbf5",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-recovery4096-performance-pass-20261011.json"
+        },
+        {
+          "after_sha256": "3d642834520bc530024515ae139dccd4ac6d467a5bddd60acbc902f6a5163b52",
+          "before_sha256": "6e4497d3012cbc5f7cbf8efba109bed5b029f9ad8e6e1dd1a8d264970f432280",
+          "path": "tools/test-native-world-continuous.py"
+        }
+      ],
+      "id": "change-44334b118e44c708-shared-pending",
+      "pending_gaps": [
+        "stale_evidence:008d9ce64f42dff779b142d8ba6e68c636958e270bce5da7d2786fb17a9a45b5",
+        "stale_evidence:0fc206498cd6365f9b00f6cc2bc663501828f33b363c840f7d56162bc69eb43f",
+        "stale_evidence:813cb8b201a3f5826ce7df727e51bf1cea1c759e2b8509a5e5f9b34a0360195c",
+        "stale_evidence:fade225241effe5b9194f08f004c5b51d0c6a969c7046c46cf59cc17a1e35020"
+      ],
+      "reason": "Reviewed all six affected contract/fingerprint/accounting transitions and four new pending gap IDs. The shared continuous runner changes its native graphics fault status checks/scenario selection; older V3/continuous-original/native-normal evidence remains historical. No source-hash refresh, original address/range inference, baseline reset or unrelated status promotion.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Other linked continuous engine/native-normal/source/coverage-tool contracts were not independently rerun for their own scopes; retain historical stages and explicit current-source pending gaps. Native graphics failure/recovery evidence is recorded separately and does not prove semantic original Quit, public native menu route, arbitrary-scene throughput or60FPS."
+      }
     }
   ]
 }
