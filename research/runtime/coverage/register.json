@@ -25046,7 +25046,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native blocked casts and player Fireball damage",
-      "scope": "First campaign physical invalid-target Zombie attempt and insufficient-mana attempt after normal Zombie/Fireball costs; no newly living Zombie or observed mana loss in bounded same-identity caster intervals. Original defended enemy HP reduction inside a player-sourced Fireball71 dispatch, matching damage attribution owner. Ordinary return-ground orders before optional portrait stress. Pre-ingress UI refusal remains distinct from internal admission. Cure41 is absent from the starting loadout and healing remains pending; refunds, mitigation formulas, full animation equivalence, other maps and simulation/drawing replacement are excluded. Fireball evidence additionally requires a same-thread player Wizard71 cast with identity-valid mana debit within10seconds and a reviewed direct impact/dispatch damage caller (0x48ed24/0x48b4e2); stale context or arbitrary health loss cannot establish the bounded hit. Return-ground waypoint requires a living wizard within3tiles of the initial-relative target after at most12physical orders. Eight attempts previously expired while the wizard still made progress on every order; the waypoint/aliveness requirement is retained, no engine state is written. Terrain admission and arbitrary map pathfinding remain excluded.",
+      "scope": "First campaign physical invalid-target Zombie attempt and insufficient-mana attempt after normal Zombie/Fireball costs; no newly living Zombie or observed mana loss in bounded same-identity caster intervals. Original defended enemy HP reduction inside a player-sourced Fireball71 dispatch, matching damage attribution owner. Ordinary return-ground orders before optional portrait stress. Pre-ingress UI refusal remains distinct from internal admission. Cure41 is absent from the starting loadout and healing remains pending; refunds, mitigation formulas, full animation equivalence, other maps and simulation/drawing replacement are excluded. Fireball evidence additionally requires a same-thread player Wizard71 cast with identity-valid mana debit within10seconds and a reviewed direct impact/dispatch damage caller (0x48ed24/0x48b4e2); stale context or arbitrary health loss cannot establish the bounded hit. Return-ground waypoint requires a living wizard within3tiles of the previously occupied initial wizard tile after at most12physical orders. Eight attempts previously expired while the wizard still made progress on every order; the waypoint/aliveness requirement is retained, no engine state is written. Terrain admission and arbitrary map pathfinding remain excluded. The guessed map-edge offset waypoint was replaced after a twelve-order overshoot; initial occupancy establishes a previously reachable target, not general projection/pathfinding equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -37665,7 +37665,11 @@
         "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json",
         "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json",
         "research/runtime/public-resident-casting-retreat-negative-20261011.json",
-        "research/runtime/public-resident-casting-retreat-input-20261011.json"
+        "research/runtime/public-resident-casting-retreat-input-20261011.json",
+        "research/runtime/public-resident-retreat-edge-negative-20261011.json",
+        "research/runtime/public-resident-retreat-edge-input-20261011.json",
+        "research/runtime/public-resident-profile-quit-negative-20261011.json",
+        "research/runtime/public-resident-cpu-profile-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37700,7 +37704,9 @@
         "NR.public-resident-world.shadow-write-failure-20261011",
         "NR.public-resident-world.shadow-envelope-fixtures-20261011",
         "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
-        "NR.public-resident-world.casting-retreat-negative-20261011"
+        "NR.public-resident-world.casting-retreat-negative-20261011",
+        "NR.public-resident-world.retreat-edge-negative-20261011",
+        "NR.public-resident-world.profile-quit-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -76260,6 +76266,60 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.retreat-edge-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Negative twelve-order ordinary Titan journey ends with living90HPwizard at(0,79), exactly3tiles from guessed(3,79); strict arrival refuses.3264Worlds/17.9671engineFPS/no renderer error/zero delivery readbacks. Native casting/Fireball/melee observed; portrait/quit/fulljourney/performance proof pending. Camera-edge projection mismatch remains hypothesis.",
+      "record": "research/runtime/public-resident-retreat-edge-negative-20261011.json",
+      "sha256": "2c7e74d6e934b0b2cbc0f7f26bad5c52d9678417b5bab40e96b7ca2cb410b8c0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.profile-quit-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Profiled private Titan journey completes physical casting/combat,portrait,Mini Cancel/resume and Quit No/Yes/Main steps, then renderer treats orderly producer cancellation as fatal.4498balanced Worlds/18.8009aggregateFPS/no delivery readbacks. Profiling can affect cadence; no uninstrumented FPS/fulljourney/replacement claim.",
+      "record": "research/runtime/public-resident-profile-quit-negative-20261011.json",
+      "sha256": "9115415e4994924cde3a011bd89be15900d62c6091715b114ea9ccff94299882",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": "Resident World producer cancelled"
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84712,7 +84772,9 @@
         "NR.public-resident-world.displacement-failure-20261011",
         "NR.public-resident-world.shadow-write-failure-20261011",
         "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
-        "NR.public-resident-world.casting-retreat-negative-20261011"
+        "NR.public-resident-world.casting-retreat-negative-20261011",
+        "NR.public-resident-world.retreat-edge-negative-20261011",
+        "NR.public-resident-world.profile-quit-negative-20261011"
       ]
     },
     {
@@ -85120,8 +85182,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-retreat-budget-20261011.json",
-    "sha256": "7715899e09808730d97e36c4d42267b019d957955c4de0cf6d5eab7b21b43723"
+    "path": "research/runtime/coverage/source-index-resident-return-visited-20261011.json",
+    "sha256": "ad283e57456941fb808669bd902b23bccd0a53d5dca04f3ca1384a8741f3c6da"
   },
   "claim_bindings_required": true
 }

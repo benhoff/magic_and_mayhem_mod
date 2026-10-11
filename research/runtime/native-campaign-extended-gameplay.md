@@ -313,3 +313,26 @@ and `public-resident-casting-retreat-input-20261011.json`. The bounded budget is
 now12orders; the same within3tiles/aliveness requirement remains. Portrait,
 Mini/quit, remaining refusal and complete journey proof are pending; no broad
 replacement or original UI equivalence promotion.
+
+Twelve-order follow-up remains negative: the living90HPwizard reaches(0,79),
+exactly3tiles from the guessed(3,79) target, and strict arrival refuses. Camera
+edge centering/projection mismatch is a hypothesis, not recovered behavior.
+The waypoint now uses the originally occupied wizard tile; the same twelve
+orders/within3tiles/aliveness requirement remains.3264Worlds complete with no
+renderer error/readbacks, but17.9671aggregateFPS misses19. Report/input:
+`public-resident-retreat-edge-negative-20261011.json` and
+`public-resident-retreat-edge-input-20261011.json`. Profiling and full journey
+proof remain pending; no target/performance gate is relaxed.
+
+Returning to the originally occupied tile clears retreat and allows the complete
+physical input helper,including insufficient mana and portrait stress,to finish.
+The profiled journey also completes Mini Cancel/resume and Quit No/Yes/Main steps,
+but remains negative: resident polling treats original producer cancellation at
+normal shutdown as fatal.4498completed/imported/verified Worlds are balanced,
+with zero delivery readbacks.18.8009aggregateFPS is below19 and is profiled cadence,
+not an uninstrumented pass. Report:`public-resident-profile-quit-negative-20261011.json`.
+99Hz user-space shell sampling over30seconds loses no samples and attributes32.51%
+self CPU samples to full-canvas dual-background minimap composition; attribution
+is diagnostic,not pure GPU time. Retained artifacts/source/binary hashes:
+`public-resident-cpu-profile-20261011.json`. Normal acknowledged shutdown handling,
+minimap candidate comparison and uninstrumented fulljourney/FPS proof are next.

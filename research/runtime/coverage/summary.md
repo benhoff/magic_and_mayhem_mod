@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 593 |
-| evidence | 1108 |
+| evidence | 1110 |
 | scenarios | 311 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
@@ -26,10 +26,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 166 |
 | behaviors without comparison | 488 |
 | behaviors without tests | 1 |
-| stale evidence | 905 |
+| stale evidence | 906 |
 | behavior anchors outside discovered functions | 46 |
-| validation gaps | 780 |
-| retired execution claims | 424 |
+| validation gaps | 779 |
+| retired execution claims | 434 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
@@ -46,7 +46,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 166; pending: 417; current: 10 |
+| implementation | none: 166; pending: 416; current: 11 |
 | comparison | none: 488; pending: 101; current: 4 |
 | integration | none: 330; pending: 256; current: 7 |
 | replacement | none: 587; pending: 6; current: 0 |
@@ -1701,6 +1701,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NR.public-resident-world.shadow-envelope-dialogue-negative-20261011**: `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
 - **HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011**: `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
 - **NR.public-resident-world.casting-retreat-negative-20261011**: `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.retreat-edge-negative-20261011**: `tools/campaign-combat-input.py`
 
 ## Checklist gaps
 

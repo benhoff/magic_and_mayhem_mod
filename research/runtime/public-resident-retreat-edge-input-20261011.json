@@ -1,0 +1,2401 @@
+{
+  "success": false,
+  "monotonic_start": 139766.690646306,
+  "dialogue_oracle": "resident-native",
+  "player_owner": 0,
+  "wizard_slot": 0,
+  "initial_creatures": {
+    "0": {
+      "sequence": 4,
+      "slot": 0,
+      "type": 0,
+      "owner": 0,
+      "active": 1,
+      "health": 200,
+      "x": 10,
+      "y": 71,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 12800
+    },
+    "1": {
+      "sequence": 5,
+      "slot": 1,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 33,
+      "x": 7,
+      "y": 67,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "2": {
+      "sequence": 6,
+      "slot": 2,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 110,
+      "x": 31,
+      "y": 52,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    }
+  },
+  "dialogue_checks": [
+    {
+      "capture": "combat-00-dialogue-check-0",
+      "texts": {
+        "native": "SRR, X e e ety\nh,v,v;w.vvr N1 Ly Ayl A el",
+        "original": "A L"
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "capture": "combat-01-dialogue-check-1",
+      "texts": {
+        "native": "",
+        "original": "A L"
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "capture": "combat-02-dialogue-check-2",
+      "texts": {
+        "native": "Hermes\nFollow the path Comelius. The\nJjourney of a thousand miles begins\nwith a sinde step!\nA ey",
+        "original": "Hermes\nFollow the path Comelius. The\nJjourney of a thousand miles begins\nwith a sinde step!"
+      },
+      "visible": {
+        "native": true,
+        "original": true
+      }
+    },
+    {
+      "capture": "combat-03-dialogue-check-3",
+      "texts": {
+        "native": "Hermes\nYet have a care. You may chance\nupon the wizard Camulos - Gate\nKeeper of the Forest of Pain.\nAN W",
+        "original": "Hermes\nYet have a care. You may chance\nupon the wizard Camulos - Gate\nKeeper of the Forest of Pain."
+      },
+      "visible": {
+        "native": true,
+        "original": true
+      }
+    },
+    {
+      "capture": "combat-04-dialogue-check-4",
+      "texts": {
+        "native": "",
+        "original": "Hermes\nYet have a care. You may chance\nupon the wizard Camulos - Gate\nKeeper of the Forest of Pain."
+      },
+      "visible": {
+        "native": false,
+        "original": true
+      }
+    },
+    {
+      "capture": "combat-05-dialogue-check-5",
+      "texts": {
+        "native": "e S LS SR A RS T, o\ns AT o i E N LT .",
+        "original": "Hermes\nYet have a care. You may chance\nupon the wizard Camulos - Gate\nKeeper of the Forest of Pain."
+      },
+      "visible": {
+        "native": false,
+        "original": true
+      }
+    }
+  ],
+  "blocked_casts": [
+    {
+      "kind": "invalid-target",
+      "before_sequence": 228,
+      "after_sequence": 268,
+      "mana_before": 12800,
+      "mana_after": 12800,
+      "created_slots": []
+    }
+  ],
+  "summon": {
+    "before_sequence": 292,
+    "after_sequence": 324,
+    "slot": 3,
+    "before_capture": "combat-06-before-summon",
+    "after_capture": "combat-08-after-summon"
+  },
+  "additional_summons": [
+    {
+      "before_sequence": 1755,
+      "after_sequence": 1806,
+      "slot": 1
+    }
+  ],
+  "movement_probes": [
+    {
+      "before_sequence": 621,
+      "after_sequence": 699,
+      "screen_delta": [
+        140,
+        -50
+      ],
+      "tile_delta": [
+        0,
+        -4
+      ]
+    },
+    {
+      "before_sequence": 740,
+      "after_sequence": 818,
+      "screen_delta": [
+        150,
+        0
+      ],
+      "tile_delta": [
+        2,
+        -3
+      ]
+    }
+  ],
+  "ranged": {
+    "first_damage": [
+      34,
+      3,
+      396,
+      139858912,
+      2,
+      10,
+      2,
+      99,
+      79,
+      1,
+      20,
+      0,
+      71,
+      4779300,
+      0,
+      0
+    ]
+  },
+  "combat": {
+    "first_hit": [
+      1863,
+      2,
+      396,
+      139865105,
+      1,
+      14,
+      0,
+      90,
+      2,
+      10,
+      2,
+      52,
+      50,
+      1,
+      1,
+      0
+    ],
+    "hit_count": 7,
+    "lethal_hit": [
+      2389,
+      2,
+      396,
+      139884772,
+      0,
+      0,
+      0,
+      90,
+      2,
+      10,
+      2,
+      3,
+      0,
+      1,
+      1,
+      0
+    ]
+  },
+  "retreat_target": [
+    3,
+    79
+  ],
+  "error": "Post-combat ground retreat did not reach its observed waypoint",
+  "seconds": 184.2917962920037,
+  "actions": [
+    {
+      "action": "motion",
+      "seconds": 0.0002495330118108541,
+      "logical_x": 400,
+      "logical_y": 300
+    },
+    {
+      "action": "click",
+      "seconds": 0.34086053099599667,
+      "button": 1
+    },
+    {
+      "action": "capture",
+      "seconds": 1.4540336100035347,
+      "name": "combat-00-dialogue-check-0"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 1.9477038450131658,
+      "attempt": 0,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 4.559761164011434,
+      "name": "combat-01-dialogue-check-1"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 4.965368592005689,
+      "attempt": 1,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 8.780341356003191,
+      "name": "combat-02-dialogue-check-2"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 9.295775500999298,
+      "attempt": 2,
+      "visible": {
+        "native": true,
+        "original": true
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 9.296162602986442,
+      "logical_x": 400,
+      "logical_y": 300
+    },
+    {
+      "action": "click",
+      "seconds": 9.63668835599674,
+      "button": 1
+    },
+    {
+      "action": "capture",
+      "seconds": 10.751587593986187,
+      "name": "combat-03-dialogue-check-3"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 11.27094150800258,
+      "attempt": 3,
+      "visible": {
+        "native": true,
+        "original": true
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 11.271572144003585,
+      "logical_x": 400,
+      "logical_y": 300
+    },
+    {
+      "action": "click",
+      "seconds": 11.612532516999636,
+      "button": 1
+    },
+    {
+      "action": "capture",
+      "seconds": 12.72506958100712,
+      "name": "combat-04-dialogue-check-4"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 13.222056478989543,
+      "attempt": 4,
+      "visible": {
+        "native": false,
+        "original": true
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 15.733525257004658,
+      "name": "combat-05-dialogue-check-5"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 16.304410676006228,
+      "attempt": 5,
+      "visible": {
+        "native": false,
+        "original": true
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 17.167026295006508,
+      "name": "combat-06-before-summon"
+    },
+    {
+      "action": "motion",
+      "seconds": 17.16778875500313,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 17.515086811996298,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 17.515841601998545,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 17.856800039997324,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 18.608457341004396,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 19.507808375987224,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 20.08416971800034,
+      "logical_x": 90,
+      "logical_y": 90
+    },
+    {
+      "action": "click",
+      "seconds": 20.700630965991877,
+      "button": 3
+    },
+    {
+      "action": "capture",
+      "seconds": 23.57923215199844,
+      "name": "combat-07-invalid-target"
+    },
+    {
+      "action": "blocked-cast",
+      "seconds": 23.57990484801121,
+      "kind": "invalid-target",
+      "before_sequence": 228,
+      "after_sequence": 268,
+      "mana_before": 12800,
+      "mana_after": 12800,
+      "created_slots": []
+    },
+    {
+      "action": "motion",
+      "seconds": 23.580615006998414,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 23.92167287200573,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 24.4240067480132,
+      "logical_x": 440,
+      "logical_y": 310
+    },
+    {
+      "action": "click",
+      "seconds": 24.76517901799525,
+      "button": 3
+    },
+    {
+      "action": "summon-order",
+      "seconds": 24.765923909988487,
+      "before_sequence": 292
+    },
+    {
+      "action": "capture",
+      "seconds": 27.049235153011978,
+      "name": "combat-08-after-summon"
+    },
+    {
+      "action": "summon-confirmed",
+      "seconds": 27.04999210499227,
+      "slot": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 42.06286377899232,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 42.40410826500738,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 42.40491335198749,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 42.74605197299388,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 43.500629880989436,
+      "logical_x": 540,
+      "logical_y": 230
+    },
+    {
+      "action": "click",
+      "seconds": 43.841947662003804,
+      "button": 3
+    },
+    {
+      "action": "movement-probe",
+      "seconds": 46.84533709200332,
+      "before_sequence": 621,
+      "after_sequence": 699,
+      "screen_delta": [
+        140,
+        -50
+      ],
+      "tile_delta": [
+        0,
+        -4
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 46.84612231099163,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 47.18722112500109,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 47.188062281988095,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 47.529042831010884,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 48.28349964201334,
+      "logical_x": 550,
+      "logical_y": 280
+    },
+    {
+      "action": "click",
+      "seconds": 48.62476894899737,
+      "button": 3
+    },
+    {
+      "action": "movement-probe",
+      "seconds": 51.62868577201152,
+      "before_sequence": 740,
+      "after_sequence": 818,
+      "screen_delta": [
+        150,
+        0
+      ],
+      "tile_delta": [
+        2,
+        -3
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 51.62960130799911,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 51.97065566299716,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 51.971581855992554,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 52.312621379009215,
+      "button": 1
+    },
+    {
+      "action": "movement-calibration",
+      "seconds": 53.06359550100751,
+      "basis": [
+        [
+          [
+            0,
+            -4
+          ],
+          [
+            140,
+            -50
+          ]
+        ],
+        [
+          [
+            2,
+            -3
+          ],
+          [
+            150,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "action": "capture",
+      "seconds": 53.576017715997295,
+      "name": "combat-09-navigation-start"
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 53.58006431598915,
+      "wizard": {
+        "sequence": 867,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 191,
+        "x": 12,
+        "y": 64,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 869,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 0
+      },
+      "screen_delta": [
+        170.0,
+        41.3716814159292
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 53.580640331987524,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 53.92154921600013,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 53.92264462201274,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 54.263847391004674,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 55.015003437991254,
+      "logical_x": 570.0,
+      "logical_y": 321.3716814159292
+    },
+    {
+      "action": "click",
+      "seconds": 55.356422559998464,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 58.35752181301359,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 58.698436734994175,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 58.69947080098791,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 59.04070522100665,
+      "button": 1
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 59.796228299994254,
+      "wizard": {
+        "sequence": 1007,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 191,
+        "x": 15,
+        "y": 62,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1008,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 0
+      },
+      "screen_delta": [
+        170.0,
+        41.901408450704224
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 59.797260385006666,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 60.13853994500823,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 60.13956752800732,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 60.48086474099546,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 61.23208943300415,
+      "logical_x": 570.0,
+      "logical_y": 321.90140845070425
+    },
+    {
+      "action": "click",
+      "seconds": 61.57353779999539,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 64.57475674399757,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 64.91638892999617,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 64.91740566201042,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 65.25878636800917,
+      "button": 1
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 66.0127854399907,
+      "wizard": {
+        "sequence": 1139,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 191,
+        "x": 18,
+        "y": 60,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1140,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 0
+      },
+      "screen_delta": [
+        170.0,
+        42.685589519650655
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 66.01330854999833,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 66.35410967300413,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 66.35523358199862,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 66.69653058800031,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 67.4477232049976,
+      "logical_x": 570.0,
+      "logical_y": 322.68558951965065
+    },
+    {
+      "action": "click",
+      "seconds": 67.78956508199917,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 70.79079430300044,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 71.1324066130037,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 71.13348455898813,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 71.4747565780126,
+      "button": 1
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 72.2321605120087,
+      "wizard": {
+        "sequence": 1271,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 191,
+        "x": 22,
+        "y": 59,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1272,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 0
+      },
+      "screen_delta": [
+        170.0,
+        30.865921787709496
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 72.2332107849943,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 72.57452629800537,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 72.57602799599408,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 72.91753329298808,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 73.66874755898607,
+      "logical_x": 570.0,
+      "logical_y": 310.8659217877095
+    },
+    {
+      "action": "click",
+      "seconds": 74.0116682210064,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 77.01243803399848,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 77.35350920900237,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 77.35470534599153,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 77.69604721901123,
+      "button": 1
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 78.45376235598815,
+      "wizard": {
+        "sequence": 1403,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 191,
+        "x": 25,
+        "y": 57,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1404,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 0
+      },
+      "screen_delta": [
+        170.0,
+        27.41935483870968
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 78.45496006900794,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 78.79638760600938,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 78.79761151201092,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 79.13897102299961,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 79.89114864298608,
+      "logical_x": 570.0,
+      "logical_y": 307.4193548387097
+    },
+    {
+      "action": "click",
+      "seconds": 80.23278963798657,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 83.23415630799718,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 83.5757851540111,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 83.57704770800774,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 83.91854881800828,
+      "button": 1
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 84.67572117698728,
+      "wizard": {
+        "sequence": 1535,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 188,
+        "x": 28,
+        "y": 54,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1536,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 11,
+        "action": 8,
+        "target": 0,
+        "mana": 0
+      },
+      "screen_delta": [
+        137.5,
+        31.25
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 84.67699187301332,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 85.01839751799707,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 85.01965111101163,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 85.3610523979878,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 86.11194354199688,
+      "logical_x": 537.5,
+      "logical_y": 311.25
+    },
+    {
+      "action": "click",
+      "seconds": 86.45365618399228,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 89.45505201100605,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 89.79663163100486,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 89.79793895801413,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 90.13953961600782,
+      "button": 1
+    },
+    {
+      "action": "capture",
+      "seconds": 91.40439950799919,
+      "name": "combat-10-ranged-aim"
+    },
+    {
+      "action": "ranged-target-projection",
+      "seconds": 91.41509503498673,
+      "wizard": {
+        "sequence": 1683,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 171,
+        "x": 30,
+        "y": 52,
+        "z": 4,
+        "behavior": 3,
+        "action": 10,
+        "target": 2,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1684,
+        "slot": 2,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 99,
+        "x": 31,
+        "y": 52,
+        "z": 4,
+        "behavior": 8,
+        "action": 14,
+        "target": 0,
+        "mana": 0
+      },
+      "logical_point": [
+        432,
+        294
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 91.420525575988,
+      "logical_x": 477,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 91.76165291501093,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 92.01366314000916,
+      "logical_x": 432,
+      "logical_y": 294
+    },
+    {
+      "action": "click",
+      "seconds": 92.35548027401092,
+      "button": 3
+    },
+    {
+      "action": "fireball-order",
+      "seconds": 93.35818740699324,
+      "before_sequence": 1688,
+      "logical_x": 432,
+      "logical_y": 294
+    },
+    {
+      "action": "capture",
+      "seconds": 93.87701791198924,
+      "name": "combat-11-fireball-damage"
+    },
+    {
+      "action": "motion",
+      "seconds": 93.87798454999574,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 94.21910956001375,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 94.22857699400629,
+      "logical_x": 537.5,
+      "logical_y": 311.25
+    },
+    {
+      "action": "click",
+      "seconds": 94.57056493399432,
+      "button": 3
+    },
+    {
+      "action": "capture",
+      "seconds": 97.19757039600518,
+      "name": "combat-12-combat-approach"
+    },
+    {
+      "action": "capture",
+      "seconds": 100.71031342900824,
+      "name": "combat-13-combat-damage"
+    },
+    {
+      "action": "motion",
+      "seconds": 100.71553862901055,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 101.0566663639911,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 101.05816994298948,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 101.39970107900444,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 102.15123650999158
+    },
+    {
+      "action": "motion",
+      "seconds": 103.1618875679851,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 103.5037896510039,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 103.50540771998931,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 103.84699724201346,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 104.5985030499869
+    },
+    {
+      "action": "motion",
+      "seconds": 105.60965182600194,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 105.95151192799676,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 105.95300123500056,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 106.29479989199899,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 107.0463379950088
+    },
+    {
+      "action": "motion",
+      "seconds": 108.05875212300452,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 108.40054795201286,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 108.40212544999667,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 108.74403041700134,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 109.4956348889973
+    },
+    {
+      "action": "motion",
+      "seconds": 110.50738027499756,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 110.8492420790135,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 110.85080539499177,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 111.19261547300266,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 111.94417132801027
+    },
+    {
+      "action": "motion",
+      "seconds": 112.9559807300102,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 113.29788965900661,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 113.29946162100532,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 113.64125745699857,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 114.39293860300677
+    },
+    {
+      "action": "motion",
+      "seconds": 115.40639825700782,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 115.74834640798508,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 115.74988926498918,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 116.09167603901005,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 116.84327807099908
+    },
+    {
+      "action": "motion",
+      "seconds": 117.85594760999084,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 118.19790708000073,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 118.19959217499127,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 118.54143630099134,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 119.29304488300113
+    },
+    {
+      "action": "casting-combat-complete",
+      "seconds": 120.29746412599343
+    },
+    {
+      "action": "motion",
+      "seconds": 120.29900733800605,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 120.6406386680028,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 120.64223815200967,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 120.98399394401349,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 121.74463107800693,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 122.08663690599496,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 122.089739965013,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 122.43175112400786,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 123.18348372899345,
+      "logical_x": 230.0,
+      "logical_y": 263.3333333333333
+    },
+    {
+      "action": "click",
+      "seconds": 123.52545835199999,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 126.53703152498929,
+      "attempt": 1,
+      "wizard": {
+        "sequence": 2593,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 26,
+        "y": 54,
+        "z": 4,
+        "behavior": 2,
+        "action": 2,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 126.54582816999755,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 126.88729851599783,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 126.88914941198891,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 127.23114549199818,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 127.98292033100734,
+      "logical_x": 230.0,
+      "logical_y": 265.5026929982047
+    },
+    {
+      "action": "click",
+      "seconds": 128.32494512500125,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 131.33607879799092,
+      "attempt": 2,
+      "wizard": {
+        "sequence": 2712,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 23,
+        "y": 55,
+        "z": 4,
+        "behavior": 2,
+        "action": 2,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 131.34459562698612,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 131.68617945199367,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 131.68789724601083,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 132.0298770010122,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 132.78170344998944,
+      "logical_x": 230.0,
+      "logical_y": 270.1162790697674
+    },
+    {
+      "action": "click",
+      "seconds": 133.12382930101012,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 136.13508697701036,
+      "attempt": 3,
+      "wizard": {
+        "sequence": 2831,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 18,
+        "y": 57,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 136.1437988629914,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 136.48544707000838,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 136.48729506900418,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 136.8291772470111,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 137.5811503510049,
+      "logical_x": 230.0,
+      "logical_y": 279.04063205417606
+    },
+    {
+      "action": "click",
+      "seconds": 137.92343954899115,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 141.23246602198924,
+      "attempt": 4,
+      "wizard": {
+        "sequence": 2943,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 15,
+        "y": 59,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 141.24524237099104,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 141.58753230501316,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 142.15728401899105,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 143.26728125999216,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 144.4655759409943,
+      "logical_x": 230.0,
+      "logical_y": 284.3814432989691
+    },
+    {
+      "action": "click",
+      "seconds": 145.61038979000296,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 149.32407287799288,
+      "attempt": 5,
+      "wizard": {
+        "sequence": 2971,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 15,
+        "y": 59,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 149.3338768100075,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 150.39489102299558,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 150.48249567399034,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 150.8283521659905,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 151.5802053239895,
+      "logical_x": 230.0,
+      "logical_y": 284.3814432989691
+    },
+    {
+      "action": "click",
+      "seconds": 151.92121794400737,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 154.9311923100031,
+      "attempt": 6,
+      "wizard": {
+        "sequence": 3083,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 12,
+        "y": 61,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 154.94562141099595,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 155.28744790199562,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 155.28933927198523,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 155.63150459900498,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 156.38355200001388,
+      "logical_x": 230.0,
+      "logical_y": 291.4864864864865
+    },
+    {
+      "action": "click",
+      "seconds": 156.72838995000347,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 159.74131735099945,
+      "attempt": 7,
+      "wizard": {
+        "sequence": 3202,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 9,
+        "y": 63,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 159.74729925900465,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 160.0886482479982,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 160.09055024001282,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 160.4338248920103,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 161.1858211910003,
+      "logical_x": 230.0,
+      "logical_y": 301.40287769784175
+    },
+    {
+      "action": "click",
+      "seconds": 161.5285757209931,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 164.54461286601145,
+      "attempt": 8,
+      "wizard": {
+        "sequence": 3328,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 7,
+        "y": 65,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 164.55222589999903,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 164.89353902099538,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 164.89547729000333,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 165.23750517499866,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 165.9885230519867,
+      "logical_x": 230.0,
+      "logical_y": 309.3103448275862
+    },
+    {
+      "action": "click",
+      "seconds": 166.33031777199358,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 169.34402498501004,
+      "attempt": 9,
+      "wizard": {
+        "sequence": 3440,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 5,
+        "y": 68,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 169.35470210699714,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 169.69632625501254,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 169.69838159100618,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 170.04437146999408,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 170.79647396400105,
+      "logical_x": 230.0,
+      "logical_y": 319.5348837209302
+    },
+    {
+      "action": "click",
+      "seconds": 171.13876769700437,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 174.1530315830023,
+      "attempt": 10,
+      "wizard": {
+        "sequence": 3548,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 3,
+        "y": 71,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 174.16340124901035,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 174.50506162500824,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 174.507008451008,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 174.8491240380099,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 175.6003852179856,
+      "logical_x": 230.0,
+      "logical_y": 340.7142857142857
+    },
+    {
+      "action": "click",
+      "seconds": 175.94264571499662,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 178.96170038200216,
+      "attempt": 11,
+      "wizard": {
+        "sequence": 3656,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 3,
+        "y": 75,
+        "z": 4,
+        "behavior": 2,
+        "action": 2,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 178.97692499600817,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 179.31934966798872,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 179.32137188198976,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 179.66376232999028,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 180.41588323900942,
+      "logical_x": 260.0,
+      "logical_y": 330.0
+    },
+    {
+      "action": "click",
+      "seconds": 180.75867934900452,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 183.77276233199518,
+      "attempt": 12,
+      "wizard": {
+        "sequence": 3752,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 90,
+        "x": 0,
+        "y": 79,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 184.2908830230008,
+      "name": "combat-14-failure"
+    },
+    {
+      "action": "input-released",
+      "seconds": 184.29179439801374
+    }
+  ],
+  "captures": [
+    {
+      "name": "combat-00-dialogue-check-0",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 134,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 92
+      },
+      "sequence": 21,
+      "ocr": {},
+      "image_sha256": {
+        "native": "563c8ba3572f2d968c1aee9afcfd298808368beb2479900dcd5c83c92010f822",
+        "original": "60cc2dbf0392f211f656c0286e3b8dd79e675fa7212cb88aa0654e7ef58c6121"
+      }
+    },
+    {
+      "name": "combat-01-dialogue-check-1",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 334,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 218
+      },
+      "sequence": 54,
+      "ocr": {},
+      "image_sha256": {
+        "native": "a89743a8ea02d84dfd540d586570c6a077c1f769cb3be3a9d42521fbceaaafce",
+        "original": "0af298db5319b7641c76d35914f569097def2486b76fc8dc5306c993df1992d4"
+      }
+    },
+    {
+      "name": "combat-02-dialogue-check-2",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 425,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 292
+      },
+      "sequence": 92,
+      "ocr": {},
+      "image_sha256": {
+        "native": "fcbb825b3de72d6426ce0987d9d03dbcf6a918b9d467be8e0ee17571052f0604",
+        "original": "7ea0708e6e14bef35371462b944ac432d8f463f2cf4ca20ce58ef1a8e80b9c92"
+      }
+    },
+    {
+      "name": "combat-03-dialogue-check-3",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 465,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 332
+      },
+      "sequence": 120,
+      "ocr": {},
+      "image_sha256": {
+        "native": "32d50bf282944e64db57e90e6f75d4bfad6735d9519e8d98255d95cfd564a63a",
+        "original": "af86ce21d57399ded32d73432da6b16b512b8c49577f14dc4213ef02eeac51b4"
+      }
+    },
+    {
+      "name": "combat-04-dialogue-check-4",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 503,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 370
+      },
+      "sequence": 144,
+      "ocr": {},
+      "image_sha256": {
+        "native": "3c2426b0888abecf2b94b39f00bd9a90aba559356a7bafec9aff64c1b7f46ae8",
+        "original": "3dd8812278593544f181cd04ccb47ab17132896abe93010df8febc15a2fc0128"
+      }
+    },
+    {
+      "name": "combat-05-dialogue-check-5",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 677,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 490
+      },
+      "sequence": 188,
+      "ocr": {},
+      "image_sha256": {
+        "native": "5652992fd880f0e1c3e079293a2d21e81979ed142eebb2b9837c6a75069712a2",
+        "original": "ea10a634c91bc7be74f26fbb73a5d8ace9327118b9e58c769b39545fa00dae29"
+      }
+    },
+    {
+      "name": "combat-06-before-summon",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 699,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 512
+      },
+      "sequence": 204,
+      "ocr": {
+        "native": "0/15",
+        "original": "0/15"
+      },
+      "image_sha256": {
+        "native": "6da339de5bc90745e9e7295ace2493ce0e391c2e8a838c2454e2022569e36d5b",
+        "original": "494622a084d3a52719290f96883dff65eb27bd92691681cc7784c893a41397e7"
+      }
+    },
+    {
+      "name": "combat-07-invalid-target",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 819,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 619
+      },
+      "sequence": 272,
+      "ocr": {
+        "native": "0/15",
+        "original": "0/15"
+      },
+      "image_sha256": {
+        "native": "d155b05a0e49a7a08a9b25ae624d981cc5ccc01099a8d52a690e58133f7fe970",
+        "original": "b4620ba768145816633ad9019865566d48a99e7aa768ec40bbefa377293ad886"
+      }
+    },
+    {
+      "name": "combat-08-after-summon",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 923,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 708
+      },
+      "sequence": 324,
+      "ocr": {
+        "native": "1/15",
+        "original": "1/15"
+      },
+      "image_sha256": {
+        "native": "8862bea34a0a3b2d7e31c5f5f4f6224f01c33370a44f1fd2b8ca8fe223dc697b",
+        "original": "170a40b572247e86764e7fb27c89911a9a7b6a29eaf899e2d6f38284183537df"
+      }
+    },
+    {
+      "name": "combat-09-navigation-start",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 1865,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 1461
+      },
+      "sequence": 873,
+      "ocr": {},
+      "image_sha256": {
+        "native": "e5ac44f7e44b7d420b78df5135c03e26502ad8e57212e8924aff869f202d2285",
+        "original": "85b6da091ce80642d0c34f4cb7a04b845895ffb78c0595d763df31767a527e65"
+      }
+    },
+    {
+      "name": "combat-10-ranged-aim",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 3523,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2734
+      },
+      "sequence": 1688,
+      "ocr": {},
+      "image_sha256": {
+        "native": "7504f00476ba987411b651c46d0b873fd6c78799f413b422758d1b5c9c78842e",
+        "original": "2376cc2ec1cc44bff65205de8ca8aed112c590cebc94bf72e6aab7c302b2807a"
+      }
+    },
+    {
+      "name": "combat-11-fireball-damage",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 3636,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2817
+      },
+      "sequence": 1743,
+      "ocr": {},
+      "image_sha256": {
+        "native": "462c99c6dfed8000009775683a033db682875037db15cd1779884396fbf47e44",
+        "original": "ca8ad02b283b41684773b955439c3718f5f6810342e9e07a5622d8635a58cea6"
+      }
+    },
+    {
+      "name": "combat-12-combat-approach",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 3741,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2899
+      },
+      "sequence": 1832,
+      "ocr": {},
+      "image_sha256": {
+        "native": "483027e67a1600ee2810b7ac7b73921ffc0f243f7c1f9f18b0ca12aab56e162a",
+        "original": "bb0e05ac45cb5bef27ecfb7060f75fe933b6e0cb51b0a7f3a4835beecaa7321d"
+      }
+    },
+    {
+      "name": "combat-13-combat-damage",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 3835,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2981
+      },
+      "sequence": 1922,
+      "ocr": {},
+      "image_sha256": {
+        "native": "208e12b2f133ebabd36a2f2a3c99f0bdcc3137836de81cf054a2ad11ec93719a",
+        "original": "9c3ab9ef2188b8d14a45b329fe665ad71f2e49f445cf1e37e6d601ac3ba8a164"
+      }
+    },
+    {
+      "name": "combat-14-failure",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 7225,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 5388
+      },
+      "sequence": 3769,
+      "ocr": {},
+      "image_sha256": {
+        "native": "af8a81c36bf39e0f4d0eb04f6a1f3453ba1230d55d72f0444e4f10475d1a9a72",
+        "original": "1be7923956e3bd669f858777ca6e378214d9a4984b596042f6435e6925bc729b"
+      }
+    }
+  ]
+}
