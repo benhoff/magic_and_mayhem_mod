@@ -1,7 +1,9 @@
 /* Opt-in original COM result / primary readback acquisition. Included after
  * producer helpers; all pixel files are comparison oracles, never replay input. */
 extern void drawing_publication_blt(void),drawing_publication_fast(void);
-static HANDLE publication_file;
+API u32 WIN GetCurrentThreadId(void);
+static HANDLE publication_file,action_file;
+static u32 action_records;
 static u32 publication_enabled,publication_attempts,publication_frames,publication_drops,publication_terminal,publication_bytes;
 static int publication_install(void){
  char flag[2];SetLastError(0);u32 n=GetEnvironmentVariableA("MNM_DRAW02_PUBLICATION",flag,2);
@@ -13,15 +15,18 @@ static int publication_install(void){
  for(u32 i=0;i<2;++i)if(!readable(sites[i],5))return 0;else for(u32 j=0;j<5;++j)if(*(u8*)(sites[i]+j)!=expected[i][j])return 0;
  char name[260];path(name,"drawing-publication-",0,".bin");
  publication_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(publication_file==(HANDLE)-1){publication_file=0;return 0;}
- u32 header[8]={0};copy(header,"MNMDP001",8);header[2]=1;header[3]=96;header[4]=0x40209ca7;header[5]=65536;header[6]=1024;
+ u32 header[8]={0};copy(header,"MNMDP002",8);header[2]=2;header[3]=96;header[4]=0x40209ca7;header[5]=65536;header[6]=1024;
  if(!write(publication_file,header,32))return 0;
+ path(name,"drawing-actions-",0,".bin");action_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(action_file==(HANDLE)-1){action_file=0;return 0;}
+ u32 actions[8]={0};copy(actions,"MNMDAC01",8);actions[2]=1;actions[3]=64;actions[4]=0x40209ca7;actions[5]=8192;
+ if(!write(action_file,actions,32))return 0;
  for(u32 i=0;i<2;++i){u32 old,unused;u8 patch[5]={0xe9};put(patch+1,(u32)entries[i]-sites[i]-5);
   if(!VirtualProtect((void*)sites[i],5,0x40,&old))return 0;copy((void*)sites[i],patch,5);
   int okay=FlushInstructionCache(GetCurrentProcess(),(void*)sites[i],5);if(!VirtualProtect((void*)sites[i],5,old,&unused)||!okay)return 0;
  }
  publication_enabled=1;return 1;
 }
-static void publication_close(void){if(publication_file){CloseHandle(publication_file);publication_file=0;}}
+static void publication_close(void){if(action_file){CloseHandle(action_file);action_file=0;}if(publication_file){CloseHandle(publication_file);publication_file=0;}}
 void drawing_publication_observe(u32* registers,u32 kind){
  u32 error=GetLastError();if(!publication_enabled||!publication_file||stopped){SetLastError(error);return;}
  /* At both sites EBX is destination and EDI source; wrapper objects are local
@@ -55,7 +60,17 @@ void drawing_publication_observe(u32* registers,u32 kind){
   if(!r[19]||(i32)r[11]<0)++publication_drops;
   if(queue>=limit)publication_terminal=1;
  }
- r[20]=publication_drops;r[21]=publication_frames;
+ r[20]=publication_drops;r[21]=publication_frames;r[22]=GetCurrentThreadId();r[23]=action_records;
  if(publication_attempts>65536||!write(publication_file,r,96)){canvas_producers_close();ExitProcess(95);}
  SetLastError(error);
+}
+
+/* Entry/return bracket the actually executed adapter dispatch on the original
+ * menu thread. Rejected requests are retained, not relabeled successful. */
+void WIN SceneDrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){
+ u32 error=GetLastError();if(publication_enabled&&action_file&&!stopped){
+  u32 r[16]={0};r[0]=++action_records;r[1]=phase;r[2]=request;r[3]=action;r[4]=screen;r[5]=generation;r[6]=argument;r[7]=status;
+  r[8]=sequence;r[9]=publication_attempts;r[10]=publication_frames+1;r[11]=GetCurrentThreadId();r[12]=queue;
+  if(action_records>8192||!write(action_file,r,64)){canvas_producers_close();ExitProcess(95);}
+ }SetLastError(error);
 }

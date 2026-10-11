@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 
 REPO=Path(__file__).resolve().parents[1]
-IMPORTS={'GetModuleHandleA':4,'VirtualAlloc':16,'VirtualProtect':16,'VirtualQuery':12,
+IMPORTS={'GetProcAddress':8,'GetModuleHandleA':4,'VirtualAlloc':16,'VirtualProtect':16,'VirtualQuery':12,
          'FlushInstructionCache':12,'GetCurrentProcess':0,'CreateFileA':28,'WriteFile':20,
          'CloseHandle':4,'GetLastError':0,'SetLastError':4,'GetEnvironmentVariableA':12,
          'GetCurrentThreadId':0,'ExitProcess':4,'CreateFileMappingA':24,'MapViewOfFile':20,

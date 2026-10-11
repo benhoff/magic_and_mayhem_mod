@@ -32103,7 +32103,8 @@
         "tests/test-drawing-publication.py"
       ],
       "evidence": [
-        "RS.drawing-publication.original-20261011"
+        "RS.drawing-publication.original-20261011",
+        "RS.drawing-publication.camera-original-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32144,9 +32145,13 @@
         "runtime/scene/world_trace.c",
         "runtime/shadow/win32_min.h",
         "tools/prepare-scene-observer.py",
-        "tools/scene-game-runner.py"
+        "tools/scene-game-runner.py",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/drawing_action.h",
+        "tools/build-menu-observer.py"
       ],
-      "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through one requested World return; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches."
+      "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches."
     },
     {
       "id": "NR.drawing-publication",
@@ -32162,13 +32167,15 @@
       "original": [],
       "implementation": [
         "tools/check-drawing-publication.py",
-        "tools/drawing_publication.py"
+        "tools/drawing_publication.py",
+        "compat/legacy/drawing_scene_main.cpp"
       ],
       "tests": [
         "tests/test-drawing-publication.py"
       ],
       "evidence": [
-        "NR.drawing-publication.native-20261011"
+        "NR.drawing-publication.native-20261011",
+        "NR.drawing-publication.camera-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32486,7 +32493,108 @@
         "tools/inspect-canvas-producers.py",
         "tools/retain-drawing-scene.py"
       ],
-      "validation_domain": "One-return original-active Quick Battle map2 startup through final primary publication. All readbacks must be present and source admission complete; primary layout/opaque mapping must match native canvas. No full14journey/21operation gate promotion."
+      "validation_domain": "One-through-sixteen-return original-active Quick Battle map2 startup through final primary publication. All readbacks must be present and source admission complete; primary layout/opaque mapping must match native canvas. No full14journey/21operation gate promotion."
+    },
+    {
+      "id": "NR.drawing-actions",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Applied original menu adapter dispatch phase observation",
+      "confidence": "high_within_scope",
+      "scope": "Opt-in process-local versioned stdcall observer for actual original menu adapter dispatch entry and return, stable request/action/screen/generation/argument identity, real result, original thread, source sequence and exact preceding COM-attempt/next-readback ordinal. No action outcome inferred from XTest injection or ACK; rejected/unfinished callbacks remain explicit. Camera outcomes use independently observed owned minimap and original World queue state. Broader input semantics, all-route frame completeness and full journey gates excluded.",
+      "documents": [
+        "research/runtime/draw02-publication.md",
+        "research/formats/drawing-publication-v1.md"
+      ],
+      "original": [],
+      "implementation": [
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "runtime/scene/drawing_publication.h",
+        "tools/drawing_publication.py",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/capture-scene-game.py"
+      ],
+      "tests": [
+        "tests/test-drawing-publication.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "NR.drawing-actions.original-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/drawing_publication.S",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tests/minimap-live-input.cpp",
+        "tests/minimap-live-input/CMakeLists.txt",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp"
+      ]
     }
   ],
   "evidence": [
@@ -62141,6 +62249,153 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RS.drawing-publication.camera-original-20261011",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh16-return original-active publication V2 and applied menu-dispatch phases, original World orientations and effective minimap camera centers; no full routes, viewport boundaries or failure equivalence.",
+      "record": "research/runtime/draw02-camera-original-20261011.json",
+      "sha256": "d7697291ab22304ff3e9a574abd1f89bc313ea2632285649ad4b13b28a7e4d30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_executable_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/drawing_publication/readback_drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/drawing_publication/all_primary_routes_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/drawing_publication/applied_actions/successful_requests",
+          "equals": 5
+        },
+        {
+          "pointer": "/drawing_publication/applied_actions/pending_requests",
+          "equals": []
+        },
+        {
+          "pointer": "/drawing_publication/camera_state/world_orientations",
+          "equals": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.drawing-actions.original-20261011",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Actual original menu adapter dispatch phase/result and same-thread publication identities in the finite original-active camera capture; original pixel replacement not asserted.",
+      "record": "research/runtime/draw02-camera-original-20261011.json",
+      "sha256": "d7697291ab22304ff3e9a574abd1f89bc313ea2632285649ad4b13b28a7e4d30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_executable_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/drawing_publication/readback_drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/drawing_publication/all_primary_routes_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/drawing_publication/applied_actions/successful_requests",
+          "equals": 5
+        },
+        {
+          "pointer": "/drawing_publication/applied_actions/pending_requests",
+          "equals": []
+        },
+        {
+          "pointer": "/drawing_publication/camera_state/world_orientations",
+          "equals": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.drawing-publication.camera-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh source-only native comparison of all observed primary planes through16World returns, including actual four World orientations, observed camera center changes and original menu request phases. V2 input budget admission, complete cleanup; no all-route/viewport/failure/suppression claim.",
+      "record": "research/runtime/draw02-camera-native-20261011.json",
+      "sha256": "1ff630c6cca3f8a2d4b97febd1dfc66d1269a4d3a4dbe3b0090d49065c7da00c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/all_primary_routes_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/actions_bound",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69966,7 +70221,24 @@
         "tools/check-drawing-publication.py"
       ],
       "evidence": [
-        "NR.drawing-publication.native-20261011"
+        "NR.drawing-publication.native-20261011",
+        "NR.drawing-publication.camera-native-20261011"
+      ]
+    },
+    {
+      "id": "DRAW02.applied-menu-camera-observation",
+      "level": "live_observation",
+      "scope": "Actual original menu adapter dispatch entry/return and results; original four-view World entry and owned minimap camera centers through16returns. Key injection logs remain attempts; no general source generation, viewport/picking or full journey claim.",
+      "behaviors": [
+        "NR.drawing-actions"
+      ],
+      "tests": [
+        "tests/test-drawing-publication.py",
+        "tools/capture-scene-game.py",
+        "tests/minimap-live-input.cpp"
+      ],
+      "evidence": [
+        "NR.drawing-actions.original-20261011"
       ]
     }
   ],
@@ -70305,8 +70577,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-publication-ci-20261011.json",
-    "sha256": "a51034f06ef199368b7bae7c7523397e76c32995b0d18a86ebf5198c8f4bcf91"
+    "path": "research/runtime/coverage/source-index-draw02-camera-20261011.json",
+    "sha256": "ace602627f071fb7884732882e0c4c011c52be8eaf3a3aea0db5a6fbc638080a"
   },
   "claim_bindings_required": true
 }

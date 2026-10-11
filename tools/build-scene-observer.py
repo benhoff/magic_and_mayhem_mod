@@ -31,7 +31,7 @@ def build(selftest=False):
     for name in backend_names:
         subprocess.run([*flags,'-c',str(ROOT/'reconstruction/rendering'/name),'-o',str(output/(name+'.obj'))],check=True)
     dll = output/'MnmScene.dll'
-    exports = []
+    exports = ['/export:SceneDrawingActionV1=_SceneDrawingActionV1@28']
     if selftest:
         exports += ['/export:SceneInstallForTest=_SceneInstallForTest@4','/export:GlyphAdmissionForTest=_GlyphAdmissionForTest@0']
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',
