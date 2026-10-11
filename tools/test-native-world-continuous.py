@@ -11,6 +11,8 @@ def summary(values):
  v=sorted(values);return dict(samples=len(v),median=statistics.median(v),p95=v[min(len(v)-1,int(len(v)*.95))],maximum=max(v)) if v else None
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--native-draw',action='store_true',help='Native graphics services with real ddraw disabled; V4 resident delivery');p.add_argument('--profile-producer',action='store_true');p.add_argument('--profile-waits',action='store_true');p.add_argument('--profile',action='store_true',help='Separate CPU sampling probe; timings remain charged to the full-path budget');p.add_argument('--hardware',action='store_true',help='Private no-monitor NVIDIA seat; refuse software fallback');p.add_argument('--hardware-driver',choices=['zink','nvidia'],default='zink');p.add_argument('--impossible-budget',action='store_true',help='Negative control: require warm median <=0.001ms');p.add_argument('--resident',action='store_true',help='V4 GPU delivery without pixel replies; retains normal performance gates');p.add_argument('--normal',action='store_true',help='Measured normal path without CPU reference composition');p.add_argument('--queues',type=int,default=4096);p.add_argument('--mode',choices=['complete','consumer-death','producer-death'],default='complete');p.add_argument('--prepared',type=Path);a=p.parse_args();assert 1<=a.queues<=4096
+ # Compiler dependency paths are absolute; normalize reuse roots before containment checks.
+ if a.prepared:a.prepared=a.prepared.resolve()
  if a.native_draw:a.resident=True
  if a.resident:a.normal=True
  if a.profile_producer and a.profile_waits:p.error('Choose one producer profiler')

@@ -4520,3 +4520,40 @@ prose44 was an overcount; immutable mapping retained); production bridge is44.
 64 current native service comparisons preserve2048 caller/22464 pixel words and
 351 policy words against Wine DirectDraw with native ddraw disabled/absent and
 zero native resources. Current World4096/fault revalidation remains pending.
+
+Current source-bound4096 TITAN World delivery after the diagnostic-file fix passes
+all unchanged19FPS/resource gates at19.9697 original/19.9731 painted FPS,cold459.699ms,
+4033 warm World samples median35/p9540/max60ms,RSS growth11,182,080 bytes. All4096
+returns/completions/paints,zero coalescing/World readbacks/pixel replies/writeback/
+native GPU teardown surfaces and real ddraw disabled/absent are checked. Both
+current producer/consumer deaths refuse at generation34; a subsequent fresh128
+session passes19.7653/19.9622FPS,cold472.004ms and all other budgets without slot
+reuse. Actual standalone default OpenGL launcher also passes21 native menu frames
+on actual TITAN Zink,zero ordinary readback/upload/recovery and zero bounded-abort
+consumer resources. Default public native menus/command gameplay has separate
+fresh full casting/combat/spell/portrait/resume/normalQuit and three-cycle proofs.
+The public route still draws World on original CPU; public V4 fusion,full standalone
+gameplay/movies/FPS/normalQuit,allscene19/60FPS,originalpixel equivalence and semantic
+COM cleanup remain separate milestones. The observed original50ms frame cadence
+is still a boundary to unique60FPS World updates. Historical failures/hashes remain.
+
+### Native fade row damage and canonical dependency reporting (2026-10-11)
+
+`NR.canvas-fade-row-damage` records one damage update per affected fade row,
+with complete unknown-pixel prevalidation before any mutation. Independent
+original58ed80 comparison passes972 cases/1,738,592 words;126 mirror projection
+cases,11 atomic refusals and ASan/UBSan pass. Relative prepared-root reporting
+now exposes the102 aggregate compiler/fixture paths previously prechecked;
+earlier94-input prose is corrected, without refreshing historical hashes.
+Normalized4096 cold502.500ms and separate perf cold505.320ms failures remain
+preserved against the unchanged500ms limit. Source changes leave prior World,
+public and standalone proofs historical; fresh performance/integration is
+pending. This does not assert publicV4fusion,60FPS,movies,full DirectDraw API or
+original-driver/semantic COM teardown equivalence.
+
+Fresh102-input Release-O3 TITAN128 World evidence passes all unchanged gates:
+cold450.270ms, original19.6259/Qt19.8767FPS, all-warm65 median39/p9549/max57ms,
+zero World readbacks/replies/writebacks/coalescing and remaining surfaces. See
+[native fade World128](native-fade-row-world128-pass-20261011.json). Longer4096,
+peer-death/recovery and current-source public/standalone regression executions
+remain the next separate milestones; no paired causal speedup is claimed.

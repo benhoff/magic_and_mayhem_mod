@@ -238,3 +238,13 @@ Current [64 services cases](native-draw-status-services-pass-20261011.json) comp
 2048 caller and22464 pixel words against Wine DirectDraw, plus351 native-policy
 words and terminal unknown calls; native module absence and zero resources pass.
 The current4096/fault World revalidation remains pending after diagnostic changes.
+
+Current diagnostic-file [4096 World](native-draw-status-world4096-pass-20261011.json)
+passes every unchanged budget at19.9697 original/19.9731 Qt FPS,zero World pixel
+roundtrip,all4096 paints and zero native GPU teardown resources,ddraw disabled/
+absent. Both peer-deaths at generation34 and subsequent fresh128 recovery pass.
+The actual standalone default OpenGL launcher reaches21 native menu frames on
+TITAN with zero ordinary readback/upload/recovery and zero bounded-abort consumer
+resources. These supersede the pending revalidation notes above within their
+recorded scopes. Full standalone gameplay/movies and public V4 fusion/60FPS remain
+separate boundaries; public casting/combat and normalQuit are separately proven.
