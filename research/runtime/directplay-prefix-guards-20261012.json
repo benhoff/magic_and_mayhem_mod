@@ -1,0 +1,28 @@
+{
+  "sources": {
+    "research/runtime/coverage/planned-directplay-prefix-guards-20261012.json": "eb7af5f33674e333609bff822b25b200f375a526226b074f6f2d9414a4a9019d",
+    "tools/directplay_dx6_launch.py": "49daf3245de9dc5528b50082ab9ba0103e46c2a4f30a89cb8e22bc5d38cef2a6",
+    "tools/test-directplay-dx6-launch.py": "4965a8ad5d18c2d85230f49f8e734f5831ee821d09e4ce5411ea3aed227cd6f1"
+  },
+  "claims": [
+    {
+      "behavior": "NP.directplay-prefix-installation-guards",
+      "contract_sha256": "d9d6a233c6b1821e15faf3ef486776b919d4a982879cb92bc06851dc8e18f7f5",
+      "scenarios": {
+        "UI.directplay-prefix-guards": "2a3edf20a38b911bb69067fc0b8cf54388b09888d29ea12b53f786adf89ee05e"
+      }
+    }
+  ],
+  "success": true,
+  "cases": 2,
+  "guard_rejections": 6,
+  "supplied_archive_sha256": "a9daa6ec591514337ccfa3df83e363bfa29010ffccf654c0e14ff55dabf98f81",
+  "scope": "Private file/ownership fixtures; no game/DLL code/network execution.",
+  "game_executed": false,
+  "networking_executed": false,
+  "builtin_inputs": {
+    "DPLAYX.DLL": "57201fc156715c85676d369bea7507d5fd019c7b8c94bb622cf60b9d1102a897",
+    "DPLAY.DLL": "1081f9ebefaa0ecc6da88d65c79148062e5472eaec71042b5cb40188feb10846",
+    "DPLAYSVR.EXE": "27274d6ba81f2e60955f39a11b38b465938c016312a6f25c54144479be28b2e4"
+  }
+}

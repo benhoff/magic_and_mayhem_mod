@@ -15,7 +15,7 @@ public:
     bool nativeVoicesEnabled=false;
     std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativePresentation;
-    bool hostLobbyEnabled=false; // Pending storage-guarded live validation.
+    bool hostLobbyEnabled=true;
     bool sessionMenusEnabled=true;
     bool multiplayerMenusEnabled=true;
     bool grimoireMenusEnabled=true;

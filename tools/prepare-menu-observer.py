@@ -104,6 +104,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
+    from directplay_dx6_launch import stage as stage_directplay
+    metadata['directplay_dx6']=stage_directplay(root)
     metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
     from menu_save_store import stage as stage_saves

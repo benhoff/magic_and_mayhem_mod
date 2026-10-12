@@ -43723,7 +43723,7 @@
       "kind": "native_policy",
       "title": "host-lobby-view-ownership",
       "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -43745,7 +43745,9 @@
       ],
       "documents": [
         "research/runtime/multiplayer-lobby-engine-contract.md",
-        "research/runtime/host-lobby-create-failure-20261012.json"
+        "research/runtime/host-lobby-create-failure-20261012.json",
+        "research/runtime/host-lobby-cancel-handoff-failure-20261012.json",
+        "research/runtime/host-lobby-native-live-20261012.json"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v17.h",
@@ -43761,17 +43763,23 @@
       ],
       "evidence": [
         "UI45.original-lobby-fixture",
-        "UI45.host-create-failure"
+        "UI45.host-create-failure",
+        "UI46.cancel-extra-handoff",
+        "UI46.host-lobby-live"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "research/runtime/coverage/planned-host-lobby-scenario-20261012.json"
+        "research/runtime/coverage/planned-host-lobby-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-provider-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-prefix-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-owned-scenario-20261012.json"
       ]
     },
     {
@@ -43780,7 +43788,7 @@
       "kind": "native_policy",
       "title": "native-host-lobby-view",
       "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -43802,7 +43810,9 @@
       ],
       "documents": [
         "research/runtime/multiplayer-lobby-engine-contract.md",
-        "research/runtime/host-lobby-create-failure-20261012.json"
+        "research/runtime/host-lobby-create-failure-20261012.json",
+        "research/runtime/host-lobby-cancel-handoff-failure-20261012.json",
+        "research/runtime/host-lobby-native-live-20261012.json"
       ],
       "implementation": [
         "apps/qt-shell/menu_bridge.hpp",
@@ -43824,17 +43834,100 @@
         "tests/menu-host-lobby-bridge-test.cpp"
       ],
       "evidence": [
-        "UI45.host-create-failure"
+        "UI45.host-create-failure",
+        "UI46.cancel-extra-handoff",
+        "UI46.host-lobby-live"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "research/runtime/coverage/planned-host-lobby-scenario-20261012.json"
+        "research/runtime/coverage/planned-host-lobby-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-provider-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-prefix-scenario-20261012.json",
+        "research/runtime/coverage/planned-host-lobby-dx6-owned-scenario-20261012.json"
+      ]
+    },
+    {
+      "id": "HOST.original-directplay-dx6-launch",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "Supplied DirectX6 stack in a private prefix",
+      "scope": "Explicit supplied Win95 DirectX6 matching DirectPlay/TCP stack: pinned archive extraction into a fresh disposable game, exact staged/installed hashes and native-only DLL loads. Only a fresh or previously profile-owned private Wine11.16 WOW64 prefix is admitted; all expected builtin hashes are checked before installation and saved per experiment. Original TCP one-local-player host view/Cancel only. No installer, unrelated-prefix modification, networking reimplementation, peer/guest/gameplay or other Wine/provider compatibility claim. Wine Start /wait captures the original process exit before closing its helper under an exclusive prefix session lease; normal desktop exit is checked separately.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/multiplayer-lobby-engine-contract.md",
+        "research/runtime/host-lobby-directplay-init-failure-20261012.json",
+        "research/runtime/host-lobby-native-tcp-failure-20261012.json",
+        "research/runtime/host-lobby-prefix-initialization-refusal-20261012.json",
+        "research/runtime/host-lobby-native-helper-exit-pending-20261012.json",
+        "research/runtime/host-lobby-native-live-20261012.json"
+      ],
+      "implementation": [
+        "tools/directplay_dx6_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-live-host-lobby.py",
+        "tools/test-live-menus.py",
+        "tools/test-directplay-dx6-launch.py"
+      ],
+      "evidence": [
+        "UI46.full-directplay-init-failure",
+        "UI46.native-tcp-create-failure",
+        "UI46.prefix-initialization-refusal",
+        "UI46.native-helper-exit-pending",
+        "UI46.host-lobby-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "research/runtime/coverage/planned-host-lobby-dx6-owned-scenario-20261012.json"
+      ]
+    },
+    {
+      "id": "NP.directplay-prefix-installation-guards",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "Private DirectPlay prefix installation guards",
+      "scope": "File/ownership safety only: exact supplied DLL staging and all-before-write Wine11.16 builtin hash guards, full-byte installed/backup checks, idempotent reuse, foreign/mismatched/corrupt prefix and concurrent launch refusal. Copied private file fixtures only; no game, DLL code, network, host or original comparison execution.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/multiplayer-lobby-engine-contract.md",
+        "research/runtime/directplay-prefix-guards-20261012.json"
+      ],
+      "implementation": [
+        "tools/directplay_dx6_launch.py"
+      ],
+      "tests": [
+        "tools/test-directplay-dx6-launch.py"
+      ],
+      "evidence": [
+        "UI46.prefix-guards"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "research/runtime/coverage/planned-directplay-prefix-guards-20261012.json"
       ]
     }
   ],
@@ -90846,6 +90939,224 @@
           "equals": "Could not create game session"
         }
       ]
+    },
+    {
+      "id": "UI46.full-directplay-init-failure",
+      "kind": "live_observation",
+      "scope": "Failed full native DirectX6 DirectPlay profile diagnostic only; original DirectPlay object initialization failed before any provider/lobby load. No native host integration validated.",
+      "record": "research/runtime/host-lobby-directplay-init-failure-20261012.json",
+      "sha256": "22efbcf8e34df97a2a429f6a3930da37fbbe61f8571bb6bd011885c4770c5e7f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/dialog",
+          "equals": "failed to initialise directplay object"
+        },
+        {
+          "pointer": "/native_directplay_module_loads_observed",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "UI46.native-tcp-create-failure",
+      "kind": "live_observation",
+      "scope": "Failed supplied native TCP provider plus Wine DirectPlay diagnostic only; both modules loaded, but original room creation failed before entering the host lobby. No native host integration validated.",
+      "record": "research/runtime/host-lobby-native-tcp-failure-20261012.json",
+      "sha256": "724297362fb879899aaeb6488de08a5b70087e5bb679334df7b630ac8fa5c175",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/dialog",
+          "equals": "Could not create game session"
+        },
+        {
+          "pointer": "/native_tcp_provider_loaded",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_directplay_loaded",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI46.prefix-initialization-refusal",
+      "kind": "live_observation",
+      "scope": "Pre-game prefix setup refusal only; launcher had not initialized Wine builtin files before hash-guarded install. No binary replacement or game/network/host execution occurred.",
+      "record": "research/runtime/host-lobby-prefix-initialization-refusal-20261012.json",
+      "sha256": "247b3a8a005b407ddcbfadcd06c91f7550e656ec908565f8906ef03bb5303b10",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/states",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "UI46.native-helper-exit-pending",
+      "kind": "live_observation",
+      "scope": "Original native DirectPlay/TCP modules and seven native Main/Quick/Create/host ready states observed, with nine expected callbacks including both host Cancels and Quit. Desktop remained open for the native helper after the game exited; no normal launcher exit assertion or successful frozen scenario.",
+      "record": "research/runtime/host-lobby-native-helper-exit-pending-20261012.json",
+      "sha256": "6f1ed59e98135d6546d475e20b3c77a6beb2e01daa9808a52f6ce7172721067b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_round_trip_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_launcher_exit",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI46.cancel-extra-handoff",
+      "kind": "live_observation",
+      "scope": "Host round trips and normal original/desktop exit0 observed, but four viewport handoffs instead of the two planned: accepted Cancel transient screen0 unnecessarily surrendered presentation. No successful frozen scenario assertion; subsequent source fix requires a fresh run.",
+      "record": "research/runtime/host-lobby-cancel-handoff-failure-20261012.json",
+      "sha256": "7d638062253e097fcc0e079398733afa2c98b9ed197e72dd75b2b09864f673a6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/handoffs",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_process_result/original_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_process_result/desktop_exit_code",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "UI46.prefix-guards",
+      "kind": "native_integration",
+      "scope": "Private supplied DLL/builtin file guard fixtures: initial guarded install/idempotent reuse and six mutation-free foreign/corrupt/mismatched/concurrent-prefix refusals. No DLL code, game or network execution.",
+      "record": "research/runtime/directplay-prefix-guards-20261012.json",
+      "sha256": "316444ddce84c6101e4452c7026dde49bfcc5823c8b75f6aa6a893bbc21f6cdf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/guard_rejections",
+          "equals": 6
+        },
+        {
+          "pointer": "/game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/networking_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI46.host-lobby-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Current V17 one-local-player TCP host view/Cancel twice, same original thread, exact normal stack and callbacks, disabled unsupported controls, window-close unwind and normal original/desktop exit0. Supplied hash-guarded DirectX6 stack and actual native loads on the original thread; helper closes only after original process exit. No peer/guest/chat/rule/map/start/gameplay/equivalence/replacement validation.",
+      "record": "research/runtime/host-lobby-native-live-20261012.json",
+      "sha256": "15926ab0f60b27f3c3a25980a604e84ab0b34094986b22428675b30d53313cc6",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/handoffs",
+          "equals": 2
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/module_loads_on_original_thread",
+          "equals": true
+        },
+        {
+          "pointer": "/original_process_result/original_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_process_result/desktop_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_process_result/cleanup_after_original_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/peer_join",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -101635,6 +101946,38 @@
         "tools/test-live-multiplayer-sessions.py",
         "apps/qt-shell/live_multiplayer_sessions_test.cpp"
       ]
+    },
+    {
+      "id": "UI.directplay-prefix-guards",
+      "scope": "File/ownership safety only: exact supplied DLL staging and all-before-write Wine11.16 builtin hash guards, full-byte installed/backup checks, idempotent reuse, foreign/mismatched/corrupt prefix and concurrent launch refusal. Copied private file fixtures only; no game, DLL code, network, host or original comparison execution.",
+      "level": "headless",
+      "behaviors": [
+        "NP.directplay-prefix-installation-guards"
+      ],
+      "evidence": [
+        "UI46.prefix-guards"
+      ],
+      "tests": [
+        "tools/test-directplay-dx6-launch.py"
+      ]
+    },
+    {
+      "id": "UI.host-lobby-dx6-owned-native",
+      "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending. Supplied DirectX6 matching DirectPlay/TCP stack uses a fresh or previously profile-owned private Wine11.16 WOW64 prefix. Exact pre-write builtin hashes, source/staged/installed hashes and actual native module loads are required; no unrelated prefix is modified. Wine Start /wait captures original process exit0 before a leased private-prefix DirectPlay helper cleanup; desktop exit0 is required.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.host-lobby-view-ownership",
+        "HOST.native-host-lobby-view",
+        "HOST.original-directplay-dx6-launch"
+      ],
+      "evidence": [
+        "UI46.host-lobby-live"
+      ],
+      "tests": [
+        "tools/test-live-host-lobby.py",
+        "apps/qt-shell/live_host_lobby_test.cpp",
+        "tools/directplay_dx6_launch.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -102053,8 +102396,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-host-lobby-failure-20261012.json",
-    "sha256": "254d1b43734986dc5acdd176dce1bcfc8ed122b972a1de95ab9c9c74789967ce"
+    "path": "research/runtime/coverage/source-index-host-lobby-live-20261012.json",
+    "sha256": "018c5446ba74674df1f27d8dcbff29e3c8f1e875dca190790dfcfe13f70ed559"
   },
   "claim_bindings_required": true
 }

@@ -36,6 +36,9 @@ def main():
     if metadata.get('grimoire_observe'):env['MNM_MENU_GRIMOIRE_OBSERVE']='Z:'+str(root/'grimoire.bin').replace('/','\\')
     env['MNM_MENU_NATIVE_RENDER']='1' if args.native_render else '0'
     if args.menu_channel:env['MNM_MENU_CHANNEL']='Z:'+str(channel).replace('/','\\')
+    if metadata.get('directplay_dx6') is not None:
+        from directplay_dx6_launch import admit_prefix
+        admit_prefix(root,metadata,args.prefix)
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         command=[str(REPO/'tools/run-game.sh'),'smoke' if args.seconds else 'launch','--no-gamescope',
@@ -43,6 +46,12 @@ def main():
         if metadata.get('source_game') and Path(metadata['source_game']).resolve()!=(REPO/'working/game-nocd').resolve():command+=['--source-game',metadata['source_game']]
         if args.seconds:command+=['--seconds',str(args.seconds)]
         result=subprocess.run(command,env=env)
+        if metadata.get('directplay_dx6') is not None:
+            from directplay_dx6_launch import check as check_directplay,check_prefix
+            check_directplay(root,metadata['directplay_dx6'])
+            installed=json.loads((root/'manifest.json').read_text()).get('directplay_prefix_result')
+            if installed is not None:check_prefix(args.prefix.resolve())
+            elif result.returncode==0:raise ValueError('Supplied DirectPlay was not installed')
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
             if hashlib.sha256((root/'game'/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} changed')
         if metadata.get('save_store'):

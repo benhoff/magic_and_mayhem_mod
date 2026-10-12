@@ -58,3 +58,49 @@ network success was used. Host ownership stays disabled by default until a real
 provider allows the frozen host round trip. The permanent storage policy is
 unchanged. `acab86fa..d7f73255` reviews30 exact committed file versions with no
 missing receipts; this accounting does not assert retrospective validation.
+
+The current implementation is **enabled by default** after UI46.host-lobby-live.
+[Fresh live record](host-lobby-native-live-20261012.json) observes7 ready states,
+9 original callback acknowledgements on one thread,2 TCP room creations/native
+host visits and exactly2 original viewport handoffs. Cancel and window-close
+return through Quick/Main to original Quit; original game and desktop both
+exit0. Native game/player names, map label, roster and13 rules are projected;
+unsupported controls remain disabled. No peer/guest/chat/rule/map/start/gameplay
+or engine replacement claim is made. A transient absent roster before initial
+host readiness is rejected; accepted Cancel's known transition retains native
+presentation instead of triggering unsupported-state handoff.
+
+The supplied Win95 DirectX6 archive is pinned at
+`a9daa6ec591514337ccfa3df83e363bfa29010ffccf654c0e14ff55dabf98f81`.
+`directplay_dx6_launch.py` extracts four pinned files without executing the
+installer. A fresh or previously profile-owned Wine11.16 WOW64 prefix is
+required. Wine initialization completes before **all three** expected builtin
+hashes are verified; their original bytes are preserved before scripted atomic
+replacement. Existing unrelated prefixes are refused. The normal host-enabled
+launcher uses `working/tests/menu-host-dx6-wine`; tests use independent prefixes.
+Native-only overrides forbid builtin fallback for dplay/dplayx/dpwsockx. Actual
+DPLAYX/DPWSOCKX native loads occur on the original observed engine thread.
+ASCII command-interpreter-safe paths/arguments and this pinned Wine build are
+current profile boundaries; other platforms/versions remain unvalidated.
+
+An exclusive prefix session lease protects the actual game launch.
+[Wine Start's wait implementation](https://github.com/wine-mirror/wine/blob/master/programs/start/start.c)
+waits on the game process and obtains its exit code. A generated fixed batch
+captures that result on a separate line. Only **after** that result exists does
+the launcher close the idle DirectPlay helper in the owned prefix; desktop exit
+is checked independently. This addresses the persistent helper observed after
+normal original Quit, without treating its desktop lifetime as the game's exit.
+The private prefix fixture passes2 install/reuse cases and6 mutation-free
+corrupt/foreign/mismatched/concurrent refusals;
+[record](directplay-prefix-guards-20261012.json). It executes no DLL code or game.
+
+Preserved failures are independent records with their source snapshots: full
+native DLL staging without prefix installation failed object initialization;
+provider-only staging loaded both modules but failed room creation; installation
+refused the lazily uninitialized prefix before any binary write; real host visits
+then exposed the persistent helper and an extra Cancel handoff. These negative
+records do not bind successful execution claims. UI46.host-lobby-live is a new
+prospectively bound result, not refreshed evidence from those attempts.
+`d7f73255..799688cc` reviews6 exact committed file versions with no missing
+receipts. No permanent storage policy change or cleanup occurred. Other menu
+source fingerprints retain their historical/current-source limitations.

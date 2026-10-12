@@ -174,7 +174,7 @@ def main():
                 if server.poll() is not None:raise RuntimeError('Xvfb failed')
                 time.sleep(.1)
             else:raise RuntimeError('Xvfb did not become ready')
-            env=dict(os.environ,DISPLAY=':'+number,QT_QPA_PLATFORM='xcb',WINEDEBUG='-all',XDG_CONFIG_HOME=str(root/'config'))
+            env=dict(os.environ,DISPLAY=':'+number,QT_QPA_PLATFORM='xcb',WINEDEBUG=os.environ.get('MNM_LIVE_MENU_TEST_WINEDEBUG','-all'),XDG_CONFIG_HOME=str(root/'config'))
             env.pop('MNM_LIVE_MENU_TEST_PREFERENCES_RESTORE',None)
             env.pop('MNM_MENU_DISPLAY_OBSERVE',None)
             env.pop('MNM_LIVE_MENU_TEST_PREFERENCES_DISPLAY',None)

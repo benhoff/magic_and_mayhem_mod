@@ -1,0 +1,12 @@
+{
+  "id": "UI.directplay-prefix-guards",
+  "scope": "File/ownership safety only: exact supplied DLL staging and all-before-write Wine11.16 builtin hash guards, full-byte installed/backup checks, idempotent reuse, foreign/mismatched/corrupt prefix and concurrent launch refusal. Copied private file fixtures only; no game, DLL code, network, host or original comparison execution.",
+  "level": "headless",
+  "behaviors": [
+    "NP.directplay-prefix-installation-guards"
+  ],
+  "evidence": [],
+  "tests": [
+    "tools/test-directplay-dx6-launch.py"
+  ]
+}
