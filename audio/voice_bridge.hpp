@@ -1,5 +1,6 @@
 #pragma once
 #include "qt_output.hpp"
+#include "voice_output.hpp"
 #include "../runtime/audio/protocol.h"
 #include <QFile>
 #include <QObject>
@@ -12,15 +13,19 @@ struct VoiceActivity {
     quint64 waveLoads=0,waveBytes=0;
     quint32 nativeSelections=0,fallbacks=0,adapterFailures=0;
     quint32 unsupportedCalls=0;
+    quint64 outputLosses=0,outputRecoveries=0,outputAttempts=0;
+    quint64 generatedFrames=0,consumedFrames=0;
+    bool outputAvailable=false;
     bool ready=false,audible=false,waveHookInstalled=false,nativeFactoryOnly=false;
 };
 class VoiceCommands {
 public:
-    explicit VoiceCommands(Device& device,OutputTimeline* timeline=nullptr):device_(device),timeline_(timeline){}
+    explicit VoiceCommands(Device& device,OutputTimeline* timeline=nullptr,VoiceOutput* output=nullptr):device_(device),timeline_(timeline),output_(output){}
     BridgeReply execute(const std::uint32_t* words,const QByteArray& payload);
 private:
     Device& device_;
     OutputTimeline* timeline_;
+    VoiceOutput* output_;
 };
 class VoiceBroker:public QObject {
 public:

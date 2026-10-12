@@ -408,6 +408,9 @@ private:
                 {"failed_requests",qint64(activity.failures)},{"native_selections",int(activity.nativeSelections)},
                 {"fallbacks",int(activity.fallbacks)},{"adapter_failures",int(activity.adapterFailures)},
                 {"audible_output",activity.audible},{"ready_before_stop",activity.ready},
+                {"output_available",activity.outputAvailable},{"output_losses",qint64(activity.outputLosses)},
+                {"output_recoveries",qint64(activity.outputRecoveries)},{"output_attempts",qint64(activity.outputAttempts)},
+                {"generated_frames",qint64(activity.generatedFrames)},{"consumed_frames",qint64(activity.consumedFrames)},
                 {"ready_after_stop",voices_->activity().ready},{"error",voices_->lastError()}};
             QFile evidence(QDir(liveMenus_->evidenceDirectory()).filePath("native-audio-report.json"));
             const auto bytes=QJsonDocument(report).toJson();

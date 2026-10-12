@@ -175,3 +175,15 @@ material and starts a fresh clock epoch. See native-audio-output-timing.md for
 the independent phase oracle and silent Qt completion/restart protocol.
 Physical speaker latency, automatic device recovery and original-driver
 comparison remain distinct milestones.
+
+## Recoverable voice output and version5
+
+An admitted output can now disappear while the live native voice channel keeps
+its PCM, identities, consumed positions/phase and preferences. Output selection
+changes and a500ms retry recover compatible current devices; version5 adds
+truthful Restore and buffer-lost status. Fake endpoint cases, controlled silent
+Qt endpoint loss/automatic recovery,66 regressions and real PE Restore dispatch
+pass. The version5 native WAV transport again matches362 installed requests and
+12002990 PCM bytes. See native-voice-output-recovery.md. Physical disappearance,
+platform default-event delivery, initial missing-device policy and original
+driver equivalence remain separate; a stopped/frozen host cannot be revived.

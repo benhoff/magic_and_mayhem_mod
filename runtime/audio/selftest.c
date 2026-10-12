@@ -48,6 +48,7 @@ void start(void){
     CHECK(METHOD(primary,15,Value)(primary,0)==0);
     u8 format[18]={1,0,1,0,0x44,0xac,0,0,0x88,0x58,1,0,2,0,16,0,0,0};
     CHECK(METHOD(primary,14,Format)(primary,format)==0);
+    CHECK(METHOD(primary,20,Stop)(primary)==0);
     format[12]=1;CHECK(METHOD(primary,14,Format)(primary,format)<0);format[12]=2;
     u32 desc[5]={20,0xea,8,0,(u32)format};void* buffer=0;
     CHECK(METHOD(device,3,CreateBuffer)(device,desc,&buffer,0)==0 && buffer);
@@ -75,6 +76,7 @@ void start(void){
     CHECK(METHOD(child,8,Read)(child,&value)==0&&value==44000);
     CHECK(METHOD(child,17,Value)(child,0)==0);
     CHECK(METHOD(child,8,Read)(child,&value)==0&&value==44100);
+    CHECK(METHOD(child,20,Stop)(child)==0);
     CHECK(METHOD(child,13,Value)(child,1)<0);
     CHECK(METHOD(child,13,Value)(child,2)==0);
     u32 playCursor=99,writeCursor=99;

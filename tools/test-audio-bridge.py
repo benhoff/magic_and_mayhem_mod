@@ -23,6 +23,7 @@ def main():
     build=REPO/'working/build/audio-output'
     for name,cmd in [('configure',['cmake','-S',str(REPO/'audio'),'-B',str(build)]),
                      ('build',['cmake','--build',str(build),'--parallel','4']),
+                     ('admission',['python3','-B',str(REPO/'tests/test-native-audio-launch.py')]),
                      ('ctest',['ctest','--test-dir',str(build),'--output-on-failure'])]:
         result=subprocess.run(cmd,text=True,capture_output=True,timeout=180)
         (root/(name+'.log')).write_text(result.stdout+result.stderr)
@@ -69,6 +70,7 @@ def main():
             'fixture_sha256':hashlib.sha256((root/'selftest.exe').read_bytes()).hexdigest(),
             'primary_fixture_sha256':hashlib.sha256((build/'audio-primary-test').read_bytes()).hexdigest(),
             'native_fixture_sha256':hashlib.sha256((build/'audio-voice-bridge-test').read_bytes()).hexdigest(),
+            'recovery_fixture_sha256':hashlib.sha256((build/'audio-voice-recovery-test').read_bytes()).hexdigest(),
             'source_sha256':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest()
                              for p in [*sorted((REPO/'runtime/audio').glob('*')),REPO/'audio/voice_bridge.cpp',REPO/'audio/voice_bridge.hpp',REPO/'tests/audio-voice-bridge-test.cpp']},
             'last_request':int.from_bytes(header[16:20],'little'),
@@ -76,10 +78,10 @@ def main():
             'native_devices_selected':int.from_bytes(header[84:88],'little'),
             'fallback_attempts':int.from_bytes(header[88:92],'little'),
             'unsupported_local_calls':int.from_bytes(header[124:128],'little')>>24,
-            'checks':['native_pcm_and_controls','COM_method_slots_stdcall','primary_metadata','primary_volume_roundtrip','primary_format_validation',
+            'checks':['native_pcm_and_controls','fake_output_loss_retry_rescan_consumed_phase_preferences','version5_fresh_admission','COM_method_slots_stdcall','primary_metadata','primary_volume_roundtrip','primary_format_validation',
                       'primary_stop_preserves_secondary_playback','manager_gate_failure_order_matrices',
                       'secondary_lock_unlock','duplicate_source_retirement','independent_status','native_wave_abi_exact_pcm','native_wave_small_destination_and_traversal_refusal',
-                      'invalid_unlock_and_flags','native_pitch_and_aligned_seek','generated_static_cursor_and_pointer_guards','reference_lifetime',
+                      'invalid_unlock_and_flags','native_pitch_and_aligned_seek','generated_static_cursor_and_pointer_guards','native_primary_and_secondary_restore_RPC','reference_lifetime',
                       'stale_host_timeout_and_permanent_retirement']}
     assert report['last_request']==report['last_ack'] and report['last_ack']>10,report
     assert report['native_devices_selected']==1 and report['fallback_attempts']==0,report

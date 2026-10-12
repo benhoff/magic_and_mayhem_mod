@@ -110,6 +110,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
                     native_wave_loading=native_voices,
                     native_audio_factory=native_voices,
                     native_extended_controls=native_voices,
+                    native_output_recovery=native_voices,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
     metadata.update(native_media=native_media,media_channel=str(root/'native-media.bin') if native_media else None)
     if native_music:
