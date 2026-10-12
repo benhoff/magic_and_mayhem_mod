@@ -702,3 +702,21 @@ assignment is asserted. Sourceimmutability/worker-to-EGLcausality/allroutes and
 semantic120windows/full47/21remainopen;steps3–7stayordered/pending.
 Reviewed65bdceec..b4fd6296has16matchedreceipts/0gaps.Storagearound930GiBworking/
 396GiBfreeremainswithinpolicy;historicalhashesretained/nocleanup.
+
+## Step 2 exact emitted packet identity checkpoint (2026-10-12 UTC)
+
+Separateopt-inemittershimverifiesexact6bytesatRVA1dff8c,replaysoriginal
+instructions/preservesregisters/flags/FP/LastError,andbindscomplete100bytepacket
+localaddress+bytes toportablecommandID/currentWine submissionID. Workerentry/
+returnmustmatchthat outstandingpacket;returnretiresbinding. Pointersnevercross
+wire. Unknown/copied/mutated/pendingpacketsremainexplicit;no count-basedpairing.
+ActualPE32fixture01passes2packetbindings,realassemblyregister/flag/stack/error
+checksandpre-mutationsignaturerefusal. Threeportableparsermethods pass.
+
+Original01admits1610exactemission/workerentry/returnbindings,0unknown/pending/
+unbound.354APIand353EGLwitnessesremainseparate;32Worldreturnsclose. This binds
+selectedemittedcommand toactualworker/submission,notimmutabletexturebytes or
+physicalimage. Sourceownership,worker-to-EGLidentity/allroutes andsemantic120
+windowsremainopen;steps3–7stayordered/pendingandall47/21requirementsremainopen.
+Reviewedb4fd6296..7208c7e0has24exactreceipts/0gaps.Storagearound935GiBworking/
+391GiBfreeremainswithinpolicy;historicalevidencehashesretained/nocleanup.

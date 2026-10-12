@@ -42795,7 +42795,8 @@
         "DRAW02.draw02-wine-generation-original-01-live_observation-20261012",
         "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012",
         "DRAW02.draw02-wine-texture-entry-original-01-live_observation-20261012",
-        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-blit-packet-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42926,7 +42927,8 @@
         "DRAW02.draw02-wine-blit-worker-fixture-01-native_integration-20261012",
         "DRAW02.draw02-wine-blit-command-inventory-01-static-20261012",
         "DRAW02.draw02-wine-blit-worker-parser-checks-01-static-20261012",
-        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-blit-packet-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42938,6 +42940,51 @@
       "remaining_gaps": [
         "Pending pinnedemit/handlerinstructionsandtablemapping,ABIfixtures/actualworkertrace/sourceownership. Unknownindirectflow/otheropcodes/routes retained.",
         "Original01admits1511opcode42workercalls/1threads/0unknowndestination/0unknownsourcegenerations;sourcequeueidentity/EGLassignment/immutablebytes remainpending."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-blit-packet-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Selected Wine emitted packet to worker identity binding",
+      "scope": "Pending opt-in pinnedemitterRVA1dff8ccompletepacketpoint binds localpacketaddress+100byteinputscalar fingerprint to portablecommandID/currentWine submissionID. Worker must observe sameoutstandingpacket/fingerprintbefore retirement;pointer nevercrosseswire. Retainunknown/duplicate/copied/reused/mutated packets andsource/EGLownership gaps. ABIassemblypreservesregisters/flags/FP/LastError.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-blit-packet-binding.md",
+        "research/formats/drawing-wine-blit-packet-v1.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_packet.S",
+        "tools/drawing_wine_blit_packet.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-blit-packet-test.c",
+        "tests/drawing-wine-blit-packet-call.S",
+        "tools/test-drawing-wine-blit-packet.py",
+        "tests/test-drawing-wine-blit-packet.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_submission.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-blit-packet-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-blit-packet-parser-checks-01-static-20261012",
+        "DRAW02.draw02-wine-blit-packet-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pendingexpectedbytes/register/stackpoint andforwardfixture,current submissionthreadstack/portablepacketjournal/actualoriginalpairing. Copied/unknownworkerpacketsandimmutablebytes/asyncEGLassignmentremainpending.",
+        "Original01admits1610exactemission/workerentry/returnbindingswith0unknown/pending/unbound. Commandidentityisnotimmutabletexture-sourceownership/asyncEGLassignment;otheremitpaths/queuedcopies andfullroutes/semanticjourneysremainpending."
       ]
     }
   ],
@@ -90751,6 +90798,50 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-packet-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32emittershim/expectedbytes/registerflagsstack/error andexactpacketworkerretirement fixture;nooriginalsource/EGLownership.",
+      "record": "research/runtime/draw02-wine-blit-packet-fixture-01.json",
+      "sha256": "f4d67cfd859482796f1222f94e5e5a22f8de1baaab752f6298bd64dea5065307",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-packet-parser-checks-01-static-20261012",
+      "kind": "static",
+      "scope": "Boundedportablepacketidentityguards,notimmutable source/EGLassignment.",
+      "record": "research/runtime/draw02-wine-blit-packet-parser-checks-01.json",
+      "sha256": "cef4b57051b7e4b53cbc7101db6d576d12fea551da4c9d3eae838950d787ee02",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-packet-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Closedexactlocalpacket/submission/workerbinding,noimmutable source/EGLidentity.",
+      "record": "research/runtime/draw02-wine-blit-packet-original-01.json",
+      "sha256": "b2d0317f0e448ded1d9bac82244531ed3c46126e7dd6cc9347baea5f7da212c7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -101901,6 +101992,40 @@
       "evidence": [
         "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-blit-packet-fixture",
+      "level": "headless",
+      "scope": "ActualPE32exactsiteassembly/register/flags/stack/LastError andpacketemit/workerretirementfixture,nosource/EGLownership.",
+      "behaviors": [
+        "NR.drawing-wine-blit-packet-binding"
+      ],
+      "tests": [
+        "tests/drawing-wine-blit-packet-test.c",
+        "tests/drawing-wine-blit-packet-call.S",
+        "tools/test-drawing-wine-blit-packet.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-blit-packet-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-blit-packet-parser-checks-01-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-wine-blit-packet-quick",
+      "level": "live_observation",
+      "scope": "Pinnedoriginalactiveexactlocalcommandpacket\u2192worker/submissionbinding,retainedunknown/pending,32source/API/EGLwitnesses;noimmutable source/EGLassignment.",
+      "behaviors": [
+        "NR.drawing-wine-blit-packet-binding",
+        "NR.drawing-wine-blit-command-discovery",
+        "NR.drawing-wine-submission-generations"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-blit-packet-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -102274,8 +102399,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-wine-worker-20261012.json",
-    "sha256": "65cbad9f597b38b7d2c1183b453b65893619bc3aeab8d22f9e9f6af3ba10da41"
+    "path": "research/runtime/coverage/source-index-draw02-wine-packet-20261012.json",
+    "sha256": "106822c18aeb1c00db9b8cda1e1bb918401a71e942dbdae305de8eb388991d2a"
   },
   "claim_bindings_required": true
 }
