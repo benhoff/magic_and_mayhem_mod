@@ -29,6 +29,8 @@ public:
     bool waitingForWorld() const{return renderer_ && renderer_->waitingForWorld();}
     std::uint64_t preparedGeneration() const{return renderer_?renderer_->preparedGeneration():0;}
     bool presentPrepared(const mnm::render::GpuFrame& frame,std::uint64_t generation){return renderer_ && renderer_->presentPrepared(frame,generation);}
+    std::uint64_t sealedGeneration() const{return renderer_?renderer_->sealedGeneration():0;}
+    bool presentSealed(const mnm::render::GpuFrame& frame,std::uint64_t generation){return renderer_ && renderer_->presentSealed(frame,generation);}
     std::function<void(State)> stateChanged;
 private:
     bool fresh(const QString& path,quint32 session);

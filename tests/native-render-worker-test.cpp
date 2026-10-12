@@ -36,6 +36,19 @@ int main(int argc,char** argv){
         probe.observe(start,start+std::chrono::milliseconds(40),RenderDeadlineProbe::IncompleteUi);probe.observe(start,start+std::chrono::milliseconds(41),RenderDeadlineProbe::PendingWorldImport);
         require(probe.opportunities[RenderDeadlineProbe::IncompleteUi]==1&&probe.opportunities[RenderDeadlineProbe::PendingWorldImport]==1,"Independent blocked reasons collapsed");
         RenderStageTiming timing;for(auto ms:{0.,1.,2.,4.,8.,16.667,33.334,100.,101.})timing.add(ms);require(timing.samples==9&&timing.bins.front()==2&&timing.bins.back()==1,"Elapsed histogram boundary error");
+        // A continuous UI publication stream must not starve display deadlines.
+        // World updates are kept ordered at20Hz; every source covers one display
+        // opportunity and cannot receive a duplicate redraw in the same turn.
+        unsigned frames=0,sources=0;std::uint64_t generation=1;int next=0;
+        for(int now=0;now<1000000;now+=1000){
+            const bool source=now%50000==0;if(source){++generation;++sources;}
+            const bool eligible=nativeDisplayEligible(true,false,source,generation,generation);
+            if(source || (now>=next && eligible)){++frames;next+=16667;}
+            require(!nativeDisplayEligible(true,true,false,generation,generation),"Pending source admitted redraw");
+            require(!nativeDisplayEligible(true,false,false,generation-1,generation),"Mixed World generation admitted redraw");
+        }
+        require(sources==20&&frames==60,"Continuous UI traffic starved deterministic display deadlines");
+        require(!nativeDisplayEligible(false,false,false,1,1)&&!nativeDisplayEligible(true,false,false,0,1),"Hidden/incomplete first frame admitted redraw");
         GlViewport viewport;viewport.resize(320,240);viewport.show();app.processEvents();require(viewport.ready(),"Viewport initialization");
         QTemporaryDir dir;require(dir.isValid(),"Temporary directory");
         NativeRenderWorker worker(viewport,dir.filePath("world"),dir.path(),dir.filePath("report.json"));
@@ -79,6 +92,6 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true}\n");return 0;
+        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

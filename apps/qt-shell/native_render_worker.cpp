@@ -7,6 +7,7 @@
 #include <chrono>
 #include <vector>
 NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const QString& game,const QString& reportPath):viewport_(v),reportPath_(reportPath){
+    baselineUiClock_=qEnvironmentVariableIntValue("MNM_WORLD_UI_CLOCK_BASELINE")==1;
     NativeRenderTarget target{[this]{return share_!=nullptr;},[this]{return share_;},
         [this](auto frame){rendered_=std::move(frame);frameChanged_=rendered_.valid();},[]{return QString();},&surface_};
     world_=std::make_unique<ResidentWorldSession>(target,path,game,true);
@@ -71,7 +72,7 @@ void NativeRenderWorker::run(){
         QJsonObject reasonsJson;
         for(unsigned i=0;i<RenderDeadlineProbe::ReasonCount;++i)reasonsJson[reasons[i]]=QJsonObject{{"turns",QString::number(deadlineProbe_.turns[i])},{"opportunities",QString::number(deadlineProbe_.opportunities[i])}};
         const auto timing=[](const RenderStageTiming& t){QJsonArray bins;for(auto n:t.bins)bins.append(double(n));return QJsonObject{{"samples",double(t.samples)},{"mean_ms",t.samples?t.totalMs/t.samples:0},{"max_ms",t.maxMs},{"bins",bins}};};
-        next.report["display_deadline_probe"]=QJsonObject{{"policy","ui-present-barrier"},{"reasons",reasonsJson},{"max_late_ms",deadlineProbe_.maxLateMs},
+        next.report["display_deadline_probe"]=QJsonObject{{"policy",baselineUiClock_?"ui-present-barrier":"independent-sealed-ui"},{"ui_publication_redraws",QString::number(uiPublicationRedraws_)},{"partial_ui_sealed_redraws",QString::number(sealedUiRedraws_)},{"reasons",reasonsJson},{"max_late_ms",deadlineProbe_.maxLateMs},
             {"world_poll",timing(worldTiming_)},{"command_poll",timing(commandTiming_)},{"extra_world_ui",timing(extraTiming_)},{"export",timing(exportTiming_)},{"turn",timing(turnTiming_)},{"slow_turns",slowTurns_},
             {"scope","Observation after source/command work. Per-reason opportunities deduplicate global16.667ms monotonic buckets, may overlap and are not additive. CPU elapsed times include driver waits, not GPU execution. Histograms upper bounds1/2/4/8/16.667/33.334/100ms then overflow. Slow turns bounded256."}};
         {std::lock_guard<std::mutex> lock(mutex_);published_=std::move(next);}
@@ -104,18 +105,22 @@ void NativeRenderWorker::run(){
                 if(!commands_->poll())throw std::runtime_error(commands_->error().toStdString());
                 const auto after=commands_->result()?commands_->result()->presents:0;
                 presents=after-before;commandMs=stageClock.nsecsElapsed()/1000000.;commandTiming_.add(commandMs);stageClock.restart();
-                generation=commands_->preparedGeneration();
+                const auto strictGeneration=commands_->preparedGeneration();
+                generation=baselineUiClock_?strictGeneration:commands_->sealedGeneration();
                 const auto state=world_->displayState();const auto now=std::chrono::steady_clock::now();
+                const bool sourceCompleted=state.generation!=beforeWorld || (commands_->result()&&commands_->result()->residentWorldImports!=importsBefore);
                 if(state.active && now>=state.deadline){
                     reason=!draw?RenderDeadlineProbe::Hidden:state.pending?RenderDeadlineProbe::PendingWorldImport:
-                        (state.generation!=beforeWorld || (commands_->result()&&commands_->result()->residentWorldImports!=importsBefore))?RenderDeadlineProbe::SourceCompleted:!generation?RenderDeadlineProbe::IncompleteUi:
-                        presents?RenderDeadlineProbe::UiPublication:RenderDeadlineProbe::RenderAttempt;
+                        sourceCompleted?RenderDeadlineProbe::SourceCompleted:!generation?RenderDeadlineProbe::IncompleteUi:
+                        (baselineUiClock_&&presents)?RenderDeadlineProbe::UiPublication:RenderDeadlineProbe::RenderAttempt;
                     deadlineProbe_.observe(state.deadline,now,RenderDeadlineProbe::Reason(reason));
                 }
-                if(before==after && draw){
+                if(baselineUiClock_?(before==after && draw):nativeDisplayEligible(draw,state.pending,sourceCompleted,generation,state.generation)){
                     if(generation){auto frame=world_->drawIndependent(generation);if(frame.valid()){
                         QElapsedTimer clock;clock.start();
-                        if(!commands_->presentPrepared(frame,generation))throw std::runtime_error(commands_->error().toStdString());
+                        if(!(baselineUiClock_?commands_->presentPrepared(frame,generation):commands_->presentSealed(frame,generation)))throw std::runtime_error(commands_->error().toStdString());
+                        if(!baselineUiClock_&&presents)++uiPublicationRedraws_;
+                        if(!baselineUiClock_&&!strictGeneration)++sealedUiRedraws_;
                         world_->noteIndependentPresentation(clock.nsecsElapsed()/1000000.0);
                     }}
                 }

@@ -21,6 +21,8 @@ public:
     bool prepareResidentFrames=false;
     bool waitingForWorld() const{return waitingWorld_;}
     std::uint64_t preparedGeneration() const;
+    std::uint64_t sealedGeneration() const;
+    bool presentSealed(const mnm::render::GpuFrame&,std::uint64_t);
     bool presentPrepared(const mnm::render::GpuFrame&,std::uint64_t);
     bool ended() const{return ended_;}
     bool hasPendingCommands() const{return !closed_ && (cursor_<pending_.size() || !channel_.drained());}

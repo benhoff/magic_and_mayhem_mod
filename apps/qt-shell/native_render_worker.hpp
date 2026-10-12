@@ -47,6 +47,8 @@ private:
     std::condition_variable wake_;
     bool frameChanged_=false,started_=false,stop_=false,producerExited_=false,requestStop_=false;
     bool normalQuit_=false,drawAllowed_=false,paused_=false;
+    bool baselineUiClock_=false;
+    std::uint64_t uiPublicationRedraws_=0,sealedUiRedraws_=0;
     RenderDeadlineProbe deadlineProbe_;
     RenderStageTiming worldTiming_,commandTiming_,extraTiming_,exportTiming_,turnTiming_;
     QJsonArray slowTurns_;

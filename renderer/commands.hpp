@@ -76,6 +76,8 @@ public:
     const CommandResult& result() const;
     std::uint64_t preparedGeneration() const;
     void presentPrepared(const GpuFrame&,std::uint64_t generation);
+    std::uint64_t sealedGeneration() const;
+    void presentSealed(const GpuFrame&,std::uint64_t generation);
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

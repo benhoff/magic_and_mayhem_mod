@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "scope": "Source-bound dedicated render-owner controls; no original/live equivalence.",
+  "claims": [
+    {
+      "behavior": "HOST.native-render-owner",
+      "contract_sha256": "c83a2bd6c9538071d5152a970c90b0a620901ad4a3a800ecdc12f23d96cc563a",
+      "scenarios": {
+        "HOST.native-render-owner.fixture": "914b173365fb17f410b3a8bcae11b835c1a235f1e43dc3e2a9128c730850d5fe"
+      }
+    },
+    {
+      "behavior": "HOST.native-display-deadlines",
+      "contract_sha256": "ca6b568cc018c30873e04e657c4d7d9e432003d01a173c2be3e0fb49a86a0c21",
+      "scenarios": {
+        "HOST.native-display-deadlines.fixture": "65744b1d9877793a0b0b27a782b85c63621e8c9ab603f7c05c8b1cfab89ffeca"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "821a5a12903dd1c4ced44140fa6396a7caa0155e9edcf6a9e2e9cab48f1dc3fe",
+    "apps/qt-shell/command_channel.cpp": "6973bca9fc624b62906b034dcc60c8f160614c98e2ebeccf54410beb11bf12f7",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/gl_viewport.cpp": "3e4a7242904ba22d86a36a1469d7f9c9f46fd4fae8ba682c07978bff14a847c4",
+    "apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+    "apps/qt-shell/live_command_renderer.cpp": "4a47e3d69e0d2dcbe7ecb4b47f66c77d0b7926c97f2916b8b494b2c6cb0d1de4",
+    "apps/qt-shell/live_command_renderer.hpp": "3f1e72eaa8b797544b679e1c96455012a52d4d52b37aee4f6c5794816c9ef5c2",
+    "apps/qt-shell/live_command_session.cpp": "2cabcc89cda373483e948b7553861ea8fb6fc340d7f787e36921a1aae887d7cb",
+    "apps/qt-shell/live_command_session.hpp": "5dcfaa1fd3ed6f3eed26601bea306cdebeea4c650ecab6766008540557d0b08c",
+    "apps/qt-shell/main.cpp": "f3c4ae13b0aca2a88e69d533c11dd0745993c300f9c1a1957fcd32dbc2c7c2b0",
+    "apps/qt-shell/native_render_target.hpp": "1d74a2a97734f2f6882348fc5cefac79a688854e108bc1100a7fdf2162a43c20",
+    "apps/qt-shell/native_render_worker.cpp": "03085ba0211da4a30e7055af099e9b6aeb87cac46ee812b96926f7e5391313ba",
+    "apps/qt-shell/native_render_worker.hpp": "9f0f6b0486de7beec7d22025b955402973b46ee41fcc2834ba1cc17e0624a4f2",
+    "apps/qt-shell/render_control.cpp": "4eae2c56fbeb93d84264b22622d1a3789bb138acb030914a7a0cf560eedc2eb8",
+    "apps/qt-shell/render_control.hpp": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+    "apps/qt-shell/render_deadline_probe.hpp": "10451c9830a09fb4ed68e8f0968e2860ef07820ec543bbc7d56cf9953f9cc065",
+    "apps/qt-shell/resident_profile_capture.cpp": "eb143860154be30acf33b1fe5836def3c8f0a5fc9bdff0ea787a2468c8425d15",
+    "apps/qt-shell/resident_profile_capture.hpp": "b8bdfed9dc0d115e95ea7a17d6a141072fcdc545ceea1e1fe79a85d2f13fc5d2",
+    "apps/qt-shell/resident_world_session.cpp": "df7ac713f11ce9ea2735e1ac59584bcd6fd05f8176209f0b7c4fde70de194c1f",
+    "apps/qt-shell/resident_world_session.hpp": "2544da2e7b3560e6ffc50a545880348653455cc80d1eae9eedfc398e107c3d4b",
+    "compat/legacy/world_continuous.cpp": "e4bc1580e9620ef9918752475174dd1711c89cb62ad0e604d36948fa56b088a6",
+    "compat/legacy/world_continuous.hpp": "4ee5d5c4286c02184b265ea548d121ecdd418c2c216a23b393c644a70f2f7e0f",
+    "compat/legacy/world_snapshot_queue.cpp": "1ba49838173fe143800e6df8b973ba1b6cab5bd4d4217f1e479c2a4acbb2023e",
+    "compat/legacy/world_snapshot_queue.hpp": "ba2ac9da0ad7725540958e2f5fde3ca3603dd01f48726b007ee959ea0fb6e5e2",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "protocols/include/mnm/world_continuous_v5.h": "1d75c3d4ef51fa94fe83c851781aee353425940bfbaea9c20c87bfb68b03ceaa",
+    "renderer/CMakeLists.txt": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+    "renderer/blit.cpp": "52a5bd317d9798c4fb9f8d17c429b4f0722f4f704e06a795720554598d56fe2e",
+    "renderer/blit.hpp": "7693e2011dd2401be17f307fd1e53bfd78261005882b7a780bd2d9f59ac11247",
+    "renderer/command_consumer.cpp": "60b57b120448c103d226fbf1b243de23dad9359d6104a3fab6c797840c64d8da",
+    "renderer/command_state.hpp": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+    "renderer/commands.cpp": "55fe9b498537ab01f9d91ad9e5acd8208abc2556392cb955bdb54ce68d52b815",
+    "renderer/commands.hpp": "d9e3e88778d9ef7d74f5141850c0b925ffd6906979e64200a67d317453a6f8b4",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/native_frame_recipe.cpp": "2df9e43951efb32ebaddc8346f030e28ac65914068dad712cd16c2d76c0cd39c",
+    "renderer/native_frame_recipe.hpp": "f1577eb3fe93a12a2c0356cecce6dfdef24cefec90d7a3e213c9d995ae6f411c",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "tests/native-frame-recipe-test.cpp": "08771c2ba6da9179c813615039d2cdaf822aeea106713b551a7b205e8aa8eb30",
+    "tests/native-render-worker-test.cpp": "2cf3314c3ba6dc3d6f9c17f47b5fe7b7c2eb39b2a4aa682fed640e1d67f8b501",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/probe-native-display-deadlines.py": "d2833e0688b11f3349d50690a503c4ae80320178535b5ef747c2b854b4920974",
+    "tools/test-native-frame-recipe.py": "f0b057ce51a8f0508c51d5840d3f60dd7e20a7b0abcf71c54b3bcd5c2b55b90f",
+    "tools/test-native-render-worker.py": "5ddef7270061302d1d78266551e55d1d99fc5e97fe4b5f9e656a605f88eace68"
+  },
+  "native-render-worker-test": {
+    "success": true,
+    "native_presentations": 171,
+    "immutable_frame_checked": true,
+    "slow_gui_checked": true,
+    "presentation_lease_bound": 2,
+    "malformed_refused": true,
+    "joined_teardown": true,
+    "native_readbacks": 0,
+    "rgba_readbacks": 0,
+    "diagnostic_framebuffer_checks": 23,
+    "presentation_export_allocations": 2,
+    "presentation_source_allocations": 1,
+    "deadline_deduplication": true,
+    "elapsed_histogram_boundaries": true,
+    "continuous_ui_clock_frames": 60,
+    "ordered_source_updates": 20,
+    "mixed_generation_refused": true
+  },
+  "gpu-presentation-test": {
+    "success": true,
+    "full_frame_comparisons": 109,
+    "command_presentations": 2,
+    "gpu_presentations": 200,
+    "rgba_readbacks": 0,
+    "diagnostic_readbacks": 196,
+    "damage_regions_checked": true,
+    "gpu_viewport_uploads": 0,
+    "unshared_context_refused": true,
+    "owner_release_survived": true,
+    "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+  },
+  "sources_unchanged": true
+}

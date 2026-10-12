@@ -317,3 +317,74 @@ UI snapshot. Original FIFO/two source credits/simulation/ANI/RNG and error/Quit
 contracts remain fixed. Committed range6de9bbc0..46adc82a was reviewed:17exactfile
 receipt chains,zero unresolved,in working/tests/native-display-deadline-prior-history-20261012.json;
 this is history accounting,not retrospective execution/gate proof.
+
+
+### Independent display admission and last sealed UI controls (2026-10-12)
+
+The measured baseline is committed as45dcf276. The separate display policy now
+admits a due native World redraw after UI-only PRESENT traffic. A source consumed
+or imported in this owner turn already supplies a World draw and prevents a
+duplicate extra draw. Hidden viewport,pending import,unsealed first UI andmixed
+World/UI generations refuse admission. Original source FIFO/two credits,pacing,
+producer history/ANI/RNG and native error/Quit/buffer ownership stay unchanged.
+The optional MNM_WORLD_UI_CLOCK_BASELINE=1 environment switch retains the measured
+old policy for bounded comparisons; it is not a product menu option.
+
+Strict current-frame replay still rejects partial UI transactions. An explicit
+sealed replay API uses only the immutable GPU UI and coordinate snapshots from
+the last PRESENT while later UI commands are incomplete. Mutations affect the
+current command surfaces/maps,not these frozen copies. New WORLD imports reset
+the recipe and require a new same-generation seal before extra drawing. Each
+extra frame draws native World anew and assembles it with the frozen UI; no cached
+World screenshot,partial UI exposure,readback,original-output seed or simulation
+advance. New UI-only PRESENT seals become visible in subsequent complete frames.
+
+Fresh controls preserve171orderedpresentations/oneproducer/twoexports/23pixels
+and109defaultGPUcomparisons, plus a deterministic continuousUI eligibility
+sequence with60logicaldisplayopportunities/20orderedsourceupdates andrefusals.
+Separate native GPU controls exercise40freshWorldframes while currentUI stays
+partial; oldsealedUI stays exact,newWorldpixels update,andfirst/current partial
+strictrefusals remain. Existingkey/clip/translation/equal-color/versionedglyph/
+fullscreen/storage/teardown controls pass withzeroordinaryreadbacks. These are
+synthetic policy/pixel proofs,not60actualliveFPS ororiginal comparison.
+
+Current full TITAN casting/combat/portrait/menu/resume/Quit/performance execution
+remains pending. Reporter distinguishes actual UI-publication/partial-sealed
+redraws from baselineblocked opportunities;CPUelapsed timers include driver waits.
+Committed range46adc82a..45dcf276 was separately reviewed:14exactfile receipt
+chains,zero unresolved,inworking/tests/native-display-independent-baseline-history-20261012.json;
+no retrospective execution/gate assertion.
+
+
+### Full independent display result: functional pass,60FPS failure (2026-10-12)
+
+Fresh predeclared current full TITAN native journey passes casting/combat/refused
+spells/movement/retreat/portrait/native menus/resume/normalQuit and19FPSsmokefloor.
+All4,802ownedsource/native/import/originalreturns balance,source19.5653Hz,
+outstanding0,source/outputhighwater2,ordinaryreadbacks/pixelreply/fallback0,
+twooutputallocations,original/source/privateWineintegrity pass.
+
+ActualWorld34.5927FPS remainsbelow59target;visiblepaint28.1734/40.3734FPS over
+178.537/61.278seconds,worst11.7860/22.8628,alsofail59target. Rawprobe/smoke success
+means functional19-floor only. The new immutable derivedrecord
+HOST.native-display-deadlines.independent-full-performance-negative-20261012
+explicitly retains60performance failure alongside rawreport hash/smoke success.
+This is no60FPS,physicalscanout,originalequivalence orinterpolation claim.
+
+The fixed policy executes3,550actualredraws after UI publication and260during
+partialUIusingpriorsealed snapshots. BaselineUI-PRESENT blocked opportunities
+arezero. RemainingcompoundincompleteUI opportunities8,215,pendingimports194,
+hidden35,sourcecompletions3,392,renderattempts3,908 (nonadditiveobservations).
+IncompleteUI includes missing/unsealed/nonWorld/mismatched/newSource boundaries;
+these are not yet separately timed and cannot all be called recoverable frames.
+
+Workercommandpoll max20.17ms; extraWorld+UI mean11.596ms/max45.64ms (CPUelapsed
+includesdriverwaits);Worldpoll max819ms includesstartup/sourcework. The scheduler
+fix does more nativeWorlddrawing, but visiblepaint averages are lower than the
+previousfull cached-owner observation35.85/48.88FPS. Those runs are historical
+observations with differing gameplay timing,not pairedframeequivalence; no causal
+percentage/60FPSwin is asserted. Remaining work is first-seal/source-generation
+delay classification and native render/command/GPU cost attribution/reduction.
+Cross-generation cachedUI reuse remains intentionally unadmitted until separately
+specified and proved. All originalsimulation/pacing/history/order/credit policies
+remain unchanged.

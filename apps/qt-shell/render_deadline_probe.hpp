@@ -29,3 +29,10 @@ struct RenderStageTiming {
         std::size_t bucket=0;while(bucket<limits.size() && ms>limits[bucket])++bucket;++bins[bucket];
     }
 };
+
+// New source consumption/import already draws a World: never redraw it twice
+// in that owner turn. UI publications do not cancel a due display deadline.
+inline bool nativeDisplayEligible(bool visible,bool pending,bool sourceCompleted,
+                                  std::uint64_t sealedGeneration,std::uint64_t worldGeneration){
+    return visible && !pending && !sourceCompleted && sealedGeneration && sealedGeneration==worldGeneration;
+}
