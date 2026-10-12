@@ -7721,3 +7721,14 @@ A source lead is the original58d540routine called during surface setup; inspect
 its exact bytes/behavior before extending hooks. No alias/upload/ownership/full
 47/21orsteps3–7promotion follows; current native parity is not asserted for
 this isolated metadata increment.
+
+DRAW-02 step2 static source/copy reassessment: exact-entry manifest-checked
+58d540inspection disproves its provisional buffer-setup label: it queries32byte
+pixel format, writes low16RGBmasks and returns a derived bit. No allocator claim.
+New bounded58bf40/58d320copy/lock-bind instructions are retained separately.
+Retained version3selected104APIcalls each have two original Wine blits: known
+mapped source→client texture, then client texture→primary. The initial source
+query has the exact held canvas/state/prefix in all104; the final source lacks a
+direct CPUepoch. Next validate both command/worker links rather than assuming a
+single submission. This is a provisional chain finding, not new execution or
+complete upload/alias/ownership/full47/21closure.

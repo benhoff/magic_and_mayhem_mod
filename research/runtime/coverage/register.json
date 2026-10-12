@@ -13770,7 +13770,8 @@
         "research/runtime/surface-rectangle-forwarding.md",
         "research/runtime/opengl-world-summon-observation.md",
         "research/runtime/opengl-copy-order.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13778,7 +13779,9 @@
         "RI.static-callers-final-20261006",
         "NR.world-summon.observation-20261006",
         "NR.copy-order.live-20261006",
-        "NR.copy-order.live-verified-20261006"
+        "NR.copy-order.live-verified-20261006",
+        "DRAW02.source-buffer-static-20261012",
+        "DRAW02.source-copy-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -13786,7 +13789,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/inspect-drawing-source-buffer.py"
+      ]
     },
     {
       "id": "RI.fills",
@@ -20151,7 +20157,8 @@
         "research/runtime/native-canvas-producers.md",
         "research/formats/canvas-producers-v1.md",
         "research/runtime/native-world-producer-handoff.md",
-        "research/runtime/draw02-producer-recorder.md"
+        "research/runtime/draw02-producer-recorder.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -20197,7 +20204,9 @@
         "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012",
         "DRAW02.draw02-trace32-original-01-live_observation-20261012",
         "DRAW02.draw02-trace32-original-02-live_observation-20261012",
-        "DRAW02.draw02-trace32-original-03-live_observation-20261012"
+        "DRAW02.draw02-trace32-original-03-live_observation-20261012",
+        "DRAW02.source-buffer-static-20261012",
+        "DRAW02.source-copy-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -20215,7 +20224,8 @@
         "protocols/include/mnm/scene_snapshot_v1.h",
         "protocols/include/mnm/world_channel_v2.h",
         "runtime/scene/vertical_bar_trace.h",
-        "reconstruction/rendering/vertical_bar.h"
+        "reconstruction/rendering/vertical_bar.h",
+        "tools/inspect-drawing-source-buffer.py"
       ],
       "validation_domain": "Selected original 800x600 Quick Battle menu/loading/HUD producer history through a bounded contiguous prefix of up to16 World returns; format0 only, diagnostic checkpoints require original successful lock pointers. Missing writer/checkpoint, unknown alpha/clip, allocation and driver branches remain refused/pending.",
       "historical_status": {
@@ -32471,7 +32481,8 @@
       "scope": "Pinned NoCD opaque wrapper58bf40: guarded original COM call sites58c03a/58c05a, exact application HRESULT/LastError and RGB565 primary readback after success, logical generations/source sequence, loss accounting and final post-World HUD/cursor publication. Original calls execute unchanged; no alternate publication route completeness, applied action/frame identity, failure/Restore equivalence, observer ABI equivalence or suppression claim.",
       "documents": [
         "research/runtime/draw02-publication.md",
-        "research/formats/drawing-publication-v1.md"
+        "research/formats/drawing-publication-v1.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "original": [
         {
@@ -32493,7 +32504,9 @@
       ],
       "evidence": [
         "RS.drawing-publication.original-20261011",
-        "RS.drawing-publication.camera-original-20261011"
+        "RS.drawing-publication.camera-original-20261011",
+        "DRAW02.source-buffer-static-20261012",
+        "DRAW02.source-copy-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -32538,7 +32551,8 @@
         "runtime/menu/channel.h",
         "runtime/menu/observer.c",
         "runtime/menu/drawing_action.h",
-        "tools/build-menu-observer.py"
+        "tools/build-menu-observer.py",
+        "tools/inspect-drawing-source-buffer.py"
       ],
       "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches."
     },
@@ -44167,6 +44181,47 @@
         "tools/drawing_diagnostic_cadence.py",
         "tools/inspect-drawing-wine-resource-copy.py",
         "tools/inspect-drawing-wine-imports.py"
+      ]
+    },
+    {
+      "id": "DRAW.canvas-source-buffer-setup",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original pixel-format mask query client",
+      "scope": "Exact NoCD58d540calls wrapper+8vtable slot21with zeroed32byte DDPIXELFORMAT descriptor/size32; on nonzero result invokes484c00error client, then writes low16RGBmasks to6e1f7c/7e/80 and returns (~(R|G|B)>>15)&1. Static interpretation only; external COM/errors and controlled original execution pending. This routine does not construct a source buffer.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821760,
+          "scope": "Exact pixel-format query/global mask/derived return client, not allocator or buffer ownership."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-canvas-storage-generations.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-drawing-source-buffer.py"
+      ],
+      "evidence": [
+        "DRAW02.source-buffer-static-20261012",
+        "DRAW02.source-copy-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Routine meaning, external calls, return value and buffer binding unverified. Source-only findings separate from synthetic client execution and real driver lifetime."
+      ],
+      "validation_dependencies": [
+        "tools/inspect-drawing-canvas-storage.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/inspect-drawing-source-buffer.py"
       ]
     }
   ],
@@ -94679,6 +94734,42 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-buffer-static-20261012",
+      "kind": "static",
+      "scope": "Pinned exact-entry NoCD pixel-format client and copy/lock-bind instructions; no new original execution, driver or ownership proof.",
+      "record": "research/runtime/draw02-source-buffer-static-01.json",
+      "sha256": "5588b6f102018083df294b47b4515bb61193fc580f851367962bb9c3e76266ee",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-copy-static-20261012",
+      "kind": "static",
+      "scope": "Pinned exact-entry NoCD pixel-format client and copy/lock-bind instructions; no new original execution, driver or ownership proof.",
+      "record": "research/runtime/draw02-source-copy-static-01.json",
+      "sha256": "ae6aa7630fb90d58ba0c925c909163a9b9c6c6d7360e099e267a8cd1d4b9c913",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106821,8 +106912,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-resource-copy-20261012.json",
-    "sha256": "8b70abdeeca461859af7490eb0a2abe218e7aa26ca56b99ead80b6c7b44cb58d"
+    "path": "research/runtime/coverage/source-index-draw02-source-copy-20261012.json",
+    "sha256": "7fabe0d5b7fbae378018d2d41661c1a3a509b2c618f4cd413363566ab238d416"
   },
   "claim_bindings_required": true
 }
