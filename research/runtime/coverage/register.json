@@ -46555,6 +46555,151 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-voice-backend-recovery",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native voice transport recovery under actual software endpoints",
+      "scope": "Actual native VoiceBroker version5 transport, static PCM upload/duplication/controls and output-consumed cursor under private software endpoint removal/replacement/default switch. Retain IDs/samples/controls and transport readiness, report lost status/truthful Restore and freeze/resume consumed playback. Private graph/cleanup guards; PE32 ABI, original equivalence and audible physical waveform remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-voice-backend-recovery.md"
+      ],
+      "implementation": [
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "tools/private_audio_backend.py"
+      ],
+      "tests": [
+        "tools/test-native-voice-backend.py",
+        "tests/native-voice-backend-test.cpp"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "audio/CMakeLists.txt",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_server_main.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/output_main.cpp",
+        "audio/upload_main.cpp",
+        "audio/voice_server_main.cpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "runtime/audio/protocol.h",
+        "tests/native-voice-backend/CMakeLists.txt"
+      ],
+      "evidence": [
+        "HOST.native-voice-backend-recovery.private-endpoints-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -94889,6 +95034,61 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-voice-backend-recovery.private-endpoints-20261012",
+      "kind": "native_integration",
+      "scope": "Current-source prospectively headless-bound native host version5 voice/PCM/duplicate/frequency/gain/Restore/consumed-cursor requests across actual private endpoint loss/replacement/default switch.33ACK, one expected lost Restore failure,576000 native WAV bytes, preserved IDs/frequency/gain, cursor freeze/resume and ready retirement; empty graphs/owned cleanup. PE32/original/physical waveform excluded.",
+      "record": "research/runtime/native-voice-backend-private-endpoints-20261012.json",
+      "sha256": "202e9aed99cb75dfedac0fd1ad522e103fd0732db82400a2864947bce2244620",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/final/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/final/requests",
+          "equals": 33
+        },
+        {
+          "pointer": "/final/failures",
+          "equals": 1
+        },
+        {
+          "pointer": "/final/wave_bytes",
+          "equals": 576000
+        },
+        {
+          "pointer": "/final/output_losses",
+          "equals": 2
+        },
+        {
+          "pointer": "/final/output_recoveries",
+          "equals": 2
+        },
+        {
+          "pointer": "/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105928,6 +106128,21 @@
       "evidence": [
         "HOST.native-media-backend-recovery.private-endpoints-20261012"
       ]
+    },
+    {
+      "id": "native-voice-backend-recovery-20261012",
+      "level": "headless",
+      "scope": "Actual native host voice version5 requests with private endpoint loss/default replacement, retained PCM/IDs/controls, lost/Restore status, frozen/resumed consumed cursors and cleanup. PE32/original/physical waveform excluded.",
+      "behaviors": [
+        "HOST.native-voice-backend-recovery"
+      ],
+      "tests": [
+        "tools/test-native-voice-backend.py",
+        "tests/native-voice-backend-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-voice-backend-recovery.private-endpoints-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -106301,8 +106516,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-media-backend-commit-v1-20261012.json",
-    "sha256": "cf1e2f0d20e0bf5cbfc741aca84ecc4e8dc8ef55004ea36a7a17c0e41ddb9d41"
+    "path": "research/runtime/coverage/source-index-native-voice-backend-commit-v1-20261012.json",
+    "sha256": "6b923104f5c47af12cf6fc13fe4a6b32ccbce5d3e9c56181ffabb16bae3cf8b7"
   },
   "claim_bindings_required": true
 }
