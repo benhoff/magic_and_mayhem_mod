@@ -6734,3 +6734,25 @@ acquisition is next; semantic action results, alternate publication, native effe
 movies and general producer replay remain open. Historical hashes remain unchanged
 and linked planning changes leave older suite evidence stale. See
 [ordered execution and reassessment](draw02-end-to-end.md).
+
+
+## DRAW-02 physical API witness increment (2026-10-12 UTC)
+
+On the isolated draw02-end-to-end branch, additive mode3 preserves original
+application call/result/LastError/x87 behavior and acquires full physical witnesses
+without diagnostic Lock/Unlock. Explicit frame/transient budgets, exact journal/
+request/ACK/type/hash/terminal admission and retained settling samples refuse gaps.
+Final native fixtures pass32physical/eightACK and32legacy/eightplane/eightreentrant
+cases. Fresh original Quick Battle flow retains619planes/297120000pixels,
+129transients/247680000bytes, nine accepted menu requests and1997input calls.
+Zero journal loss/gaps; sources and original manifests remain stable.
+
+Two primary writer threads are observed. Source-owned inputs, all external output
+routes, every physical change, complete action semantics and native parity remain
+unproved. All14full journeys/21operations remain open; no stage promotion or
+replacement is asserted. Historical source hashes and all unsuccessful sandbox/
+loader/preparation/stability/1GiB-budget runs remain intact. Native fixtures and
+original acquisition have independent evidence IDs. Shared observer/admission
+changes leave broader historical drawing/host comparison stale; only the new
+scoped policy executions establish current support. See
+[ordered execution, evidence and reassessment](draw02-end-to-end.md).

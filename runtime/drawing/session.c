@@ -54,11 +54,17 @@ static struct Context begin(void* object,u32 method,u32* args,u32 count,u32 call
 struct Pixels {void* data;u32 size;};
 /* Never hold the journal mutex across a driver call: Lock/GetDesc can
  * synchronously invoke original input/window handlers on another thread. */
+#include "physical_fence.h"
 static struct Pixels primary(struct Context* c,void* object,struct Table* t){
- struct Pixels out={0};if(!readbacks_enabled){c->r[13]=2;return out;}u32 desc[31]={0};desc[0]=t->kind>=14?124:108;
+ struct Pixels out={0};if(!readbacks_enabled&&!physical_enabled){c->r[13]=2;return out;}u32 desc[31]={0};desc[0]=t->kind>=14?124:108;
  typedef i32(WIN *Desc)(void*,void*);typedef i32(WIN *Lock)(void*,void*,void*,u32,HANDLE);typedef i32(WIN *Unlock)(void*,void*);
  i32 h=((Desc)t->original[22])(object,desc);c->r[13]=h<0?2:!!(desc[26]&0x200);c->r[17]=desc[26];c->r[18]=c->r[19]=0xffffffffu;
  if(h<0){__sync_fetch_and_add(&gaps,1);return out;}if(!c->r[13])return out;
+ if(physical_enabled){
+  c->r[14]=desc[3];c->r[15]=desc[2];c->r[16]=desc[21];
+  if(!desc[3]||!desc[2]||desc[3]>2048||desc[2]>2048||desc[21]!=16||desc[22]!=0xf800||desc[23]!=0x7e0||desc[24]!=31){__sync_fetch_and_add(&gaps,1);c->r[13]=2;}
+  return out;
+ }
  desc[0]=t->kind>=14?124:108;h=((Lock)t->original[25])(object,0,desc,0x4810,0);c->r[18]=h;if(h<0){__sync_fetch_and_add(&drops,1);return out;}
  u32 w=desc[3],height=desc[2],pitch=desc[4],p=desc[9];c->r[14]=w;c->r[15]=height;c->r[16]=desc[21];
  int okay=w&&height&&w<=2048&&height<=2048&&desc[21]==16&&desc[22]==0xf800&&desc[23]==0x7e0&&desc[24]==31&&pitch>=w*2&&pitch<=32768&&readable((void*)p,(height-1)*pitch+w*2);
@@ -95,7 +101,13 @@ static u32 end(struct Context* c,void* object,u32 result){
   if(m==2&&!result)for(u32 i=0;i<1024;++i)if(identities[i].object==object)identities[i].object=0;
  }else if(c->r[1]==2&&c->r[2]==3&&(i32)result>0&&readable((void*)c->args[0],8)){copy(c->r+27,(void*)c->args[0],8);c->r[31]=1;}
  LeaveCriticalSection(journal_lock);if(capture_table)pixels=primary(c,object,capture_table);
- EnterCriticalSection(journal_lock);if(!enabled){LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;}publish(c,pixels);c->r[30]=planes;emit(c->r);--pending;
+ EnterCriticalSection(journal_lock);if(!enabled){LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;}publish(c,pixels);
+ if(physical_enabled&&c->r[1]==1&&c->r[13]==1&&!(c->r[8]&0x80000000u)){
+  u32 size=c->r[14]*c->r[15]*4;
+  if(planes>=1024||bytes>physical_byte_limit||size>physical_byte_limit-bytes){++drops;}else{c->r[12]=++planes;bytes+=size;}
+ }
+ c->r[30]=planes;emit(c->r);
+ LeaveCriticalSection(journal_lock);physical_fence(c);EnterCriticalSection(journal_lock);--pending;
  char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending)finish(2);}
  LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;
 }
@@ -167,9 +179,10 @@ u32 WIN DrawingInstallForTest(void* object,u32 k){install(object,k);return enabl
 #endif
 static int initialize(void){
  InitializeCriticalSection(journal_lock);
- char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
+ char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
+ if(!physical_budget())return 0;
  u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;
- char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=1024u*1024u*1024u;header[8]=inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64))return 0;enabled=1;
+ char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64))return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST
  u32 base=(u32)GetModuleHandleA(0);const u8 thunk[]={0xff,0x25,0x14,0x50,0x5c,0};if(base!=0x400000||!readable((void*)0x59755a,6)||!equal((void*)0x59755a,thunk,6))return 0;
  void* user=GetModuleHandleA("user32.dll");original_async=GetProcAddress(user,"GetAsyncKeyState");original_key=GetProcAddress(user,"GetKeyState");original_cursor=GetProcAddress(user,"GetCursorPos");original_map=GetProcAddress(user,"MapVirtualKeyA");

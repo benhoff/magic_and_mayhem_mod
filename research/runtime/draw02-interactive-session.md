@@ -108,3 +108,22 @@ same accepted Results Continue/Quit and fresh Main return. The earlier full repo
 and portable19-image package remain historical references with their original
 fingerprints. Fresh native forwarding and failure reports accompany this run;
 current admission has eight guard methods, including the undefined-kind refusal.
+
+
+## Physical API witnesses, 2026-10-12 UTC
+
+The additive [physical mode contract](../formats/drawing-api-physical-witness.md)
+observes the primary after common original API mutations without additional
+observer Lock/Unlock. A private X11 peer requires exact request/ACK/journal
+identities, complete physical containment and stable full planes, retaining unequal
+settling samples within prospectively declared budgets. Pending-entry retirement
+waits for the ACK. Metadata and input-only modes retain their earlier boundaries.
+
+The source-bound `draw02-api-physical-original-05.json` retains619full planes and
+129transient samples through the stock Quick Battle/results/Main flow. Two original
+primary writer threads remain active; neither all physical changes nor owned
+source-to-presentation binding is established. The generic presented-session gate
+still refuses to close any full journey from this partial acquisition. Native
+scene comparison, picking/selection/tooltip/pause semantics and global GDI/movie/
+alternate routes remain pending. Earlier instability and storage-exhaustion runs
+are preserved. See the [step2 reassessment](draw02-end-to-end.md).

@@ -12,6 +12,31 @@ def fixture():
 class TestSession(unittest.TestCase):
     def test_valid_partial_boundary(self):
         r=decode(fixture(),lambda n:bytes(96));self.assertEqual(r['pixels_observed'],48);self.assertFalse(r['all_global_presentation_routes_observed']);self.assertFalse(r['semantic_input_outcomes_complete'])
+    def test_physical_mode_has_full_rgba_without_driver_readbacks(self):
+        b=bytearray(fixture());struct.pack_into('<I',b,32,3)
+        struct.pack_into('<II',b,64+72,0xffffffff,0xffffffff)
+        struct.pack_into('<I',b,192+100,192)
+        r=decode(b,lambda n:bytes(192))
+        self.assertEqual(r['boundary'],'observed_primary_api_physical')
+        self.assertFalse(r['driver_readbacks_enabled']);self.assertTrue(r['physical_fence_enabled'])
+        self.assertFalse(r['all_global_presentation_routes_observed'])
+        with self.assertRaises(ValueError):decode(b,lambda n:bytes(96))
+        struct.pack_into('<I',b,64+72,0)
+        with self.assertRaises(ValueError):decode(b)
+    def test_successful_primary_cannot_hide_a_missing_plane_in_counters(self):
+        for mode in (0,3):
+            b=bytearray(fixture());struct.pack_into('<I',b,32,mode)
+            struct.pack_into('<I',b,64+48,0);struct.pack_into('<I',b,64+120,0)
+            struct.pack_into('<I',b,192+88,0);struct.pack_into('<I',b,192+100,0)
+            with self.assertRaisesRegex(ValueError,'lacks its complete plane'):decode(b)
+    def test_physical_byte_budget_is_bounded_and_other_modes_stay_frozen(self):
+        for mode in (0,1,2,3):
+            for budget in (0,1073741823,4*1024**3-1):
+                b=bytearray(fixture());struct.pack_into('<II',b,28,budget,mode)
+                with self.assertRaises(ValueError):decode(b)
+        b=bytearray(fixture());struct.pack_into('<II',b,28,2*1024**3,3)
+        struct.pack_into('<II',b,64+72,0xffffffff,0xffffffff);struct.pack_into('<I',b,192+100,192)
+        self.assertEqual(decode(b,lambda n:bytes(192))['oracle_byte_budget'],2*1024**3)
     def test_metadata_mode_never_admits_pixel_readback(self):
         b=bytearray(fixture());struct.pack_into('<I',b,32,1)
         with self.assertRaises(ValueError):decode(b)

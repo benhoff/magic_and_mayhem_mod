@@ -37600,28 +37600,34 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Original-active common DirectDraw/input API session observer and strict admission",
-      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission.",
+      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission. Additive mode3 observes primary API physical witnesses with no diagnostic Lock/Unlock; exact original API journal request/ACK and full stable X11 planes remain reference-only. Other threads continue, source inputs are not yet bound, alternate/GDI/movie/global routes and semantic outcomes remain open. Mode3 frame byte budgets are prospectively configured1..3072MiB with the1024frame cap retained; other modes keep their original fixed1GiB header. Budget exhaustion and successful-primary-without-plane admission refuse.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/draw02-interactive-session.md",
         "research/formats/drawing-api-session-v1.md",
-        "research/runtime/native-master-final-draw02-original-pass-20261011.json"
+        "research/runtime/native-master-final-draw02-original-pass-20261011.json",
+        "research/formats/drawing-api-physical-witness.md"
       ],
       "implementation": [
         "runtime/drawing/session.c",
         "runtime/menu/drawing_action.h",
         "tools/build-drawing-session.py",
-        "tools/drawing_api_session.py"
+        "tools/drawing_api_session.py",
+        "runtime/drawing/physical_fence.h",
+        "tools/drawing_api_physical.py"
       ],
       "tests": [
         "runtime/drawing/selftest.c",
         "tests/test-drawing-api-session.py",
-        "tools/test-drawing-api-session.py"
+        "tools/test-drawing-api-session.py",
+        "tests/test-drawing-api-physical.py",
+        "tests/drawing-api-physical-peer.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
-        "tools/build-shadow-bridge.py"
+        "tools/build-shadow-bridge.py",
+        "tools/drawing_presented_session.py"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -37629,7 +37635,15 @@
         "NR.drawing-interactive-acquisition.original-active-20261011",
         "NR.drawing-session-api.record-kind-native-20261011",
         "NR.drawing-interactive-acquisition.record-kind-original-20261011",
-        "NR.drawing-interactive-acquisition.native-master-final-original-20261011"
+        "NR.drawing-interactive-acquisition.native-master-final-original-20261011",
+        "NR.drawing-session-api.physical-fence-native-20261012",
+        "NR.drawing-session-api.physical-addition-legacy-native-20261012",
+        "NR.drawing-session-api.physical-sandbox-refusal-20261012",
+        "NR.drawing-session-api.physical-loader-refusal-20261012",
+        "NR.drawing-session-api.physical-development-physical-03-20261012",
+        "NR.drawing-session-api.physical-development-physical-04-20261012",
+        "NR.drawing-session-api.physical-development-legacy-01-20261012",
+        "NR.drawing-session-api.physical-development-legacy-02-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -37638,7 +37652,10 @@
         "integration": "headless",
         "replacement": "none"
       },
-      "validation_domain": "Synthetic PE32 stdcall callback result/error/x87, eight complete readback planes and eight second-thread reentrant readbacks; original-active strict live API observation is recorded separately. No global presentation or complete semantic journey."
+      "validation_domain": "Synthetic PE32 stdcall callback result/error/x87, eight complete readback planes and eight second-thread reentrant readbacks; original-active strict live API observation is recorded separately. No global presentation or complete semantic journey.",
+      "remaining_gaps": [
+        "New physical API mode is a bounded reference-only increment. Synthetic ACK tests do not acquire original frames; actual X11 witnesses, source input bindings, all presentation/GDI/movie routes, semantic input/lifetime and full journey admission remain pending. Historical forwarding/original capture hashes are preserved and shared changes require new comparisons."
+      ]
     },
     {
       "subsystem": "native_rendering",
@@ -37647,13 +37664,18 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-interactive-session.md",
-        "research/runtime/native-master-final-draw02-original-pass-20261011.json"
+        "research/runtime/native-master-final-draw02-original-pass-20261011.json",
+        "research/formats/drawing-api-physical-witness.md"
       ],
       "evidence": [
         "NR.drawing-interactive-acquisition.original-active-20261011",
         "NR.drawing-interactive-acquisition.retention-static-20261011",
         "NR.drawing-interactive-acquisition.record-kind-original-20261011",
-        "NR.drawing-interactive-acquisition.native-master-final-original-20261011"
+        "NR.drawing-interactive-acquisition.native-master-final-original-20261011",
+        "NR.drawing-interactive-acquisition.physical-api-original-20261012",
+        "NR.drawing-interactive-acquisition.physical-baseline-timeout-20261012",
+        "NR.drawing-interactive-acquisition.physical-unstable-original-20261012",
+        "NR.drawing-interactive-acquisition.physical-budget-original-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -37664,12 +37686,14 @@
       },
       "id": "NR.drawing-interactive-acquisition",
       "title": "Original-active Quick Battle XTest acquisition with strict API admission",
-      "scope": "Pinned original executable staged by verified added imports, V12 original menu actions and bounded stock map2 Quick Battle schedule. XTest inputs and observed polling are separate from semantic game outcomes; only strict terminal/no-loss/no-gap wire-tagged API journals can be admitted; full primary references additionally require readback mode. Original drawing/simulation stay active; no completed journey, complete selection/tooltip/pause/combat outcomes, global presentation or native pixel parity claim. Default metadata-only mode avoids additional driver Lock/Unlock calls. Physical viewport PNGs accompany actions with journal-byte fences and hashes, explicitly unsynchronized with original frame publication. API full-readback diagnostics perturbed gameplay relative to controls and cannot assert unobtrusive live observation. Scoped Quick Battle results Continue/Quit and return through Quick to fresh Main are explicitly requested through their existing original callbacks; this verifies World exit separately from campaign Mini pause semantics.",
+      "scope": "Pinned original executable staged by verified added imports, V12 original menu actions and bounded stock map2 Quick Battle schedule. XTest inputs and observed polling are separate from semantic game outcomes; only strict terminal/no-loss/no-gap wire-tagged API journals can be admitted; full primary references additionally require readback mode. Original drawing/simulation stay active; no completed journey, complete selection/tooltip/pause/combat outcomes, global presentation or native pixel parity claim. Default metadata-only mode avoids additional driver Lock/Unlock calls. Physical viewport PNGs accompany actions with journal-byte fences and hashes, explicitly unsynchronized with original frame publication. API full-readback diagnostics perturbed gameplay relative to controls and cannot assert unobtrusive live observation. Scoped Quick Battle results Continue/Quit and return through Quick to fresh Main are explicitly requested through their existing original callbacks; this verifies World exit separately from campaign Mini pause semantics. Optional physical API mode requires a separate reference-only X11 peer, binds stable full-plane output to exact primary API journal rows and preserves pending counts through ACK. Descriptor classification is observed without diagnostic Lock/Unlock. Source-owned scene bindings/global routes/semantic outcomes remain open; no complete journey claim. Scripted reference-input preparation preserves every installed asset/configuration byte and substitutes only the hash-checked supplied unchanged No-CD executable in a new working copy. API-only physical settling retains each observed unequal sample (32 per point,1..2048MiB prospectively configured total) before two equal samples; it never asserts every physical change was captured. The earlier immediate double-read failure is retained. Physical mode3 frame storage is prospectively configured1..3072MiB; earlier modes retain the fixed1GiB envelope. The original1GiB acquisition exhaustion remains negative.",
       "implementation": [
         "tools/capture-drawing-interactive.py",
         "tools/drawing-session-runner.py",
         "tools/build-drawing-session-input.py",
-        "tests/drawing-session-input.cpp"
+        "tests/drawing-session-input.cpp",
+        "tools/prepare-drawing-reference-input.py",
+        "tools/prepare-drawing-launcher-baseline.py"
       ],
       "tests": [
         "tests/fixtures/drawing-journeys/interactive-schedule.json"
@@ -37725,9 +37749,16 @@
         "protocols/include/mnm/menu_v9.h",
         "protocols/include/mnm/menu_v11.h",
         "protocols/include/mnm/menu_v7.h",
-        "protocols/include/mnm/menu_v8.h"
+        "protocols/include/mnm/menu_v8.h",
+        "runtime/drawing/physical_fence.h",
+        "tools/drawing_api_physical.py",
+        "apps/drawing-session/observe.cpp",
+        "apps/drawing-session/CMakeLists.txt"
       ],
-      "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending."
+      "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
+      "remaining_gaps": [
+        "Physical API mode broadens selected mutation-route witnesses only. Source-owned frame inputs, full presentation/GDI/movie accounting, action semantics and generic presented-session catalogs remain pending; first new original capture is diagnostic and cannot establish native parity."
+      ]
     },
     {
       "subsystem": "native_rendering",
@@ -87693,6 +87724,294 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-fence-native-20261012",
+      "kind": "native_integration",
+      "scope": "Final-source32PE32 callback cases/eight successful physical ACKs, exact result/LastError/x87 and one application callback with zero diagnostic Lock/Unlock. Synthetic peer/planes only, not original game or real physical/source/journey evidence.",
+      "record": "research/runtime/draw02-api-physical-fixture-05.json",
+      "sha256": "e3f9e680dbd2af5b2eb4dd6cb3b03feb6c253128e740bebee4e3ae830471499b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        },
+        {
+          "pointer": "/physical_fence_enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_lock_unlock_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/physical_witness_admission/source_inputs_bound",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-addition-legacy-native-20261012",
+      "kind": "native_integration",
+      "scope": "Final-source legacy readback regression:32 original synthetic callback outcomes/eight planes/eight reentrant driver threads/18 menu phases; physical mode disabled. No original game or real driver recovery.",
+      "record": "research/runtime/draw02-api-legacy-fixture-03.json",
+      "sha256": "5e87c34d0d26652d5b95bf3a6c022bc5ce631a4fd67cd44fabf46410bbf8d013",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        },
+        {
+          "pointer": "/driver_reentrant_threads",
+          "equals": 8
+        },
+        {
+          "pointer": "/menu_phases",
+          "equals": 18
+        },
+        {
+          "pointer": "/physical_fence_enabled",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.physical-api-original-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active bounded Main/setup/Quick Battle/results/Main:619 API-bound full physical planes/297120000pixels,129 retained unequal settling samples/247680000bytes, nine accepted menu requests and1997input calls. Two primary writer threads,618BltFast/oneBlt. Zero extra diagnostic Lock/Unlock; all global routes/source-state/picking/tooltip/pause/native parity remain open. No complete presented journey.",
+      "record": "research/runtime/draw02-api-physical-original-05.json",
+      "sha256": "63a90a6854342ccb06da6bc08acdd30754d5ce3c5f3ed82545156195b0525d02",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_drawing_active",
+          "equals": true
+        },
+        {
+          "pointer": "/observation/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/observation/unclassified_interfaces_or_routes",
+          "equals": 0
+        },
+        {
+          "pointer": "/physical_api_observation/pixels",
+          "equals": 297120000
+        },
+        {
+          "pointer": "/physical_api_observation/transient_bytes",
+          "equals": 247680000
+        },
+        {
+          "pointer": "/physical_api_observation/source_inputs_bound",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_api_observation/all_physical_changes_captured",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_journey_coverage",
+          "equals": false
+        },
+        {
+          "pointer": "/native_parity_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-sandbox-refusal-20261012",
+      "kind": "native_integration",
+      "scope": "Retained unsuccessful preparation/loader/stability/diagnostic-storage attempt. Exact original report/claims remain historical; no engine defect, current equivalence, complete frame or successful journey assertion.",
+      "record": "research/runtime/draw02-api-physical-sandbox-refusal-01.json",
+      "sha256": "0a43100e2806864707d288df6baeb43bc6007e4947c0c98d3ba07848989ded90",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-loader-refusal-20261012",
+      "kind": "native_integration",
+      "scope": "Retained unsuccessful preparation/loader/stability/diagnostic-storage attempt. Exact original report/claims remain historical; no engine defect, current equivalence, complete frame or successful journey assertion.",
+      "record": "research/runtime/draw02-api-physical-loader-refusal-02.json",
+      "sha256": "919347f8460a3b8865b7cd16a8bb2151f2a5f7f9a8f87f082834614fd092f298",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.physical-baseline-timeout-20261012",
+      "kind": "live_observation",
+      "scope": "Retained unsuccessful preparation/loader/stability/diagnostic-storage attempt. Exact original report/claims remain historical; no engine defect, current equivalence, complete frame or successful journey assertion.",
+      "record": "research/runtime/draw02-api-physical-original-01.json",
+      "sha256": "970dabf132c9f211070fb0813d40ae308d0c11cb05787fe1fe5daed5025951c2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.physical-unstable-original-20261012",
+      "kind": "live_observation",
+      "scope": "Retained unsuccessful preparation/loader/stability/diagnostic-storage attempt. Exact original report/claims remain historical; no engine defect, current equivalence, complete frame or successful journey assertion.",
+      "record": "research/runtime/draw02-api-physical-original-02.json",
+      "sha256": "645b9730004071f988af78b4e319cfbf6efb15565c69280134a7f605a41c6fa3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.physical-budget-original-20261012",
+      "kind": "live_observation",
+      "scope": "Retained unsuccessful preparation/loader/stability/diagnostic-storage attempt. Exact original report/claims remain historical; no engine defect, current equivalence, complete frame or successful journey assertion.",
+      "record": "research/runtime/draw02-api-physical-original-04.json",
+      "sha256": "d22c395089d2f9d22ead4a7a8a60e0487c1ef56f0f16e6524dc3ade83a3e6267",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-development-physical-03-20261012",
+      "kind": "native_integration",
+      "scope": "Historical intermediate synthetic fixture execution at its unchanged original source/contract hashes; later protocol/admission changes require fresh execution. No original game/real screen/full journey claim.",
+      "record": "research/runtime/draw02-api-physical-fixture-03.json",
+      "sha256": "32cd3aa5d20d62e0212155c6f6fe5df375af490d48f8db961405bee5f54f0d76",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-development-physical-04-20261012",
+      "kind": "native_integration",
+      "scope": "Historical intermediate synthetic fixture execution at its unchanged original source/contract hashes; later protocol/admission changes require fresh execution. No original game/real screen/full journey claim.",
+      "record": "research/runtime/draw02-api-physical-fixture-04.json",
+      "sha256": "5c1cd8d4ed6497e116ed7cec22cdb69822ccf9707406af95ba194435f5db9c01",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-development-legacy-01-20261012",
+      "kind": "native_integration",
+      "scope": "Historical intermediate synthetic fixture execution at its unchanged original source/contract hashes; later protocol/admission changes require fresh execution. No original game/real screen/full journey claim.",
+      "record": "research/runtime/draw02-api-legacy-fixture-01.json",
+      "sha256": "85eda8a74b1552b484c18f98b607d250c3dda3b7ecf2cf59fd6cff988fb84f50",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.physical-development-legacy-02-20261012",
+      "kind": "native_integration",
+      "scope": "Historical intermediate synthetic fixture execution at its unchanged original source/contract hashes; later protocol/admission changes require fresh execution. No original game/real screen/full journey claim.",
+      "record": "research/runtime/draw02-api-legacy-fixture-02.json",
+      "sha256": "560da1ee6151fa4eb7c933c52114c19afed06cf9322c5481ab3d1a93f0669d12",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -96765,7 +97084,8 @@
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
         "NR.drawing-session-api.concurrent-forwarding-native-20261011",
-        "NR.drawing-session-api.record-kind-native-20261011"
+        "NR.drawing-session-api.record-kind-native-20261011",
+        "NR.drawing-session-api.physical-addition-legacy-native-20261012"
       ],
       "level": "headless"
     },
@@ -98237,6 +98557,37 @@
         "NR.scene-production-repetition.queue-cleanup-performance-negative-20261012",
         "NR.scene-production-repetition.prepared-titan-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.api-physical-fence-fixture",
+      "level": "headless",
+      "scope": "Synthetic PE32 eight-route success/lost/busy/error callback forwarding with eight physical ACKs, original result/LastError/x87 and one application callback, no observer Lock/Unlock; no original game/real physical screen/source ownership or journey closure.",
+      "behaviors": [
+        "NR.drawing-session-api"
+      ],
+      "tests": [
+        "tools/test-drawing-api-session.py",
+        "tests/test-drawing-api-physical.py",
+        "tests/drawing-api-physical-peer.py"
+      ],
+      "evidence": [
+        "NR.drawing-session-api.physical-fence-native-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.api-physical-original-quick",
+      "level": "live_observation",
+      "scope": "Original-active bounded Main/setup/Quick Battle/results/Main physical API witnesses with exact request/ACK/journal binding, no extra Lock/Unlock. No source-owned replay/all-global-route/semantic journey/parity closure.",
+      "behaviors": [
+        "NR.drawing-interactive-acquisition"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json"
+      ],
+      "evidence": [
+        "NR.drawing-interactive-acquisition.physical-api-original-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -98610,8 +98961,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-acceptance-20261011.json",
-    "sha256": "621594c58e0419c718dcd8775e240088a1004b5a52a54cc88848aadc8f386e70"
+    "path": "research/runtime/coverage/source-index-draw02-api-physical-20261012.json",
+    "sha256": "77cb54dfb5aaad796c0821e04a9b70021c238960a7eba81a4cd7501cf63deaae"
   },
   "claim_bindings_required": true
 }
