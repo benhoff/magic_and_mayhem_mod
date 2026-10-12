@@ -13,9 +13,12 @@ public:
  void palette(unsigned,const std::vector<Rgb>&,unsigned,const std::map<unsigned,SurfaceId>&);
  void seal(unsigned,const std::map<unsigned,SurfaceId>&);
  bool ready() const{return ui_ && !dirty_;}
+ // Last sealed GPU snapshots stay owned while a new UI transaction is partial.
+ bool sealedReady() const{return ui_!=0;}
  bool hasWorldOutput() const{return coordinates_!=0;}
  std::uint64_t generation() const{return generation_;}
  GpuFrame render(const GpuFrame&);
+ GpuFrame renderSealed(const GpuFrame&);
  std::size_t surfaces() const{return maps_.size()+bool(ui_)+bool(coordinates_)+bool(work_);}
  std::size_t replayCommands() const{return coordinates_?1:0;}
 private:

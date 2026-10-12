@@ -72,7 +72,11 @@ void NativeFrameRecipe::seal(unsigned id,const std::map<unsigned,SurfaceId>& han
  final_=id;dirty_=false;recorded_=0;
 }
 GpuFrame NativeFrameRecipe::render(const GpuFrame& world){
- if(!ready() || !world.valid() || world.size()!=worldSize_)throw std::logic_error("Incomplete compiled native frame");
+ if(!ready())throw std::logic_error("Incomplete compiled native frame");
+ return renderSealed(world);
+}
+GpuFrame NativeFrameRecipe::renderSealed(const GpuFrame& world){
+ if(!sealedReady() || !world.valid() || world.size()!=worldSize_)throw std::logic_error("No sealed compiled native frame");
  if(!coordinates_)return renderer_.presentGpu(ui_);
  renderer_.assembleMappedWorld(work_,ui_,coordinates_,world);return renderer_.presentGpu(work_);
 }

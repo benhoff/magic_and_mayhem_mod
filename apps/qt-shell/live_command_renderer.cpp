@@ -86,3 +86,9 @@ bool LiveCommandRenderer::presentPrepared(const mnm::render::GpuFrame& frame,std
 }
 unsigned LiveCommandRenderer::presentations() const{return consumer_?consumer_->result().presents:0;}
 const mnm::render::CommandResult* LiveCommandRenderer::result() const{return consumer_?&consumer_->result():nullptr;}
+
+std::uint64_t LiveCommandRenderer::sealedGeneration() const{return consumer_ && !closed_ && !ended_?consumer_->sealedGeneration():0;}
+bool LiveCommandRenderer::presentSealed(const mnm::render::GpuFrame& frame,std::uint64_t generation){
+    try{if(!consumer_ || closed_ || ended_)return false;consumer_->presentSealed(frame,generation);return true;}
+    catch(const std::exception& e){fail(e.what());return false;}
+}
