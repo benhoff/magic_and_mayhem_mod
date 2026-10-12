@@ -44223,6 +44223,44 @@
         "research/runtime/coverage/binary-nocd.json",
         "tools/inspect-drawing-source-buffer.py"
       ]
+    },
+    {
+      "id": "NR.drawing-two-stage-source-chain",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Protected mapped-source to intermediate-texture to primary chain",
+      "scope": "Exact retained-data validation of initial mapped-source epoch/query and held source state/prefix, two same-API full blits sharing an intermediate texture generation, both protected lease commands and ordered checked worker returns, final native/EGL zero-difference witness. Missing/ambiguous/generation/geometry/order links exclude. No new original execution, unobserved uploads or allocation/alias/scanout ownership.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-canvas-storage-generations.md"
+      ],
+      "implementation": [
+        "tools/drawing_two_stage_source.py"
+      ],
+      "tests": [
+        "tests/test-drawing-two-stage-source.py",
+        "tools/analyze-drawing-two-stage-source.py"
+      ],
+      "evidence": [
+        "DRAW02.two-stage-source-analysis-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Direct final-source epoch links remain absent; validate complete two-stage chain without equating API/thread coincidence to storage ownership. Alternate/failed/multiple-stage routes and all47/21closure remain open.",
+        "All104retained eligible frames validate initial CPUmapped epoch\u2192intermediate texture\u2192primary two-blit chains with both lease commands and ordered checked workers. Final direct sourceepoch absence remains true and is explained by the intermediate stage. Other225contexts from original comparison remain excluded; no whole allocation/alias/driver/hardware/scanout/allroute/action/47/21closure."
+      ],
+      "validation_dependencies": [
+        "tools/drawing_storage_transitions.py",
+        "tools/drawing_storage_point.py",
+        "tools/drawing_api_session.py"
+      ]
     }
   ],
   "evidence": [
@@ -94770,6 +94808,28 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.two-stage-source-analysis-20261012",
+      "kind": "static",
+      "scope": "Current hash-bound reanalysis accepts104exact two-blit epoch/protected-byte/command/ordered-worker/native-EGL chains,0exclusions within the previously104frame eligible cohort. No new engine run/allallocation/allroute/scanout claim.",
+      "record": "research/runtime/draw02-two-stage-source-analysis-01.json",
+      "sha256": "4123e9f68b3105adec15a649dfd3d5a55edc534eee05607a53b75e4d71f1d7d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/analysis/accepted_frames",
+          "equals": 104
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106912,8 +106972,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-copy-20261012.json",
-    "sha256": "7fabe0d5b7fbae378018d2d41661c1a3a509b2c618f4cd413363566ab238d416"
+    "path": "research/runtime/coverage/source-index-draw02-two-stage-source-20261012.json",
+    "sha256": "55fe75ff433b60f0f63c6c13a1cdc2f77f219ec083adb756608702a6f9086b6d"
   },
   "claim_bindings_required": true
 }

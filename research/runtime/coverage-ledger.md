@@ -7732,3 +7732,17 @@ query has the exact held canvas/state/prefix in all104; the final source lacks a
 direct CPUepoch. Next validate both command/worker links rather than assuming a
 single submission. This is a provisional chain finding, not new execution or
 complete upload/alias/ownership/full47/21closure.
+
+DRAW-02 step2 two-stage source chain: four adversarial methods pass.
+Current immutable reanalysis verifies raw original/native reports and seven
+journal hashes, accepting all104previous eligible frames with0chain exclusions.
+Initial mapped-source V2query/observed epoch exactly matches held canvas/state/
+prefix; two same-API full blits share an intermediate texture generation. Each
+stage has one packet and belongs to the protected lease, with initial worker
+return before final worker entry and exact final EGL/native0diff witness.
+The final direct sourceepoch remains absent because it is the intermediate
+texture. This closes the specific two-stage linkage gap in this cohort, not
+whole allocation/alias lifetime/unobserved uploads/scanout/allroutes/actions.
+Other225original contexts/full47/21/steps3–7 remain open. Next extend the tested
+chain accounting to the longer whole-update reference, then remaining source
+lifetimes/routes/actions; no new engine execution is asserted by this analysis.

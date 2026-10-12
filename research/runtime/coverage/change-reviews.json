@@ -520464,6 +520464,234 @@
         "evidence": [],
         "reason": "Static interpretation only; controlled original pixel-format client execution/COMerrors/global sideeffects and two-stage submitted transfer command/worker order remain pending. No new original/native execution, allocation/alias ownership, allroutes/actions47requirements21operations/backend/realdriver or steps3\u20137promotion. Earlier inspector report fingerprints remain historical after source extension."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "9d29d7129c4c4384bf0e3832b9882934af25355490183fb0e1e2b47ed92dc8a8",
+          "before_sha256": "50df473c3c25ddef37b0dcc935839bfd1de6e24c40ece79420ad9eac06e40006",
+          "id": "DRAW.canvas-lock-recovery"
+        },
+        {
+          "after_sha256": "4715900617ae66d5913dfc3e2385d2793842ac70ece9fae51700c41fb4b2bde4",
+          "before_sha256": "f3b965377b7a06b79a3b5735d761f029a388dd0de56ddc704800702ce4713994",
+          "id": "DRAW.canvas-release-client"
+        },
+        {
+          "after_sha256": "354b7862d0746c74a0528ab0e056e1d04af102cdeeaff7efd474edeb049bf9f3",
+          "before_sha256": "25a8ae75ebc4bbda9ea802ccebb84adbf856156dd07a2c1005cb5a6ed9d9da84",
+          "id": "DRAW.canvas-source-buffer-setup"
+        },
+        {
+          "after_sha256": "dc659531e531d7dcc49e7256a00a654ee317615a0d800d86ed0283772ffcd738",
+          "before_sha256": "43ba18f7df8f9b20db1aec77852b48c30a1592ebd0fc83ba99464557c95106ef",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "4e9786c51d4eefcd9892c73c439394e59d6b1a385543e3c95dd4d564d881758f",
+          "before_sha256": "fdabc0659bb87302e8da6ce19afb5f1765569d7502d95ccf4fbf871af75bb75f",
+          "id": "NR.drawing-canvas-storage-transitions"
+        },
+        {
+          "after_sha256": "2d3a9e2aea03840211fca9490b41d7f08a6a50fab4ebdc892e3472d0caa1470f",
+          "before_sha256": "2d3a9e2aea03840211fca9490b41d7f08a6a50fab4ebdc892e3472d0caa1470f",
+          "id": "NR.drawing-engine-update-windows"
+        },
+        {
+          "after_sha256": "43be8cfc72fbb887cdfd1dead480c7275a35df254f23895ae8d2ad6353bf65fc",
+          "before_sha256": "43be8cfc72fbb887cdfd1dead480c7275a35df254f23895ae8d2ad6353bf65fc",
+          "id": "NR.drawing-interactive-acquisition"
+        },
+        {
+          "after_sha256": "132b2a264aff0f9d018a421390acd0c97a1e1af6ae05db993e405fa8dfe04a16",
+          "before_sha256": "132b2a264aff0f9d018a421390acd0c97a1e1af6ae05db993e405fa8dfe04a16",
+          "id": "NR.drawing-physical-sample-timing"
+        },
+        {
+          "after_sha256": "7032d906ca91f8be25b3e28ce529c78775b78311f8e619d5b74d99fa7fdfb404",
+          "before_sha256": "7032d906ca91f8be25b3e28ce529c78775b78311f8e619d5b74d99fa7fdfb404",
+          "id": "NR.drawing-producer-source-points"
+        },
+        {
+          "after_sha256": "1e21d7b79e415a9ce4f1418cc77defe46bdb2bfc98c6a49fc992056195d867ff",
+          "before_sha256": "3801f0736157dcf6610b1fc2aaab10ee392cb093a60157100eddbc9c71997930",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "ba3c2f18e33bc30af332ddb2c99f2142ee04551db93429fcd072be8c9e495166",
+          "before_sha256": "ba3c2f18e33bc30af332ddb2c99f2142ee04551db93429fcd072be8c9e495166",
+          "id": "NR.drawing-result-comparison"
+        },
+        {
+          "after_sha256": "c6bb6c90d26064db414887c12530c5b36e1c156df4d50c19d141af3bf6bfed93",
+          "before_sha256": "c6bb6c90d26064db414887c12530c5b36e1c156df4d50c19d141af3bf6bfed93",
+          "id": "NR.drawing-session-api"
+        },
+        {
+          "after_sha256": "514561f43505b8e0d081240c4f419ff4127a3ba5d15bfe362a5bef725f8dab1f",
+          "before_sha256": "d148beb03fd12df0d28bb528609921482e7c0c1840f38898a327e9d611a5309b",
+          "id": "NR.drawing-source-pending-frame-refusal"
+        },
+        {
+          "after_sha256": "2e9cba582a30d0f640e005a91bdfba9c57ceda2bc53c1040d4050c8a8d8a8857",
+          "before_sha256": "d081ee757a337d4d4464f385fb0350dae1259f0f42aaa891b3d1d878dd72f1c9",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "daa50306199254b93e23e8570ac72c1d5d262aa5b21abbebc221623676c90082",
+          "before_sha256": "072bcc0051371878780474ab8b5adc7d968676af163f12d6f1a51f0c29203872",
+          "id": "NR.drawing-storage-query-candidates"
+        },
+        {
+          "after_sha256": "7430f89d25fb46bb939dca1c7cd6ca84f36bf12aea9c459b301d5bba7592db12",
+          "before_sha256": null,
+          "id": "NR.drawing-two-stage-source-chain"
+        },
+        {
+          "after_sha256": "0131dc426b54c7bd0fed85888fcd245205d8fe47334498304159bd933fdfe7b7",
+          "before_sha256": "3e0f19ff148bd864bece4d1655ef5168ea9e6faf76114c5f529ca3eeccda930f",
+          "id": "NR.drawing-wine-client-memory-binding"
+        },
+        {
+          "after_sha256": "ae139e4bbd1158997a23c7f2da25df7793350ad272d4bd1e27a1fc2244d9641b",
+          "before_sha256": "29c6c976ac40b75ff8cb3cb04fb1a22a9243ec0e8f7f2d5bb982525818e8e7cf",
+          "id": "NR.drawing-wine-map-storage-point"
+        },
+        {
+          "after_sha256": "8618ea24fd130e62f68342b51ece42a2479fccad5678351caf670d469a5690d3",
+          "before_sha256": "c374f1c54f6daaca9058f7ca19ca6ec12fc857e73c2787a1bc1156e28d99772a",
+          "id": "NR.drawing-wine-resource-copy"
+        },
+        {
+          "after_sha256": "b407b39bdece81f5148d21eee92eabf0ddaf9a20420f2d019b233d75a378bf25",
+          "before_sha256": "0c06be3ee186306aba0330a438c57d5fb2387271d54cb36f81d2953e7238c2d5",
+          "id": "NR.drawing-wine-retained-map-source"
+        },
+        {
+          "after_sha256": "fbc9612c164071160c12628aa98e1dacd62b6b084f4bd4ed99628e072c36ff7c",
+          "before_sha256": "fbc9612c164071160c12628aa98e1dacd62b6b084f4bd4ed99628e072c36ff7c",
+          "id": "NR.drawing-x11-delivery-observation"
+        },
+        {
+          "after_sha256": "1a028c96d006ed861efed59d7d8adde69133bd4d8fccf4f2a6544e36383c0a47",
+          "before_sha256": "125f71c85bc72a3b5806e40ef7b784836848adb8a16c99bdd540ee4a4f28aa89",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "7dae28d040b6d3d86e7d0d28df70f4ab9b34b049bcc88ef7592e605c570fbabe",
+          "before_sha256": "ae5b16f230cc7c7bb9830a97b05827e3d04bedcc13eee702125407ad6856827a",
+          "id": "RI.copies"
+        },
+        {
+          "after_sha256": "488a1ee901a0676b980c541fb6e5029dbed6950bf6dfb03a43a7930e74d2c89b",
+          "before_sha256": "440c15b4f9018a9d04222e024ab47b02dc8dff3ea767ef055f579fc49bfb560a",
+          "id": "RS.canvas-create-lock"
+        },
+        {
+          "after_sha256": "ef29b40c98c68fdb05e8bcf4687ce24ab276695349dbdcb9c385211c04bd126f",
+          "before_sha256": "b38d5e7b88db3090e76be92cf517d93dcb009ecda446b60fc6e6f5d3317328e7",
+          "id": "RS.canvas-producer-sequence"
+        },
+        {
+          "after_sha256": "81a62fccaeb218f53babfed95043f13752ee68ce702f7be01a56209a7dfd80ad",
+          "before_sha256": "d0776ac99875c720a73789866d4ebfea1191d824fb146b4bf80c62dd724932f8",
+          "id": "RS.drawing-publication"
+        },
+        {
+          "after_sha256": "e1feb6ce144e2c0e0efc52ea16f31414dc00f26328762f3c5b8f7c55e96fd146",
+          "before_sha256": "746956f1a4dd14b7a9f4e0107898b5e17c10d693fcf4a5a13169d6d1106a5177",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "5a554c0bd205ddbedfcaf1f08cb6ad4a0cb11b9b78417cda038d656d405c39d4",
+          "before_sha256": "52bd474f5b29664ff75f0b46c739da99939c35cc7abc539e2c8b6c5dbae234d1",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "17cce41704f3fc5d261cb2c796ea01f0ba7dfb4c658f0cd21a341c76f9a6ceb4",
+          "before_sha256": "40fa6e4c85a46963d79adc10b8bb816a47ec198b962fda6517cec2681aace114",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a1b3875ebc4156a5080d91649ed4ad62df1bc2517599d3a7d79cf149efad8158",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-two-stage-source-start-20261012.json"
+        },
+        {
+          "after_sha256": "14446a6a898565d089171e175f80eff72d5a004fcc0f899c0d33a5c9a058adf4",
+          "before_sha256": "958def06308a07bd9101df4a5bbcaf1d991476806964e994e70867dc09f42e3d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "55fe75ff433b60f0f63c6c13a1cdc2f77f219ec083adb756608702a6f9086b6d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-two-stage-source-20261012.json"
+        },
+        {
+          "after_sha256": "2dd8f9dc4f889919b4284c1f0bfc1f7829fd7caeb1b969bf7c6865f31f37fff1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-two-stage-source-20261012.md"
+        },
+        {
+          "after_sha256": "650bf969f6958f67f5e45d6b007dd699b3a673048683558c7f6f9784c203fd5b",
+          "before_sha256": "1f168503472ccfd614686bd9204be3e3edab1aeb6041e1100cc4d5fc12d254ca",
+          "path": "research/runtime/draw02-canvas-storage-generations.md"
+        },
+        {
+          "after_sha256": "ac81560c4c7034494c71c73c2533473104172f855bb9a604f12840bd64af7d67",
+          "before_sha256": "42c0fb89515b673d485da071dfcbde08e9db9d5968d17d7b74395a691487ad2a",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "4123e9f68b3105adec15a649dfd3d5a55edc534eee05607a53b75e4d71f1d7d3",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-two-stage-source-analysis-01.json"
+        },
+        {
+          "after_sha256": "97bea03b7b693e85f1e7b8ef418c438d56ea4c3052e0f91b7970565bfad35df2",
+          "before_sha256": null,
+          "path": "tests/test-drawing-two-stage-source.py"
+        },
+        {
+          "after_sha256": "3de67ff0068c22ed589296bcc334e9669b83928d090f80940b2a1b86ca064550",
+          "before_sha256": null,
+          "path": "tools/analyze-drawing-two-stage-source.py"
+        },
+        {
+          "after_sha256": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+          "before_sha256": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+          "path": "tools/drawing_api_session.py"
+        },
+        {
+          "after_sha256": "87499808e58a7b1a3be2d9b44d16909f6745968b23368db13a8d9c3b1005ebaa",
+          "before_sha256": "87499808e58a7b1a3be2d9b44d16909f6745968b23368db13a8d9c3b1005ebaa",
+          "path": "tools/drawing_storage_point.py"
+        },
+        {
+          "after_sha256": "ce2dfc8e1a2ca542b9a05f9eb92f0cc2c5e3f32642a51f80b8748db913120c86",
+          "before_sha256": "ce2dfc8e1a2ca542b9a05f9eb92f0cc2c5e3f32642a51f80b8748db913120c86",
+          "path": "tools/drawing_storage_transitions.py"
+        },
+        {
+          "after_sha256": "370e6daa99a8a73f6cd6773dccc6910387a8324eda6a64f8f38dfe998e8c2c73",
+          "before_sha256": null,
+          "path": "tools/drawing_two_stage_source.py"
+        }
+      ],
+      "id": "draw02-protected-two-stage-source-chain-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:884a96fd5f018904561f5c7b78cea552c35d956381007bd8160536133034d6ea",
+        "behaviors_without_scenarios:884a96fd5f018904561f5c7b78cea552c35d956381007bd8160536133034d6ea",
+        "validation_gaps:a4ab7fe85880fe3fd5700026852f423e1bb2cf5a5dab5e8c8b080980a882fa9f"
+      ],
+      "reason": "Reviewed exact retained-data two-stage source chain guard and4adversarial methods covering missing epoch/prefix/generation/lease/worker ordering/geometry/pixel and ambiguous/duplicate links. Reanalysis verifies original/native report provenance and7raw journal hashes; all104previous eligible frames bind initial mapped-source V2query/observed epoch/held state/prefix through two full same-API blits with exact intermediate generation and one packet each, both accepted protected lease commands, initial checked worker return before final worker entry and exact final EGL/native0diff. Final direct epoch absence remains true and explained by intermediate stage. Source census/prior exact receipts0gaps/ledger updated; no engine source change or new execution claim.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Current offline semantic linkage of a previously matched104frame cohort only. Other225contexts remain excluded. Allocation/COMalias/allwriter/post-unmap lifetime, unobserved uploads/hardware/scanout/allroutes/actions47requirements21operations/backend/realdriver and steps3\u20137closure remain open. Earlier whole120report lacks epoch queries; new current-source long capture is required before extending this result. Historical source hashes preserved."
+      }
     }
   ]
 }
