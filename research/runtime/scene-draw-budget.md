@@ -97,3 +97,47 @@ failure. Sources, original manifest and owned cleanup verify. This result proves
 a bounded rendering gain, not smoother simulation, full success or60FPS.
 See `scene-draw-budget-report-worker-live-negative-20261012.json`; prior failures
 and source fingerprints are retained.
+
+
+Final progress-worker trial (2026-10-12) passes the complete native campaign:
+5042balanced Worlds,20.42298deliveredWorldFPS,19FPS and half-rate sampled-window
+gates, summon/Fireball/melee/player-party lethal, spell refusals, independent
+movement, portraits, Mini resume/Quit-No and normal original Quit. Sources,
+original manifest and owned cleanup verify;80-byte ACK/zero pixel reply, delivery
+readback/fallback/pending and current final resident retirement. No performance
+sample is filtered and no gate is lowered. See
+`scene-draw-budget-native-campaign-20261012.json`.
+
+The outer scheduling target remains NEGATIVE:60.007s window24.53047WorldFPS
+misses25, and20.42298aggregate misses20.5. All296extras (16warm+280budgeted)
+preserve exact protected bytes/ordered rows; advancing simulation19.86622Hz,
+median50/p9554/max142ms, one mixed first interval excluded and4deadline misses.
+This proves a bounded drawing gain with unchanged simulation cadence, not60FPS
+or interpolated motion. The route remains opt-in. Retain
+`scene-draw-budget-progress-worker-live-negative-20261012.json`.
+
+The prior corrected-projection trial completed every gameplay/Quit check but
+failed short-window paint FPS; owner capture acquisition was at most14.20ms.
+The smoke progress diagnostic still used synchronous per-second QSaveFile
+publication; the final trial replaces it with one value-only worker, skips busy
+intermediate diagnostics, propagates ready errors and retains the final flow
+report/every FPS sample. Second-long recurring gaps no longer occur in this
+bounded trial. Filesystem attribution is correlated, not a measured kernel-I/O
+causality proof. The post-combat retreat uses ordinary isometric ground projection
+instead of fitting screen coordinates from partial/obstructed path progress; the
+original exact observed waypoint and aliveness checks remain unchanged.
+
+Exploratory private NVIDIA xcb_egl admission attempts failed the existing Qt
+resident import fixture with `Viewport unavailable`; no backend impossibility
+or cause is inferred. Raw reports/logs remain in
+`working/tests/render-progress-heartbeat/run-b29z02l8` and `run-xcv7asao`.
+NVIDIA EGL offline replay performance is still separate from public Qt admission.
+Committed578bd89..479ce20 history review retains30exact source transitions with
+zero missing receipts in `working/tests/scene-draw-budget-worker-history-20261012.json`.
+
+Final current-source60PE32/28decoder and bounded menu/report-worker controls
+pass (`scene-draw-budget-final-controls-20261012.json`,
+`resident-report-worker-final-controls-20261012.json`); three passive movement
+validation tests pass. Implementation advances only to partial; GUI heartbeat
+and report policies have scoped live observation, while the budget scheduler
+retains no successful25FPS integration/default/original-equivalence claim.
