@@ -1217,3 +1217,27 @@ Earlier aftercamera guidance timing is corrected by retained image6, already
 showingHermes beforeactions8/9; trigger/opening frame unknown. Next inspect
 and observe the actual scene/hit consumer boundary and tooltip producers while
 retaining source/physical/actor lifetime gaps. All47/21/steps3–7 remain open.
+
+DRAW-02 step 2 cursor client reassessment: exact pinned 4a45b0/4a4910
+windows show cursor-coordinate conversion, hotspot-like descriptor offsets,
+40-pixel region clipping, animation fields and save/restore/draw copy clients.
+They are cursor painters, not established game mouse/button dispatch. Timer
+wrapper4eaaf0calls4a4910; the existing world-tick research identifies its
+20 ms timer setup separately from World updates. Exact retained foreign
+tag32 caller4a4b01 follows CALL58c360 at4a4afc inside4a4910, with ECX641fc8
+and pushed destination6a4fe0. This assigns the previously unknown concurrent
+copy caller to the cursor path, not physical alias or source overlap.
+
+The timer path waits up to10 ms on global6e1ec0 via WaitForSingleObject and
+releases via ReleaseMutex after the owned branch; foreground path uses642c58.
+Mutex creation/lifetime/lock ordering, abandoned/timeout handling and safe
+diagnostic source synchronization remain unverified. Keep current protected
+source admission strict. Next inspect mutex setup and actual game input/
+selection/tooltip dispatch; no cursor painter or successful cursor polling
+substitutes for those semantics. Full47/21/steps3–7remain open.
+
+Cursor static inspector initial refusal retains the absent4eaaf0inventory
+function. Corrected report02pins only its exact8byteCALL4a4910/RET14anchor;
+whole_inventory_function=false and unassigned ranges remain intact. Both
+original2927-file manifests pass. The exact foreign cursor copy caller is
+confirmed statically; allocation/source lifetime and game input remain pending.
