@@ -1,4 +1,4 @@
-/* Diagnostic wire only; no native book actions or ownership projection. */
+/* Opt-in diagnostic forwarding; V14 separately enables guarded book commands. */
 static HANDLE grimoire_log;
 static u32 grimoire_sequence,grimoire_last[2][31];
 static int grimoire_have_state[2];
@@ -29,23 +29,25 @@ static void grimoire_record(void* object,u32 phase){
     }else ++grimoire_sequence;
     SetLastError(error);
 }
+static u32 grimoire_last_guard=0xffffffffu;
 static u32 THIS grimoire_tick(void* object){
-    u32 error=GetLastError();grimoire_record(object,1);SetLastError(error);
+    u32 error=GetLastError();grimoire_record(object,1);if(menu_version>=14)menu_poll(object,1);SetLastError(error);
     u32 result=((TickFn)0x4c7890)(object);error=GetLastError();
-    grimoire_record(object,2);SetLastError(error);return result;
+    if(menu_version>=14){menu_poll(object,0);if(grimoire_log&&grimoire_guard_failure!=grimoire_last_guard){grimoire_last_guard=grimoire_guard_failure;record(37,object,grimoire_guard_failure,0);if(grimoire_guard_failure==2&&readable((void*)0x6578c0,0x81)&&readable((void*)0x659408,0xa3b)){record(38,(void*)0x6578c0,get((void*)0x65793c),get((void*)0x65792f));record(39,(void*)0x659408,get((void*)0x659e3f),((u8*)0x6578c0)[0x77]|(((u8*)0x6578c0)[0x80]<<8));}}}grimoire_record(object,2);SetLastError(error);return result;
 }
 static int install_grimoire_observe(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_GRIMOIRE_OBSERVE",path,sizeof(path));
-    if(!length)return 1;
+    if(!length&&menu_version<14)return 1;
     const u8 bytes[8]={0x56,0x8b,0xf1,0x8b,0x46,0x1e,0x85,0xc0};u32 old,restore;
     if(length>=sizeof(path)||!readable((void*)0x5c6b70,0x18)||
        get((void*)0x5c6b70)!=0x4ca300||get((void*)0x5c6b74)!=0x4ca320||
        get((void*)0x5c6b80)!=0x4c7890||get((void*)0x5c6b84)!=0x4c7920||
        !readable((void*)0x4c7890,8)||!equal((void*)0x4c7890,bytes,8)||
        !VirtualProtect((void*)0x5c6b80,4,0x40,&old))return 0;
-    grimoire_log=CreateFileA(path,0x40000000,1,0,1,0x80,0);
+    if(length)grimoire_log=CreateFileA(path,0x40000000,1,0,1,0x80,0);
     if(grimoire_log==(HANDLE)-1)grimoire_log=0;
     int ok=0;
+    if(!length){put((void*)0x5c6b80,(u32)&grimoire_tick);ok=1;}
     if(grimoire_log){
         const u8 header[16]={'M','N','M','B','O','O','K','1',1,0,0,0,128,0,0,0};u32 wrote=0;
         if(WriteFile(grimoire_log,header,16,&wrote,0)&&wrote==16){put((void*)0x5c6b80,(u32)&grimoire_tick);ok=1;}

@@ -13,12 +13,14 @@ public:
     explicit GrimoireWidget(QWidget* parent=nullptr);
     bool loadAssets(const QString& root,QString* error=nullptr);
     bool setLocation(const Location&,QString* error=nullptr);
+    void setLiveCampaignReader(bool enabled);
     Location location() const {return location_;}
     const mnm::ui::GrimoireBook& book() const {return book_;}
     QRect contentRect() const;
     void focusFirstControl();
 signals:
     void closed();
+    void locationRequested(const GrimoireWidget::Location&);
     void pageChanged(const GrimoireWidget::Location&);
     void navigationFailed(const QString&);
 protected:
@@ -36,6 +38,8 @@ private:
     void selectChapter(int chapter);
     void populate();
     void arrange();
+    bool liveCampaignReader_=false;
+    void navigate(const Location&);
     QString root_;
     mnm::ui::GrimoireBook book_;
     Location location_;

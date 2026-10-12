@@ -27,11 +27,11 @@ GrimoireWidget::GrimoireWidget(QWidget* parent):QWidget(parent) {
     for(int i=0;i<16;++i){tabs_[i]=button(QString("grimoireTab%1").arg(i),QString::number(i%8+1));connect(tabs_[i],&QPushButton::clicked,this,[this,i]{selectChapter(i%8);});}
     previous_=button("grimoirePrevious","Previous");next_=button("grimoireNext","Next");close_=button("grimoireClose","Close");contents_=button("grimoireContents","Contents");artwork_=button("grimoireArtwork","Artwork");
     previous_->setAccessibleName("Previous page");next_->setAccessibleName("Next page");close_->setAccessibleName("Close Grimoire");
-    connect(previous_,&QPushButton::clicked,this,[this]{turn(-1);});connect(next_,&QPushButton::clicked,this,[this]{turn(1);});connect(close_,&QPushButton::clicked,this,&GrimoireWidget::closed);connect(contents_,&QPushButton::clicked,this,[this]{selectChapter(location_.chapter);});
-    connect(artwork_,&QPushButton::clicked,this,[this]{auto target=location_;target.illustration=!target.illustration;QString error;if(!setLocation(target,&error))emit navigationFailed(error);});
+    connect(previous_,&QPushButton::clicked,this,[this]{turn(-1);});connect(next_,&QPushButton::clicked,this,[this]{turn(1);});connect(close_,&QPushButton::clicked,this,&GrimoireWidget::closed);connect(contents_,&QPushButton::clicked,this,[this]{selectChapter(liveCampaignReader_?0:location_.chapter);});
+    connect(artwork_,&QPushButton::clicked,this,[this]{auto target=location_;target.illustration=!target.illustration;navigate(target);});
     title_=new QLabel(this);title_->setObjectName("grimoireTitle");title_->setTextFormat(Qt::PlainText);title_->setAlignment(Qt::AlignCenter);title_->setStyleSheet("color:#3e2313;background:transparent;");title_->setAttribute(Qt::WA_TransparentForMouseEvents);
     entries_=new QListWidget(this);entries_->setObjectName("grimoireEntries");entries_->installEventFilter(this);entries_->setStyleSheet("QListWidget {color:#3e2313;background:transparent;border:0;} QListWidget::item:selected {color:#fff5d6;background:#51402a;}");
-    connect(entries_,&QListWidget::itemActivated,this,[this](QListWidgetItem* item){const int section=item->data(Qt::UserRole).toInt();Location target{location_.chapter,section,0,0};if(const auto* e=entry(book_,target)){target.level=e->levels.firstKey();QString error;if(!setLocation(target,&error))emit navigationFailed(error);}});
+    connect(entries_,&QListWidget::itemActivated,this,[this](QListWidgetItem* item){const int section=item->data(Qt::UserRole).toInt();Location target{location_.chapter,section,0,0};if(const auto* e=entry(book_,target)){target.level=e->levels.firstKey();navigate(target);}});
     text_=new QTextBrowser(this);text_->setObjectName("grimoireText");text_->installEventFilter(this);text_->setOpenExternalLinks(false);text_->setOpenLinks(false);text_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);text_->setStyleSheet("QTextBrowser {color:#3e2313;background:transparent;border:0;}");
     for(int i=0;i<15;++i){QWidget::setTabOrder(tabs_[i],tabs_[i+1]);}
     QWidget::setTabOrder(tabs_[15],entries_);QWidget::setTabOrder(entries_,text_);QWidget::setTabOrder(text_,previous_);QWidget::setTabOrder(previous_,next_);QWidget::setTabOrder(next_,contents_);QWidget::setTabOrder(contents_,artwork_);QWidget::setTabOrder(artwork_,close_);
@@ -100,8 +100,10 @@ QVector<GrimoireWidget::Location> GrimoireWidget::sequence() const {
     for(int c=0;c<book_.chapters.size();++c){result.push_back({c,0,0,0});for(const auto& e:book_.chapters[c].entries){const int level=e.section==location_.section&&c==location_.chapter?location_.level:e.levels.firstKey();for(int p=0;p<e.levels[level].pages.size();++p)result.push_back({c,e.section,level,p});}}
     return result;
 }
-void GrimoireWidget::turn(int direction) {const auto order=sequence();for(int i=0;i<order.size();++i)if(same(order[i],location_)){const int next=i+direction;if(next>=0&&next<order.size()){QString error;if(!setLocation(order[next],&error))emit navigationFailed(error);}return;}}
-void GrimoireWidget::selectChapter(int chapter) {QString error;if(!setLocation({chapter,0,0,0},&error))emit navigationFailed(error);else focusFirstControl();}
+void GrimoireWidget::turn(int direction) {if(liveCampaignReader_){const int section=(location_.chapter==1?5:location_.section)+direction;if(section>=0&&section<=5)navigate(section==5?Location{1,1,0,0}:Location{0,section,0,0});return;}const auto order=sequence();for(int i=0;i<order.size();++i)if(same(order[i],location_)){const int next=i+direction;if(next>=0&&next<order.size()){QString error;if(!setLocation(order[next],&error))emit navigationFailed(error);}return;}}
+void GrimoireWidget::selectChapter(int chapter) {navigate(liveCampaignReader_&&chapter==1?Location{1,1,0,0}:Location{chapter,0,0,0});}
+void GrimoireWidget::navigate(const Location& where){if(liveCampaignReader_){if(((where.chapter==0&&where.section>=0&&where.section<=4)||(where.chapter==1&&where.section==1))&&where.level==0&&where.page==0&&!where.illustration)emit locationRequested(where);return;}QString error;if(!setLocation(where,&error))emit navigationFailed(error);else focusFirstControl();}
+void GrimoireWidget::setLiveCampaignReader(bool enabled){liveCampaignReader_=enabled;if(!book_.chapters.isEmpty())populate();}
 void GrimoireWidget::populate() {
     if(book_.chapters.isEmpty())return;
     title_->setText(spread_.title);text_->setPlainText(spread_.text);text_->moveCursor(QTextCursor::Start);
@@ -110,6 +112,7 @@ void GrimoireWidget::populate() {
     artwork_->setEnabled(location_.section!=0&&book_.artwork.contains(QString("%1/%2/2").arg(location_.chapter).arg(location_.section)));artwork_->setText(location_.illustration?"Read":"Artwork");
     for(int i=0;i<16;++i){const int n=2+(i%8)*4+(i<8?0:2);const bool selected=i%8==location_.chapter;static_cast<mnm::ui::SpriteButton*>(tabs_[i])->setSprites({icons_[n+(selected?1:0)],icons_[n+1],icons_[n+1]},tabRects_[i].size());tabs_[i]->setAccessibleName(book_.chapters[i%8].title);tabs_[i]->setToolTip(mnm::ui::textLabel(book_.tooltips,QString::number(i%8+1)));}
     const auto order=sequence();for(int i=0;i<order.size();++i)if(same(order[i],location_)){previous_->setEnabled(i>0);next_->setEnabled(i+1<order.size());break;}
+    if(liveCampaignReader_){for(int i=0;i<16;++i)tabs_[i]->setEnabled(i%8<=1);previous_->setEnabled(location_.chapter==1||location_.section>0);next_->setEnabled(location_.chapter==0);artwork_->setEnabled(false);}
 }
 void GrimoireWidget::focusFirstControl() {if(location_.section==0)entries_->setFocus(Qt::OtherFocusReason);else if(location_.illustration)artwork_->setFocus(Qt::OtherFocusReason);else text_->setFocus(Qt::OtherFocusReason);}
 QRect GrimoireWidget::contentRect() const {return mnm::ui::menuContentRect(size());}

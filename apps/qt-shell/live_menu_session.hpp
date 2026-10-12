@@ -15,6 +15,7 @@ public:
     bool nativeVoicesEnabled=false;
     std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativePresentation;
+    bool grimoireMenusEnabled=true;
     bool storageMenusEnabled=true;
     bool campaignPreferencesEnabled=true;
     bool campaignDefeatEnabled=true;

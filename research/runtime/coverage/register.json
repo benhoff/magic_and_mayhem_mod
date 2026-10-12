@@ -43167,7 +43167,102 @@
         "UI41.grimoire-probe-fixture",
         "UI41.animation-entry-close-live",
         "UI41.settled-entry-return-live",
-        "UI41.grimoire-probe-final-fixture"
+        "UI41.grimoire-probe-final-fixture",
+        "UI42.probe-fixture"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.grimoire-introduction-ownership",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Guarded fresh Region Entry Grimoire reader actions",
+      "scope": "V14 semantic book screen and guarded fresh Celtic Region Entry stack only; Introduction sections0..4 and contextual Forest of Pain1/1 use original selector/Close and original resource/fade lifecycle. Native static level0 text wrapping/scrolling is presentation policy, not recovered pagination. No other entries/chapters, live knowledge, dynamic values, Realm/World caller or replacement of original tick/render. Validation pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5011392,
+          "scope": "Action selection0..4 and Close3999 only; original helper behavior retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-live-integration.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v14.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/observer.c",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/grimoire-bridge-reference.c",
+        "tools/test-grimoire-bridge.py",
+        "tools/test-live-grimoire.py"
+      ],
+      "evidence": [
+        "UI42.reader-live",
+        "UI42.adapter-fixture",
+        "UI42.reader-scroll-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-grimoire-introduction",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Engine-confirmed native first-region reader and caller return",
+      "scope": "V14 semantic book screen and guarded fresh Celtic Region Entry stack only; Introduction sections0..4 and contextual Forest of Pain1/1 use original selector/Close and original resource/fade lifecycle. Native static level0 text wrapping/scrolling is presentation policy, not recovered pagination. No other entries/chapters, live knowledge, dynamic values, Realm/World caller or replacement of original tick/render. Validation pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5011392,
+          "scope": "Action selection0..4 and Close3999 only; original helper behavior retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-live-integration.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_grimoire_controller.hpp",
+        "apps/qt-shell/live_grimoire_controller.cpp",
+        "apps/qt-shell/grimoire_widget.hpp",
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "apps/qt-shell/live_grimoire_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/test-live-grimoire.py",
+        "tests/menu-grimoire-bridge-test.cpp"
+      ],
+      "evidence": [
+        "UI42.reader-live",
+        "UI42.adapter-fixture",
+        "UI42.reader-scroll-live"
       ],
       "status": {
         "understanding": "partial",
@@ -89862,6 +89957,128 @@
           "equals": 256
         }
       ]
+    },
+    {
+      "id": "UI42.reader-live",
+      "kind": "live_observation",
+      "scope": "Native fresh Region Entry contextual Forest of Pain and Introduction selector navigation, caller returns and normal Quit; original rendering/audio/tick retained; no original pagination or bypass equivalence.",
+      "record": "research/runtime/grimoire-reader-live-20261012.json",
+      "sha256": "5fca60d3f976318f7f16a0291cb17ed15ea15beedea3fe104129b6edc32dd465",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_book_ownership",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "UI42.adapter-fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic final adapter identity/stack/resources/catalog/transition guards and seven bounded selectors/close; original action target stubbed.",
+      "record": "research/runtime/grimoire-reader-adapter-fixture-20261012.json",
+      "sha256": "9c02a0e3cf996a2f074ec788305cd95f523a7053e26c3b6d3379981c72ea737c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/accepted_actions",
+          "equals": 7
+        },
+        {
+          "pointer": "/original_action_stubbed",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI42.probe-fixture",
+      "kind": "native_integration",
+      "scope": "Final-source diagnostic installer/forwarding/LastError/dedup/bounds regression with synthetic tick; original tick not executed.",
+      "record": "research/runtime/grimoire-reader-probe-fixture-20261012.json",
+      "sha256": "77197328421bc9dd271c46f331db7c89670acc46e701d6ca0e4943ad69344953",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_tick_stubbed",
+          "equals": true
+        },
+        {
+          "pointer": "/bounded_records",
+          "equals": 256
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI42.reader-scroll-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Final native reader: contextual Forest and Introduction navigation, unchanged engine refreshes preserve scrolling, repeated caller returns and normal Quit. Original tick/resources/graphics/audio retained; no original pagination or bypass equivalence.",
+      "record": "research/runtime/grimoire-reader-scroll-live-20261012.json",
+      "sha256": "4217342c079c82e488187c3eee377a29a76c3f2a64f9ab2231b0e36a0ffebb69",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/scroll_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_book_ownership",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100506,6 +100723,23 @@
       "tests": [
         "tools/test-live-grimoire-observation.py"
       ]
+    },
+    {
+      "id": "UI.grimoire-introduction-native",
+      "scope": "Native fresh Celtic Region Entry Grimoire contextual Forest of Pain entry, contents/four Introduction sections, Current region tab, Next/Previous/Contents, Close/Escape, reopen and window-close unwind to normal original Main Quit; original graphics/audio and book lifecycle remain active. Native static text wrapping/scrolling differs from original leaf pagination; other chapters/callers/dynamic knowledge remain unsupported.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.grimoire-introduction-ownership",
+        "HOST.native-grimoire-introduction"
+      ],
+      "evidence": [
+        "UI42.reader-live",
+        "UI42.reader-scroll-live"
+      ],
+      "tests": [
+        "tools/test-live-grimoire.py",
+        "apps/qt-shell/live_grimoire_test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100888,8 +101122,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-grimoire-observation-20261012.json",
-    "sha256": "e4f769130ccb9ebdc4a1921bcf74c1f7cb03ba9e40fd22d68b791b7663f27658"
+    "path": "research/runtime/coverage/source-index-grimoire-reader-scroll-20261012.json",
+    "sha256": "adf71a64ac91ae6e657fb1fcc059edec24e810e6e75bef302d5b3163e51ddf89"
   },
   "claim_bindings_required": true
 }

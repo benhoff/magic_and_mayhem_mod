@@ -604,6 +604,23 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI42 adds bounded V14 native Introduction book wiring. Region
+Grimoire entry requires the final standard-button vtable5c6bd0; the constructor's
+base5c5f24 is explicitly rejected. Semantic screen27, current section and
+availability are copied into pointer-free host state. Native requests wait for
+original selector/Close and settled original state; resource/tick/render/fade
+work remains original. Introduction and contextual Forest of Pain static level0 text use native wrapping
+and scrolling, with original leaf pagination/knowledge, other entries/chapters/callers,
+Character/Realm/results/multiplayer and renderer replacement still pending.
+[Contract and retained validation](grimoire-live-integration.md). The committed
+`556ded9..cf23c406` review finds17 exact versions and no missing receipts; this is
+hash accounting only. Shared edits retain older Save/Load/probe evidence and
+explicit current-source validation limitations. Current scoped live reader and
+caller returns pass on original graphics/audio; 17 targeted Qt tests and both
+private adapter/probe regressions pass. The final scoped reader rerun also
+verifies user scrolling survives unchanged engine refreshes; prior reader proof
+retains its older source hashes. Original replacement remains none.
+
 2026-10-12 UI41 validates an isolated original Grimoire tick probe and fresh
 Region/settled introductory book/Escape/Region twice, Region Cancel/Main and
 normal Quit, on one original thread with original graphics/audio. [Evidence and

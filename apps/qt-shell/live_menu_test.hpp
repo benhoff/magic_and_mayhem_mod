@@ -13,6 +13,7 @@ void installLivePreferencesRestoreTest(QApplication&,QMainWindow&,LiveMenuSessio
 
 void installLivePreferencesDisplayTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
+void installLiveGrimoireTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 void installLiveRegionEntryTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveRegionEnterTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
