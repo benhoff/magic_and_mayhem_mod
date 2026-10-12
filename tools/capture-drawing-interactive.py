@@ -9,16 +9,17 @@ def load(path):
     s=importlib.util.spec_from_file_location(Path(path).stem,ROOT/path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=range(1,17),help='Bind original-active producer metadata through the first1..16World returns');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=range(1,17),help='Bind original-active producer metadata through the first1..16World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
     if (a.observer_mode=='physical') != (a.physical_peer is not None):p.error('Physical mode requires exactly one physical peer')
     if a.producer_samples and a.observer_mode!='physical':p.error('Producer binding requires physical mode')
     if a.control and a.physical_peer:p.error('Physical API capture cannot be a control run')
     if a.observer_mode!='physical' and (a.physical_oracle_mib!=1024 or a.physical_transient_mib!=256):p.error('Physical budgets require physical mode')
+    if a.egl_physical and (a.observer_mode!='physical' or not a.x11_delivery_library):p.error('EGL physical witnesses require physical/API mode and an EGL delivery library')
     if a.report.exists():p.error('Refusing evidence overwrite')
     names=['tools/capture-drawing-interactive.py','tools/drawing-session-runner.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/build-drawing-session.py','tools/build-drawing-session-input.py','tools/build-menu-observer.py','tools/build-shadow-bridge.py','tools/prepare-shadow-experiment.py','tools/prepare-scene-observer.py','tools/run-game.sh','tools/run-opengl-game.py','tools/campaign_gameplay.py','runtime/drawing/session.c','runtime/drawing/source_points.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','tools/drawing_api_physical.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','runtime/shadow/win32_min.h','tests/drawing-session-input.cpp','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/menu').glob('*') if x.suffix in ('.h','.c','.S')]
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('menu_v*.h')]
-    if a.x11_delivery_library:names += ['runtime/display/x11_delivery.c','tools/build-drawing-x11-delivery.py','tools/drawing_x11_delivery.py','tools/drawing_process_snapshot.py']
+    if a.x11_delivery_library:names += ['runtime/display/x11_delivery.c','tools/build-drawing-x11-delivery.py','tools/drawing_x11_delivery.py','tools/drawing_process_snapshot.py','runtime/display/egl_physical.h','tools/drawing_egl_physical.py']
     if a.producer_samples:
         names += ['reconstruction/rendering/vertical_bar.h','tools/build-scene-observer.py','tools/drawing_producer_points.py','tools/inspect-canvas-producers.py']
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/scene').glob('*.[chS]')]
@@ -38,7 +39,7 @@ def main():
         if library[:5]!=b'\x7fELF\x02' or struct.unpack_from('<H',library,18)[0]!=62:raise ValueError('Expected64-bit x86 Unix delivery library')
         if env_preload:=os.environ.get('LD_PRELOAD'):raise ValueError('Unpinned existing Unix preload: '+env_preload)
         target=run/'libmnm-drawing-x11-delivery.so';target.write_bytes(library);x11_library=dict(path=str(target),sha256=sha(library))
-    process=input_process=physical_peer=None;channel=None;failure=None
+    process=input_process=physical_peer=egl_peer=None;channel=None;failure=None
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_SESSION_EXPERIMENT=str(run),QT_QPA_PLATFORM='xcb');env.pop('WAYLAND_DISPLAY',None)
     if a.observer_mode=='physical':env['MNM_DRAW_PHYSICAL_MIB']=str(a.physical_oracle_mib)
     def verify(label):
@@ -57,7 +58,7 @@ def main():
         binaries=([menu] if a.control else [drawing,menu])+([scene] if scene else [])
         for binary in binaries:shutil.copy2(binary,game/binary.name)
         settings=load('tools/run-opengl-game.py');preferences=settings.disable_cd_music(game)+settings.skip_movies(game)
-        manifest={'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+        manifest={'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         raw=bytearray(106496);raw[:8]=b'MNMMCM12';struct.pack_into('<II',raw,8,12,len(raw));struct.pack_into('<III',raw,16,2,1,1);(run/'channel.bin').write_bytes(raw)
@@ -90,6 +91,8 @@ def main():
             raise ValueError('Original menu generation remained stale after eight retained attempts')
         if a.physical_peer:
             with (run/'physical-peer.log').open('x') as log:physical_peer=subprocess.Popen([str(a.physical_peer.resolve()),str(capture),str(run/'physical-report.json'),'--api','--transient-mib',str(a.physical_transient_mib)],env=env,stdout=log,stderr=subprocess.STDOUT)
+        if a.egl_physical:
+            with (run/'egl-peer.log').open('x') as log:egl_peer=subprocess.Popen([str(a.physical_peer.resolve()),str(capture),str(run/'egl-physical-report.json'),'--egl','--transient-mib',str(a.physical_transient_mib)],env=env,stdout=log,stderr=subprocess.STDOUT)
         with (run/'game.log').open('x') as log:
             process=subprocess.Popen([str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],'--runner',str(ROOT/'tools/drawing-session-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
             wait(3)
@@ -125,6 +128,12 @@ def main():
             physical_action('results-reopen',{'kind':'tap','key':'Escape','after_ms':600})
             wait(26);send(26,17);wait(22);send(22,2);returned_main=wait(3)
             physical_action('exit-main',{'kind':'wait','after_ms':200})
+            if egl_peer:
+                (capture/'egl-physical-close.flag').write_bytes(b'close\n');deadline=time.monotonic()+10
+                while not (capture/'egl-physical.done').exists() and time.monotonic()<deadline:refresh();time.sleep(.02)
+                if not (capture/'egl-physical.done').exists():raise ValueError('EGL physical interval did not close')
+                (capture/'egl-physical-stop.flag').write_bytes(b'stop\n');egl_peer.wait(timeout=10)
+                if egl_peer.returncode:raise ValueError('EGL physical peer failed')
             (capture/'stop.flag').write_bytes(b'stop\n');deadline=time.monotonic()+10
             while not a.control and not (capture/'session.done').exists() and time.monotonic()<deadline:refresh();time.sleep(.02)
             if physical_peer:
@@ -156,6 +165,7 @@ def main():
         report={'schema':1,'success':False,'admitted':False,'error':str(error),'sources':sources,'experiment':str(run),'original_drawing_active':True,'complete_journey_coverage':False}
         if claims:report['claims']=claims['claims']
     finally:
+        if egl_peer and egl_peer.poll() is None:egl_peer.terminate();egl_peer.wait(timeout=5)
         if physical_peer and physical_peer.poll() is None:physical_peer.terminate();physical_peer.wait(timeout=5)
         if input_process and input_process.poll() is None:input_process.terminate();input_process.wait(timeout=5)
         if process and process.poll() is None:
@@ -170,6 +180,10 @@ def main():
         try:
             if sha(Path(x11_library['path']).read_bytes())!=x11_library['sha256']:raise ValueError('Unix observer binary changed')
             report['x11_delivery_observation']=decode_delivery((capture/'x11-delivery.bin').read_bytes(),complete=False)
+            if egl_peer:
+                from drawing_egl_physical import analyze_egl_physical
+                report['egl_physical_observation']=analyze_egl_physical(capture,run/'egl-physical-report.json')
+                report['egl_physical_peer_report_sha256']=sha((run/'egl-physical-report.json').read_bytes())
             report['private_process_snapshots']=[dict(stage=stage,sha256=sha((run/f'process-{stage}.json').read_bytes()),record=json.loads((run/f'process-{stage}.json').read_text())) for stage in ('main','world')]
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))

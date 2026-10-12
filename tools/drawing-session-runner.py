@@ -20,4 +20,6 @@ if observer:=metadata.get('x11_delivery_library'):
     if hashlib.sha256(library.read_bytes()).hexdigest()!=observer['sha256']:raise ValueError('Unix delivery observer changed')
     if os.environ.get('LD_PRELOAD'):raise ValueError('Unpinned Unix preload')
     os.environ.update(LD_PRELOAD=str(library),MNM_DRAW_X11_DIRECTORY=str(root/'capture'))
+    if metadata.get('egl_physical'):os.environ['MNM_DRAW_EGL_PHYSICAL']='1'
+    else:os.environ.pop('MNM_DRAW_EGL_PHYSICAL',None)
 os.chdir(game);os.execvp('wine',['wine','explorer','/desktop=DrawingSession,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

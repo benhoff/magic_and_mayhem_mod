@@ -20186,7 +20186,8 @@
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -37739,7 +37740,8 @@
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42117,7 +42119,8 @@
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42222,7 +42225,8 @@
         "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012",
         "DRAW02.draw02-glx-delivery-prediction-01-native_integration-20261012",
         "DRAW02.draw02-egl-delivery-prediction-01-native-integration-20261012",
-        "DRAW02.draw02-timed-egl-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-timed-egl-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-egl-post-return-api-prediction-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42297,7 +42301,8 @@
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42347,7 +42352,8 @@
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42404,7 +42410,8 @@
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42451,7 +42458,8 @@
         "DRAW02.draw02-egl-delivery-fixture-01-native_integration-20261012",
         "DRAW02.draw02-egl-delivery-fixture-02-native_integration-20261012",
         "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012"
+        "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42494,7 +42502,8 @@
       "evidence": [
         "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
         "DRAW02.draw02-timed-egl-analysis-01-static-20261012",
-        "DRAW02.draw02-timed-egl-analysis-02-static-20261012"
+        "DRAW02.draw02-timed-egl-analysis-02-static-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42505,6 +42514,59 @@
       },
       "remaining_gaps": [
         "Timed original01has548API physical pairs/696closed EGL swaps. Both first black-plane reads end before the first observed EGL begins;33pairs overlap EGL calls. Six exact/order/identity/settling/concurrent-return guards pass. Exact observed source submission,physical changes/scanout,all routes and full47/21journey/operation requirements remain pending; chronology is not complete causal ownership."
+      ]
+    },
+    {
+      "id": "NR.drawing-egl-physical-witness",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in physical viewport witness after selected original EGL swap returns",
+      "scope": "Pending opt-in post-successful-EGL-return request/ACK observation of the private800x600X11 viewport. Original swap forwards once and result/errno/EGL state remain intact; no observer EGL/GL query or recorder mutex over peer wait. Scalar128byte request/16byte ACK ties Unix process/thread/call and local display/surface/function aliases to bounded full root planes. One observed swap process and bounded sampling are native diagnostic policies. Not scanout,all physical changes,immutable submitted source,complete routes/journeys or original suppression.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-egl-physical-witness.md",
+        "research/formats/drawing-egl-physical-witness-v1.md"
+      ],
+      "implementation": [
+        "runtime/display/egl_physical.h",
+        "tools/drawing_egl_physical.py",
+        "tools/analyze-drawing-egl-content.py"
+      ],
+      "tests": [
+        "tests/test-drawing-egl-physical.py",
+        "tools/test-drawing-egl-fence.py",
+        "tests/test-drawing-egl-physical-binding.py"
+      ],
+      "validation_dependencies": [
+        "runtime/display/egl_delivery.c",
+        "runtime/display/glx_delivery.c",
+        "runtime/display/glx_symbol.S",
+        "runtime/display/x11_delivery.c",
+        "apps/drawing-session/observe.cpp",
+        "apps/drawing-session/CMakeLists.txt",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "tools/build-drawing-x11-delivery.py",
+        "tools/drawing_x11_delivery.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tests/drawing-egl-delivery-test.c"
+      ],
+      "evidence": [
+        "DRAW02.draw02-egl-fence-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-content-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual original01retains495closed post-successful-EGL full root planes/237600000pixels,zero transients and496separate API witnesses. Synthetic exact/wrong/oversize/missing/mode ACK cases preserve control output/error and refuse malformed; three envelope and five full-plane/identity/scope/clock/ACK/close guards pass. All104native source predictions occur exactly among post-EGL plane hashes,including first Main image,without temporal assignment. Exact submitted-source identity,all routes/writers/handle lifetimes,scanout,unobtrusive control and full47/21acceptance remain pending."
       ]
     }
   ],
@@ -89773,6 +89835,65 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-egl-fence-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual EGL window fixture forwards through synthetic exact ACKs after swap and preserves control source/Boolean/errno/EGL error; malformed/missing/mode ACK failures are diagnostic,not actual driver failure or physical presentation proof.",
+      "record": "research/runtime/draw02-egl-fence-fixture-01.json",
+      "sha256": "177a40f87e23ec72b3957ef149fd29564b0ca847c364d1eba3680d5ebda0104e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded post-EGL original physical witnesses with separate API/source/timing and explicit close marker; no scanout/all-route/submitted-source ownership.",
+      "record": "research/runtime/draw02-egl-post-return-original-01.json",
+      "sha256": "807a78bac6416df7b7557cf11c8a400d90b7e919e0c98974e8ac05f7285179c1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-egl-post-return-api-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Source-only native composed-canvas prediction of an explicitly restricted API physical cohort. Every excluded witness remains listed; stable metadata/zero differences do not prove all original writers, immutable storage, complete presented journeys, driver recovery or replacement.",
+      "record": "research/runtime/draw02-egl-post-return-api-prediction-01.json",
+      "sha256": "2f793f0c2dc79900920af1a5e12c771b71e563200897e17b4260dbcc4cd49b39",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-egl-post-return-content-01-static-20261012",
+      "kind": "static",
+      "scope": "Offline exact full-plane hash correspondence between retained independent source-only native predictions and admitted post-EGL root witnesses. Retain every duplicate/missing correspondence; no image is selected or relabelled as its temporal frame,submitted source,complete parity or scanout. Original output remains comparison-only.",
+      "record": "research/runtime/draw02-egl-post-return-content-01.json",
+      "sha256": "e46723b1a3df7239a0d8a21c9f6bbefba620ccbc34791de283cdc6b10af86c23",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100455,7 +100576,8 @@
         "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012",
         "DRAW02.draw02-glx-delivery-prediction-01-native_integration-20261012",
         "DRAW02.draw02-egl-delivery-prediction-01-native-integration-20261012",
-        "DRAW02.draw02-timed-egl-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-timed-egl-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-egl-post-return-api-prediction-01-native_integration-20261012"
       ]
     },
     {
@@ -100639,6 +100761,47 @@
         "DRAW02.draw02-timed-egl-original-01-live_observation-20261012",
         "DRAW02.draw02-timed-egl-analysis-01-static-20261012",
         "DRAW02.draw02-timed-egl-analysis-02-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.egl-post-return-fence-fixture",
+      "level": "headless",
+      "scope": "Actual EGL fixture with synthetic exact/wrong/missing/oversize/malformed-mode ACK peer checks forwarding/result/errno/EGL-state and guarded bounded waits. No physical/original-game proof.",
+      "behaviors": [
+        "NR.drawing-egl-physical-witness"
+      ],
+      "tests": [
+        "tools/test-drawing-egl-fence.py",
+        "tests/test-drawing-egl-physical.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-egl-fence-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-egl-post-return-physical-quick",
+      "level": "live_observation",
+      "scope": "Pinned original-active Quick Battle with separate post-successful-EGL physical viewport witnesses,closed diagnostic interval,and retained API/source/timing observations. No submitted-source immutability,actual scanout,all routes or full semantic journey claim.",
+      "behaviors": [
+        "NR.drawing-egl-physical-witness",
+        "NR.drawing-physical-sample-timing",
+        "NR.drawing-egl-delivery-observation",
+        "NR.drawing-glx-delivery-observation",
+        "NR.drawing-x11-delivery-observation",
+        "NR.drawing-interactive-acquisition",
+        "NR.drawing-producer-source-points",
+        "RS.canvas-producer-sequence",
+        "RS.canvas-vertical-bar"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json",
+        "tools/drawing_egl_physical.py",
+        "tests/test-drawing-egl-physical.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012",
+        "DRAW02.draw02-egl-post-return-content-01-static-20261012"
       ]
     }
   ],
@@ -101013,8 +101176,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-physical-timing-20261012.json",
-    "sha256": "71d4cf8eb053bcd3f82429aa682931dc21b991992c6f1d8b6f45eff9cb74a1c2"
+    "path": "research/runtime/coverage/source-index-draw02-egl-physical-20261012.json",
+    "sha256": "8bb33b4a98c68a3ee70600ef691d1b51e8d211754dd09082c9557dd8b4fc3769"
   },
   "claim_bindings_required": true
 }
