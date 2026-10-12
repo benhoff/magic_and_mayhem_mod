@@ -42746,7 +42746,8 @@
         "DRAW02.draw02-wine-lifetime-count-diagnosis-01-static-20261012",
         "DRAW02.draw02-wine-lifetime-parser-checks-01-static-20261012",
         "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012",
-        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42790,7 +42791,8 @@
       "evidence": [
         "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
         "DRAW02.draw02-wine-generation-parser-checks-01-static-20261012",
-        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42802,6 +42804,50 @@
       "remaining_gaps": [
         "Pending version2guards,actualPE32reusegenerationfixture andoriginalacquisition. Generation known does not establish source storage immutability orasyncEGLownership.",
         "Original01admits1534submissions/1197knownboth/337unknownfirstallopaqueobject14/0unknownsources,337API/336EGLwitnesses,32returns189466records. Pending unknownbufferorigin/internal lifetime/immutablebytes/asyncEGLassignment/allroutes/semanticjourneys."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-buffer-origins",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Selected Wine swapchain buffer getter origins",
+      "scope": "Pending pinned front/backbuffer getter observation:opaque returnedtextureID,swapchainID/observedgeneration,index,parentAPI,result/error and lifetimeprefix. Getter origin does not create an invented texturegeneration orproveimmutablebytes/allinternal lifetimes/asyncEGLownership.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-buffer-origins.md",
+        "research/formats/drawing-wine-buffer-v1.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_buffer.h",
+        "tools/drawing_wine_buffer.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-buffer-test.c",
+        "tools/test-drawing-wine-buffer.py",
+        "tests/test-drawing-wine-buffer.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "tools/inspect-drawing-wine-imports.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-buffer-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-buffer-parser-checks-01-static-20261012",
+        "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending pinnedgetterABI/result/error/alias/unknown/reusefixtureandactualoriginalunknownobject14origin. Returnedobjectgenerationremains0ifcreationunobserved;source/EGLownershipseparate.",
+        "Original01admits333frontgetterreturns:swapchain4/generation4\u2192texture14/generation0. Backgetterunreached;textureinternalcreation/release/storageownership/asyncEGLassignment remainpending;originisnotinventedgeneration."
       ]
     }
   ],
@@ -90483,6 +90529,50 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-buffer-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32selected getter ABI/null/known/unknown metadata forwarding guards;nooriginalbufferownership/allinternal lifetime orEGLassignment.",
+      "record": "research/runtime/draw02-wine-buffer-fixture-01.json",
+      "sha256": "a83eddc93dc467e9be0da454a7601d26e7053a49c2b4484d820823b6790925ad",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-buffer-parser-checks-01-static-20261012",
+      "kind": "static",
+      "scope": "Boundedgetterjournal and eightinstalledimport pin checks,nooriginalownership/equivalence.",
+      "record": "research/runtime/draw02-wine-buffer-parser-checks-01.json",
+      "sha256": "6483a3c6cc1eab93d2e8d355760255f791049a77ac09bba467063ab45b9c4c56",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Closed actualgetteroriginmetadata,nottexturecreation/storageownership.",
+      "record": "research/runtime/draw02-wine-buffer-original-01.json",
+      "sha256": "f9ef134a2f5b9e83d0cdf352b8ea2db26373190c18414d9ed4a5a18ac4d8d41c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -101532,6 +101622,39 @@
       "evidence": [
         "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-buffer-origin-fixture",
+      "level": "headless",
+      "scope": "ActualPE32front/backgetter argument/singleforward/null/known/unknownresult/error/FP andexactlifetimeprefixmetadata.",
+      "behaviors": [
+        "NR.drawing-wine-buffer-origins"
+      ],
+      "tests": [
+        "tests/drawing-wine-buffer-test.c",
+        "tools/test-drawing-wine-buffer.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-buffer-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-buffer-parser-checks-01-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-wine-buffer-quick",
+      "level": "live_observation",
+      "scope": "Pinned original-activegetter origins alongsideV2submission/lifetime/source andAPI/EGLwitnesses,no immutablebyte/internalallroutes ownership.",
+      "behaviors": [
+        "NR.drawing-wine-buffer-origins",
+        "NR.drawing-wine-submission-generations",
+        "NR.drawing-wine-object-lifetimes"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -101905,8 +102028,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-wine-generation-20261012.json",
-    "sha256": "96d766c67306ec69c73d39b721a55ece6e54f250261141ef74c1aa01435c8493"
+    "path": "research/runtime/coverage/source-index-draw02-wine-buffer-20261012.json",
+    "sha256": "2530c9672cd86940649d9176b984ae6c82d1a1ae630a21e75910756d4d2ec96d"
   },
   "claim_bindings_required": true
 }

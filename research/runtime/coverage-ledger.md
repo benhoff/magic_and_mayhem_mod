@@ -7205,3 +7205,20 @@ object14,then sourceimmutability/asyncdelivery/fullroutes/semanticoutcomes.
 Steps3–7remainordered/pending;all47/21requirementsremainopen. Historyreview
 83ab30c..8cad8925has27exactreceipts/0gaps.Storageabout908GiBworking/418GiBfree;
 nohistoricalevidencehashrefreshorcleanup.
+
+## Step 2 selected buffer-origin checkpoint (2026-10-12 UTC)
+
+The separateWinebufferV1journalrecords actualfront/backgetterorigins,known
+swapchaingeneration,returnedtexturegenerationor0,index/result/error andexact
+entry/returnlifetimeprefix. ActualPE32fixture01passes6cdeclnull/known/unknown
+result/error/x87cases. Threebufferparser/fourinstalled-eight-importpinmethods
+pass. Original01admits333frontgetterreturns:swapchainobject4/generation4returns
+textureobject14/generation0. The previouslyunknownsubmissiondestinationisthus
+observed as a frontbuffer;itsunobservedinternaltexturecreation remainsunknown.
+Backgetterisnotreached inthiscohort.333APIand332EGLwitnessesremainseparate.
+
+Reassessment:step2nextaccountsforfrontbufferinternalcreation/releaseandactual
+asynchronousdelivery/sourceownership. Getterorigin alone cannotfreezeorown
+bytes. Fullroutes/lifetimes/semantic120windows remainopen;steps3–7stayordered
+pendingandall47/21requirements remainopen. Reviewed8cad8925..2f46b1b6has18exact
+committedreceipts/0gaps.Storageabout918GiBworking/408GiBfree;nohashrefresh/cleanup.

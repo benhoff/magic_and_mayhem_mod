@@ -27,7 +27,7 @@ def main():
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('*producer*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('world_*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'reconstruction/rendering').glob('glyph_backend*') if x.suffix in ('.c','.h','.S')]
-    if a.wine_submission:names += ['runtime/drawing/wine_submission.h','runtime/drawing/wine_lifetime.h','tools/inspect-drawing-wine-imports.py','tools/drawing_wine_submission.py','tools/drawing_wine_lifetime.py']
+    if a.wine_submission:names += ['runtime/drawing/wine_submission.h','runtime/drawing/wine_lifetime.h','runtime/drawing/wine_buffer.h','tools/drawing_wine_buffer.py','tools/inspect-drawing-wine-imports.py','tools/drawing_wine_submission.py','tools/drawing_wine_lifetime.py']
     sources={n:sha((ROOT/n).read_bytes()) for n in names};sources[str(a.schedule.resolve().relative_to(ROOT))]=sha(a.schedule.read_bytes())
     claims=json.loads(a.claims.read_text()) if a.claims else None
     if claims:sources.update(claims['sources'])
@@ -198,6 +198,8 @@ def main():
             report['wine_submission_observation']=decode_submissions((capture/'wine-submission.bin').read_bytes(),calls,(capture/'wine-lifetime.bin').read_bytes())
             from drawing_wine_lifetime import decode as decode_lifetimes
             report['wine_lifetime_observation']=decode_lifetimes((capture/'wine-lifetime.bin').read_bytes())
+            from drawing_wine_buffer import decode as decode_buffers
+            report['wine_buffer_observation']=decode_buffers((capture/'wine-buffer.bin').read_bytes(),(capture/'wine-lifetime.bin').read_bytes())
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
     a.report.parent.mkdir(parents=True,exist_ok=True)

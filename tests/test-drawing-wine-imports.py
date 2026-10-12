@@ -19,7 +19,7 @@ class WineImports(unittest.TestCase):
 
     def test_selected_actual_import_export_boundary(self):
         x = m.inspect(self.ddraw, self.wined3d)
-        self.assertEqual([r['iat_rva'] for r in x['selected']], [0x6d58c, 0x6d6ac, 0x6d6bc, 0x6d6c0, 0x6d690, 0x6d694])
+        self.assertEqual([r['iat_rva'] for r in x['selected']], [0x6d58c, 0x6d6ac, 0x6d6bc, 0x6d6c0, 0x6d690, 0x6d694, 0x6d6a4, 0x6d698])
         self.assertFalse(x['runtime_abi_validated'])
         self.assertFalse(x['source_submission_identity_bound'])
 

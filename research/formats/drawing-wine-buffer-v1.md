@@ -1,0 +1,20 @@
+# Selected Wine buffer getter origins V1
+
+The64-byteheaderof`wine-buffer.bin`containsmagic`MNMWBF01`,version1,rowbytes96,
+build0x40209ca7,131072rowcap;remainingwordszero. Eachrowhas24little-endianu32:
+ordinal0,phase1(entry1/return2/terminal4),callID2,method3(front1/back2),Win32thread4,
+enclosingAPIentry5,depth6,tick7,nonnullresult8,LastError9,swapchainopaqueID10,
+swapchaingeneration11,index12,returnedtextureID13,texturegeneration14,
+entrylifetimeprefix15,returnlifetimeprefix16,reserved17..23zero.
+
+Frontindexiszero. Entryresult/error/returnedtexture/returnprefixarezero.
+Returnpreservesentrycall/parent/swapchain/index/prefixandrecordsactualnonnull
+resultandreturnedopaqueID. Validate swapchain generation atentryprefix and
+texture generation atreturnprefix using the independent closedlifetimejournal.
+Unknowntexturegeneration stayszero;nullreturn staysIDzero. Terminalhasreason2,
+totalcalls3,thread4,tick7andotherwordszero. Everyentrymusthaveexactlyonematching
+returnbeforeterminal. No hostpointer/sourcepixelcrossesthiscontract.
+
+A getter establishes only an observed buffer origin. Internalcreation/lifetime
+routes,storageownershipandasyncEGLassignment remainopen. Remainingunknown
+texturesarenotassignedsyntheticcreationgenerations.
