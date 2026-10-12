@@ -194,6 +194,7 @@ void MovementSession::move(Handle subject,Point destination,std::optional<Handle
     Command c{Operation::move,subject,goal};c.destination=destination;enqueue(std::move(c));
 }
 TickReport MovementSession::step(TickInput input) {
+    if(!world_.state().systems.empty()) throw std::invalid_argument("Movement-only session cannot advance owned subsystem state; use its simulation session");
     std::uint32_t searchExpansions=0,movementWaits=0;
     auto report=world_.step(input,[this,input,&searchExpansions,&movementWaits](Phase phase,const State& state,std::vector<Command>& commands) {
         if(phase!=Phase::maintenance && phase!=Phase::decisions) return;

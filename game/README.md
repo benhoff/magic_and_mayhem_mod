@@ -4,8 +4,9 @@
 runs without Qt, Wine, original assets or injected adapters. It implements
 bounded entity storage, lifetime handles, transactional tick phases, a bounded
 movement session with opt-in multiple same-profile creatures and native
-v1/v2/v3/v4/v5/v6 snapshots. It does not yet implement AI, combat/spells, campaign
-triggers or a playable world. The original engine remains responsible for live
+v1/v2/v3/v4/v5/v6 snapshots. NS21 adds a separate bounded native melee session.
+Full AI, original combat equivalence, spells, campaign triggers and a complete
+playable world remain pending. The original engine remains responsible for live
 gameplay. Native checkpoints are distinct from original version-20 saves.
 
 ```sh
@@ -379,3 +380,20 @@ terrain before transactional admission; occupancy and unfinished-edge
 reservations must remain valid afterward. `canSpawnCreature` reports actor/pool
 capacity for the UI. Paused-only admission and transient cell/actor selection
 belong to the application Orders boundary, separate from simulation services.
+
+## Bounded native melee encounter (NS21)
+
+`CombatSession` composes the existing movement session with owned target,
+health and attack-phase state. Same-profile hostile creatures acquire targets,
+approach a free adjacent cell, wait through windup, apply fixed damage, recover
+and clean up on death. Slot order prevents retaliation after an earlier lethal
+hit. Complete native checkpoints preserve attacks in progress and dead identities.
+Movement-only advancement refuses nonempty subsystem state, so combat cannot be
+silently omitted when continuing a checkpoint.
+
+`mnm-combat-sandbox` provides create/trace/resume/inspect commands using synthetic
+frozen navigation, including an opt-in fine-motion encounter. This is headless
+native integration with explicit test rules; original damage RNG, defense,
+animation events, special deaths, spells/mana, campaign and live replacement
+remain pending. See [the harness](../apps/combat-sandbox/README.md) and
+[contract and validation](../research/runtime/native-combat-encounter.md).
