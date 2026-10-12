@@ -6688,3 +6688,35 @@ proof is pending. Complete original
 helper/pointer/allocator/nested map/visibility/driver/pixel/default/60FPS remain
 unproved. Exact961ea3b..bd177b6 committed-history review:19 files,zero gaps;
 no retrospective gate or execution claim.
+
+
+## Quiet prepared-scene repeat proof on TITAN (2026-10-12 UTC)
+
+`NR.scene-production-repetition.prepared-titan-20261012` passes16 extra native
+Worlds with exact ordered763..1349 scene rows and unchanged13 protected regions,
+including complete queue headers/entity pools/gameplay/map-context headers,
+counters/mode/pacing/ANI/RNG/scheduler.40normal history forwards/40extra skips,
+zero extra forwards/critical/refusal/foreign events. Original queue cleanup and
+once-only original post-work are retained; no cleared game state is restored.
+The first retained pair independently confirms exact protected bytes; the other
+15 comparisons are recorded by the guarded runtime. Module writes remain separate
+unclassified evidence, and all nested/map/visibility/timer/cursor/driver/pixel
+semantics remain incomplete. No accounting runs concurrently with gameplay.
+
+The independent `NR.public-resident-world.scene-production-prepared-campaign-20261012`
+passes4620 balanced Worlds at19.29201FPS, actual casting/Fireball/melee/lethal,
+spell refusals,movement,five portraits,Mini resume/Quit-No/normal Quit and all
+source/original/private cleanup gates on accelerated TITAN RTX/Zink. No delivery
+readback/pixel reply/fallback/pending World; clean producer retirement and80-byte
+ACK remain. Native policy integration advances only to `live_observation`;
+original comparison/replacement and partial recovered helper stages stay separate.
+
+Extra production/delivery averages28.67015ms (11.7612..52.9186,median27.037);
+13/16 exceed the16.67ms60FPS budget. These paired-draw samples exclude byte-audit/
+checkpoint cost and are instrumented, not sustainable independent timing. The
+full native World path averages22.63860ms (producer9.40538,submit9.04008).
+19FPS passes;60FPS and a safe default/steady independent schedule remain pending.
+Simulation target50ms is unchanged. Earlier gameplay/crash/scene/performance
+failures and source hashes are preserved, with causality still partial.
+Exactbd177b6..38cba10 history review:17 files,zero receipt gaps; no retrospective
+validation or gate assertion. See[experiment](scene-production-repetition.md).
