@@ -19,7 +19,9 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
            r[2]<1||r[2]>MNM_PRODUCER_PAYLOAD_SOURCE||r[23]||
            c.bytes().size()>128u*1024u*1024u-96||r[0]!=96+c.bytes().size()||r[18]!=c.bytes().size())
             throw std::invalid_argument("Drawing scene source sequence or record is invalid");
-        if(world_->active()&&r[2]!=MNM_PRODUCER_RASTER&&r[2]!=MNM_PRODUCER_CLIP&&
+        const bool independentCopy=r[2]==MNM_PRODUCER_COPY&&
+            r[3]!=world_->canvas()&&r[4]!=world_->canvas();
+        if(world_->active()&&!independentCopy&&r[2]!=MNM_PRODUCER_RASTER&&r[2]!=MNM_PRODUCER_CLIP&&
            r[2]!=MNM_PRODUCER_CHECKPOINT&&r[2]!=MNM_PRODUCER_QUEUE_RETURN&&r[2]!=MNM_PRODUCER_PAYLOAD_SOURCE)
             throw std::invalid_argument("Unadmitted producer inside native World scene");
         if(r[2]==MNM_PRODUCER_QUEUE_RETURN&&(!world_->active()||r[3]!=world_->canvas()||r[14]!=activeQueue_))

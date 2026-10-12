@@ -24,6 +24,11 @@ int main(int argc,char **argv)try{
     auto submit=[](legacy::DrawingScene &scene,legacy::CanvasProducer c){c.fields[0]=96+c.bytes().size();c.fields[18]=c.bytes().size();c.fields[1]=scene.sequence()+1;return scene.apply(c);};
     auto startup=[&](legacy::DrawingScene &scene){submit(scene,create(7));submit(scene,fill(7,0x1234));};
     auto world=[&](legacy::DrawingScene &scene){submit(scene,entry());submit(scene,raster());auto returned=entry();returned.fields[2]=12;submit(scene,returned);};
+    std::vector<std::uint32_t> baselineWorld;
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);world(scene);
+        scene.publish({scene.sequence(),1,7,5,3});baselineWorld=scene.read().pixels;
+    }
     {
         legacy::DrawingScene scene(renderer,input,source);rejected([&]{scene.read();});rejected([&]{scene.presentGpu();});startup(scene);world(scene);
         // Native UI comes after World and must survive opaque final copies.
@@ -38,6 +43,25 @@ int main(int argc,char **argv)try{
         rejected([&]{submit(scene,hud);});require(scene.read().pixels==completed->image.pixels,"Sealed frame changed");
     }
     require(renderer.stats().surfaces==0,"Sealed scene cleanup leaked storage");
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);
+        submit(scene,create(8));submit(scene,fill(8,0x2468));submit(scene,create(9));submit(scene,fill(9,0));
+        submit(scene,entry());submit(scene,raster());
+        auto copy=create(9);copy.fields[2]=6;copy.fields[4]=8;copy.fields[12]=5;copy.fields[13]=3;copy.fields[14]=0xffffffff;
+        submit(scene,copy);auto returned=entry();returned.fields[2]=12;submit(scene,returned);
+        scene.publish({scene.sequence(),1,9,5,3});
+        require(scene.read().pixels==std::vector<std::uint32_t>(15,0x2468),"Independent in-World copy lost source or destination history");
+        submit(scene,fill(9,0));scene.publish({scene.sequence(),1,7,5,3});
+        require(scene.read().pixels==baselineWorld,"Independent copy changed active World composition");
+    }
+    for(unsigned endpoint:{0u,1u}){
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);
+        submit(scene,create(8));submit(scene,fill(8,0x2468));submit(scene,entry());submit(scene,raster());
+        auto copy=create(endpoint==0?7:8);copy.fields[2]=6;copy.fields[4]=endpoint==0?8:7;
+        copy.fields[12]=5;copy.fields[13]=3;copy.fields[14]=0xffffffff;
+        rejected([&]{submit(scene,copy);});rejected([&]{scene.read();});
+    }
+    require(renderer.stats().surfaces==0,"Interleaved copy admission/refusal leaked World storage");
     {
         legacy::DrawingScene scene(renderer,input,source);startup(scene);
         scene.publish({scene.sequence(),0,7,5,3});

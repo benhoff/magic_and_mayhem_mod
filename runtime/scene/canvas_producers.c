@@ -275,8 +275,22 @@ static u8* request(const struct Frame* f){
   if(!s || !readable(shape,22) || get((void*)0x6e1f88)){fail(18,tag);return 0;}
   u32 mode=get((void*)shape);i32 w=(i32)get((void*)(shape+4)),h=(i32)get((void*)(shape+8));
   if(mode>3 || w<=0 || h<=0)return 0;
+  u32 plane=get((void*)(shape+18));
+  if(producer_trace_mode){
+   /* Original-active uniform copy leaf. Represent its owned constant/clip
+    * inputs as the existing fill operation, not sampled destination words. */
+   if(mode||plane||w>2048||h>2048){fail(18,tag);return 0;}
+   u32 red=get((void*)(shape+12))&0xffff,green=get((void*)(shape+14))&0xffff,blue=get((void*)(shape+16))&0xffff;
+   if(red>31||green>63||blue>31){fail(18,tag);return 0;}
+   r[2]=MNM_PRODUCER_FILL;extent(r,s);clip(r);r[14]=red<<11|green<<5|blue;
+   i32 x=(i32)f->args[0],y=(i32)f->args[1];long long right=(long long)x+w,bottom=(long long)y+h;
+   if(x>(i32)r[10])r[10]=(u32)x;if(y>(i32)r[11])r[11]=(u32)y;
+   if(right<(i32)r[12])r[12]=(u32)right;if(bottom<(i32)r[13])r[13]=(u32)bottom;
+   if((i32)r[10]>=(i32)r[12]||(i32)r[11]>=(i32)r[13])return 0;
+   u8* out=HeapAlloc(producer_heap(),0,96);if(!out){fail(7,tag);return 0;}copy(out,r,96);return out;
+  }
   if(w>64 || h>64){fail(18,tag);return 0;}
-  u32 plane=get((void*)(shape+18)),pixels=(u32)w*(u32)h;
+  u32 pixels=(u32)w*(u32)h;
   if(plane && !readable(plane,pixels*6)){fail(18,tag);return 0;}
   r[2]=MNM_PRODUCER_COLOUR_RECT;extent(r,s);clip(r);r[8]=f->args[0];r[9]=f->args[1];
   r[15]=mode;r[19]=w;r[20]=h;r[18]=pixels*2;r[0]=96+r[18];
@@ -368,10 +382,11 @@ static void producer_source_region_end(void){
 }
 
 #include "drawing_publication.h"
+#include "drawing_source_point.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
- if(tag==52 && !(continuous_public_bind && batch_guard_open)){SetLastError(error);return 0;}
+ if(tag==52 && !producer_trace_mode && !(continuous_public_bind && batch_guard_open)){SetLastError(error);return 0;}
  PRODUCER_TRACE_SCOPE;
  if(enabled&&!stopped){
   if(batch_guard_open && continuous_public_bind && GetCurrentThreadId()!=batch_owner){

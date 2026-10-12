@@ -127,6 +127,43 @@ static void tail(u8* p,u32 tag){
  if(tag==1){T(release);}else if(tag==2){T(lock);}else if(tag==5||tag==6){T(fill);}else if(tag==7||tag==8){T(copies);}else if(tag==9){T(jpeg);}else if(tag==10){T(font);}else if(tag==11){T(slow);}else if(tag==17){T(clipped);}else if(tag==18){T(half);}else if(tag==19||tag==20){T(quarter);}else if(tag==21){T(wave);}else if(tag==25){T(shadow);}else if(tag==30){static const u8 pcx[]={0x5f,0x5b,0x83,0xc4,0x18};T(pcx);}else if(tag==31){static const u8 dib[]={0x5e,0x59};T(dib);}else if(tag==32||tag==33){u8 close[]={0x5b,0x83,0xc4,tag==32?0x18:0x20};for(u32 i=0;i<4;++i)*p++=close[i];}else if(tag==34){static const u8 word[]={0x83,0xc4,0x1c};T(word);}else if(tag==35){static const u8 bmp[]={0x83,0xc4,8};T(bmp);}else if(tag==36){T(normal);}else if(tag==37||tag==38){static const u8 partial[]={0x83,0xc4,0x20};T(partial);}else if(tag==39){static const u8 keyed[]={0x5b,0x83,0xc4,0x18};T(keyed);}else if(tag==40){static const u8 bmp0[]={0x83,0xc4,8};T(bmp0);}else if(tag==41){static const u8 key[]={0x83,0xc4,0x10};T(key);}else if(tag==52){static const u8 colour[]={0x83,0xc4,0x24};T(colour);}else if(tag>=49){static const u8 rotated[]={0x5e,0x5d,0x5b,0x83,0xc4,0x28};T(rotated);}else if(tag==46){static const u8 outline[]={0x5f,0x5e,0x5d,0x5b,0x83,0xc4,0x28};T(outline);}else if(tag==47){static const u8 mark[]={0x5b};T(mark);}else if(tag==48){static const u8 units[]={0x5d,0x5b,0x83,0xc4,8};T(units);}else if(tag==45){static const u8 map[]={0x5e,0x83,0xc4,0x20};T(map);}else if(tag==44){static const u8 fade[]={0x5e,0x5d,0x59};T(fade);}else if(tag>=42){static const u8 rect[]={0x5b,0x83,0xc4,0x20};T(rect);}else if(tag>=27){u8 close[]={0x83,0xc4,tag==27?0x40:tag==28?0x38:0x24};for(u32 i=0;i<3;++i)*p++=close[i];}else if(tag==26){static const u8 add[]={0x83,0xc4,0x1c};T(add);}else if(tag>=12){T(normal);}
  for(u32 i=0;i<n;++i)*p++=bytes[i];if(hooks[tag].pop){*p++=0xc2;*p++=(u8)hooks[tag].pop;*p=0;}else *p=0xc3;
 }
+static void uniform_colour_source_fixture(void){
+ struct Surface saved_surface;copy(&saved_surface,surfaces,sizeof(saved_surface));
+ u32 saved_mode=producer_trace_mode,saved_bound=get((void*)0x658174),saved_format=get((void*)0x6e1f88),saved_clip[4]={get((void*)0x6e0008),get((void*)0x6cbb6c),get((void*)0x6a49b8),get((void*)0x656618)};
+ producer_trace_mode=1;surfaces[0].object=0x700100;surfaces[0].id=99;surfaces[0].pixels=0x700000;surfaces[0].width=5;surfaces[0].height=3;surfaces[0].stride=5;
+ put((void*)0x658174,0x700000);put((void*)0x6e1f88,0);put((void*)0x6e0008,0);put((void*)0x6cbb6c,0);put((void*)0x6a49b8,5);put((void*)0x656618,3);
+ u8 shape[24]={0};put(shape+4,4);put(shape+8,75);struct Frame f={0};f.tag=52;f.ecx=(u32)shape;f.args[0]=1;f.args[1]=0;
+ u8* data=request(&f);if(!data)ExitProcess(137);u32* r=(u32*)data;
+ if(r[2]!=MNM_PRODUCER_FILL||r[3]!=99||r[10]!=1||r[11]!=0||r[12]!=5||r[13]!=3||r[14]||r[18])ExitProcess(138);
+ HeapFree(producer_heap(),0,data);f.args[0]=6;if(request(&f))ExitProcess(139);
+ producer_trace_mode=saved_mode;copy(surfaces,&saved_surface,sizeof(saved_surface));put((void*)0x658174,saved_bound);put((void*)0x6e1f88,saved_format);put((void*)0x6e0008,saved_clip[0]);put((void*)0x6cbb6c,saved_clip[1]);put((void*)0x6a49b8,saved_clip[2]);put((void*)0x656618,saved_clip[3]);
+}
+static void source_point_fixture(void){
+ struct Surface saved_surfaces[2];struct Frame saved_frame;struct ProducerTraceThread saved_threads[32];
+ copy(saved_surfaces,surfaces,sizeof(saved_surfaces));copy(&saved_frame,frames,sizeof(saved_frame));copy(saved_threads,producer_trace_threads,sizeof(saved_threads));
+ u32 saved_enabled=enabled,saved_stopped=stopped,saved_mode=producer_trace_mode,saved_failures=failures;
+ u32 out[16],other[16],pair[32],wrapper[12]={0};for(u32 i=0;i<16;++i)out[i]=0x77777777;
+ producer_trace_mode=0;SetLastError(0xbeef);if(SceneDrawingSourcePointV1((void*)0x1111,out,64)||GetLastError()!=0xbeef||out[0]!=0x77777777)ExitProcess(126);
+ InitializeCriticalSection(producer_trace_mutex);producer_trace_mode=1;enabled=1;stopped=failures=0;
+ zero(surfaces,sizeof(saved_surfaces));wrapper[1]=0x1111;wrapper[2]=0x2222;
+ surfaces[0].object=(u32)wrapper;surfaces[0].id=77;surfaces[0].width=4;surfaces[0].height=3;surfaces[0].stride=6;surfaces[0].dirty=9;surfaces[0].sampled=7;
+ frames[0].sp=1;zero(producer_trace_threads,sizeof(saved_threads));producer_trace_threads[0].id=GetCurrentThreadId();producer_trace_threads[0].depth=2;
+ SetLastError(0xbeef);if(!SceneDrawingSourcePointV1((void*)0x1111,out,64)||GetLastError()!=0xbeef||out[0]!=64||out[1]!=1||out[2]!=19||out[6]!=77||out[7]!=4||out[8]!=3||out[9]!=6||out[10]!=9||out[11]!=7||out[12]!=1||out[13]!=2||out[14]!=GetCurrentThreadId()||out[15])ExitProcess(127);
+ if(!SceneDrawingSourcePointV1((void*)0x2222,other,64)||!bypass_equal(out,other,64))ExitProcess(128);
+ SetLastError(0xbeef);if(!SceneDrawingSourcePairV1((void*)0x1111,(void*)0x2222,pair,128)||GetLastError()!=0xbeef||!bypass_equal(pair,pair+16,64)||SceneDrawingSourcePairV1(0,0,pair,127))ExitProcess(136);
+ if(!SceneDrawingSourcePointV1((void*)0x3333,other,64)||other[2]!=3||other[6]||other[7])ExitProcess(129);
+ copy(surfaces+1,surfaces,sizeof(*surfaces));surfaces[1].id=78;
+ if(!SceneDrawingSourcePointV1((void*)0x1111,other,64)||other[2]!=11||other[6]||other[7])ExitProcess(130);
+ zero(surfaces+1,sizeof(*surfaces));stopped=1;failures=3;
+ if(!SceneDrawingSourcePointV1((void*)0x1111,other,64)||other[2]!=23||other[5]!=3)ExitProcess(131);
+ u32* readonly=VirtualAlloc(0,4096,0x3000,4);u32 prior,ignored;
+ if(!readonly)ExitProcess(132);for(u32 i=0;i<16;++i)readonly[i]=0x77777777;
+ if(!VirtualProtect(readonly,4096,2,&prior))ExitProcess(133);
+ SetLastError(0xbeef);if(SceneDrawingSourcePointV1((void*)0x1111,readonly,64)||GetLastError()!=0xbeef||readonly[0]!=0x77777777||SceneDrawingSourcePointV1(0,out,63)||SceneDrawingSourcePointV1(0,0,64))ExitProcess(134);
+ if(!VirtualProtect(readonly,4096,prior,&ignored))ExitProcess(135);
+ copy(surfaces,saved_surfaces,sizeof(saved_surfaces));copy(frames,&saved_frame,sizeof(saved_frame));copy(producer_trace_threads,saved_threads,sizeof(saved_threads));
+ enabled=saved_enabled;stopped=saved_stopped;producer_trace_mode=saved_mode;failures=saved_failures;
+}
 void start(void){
  oracle_config_fixture();
  reserve[sizeof(reserve)-1]=1;u32 old;
@@ -147,6 +184,8 @@ void start(void){
  oracle_budget_fixture();
  batch_fixture();
  journal_fixture();
+ uniform_colour_source_fixture();
+ source_point_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  char name[260];path(name,"producer-fixture-pass-",0,".bin");

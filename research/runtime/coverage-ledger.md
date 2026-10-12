@@ -6795,3 +6795,58 @@ Prior missing link objects and two incorrect synthetic entry52tails are retained
 as fixture failures. Original trace-mode source/physical coupling, immutable
 producers and coherent presented frames remain pending; no14journey/21operation
 completion, original pixels, actual driver equivalence or replacement is claimed.
+
+## Step 2 paired source-point and native prediction checkpoint (2026-10-12 UTC)
+
+Producer recorder work is committed as`1ca9cba`; its staged gate and hook passed.
+New portable paired source metadata associates local interfaces with exact closed
+producer generations at original API entry,return and physical acknowledgement.
+The journal retains unknown/ambiguous/stopped/pending state and competing writers;
+no pointer or original output plane is a native input. Getter03passes the53-site
+PE32 fixture,paired identity/output/LastError guards,and a synthetic uniform
+colour leaf. Both fresh API fixtures pass,including eight competing mutators in
+physical mode and unchanged legacy reentrant callbacks. Six point-parser and
+four prediction guard methods pass independently.
+
+Original01completes560physical witnesses/17095points/43134producer records.
+Original02fails a stale Results Continue request; its raw prefix and refusal
+remain retained. Acquisition now retries only explicit stale-generation replies,
+recording every attempt. Original03completes576witnesses/17674points/5891surface
+calls/49010producer records and16closed World queues with zero recorder failures.
+Its64passive ticks/446movement events/48health reductions/zero melee do not meet
+the120advancing-update or other semantic acceptance requirements. All original
+manifests verify before/after; scripts preserve original executable sections.
+
+Native prediction supplies pinned encoded assets,including181SPR files,and
+removes observed raster results. Early missing-catalogue and unknown in-World
+copy refusals remain negative reports. The narrow scene fix admits an interleaved
+copy only when neither endpoint is the active World canvas. Native metamorphic
+and refusal tests pass,as do six retained startup checkpoints:2880000pixels,
+zero differences. Original records39211/41727identify independent cursor-to-primary
+copies through caller0x4a4d2f; unknown World writes still poison presentation.
+
+Prediction03used bit replication and differed by12719493pixels. Using the
+previously independently established normalized-nearest display conversion,
+prediction04matches104of107witnesses; an initial black physical plane and two
+300-pixel strips remain. Fresh prediction05matches104of106selected witnesses,
+with600different pixels across two witnesses;470others remain explicitly excluded.
+All50880000selected pixels were compared. Neither mismatch is discarded,and all
+five prediction results remain negative. A temporary compiler-directory quota
+refusal is also retained; compilation succeeds with bounded working storage.
+
+CPU checkpoint971at producer37147first differs after matching World return12:
+the unexplained strip is x424..427,y236..310. The subsequent HUD copy at596,460
+cannot touch it. Opt-in observation of a uniform0x547d80colour leaf passes only
+synthetic tests; original02/03emit none,so it does not explain these strips.
+Read-only disassembly identifies an unobserved post-World object loop at0x4fd58b
+calling0x58f9c0→0x533a00. Nearby methods allocate and regenerate a vertical bar
+from logical width,height,current/maximum fields. Static reachability and byte
+copy are evidence; attribution of the observed strip remains a hypothesis.
+Next recover and capture those source parameters,construct the bitmap natively,
+and compare without supplying the original generated buffer as input.
+
+Reassessment: step2 remains open for that writer,complete producer lifetimes,
+all display routes and semantic actions. Steps3–7 remain ordered and pending;
+all47journey subrequirements and21operation requirements stay open. Reviewed
+38979ff..1ca9cbacontains21matching committed file-version receipts and zero gaps;
+this historical accounting asserts no retrospective gate or new validation.

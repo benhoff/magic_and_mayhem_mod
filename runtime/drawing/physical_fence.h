@@ -3,7 +3,6 @@
 API void WIN Sleep(u32);
 API int WIN ReadFile(HANDLE,void*,u32,u32*,void*);
 API u32 WIN GetFileSize(HANDLE,u32*);
-static u32 physical_enabled,physical_byte_limit=1024u*1024u*1024u;
 static int physical_budget(void){
  char text[8];u32 n=GetEnvironmentVariableA("MNM_DRAW_PHYSICAL_MIB",text,sizeof(text));
  if(!n)return 1;if(!physical_enabled||n>4)return 0;u32 mib=0;

@@ -9,14 +9,21 @@ def load(path):
     s=importlib.util.spec_from_file_location(Path(path).stem,ROOT/path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=range(1,17),help='Bind original-active producer metadata through the first1..16World returns');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
     if (a.observer_mode=='physical') != (a.physical_peer is not None):p.error('Physical mode requires exactly one physical peer')
+    if a.producer_samples and a.observer_mode!='physical':p.error('Producer binding requires physical mode')
     if a.control and a.physical_peer:p.error('Physical API capture cannot be a control run')
     if a.observer_mode!='physical' and (a.physical_oracle_mib!=1024 or a.physical_transient_mib!=256):p.error('Physical budgets require physical mode')
     if a.report.exists():p.error('Refusing evidence overwrite')
-    names=['tools/capture-drawing-interactive.py','tools/drawing-session-runner.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/build-drawing-session.py','tools/build-drawing-session-input.py','tools/build-menu-observer.py','tools/build-shadow-bridge.py','tools/prepare-shadow-experiment.py','tools/prepare-scene-observer.py','tools/run-game.sh','tools/run-opengl-game.py','tools/campaign_gameplay.py','runtime/drawing/session.c','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','tools/drawing_api_physical.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','runtime/shadow/win32_min.h','tests/drawing-session-input.cpp','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']
+    names=['tools/capture-drawing-interactive.py','tools/drawing-session-runner.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/build-drawing-session.py','tools/build-drawing-session-input.py','tools/build-menu-observer.py','tools/build-shadow-bridge.py','tools/prepare-shadow-experiment.py','tools/prepare-scene-observer.py','tools/run-game.sh','tools/run-opengl-game.py','tools/campaign_gameplay.py','runtime/drawing/session.c','runtime/drawing/source_points.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','tools/drawing_api_physical.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','runtime/shadow/win32_min.h','tests/drawing-session-input.cpp','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/menu').glob('*') if x.suffix in ('.h','.c','.S')]
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('menu_v*.h')]
+    if a.producer_samples:
+        names += ['tools/build-scene-observer.py','tools/drawing_producer_points.py','tools/inspect-canvas-producers.py']
+        names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/scene').glob('*.[chS]')]
+        names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('*producer*.h')]
+        names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('world_*.h')]
+        names += [str(x.relative_to(ROOT)) for x in (ROOT/'reconstruction/rendering').glob('glyph_backend*') if x.suffix in ('.c','.h','.S')]
     sources={n:sha((ROOT/n).read_bytes()) for n in names};sources[str(a.schedule.resolve().relative_to(ROOT))]=sha(a.schedule.read_bytes())
     claims=json.loads(a.claims.read_text()) if a.claims else None
     if claims:sources.update(claims['sources'])
@@ -32,16 +39,18 @@ def main():
     verify('original-before')
     try:
         load('tools/prepare-scene-observer.py').copy_installation(source,game)
-        drawing=None if a.control else load('tools/build-drawing-session.py').build();menu=load('tools/build-menu-observer.py').build();input_binary=load('tools/build-drawing-session-input.py').build()
+        drawing=None if a.control else load('tools/build-drawing-session.py').build();menu=load('tools/build-menu-observer.py').build();input_binary=load('tools/build-drawing-session-input.py').build();scene=load('tools/build-scene-observer.py').build() if a.producer_samples else None
         importer=load('tools/prepare-shadow-experiment.py');patched=original if a.control else importer.add_import(original,'MnmDrawing.dll','DrawingAnchor',b'.mndraw');patched=importer.add_import(patched,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
+        if scene:patched=importer.add_import(patched,'MnmScene.dll','SceneDrawingSourcePairV1',b'.mnscene')
         pe=struct.unpack_from('<I',original,60)[0];count=struct.unpack_from('<H',original,pe+6)[0];table=pe+24+struct.unpack_from('<H',original,pe+20)[0]
         for i in range(count):
             size,at=struct.unpack_from('<II',original,table+40*i+16)
             if original[at:at+size]!=patched[at:at+size]:raise ValueError('Original section changed in import staging')
         (game/'Chaos.exe').write_bytes(patched)
-        for binary in ([menu] if a.control else [drawing,menu]):shutil.copy2(binary,game/binary.name)
+        binaries=([menu] if a.control else [drawing,menu])+([scene] if scene else [])
+        for binary in binaries:shutil.copy2(binary,game/binary.name)
         settings=load('tools/run-opengl-game.py');preferences=settings.disable_cd_music(game)+settings.skip_movies(game)
-        manifest={'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in (('Chaos.exe','MnmMenu.dll') if a.control else ('Chaos.exe','MnmDrawing.dll','MnmMenu.dll'))},'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+        manifest={'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         raw=bytearray(106496);raw[:8]=b'MNMMCM12';struct.pack_into('<II',raw,8,12,len(raw));struct.pack_into('<III',raw,16,2,1,1);(run/'channel.bin').write_bytes(raw)
@@ -66,9 +75,12 @@ def main():
                 refresh();time.sleep(.02)
             raise ValueError('Original menu state timed out')
         def send(screen,action,argument=0,rules=None,slots=None):
-            s=wait(screen);refresh(action,s[0][0],argument,rules,slots);reply=wait(ack=request)
-            if reply[0][4]!=1:raise ValueError('Original menu action refused: '+str(reply[0]))
-            menu_actions.append({'request':request,'screen':screen,'action':action,'argument':argument,'status':reply[0][4]})
+            for attempt in range(8):
+                s=wait(screen);refresh(action,s[0][0],argument,rules,slots);reply=wait(ack=request)
+                menu_actions.append({'request':request,'screen':screen,'action':action,'argument':argument,'status':reply[0][4],'attempt':attempt+1})
+                if reply[0][4]==1:return
+                if reply[0][4]!=2:raise ValueError('Original menu action refused: '+str(reply[0]))
+            raise ValueError('Original menu generation remained stale after eight retained attempts')
         if a.physical_peer:
             with (run/'physical-peer.log').open('x') as log:physical_peer=subprocess.Popen([str(a.physical_peer.resolve()),str(capture),str(run/'physical-report.json'),'--api','--transient-mib',str(a.physical_transient_mib)],env=env,stdout=log,stderr=subprocess.STDOUT)
         with (run/'game.log').open('x') as log:
@@ -120,7 +132,11 @@ def main():
             effects={'gameplay_records':len(gameplay),'distinct_snapshot_ticks':len({r[3] for r in gameplay if r[1]==1}),'sustained_gameplay_observed':len({r[3] for r in gameplay if r[1]==1})>=20,'active_actors':sum(bool(v['active']) for v in actors.values()),'movement_records':len(movement),'health_reduction_records':len(health_changes),'melee_returns':sum(r[1]==2 for r in gameplay),'semantic_selection_verified':False,'semantic_tooltip_verified':False,'semantic_pause_verified':False,'world_exit_verified':True,'results_continue_status':1,'results_quit_status':1,'returned_main_generation':returned_main[0][0]}
             from drawing_call_intervals import inspect_intervals
             intervals=inspect_intervals(capture) if a.observer_mode=='physical' else None
-            report={'call_intervals':intervals,'schema':1,'success':True,'source_sha256':BUILD,'sources':sources,'sources_stable':True,'experiment':str(run),'original_manifest_verified_before_after':True,'original_sections_unchanged':True,'original_pixels_used_as_native_inputs':False,'original_drawing_active':True,'observation':observation,'input_schedule':json.loads((run/'input.json').read_text()),'physical_presentations':[dict(path=str(x.relative_to(run)),sha256=sha(x.read_bytes()),synchronized_original_frame=False) for x in sorted((capture/'physical').glob('*.png'))],'menu_actions':menu_actions,'original_gameplay_observation':effects,'results_payload_hex':result_payload.hex(),'gameplay_sha256':sha((capture/'gameplay.bin').read_bytes()),'input_binary_sha256':sha(input_binary.read_bytes()),'staging':manifest,'observer_mode':a.observer_mode,'physical_oracle_mib':a.physical_oracle_mib,'physical_transient_mib':a.physical_transient_mib,'physical_peer_sha256':sha(a.physical_peer.read_bytes()) if a.physical_peer else None,'physical_api_observation':physical_observation,'native_parity_performed':False,'complete_journey_coverage':False}
+            producer_observation=None
+            if scene:
+                from drawing_producer_points import inspect_points
+                producer_observation=inspect_points(capture)
+            report={'producer_observation':producer_observation,'call_intervals':intervals,'schema':1,'success':True,'source_sha256':BUILD,'sources':sources,'sources_stable':True,'experiment':str(run),'original_manifest_verified_before_after':True,'original_sections_unchanged':True,'original_pixels_used_as_native_inputs':False,'original_drawing_active':True,'observation':observation,'input_schedule':json.loads((run/'input.json').read_text()),'physical_presentations':[dict(path=str(x.relative_to(run)),sha256=sha(x.read_bytes()),synchronized_original_frame=False) for x in sorted((capture/'physical').glob('*.png'))],'menu_actions':menu_actions,'original_gameplay_observation':effects,'results_payload_hex':result_payload.hex(),'gameplay_sha256':sha((capture/'gameplay.bin').read_bytes()),'input_binary_sha256':sha(input_binary.read_bytes()),'staging':manifest,'observer_mode':a.observer_mode,'physical_oracle_mib':a.physical_oracle_mib,'physical_transient_mib':a.physical_transient_mib,'physical_peer_sha256':sha(a.physical_peer.read_bytes()) if a.physical_peer else None,'physical_api_observation':physical_observation,'native_parity_performed':False,'complete_journey_coverage':False}
             if claims:report['claims']=claims['claims']
             if sha((source/'Chaos.exe').read_bytes())!=BUILD or any(sha((ROOT/n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Capture sources changed')
     except Exception as error:

@@ -6,6 +6,9 @@ root=Path(os.environ['MNM_DRAW_SESSION_EXPERIMENT']).resolve();metadata=json.loa
 for name,digest in metadata['binaries'].items():
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=digest:raise ValueError('Staged binary changed: '+name)
 for name in ('MNM_DRAW02_PUBLICATION','MNM_RENDER_COMMAND_CHANNEL','MNM_RENDER_INPUT','MNM_SCENE_DIR','MNM_WORD_SPRITES'):os.environ.pop(name,None)
+if metadata.get('producer_samples'):
+    os.environ.update(MNM_DRAW02_PRODUCER_BIND='1',MNM_CANVAS_PRODUCERS='1',MNM_MINIMAP_OWNED='1',MNM_SCENE_SAMPLES=str(metadata['producer_samples']),MNM_SCENE_DIR='Z:'+str(root/'capture').replace('/','\\'))
+else:os.environ.pop('MNM_DRAW02_PRODUCER_BIND',None)
 if metadata['api_observer_enabled']:os.environ['MNM_DRAW_SESSION_DIRECTORY']='Z:'+str(root/'capture').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SESSION_DIRECTORY',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
