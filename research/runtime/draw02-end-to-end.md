@@ -1412,3 +1412,26 @@ retain a bounded failure reproduction with mutex/source identities or prove
 precise acquisition/release boundaries before testing any added diagnostic lock.
 All 47 journey/21 operation requirements and steps 3–7 remain open; step 2
 continues with source lifetime/routes and semantic completeness boundaries.
+
+
+## Approved DRAW-02 archive completion (2026-10-12 UTC)
+
+The user explicitly approved the reviewed task-scoped archive proposal with
+“do it”. All 65,783 selected payload files from 13 older completed DRAW-02 runs
+were copied to the verified cold archive and removed locally only after raw
+decompression/hash verification and both durable receipts. Final reconciliation
+checks every selected path against local and remote catalogs, confirms local
+absence, and rehashes all 17,226 unique compressed objects. The two retained
+receipt snapshots match exactly. Released space is 60.594715 GiB.
+
+`draw02-storage-archive-20261012.json` retains exact proposal, review, execution,
+verification and executor hashes. Sources, reports, original files, pins and
+active/recent runs are preserved; storage policy and automatic-archive setting
+remain unchanged. All 2,927 original files verify afterward. Restore archived
+inputs before future analysis. Archive provenance does not refresh historical
+engine/source fingerprints or claim new comparison/native parity.
+
+Joint source/mutex work is committed as `1e046f2d`; its staged gate and hook
+pass. Reviewed `4b66daac..1e046f2d` range has 12 exact file receipts and zero
+missing versions. Step 2 continues with the documented source lifetime/routes
+and semantic boundaries; all 47 journey/21 operation and steps 3–7 remain open.
