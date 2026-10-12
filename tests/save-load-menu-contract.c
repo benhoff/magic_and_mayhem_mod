@@ -7,6 +7,8 @@ typedef u32 (THIS *Action)(void*,u32);
 typedef u32 (THIS *Tick)(void*);
 #pragma section(".fixture", read, write, execute)
 __declspec(allocate(".fixture")) volatile u8 fixture_space[0x300000];
+u32 saved_esp,callback_result,abi_failure;
+u32 invoke_action(u32,void*,u32);
 static u32 fades,disabled,loads,writes,writer_result,overwrite,modal_count;
 static u8 modal[0x100],allocated[0x100];
 static char passed_name[128];
@@ -37,25 +39,26 @@ void start(void){
  stub(0x597850,(void*)&allocate);stub(0x4cef40,(void*)&construct);stub(0x4cefa0,(void*)&destroy);stub(0x597870,(void*)&release);
  stub(0x4cfbd0,(void*)&bind);stub(0x4cfbe0,(void*)&bind);stub(0x4cf010,(void*)&message);
  void* object=(void*)0x6de4e8;u8* p=object;Action button=(Action)load_button_address;Tick tick=(Tick)load_tick_address;
- for(u32 caller=3;caller<=17;caller+=14){reset(object,11);put(p+0x60,caller);put((void*)0x657d37,123);
-   require(!button(object,1)&&fades==1&&get(p+0x43)==1&&get((void*)0x657d37)==(caller==3?0:123),20);}
- reset(object,11);require(!button(object,9)&&!fades&&!p[0x64],21);
- for(u32 list=0;list<=1;++list){reset(object,11);put(p+0x5b,list?0x680000:0);require(!button(object,0)&&p[0x5f]==1&&p[0x64]==1&&disabled==list,22);
+ for(u32 caller=3;caller<=17;caller+=14){reset(object,12);put(p+0x60,caller);put((void*)0x657d37,123);
+   require(!invoke_action((u32)button,object,1)&&fades==1&&get(p+0x43)==1&&get((void*)0x657d37)==(caller==3?0:123),20);}
+ reset(object,12);require(!invoke_action((u32)button,object,9)&&!fades&&!p[0x64],21);
+ for(u32 list=0;list<=1;++list){reset(object,12);put(p+0x5b,list?0x680000:0);require(!invoke_action((u32)button,object,0)&&p[0x5f]==1&&p[0x64]==1&&disabled==list,22);
    tick(object);require(loads==1&&!p[0x64]&&fades==1&&get(p+0x43)==1&&get((void*)0x657d37)==1&&*(u8*)0x6db966==1,23);
    tick(object);require(loads==1,24);}
- reset(object,11);tick(object);require(!loads,25);
+ reset(object,12);tick(object);require(!loads,25);
  object=(void*)0x6de7c8;p=object;button=(Action)save_button_address;tick=(Tick)save_tick_address;
- reset(object,13);require(!button(object,1)&&fades==1&&get(p+0x43)==1&&!writes,26);
- reset(object,13);require(!button(object,9)&&!fades&&!writes,27);
+ reset(object,13);require(!invoke_action((u32)button,object,1)&&fades==1&&get(p+0x43)==1&&!writes,26);
+ reset(object,13);require(!invoke_action((u32)button,object,9)&&!fades&&!writes,27);
  for(u32 admitted=0;admitted<=1;++admitted){reset(object,13);copy((void*)0x680300,"  fixture-save",15);put(p+0x5f,admitted);tick(object);
    require(writes==1&&overwrite==admitted&&passed_name[0]=='f'&&!get(p+0x5f)&&get(p+0x43)==1&&fades==1,28);}
  reset(object,13);writer_result=2;tick(object);require(writes==1&&modal_count==1&&get(p+0x3b)==(u32)modal&&get(p+0x5f)==1&&!p[0x63]&&!fades,29);
  /* The filename setter copies a terminator; list selection is reset then selected,
   * preventing the original toggle-on-selected behavior from undoing a request. */
- void* edit=(void*)0x680200;((Action)edit_set_address)(edit,(u32)"second-save");require(!((char*)0x680300)[11],30);
+ void* edit=(void*)0x680200;invoke_action(edit_set_address,edit,(u32)"second-save");require(!((char*)0x680300)[11],30);
  void* list=(void*)0x680500;zero(list,0x80);put((u8*)list+0x45,0x680600);put((u8*)list+0x49,2);copy((void*)0x680600,"first",6);copy((void*)0x680701,"second",7);*((u8*)list+0x5a)=1;
- Action select=(Action)list_select_address;select(list,1);select(list,1);require(get((u8*)list+0x5b)==0xffffffff,31);
- select(list,0xffffffff);select(list,1);require(get((u8*)list+0x5b)==1&&((Tick)list_get_address)(list)==0x680701,32);
+ Action select=(Action)list_select_address;invoke_action((u32)select,list,1);invoke_action((u32)select,list,1);require(get((u8*)list+0x5b)==0xffffffff,31);
+ invoke_action((u32)select,list,0xffffffff);invoke_action((u32)select,list,1);require(get((u8*)list+0x5b)==1&&((Tick)list_get_address)(list)==0x680701,32);
+ require(!abi_failure,33);
  const char report[]="{\"success\":true,\"cases\":13,\"real_game_launched\":false,\"save_io_stubbed\":true}\n";u32 wrote;
  WriteFile(GetStdHandle(0xfffffff5),report,sizeof(report)-1,&wrote,0);ExitProcess(0);
 }

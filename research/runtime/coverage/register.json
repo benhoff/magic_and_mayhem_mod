@@ -42835,15 +42835,98 @@
       ],
       "tests": [
         "tools/test-save-load-menu-contract.py",
-        "tests/save-load-menu-contract.c"
+        "tests/save-load-menu-contract.c",
+        "runtime/menu/contract_selftest.S"
       ],
       "evidence": [
         "UI36.static",
-        "UI36.original"
+        "UI36.original",
+        "UI36.original-abi",
+        "UI36.original-abi-screen12"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.storage-menu-ownership",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Guarded native Save/Load menu command and ownership projection",
+      "scope": "V13 fixed Main Load and gameplay campaign Save/Load parent shapes, original row IDs and callbacks, ASCII-safe new stems, modal viewport handoff and engine-confirmed native return. Original serializers, overwrite/error dialogs and drawing remain active. Campaign file I/O, persistence across launches, loaded scenarios and full failures remain pending; first live scenario covers Main Load/Cancel only.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/save-load-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v13.h",
+        "runtime/menu/storage.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_storage_menu_controller.cpp",
+        "apps/qt-shell/live_storage_menu_controller.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/menu-storage-bridge-test.cpp",
+        "tests/storage-menu-bridge-reference.c",
+        "tools/test-storage-menu-bridge.py",
+        "apps/qt-shell/live_storage_menu_test.cpp",
+        "tools/test-live-storage-menus.py",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp"
+      ],
+      "evidence": [
+        "UI37.storage-fixture",
+        "UI37.main-load-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.menu-save-store",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Owned original-format save copying across disposable sessions",
+      "scope": "Linux locked, bounded opaque-file seed/copy/merge, no-change cancellation, delete retention and conflict preservation. Synthetic bytes only; service not connected to the game yet. No serializer compatibility, crash-transaction, arbitrary-path or live persistence claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/menu-save-store.md"
+      ],
+      "implementation": [
+        "tools/menu_save_store.py"
+      ],
+      "tests": [
+        "tests/test-menu-save-store.py"
+      ],
+      "evidence": [
+        "UI37.save-store-unit"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -88899,7 +88982,7 @@
       "id": "UI36.original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "13 bounded private PE32 callback/control groups, with serializer/fade/modal resource stubs; no live ownership or save I/O.",
+      "scope": "13 bounded private PE32 callback/control groups, with serializer/fade/modal resource stubs; no live ownership or save I/O. Initial fixture omitted the Load button and list setter RET-immediate operands; retained historical result only, not full action ABI evidence. UI36.original-abi corrects ranges and adds explicit calling-convention checks.",
       "record": "research/runtime/save-load-menu-contract-20261012.json",
       "sha256": "7119450150101e58c484d9e9c3d60f2ab9a4a1abfcfe66fe3ead6b99d87ece8f",
       "sources_pointer": "/sources",
@@ -88920,6 +89003,117 @@
         {
           "pointer": "/real_game_launched",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI36.original-abi",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Corrected full RET-immediate byte ranges; 13 original control groups plus explicit action stack/nonvolatile-register checks, with I/O/fade/modal stubs; no actual persistence or live ownership.",
+      "record": "research/runtime/save-load-menu-contract-abi-20261012.json",
+      "sha256": "ce2a38dd2dfcec3c010c4389207ae617594d723ca2a9c3c0ff9a649892a7d1cb",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 13
+        },
+        {
+          "pointer": "/save_io_stubbed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI36.original-abi-screen12",
+      "kind": "isolated_original",
+      "scope": "Full action return bytes and stack/register ABI checks, with constructor-confirmed Load ID12 fixture identity; serializer/fade/modal helpers stubbed; no live file I/O.",
+      "record": "research/runtime/save-load-menu-contract-identity-20261012.json",
+      "sha256": "818cbcfc5199ebbba09a13d5e7ef36d417f2b299e307334fe43f4589837805be",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 13
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI37.storage-fixture",
+      "kind": "isolated_original",
+      "scope": "V13 guarded Main/campaign original control transactions, IDs12/13, and original list/edit/action bytes; serializer/disk/delete operations stubbed.",
+      "record": "research/runtime/storage-menu-bridge-fixture-20261012.json",
+      "sha256": "aea82ea4197bd7fc37a9f93e32392968fb83fbe353964d69873dbabe10073a43",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/serializer_and_delete_io_stubbed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI37.main-load-live",
+      "kind": "live_observation",
+      "scope": "Native Main Load/Cancel twice with ID12, parent3/depth3, one engine thread, original callback trace, source/claim snapshot, unchanged staged bytes and normal Quit; actual file loading and campaign Save remain pending.",
+      "record": "research/runtime/main-load-menu-live-20261012.json",
+      "sha256": "63c0cd17075dd5b7ddcae7c4ba03914db46e59452c3d21c4fe0077b402559bb8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "UI37.save-store-unit",
+      "kind": "native_integration",
+      "scope": "Four generated-byte filesystem unit groups; not connected to launch/exit, not original save compatibility or live persistence.",
+      "record": "research/runtime/menu-save-store-unit-20261012.json",
+      "sha256": "0656d176c3fd4a68b9be4365b951ff0e55a1bf3b41cef3bd827c3f204ea0ef39",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 4
+        },
+        {
+          "pointer": "/generated_bytes_only",
+          "equals": true
         }
       ]
     }
@@ -99500,6 +99694,21 @@
         "NS21.combat-normal",
         "NS21.combat-sanitized"
       ]
+    },
+    {
+      "id": "UI.storage-main-roundtrip",
+      "scope": "Native Main Load/Cancel twice through original callbacks, same engine thread and normal Main Quit; no serializer/file I/O, gameplay Save/Load, full loaded-world or replacement proof.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.storage-menu-ownership"
+      ],
+      "evidence": [
+        "UI37.main-load-live"
+      ],
+      "tests": [
+        "tools/test-live-storage-menus.py",
+        "apps/qt-shell/live_storage_menu_test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -99873,8 +100082,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-save-load-contract-20261012.json",
-    "sha256": "1da315842f8597aff24c2773b405b7cd297c424dfd04117122b8c6f879eea305"
+    "path": "research/runtime/coverage/source-index-main-load-live-20261012.json",
+    "sha256": "958788a52f9af0e0214f954daf680fc5a243868444bce7586c079ffdee5fd1ea"
   },
   "claim_bindings_required": true
 }

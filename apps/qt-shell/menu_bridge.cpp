@@ -1,5 +1,5 @@
 #include "menu_bridge.hpp"
-#include "../../protocols/include/mnm/menu_v12.h"
+#include "../../protocols/include/mnm/menu_v13.h"
 #include <QtEndian>
 #include <cstring>
 #include <algorithm>
@@ -8,21 +8,21 @@ quint32 load(const quint32* p){return qFromLittleEndian(__atomic_load_n(p,__ATOM
 void store(quint32* p,quint32 v){__atomic_store_n(p,qToLittleEndian(v),__ATOMIC_RELEASE);}
 }
 MenuBridge::~MenuBridge(){retire();if(mapping_)file_.unmap(mapping_);}
-bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences,bool region,bool enter,bool campaignMini,bool campaignQuit,bool campaignDefeat,bool campaignPreferences){
-    campaignPreferences_=campaignPreferences;campaignDefeat=campaignDefeat||campaignPreferences;campaignDefeat_=campaignDefeat;campaignQuit=campaignQuit||campaignDefeat;campaignQuit_=campaignQuit;campaignMini=campaignMini||campaignQuit;campaignMini_=campaignMini;enter_=enter||campaignMini;enter=enter_;mini=mini||campaignMini;region_=region||enter;region=region_;preferences_=preferences||region;preferences=preferences_;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=campaignPreferences?MNM_MENU_V12_SIZE:campaignDefeat?MNM_MENU_V11_SIZE:campaignQuit?MNM_MENU_V10_SIZE:campaignMini?MNM_MENU_V9_SIZE:enter?MNM_MENU_V8_SIZE:region?MNM_MENU_V7_SIZE:preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
+bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences,bool region,bool enter,bool campaignMini,bool campaignQuit,bool campaignDefeat,bool campaignPreferences,bool storage){
+    storage_=storage;campaignPreferences=campaignPreferences||storage;campaignPreferences_=campaignPreferences;campaignDefeat=campaignDefeat||campaignPreferences;campaignDefeat_=campaignDefeat;campaignQuit=campaignQuit||campaignDefeat;campaignQuit_=campaignQuit;campaignMini=campaignMini||campaignQuit;campaignMini_=campaignMini;enter_=enter||campaignMini;enter=enter_;mini=mini||campaignMini;region_=region||enter;region=region_;preferences_=preferences||region;preferences=preferences_;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=storage?MNM_MENU_V13_SIZE:campaignPreferences?MNM_MENU_V12_SIZE:campaignDefeat?MNM_MENU_V11_SIZE:campaignQuit?MNM_MENU_V10_SIZE:campaignMini?MNM_MENU_V9_SIZE:enter?MNM_MENU_V8_SIZE:region?MNM_MENU_V7_SIZE:preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
     if(file_.isOpen())return false;
     file_.setFileName(path);
     if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(size))return false;
-    QByteArray data(size,0);std::memcpy(data.data(),campaignPreferences?MNM_MENU_V12_MAGIC:campaignDefeat?MNM_MENU_V11_MAGIC:campaignQuit?MNM_MENU_V10_MAGIC:campaignMini?MNM_MENU_V9_MAGIC:enter?MNM_MENU_V8_MAGIC:region?MNM_MENU_V7_MAGIC:preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
-    qToLittleEndian<quint32>(campaignPreferences?12:campaignDefeat?11:campaignQuit?10:campaignMini?9:enter?8:region?7:preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
+    QByteArray data(size,0);std::memcpy(data.data(),storage?MNM_MENU_V13_MAGIC:campaignPreferences?MNM_MENU_V12_MAGIC:campaignDefeat?MNM_MENU_V11_MAGIC:campaignQuit?MNM_MENU_V10_MAGIC:campaignMini?MNM_MENU_V9_MAGIC:enter?MNM_MENU_V8_MAGIC:region?MNM_MENU_V7_MAGIC:preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
+    qToLittleEndian<quint32>(storage?13:campaignPreferences?12:campaignDefeat?11:campaignQuit?10:campaignMini?9:enter?8:region?7:preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
     if(file_.write(data)!=data.size()||!file_.flush())return false;
     mapping_=file_.map(0,data.size());if(!mapping_)return false;
     heartbeat();return true;
 }
 bool MenuBridge::read(State& state) const {
-    if(!mapping_||std::memcmp(mapping_,campaignPreferences_?MNM_MENU_V12_MAGIC:campaignDefeat_?MNM_MENU_V11_MAGIC:campaignQuit_?MNM_MENU_V10_MAGIC:campaignMini_?MNM_MENU_V9_MAGIC:enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
+    if(!mapping_||std::memcmp(mapping_,storage_?MNM_MENU_V13_MAGIC:campaignPreferences_?MNM_MENU_V12_MAGIC:campaignDefeat_?MNM_MENU_V11_MAGIC:campaignQuit_?MNM_MENU_V10_MAGIC:campaignMini_?MNM_MENU_V9_MAGIC:enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
     auto* words=reinterpret_cast<quint32*>(mapping_);
-    if(load(words+2)!=(campaignPreferences_?12u:campaignDefeat_?11u:campaignQuit_?10u:campaignMini_?9u:enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(campaignPreferences_?MNM_MENU_V12_SIZE:campaignDefeat_?MNM_MENU_V11_SIZE:campaignQuit_?MNM_MENU_V10_SIZE:campaignMini_?MNM_MENU_V9_SIZE:enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
+    if(load(words+2)!=(storage_?13u:campaignPreferences_?12u:campaignDefeat_?11u:campaignQuit_?10u:campaignMini_?9u:enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(storage_?MNM_MENU_V13_SIZE:campaignPreferences_?MNM_MENU_V12_SIZE:campaignDefeat_?MNM_MENU_V11_SIZE:campaignQuit_?MNM_MENU_V10_SIZE:campaignMini_?MNM_MENU_V9_SIZE:enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
     auto* p=words+(battle_?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);const auto seq=load(p);if(!seq||(seq&1))return false;
     State next;next.generation=load(p+1);next.screen=load(p+2);next.ready=load(p+3);next.ack=load(p+4);next.status=load(p+5);next.thread=load(p+6);next.sequence=seq;
     auto name=[&](int offset,int length,QString& text){
@@ -65,7 +65,7 @@ bool MenuBridge::read(State& state) const {
         b.battle=load(m);b.confirmation=load(m+1);b.depth=load(m+2);b.parentScreen=load(m+3);b.actions=load(m+4);b.context=load(m+5);
         b.mode=load(m+6);
         if(campaignMini_){
-            const quint32 offered=campaignPreferences_?7u:campaignQuit_?5u:1u;
+            const quint32 offered=storage_?31u:campaignPreferences_?7u:campaignQuit_?5u:1u;
             if(load(m+7)||b.battle||b.confirmation>1||b.depth!=5||b.parentScreen!=2||b.context!=5||b.mode!=2||(b.actions&~offered)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=offered)))return false;
         }else if(load(m+6)||load(m+7)||b.battle!=1||b.confirmation>1||b.depth<1||b.depth>15||b.parentScreen!=MNM_MENU_MINI_PARENT_SCREEN||b.context==5||(b.actions&~7u)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=7)))return false;
     }
@@ -103,11 +103,19 @@ bool MenuBridge::read(State& state) const {
            !name(MNM_MENU_V7_REGION+32,128,b.realm)||b.realm!="Celtic"||!name(MNM_MENU_V7_REGION+160,128,b.name)||b.name.isEmpty()||b.name.contains('\n')||b.name.contains('\r'))return false;
         for(int i=72;i<80;++i)if(load(m+i))return false;
     }
+    if(storage_&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==MNM_MENU_SAVE_SCREEN)){
+        auto* m=words+MNM_MENU_V13_STORAGE/4;auto& b=next.storage;
+        b.screen=load(m);b.parent=load(m+1);b.depth=load(m+2);b.context=load(m+3);b.modal=load(m+4);b.pending=load(m+5);const auto count=load(m+6);b.selected=load(m+7);
+        if(b.screen!=next.screen||b.context!=5||b.modal>1||b.pending>1||count>MNM_MENU_V13_MAX_SAVES||b.selected>count||
+           !((b.parent==3&&b.depth==3&&next.screen==MNM_MENU_LOAD_SCREEN)||(b.parent==2&&b.depth==5))||
+           (next.ready&&(b.modal||b.pending))||!name(MNM_MENU_V13_STORAGE+32,128,b.fileName))return false;
+        for(quint32 i=0;i<count;++i){QString stem;if(!name(MNM_MENU_V13_STORAGE+160+128*i,128,stem)||stem.isEmpty()||stem.contains('\n')||stem.contains('\r')||b.names.contains(stem))return false;b.names.append(stem);}
+    }
     __atomic_thread_fence(__ATOMIC_ACQUIRE);if(seq!=load(p))return false;
-    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>(enter_?3u:2u)||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)||(campaignDefeat_&&next.screen==MNM_MENU_DEFEAT_SCREEN)||(preferences_&&next.screen==MNM_MENU_PREFERENCES_SCREEN)||(region_&&next.screen==MNM_MENU_REGION_SCREEN)))))return false;
+    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>(enter_?3u:2u)||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)||(campaignDefeat_&&next.screen==MNM_MENU_DEFEAT_SCREEN)||(preferences_&&next.screen==MNM_MENU_PREFERENCES_SCREEN)||(region_&&next.screen==MNM_MENU_REGION_SCREEN)||(storage_&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==MNM_MENU_SAVE_SCREEN))))))return false;
     state=next;return true;
 }
-void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 argument,const std::array<int,17>* rules,const std::array<int,63>* assignments,const std::array<int,7>* preferences){
+void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 argument,const std::array<int,17>* rules,const std::array<int,63>* assignments,const std::array<int,7>* preferences,const QByteArray* storageName){
     if(!mapping_)return;
     auto* p=reinterpret_cast<quint32*>(mapping_)+MNM_MENU_V1_HOST_WORD;
     auto seq=load(p);store(p,seq+1);store(p+1,alive?1:0);store(p+2,++heartbeat_);
@@ -116,6 +124,7 @@ void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 ar
     if(action){store(p+4,action);store(p+5,generation);if(battle_){store(p+6,argument);for(int i=0;i<17;++i)store(p+7+i,rules?quint32((*rules)[i]):0);}}
     if(spells_&&assignments)for(int i=0;i<63;++i)store(reinterpret_cast<quint32*>(mapping_)+MNM_MENU_V3_HOST_SLOTS/4+i,quint32((*assignments)[i]));
     if(preferences_&&preferences)for(int i=0;i<7;++i)store(reinterpret_cast<quint32*>(mapping_)+MNM_MENU_V6_HOST_PREFERENCES/4+i,quint32((*preferences)[i]));
+    if(storage_&&storageName){std::memset(mapping_+MNM_MENU_V13_HOST_NAME,0,MNM_MENU_V13_NAME_SIZE);std::memcpy(mapping_+MNM_MENU_V13_HOST_NAME,storageName->constData(),storageName->size());}
     store(p,seq+2);
 }
 void MenuBridge::heartbeat(bool alive){if(!retired_)publish(alive);}
@@ -123,11 +132,11 @@ bool MenuBridge::request(quint32 action,const State& state,quint32 argument,cons
     State current;
     if(!read(current))return false;
     const bool setupAction=action==MNM_MENU_SETUP_MAP||action==MNM_MENU_SETUP_START||action==MNM_MENU_SETUP_PLAYER||action==MNM_MENU_SETUP_APPLY;
-    const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&(current.mini.battle||campaignMini_)&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT)));
+    const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&(current.mini.battle||campaignMini_)&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT))||(storage_&&action==MNM_MENU_MINI_LOAD&&(current.mini.actions&MNM_MENU_MINI_CAN_LOAD))||(storage_&&action==MNM_MENU_MINI_SAVE&&(current.mini.actions&MNM_MENU_MINI_CAN_SAVE)));
     const bool resultAction=results_&&current.screen==MNM_MENU_RESULT_SCREEN&&((action==MNM_MENU_RESULT_CONTINUE&&(current.results.actions&1))||(action==MNM_MENU_RESULT_QUIT&&(current.results.actions&2)));
     const bool regionAction=region_&&((action==MNM_MENU_NEW_GAME&&current.screen==3)||(current.screen==18&&
         ((enter_&&action==MNM_MENU_REGION_ENTER&&(current.region.actions&2))||(action==MNM_MENU_REGION_CANCEL&&(current.region.actions&1))||(action==MNM_MENU_REGION_DIFFICULTY&&argument<4&&(current.region.available&(1u<<argument))))));
-    const bool allowed=(campaignDefeat_&&current.screen==MNM_MENU_DEFEAT_SCREEN&&action==MNM_MENU_DEFEAT_OK&&current.defeat.actions==1)||regionAction||(preferences_&&action==MNM_MENU_OPEN_PREFERENCES&&current.screen==3)||resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
+    const bool allowed=(storage_&&action==MNM_MENU_OPEN_LOAD&&current.screen==3)||(campaignDefeat_&&current.screen==MNM_MENU_DEFEAT_SCREEN&&action==MNM_MENU_DEFEAT_OK&&current.defeat.actions==1)||regionAction||(preferences_&&action==MNM_MENU_OPEN_PREFERENCES&&current.screen==3)||resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
         (battle_&&((action==MNM_MENU_OPEN_SINGLE&&current.screen==22)||((setupAction||action==MNM_MENU_SETUP_CANCEL)&&current.screen==14)||((action==MNM_MENU_MAP_OK||action==MNM_MENU_MAP_CANCEL)&&current.screen==25)));
     if(!allowed||(setupAction&&!rules)||(rules&&std::any_of(rules->begin(),rules->end(),[](int value){return value<0||value>10000;})))return false;
     if(retired_||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||
@@ -155,3 +164,23 @@ bool MenuBridge::requestPreferences(quint32 action,const State& state,const std:
     ++request_;publish(true,action,current.generation,slider,nullptr,nullptr,&values);return true;
 }
 void MenuBridge::retire(){if(!retired_){publish(false);retired_=true;}}
+
+namespace {
+bool storageStem(const QString& name){
+    if(name.isEmpty()||name.size()>=MNM_MENU_V13_NAME_SIZE||name.front()==' '||name.back()==' '||name.back()=='.')return false;
+    for(const auto c:name)if(c.unicode()<32||c.unicode()>=127||QStringLiteral("/\\:\"<>|?*").contains(c))return false;
+    const auto key=name.section('.',0,0).toUpper();
+    if(key=="CON"||key=="PRN"||key=="AUX"||key=="NUL"||(key.size()==4&&(key.startsWith("COM")||key.startsWith("LPT"))&&key[3]>='1'&&key[3]<='9'))return false;
+    return true;
+}
+}
+bool MenuBridge::requestStorage(quint32 action,const State& state,quint32 row,const QString& name){
+    State current;if(!storage_||retired_||!read(current)||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||
+       current.generation!=state.generation||current.screen!=state.screen||request_==UINT32_MAX||(current.screen!=MNM_MENU_LOAD_SCREEN&&current.screen!=13))return false;
+    if(action==MNM_MENU_STORAGE_CANCEL){if(row||!name.isEmpty())return false;}
+    else if(action==MNM_MENU_STORAGE_ACCEPT||action==MNM_MENU_STORAGE_DELETE){
+        if(current.screen==MNM_MENU_LOAD_SCREEN||action==MNM_MENU_STORAGE_DELETE){if((current.screen==MNM_MENU_LOAD_SCREEN&&action==MNM_MENU_STORAGE_DELETE)||!name.isEmpty()||!row||row>quint32(current.storage.names.size())||!storageStem(current.storage.names[int(row)-1]))return false;}
+        else if(row||!storageStem(name))return false;
+    }else return false;
+    const auto bytes=name.toLatin1();++request_;publish(true,action,current.generation,row,nullptr,nullptr,nullptr,&bytes);return true;
+}
