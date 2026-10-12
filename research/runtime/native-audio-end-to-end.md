@@ -371,3 +371,9 @@ initial default output is absent and attach automatically when it appears.
 [Scoped evidence and unresolved full-game launch](native-audio-initial-silence.md)
 separate exact private-endpoint tests and healthy full-game validation from the
 empty-output game launch that currently stalls before hooks initialize.
+
+The final empty-output whole-game run now passes complete native intros, audio,
+CD music and normal Quit without any physical output. Optional Wine installer
+dialogs in the isolated empty-cache prefix caused the earlier pre-hook stalls;
+the reproducible private fixture suppresses those installers. See the fresh
+[empty-output evidence](native-audio-initial-silence-empty-public-20261012.json).

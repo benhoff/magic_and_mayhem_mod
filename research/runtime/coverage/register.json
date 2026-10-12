@@ -46863,13 +46863,15 @@
       ],
       "evidence": [
         "HOST.native-audio-initial-silence.endpoints-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.endpoints-final-fixture-20261012",
+        "HOST.native-audio-initial-silence.empty-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -95439,6 +95441,160 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "HOST.native-audio-initial-silence.endpoints-final-fixture-20261012",
+      "kind": "native_integration",
+      "scope": "Final reproducible fixture with optional Wine Mono/Gecko installers suppressed; actual initially empty private graph, exact native host source/voice/decoder continuity or full game normal Quit as declared. Software-only output/initial native discard policy, physical/original equivalence excluded.",
+      "record": "research/runtime/native-audio-initial-silence-endpoints-final-fixture-20261012.json",
+      "sha256": "6b1f520aea23c403f16d65ee233eff864635778b06ac08798263c25af3039acf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/0/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/0/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/1/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/1/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/2/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/2/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/3/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/cases/3/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-audio-initial-silence.empty-public-20261012",
+      "kind": "live_observation",
+      "scope": "Final reproducible fixture with optional Wine Mono/Gecko installers suppressed; actual initially empty private graph, exact native host source/voice/decoder continuity or full game normal Quit as declared. Software-only output/initial native discard policy, physical/original equivalence excluded.",
+      "record": "research/runtime/native-audio-initial-silence-empty-public-20261012.json",
+      "sha256": "d0e7e7508416c4c156d4e28ca6a4f6bb87a8d26da13417787e23a748cc4db021",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/initial_silence",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_silent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": false
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_music/output/initial_silent_output",
+          "equals": true
+        },
+        {
+          "pointer": "/native_music/output/audio_device_available",
+          "equals": false
+        },
+        {
+          "pointer": "/private_audio_fixture/optional_wine_installers_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/private_audio_fixture/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/private_audio_fixture/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/private_audio_fixture/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106517,7 +106673,8 @@
         "tests/native-media-backend-test.cpp"
       ],
       "evidence": [
-        "HOST.native-audio-initial-silence.endpoints-20261012"
+        "HOST.native-audio-initial-silence.endpoints-20261012",
+        "HOST.native-audio-initial-silence.endpoints-final-fixture-20261012"
       ]
     },
     {
@@ -106532,6 +106689,21 @@
       ],
       "evidence": [
         "HOST.native-audio-initial-silence.healthy-public-20261012"
+      ]
+    },
+    {
+      "id": "native-audio-initial-silence-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Private actual empty output graph through complete native intros/voices/WAV/CD/menu/render/campaign and normal Quit; initial-silence/discard markers and absence verified; physical/original equivalence excluded.",
+      "behaviors": [
+        "HOST.native-audio-initial-silence"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/test-native-silent-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-audio-initial-silence.empty-public-20261012"
       ]
     }
   ],
@@ -106906,8 +107078,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-initial-silence-commit-v2-20261012.json",
-    "sha256": "75997169d557772fe5bd4fcde7f146eab73a9afb311c07f207c4e0e1017a0c1d"
+    "path": "research/runtime/coverage/source-index-native-empty-output-commit-v1-20261012.json",
+    "sha256": "a7099c9182681a44af6ac5876ad156ff1c663d53d50a3923ca198e993e322275"
   },
   "claim_bindings_required": true
 }

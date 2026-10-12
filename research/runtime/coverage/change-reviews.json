@@ -550403,6 +550403,172 @@
         ],
         "reason": "Final-source run-e1u8mnxo passes voice/movie/file-sound/music empty-start attachment, exact30RGBA/66150PCM media and132300PCM music plus startup MusicBroker teardown/provider lifecycle. Healthy run-_c_g79qr passes1777/1004 intro frames,12 plays/116ACK, native WAV/CD and normal Quit with zero failed/unsupported/fallback audio, DSOUND disabled, stable source/input and original/private cleanup. Physical/original equivalence and empty-output whole-game excluded."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1a32d6b4cea623fcaecffd8999ba04176ee341a1d4f22283a873c4e319afd1fb",
+          "before_sha256": "c3eb157601dff4833370e074202a8bb61ebf806986c2861c29de5f45b2e0a230",
+          "id": "AU.cd_music"
+        },
+        {
+          "after_sha256": "f76d8e591c1deda171b01f91be2d537d799fb1fdf0913548bb6595c1851f6c58",
+          "before_sha256": "70b12ce383368fa615f63912d31bc440ec4380740bdf383862f87895c2f8d321",
+          "id": "HOST.native-audio-factory"
+        },
+        {
+          "after_sha256": "a8bc5bcb32990af8301d44c1ef2ce30185568450157b47afe67dc75dc366ecaa",
+          "before_sha256": "06ec50b643a13e272144e4b01a485854d5275bed902f41cf061c4dbd7d3164c2",
+          "id": "HOST.native-audio-initial-silence"
+        },
+        {
+          "after_sha256": "a1864a85fb92f7fcdff0cda11ab38d2507613d6cb9e49b470c9c836dfb3a9ded",
+          "before_sha256": "a383b73df4465b5743ac4f4afc650ce08ee79ef928460ce1c540c53ab7a040ef",
+          "id": "HOST.native-dsound-module-policy"
+        },
+        {
+          "after_sha256": "ce7069c5f3f91f75ce53308f4f1fb0e3d6bd4e4ddff2b4ab10513a35106af586",
+          "before_sha256": "11adad98b7e228bd8e73c3ccbdeaffe19eff124d68bb5155c3fca353c17067f8",
+          "id": "HOST.native-menu-media"
+        },
+        {
+          "after_sha256": "0b57d6468202dd2ff64cef7386c4be2ae2d565de8e0911dd9768759184c375d2",
+          "before_sha256": "68fab5c5ac2363881982332ff97e8fa5334f72e2b38fa291c7cf85d515f48af0",
+          "id": "HOST.native-wave-loading"
+        },
+        {
+          "after_sha256": "3ae68eb869db6321d3ab94ba9d6600c4a930a92c4e348f19d57ab4d4a333acea",
+          "before_sha256": "e56b339746e9dee249e8e6fe6d27b6f5e989cfe1ee562bff5b3defdb80b4f8d2",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "c4e3e2e34bc65378a73c3e623a95dcde80a70f3b4556831d78fc92800397d869",
+          "before_sha256": "4ae9ecaeba9931a2cf47d0ead6945e329ac0eb32d166c02c19233519cc9d4666",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ed225cb50e68df29385f3c756358a9fb769b4ff674c53a6f887f2057a6e2959d",
+          "before_sha256": "2e2d24d84211f54f2355f84dfe49563be5ec6594e636ae38b2a0c0b2ea6a00d1",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8f2a66724832118f780a02dd509b75116c5a586800498a1713c4070c730329a6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-initial-silence-history-20261012.json"
+        },
+        {
+          "after_sha256": "4d3f6fff0a67e7f6b88acb0f437cc612d396d71a5a86b05b66521750c7001a30",
+          "before_sha256": "1f8fa87a1b97e9bf49efe089246436aada58b1a973049c90525f9f2b1450ecf2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "a7099c9182681a44af6ac5876ad156ff1c663d53d50a3923ca198e993e322275",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-empty-output-commit-v1-20261012.json"
+        },
+        {
+          "after_sha256": "8cff05d33311ed1d07e9f763913776e0f924acc17fcfae8018dd8e06c592a344",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-empty-output-commit-v1-20261012.md"
+        },
+        {
+          "after_sha256": "95a5771da24c19e4308f19a44eb61588257586afb799df0c6474ae35117388f8",
+          "before_sha256": "674f030011b5ad69872c9646fc81e33afe64d86ae919a3c02968c02ecb4701ce",
+          "path": "research/runtime/native-audio-end-to-end.md"
+        },
+        {
+          "after_sha256": "d0e7e7508416c4c156d4e28ca6a4f6bb87a8d26da13417787e23a748cc4db021",
+          "before_sha256": null,
+          "path": "research/runtime/native-audio-initial-silence-empty-public-20261012.json"
+        },
+        {
+          "after_sha256": "6b1f520aea23c403f16d65ee233eff864635778b06ac08798263c25af3039acf",
+          "before_sha256": null,
+          "path": "research/runtime/native-audio-initial-silence-endpoints-final-fixture-20261012.json"
+        },
+        {
+          "after_sha256": "c4ebbd259c9ce9d49aa00ad6313f236956f9699139c747645f9bc2a6d7c9b27b",
+          "before_sha256": "f7981a49d7500ad9599cc1e57a6d8e0bfd565b36fb74b00dfadd0529ac388e00",
+          "path": "research/runtime/native-audio-initial-silence.md"
+        },
+        {
+          "after_sha256": "91b1b2f4d87505534543d3b2e186617a66ccd3a1bf46bdaff94ec186e441c15f",
+          "before_sha256": "70bfdae150f3e8ce34782d8c408e6474d2625ec5f4f823820a63de782c0a691d",
+          "path": "tools/test-native-silent-campaign.py"
+        }
+      ],
+      "id": "native-empty-output-scoped-accounting-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:0b65a0482c77035457e8fc431a632bcefdb43e2ae894be975ef5da6fe4a80f28",
+        "retired_execution_claims:10f5abc8b6d69d2afab682da0a362e7e55c8388ba99368472843c497998f92bb",
+        "retired_execution_claims:127aa8c1a6a5f476630ad5a41ee5a2816bdd5fe702d21c3d809307db1730dd10",
+        "retired_execution_claims:1e9fb755940f1f0f255782a20baee6bd4804b105684e65c6bef8cc37670705a1",
+        "retired_execution_claims:3895f92f83ed5af1a8ed7405452709d84e937fea773b3b93e18b3c9dfe678ba5",
+        "retired_execution_claims:432e6a2509ef9cd103878d44becff04c9c6b6b909803f826252bc24c20ce6940",
+        "retired_execution_claims:4516407ed42a2b38d50fa31b3f0f35a154b82857e2186f7450e4afa92b69bf14",
+        "retired_execution_claims:47f5f6d2680d1b42aa8350e8c7843c5f4fec4d5b167edd60d6ff5a9d3877f1d5",
+        "retired_execution_claims:4fecbc800d2e858fc4543e714a18d1efd504ee11fa569b8c8405a7a4db3a474c",
+        "retired_execution_claims:5cb31c7e5c8500beb6cd6528e530336ad484551e0358d9a0b0e47feb976bc996",
+        "retired_execution_claims:6d12ce43971ee2e54862c44ae3ce77d4dc579afc18c8fd1387896fe53bd4c977",
+        "retired_execution_claims:72b05b59f0dcd0b66248decb3cb0d2fca5b86f1e1cf18df6086b988536983592",
+        "retired_execution_claims:84be3bb313e63dafdd6d885d3cda5239bc7734a022c205a2279c6ad119fada6d",
+        "retired_execution_claims:8fe1981bdb9b1d78dfbf2bbea8aad4e7fb2943b64968b0247cae4dff6f94c2d5",
+        "retired_execution_claims:9fc516cf5ef732a337001dc163d110c3a0135c8ae93a5613cd22d27ec9c254cd",
+        "retired_execution_claims:a9f73456d1302e5aad68c57b8a8b312db2cb3883e922ba5884b41f6aae08923f",
+        "retired_execution_claims:b92cd162178e208f3e94fb23366c5823cbcac21882850769d91782c05a7c177d",
+        "retired_execution_claims:e2776ab33784e56f7677a7c92930c75b147d1fd74c83a92517bab718463f87bc",
+        "retired_execution_claims:f724f4bb8a510b315036f4df23a146e68016d23d7dfea07fb5f11627fad57d2d",
+        "retired_execution_claims:fe0658fe0c724f43b07622de26f77889ef84239db4f53cf48a172a573840358c",
+        "stale_evidence:5bf9cf2d7bdb6e1d71cc48d57a7ba750f09308ceaa1546fe9ddf7cd01203d4ae",
+        "stale_evidence:a845d4be4c0725f537f6c97447a77a0c5628ae1547c4e88a1e2716b64fdee29d",
+        "validation_gaps:27bf62459a100345ae7742a2b3aa4f10ce90079f2ffd5567abba14361b806185",
+        "validation_gaps:3474367665b969e24062a9e41665267387dafd1329f9c2c075b9b6ed3e3d63ca",
+        "validation_gaps:3793838b0a888e0d0c40f88677348ddd14e0049fe6463d0b526a2fc4bb98eeef",
+        "validation_gaps:578abdc9e6cace5b61f5172e182751eb26a8ab86a562100434d98ccd7770136b",
+        "validation_gaps:5bbfe09aecb4aa775ec1fe045e78353d33c94296593fafbc8781afe074079ca6",
+        "validation_gaps:5d21f349f31a2451432685b302e7698b86d234537b3a52d2d27e7277859a3c94",
+        "validation_gaps:67dcf48781d4b6ad3395a0b5041de31a6986744b0fad6388ab2f442d183f67e9",
+        "validation_gaps:81ed0eb9d9153829f5b69ac93dcd864762e10cfaf434d7ce339fca806e76cf3b",
+        "validation_gaps:86da4e18bb8fde00bc06941b99bf294498f9c9cf324daef8593fadae88dbbdf0",
+        "validation_gaps:9d88103f689fcec856d8687ebca1d6b37ea471947e0677edeb1595a10daa4aa9",
+        "validation_gaps:9e71a54b764acde7ad6654f5375f9e3687095989fc25b7733a2d38928ed2565e",
+        "validation_gaps:b1002533780dbc32ce1ab6511f7b751715c637c1e7a1315616e8b34e6957547b",
+        "validation_gaps:b2e74e6a2f2741dab7817da48544405d00a75728b91eefbfd1a2d0d625fd919a",
+        "validation_gaps:c2b95ba8dcbaa6a2a2ca53ba0fcc0ebe490cfdfe915b83f75f4875a6de5cc930",
+        "validation_gaps:e7ac1b45694833610eaba6aad470c6703ef134e3e808e7b86749aa1a07b75de4",
+        "validation_gaps:f07b0a24f1472ea68fdc44f370d75182c2420d3dcd9a92a9f57caf885d51c68c",
+        "validation_gaps:f151916a0465f1d4d153ec75720ca8ceaa8bb5f5e0ac0b97f3391a2de2cb664b",
+        "validation_gaps:f7c99ff9ffbf5c9bd1bef4fa8c80e31f246659fc57e5a8ba2f85a3c46fac9b16"
+      ],
+      "reason": "Reviewed private empty-output campaign wrapper with explicit Wine optional Mono/Gecko installer suppression, isolated audio server/display/prefix, normal Quit and complete own process cleanup. Earlier owned process inspection identified optional Mono install before Chaos.exe; a successful diagnostic and final reproducible run preserve failed/successful raw evidence. Reviewed native initial-silence status/evidence/scenario links independently: exact final-fixture voice/movie/file-sound/music endpoint tests, live zero-sink whole-game native intros/WAV/voices/CD normal Quit, physical output false/logical discard progression, immutable historical fingerprints and explicit physical/original/native-manager boundaries. Exact e514c8d5 committed range35 file transitions all have parent/current receipt chains; preserve unrelated work.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Source/metadata accounting does not refresh unrelated historical scopes. Final-source native quiet host and whole-game validation applies to HOST.native-audio-initial-silence only; original/physical equivalence and other broader registered branches remain pending. Optional installer suppression stales historical broad test-source fingerprints; preserve all prior evidence/statuses and explicitly account for their gaps."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a8bc5bcb32990af8301d44c1ef2ce30185568450157b47afe67dc75dc366ecaa",
+          "before_sha256": "06ec50b643a13e272144e4b01a485854d5275bed902f41cf061c4dbd7d3164c2",
+          "id": "HOST.native-audio-initial-silence"
+        }
+      ],
+      "files": [],
+      "id": "native-empty-output-execution-review-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed private empty-output campaign wrapper with explicit Wine optional Mono/Gecko installer suppression, isolated audio server/display/prefix, normal Quit and complete own process cleanup. Earlier owned process inspection identified optional Mono install before Chaos.exe; a successful diagnostic and final reproducible run preserve failed/successful raw evidence. Reviewed native initial-silence status/evidence/scenario links independently: exact final-fixture voice/movie/file-sound/music endpoint tests, live zero-sink whole-game native intros/WAV/voices/CD normal Quit, physical output false/logical discard progression, immutable historical fingerprints and explicit physical/original/native-manager boundaries. Exact e514c8d5 committed range35 file transitions all have parent/current receipt chains; preserve unrelated work.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "HOST.native-audio-initial-silence.empty-public-20261012",
+          "HOST.native-audio-initial-silence.endpoints-final-fixture-20261012"
+        ],
+        "reason": "Fresh final-source run-psxe_2la through wrapperrun-pjdh2q98 completes1777/1004 intro frames,2476804/1393283PCM frames,7WAV/349862bytes,12voiceplays/116ACK and10701888 logical discard frames plus7CDplays/120requests. Physical availability false and initial/discard flags true; zero audio failure/unsupported/fallback; source/input/original/normalQuit/privateWine and empty graph/owned daemon checks pass. Fresh four-case endpoint run-wjyx3hy_ proves exact PCM/RGBA and automatic attachment with final wrapper source fingerprints. Native initial-silence integration promotes to live observation only; no physical/original equivalence or full manager/config/event replacement."
+      }
     }
   ]
 }

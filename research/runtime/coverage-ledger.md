@@ -7368,3 +7368,18 @@ Whole-game empty-output attempts stall before hooks initialize and remain pendin
 physical/original waveform and native manager/config/event ownership are unclaimed.
 Historical fingerprints remain immutable and broad changed-source evidence is
 explicitly pending. See `research/runtime/native-audio-initial-silence.md`.
+
+## Native empty-output whole-game launch (2026-10-12)
+
+Fresh `HOST.native-audio-initial-silence.empty-public-20261012` passes complete
+native intros/voices/WAV/CD/render/campaign and normal Quit while the owned
+audio graph has no sinks.10701888 logical discard frames progress; voice12
+plays/116ACK and music7plays/120requests have zero failures/unsupported/fallbacks.
+Movie1777/1004frames and decoded soundtrack2476804/1393283frames complete.
+Physical output remains false, initial quiet markers true, source/input/original
+and private Wine/daemon/empty graph cleanup pass. Optional Wine Mono/Gecko
+installer dialogs are suppressed only in the private test fixture; previous
+pre-hook failures remain unchanged. Fresh final-fixture four-endpoint evidence
+retains exact PCM/RGBA and automatic attachment. Integration becomes
+`live_observation`; original/physical equivalence and native manager replacement
+remain independent. Exact e514c8d5 receipt history:35versions, zero gaps.
