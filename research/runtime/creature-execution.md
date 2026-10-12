@@ -168,3 +168,51 @@ verify the legality-query field ordering. All eight native executor CTests pass.
 `AI.motion-action` now records this scoped comparison; `NP.motion-admission`
 records the separate native policy. Native application integration staysnone.
 The first scoped result and all development runs remain historical.
+
+## Whole segment completion and coordinate snap (NS29)
+
+The new `segment_completion.*` ports512460 and5070e0 with logical owned route
+points, contribution ancestry/counters and region paths. Retained static inputs
+`creature-behavior-lnbhltzt/motion_route_consumption.asm` and
+`motion_coordinate_snap.asm` match their original recorded hashes. Findings:
+
+- Landing71c/mode3 can clear flight104, stop/release overlay71d/809/805 and apply
+  defended damage. Type15 uses current health; other types call513c20. Inactive
+  return precedes motion/height resets and point consumption.
+- After snap, pendingfc scoring clears its marker, computes a single-precision
+  ratio from signed globals5e1908/5e1904 and credits the terminal parent of each
+  of two678/67c chains. Owner counter+33 additions wrap; duplicate roots can
+  credit the same owner twice. These numeric roles do not establish gameplay
+  veterancy semantics.
+- Environment51a8f0, animation50f850 and terrain51aa30 all run before the active
+  gate. Surviving actors increment the route cursor. Region continuation uses
+  d03/dcf,50 d07 references and660-byte region records. Actor/candidate equality,
+  the stale inline route point at count+2, and failed legality advance its cursor;
+  valid nonduplicate candidates or invalid region references clear continuation.
+- Positive signed963 counts decrement. Expiry clearsde3/962/963 and resets.
+-5070e0 snaps grid XYZ and fineXY*32/Z*16, with wrapped signed32 additions. The
+  global definition record+8 (width2) selects4f3260; otherwise a nonzero tile adds
+  its metadata+94 height. The actor's current descriptor is a separate source.
+
+16384 development cases compare complete original bodies with native64 and
+sanitized64. Branch-presence checks cover landing, overlays, ancestry/direct
+credits, both height paths, region adjustment/legality/advancement/clear and
+expiry. Eight native-only refusals cover invalid route count/cursor, contribution
+references/owner bounds/cycles, region cursor and a nonfinite scoring-ratio domain.
+The finite-ratio refusal is intentional native policy: original masked floating
+arithmetic on zero denominator is excluded, not asserted equivalent. Primitive
+failures require caller-staged rollback. Nine native CTests pass.
+
+Lower fall/defended health, score production, overlay release, environmental/ANI
+work, candidate adjustment, legality and large-footprint height remain supplied
+ABI-checked services. Valid owned16x16x4 terrain,28 definition widths,16 inline
+route rows, three region records and bounded acyclic contributions form this
+fixture domain. No full world/ANI/score ownership, native session composition or
+live replacement is claimed. Fresh prospective execution proof is next.
+
+The prospectively bound finalv2 execution is retained unchanged in
+`original-creature-segments-20261012.json`:16384 paired cases and eight native
+refusals pass, with stable sources/build inputs and before/after original
+manifest verification. AI.segment-completion and AI.position-snap now record
+scoped implementation/comparison. NP.segment-admission remains separate native
+policy. Integration/replacement remainnone; full initialization is next.
