@@ -7072,3 +7072,7 @@ source limitations. `d7f73255..799688cc` reviews6 exact committed versions with
 no missing receipts, without retrospective gate/validation claims. Temporary90GiB
 reserve was authorized for this host commit/validation; permanent policy and
 retained evidence were not changed and no cleanup occurred.
+
+## Experimental campaign Character adapter — 2026-10-12
+
+UI50 adds opt-in V18 Character projection and guarded original adjustment/OK/Cancel dispatch. The private original callback/getter/price-refresh test passed 16 admission guards, slot79 selection and three Qt bridge/controller/widget checks. Native state updates only after engine acknowledgement. This is headless integration; genuine campaign progress, live caller/return, Realm navigation, window-close unwind, pause and persistence remain pending. Shared menu/Qt sources changed; previous evidence hashes and statuses remain historical and may be stale. Pricing UI49 remains separate from this adapter, which uses original cached prices.

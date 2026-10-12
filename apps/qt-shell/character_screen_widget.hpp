@@ -32,6 +32,8 @@ public:
     explicit CharacterScreenWidget(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, QString* error = nullptr);
     bool setCharacter(const Character& character, QString* error = nullptr);
+    bool setLiveCharacter(const Character&, const std::array<int,6>& opening,
+        const std::array<int,6>& decreasePrices, quint32 adjustmentMask, QString* error = nullptr);
     Character character() const { return accepted_; }
     Request draftRequest() const;
     QRect contentRect() const;
@@ -39,6 +41,7 @@ public:
 signals:
     void characterAccepted(const CharacterScreenWidget::Request& request);
     void cancelled();
+    void adjustmentRequested(CharacterScreenWidget::Attribute, bool increase);
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
     void keyPressEvent(QKeyEvent*) override;
@@ -54,6 +57,8 @@ private:
     void arrange();
     Character accepted_;
     std::array<int,6> purchased_{};
+    bool live_=false;
+    quint32 liveAdjustments_=0;
     std::array<int,6> minimum_{},maximum_{200,800,40,7,7,7},increment_{5,20,1,1,1,1};
     QImage background_;
     std::array<QImage,3> faces_{};

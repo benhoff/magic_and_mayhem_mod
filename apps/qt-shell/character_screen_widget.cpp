@@ -97,7 +97,20 @@ bool CharacterScreenWidget::validCharacter(const Character& character,const std:
 bool CharacterScreenWidget::setCharacter(const Character& character,QString* error) {
     if (error) error->clear();
     if (!validCharacter(character,minimum_,maximum_,increment_)) {if (error) *error="Invalid character snapshot or upgrade costs.";return false;}
-    accepted_=character;purchased_.fill(0);populate();arrange();return true;
+    accepted_=character;live_=false;purchased_.fill(0);populate();arrange();return true;
+}
+bool CharacterScreenWidget::setLiveCharacter(const Character& character,const std::array<int,6>& opening,
+    const std::array<int,6>& decreasePrices,quint32 mask,QString* error) {
+    if(error)error->clear();
+    auto fail=[&]{if(error)*error="Invalid live character state.";return false;};
+    if(!validCharacter(character,minimum_,maximum_,increment_)||character.id.isEmpty()||(mask&~4095u))return fail();
+    for(int i=0;i<6;++i){const auto& s=character.stats[i];const int step=increment_[i];
+        if(opening[i]<minimum_[i]||opening[i]>s.value||(s.value-opening[i])%step||decreasePrices[i]<0||decreasePrices[i]>1000000)return fail();
+        if((mask&(1u<<(2*i)))&&(s.value<opening[i]+step||decreasePrices[i]>1000000000-character.experiencePoints))return fail();
+        if((mask&(1u<<(2*i+1)))&&(s.value>maximum_[i]-step||s.upgradeCosts.isEmpty()||s.upgradeCosts[0]>character.experiencePoints))return fail();
+    }
+    accepted_=character;purchased_.fill(0);live_=true;liveAdjustments_=mask;
+    setWindowTitle("Magic & Mayhem — Character Improvement");populate();arrange();return true;
 }
 bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
     if (error) error->clear();
@@ -179,21 +192,24 @@ void CharacterScreenWidget::populate() {
         labels_[10+i]->setText(priced?QString::number(stat.upgradeCosts[n]):"—");
         buttons_[2*i]->setEnabled(!accepted_.id.isEmpty() && stat.upgradeAvailable && priced && stat.upgradeCosts[n]<=draft.remainingExperience && draft.values[i]<=maximum_[i]-increment_[i]);
         buttons_[2*i+1]->setEnabled(!accepted_.id.isEmpty() && n>0);
+        if(live_){buttons_[2*i]->setEnabled(liveAdjustments_&(1u<<(2*i+1)));buttons_[2*i+1]->setEnabled(liveAdjustments_&(1u<<(2*i)));}
         if (i<3) bars_[i]->setValue(draft.values[i]);else static_cast<mnm::ui::TalismanBar*>(talismans_[i-3])->setCounts(draft.values[i],maximum_[i]);
     }
     ok_->setEnabled(!accepted_.id.isEmpty());
 }
 void CharacterScreenWidget::change(int attribute,int direction) {
     const int button=attribute*2+(direction<0?1:0);if (!buttons_[button]->isEnabled()) return;
+    if(live_){emit adjustmentRequested(Attribute(attribute),direction>0);return;}
     purchased_[attribute]+=direction;populate();arrange();
 }
 void CharacterScreenWidget::accept() {
     if (!ok_->isEnabled()) return;
+    if(live_){emit characterAccepted(draftRequest());return;}
     const auto request=draftRequest();accepted_.experiencePoints=request.remainingExperience;
     for (int i=0;i<6;++i) {accepted_.stats[i].value=request.values[i];accepted_.stats[i].upgradeCosts.remove(0,purchased_[i]);}
     purchased_.fill(0);populate();arrange();emit characterAccepted(request);
 }
-void CharacterScreenWidget::cancel() {purchased_.fill(0);populate();arrange();emit cancelled();}
+void CharacterScreenWidget::cancel() {if(!live_){purchased_.fill(0);populate();arrange();}emit cancelled();}
 void CharacterScreenWidget::focusFirstControl() {
     for (auto* button:buttons_) if (button->isEnabled()) {button->setFocus(Qt::OtherFocusReason);return;}
     (ok_->isEnabled()?ok_:cancel_)->setFocus(Qt::OtherFocusReason);
