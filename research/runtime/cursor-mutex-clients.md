@@ -41,3 +41,9 @@ abandoned/failure ownership semantics. Before changing capture synchronization,
 observe actual constructor/wait/release/close identities and ordering in a
 bounded original run. Source allocation/aliasing, complete concurrency and
 physical/native parity remain independent gaps.
+
+The separate original call observer now retains two tracked creations/closes
+and 286 complete timer nested wait/release chains in one normal-Quit run.
+See `draw02-cursor-mutex-order-analysis-01.json`; all raw Wait values are zero
+and Release values one in this run. This is bounded observed order, without
+proving all ownership, aliases or safe added capture locking.

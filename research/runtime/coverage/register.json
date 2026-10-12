@@ -44820,7 +44820,8 @@
       "remaining_gaps": [
         "Actual callback meaning, input-to-state causality, queue/control/thread lifetimes, persistent selection/tooltip and full source/physical/native parity pending. Numeric pool IDs are address-change counters, not allocation/generation proof. Callback4fdad0has bounded static discovery only and unknown inventory ranges remain intact.",
         "Initial V1actorlabels incorrect; current strict decoder normalizes without changingraw/reporthashes and V2writercorrects offsets. Initial fixed-address fixtureallocation exits202; conflictunassigned. V1results stayhistorical. V2currentlyretains14callbackpairs but complete selection/tooltip and actor lifetime remain pending.",
-        "Initial prospective declaration used unsupportednativekindlabel; correctnative_policycategory changes contractfingerprint. PriorV2execution retained as historical; fresh corrected-contractfixture/original executions recorded separately."
+        "Initial prospective declaration used unsupportednativekindlabel; correctnative_policycategory changes contractfingerprint. PriorV2execution retained as historical; fresh corrected-contractfixture/original executions recorded separately.",
+        "Cursor-mutex capture flag changes sharedcapture/runner/controlsources. Existing RegionV2rawexecution remains historical for currentfrontendfingerprints; no freshRegion comparison/integration assertion frommutexcapture, which keepsRegionflagoff."
       ]
     },
     {
@@ -44921,7 +44922,8 @@
       "tests": [
         "tools/inspect-drawing-cursor-mutexes.py",
         "tools/test-drawing-cursor-waits.py",
-        "tests/drawing-cursor-wait-reference.cpp"
+        "tests/drawing-cursor-wait-reference.cpp",
+        "tools/analyze-drawing-cursor-mutex-order.py"
       ],
       "validation_dependencies": [
         "tools/inspect-drawing-canvas-storage.py",
@@ -44930,7 +44932,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-cursor-mutexes-static-01-20261012",
-        "DRAW02.draw02-cursor-waits-original-01-20261012"
+        "DRAW02.draw02-cursor-waits-original-01-20261012",
+        "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44940,7 +44943,117 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "4e9df6disposal lacks whole discovered function and remains a bounded static window. Original642c58/6e1ec0handle lifetime, aliases, real wait/abandoned/failure ownership, nested-wait execution and complete lock ordering unproved. No new capture synchronization or source ownership/native parity claim."
+        "4e9df6disposal lacks whole discovered function and remains a bounded static window. Original642c58/6e1ec0handle lifetime, aliases, real wait/abandoned/failure ownership, nested-wait execution and complete lock ordering unproved. No new capture synchronization or source ownership/native parity claim.",
+        "Adding offline order-analysis test linkage changes the prospective cursor contract; the prior240celloriginal gate evidence remains historical. New offline order evidence does not assert fresh execution of that gate or all runtime ownership."
+      ]
+    },
+    {
+      "id": "NR.drawing-cursor-mutex-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Read-only original cursor mutex import observation",
+      "scope": "Separate opt-in PE32 module observes pinned original CreateMutexA/WaitForSingleObject/ReleaseMutex/CloseHandle imports with one forward, exact args/result/LastError/512FXstate, bounded paired memory records and numeric Create/Close identities. Query existing API/cursor point without input polling outside recorder lock; no lock spans an original call. Raw results do not prove ownership, complete aliases/lock order or safe source protection.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6049976,
+          "relation": "data",
+          "scope": "Pinned original CreateMutexA import cell."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6050112,
+          "relation": "data",
+          "scope": "Pinned original WaitForSingleObject import cell."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6050108,
+          "relation": "data",
+          "scope": "Pinned original ReleaseMutex import cell."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6049952,
+          "relation": "data",
+          "scope": "Pinned original CloseHandle import cell."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/formats/drawing-cursor-mutex.md"
+      ],
+      "implementation": [
+        "runtime/cursor-mutex/observer.c"
+      ],
+      "tests": [
+        "tools/test-drawing-cursor-mutex-observer.py",
+        "tests/drawing-cursor-mutex-test.c",
+        "tools/drawing_cursor_mutex.py",
+        "tests/test-drawing-cursor-mutex.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-cursor-mutex-observer.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/drawing_input_point.py",
+        "protocols/include/mnm/drawing_input_point_v1.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
+        "DRAW02.draw02-cursor-mutex-original-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual original constructor/wait/release/close lifetime/order and raw call classification pending. Named/external handle aliases, concurrent close/use, real ownership/abandoned semantics and safe diagnostic source synchronization remain unproved. Recorder loss/pending/identity overflow and missing points stay visible; full pixel/source/native parity remains independent."
+      ]
+    },
+    {
+      "id": "NR.drawing-cursor-mutex-prefix-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact retained cursor mutex API-prefix binding",
+      "scope": "Offline strict binding of sampled mutex entry/return point payloads to completed original API/cursor journal prefixes, including pending entry counts, inactive terminal prefixes and query refusals. No atomic mutex-event/frame boundary, real ownership or safe source synchronization claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-cursor-mutex.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "tools/drawing_cursor_mutex_binding.py"
+      ],
+      "tests": [
+        "tests/test-drawing-cursor-mutex-binding.py",
+        "tools/analyze-drawing-cursor-mutex.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_cursor_mutex.py",
+        "tools/drawing_input_point.py",
+        "tools/drawing_api_session.py",
+        "protocols/include/mnm/drawing_input_point_v1.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Sampled prefix query occurs before row publication; completed record order differs from entered call order. Refused/inactive points remain explicit. Ownership, handles/aliases, concurrent close/use, source protection and complete original/native equivalence pending."
       ]
     }
   ],
@@ -96369,6 +96482,65 @@
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Current actualPE32observer20single synthetic forwards verifiesstdcallargs/rawresult/LastError/512FXdespiteclobberingpointquery, waitresponses/timeouts, failed/successfulclose, reusedhandle2IDsandunknownhandles; no realOSownership/game/sourceprotection.",
+      "record": "research/runtime/draw02-cursor-mutex-fixture-01.json",
+      "sha256": "b0f721c233d5c49e4e41be15bca87d8c1f31dd8f916f05270aee3d769008ca07",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active normalQuit6849pairedcalls:2unnamed/unownedcreates,3258waitsreturn0,3258releasesreturn1,331closes329unknownand2trackedIDsclosed. No addedwait/inputpoll, ownership/sourceprotection/fullpixelnativeclaim.",
+      "record": "research/runtime/draw02-cursor-mutex-original-01.json",
+      "sha256": "1d3d52ef97a1c1b791fe5db43c226ef088cc4f0ab391014ed846b1b2df22ff3e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Current immutable offline6849call13698pointsbindexactAPI/cursorprefixes,72inactive0queryrefusal; pendingentriesallowed andterminalpreserved. No newgame/atomiccallframe/ownership/sourceprotection.",
+      "record": "research/runtime/draw02-cursor-mutex-binding-analysis-01.json",
+      "sha256": "be4d93408f719bad720f1a4d540d476570ad24ce6555553ff68084c87b62620d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Immutable originalcaller/orderanalysis286timerouter1\u2192inner2FFFFFFFFwait\u2192innerrelease\u2192outerreleasechains0gaps; bothtrackedIDsclosed. Scope onlyoneobservedrun, no allaliases/ownership/abandoned/safeaddedlocking.",
+      "record": "research/runtime/draw02-cursor-mutex-order-analysis-01.json",
+      "sha256": "a49a7f92b30b170adf6b43d394d031e0ed3828fda5a9fb24c3e04c61b47319fe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108511,8 +108683,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-mutexes-20261012.json",
-    "sha256": "3b68203b8fd27a8cc48e14304e3eff1968e81112350a4711bb6aad51a5ee186d"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-mutex-observer-20261012.json",
+    "sha256": "049dd687b676380028d14b04d9ed009e87bd70ccbdaa3d919ca66fee111a984b"
   },
   "claim_bindings_required": true
 }

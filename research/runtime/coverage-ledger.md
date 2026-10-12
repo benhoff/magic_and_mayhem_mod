@@ -8016,3 +8016,38 @@ lock ordering, abandoned handling and safe source capture synchronization remain
 open. Next observe actual mutex identities and calls before adding any capture
 locking. Step 2 remains ongoing; all 47 journey/21 operation requirements and
 steps 3–7 remain open.
+
+
+## Step 2 original mutex observation checkpoint (2026-10-12 UTC)
+
+Cursor gates are committed as `ba828b8d`; staged gate and hook pass. Reviewed
+range `6afb42c3..ba828b8d` has 12 exact file receipts and zero missing versions.
+A separate opt-in PE32 module observes four pinned original Kernel32 imports,
+forwards each once and preserves arguments, raw result, LastError and 512-byte
+FX state. It adds no wait or input poll; neither its recorder lock nor point
+query spans an original call. Five decoder methods, three prefix-binding methods
+and existing cadence/input guards pass. Actual PE32 fixture passes 20 forwards,
+including timeouts/raw responses, failed/successful close, numeric handle reuse
+with distinct IDs, unknown handles and deliberately clobbering point queries.
+
+Fresh original metadata campaign/Mini/Preferences/resume/normal Quit retains
+6,849 paired import calls: two unnamed constructors with initial-owner zero,
+3,258 waits returning zero, 3,258 releases returning one, and 331 closes. Of
+the closes, 329 refer to untracked nonmutex handles; both tracked IDs close.
+Constructor callers `4e8f75` and `4a3706` establish IDs 1 and 2 within this run;
+no stable cross-launch numeric handle values are assumed.
+
+Current immutable reanalysis binds all 13,698 sampled API/cursor points, retaining
+72 inactive points and zero query refusals. Another exact caller-order analysis
+retains 286 timer outer-ID1 wait → inner-ID2 wait with `ffffffff` → inner release
+→ outer release chains, with zero pairing gaps. These are observed calls/results,
+not full ownership/alias/abandoned or safe additional-locking proofs. Point queries
+precede row publication and do not create atomic call-entry/frame boundaries.
+
+Adding an offline order test link leaves prior 240-cell cursor gate claims
+historical for the changed contract. Shared capture/runner/control edits also
+leave Region V2 frontend evidence historical; this capture keeps Region tracing
+off and asserts no fresh Region or pixel equivalence. Historical hashes remain
+unchanged. Next compare mutex intervals with exact source-copy/lease callers,
+then validate any proposed bounded synchronization in isolation before live use.
+Step 2 remains ongoing; all 47 journey/21 operation and steps 3–7 remain open.
