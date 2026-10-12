@@ -7167,3 +7167,24 @@ first-frame/static-menu/identity refusals and surface/source/output bounds
 remain explicit. This is a native last-complete UI policy; original equivalence
 is unclaimed. Worker/recipe carry-forward controls pass; full current-code
 TITAN functional/performance validation is pending.60FPS remains outstanding.
+
+### Carry-forward full TITAN validation (2026-10-12)
+
+Current native worker/recipe controls and a full unchanged-source TITAN rerun
+prove the scoped native presentation policy through casting/combat/spells/
+portraits/movement/menu/resume/normal Quit:4616 balanced imports/returns, zero
+readbacks/pixel replies/fallback/outstanding, two source/output high-water and
+two immutable output allocations, verified originals/private Wine cleanup.
+`HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012`
+keeps functional19FPSsmoke success and60FPS failure separate. Source19.8068Hz;
+World44.2446FPS, visible52.7221/54.1183FPS. First-seal blocked opportunities0;
+4615 carries/2547 immediate native-source presentations/3389 inherited redraws.
+Current scoped native implementation remains partial/live observation.
+
+The first full attempt failed conservative cross-thread copy ordering (112ms
+wait/144ms owner at phase4, then history GAP). Its immutable
+`HOST.native-display-deadlines.carry-forward-full-history-negative-20261012`
+remains an unresolved reliability finding; rerun success does not clear it.
+Native World/driver/GPU cost remains the performance next step (new World18.41ms,
+extra World10.12ms+UI0.81ms elapsed CPU, not GPU execution).60FPS, interpolation,
+physical scanout and original equivalence/full replacement remain outstanding.

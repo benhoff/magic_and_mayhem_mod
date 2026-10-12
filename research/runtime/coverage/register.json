@@ -42364,7 +42364,9 @@
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42435,7 +42437,9 @@
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42503,10 +42507,12 @@
         "HOST.native-display-deadlines.sealed-ui-controls-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
         "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Carry-forward policy current-code controls/live validation pending. Historical native controls/live observations remain retained.60FPS/GPU cost/original comparison/interpolation/physical scanout and unexecuted failures remain separate; no live replacement promotion."
+        "Current carry-forward native controls and full TITAN functional rerun support partial policy/live observation; strict-current/identity/static-map/storage controls retained.60FPS stillfails (World44.24/paints52.72,54.12),true GPU execution/driver attribution/full original comparison/interpolation/physical scanout and unexecuted failures remain pending. Earlier live copy-order history timeout remains an unresolved reliability failure. No live replacement promotion."
       ]
     },
     {
@@ -42583,7 +42589,9 @@
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion.",
@@ -42813,7 +42821,9 @@
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
         "HOST.native-display-deadlines.attribution-controls-20261012",
         "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.carry-forward-worker-controls-20261012"
+        "HOST.native-display-deadlines.carry-forward-worker-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Fresh current dedicated-owner controls and TITAN full native campaign support partial native policy and live observation. ActualWorld27.2142FPS andvisible35.8486/48.8832FPS fail60FPS;source19.0883Hz failsstricter19.5diagnostic although19FPSsmokefloor passes. Full original comparison/replacement,physicalscanout,interpolation,contextloss/recreation,format/dimension changes andunexecuted failurebranches remainpending. Initial50mscopy-order deadlinefailure ispreserved; repeated successfuljourneys do notproveaGAPfix."
@@ -42898,10 +42908,12 @@
         "HOST.native-display-deadlines.attribution-controls-20261012",
         "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
         "HOST.native-display-deadlines.carry-forward-worker-controls-20261012",
-        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Pre-carry diagnostic full run confirms23.16ms WORLD-to-first-World-seal wall latency,4824 first-seal and3491 static-only opportunities;no generation mismatch/superseded seals. Current carry-forward policy implementation/controls/live observation pending. Sustained60FPS, GPU execution attribution, full original comparison/scanout/interpolation/unexecuted failure branches remain pending. UI is an intentional last-complete presentation policy, not recovered cross-generation original behavior."
+        "Current carry-forward worker/recipe controls and unchanged-source full TITAN rerun support partial native policy/live observation:4616 balanced imports,first-seal blocking0,source19.8068Hz,World44.2446FPS,paints52.7221/54.1183.60FPSfails. First full attempt failed existing conservative copy-order/history timeout; recurrence/cause remain unresolved and rerun success does not eliminate that reliability boundary. GPU execution attribution/native World/driver cost,physical scanout/full original comparison/interpolation/unexecuted failures remain pending. UI carry-forward is intentional native presentation policy."
       ]
     }
   ],
@@ -90221,6 +90233,92 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Failed full TITAN carry-forward attempt.2921 balanced source/native/imports/returns,first-seal due blocks0,2920 inherited UI imports/1896 immediate imported-source presentations/2712 inherited redraws. World46.54FPS/paints56.05 before failure; not full functional/performance proof. Existing conservative copy-order timeout waiter112ms/owner144ms,phase4 then epoch/history GAP1. Native fallback/normal Quit failure retained; cause not attributed to carry-forward. Original/source hashes and private cleanup retained.",
+      "record": "research/runtime/native-display-carry-forward-full-history-negative-20261012.json",
+      "sha256": "436ab02eef9807edb9379908ebe6656756331ac1682f6bf68ddd7d3ce2d94c82",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/functional_flow_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Unchanged-source full TITAN carry-forward rerun passes casting/combat/spells/portraits/movement/native menu/resume/normal Quit and19FPSsmoke.4616 source/native/imports/original returns balanced;zero outstanding/readbacks/pixel replies/fallback,two source/output bound. First-seal due blocking0,4615 inherited UI imports/2547 immediate imported-source presentations/3389 inherited redraws. Source19.8068Hz,World44.2446FPS,visible52.7221/54.1183FPS,worst18.1984/31.60FPSfails;functional smoke and performance failure independent. Prior intermittent copy-order/history failure remains unresolved. GPU execution/paired causal gain/scanout/interpolation/original equivalence unclaimed.",
+      "record": "research/runtime/native-display-carry-forward-full-performance-negative-20261012.json",
+      "sha256": "7a748ef54bca94026bd717a320e6507f50f4f0046a7ff8478f6aa998c832e7c9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/smoke_success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_success",
+          "equals": false
+        },
+        {
+          "pointer": "/functional_flow_success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/display_deadline_probe/reasons/first_seal/opportunities",
+          "equals": "0"
+        },
+        {
+          "pointer": "/resident_world/display_deadline_probe/compilation/reuse_sealed_ui_enabled",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100989,7 +101087,9 @@
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ]
     },
     {
@@ -101015,7 +101115,9 @@
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ]
     },
     {
@@ -101041,7 +101143,9 @@
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ]
     },
     {
@@ -101071,7 +101175,9 @@
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ]
     },
     {
@@ -101184,7 +101290,9 @@
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ]
     },
     {
@@ -101222,7 +101330,9 @@
       "evidence": [
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-history-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012"
       ]
     }
   ],

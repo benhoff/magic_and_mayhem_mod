@@ -480,3 +480,65 @@ receipt transitions, no unresolved chains; report
 `working/tests/native-display-attribution-implementation-history-20261012.json`.
 Prior broad shared-source consumers retain pending historical validation.
 Full current carry-forward TITAN observation remains pending at this milestone.
+
+### Carry-forward first full attempt: retained history failure
+
+`native-display-carry-forward-full-history-negative-20261012.json` retains
+a failed full TITAN journey.2921 native/source imports and original returns
+balanced with zero outstanding/readbacks; first-seal blocked opportunities0,
+2920 inherited UI imports,1896 immediate imported-source presentations,2712
+inherited extra redraws. Pre-failure World46.5398FPS and visible paints56.0527FPS
+are partial-window observations, not a successful full benchmark.
+
+The bounded lifecycle trace records `copy_order_timeout`: waiter0x190, owner
+0x1d8, wait112ms/owner144ms, caller/owner site0x101, phase4,native stage0, then
+`session_gap` reason1 (epoch invalidation), transported as terminal GAP reason2.
+These are this-launch thread identities, not stable addresses. The original
+BltFast copy order/commit timeout is a known retained failure class; the trace
+does not establish scheduler/driver/tracker or carry-forward causality.
+The50ms conservative admission bound remains unchanged. This attempt cannot
+prove movement/portrait/menu/resume/normal Quit completion and is kept as a
+functional failure separately from native GPU controls. An unchanged-source
+full rerun is required before accepting end-to-end coverage for this policy.
+
+Committed range d517eb95..bbf35080 was reviewed against exact parent/current
+receipts:20 file transitions, no missing chains. Report
+`working/tests/native-display-carry-forward-implementation-history-20261012.json`
+retains this history-only accounting; it asserts no new runtime validation.
+
+### Unchanged-source full carry-forward rerun
+
+`native-display-carry-forward-full-performance-negative-20261012.json` keeps
+the successful functional smoke separate from the failed60FPS benchmark.
+The TITAN rerun completes casting/combat/spells/portraits/movement/retreat/
+refusals/native-menu return/resume and normal Quit.4616 source completions,
+native imports and verified original returns balance; source outstanding0,
+source/output high-water2, immutable output allocations2, delivery/ordinary
+readbacks/pixel replies/fallback0. Source hashes unchanged, original manifest
+verified afterward, private Wine stopped, normal Quit retired cleanly.
+
+Source19.8068Hz; measured World44.2446FPS and visible paint52.7221/54.1183FPS
+over166.230/61.384seconds (worst18.1984/31FPS). These are observations from
+different gameplay runs, not paired causal gains or physical scanout rates.
+World rate uses the existing overall post-warmup clock, including intervals
+when World output is hidden/static-only; paint windows separately describe
+the visible native output. Neither supports sustained60FPS.
+
+First-seal blocked opportunities0 versus4824 in the pre-carry observation.
+4615 compatible UI carries,2547 immediate imported-source presentations and
+3389 inherited-UI extra redraws show actual use. UI seal wall latency still
+exists (mean25.6382ms), but rendering need not wait for it. No superseded seals
+or mixed-generation refusals occurred. Static-only due opportunities2965
+remain a separate visibility state, not an instruction to draw gameplay
+behind a native menu. Pending import opportunities1; UI PRESENT barriers0.
+
+Remaining native budget pressure: new World mean18.4090ms, extra World10.1243ms
+plus extra UI0.8096ms; these elapsed CPU measurements include driver waits.
+Reset1.0459ms, seal0.1464ms, import0.4683ms per operation. GPU timestamps and
+World draw/submission cost decomposition remain necessary before attributing
+remaining delay to CPU planning, driver submission or GPU execution.
+
+The unchanged-source rerun does not fix the prior112/144ms phase4 copy-order
+timeout. Preserve its negative result and conservative50ms refusal. Current
+functional observation, native policy controls, historical failures,60FPS
+performance and original comparison/replacement remain separate milestones.
