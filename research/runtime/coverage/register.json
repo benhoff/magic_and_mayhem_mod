@@ -43164,6 +43164,152 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-music-bridge",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Native music wire and selected CD/MCI compatibility routing",
+      "scope": "Session-owned versioned native music request/status/TOC/completion channel with no host pointers; native music service dispatch and local PE CD/MCI translation, selected original mixer enumeration suppression/per-music volume policy, local HWND completion notifications and independent native/unsupported/legacy-other call census. Preserve original playlist/control primitives until their own contracts are validated. Opt-in integration before default; arbitrary MCI/video callers, all WinMM/library retirement, physical driver/timing and complete manager replacement excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/native-music-channel.md",
+        "research/runtime/native-cd-music-service.md"
+      ],
+      "implementation": [
+        "protocols/schemas/music-v1.json",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "runtime/audio/music.h",
+        "audio/music_server_main.cpp"
+      ],
+      "tests": [
+        "tools/test-native-music-bridge.py"
+      ],
+      "validation_dependencies": [
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/music_output.cpp",
+        "audio/CMakeLists.txt"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-music-transport",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Native music host command/TOC/event transport",
+      "scope": "Owned versioned1024-byte native music host wire, independent command/status/event sequences, immutable TOC and worker-thread dispatch to widget-free native music service. Bounded request/cancellation, strict full-track-only endpoint policy, status/volume/seek/pause/loop/stop and retired readiness. No PE MCI compatibility/notifications, game/live routing or physical timing equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/native-music-channel.md",
+        "research/runtime/native-cd-music-service.md"
+      ],
+      "implementation": [
+        "protocols/schemas/music-v1.json",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_server_main.cpp"
+      ],
+      "tests": [
+        "tools/test-native-music-bridge.py"
+      ],
+      "validation_dependencies": [
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/music_output.cpp",
+        "audio/CMakeLists.txt",
+        "tools/test-native-music-service.py",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "HOST.native-music-transport.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-mci-cd-adapter",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Selected native CD/MCI translation and local notification semantics",
+      "scope": "PE32 selected CDAUDIO open/TMSF/status/whole-track play/pause/resume/stop/close, virtual TOC/data-track rejection, bounded native request/response and local callback notifications; preserve caller LastError on native paths and legacy-other fallback effects. Synthetic exported wrapper/notify fixture, not original game or actual Windows driver/window delivery. Guarded live MCI import, zero-mixer/per-music volume hooks and their installation remain separate until directly validated. Synthetic pinned-byte installation refusal/acceptance, zero-mixer thunk and x86 thiscall volume trampoline are also exercised; fixture volume tail returns success without original semantics.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-mci-cd-adapter.md",
+        "research/formats/native-music-channel.md"
+      ],
+      "implementation": [
+        "runtime/audio/music.h",
+        "runtime/audio/bridge.c",
+        "tools/build-audio-bridge.py"
+      ],
+      "tests": [
+        "runtime/audio/music_selftest.c",
+        "tools/test-native-mci-cd.py"
+      ],
+      "validation_dependencies": [
+        "runtime/audio/protocol.h",
+        "runtime/audio/wave_loading.h",
+        "runtime/audio/selftest.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "protocols/schemas/music-v1.json",
+        "audio/CMakeLists.txt",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_server_main.cpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/music_output.cpp",
+        "tools/test-native-music-service.py",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.hpp",
+        "assets/asset_file.cpp",
+        "assets/path_resolver.hpp",
+        "assets/path_resolver.cpp"
+      ],
+      "evidence": [
+        "HOST.native-mci-cd-adapter.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -89765,6 +89911,88 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-music-transport.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Independent Python wire peer versus real silent native Qt music worker/server and synthetic strict CD catalog. Request/status/event/TOC/PCM/lifecycle guards, no game/original MCI/notifications or physical output.",
+      "record": "research/runtime/native-music-transport-synthetic-20261012.json",
+      "sha256": "3e1fad75abd02dec5372beb7f89d7d596a33e44fa94a6c92053720a53af2acd7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/completed_frames",
+          "equals": 44100
+        },
+        {
+          "pointer": "/ready_after_stop",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-mci-cd-adapter.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 selected CD/MCI wrapper with native host and synthetic TOC/PCM; exported callback/LastError/notification fixture only, no original game/live hook/window/driver equivalence.",
+      "record": "research/runtime/native-mci-cd-synthetic-20261012.json",
+      "sha256": "e33ea5435dfec935e5157ab1cc91cd69ae1c4f6a8077805c9d06df57519362fe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/fixture_returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/producer_features",
+          "equals": 15
+        },
+        {
+          "pointer": "/native/unsupported_cd_calls",
+          "equals": 1
+        },
+        {
+          "pointer": "/native/legacy_other_mci_calls",
+          "equals": 1
+        },
+        {
+          "pointer": "/native/output/volume",
+          "equals": 30583
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100437,6 +100665,35 @@
       "evidence": [
         "HOST.native-music-service.synthetic-20261012"
       ]
+    },
+    {
+      "id": "native-music-transport-synthetic-20261012",
+      "level": "headless",
+      "scope": "Independent Python music wire peer against real silent Qt worker/server: strict TOC/request ACK/status/event publication, PCM progress, pause/seek/loop/volume/stop, cancellation/invalid command refusal and stopped readiness. No game/original/MCI callbacks or physical output.",
+      "behaviors": [
+        "HOST.native-music-transport"
+      ],
+      "tests": [
+        "tools/test-native-music-bridge.py"
+      ],
+      "evidence": [
+        "HOST.native-music-transport.synthetic-20261012"
+      ]
+    },
+    {
+      "id": "native-mci-cd-synthetic-20261012",
+      "level": "headless",
+      "scope": "Actual PE32 exported native MCI wrapper against native music worker and authored three-track TOC: open/TMSF/type/length/status, whole and last-track play, success/aborted notifications, pause/resume/stop/close, unsupported/data-track/closed-device refusals and legacy-other LastError semantics. No original game, live hook installation or real Windows notification/driver equivalence.",
+      "behaviors": [
+        "HOST.native-mci-cd-adapter"
+      ],
+      "tests": [
+        "runtime/audio/music_selftest.c",
+        "tools/test-native-mci-cd.py"
+      ],
+      "evidence": [
+        "HOST.native-mci-cd-adapter.synthetic-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100810,8 +101067,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-music-service-commit-20261012.json",
-    "sha256": "fbe386bae03521bd3af09a87f37410855dcb0036dc36b25276dad47d77d75f37"
+    "path": "research/runtime/coverage/source-index-native-music-wire-commit-20261012.json",
+    "sha256": "fc3ea7179fed9ed6019d43b8c8502d979f341ed8e229214f531606786e44565b"
   },
   "claim_bindings_required": true
 }

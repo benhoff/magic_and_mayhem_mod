@@ -6955,3 +6955,29 @@ physical fault/listening and live MCI routing/defaults remain pending.
 passes6,912 cases against the new build recipe, preserving prior immutable
 results. Other old live-audio fingerprints remain historical after CMake changes;
 no comparison/replacement milestone is inferred from this new native policy.
+
+### Native music wire and selected PE CD adapter (2026-10-12)
+
+The versioned1024-byte MNMMUS01 channel and worker-thread native broker now have
+independent Python-peer validation:14 commands, immutable three-track TOC,
+44100 complete PCM frames, volume/seek/pause/resume/loop/stop, three invalid
+requests, cancellation before acknowledgement and after accepted play, and
+withdrawn readiness. The real PE32 fixture passes open/TMSF/status/whole and
+last-track play, completion/abort notifications, LastError preservation and
+separate unsupported-CD/legacy-other-device counters. Synthetic guarded hook
+installation refuses changed IAT/mixer/prologue bytes before mutation; accepted
+zero-mixer dispatch and the original-volume trampoline reach native level30583
+for original level7. The fixture volume tail is authored; this does not compare
+the full original volume function or validate live HWND delivery.
+
+Fresh results: native-music-transport-synthetic-20261012.json and
+native-mci-cd-synthetic-20261012.json. HOST.native-music-transport and
+HOST.native-mci-cd-adapter are scoped native policies with headless integration;
+HOST.native-music-bridge retains partial implementation/no live integration.
+Native music launch admission/staging, original playlist notifications/live
+music, physical faults/listening/timing, arbitrary MCI endpoints, complete wire
+malformation coverage and Wine-library retirement remain pending. Prior shared
+CMake/runtime-source results remain historical where stale; no hash refresh or
+original equivalence/replacement promotion is implied. The preceding3ba667d
+commit's16 parent/current file transitions have exact receipts, with0 gaps, in
+coverage/native-music-service-history-20261012.json.
