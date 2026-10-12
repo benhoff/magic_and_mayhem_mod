@@ -200,11 +200,21 @@ public:
                         else useOriginalPresentation();
                     }else if(commands_->ended()){
                         input_->suspend(true);statusBar()->showMessage("Native preview finished. Continue in the original game window.");
-                    }else if(commands_->hasPendingCommands()){
+                    }else if(commands_->hasPendingCommands() && !commands_->waitingForWorld()){
                         // Continue after Qt can service input; retain each poll's
                         // byte/work bounds without another idle16ms frame wait.
                         commandDrain_.start();
                     }
+                }
+                if(residentWorld_ && residentWorld_->independent() && gl_->isVisible() && (!menuStack_ || menuStack_->currentWidget()==viewport_)){
+                    try{
+                        const auto generation=commands_->preparedGeneration();
+                        if(generation){auto frame=residentWorld_->drawIndependent(generation);if(frame.valid()){
+                            QElapsedTimer uiTiming;uiTiming.start();
+                            if(!commands_->presentPrepared(frame,generation))throw std::runtime_error(commands_->error().toStdString());
+                            residentWorld_->noteIndependentPresentation(uiTiming.nsecsElapsed()/1000000.0);
+                        }}
+                    }catch(const std::exception& e){residentWorldError_=e.what();residentWorld_->abort(residentWorldError_);residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();input_->suspend(true);nativeFallback_=true;return;}
                 }
                 if(liveMenus_)liveMenus_->renderingProgress();
                 const double totalMs=workClock.nsecsElapsed()/1000000.0;
@@ -289,9 +299,13 @@ private:
                 if(liveMenus_ && qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1"){
                     if(!continuous){statusBar()->showMessage("Resident World requires continuous commands.");return false;}
                     const auto directory=QFileInfo(commandPath).dir();residentWorldReport_=directory.filePath("resident-world-report.json");
-                    try{residentWorld_=std::make_unique<ResidentWorldSession>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"));}
+                    try{residentWorld_=std::make_unique<ResidentWorldSession>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"),qEnvironmentVariableIntValue("MNM_WORLD_SNAPSHOT")==1);}
                     catch(const std::exception& e){statusBar()->showMessage(e.what());return false;}
-                    commands_->residentWorld=[this](auto generation,auto nonce){return residentWorld_->import(generation,nonce);};frames_.setInterval(1);
+                    commands_->residentWorld=[this](auto generation,auto nonce){return residentWorld_->import(generation,nonce);};
+                    if(residentWorld_->independent()){
+                        commands_->residentReady=[this](auto generation,auto nonce){return residentWorld_->ready(generation,nonce);};
+                        commands_->prepareResidentFrames=true;
+                    }frames_.setInterval(1);
                 }
                 commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend((media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage(residentWorld_?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
@@ -501,6 +515,7 @@ int main(int argc,char** argv){
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"fullscreen","Start the OpenGL viewport fullscreen; F9 toggles."});
     parser.addOption({"scaling","Display scaling: sharp, smooth or integer; preserves game resolution.","mode","sharp"});
+    parser.addOption({"independent-world","Render owned native snapshots independently; requires --resident-world."});
     parser.addOption({"resident-world","Use resident GPU World delivery with public native menus and command presentation; requires --live-menus --native-commands."});
     parser.addOption({"native-commands","Native command presentation (default for ordinary OpenGL game launches); implies capture-locks. MNM_RENDER_CONTINUOUS=0 selects the bounded diagnostic sample."});
     parser.addOption({"frame-readback","Present original-renderer frames captured from game-owned buffers; implies capture-locks."});
@@ -706,6 +721,10 @@ int main(int argc,char** argv){
     if(parser.isSet("resident-world")){
         if(!parser.isSet("live-menus") || !nativeCommands || qEnvironmentVariable("MNM_RENDER_CONTINUOUS")=="0" || qEnvironmentVariable("MNM_NATIVE_DRAW")=="0")parser.showHelp(2);
         qputenv("MNM_PUBLIC_RESIDENT_WORLD","1");
+    }
+    if(parser.isSet("independent-world")){
+        if(!parser.isSet("resident-world") || qEnvironmentVariableIsSet("MNM_SCENE_PRODUCTION_PROBE"))parser.showHelp(2);
+        qputenv("MNM_WORLD_SNAPSHOT","1");
     }
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();

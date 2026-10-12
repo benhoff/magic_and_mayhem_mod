@@ -15,6 +15,11 @@ public:
     void abort();
     std::function<void()> framePresented;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
+    std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
+    bool prepareResidentFrames=false;
+    bool waitingForWorld() const{return waitingWorld_;}
+    std::uint64_t preparedGeneration() const;
+    bool presentPrepared(const mnm::render::GpuFrame&,std::uint64_t);
     bool ended() const{return ended_;}
     bool hasPendingCommands() const{return !closed_ && (cursor_<pending_.size() || !channel_.drained());}
     QString error() const{return error_;}
@@ -28,4 +33,5 @@ private:
     std::unique_ptr<mnm::render::CommandConsumer> consumer_;
     std::vector<mnm::render::SurfaceCommand> pending_;std::size_t cursor_=0;
     QString error_;
+    bool waitingWorld_=false;
 };

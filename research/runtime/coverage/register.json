@@ -42201,7 +42201,8 @@
         "NR.scene-draw-budget.report-worker-live-negative-20261012",
         "NR.scene-draw-budget.projection-live-negative-20261012",
         "NR.public-resident-world.budget-progress-campaign-20261012",
-        "HOST.resident-report-publication.final-controls-20261012"
+        "HOST.resident-report-publication.final-controls-20261012",
+        "HOST.menu-render-progress-heartbeat.owned-controls-20261012"
       ],
       "remaining_gaps": [
         "Full current TITAN campaign and mapped request/retirement controls pass; a single GUI freeze beyond unchanged2000ms lease still expires. No background keepalive or frozen-session resurrection guarantee."
@@ -42244,7 +42245,8 @@
         "NR.scene-draw-budget.report-worker-live-negative-20261012",
         "NR.scene-draw-budget.projection-live-negative-20261012",
         "NR.public-resident-world.budget-progress-campaign-20261012",
-        "HOST.resident-report-publication.final-controls-20261012"
+        "HOST.resident-report-publication.final-controls-20261012",
+        "HOST.menu-render-progress-heartbeat.owned-controls-20261012"
       ],
       "remaining_gaps": [
         "Coalescing/current final/error controls and full current TITAN shutdown pass; final/error synchronous IO remains outside gameplay, durable-storage latency and GPU/driver60FPS guarantees remain pending."
@@ -42345,10 +42347,176 @@
       },
       "evidence": [
         "NR.world-owned-snapshot-delivery.controls-20261012",
-        "NR.world-owned-snapshot-delivery.headless-controls-20261012"
+        "NR.world-owned-snapshot-delivery.headless-controls-20261012",
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "NR.world-owned-snapshot-delivery.current-controls-20261012"
       ],
       "remaining_gaps": [
-        "Current source-bound mapped owned-source/ordered-import/backpressure/error/join and independent PE32 ACK controls pass. Runtime V5 producer branch is unexecuted in original engine; original destination NOACCESS, real callback binding, independent native draw/HUD composition and full live pacing/input/Quit/performance remain pending. No interpolation,60FPS/default/original equivalence."
+        "Opt-in V5 original callback and native World/HUD rendering executed in a negative live attempt:38.36569renderFPS,18.64224sourceHz, late drawing-history GAP and pending normal Quit. Two-source bound and ordinary zero-readback route observed, but sustained pacing/fullgameplay/60FPS not established. Earlier headless ownership evidence retains historical fingerprints; rerun after queue changes before current-code claims. No interpolation/default switch/original equivalence."
+      ]
+    },
+    {
+      "id": "NR.native-prepared-world-replay",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Replay owned native World draws from an exact GPU baseline",
+      "scope": "Opt-in prepared resident World drawing preserves engine update sequence/CPU producer history once per source. Freeze native GPU canvas before ordered drawing, retain owned display data and native resource identities, restore exact native storage/palettes/clippers/defined-word knowledge before each extra draw. Extra rendering reuses native draws without reentering original producer or advancing ANI/RNG/simulation/return counters. No original destination seed, GPU readback or cumulative destination-dependent fade/shadow/composite application. World-only replay precedes separate native HUD/public-clock integration.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/native-prepared-world-test.cpp",
+        "tools/test-native-prepared-world.py"
+      ],
+      "validation_dependencies": [
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/known_pixels.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "renderer/resources/resource_cache.cpp",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/original-manifest.sh",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "tests/resource-fixtures.hpp",
+        "renderer/surface_copy.hpp",
+        "renderer/surface_copy.cpp"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "NR.native-prepared-world-replay.controls-20261012"
+      ],
+      "remaining_gaps": [
+        "Fresh bounded native controls pass for the stated scope. Full command admission/driver comparison, adversarial budget/clipper/failure coverage, independent live source pacing/gameplay/Quit and sustained60FPS remain pending. Interpolation is separate."
+      ]
+    },
+    {
+      "id": "NR.native-prepared-command-frame",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Prepare native HUD and World composition for independent rendering",
+      "scope": "Opt-in native command-frame recipe freezes native GPU source/destination baselines around the selected resident World reference and owns admitted updates, copy/swap/clipper/palette operations through PRESENT. Repeated frames restore private native storage and import matching native World generations, then execute ordinary native composition without rereading original output or replaying stream admission/producer counters. No original destination/CPU readback initialization, cached screenshot substitute, dropped/reordered engine imports, DirectDraw restoration or simulation advance. Bounded private resources and terminal refusal remain explicit.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/commands.hpp"
+      ],
+      "tests": [
+        "tests/native-frame-recipe-test.cpp",
+        "tools/test-native-frame-recipe.py"
+      ],
+      "validation_dependencies": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_state.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/CMakeLists.txt",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "NR.native-prepared-command-frame.controls-20261012"
+      ],
+      "remaining_gaps": [
+        "Fresh bounded native controls pass for the stated scope. Full command admission/driver comparison, adversarial budget/clipper/failure coverage, independent live source pacing/gameplay/Quit and sustained60FPS remain pending. Interpolation is separate."
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Render owned native World and HUD independently of engine production",
+      "scope": "Opt-in public independent-world mode requires resident native graphics/menu/command routing and explicit owned V5 snapshot acceptance. Capture/validate/actual-return owner remains separate from GUI-owned native GL; finite two-snapshot credits include deferred native/GUI imports. A16.667ms native clock chooses queued source updates or prepared World/HUD replays, preserving source FIFO/generation/nonce, exact original20Hz pacing and once-only producer history. WORLD commands wait for matching completed native data; extra rendered/presented frames and source/simulation counts are separate. No GUI wait on background work, original producer repeats, readback/pixel reply/DirectDraw restoration or simulation/ANI advance. Strict pending/error/normal Quit retirement and joined cancellation remain mandatory; interpolation is a separate native policy.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "tools/menu-game-runner.py",
+        "tools/prepare-menu-observer.py",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/menu-resident-quit-test.cpp",
+        "tests/native-frame-recipe-test.cpp",
+        "tools/probe-independent-native-world.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/world_continuous_v5.h",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "runtime/scene/world_continuous.c",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/original-manifest.sh"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Opt-in V5 original callback and native World/HUD rendering executed in a negative live attempt:38.36569renderFPS,18.64224sourceHz, late drawing-history GAP and pending normal Quit. Two-source bound and ordinary zero-readback route observed, but sustained pacing/fullgameplay/60FPS not established. Earlier headless ownership evidence retains historical fingerprints; rerun after queue changes before current-code claims. No interpolation/default switch/original equivalence."
       ]
     }
   ],
@@ -88707,6 +88875,156 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.startup-negative-20261012",
+      "kind": "live_observation",
+      "scope": "First private TITAN V5 native attempt fails before gameplay: shell SIGSEGV on null capture queue in pollOwned. Source-bound core backtrace identifies capture initialization accidentally inside profiler helper. No private Wine prefix was created. Original/source verification true; no rendering, guarded original runtime or gameplay success. Full cleanup field remains unconfirmed in raw wrapper; do not assert it.",
+      "record": "research/runtime/independent-native-startup-negative-20261012.json",
+      "sha256": "75ce8c2e9a608578069b59ba0178da6940df67faaffe8d1cefb3af7d28de26ff",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.first-render-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Working V5 independent rendering trial remains negative:3446source/native completions,3445imports and3661extra native Worlds reach38.36569renderFPS but18.64224original sourceHz and3327deadline misses fail. Later native command drawing-history GAP reason2 terminates withtwooutstanding sources/no normal Quit. Input trace records summon/Fireball/melee/lethal/retreat/refusal observations, but formal full gameplay unpassed. Sources/original/private cleanup verify; no60FPS/live-equivalence claim.",
+      "record": "research/runtime/independent-native-first-render-negative-20261012.json",
+      "sha256": "cf03a043cbe8fecfe424060384c60207cd1c8b05bc925da5cdd6fdbfdfd5ce9c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-prepared-world-replay.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Native GPU baseline controls9;40destination-dependent repeats;2sourceupdates;4saved-source native parity repeats; source/producer history unchanged, zero ordinary readbacks and zero teardown surfaces. Authored/saved inputs; no original/live/pacing/60FPS claim.",
+      "record": "research/runtime/native-prepared-world-controls-20261012.json",
+      "sha256": "d7379b638399ff8a00ed00c9207470fa2417044ba8fcf40a784778907e9254e0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/controls/teardown_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.native-prepared-command-frame.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Native World/HUD composition repeats30; source mutation/release, incomplete frame refusal, same-generation UI updates and fresh World use;100static uploads folded without extra uploads; versioned masked reads,10swaps,indexed palette ownership. Diagnostic reads outside ordinary drawing; zero ordinary readbacks and teardown surfaces. No original/live/60FPS claim.",
+      "record": "research/runtime/native-frame-recipe-controls-20261012.json",
+      "sha256": "7eacfc817ddb40f6fcf92f110ca0877d1edb3bc82f035e06a9b57e34b4fe068f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/controls/teardown_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.world-owned-snapshot-delivery.current-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh current-source V5 mapped ownership/return/backpressure/error/join, independentPE32ACK controls and512legacyV4leases; no live equivalence.",
+      "record": "research/runtime/world-owned-snapshot-current-controls-20261012.json",
+      "sha256": "d52f42f1301d5ec8f4e42305abe6fb660a52f1939998d01d5716d36797e0abe0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.menu-render-progress-heartbeat.owned-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh mapped-menu rendering heartbeat, retirement/refusal/reportcoalescing controls with cold owned-snapshot construction. No live60FPS claim.",
+      "record": "research/runtime/render-progress-owned-controls-20261012.json",
+      "sha256": "4f3b627b9c265e058f07a7cd458c2fa55e86e4aa5f5277a1d9bccaf0cc759057",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99328,7 +99646,8 @@
       "evidence": [
         "HOST.menu-render-progress-heartbeat.controls-20261012",
         "HOST.resident-report-publication.controls-20261012",
-        "HOST.resident-report-publication.final-controls-20261012"
+        "HOST.resident-report-publication.final-controls-20261012",
+        "HOST.menu-render-progress-heartbeat.owned-controls-20261012"
       ]
     },
     {
@@ -99362,7 +99681,8 @@
       ],
       "evidence": [
         "HOST.resident-report-publication.controls-20261012",
-        "HOST.resident-report-publication.final-controls-20261012"
+        "HOST.resident-report-publication.final-controls-20261012",
+        "HOST.menu-render-progress-heartbeat.owned-controls-20261012"
       ]
     },
     {
@@ -99411,7 +99731,102 @@
       ],
       "evidence": [
         "NR.world-owned-snapshot-delivery.controls-20261012",
-        "NR.world-owned-snapshot-delivery.headless-controls-20261012"
+        "NR.world-owned-snapshot-delivery.headless-controls-20261012",
+        "NR.world-owned-snapshot-delivery.current-controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-prepared-world-replay.fixture",
+      "level": "headless",
+      "scope": "Native baseline restore and repeat drawing compared to independently authored full-frame RGB565/indexed/composite expected pixels and saved native producer inputs. Extra draws must leave native producer sequence/history unchanged, use no ordinary readbacks and avoid repeat resource preparation; source/extent/format/refusal/lifetime cases retained. No live original or GUI60FPS proof.",
+      "behaviors": [
+        "NR.native-prepared-world-replay"
+      ],
+      "tests": [
+        "tests/native-prepared-world-test.cpp",
+        "tools/test-native-prepared-world.py"
+      ],
+      "evidence": [
+        "NR.native-prepared-world-replay.controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-prepared-command-frame.fixture",
+      "level": "headless",
+      "scope": "Independent expected native World/HUD composition, restored destination-dependent state, immutable source mutation/release, captured update/palette/clipper/swap/refusal/budget/lifetime controls. Repeated render does not advance protocol generation/admission or read pixels ordinarily. No original live or scanout proof.",
+      "behaviors": [
+        "NR.native-prepared-command-frame"
+      ],
+      "tests": [
+        "tests/native-frame-recipe-test.cpp",
+        "tools/test-native-frame-recipe.py"
+      ],
+      "evidence": [
+        "NR.native-prepared-command-frame.controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-owned-snapshot-delivery.live",
+      "level": "live_observation",
+      "scope": "Private TITAN opt-in owned V5 independent native World/HUD full casting/combat/spell/movement/portraits/Mini/normal Quit journey. Require source/return/native/import FIFO balance and2outstanding bound, near20Hz original source cadence, zero delivery readbacks/pixel replies/fallback and actual native render/paint deadlines; failures retained separately. Repeated frames do not interpolate motion or imply physical scanout/original pixel/driver equivalence.",
+      "behaviors": [
+        "NR.world-owned-snapshot-delivery"
+      ],
+      "tests": [
+        "tools/probe-independent-native-world.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-prepared-world-replay.live",
+      "level": "live_observation",
+      "scope": "Private TITAN opt-in owned V5 independent native World/HUD full casting/combat/spell/movement/portraits/Mini/normal Quit journey. Require source/return/native/import FIFO balance and2outstanding bound, near20Hz original source cadence, zero delivery readbacks/pixel replies/fallback and actual native render/paint deadlines; failures retained separately. Repeated frames do not interpolate motion or imply physical scanout/original pixel/driver equivalence.",
+      "behaviors": [
+        "NR.native-prepared-world-replay"
+      ],
+      "tests": [
+        "tools/probe-independent-native-world.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-prepared-command-frame.live",
+      "level": "live_observation",
+      "scope": "Private TITAN opt-in owned V5 independent native World/HUD full casting/combat/spell/movement/portraits/Mini/normal Quit journey. Require source/return/native/import FIFO balance and2outstanding bound, near20Hz original source cadence, zero delivery readbacks/pixel replies/fallback and actual native render/paint deadlines; failures retained separately. Repeated frames do not interpolate motion or imply physical scanout/original pixel/driver equivalence.",
+      "behaviors": [
+        "NR.native-prepared-command-frame"
+      ],
+      "tests": [
+        "tools/probe-independent-native-world.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012"
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.live",
+      "level": "live_observation",
+      "scope": "Private TITAN opt-in owned V5 independent native World/HUD full casting/combat/spell/movement/portraits/Mini/normal Quit journey. Require source/return/native/import FIFO balance and2outstanding bound, near20Hz original source cadence, zero delivery readbacks/pixel replies/fallback and actual native render/paint deadlines; failures retained separately. Repeated frames do not interpolate motion or imply physical scanout/original pixel/driver equivalence.",
+      "behaviors": [
+        "HOST.independent-native-world-loop"
+      ],
+      "tests": [
+        "tools/probe-independent-native-world.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.independent-native-world-loop.startup-negative-20261012",
+        "HOST.independent-native-world-loop.first-render-negative-20261012"
       ]
     }
   ],
@@ -99786,8 +100201,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-owned-snapshot-contract-reviewed-20261012.json",
-    "sha256": "7b81eb81ccdeab50e8e7a7bd3e90e0ba7ee25b33c90316f977c582d760add3fb"
+    "path": "research/runtime/coverage/source-index-native-prepared-render-milestone-20261012.json",
+    "sha256": "54c28fd48191970d52fde50203073dabf710b78b414dff5efd66e44a818c658f"
   },
   "claim_bindings_required": true
 }

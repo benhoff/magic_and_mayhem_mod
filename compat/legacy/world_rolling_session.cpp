@@ -4,7 +4,7 @@
 namespace mnm::legacy {
 WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
                                          const assets::AssetStore &store,
-                                         bool verify, bool resident)
+                                         bool verify, bool resident, bool preparedReplay)
     : renderer_(renderer), mirror_(resident ? std::make_unique<render::GpuCanvasMirror>(renderer) : nullptr),
       producer_([store](const auto &name) {
         auto opened = store.open(name);
@@ -19,6 +19,7 @@ WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
       }, mirror_.get()),
       world_(renderer, store), verify_(verify), resident_(resident) {
   if(resident && verify)throw std::invalid_argument("Resident and pixel-reference modes are separate");
+  if(preparedReplay){if(!resident)throw std::invalid_argument("Prepared World requires resident native history");world_.enablePreparedReplay();}
 }
 render::Image WorldRollingSession::consume(
     std::uint64_t sequence, const std::vector<std::uint8_t> &bytes,
@@ -143,6 +144,10 @@ render::GpuFrame WorldRollingSession::consumeResident(std::uint64_t sequence,
   render::GpuFrame frame;
   renderer_.batch([&] { consumeOwned(sequence,stream); frame=presentGpu(); });
   return frame;
+}
+render::GpuFrame WorldRollingSession::replayPrepared(){
+  if(failed_ || !completed_)throw std::logic_error("Prepared replay after failed/incomplete source update");
+  try{return world_.replayPrepared();}catch(...){failed_=true;throw;}
 }
 render::Image WorldRollingSession::diagnosticReadResident(render::GlBlitter &renderer) {
   if(!resident_ || failed_ || !completed_)throw std::logic_error("No resident diagnostic frame");

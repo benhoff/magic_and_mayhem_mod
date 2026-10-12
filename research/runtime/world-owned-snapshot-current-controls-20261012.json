@@ -1,0 +1,69 @@
+{
+  "success": true,
+  "scope": "Source-bound V5 owned snapshot/return/queue controls; no live gameplay claim.",
+  "sources": {
+    "compat/legacy/canvas_producers.cpp": "d55cddc042a63d5af9da5584f03c9d4bbb274dfb1905134cf36fa49bcc64b746",
+    "compat/legacy/canvas_producers.hpp": "971823ea1605c2918ff02d261642a3736be4ff42a3052cf7a401d3f42183f6c8",
+    "compat/legacy/world-rolling/CMakeLists.txt": "e51c84f717cd8634feac5ba328b124fc4e4a502a1ce12f8cf5b9fbed61c20f69",
+    "compat/legacy/world_continuous.cpp": "e4bc1580e9620ef9918752475174dd1711c89cb62ad0e604d36948fa56b088a6",
+    "compat/legacy/world_continuous.hpp": "4ee5d5c4286c02184b265ea548d121ecdd418c2c216a23b393c644a70f2f7e0f",
+    "compat/legacy/world_raster_batch.cpp": "d33c0c8b7a8f5bcd2cc9b7c6086e6928adbd3e7653414fdbabc7626ab5ad58e7",
+    "compat/legacy/world_raster_batch.hpp": "8acae144a2c2565d85b87fea1ceb450274b80060d7a64c528b56b603a5c09a8a",
+    "compat/legacy/world_rolling_handoff.cpp": "eef77854c606da97032966622c03da07834cf984b14be58cc62adcd8a363972a",
+    "compat/legacy/world_rolling_handoff.hpp": "f3f6ebfad9c166dacc2a270393305fe786d932b410fc51b118cf1b7d8ffe47a4",
+    "compat/legacy/world_rolling_packet.cpp": "a24477993dee85aaafea3f6cc4e465d9da9f9dfe3232894ea1d68f91ca9cdd77",
+    "compat/legacy/world_rolling_packet.hpp": "94fc8cd54f880c0d98d318434befa1dc10eb777920c3b5429e96d61326c16161",
+    "compat/legacy/world_snapshot_queue.cpp": "1ba49838173fe143800e6df8b973ba1b6cab5bd4d4217f1e479c2a4acbb2023e",
+    "compat/legacy/world_snapshot_queue.hpp": "ba2ac9da0ad7725540958e2f5fde3ca3603dd01f48726b007ee959ea0fb6e5e2",
+    "protocols/include/mnm/world_continuous_checksum.h": "4d96065598923f759691b565716e511e2021edb5043af0aeaaae890f8ad43198",
+    "protocols/include/mnm/world_continuous_v3.h": "d130c9ec19782acc916e21686f8970f307c0d974f164c3bc9c64cb587972a3fd",
+    "protocols/include/mnm/world_continuous_v4.h": "35d8b7d03a370adad0a8583908047d11b95f7203d36c42dcff2946f0d8e824cd",
+    "protocols/include/mnm/world_continuous_v5.h": "1d75c3d4ef51fa94fe83c851781aee353425940bfbaea9c20c87bfb68b03ceaa",
+    "runtime/scene/world_continuous.c": "307866a48c48926b715184ac75220c25a38752dd5e6b87512b26640cd35b5d74",
+    "tests/world-snapshot-ack-reference.c": "3e7af0976fcf42bf782c4ec20333af6f167d9e2ba20c84e2aeb9ea3bcc690bee",
+    "tests/world-snapshot-queue-test.cpp": "a80fe6ca651341d50ffa35114d7bcc6344bb0e1a586a42a61529672773cf290a",
+    "tools/build-scene-observer.py": "0c5d3d17ea817e76033ae1c8bdd5fa1ad1c2c5974edcb6a123ecdc402ade24ae",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/profile_native_resident_helpers.py": "8c2e2c10a32c7178fef55da77e0a7fed009da9c50ca93972c8ab1be4b42cb72a",
+    "tools/test-world-owned-snapshots.py": "f637a1252616e91b81d22472b0927bdac72de545006d6b3e2231839d42ae43d2"
+  },
+  "claims": [
+    {
+      "behavior": "NR.world-owned-snapshot-delivery",
+      "contract_sha256": "bc37cf1452964cb92e68963ac6e88f020a600075f54a3602e5fe7f09258267ea",
+      "scenarios": {
+        "NR.world-owned-snapshot-delivery.fixture": "d3c4002a0c49e18160c0acda313391ebb71b7cb00405696e6e96c0b30f51ab56"
+      }
+    }
+  ],
+  "fixture_input": {
+    "capture": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/native-campaign/run-u4m1wj53/resident-source.bin",
+    "source_bytes": 1200908,
+    "request_bytes": 27056,
+    "source_sha256": "f3ec2e4525696811b5412cce8f3302cad260235b85942d8b87db7bac254d4378",
+    "request_sha256": "310976726f7c2b69331ed9448b945bb6a1c75e260682680265916e17d9505456",
+    "scope": "First source-owned record from historical captured gameplay prefix; authored original peer controls only."
+  },
+  "queue_controls": {
+    "owned_before_render": 2,
+    "backpressure": true,
+    "source_overwrite_safe": true,
+    "ordered_imports": 3,
+    "failure_cases": 12,
+    "legacy_refused": true,
+    "cancellation_joined": true
+  },
+  "pe_controls": {
+    "exit_code": 0,
+    "exact_ack_bytes": 80,
+    "byte_mutations": 80,
+    "legacy_mutual_refusal": true,
+    "binary_sha256": "58c4ea995c903b265ed1224ced2f7b794216c965e591bc59a3ffe669461a646a"
+  },
+  "legacy_v4_controls": 512,
+  "private_wine_stopped": true,
+  "original_manifest_verified_after": true,
+  "sources_unchanged": true
+}

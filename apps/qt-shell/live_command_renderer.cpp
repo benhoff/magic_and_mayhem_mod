@@ -1,5 +1,6 @@
 #include "live_command_renderer.hpp"
 #include "gl_viewport.hpp"
+#include "../../protocols/include/mnm/render_stream_v4.h"
 #include <stdexcept>
 #include <algorithm>
 LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):viewport_(viewport),verify_(verify){}
@@ -24,13 +25,13 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 // and composes the latest lease after this bounded poll yields.
                 viewport_.setGpuFrame(std::move(frame));
                 if(framePresented)framePresented();
-            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld});
+            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames});
         }
         // Retain the finite byte budget and the32 ordinary-command budget.
         // A split UPDATE of <=16,384 pixels costs one eighth of an ordinary
         // command, allowing at most256 small uploads in a streaming GUI poll.
         // Copies, CREATE, larger updates and all v1 commands retain full cost.
-        unsigned work=0;quint32 remaining=budget;
+        unsigned work=0;quint32 remaining=budget;waitingWorld_=false;
         while(work<256){
             if(cursor_==pending_.size()){
                 if(!remaining)break;
@@ -42,6 +43,11 @@ bool LiveCommandRenderer::poll(quint32 budget){
             const auto first=cursor_;
             while(cursor_<pending_.size()){
                 const auto& command=pending_[cursor_];
+                if(command.operation==MNM_RENDER_STREAM_V4_OPERATION_WORLD && residentReady){
+                    const auto& w=command.words;
+                    const auto generation=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32),nonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);
+                    if(!residentReady(generation,nonce)){waitingWorld_=true;break;}
+                }
                 const unsigned cost=channel_.version()==2 && command.operation==2 &&
                     command.image.pixels.size()<=16384?1:8;
                 if(cost>256-work)break;
@@ -71,6 +77,11 @@ bool LiveCommandRenderer::finishProducer(){
         if(!ended_ && channel_.consumed()==before && (!consumer_ || consumer_->result().commands==commandsBefore)){fail("Producer exited without complete channel END");return false;}
     }
     return true;
+}
+std::uint64_t LiveCommandRenderer::preparedGeneration() const{return consumer_ && !closed_ && !ended_?consumer_->preparedGeneration():0;}
+bool LiveCommandRenderer::presentPrepared(const mnm::render::GpuFrame& frame,std::uint64_t generation){
+    try{if(!consumer_ || closed_ || ended_)return false;consumer_->presentPrepared(frame,generation);return true;}
+    catch(const std::exception& e){fail(e.what());return false;}
 }
 unsigned LiveCommandRenderer::presentations() const{return consumer_?consumer_->result().presents:0;}
 const mnm::render::CommandResult* LiveCommandRenderer::result() const{return consumer_?&consumer_->result():nullptr;}

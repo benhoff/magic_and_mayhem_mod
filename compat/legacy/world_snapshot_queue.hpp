@@ -15,16 +15,18 @@ struct OwnedWorldSnapshot {
   std::array<std::uint32_t,10> ticks{};
   std::size_t sourceBytes=0;
   double decodeMs=0,prepareMs=0;
+  std::vector<std::uint8_t> wireSource,wireRequest;
 };
 class WorldSnapshotQueue final {
 public:
   struct Stats {
     std::uint64_t accepted=0,returned=0,imports=0,bytes=0;
     std::size_t outstanding=0,ready=0,highWater=0;
+    std::uint32_t firstTick=0,lastTick=0;
     bool terminal=false;
     std::string error;
   };
-  explicit WorldSnapshotQueue(WorldContinuousChannel&);
+  explicit WorldSnapshotQueue(WorldContinuousChannel&,bool retainWire=false);
   ~WorldSnapshotQueue();
   WorldSnapshotQueue(const WorldSnapshotQueue&)=delete;
   bool take(OwnedWorldSnapshot&);
@@ -34,6 +36,7 @@ public:
 private:
   void capture();
   WorldContinuousChannel& channel_;
+  bool retainWire_=false;
   mutable std::mutex mutex_;
   std::condition_variable progress_;
   std::deque<OwnedWorldSnapshot> ready_;

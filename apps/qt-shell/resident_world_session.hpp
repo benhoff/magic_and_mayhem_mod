@@ -1,5 +1,7 @@
 #pragma once
 #include "../../compat/legacy/world_continuous.hpp"
+#include "../../compat/legacy/world_snapshot_queue.hpp"
+#include <chrono>
 #include "../../compat/legacy/world_rolling_session.hpp"
 #include "../../compat/legacy/world_rolling_handoff.hpp"
 #include <QElapsedTimer>
@@ -13,12 +15,17 @@ class ResidentProfileCapture;
 // command import and an independently verified original return before reuse.
 class ResidentWorldSession final {
 public:
-    ResidentWorldSession(GlViewport&,const QString& channel,const QString& game);
+    ResidentWorldSession(GlViewport&,const QString& channel,const QString& game,bool independent=false);
     ~ResidentWorldSession();
     void poll(bool acceptedNormalQuit=false);
     void abort(const QString&);
     mnm::render::GpuFrame import(std::uint64_t generation,std::uint64_t nonce);
     QJsonObject report() const;
+    bool ready(std::uint64_t generation,std::uint64_t nonce) const;
+    bool independent() const{return independent_;}
+    mnm::render::GpuFrame drawIndependent(std::uint64_t generation);
+    void pollOwned(bool);
+    void noteIndependentPresentation(double uiMilliseconds);
     void saveReport(const QString&);
 private:
     unsigned phaseLogRows_=0;
@@ -41,6 +48,15 @@ private:
     std::unique_ptr<mnm::render::GlBlitter> renderer_;
     std::unique_ptr<mnm::legacy::WorldRollingSession> world_;
     QString game_;
+    bool independent_=false;
+    std::unique_ptr<mnm::legacy::WorldSnapshotQueue> snapshotQueue_;
+    std::optional<mnm::legacy::OwnedWorldSnapshot> ownedPending_;
+    mnm::render::GpuFrame ownedFrame_;
+    std::uint64_t extraFrames_=0,extraPresented_=0,frameMisses_=0;
+    double extraWorldMs_=0,extraUiMs_=0,maxExtraUiMs_=0;
+    QElapsedTimer renderRate_;
+    std::uint64_t renderRateBase_=0;
+    std::chrono::steady_clock::time_point nextFrame_{};
     std::optional<Pending> pending_;
     std::uint64_t completed_=0,imports_=0,returns_=0,rasters_=0,regionQueries_=0;
     std::uint32_t firstTick_=0,lastTick_=0;

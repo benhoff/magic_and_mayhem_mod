@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "scope": "Source-bound native HUD composition recipe controls, no original/live claim.",
+  "claims": [
+    {
+      "behavior": "NR.native-prepared-command-frame",
+      "contract_sha256": "eed5898a7cbb62667d0ebae1fc1d2865d15a99124b22fd739870cd781038b0d8",
+      "scenarios": {
+        "NR.native-prepared-command-frame.fixture": "1e0f28190d8b50a1a5367a9930b8d2bdf83d0feea19ae9c3221fb91250cfb28d"
+      }
+    }
+  ],
+  "sources": {
+    "renderer/CMakeLists.txt": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+    "renderer/blit.cpp": "0321954c781d1c64ebb2744d0b7c593605ead6fecf963d09c4a208dec9cc3a6b",
+    "renderer/blit.hpp": "bddefa38f5d78058e97a2bd9e90b9e1a1dfe5aed165014ff3c1e1671596c672b",
+    "renderer/command_consumer.cpp": "ba567a50a7189170bc80261e50a2bca89c1cd41f723778e5bf1a51b01bb57ec5",
+    "renderer/command_state.hpp": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+    "renderer/commands.hpp": "5e3bc3dedce647b880f12b3610c80caf7d5146066e00d33f347e70bbb3bcaf73",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/native_frame_recipe.cpp": "c71aaad6281268051435e3918125b34b54f1692b19f24c9758d991f50f2cfe92",
+    "renderer/native_frame_recipe.hpp": "11976cc0df82f886f39b61ef86b9f85b8f688c25b98bc7c28abe7412f2751773",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "tests/native-frame-recipe-test.cpp": "e67d887a836c61e8355772b5abb105d551734ea0b6d9fc635c18bf7322812db3",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/test-native-frame-recipe.py": "1c31a1a751ce67480556a2c6850a1111582edcd345152156353fe46b7183d214"
+  },
+  "controls": {
+    "world_hud_repeats": 30,
+    "source_mutation_release": true,
+    "partial_frame_refusal": true,
+    "same_update_hud_changes": true,
+    "fresh_world_used": true,
+    "ordinary_readbacks": 0,
+    "static_uploads_folded": 100,
+    "versioned_masked_reads": true,
+    "swap_repeats": 10,
+    "indexed_palette_owned": true,
+    "teardown_surfaces": 0
+  },
+  "sources_unchanged": true
+}

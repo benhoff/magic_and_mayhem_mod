@@ -44,6 +44,14 @@ int main(int argc,char** argv) try {
   session.fallback("synthetic retirement");const auto retired=qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4);session.renderingProgress();check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4)==retired);check(!qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+1)*4));
   peer.unmap(words);
  }
+ {
+  GlViewport viewport;const auto directory=root.filePath("owned-cold-start");check(QDir().mkpath(directory));
+  ResidentWorldSession session(viewport,directory+"/world.bin",directory+"/game",true);
+  check(session.independent());session.poll(false);
+  const auto report=session.report();check(report["delivery_mode"].toString()=="owned-v5");
+  check(report["source_accepted"].toString()=="0" && report["source_outstanding"].toInt()==0);
+  check(!report["pending"].toBool() && !report["normal_quit_retired"].toBool());
+ }
  for(unsigned variant=0;variant<8;++variant){
   GlViewport viewport;const auto directory=root.filePath(QString("resident-%1").arg(variant));check(QDir().mkpath(directory));
   const auto path=directory+"/world.bin";ResidentWorldSession session(viewport,path,directory+"/game");

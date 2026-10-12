@@ -14,6 +14,10 @@ add_executable(mnm-world-rolling-live ../../../apps/qt-shell/world_rolling_main.
 target_link_libraries(mnm-world-rolling-live PRIVATE mnm-world-rolling Qt6::Widgets Qt6::OpenGLWidgets)
 target_compile_options(mnm-world-rolling-live PRIVATE -Wall -Wextra -Werror -pedantic)
 if(BUILD_TESTING)
+ add_executable(native-prepared-world-test ../../../tests/native-prepared-world-test.cpp)
+ target_link_libraries(native-prepared-world-test PRIVATE mnm-world-rolling)
+ target_compile_options(native-prepared-world-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
+
  add_executable(world-snapshot-queue-test ../../../tests/world-snapshot-queue-test.cpp)
  target_link_libraries(world-snapshot-queue-test PRIVATE mnm-world-rolling)
  target_compile_options(world-snapshot-queue-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)

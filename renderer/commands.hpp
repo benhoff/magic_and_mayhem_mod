@@ -54,6 +54,7 @@ struct CommandConsumerOptions {
     bool exportImages=false;
     CommandStreamMode stream=CommandStreamMode::Bounded;
     std::function<GpuFrame(std::uint64_t,std::uint64_t)> residentWorld={};
+    bool prepareResidentFrames=false;
 };
 // GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
 // Batches commit command by command, never transactionally. An execution or
@@ -73,6 +74,8 @@ public:
     void abort();
     CommandConsumerState state() const;
     const CommandResult& result() const;
+    std::uint64_t preparedGeneration() const;
+    void presentPrepared(const GpuFrame&,std::uint64_t generation);
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
