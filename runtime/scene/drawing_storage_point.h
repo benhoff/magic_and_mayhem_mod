@@ -1,6 +1,6 @@
 #include "../../protocols/include/mnm/drawing_storage_point_v1.h"
 /* Compare cached addresses only; do not read storage or driver object layouts. */
-u32 WIN SceneDrawingStoragePointV1(void* storage,u32 row_pitch,u32 slice_pitch,u32* out,u32 size){
+static u32 drawing_storage_point(void* storage,u32 row_pitch,u32 slice_pitch,u32 verify_slice,u32* out,u32 size){
  u32 error=GetLastError();
  if(size!=64||!producer_trace_mode||!bypass_writable((u32)out,64)){SetLastError(error);return 0;}
  PRODUCER_TRACE_SCOPE;
@@ -13,8 +13,12 @@ u32 WIN SceneDrawingStoragePointV1(void* storage,u32 row_pitch,u32 slice_pitch,u
  }
  if(matches>1)r[2]|=8;
  else if(matches==1){
-  if(!match->width||!match->height||match->width>2048||match->height>2048||match->stride<match->width||match->stride>4096||row_pitch!=match->stride*2||slice_pitch<row_pitch*match->height)r[2]|=32;
-  else{r[2]|=16;r[6]=match->id;r[7]=match->width;r[8]=match->height;r[9]=match->stride;r[10]=match->dirty;r[11]=match->sampled;}
+  if(!match->width||!match->height||match->width>2048||match->height>2048||match->stride<match->width||match->stride>4096||row_pitch!=match->stride*2||(verify_slice&&slice_pitch<row_pitch*match->height))r[2]|=32;
+  else{r[2]|=16|(verify_slice?0:64);r[6]=match->id;r[7]=match->width;r[8]=match->height;r[9]=match->stride;r[10]=match->dirty;r[11]=match->sampled;}
  }
  copy(out,r,64);SetLastError(error);return 1;
 }
+
+/* Public maps carry an extent; client descriptor updates carry only pitch. */
+u32 WIN SceneDrawingStoragePointV1(void* storage,u32 row_pitch,u32 slice_pitch,u32* out,u32 size){return drawing_storage_point(storage,row_pitch,slice_pitch,1,out,size);}
+u32 WIN SceneDrawingClientStoragePointV1(void* storage,u32 row_pitch,u32* out,u32 size){return drawing_storage_point(storage,row_pitch,0,0,out,size);}

@@ -7585,3 +7585,18 @@ reading private Wine layouts or source bytes. Continue with exact command/source
 version and storage lifetime accounting. Whole upload/alias/reuse/lifetime,
 all routes/actions, diagnostic cadence controls and DRAW-02 47/21 closure remain
 open; step3 is not yet admitted. Native parity remains historical for this code.
+
+DRAW-02 step 2 client-memory reassessment: pinned optional public descriptor
+updates and exact submitted source cache queries are fixture-validated. Original01
+records 52 setters / 1595 queries, 145 known UI points and 1450 explicit unknowns
+(342 unbound, 493 unknown, 615 stopped), normal Quit exit0. Protected full-frame source
+canvases remain unlinked by this route. Several source textures map once before
+the recorder knows their canvas; next inspect an explicitly last-observed map
+at submission, while retaining unmap/lifetime uncertainty. No ownership,
+current native parity or full DRAW-02 47/21 promotion is made.
+
+A final source-only build manifest repair adds the two included observer headers.
+The rebuilt standard drawing DLL is byte-identical to the original01 staged
+observer; all manifest source hashes match current files. This is provenance
+validation, not a fresh engine run. Original01 and prior fixture source
+declarations retain their historical hashes after the builder change.

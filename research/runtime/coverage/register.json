@@ -43692,6 +43692,65 @@
         "PE32 cache-only export and 12-forward observer fixtures plus four decoder methods pass. Original01 records 1242 successful maps: 795 known canvas points across six canvases, 14 unknown and 433 stopped. 760 known points are full 800x600 stride800. One resource map remains open at observation close. 118 held pairs/222 source commands, 333 API/332 EGL witnesses and actual normal Quit exit0 remain separate observations.",
         "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned."
       ]
+    },
+    {
+      "id": "NR.drawing-wine-client-memory-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public Wine client memory binding and submitted source cache point",
+      "scope": "Pinned optional texture_update_desc four-argument cdecl forwarding observation and process-local retained client memory binding keyed by texture generation/subresource. At an exact texture blit submission compare the retained address/pitch with the live recorder canvas cache; serialize only local IDs and scalar metadata. No source bytes or private Wine layouts; pointer equality and a successful setter do not prove completed upload, immutable allocation or whole lifetime.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-client-memory-binding.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_client_memory.h",
+        "tools/drawing_wine_client_memory.py",
+        "runtime/scene/drawing_storage_point.h",
+        "protocols/include/mnm/drawing_storage_point_v1.h",
+        "tools/inspect-drawing-wine-client-memory.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-client-memory-test.c",
+        "tools/test-drawing-wine-client-memory.py",
+        "tests/test-drawing-wine-client-memory.py",
+        "tests/drawing-storage-point-test.c",
+        "tools/test-drawing-storage-point.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.client-memory-imports-01-static-20261012",
+        "DRAW02.client-storage-export-fixture-01-native_integration-20261012",
+        "DRAW02.client-memory-fixture-01-native_integration-20261012",
+        "DRAW02.client-memory-parser-01-native_integration-20261012",
+        "DRAW02.client-memory-compile-refusal-01-static-20261012",
+        "DRAW02.client-memory-fp-refusal-01-static-20261012",
+        "DRAW02.client-memory-harness-refusal-01-static-20261012",
+        "DRAW02.client-memory-original-01-live-20261012",
+        "DRAW02.client-memory-build-manifest-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pinned descriptor-update import/export and PE32 cache-only export/forwarding/lifetime/generation controls plus five decoder methods pass. Original01 records52setters1595queries:145known UI sources,342unbound493unknown615stopped. 118heldpairs223sourcecommands329API328EGLnormalQuit0 remain separate. Compile, FP-comparison and harness failures retained; no original execution for those negatives.",
+        "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged."
+      ]
     }
   ],
   "evidence": [
@@ -93173,6 +93232,164 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.client-memory-imports-01-static-20261012",
+      "kind": "static",
+      "scope": "Pinned installed public descriptor-update import/export and module hashes; ABI lead separate from execution.",
+      "record": "research/runtime/draw02-client-memory-imports-01.json",
+      "sha256": "70c029efcfbb505c0cc6fc389e8055b8f7efeb7bf5e8926cbcc4b05eb8795fd0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.client-storage-export-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 full-extent and pitch-only cache export guards; no storage bytes read. Retained source declaration predates subsequent other fixture changes.",
+      "record": "research/runtime/draw02-client-storage-export-fixture-01.json",
+      "sha256": "ce860d93613f862cdedf7bd685932d54db980cf18040b3a5e59c28d724cb59f8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.client-memory-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Four original client setter forwards, five blit submissions, actual recorded synthetic texture lifetimes, failed-setter retention/reset/generation reuse, initialized512-byteFP/LastError checks.",
+      "record": "research/runtime/draw02-client-memory-fixture-01.json",
+      "sha256": "cdfbae92055dae5a162fb69b5aa78afe4ee20ef6e8fb3b781a27c670340021c4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.client-memory-parser-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Five client binding decoder guard methods; no original execution.",
+      "record": "research/runtime/draw02-client-memory-parser-01.json",
+      "sha256": "22260cd360e15af10f16124b16683e8c11b5afa9983bf0235c381c6c3f995c3a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.client-memory-compile-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "Compile-only helper-name conflict; no fixture or original execution.",
+      "record": "research/runtime/draw02-client-memory-compile-refusal-01.json",
+      "sha256": "92bfb6dbfb8c6febaa6e6f82ab0a3589a87cd3198230a8ebd5fa2123a490262a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.client-memory-fp-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "Uninitialized comparison buffer FP-check failure221; exact machine cause unassigned, no forwarding validation.",
+      "record": "research/runtime/draw02-client-memory-fp-refusal-01.json",
+      "sha256": "e704d3b1f1e91062f8b2e9430e1dd03a52581ecda8525b6ddb2a432d6524968e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.client-memory-harness-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "PE32 program exit0 but lifetime decoder input missing; synthetic table edits were not recorded lifecycle proof.",
+      "record": "research/runtime/draw02-client-memory-harness-refusal-01.json",
+      "sha256": "578d89e8a1ad106147bfaf154030c91e1ba16cdc92b0572e44050ea2c060f552",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.client-memory-original-01-live-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active 52 selected client setters and1595 submitted source queries:145 known UI cache points,342 unbound493 unknown615 stopped. Protected full-frame source canvas association remains open; normal Quit passes.",
+      "record": "research/runtime/draw02-client-memory-original-01.json",
+      "sha256": "dc1b8ccabfb1be4e5af3abcf3b10c659a44fe1440a7b1fe112f49eefe5b079f5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.client-memory-build-manifest-01-static-20261012",
+      "kind": "static",
+      "scope": "Complete included observer header manifest and identical standard DLL after source-only builder repair; no new original execution.",
+      "record": "research/runtime/draw02-client-memory-build-manifest-01.json",
+      "sha256": "41db64d50b724c239d63d2692585b1931a9529cf1a65323d6b25df05c4b9bd03",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/binary_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/manifest_complete",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104789,6 +105006,37 @@
       "evidence": [
         "DRAW02.map-storage-original-01-live-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.client-memory-fixture",
+      "level": "headless",
+      "scope": "Public client memory binding and bounded cache point association; no upload/lifetime ownership claim.",
+      "behaviors": [
+        "NR.drawing-wine-client-memory-binding"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-client-memory.py",
+        "tools/test-drawing-storage-point.py"
+      ],
+      "evidence": [
+        "DRAW02.client-storage-export-fixture-01-native_integration-20261012",
+        "DRAW02.client-memory-fixture-01-native_integration-20261012",
+        "DRAW02.client-memory-parser-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.client-memory-original",
+      "level": "live_observation",
+      "scope": "Public client memory binding and bounded cache point association; no upload/lifetime ownership claim.",
+      "behaviors": [
+        "NR.drawing-wine-client-memory-binding"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.client-memory-original-01-live-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -105162,8 +105410,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-map-storage-20261012.json",
-    "sha256": "5ee06dd17c54cc743028b28209eb2c67545923be035aac034c84a88260f31ed1"
+    "path": "research/runtime/coverage/source-index-draw02-client-memory-manifest-20261012.json",
+    "sha256": "405beb9930ba05655718454cf9abb2227a4eb99d9ba6b0af5df0823736eb978d"
   },
   "claim_bindings_required": true
 }

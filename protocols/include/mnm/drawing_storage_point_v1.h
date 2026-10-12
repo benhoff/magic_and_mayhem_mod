@@ -8,5 +8,7 @@
 #define MNM_DRAW_STORAGE_POINT_AMBIGUOUS 8u
 #define MNM_DRAW_STORAGE_POINT_MATCH 16u
 #define MNM_DRAW_STORAGE_POINT_EXTENT_MISMATCH 32u
+/* Client memory setter has pitch but no slice extent. */
+#define MNM_DRAW_STORAGE_POINT_EXTENT_UNKNOWN 64u
 /* Words: bytes/version/flags/sequence/queue/failures/canvas/width/height,
  * WORD stride/dirty/sampled/outstanding frames/nesting/thread/reserved. */

@@ -26,5 +26,7 @@ void start(void){
  u32* readonly=VirtualAlloc(0,4096,0x3000,4);require(readonly!=0,140);readonly[0]=0x77777777;u32 old;require(VirtualProtect(readonly,4096,2,&old),141);
  require(!SceneDrawingStoragePointV1((void*)0x1234,8,24,readonly,64)&&readonly[0]==0x77777777,142);
  require(!SceneDrawingStoragePointV1(0,0,0,0,64)&&!SceneDrawingStoragePointV1(0,0,0,out,63),143);
+ require(SceneDrawingClientStoragePointV1((void*)0x1234,8,out,64)&&out[2]==83&&out[6]==77,145);
+ require(SceneDrawingClientStoragePointV1((void*)0x1234,6,out,64)&&out[2]==35&&!out[6],146);
  producer_trace_mode=0;require(!SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64),144);ExitProcess(0);
 }
