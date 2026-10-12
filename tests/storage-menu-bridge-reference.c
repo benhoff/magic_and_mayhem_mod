@@ -21,7 +21,7 @@ static u8* setup(int save,int campaign){
     put((void*)0x6e3745,0x6e3b10);copy((void*)0x6e3b10,"first",6);
     for(u32 i=0;i<2;++i){u32 cb=0x6e3c20+i*12;put((void*)(0x6e3c00+i*4),cb);put((void*)cb,save?0x5c652c:0x5c64f4);put((void*)(cb+4),save?0x4ab750:0x4aa800);put((void*)(cb+8),(u32)p);}
     put((void*)0x657ce0,0x5c63e4);put((void*)0x657ce4,3);put((void*)0x659408,0x5c6a60);put((void*)0x65940c,4);put((void*)0x6cbb78,0x5c5dd8);put((void*)0x6cbb7c,2);
-    u32 depth=campaign?5:3;put((void*)0x6f349c,depth);put((void*)0x6f34a8,0x657ce0);put((void*)0x6f34ac,campaign?0x659408:(u32)p);if(campaign){put((void*)0x6f34b0,0x6cbb78);put((void*)0x6f34b4,(u32)p);}put((void*)0x6f34e0,(u32)p);put((void*)0x68991c,0);put((void*)0x689920,5);return p;
+    put((void*)0x6a5088,0x5c6644);put((void*)0x6a508c,17);put((void*)0x6a50db,2);put((void*)0x6a50df,5);u32 depth=campaign?6:3;put((void*)0x6f349c,depth);put((void*)0x6f34a8,0x657ce0);put((void*)0x6f34ac,campaign?0x659408:(u32)p);if(campaign){put((void*)0x6f34b0,0x6cbb78);put((void*)0x6f34b4,0x6a5088);put((void*)0x6f34b8,(u32)p);}put((void*)0x6f34e0,(u32)p);put((void*)0x68991c,0);put((void*)0x689920,5);return p;
 }
 void start(void){
     fixture_space[0]=1;u32 old;require(VirtualProtect((void*)0x470000,0x290000,0x40,&old),1);

@@ -4,7 +4,9 @@
 owned store and copies them into each disposable installation. It seeds once
 from the first installation, then treats its own files as authoritative.
 Deleting a save therefore remains deleted even if the installation template
-still contains it. This service is not connected to launch/exit yet.
+still contains it. Action staging and normal exit now use this service;
+[bounded live Save/Load and fresh-process restore](campaign-save-load-live.md)
+have separate original-game evidence.
 
 Linux file locking serializes store changes. A completed session compares its
 final files against its imported baseline, checks all changed names for
@@ -28,4 +30,6 @@ whole-merge conflict refusal, and selected symlink/alias/zero/case failures:
 python3 tests/test-menu-save-store.py
 ```
 
-Actual native Save/Load and launch/exit integration remain the next increment.
+Actual Save/Load and launch/exit integration are validated only for the bounded
+Wine-window embedding scenarios above. Native command presentation, overwrite,
+write failure and full restored-state comparisons remain separate.

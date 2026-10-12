@@ -43,6 +43,18 @@ def main():
         result=subprocess.run(command,env=env)
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
             if hashlib.sha256((root/'game'/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} changed')
+        if metadata.get('save_store'):
+            save_result={'merged':False,'reason':'Unclean or bounded termination; session saves retained.'}
+            if result.returncode==0 and args.seconds is None:
+                from menu_save_store import commit as commit_saves
+                try:
+                    save_result=commit_saves(metadata['save_store']);save_result['merged']=True
+                except (OSError,ValueError) as error:
+                    save_result['error']=str(error)
+                    (root/'save-store-result.json').write_text(json.dumps(save_result,indent=2)+'\n')
+                    print('Save synchronization failed; session files retained: '+str(error),flush=True)
+                    return 1
+            (root/'save-store-result.json').write_text(json.dumps(save_result,indent=2)+'\n')
         return result.returncode
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
 if __name__=='__main__':raise SystemExit(main())

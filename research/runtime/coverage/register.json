@@ -42861,7 +42861,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/save-load-menu-engine-contract.md"
+        "research/runtime/save-load-menu-engine-contract.md",
+        "research/runtime/campaign-save-load-live.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v13.h",
@@ -42894,7 +42895,9 @@
       ],
       "evidence": [
         "UI37.storage-fixture",
-        "UI37.main-load-live"
+        "UI37.main-load-live",
+        "UI38.main-load-refresh",
+        "UI38.mini-parent-fixture"
       ],
       "status": {
         "understanding": "partial",
@@ -42909,7 +42912,7 @@
       "subsystem": "campaign",
       "kind": "native_policy",
       "title": "Owned original-format save copying across disposable sessions",
-      "scope": "Linux locked, bounded opaque-file seed/copy/merge, no-change cancellation, delete retention and conflict preservation. Synthetic bytes only; service not connected to the game yet. No serializer compatibility, crash-transaction, arbitrary-path or live persistence claim.",
+      "scope": "Linux locked, bounded opaque-file seed/copy/merge, no-change cancellation, delete retention and conflict preservation. File-layer unit evidence uses synthetic bytes; actual game staging/normal-exit integration has separate HOST.native-campaign-save-load evidence. No full serializer compatibility, multi-file crash transaction or arbitrary-path claim.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42929,6 +42932,49 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-campaign-save-load",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Native campaign Save/Load and owned-save session integration",
+      "scope": "Native Qt menus on the Wine-window embedding route delegate original Save/Load callbacks, create a named fresh Celtic1 game save, select its original row and return to original World/Mini/normal Quit, then merge into owned storage and restore a persisted save in a fresh process. Original serialization/graphics/audio/simulation retained; full restored-state, overwrite/failure, crash and native-command route equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/save-load-menu-engine-contract.md",
+        "research/runtime/menu-save-store.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/menu_save_store.py",
+        "apps/qt-shell/live_storage_menu_controller.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "runtime/menu/storage.h"
+      ],
+      "tests": [
+        "tools/test-live-campaign-storage.py",
+        "tools/menu-storage-input.py",
+        "tests/test-menu-save-store.py"
+      ],
+      "evidence": [
+        "UI38.campaign-save-load",
+        "UI38.campaign-restore",
+        "UI38.save-load-embedding-scoped",
+        "UI38.restore-embedding-scoped"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -89116,6 +89162,183 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI38.campaign-save-load",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh native Qt campaign menus, original Save/new named file/original row Load/resumed World/Mini/normal Quit and owned-store merge; full restored-state, overwrite/failure and cross-process Load remain separate Wine-window embedding/original graphics and audio; no native command presentation pass.",
+      "record": "research/runtime/campaign-save-load-live-20261012.json",
+      "sha256": "5b715f0b8865c671f14bf369e74a3a21bb9a5627e73c659b80550bdc45c793ba",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_save_persisted",
+          "equals": true
+        },
+        {
+          "pointer": "/restarted_process",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI38.campaign-restore",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh native Qt campaign menus, original Save/new named file/original row Load/resumed World/Mini/normal Quit and owned-store merge; full restored-state, overwrite/failure and cross-process Load remain separate Wine-window embedding/original graphics and audio; no native command presentation pass.",
+      "record": "research/runtime/campaign-save-restore-live-20261012.json",
+      "sha256": "17cf685719f70fbd547b0ee2233979fd99046709141985f77b9c29298884fc73",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_save_persisted",
+          "equals": true
+        },
+        {
+          "pointer": "/restarted_process",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI38.main-load-refresh",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Native Main Load/Cancel twice and normal Main Quit; actual serializer I/O and campaign Save/Load remain separate Wine-window embedding/original graphics and audio; no native command presentation pass.",
+      "record": "research/runtime/main-load-persistent-live-20261012.json",
+      "sha256": "c034a231017c9b043fd36d18ec67259609d96418714f4db7fd0b4734d2f9a3fa",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI38.mini-parent-fixture",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Private V13 fixture with observed Mini parent17/depth6 campaign Save/Load and fixed full stack, control and transaction guards; serializer/delete operations stubbed.",
+      "record": "research/runtime/storage-menu-mini-parent-fixture-20261012.json",
+      "sha256": "8b408e877675c6aafeae83f7121e1fddb2b9041546c16f16aeb147c00e2dce8e",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/serializer_and_delete_io_stubbed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI38.save-load-embedding-scoped",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh native Qt campaign menus, original Save/new named file/original row Load/resumed World/Mini/normal Quit and owned-store merge; full restored-state, overwrite/failure and cross-process Load remain separate Original graphics/audio in the explicit embedding scope.",
+      "record": "research/runtime/campaign-save-load-embedding-scoped-20261012.json",
+      "sha256": "64e908b4ed605f352c99fabb17dfe8196905167e317e1592800a57d0745b7119",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_save_persisted",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_render",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI38.restore-embedding-scoped",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh native Qt campaign menus, original Save/new named file/original row Load/resumed World/Mini/normal Quit and owned-store merge; full restored-state, overwrite/failure and cross-process Load remain separate Original graphics/audio in the explicit embedding scope.",
+      "record": "research/runtime/campaign-restore-embedding-scoped-20261012.json",
+      "sha256": "2cdc915fb971edcfd0b83e5905dea97c470d35038f3306c6c0ab3df79d022d11",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_save_persisted",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_render",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99703,11 +99926,31 @@
         "NP.storage-menu-ownership"
       ],
       "evidence": [
-        "UI37.main-load-live"
+        "UI37.main-load-live",
+        "UI38.main-load-refresh"
       ],
       "tests": [
         "tools/test-live-storage-menus.py",
         "apps/qt-shell/live_storage_menu_test.cpp"
+      ]
+    },
+    {
+      "id": "UI.campaign-save-load",
+      "scope": "Native Qt menus on the Wine-window embedding route delegate original Save/Load callbacks, create a named fresh Celtic1 game save, select its original row and return to original World/Mini/normal Quit, then merge into owned storage and restore a persisted save in a fresh process. Original serialization/graphics/audio/simulation retained; full restored-state, overwrite/failure, crash and native-command route equivalence remain pending.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-campaign-save-load"
+      ],
+      "evidence": [
+        "UI38.campaign-save-load",
+        "UI38.campaign-restore",
+        "UI38.save-load-embedding-scoped",
+        "UI38.restore-embedding-scoped"
+      ],
+      "tests": [
+        "tools/test-live-campaign-storage.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/menu-storage-input.py"
       ]
     }
   ],
@@ -100082,8 +100325,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-main-load-live-20261012.json",
-    "sha256": "958788a52f9af0e0214f954daf680fc5a243868444bce7586c079ffdee5fd1ea"
+    "path": "research/runtime/coverage/source-index-campaign-save-load-20261012.json",
+    "sha256": "86e1d2134eb779fdc0d3bced087159cd07a54c15b21fb8da3dfcde4641357061"
   },
   "claim_bindings_required": true
 }

@@ -604,10 +604,24 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI38 validates native Qt campaign Save/Load on the Wine-window
+embedding route: an actual 351,734-byte original save, original list-row load,
+World/Mini return, original confirmation/report and normal Quit/exit0; owned
+store bytes match. A fresh process restores the earlier persisted save and
+completes World/Mini/Quit without rewriting it. Main Load/Cancel is refreshed
+with persistent rows. [Evidence and exact limitations](campaign-save-load-live.md).
+Original Save/Load is Mini's depth6 child, correcting the earlier assumed
+World/depth5 fixture. Actual serialization, graphics, audio and simulation stay
+original-owned. Explicit native-command attempts stall before menu actions;
+they remain negative startup evidence and do not promote that route. Overwrite,
+delete, failures, full restored-state comparison, other callers and the remaining
+campaign/multiplayer menus remain outstanding. Earlier immutable records and
+their source staleness remain visible.
+
 2026-10-12 UI37 adds V13 Save/Load adapter preparation and fresh native Main
 Load/Cancel navigation: two ID12 parent3/depth3 returns, one original engine
-thread, exact callback/ACK trace and normal Quit pass on the default native
-command/audio route. [Result and boundaries](save-load-menu-engine-contract.md).
+thread, exact callback/ACK trace and normal Quit pass on the Wine-window
+embedding route; native command/audio presentation is separate. [Result and boundaries](save-load-menu-engine-contract.md).
 This does not validate actual loading, campaign Save, loaded World or durability.
 The first fixture's truncated return operands and the adapter's assumed ID11
 were corrected from pinned instructions; historical reports/hashes are retained
