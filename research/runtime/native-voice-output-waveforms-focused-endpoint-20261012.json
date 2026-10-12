@@ -1,0 +1,428 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "HOST.native-voice-output-waveforms",
+      "contract_sha256": "1f45635b7a67810ebc2a0c11fbb7b7000ee9672f171a6d148d039f6f1682800d",
+      "scenarios": {
+        "native-voice-output-waveforms-20261012": "ad27df589c5c6e7343ee1d02747fbe0159d661440bbfb24b8f5f6ce00fafc48a"
+      }
+    }
+  ],
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/resources/CMakeLists.txt": "b30bada87cdd7804bb490d204d6b35f75b0b9445a1a04ffee4eb02c32bdd3ee9",
+    "audio/CMakeLists.txt": "eead56f4e618814114c8d28d5f0c2f7f9997b8b4f007ad4cb823ce51f970559a",
+    "audio/buffers.cpp": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76",
+    "audio/buffers.hpp": "df82a5f2ce447c30228b45c82bdaf4e54de39de9ef15386520a7cf836bda75c1",
+    "audio/mixer.cpp": "1f7cc8295adb0d7a8688d8a09f2f5bfa99964bcd4a0efb6a59c8d3cbd105e972",
+    "audio/output_timeline.cpp": "d4313f8a82b04b0c6ed0d26ed0bb28f7a49ea18880a8ac792dbf9fbfd7ea5ef3",
+    "audio/output_timeline.hpp": "c6774eaaff2b942f25575953a03878df197607dbf895be9c5c7a3046fac8a56f",
+    "audio/qt_output.cpp": "312bbe99fa0382463d7312e4749f7e26f447ac4515697b074d30dc6b4d94d46d",
+    "audio/qt_output.hpp": "5b97195e8eb864141c81f58c9bdf7db9275dd71f75335505db5b58f9867acf3d",
+    "audio/voice_bridge.cpp": "ab215221d8b6e904014e2a594d89057ea8c9916a409bbe951eea249477e6b8df",
+    "audio/voice_bridge.hpp": "7a194d08792a87187f54e6291a27296e1ba4c4919303bbc02dd7c77d0b734a40",
+    "audio/voice_output.cpp": "aa2785068d46a1a11b1ed6b2548bd9756af98ab66f0c58dfcc18112ab22b391d",
+    "audio/voice_output.hpp": "ef72ed00b3a99a1df7d82f64acfb95cfaa1495810bff99f3fdbf1dbb37bb68f7",
+    "audio/voices.cpp": "d590421fd9af1fb276f1d63a46a39f15f6d6153805ecb267e54b9e01d779fe8c",
+    "audio/wave_loader.cpp": "354d29bb4fa60bcff1d21f496b1c26284dd18689aec236e6278c445f89be16dc",
+    "audio/wave_loader.hpp": "3b69d3ea67fb0f35cd131ec1c81ff68ceb1d7fefcf1243c9703ada205672b172",
+    "audio/wave_source.cpp": "5e4dab64c9bdf400e0706f4918df4d07e8023485900f932715936a9a286526af",
+    "audio/wave_source.hpp": "cd6930c87909576bd19ce0f3372e45d0e984d4a0a2ffa528c1386ef448f6505f",
+    "runtime/audio/protocol.h": "0b100fb882c2012e83630be3be0cde5413f911deddbad8d90ab55f4c0831cb4f",
+    "tests/native-voice-backend-test.cpp": "ff49de69b49f6d0633cd28995e871a6f23d78438dff6f638ac5ed0da04d8110f",
+    "tests/native-voice-waveforms/CMakeLists.txt": "687cb3005fc83923b0e7c0c1c9e0dbb515c0a536c30e6aae6535227b207e7ea6",
+    "tools/private_audio_backend.py": "e083bd8a20570f609de6744d76cb3fa6ef07e1f37bfcf55c2ebd1657d3358515",
+    "tools/test-native-voice-waveforms.py": "3777e23f138167b0e861fc4f05b6d0d724e5de335abd9cebec17c02573144bc4"
+  },
+  "cases": [
+    {
+      "case": "stereo",
+      "frames": 16320,
+      "expected_period": 128,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 32
+      },
+      "capture_sha256": "10757c8c3d603bd41b9002820f993de2da177cab507a1c9a4e7a69fa59416877"
+    },
+    {
+      "case": "voice-gain",
+      "frames": 16320,
+      "expected_period": 128,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 32
+      },
+      "capture_sha256": "01c3f6a248cb1544b431e54abaf3eda66ea578eb0f50963bf4c2aebe44b02954"
+    },
+    {
+      "case": "pan-left",
+      "frames": 16320,
+      "expected_period": 128,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 32
+      },
+      "capture_sha256": "7e20b6180269f36861b04126724e870428d80c810fdebc6d08c6c16bfa28c45c"
+    },
+    {
+      "case": "pan-right",
+      "frames": 16320,
+      "expected_period": 128,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 32
+      },
+      "capture_sha256": "1f75bd92bb3e3737737dfa13d2e1456a6274f688ee6b47c638ab204a96d3ab57"
+    },
+    {
+      "case": "master-gain",
+      "frames": 16320,
+      "expected_period": 128,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 32
+      },
+      "capture_sha256": "01c3f6a248cb1544b431e54abaf3eda66ea578eb0f50963bf4c2aebe44b02954"
+    },
+    {
+      "case": "pitch",
+      "frames": 16320,
+      "expected_period": 512,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 160
+      },
+      "capture_sha256": "939a483c60fa97b596089fad4a3757ec603bf1156fdd3be27159b801d52fe8ca"
+    },
+    {
+      "case": "overlap-clipping",
+      "frames": 16320,
+      "expected_period": 128,
+      "matched_frames": 2048,
+      "max_sample_error": 0,
+      "window": {
+        "start": 512,
+        "phase": 32
+      },
+      "capture_sha256": "7571255458b3e4e952be556a52797969153d054fa796dd5b751b517fa1333e0b"
+    }
+  ],
+  "native": {
+    "consumed_frames": 189439,
+    "elapsed_ms": 5067,
+    "error": "",
+    "failures": 0,
+    "fixture_error": "",
+    "generated_frames": 191840,
+    "initial_silence": false,
+    "output_attempts": 1,
+    "output_available": true,
+    "output_losses": 0,
+    "output_recoveries": 0,
+    "output_silent": false,
+    "ready": true,
+    "ready_after_stop": false,
+    "requests": 40,
+    "success": true,
+    "wave_bytes": 512,
+    "wave_loads": 1
+  },
+  "calls": [
+    {
+      "operation": 17,
+      "voice": 0,
+      "status": 0,
+      "value": 512
+    },
+    {
+      "operation": 1,
+      "voice": 0,
+      "status": 0,
+      "value": 1
+    },
+    {
+      "operation": 2,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 1,
+      "voice": 0,
+      "status": 0,
+      "value": 2
+    },
+    {
+      "operation": 2,
+      "voice": 2,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 13,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 5,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 8,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 9,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 11,
+      "voice": 0,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 18,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 5,
+      "voice": 2,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 6,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 6,
+      "voice": 2,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 4,
+      "voice": 1,
+      "status": 0,
+      "value": 0
+    },
+    {
+      "operation": 4,
+      "voice": 2,
+      "status": 0,
+      "value": 0
+    }
+  ],
+  "backend_cleanup": {
+    "runtime": "/tmp/mnm-audio-hk1qsot_",
+    "server": "unix:/tmp/mnm-audio-hk1qsot_/pulse/native",
+    "desktop_routing_changed": false,
+    "hardware_monitors_enabled": false,
+    "initial_sinks": "",
+    "final_sinks": "",
+    "owned_daemons_stopped": true
+  },
+  "compiler_dependencies": [
+    "assets/asset_file.cpp",
+    "assets/asset_file.hpp",
+    "assets/path_resolver.cpp",
+    "assets/path_resolver.hpp",
+    "audio/buffers.cpp",
+    "audio/buffers.hpp",
+    "audio/mixer.cpp",
+    "audio/output_timeline.cpp",
+    "audio/output_timeline.hpp",
+    "audio/qt_output.cpp",
+    "audio/qt_output.hpp",
+    "audio/voice_bridge.cpp",
+    "audio/voice_bridge.hpp",
+    "audio/voice_output.cpp",
+    "audio/voice_output.hpp",
+    "audio/voices.cpp",
+    "audio/wave_loader.cpp",
+    "audio/wave_loader.hpp",
+    "audio/wave_source.cpp",
+    "audio/wave_source.hpp",
+    "runtime/audio/protocol.h",
+    "tests/native-voice-backend-test.cpp",
+    "tests/native-voice-waveforms/CMakeLists.txt",
+    "tools/private_audio_backend.py",
+    "tools/test-native-voice-waveforms.py"
+  ],
+  "sources_stable": true
+}

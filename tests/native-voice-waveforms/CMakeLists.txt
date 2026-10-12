@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(mnm_native_voice_waveforms LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+add_subdirectory(../../audio audio)
+add_executable(native-voice-waveform-test ../native-voice-backend-test.cpp)
+target_link_libraries(native-voice-waveform-test PRIVATE mnm-audio-bridge)
+target_compile_options(native-voice-waveform-test PRIVATE -Wall -Wextra -Werror)

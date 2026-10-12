@@ -7383,3 +7383,16 @@ pre-hook failures remain unchanged. Fresh final-fixture four-endpoint evidence
 retains exact PCM/RGBA and automatic attachment. Integration becomes
 `live_observation`; original/physical equivalence and native manager replacement
 remain independent. Exact e514c8d5 receipt history:35versions, zero gaps.
+
+## Actual native voice monitor waveforms (2026-10-12)
+
+`HOST.native-voice-output-waveforms` captures actual nonzero native VoiceBroker
+v5 output at an owned software endpoint. Stereo, voice/master gain, hard pan,
+36000Hz frequency conversion and overlapping clipping each match an independent
+2048-frame PCM window exactly (S16 error0).40ACK,512 native WAV bytes, release/
+ready0, empty graph and owned monitor/player/daemon cleanup pass. Fresh focused
+compiler/CMake closure separates unused music code from this output evidence;
+the earlier broader successful record remains unchanged. No production voice
+change was necessary. This is native headless backend integration, without
+physical/original waveform or latency/tail equivalence. Previous quiet whole-game
+commit26c2c3e4 exact history:10 file transitions, zero receipt gaps.
