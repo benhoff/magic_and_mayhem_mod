@@ -35,6 +35,8 @@ if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHO
 else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
 if metadata.get('engine_cadence'):os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(root/'capture/engine-cadence.bin').replace('/','\\')
 else:os.environ.pop('MNM_ENGINE_CADENCE_FILE',None)
+if metadata.get('producer_update_binding'):os.environ['MNM_DRAW_UPDATE_BINDING']='1'
+else:os.environ.pop('MNM_DRAW_UPDATE_BINDING',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')

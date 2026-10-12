@@ -42244,7 +42244,8 @@
         "DRAW02.trace32-prediction-01-native-integration-20261012",
         "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012",
         "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-source-held-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-source-held-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-producer-update-prediction-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43241,7 +43242,8 @@
         "DRAW02.draw02-source-held-parser-01-static-20261012",
         "DRAW02.draw02-source-held-original-01-live_observation-20261012",
         "DRAW02.draw02-source-held-native-analysis-01-static-20261012",
-        "DRAW02.draw02-source-held-egl-context-01-static-20261012"
+        "DRAW02.draw02-source-held-egl-context-01-static-20261012",
+        "DRAW02.draw02-producer-update-held-analysis-01-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43301,6 +43303,59 @@
       "remaining_gaps": [
         "Six synthetic guards pass. Original01 normal Quit closes68complete consecutive counter+sequence advancing windows, excluded final sequence69, each with one selected World queue. Source prefix remains16returns; exact producer/update binding and120contiguousowned/presented windows remain pending.",
         "Nonadvancing/pause/mode/alternate-route branch evidence in this capture, source/action identity, all presentation retention, cadence controls, whole source/storage lifetime and full47/21semanticacceptance remain open. No broader status promotion."
+      ]
+    },
+    {
+      "id": "NR.drawing-producer-update-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact observed cadence queue to source producer binding",
+      "scope": "Separate opt-in read-only cadence queue-point export admitted only on engine owner with exact last observed queue ECX/caller and unchanged counter/sequence/mode. Portable versioned point contains no host pointers. Source recorder retains queue entry/return points and producer sequence boundaries; offline checks exact cadence event record, update and producer queue IDs. No count-only source binding or complete120window presentation ownership claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-producer-update-binding.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "runtime/engine-cadence/queue_point.h",
+        "protocols/include/mnm/engine_cadence_queue_point_v1.h",
+        "runtime/scene/drawing_update_points.h",
+        "tools/drawing_producer_updates.py"
+      ],
+      "tests": [
+        "tests/drawing-cadence-queue-point-test.c",
+        "tests/drawing-producer-update-test.c",
+        "tools/test-drawing-producer-update.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/engine-cadence/observer.c",
+        "runtime/engine-cadence/entry.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/producer_trace_guard.h",
+        "tools/build-engine-cadence.py",
+        "tools/build-scene-observer.py",
+        "tools/engine_cadence.py",
+        "tools/drawing_engine_windows.py",
+        "tools/inspect-canvas-producers.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-producer-update-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-producer-update-original-01-live_observation-20261012",
+        "DRAW02.draw02-producer-update-parser-01-static-20261012",
+        "DRAW02.draw02-producer-update-held-analysis-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "PE32getter two caller IDs/twelve guards/LastError and producer point order/four failures pass; six decoder guards refuse. Original01 exact cadence event/producer queue boundaries bind all16sourcequeues to advancing updates1\u201316, with same return point; overall69completewindows. No count-only binding.",
+        "Source prefix closes at sixteen World queue returns; complete UI composition, source/action/physical frame ownership through whole120advancing windows, larger bounded decoders, lifetime/alternate-route policy and diagnostic cadence controls remain pending. Full47/21acceptance remains open."
       ]
     }
   ],
@@ -91783,6 +91838,113 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-producer-update-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 cadence point two caller IDs/twelve guards/LastError and producer point order/closure plus four mismatch/refusal cases; synthetic sources, no original ownership or presentation.",
+      "record": "research/runtime/draw02-producer-update-fixture-01.json",
+      "sha256": "5c6684545d8033b0f1f5b3ed8bb915e70998950676f1a22df5502758e91ccf6e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-producer-update-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Original16sourcequeues bind to exact cadence events and complete advancing updates1\u201316;69complete advancing windows overall,332API331EGL,116heldpairs218commands. No whole120window/source/action/presentation ownership.",
+      "record": "research/runtime/draw02-producer-update-original-01.json",
+      "sha256": "1ab1f5be0e2c963b6dc08623f67b220bc8d22fccf55318a7528545ff4c2fbad1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_update_observation/cadence_trace_crosschecked",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_update_observation/producer_trace_crosschecked",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_update_observation/bound_advancing_queues",
+          "equals": 16
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-producer-update-parser-01-static-20261012",
+      "kind": "static",
+      "scope": "Six malformed synthetic producer-update point decoder refusals; no original execution.",
+      "record": "research/runtime/draw02-producer-update-parser-01.json",
+      "sha256": "5a86a65a9b01faa9d8170476c31cf86b8ad1ab6090845073e4357bf83ba10cf8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-producer-update-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Source-only native replay matches102selected physical witnesses,230excluded,zero differences.",
+      "record": "research/runtime/draw02-producer-update-prediction-01.json",
+      "sha256": "5957a4141fd4475b005ebced37f839fc14a5e8f7f908ef20a0c98937d45e1f8e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-producer-update-held-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "External held-source comparison matches204selected planes/97920000pixels,zero differences; no original planes enter native input.",
+      "record": "research/runtime/draw02-producer-update-held-analysis-01.json",
+      "sha256": "09c39eaa51c704d62c1925e02e6b6effabb26e5a43434e3c20dcce5b048b2036",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -103209,6 +103371,37 @@
       "evidence": [
         "DRAW02.draw02-engine-windows-fixture-01-native_integration-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.producer-update-fixture",
+      "level": "headless",
+      "scope": "Actual PE32 read-only queue point owner/event/caller/counter guards and producer journal closure/refusals; no original source or presentation binding.",
+      "behaviors": [
+        "NR.drawing-producer-update-binding"
+      ],
+      "tests": [
+        "tests/drawing-cadence-queue-point-test.c",
+        "tests/drawing-producer-update-test.c",
+        "tools/test-drawing-producer-update.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-producer-update-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.producer-update-original",
+      "level": "live_observation",
+      "scope": "Bounded original stock Quick Battle exact cadence event/producer queue/update binding, focused16-return source prefix;120completeownedwindows remain pending.",
+      "behaviors": [
+        "NR.drawing-producer-update-binding"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-producer-update-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -103582,8 +103775,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-engine-windows-20261012.json",
-    "sha256": "737ae62015407e1430b5198d12534013e55dea96aac12b92a3262546d5e784f5"
+    "path": "research/runtime/coverage/source-index-draw02-producer-binding-20261012.json",
+    "sha256": "388a766f4e27fb60526c3c79ba7a6f0f60121102e42029b8027b4b8318398f8b"
   },
   "claim_bindings_required": true
 }

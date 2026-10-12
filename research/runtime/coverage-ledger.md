@@ -7415,3 +7415,31 @@ Step 2 and all 47/21 requirements remain open; steps 3–7 remain ordered. Revie
 5047e22e..1488d6a4 has 21 matching receipts and zero gaps. Historical validation
 remains separate; this increment does not claim new native pixel parity.
 Storage is approximately 985 GiB working / 342 GiB free; no cleanup performed.
+
+## Step 2 exact producer/update queue binding (2026-10-12 UTC)
+
+A separately enabled read-only cadence getter requires the engine owner, exact
+last queue event/local object/caller and unchanged counter/sequence/mode. Its
+versioned point contains normalized caller IDs and event/time/counter metadata;
+no host pointer crosses the ABI. The producer recorder retains the point at
+entry and return with actual producer sequence and canvas bounds. Offline
+analysis checks the exact independent cadence event, source queue entry/return
+and complete advancing update window; counts alone do not establish binding.
+
+Six PE32 cases pass getter two callers/twelve guards/LastError and producer
+closure/four refusals; six malformed decoder guards also refuse. Original01
+binds all 16 source queues to exact cadence events and advancing updates 1–16,
+with unchanged points at return. It records 69 complete advancing windows,
+332 API / 331 EGL physical witnesses, 116 held source pairs and 218 commands.
+Fresh native replay matches 102 selected physical witnesses (230 excluded),
+and external held-source analysis matches 204 selected planes / 97,920,000
+pixels with zero differences. Original pixels never enter native inputs.
+
+Reassessment: expand acquisition through whole update/composition boundaries;
+simply extending the last World queue return does not retain every presentation.
+Larger bounded decoders, 120 contiguous advancing source/presentation windows,
+source/action/frame/lifetime outcomes and cadence controls remain open. Step 2
+and all 47/21 requirements remain open; steps 3–7 stay ordered. Reviewed
+1488d6a4..da55ccd7 has 12 matching receipts and zero gaps. Historical hashes
+are retained; no whole subsystem promotion. Storage is approximately 991 GiB
+working / 335 GiB free; no cleanup performed.

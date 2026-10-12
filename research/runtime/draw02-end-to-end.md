@@ -789,3 +789,35 @@ worker/EGLdelivery or records/refuses interveningwrites,thenallroutes/lifetimes/
 semantic120windows. No sample/protectioncountercloses47/21requirements;steps3–7
 stayordered/pending. Reviewedc20dde96..c704c2c8has33exactreceipts/0gaps.Storage
 around966GiBworking/360GiBfree;historicalhashesretained/nocleanup.
+
+## Step 2 protected source and actual update checkpoints (2026-10-12 UTC)
+
+Committed `5047e22e` extends an accepted diagnostic source lease until each exact
+API-emitted command has a checked worker return, retaining early completions and
+refusing missing/unknown/timeout/write failures. The original sample closes 118
+leases and 222 commands. Committed `1488d6a4` then captures source planes inside
+that protected interval: 119 pairs match exactly through 224 command returns,
+with no observed protected write. Independent native replay matches 104 selected
+physical witnesses and 208 held-source planes; other witnesses remain excluded.
+These milestones do not establish whole storage lifetime, every alias writer or
+asynchronous hardware/scanout completion. All gates/hooks passed for those commits.
+
+Committed `da55ccd7` reuses the original engine cadence observer and normal
+original Quit to retain actual counter-advancing update identities. Its bounded
+sample contains 68 complete consecutive advancing windows and excludes the final
+window; the source prefix remains sixteen returns. This avoids treating passive
+snapshots or draw counts as complete update identity. Native pixel parity was not
+claimed for that cadence-only increment.
+
+The current exact binding fixture passes read-only owner/event/caller/counter
+checks and producer point closure/refusals. Original producer-update run 01 binds
+all sixteen source queues to exact cadence events and advancing IDs 1–16, with
+unchanged return points; the run contains 69 complete advancing windows overall.
+Counts alone did not establish this match. Reassessment: acquisition still needs
+120 whole advancing update windows with complete composition and presentation
+retention, plus full source/action/frame/lifetime outcomes and cadence controls.
+Step 2 stays open and steps 3–7 remain ordered; no 47/21 closure is promoted.
+
+The fresh exact-binding native cohort matches 102 physical witnesses and 204
+held-source planes with zero differences; 230 physical witnesses remain excluded.
+This restricted parity supports the stated source prefix, not complete journeys.

@@ -54,6 +54,7 @@ void cadence_record(u32* registers,u32 event){
  if(event==6||event==16){r[15]=get(0x6df188);r[16]=get(0x6def58+0x258);r[17]=get(0x6def58+0x25c);r[18]=get(0x6def58+0x264);}
  ++count;SetLastError(error);
 }
+#include "queue_point.h"
 static int install(void){
  char path[2048];u32 n=GetEnvironmentVariableA("MNM_ENGINE_CADENCE_FILE",path,sizeof(path));
  if(!n)return 1;
