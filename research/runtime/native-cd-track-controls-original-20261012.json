@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "audio/CMakeLists.txt": "ccebe6861275cbdacf10c6952a382dbc94fac514eec75e4818bec6ca95e010a3",
+    "reconstruction/audio/cd_track_controls.cpp": "12b68a06c02b4491fa719a69e76afa52b2ea1909fde72d8fc9964c9cc2b47833",
+    "reconstruction/audio/cd_track_controls.hpp": "ccb057869e50aed0ec4fcdd22261459de7d8c3e07ffaeb989360f50e6e9650c0",
+    "tests/cd-track-controls-reference.cpp": "eecf08b16e371fcd8bfd30810a95e1c1c1c34bdcd1ebca75a0893f433bcf22a3",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/test-cd-track-controls.py": "51b4b47cad2f2e5c78832494d7f486acab3b92fc203129dac476646c7395e890"
+  },
+  "claims": [
+    {
+      "behavior": "AU.cd_track_controls",
+      "contract_sha256": "57f6005954be1471778688c2d24da7c94c3f54f3b3042b2ffa6edfb356ef5c4a",
+      "scenarios": {}
+    }
+  ],
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Four whole unchanged original CD control primitives versus native models:6912 authored receiver/scripted-MCI cases, exact returns/argument ordering/state and guard bytes. Gates, track low8/wrapping, status failure/last-track retry, successful retry preserving paused, resume/pause and length-byte independent gates. Original driver, notification/window delivery, SEH initialization/allocation, mixer/fade/catalog/playlist/full callers and live playback excluded.",
+  "native_returncode": 0,
+  "native": {
+    "success": true,
+    "cases": 6912,
+    "calls": 5184,
+    "retry_success_preserved_pause": 64,
+    "guard_bytes": 0
+  },
+  "original_returncode": 0,
+  "original": {
+    "success": true,
+    "cases": 6912,
+    "calls": 5184,
+    "retry_success_preserved_pause": 64,
+    "guard_bytes": 7299072
+  },
+  "input_unchanged": true,
+  "sources_stable": true,
+  "original_control_instructions_unchanged": true,
+  "artifacts": {
+    "working/tests/cd-track-controls/run-31rl7vqm/build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/cd-track-controls/run-31rl7vqm/native.log": {
+      "sha256": "a72f1320c5ac51a509389e3f831cd4f84d97fc38d8c8fcf9f585cc02ae0afe92",
+      "bytes": 94
+    },
+    "working/tests/cd-track-controls/run-31rl7vqm/original": {
+      "sha256": "6ab404b9e0e672393e181db6f5608582017b7d1cb62f220182cfdc75ea42ef94",
+      "bytes": 45836
+    },
+    "working/tests/cd-track-controls/run-31rl7vqm/native": {
+      "sha256": "1c9bea6c1f11cfbc324f61e6a6f5570b1a20b692f34fb044c777f68ddf4ca949",
+      "bytes": 23200
+    },
+    "working/tests/cd-track-controls/run-31rl7vqm/original.log": {
+      "sha256": "8a2815e0429a8258abb127995c052fcb40f2f431608b41a8183fdc42e099cd6a",
+      "bytes": 100
+    }
+  },
+  "original_manifest_verified_before_after": true
+}

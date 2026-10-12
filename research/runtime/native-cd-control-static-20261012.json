@@ -1,0 +1,56 @@
+{
+  "source": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/native-audio-input/run-h4r5z9xx/game/Chaos.exe",
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "architecture": "PE32 i386",
+  "image_base": "0x00400000",
+  "ranges": {
+    "cd_control_ranges": [
+      4723504,
+      4730112
+    ],
+    "cd_open": [
+      4723504,
+      4723856
+    ],
+    "cd_initialize": [
+      4723856,
+      4724592
+    ],
+    "cd_close": [
+      4724592,
+      4725040
+    ],
+    "cd_controls": [
+      4725040,
+      4727456
+    ],
+    "cd_play": [
+      4727456,
+      4729104
+    ],
+    "cd_mixer": [
+      4729104,
+      4730112
+    ]
+  },
+  "sites": {},
+  "artifacts": {
+    "cd_control_ranges.asm": "69400a5e54f4ab6c9fe3a2cc3f636105d14808725054f6dd67e912734dfd3c42",
+    "cd_open.asm": "17f8df0b82baf7b24a02525ab24c4fdd3d7e01af892ec0fb21b8355d7e3aa156",
+    "cd_initialize.asm": "3340d8e186627aabdfe96dd7b3006e0f068e2c9e5da79c4796007c77b1fb64b7",
+    "cd_close.asm": "17c89816983901671967830d347082df2be0cad23a937660c163a9d8d0deb3dc",
+    "cd_controls.asm": "fa5f760f1af4e04181c5108679c237d3e609d382e4aa249544f12556b2f06b85",
+    "cd_play.asm": "5679ad746369aae4f335af2526984e1514a24420c18a311ecf2e0c01db2e817f",
+    "cd_mixer.asm": "6757b8f2c6fa6a1587df1e03c096c2c86afb3aaf90c9774c4cc54cf66f6df06c",
+    "direct-callers.json": "534a58b2dee6844e0062ae7fb03eb8105f0480641f40e81f4c85883393f4ab26",
+    "voice-call-audit.json": "2ae1bac72c39d007f3c5dea9d7fe10010734d6c0ac5ec6891a08e043dd17830d"
+  },
+  "input_unchanged": true,
+  "scope": "Selected original CD/MCI static ranges and direct callers; labels provisional, no original execution or native playback validation.",
+  "sources": {
+    "tools/export-cd-audio.py": "f1df1e249a80ee18cb40b30d1fef203a56ea1c2383181da191787398725184db",
+    "tools/export-audio-support.py": "736499585a5cebaaa982b30dce6f847c297c633edf540b453b3630180a53a1bb"
+  },
+  "original_manifest_verified_before": true,
+  "original_manifest_verified_after": true
+}

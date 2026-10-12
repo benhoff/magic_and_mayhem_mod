@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "success": true,
+  "inputs": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/original/MagicMayhem_ISO/MagicMayhem.cue": "bcfc8acc59d67462a1b4783dcf6d01b5e738023e3e842cfddb3188fcebe160f4",
+    "/home/hoff/swdev/magic_and_mayhem_mod/original/MagicMayhem_ISO/MagicMayhem.img": "c181ce0da23d78ff45137885253cc5ddcf2024035ab60cb0e0ae1cd8836fec9e"
+  },
+  "inputs_unchanged": true,
+  "format": {
+    "channels": 2,
+    "bits": 16,
+    "rate": 44100,
+    "byte_order": "little"
+  },
+  "span_policy": "INDEX1 to next INDEX1 or image leadout; trailing pregap retained",
+  "tracks": [
+    {
+      "track": 2,
+      "file": "Track02.wav",
+      "start_sector": 153975,
+      "end_sector": 162302,
+      "pcm_bytes": 19585104,
+      "frames": 4896276,
+      "pcm_sha256": "3512e3a96e54153eb6779171a39bb629b6ca16288aac3f1b176d65716ca1f33c",
+      "wav_sha256": "a557102be4189388ec8a072becbfe36361ae99a069b0ffa5aaa9e99cf8c2abc7"
+    },
+    {
+      "track": 3,
+      "file": "Track03.wav",
+      "start_sector": 162302,
+      "end_sector": 203554,
+      "pcm_bytes": 97024704,
+      "frames": 24256176,
+      "pcm_sha256": "c2c0b8f10fba1ab31c9b312550a59085dc2c0142b49b5ec14ade999ba86547de",
+      "wav_sha256": "161f63aff5128e0d06fb7e1ea547ed6f13af5de7526e072ae0483656dccb71da"
+    },
+    {
+      "track": 4,
+      "file": "Track04.wav",
+      "start_sector": 203554,
+      "end_sector": 213156,
+      "pcm_bytes": 22583904,
+      "frames": 5645976,
+      "pcm_sha256": "22c57e2ad1288e208fc97f7cbbe535edfbcd9c561215f27fbfb2e58d44bf0af6",
+      "wav_sha256": "5492c2554b9dcde4d23386d7bf2c5cb417b98ce4c463599d6ac713ff16cc0af6"
+    },
+    {
+      "track": 5,
+      "file": "Track05.wav",
+      "start_sector": 213156,
+      "end_sector": 241358,
+      "pcm_bytes": 66331104,
+      "frames": 16582776,
+      "pcm_sha256": "1ee15acf161a1268efe423b280c7df6f3c3f4cae676cb09670e610363037d684",
+      "wav_sha256": "880e1e93534853661f6985e27ab718e86c159ddbf4a5606c12333d51fd6c3fb6"
+    },
+    {
+      "track": 6,
+      "file": "Track06.wav",
+      "start_sector": 241358,
+      "end_sector": 250660,
+      "pcm_bytes": 21878304,
+      "frames": 5469576,
+      "pcm_sha256": "7837c04794c5da12d23da4e59974d713b09222975e63d9cd9adcfa0d08d630a6",
+      "wav_sha256": "49f9ce67acb04113996b1e2757072ba0bf56ba8d8f85517fbec1bd6b27346588"
+    },
+    {
+      "track": 7,
+      "file": "Track07.wav",
+      "start_sector": 250660,
+      "end_sector": 274587,
+      "pcm_bytes": 56276304,
+      "frames": 14069076,
+      "pcm_sha256": "9649f4b6c42667995ae57e0741756a0567b37d95ff016a516b2ef3577f967263",
+      "wav_sha256": "0894f8c2ab838e8a4808b50f8fa0a7cee766ba188e7f54eb7a66ae4fba5b9f5f"
+    },
+    {
+      "track": 8,
+      "file": "Track08.wav",
+      "start_sector": 274587,
+      "end_sector": 284114,
+      "pcm_bytes": 22407504,
+      "frames": 5601876,
+      "pcm_sha256": "2a6240526c7df75316e373d1208660197888726cc972a49eebaded2df0b9b352",
+      "wav_sha256": "106621ddce73787bbe90707c4539646f49cfd87365f2010ee640a04312577096"
+    },
+    {
+      "track": 9,
+      "file": "Track09.wav",
+      "start_sector": 284114,
+      "end_sector": 294841,
+      "pcm_bytes": 25229904,
+      "frames": 6307476,
+      "pcm_sha256": "65542023cf782c4fdd57c958d10001b5a05f9fa491d5f60d26acdcc3740e68b3",
+      "wav_sha256": "80a93872aae8248f83ec07ab5d8fb16cfae1bc2946f1a67739de81905ab89215"
+    },
+    {
+      "track": 10,
+      "file": "Track10.wav",
+      "start_sector": 294841,
+      "end_sector": 306693,
+      "pcm_bytes": 27875904,
+      "frames": 6968976,
+      "pcm_sha256": "a16210149b41b7f9ed58c094fcc37d47f22011db65adce39b95d46bc8aa2c966",
+      "wav_sha256": "583eeeb1acbc15fb8477e238c32e1726f9bc2be9d79d29700de4b167877b6d52"
+    },
+    {
+      "track": 11,
+      "file": "Track11.wav",
+      "start_sector": 306693,
+      "end_sector": 323270,
+      "pcm_bytes": 38989104,
+      "frames": 9747276,
+      "pcm_sha256": "0da8e4818109fb0591612067ab8160cfbdf017412d60dc234f074700fe327ed1",
+      "wav_sha256": "9f0de57be6f0d81e50908f4f8a7bd779f88439adacaf9500a9ed6688c144066c"
+    },
+    {
+      "track": 12,
+      "file": "Track12.wav",
+      "start_sector": 323270,
+      "end_sector": 336997,
+      "pcm_bytes": 32285904,
+      "frames": 8071476,
+      "pcm_sha256": "3d36980627762e06c1cfd1f35a9bf8f4de122f2cbf2a605ba7807d12a0364286",
+      "wav_sha256": "efe7431d7331539c4d8b2c14de5c0c7100ad024d3d720673f0f94439d877bf49"
+    },
+    {
+      "track": 13,
+      "file": "Track13.wav",
+      "start_sector": 336997,
+      "end_sector": 340224,
+      "pcm_bytes": 7589904,
+      "frames": 1897476,
+      "pcm_sha256": "3718159a82aefc5134951d8a42a043ae77ec7ef5db52480ffd8b91426860d6b4",
+      "wav_sha256": "5ee31cdbbd0c53bdde29bd00da5deb449009c7fea7f0dfe714bbd575a845c1b6"
+    }
+  ],
+  "original_manifest_verified_before": true,
+  "original_manifest_verified_after": true,
+  "sources": {
+    "tools/cd_audio.py": "a5157b5dee19a100c253652e4c2d76f96f17ec05ed5840bfdb17f106306531a4",
+    "tools/extract-cd-audio.py": "4e0adcafc0c73150d1151cd5c51d2ef155ac6de2d007171a22fc5874d4d40689",
+    "tests/test-cd-audio.py": "f543b3787b5511a51999227fb7c869e5461c7fee0e85c3062372ed35292cc94b"
+  },
+  "sources_unchanged": true,
+  "claims": [
+    {
+      "behavior": "HOST.native-cd-assets",
+      "contract_sha256": "ead05062faa357119781e6bbdba349435b4e2bf80f323f989d785bf6c588d3cc",
+      "scenarios": {
+        "native-cd-assets-installed-20261012": "929b45a2533d1cd538db8ff11b972916c4140a9786150dfda2edb194c60753bb"
+      }
+    }
+  ]
+}
