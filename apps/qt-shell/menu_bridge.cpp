@@ -1,5 +1,5 @@
 #include "menu_bridge.hpp"
-#include "../../protocols/include/mnm/menu_v13.h"
+#include "../../protocols/include/mnm/menu_v14.h"
 #include <QtEndian>
 #include <cstring>
 #include <algorithm>
@@ -8,21 +8,21 @@ quint32 load(const quint32* p){return qFromLittleEndian(__atomic_load_n(p,__ATOM
 void store(quint32* p,quint32 v){__atomic_store_n(p,qToLittleEndian(v),__ATOMIC_RELEASE);}
 }
 MenuBridge::~MenuBridge(){retire();if(mapping_)file_.unmap(mapping_);}
-bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences,bool region,bool enter,bool campaignMini,bool campaignQuit,bool campaignDefeat,bool campaignPreferences,bool storage){
-    storage_=storage;campaignPreferences=campaignPreferences||storage;campaignPreferences_=campaignPreferences;campaignDefeat=campaignDefeat||campaignPreferences;campaignDefeat_=campaignDefeat;campaignQuit=campaignQuit||campaignDefeat;campaignQuit_=campaignQuit;campaignMini=campaignMini||campaignQuit;campaignMini_=campaignMini;enter_=enter||campaignMini;enter=enter_;mini=mini||campaignMini;region_=region||enter;region=region_;preferences_=preferences||region;preferences=preferences_;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=storage?MNM_MENU_V13_SIZE:campaignPreferences?MNM_MENU_V12_SIZE:campaignDefeat?MNM_MENU_V11_SIZE:campaignQuit?MNM_MENU_V10_SIZE:campaignMini?MNM_MENU_V9_SIZE:enter?MNM_MENU_V8_SIZE:region?MNM_MENU_V7_SIZE:preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
+bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences,bool region,bool enter,bool campaignMini,bool campaignQuit,bool campaignDefeat,bool campaignPreferences,bool storage,bool grimoire){
+    grimoire_=grimoire;storage=storage||grimoire;storage_=storage;campaignPreferences=campaignPreferences||storage;campaignPreferences_=campaignPreferences;campaignDefeat=campaignDefeat||campaignPreferences;campaignDefeat_=campaignDefeat;campaignQuit=campaignQuit||campaignDefeat;campaignQuit_=campaignQuit;campaignMini=campaignMini||campaignQuit;campaignMini_=campaignMini;enter_=enter||campaignMini;enter=enter_;mini=mini||campaignMini;region_=region||enter;region=region_;preferences_=preferences||region;preferences=preferences_;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=grimoire?MNM_MENU_V14_SIZE:storage?MNM_MENU_V13_SIZE:campaignPreferences?MNM_MENU_V12_SIZE:campaignDefeat?MNM_MENU_V11_SIZE:campaignQuit?MNM_MENU_V10_SIZE:campaignMini?MNM_MENU_V9_SIZE:enter?MNM_MENU_V8_SIZE:region?MNM_MENU_V7_SIZE:preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
     if(file_.isOpen())return false;
     file_.setFileName(path);
     if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(size))return false;
-    QByteArray data(size,0);std::memcpy(data.data(),storage?MNM_MENU_V13_MAGIC:campaignPreferences?MNM_MENU_V12_MAGIC:campaignDefeat?MNM_MENU_V11_MAGIC:campaignQuit?MNM_MENU_V10_MAGIC:campaignMini?MNM_MENU_V9_MAGIC:enter?MNM_MENU_V8_MAGIC:region?MNM_MENU_V7_MAGIC:preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
-    qToLittleEndian<quint32>(storage?13:campaignPreferences?12:campaignDefeat?11:campaignQuit?10:campaignMini?9:enter?8:region?7:preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
+    QByteArray data(size,0);std::memcpy(data.data(),grimoire?MNM_MENU_V14_MAGIC:storage?MNM_MENU_V13_MAGIC:campaignPreferences?MNM_MENU_V12_MAGIC:campaignDefeat?MNM_MENU_V11_MAGIC:campaignQuit?MNM_MENU_V10_MAGIC:campaignMini?MNM_MENU_V9_MAGIC:enter?MNM_MENU_V8_MAGIC:region?MNM_MENU_V7_MAGIC:preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
+    qToLittleEndian<quint32>(grimoire?14:storage?13:campaignPreferences?12:campaignDefeat?11:campaignQuit?10:campaignMini?9:enter?8:region?7:preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
     if(file_.write(data)!=data.size()||!file_.flush())return false;
     mapping_=file_.map(0,data.size());if(!mapping_)return false;
     heartbeat();return true;
 }
 bool MenuBridge::read(State& state) const {
-    if(!mapping_||std::memcmp(mapping_,storage_?MNM_MENU_V13_MAGIC:campaignPreferences_?MNM_MENU_V12_MAGIC:campaignDefeat_?MNM_MENU_V11_MAGIC:campaignQuit_?MNM_MENU_V10_MAGIC:campaignMini_?MNM_MENU_V9_MAGIC:enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
+    if(!mapping_||std::memcmp(mapping_,grimoire_?MNM_MENU_V14_MAGIC:storage_?MNM_MENU_V13_MAGIC:campaignPreferences_?MNM_MENU_V12_MAGIC:campaignDefeat_?MNM_MENU_V11_MAGIC:campaignQuit_?MNM_MENU_V10_MAGIC:campaignMini_?MNM_MENU_V9_MAGIC:enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
     auto* words=reinterpret_cast<quint32*>(mapping_);
-    if(load(words+2)!=(storage_?13u:campaignPreferences_?12u:campaignDefeat_?11u:campaignQuit_?10u:campaignMini_?9u:enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(storage_?MNM_MENU_V13_SIZE:campaignPreferences_?MNM_MENU_V12_SIZE:campaignDefeat_?MNM_MENU_V11_SIZE:campaignQuit_?MNM_MENU_V10_SIZE:campaignMini_?MNM_MENU_V9_SIZE:enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
+    if(load(words+2)!=(grimoire_?14u:storage_?13u:campaignPreferences_?12u:campaignDefeat_?11u:campaignQuit_?10u:campaignMini_?9u:enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(grimoire_?MNM_MENU_V14_SIZE:storage_?MNM_MENU_V13_SIZE:campaignPreferences_?MNM_MENU_V12_SIZE:campaignDefeat_?MNM_MENU_V11_SIZE:campaignQuit_?MNM_MENU_V10_SIZE:campaignMini_?MNM_MENU_V9_SIZE:enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
     auto* p=words+(battle_?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);const auto seq=load(p);if(!seq||(seq&1))return false;
     State next;next.generation=load(p+1);next.screen=load(p+2);next.ready=load(p+3);next.ack=load(p+4);next.status=load(p+5);next.thread=load(p+6);next.sequence=seq;
     auto name=[&](int offset,int length,QString& text){
@@ -99,7 +99,7 @@ bool MenuBridge::read(State& state) const {
     if(region_&&next.screen==MNM_MENU_REGION_SCREEN){
         auto* m=words+MNM_MENU_V7_REGION/4;auto& b=next.region;
         b.caller=load(m);b.depth=load(m+1);b.different=load(m+2);b.difficulty=load(m+3);b.available=load(m+4);b.actions=load(m+5);b.region=load(m+6);
-        if(b.caller!=4||b.depth!=4||b.different||b.difficulty>3||(b.available&~15u)||(b.actions&~(enter_?3u:1u))||b.region!=1||load(m+7)||
+        if(b.caller!=4||b.depth!=4||b.different||b.difficulty>3||(b.available&~15u)||(b.actions&~((enter_?3u:1u)|(grimoire_?4u:0u)))||b.region!=1||load(m+7)||
            !name(MNM_MENU_V7_REGION+32,128,b.realm)||b.realm!="Celtic"||!name(MNM_MENU_V7_REGION+160,128,b.name)||b.name.isEmpty()||b.name.contains('\n')||b.name.contains('\r'))return false;
         for(int i=72;i<80;++i)if(load(m+i))return false;
     }
@@ -111,8 +111,13 @@ bool MenuBridge::read(State& state) const {
            (next.ready&&(b.modal||b.pending))||!name(MNM_MENU_V13_STORAGE+32,128,b.fileName))return false;
         for(quint32 i=0;i<count;++i){QString stem;if(!name(MNM_MENU_V13_STORAGE+160+128*i,128,stem)||stem.isEmpty()||stem.contains('\n')||stem.contains('\r')||b.names.contains(stem))return false;b.names.append(stem);}
     }
+    if(grimoire_&&next.screen==MNM_MENU_GRIMOIRE_SCREEN){
+        auto* m=words+MNM_MENU_V14_GRIMOIRE/4;auto& b=next.grimoire;
+        b.chapter=load(m);b.section=load(m+1);b.cursor=load(m+2);b.available=load(m+3);b.parent=load(m+4);b.depth=load(m+5);b.context=load(m+6);
+        if(!((b.chapter==0&&b.section<=4)||(b.chapter==1&&b.section==1))||b.cursor!=1||b.available!=63||b.parent!=18||b.depth!=5||b.context!=5||load(m+7))return false;
+    }
     __atomic_thread_fence(__ATOMIC_ACQUIRE);if(seq!=load(p))return false;
-    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>(enter_?3u:2u)||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)||(campaignDefeat_&&next.screen==MNM_MENU_DEFEAT_SCREEN)||(preferences_&&next.screen==MNM_MENU_PREFERENCES_SCREEN)||(region_&&next.screen==MNM_MENU_REGION_SCREEN)||(storage_&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==MNM_MENU_SAVE_SCREEN))))))return false;
+    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>(enter_?3u:2u)||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(grimoire_&&next.screen==MNM_MENU_GRIMOIRE_SCREEN)||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)||(campaignDefeat_&&next.screen==MNM_MENU_DEFEAT_SCREEN)||(preferences_&&next.screen==MNM_MENU_PREFERENCES_SCREEN)||(region_&&next.screen==MNM_MENU_REGION_SCREEN)||(storage_&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==MNM_MENU_SAVE_SCREEN))))))return false;
     state=next;return true;
 }
 void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 argument,const std::array<int,17>* rules,const std::array<int,63>* assignments,const std::array<int,7>* preferences,const QByteArray* storageName){
@@ -135,8 +140,9 @@ bool MenuBridge::request(quint32 action,const State& state,quint32 argument,cons
     const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&(current.mini.battle||campaignMini_)&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT))||(storage_&&action==MNM_MENU_MINI_LOAD&&(current.mini.actions&MNM_MENU_MINI_CAN_LOAD))||(storage_&&action==MNM_MENU_MINI_SAVE&&(current.mini.actions&MNM_MENU_MINI_CAN_SAVE)));
     const bool resultAction=results_&&current.screen==MNM_MENU_RESULT_SCREEN&&((action==MNM_MENU_RESULT_CONTINUE&&(current.results.actions&1))||(action==MNM_MENU_RESULT_QUIT&&(current.results.actions&2)));
     const bool regionAction=region_&&((action==MNM_MENU_NEW_GAME&&current.screen==3)||(current.screen==18&&
-        ((enter_&&action==MNM_MENU_REGION_ENTER&&(current.region.actions&2))||(action==MNM_MENU_REGION_CANCEL&&(current.region.actions&1))||(action==MNM_MENU_REGION_DIFFICULTY&&argument<4&&(current.region.available&(1u<<argument))))));
-    const bool allowed=(storage_&&action==MNM_MENU_OPEN_LOAD&&current.screen==3)||(campaignDefeat_&&current.screen==MNM_MENU_DEFEAT_SCREEN&&action==MNM_MENU_DEFEAT_OK&&current.defeat.actions==1)||regionAction||(preferences_&&action==MNM_MENU_OPEN_PREFERENCES&&current.screen==3)||resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
+        ((grimoire_&&action==MNM_MENU_REGION_GRIMOIRE&&!argument&&(current.region.actions&4))||(enter_&&action==MNM_MENU_REGION_ENTER&&(current.region.actions&2))||(action==MNM_MENU_REGION_CANCEL&&(current.region.actions&1))||(action==MNM_MENU_REGION_DIFFICULTY&&argument<4&&(current.region.available&(1u<<argument))))));
+    const bool bookAction=grimoire_&&current.screen==MNM_MENU_GRIMOIRE_SCREEN&&((action==MNM_MENU_GRIMOIRE_CLOSE&&!argument)||(action==MNM_MENU_GRIMOIRE_SELECT&&argument<6&&(current.grimoire.available&(1u<<argument))));
+    const bool allowed=bookAction||(storage_&&action==MNM_MENU_OPEN_LOAD&&current.screen==3)||(campaignDefeat_&&current.screen==MNM_MENU_DEFEAT_SCREEN&&action==MNM_MENU_DEFEAT_OK&&current.defeat.actions==1)||regionAction||(preferences_&&action==MNM_MENU_OPEN_PREFERENCES&&current.screen==3)||resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
         (battle_&&((action==MNM_MENU_OPEN_SINGLE&&current.screen==22)||((setupAction||action==MNM_MENU_SETUP_CANCEL)&&current.screen==14)||((action==MNM_MENU_MAP_OK||action==MNM_MENU_MAP_CANCEL)&&current.screen==25)));
     if(!allowed||(setupAction&&!rules)||(rules&&std::any_of(rules->begin(),rules->end(),[](int value){return value<0||value>10000;})))return false;
     if(retired_||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||

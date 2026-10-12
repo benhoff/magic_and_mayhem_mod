@@ -1,9 +1,10 @@
 #include "live_region_entry_controller.hpp"
-#include "../../protocols/include/mnm/menu_v8.h"
+#include "../../protocols/include/mnm/menu_v14.h"
 LiveRegionEntryController::LiveRegionEntryController(LiveMenuSession& session,RegionEntryWidget& widget):session_(session),widget_(widget){
     QObject::connect(&widget_,&RegionEntryWidget::difficultyChanged,&widget_,[this](auto difficulty){if(entered_&&!closing_){draft_=quint32(difficulty);dirty_=true;pump();}});
     QObject::connect(&widget_,&RegionEntryWidget::cancelled,&widget_,[this]{if(entered_&&!closing_){closing_=true;dirty_=false;action_=MNM_MENU_REGION_CANCEL;pump();}});
     QObject::connect(&widget_,&RegionEntryWidget::enterRequested,&widget_,[this]{if(entered_&&!closing_){closing_=true;action_=MNM_MENU_REGION_ENTER;pump();}});
+    QObject::connect(&widget_,&RegionEntryWidget::auxiliaryRequested,&widget_,[this](auto action){if(action==RegionEntryWidget::AuxiliaryAction::Grimoire&&entered_&&!closing_){closing_=true;action_=MNM_MENU_REGION_GRIMOIRE;pump();}});
     timer_.setInterval(50);QObject::connect(&timer_,&QTimer::timeout,&widget_,[this]{pump();});timer_.start();
 }
 void LiveRegionEntryController::pump(){
@@ -21,7 +22,7 @@ bool LiveRegionEntryController::present(const MenuBridge::State& state,QString* 
     }
     if(!entered_&&!closing_){
         RegionEntryWidget::Region region;region.id="Celtic:1";region.name=b.name;region.difficulty=RegionEntryWidget::Difficulty(b.difficulty);
-        region.enterAvailable=b.actions&2;region.auxiliaryAvailable={false,false,false};
+        region.enterAvailable=b.actions&2;region.auxiliaryAvailable={bool(b.actions&4),false,false};
         if(!widget_.setRegion(region,error))return false;
         entered_=true;
     }else if(!dirty_&&!closing_)widget_.setDifficulty(RegionEntryWidget::Difficulty(b.difficulty));

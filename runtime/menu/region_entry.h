@@ -1,4 +1,10 @@
-#include "../../protocols/include/mnm/menu_v10.h"
+#include "../../protocols/include/mnm/menu_v14.h"
+static int region_grimoire_enabled;
+static int region_grimoire_available(u8* p){
+    u8* b=(u8*)get(p+0x4f),*cb=(u8*)get(p+0x5b);
+    return readable(b,0x7a)&&get(b)==0x5c6bd0&&get(b+8)==1&&get(b+0x2d)==2&&
+           get(b+0x25)==(u32)cb&&get(b+0x3d)<2;
+}
 static u8 region_payload[MNM_MENU_V7_REGION_SIZE];
 static int region_snapshot(void* object,u8* out,int enter){
     u8* p=object;
@@ -26,6 +32,7 @@ static int region_snapshot(void* object,u8* out,int enter){
     for(u32 i=0;i<MNM_MENU_V7_REGION_SIZE;++i)out[i]=0;
     put(out,4);put(out+4,4);put(out+12,selected);put(out+16,available);
     put(out+20,get(buttons+0x59+8)==1&&get(buttons+0x59+0x3d)!=2);put(out+24,1);
+    if(region_grimoire_enabled&&region_grimoire_available(p))put(out+20,get(out+20)|4);
     if(enter&&get(buttons+8)==1&&get(buttons+0x3d)!=2&&readable((void*)0x659f51,8)&&readable((void*)0x65b1dd,4)&&readable((void*)0x65ae1d,36)&&get((void*)0x659f55)==9){
         u32 player=get((void*)0x659f51),owner=get((void*)0x65b1dd);
         if(player<9&&owner<9&&owner!=player&&get((u8*)0x65ae1d+4*player)==1&&get((u8*)0x65ae1d+4*owner)==1)put(out+20,get(out+20)|2);
@@ -49,6 +56,9 @@ static u32 region_dispatch(void* object,u32 action,u32 argument,int enter){
     }else if(action==MNM_MENU_REGION_CANCEL){
         if(!(get(current+20)&1))return MNM_MENU_UNAVAILABLE;
         record(2,object,1,0);u32 result=((ActionFn)0x4b3420)(object,1);record(3,object,1,result);
+    }else if(action==MNM_MENU_REGION_GRIMOIRE&&region_grimoire_enabled){
+        if(argument)return MNM_MENU_INVALID;if(!(get(current+20)&4))return MNM_MENU_UNAVAILABLE;
+        record(2,object,2,0);u32 result=((ActionFn)0x4b3420)(object,2);record(3,object,2,result);
     }else return MNM_MENU_UNSUPPORTED;
     return MNM_MENU_OK;
 }
