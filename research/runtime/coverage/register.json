@@ -44313,7 +44313,9 @@
         "DRAW02.draw02-semantic-state-fixture-negative-03-20261012",
         "DRAW02.draw02-semantic-state-fixture-negative-04-20261012",
         "DRAW02.draw02-campaign-pause-timing-correction-01-20261012",
-        "DRAW02.draw02-semantic-state-timing-fixture-01-20261012"
+        "DRAW02.draw02-semantic-state-timing-fixture-01-20261012",
+        "DRAW02.draw02-hud-state-original-04-20261012",
+        "DRAW02.draw02-hud-state-pause-analysis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44372,12 +44374,15 @@
       ],
       "implementation": [],
       "tests": [
-        "tools/inspect-drawing-hud-input.py"
+        "tools/inspect-drawing-hud-input.py",
+        "tools/analyze-drawing-hud-state.py",
+        "tests/test-drawing-hud-state-analysis.py"
       ],
       "evidence": [
         "DRAW02.draw02-hud-input-static-negative-01-20261012",
         "DRAW02.draw02-hud-input-static-02-20261012",
-        "DRAW02.draw02-hud-input-static-03-20261012"
+        "DRAW02.draw02-hud-input-static-03-20261012",
+        "DRAW02.draw02-hud-state-analysis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44388,11 +44393,105 @@
       },
       "remaining_gaps": [
         "Actual selection/tooltip state, actor identity/lifecycle and full caller routes unverified; native diagnostic picking remains separate.",
-        "Gameplay table46a460/46ab30entries absent from inventory; bounded discovery windows do not recover whole functions or erase unknown ranges. Inspector initial refusal preserved."
+        "Gameplay table46a460/46ab30entries absent from inventory; bounded discovery windows do not recover whole functions or erase unknown ranges. Inspector initial refusal preserved.",
+        "Prospective same-menu-thread scalar sampler validates candidate pointer against current pool/slot and records actual689930camera fields; numeric pool IDs are not allocation ownership or actor generations, and current activation/selection/tooltip semantics remain pending."
       ],
       "validation_dependencies": [
         "tools/inspect-drawing-canvas-storage.py",
-        "research/runtime/coverage/binary-nocd.json"
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/drawing_hud_state.py",
+        "tools/drawing_semantic_state.py"
+      ]
+    },
+    {
+      "id": "NR.drawing-hud-state-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Read-only candidate hit identity and actual camera sampling",
+      "scope": "Bounded same-menu-thread memory-buffered candidate656600/draw-index657d40/hit-class6a5134 sampler. Validate current pool address/shape/slot before emitting actor type/owner/active/health; observed numeric base IDs are not allocations/generations. Separately record camera689930orientation/whole/fraction fields. Readability does not establish current activation, persistent selection or tooltip.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/scene-production-repetition.md",
+        "research/runtime/terrain-camera-setters.md",
+        "research/formats/drawing-hud-state.md"
+      ],
+      "implementation": [
+        "runtime/menu/drawing_hud_state.h",
+        "tools/drawing_hud_state.py"
+      ],
+      "tests": [
+        "tests/drawing-hud-state-test.c",
+        "tests/test-drawing-hud-state.py",
+        "tools/test-drawing-hud-state.py",
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/hud-hit-camera-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-hud-state-fixture-01-20261012",
+        "DRAW02.draw02-hud-state-original-01-20261012",
+        "DRAW02.draw02-hud-state-original-02-20261012",
+        "DRAW02.draw02-hud-state-original-03-20261012",
+        "DRAW02.draw02-hud-state-budget-scalar-analysis-01-20261012",
+        "DRAW02.draw02-hud-storage-reassessment-01-20261012",
+        "DRAW02.draw02-hud-state-original-04-20261012",
+        "DRAW02.draw02-hud-state-analysis-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original controlled pointer/click candidate semantics, persistent selection/tooltip and source/presentation outcomes unverified. Numeric pool changes do not detect allocation reuse or actor generations; readable camera fields do not prove current activation or pause equivalence.",
+        "Original probe01encounters rendered Hermes guidance after camera actions; subsequent Mini request times out. Forced teardown leaves scalar journals empty and APIterminal absent; no capture admission. Guidance input/lifecycle/source ownership remains unassigned. A bounded dismissal click in the next schedule needs actual Mini confirmation."
+      ],
+      "validation_dependencies": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/drawing-session-runner.py"
+      ]
+    },
+    {
+      "id": "NR.drawing-campaign-guidance-handshake",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original campaign guidance-to-Mini handshake",
+      "scope": "Optional original-active physical input attempts across observed Hermes guidance pages: at most six center-panel clicks with Escape retries, success requires actual original Mini17initialized state. Preserve attempts/physical images, refuse unknown route at budget, propagate process exit; no recovered dialogue lifecycle or whole output claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "tools/drawing_campaign_guidance.py"
+      ],
+      "tests": [
+        "tests/test-drawing-campaign-guidance.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-hud-state-original-04-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Hermes dialogue object, script/page/text/source/voice/control ownership and input semantics remain unassigned. Physical attempt and observed Mini outcome do not prove every modal frame or full lifecycle/native parity."
+      ],
+      "validation_dependencies": [
+        "tests/fixtures/drawing-journeys/hud-hit-camera-schedule.json",
+        "tools/drawing-session-runner.py",
+        "tests/drawing-session-input.cpp"
       ]
     }
   ],
@@ -95257,6 +95356,134 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 owned-memory hit/camera fixture:valid pool-slot, misaligned rejection, numeric pool change, unchanged memory and clock interval; no original semantics.",
+      "record": "research/runtime/draw02-hud-state-fixture-01.json",
+      "sha256": "31e61e16dfb53ae56cb89fae2bb83cc529cdad1f492dbab7915d5408a9e15b4a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-original-01-20261012",
+      "kind": "static",
+      "scope": "Preserved original campaign guidance boundary timeout; all scalar buffers remain unflushed and original APIterminal absent. No reference admission or pause/selection proof.",
+      "record": "research/runtime/draw02-hud-state-original-01.json",
+      "sha256": "86846dd24880d9ae793c40f1cb7f425ba73dbd59a59fba8987770f6756061508",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-original-02-20261012",
+      "kind": "static",
+      "scope": "Preserved single guidance page-advance original probe; another Hermes page remains, Mini times out and buffers/APIterminal remain incomplete. No reference admission.",
+      "record": "research/runtime/draw02-hud-state-original-02.json",
+      "sha256": "5a1807a30f987517d076b7b28a559180635d7aeeb0c17a914b3850a45b501ce3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-original-03-20261012",
+      "kind": "static",
+      "scope": "Normally closed original route reaches Mini after three guidance attempts but physical budget retains559planes/drops53updates; entire reference refused.",
+      "record": "research/runtime/draw02-hud-state-original-03.json",
+      "sha256": "ccc7c67aed9152d93a97f6c51fbf1c161973b26ba0bce7f57860655c1e035355",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-budget-scalar-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Current static analysis of complete scalar buffers from refused run03:439exacttickpairs/86validatedactorhits/25camera states and selected camera stability during menu dwells; no physical reference or selection/tooltip/causality admission.",
+      "record": "research/runtime/draw02-hud-state-budget-scalar-analysis-01.json",
+      "sha256": "cf871238ccdb9d8e5f404805b7101b538d0605719103197a5969067f1871f04a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-storage-reassessment-01-20261012",
+      "kind": "static",
+      "scope": "Storage refusal reviewed against completed run/template footprint; revised6GiBoutputestimate preserves100GiBfloor, nocleanup/budgetchange.",
+      "record": "research/runtime/draw02-hud-storage-reassessment-01.json",
+      "sha256": "d5fe9abfe63723e654c163db236804b6a66ab9116d22a585b39c526a0cb55aea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-original-04-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original campaign HUD/camera/guidance/Mini/Preferences/resume/normal Quit retains599physicalwitnesses and complete scalar buffers; selection/tooltip/causality/allroutes/nativeparity remain false.",
+      "record": "research/runtime/draw02-hud-state-original-04.json",
+      "sha256": "7d28fd6d28102e5c775e66ee03973fb399bdce4f1798168f4fd1c8e2ac88d39c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Current exact-owner/tick reanalysis:419pairs/3excluded/85slot-validatedhits/25camera states and Mini2675ms/Preferences2277ms camera stability; no selection/tooltip/causal/lifetime/native closure.",
+      "record": "research/runtime/draw02-hud-state-analysis-01.json",
+      "sha256": "2405a54b289b65e6f42169b95d11cf2d6d4fd9cd014c7065d1be85a7a50e111c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-state-pause-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Current retained-scalar analysis confirms selected pacing/globalANI/counter state pause and resumed World advancement; not full pause equivalence.",
+      "record": "research/runtime/draw02-hud-state-pause-analysis-01.json",
+      "sha256": "8c9a8a3ac2888adc3a07ac3c08fd88720af15bb70ceeeb651d3b0de8433a1048",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107399,8 +107626,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-timing-correction-20261012.json",
-    "sha256": "da2601d8964465273701cb290ced8f5ca1d646d726ae087ba7e2ce4c24f13fe7"
+    "path": "research/runtime/coverage/source-index-draw02-hud-state-20261012.json",
+    "sha256": "8a678a9dadb2d5e5c38d3437da23dfe86ae43fd162d2548cc93f7e350600f1ea"
   },
   "claim_bindings_required": true
 }

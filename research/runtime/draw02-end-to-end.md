@@ -1137,3 +1137,47 @@ Preferences 2212 ms and subsequent World counter advancement. These observations
 do not prove actual camera stability. Five decoder/normalization methods and
 three pause-analysis methods pass. Actual camera, persistent selection, tooltip
 and complete pause equivalence remain open; no status promotion.
+
+DRAW-02 step 2 HUD/camera/guidance increment: separate read-only menu-thread
+MNMDHI01 sampler emits current-pool/slot-validated hit identity and actual
+689930 camera orientation/whole/fraction fields. Numeric pool IDs do not prove
+allocation ownership or actor generations; readability alone does not prove
+active World ownership. Three actual PE32 owned-memory cases cover valid actor,
+misaligned refusal and changed numeric pool, with all sampled bytes unchanged.
+Four decoder and four exact-tick analysis methods pass. Selection/tooltip and
+input-to-state causality remain unproved.
+
+Original attempts 01/02 encounter rendered Hermes guidance: Escape cannot reach
+Mini and one click advances another page. Forced teardown leaves scalar buffers
+unflushed/APIterminal absent. Attempt 03 reaches actual Mini after three bounded
+page clicks, completes Preferences/resume/Quit, but the 1 GiB plane budget drops
+53 updates after 559 retained planes; strict admission refuses the reference.
+Its separate static scalar reanalysis retains 439 exact owner/tick joins,
+86 validated actor hits (pool1/slot0/type0/owner0), 25 camera states and selected
+actual camera stability in Mini/Preferences. That result does not admit the
+physical reference. Guidance object/script/page/text/voice/source ownership and
+all modal publications remain unassigned. The optional handshake caps attempts
+at six and requires actual Mini17initialized state; three controls and two
+capture-exclusion cases pass.
+
+The first 2 GiB plane-budget retry was refused by the storage guard's 8 GiB
+reservation. A new inventory and measured completed-run/prefix/game review
+records a conservative 5 GiB component allowance plus 1 GiB headroom; the
+revised 6 GiB estimate still requires the unchanged 100 GiB continuous guard.
+No files were removed, archived or made exempt, and no storage budget changed.
+Attempt 04 outcome will be recorded separately. All 47/21 and steps 3–7 remain
+open; continue action/presentation/source-lifetime acquisition in step 2.
+
+DRAW-02 HUD/camera attempt 04 is admitted within the declared API/physical
+boundary: normal original Quit, 599 complete physical witnesses and no reported
+plane loss. Guidance needs three page attempts before actual Mini confirmation.
+Fresh immutable reanalysis binds 419 exact owner/tick pairs, excludes three
+unpaired samples, observes 85 slot-validated hits (pool1/slot0/type0/owner0) and
+25 World camera states. Actual camera orientation/whole/fraction fields are
+stable over selected Mini 2675 ms and Preferences 2277 ms dwells; separate
+selected timing/ANI/counter pause and resumed World advancement analysis passes.
+This is scoped read-only observation, not input-to-state causality, persistent
+selection/tooltip verification, generations/allocations or full modal source
+ownership/presentation/native parity. Prior 01/02 route and 03 plane-budget
+failures remain retained. Continue step 2 with exact input/state bindings and
+original selection/tooltip producer/caller discovery; all 47/21/steps3–7 open.
