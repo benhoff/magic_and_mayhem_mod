@@ -102,9 +102,9 @@ acknowledgements 1–4, exact original callbacks `(3,1),(12,1)` twice followed b
 `(3,4)`, and normal launcher exit0. Prospective source/claim snapshots, current
 compiler dependencies, menu-build sources, staged executable/DLL hashes and
 original manifests are retained. No saves were present in this bounded scenario;
-it validates navigation and ownership, not loading file content. The public
-default native command/audio route remains active, without new renderer/audio
-equivalence or performance claims.
+it validates navigation and ownership, not loading file content. This run uses the existing Wine-window embedding route (`--live-menus` without
+`--native-commands`), with original graphics/audio. Native command/audio route
+integration is separate; no renderer/audio equivalence or performance is claimed.
 
 The [private V13 adapter fixture](storage-menu-bridge-fixture-20261012.json)
 passes row/name/stale/modal/retired/once-only and selected ownership/control

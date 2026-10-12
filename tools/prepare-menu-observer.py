@@ -106,6 +106,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
     metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
+    from menu_save_store import stage as stage_saves
+    metadata['save_store']=stage_saves(game,REPO/'working/user-saves/native-menu') if actions else None
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
         immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}

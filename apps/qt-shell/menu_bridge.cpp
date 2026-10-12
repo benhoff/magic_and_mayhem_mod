@@ -107,7 +107,7 @@ bool MenuBridge::read(State& state) const {
         auto* m=words+MNM_MENU_V13_STORAGE/4;auto& b=next.storage;
         b.screen=load(m);b.parent=load(m+1);b.depth=load(m+2);b.context=load(m+3);b.modal=load(m+4);b.pending=load(m+5);const auto count=load(m+6);b.selected=load(m+7);
         if(b.screen!=next.screen||b.context!=5||b.modal>1||b.pending>1||count>MNM_MENU_V13_MAX_SAVES||b.selected>count||
-           !((b.parent==3&&b.depth==3&&next.screen==MNM_MENU_LOAD_SCREEN)||(b.parent==2&&b.depth==5))||
+           !((b.parent==3&&b.depth==3&&next.screen==MNM_MENU_LOAD_SCREEN)||(b.parent==17&&b.depth==6))||
            (next.ready&&(b.modal||b.pending))||!name(MNM_MENU_V13_STORAGE+32,128,b.fileName))return false;
         for(quint32 i=0;i<count;++i){QString stem;if(!name(MNM_MENU_V13_STORAGE+160+128*i,128,stem)||stem.isEmpty()||stem.contains('\n')||stem.contains('\r')||b.names.contains(stem))return false;b.names.append(stem);}
     }

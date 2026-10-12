@@ -137,6 +137,8 @@ def validate_restart(root,args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--legacy-audio',action='store_true',help='Retain original audio for isolated menu validation')
+    parser.add_argument('--native-commands',action='store_true',help='Use public owned graphics/native command presentation with live Qt menus')
     parser.add_argument('--exit-from',choices=['main','quick','results'],help='Validate native Quit or window close instead of original fallback')
     parser.add_argument('--preferences-display',action='store_true',help='Validate Cancel and four original resolution rebuilds with forwarding leave observation')
     parser.add_argument('--preferences-restart',action='store_true',help='Validate Preferences store across two shell/game processes, including unchanged Cancel')
@@ -188,7 +190,7 @@ def main():
             else:env.pop('MNM_LIVE_MENU_TEST_EXIT',None)
             with (root/'shell.log').open('w') as log:
                 shell=subprocess.Popen([str(args.shell.resolve()),'--repo',str(REPO),
-                    '--live-menus','--live-menu-test',str(root/'report.json')],env=env,cwd=REPO,
+                    '--live-menus','--live-menu-test',str(root/'report.json')]+(['--native-commands'] if args.native_commands else [])+(['--legacy-audio'] if args.legacy_audio else []),env=env,cwd=REPO,
                     stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
                 if shell.wait(timeout=540 if args.battle_repeat else 420):raise RuntimeError('Live Qt menu test failed; inspect shell.log')
         validate(root,args)

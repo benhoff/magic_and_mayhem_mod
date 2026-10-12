@@ -22,7 +22,7 @@ int main(int argc,char** argv){
  auto put=[&](int word,quint32 v){qToLittleEndian(v,bytes+4*word);};auto get=[&](int word){return qFromLittleEndian<quint32>(bytes+4*word);};quint32 sequence=0;
  auto state=[&](quint32 generation,quint32 ack,quint32 screen,bool ready,quint32 modal=0){
   put(32,++sequence);put(33,generation);put(34,screen);put(35,ready);put(36,ack);put(37,MNM_MENU_OK);put(38,123);put(39,0);
-  if(screen==MNM_MENU_LOAD_SCREEN||screen==13){auto* m=bytes+MNM_MENU_V13_STORAGE;std::memset(m,0,MNM_MENU_V13_STORAGE_SIZE);const quint32 fields[]={screen,screen==MNM_MENU_LOAD_SCREEN?3u:2u,screen==MNM_MENU_LOAD_SCREEN?3u:5u,5,modal,0,2,2};for(int i=0;i<8;++i)put(MNM_MENU_V13_STORAGE/4+i,fields[i]);std::memcpy(m+32,"second",7);std::memcpy(m+160,"first",6);std::memcpy(m+288,"second",7);}
+  if(screen==MNM_MENU_LOAD_SCREEN||screen==13){auto* m=bytes+MNM_MENU_V13_STORAGE;std::memset(m,0,MNM_MENU_V13_STORAGE_SIZE);const quint32 fields[]={screen,screen==MNM_MENU_LOAD_SCREEN?3u:17u,screen==MNM_MENU_LOAD_SCREEN?3u:6u,5,modal,0,2,2};for(int i=0;i<8;++i)put(MNM_MENU_V13_STORAGE/4+i,fields[i]);std::memcpy(m+32,"second",7);std::memcpy(m+160,"first",6);std::memcpy(m+288,"second",7);}
   put(32,++sequence);
  };
  LoadGameWidget load;SaveGameWidget save;LiveStorageMenuController controller(session,load,save);int native=0,viewport=0;

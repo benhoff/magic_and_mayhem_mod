@@ -23,10 +23,10 @@ static int storage_snapshot(void* object,u8* out){
     if((save&&(p!=(u8*)0x6de7c8||get(p)!=0x5c64fc))||(!save&&(p!=(u8*)0x6de4e8||get(p)!=0x5c64c4)))return storage_refuse(p,14,get(p));
     if(!readable((void*)0x6f349c,0x48)||!readable((void*)0x68991c,8))return storage_refuse(p,15,0);
     if(get((void*)0x68991c)||get((void*)0x689920)!=5)return storage_refuse(p,16,get((void*)0x689920));
-    u32 depth=get((void*)0x6f349c);if((depth!=3&&depth!=5)||get((void*)(0x6f34a0+4*depth))!=(u32)p)return storage_refuse(p,17,depth);
+    u32 depth=get((void*)0x6f349c);if((depth!=3&&depth!=6)||get((void*)(0x6f34a0+4*depth))!=(u32)p)return storage_refuse(p,17,depth);
     u8* parent=(u8*)get((void*)(0x6f34a0+4*(depth-1)));
     if(depth==3){if(save||parent!=(u8*)0x657ce0||!readable(parent,8)||get(parent)!=0x5c63e4||get(parent+4)!=3||get(p+0x60)!=3)return storage_refuse(p,18,get(p+0x60));}
-    else if(parent!=(u8*)0x6cbb78||!readable(parent,8)||get(parent)!=0x5c5dd8||get(parent+4)!=2||get((void*)0x6f34a8)!=0x657ce0||get((void*)0x6f34ac)!=0x659408||(!save&&get(p+0x60)!=17))return storage_refuse(p,19,(u32)parent);
+    else if(parent!=(u8*)0x6a5088||!readable(parent,0x5b)||get(parent)!=0x5c6644||get(parent+4)!=17||get(parent+0x53)!=2||get(parent+0x57)!=5||get((void*)0x6f34a8)!=0x657ce0||get((void*)0x6f34ac)!=0x659408||get((void*)0x6f34b0)!=0x6cbb78||get((void*)0x6cbb78)!=0x5c5dd8||get((void*)0x6cbb7c)!=2||(!save&&get(p+0x60)!=17))return storage_refuse(p,19,(u32)parent);
     u8* edit=(u8*)get(p+0x4f);u8* list=(u8*)get(p+(save?0x57:0x5b));
     if(!readable(edit,0x64))return storage_refuse(p,1,(u32)edit);
     if(get(edit)!=0x5c6ca0)return storage_refuse(p,2,get(edit));
