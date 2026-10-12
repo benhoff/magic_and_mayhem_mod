@@ -7962,3 +7962,59 @@ targets separately from successful functional observation. Native audio/music
 defaults are retained; their combined source-rate cost is not yet attributed.
 Party/progress/recipe/owner controls also pass; original equivalence and
 World-producing movie/audio/video timing remain pending.
+
+## Selected native audio file-size read (2026-10-12)
+
+`HOST.native-audio-file-sizes` replaces only pinned call0x56ed0f after checking
+both call bytes and consumed-field load0x56ed1b. Native read-only whole WAV
+file size writes output+0x14 only on success; no full CRT stat/errno semantics
+are claimed. Optional MNMAUD01v5 cap64/op26/producer bit0x100000 retain layout
+and explicit staged admission. Installed356 WAV sizes, four quoted aliases,
+zero/malformed metadata, refusal/field/LastError/cdecl/guard cases pass365
+requests with363 successes and two expected host failures.67 CTests+13 launch
+checks pass. Controlled audio-residency input makes the original pool caller
+send1 actual native size query, with8 WAV loads/368902PCM bytes,12 plays/201ACK,
+zero audio failures/fallback/unsupported and full native movies/CD/game/normal
+Quit/source/input/original/private cleanup. Live returned size/budget is not
+directly logged. Original general stat, manager/cache/scheduler/events, unsafe
+allocation/races and physical/original audio equivalence remain pending.
+The unchanged permanent sections are empty; default-input composition is
+validated separately from this controlled branch coverage. All failed setups
+and earlier evidence hashes remain preserved. Exact7fac7ef8 history reviews12
+file transitions with zero receipt gaps, without renewing historical validation.
+
+Fresh unchanged-audio-configuration composition passes197ACK,12 voice plays,
+7 WAV loads349862PCM bytes,76/4/1 native profiles, full native movies/CD/game
+and normal Quit with no audio errors/source/input/original/private cleanup
+failures. File-size hook installed and0 queries expected from empty permanent
+sections; the separate controlled run supplies actual caller coverage. Both
+fresh bounded original-IAT censuses still record88 distinct direct Wine targets
+out of190; cached/dynamic/COM/forwarded/transitive/prefix activity is excluded.
+
+
+### Final rendering/master audio merge validation (2026-10-12)
+
+Reconciled rendering merge `1bb3f5ff` with committed master `4c8070b2`;
+source changes merge without conflict, preserving selected native audio file-size
+routing. Metadata unions retain both parents' immutable receipts and evidence.
+The committed-history review in `working/latest-master-history-review-20261012.json`
+checks 191 file transitions with no missing exact receipts; it asserts no past
+gate pass or new validation.
+
+Fresh owner/default GPU, recipe/scratch/budget, party-lethal and mapped heartbeat
+controls pass. Installed audio file-size transport passes 365 requests, 363 native
+successes and two expected host refusals over 356 waves, guarded consumed-field
+and cdecl paths. The first fixture preflight lacked compiler closure; it is kept
+as a failure and the subsequent prospective declaration includes those inputs.
+
+Full native TITAN RTX casting/combat/portrait/movement/menu/resume/normal Quit
+completes with 4388 balanced source/native/import/verified returns, zero delivery
+readbacks/pixel replies/fallback/outstanding and two source/output bounds.
+Functional success is separate from the retained performance failure: original
+source 18.2002 Hz misses the 19 FPS floor; native World 44.7304 FPS misses 60.
+Visible paint averages 56.1323/54.0432 FPS with worst windows 25.3853/4.5455 FPS.
+Sources, original manifests and owned Wine cleanup pass. Native audio/music
+defaults are enabled; intros are skipped for this rendering probe. Full movie
+with World, audiovisual/original equivalence, source-rate attribution, sustained
+60 FPS and broader shared-source validation remain pending. The owned V5 route
+remains opt-in and does not promote a complete native gameplay engine.

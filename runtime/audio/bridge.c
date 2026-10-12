@@ -176,6 +176,7 @@ __declspec(dllexport) i32 WIN AudioWaveForTest(const char* path,void* pcm,u32 ca
 }
 #include "music.h"
 #include "profile_reads.h"
+#include "file_sizes.h"
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;if(reason!=1)return 1;tables();if(!music_init())return 0;
 #ifndef MNM_AUDIO_SELFTEST
@@ -203,6 +204,10 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     }
     if(channel[31]&MNM_AUDIO_CAP_PROFILE_READS){
         if(profile_install(base))__atomic_or_fetch(channel+31,MNM_AUDIO_PROFILE_INSTALLED,__ATOMIC_RELEASE);
+        else{__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);__atomic_store_n(&dead,1,__ATOMIC_RELEASE);}
+    }
+    if(channel[31]&MNM_AUDIO_CAP_FILE_SIZES){
+        if(file_sizes_install(base))__atomic_or_fetch(channel+31,MNM_AUDIO_FILE_SIZES_INSTALLED,__ATOMIC_RELEASE);
         else{__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);__atomic_store_n(&dead,1,__ATOMIC_RELEASE);}
     }
 #endif
