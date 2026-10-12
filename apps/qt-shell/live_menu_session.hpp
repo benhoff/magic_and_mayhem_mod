@@ -15,6 +15,7 @@ public:
     bool nativeVoicesEnabled=false;
     std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativePresentation;
+    bool characterMenusEnabled=false; // Experimental until genuine progressed-caller proof.
     bool hostLobbyEnabled=true;
     bool sessionMenusEnabled=true;
     bool multiplayerMenusEnabled=true;

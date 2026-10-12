@@ -11,6 +11,7 @@
 #include "sessions.h"
 #include "lobby.h"
 #include "campaign_defeat.h"
+#include "character.h"
 #include "../../protocols/include/mnm/menu_v12.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
@@ -25,7 +26,7 @@ static int menu_retired;
 static u32 menu_handoff;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
-static int menu_header(void){return equal(menu_words,menu_version==17?MNM_MENU_V17_MAGIC:menu_version==16?MNM_MENU_V16_MAGIC:menu_version==15?MNM_MENU_V15_MAGIC:menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_version==18?MNM_MENU_V18_MAGIC:menu_version==17?MNM_MENU_V17_MAGIC:menu_version==16?MNM_MENU_V16_MAGIC:menu_version==15?MNM_MENU_V15_MAGIC:menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
@@ -41,6 +42,7 @@ static void menu_publish(void){
     u32 fields[6]={menu_generation,menu_screen,menu_retired?0:menu_ready,menu_request,menu_status,menu_thread};
     for(u32 i=0;i<6;++i)menu_store(p+1+i,fields[i]);
     if(menu_version>=2)menu_store(p+7,menu_handoff);
+    if(menu_version>=18)copy((u8*)menu_words+MNM_MENU_V18_CHARACTER,character_payload,sizeof(character_payload));
     if(menu_version>=17)copy((u8*)menu_words+MNM_MENU_V17_LOBBY,lobby_payload,sizeof(lobby_payload));
     if(menu_version>=16)copy((u8*)menu_words+MNM_MENU_V16_SESSIONS,sessions_payload,sizeof(sessions_payload));
     if(menu_version>=15)copy((u8*)menu_words+MNM_MENU_V15_MULTIPLAYER,multiplayer_payload,sizeof(multiplayer_payload));
@@ -59,8 +61,8 @@ static void menu_init(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE){CloseHandle(file);return;}
-    menu_version=menu_size==MNM_MENU_V17_SIZE?17:menu_size==MNM_MENU_V16_SIZE?16:menu_size==MNM_MENU_V15_SIZE?15:menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE&&menu_size!=MNM_MENU_V18_SIZE){CloseHandle(file);return;}
+    menu_version=menu_size==MNM_MENU_V18_SIZE?18:menu_size==MNM_MENU_V17_SIZE?17:menu_size==MNM_MENU_V16_SIZE?16:menu_size==MNM_MENU_V15_SIZE?15:menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
     campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
@@ -141,6 +143,11 @@ static void menu_state(void* object){
             u8* p=object;ready=!p[0xc]&&!get(p+0x1e)&&!get(p+0x3a)&&!get(p+0x3e)&&!get(p+0x1a2e);
         }
     }
+    if(menu_version>=18&&owner==(u32)object){
+        u8 next[MNM_MENU_V18_CHARACTER_SIZE];if(character_snapshot(object,next)){
+            screen=20;ready=1;if(!equal(next,character_payload,sizeof(next)))++menu_generation;copy(character_payload,next,sizeof(next));
+        }
+    }
     if(menu_version>=17&&owner==(u32)object){
         u8 next[MNM_MENU_V17_LOBBY_SIZE];if(lobby_snapshot(object,next)){
             screen=24;if(!equal(next,lobby_payload,sizeof(next)))++menu_generation;copy(lobby_payload,next,sizeof(next));
@@ -187,6 +194,7 @@ static void menu_poll(void* object,int execute){
             else if(host[3]==MNM_MENU_OPEN_QUICK&&menu_screen==3)main_action(object,2);
             else if(menu_version>=13&&host[3]==MNM_MENU_OPEN_LOAD&&menu_screen==3)main_action(object,1);
             else if(menu_version>=15&&menu_screen==22&&(host[3]==MNM_MENU_OPEN_CREATE||host[3]==MNM_MENU_OPEN_JOIN))quick_action(object,host[3]==MNM_MENU_OPEN_CREATE?0:1);
+            else if(menu_version>=18&&menu_screen==20)menu_status=character_dispatch(object,host[3],host[5]);
             else if(menu_version>=17&&menu_screen==24)menu_status=lobby_dispatch(object,host[3],host[5]);
             else if(menu_version>=16&&menu_screen==21)menu_status=sessions_dispatch(object,host[3],host[5]);
             else if(menu_version>=15&&(menu_screen==15||menu_screen==16))menu_status=multiplayer_dispatch(object,host[3],host[5],(const u8*)(host+125));

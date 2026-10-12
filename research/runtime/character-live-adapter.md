@@ -1,0 +1,39 @@
+# Experimental campaign Character adapter
+
+V18 extends the V17 menu wire without changing earlier lanes. The 256-byte
+Character projection carries parent/depth/context, selected wizard identity,
+draft experience, enabled actions and six opening/current/maximum/increment/
+decrease/increase rows, plus a bounded original Realm wizard label. No pointers,
+host-authored experience grants or submitted stat values cross the channel.
+
+The PE32 adapter requires the current Character20 singleton/final vtable,
+initialized and transition/modal-free state, exact Main/Realm/optional Region
+stack identities and settled Celtic Realm resources. Fresh Region1 refuses.
+Original wizard getter selection is mirrored within its 80-record range and
+checked against Realm storage. Opening stats must equal the selected wizard's
+unchanged stats; draft experience cannot exceed the opening balance. Each
+original button/callback object and action index is checked before dispatch.
+
+Adjust requests call original25..36 only when the current snapshot permits the
+step and price. OK/Cancel call original0/1. Original price refresh, drawing,
+tick, fade and return remain active. Native input does not mutate draft values
+optimistically: each change waits for its acknowledged original snapshot. Parent
+return hands ownership to original controls; native Realm navigation and complete
+window-close unwind remain pending.
+
+The adapter remains disabled by default. `MNM_EXPERIMENTAL_CAMPAIGN_CHARACTER=1`
+selects V18 for dedicated validation. Original Realm labels are displayed without
+guessing portrait/progression identity; exact Character label/portrait fidelity
+remains a separate boundary. Existing first-region disabling is preserved.
+
+The private reference supplies synthetic settled resources/control ownership
+and invokes the actual original price refresh, selection getter and Character
+callbacks. Fade alone is stubbed with expected-byte verification. Qt tests use
+a synthetic mapped peer and verify wire bounds, stale/duplicate refusals,
+authoritative display updates and caller handoff. These are headless checks,
+not genuine campaign progression, live ownership or replacement evidence.
+
+Evidence UI50 records the private original getter selecting slot 79 of 80 and
+committing an actual original adjustment to that wizard. The getter at
+`0x5908e0` scans stride `0x93a`, checking active word +0 and secondary word +8;
+its upper byte offset is `0x2e220`. No real 80-wizard campaign is claimed.

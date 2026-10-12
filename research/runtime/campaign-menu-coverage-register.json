@@ -1461,6 +1461,103 @@
       "title": "Native Character cost-domain refusals",
       "scope": "Intentional native refusal of negative/overlarge value, zero/negative/overlarge increment, nonfinite/negative coefficients, exponent below1 and unrepresentable resulting prices;12 controls. No original failed-input equivalence or live integration.",
       "original": []
+    },
+    {
+      "id": "NP.character-menu-dispatch",
+      "kind": "native_policy",
+      "subsystem": "campaign",
+      "title": "Guarded experimental Character state and original actions",
+      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/character-live-adapter.md"
+      ],
+      "implementation": [
+        "runtime/menu/character.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "protocols/include/mnm/menu_v18.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_character_controller.cpp",
+        "apps/qt-shell/live_character_controller.hpp",
+        "apps/qt-shell/character_screen_widget.cpp",
+        "apps/qt-shell/character_screen_widget.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/run-menu-observer.py",
+        "tools/build-menu-observer.py"
+      ],
+      "tests": [
+        "tests/menu-character-bridge-test.cpp",
+        "tests/character-adapter-reference.cpp",
+        "tools/test-character-adapter.py"
+      ],
+      "validation_dependencies": [
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py",
+        "tests/sprite-binary-reference.cpp",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/results.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/storage.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/menu_v17.h"
+      ],
+      "evidence": [
+        "UI50.character-adapter-private"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.character-wizard-selection",
+      "kind": "recovered",
+      "subsystem": "campaign",
+      "title": "Original active campaign wizard selection",
+      "scope": "Original5908e0 scans80 records ofstride0x93a, selecting first active record with secondary flag unset. Private original execution covers slot0 and slot79; synthetic records only, no complete campaign ownership/lifecycle contract or native equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5834976,
+          "scope": "Complete first active/nonsecondary scan and80-record bound; actual private original execution."
+        }
+      ],
+      "documents": [
+        "research/runtime/character-live-adapter.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/character-adapter-reference.cpp",
+        "tools/test-character-adapter.py"
+      ],
+      "evidence": [
+        "UI50.character-adapter-private"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -2355,6 +2452,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI50.character-adapter-private",
+      "kind": "native_integration",
+      "record": "research/runtime/character-adapter-private-20261012.json",
+      "sha256": "7b6ddaac5b66eefd54a38036e5993c6f9df74e0062a808621af82fc4dfc528ca",
+      "scope": "Synthetic V18 Character ownership/private original getter/price refresh/callbacks with fade stubbed;16 admission guards,slot79 and3 Qt tests. No genuine progression/live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/guard_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/private/original_adjust_refund_cancel",
+          "equals": true
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -2574,6 +2702,22 @@
         "apps/qt-shell/live_menu_test.hpp",
         "tools/test-live-qt-campaign-preferences.py",
         "tests/menu-campaign-preferences-test.cpp"
+      ]
+    },
+    {
+      "id": "character-adapter-private-20261012",
+      "level": "headless",
+      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence.",
+      "behaviors": [
+        "NP.character-menu-dispatch"
+      ],
+      "evidence": [
+        "UI50.character-adapter-private"
+      ],
+      "tests": [
+        "tests/character-adapter-reference.cpp",
+        "tests/menu-character-bridge-test.cpp",
+        "tools/test-character-adapter.py"
       ]
     }
   ],
