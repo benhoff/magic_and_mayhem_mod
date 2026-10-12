@@ -45318,6 +45318,50 @@
       "remaining_gaps": [
         "Fresh fixture08passes4anchors/importmismatch/4forwardcells and production DLL build/export check passes; previous fixture07historical after extended test/scope/builder dependency. Full diagnostic fault/orphan/budget/privatefailure/concurrent module matrix, normal quiescence and real original capture/frontend/source/worker/cadence controls remain open."
       ]
+    },
+    {
+      "id": "NR.drawing-source-cursor-gate-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded drawing API cursor gate and source lease binding",
+      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-source-cursor-gate.md"
+      ],
+      "implementation": [
+        "runtime/drawing/source_cursor_gate.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_byte_witness.h"
+      ],
+      "tests": [
+        "tests/drawing-source-cursor-gate-test.c",
+        "tools/test-drawing-source-cursor-gate.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/drawing_cursor_gate_v1.h",
+        "tools/build-drawing-session.py",
+        "tools/build-shadow-bridge.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-cursor-gate-build-negative-01-20261012",
+        "DRAW02.draw02-source-cursor-gate-fixture-02-20261012",
+        "DRAW02.draw02-source-cursor-gate-fixture-03-20261012",
+        "DRAW02.draw02-source-cursor-gate-production-build-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh fixture03passes5ownedbindingrecords and production drawing DLL compile passes; buildnegative01andfixture02historical retained. Capture frontend/scripted imports and current original module/control/source/worker/cadence integration not implemented. Refused point never claims immutable source; all exclusions remain explicit. Full callback/lifetime/normal shutdown/reference/native parity open."
+      ]
     }
   ],
   "evidence": [
@@ -97278,6 +97322,82 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-source-cursor-gate-build-negative-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned API/token/source binding or production compile only per record, no actual original session/full worker forwarding/native parity.",
+      "record": "research/runtime/draw02-source-cursor-gate-build-negative-01.json",
+      "sha256": "45c7ced8f5a7bb2d20cd0e7e040f0f48afcb4b429de7f046768e05ef45b50e42",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-cursor-gate-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Owned API/token/source binding or production compile only per record, no actual original session/full worker forwarding/native parity.",
+      "record": "research/runtime/draw02-source-cursor-gate-fixture-02.json",
+      "sha256": "55ea97242d2687551ed2ed40a98767d8f75479e873d367023dd8debfba186168",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-cursor-gate-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Owned API/token/source binding or production compile only per record, no actual original session/full worker forwarding/native parity.",
+      "record": "research/runtime/draw02-source-cursor-gate-fixture-03.json",
+      "sha256": "e8ffcbdc0ae3a054baf1f000ffe8c068add230a80c5a74a62d09421ee5effa95",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-cursor-gate-production-build-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned API/token/source binding or production compile only per record, no actual original session/full worker forwarding/native parity.",
+      "record": "research/runtime/draw02-source-cursor-gate-production-build-01.json",
+      "sha256": "6546721b654ecb4f43b5cc69c1a21965806665e8e3553b65dc6d9b280359fce9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109420,8 +109540,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-forward-matrix-20261012.json",
-    "sha256": "bc0d2d7b1232bdcd3f4c4d3fa5465c60f423f0aa77da4352a71c0f823c5b4daf"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-capture-20261012.json",
+    "sha256": "b863f33ab43a19df9ee00a71b8bd8899a483f49e36c3ad2cce6393a6d0962bda"
   },
   "claim_bindings_required": true
 }

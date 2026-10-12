@@ -8349,3 +8349,25 @@ fixtures and bounded32original-active source/worker/cadence controls. Diagnostic
 full fault/orphan/budget/privatefailure matrix and normal quiescence still open;
 no complete reference or parity from successful build/owned fixture. All47/21and
 steps3–7retain scope. Reviewed10f0759b..632741f0has13exact receipts, zero gaps.
+
+## DRAW-02 drawing API/token/source adapter checkpoint (2026-10-12 UTC)
+
+Forward/installer/production gate build committed99cd92dawith both gates passed.
+New native policy `NR.drawing-source-cursor-gate-binding` acquires gate before
+journal locks for selected source BltFast, joins token to exact API/source lease
+in separate MNMDGA01scalar journal, skips source-byte/readonly capture explicitly
+on refused token and releases after worker/page restoration/poststate snapshots
+before physical ACK. Early disabled paths restore protection before releasing.
+
+Owned fixture03passes5binding records: API42/token7/lease9 accepted and released,
+API43refusedreason3/noEnd, irrelevantcall not gated and terminal. Buildnegative01
+missing GetProcAddress fixture declaration retained; fixture02historical after
+console label/builder dependency update. Production drawing DLL compile passes,
+with complete new header/protocol build dependencies; no production session run.
+
+Reassessment: step2open. Full production forwarding/worker/early-return fixtures,
+optional capture frontend/scripted import integration, partial module snapshot
+provenance, current original controls and bounded32original-active acquisition
+remain necessary. Refusal excludes ownership proof and cannot silently omit
+frame/reference denominator. All47/21and steps3–7retain scope. Reviewed
+632741f0..99cd92dahas12exact receipts,0gaps.

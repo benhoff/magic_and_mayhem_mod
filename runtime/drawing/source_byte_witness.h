@@ -9,6 +9,7 @@ static int source_bytes_open(void){
 }
 static void source_bytes_capture(struct Context* c,u32 phase){
  if(!source_bytes_enabled||!c->observed||c->r[1]!=1||c->r[2]!=7||c->args[4]!=16)return;
+ if(c->cursor_gate_requested&&!c->cursor_gate_token)return;
  if(!source_bytes_getter){void* scene=GetModuleHandleA("MnmScene.dll");source_bytes_getter=scene?(SourceBytes)GetProcAddress(scene,"SceneDrawingSourceBytesV1"):0;if(!source_bytes_getter)ExitProcess(99);}
  u32 r[48]={0};r[1]=phase;r[2]=c->r[29];r[3]=c->r[6];r[4]=GetTickCount();r[5]=c->r[4];r[6]=c->r[3];
  u8* pixels=VirtualAlloc(0,800*600*2,0x3000,4);if(!pixels)ExitProcess(99);
