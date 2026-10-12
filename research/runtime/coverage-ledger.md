@@ -8357,3 +8357,28 @@ composition remain within the authorized objective. Segment initialization is
 next. The committed range0280403c..fe6eb53c has15 file and97 behavior transitions
 with no missing exact receipts; its separate history report is retained.
 Builds use the authorized private90GiB reserve policy; no cleanup was performed.
+
+## NS30 — Full valid-profile segment initialization (2026-10-12)
+
+Whole510e80 valid-profile initialization passes24576 prospectively source/scope
+bound original32/native64/sanitized64 cases and ten separate native refusals.
+Every actor byte, ordered lower-service consequences, read-only configuration/
+terrain/visual storage and original body/dispatch bytes are checked. Precheck,
+scalar-argument ABI, raw base versus modified rate, acceptance/fallback/hazard,
+occupancy, continuity/reset, all mode0..4/vertical/type12 profiles, inline sample/
+hostile attack and reverse residual/snapshot paths are exercised. All ten native
+CTest suites pass. Fresh record: original-creature-segment-setup-20261012.json.
+
+Malformed modes can read an uninitialized original local; they are documented
+excluded input, with intentional native refusal. No full original ANI/scalar/
+geometry/world ownership, installed all-species construction or application
+composition is claimed. Logical sample-bank selection still needs owned motion
+storage binding. Integration/replacement remainnone; full original AI is ongoing.
+The NS29 committed rangefe6eb53c..9d2ad1d5 has27 source/link and100 behavior
+transitions with exact committed parent/current receipts and no unresolved gaps.
+
+Whole actor request5128a0 and displacement51a600 are seeded under NS31 with
+immutable read-only static export and explicit pending implementation/comparison.
+Their shared search budgets, region continuation and displacement state are the
+next original scope. Authorized private90GiB reserve policy is used; no cleanup
+is performed by this workstream.
