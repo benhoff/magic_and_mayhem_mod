@@ -8388,3 +8388,19 @@ fixture, capture frontend/scripted import/token binding/partial snapshot and
 bounded original32acquisition with controls remain necessary. Gate-disabled
 regression cannot prove enabled synchronization or source ownership. All47/21
 and steps3–7retain scope. Reviewed99cd92da..2fcd7878has18exactreceipts,0gaps.
+
+## DRAW-02 enabled production begin/end checkpoint (2026-10-12 UTC)
+
+Disabled session regression committed46be1034with both coverage gates passed.
+Fresh fixture02includes actual production session.cbegin/end and controlled gate
+callbacks: accepted API1/token7releasedonce, refusedAPI2reason3/noEnd, exact raw
+originalfailure/error and5bindingrows/terminal. Source/worker callbacks disabled
+for this bounded path, no pageprotection/asyncworker/physicalACK/originalgame.
+Buildnegative01unresolvedmemcpyfrom enlarged Context aggregate return preserved
+before fixture freestanding implementation and fresh source declaration.
+
+Reassessment: step2remainsopen. Controlled protected-source/worker/early-return
+fixture and frontend/scripted imports/partial module snapshot, then bounded
+original32source/cadence controls needed. Full lifetime/normalshutdown/reference/
+native parity independent. All47/21and steps3–7retain scope. Reviewed
+2fcd7878..46be1034has9exactreceipts,0gaps.

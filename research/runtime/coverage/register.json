@@ -45324,7 +45324,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded drawing API cursor gate and source lease binding",
-      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate.",
+      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate. Owned include-production-session fixture executes enabled begin/end with controlled numeric gate callbacks, accepted/refused API entries and raw failure/error; source/worker callbacks disabled in this bounded path.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45340,7 +45340,9 @@
         "tests/drawing-source-cursor-gate-test.c",
         "tools/test-drawing-source-cursor-gate.py",
         "tools/test-drawing-api-session.py",
-        "runtime/drawing/selftest.c"
+        "runtime/drawing/selftest.c",
+        "tests/drawing-source-gate-session-test.c",
+        "tools/test-drawing-source-gate-session.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
@@ -45384,7 +45386,9 @@
         "DRAW02.draw02-source-cursor-gate-fixture-02-20261012",
         "DRAW02.draw02-source-cursor-gate-fixture-03-20261012",
         "DRAW02.draw02-source-cursor-gate-production-build-01-20261012",
-        "DRAW02.source-gate-legacy-regression-01-20261012"
+        "DRAW02.source-gate-legacy-regression-01-20261012",
+        "DRAW02.draw02-source-gate-session-build-negative-01-20261012",
+        "DRAW02.draw02-source-gate-session-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45394,7 +45398,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh current production session gate-disabled regression passes32COMcases/eightplanes/reentrant/menu/error/x87; gate-enabled full production source/worker/early-return fixture and frontend/import/original controls remain pending. Prior owned binding evidence historical after dependency/scope extension. No enabled synchronization/full reference/native parity claim."
+        "Fresh enabled begin/end fixture02passes5rows/sourceworkersdisabled; buildnegative01preserved; disabled regression remains historical after test/scope extension. Protected source/worker/physical/early-return branches, optional frontend/import and actual original controls/trial remain pending. No full enabled source ownership/reference/parity claim."
       ]
     }
   ],
@@ -97455,6 +97459,44 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-source-gate-session-build-negative-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned actual production begin/end enabled callbacks negative unresolvedmemcpy standalone build/noexecution.",
+      "record": "research/runtime/draw02-source-gate-session-build-negative-01.json",
+      "sha256": "ab1e74216d56a17460693089b3c16f03ca630eeb9c81bece8cfbeed5307246a5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-gate-session-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Owned actual production begin/end enabled callbacks 5bindingrows accepted/refused/token/failure/error; source/worker disabled no game/physical/ownership proof.",
+      "record": "research/runtime/draw02-source-gate-session-fixture-02.json",
+      "sha256": "6a52d2173455c203397ab5a6fdc203160221360ed373da60b80c60c4b196b657",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109597,8 +109639,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-gate-regression-20261012.json",
-    "sha256": "d1f389549db4fb5567fe4b48a143c6f49a2ead8375e3fffead03b5fe980c7655"
+    "path": "research/runtime/coverage/source-index-draw02-source-gate-session-20261012.json",
+    "sha256": "b2b268de5eb48821529fc5f817a1019abe9be51c9a858ac2acef39e7bb6d5db7"
   },
   "claim_bindings_required": true
 }

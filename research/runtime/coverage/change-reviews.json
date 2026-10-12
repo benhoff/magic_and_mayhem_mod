@@ -533890,6 +533890,182 @@
         "evidence": [],
         "reason": "Fresh current-source/contract gate-disabled full session regression passes; gate-enabled production begin/end/source/worker/early-return fixture, optional frontend/scripted imports and actual original cadence/source controls remain pending. Disabled regression cannot prove enabled synchronization/full ownership/reference/native parity/completion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "f65d43f2dd69faf07681fca3f7cf9081c7c8bc67cba63a5530bf0982759ea3f0",
+          "before_sha256": "90326e2805be07a81a2b9683db8c0846b3869b57e5de62328b4520de6ccfac40",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "5c88c32dc54a3f29777a26ea9b9a1e5989598aedd7333920f031b4f425ae0c36",
+          "before_sha256": "24e4762eda69f733090683cd235b20fbb9a27b5e6d241e85fb6f089ceee757fe",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "63c41198dc984ffb0623016b0695cd6864a2b4379c61d4d48c3db261c02c9a9b",
+          "before_sha256": "8f1e52b011b44ff778dd7e27b2db6e119a61c3a166a998152e028b3efbfe1b39",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "ff0d2890c7a0c3c722e39969489bf6d122d898234cb1bd01ac3ee67629efadfc",
+          "before_sha256": "42d212f6d0c5bc84642c13ad6db52d5ec507941cfe17c6e14f77d3676bdadce8",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "4f75d6d93d4fa12267a09bdc59d9f033d4f9034913acb72d6553491476f5dffa",
+          "before_sha256": "bc836e88b425d3ccdfea279e08f1256f2fd8f8f607b84121d89efd58489e45ea",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "e8d81714bb918568ecbc88a5cdd6c910383b320a6592b43d560f53bdc292d478",
+          "before_sha256": "3c8e99ff005bbe6ff1fb1e0164602251e0bf272bd260cc1062c23b397418c4b1",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "a6e1174ee9e442125fc55a244c1c80a7e42fb605354a082aa784e5bc2451a4b8",
+          "before_sha256": "c2401ece74e6ad612a06d0f96cee043dd9ab9c37af57ba2c279998d693f628d2",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "2dfed29b356088e1a29a90464ed1d8c5001232bcafbd3c6227e7420d5b070200",
+          "before_sha256": "14a52c383451b363d243083d1a5a30d87429d8b46fd2c11e83792aa444accb0a",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "84b34e36c3322d02df9db84fdc3fd9e6e98a446699a46c48a58c904245dc0114",
+          "before_sha256": "56f6305d67fd93d4f9d4f4567600ce87144eeb5f04fc009a24e554f3e00efbfa",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "31e5d9f3614c4271ab592d15c7c97fef6fb92e37ad182a3a0d113530e47ab82e",
+          "before_sha256": "25f6d986ed299395174c9aaa58a9519dfffdf372fbfbcec636ba797592dd1250",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "65c5f770ba02c37c88bc5423cd782deced7b15ea39ebcb598fd47a075c0893c7",
+          "before_sha256": "74b1af899a601475f0f240bbd1824b78f5d55de8911b3649ea2a50eefc90b6f5",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "871d75149d94f0e50eb4e5c62f943956c9ec1fefd5351c7c1206ce35a500620a",
+          "before_sha256": "6084b060fc7d51977df46774e6f55ab976edce146c08208cc8d8e85df63d6564",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "14cd160831434c3d1912944ac6036eaee109c999048138656cce849f907d9e8f",
+          "before_sha256": "079e54e5d5a7039e19eaece0ae947d1c0b2b5bd8feb5039943b1943da80277df",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "626ef113e77c8d5ce499d56a8694cdb21c8047cf561ed0c3fb04bf264c472b10",
+          "before_sha256": "34f80e1ed332e8ed47fa7237e38c863b49ebf564f2fadb0bf1da5ce71ed9c14e",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "b97fea10125e0da587b61ffb47b9158210edf8878881702827f26d3c65646f02",
+          "before_sha256": "39f11a53152e9fc2e0169b5ed61eb4aeae413eace467413f5ab6d1540920819d",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "de2e573a47a26004983c24ea942bfbd3b2f3d1564c4ed82aece6cecdfa794913",
+          "before_sha256": "cd307f9c344bd8092dd2cb0cd97c00458d0585addce4927f9f64011a89c63d8a",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "5f1be3c29178a50149b75537921c1e453bfa289adf247a5916fbae4be11ff483",
+          "before_sha256": "fae1f64f789085806df8e82f8eb78a2c95af03a0fb706877539ce9b51b0930b0",
+          "id": "NR.drawing-source-cursor-gate-binding"
+        },
+        {
+          "after_sha256": "2d1be812fb09ea8543dd642723e3fe501902078a2bf64ffe5bd9a5d9756319cc",
+          "before_sha256": "0b3cf1b23161864e12e375381424cf57cb56d99af58402047653d651cb302b0c",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "62649399ccf279662d51678d3378cd763c0dc01efd9d5bcbeb7805043c1fe14d",
+          "before_sha256": "b67ea1b89ab809ccc2dc3d2eadab9f1bc80055ee14c9e9a3fc1b28e9161218cc",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "8b921daa602fa4d9b04fad33d397ba25a69f59b3b5114db5e9e2be963dea1784",
+          "before_sha256": "79501702969966afeda13313ab07f849d6c66ffd2c633768c3dd5d64efb8faef",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "12e704f617ccafcc088178971135c0cfcf9c9ada7583b06b0a26c4955235af4f",
+          "before_sha256": "c681fb978b460be224e20e7f0068af89cb6a62694baac21265f2ccf6d92ed2dc",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ed5e26f2395df63e563698f079481b828eb59e4da3aefd679f4288b4566a596b",
+          "before_sha256": "d7d6ab7411f7affd7a6e97c7367fe210f1dc5a29d6fabc2fe55a57fd92b2f367",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "17cc70777969795a83bd97ab524d100d8c6e185ff7e2889743c4785cb3a957cc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-source-gate-session-start-20261012.json"
+        },
+        {
+          "after_sha256": "ec75dd032191d358cf78f77525f0ebd15df1de1f24a7d553d31c336d1d15aa66",
+          "before_sha256": "dd8cf1150ab0f812e56a9997a4b2ba15789bfa1cd5e7a89615bff243be40403b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b2b268de5eb48821529fc5f817a1019abe9be51c9a858ac2acef39e7bb6d5db7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-source-gate-session-20261012.json"
+        },
+        {
+          "after_sha256": "42aa04a7f765e1cce8ae299e1903d17092e630a0e8818002a9e745d379ee774b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-source-gate-session-20261012.md"
+        },
+        {
+          "after_sha256": "c91db5c6fa69917ccd6ed6c27372d157cc5bf7f5342732beba2f373079365231",
+          "before_sha256": "2348194a1e314d77e61560a157f2653367f6f6b75bab43372df5080ecc5fdb82",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "ab1e74216d56a17460693089b3c16f03ca630eeb9c81bece8cfbeed5307246a5",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-gate-session-build-negative-01.json"
+        },
+        {
+          "after_sha256": "6a52d2173455c203397ab5a6fdc203160221360ed373da60b80c60c4b196b657",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-gate-session-fixture-02.json"
+        },
+        {
+          "after_sha256": "f509232a02ca8329d8fef94a752b27160231da9cb220552d8ce83927feaac131",
+          "before_sha256": "b0fca83db4549abd907817ab1e7d35b9bc76d4ffcc5eac3739429eae4b3f385b",
+          "path": "research/runtime/drawing-source-cursor-gate.md"
+        },
+        {
+          "after_sha256": "9ea9d3a1748a1d77da3379f9ec0a7c8f02e8a6218a496d943f199d1137e9558e",
+          "before_sha256": null,
+          "path": "tests/drawing-source-gate-session-test.c"
+        },
+        {
+          "after_sha256": "65726aecd970a137daba0830093283d33d342038d2a0861739c28493c49be112",
+          "before_sha256": null,
+          "path": "tools/test-drawing-source-gate-session.py"
+        }
+      ],
+      "id": "draw02-enabled-production-begin-end-owned-fixture-20261012",
+      "pending_gaps": [
+        "stale_evidence:4172cf5e1e286457104ce386bac013af549cca46239275abccbb4b45a74239e0"
+      ],
+      "reason": "Review owned include-production-session.cenabled begin/end path with controlled gate callbacks, acceptedAPI1/token7Endonce/refusedAPI2reason3noEnd, raworiginalfailure/error and5bindingrows/terminal. Source/worker callbacks explicitly disabled; no protection/async/physical proof. Preserve standalonebuildnegative01memcpy before fixture implementation/newclaims. Full dependencies remain explicit; source census and nine exact prior-commit receipts reviewed, disabled regression historical after extended tests/scope.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh actual production begin/end controlled fixture02passes; protected source/worker/early-return/callback/physical branches, frontend/import integration and bounded actual original controls still pending. No full enabled synchronization/sourceownership/reference/nativeparity/completion claim."
+      }
     }
   ]
 }

@@ -23,3 +23,22 @@ source/contract/build fingerprints retained, actual production session unexecute
 PE32 session with gate mode disabled:32COMcallback cases/eightplanes, exact raw
 result/error/x87, original forwarding/reentrant menu input. Prefix reuse avoids
 new installation. Enabled gate/source/worker path remains pending separately.
+
+# Prospective enabled begin/end session fixture scope
+
+Include actual production session.c/selftest mode; invoke actual begin/end with
+original caller scalars and controlled gate callbacks. Accepted token preserved
+through APIentry and released once after an owned original failure response;
+refused acquisition emits exact reason and no End callback. Check original raw
+result/LastError and pending/API journal terminal. Mode-open dependencies verified
+before source/worker callbacks deliberately disabled in this bounded fixture.
+
+This is enabled gate admission/begin/end path evidence only. It does not execute
+actual readonly source protection, async worker waits, source bytes or physical
+ACKs. Those branches need a separate controlled fixture and bounded original
+trial; passing these two requests cannot close full production source ownership.
+
+Enabled production begin/end fixture02passes5rows/rawfailure/error/token binding
+with source/worker callbacks disabled. Buildnegative01unresolved fixturememcpy
+retained before standalone byteimplementation/newclaims. Actual protected source/
+worker/physical and original runtime remain pending; no source ownership proof.
