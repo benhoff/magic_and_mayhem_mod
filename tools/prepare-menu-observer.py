@@ -13,7 +13,10 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,grimoire_observe=False):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,grimoire_observe=False,original_gameplay=False):
+    if type(original_gameplay) is not bool:raise ValueError('Invalid original gameplay observation policy')
+    if original_gameplay and (not campaign_observe or actions or native_render or native_draw or resident_world or native_voices):
+        raise ValueError('Original gameplay observation requires campaign observation without native rendering or actions')
     if native_voices and not (native_render and actions):raise ValueError('Native voices require native menus and command presentation')
     if resident_world and not (native_render and native_draw and actions):raise ValueError("Resident World requires native menus, commands and owned drawing")
     if native_draw and not (native_render and actions):raise ValueError('Native graphics requires native menus and command presentation')
@@ -98,7 +101,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
     metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_game':str(source),'source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
-              'grimoire_observe':grimoire_observe,'campaign_observe':campaign_observe,'experimental_mini':experimental_mini,'preference_store':stored,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
+              'original_gameplay':original_gameplay,'grimoire_observe':grimoire_observe,'campaign_observe':campaign_observe,'experimental_mini':experimental_mini,'preference_store':stored,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'native_draw':native_draw,'native_draw_sha256':hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,'native_draw_status':str(root/'native-draw-status.bin') if native_draw else None,
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
@@ -123,6 +126,7 @@ if __name__=='__main__':
     parser.add_argument("--experimental-mini",action="store_true",help="UNVALIDATED: build Mini Menu hooks for a dedicated future validation run")
     parser.add_argument("--preferences-store",type=Path,help="Import only exposed Preferences settings into the disposable copy")
     parser.add_argument('--campaign-observe',action='store_true',help='Observe original Realm custom tick in a separate bounded diagnostic log')
+    parser.add_argument('--original-gameplay',action='store_true',help='Explicit passive creature/spell diagnostics with original display and controls; requires --campaign-observe, excludes actions/native rendering')
     parser.add_argument('--grimoire-observe',action='store_true',help='Observe original Grimoire custom tick; no native book dispatch or ownership')
     parser.add_argument('--native-render',action='store_true',help='Stage native command rendering alongside native menus')
     parser.add_argument('--resident-world',action='store_true',help='Bind resident GPU World completion to the public command stream')
@@ -132,5 +136,5 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.grimoire_observe)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.grimoire_observe,args.original_gameplay)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

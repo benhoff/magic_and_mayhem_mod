@@ -44150,7 +44150,9 @@
         "protocols/include/mnm/menu_v17.h"
       ],
       "evidence": [
-        "UI50.character-adapter-private"
+        "UI50.character-adapter-private",
+        "UI52.character-adapter-launch-regression",
+        "UI51.campaign-progress-preparation"
       ],
       "status": {
         "understanding": "partial",
@@ -44190,6 +44192,103 @@
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.original-gameplay-observation",
+      "kind": "native_policy",
+      "subsystem": "campaign",
+      "title": "Explicit passive gameplay diagnostics with original presentation",
+      "scope": "Separately staged original-display creature/spell observation: no native menu action channel/render/draw/voices/resident World; exact profile, fresh paths and original hash/expected-entry checks. Original simulation and physical controls retained. Observation admission and bounded records only; no full hook equivalence, mission completion, native Character ownership or gameplay changes.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/original-gameplay-observation.md"
+      ],
+      "implementation": [
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/original-gameplay-launch-test.py",
+        "tools/test-live-original-gameplay.py",
+        "tools/campaign-original-combat-input.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/character.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/storage.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/export-menu-support.py",
+        "tools/glyph_backend_launch.py",
+        "tools/native_audio_launch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py"
+      ],
+      "evidence": [
+        "UI53.original-gameplay-observation"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -91614,6 +91713,86 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI52.character-adapter-launch-regression",
+      "kind": "native_integration",
+      "record": "research/runtime/character-adapter-launch-regression-20261012.json",
+      "sha256": "f2eeb50b6cf971f7890eca159a9882df9468b313a33ea2cb2ced4f2433f53b73",
+      "scope": "Synthetic V18 Character ownership/private original getter/price refresh/callbacks with fade stubbed;16 admission guards,slot79 and3 Qt tests. No genuine progression/live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/guard_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/private/original_adjust_refund_cancel",
+          "equals": true
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI51.campaign-progress-preparation",
+      "kind": "static",
+      "record": "research/runtime/campaign-menu-progress-preparation-20261012.json",
+      "sha256": "5d4c8ae6b50bac32b682b7fcf1b1a891417cc15893f66f308e26f1e9e7188b77",
+      "scope": "Negative/preparation provenance only; no retrospective execution claim binding or live menu validation.",
+      "assertions": [
+        {
+          "pointer": "/mission_completed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_character_validated",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "UI53.original-gameplay-observation",
+      "kind": "live_observation",
+      "record": "research/runtime/original-gameplay-live-observation-20261012.json",
+      "sha256": "9c61f871610cae8ddca98b9a0805764cc746d1f85049a1ec514e7f22651fb0f3",
+      "scope": "Explicit original-display passive creature/spell capture, stable declared sources and normal original Quit. Pursuit helper reached its retreat threshold; mission completion and native Character remain unvalidated.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_launcher_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mission_completion",
+          "equals": false
+        },
+        {
+          "pointer": "/native_character_live_validation",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102444,12 +102623,29 @@
         "NP.character-menu-dispatch"
       ],
       "evidence": [
-        "UI50.character-adapter-private"
+        "UI50.character-adapter-private",
+        "UI52.character-adapter-launch-regression"
       ],
       "tests": [
         "tests/character-adapter-reference.cpp",
         "tests/menu-character-bridge-test.cpp",
         "tools/test-character-adapter.py"
+      ]
+    },
+    {
+      "id": "original-gameplay-observation-20261012",
+      "level": "live_observation",
+      "scope": "Original display, genuine unchanged first-mission checkpoint, passive creature/spell records, original input and normal Quit; no mission completion or native Character claim.",
+      "behaviors": [
+        "NP.original-gameplay-observation"
+      ],
+      "evidence": [
+        "UI53.original-gameplay-observation"
+      ],
+      "tests": [
+        "tests/original-gameplay-launch-test.py",
+        "tools/test-live-original-gameplay.py",
+        "tools/campaign-original-combat-input.py"
       ]
     }
   ],
@@ -102784,7 +102980,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "975852bdad31186648379a7f1c20a5fde6dcf99c1738c81a2636c3faeb130dbe",
+      "sha256": "7cc98e41b2ee472a88b48678dbab5f7b7069500e361719e63736b1046513fe04",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character. UI49 compares bounded positive-domain Character pricing; native failed-input policy stays separate, live menus pending. UI50 adds experimental opt-in Character headless integration and original80-record wizard-selection finding; genuine live progression remains pending."
     },
     {
@@ -102869,8 +103065,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-character-adapter-20261012.json",
-    "sha256": "bc601180b510981369992edec451eaedd37c82c56ca2730507997f1fe6129bc4"
+    "path": "research/runtime/coverage/source-index-original-gameplay-preparation-final-20261012.json",
+    "sha256": "a90de4d61d46a1b34d89c17978688e9842ab702ec3a40f5066fb500872358473"
   },
   "claim_bindings_required": true
 }

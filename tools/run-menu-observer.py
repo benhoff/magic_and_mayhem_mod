@@ -35,6 +35,12 @@ def main():
     env.pop('MNM_MENU_GRIMOIRE_OBSERVE',None)
     if metadata.get('grimoire_observe'):env['MNM_MENU_GRIMOIRE_OBSERVE']='Z:'+str(root/'grimoire.bin').replace('/','\\')
     env['MNM_MENU_NATIVE_RENDER']='1' if args.native_render else '0'
+    if type(metadata.get('original_gameplay',False)) is not bool:raise ValueError('Invalid original gameplay observation policy')
+    if metadata.get('original_gameplay'):
+        if args.native_render or args.menu_channel or metadata['origin']!='menu_observation_only' or not metadata.get('campaign_observe') or metadata.get('native_render') or metadata.get('native_draw') or metadata.get('native_voices'):
+            raise ValueError('Original gameplay observation requires original display and controls')
+        env['MNM_MENU_ORIGINAL_GAMEPLAY']='1'
+        env['MNM_MENU_CAMPAIGN_OBSERVE']='Z:'+str(root/'campaign.bin').replace('/','\\')
     if args.menu_channel:env['MNM_MENU_CHANNEL']='Z:'+str(channel).replace('/','\\')
     if metadata.get('directplay_dx6') is not None:
         from directplay_dx6_launch import admit_prefix
