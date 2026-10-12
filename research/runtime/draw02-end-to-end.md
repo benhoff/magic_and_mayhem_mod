@@ -870,3 +870,13 @@ held-sourceanalysis passes280planes/134400000pixels0diff.655witnessesremain
 excluded(466competingmutation,107sourcepointchanged,81stopped,1geometry).
 Reassessment: use exact source versions and worker/EGL evidence to resolve
 physical ownership while preserving competing-writer guards. Step2remainsopen.
+
+## Step 2 protected-source/EGL cohort reassessment (2026-10-12 UTC)
+
+The new cohort preserves existingAPIcompetingwriter exclusions and separately
+requires exactprotectedpair/lease/APIcommand/worker/stableEGL/fullgeometry/known
+generation/physicalwitness identities. Four guard methods andfinalhash-checked
+prediction02pass149source/native/post-EGLframes0diff.54distinctqueues through116
+are covered;655contexts remainexcluded. Nativeinputs contain no original planes.
+Reassessment: complete unleased/update/lifetime/texture-upload/caller/action/
+route/cadence evidence next;no full47/21acceptance orstep2completion claim.

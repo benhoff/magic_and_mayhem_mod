@@ -43490,6 +43490,53 @@
         "795API794EGLwitnesses162heldpairs311commandsretained;Freshnative140selectedwitnessesmatch0diff,655excluded. Allpresentations/source/action/frame/lifetimeownership,alternate/mode/cadencecontrols andcomplete47/21acceptance remainopen. Thisadvanceslongerboundedsourceacquisition only.",
         "Longernativeprediction01refuseslegacydeclarationsequencecap262144beforedrawing;V4version-aware1MsequenceadmissionandNaN/fraction/overbudget/legacyguardsrequirefreshcomparison."
       ]
+    },
+    {
+      "id": "NR.drawing-held-source-egl-causality",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Protected source version to exact command and EGL witness cohort",
+      "scope": "Separate offline causal comparison admission from immutable original journals:accepted read-only source snapshot pair,exact API-owned emitted command/boundworker/submission,stable active EGL context and corresponding physical witness,known generations and full800x600 source/destination geometry. Nativeinput remains ordered producer parameters/pinnedencodedassets;heldpixels andphysicaloutputs externaloracles. Preserve existingAPIcompetingwriter exclusions;no blanket source/scanout/allroute/journey claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-held-source-egl-causality.md"
+      ],
+      "implementation": [
+        "tools/drawing_held_egl_candidates.py",
+        "tools/compare-drawing-held-egl.py"
+      ],
+      "tests": [
+        "tests/test-drawing-held-egl-candidates.py",
+        "tools/compare-drawing-held-egl.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_source_held_snapshot.py",
+        "tools/drawing_source_worker_lease.py",
+        "tools/drawing_wine_blit_packet.py",
+        "tools/drawing_worker_context.py",
+        "tools/drawing_egl_physical.py",
+        "tools/compare-drawing-source-points.py",
+        "tools/drawing_scene_corpus.py",
+        "compat/legacy/drawing_scene_main.cpp",
+        "compat/legacy/drawing_scene_limits.hpp"
+      ],
+      "evidence": [
+        "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Four synthetic cohort/refusal methods pass. Finalprediction02checksrawpacket/worker/submissionjournalhashes plusprotectedpair/context;149native/source/postEGLphysicalframesmatch0diff. Covers54distinctqueueboundaries through116;655contexts excluded645withoutacceptedlease9inactive/unstable1missingwitness.",
+        "Textureupload/sourcebuffer relation/allunknownwriters,source/texture/COMwholelifetimes,remainingupdates/routes/actions,diagnosticcadencecontrols/scanout andfull47/21acceptance remainopen. ExistingAPIcompetingwritercohort/exclusions preserved;no broadstatuspromotion."
+      ]
     }
   ],
   "evidence": [
@@ -92517,6 +92564,63 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Synthetic exact causal cohort/refusal controls only;nooriginaltexture orphysicalownership.",
+      "record": "research/runtime/draw02-held-egl-fixture-01.json",
+      "sha256": "b5190a992c36c733f0a90d28a47fd32d3348780ae8f972730734ac093b596f65",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Initial exactheld-command/EGLcohort149native/source/physicalcomparisons0diffbeforedirect command-journal hash rechecks;historical version retained.",
+      "record": "research/runtime/draw02-held-egl-prediction-01.json",
+      "sha256": "9c8240830dc719705ae7ac287c73514506ebbbc3db5eca351a11d985fc8b0ca1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Finalsource rawcommandjournal hash-checked exactheld/APIpacket/worker/EGLcohort149source/physical comparisons0diff;54distinctqueues through116,655exclusions retained. No wholelife/textureupload/allroute/scanout/semantic claim.",
+      "record": "research/runtime/draw02-held-egl-prediction-02.json",
+      "sha256": "d36a42c81f86a8d8535e2770625a1fb7641ff1adb829f4aaf7c9a0c25e5a9f1a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104007,6 +104111,23 @@
       "evidence": [
         "DRAW02.draw02-whole120-original-02-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.held-source-egl-native",
+      "level": "headless",
+      "scope": "New exact protected-source/command/activeEGLphysical comparison onretainedoriginalWhole120reference;no allroute/lifetime/scanout claim.",
+      "behaviors": [
+        "NR.drawing-held-source-egl-causality"
+      ],
+      "tests": [
+        "tools/compare-drawing-held-egl.py",
+        "tests/test-drawing-held-egl-candidates.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -104380,8 +104501,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-whole120-reader-20261012.json",
-    "sha256": "2be47cf5eda67e9ff4c3d62282d142dca2cdf85653aa08139a2e09158c4ad1f0"
+    "path": "research/runtime/coverage/source-index-draw02-held-egl-hashes-20261012.json",
+    "sha256": "7057954e1e0580e4b41d3453de27b9eb3746ccf1bb504bc59ce0313fb04800f7"
   },
   "claim_bindings_required": true
 }

@@ -7508,3 +7508,27 @@ Exclusions remain466competingmutations,107changedsourcepoints,81stoppedproducer
 and1unsupportedgeometry. The next acquisition increment must establish exact
 source/submission/physical ownership for those activeWorld intervals, retaining
 guards and competing writers. This is restricted parity,notfullDRAW02completion.
+
+## Step 2 exact protected-source to EGL comparison cohort (2026-10-12 UTC)
+
+A separate cohort retains the old API competing-writer exclusions. Admission
+requires an accepted protected source pair,exact API-owned command/worker return,
+stable active EGL context,known matching generations,successful full800×600
+submission and worker geometry,plus the corresponding physical extent/ordinal.
+Partial copies,missing/changed identities and reordered source prefixes refuse.
+Four synthetic guard methods pass. Native input uses only ordered producer
+parameters and pinned encoded assets; both original source and physical planes
+stay external to native replay.
+
+Finalprediction02directly rechecks packet/worker/submission journal hashes and
+matches149selected source/native/post-EGLphysicalplanes0diff. It covers54distinct
+queue boundaries through116;655contexts remainexcluded(645noacceptedlease,
+9inactive/unstable,1missingwitness). Initialprediction01beforedirecthashchecks
+remains historical. This is scoped causal evidence,notwhole textureupload/source
+storage lifetime,allwriter/route/frame/action ownership orscanout proof.
+
+Reassessment: continue unleased/remainingupdate source ownership,texture-source
+upload relation,complete COM/texture/lifetime/caller/action routes anddiagnostic
+cadencecontrols. Step2andall47/21requirements remainopen;steps3–7stayordered.
+Reviewed69ab6490..f04d3bc5has37matchedreceipts/0gaps. Storageapproximately1031GiB
+working295GiBfree;no cleanupperformed.
