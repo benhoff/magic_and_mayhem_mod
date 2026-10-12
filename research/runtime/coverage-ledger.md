@@ -6720,3 +6720,23 @@ Simulation target50ms is unchanged. Earlier gameplay/crash/scene/performance
 failures and source hashes are preserved, with causality still partial.
 Exactbd177b6..38cba10 history review:17 files,zero receipt gaps; no retrospective
 validation or gate assertion. See[experiment](scene-production-repetition.md).
+
+
+### Prepared-scene cost attribution (2026-10-12, pending)
+
+The scene-production probe now separates paired original queue-consumer wall
+time (including native capture/delivery/wait) from extra scene build/surrounding
+work, with guarded original post-call MOV replay and original consumer return
+PCs unchanged. Diagnostic wireversion5 retains versions1..4. New synthetic
+duration/count rejection and PE32 ABI/guard controls precede live TITAN timing.
+The original50ms update target is unchanged; this milestone does not increase FPS.
+Private fixture startup/display failures are retained under working/tests;
+no failed initialization supplies a rendering/gameplay equivalence claim.
+
+
+The timing milestone controls pass44PE32/20decoder cases. Source-bound TITAN
+checkpoint16matches protected state and ordered scenes:30.55809ms total,
+28.67579ms queue consumption/native delivery and1.88230ms build/surround.
+The full campaign fails19FPS at18.68812FPS; no formal gameplay/performance
+promotion follows. Immutable negative evidence is registered; native delivery
+cost reduction and sustained render scheduling remain outstanding.

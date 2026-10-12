@@ -22,7 +22,7 @@ RANGES={
 }
 ANCHORS={0x4fd280:'5355568bf1',0x4fd315:'8b46258bce',
          0x4fd5ad:'33db8b9629020000899e3102000089962d020000',0x4fd5c1:'a00c145e0084c0',0x4fd352:'e8f9fbffff',
-         0x4fd554:'e8472d0000',0x4fa4ef:'e86c550200'}
+         0x4fd4b0:'b9e0496a00',0x4fd559:'a12c486c00',0x4fd554:'e8472d0000',0x4fa4ef:'e86c550200'}
 
 def export():
     source=ROOT/'working/game-nocd/Chaos.exe';data=source.read_bytes()
