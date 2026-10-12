@@ -30,6 +30,7 @@ static int state_capture(struct SceneState* s,u32 object){
         state_region(s,16,0x6e1ac8,252*4,0,0,0)&&
         state_region(s,17,0x6cbb78,0x1031b,0,0,0)&&
         state_region(s,18,0x6c5490,0x66d2,0,0,0)&&
+        state_region(s,19,object+0x229,16,0,0,0)&&
         state_pool(s,20,0x6def58,0x6df180,0xe4b,256)&&
         state_pool(s,21,0x689498,0x6898dc,0x22e,2048)&&
         state_pool(s,22,0x6b1248,0x6b1260,0x7e,4096);

@@ -103,11 +103,11 @@ _production_draw_end:
     ret
 normal_end:
     popfl
-    xorl %ebx,%ebx
-    movl 0x229(%esi),%edx
+    movb 0x5e140c,%al
+    testb %al,%al
     jmp *_draw_resume
 .data
 _queue_target: .long 0x5002a0
 _slice_start: .long 0x4fd315
-_draw_resume: .long 0x4fd5b5
+_draw_resume: .long 0x4fd5c8
 _history_target: .long 0x51fa60

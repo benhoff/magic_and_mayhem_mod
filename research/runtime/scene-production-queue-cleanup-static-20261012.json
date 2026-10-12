@@ -1,0 +1,69 @@
+{
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "ranges": {
+    "scene_outer": [
+      5231232,
+      5232506
+    ],
+    "scene_build": [
+      5230416,
+      5231203
+    ],
+    "creature_draw_prepare": [
+      5366368,
+      5366535
+    ],
+    "creature_post_draw": [
+      5417856,
+      5417910
+    ],
+    "camera_creature_adjust": [
+      5278224,
+      5278449
+    ],
+    "rng": [
+      5562880,
+      5562923
+    ],
+    "creature_position_history": [
+      5372512,
+      5372574
+    ],
+    "scene_history_call": [
+      5219547,
+      5219572
+    ]
+  },
+  "anchors": {
+    "0x4fd280": "5355568bf1",
+    "0x4fd315": "8b46258bce",
+    "0x4fd5ad": "33db8b9629020000899e3102000089962d020000",
+    "0x4fd5c1": "a00c145e0084c0",
+    "0x4fd352": "e8f9fbffff",
+    "0x4fd554": "e8472d0000",
+    "0x4fa4ef": "e86c550200"
+  },
+  "direct_scene_calls": [
+    "  46bbd3:\te8 a8 16 09 00       \tcall   0x4fd280",
+    "  54af50:\te8 2b 23 fb ff       \tcall   0x4fd280"
+  ],
+  "artifacts": {
+    "scene_outer.asm": "9add5ce78a9fe605447e065211e9e4f005d079aed587e62363bab94a97be208a",
+    "scene_build.asm": "4d33be9bf6266a7bc475fa8d0e5af1722b27cebb38df6744739a682defaee19b",
+    "creature_draw_prepare.asm": "baddda931c7bc5d49b0c665f6766b2720b31ea07264d0370f2f7ca5929c59574",
+    "creature_post_draw.asm": "0f8102e2f7eadf7b17cbec79450481ce4c54a98fe2fc322c1760d2882355f2f7",
+    "camera_creature_adjust.asm": "032f67b1cf29908f60665c06ec6b674ed7b3b460201ce790746d39a8ed7d2d9c",
+    "rng.asm": "1259dcf0fd396f0711645fbd5d9920c5a47ec0ae32778a3058429ef34e64ffb2",
+    "creature_position_history.asm": "6af3beb237da06efc7bc7c33bc4f5462c981150710504dbccf99d166480be0a2",
+    "scene_history_call.asm": "d332d640571b045876e1344a3763c67782676ede4990ab26bf59dbd23b8e4fbf"
+  },
+  "scope": "Pinned original queue cleanup004fd5ad..004fd5c1 verified by full executable and20 cleanup/7 new-marker anchor bytes. Eight bounded producer/helper/call ranges retained; deeper renderer/driver/nested state and crash attribution remain partial.",
+  "raw_report": "working/decompiled/scene-production-w4lbfjsk/manifest.json",
+  "raw_report_sha256": "55348673d13f5e3ce47317399540e99743d5b1d4324c3e43666ac9703938287c",
+  "sources": {
+    "tools/export-scene-production.py": "377ed71c5e6c88a2844232c817ddc50b9ede09884e0fe99bd2513667f25a4b50",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc"
+  },
+  "original_manifest_verified_before": true,
+  "original_manifest_verified_after": true
+}

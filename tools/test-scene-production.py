@@ -34,14 +34,14 @@ def main():
             subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x400000','/fixed','/dynamicbase:no','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{executable}',
                             str(out/'scene-production-reference.c.obj'),str(out/'scene-production-reference.S.obj'),str(dll.with_suffix('.lib')),str(out/'kernel32.lib')],stdout=log,stderr=subprocess.STDOUT,check=True)
         for mode in (1,2,3):
-            for case in range(10):
-                key=f'{case}{mode}';case_env=dict(env,MNM_PRODUCTION_TEST_CASE=key)
+            for case in range(11):
+                key=f'{case if case<10 else "A"}{mode}';case_env=dict(env,MNM_PRODUCTION_TEST_CASE=key)
                 with (out/f'case-{key}.log').open('x') as log:
                     result=subprocess.run(['xvfb-run','-a','wine',str(executable)],env=case_env,cwd=out,stdout=log,stderr=subprocess.STDOUT,timeout=120)
                 report['cases'].append(dict(case=case,mode=mode,exit_code=result.returncode))
                 if result.returncode:raise ValueError(f'PE32 production control failed {key}:exit{result.returncode}')
         report.update(binary_sha256=sha(executable),dll_sha256=sha(dll),sources_unchanged=all(sha(ROOT/p)==h for p,h in report['sources'].items()),
-                      checks='30 PE32 full/slice/frozen-history controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;33 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape and unreadable pool refuse. History mutation forwards twice for full/slice and exactly once plus one skip for frozen-history. Authored stand-ins, not original engine execution.')
+                      checks='33 PE32 full/slice/frozen-history controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;52 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and preexisting queue leak refuse. Original queue postconditions hold after every extra. History mutation forwards twice for full/slice and exactly once plus one skip for frozen-history. Authored stand-ins, not original engine execution.')
         if not report['sources_unchanged']:raise ValueError('Fixture sources changed')
         report['success']=True
     except (OSError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)

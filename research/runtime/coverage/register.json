@@ -41661,7 +41661,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded repeated original scene production with exact state auditing",
-      "scope": "Opt-in pinned No-CD original004fd280 outer producer and narrower004fd315..004fd5ad draw slice, invoked only on a validated original producer return and owning engine thread. Keep simulation tick, pacing and original once-only outer return ABI. Bound attempts and compare full owned creature/effect/third-family pools, global ANI controllers, complete gameplay-object/map-context headers, counters/mode/pacing/full252-word RNG/scheduler bytes before/after each extra production; capture whole writable module and renderer changes as unclassified state evidence. Independently copy/compare ordered nonempty original36-byte scene records before primary/extra consumer entry; scene equality is separate from protected-state equality. Refuse malformed/unreadable/changed pool shapes and critical byte differences; stop further repetition after first difference, never restore game state or conceal a failure. Existing actual native resident rendering consumes generated Worlds without pixel roundtrip. Slice deliberately excludes outer camera/countdown/creature pre/post work; reset original renderer callback count and preserve original scene-call PCs. Not all nested pointers, map/visibility state, concurrent timer writes, arbitrary inputs/driver/pixel equivalence, independent60FPS scheduling or safe default activation. Native diagnostic mode3 additionally suppresses only guarded004fa4ef->0051fa60 position-history shifting on validated extra drawing and the owning thread; all normal calls still forward once with their original return PC. Record normal/extra history forwards/skips, require matching positive primary/skipped counts and zero extra forwards, protected-state equality and exact ordered scene-row equality for at least8cases. This is an explicit native once-per-primary history policy, not recovered original behavior at a changed simulation rate. Diagnostic wireversion2 adds three history counters and retains strictversion1 read compatibility.",
+      "scope": "Opt-in pinned No-CD original004fd280 outer producer and narrower004fd315..004fd5c1 draw slice, invoked only on a validated original producer return and owning engine thread. Keep simulation tick, pacing and original once-only outer return ABI. Bound attempts and compare the complete renderer scene-queue header plus full owned creature/effect/third-family pools, global ANI controllers, complete gameplay-object/map-context headers, counters/mode/pacing/full252-word RNG/scheduler bytes before/after each extra production; capture whole writable module and renderer changes as unclassified state evidence. Independently copy/compare ordered nonempty original36-byte scene records before primary/extra consumer entry; scene equality is separate from protected-state equality. Refuse malformed/unreadable/changed pool shapes and critical byte differences; stop further repetition after first difference, never restore game state or conceal a failure. Existing actual native resident rendering consumes generated Worlds without pixel roundtrip. Slice deliberately excludes outer camera/countdown/creature pre/post work; reset original renderer callback count and preserve original scene-call PCs. Not all nested pointers, map/visibility state, concurrent timer writes, arbitrary inputs/driver/pixel equivalence, independent60FPS scheduling or safe default activation. Native diagnostic mode3 additionally suppresses only guarded004fa4ef->0051fa60 position-history shifting on validated extra drawing and the owning thread; all normal calls still forward once with their original return PC. Record normal/extra history forwards/skips, require matching positive primary/skipped counts and zero extra forwards, protected-state equality and exact ordered scene-row equality for at least8cases. This is an explicit native once-per-primary history policy, not recovered original behavior at a changed simulation rate. Diagnostic wireversion3 protects the queue header and retains strictversion1/2 read compatibility. The slice executes original004fd5ad..004fd5c1 queue cleanup before exit; validate empty/count0 and writepointer==base after primary admission and exact queue-header equality after extra. Flush diagnostics once at first repeat failure or16case bound (otherwise at detach), then stop probing; checkpoint I/O timing is instrumented and captured totals cover only the probe window. Scene mismatch also stops repeats. No restoring saved game state.",
       "confidence": "provisional",
       "original": [
         {
@@ -41682,7 +41682,7 @@
         {
           "build": "nocd-40209ca7",
           "address": 5232045,
-          "scope": "Candidate draw-end marker before iterator/camera postlude"
+          "scope": "Original queue cleanup: zero count+231 and reset writepointer+22d to base+229; candidate executes this span"
         },
         {
           "build": "nocd-40209ca7",
@@ -41703,6 +41703,11 @@
           "build": "nocd-40209ca7",
           "address": 5219567,
           "scope": "Guarded direct scene-builder history call; original return004fa4f4 preserved"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5232065,
+          "scope": "New slice exit after original queue cleanup and before cache/creature/camera post-work; normal7bytes replayed"
         }
       ],
       "documents": [
@@ -41717,7 +41722,11 @@
         "research/runtime/scene-production-history-fields-static-20261011.json",
         "research/runtime/scene-production-history-controls-initial-20261011.json",
         "research/runtime/scene-production-history-adapter-static-20261011.json",
-        "research/runtime/scene-production-history-controls-20261011.json"
+        "research/runtime/scene-production-history-controls-20261011.json",
+        "research/runtime/scene-production-history-fireball-negative-20261011.json",
+        "research/runtime/scene-production-history-crash-negative-20261011.json",
+        "research/runtime/scene-production-queue-cleanup-controls-20261012.json",
+        "research/runtime/scene-production-queue-cleanup-static-20261012.json"
       ],
       "implementation": [
         "tools/export-scene-production.py",
@@ -41754,7 +41763,11 @@
         "NR.scene-production-repetition.slice-negative-20261011",
         "NR.scene-production-repetition.history-controls-initial-20261011",
         "NR.scene-production-repetition.history-adapter-static-20261011",
-        "NR.scene-production-repetition.history-controls-20261011"
+        "NR.scene-production-repetition.history-controls-20261011",
+        "NR.scene-production-repetition.history-fireball-negative-20261011",
+        "NR.scene-production-repetition.history-crash-negative-20261011",
+        "NR.scene-production-repetition.queue-cleanup-controls-20261012",
+        "NR.scene-production-repetition.queue-cleanup-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -41764,7 +41777,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Original full producer and narrower body both fail protected creature history invariance despite identical scene rows. Final30 PE32 and17 decoder controls pass for explicit native mode3 extra-only history suppression, but actual TITAN mode3 state/scene equality and independent rendering schedule are pending. Original helper pointer/copy/consumer roles remain partial. Full nested map/visibility/timer/driver/pixel/default safety and60FPS are unproved; historical negatives retain their exact source hashes."
+        "Old slices omitted original renderer queue cleanup; frozen-history Fireball and address0 crash failures are preserved. Corrected slice runs original cleanup, protects/admit-checks its16-byte header and checkpoints at first failure/16cases. Final33 PE32 and17 decoder controls pass with52 guard mutations andversion1/2 compatibility. Actual TITAN state/scene/postcondition/normal Quit proof pending; no original helper/complete nested map/visibility/timer/driver/pixel/default/60FPS safety claim."
       ]
     },
     {
@@ -41804,6 +41817,45 @@
       ],
       "remaining_gaps": [
         "Static helper only; no isolated original helper comparison, complete pointer/copy/consumer semantics or native replacement. Native extra-only suppression is accounted separately in NR.scene-production-repetition."
+      ]
+    },
+    {
+      "id": "RS.scene-queue-retirement",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Original scene queue consumption postconditions",
+      "scope": "Pinned ordinary004fd5ad..004fd5c1 zeros renderer+231 queue count and resets+22d writepointer from+229 base before cache/creature/camera post-work. Original scene construction relies on those postconditions; old injected slice ending5ad retained populated queue pointers/count. Partial static recovery and observed old snapshot boundaries, not complete queue allocator/driver/alternate branch semantics or isolated original equivalence. New native probe delegates this cleanup to original instructions rather than rolling back saved state.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5232045,
+          "scope": "Original ordinary queue count/writepointer cleanup span"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5232065,
+          "scope": "First instruction after queue cleanup before cache/creature/camera work"
+        }
+      ],
+      "documents": [
+        "research/runtime/scene-production-repetition.md",
+        "research/runtime/scene-production-queue-cleanup-static-20261012.json"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.scene-production-repetition.queue-cleanup-static-20261012"
+      ],
+      "remaining_gaps": [
+        "Complete queue allocator/pointer lifetime/consumer/driver/alternate branch and original execution comparison pending. Crash causality from old slice missing cleanup remains unproved; actual corrected probe integration is separate native policy evidence."
       ]
     }
   ],
@@ -87258,6 +87310,121 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.scene-production-repetition.history-fireball-negative-20261011",
+      "kind": "live_observation",
+      "scope": "First final-source private TITAN frozen-history campaign fails bounded player Fireball enemy-damage verification after successful summon/movement input checks.1792 balanced native resident Worlds at19.97688FPS; forced owned cleanup, original/source checks pass, no normal Quit and zero-byte production trace. State/scene invariance is unknown, not failed or passed; cause not attributed to the history policy. Retain this negative even if retry succeeds.",
+      "record": "research/runtime/scene-production-history-fireball-negative-20261011.json",
+      "sha256": "d760b05fbb0ed1d11fa360f7e0705eaa86b35ae3f3e6b188e451ac9663df195d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/input_failure_reason",
+          "equals": "No player Fireball enemy damage after bounded shots"
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.history-crash-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Unchanged frozen-history retry verifies ranged damage and combat input events, then Wine faults at address0 and native delivery stops; later lethal verification fails. Source/original/private cleanup pass, no normal Quit and no flushed state trace. Not invariance or gameplay success; missing renderer queue cleanup is a separate confirmed slice defect, crash causality unproved.",
+      "record": "research/runtime/scene-production-history-crash-negative-20261011.json",
+      "sha256": "a0f1af34f6c2aa715c80bda2eda458c929981b44f0265d26d3ce283011992b88",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/page_fault_lines/0",
+          "equals": "wine: Unhandled page fault on read access to 00000000 at address 00000000 (thread 018c), starting debugger..."
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.queue-cleanup-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Final-source33 PE32 full/slice/frozen-history ABI/RET8,52 anchor mutations, protected gameplay/queue mutation/refusal controls; original queue count0/writepointer==base after extras, preexisting queue leak refuses before extra.17 decoder refusals andversion1/2 compatibility pass. Stand-ins only, actual original TITAN cleanup/safety pending.",
+      "record": "research/runtime/scene-production-queue-cleanup-controls-20261012.json",
+      "sha256": "5071cc82e7ef102a2078221469535a9fcf23f3dfd3b937fa5dfbba2c172d2cac",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/decoder_controls/decoder_refusals",
+          "equals": 17
+        },
+        {
+          "pointer": "/decoder_controls/version2_compatibility",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.queue-cleanup-static-20261012",
+      "kind": "static",
+      "scope": "Pinned original queue cleanup004fd5ad..004fd5c1 verified by full executable and20 cleanup/7 new-marker anchor bytes. Eight bounded producer/helper/call ranges retained; deeper renderer/driver/nested state and crash attribution remain partial.",
+      "record": "research/runtime/scene-production-queue-cleanup-static-20261012.json",
+      "sha256": "5ddfa73cfc20a70b41d3628f67adc31c864c092860134525b9c4a19db66718ae",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -97761,7 +97928,7 @@
     },
     {
       "id": "NR.scene-production-repetition.fixture",
-      "scope": "Actual PE32 authored original stand-ins: full/slice forward/extra-call ABI and exact state mutation/shape/unreadable refusal controls; no original game/driver equivalence. Frozen-history controls retain normal once-only forwarding/RET8, suppress only extra history writes and still detect all other protected mutations;33 anchor bytes. Independent decoder rejects malformed/partial fixed/pool extents, runtime/retained-byte contradictions and count inconsistencies; version1 compatibility and negative extra-history/scene equality controls.",
+      "scope": "Actual PE32 authored original stand-ins: full/slice forward/extra-call ABI and exact state mutation/shape/unreadable refusal controls; no original game/driver equivalence. Frozen-history controls retain normal once-only forwarding/RET8, suppress only extra history writes and still detect all other protected mutations;52 anchor bytes. Independent decoder rejects malformed/partial fixed/pool extents, runtime/retained-byte contradictions and count inconsistencies; version1 compatibility and negative extra-history/scene equality controls. All candidates execute original queue cleanup; malformed post-primary queue ownership refuses before an extra. Diagnosticversion3 requires complete protected queue header withversion1/2 compatibility.",
       "level": "headless",
       "behaviors": [
         "NR.scene-production-repetition"
@@ -97778,12 +97945,13 @@
         "NR.scene-production-repetition.fixture-refusal-negative-20261011",
         "NR.scene-production-repetition.controls-20261011",
         "NR.scene-production-repetition.history-controls-initial-20261011",
-        "NR.scene-production-repetition.history-controls-20261011"
+        "NR.scene-production-repetition.history-controls-20261011",
+        "NR.scene-production-repetition.queue-cleanup-controls-20261012"
       ]
     },
     {
       "id": "NR.scene-production-repetition.live",
-      "scope": "Private TITAN native resident casting/combat/portrait/Mini/normal Quit with bounded selected natural/full/slice scene producer state audit. Original pacing retained; false outcomes and unclassified state writes preserved. Frozen-history candidate applies explicit native extra-only history policy; at least8repeats require protected state plus exact ordered scene equality and positive matching forward/skip counts.",
+      "scope": "Private TITAN native resident casting/combat/portrait/Mini/normal Quit with bounded selected natural/full/slice scene producer state audit. Original pacing retained; false outcomes and unclassified state writes preserved. Frozen-history candidate applies explicit native extra-only history policy; at least8repeats require protected state plus exact ordered scene equality and positive matching forward/skip counts. Corrected slice includes original queue cleanup; retained failed campaigns and checkpoint data remain negative if gameplay/normal Quit fails. First failure/16case checkpoint flush is instrumented.",
       "level": "live_observation",
       "behaviors": [
         "NR.scene-production-repetition"
@@ -97794,7 +97962,9 @@
       ],
       "evidence": [
         "NR.scene-production-repetition.full-negative-20261011",
-        "NR.scene-production-repetition.slice-negative-20261011"
+        "NR.scene-production-repetition.slice-negative-20261011",
+        "NR.scene-production-repetition.history-fireball-negative-20261011",
+        "NR.scene-production-repetition.history-crash-negative-20261011"
       ]
     }
   ],
@@ -98169,8 +98339,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-production-history-20261011.json",
-    "sha256": "248a84f1d389e20238bfc7e3b030cb3975b430ae59d4762917dec7053e6c2019"
+    "path": "research/runtime/coverage/source-index-scene-production-queue-cleanup-20261012.json",
+    "sha256": "702951a9cf3c68c14e1cb888afc0959361df7d87c88c55221bc3d7c9b152cfad"
   },
   "claim_bindings_required": true
 }

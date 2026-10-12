@@ -1,0 +1,234 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.scene-production-repetition",
+      "contract_sha256": "39eb84f4de239ab19dcc953041ad49080e96b4b5a69bdcaaf372b50889cb61f3",
+      "scenarios": {
+        "NR.scene-production-repetition.fixture": "09b9e1547a7c802d28c28af101990ebe61bc3aa0c5b5fa8f81f9c07bad6e75cb"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/scene-production/entry.S": "07c4c270782293d0d99d03b395633d68c134aaf21d698905c60ca24be395fc4a",
+    "runtime/scene-production/observer.c": "c3ba6502cf5ca77233fe84d34887c596a6aabc63d0ce0775b6821297beefa905",
+    "runtime/scene-production/state_audit.h": "e610cd55319d68a8922c6dc3740bdd755d324f0c6480f5310861c5f678148d4b",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/scene-production-reference.S": "592d68dea6470f07ab8ef078cbc181dfe50aa4e5c80421cd463041ed5b1d31c2",
+    "tests/scene-production-reference.c": "884f49760cbc92e58ea947b367c5d793f69c5eef31111b92d7309861b9473d76",
+    "tests/test-scene-production-decoder.py": "7888b11b9f6389996cb1f0e1a99db66cdd714f3f690c9634c4d654294f57d730",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-scene-production.py": "7b2fd4741e6a275f3fdf614d4868a917df277172c699df8bf38a404401880640",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/export-scene-production.py": "377ed71c5e6c88a2844232c817ddc50b9ede09884e0fe99bd2513667f25a4b50",
+    "tools/menu-game-runner.py": "9353c8e51919c89ce37f351a759bb833b190ee4967afac4e8e245f291475252d",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "bd1cf6ee3d280881183dd4aaf1822d5f68dab5be02fb0971900cb767f506f9a3",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/probe-scene-production.py": "a4edb710b5675e03b13df8289734f31a4e17c5ef957caa7042f0cace9d795a06",
+    "tools/scene_production.py": "32f0105658545827b69fa78972dd6cb9ca2c50b2b1a95efd1013b354c2f03134",
+    "tools/test-native-campaign.py": "d93f55ccfc57d9692bd71cbef56fe84604e552469efd141939245bb60662e1eb",
+    "tools/test-scene-production.py": "a0457a7efbc1df7c4f97ee8b08e661abc90e15ed05edd1a3a7f7d6779f8b48b6"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 3,
+      "exit_code": 0
+    }
+  ],
+  "decoder_controls": {
+    "success": true,
+    "decoder_refusals": 17,
+    "controls": [
+      "magic",
+      "version",
+      "version1-mode3",
+      "row-size",
+      "case-limit",
+      "critical-total",
+      "zero-owner",
+      "zero-clock",
+      "truncated",
+      "trailing",
+      "row-reserved",
+      "fixed-region-size",
+      "duplicate-region",
+      "missing-protected-kind",
+      "pool-shape",
+      "state-reserved",
+      "independent-byte-contradiction"
+    ],
+    "negative_history_counts": 2,
+    "negative_scene_equality": 1,
+    "version1_compatibility": true,
+    "version2_compatibility": true
+  },
+  "binary_sha256": "48d8b96f9074baf5e59e3104d0717f7fcceb68de6fe5cdc8211cdf67671b9807",
+  "dll_sha256": "17eee1a46ed4309a09c2d54c55acc199a4b55df59189da3dc6eabfae898805a8",
+  "sources_unchanged": true,
+  "checks": "33 PE32 full/slice/frozen-history controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;52 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and preexisting queue leak refuse. Original queue postconditions hold after every extra. History mutation forwards twice for full/slice and exactly once plus one skip for frozen-history. Authored stand-ins, not original engine execution.",
+  "raw_report": "working/tests/scene-production-controls/run-cui8twfp/report.json",
+  "raw_report_sha256": "d08a10619ec68de2a51940a647adebc381ed3284b456d1ca85f3dca1eda105c5",
+  "scope": "Final-source33 PE32 full/slice/frozen-history ABI/RET8,52 anchor mutations, protected gameplay/queue mutation/refusal controls; original queue count0/writepointer==base after extras, preexisting queue leak refuses before extra.17 decoder refusals andversion1/2 compatibility pass. Stand-ins only, actual original TITAN cleanup/safety pending."
+}

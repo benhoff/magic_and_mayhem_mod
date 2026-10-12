@@ -2,6 +2,8 @@
 .globl _fixture_draw
 _fixture_draw:
     call _fixture_work
+    movl $1,0x689b61
+    movl $0x689c24,0x689b5d
     movl $0x689b59,%ecx
     call *_queue_call
     jmp *_draw_end
