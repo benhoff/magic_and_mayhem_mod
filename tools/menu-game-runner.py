@@ -12,6 +12,8 @@ for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} hash mismatch')
 events=Path(metadata['events']).resolve()
 if events!=root/'events.bin' or events.exists():raise ValueError('Refusing stale or redirected observation output')
+from native_audio_launch import authorize as authorize_audio
+authorize_audio(root,metadata,os.environ)
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')

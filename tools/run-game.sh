@@ -9,6 +9,7 @@ LOG_ROOT="$WORKING_DIR/logs"
 RUNTIME_ROOT="$WORKING_DIR/runtime"
 MODE=launch
 VARIANT=nocd
+SOURCE_GAME_OVERRIDE=
 SMOKE_SECONDS=20
 ASSUME_YES=0
 WINE_BINARY=${MNM_WINE_BIN:-}
@@ -47,6 +48,7 @@ Options:
   --wine PATH          Wine executable. On aarch64 it is run through muvm.
   --runner PATH        Custom wrapper that accepts Chaos.exe and its arguments.
   --prefix DIRECTORY   Wine prefix (default: working/wineprefix).
+  --source-game DIR    Pinned installation under working/; checked against the variant manifest.
   --seconds NUMBER     Smoke-test duration (default: 20).
   --yes                Confirm use of a prefix outside working/ non-interactively.
   -h, --help           Show this help.
@@ -125,6 +127,11 @@ select_game() {
         SOURCE_GAME_DIR="$WORKING_DIR/game-nocd"
         GAME_MANIFEST="$WORKING_DIR/manifests/game-nocd.tsv"
     fi
+    if [[ -n $SOURCE_GAME_OVERRIDE ]]; then
+        SOURCE_GAME_DIR=$(realpath -e -- "$SOURCE_GAME_OVERRIDE")
+        [[ -d $SOURCE_GAME_DIR && $SOURCE_GAME_DIR == "$WORKING_DIR/"* ]] ||
+            die 'Source game override must be a directory under working/'
+    fi
     GAME_DIR=$SOURCE_GAME_DIR
     GAME_EXE="$SOURCE_GAME_DIR/Chaos.exe"
 }
@@ -151,6 +158,11 @@ verify_game() {
 
 select_runtime_tree() {
     local runtime_dir="$RUNTIME_ROOT/game-$VARIANT"
+    if [[ -n $SOURCE_GAME_OVERRIDE ]]; then
+        local source_key
+        source_key=$(printf '%s' "$SOURCE_GAME_DIR" | sha256sum)
+        runtime_dir="$RUNTIME_ROOT/game-$VARIANT-${source_key:0:16}"
+    fi
     if [[ ! -d $runtime_dir ]]; then
         mkdir -p -- "$RUNTIME_ROOT"
         printf 'Creating writable runtime copy at %s\n' "${runtime_dir#"$REPO_DIR/"}"
@@ -368,6 +380,10 @@ while [[ $# -gt 0 ]]; do
         --wine)
             [[ $# -ge 2 ]] || { usage >&2; exit 2; }
             WINE_BINARY=$2; shift 2
+            ;;
+        --source-game)
+            [[ $# -ge 2 && -n $2 ]] || { usage >&2; exit 2; }
+            SOURCE_GAME_OVERRIDE=$2; shift 2
             ;;
         --runner)
             [[ $# -ge 2 ]] || { usage >&2; exit 2; }

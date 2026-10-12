@@ -65,13 +65,18 @@ written before release publication of the request ID. The host acquires it,
 copies upload bytes, performs the command, and release-publishes the matching
 response ID after HRESULT/value. There are no asynchronous pointer loans.
 
-A 2 ms Qt timer services requests. The x86 caller waits at most approximately
+A 2 ms Qt timer on the owned audio worker services requests. The native Device,
+PCM pumping and commands all run serially on that worker; the QObject facade
+returns failure callbacks to its owner thread and joins the worker after closing
+the channel/output. GUI shader preparation no longer blocks audio polling or
+PCM pumping. The x86 caller waits at most approximately
 one second; contention returns busy. Timeout or withdrawn readiness permanently
 retires that producer channel, preventing late replies from applying to a new
 request. Native voices then return errors. IDs cannot wrap into a reused request.
 Broker destruction withdraws readiness and retires the whole native session.
-This diagnostic bridge can stall gameplay and is not a low-overhead production
-transport. Same-thread Qt event processing must remain responsive.
+This diagnostic bridge still uses synchronous request/reply calls and can stall
+gameplay; it is not a low-overhead production transport. Worker responsiveness
+and physical output/timing equivalence remain separate validation boundaries.
 
 Header words 21/22 count native device selections/pre-selection fallback
 attempts; word 23 counts failed admitted requests. These are bounded-scope
@@ -103,9 +108,11 @@ voices; native completion/PCM is checked independently by the dispatcher test.
 The second command stages a disposable game with both renderer/audio imports,
 checks all staged hashes and unchanged source hash, and verifies 2927 original
 files before and after. It launches no game. The final command opens the shell;
-press Launch game only when ready for a separate live experiment. Without
-`--native-voices`, the launcher removes inherited channel settings and retains
-Wine audio. Existing movies/WinMM sounds are separate paths.
+press Launch game only when ready for a separate live experiment. Native
+command presentation now defaults to native voices; `--legacy-audio` selects
+Wine DirectSound. Capture/readback and embedded Wine presentation keep their
+legacy default unless `--native-voices` is explicit. Inherited channel settings
+never authorize a new launch. Existing movies/WinMM sounds are separate paths.
 
 Evidence: `working/tests/audio-bridge/run-6o2_dv38/report.json`, with all 11
 combined audio/asset CTests passing, 16 matching request/ack IDs, one native

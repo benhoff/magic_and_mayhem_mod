@@ -20,6 +20,7 @@ from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_r
 from campaign_movement import validate_movement_probes
 from campaign_crowded import validate_crowded
 from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
+from native_audio_launch import validate_activity as validate_audio_activity, validate_retirement as validate_audio_retirement
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -377,6 +378,10 @@ def main():
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
+    parser.add_argument('--native-voices',action='store_true',help='Require native voice selection, successful upload/play and output retirement')
+    parser.add_argument('--default-audio',action='store_true',help='Verify default native audio without an explicit shell audio flag; requires normal Quit')
+    parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
+    parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
@@ -384,6 +389,9 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    explicit_native_audio=args.native_voices
+    if args.legacy_audio and (args.native_voices or args.default_audio):parser.error('Legacy and native audio are separate routes')
+    args.native_voices |= args.default_audio
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
@@ -401,6 +409,7 @@ def main():
         if args.difficulty not in (1,2,3):parser.error('Casting/combat requires --difficulty 1, 2 or 3 (other campaign journeys remain separate)')
         if not args.stress_seconds:args.stress_seconds=60
     if args.spell_cases and not args.require_casting_combat:parser.error('--spell-cases requires casting/combat')
+    if args.native_voices and not (args.check_only or args.normal_quit):parser.error('Native voice retirement proof requires --normal-quit')
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
@@ -414,7 +423,7 @@ def main():
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
-              'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
@@ -423,6 +432,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
@@ -434,6 +444,11 @@ def main():
             if Path(path).is_absolute() or not (ROOT/path).resolve().is_relative_to(ROOT):raise ValueError('Unsafe declared source')
             if sha(ROOT/path)!=expected:raise ValueError('Declared source changed before execution: '+path)
         report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
+        if args.native_voices and not any(c['behavior']=='HOST.native-menu-audio' for c in declaration['claims']):raise ValueError('Native audio requires its prospective behavior declaration')
+    if not args.legacy_audio:
+        audio_sources=['tools/native_audio_launch.py','tools/build-audio-bridge.py','tools/build-shadow-bridge.py','runtime/shadow/win32_min.h']
+        audio_sources += [p.relative_to(ROOT).as_posix() for p in (ROOT/'runtime/audio').iterdir() if p.is_file()]
+        report['sources'].update({p:sha(ROOT/p) for p in audio_sources})
     if args.native_draw:
         native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
         report['sources'].update({p:sha(ROOT/p) for p in native_sources})
@@ -462,6 +477,11 @@ def main():
     if args.scene_production_probe:
         if not args.resident_world or not args.normal_quit or args.trace_engine_cadence:raise ValueError('Scene production requires isolated resident World and normal Quit')
         env['MNM_SCENE_PRODUCTION_PROBE']=str(('observe','full','slice','frozen-history','prepared-scene').index(args.scene_production_probe))
+    if args.source_game:
+        source_game=args.source_game.resolve()
+        if not source_game.is_relative_to(ROOT/'working') or not source_game.is_dir():raise ValueError('Campaign source game must be under working/')
+        env['MNM_MENU_GAME_SOURCE']=str(source_game)
+        report['source_game']=str(source_game)
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'
@@ -491,6 +511,8 @@ def main():
         # invalid combination currently exits 2; never silently retry one mode.
         probe_env = dict(env, QT_QPA_PLATFORM='offscreen')
         command = [str(binary), '--repo', str(ROOT), '--live-menus', '--native-commands', '--smoke-test']
+        if explicit_native_audio:command.append('--native-voices')
+        if args.legacy_audio:command.append('--legacy-audio')
         if args.resident_world:command.append('--resident-world')
         with (out / 'mode-probe.log').open('w') as log:
             probe = subprocess.run(command, cwd=ROOT, env=probe_env, stdout=log,
@@ -555,6 +577,8 @@ def main():
             env['MNM_CAMPAIGN_TIMEOUT_MS'] = str((args.timeout-5)*1000)
             command = [str(ROOT / 'tools/run-qt-shell.sh'), '--live-menus', '--native-commands',
                        '--live-menu-test', str(out / 'flow.json')]
+            if explicit_native_audio:command.append('--native-voices')
+            if args.legacy_audio:command.append('--legacy-audio')
             report['launch_command'] = command
             if args.resident_world:command.append('--resident-world')
             with (out / 'shell.log').open('w') as log:
@@ -612,6 +636,15 @@ def main():
                 report['resident_world']=resident
                 scene=json.loads((roots[0]/'scene-bridge-build.json').read_text())
                 report['scene_bridge_build']=scene
+            if args.native_voices:
+                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()))
+                report['native_audio_channel']=validate_audio_retirement(roots[0]/'native-voices.bin',report['native_audio'])
+                audio_build=json.loads((roots[0]/'audio-bridge-build.json').read_text())
+                manifest=json.loads((roots[0]/'manifest.json').read_text())
+                if not manifest.get('native_voices') or sha(roots[0]/'game/MnmAudio.dll')!=manifest['audio_dll_sha256'] or audio_build['sha256']!=manifest['audio_dll_sha256']:raise ValueError('Native audio staging/build fingerprint mismatch')
+                for name,digest in audio_build['compiled_sources'].items():
+                    if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native audio compiler source: '+name)
+                report['native_audio_compiled_sources']=audio_build['compiled_sources']
             if args.native_draw:
                 report['native_draw']=validate_native_draw(roots[0])
                 native_build=json.loads((roots[0]/'native-draw-build.json').read_text())
@@ -693,6 +726,9 @@ def main():
             report["sources_unchanged"]=all(sha(ROOT/path)==expected for path,expected in report["sources"].items())
             corpus=out/'resident-source.bin'
             if corpus.exists():report['resident_capture']={'path':str(corpus),'bytes':corpus.stat().st_size,'sha256':sha(corpus)}
+            if not report['sources_unchanged']:
+                report.update(success=False,status='failed',error='Declared sources changed during the run')
+                exit_code=1
             stop_group(shell)
         except (OSError, subprocess.SubprocessError) as error:
             report.update(success=False, status='failed', cleanup_error=str(error))

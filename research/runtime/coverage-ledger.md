@@ -6722,6 +6722,50 @@ Exactbd177b6..38cba10 history review:17 files,zero receipt gaps; no retrospectiv
 validation or gate assertion. See[experiment](scene-production-repetition.md).
 
 
+## Native voices with public native menus — 2026-10-11
+
+`HOST.native-menu-audio` now has scoped implementation and bounded live
+observation for `--live-menus --native-commands --native-voices`. Menu staging
+adds the hash-checked audio DLL; the session creates its native output/broker
+before Wine launch and authorizes only a fresh owned channel. Inherited paths,
+unsupported staging, mismatched DLLs and stale channels refuse. The broker
+survives menu/campaign/Mini handoffs and retires on process completion.
+
+The [source-stable TITAN public proof](native-menu-audio-public-pass-20261011.json)
+passes Main/Region/campaign/Mini/resume and normal original Quit: six PCM sample
+creates/uploads/releases,304942 uploaded bytes,ten plays,89 acknowledged
+requests,one native selection and zero fallback/adapter/broker failures. Started
+Qt output and readiness withdrawal are observed; the final channel independently
+matches request/ACK89 and ready0. Compiler/source/input/original-manifest guards
+and private Wine cleanup pass. Two C++ lifecycle/voice fixtures,seven Python
+admission/retirement cases,19 campaign validator cases,compiler provenance guards
+and six launcher composition cases with a pinned source pass. This does not
+claim human listening,original audio equality,semantic COM cleanup,all
+WinMM/media/loader retirement,or fresh casting/combat/long-stress coverage.
+
+The modified default executable remains byte-identical; a hash-checked scripted
+isolated source uses the supplied original No-CD executable and the same assets.
+The launcher/source override retains the variant manifest checks and keeps
+runtime copies separate by source path. The pinned input is retained under
+`working/experiments/native-audio-input/run-h4r5z9xx/`. See
+[native menu audio boundaries and launch](native-menu-audio.md).
+
+The [declaration refusal](native-menu-audio-declaration-refusal-20261011.json),
+[executable refusal](native-menu-audio-executable-refusal-20261011.json),and
+[extended source-drift/normal-Quit timeout](native-menu-audio-source-drift-timeout-20261011.json)
+are preserved unsuccessful attempts. The latter completes casting/combat and
+Mini/resume but is neither a current-code pass nor normal-Quit evidence.
+Shared-source changes leave broader historical audio/host/rendering evidence
+stale; only the new scoped host policy is promoted. Independent understanding,
+comparison and full replacement boundaries remain unchanged.
+
+Committed-history checks are separate from these uncommitted audio edits:
+[the prior integration merge](coverage/native-menu-audio-history-20261011.json)
+has360 exact receipt chains;[the incoming history](coverage/native-menu-audio-incoming-history-20261011.json)
+has13commits/228file versions and zero missing chains. No retrospective gate
+passage or new engine validation is inferred.
+
+
 ## NS21 — bounded native melee encounter (2026-10-12)
 
 `NP.combat-encounter` adds a separate headless `CombatSession` over owned native
@@ -6753,3 +6797,42 @@ review of38cba10..82f9bff covers seven file transitions and has no unresolved
 receipt gaps; uncommitted combat/audio work is accounted separately. See
 [native combat scope/evidence](native-combat-encounter.md) and
 [the runnable harness](../../apps/combat-sandbox/README.md).
+
+
+## Native audio default and independent worker — 2026-10-12
+
+Native command presentation now selects native DirectSound voices by default,
+including public native menus and ordinary OpenGL command launches.
+`--legacy-audio` opts out;`--native-voices` remains explicit opt-in/alias and
+conflicting flags refuse. Original capture/readback and embedded Wine diagnostics
+keep their legacy default unless explicitly selected. WinMM/movie/CD audio,
+original WAV reads,DSOUND module retirement and human/timing equivalence remain
+separate. The existing unsupported default executable is preserved; the verified
+same-assets pinned source still supplies validation.
+
+The first default run exposes a GUI-serviced upload timeout at request38 despite
+its later successful ACK;one adapter failure permanently retires that producer.
+Device/channel polling/PCM pumping now share one owned audio worker,independent
+of GUI shader work;no concurrent Device mixing/control access is introduced.
+Facade snapshots/stop synchronize through the worker;output/channel/Device are
+closed on it before join. Failure callbacks return to the owner thread and carry
+session-generation guards. The unchanged one-second PE deadline remains.
+
+The [fresh default proof](native-audio-default-worker-public-pass-20261012.json)
+passes Main/Region/campaign/Mini/resume and normal original Quit without an audio
+flag:7sample creates/uploads,349862PCM bytes,12plays,8releases,109request/ACK,
+one native selection and zero fallback/adapter/broker failures. Started output,
+independent mapped ready0,stable sources/compiler/inputs,original manifests and
+private Wine cleanup pass. Ten CLI admissions/two refusals and the two C++
+lifecycle/broker fixtures pass;the latter services a peer within one second while
+the owner blocks1.2seconds and checks restart/retired-channel isolation. Seven
+Python audio guards and19campaign validator cases pass.
+
+The [GUI timeout](native-audio-default-gui-timeout-20261012.json) and
+[first worker graphics-shutdown failure](native-audio-default-worker-graphics-shutdown-failure-20261012.json)
+remain failed journeys. The latter has zero audio failures but cannot supply a
+normal-Quit proof;the later success does not establish universal graphics
+shutdown. Physical device failure/stale notification paths,long stress,audible
+comparison,full driver/COM/WinMM/loader retirement and broad timing equivalence
+remain gaps. Only the new default/worker host scope is refreshed;previous results
+and broader historical statuses/hashes remain separate.

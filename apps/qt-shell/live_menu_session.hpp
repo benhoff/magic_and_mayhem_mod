@@ -12,6 +12,8 @@ class LiveMenuSession final : public QObject {
 public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
     bool nativeCommandsEnabled=false;
+    bool nativeVoicesEnabled=false;
+    std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativePresentation;
     bool campaignPreferencesEnabled=true;
     bool campaignDefeatEnabled=true;

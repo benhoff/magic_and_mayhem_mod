@@ -1,0 +1,58 @@
+"""Authorize the fresh, session-owned native voice channel before starting Wine."""
+import hashlib
+import struct
+
+SIZE = 128 + 16 * 1024 * 1024
+
+
+def authorize(root, metadata, environment):
+    # Inherited paths never authorize native audio in a new menu session.
+    environment.pop('MNM_AUDIO_CHANNEL', None)
+    enabled = metadata.get('native_voices', False)
+    if type(enabled) is not bool:
+        raise ValueError('Invalid native voice policy')
+    if not enabled:
+        return
+    if not metadata.get('native_render') or metadata.get('origin') != 'menu_action_bridge':
+        raise ValueError('Native voices require native menu/render staging')
+    dll = root / 'game/MnmAudio.dll'
+    if dll.is_symlink() or hashlib.sha256(dll.read_bytes()).hexdigest() != metadata.get('audio_dll_sha256'):
+        raise ValueError('Native audio DLL hash mismatch')
+    path = root / 'native-voices.bin'
+    if metadata.get('audio_channel') != str(path) or path.is_symlink() or path.stat().st_size != SIZE:
+        raise ValueError('Refusing redirected or invalid native voice channel')
+    with path.open('rb') as source:
+        header = source.read(128)
+    words = struct.unpack('<32I', header)
+    if header[:8] != b'MNMAUD01' or words[2:4] != (2, SIZE) or words[20] != 1:
+        raise ValueError('Native voice broker is not ready')
+    if any(words[4:19]) or any(words[21:]):
+        raise ValueError('Refusing stale native voice channel')
+    environment['MNM_AUDIO_CHANNEL'] = 'Z:' + str(path).replace('/', '\\')
+
+
+def validate_activity(report):
+    for name in ('requests', 'creates', 'uploads', 'uploaded_bytes', 'plays', 'releases', 'native_selections'):
+        if type(report.get(name)) is not int or report[name] < 1:
+            raise ValueError('Missing native audio activity: ' + name)
+    for name in ('fallbacks', 'adapter_failures', 'failed_requests'):
+        if type(report.get(name)) is not int or report[name] != 0:
+            raise ValueError('Native audio failed or fell back: ' + name)
+    if report.get('audible_output') is not True or report.get('ready_before_stop') is not True or report.get('ready_after_stop') is not False or report.get('error') != '':
+        raise ValueError('Native audio output/retirement was not confirmed')
+    return report
+
+
+def validate_retirement(path, report):
+    if path.is_symlink() or path.stat().st_size != SIZE:
+        raise ValueError('Invalid retired native voice channel')
+    with path.open('rb') as source:
+        header = source.read(128)
+    words = struct.unpack('<32I', header)
+    if header[:8] != b'MNMAUD01' or words[2:4] != (2, SIZE) or words[20] != 0 or not words[4] or words[4] != words[16]:
+        raise ValueError('Native voice channel was not acknowledged and retired')
+    expected = (report['native_selections'], report['fallbacks'], report['adapter_failures'])
+    if words[21:24] != expected:
+        raise ValueError('Native audio report differs from the final channel')
+    return dict(request=words[4], acknowledgement=words[16], ready=words[20],
+                native_selections=words[21], fallbacks=words[22], adapter_failures=words[23])
