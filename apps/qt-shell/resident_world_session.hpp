@@ -26,6 +26,8 @@ public:
     bool ready(std::uint64_t generation,std::uint64_t nonce) const;
     bool independent() const{return independent_;}
     mnm::render::GpuFrame drawIndependent(std::uint64_t generation);
+    struct DisplayState {std::chrono::steady_clock::time_point deadline;std::uint64_t generation;bool active,pending;};
+    DisplayState displayState() const{return {nextFrame_,completed_,independent_&&bool(world_)&&!normalQuitRetired_&&error_.isEmpty(),bool(ownedPending_)};}
     void pollOwned(bool);
     void noteIndependentPresentation(double uiMilliseconds);
     void saveReport(const QString&);

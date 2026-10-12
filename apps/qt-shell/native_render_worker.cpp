@@ -67,6 +67,13 @@ void NativeRenderWorker::run(){
         next.report["presentation_exports_skipped"]=QString::number(skipped_);
         next.report["presentation_lease_high_water"]=int(highWater_);
         next.report["render_owner_turns"]=QString::number(turns_);
+        static const char* reasons[]={"ui_publication","incomplete_ui","pending_world_import","hidden","source_completed","render_attempt"};
+        QJsonObject reasonsJson;
+        for(unsigned i=0;i<RenderDeadlineProbe::ReasonCount;++i)reasonsJson[reasons[i]]=QJsonObject{{"turns",QString::number(deadlineProbe_.turns[i])},{"opportunities",QString::number(deadlineProbe_.opportunities[i])}};
+        const auto timing=[](const RenderStageTiming& t){QJsonArray bins;for(auto n:t.bins)bins.append(double(n));return QJsonObject{{"samples",double(t.samples)},{"mean_ms",t.samples?t.totalMs/t.samples:0},{"max_ms",t.maxMs},{"bins",bins}};};
+        next.report["display_deadline_probe"]=QJsonObject{{"policy","ui-present-barrier"},{"reasons",reasonsJson},{"max_late_ms",deadlineProbe_.maxLateMs},
+            {"world_poll",timing(worldTiming_)},{"command_poll",timing(commandTiming_)},{"extra_world_ui",timing(extraTiming_)},{"export",timing(exportTiming_)},{"turn",timing(turnTiming_)},{"slow_turns",slowTurns_},
+            {"scope","Observation after source/command work. Per-reason opportunities deduplicate global16.667ms monotonic buckets, may overlap and are not additive. CPU elapsed times include driver waits, not GPU execution. Histograms upper bounds1/2/4/8/16.667/33.334/100ms then overflow. Slow turns bounded256."}};
         {std::lock_guard<std::mutex> lock(mutex_);published_=std::move(next);}
     };
     auto save=[&]{
@@ -84,20 +91,35 @@ void NativeRenderWorker::run(){
                 else{world_->abort("Render owner cancelled");commands_->abort();}
                 updateStatus();save();break;
             }
+            QElapsedTimer turnClock,stageClock;turnClock.start();stageClock.start();
             if(request)commands_->requestStop();
+            const auto beforeWorld=world_->displayState().generation;
             if(!pause)world_->poll(quit);
+            const double worldMs=stageClock.nsecsElapsed()/1000000.;worldTiming_.add(worldMs);stageClock.restart();
+            double commandMs=0,extraMs=0,exportMs=0;unsigned presents=0;std::uint64_t generation=0;
+            int reason=-1;
             if(!pause && !commands_->ended()){
                 const auto before=commands_->result()?commands_->result()->presents:0;
+                const auto importsBefore=commands_->result()?commands_->result()->residentWorldImports:0;
                 if(!commands_->poll())throw std::runtime_error(commands_->error().toStdString());
                 const auto after=commands_->result()?commands_->result()->presents:0;
+                presents=after-before;commandMs=stageClock.nsecsElapsed()/1000000.;commandTiming_.add(commandMs);stageClock.restart();
+                generation=commands_->preparedGeneration();
+                const auto state=world_->displayState();const auto now=std::chrono::steady_clock::now();
+                if(state.active && now>=state.deadline){
+                    reason=!draw?RenderDeadlineProbe::Hidden:state.pending?RenderDeadlineProbe::PendingWorldImport:
+                        (state.generation!=beforeWorld || (commands_->result()&&commands_->result()->residentWorldImports!=importsBefore))?RenderDeadlineProbe::SourceCompleted:!generation?RenderDeadlineProbe::IncompleteUi:
+                        presents?RenderDeadlineProbe::UiPublication:RenderDeadlineProbe::RenderAttempt;
+                    deadlineProbe_.observe(state.deadline,now,RenderDeadlineProbe::Reason(reason));
+                }
                 if(before==after && draw){
-                    const auto generation=commands_->preparedGeneration();
                     if(generation){auto frame=world_->drawIndependent(generation);if(frame.valid()){
                         QElapsedTimer clock;clock.start();
                         if(!commands_->presentPrepared(frame,generation))throw std::runtime_error(commands_->error().toStdString());
                         world_->noteIndependentPresentation(clock.nsecsElapsed()/1000000.0);
                     }}
                 }
+                extraMs=stageClock.nsecsElapsed()/1000000.;if(extraMs>0.1)extraTiming_.add(extraMs);stageClock.restart();
                 if(frameChanged_ && rendered_.valid()){
                     // Bounded immutable output leases. Display coalescing never
                     // discards/reorders engine source updates or command imports.
@@ -112,6 +134,9 @@ void NativeRenderWorker::run(){
                     frameChanged_=false;
                 }
             }
+            exportMs=stageClock.nsecsElapsed()/1000000.;if(exportMs>0.1)exportTiming_.add(exportMs);
+            const auto totalMs=turnClock.nsecsElapsed()/1000000.;turnTiming_.add(totalMs);
+            if(totalMs>33.334 && slowTurns_.size()<256)slowTurns_.append(QJsonObject{{"turn",QString::number(turns_)},{"source_generation",QString::number(world_->displayState().generation)},{"prepared_generation",QString::number(generation)},{"command_presents",int(presents)},{"reason",reason},{"world_ms",worldMs},{"command_ms",commandMs},{"extra_ms",extraMs},{"export_ms",exportMs},{"total_ms",totalMs}});
             ++turns_;updateStatus();
             std::unique_lock<std::mutex> lock(mutex_);wake_.wait_for(lock,std::chrono::milliseconds(1),[this]{return stop_||requestStop_;});
         }

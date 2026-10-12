@@ -42774,7 +42774,8 @@
         "compat/legacy/world_continuous.cpp",
         "compat/legacy/world_continuous.hpp",
         "tools/coverage_claims.py",
-        "tools/draft-coverage-claims.py"
+        "tools/draft-coverage-claims.py",
+        "apps/qt-shell/render_deadline_probe.hpp"
       ],
       "status": {
         "understanding": "partial",
@@ -42791,10 +42792,88 @@
         "HOST.native-render-owner.buffer-reuse-controls-20261012",
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.producer-cache-controls-20261012",
-        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012",
+        "HOST.native-display-deadlines.baseline-controls-20261012",
+        "HOST.native-display-deadlines.baseline-live-negative-20261012"
       ],
       "remaining_gaps": [
         "Fresh current dedicated-owner controls and TITAN full native campaign support partial native policy and live observation. ActualWorld27.2142FPS andvisible35.8486/48.8832FPS fail60FPS;source19.0883Hz failsstricter19.5diagnostic although19FPSsmokefloor passes. Full original comparison/replacement,physicalscanout,interpolation,contextloss/recreation,format/dimension changes andunexecuted failurebranches remainpending. Initial50mscopy-order deadlinefailure ispreserved; repeated successfuljourneys do notproveaGAPfix."
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Observe native World display opportunities separately from UI publications",
+      "scope": "Dedicated owned V5 render owner observes due World clock after source/command work, categorizing UI PRESENT barrier, incomplete UI, pending World import, hidden viewport, new source completion and render attempt. Per-reason opportunities deduplicate global monotonic16.667ms buckets; overlapping reasons are not additive and poll counts are not frame counts. Aggregate CPU elapsed stage histograms include driver waits, not GPU execution, and bounded256slow turns. Instrumented baseline retains existing source FIFO/two credits, UI PRESENT scheduling barrier, native rendering, immutable two-buffer handoff, original simulation/pacing and conservative failure/teardown. Diagnostics do not prove causal GPU/engine costs,60FPS or equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/resident_world_session.hpp"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py",
+        "tools/probe-native-display-deadlines.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-display-deadlines.baseline-controls-20261012",
+        "HOST.native-display-deadlines.baseline-live-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Fresh observer controls/short TITAN baseline support partial diagnostic implementation and live observation,not causal GPU attribution. UI-independent scheduling/latest sealed UI repair,fullcasting/combat/portraitjourney,source19floor and60actualWorldFPS remainpending."
       ]
     }
   ],
@@ -89867,6 +89946,64 @@
           "equals": "2"
         }
       ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.baseline-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh baseline deadline instrumentation controls deduplicate polling observations,rejectearly/inactive ticks,retainoverlappingreasons,histogramboundaries;171GPUownerpresentations/oneproducer/twooutput/slowGUI/refusal/joins/109defaultGPU comparisons unchanged. No real World deadline cause/scheduling repair/live equivalence claim.",
+      "record": "research/runtime/native-display-deadline-baseline-controls-20261012.json",
+      "sha256": "713307d1995b0362cff2c94e15f07205de898fdb63f7e8fe5055b33cb8adec09",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/deadline_deduplication",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.baseline-live-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Short TITAN native campaign flow/normalQuit succeeds at639balancedsource/imports,zerooutstanding/readbacks/fallback,twooutputbuffers. Performancefailsoriginal-source18.6797Hzbelow19floor;World32.8672FPS,visible56.7617/63.0493. Observerrecords606UIpublication and1081incompleteUI opportunities (not additive),550sourcecompletion,681renderattempts. CPUstageobservations do notproveGPUtime/causality or60FPS;shortjourney excludescasting/combat/portrait claims.",
+      "record": "research/runtime/native-display-deadline-baseline-live-negative-20261012.json",
+      "sha256": "caeea7d215597d8c910843b929ec1cad6cb925fb1986685a11cdce0948cbcbf6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/functional_flow_success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100792,7 +100929,8 @@
         "HOST.native-render-owner.controls-20261012",
         "HOST.native-render-owner.current-controls-20261012",
         "HOST.native-render-owner.buffer-reuse-controls-20261012",
-        "HOST.native-render-owner.producer-cache-controls-20261012"
+        "HOST.native-render-owner.producer-cache-controls-20261012",
+        "HOST.native-display-deadlines.baseline-controls-20261012"
       ]
     },
     {
@@ -100810,7 +100948,38 @@
         "HOST.native-render-owner.copy-timeout-negative-20261012",
         "HOST.native-render-owner.functional-performance-negative-20261012",
         "HOST.native-render-owner.pooled-performance-negative-20261012",
-        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012",
+        "HOST.native-display-deadlines.baseline-live-negative-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.fixture",
+      "scope": "Synthetic deadline observer deduplication/early-inactive refusal/histogram boundaries plus existing native owner GPU/immutable/frame-cache/teardown controls; no live World causality.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-display-deadlines"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py"
+      ],
+      "evidence": [
+        "HOST.native-display-deadlines.baseline-controls-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.live",
+      "scope": "Source-bound TITAN native campaign deadline observations with World/UI/source/publication counts,stage CPU timings,visible paints,owned FIFO/teardown; failed journeys/performance retained independently.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-display-deadlines"
+      ],
+      "tests": [
+        "tools/probe-native-display-deadlines.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-display-deadlines.baseline-live-negative-20261012"
       ]
     }
   ],
@@ -101185,8 +101354,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-render-owner-cached-pool-20261012.json",
-    "sha256": "51fdc351ba8f699855ded4e839f94b38ed9b12af61d8232021ae246d7c5e0915"
+    "path": "research/runtime/coverage/source-index-native-display-deadline-baseline-20261012.json",
+    "sha256": "e640e151879ef86358802b304873c770e85f4797732febbdd77436ba1c370965"
   },
   "claim_bindings_required": true
 }
