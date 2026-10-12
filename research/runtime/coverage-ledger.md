@@ -7443,3 +7443,522 @@ Profile operation23/24/25, capability32 and response-copy ownership are now
 documented in protocols/CONTRACTS.md. This documentation does not change the
 wire or claim new validation of other protocols. The earlier i386 fixture
 compiler failure remains retained; fresh original evidence is separate.
+
+### Prepared-scene cost attribution (2026-10-12, pending)
+
+The scene-production probe now separates paired original queue-consumer wall
+time (including native capture/delivery/wait) from extra scene build/surrounding
+work, with guarded original post-call MOV replay and original consumer return
+PCs unchanged. Diagnostic wireversion5 retains versions1..4. New synthetic
+duration/count rejection and PE32 ABI/guard controls precede live TITAN timing.
+The original50ms update target is unchanged; this milestone does not increase FPS.
+Private fixture startup/display failures are retained under working/tests;
+no failed initialization supplies a rendering/gameplay equivalence claim.
+
+
+The timing milestone controls pass44PE32/20decoder cases. Source-bound TITAN
+checkpoint16matches protected state and ordered scenes:30.55809ms total,
+28.67579ms queue consumption/native delivery and1.88230ms build/surround.
+The full campaign fails19FPS at18.68812FPS; no formal gameplay/performance
+promotion follows. Immutable negative evidence is registered; native delivery
+cost reduction and sustained render scheduling remain outstanding.
+
+
+### Minimap scratch preparation (2026-10-12)
+
+Known traced dual-background services recycle bounded owned planes/receipts,
+restore sentinels after success/throw, validate before mutation and avoid sorting
+idempotent duplicate assignments; generic callbacks retain full scans.
+Independent16service/40recycle/24producer and refusal controls pass. Same2423
+actual World prefix on O2 TITAN EGL preserves terminal hash and improves
+completed throughput72–78to91–98FPS; producer CPU4.0to1.7ms. This is native
+preparation/replay evidence only. Public gameplay, frame scheduling, simulation
+cadence and steady60FPS remain pending; historical claims/hashes are preserved.
+
+
+### Budgeted prepared-scene scheduling (2026-10-12, live pending)
+
+Mode5 keeps original50ms pacing and at mosttwo extra prepared slices per primary
+inside a60s predicted-cost deadline window after16warm observations. Every extra
+retains full protected-state and ordered-scene checks, extra-only history skips
+and first-failure stop without rollback. Bounded wireversion6 separately records
+World cadence, original advancing intervals, prediction misses and exclusions.
+60PE32/28decoder controls pass, including two extras, insufficient budget/target
+refusal, real forecast overrun, first boundary exclusion and exact histogram.
+Higher sustained live World FPS and unchanged advancing simulation rate remain
+pending; no default, interpolation/uniform60FPS or original equivalence claim.
+
+
+Report-worker TITAN trial (2026-10-12) remains NEGATIVE as a full milestone.
+All238extras (16warm+222budgeted) preserve protected bytes/ordered scenes.
+The60047ms window delivers23.54822Worlds/sec with19.85927Hz all-valid advancing
+simulation, median50/p9554/max123ms, one excluded first interval and one deadline
+miss. No release/report checkpoint stalls appear in the bounded phase log.
+The25FPS threshold is unchanged and missed. Whole journey fails post-combat
+retreat to observed[10,71] (last living wizard[14,61]); independent input trace
+records summon,Fireball,melee and player-party lethal observations but formal
+full gameplay/normal Quit checks remain unpassed. Aggregate19.682WorldFPS at
+failure. Sources, original manifest and owned cleanup verify. This result proves
+a bounded rendering gain, not smoother simulation, full success or60FPS.
+See `scene-draw-budget-report-worker-live-negative-20261012.json`; prior failures
+and source fingerprints are retained.
+
+
+Final progress-worker trial (2026-10-12) passes the complete native campaign:
+5042balanced Worlds,20.42298deliveredWorldFPS,19FPS and half-rate sampled-window
+gates, summon/Fireball/melee/player-party lethal, spell refusals, independent
+movement, portraits, Mini resume/Quit-No and normal original Quit. Sources,
+original manifest and owned cleanup verify;80-byte ACK/zero pixel reply, delivery
+readback/fallback/pending and current final resident retirement. No performance
+sample is filtered and no gate is lowered. See
+`scene-draw-budget-native-campaign-20261012.json`.
+
+The outer scheduling target remains NEGATIVE:60.007s window24.53047WorldFPS
+misses25, and20.42298aggregate misses20.5. All296extras (16warm+280budgeted)
+preserve exact protected bytes/ordered rows; advancing simulation19.86622Hz,
+median50/p9554/max142ms, one mixed first interval excluded and4deadline misses.
+This proves a bounded drawing gain with unchanged simulation cadence, not60FPS
+or interpolated motion. The route remains opt-in. Retain
+`scene-draw-budget-progress-worker-live-negative-20261012.json`.
+
+The prior corrected-projection trial completed every gameplay/Quit check but
+failed short-window paint FPS; owner capture acquisition was at most14.20ms.
+The smoke progress diagnostic still used synchronous per-second QSaveFile
+publication; the final trial replaces it with one value-only worker, skips busy
+intermediate diagnostics, propagates ready errors and retains the final flow
+report/every FPS sample. Second-long recurring gaps no longer occur in this
+bounded trial. Filesystem attribution is correlated, not a measured kernel-I/O
+causality proof. The post-combat retreat uses ordinary isometric ground projection
+instead of fitting screen coordinates from partial/obstructed path progress; the
+original exact observed waypoint and aliveness checks remain unchanged.
+
+Exploratory private NVIDIA xcb_egl admission attempts failed the existing Qt
+resident import fixture with `Viewport unavailable`; no backend impossibility
+or cause is inferred. Raw reports/logs remain in
+`working/tests/render-progress-heartbeat/run-b29z02l8` and `run-xcv7asao`.
+NVIDIA EGL offline replay performance is still separate from public Qt admission.
+Committed578bd89..479ce20 history review retains30exact source transitions with
+zero missing receipts in `working/tests/scene-draw-budget-worker-history-20261012.json`.
+
+Final current-source60PE32/28decoder and bounded menu/report-worker controls
+pass (`scene-draw-budget-final-controls-20261012.json`,
+`resident-report-worker-final-controls-20261012.json`); three passive movement
+validation tests pass. Implementation advances only to partial; GUI heartbeat
+and report policies have scoped live observation, while the budget scheduler
+retains no successful25FPS integration/default/original-equivalence claim.
+
+
+Owned snapshot handoff milestone (2026-10-12): explicitV5/mode2/MNMSACK1
+accepts owned validated scene source before native GPU execution. One capture
+owner verifies unchanged prefix and exact actual return before slot release;
+two outstanding snapshots include taken/native/GUI work until ordered import.
+Mapped held-render/backpressure/overwrite/12failure/cancel/join controls,512legacy
+V4leases and independent PE32 exact80-byte ACK/all80mutation controls pass with
+source/original/private cleanup. Build setup/type failures remain under
+working/tests/world-owned-snapshots. Native policy implementation is partial and
+integration headless; live original NOACCESS/bind/pacing/full gameplay and the
+independent native render/UI recipe are pending. No60FPS or original comparison.
+See `world-owned-snapshot-controls-20261012.json`.
+
+
+Prepared independent rendering milestone (2026-10-12): opt-in
+`--resident-world --independent-world` uses the owned V5 capture worker and a
+GUI-owned native rendering clock. Actual source return/import credits remain
+ordered and bounded at two; the original source producer is never called for
+extra native frames. The default V4 route remains separately admitted.
+
+Native World drawing restores its exact GPU baseline and reuses resolved native
+scene draws/resources. Nine storage controls,40destination-dependent repeats,
+two source updates and four saved-source repeat comparisons pass in
+`native-prepared-world-controls-20261012.json`. Source history advances only on
+engine updates. Native HUD replay retains versioned GPU inputs at their actual
+read boundaries: static uploads/copies are folded once, while World-dependent
+destinations restore and execute their ordered native operations per frame.
+`native-frame-recipe-controls-20261012.json` records30World/HUD repeats,
+source mutation/deletion, partial-frame refusal,100folded uploads, versioned
+masked writes,10swaps and indexed palette ownership. Ordinary readbacks and
+teardown surfaces are zero. Diagnostic output reads are confined to the tests.
+Resource budgets and conservative terminal refusal remain in force.
+
+Live evidence remains negative. The first attempt exposed a null capture owner
+at cold start, now fixed and regression-tested. The second attempt executed
+7107native World frames (3661extra), reaching38.36569renderFPS with
+18.64224sourceHz. It missed3327deadlines and later terminated on native command
+history GAP reason2, with pending imports and no successful normal Quit. Its
+bounded trace records a cross-thread copy-order timeout: waiting thread0x1dc,
+owner0x194, owner/waiter site0x101, phase4 and native stage0; the wait/owner ages were
+157/381ms despite the50ms policy. Phase4 follows original BltFast return and
+precedes tracker commit. This locates an admission/commit stall; it does not
+establish which scheduler/tracker/driver caused it or justify extending bounds.
+The source-stable negatives remain immutable in
+`independent-native-startup-negative-20261012.json` and
+`independent-native-first-render-negative-20261012.json`.
+
+Static HUD folding and separate extra-World/HUD submission timing were added
+following this failure; full TITAN gameplay/pacing/Quit/performance must be
+rerun. No60FPS, original equivalence, live replacement or interpolation claim
+is made. The engine still produces scene state; native simulation/interpolation
+remain separate work. Committed history e3b8400a..b3757828 was reviewed against
+18exact parent/current file receipts with zero unresolved accounting gaps;
+this is history accounting, not retrospective validation.
+
+
+Compiled native frame milestone (2026-10-12): retained per-read GPU snapshots
+and full-buffer replay pairs failed conservative resource guards during real
+combat/portrait/menu work. All negative attempts remain immutable under
+`independent-native-*-negative-20261012.json`; no historical success was changed.
+Partitioning alone also failed. The final implementation compiles World-coordinate
+provenance and literal native UI ownership while consuming ordinary commands.
+The selected WORLD starts with row-major coordinates; native CPU updates write
+literal sentinels, covered writes retain uncovered coordinates, keyed copies
+propagate ownership only where native source pixels pass the key, and translated
+copies/opaque self copies/clippers/swaps preserve the source coordinate. DELETE
+retires live maps. PRESENT snapshots native-produced UI values and the final map;
+intermediate command/source histories are discarded. Extra frames redraw the
+native World and assemble mapped World samples plus owned literal UI pixels in
+one native shader pass. World pixels stored alongside UI are never used where
+World coordinates exist. This supports equal-color UI ownership and translations,
+without a cached World screenshot, original output seed or ordinary readback.
+Static-only output does not request extra World rendering. GUI-thread ownership
+and GPU lease fences remain unchanged; native simulation/interpolation are absent.
+
+Current controls in `native-compiled-frame-controls-20261012.json` cover30repeats,
+200changing glyph versions,40fullscreen versions in5surfaces/oneassemblypass,
+source mutation/deletion,palette/swaps,partial-frame refusal,translated opaque
+selfcopy,clippers,equal-color UI,100masked scratch repetitions/partial unknowns,
+paired16MiB scratch and shared64handle/16Mpixel limits. Masked upload scratch is
+reused, flushing before overwrite; opposing aspect growth retires old scratch
+before replacement. `native-prepared-world-current-controls-20261012.json`
+refreshes9baseline controls,40destination-dependent repeats,two sourceupdates
+and four saved-source comparisons. Ordinary readbacks and teardown surfaces arezero.
+The source/prepared partition is now32handles/5Mpixels and32handles/11Mpixels
+inside the original64/16Mrenderer limit; legacy/nonprepared source caching stays
+32handles/16Mpixels. Source admission retains its existing LRU/FIFO DELETE and
+held-primary/DC/lock/current-operand exclusions; no original lifetime/game state
+changes. The complete native menu journey executes this allocation policy.
+
+The read-only combat oracle also had a real gap: an observed player Fireball
+killed the already melee-engaged enemy (HP11to0), but completion watched only
+melee deaths and kept waiting until later wizard death. The original failed run
+remains negative. New cross-journal validation ties original thread/bounded
+wrapping tick/enemy tuple,validated player cast/effect and nearest preceding
+living wizard snapshot. Synthetic provenance/death/time/refusal controls and
+retained-journal diagnosis are in `native-party-lethal-controls-20261012.json`.
+At mosttwo ordinary finishing Fireball inputs assist the same engaged enemy;
+no health/mana/AI/balance values are patched. Melee damage remains mandatory.
+
+Fresh private TITAN full native journey passes casting,Fireball/melee-party lethal,
+movement/retreat,invalid/insufficient-mana refusals,portrait stress,native menu
+return/resume and normal Quit. `independent-native-functional-performance-negative-20261012.json`
+retains a successful child campaign and a FAILED60FPS wrapper:4630sources/native
+completions/imports balance,no pending/outstanding work,highwater2,zero native/
+RGBA/World readbacks and pixel replies,no fallback,joined private cleanup and
+source/original verification. Source delivery19.504152Hz;native World drawing
+22.944131FPS;visible paints30.264980FPS over170.428seconds and42.898324FPS over
+61.401seconds. Worst windows9.930487/19.940179FPS are retained. Actual rendering,
+publications,visible paints and simulation remain separate measurements; no60FPS,
+interpolation,original equivalence or live-replacement promotion is asserted.
+The source ownership/native functional route is exercised live; GUI-owned source
+preparation/UI compilation/native submission and presentation remain the critical
+path. Removing that GUI dependency is the next substantial performance milestone.
+Committed b3757828..fdd1875e history was reviewed against41exact parent/current
+file receipts withzero gaps; this accounting does not assert retrospective tests.
+
+
+### Dedicated native render owner (2026-10-12)
+
+Owned V5 independent-world mode now moves native source preparation, World drawing
+and UI/command compilation to one joined render owner. GUI work is semantic input,
+menus and sampling immutable completed native GPU frames. Two bounded exported
+leases use production/sampling fences and return to the render owner before GL
+teardown; display coalescing does not drop source updates or WORLD imports. V4
+and default presentation retain their separate GUI target. Source credits remain
+two, and original engine pacing/ANI/RNG are unchanged.
+
+Fresh `HOST.native-render-owner.controls-20261012` supports partial implementation
+and headless integration: 151 ordered synthetic presentations, immutable held
+frame under a slow GUI, bounded output pressure, malformed refusal and joined
+teardown, zero ordinary readbacks. Existing GPU presentation controls passed.
+Full live World/gameplay/performance validation, context recreation, and 60 FPS
+remain pending. Existing source/scope-bound historical results are retained; no
+original comparison or live replacement status is promoted.
+
+The final header contract clarification has a fresh rerun under
+`HOST.native-render-owner.current-controls-20261012` (same successful 151-frame
+thread controls and 109 default GPU comparisons). The earlier source-bound result
+is retained unchanged rather than updating its hashes.
+
+
+### Render-owner failure boundaries and output-buffer reuse (2026-10-12)
+
+The first dedicated-owner TITAN journey fails original drawing-history
+ordering at 345 balanced sources; phase3/434ms locates the held original
+BltFast call span but does not establish preemption/operation duration or
+host-worker causality. The unchanged repeat completes the full functional
+journey and normal Quit at 4,626 balanced sources, with no readbacks/fallback,
+but fails performance: 27.11 actual World FPS, 34.50/47.95 visible paint FPS,
+worst windows 0/4.53FPS and 19.25Hz source delivery. Whole campaign/wrapper
+failures remain failures; no 60FPS, original equivalence or GAP fix claim.
+
+A bounded pair of persistent GPU output textures now replaces per-export
+allocation. Only a uniquely owner-held texture may be rewritten, after its
+consumer sampling fence; current ordinary GUI polling still performs no
+World/native command preparation/drawing or worker wait. Fresh
+`HOST.native-render-owner.buffer-reuse-controls-20261012` passes 171 ordered
+presentations/23 diagnostic pixel checks/two allocations, held-frame
+immutability, slow-GUI bounds, malformed refusal and joined teardown, plus
+109 default GPU comparisons. Pooled live gameplay/performance, context/format
+changes and the existing history-deadline boundary remain pending.
+
+
+The pooled live journey reaches normal Quit at 4,702 balanced Worlds with
+9,520 exports/two output allocations, but performance still fails (actual
+World 28.04FPS; source19.61Hz). Producer-cache review found an unnecessary
+mutable-frame lease release after each export. The render owner now retains
+its latest mutable producer lease across polls, preserving existing native
+presentation storage/damage, and exports only when new native work completes.
+Fresh `HOST.native-render-owner.producer-cache-controls-20261012` validates
+171 presentations/23 pixel checks/one producer allocation/two output buffers
+and joins, plus 109 legacy GPU comparisons; final pooled/cache-preserving
+live gameplay/performance remain pending. Historical negative evidence is
+retained, with no original equivalence, replacement or sustained60FPS claim.
+
+
+### Final dedicated-owner/cache proof (2026-10-12)
+
+Fresh `HOST.native-render-owner.cached-functional-performance-negative-20261012`
+passes the complete TITAN native campaign and its 19FPS smoke floor: successful
+casting/Fireball/melee/party lethal, movement/retreat/refusals, portrait stress,
+native menu return/resume and normal Quit. All 4,707 owned sources, native
+completions, original returns and imports balance; outstanding zero, source
+credits/output leases high-water two, ordinary readbacks/pixel replies/fallback
+zero, original verification/source stability/private Wine cleanup pass.
+9,734 immutable exports require exactly two output allocations. Producer
+presentation allocations (4,459 across changing original/recipe identities)
+are counted separately; the static control reuses one producer allocation.
+
+Performance remains failed. Actual World drawing is 27.2142FPS; visible paints
+35.8486/48.8832FPS over 176.827/61.964 seconds, with worst windows 10.9389/20FPS.
+Those windows pass the smoke's 19FPS average/half-floor checks, but fail the
+59FPS benchmark. Source19.0883Hz also fails the stricter diagnostic19.5Hz
+threshold; the wrapper retains that first failure and is not made successful
+by deriving the visible-paint windows. No simulation pacing or original
+ordering deadline was changed. No 60FPS, interpolation, original equivalence,
+physical scanout, full replacement or drawing-history GAP-fix claim.
+
+The owned V5 GUI now presents immutable completed frames and handles input/menus;
+native World preparation/drawing and command/UI compilation have one dedicated
+render owner. Remaining throughput cost is on that native path and GPU submission/
+sampling, with original source delivery still separately measured. Context/
+format/dimension changes and unexecuted failure branches remain explicit pending
+boundaries. Current controls and this journey support partial implementation
+and live observation; prior negatives retain their source/scope hashes.
+
+
+### Instrumented UI publication barrier baseline (2026-10-12)
+
+`HOST.native-display-deadlines` observes existing V5 worker scheduling without
+changing it. Due opportunities are sampled after source/command processing and
+deduplicated per reason in global monotonic16.667ms buckets. Reasons may overlap
+and must not be summed. Native worker CPU elapsed histograms (including driver
+waits and idle polls) and at most256slow turns distinguish source/commands/extra
+World+UI/export costs; these are not GPU execution timings.
+
+Fresh controls retain171orderedpresentations/23pixels/oneproducer/twooutputs,
+slowGUI/refusal/join behavior and109defaultGPUcomparisons, and verify deduplication,
+early/inactive deadline omission and histogram boundaries. The short TITAN
+baseline completes native menu/movement/resume/Quit at639balancedWorlds and
+zeroordinaryreadbacks/fallback/outstanding. It is a failed performance result:
+source18.6797Hzbelow19floor,actualWorld32.8672FPS,visible56.7617/63.0493FPS.
+No casting/combat/portrait or60actualWorldFPS claim.
+
+Observed due opportunity counts: UIpublication606,incompleteUI1081,pendingimport2,
+hidden38,sourcecompletion550,renderattempt681. The first two provide a bounded
+scheduling suspect, not a sum of recoverable frames. Source completion/import
+counts are kept distinct to avoid labeling a newly drawn source as UI starvation.
+The largest recorded World poll is833ms; marker/CPU elapsed data do not distinguish
+GPU shader/resource work from driver/scheduler stalls. Existing strict partial UI
+refusal and source-generation identity remain unchanged in this baseline.
+
+The next separate milestone will allow a due frame despite UI-only publications,
+using only the last sealed owned UI snapshot while current UI mutations remain
+incomplete; new World imports must still require a matching-generation complete
+UI snapshot. Original FIFO/two source credits/simulation/ANI/RNG and error/Quit
+contracts remain fixed. Committed range6de9bbc0..46adc82a was reviewed:17exactfile
+receipt chains,zero unresolved,in working/tests/native-display-deadline-prior-history-20261012.json;
+this is history accounting,not retrospective execution/gate proof.
+
+
+### Independent display admission and last sealed UI controls (2026-10-12)
+
+The measured baseline is committed as45dcf276. The separate display policy now
+admits a due native World redraw after UI-only PRESENT traffic. A source consumed
+or imported in this owner turn already supplies a World draw and prevents a
+duplicate extra draw. Hidden viewport,pending import,unsealed first UI andmixed
+World/UI generations refuse admission. Original source FIFO/two credits,pacing,
+producer history/ANI/RNG and native error/Quit/buffer ownership stay unchanged.
+The optional MNM_WORLD_UI_CLOCK_BASELINE=1 environment switch retains the measured
+old policy for bounded comparisons; it is not a product menu option.
+
+Strict current-frame replay still rejects partial UI transactions. An explicit
+sealed replay API uses only the immutable GPU UI and coordinate snapshots from
+the last PRESENT while later UI commands are incomplete. Mutations affect the
+current command surfaces/maps,not these frozen copies. New WORLD imports reset
+the recipe and require a new same-generation seal before extra drawing. Each
+extra frame draws native World anew and assembles it with the frozen UI; no cached
+World screenshot,partial UI exposure,readback,original-output seed or simulation
+advance. New UI-only PRESENT seals become visible in subsequent complete frames.
+
+Fresh controls preserve171orderedpresentations/oneproducer/twoexports/23pixels
+and109defaultGPUcomparisons, plus a deterministic continuousUI eligibility
+sequence with60logicaldisplayopportunities/20orderedsourceupdates andrefusals.
+Separate native GPU controls exercise40freshWorldframes while currentUI stays
+partial; oldsealedUI stays exact,newWorldpixels update,andfirst/current partial
+strictrefusals remain. Existingkey/clip/translation/equal-color/versionedglyph/
+fullscreen/storage/teardown controls pass withzeroordinaryreadbacks. These are
+synthetic policy/pixel proofs,not60actualliveFPS ororiginal comparison.
+
+Current full TITAN casting/combat/portrait/menu/resume/Quit/performance execution
+remains pending. Reporter distinguishes actual UI-publication/partial-sealed
+redraws from baselineblocked opportunities;CPUelapsed timers include driver waits.
+Committed range46adc82a..45dcf276 was separately reviewed:14exactfile receipt
+chains,zero unresolved,inworking/tests/native-display-independent-baseline-history-20261012.json;
+no retrospective execution/gate assertion.
+
+
+### Full independent display result: functional pass,60FPS failure (2026-10-12)
+
+Fresh predeclared current full TITAN native journey passes casting/combat/refused
+spells/movement/retreat/portrait/native menus/resume/normalQuit and19FPSsmokefloor.
+All4,802ownedsource/native/import/originalreturns balance,source19.5653Hz,
+outstanding0,source/outputhighwater2,ordinaryreadbacks/pixelreply/fallback0,
+twooutputallocations,original/source/privateWineintegrity pass.
+
+ActualWorld34.5927FPS remainsbelow59target;visiblepaint28.1734/40.3734FPS over
+178.537/61.278seconds,worst11.7860/22.8628,alsofail59target. Rawprobe/smoke success
+means functional19-floor only. The new immutable derivedrecord
+HOST.native-display-deadlines.independent-full-performance-negative-20261012
+explicitly retains60performance failure alongside rawreport hash/smoke success.
+This is no60FPS,physicalscanout,originalequivalence orinterpolation claim.
+
+The fixed policy executes3,550actualredraws after UI publication and260during
+partialUIusingpriorsealed snapshots. BaselineUI-PRESENT blocked opportunities
+arezero. RemainingcompoundincompleteUI opportunities8,215,pendingimports194,
+hidden35,sourcecompletions3,392,renderattempts3,908 (nonadditiveobservations).
+IncompleteUI includes missing/unsealed/nonWorld/mismatched/newSource boundaries;
+these are not yet separately timed and cannot all be called recoverable frames.
+
+Workercommandpoll max20.17ms; extraWorld+UI mean11.596ms/max45.64ms (CPUelapsed
+includesdriverwaits);Worldpoll max819ms includesstartup/sourcework. The scheduler
+fix does more nativeWorlddrawing, but visiblepaint averages are lower than the
+previousfull cached-owner observation35.85/48.88FPS. Those runs are historical
+observations with differing gameplay timing,not pairedframeequivalence; no causal
+percentage/60FPSwin is asserted. Remaining work is first-seal/source-generation
+delay classification and native render/command/GPU cost attribution/reduction.
+Cross-generation cachedUI reuse remains intentionally unadmitted until separately
+specified and proved. All originalsimulation/pacing/history/order/credit policies
+remain unchanged.
+
+### Native first-seal / active-cost diagnostics (2026-10-12)
+
+The dedicated owned V5 render owner now distinguishes absent recipes, first
+unsealed World UI, sealed static-only UI, and generation mismatch. Prepared
+command record/reset/seal/import CPU costs and WORLD-to-first-World-seal wall
+latency are measured separately, with active-only World/command poll aggregates.
+Fresh controls cover static/repeated PRESENT, superseded first seal, detailed
+classification, immutable leases, pixel checks and teardown. Evidence:
+`HOST.native-display-deadlines.attribution-controls-20261012`. Full current-code
+TITAN observation is in progress; retained60FPS failure remains outstanding.
+No cross-generation reuse, simulation, source FIFO, readback or replacement
+policy change. Other shared-source historical validation remains historical.
+
+### Compatible native UI across source imports (2026-10-12)
+
+Pre-carry TITAN diagnostic confirms23.16ms average WORLD-to-first-World-seal
+wall delay; reset/seal CPU means1.14/0.20ms.4550 balanced source completions,
+functional19FPS smoke passed;60FPS failed (World34.77/paints28.71,42.30).
+Evidence `HOST.native-display-deadlines.attribution-full-performance-negative-20261012`
+retains source/scenario hashes and that failure separately.
+
+An opt-in owned-worker native policy carries the last complete World-mapped
+UI snapshot across consecutive source generations with unchanged native
+World/final identities and extents, while clearing current provenance and
+keeping UI origin separate. New native World can present through it once
+outside command batches, without another World draw. Strict current replay,
+first-frame/static-menu/identity refusals and surface/source/output bounds
+remain explicit. This is a native last-complete UI policy; original equivalence
+is unclaimed. Worker/recipe carry-forward controls pass; full current-code
+TITAN functional/performance validation is pending.60FPS remains outstanding.
+
+### Carry-forward full TITAN validation (2026-10-12)
+
+Current native worker/recipe controls and a full unchanged-source TITAN rerun
+prove the scoped native presentation policy through casting/combat/spells/
+portraits/movement/menu/resume/normal Quit:4616 balanced imports/returns, zero
+readbacks/pixel replies/fallback/outstanding, two source/output high-water and
+two immutable output allocations, verified originals/private Wine cleanup.
+`HOST.native-display-deadlines.carry-forward-full-performance-negative-20261012`
+keeps functional19FPSsmoke success and60FPS failure separate. Source19.8068Hz;
+World44.2446FPS, visible52.7221/54.1183FPS. First-seal blocked opportunities0;
+4615 carries/2547 immediate native-source presentations/3389 inherited redraws.
+Current scoped native implementation remains partial/live observation.
+
+The first full attempt failed conservative cross-thread copy ordering (112ms
+wait/144ms owner at phase4, then history GAP). Its immutable
+`HOST.native-display-deadlines.carry-forward-full-history-negative-20261012`
+remains an unresolved reliability finding; rerun success does not clear it.
+Native World/driver/GPU cost remains the performance next step (new World18.41ms,
+extra World10.12ms+UI0.81ms elapsed CPU, not GPU execution).60FPS, interpolation,
+physical scanout and original equivalence/full replacement remain outstanding.
+
+### Rendering branch/master integration (2026-10-12)
+
+Combine owned V5 rendering, native UI carry-forward and profiling with master's
+native music/media/audio work through7fac7ef8. Preserve both parents' exact
+receipts and historical evidence. Native owner movie compatibility now drains
+bounded source/commands while deferring viewport delivery and first-frame
+leases; extra World drawing/immutable export wait for movie completion.
+Fresh owner/GPU/recipe controls, command movie lease and channel drain checks
+pass; merged shell builds. Public TITAN menu/movement/resume/Quit smoke is
+pending. Full current merged combat/portrait/movie/audio integration and60FPS
+remain separate; prior full branch validation and history timeout are retained.
+
+Merged-master final controls are retained in
+`native-render-master-merge-owner-final-controls-20261012.json` and
+`native-render-master-merge-recipe-final-controls-20261012.json`. The rendering
+deadline probe explicitly skips intros, keeping default movie/audio code
+separate from this bounded rendering experiment. Initial isolated-worktree
+setup lacked original/installation/music fixtures and the movie-enabled
+attempt exceeded the short startup deadline; their raw failed reports remain
+under `working/tests/native-display-deadlines/` without behavioral success
+claims. Inputs were pinned/prepared without changing immutable originals.
+
+`native-render-master-merge-titan-performance-negative-20261012.json` retains
+a successful functional native movement/menu/resume/normal Quit flow with
+627 balanced imports/returns, zero delivery readbacks/pixel replies/fallback/
+outstanding, two output leases, verified original integrity/source stability
+and private Wine cleanup. The short source rate18.4065Hz fails the19FPS
+threshold, so raw success remainsfalse. World44.9324FPS and visible paints
+60.9051/59.5844FPS are separate metrics and do not prove sustained60WorldFPS.
+Full merged combat/portrait/native audiovisual/World-producing movie cases
+remain pending; prior full branch proofs and intermittent history timeout
+remain preserved.
+
+User-requested storage cleanup removed3797 unused compiled artifacts
+(3.4571GiB) from reviewed inactive CMake build directories. Unique source,
+configuration, raw evidence, original inputs and registered worktrees stay
+preserved. Selection/result reports are in the main checkout's
+`working/retention/native-render-build-cleanup-selected-reviewed-20261012.json`
+and `native-render-build-cleanup-result-reviewed-20261012.json`. Larger
+completed-run archival was deferred because another approved draw02 archive
+operation owns the global archive lock; its process/work was not interrupted.
+
+Fresh full merged-master TITAN native flow completes casting/combat/spells/
+portrait/movement/menu/resume/normal Quit with4396 balanced imports/returns,
+zero delivery readbacks/fallback/outstanding and two source/output bounds.
+`HOST.native-render-master-merge.full-performance-negative-20261012` preserves
+source18.1471Hz/World42.4757FPS/visible50.7517,57.2572 and failed19/60FPS
+targets separately from successful functional observation. Native audio/music
+defaults are retained; their combined source-rate cost is not yet attributed.
+Party/progress/recipe/owner controls also pass; original equivalence and
+World-producing movie/audio/video timing remain pending.

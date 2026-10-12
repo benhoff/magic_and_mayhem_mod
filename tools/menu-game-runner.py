@@ -55,7 +55,7 @@ elif os.environ.get('MNM_ENGINE_CADENCE_TRACE') is not None:
 os.environ.pop('MNM_SCENE_PRODUCTION_FILE',None);os.environ.pop('MNM_SCENE_PRODUCTION_MODE',None)
 if metadata.get('scene_production_mode') is not None:
     mode=metadata['scene_production_mode']
-    if mode not in ('0','1','2','3','4') or os.environ.get('MNM_SCENE_PRODUCTION_PROBE')!=mode or not metadata.get('resident_world'):raise ValueError('Unapproved scene production probe')
+    if mode not in ('0','1','2','3','4','5') or os.environ.get('MNM_SCENE_PRODUCTION_PROBE')!=mode or not metadata.get('resident_world'):raise ValueError('Unapproved scene production probe')
     if hashlib.sha256((game/'MnmSceneProduction.dll').read_bytes()).hexdigest()!=metadata['scene_production_sha256']:raise ValueError('Scene production DLL changed')
     trace=root/'scene-production.bin'
     if trace.exists() or trace.is_symlink():raise ValueError('Stale or redirected scene production output')
@@ -103,7 +103,9 @@ if metadata.get('resident_world'):
     world=root/'world-continuous.bin'
     import struct
     with world.open('rb') as f:header=f.read(128)
-    if len(header)!=128 or header[:8]!=b'MNMCON04' or struct.unpack_from('<I',header,8)[0]!=4 or any(header[36:]):raise ValueError('Resident World channel must be fresh V4')
+    snapshot=metadata.get('owned_world_snapshot') is True
+    if snapshot!=(os.environ.get('MNM_WORLD_SNAPSHOT')=='1'):raise ValueError('Owned World snapshot activation mismatch')
+    if len(header)!=128 or header[:8]!=(b'MNMCON05' if snapshot else b'MNMCON04') or struct.unpack_from('<I',header,8)[0]!=(5 if snapshot else 4) or struct.unpack_from('<I',header,20)[0]!=(2 if snapshot else 1) or any(header[36:]):raise ValueError('Resident World channel must be fresh negotiated V4/V5')
     def winepath(path):return 'Z:'+str(path).replace('/',chr(92))
     os.environ.update(MNM_PUBLIC_RESIDENT_WORLD='1',MNM_CANVAS_PRODUCERS='1',MNM_SCENE_SAMPLES='32',MNM_WORLD_RASTER_PREFIX='32',MNM_WORLD_RASTER_BATCH='1',MNM_WORLD_CONTINUOUS=winepath(world),MNM_SCENE_DIR=winepath(directory))
     # Keep post-World hooks distinct from the finite legacy glyph observer.

@@ -1,4 +1,5 @@
 #pragma once
+#include "native_render_target.hpp"
 #include "command_channel.hpp"
 #include "commands.hpp"
 #include <memory>
@@ -7,6 +8,7 @@ class GlViewport;
 class LiveCommandRenderer final {
 public:
     explicit LiveCommandRenderer(GlViewport& viewport,bool verify=false);
+    explicit LiveCommandRenderer(NativeRenderTarget,bool verify=false);
     ~LiveCommandRenderer();
     bool create(const QString& path,quint32 session,quint32 version=1);
     bool open(const QString& path);
@@ -16,6 +18,14 @@ public:
     void setPresentationSuspended(bool suspended);
     std::function<void()> framePresented;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
+    std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
+    bool prepareResidentFrames=false,reuseSealedUi=false;
+    bool waitingForWorld() const{return waitingWorld_;}
+    std::uint64_t preparedGeneration() const;
+    std::uint64_t sealedGeneration() const;
+    mnm::render::CommandDisplayState displayState() const;
+    bool presentSealed(const mnm::render::GpuFrame&,std::uint64_t);
+    bool presentPrepared(const mnm::render::GpuFrame&,std::uint64_t);
     bool ended() const{return ended_;}
     bool hasPendingCommands() const{return !closed_ && (cursor_<pending_.size() || !channel_.drained());}
     QString error() const{return error_;}
@@ -23,7 +33,7 @@ public:
     const mnm::render::CommandResult* result() const;
 private:
     void fail(const QString& reason);
-    GlViewport& viewport_;bool verify_,ended_=false,closed_=false;
+    NativeRenderTarget target_;bool verify_,ended_=false,closed_=false;
     CommandChannel channel_;std::unique_ptr<mnm::render::CommandDecoder> decoder_;
     std::unique_ptr<mnm::render::GlBlitter> renderer_;
     std::unique_ptr<mnm::render::CommandConsumer> consumer_;
@@ -31,4 +41,5 @@ private:
     QString error_;
     bool presentationSuspended_=false;
     mnm::render::GpuFrame deferredPresentation_;
+    bool waitingWorld_=false;
 };

@@ -2,6 +2,7 @@
 #include "surface_copy.hpp"
 #include <QByteArray>
 #include <array>
+#include <algorithm>
 #include <functional>
 
 namespace mnm::render {
@@ -35,6 +36,16 @@ private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };
+struct CommandCpuTiming {
+    std::uint64_t samples=0;
+    double totalMs=0,maxMs=0;
+    void add(double ms){++samples;totalMs+=ms;maxMs=std::max(maxMs,ms);}
+};
+struct CommandDisplayState {
+    std::uint64_t generation=0;
+    bool sealed=false,worldOutput=false,currentReady=false;
+    std::uint64_t sealedSourceGeneration=0;
+};
 struct CommandResult {
     QByteArray native;
     QImage presentation;
@@ -43,6 +54,10 @@ struct CommandResult {
     SurfaceCopyResult lastCopy;
     std::size_t liveSurfaces=0,livePixels=0,livePalettes=0;
     std::uint64_t residentWorldImports=0;
+    // Opt-in prepared-frame CPU elapsed time, including driver waits.
+    std::array<CommandCpuTiming,4> preparationTiming{}; // record, reset, seal, import
+    CommandCpuTiming firstWorldSeal;
+    std::uint64_t supersededBeforeSeal=0,inheritedUiImports=0,inheritedSourcePresentations=0;
     RenderStats stats;
     Driver driver;
 };
@@ -54,6 +69,8 @@ struct CommandConsumerOptions {
     bool exportImages=false;
     CommandStreamMode stream=CommandStreamMode::Bounded;
     std::function<GpuFrame(std::uint64_t,std::uint64_t)> residentWorld={};
+    bool prepareResidentFrames=false;
+    bool reuseSealedUi=false;
 };
 // GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
 // Batches commit command by command, never transactionally. An execution or
@@ -73,6 +90,12 @@ public:
     void abort();
     CommandConsumerState state() const;
     const CommandResult& result() const;
+    std::uint64_t preparedGeneration() const;
+    void presentPrepared(const GpuFrame&,std::uint64_t generation);
+    std::uint64_t sealedGeneration() const;
+    CommandDisplayState displayState() const;
+    bool presentImportedSealed();
+    void presentSealed(const GpuFrame&,std::uint64_t generation);
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

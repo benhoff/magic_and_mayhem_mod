@@ -9,6 +9,7 @@
 #include <QImage>
 #include <QSize>
 class QOpenGLContext;
+class QOffscreenSurface;
 
 namespace mnm::render {
 struct Image {
@@ -42,15 +43,21 @@ struct SpriteComposite {
     unsigned rowPeriod=16;
 };
 struct Rgb {std::uint8_t red=0,green=0,blue=0;};
-// GUI-thread lease of the latest GPU presentation. Copies share its texture.
+// Owner-thread lease of mutable GPU presentation. Copies share its texture.
 // It survives source-surface and renderer destruction; subsequent presentations
 // of that surface update existing leases. Consumers bracket draws with these
 // methods in a sharing context, establishing GPU ordering in both directions.
+// snapshot() exports immutable cross-thread pixels under an explicit owner-held
+// lease; the render owner must reclaim the final reference before context teardown.
 class GpuFrame final {
 public:
     GpuFrame()=default;
     QSize size() const;
     bool valid() const {return bool(data_);}
+    bool unique() const {return data_ && data_.use_count()==1;}
+    // Immutable presentation copy. Keep a lease on the render owner until all
+    // consumer leases return; final destruction must occur on that owner.
+    GpuFrame snapshot(GpuFrame reusable={}) const;
     unsigned textureForCurrentContext() const;
     void samplingComplete() const;
 private:
@@ -61,18 +68,21 @@ private:
 };
 struct RenderStats {
     std::uint64_t uploads=0,copies=0,paletteUpdates=0,nativeReadbacks=0,presentations=0;
-    std::uint64_t rgbaReadbacks=0,gpuPresentations=0;
+    std::uint64_t rgbaReadbacks=0,gpuPresentations=0,gpuPresentationAllocations=0;
     std::uint64_t presentationPixels=0;
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
-    std::uint64_t copyBatches=0,maxCopyBatch=0;
+    std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;
+    std::uint64_t maskedScratchAllocations=0,maskedScratchPixels=0;
     std::size_t surfaces=0,pixels=0;
 };
 
-// Qt GUI-thread owner of a dedicated OpenGL 3.3 context. No captured output is
+// Thread-affine owner of a dedicated OpenGL 3.3 context. Worker construction
+// requires a GUI-created external platform surface that outlives this owner.
+// No captured output is
 // supplied to draw(): only source pixels, the old destination and the command.
 class GlBlitter final {
 public:
-    explicit GlBlitter(QOpenGLContext* shareContext=nullptr);
+    explicit GlBlitter(QOpenGLContext* shareContext=nullptr,QOffscreenSurface* externalSurface=nullptr);
     ~GlBlitter();
     GlBlitter(const GlBlitter&)=delete;
     GlBlitter& operator=(const GlBlitter&)=delete;
@@ -97,6 +107,9 @@ public:
     // Allocate undefined native storage without a CPU fill/upload. Sampling and
     // presentation remain forbidden until the written region is defined.
     SurfaceId allocate(int width,int height,PixelFormat format);
+    // Exact native storage/knowledge/clipper/palette clone; never reads pixels.
+    SurfaceId cloneSurface(SurfaceId source);
+    void restoreSurface(SurfaceId source,SurfaceId destination);
     // Upload contiguous full-width rows without copying the owned CPU plane.
     void updateRows(SurfaceId surface,const Image& plane,int first,int rows);
     void updateRegionRows(SurfaceId surface,int x,int y,const Image& plane,int first,int rows);
@@ -148,5 +161,10 @@ private:
     struct Impl;
     std::shared_ptr<Impl> impl_;
     friend class GpuFrame;
+    friend class NativeFrameRecipe;
+    ClipperState surfaceClipper(SurfaceId) const;
+    void updateCoveredWords(SurfaceId,int,int,const Image&,const std::vector<std::uint8_t>&);
+    void copyCoordinates(SurfaceId,std::optional<SurfaceId>,SurfaceId,Rect,int,int,std::optional<std::uint32_t>);
+    void assembleMappedWorld(SurfaceId,SurfaceId,SurfaceId,const GpuFrame&);
 };
 }

@@ -1,6 +1,10 @@
 #include "../runtime/shadow/win32_min.h"
+API void WIN Sleep(u32);
 API u32 WIN SceneProductionInstallForTest(u32);
 API u32 WIN SceneProductionStatusForTest(u32);
+API void WIN SceneProductionBudgetArmForTest(u32);
+API u32 WIN SceneProductionBudgetMetricsForTest(void);
+#include "../runtime/scene-production/draw_budget.h"
 extern void fixture_invoke(void*,u32,void*),fixture_draw(void);
 extern void fixture_history(void*);
 /* Fixed fixture image owns the game's authored address range. Observer storage
@@ -16,7 +20,8 @@ static void branch(u32 at,u32 target){*(u8*)at=0xe9;put(at+1,target-at-5);}
 static void bytes(u32 at,const u8* source,u32 n){for(u32 i=0;i<n;++i)*(u8*)(at+i)=source[i];}
 void fixture_work(void){
  ++draws;
- if(test_case==9)fixture_history(creatures);
+ if(test_case==9||test_case==11)fixture_history(creatures);
+ if(test_case==13&&draws==2)Sleep(60);
  if(draws==2){
   if(test_case==1)++*(u32*)0x6c4830;
   if(test_case==2)creatures[0xe4]^=1;
@@ -31,7 +36,7 @@ void fixture_work(void){
 void fixture_tail(void){if(test_case==10&&++post_calls==1)put(0x689930+0x231,1);}
 static void reset(void){
  for(u32 i=0;i<sizeof(creatures);++i)creatures[i]=0;
- draws=post_calls=0;put(0x6c4830,128);put(0x6cbb78+0xfd5a,0);put(0x6f34e0,0x6cbb78);
+ draws=post_calls=0;put(0x6dbe95,50);put(0x6c4830,128);put(0x6cbb78+0xfd5a,0);put(0x6f34e0,0x6cbb78);
  put(0x6def58,(u32)creatures);put(0x6def5c,2);put(0x6df180,1);
  put(0x689498,(u32)effects);put(0x68949c,2);put(0x6898dc,1);
  put(0x6b1248,(u32)objects);put(0x6b124c,2);put(0x6b1260,1);
@@ -41,34 +46,52 @@ static void reset(void){
 void start(void){
  fixture_address_space[0]=1;u32 protection;
  require(VirtualProtect((void*)0x460000,0x2a0000,0x40,&protection),1);
+ const u32 budget_table[][5]={{45,50,3,2,1},{46,50,3,2,0},{0,50,0,0,0},{0,50,1,49,1},{0,49,1,0,0},{50,50,1,0,0},{0,50,0xffffffffu,1,0},{0,50,1,0xffffffffu,0},{21,50,10,3,1}};
+ for(u32 i=0;i<sizeof(budget_table)/sizeof(*budget_table);++i)require(draw_budget_fits(budget_table[i][0],budget_table[i][1],budget_table[i][2],budget_table[i][3])==(int)budget_table[i][4],17);
+ require(draw_budget_fits((u32)(5u-0xfffffff0u),50,10,3),18);
+ const u8 pacing_load[]={0x8b,0x35,0x64,0x51,0x5c,0},pacing_loop[]={0xff,0xd6,0x2b,0x05,0,0x81,0x6e,0,0x3b,0xc7,0x72,0xf4};bytes(0x4e3e5b,pacing_load,6);bytes(0x4e3f89,pacing_loop,12);
  const u8 outer[]={0x53,0x55,0x56,0x8b,0xf1,0x33,0xdb,0x57};bytes(0x4fd280,outer,sizeof(outer));branch(0x4fd288,0x4fd315);
  const u8 start[]={0x8b,0x46,0x25,0x8b,0xce};bytes(0x4fd315,start,5);branch(0x4fd31a,(u32)fixture_draw);
  const u8 cleanup[]={0x33,0xdb,0x8b,0x96,0x29,0x02,0,0,0x89,0x9e,0x31,0x02,0,0,0x89,0x96,0x2d,0x02,0,0};bytes(0x4fd5ad,cleanup,20);
  const u8 end[]={0xa0,0x0c,0x14,0x5e,0,0x84,0xc0};bytes(0x4fd5c1,end,7);
  *(u8*)0x4fd5c8=0xe8;put(0x4fd5c9,(u32)fixture_tail-0x4fd5cd);
  const u8 finish[]={0x5f,0x5e,0x5d,0x5b,0xf9,0xb8,0xdf,0x9b,0x57,0x13,0xb9,0xcd,0xab,0x68,0x24,0xc3};bytes(0x4fd5cd,finish,sizeof(finish));
- const u8 q1[]={0xe8,0xf0,0x2d,0,0},q2[]={0xe8,0x47,0x2d,0,0};bytes(0x4fd4ab,q1,5);bytes(0x4fd554,q2,5);*(u8*)0x4fd559=0xc3;*(u8*)0x5002a0=0xc3;
+ const u8 q1[]={0xe8,0xf0,0x2d,0,0},q2[]={0xe8,0x47,0x2d,0,0};bytes(0x4fd4ab,q1,5);bytes(0x4fd554,q2,5);const u8 qend1[]={0xb9,0xe0,0x49,0x6a,0},qend2[]={0xa1,0x2c,0x48,0x6c,0};bytes(0x4fd4b0,qend1,5);bytes(0x4fd559,qend2,5);*(u8*)0x4fd4b5=0xc3;*(u8*)0x4fd55e=0xc3;*(u8*)0x5002a0=0xc3;
  const u8 history_args[]={0x6a,0,0x6a,0,0x90,0x90,0x90,0x90},history_call[]={0xe8,0x6c,0x55,0x02,0},history_body[]={0xff,0x81,0x60,0x07,0,0,0xc2,8,0};
  bytes(0x4fa4e7,history_args,8);bytes(0x4fa4ef,history_call,5);*(u8*)0x4fa4f4=0xc3;bytes(0x51fa60,history_body,9);
- char option[3];u32 n=GetEnvironmentVariableA("MNM_PRODUCTION_TEST_CASE",option,3);require(n==2&&((option[0]>='0'&&option[0]<='9')||option[0]=='A')&&option[1]>='1'&&option[1]<='4',2);
- test_case=option[0]=='A'?10u:option[0]-'0';u32 candidate=option[1]-'0';reset();
+ char option[3];u32 n=GetEnvironmentVariableA("MNM_PRODUCTION_TEST_CASE",option,3);require(n==2&&((option[0]>='0'&&option[0]<='9')||(option[0]>='A'&&option[0]<='F'))&&option[1]>='1'&&option[1]<='5',2);
+ test_case=option[0]>='A'?10u+option[0]-'A':option[0]-'0';u32 candidate=option[1]-'0';reset();
  SetLastError(0x77);fixture_invoke((void*)0x4fd280,0x689930,baseline);require(GetLastError()==0xabc123&&draws==1,3);reset();
  /* Every anchor byte mutation must refuse before any hook is installed. */
- const u32 sites[]={0x4fd280,0x4fd315,0x4fd5ad,0x4fd5c1,0x4fd4ab,0x4fd554,0x4fa4ef},lengths[]={5,5,20,7,5,5,5};
- for(u32 i=0;i<7;++i)for(u32 j=0;j<lengths[i];++j){*(u8*)(sites[i]+j)^=1;SetLastError(0x77);require(!SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,4);*(u8*)(sites[i]+j)^=1;}
- require(!SceneProductionInstallForTest(5),5);SetLastError(0x77);require(SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,6);
+ const u32 sites[]={0x4fd280,0x4fd315,0x4fd5ad,0x4fd5c1,0x4fd4ab,0x4fd554,0x4fa4ef,0x4fd4b0,0x4fd559},lengths[]={5,5,20,7,5,5,5,5,5};
+ for(u32 i=0;i<9;++i)for(u32 j=0;j<lengths[i];++j){*(u8*)(sites[i]+j)^=1;SetLastError(0x77);require(!SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,4);*(u8*)(sites[i]+j)^=1;}
+ if(candidate==5)for(u32 i=0;i<2;++i){u32 site=i?0x4e3f89:0x4e3e5b,n=i?12:6;for(u32 j=0;j<n;++j){*(u8*)(site+j)^=1;require(!SceneProductionInstallForTest(candidate),19);*(u8*)(site+j)^=1;}}
+ require(!SceneProductionInstallForTest(6),5);SetLastError(0x77);require(SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,6);
  if(test_case==6)put(0x6def58,0xffffffff);
+ if(test_case>=11&&test_case<=14){require(candidate==5,20);SceneProductionBudgetArmForTest(test_case==12?49:10);if(test_case==14)put(0x6dbe95,49);}
+ if(test_case==15)require(candidate==5&&SceneProductionBudgetMetricsForTest(),27);
  SetLastError(0x77);fixture_invoke((void*)0x4fd280,0x689930,observed);
  require(GetLastError()==0xabc123,70);
  require(same(baseline,observed,12)&&same(baseline+16,observed+16,20),71);
  require(*(u32*)(observed+12)==*(u32*)(observed+36),72);
  require(same(baseline+48,observed+48,512),73);
+ if(test_case>=11&&test_case<=14){
+  u32 extra=test_case==11?2:test_case==13?1:0;
+  require(SceneProductionStatusForTest(0)==16+extra&&draws==1+extra&&!SceneProductionStatusForTest(1)&&!SceneProductionStatusForTest(2),21);
+  require(SceneProductionStatusForTest(9)==extra,22);
+  if(test_case==11)require(SceneProductionStatusForTest(6)==2&&SceneProductionStatusForTest(7)==1,23);
+  if(test_case==12||test_case==14)require(SceneProductionStatusForTest(10)>=1,24);
+  if(test_case==13)require(SceneProductionStatusForTest(11)>=1,25);
+  require(!*(u32*)(0x689930+0x231)&&*(u32*)(0x689930+0x22d)==*(u32*)(0x689930+0x229),26);
+  require(!SceneProductionInstallForTest(candidate),12);ExitProcess(0);
+ }
  require(SceneProductionStatusForTest(0)==1,8);
- if(!test_case||(test_case==9&&candidate>=3)||(test_case==10&&candidate==4))require(draws==2&&!SceneProductionStatusForTest(1)&&!SceneProductionStatusForTest(2)&&SceneProductionStatusForTest(5)==1,9);
+ if(!test_case||test_case==15||(test_case==9&&candidate>=3)||(test_case==10&&candidate>=4))require(draws==2&&!SceneProductionStatusForTest(1)&&!SceneProductionStatusForTest(2)&&SceneProductionStatusForTest(5)==1,9);
  else if(test_case<=4||(test_case>=7&&test_case<=9))require(draws==2&&SceneProductionStatusForTest(1)==1&&SceneProductionStatusForTest(4)>0,10);
  else require(SceneProductionStatusForTest(2)>=1&&draws==((test_case==6||test_case==10)?1u:2u),11);
  if(test_case==9)require(SceneProductionStatusForTest(6)==(candidate>=3?1u:0u)&&SceneProductionStatusForTest(7)==(candidate>=3?1u:2u),13);
- if(test_case==10&&candidate==4)require(post_calls==1&&*(u32*)(0x689930+0x231)==1,15);
+ if(test_case==10&&candidate>=4)require(post_calls==1&&*(u32*)(0x689930+0x231)==1,15);
  if(test_case!=10)require(!*(u32*)(0x689930+0x231)&&*(u32*)(0x689930+0x22d)==*(u32*)(0x689930+0x229),14);
+ if(test_case!=6&&!(test_case==10&&candidate<4))require(SceneProductionStatusForTest(8)==1,16);
  require(!SceneProductionInstallForTest(candidate),12);ExitProcess(0);
 }

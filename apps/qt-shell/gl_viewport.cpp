@@ -1,4 +1,5 @@
 #include "gl_viewport.hpp"
+#include "native_render_target.hpp"
 #include <QOpenGLContext>
 #include <cmath>
 GlViewport::GlViewport(QWidget* parent):QOpenGLWidget(parent){setMinimumSize(320,240);setFocusPolicy(Qt::StrongFocus);setMouseTracking(true);}
@@ -80,4 +81,9 @@ void GlViewport::paintGL(){
     vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
     catch(const std::exception& e){error_=QString::fromUtf8(e.what());}
+}
+
+NativeRenderTarget viewportRenderTarget(GlViewport& v){
+    return {[&v]{return v.ready();},[&v]{return v.context();},
+        [&v](auto frame){v.setGpuFrame(std::move(frame));},[&v]{return v.error();},nullptr};
 }

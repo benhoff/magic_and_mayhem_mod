@@ -92,6 +92,25 @@ def player_fireball_damage(rows,owner,wizard_slot):
                     and c[15]==1 and signed(c[8])>signed(c[9])>=0 and ((r[3]-c[3])&0xffffffff)<=10000 for c in rows)]
 
 
+def player_engaged_fireball_lethal(rows, gameplay, owner, wizard_slot, zombie_hits):
+    """Validated player effect kills the same enemy after a living Zombie hit.
+
+    Journal sequence numbers are independent; join their original thread/tick
+    and enemy tuple. The nearest preceding wizard snapshot must remain alive.
+    """
+    result=[]
+    for effect in player_fireball_damage(rows,owner,wizard_slot):
+        if signed(effect[8])>0:continue
+        if not any(hit[2]==effect[2] and hit[8:11]==effect[4:7]
+                   and ((effect[3]-hit[3])&0xffffffff)<=120000 for hit in zombie_hits):continue
+        snapshots=[row for row in gameplay if row[1]==1 and row[2]==effect[2] and row[4]==wizard_slot
+                   and ((effect[3]-row[3])&0xffffffff)<=10000]
+        if not snapshots:continue
+        wizard=min(snapshots,key=lambda row:(effect[3]-row[3])&0xffffffff)
+        if wizard[5]==0 and wizard[6]==owner and wizard[7] and signed(wizard[8])>0:result.append(effect)
+    return result
+
+
 def player_cure_healing(rows,owner,wizard_slot):
     return [r for r in rows if r[1]==4 and r[12]==41 and r[14]==wizard_slot and r[15]==owner
             and r[5]==0 and r[4]==wizard_slot and r[6]==owner and r[9] and signed(r[7])>0

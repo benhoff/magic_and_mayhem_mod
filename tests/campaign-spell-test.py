@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_spell import HEADER, HEADER_V2, HEADER_V3, read_spell_rows, validate_spell_observation, validate_spell_cases, player_fireball_damage, player_cure_healing
+from campaign_spell import HEADER, HEADER_V2, HEADER_V3, read_spell_rows, validate_spell_observation, validate_spell_cases, player_fireball_damage, player_cure_healing, player_engaged_fireball_lethal
 
 
 class SpellTests(unittest.TestCase):
@@ -71,6 +71,23 @@ class SpellTests(unittest.TestCase):
             self.assertEqual(len(read_spell_rows(p,complete=True)),3)
             p.write_bytes(HEADER+struct.pack('<16I',*rows[-1]))
             with self.assertRaises(ValueError):read_spell_rows(p,complete=True)
+
+    def test_party_fireball_lethal_binds_enemy_thread_tick_and_living_wizard(self):
+        rows,gp,_=self.cases_fixture();rows[-1][8]=0
+        hit=[1,2,400,4400,1,14,0,90,2,10,2,30,20,1,1,0]
+        self.assertEqual(player_engaged_fireball_lethal(rows,gp,0,0,[hit]),[rows[-1]])
+        for field,value in [(2,401),(3,4700),(8,99),(9,11),(10,0)]:
+            bad=list(hit);bad[field]=value
+            self.assertEqual(player_engaged_fireball_lethal(rows,gp,0,0,[bad]),[])
+        for field,value in [(2,401),(5,14),(6,2),(7,0),(8,0)]:
+            bad=[list(r) for r in gp];bad.append(list(gp[-1]));bad[-1][3]=4550;bad[-1][field]=value
+            # Wrong thread is a separate observation; it does not supersede
+            # the real original wizard snapshot on thread400.
+            if field!=2:self.assertEqual(player_engaged_fireball_lethal(rows,bad,0,0,[hit]),[])
+        self.assertEqual(player_engaged_fireball_lethal(rows,[],0,0,[hit]),[])
+        rows[-1][8]=1;self.assertEqual(player_engaged_fireball_lethal(rows,gp,0,0,[hit]),[])
+        rows[-1][8]=0;rows[1][3]=0xfffffff0;rows[-1][3]=20;hit[3]=0xfffffff5;gp=[list(gp[0])];gp[0][3]=0xfffffffc
+        self.assertEqual(player_engaged_fireball_lethal(rows,gp,0,0,[hit]),[rows[-1]])
 
     def test_cure_requires_actual_positive_original_health_and_matching_cast(self):
         cast=[1,1,400,2000,41,0,0,0,12800,12032,0,1,2,4,6,1]

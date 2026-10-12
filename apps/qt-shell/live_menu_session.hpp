@@ -36,6 +36,7 @@ public:
     void setMediaActive(bool active);
     bool running() const;
     bool normalQuitAccepted();
+    void renderingProgress(); // GUI-thread progress; preserves requests and lease expiry.
     QString evidenceDirectory() const {return root_;}
     bool request(quint32 action,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const std::array<int,63>& assignments);

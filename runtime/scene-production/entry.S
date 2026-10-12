@@ -10,7 +10,9 @@
     .if \arguments == 2
     pushl %esp
     .endif
+    .if \arguments != 0
     pushl %ebx
+    .endif
     call _\name
     addl $(4*\arguments),%esp
     fxrstor (%esp)
@@ -44,6 +46,16 @@ _production_queue:
     popal
     popfl
     jmp *_queue_target
+.globl _production_queue_end_first
+_production_queue_end_first:
+    save_call production_queue_done 0
+    movl $0x6a49e0,%ecx
+    jmp *_queue_resume_first
+.globl _production_queue_end_second
+_production_queue_end_second:
+    save_call production_queue_done 0
+    movl 0x6c482c,%eax
+    jmp *_queue_resume_second
 .globl _production_repeat_full
 .globl _production_history
 _production_history:
@@ -109,6 +121,8 @@ normal_end:
     jmp *_draw_resume
 .data
 _queue_target: .long 0x5002a0
+_queue_resume_first: .long 0x4fd4b5
+_queue_resume_second: .long 0x4fd55e
 _slice_start: .long 0x4fd315
 _draw_resume: .long 0x4fd5c8
 _history_target: .long 0x51fa60

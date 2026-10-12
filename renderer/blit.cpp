@@ -6,12 +6,14 @@
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
 #include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLVersionFunctionsFactory>
 #include <QOpenGLShaderProgram>
 #include <QSurfaceFormat>
 #include <QThread>
 #include <QPointer>
 #include <algorithm>
 #include <atomic>
+#include <mutex>
 #include <unordered_map>
 #include <stdexcept>
 
@@ -158,6 +160,25 @@ void main(){
         color=uvec4(channels*255u/maxima,255u);
     }
 })";
+constexpr auto coordinateSource=R"(#version 330 core
+uniform usampler2D sourcePixels,sourceCoordinates;
+uniform bool mappedSource,hasKey;
+uniform uint sourceKey;
+uniform ivec2 sourceOrigin,destinationOrigin;
+layout(location=0)out uint coordinate;
+void main(){ivec2 at=ivec2(gl_FragCoord.xy)-destinationOrigin+sourceOrigin;
+ if(hasKey && texelFetch(sourcePixels,at,0).r==sourceKey)discard;
+ coordinate=mappedSource?texelFetch(sourceCoordinates,at,0).r:0xffffffffu;
+})";
+constexpr auto mappedWorldSource=R"(#version 330 core
+uniform usampler2D worldPixels,uiPixels,coordinates;
+uniform int worldWidth;
+layout(location=0)out uint nativePixel;
+void main(){ivec2 at=ivec2(gl_FragCoord.xy);uint index=texelFetch(coordinates,at,0).r;
+ if(index==0xffffffffu){nativePixel=texelFetch(uiPixels,at,0).r;return;}
+ uvec4 c=texelFetch(worldPixels,ivec2(int(index)%worldWidth,int(index)/worldWidth),0);
+ nativePixel=((c.r>>3u)<<11u)|((c.g>>2u)<<5u)|(c.b>>3u);
+})";
 void validateImage(const Image& i,unsigned bits){
     if(bits!=8 && bits!=16 && bits!=24 && bits!=32)throw std::runtime_error("Unsupported native pixel size");
     if(i.width<1 || i.height<1 || i.width>2048 || i.height>2048 ||
@@ -186,19 +207,24 @@ struct GpuFrame::Data {
     QSize dimensions;
     PixelFormat format;
     QPointer<QOpenGLContext> consumer;
+    bool immutable=false;
+    mutable std::mutex mutex;
     GLsync produced=nullptr,consumed=nullptr;
     ~Data();
 };
 struct GlBlitter::Impl {
     struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;std::array<Rgb,256> paletteColors{};std::array<bool,256> paletteKnown{};std::optional<Rect> rgbaDamage,gpuDamage;};
-    QOffscreenSurface surface;
+    std::unique_ptr<QOffscreenSurface> ownedSurface;
+    QOffscreenSurface* surface=nullptr;
     QOpenGLContext context;
     QOpenGLFunctions_3_3_Core gl;
     using CopyImage=void(QOPENGLF_APIENTRYP)(GLuint,GLenum,GLint,GLint,GLint,GLint,GLuint,GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
     CopyImage copyImage=nullptr;
-    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing;
+    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram;
     GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0;
     int scratchWidth=0,scratchHeight=0;
+    GLuint maskedColour=0,maskedSelection=0;
+    int maskedWidth=0,maskedHeight=0;
     GLuint attached=0,boundProgram=0;
     QSize viewport;
     bool scissor=false;
@@ -221,23 +247,24 @@ struct GlBlitter::Impl {
     Driver info;
     RenderStats counters;
     std::unordered_map<SurfaceId,Surface> surfaces;
-    explicit Impl(QOpenGLContext* shareContext){
+    explicit Impl(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface){
         if(!qobject_cast<QGuiApplication*>(QCoreApplication::instance()) ||
-           QThread::currentThread()!=QCoreApplication::instance()->thread())
-            throw std::runtime_error("GlBlitter requires the Qt GUI thread");
+           (!externalSurface && QThread::currentThread()!=QCoreApplication::instance()->thread()))
+            throw std::runtime_error("GlBlitter worker requires a GUI-created offscreen surface");
         QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);
         context.setFormat(format);
         if(shareContext){
-            if(!shareContext->isValid() || shareContext->thread()!=QThread::currentThread())
-                throw std::runtime_error("Invalid GUI-thread sharing context");
+            if(!shareContext->isValid())
+                throw std::runtime_error("Invalid sharing context");
             context.setShareContext(shareContext);
         }
         if(!context.create() || context.isOpenGLES())throw std::runtime_error("Desktop OpenGL 3.3 is unavailable");
         if(shareContext && !QOpenGLContext::areSharing(&context,shareContext))
             throw std::runtime_error("OpenGL context sharing failed");
-        surface.setFormat(context.format());surface.create();
-        if(!surface.isValid())throw std::runtime_error("Cannot create an offscreen OpenGL surface");
-        Current current(context,&surface);
+        if(externalSurface)surface=externalSurface;
+        else{ownedSurface=std::make_unique<QOffscreenSurface>();surface=ownedSurface.get();surface->setFormat(context.format());surface->create();}
+        if(!surface->isValid())throw std::runtime_error("Cannot create an offscreen OpenGL surface");
+        Current current(context,surface);
         const auto actual=context.format();
         if(actual.majorVersion()>4||(actual.majorVersion()==4&&actual.minorVersion()>=3)||context.hasExtension(QByteArrayLiteral("GL_ARB_copy_image")))
             copyImage=reinterpret_cast<CopyImage>(context.getProcAddress(QByteArrayLiteral("glCopyImageSubData")));
@@ -251,7 +278,7 @@ struct GlBlitter::Impl {
                 throw std::runtime_error(result->log().toStdString());
             return result;
         };
-        program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);importing=shader(importSource);
+        program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);importing=shader(importSource);coordinateProgram=shader(coordinateSource);mappedWorldProgram=shader(mappedWorldSource);
         std::string instanceFragment=fragmentSource;
         for(const char* name:{"sourceOrigin","destinationOrigin"}){const auto uniform=std::string("uniform ivec2 ")+name+";";instanceFragment.replace(instanceFragment.find(uniform),uniform.size(),std::string("flat in ivec2 ")+name+";");}
         const std::string paletteUniform="uniform uint spritePalette[256];";
@@ -342,6 +369,22 @@ struct GlBlitter::Impl {
         counters.snapshotPixels+=std::uint64_t(width)*height;
         return scratch;
     }
+    void maskedScratch(int width,int height){
+        if(width<=maskedWidth && height<=maskedHeight)return;
+        int w=std::max(width,maskedWidth),h=std::max(height,maskedHeight);
+        // Opposing aspect ratios must not turn high-water dimensions into
+        // storage beyond the existing2Mpixel/16MiB paired transient bound.
+        if(std::uint64_t(w)*h>2*1024*1024){w=width;h=height;}
+        // Retire scratch before replacement so temporary plus retained storage
+        // never doubles the paired16MiB bound. No destination bytes change.
+        deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);
+        maskedColour=maskedSelection=0;maskedWidth=maskedHeight=0;counters.maskedScratchPixels=0;
+        GLuint colour=0,selection=0;
+        try{colour=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,w,h,nullptr);selection=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,w,h,nullptr);}
+        catch(...){if(colour)deleteTextures(1,&colour);if(selection)deleteTextures(1,&selection);throw;}
+        maskedColour=colour;maskedSelection=selection;maskedWidth=w;maskedHeight=h;
+        ++counters.maskedScratchAllocations;counters.maskedScratchPixels=std::uint64_t(w)*h*2;
+    }
     // Both samplers refer to storage distinct from the attached destination.
     void selectPalette(GLint indexed,GLint location,std::optional<std::array<std::uint16_t,256>>& previous,const std::array<std::uint16_t,256>* palette){
         gl.glUniform1i(indexed,palette!=nullptr);
@@ -361,7 +404,7 @@ struct GlBlitter::Impl {
     }
     void flushCopies(){
         if(instances.empty())return;
-        Current current(context,&surface);auto& dst=*copyDestination;
+        Current current(context,surface);auto& dst=*copyDestination;
         attach(dst.native,dst.width,dst.height);setScissor(false);
         gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,copySource);
         gl.glActiveTexture(GL_TEXTURE1);gl.glBindTexture(GL_TEXTURE_2D,copyMask?copyMask:copySource);
@@ -454,44 +497,70 @@ struct GlBlitter::Impl {
         }catch(...){deleteTextures(1,&pixel);throw;}
     }
     ~Impl(){
-        if(context.isValid() && surface.isValid()){
-            try {Current current(context,&surface);for(auto& pair:surfaces)release(pair.second);
+        if(context.isValid() && surface->isValid()){
+            try {Current current(context,surface);for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
-                deleteTextures(1,&scratch);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
 };
 GpuFrame::Data::~Data(){
-    owner->thread();Current current(owner->context,&owner->surface);
+    owner->thread();Current current(owner->context,owner->surface);
     if(produced)owner->gl.glDeleteSync(produced);
-    if(consumed)owner->gl.glDeleteSync(consumed);
+    if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);}
     owner->deleteTextures(1,&texture);
 }
 QSize GpuFrame::size() const{return data_?data_->dimensions:QSize{};}
 unsigned GpuFrame::textureForCurrentContext() const{
     if(!data_)throw std::runtime_error("Empty GPU frame");
-    auto& p=*data_->owner;p.thread();auto* current=QOpenGLContext::currentContext();
+    auto& p=*data_->owner;if(!data_->immutable)p.thread();
+    std::lock_guard<std::mutex> lock(data_->mutex);
+    auto* current=QOpenGLContext::currentContext();
     if(!current || !QOpenGLContext::areSharing(current,&p.context))
         throw std::runtime_error("GPU frame requires a sharing current context");
     if(data_->consumer && data_->consumer!=current)
         throw std::runtime_error("GPU frame supports one consumer context");
     data_->consumer=current;
-    if(data_->produced)p.gl.glWaitSync(data_->produced,0,GL_TIMEOUT_IGNORED);
+    auto* g=QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(current);
+    if(!g)throw std::runtime_error("GPU consumer requires OpenGL 3.3");
+    if(data_->produced)g->glWaitSync(data_->produced,0,GL_TIMEOUT_IGNORED);
     return data_->texture;
 }
 void GpuFrame::samplingComplete() const{
-    textureForCurrentContext();auto& g=data_->owner->gl;
-    if(data_->consumed)g.glDeleteSync(data_->consumed);
-    data_->consumed=g.glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+    textureForCurrentContext();std::lock_guard<std::mutex> lock(data_->mutex);
+    auto* g=QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext());
+    if(data_->consumed)g->glDeleteSync(data_->consumed);
+    data_->consumed=g->glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
     if(!data_->consumed)throw std::runtime_error("Cannot fence GPU sampling");
-    g.glFlush();
+    g->glFlush();
 }
-GlBlitter::GlBlitter(QOpenGLContext* shareContext):impl_(std::make_shared<Impl>(shareContext)){}
+GpuFrame GpuFrame::snapshot(GpuFrame reusable) const{
+    if(!data_)throw std::runtime_error("Empty GPU snapshot");
+    auto& p=*data_->owner;p.thread();Current current(p.context,p.surface);auto& g=p.gl;
+    if(reusable.valid() && (!reusable.unique() || !reusable.data_->immutable || reusable.data_->owner!=data_->owner || reusable.size()!=size() || reusable.data_->format.bits!=data_->format.bits || reusable.data_->format.masks!=data_->format.masks))
+        throw std::runtime_error("GPU snapshot buffer is leased or incompatible");
+    auto frozen=std::move(reusable.data_);
+    if(!frozen){
+        frozen=std::make_shared<Data>();frozen->owner=data_->owner;frozen->dimensions=data_->dimensions;frozen->format=data_->format;frozen->immutable=true;
+        g.glActiveTexture(GL_TEXTURE0);frozen->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,size().width(),size().height(),nullptr);
+    }
+    if(frozen->consumed){g.glWaitSync(frozen->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frozen->consumed);frozen->consumed=nullptr;}
+    if(frozen->produced){g.glDeleteSync(frozen->produced);frozen->produced=nullptr;}
+    frozen->consumer=nullptr;
+    // Copy within the producing context, after all native drawing. No readback.
+    g.glBindFramebuffer(GL_FRAMEBUFFER,p.fbo);g.glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,data_->texture,0);
+    p.attached=data_->texture;g.glBindTexture(GL_TEXTURE_2D,frozen->texture);
+    g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,size().width(),size().height());
+    frozen->produced=g.glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+    if(!frozen->produced)throw std::runtime_error("Cannot fence immutable GPU snapshot");
+    g.glFlush();p.check();return GpuFrame(std::move(frozen));
+}
+GlBlitter::GlBlitter(QOpenGLContext* shareContext,QOffscreenSurface* externalSurface):impl_(std::make_shared<Impl>(shareContext,externalSurface)){}
 GlBlitter::~GlBlitter(){
     // Frames retain the context, but must not retain unrelated native surfaces.
     try {
-        auto& p=*impl_;p.thread();p.flushCopies();Current current(p.context,&p.surface);
+        auto& p=*impl_;p.thread();p.flushCopies();Current current(p.context,p.surface);
         for(auto& pair:p.surfaces)p.release(pair.second);
         p.surfaces.clear();p.counters.pixels=0;
     }catch(const std::exception&){}
@@ -500,7 +569,7 @@ Driver GlBlitter::driver() const{return impl_->info;}
 void GlBlitter::batch(const std::function<void()>& operations){
     auto& p=*impl_;p.thread();
     if(!operations)throw std::runtime_error("Missing renderer batch operations");
-    Current current(p.context,&p.surface);++p.batchDepth;
+    Current current(p.context,p.surface);++p.batchDepth;
     try {operations();}catch(...){--p.batchDepth;if(!p.batchDepth)p.flushCopies();throw;}
     --p.batchDepth;if(!p.batchDepth)p.flushCopies();p.check();
 }
@@ -525,7 +594,7 @@ bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>&
     return recorded;
 }
 std::vector<GpuTiming> GlBlitter::pollGpuTimings(){
-    auto& p=*impl_;p.thread();Current current(p.context,&p.surface);
+    auto& p=*impl_;p.thread();Current current(p.context,p.surface);
     std::vector<GpuTiming> result;
     while(!p.gpuTimings.empty()){
         const auto& t=p.gpuTimings.front();GLuint available=0;
@@ -545,8 +614,8 @@ std::size_t GlBlitter::pendingGpuTimings() const{impl_->thread();return impl_->g
 SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
     validateFormat(format);validateImage(image,format.bits);auto& p=*impl_;p.thread();p.flushCopies();
     if(image.width>p.maxTexture || image.height>p.maxTexture)throw std::runtime_error("Surface exceeds the OpenGL texture limit");
-    if(p.surfaces.size()>=64 || image.pixels.size()>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded");
-    const auto id=nextId();Current current(p.context,&p.surface);Impl::Surface s;s.width=image.width;s.height=image.height;s.format=format;s.validity=KnownPixels(s.width,s.height);
+    if(p.surfaces.size()>=64 || image.pixels.size()>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
+    const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;s.width=image.width;s.height=image.height;s.format=format;s.validity=KnownPixels(s.width,s.height);
     auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try {
         s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,s.width,s.height,image.pixels.data());
@@ -561,8 +630,8 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
     if(width<1||height<1||width>2048||height>2048||width>p.maxTexture||height>p.maxTexture)
         throw std::runtime_error("Invalid allocated surface dimensions");
     const auto count=std::size_t(width)*height;
-    if(p.surfaces.size()>=64||count>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded");
-    const auto id=nextId();Current current(p.context,&p.surface);Impl::Surface s;
+    if(p.surfaces.size()>=64||count>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
+    const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;
     s.width=width;s.height=height;s.format=format;s.validity=KnownPixels(width,height);s.validity.invalidate();
     auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try{
@@ -572,6 +641,32 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
         p.check(true);p.surfaces.emplace(id,std::move(s));
     }catch(...){p.release(s);throw;}
     p.counters.pixels+=count;return id;
+}
+SurfaceId GlBlitter::cloneSurface(SurfaceId source){
+    auto& p=*impl_;p.thread();const auto& src=p.get(source);
+    const auto width=src.width,height=src.height;const auto format=src.format;
+    const auto copy=allocate(width,height,format);
+    try{restoreSurface(source,copy);}catch(...){destroy(copy);throw;}
+    return copy;
+}
+void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
+    auto& p=*impl_;p.thread();p.flushCopies();const auto& src=p.get(source);auto& dst=p.get(destination);
+    if(source==destination || src.width!=dst.width || src.height!=dst.height ||
+       src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)
+        throw std::runtime_error("Native snapshot extent/format/identity mismatch");
+    // Unknown words remain unknown. A snapshot is not a read or a declaration
+    // of new pixel knowledge, unlike an ordinary checked blit.
+    auto knowledge=src.validity;auto clipper=src.clipper;
+    Current current(p.context,p.surface);auto& g=p.gl;
+    const auto copy=[&](GLuint from,GLuint to,int width,int height){
+        if(p.copyImage)p.copyImage(from,GL_TEXTURE_2D,0,0,0,0,to,GL_TEXTURE_2D,0,0,0,0,width,height,1);
+        else{p.attach(from,width,height);g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,to);g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,width,height);}
+    };
+    copy(src.native,dst.native,src.width,src.height);
+    if(src.palette)copy(src.palette,dst.palette,256,1);
+    p.check();dst.validity=std::move(knowledge);dst.clipper=std::move(clipper);
+    dst.paletteColors=src.paletteColors;dst.paletteKnown=src.paletteKnown;
+    p.damage(dst,{0,0,dst.width,dst.height});++p.counters.nativeSnapshotCopies;
 }
 void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
     auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(id);
@@ -586,24 +681,29 @@ void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int
     const auto begin=plane.pixels.begin()+std::size_t(first)*plane.width,end=begin+std::size_t(rows)*plane.width;
     const auto maximum=s.format.bits==32?UINT32_MAX:((std::uint32_t{1}<<s.format.bits)-1);
     if(std::any_of(begin,end,[maximum](auto value){return value>maximum;}))throw std::runtime_error("Native upload pixel exceeds format");
-    Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
+    Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y+first,plane.width,rows,GL_RED_INTEGER,GL_UNSIGNED_INT,&*begin);
     p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});p.damage(s,{x,y+first,x+plane.width,y+first+rows});++p.counters.uploads;
 }
 void GlBlitter::destroy(SurfaceId id){
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);Current current(p.context,&p.surface);
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);Current current(p.context,p.surface);
     p.counters.pixels-=std::size_t(s.width)*s.height;p.release(s);p.surfaces.erase(id);p.check();
 }
 void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);validateImage(patch,s.format.bits);
     if(x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height)throw std::runtime_error("Update rectangle is out of bounds");
-    Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
+    Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});p.damage(s,{x,y,x+patch.width,y+patch.height});++p.counters.uploads;
 }
 void GlBlitter::updateMasked(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
-    auto& p=*impl_;p.thread();auto& s=p.get(id);validateImage(patch,16);
-    if(s.format.bits!=16 || s.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f} ||
+ impl_->thread();const auto& s=impl_->get(id);
+ if(s.format.bits!=16 || s.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,31})throw std::invalid_argument("Masked updates require RGB565");
+ updateCoveredWords(id,x,y,patch,coverage);
+}
+void GlBlitter::updateCoveredWords(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);validateImage(patch,s.format.bits);
+    if(!((s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31}) || (s.format.bits==32 && s.format.masks==std::array<std::uint32_t,3>{0xff0000,0xff00,0xff})) ||
        x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height ||
        coverage.size()!=patch.pixels.size() || patch.pixels.size()>2*1024*1024 ||
        std::any_of(coverage.begin(),coverage.end(),[](auto v){return v>1;}))
@@ -611,14 +711,15 @@ void GlBlitter::updateMasked(SurfaceId id,int x,int y,const Image& patch,const s
     if(std::find(coverage.begin(),coverage.end(),1)==coverage.end())return;
     std::vector<std::uint32_t> pixels(patch.pixels.size()),mask(coverage.begin(),coverage.end());
     for(std::size_t i=0;i<pixels.size();++i)if(coverage[i])pixels[i]=patch.pixels[i];
-    p.flushCopies();Current current(p.context,&p.surface);GLuint colour=0,selection=0;
-    try{
-        colour=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.width,patch.height,pixels.data());
-        selection=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.width,patch.height,mask.data());
-        p.copyTexture(colour,selection,s,{0,0,patch.width,patch.height},x,y,std::nullopt,UINT32_MAX);
-        p.flushCopies();p.check();
-        p.gl.glDeleteTextures(1,&selection);selection=0;p.gl.glDeleteTextures(1,&colour);colour=0;
-    }catch(...){p.flushCopies();if(selection)p.gl.glDeleteTextures(1,&selection);if(colour)p.gl.glDeleteTextures(1,&colour);throw;}
+    p.flushCopies();Current current(p.context,p.surface);p.gl.glActiveTexture(GL_TEXTURE0);
+    p.maskedScratch(patch.width,patch.height);
+    p.gl.glBindTexture(GL_TEXTURE_2D,p.maskedColour);
+    p.gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,pixels.data());
+    p.gl.glBindTexture(GL_TEXTURE_2D,p.maskedSelection);
+    p.gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,mask.data());
+    p.copyTexture(p.maskedColour,p.maskedSelection,s,{0,0,patch.width,patch.height},x,y,std::nullopt,UINT32_MAX);
+    // Submission must complete before another patch overwrites shared scratch.
+    p.flushCopies();p.check();
     for(int row=0;row<patch.height;++row){
         int col=0;while(col<patch.width){
             while(col<patch.width&&!coverage[std::size_t(row)*patch.width+col])++col;
@@ -701,7 +802,7 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
         if(*mask==destination || m.format.bits!=8 || m.width!=src.width || m.height!=src.height)
             throw std::runtime_error("Copy mask must be an indexed source-sized surface distinct from destination");
     }
-    Current current(p.context,&p.surface);
+    Current current(p.context,p.surface);
     p.copyTexture(src.native,mask?p.get(*mask).native:0,dst,r,x,y,key,keyMask);
     dst.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});
 }
@@ -721,7 +822,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
         if(lastSample>=std::int64_t(dst.width)*dst.height)throw std::invalid_argument("Displacement sample outside destination");
     }
     src.validity.require(r);coverage.validity.require(r);dst.validity.require({0,0,dst.width,dst.height});
-    Current current(p.context,&p.surface);
+    Current current(p.context,p.surface);
     if(c.mode==CompositeMode::copy){p.copyTexture(src.native,coverage.native,dst,r,x,y,std::nullopt,UINT32_MAX,palette);return;}
     p.damage(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top});
     const int extraRows=(x+r.right-r.left-1+reach)/dst.width;
@@ -746,7 +847,7 @@ void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::
         throw std::invalid_argument("Additive rectangle requires in-bounds RGB565 storage");
     dst.validity.require({0,0,dst.width,dst.height});
     p.damage(dst,r);
-    Current current(p.context,&p.surface);auto& g=p.gl;const auto frozen=p.snapshot(dst,r);
+    Current current(p.context,p.surface);auto& g=p.gl;const auto frozen=p.snapshot(dst,r);
     p.setScissor(true);g.glScissor(r.left,r.top,r.right-r.left,r.bottom-r.top);
     // Scratch is distinct from the destination; only oldPixels is sampled in mode6.
     for(unsigned unit=0;unit<3;++unit){g.glActiveTexture(GL_TEXTURE0+unit);g.glBindTexture(GL_TEXTURE_2D,frozen);}
@@ -779,7 +880,7 @@ SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,
                 pixels+=std::size_t(piece.source.right-piece.source.left)*(piece.source.bottom-piece.source.top);
             if(pixels>4096)throw std::runtime_error("Ordered keyed overlap pixel budget exceeded");
         }
-        Current current(p.context,&p.surface);
+        Current current(p.context,p.surface);
         // Each ordered clip piece sees preceding writes, then freezes its own source.
         for(const auto& piece:plan.pieces){
             d.validity.require(piece.source);
@@ -805,12 +906,12 @@ void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& c
     if(s.format.bits!=8 || colors.empty() || first>=256 || colors.size()>256-first)throw std::runtime_error("Invalid indexed palette update");
     std::vector<std::uint8_t> bytes;bytes.reserve(colors.size()*4);
     for(auto c:colors){bytes.push_back(c.red);bytes.push_back(c.green);bytes.push_back(c.blue);bytes.push_back(255);}
-    Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
+    Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,int(first),0,int(colors.size()),1,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,bytes.data());
     p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}p.damage(s,{0,0,s.width,s.height});++p.counters.paletteUpdates;
 }
 Image GlBlitter::read(SurfaceId id){
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);p.attach(s.native,s.width,s.height);
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);p.attach(s.native,s.width,s.height);
     Image out{s.width,s.height,std::vector<std::uint32_t>(std::size_t(s.width)*s.height)};
     p.gl.glReadPixels(0,0,s.width,s.height,GL_RED_INTEGER,GL_UNSIGNED_INT,out.pixels.data());
     p.check(true);++p.counters.nativeReadbacks;return out;
@@ -837,7 +938,7 @@ void resolvePresentation(Owner& p,Surface& s,GLuint target,const std::optional<R
 }
 }
 QImage GlBlitter::present(SurfaceId id){
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);auto& g=p.gl;
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);auto& g=p.gl;
     if(!s.rgba){g.glActiveTexture(GL_TEXTURE0);s.rgba=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);s.rgbaDamage=Rect{0,0,s.width,s.height};}
     resolvePresentation(p,s,s.rgba,s.rgbaDamage);s.rgbaDamage.reset();
     p.attach(s.rgba,s.width,s.height);
@@ -849,13 +950,13 @@ QSize GlBlitter::dimensions(SurfaceId id) const{
     auto& p=*impl_;p.thread();const auto& s=p.get(id);return {s.width,s.height};
 }
 GpuFrame GlBlitter::presentGpu(SurfaceId id){
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);auto& g=p.gl;
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);auto& g=p.gl;
     auto frame=s.gpu.lock();
     if(!frame){
         frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};frame->format=s.format;
         g.glActiveTexture(GL_TEXTURE0);
         frame->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);
-        s.gpu=frame;
+        s.gpu=frame;++p.counters.gpuPresentationAllocations;
         s.gpuDamage=Rect{0,0,s.width,s.height};
     }
     if(frame->consumed){g.glWaitSync(frame->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frame->consumed);frame->consumed=nullptr;}
@@ -872,7 +973,7 @@ void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
     if(!frame.data_ || s.format.bits!=f.bits || s.format.masks!=f.masks ||
        frame.data_->format.bits!=f.bits || frame.data_->format.masks!=f.masks ||
        frame.size()!=QSize(s.width,s.height))throw std::runtime_error("Resident GPU import format/extent");
-    p.flushCopies();Current current(p.context,&p.surface);auto& g=p.gl;
+    p.flushCopies();Current current(p.context,p.surface);auto& g=p.gl;
     const auto texture=frame.textureForCurrentContext();
     p.attach(s.native,s.width,s.height);p.setScissor(false);p.useProgram(p.importing->programId());
     g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,texture);
@@ -880,6 +981,27 @@ void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
     g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);p.check();
     frame.samplingComplete();s.validity.define({0,0,s.width,s.height});
     p.damage(s,{0,0,s.width,s.height});++p.counters.copies;
+}
+ClipperState GlBlitter::surfaceClipper(SurfaceId id) const{impl_->thread();return impl_->get(id).clipper;}
+void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key){
+ auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(pixels);auto& d=p.get(destination);
+ if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x+r.right-r.left>d.width || y+r.bottom-r.top>d.height)throw std::invalid_argument("Coordinate copy bounds/format");
+ if(source && *source==destination){
+  if(key)throw std::invalid_argument("Keyed coordinate self copy requires ordered pixel semantics");
+  surfaceCopy(*source,destination,{SurfaceCopyApi::BltFast,r,{x,y,x+r.right-r.left,y+r.bottom-r.top},0});return;
+ }
+ a.validity.require(r);
+ GLuint coordinates=0;if(source){auto& c=p.get(*source);if(c.format.bits!=32 || c.width!=a.width || c.height!=a.height)throw std::invalid_argument("Coordinate source extent/format");c.validity.require(r);coordinates=c.native;}
+ Current current(p.context,p.surface);auto& g=p.gl;p.attach(d.native,d.width,d.height);p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);p.useProgram(p.coordinateProgram->programId());
+ g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,a.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coordinates);
+ const auto u=[&](const char* name){return p.coordinateProgram->uniformLocation(name);};g.glUniform1i(u("sourcePixels"),0);g.glUniform1i(u("sourceCoordinates"),1);g.glUniform1i(u("mappedSource"),bool(source));g.glUniform1i(u("hasKey"),bool(key));g.glUniform1ui(u("sourceKey"),key.value_or(0));g.glUniform2i(u("sourceOrigin"),r.left,r.top);g.glUniform2i(u("destinationOrigin"),x,y);g.glDrawArrays(GL_TRIANGLES,0,3);p.check();d.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});p.damage(d,{x,y,x+r.right-r.left,y+r.bottom-r.top});++p.counters.copies;
+}
+void GlBlitter::assembleMappedWorld(SurfaceId destination,SurfaceId ui,SurfaceId coordinates,const GpuFrame& world){
+ auto& p=*impl_;p.thread();p.flushCopies();auto& d=p.get(destination);auto& a=p.get(ui);auto& c=p.get(coordinates);const PixelFormat rgb{16,{0xf800,0x7e0,31}};
+ if(!world.data_ || world.data_->format.bits!=16 || world.data_->format.masks!=rgb.masks || a.format.bits!=16 || a.format.masks!=rgb.masks || d.format.bits!=16 || d.format.masks!=rgb.masks || c.format.bits!=32 || a.width!=d.width || a.height!=d.height || c.width!=d.width || c.height!=d.height || destination==ui || destination==coordinates)throw std::invalid_argument("Mapped native frame extent/format");
+ a.validity.require({0,0,a.width,a.height});c.validity.require({0,0,c.width,c.height});Current current(p.context,p.surface);auto& g=p.gl;const auto texture=world.textureForCurrentContext();p.attach(d.native,d.width,d.height);p.setScissor(false);p.useProgram(p.mappedWorldProgram->programId());
+ g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,texture);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,a.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,c.native);
+ const auto u=[&](const char* name){return p.mappedWorldProgram->uniformLocation(name);};g.glUniform1i(u("worldPixels"),0);g.glUniform1i(u("uiPixels"),1);g.glUniform1i(u("coordinates"),2);g.glUniform1i(u("worldWidth"),world.size().width());g.glDrawArrays(GL_TRIANGLES,0,3);p.check();world.samplingComplete();d.validity.define({0,0,d.width,d.height});p.damage(d,{0,0,d.width,d.height});++p.counters.copies;
 }
 Image GlBlitter::draw(const Blit& c){
     validate(c);
