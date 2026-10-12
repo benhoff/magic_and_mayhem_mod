@@ -39,3 +39,22 @@ refused6GiB estimated output with102.5306GiB free under the required100GiB
 reserve; `host-lobby-storage-preflight-20261012.json` records **not launched**.
 This is storage provenance, not live execution evidence. No cleanup, policy
 change, live validation or integration/replacement promotion occurred.
+
+The authorized temporary90GiB reserve then admitted the bounded live attempt
+`live-menus/run-0rlcdmwr` / `menu-observer/run-lnrvc8wy`. Main/Quick/Create
+ready states and the original Create OK callback are observed. Original TCP
+room creation displayed **Could not create game session** before any host tick
+or lobby refusal; the180-second host deadline expired.
+[Failure record](host-lobby-create-failure-20261012.json) preserves pre-launch
+source bindings, raw hashes and the dialog capture. UI45.host-create-failure is
+negative diagnostic evidence; it binds no successful execution claims and
+promotes no status. Original inputs were verified before/after the attempt.
+
+Installed Wine11.16's32-bit TCP provider contains the diagnostic `session
+creation is not yet supported`; [upstream Wine's Open callback](https://github.com/wine-mirror/wine/blob/master/dlls/dpwsockx/dpwsockx_main.c)
+returns DPERR_UNSUPPORTED for create. This is consistent with the dialog, not
+a captured HRESULT or loaded-module proof. No provider substitution or simulated
+network success was used. Host ownership stays disabled by default until a real
+provider allows the frozen host round trip. The permanent storage policy is
+unchanged. `acab86fa..d7f73255` reviews30 exact committed file versions with no
+missing receipts; this accounting does not assert retrospective validation.
