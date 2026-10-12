@@ -157,3 +157,42 @@ timing, so expired one-shots are not replayed on first endpoint attachment.
 The initial marker remains fixed after attachment. A first silent-to-physical
 recovery can occur without a prior physical loss. Existing admitted-device
 loss/Restore semantics and explicit output selection remain separate policies.
+
+# Selected native audio profile reads
+
+MNMAUD01 version5 also admits optional low capability bit32 for a session-owned,
+read-only Sounds.ini snapshot. Staging must explicitly set
+`native_audio_profiles`; the capability must match that declaration before
+launch. Producer bit0x80000 records installation of all seven guarded audio
+call/import-load sites. Other callers of the original profile imports remain
+outside this adapter. No filename, pointer, C++ object or manager structure is
+serialized.
+
+| Operation | Payload | Header word7 | Response word18 |
+| --- | --- | --- | --- |
+| 23 PROFILE_STRING | section NUL, key NUL, fallback NUL | output capacity | characters excluding final NUL |
+| 24 PROFILE_SECTION | section NUL | output capacity | listing count / native truncation marker |
+| 25 PROFILE_INTEGER | section NUL, key NUL | fallback unsigned integer | parsed unsigned integer / fallback |
+
+Requests contain exactly those NUL-terminated ASCII fields and at most 1024
+payload bytes. Sections and keys are nonempty with at most 127 characters;
+fallback text has at most 259. Voice word6, PCM words9..14 and flags word15 must
+be zero. Text capacities are at most 16384, at least 1 for strings and at least 2
+for sections. Integer requests do not use a text capacity.
+
+On success, word24 describes the reply payload size; words25..30 remain zero.
+Strings contain one final NUL. Sections contain NUL-separated entries and a
+double NUL, including an empty section. The snapshot's truncation policy can
+return capacity-2 with an empty double-NUL payload; this is an intentional
+native policy, rather than a claim about arbitrary Windows profile truncation.
+Integers return no payload. HRESULT, all metadata and payload precede matching
+response publication. Failed requests clear response metadata.
+
+The producer validates returned sizes and terminators, and copies text to its
+checked caller buffer while retaining the single-request guard. It releases the
+guard only after the copy, so a later request cannot reuse the shared payload
+early. Invalid replies or a timeout retire the channel. The selected wrappers
+preserve caller LastError as native policy. Duplicate/malformed configuration,
+complete unsigned parsing and snapshot lifetime also retain native policy;
+general registry/encoding behavior and live rereading are excluded. See
+[profile integration evidence](../research/runtime/native-audio-profile-reads.md).

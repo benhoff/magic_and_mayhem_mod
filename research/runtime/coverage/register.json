@@ -47145,7 +47145,8 @@
       "documents": [
         "research/runtime/native-audio-profile-reads.md",
         "research/runtime/audio-manager-configuration.md",
-        "research/runtime/audio-source-cache.md"
+        "research/runtime/audio-source-cache.md",
+        "protocols/CONTRACTS.md"
       ],
       "implementation": [
         "audio/profile_source.hpp",
@@ -47310,6 +47311,68 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AU.scheduler-original-cases",
+      "subsystem": "audio_reconstruction",
+      "kind": "recovered",
+      "title": "Original scheduler selection, eviction, assignment and clearing comparisons",
+      "scope": "Authored valid two-to-five-record circular rings, bounded free/future/expired/loop states, signed old-volume ordering, manager gates, optional output slots, null buffers and scripted COM status/stop/reset failures; fixed scripted clocks include unsigned wrap. Six unchanged pinned original scheduler bodies compared to reconstructed host nodes and independently retained object/link/slot guard bytes. Original DirectSound, tick implementation, null/invalid ring and missing lookup faults, live thread/cadence and full admission/cache/event migration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5708464,
+          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5708848,
+          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5709184,
+          "scope": "Selected entry/helper only; whole function and its callers are not implied."
+        }
+      ],
+      "original_candidates": [
+        "0x571be0",
+        "0x571d20",
+        "0x571ec0"
+      ],
+      "documents": [
+        "research/runtime/audio-voice-scheduler.md",
+        "research/runtime/audio-scheduler-original-cases.md"
+      ],
+      "implementation": [
+        "reconstruction/audio/voice_scheduler.cpp",
+        "reconstruction/audio/voice_scheduler.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp"
+      ],
+      "tests": [
+        "tests/audio-scheduler-reference.cpp",
+        "tools/test-audio-scheduler-original.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/audio/dsound_setup.hpp",
+        "tools/original-manifest.sh",
+        "tools/coverage_claims.py",
+        "audio/buffers.hpp"
+      ],
+      "evidence": [
+        "AU.scheduler-original-cases.original-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -96443,6 +96506,66 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AU.scheduler-original-cases.original-20261012",
+      "kind": "isolated_original",
+      "record": "research/runtime/audio-scheduler-original-pass-20261012.json",
+      "sha256": "e0446cc0cac5542e7fa4d2c04bca8425fb2eee88d29c82176a73807ff09a0f4c",
+      "scope": "Six unchanged original scheduler bodies on authored valid 2..5-record rings; compare selected identity, all record/link/output/object guard bytes and scripted clock/COM order. Driver/tick implementations, invalid pointers/rings/missing lookup faults and live manager/cadence/cache/event replacement excluded.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 392778
+        },
+        {
+          "pointer": "/original/events",
+          "equals": 439560
+        },
+        {
+          "pointer": "/original/guard_bytes",
+          "equals": 480760272
+        },
+        {
+          "pointer": "/original/operations",
+          "equals": [
+            213120,
+            44544,
+            44544,
+            38250,
+            44544,
+            7776
+          ]
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -108010,8 +108133,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-profile-commit-v1-20261012.json",
-    "sha256": "ccbf521aeb11bf2dfe09f14accb13d15c654ba48c336020eda7c096f418b8d24"
+    "path": "research/runtime/coverage/source-index-audio-scheduler-commit-20261012.json",
+    "sha256": "1ae7a9b206ab02d23c719365429c098f3b81540843eeef8f4a95cb54a22a5594"
   },
   "claim_bindings_required": true
 }

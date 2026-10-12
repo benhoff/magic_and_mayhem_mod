@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "reviewed_range": "7235e7f6..55a61527c612beda19f15a130560d5f4ea48834b",
+  "scope": "Exact parent/current receipts for the guarded native audio profile service, live selected call/load redirects, installed comparison and full native game/import census, scoped source index and ledger. Original high-level manager/cache/scheduler/event logic remains PE; no original/general-profile or physical equivalence inferred.",
+  "files": [
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "042b4af0c7b87b05d00d0edfd460a20cdd51977bf2ef59fba74bdbd162f4ee72",
+      "after_sha256": "d65fbdcd09d33dbf8faaabd88096e8274ddde4cf13c49ff7d83a0c2bc1b14ca8",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "audio/CMakeLists.txt",
+      "before_sha256": "eead56f4e618814114c8d28d5f0c2f7f9997b8b4f007ad4cb823ce51f970559a",
+      "after_sha256": "5ac1c7a7d7a24ef3fadb6dca83f88bd981bdfe8a13e2aa724b4634002c35fa3c",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "audio/profile_source.cpp",
+      "before_sha256": null,
+      "after_sha256": "aac71e47eb8fa3fbfcdbaf9eb61d6c7ff33a12705c346c72e61452e723ed7b31",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "audio/profile_source.hpp",
+      "before_sha256": null,
+      "after_sha256": "406fbbf725edb40674d1d1ca17c5192568d41188526d07089eabe6e281a15ebd",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "audio/voice_bridge.cpp",
+      "before_sha256": "ab215221d8b6e904014e2a594d89057ea8c9916a409bbe951eea249477e6b8df",
+      "after_sha256": "21562e675f72aeb47babb40cf602bbe0622537aa5e872499c846041c54e5f9f0",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "audio/voice_bridge.hpp",
+      "before_sha256": "7a194d08792a87187f54e6291a27296e1ba4c4919303bbc02dd7c77d0b734a40",
+      "after_sha256": "eb7ed3290656312b2c2769aea092d9d5bc275938ba18d889bda5a264934e3e60",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "df39dafb48f4d70153d91980b4f84555102bcbe82d402bd19812e4928b228ed9",
+      "after_sha256": "d78f646516e92d3a31d3682b9c46cb186bfbf2743e5c0c142802058a8773517e",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/coverage/native-music-backend-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca86e16d27e016f744785b8826bc52f2f6858d8cd22db9ccbc11298e97f608f0",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "00735f841f6ed6166a5ea15fba06ef433b369150cc79435bfaa7941797ad89e1",
+      "after_sha256": "103c42df1461cfaaa0f9707b5cb572c337515b177ea75e9287d8cf06dd94c5e2",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/coverage/source-index-native-profile-commit-v1-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ccbf521aeb11bf2dfe09f14accb13d15c654ba48c336020eda7c096f418b8d24",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/coverage/summary-native-profile-commit-v1-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "3b5c2c87dc68e7edacca66a8b9b5e5e699dcd9f1f39b7c9c6e81ecaeb9c3f0b9",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "2dd4939cd75fb4246d63f9a088ab8ed77871e3b874f39447bdb6bd770396bd9b",
+      "after_sha256": "9c9236f1aa0d0b81293eb6703f231fde4ae263ea5f5940f05eb1837d9d3657dd",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/native-audio-profile-installed-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b1b349942a23c38dc6b7c46a0a0901229efb36d80f2cb8772f70b63b75e1ab0a",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/native-audio-profile-public-census-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9542f61de1a40d74d815ca682474c61137c52030b6ef1289db904d47fb9a8bab",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "research/runtime/native-audio-profile-reads.md",
+      "before_sha256": null,
+      "after_sha256": "b961e400804b0f458066b403ea4a300642c409c283ccbb473457763199c4b210",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "runtime/audio/bridge.c",
+      "before_sha256": "5bb980aeb8f31514c1942feabe96e254d197f0f09cdfdbdcf9f5f522998e438d",
+      "after_sha256": "95663f933d5bdda6e4ae2feead0125c7543e7ecd3dc27901782719a904a3ed21",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "runtime/audio/profile_reads.h",
+      "before_sha256": null,
+      "after_sha256": "4cbe49e727461847ddf9b2d4bb62bdf091000d2a65a00c827db83d7bdb619f92",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "runtime/audio/protocol.h",
+      "before_sha256": "0b100fb882c2012e83630be3be0cde5413f911deddbad8d90ab55f4c0831cb4f",
+      "after_sha256": "457e9b93e912da3b6070428a9482e60443c0877595422a21a8474776a7f1b7d4",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "runtime/audio/wave_loading.h",
+      "before_sha256": "a41fc39afe4d732c75feb5195775e5d3cb63f361b7e3e5cd73f846ca13294f37",
+      "after_sha256": "13f72b6ff97bfd94c224b9b0bd28d79818057339c9d3a61d9204537c8f58a0ee",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tests/native-audio-profile-host.cpp",
+      "before_sha256": null,
+      "after_sha256": "ac1bc42dd9b2f4d914c0050ff28b6d41742557d42d400b9a3b521b01af8e6e77",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tests/native-audio-profile/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "18bc74dae808592a82680e5790881b48d1470e7b524c2cbd7e719a9864a66d2c",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tests/native-audio-profile/producer.c",
+      "before_sha256": null,
+      "after_sha256": "6da910dcc1c23e284262e19af7e24dcf8f76ae7329adeccc4c7f4286e1016c54",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tests/test-native-audio-launch.py",
+      "before_sha256": "a59e385783f61ddf98ceae06def685a100ebdeedbd26dd08bdf8010614aa080a",
+      "after_sha256": "51180e13f2d13c3471187339e09588314c9d695bcc182c305997faa37ffdaa88",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tools/build-audio-bridge.py",
+      "before_sha256": "4fba81e29206899d8c3f76aa94547127d4cc4d4497f859c156a415212748c57d",
+      "after_sha256": "7f1fe2dbb7bc5ee77356d5f00299f284e3c30a83c9bf7e9642bb4012e2320971",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tools/native_audio_launch.py",
+      "before_sha256": "5217499afaa34fcc34c6da4cddaa967be2fbdd1028de6ad416248a8a658aa657",
+      "after_sha256": "aab81dcaadf72aa30fce8700235bf50c299b7818f06cd9452035e2d9a59e1262",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "540c43916a71439bcfcb453d45f18452ae483cf01113b1e0ecbe0de357e14489",
+      "after_sha256": "77c637d274eb1f43bfefe35676fb54ee398cbf2288a9653a98d8744aa80b8e04",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tools/test-native-audio-profile.py",
+      "before_sha256": null,
+      "after_sha256": "0366c05f7a8986707757ff58bd46e06f7b22a04d25d4ce7231b70dc50834e2f2",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "55a61527c612beda19f15a130560d5f4ea48834b",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "f3dd6ebb7eae1a1e865b08a54bdc5b980a24ab159c823e7158a5938c964a3429",
+      "after_sha256": "a77d0955cd28dd920bbc4404971452cc740f7eb7d185c5f05e01b7302b922fb7",
+      "receipt_chain": [
+        "native-profile-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

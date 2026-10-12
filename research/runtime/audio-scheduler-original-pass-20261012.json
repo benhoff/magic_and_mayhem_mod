@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "audio/buffers.hpp": "df82a5f2ce447c30228b45c82bdaf4e54de39de9ef15386520a7cf836bda75c1",
+    "reconstruction/audio/dsound_setup.hpp": "be04e2a4d3f28380b4b00d8aed2d74b0ac6c8e3712575d766eacacb9f85c436e",
+    "reconstruction/audio/voice_contract.cpp": "0c15733aa36aa4e52cf6afb40efb2157072d998cef6aea898c9ad12ba690d7f7",
+    "reconstruction/audio/voice_contract.hpp": "6131dbd0d37ca01067871535005b711c7a799f9a1d76d426062f9380ec712972",
+    "reconstruction/audio/voice_lifetime.cpp": "734eae681516248ad8d0e86de2ec02c73fe064f2f89f6a67798b3f67eab5ae00",
+    "reconstruction/audio/voice_lifetime.hpp": "7d7f45e6a46da1a53aa2e484b925bc76fba7c9ab22adfe4233121313532b5cf0",
+    "reconstruction/audio/voice_scheduler.cpp": "8731f183ef6d2a0d00b035c08e0d7d81b33463f864d7b8dcb3ec87b2b78b58ab",
+    "reconstruction/audio/voice_scheduler.hpp": "65d564eada76461db115054f7efa6b2d7c57d3ca0d84d56a358a00cebdd89e88",
+    "tests/audio-scheduler-reference.cpp": "143c6b1782c8f1263333acba060f2ec2f9abded2b0b7066098b813be9a6fc5cc",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-audio-scheduler-original.py": "25c2b36244dd48b2e1def9630f73736851b64e6941a42e681155e96deaf9e0df"
+  },
+  "claims": [
+    {
+      "behavior": "AU.scheduler-original-cases",
+      "contract_sha256": "85ce8f1b3bcab51f4fdc087e141f99922f5b73f9b9dfec2305e1e66860c9d690",
+      "scenarios": {}
+    }
+  ],
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Six unchanged original scheduler bodies on authored valid 2..5-record rings; compare selected identity, all record/link/output/object guard bytes and scripted clock/COM order. Driver/tick implementations, invalid pointers/rings/missing lookup faults and live manager/cadence/cache/event replacement excluded.",
+  "wine_required": false,
+  "live_replacement": false,
+  "original_bodies": {
+    "0x571ab0": {
+      "end": "0x571bd1",
+      "bytes": 289,
+      "sha256": "e97d1648471f30c2b98233b6f72a8b9b77385c01b446f78f49528cb54662481f",
+      "entry": "83ec085355568bd95733ff8b7304895c"
+    },
+    "0x571be0": {
+      "end": "0x571c2e",
+      "bytes": 78,
+      "sha256": "a430b4d09f38a17381573f3feb2947603526c7b0b128afef7d912c83e170845c",
+      "entry": "8b44240c568b742408578b7c24108946"
+    },
+    "0x571c30": {
+      "end": "0x571d16",
+      "bytes": 230,
+      "sha256": "78acd847b3ff90102e937fb065dd3c0606c78c1ea12a08e33bfd9ee63fe9a68e",
+      "entry": "8b41048b54240453568b71048b40043b"
+    },
+    "0x571d20": {
+      "end": "0x571d7d",
+      "bytes": 93,
+      "sha256": "bedcc82e4f40a520dc5b84584db2ba6dd66869d1f8028368d891b8835408f6c4",
+      "entry": "8b51048b442404563bc28b720475078b"
+    },
+    "0x571d80": {
+      "end": "0x571eb1",
+      "bytes": 305,
+      "sha256": "a75f2e614cce04fe1beca8ffb371266d2b4524d33836a7088c5b1a4b2e4dc7eb",
+      "entry": "51538bd98b4c240c55568b73048bc657"
+    },
+    "0x571ec0": {
+      "end": "0x571f7a",
+      "bytes": 186,
+      "sha256": "5dcf39aa137036a26293a750b8b2dac574bc57a200093fbdea347ded7eb5283e",
+      "entry": "83ec085355568b710433ed57894c2410"
+    }
+  },
+  "compiler_dependencies": [
+    "audio/buffers.hpp",
+    "reconstruction/audio/dsound_setup.hpp",
+    "reconstruction/audio/voice_contract.cpp",
+    "reconstruction/audio/voice_contract.hpp",
+    "reconstruction/audio/voice_lifetime.cpp",
+    "reconstruction/audio/voice_lifetime.hpp",
+    "reconstruction/audio/voice_scheduler.cpp",
+    "reconstruction/audio/voice_scheduler.hpp",
+    "tests/audio-scheduler-reference.cpp",
+    "tools/original-manifest.sh",
+    "tools/test-audio-scheduler-original.py"
+  ],
+  "native": {
+    "success": true,
+    "operations": [
+      213120,
+      44544,
+      44544,
+      38250,
+      44544,
+      7776
+    ],
+    "cases": 392778,
+    "events": 439560,
+    "guard_bytes": 0
+  },
+  "original": {
+    "success": true,
+    "operations": [
+      213120,
+      44544,
+      44544,
+      38250,
+      44544,
+      7776
+    ],
+    "cases": 392778,
+    "events": 439560,
+    "guard_bytes": 480760272
+  },
+  "sanitized": {
+    "success": true,
+    "operations": [
+      213120,
+      44544,
+      44544,
+      38250,
+      44544,
+      7776
+    ],
+    "cases": 392778,
+    "events": 439560,
+    "guard_bytes": 0
+  },
+  "original_instructions_unchanged": true,
+  "sanitizer_passed": true,
+  "input_unchanged": true,
+  "binaries": {
+    "native": "c5ebb28d9f3c48f3c70a11c345b806054253a5be613eeef810687f6724270b35",
+    "original": "d91d3badf7a9ba8f9f682743f85fb71387327e41af8abbcd2d258608ceaa12d5",
+    "sanitized": "d4759911f637837ac6af3757db519c1ad3b4231e6faf493c9e2cde2c46c5a2db"
+  },
+  "compiler": "g++ (GCC) 16.2.1 20260810",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true
+}
