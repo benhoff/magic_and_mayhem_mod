@@ -42246,7 +42246,9 @@
         "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012",
         "DRAW02.draw02-source-held-prediction-01-native_integration-20261012",
         "DRAW02.draw02-producer-update-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-whole-update-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-whole-update-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-whole120-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-whole120-prediction-02-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43422,6 +43424,71 @@
       "remaining_gaps": [
         "Original01/02refuse foreigntag39copyatnextaccepted17;exactdiagnostic retained. Fresh13casefixturevalidates5sforeignwaitoutsideproducerlock/sameowner/timeoutplusidentity/failures. Original05closes16whole sourcequeues/updateswithpostlude,end27exactnextaccepted17,87542records/37653258bytes/0failures.",
         "Native/PythonV4postlude1,16,120queuefixtures andlegacyregressionspass. Fresh106selected physical witnesses and212held-sourceplanesmatchnativeexactly;actual120windowcapture/decoder gates,completephysical source/action/frame/lifetimeownership,alternate/mode/cadencecontrolsandfull47/21acceptance remain open. No broad status promotion."
+      ]
+    },
+    {
+      "id": "NR.drawing-whole120-acquisition",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit bounded120whole-update original source acquisition",
+      "scope": "Opt-in Whole120 admission through shared scene gate, original-active capture waitsmax90s for exact requested source completion beforeWorldexit, process death/timeout/malformedmarker refuse. Use existingV4 1Mrecords/512MiB and3GiB/9999oracle limits, legacy defaults retained. Actual120consecutive counter-advancing boundsourcewindows and whole closure independently checked; physical/source/action/lifetime semantics remain separate.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-whole120-acquisition.md"
+      ],
+      "implementation": [
+        "runtime/scene/sample_admission.h",
+        "tools/drawing_source_completion.py",
+        "runtime/scene/observer.c",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "protocols/include/mnm/canvas_producers_v4.h",
+        "compat/legacy/drawing_scene_limits.hpp"
+      ],
+      "tests": [
+        "tests/drawing-sample-admission-test.c",
+        "tests/test-drawing-source-completion.py",
+        "tools/test-drawing-sample-admission.py",
+        "tools/capture-drawing-interactive.py",
+        "tests/test-canvas-producers-v4.py",
+        "tests/canvas-producers-v4-test.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/canvas_producers_v4.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/whole_update_capture.h",
+        "runtime/scene/drawing_update_points.h",
+        "tools/drawing_producer_updates.py",
+        "tools/drawing_engine_windows.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/build-scene-observer.py",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/drawing_scene_main.cpp"
+      ],
+      "evidence": [
+        "DRAW02.draw02-whole120-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-whole120-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-whole120-original-01-static-20261012",
+        "DRAW02.draw02-whole120-cap-analysis-01-static-20261012",
+        "DRAW02.draw02-whole120-cache-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-whole120-original-02-live_observation-20261012",
+        "DRAW02.draw02-whole120-interval-analysis-01-static-20261012",
+        "DRAW02.draw02-whole120-reader-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-whole120-held-analysis-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original01sourcecaprefusesinside118;cachecountdiagnosisretained. TestedV4-only4096definitionsunder16MiB/512MiB yieldsOriginal02source157595636bytes565700records2162oracles0failures and120exactqueues across122consecutiveadvancingwindows1\u2013122,endbefore123. Sequences34/35advancewithoutselectedWorldqueue;this is retained,not waived.",
+        "795API794EGLwitnesses162heldpairs311commandsretained;Freshnative140selectedwitnessesmatch0diff,655excluded. Allpresentations/source/action/frame/lifetimeownership,alternate/mode/cadencecontrols andcomplete47/21acceptance remainopen. Thisadvanceslongerboundedsourceacquisition only.",
+        "Longernativeprediction01refuseslegacydeclarationsequencecap262144beforedrawing;V4version-aware1MsequenceadmissionandNaN/fraction/overbudget/legacyguardsrequirefreshcomparison."
       ]
     }
   ],
@@ -92235,6 +92302,221 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "PE32Whole120/legacy admission and Pythoncompletion controls pass beforepostprocessing cleanup;historical sourceversion retained.",
+      "record": "research/runtime/draw02-whole120-fixture-01.json",
+      "sha256": "a639db48842b17b9db4b1948f1a469740b115da60a4a2682a8cc8d4b626e0d68",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-fixture-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Final-source PE32Whole120/legacy admission and Pythoncompletion heartbeat/death/timeout/corruption controls;nooriginal120interval claim.",
+      "record": "research/runtime/draw02-whole120-fixture-02.json",
+      "sha256": "45d7293e5aad9efa36040eff5efad9f912a72bb8a1bf898b8cc750171cc49183",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-original-01-static-20261012",
+      "kind": "static",
+      "scope": "Retained original120attempt01 hits512MiBinsidequeue118after117returns;no120closure.",
+      "record": "research/runtime/draw02-whole120-original-01.json",
+      "sha256": "2ce4414e0f4f0ff4b6776ff3ab070057c4320b80b32edfee9ef447d4157bd346",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-cap-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "Retainednegative01cachecount/bytecap/oracle analysis;nooriginal120proof.",
+      "record": "research/runtime/draw02-whole120-cap-analysis-01.json",
+      "sha256": "11e24bf0a261a982cf1cd58f4bd6aaad827b552efc5666cccfef677267162db8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-cache-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "V4-only4096entry/4097refusal native/Python andlegacy regressions;currentcache policy tested,notoriginal120ownership.",
+      "record": "research/runtime/draw02-whole120-cache-fixture-01.json",
+      "sha256": "61ddfe3c3b24e8c455c430d46172418d23220dd8585d80ad5dae71c11d55d377",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-whole120-original-02-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Original02completeV4source intervalupdates1\u2013122closedbefore123:120exactboundadvancingqueues,twoadvancingnoqueuewindows34/35;565700records157595636bytes0failures795API794EGL. Noallpresentation/source/action/lifetimeclaim.",
+      "record": "research/runtime/draw02-whole120-original-02.json",
+      "sha256": "ea11da8254dfc329ff53d1e5bc4e0514adc3e06757dc047b0c4b0ae53e761811",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_update_observation/bound_advancing_queues",
+          "equals": 120
+        },
+        {
+          "pointer": "/producer_update_observation/whole_update_source_boundary/verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-whole120-interval-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "Exact source/cadence span1\u2013122consecutiveadvancingwindows andtwoobserved draw-skippedwindows;no assumption ofallpresentationretention.",
+      "record": "research/runtime/draw02-whole120-interval-analysis-01.json",
+      "sha256": "13961fdc7b451eaec0c5423cd1e2e5fdc15fedc553ff1dbc8099d8dcca3c88e0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Retained native refusal beforecomparisons:legacy scene declaration262144cap rejectsV4sourceboundary.140selected655excluded nativeexit1,no pixelparity.",
+      "record": "research/runtime/draw02-whole120-prediction-01.json",
+      "sha256": "9ba226a6fbfdb3904e2371bf921768fbe1672b2fececf484140db4b191e7c491",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-reader-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Finalsource numericV4/legacysequencebounds,finite/fraction guards,4096cache/4097refusal andlegacy/wait regressions;no original parity.",
+      "record": "research/runtime/draw02-whole120-reader-fixture-01.json",
+      "sha256": "6ea6ed2f2cfaf2fa654563a8402c10fcc21a35f284b3f81f2779b8184364514e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-prediction-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "FreshV4longsource native140selectedphysicalwitnesses0diff/655excluded afterversion-awaredeclaration repair. No fullreference/journey/presentation/lifetimeclaim.",
+      "record": "research/runtime/draw02-whole120-prediction-02.json",
+      "sha256": "513b4e9bda6a96b73d44049e6567f8acfcec9ee0a9915a2051dba57245985798",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-held-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "External held-source280selectedplanes/134400000pixels0diffagainstindependentlongV4nativeprefix;all655excludedphysicalwitnessesremainoutsideparity.",
+      "record": "research/runtime/draw02-whole120-held-analysis-01.json",
+      "sha256": "25518420cf96049f88aed0424fcf46212d2d07fa0d8a62736e53f96ed6fb8cbc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -103692,6 +103974,39 @@
       "evidence": [
         "DRAW02.draw02-producer-update-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.whole120-fixture",
+      "level": "headless",
+      "scope": "PE32Whole120/legacy admission and boundedcompletion heartbeat/death/timeout/corruption controls;nooriginalinterval.",
+      "behaviors": [
+        "NR.drawing-whole120-acquisition"
+      ],
+      "tests": [
+        "tests/drawing-sample-admission-test.c",
+        "tests/test-drawing-source-completion.py",
+        "tools/test-drawing-sample-admission.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-whole120-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-whole120-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-whole120-reader-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.whole120-original",
+      "level": "live_observation",
+      "scope": "Original Whole120 source span with exact advancing update/queue/endboundary identity underexistingfinitebudgets;physical/action/lifetime semantics separate.",
+      "behaviors": [
+        "NR.drawing-whole120-acquisition"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-whole120-original-02-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -104065,8 +104380,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-whole-update-wait-20261012.json",
-    "sha256": "cd6a8ebd6ba5ba42dafcf8e6115e5a52a5d06872bf28db77412c7e328858a4b6"
+    "path": "research/runtime/coverage/source-index-draw02-whole120-reader-20261012.json",
+    "sha256": "2be47cf5eda67e9ff4c3d62282d142dca2cdf85653aa08139a2e09158c4ad1f0"
   },
   "claim_bindings_required": true
 }

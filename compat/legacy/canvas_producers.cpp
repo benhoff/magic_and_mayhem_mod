@@ -146,7 +146,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       if (!extendedWorld || (r[14]!=8 && r[14]!=9) || r[19]<40 || r[19]>1048576 ||
           r[18]!=r[19]+r[20] || word(c.bytes(),0)!=r[19] || word(c.bytes(),28) ||
           (r[14]==8 ? r[20]!=272 : r[17]>1 || (r[20]!=0 && r[20]!=64 && r[20]!=512)) ||
-          result.ownedPayloads.size()>=MNM_PRODUCER_V3_SOURCES ||
+          result.ownedPayloads.size()>=(wholeUpdate?MNM_PRODUCER_V4_SOURCES:MNM_PRODUCER_V3_SOURCES) ||
           c.bytes().size()>MNM_PRODUCER_V3_SOURCE_BYTES-result.ownedPayloadBytes)
         throw std::invalid_argument("Invalid producer owned-source definition");
       c.ownedPayload=std::make_shared<const std::vector<std::uint8_t>>(std::move(c.payload));

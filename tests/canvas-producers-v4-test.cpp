@@ -1,4 +1,6 @@
 #include "../compat/legacy/canvas_producers.hpp"
+#include "../compat/legacy/drawing_scene_limits.hpp"
+#include <limits>
 #include <algorithm>
 #include <array>
 #include <cstring>
@@ -17,7 +19,12 @@ Bytes wire(unsigned queues){
  r={};r[2]=27;r[14]=queues;r[15]=r[16]=queues;r[17]=queues+1;r[19]=300;r[21]=7;r[22]=3;row(r);return b;
 }
 int main(){try{
+ require(mnm::legacy::sceneDeclarationNumberAdmitted(565700,4));require(!mnm::legacy::sceneDeclarationNumberAdmitted(565700,3));require(mnm::legacy::sceneDeclarationNumberAdmitted(1048576,4));require(!mnm::legacy::sceneDeclarationNumberAdmitted(1048577,4));require(!mnm::legacy::sceneDeclarationNumberAdmitted(1.5,4));require(!mnm::legacy::sceneDeclarationNumberAdmitted(std::numeric_limits<double>::infinity(),4));require(!mnm::legacy::sceneDeclarationNumberAdmitted(std::numeric_limits<double>::quiet_NaN(),4));
+
  for(unsigned n:{1u,16u,120u}){auto b=wire(n);auto stream=mnm::legacy::decodeCanvasProducers(b);require(stream.version==4&&stream.queues==n);mnm::legacy::CanvasProducerReplay replay([](const auto&)->Bytes{throw std::runtime_error("Unexpected asset");});for(const auto& c:stream.operations)replay.apply(c);auto image=replay.read(1);require(image.width==2&&image.height==2&&std::all_of(image.pixels.begin(),image.pixels.end(),[](auto p){return p==0x07e0;}));auto partial=b;partial.resize(partial.size()-96);mnm::legacy::decodeCanvasProducers(partial,false);refuses([&]{mnm::legacy::decodeCanvasProducers(partial);});}
+ auto definitions=wire(1);definitions.resize(64);
+ for(unsigned i=0;i<4097;++i){auto at=definitions.size();definitions.resize(at+136);put(definitions,unsigned(at),136);put(definitions,unsigned(at+4),i+1);put(definitions,unsigned(at+8),25);put(definitions,unsigned(at+56),9);put(definitions,unsigned(at+72),40);put(definitions,unsigned(at+76),40);put(definitions,unsigned(at+96),40);if(i==4095)require(mnm::legacy::decodeCanvasProducers(definitions,false).ownedPayloads.size()==4096);}
+ refuses([&]{mnm::legacy::decodeCanvasProducers(definitions,false);});
  auto original=wire(1);for(auto change:std::vector<std::pair<unsigned,unsigned>>{{20,262144},{28,0},{32,134217728},{24,121},{unsigned(original.size()-96+68),8},{unsigned(original.size()-96+84),0},{unsigned(original.size()-96+88),1}}){auto b=original;put(b,change.first,change.second);refuses([&]{mnm::legacy::decodeCanvasProducers(b);});}
  auto b=original;b.insert(b.end(),original.begin()+64,original.begin()+160);refuses([&]{mnm::legacy::decodeCanvasProducers(b);});b=original;std::memcpy(b.data(),"MNMPRO03",8);put(b,8,3);refuses([&]{mnm::legacy::decodeCanvasProducers(b);});std::cout<<"Whole-update decoder/replay:3postlude cases,12refusals\n";
  }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

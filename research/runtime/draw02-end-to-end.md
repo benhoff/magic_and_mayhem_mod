@@ -847,3 +847,26 @@ witnesses(201excluded) and212held-sourceplanes/101760000pixels with zero
 differences. Reassessment: extend explicit Whole120 admission and bounded
 completion waiting next; source/action/frame/lifetime/route/cadence/semantic
 requirements remain open. No full DRAW02 or replacement promotion.
+
+## Step 2 longer whole source interval reassessment (2026-10-12 UTC)
+
+Whole120attempt01fails its512MiBsourcecapinsidequeue118,with117complete queues.
+Its source cache is count-exhausted at2048definitions but only4.2MiB; raw raster
+fallback dominates. A testedV4-only4096entry policy retains16MiB/512MiBbounds and
+legacy2048limits. Original02thencloses120boundqueues across122consecutive
+advancingwindows1–122,with two observedno-queuewindows34/35,endbefore123.
+565700records157595636bytes2162oracles0failures are retained. Normal originalQuit
+passes,with795API794EGLwitnesses162heldpairs311commands. These are source and
+cadence findings,notallpresentation/action/lifetime/semantic completion.
+
+The first longernative replay refuses beforecomparisons at its old262144sequence
+admission limit. V4-aware1Mnumeric bounds and invalid-number controls pass after
+two missed callsite versionarguments are fixed. Fresh comparison is required.
+Reassessment: continue exact source→submission→physical ownership/caller/routes
+andsemantic evidence within step2; do notclose47/21requirements from counts.
+
+Fresh longernativeprediction02passes140selectedphysicalwitnesses0diff; external
+held-sourceanalysis passes280planes/134400000pixels0diff.655witnessesremain
+excluded(466competingmutation,107sourcepointchanged,81stopped,1geometry).
+Reassessment: use exact source versions and worker/EGL evidence to resolve
+physical ownership while preserving competing-writer guards. Step2remainsopen.

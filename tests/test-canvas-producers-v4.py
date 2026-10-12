@@ -27,6 +27,13 @@ class Whole(unittest.TestCase):
             raw=bytearray(wire());struct.pack_into('<I',raw,offset,value)
             with self.assertRaises(ValueError):m.decode(raw)
         with self.assertRaises(ValueError):m.decode(wire()+wire()[64:160])
+    def test_v4_definition_count_limit(self):
+        raw=wire();header=raw[:64];frame=bytearray(40);struct.pack_into('<I',frame,0,40)
+        records=[]
+        for i in range(4097):
+            r=[0]*24;r[:3]=[136,i+1,25];r[14]=9;r[18]=r[19]=40;records.append(struct.pack('<24I',*r)+frame)
+        m.decode(header+b''.join(records[:4096]),complete=False)
+        with self.assertRaises(ValueError):m.decode(header+b''.join(records),complete=False)
     def test_legacy_headers_stay_strict(self):
         raw=bytearray(wire());raw[:8]=b'MNMPRO03';struct.pack_into('<I',raw,8,3)
         with self.assertRaises(ValueError):m.decode(raw)

@@ -9,7 +9,7 @@ The 64-byte header begins `MNMPRO04`. DWORDs 2–8 are version 4, header size 64
 build tag `0x40209ca7`, record limit 1,048,576, requested queues 1–120,
 whole-update flag 1 and byte limit 536,870,912. DWORDs 9–15 are zero. These finite
 limits are native diagnostic policies. Source definitions retain the existing
-2,048-entry / 16 MiB cache and raw-input fallback. Oracle files keep their existing
+V4-only4,096-entry / 16 MiB cache (legacy V3retains2,048 entries) and raw-input fallback. Oracle files keep their existing
 1–3 GiB configured budget and 9,999-file refusal; the protocol does not waive them.
 
 Existing 96-byte producer rows and owned operations 1–26 retain their field

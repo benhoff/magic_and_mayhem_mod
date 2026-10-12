@@ -37,7 +37,7 @@ def decode(raw, complete=True):
             if r[18] or source is None or source[0][14]!=r[2] or source[0][17]!=r[17] or source[0][19:21]!=r[19:21]:raise ValueError('Invalid owned-source reference')
             payload=source[1];r=list(r);r[4]=0;r[18]=len(payload);r[0]=96+len(payload);r=tuple(r)
         if r[2]==25:
-            if r[14] not in (8,9) or not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]) or (r[20]!=272 if r[14]==8 else r[17]>1 or r[20] not in (0,64,512)) or len(owned_sources)>=2048 or len(payload)>16*1024*1024-owned_bytes:raise ValueError('Invalid owned-source definition')
+            if r[14] not in (8,9) or not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]) or (r[20]!=272 if r[14]==8 else r[17]>1 or r[20] not in (0,64,512)) or len(owned_sources)>=(4096 if whole else 2048) or len(payload)>16*1024*1024-owned_bytes:raise ValueError('Invalid owned-source definition')
             owned_sources[r[1]]=r,payload;owned_bytes+=len(payload)
         elif r[2] in (8,9):
             if not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]):

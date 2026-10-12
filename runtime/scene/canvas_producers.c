@@ -151,7 +151,7 @@ void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;drawing_update_points_clo
 static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=producer_record_budget()||bytes>producer_byte_budget()-96||n>producer_byte_budget()-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
-static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V3_SOURCES];
+static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V4_SOURCES];
 #include "../../protocols/include/mnm/world_continuous_checksum.h"
 static u32 source_packet_count,source_packet_bytes;
 static u32 continuous_source_heads[1024];
@@ -166,7 +166,7 @@ static void emit_unlocked(u32* r,const void* payload,u32 n){
   if(continuous_map){if(continuous_equal(s->data+r[19],data+r[19],r[20])&&continuous_equal(s->data,data,r[19])){source=s;break;}}
   else{u32 j=0;while(j<n&&s->data[j]==data[j])++j;if(j==n){source=s;break;}}}
  if(continuous_map){if(source)hash=source->hash;else hash=mnm_cont_crc32c(data,n);put((u8*)r+96+n,hash);}
- if(!source&&source_packet_count<MNM_PRODUCER_V3_SOURCES&&n<=MNM_PRODUCER_V3_SOURCE_BYTES-source_packet_bytes){
+ if(!source&&source_packet_count<(whole_update_capture?MNM_PRODUCER_V4_SOURCES:MNM_PRODUCER_V3_SOURCES)&&n<=MNM_PRODUCER_V3_SOURCE_BYTES-source_packet_bytes){
   u8* owned=continuous_map?0:HeapAlloc(producer_heap(),0,n);
   if(continuous_map||owned){
    u32 definition[24]={0};definition[2]=MNM_PRODUCER_PAYLOAD_SOURCE;definition[14]=r[2];definition[17]=r[17];definition[19]=r[19];definition[20]=r[20];

@@ -7473,3 +7473,38 @@ matchedreceipts/0gaps. Storageapproximately1007GiBworking319GiBfree;no cleanup.
 
 The same fresh V4 native cohort also matches212held source planes and101760000
 pixels with zero differences. This remains a selected external oracle comparison.
+
+## Step 2 bounded longer source acquisition (2026-10-12 UTC)
+
+Whole120 admission and a checked90second completion wait keep the original in
+World until source closure. PE32shared admission and heartbeat/death/timeout/
+corrupt-marker controls pass. Attempt01refuses at512MiBinsidequeue118after117
+complete returns,578698records; its2048definition cache is count-full while
+owning only4.2MiB. The retained cap diagnosis motivates a V4-only4096entry cache
+under the same16MiB/512MiB caps; legacy2048limits stay intact. Native/Python4096
+admission/4097refusal,postlude/header andlegacy regressions pass.
+
+Original02 succeeds with565700records157595636bytes2162oracles0sourcefailures,
+closing beforeaccepted123/counter122. The exact source interval1–122contains122
+consecutive advancing windows and120boundWorldqueues; windows34/35advance but
+emit no selectedWorldqueue. This distinction remains explicit. Normal original
+Quit passes with795API794EGLwitnesses,162heldsourcepairs311commands. It doesnot
+assert every physical change or source/action/lifetime ownership.
+
+Native prediction01refuses beforecomparisons at the legacy262144scene-declaration
+limit;140selected655excluded,nativeexit1. The V4-aware numeric guard now admits
+1M while keepinglegacy262144 and rejectsnonfinite/fraction/overbudget values.
+Its firstbuildmissedtwo versionarguments; correctedbuild andfreshcontrols pass.
+Fresh comparison follows under a new resultID. No failed native run grants parity.
+
+Reassessment: longer source/cadence evidence advances step2,while complete
+presentation/source/action/frame/lifetime/route/mode/cadence outcomes and all47/21
+acceptance remainopen. Steps3–7stayordered. Reviewed59841d8e..69ab6490has39matched
+receipts/0gaps. Storageapproximately1027GiBworking299GiBfree;no cleanupperformed.
+
+Fresh nativeprediction02nowmatches140selectedphysicalwitnesses0diff,655excluded.
+Externalheld-sourceanalysis matches280selectedplanes/134400000pixels0diff.
+Exclusions remain466competingmutations,107changedsourcepoints,81stoppedproducer
+and1unsupportedgeometry. The next acquisition increment must establish exact
+source/submission/physical ownership for those activeWorld intervals, retaining
+guards and competing writers. This is restricted parity,notfullDRAW02completion.
