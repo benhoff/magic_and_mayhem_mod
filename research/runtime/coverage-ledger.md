@@ -7988,3 +7988,31 @@ contract. Fixture04passes32pairs/35forwards; original03normalQuitretains9pairs,
 rawcountandmode0→1; mask2preserves. Earlierfixture03/original02remainhistorical
 forcontractsupport. This metadata correction doesnot refresh any oldhash or
 assert unexecuted current validation; fullselection/tooltip/lifetimes/47/21open.
+
+
+## Step 2 cursor mutex checkpoint (2026-10-12 UTC)
+
+Region callback observation is committed as `6afb42c3`; the staged gate and
+commit hook pass. Reviewed range `76264a6a..6afb42c3` has 28 exact file receipts
+and zero missing versions. A working-tree receipt initially captured the
+actor-control definition before its visual evidence addition; a supplemental
+receipt from the frozen staged tree resolves that mismatch without rewriting
+prior reviews or claiming new execution.
+
+Both original cursor mutex constructors pass three zero arguments. Foreground
+uses `642c58` with a 10 ms wait. Timer first waits on `6e1ec0` for 10 ms, then
+also waits on `642c58` with `ffffffff` when repainting; the latter result is not
+tested before copying. It releases the inner mutex before the outer mutex.
+The earlier outer-only timer description was incomplete. Exact static clients
+and the bounded missing-function disposal window are retained separately.
+
+Unchanged privately mapped original timer execution passes 240 type/result/
+screen/countdown/Release cells: 96 outer waits and 24 releases. Nonzero outer
+results skip Release; admitted early exits and countdown effects match. The
+inner cursor flag is fixed zero, so no nested wait, coordinate or drawing
+execution is claimed. Original bytes/unrelated checked globals and both
+2927-file manifests remain unchanged. Real handle lifecycle/ownership, all
+lock ordering, abandoned handling and safe source capture synchronization remain
+open. Next observe actual mutex identities and calls before adding any capture
+locking. Step 2 remains ongoing; all 47 journey/21 operation requirements and
+steps 3–7 remain open.

@@ -526196,6 +526196,216 @@
         "evidence": [],
         "reason": "Static exact instruction and retained visual review only. Full selection/control lifetime/native equivalence remains pending; no new execution or status promotion from receipt correction."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "6f2b0bf4090756993c9e6d69acf1b86fa61ec670b0b43b51b15a949cc2dbc53f",
+          "before_sha256": "b477a57d20fd4cbdcb35fe57f158850e25d9e9e83c6271b069f6af4f6c41d498",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "7467aafbd63e9be395c6585220c2a6978912c6255c69fa4006ebf361a41f23c3",
+          "before_sha256": "7467aafbd63e9be395c6585220c2a6978912c6255c69fa4006ebf361a41f23c3",
+          "id": "DRAW.canvas-lock-recovery"
+        },
+        {
+          "after_sha256": "24236e71aca5adfc1c6fab95175e7f29ecaab02100ac0ff51b2d413598a630e3",
+          "before_sha256": "24236e71aca5adfc1c6fab95175e7f29ecaab02100ac0ff51b2d413598a630e3",
+          "id": "DRAW.canvas-release-client"
+        },
+        {
+          "after_sha256": "69e1ce187b77a62b37fd68291bf99cbb7f3b753b4821b4868d19df39309f8f2f",
+          "before_sha256": "69e1ce187b77a62b37fd68291bf99cbb7f3b753b4821b4868d19df39309f8f2f",
+          "id": "DRAW.canvas-source-buffer-setup"
+        },
+        {
+          "after_sha256": "955d05a0452de1ed0f699ad9fb6949ba99765f99f065acebda83f81f2ea3beac",
+          "before_sha256": null,
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "5924cc33f2557f527aad96cd4d5713b4ae2608527adba00019623c8166e36c66",
+          "before_sha256": "e4b75835cef7a14dad5fa2e672a88eb56d33b7fc417fc8ac46bbdf9310bbb845",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "8442260cb558485c9a4dc89b9636cb528ad8c51d9cfba13234714970ad21c719",
+          "before_sha256": "d58a5765ae3f3f507eebbeef01806487726f90e94e94c5e6bab6a4690a9f7bb9",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "6577babdf3f8020278fe0b2c1da2cadecfb9792dd92e33be03a2257a8135bef7",
+          "before_sha256": "6fb526cbefbcb298bd26010f84f42c26e75e2ca819f7291c3af8c8d3a16e4fd7",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "2927d3847ccd97b594ab3b16e4bdba8ffa6af0866c616adb1f800713720ac053",
+          "before_sha256": "6976623ca72042ed7cca58802e6006315e5cabda305fee7956cae90cab6ce771",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "3bc542b61a3d5d50eb4ba6427e75f47e7599297d4a0bed098f0e04b15de2b1e0",
+          "before_sha256": "3bc542b61a3d5d50eb4ba6427e75f47e7599297d4a0bed098f0e04b15de2b1e0",
+          "id": "DRAW.terminal-canvas-wrappers"
+        },
+        {
+          "after_sha256": "d8cb489fd0872cdd21a3bc92764fcf035cd941ed9263ac07bbeb48fcbc1650e8",
+          "before_sha256": "2c1c7cfcdc172d02a770f55daa97bd07ea9b538457146ff0611c60a98e13cae1",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "5130338267bd6b5759819325c1d5e5a63c3aa0afadc7d93f26dc5da9682b7884",
+          "before_sha256": "c085a405b0c3a01e609fc32ef58f285ab27e53b25b6c29b65f8f72dc7e0e10a3",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "553259d2b87a4c576150012de267aa0ab794449cd00bc99f13ffba8cdeffa264",
+          "before_sha256": "c7328aaa3a05a31efcff7a87543217efa66e76e2a5e9b1d947ef045f3925edff",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "3f9996fa691857f9add961b7d982a5c74f2bd0cb525c999b26e40b01aa525e1e",
+          "before_sha256": "4386c9b07b3a8d8655b2a2a590d548781d441e5eba03e9fe4db0cc7b4be490e9",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "1281bd69c7adbd5c45668867db3ce8eb19025de0522aedee8c31406bcf33e61b",
+          "before_sha256": "b0df1eeb33fdac2834b109e728bcd2660ae7355ca0feb1ef73a7d2c21e0a80ec",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "1c17fb153ad60aeb0e6f9e00ef09aaf49a3482453298ff5eb4791177c9c66cf9",
+          "before_sha256": "ff239b5cf0069e2a30abed14966db6e4012ec4a257f0f8613e0fe9f5f305bd9b",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "c6d97bcdc67fc61deb900f4445149dead1b830f7ac5dadef502edbf0b9644f59",
+          "before_sha256": "7df8e4062fe4c0ddd3a562efbb60242a51bb3b9887aabcd14abacd0142fcf9f1",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "76b84224595dd17ee65ef289c009e050722facb421f2f41277d9e80e3dcdee42",
+          "before_sha256": "14b3995549796105c2ac0c05c45bef49bbf6ae1b3d5527fadc9e43ba6a7913a4",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "571f54b6aec8e57b785b04b15021e3b18c727d8947f54e44d7ee3f561ed81291",
+          "before_sha256": "b2ee24bca0c274ea3d351a42d6a08a8d34934074697018133367900a70cf0189",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "31201127b1751de395b92897d3e51fa632e126c39ae092027114af236d2db433",
+          "before_sha256": "8003dc5c109e3d1aa2a9ddfd16a3f60223554649690e8d00e82826f8713bab49",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+          "before_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "ad5d189a3c979a3b7a1381e50130b403c12532fec020bd992a068d29cdf785b5",
+          "before_sha256": "ad5d189a3c979a3b7a1381e50130b403c12532fec020bd992a068d29cdf785b5",
+          "id": "RS.canvas-create-lock"
+        },
+        {
+          "after_sha256": "57afc49951884bf2e9ef6e87d464485e7c1d8ab527676bb023a47813824756eb",
+          "before_sha256": "bd5233c748b02dcc57f1182f9d51b61ada4941ddfb6ed16aba72751e220727f4",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "214ba99fa5bd0be24d57a4ea8d41325d9436ee7ec18304cc7e0294f3aae4ad0f",
+          "before_sha256": "81f66cfcc2ee5f5468da031c149da1385022f0dbea402e173177d46107c92336",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d5aedc9f1bde55ed6e58023d49a9e0fbad33f74e51943ffab54c4051be17df63",
+          "before_sha256": "49d14857a1be493d9745e3c44c5a8423d95882e24536f6f3745b12e1b24b3933",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9b39f2917c1a8b4c894a095ab4231186e626fdfb14c924e6f90423971a81e832",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-cursor-mutexes-start-20261012.json"
+        },
+        {
+          "after_sha256": "3af550453ca92cadb7d446898cb700061675e86e0f7ca34653b569a72b26887c",
+          "before_sha256": "ef7ed8587ae1b2819a93f05c2bb8a611075d88be9293cd6e4f0e11370a803e71",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "3b68203b8fd27a8cc48e14304e3eff1968e81112350a4711bb6aad51a5ee186d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-cursor-mutexes-20261012.json"
+        },
+        {
+          "after_sha256": "85192f8f22999bcda5027d4d63870c6a449e321a4d45d7920516404bb2b40281",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-cursor-mutexes-20261012.md"
+        },
+        {
+          "after_sha256": "4445bd6f6fc35e0da6d388a95cf288383e4becfc8ea1b35c593524cac9560845",
+          "before_sha256": null,
+          "path": "research/runtime/cursor-mutex-clients.md"
+        },
+        {
+          "after_sha256": "1fc97ba463a765b8a077f1b7f98f816faa149908ff928e31d973b69363430a63",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-mutexes-static-01.json"
+        },
+        {
+          "after_sha256": "58d64d5b2159fe61dd3e07112ba26b442693c98a835b1256e103d4ae92b45246",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-waits-original-01.json"
+        },
+        {
+          "after_sha256": "b15c9cbee52403373ad8c435616742b13296abed0031e3c83ff02ad0f49de181",
+          "before_sha256": "b6f0fed60c87182e6fb559541f2d3f2c12a314cbd9f808c9cb09ca28eb4cb908",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "8502dcc59bbfec9074b32672cfc7aefa66a65f60786d8bad55da3b432a01ee15",
+          "before_sha256": null,
+          "path": "tests/drawing-cursor-wait-reference.cpp"
+        },
+        {
+          "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "before_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "path": "tests/surface-retry-reference.cpp"
+        },
+        {
+          "after_sha256": "2513652d0ed8b5c9382b3b32b393fdb2ea4e15d02b10d5f297cadd45e3a5dcd8",
+          "before_sha256": "2513652d0ed8b5c9382b3b32b393fdb2ea4e15d02b10d5f297cadd45e3a5dcd8",
+          "path": "tools/inspect-drawing-canvas-storage.py"
+        },
+        {
+          "after_sha256": "b1f6d566b5ec7687eedb31dd553764f339d86a0e7f2f38535021e51a64dc221d",
+          "before_sha256": null,
+          "path": "tools/inspect-drawing-cursor-mutexes.py"
+        },
+        {
+          "after_sha256": "3976cfa44b8ac47c5683258c7eb5eb7337877f419284891f15ecd2772931ba87",
+          "before_sha256": null,
+          "path": "tools/test-drawing-cursor-waits.py"
+        }
+      ],
+      "id": "draw02-original-cursor-mutex-clients-and-outer-gates-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:fa39c77faee02500836be894d3ac873db14a1da2809b7f2f84c3caa672d6f3fd",
+        "behaviors_without_implementation:fa39c77faee02500836be894d3ac873db14a1da2809b7f2f84c3caa672d6f3fd",
+        "behaviors_without_scenarios:fa39c77faee02500836be894d3ac873db14a1da2809b7f2f84c3caa672d6f3fd"
+      ],
+      "reason": "Review exact zero-argument cursor mutex setup, foreground/timer nested wait and release clients, bounded missing-function disposal, unchanged original outer timer gate240cells, source census and28committed exact receipts. Preserve unknown ownership/lifetime/aliases and no source synchronization/native parity claim.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "DRAW02.draw02-cursor-waits-original-01-20261012"
+        ],
+        "reason": "Fresh unchanged original privately mapped timer matrix passes240cells96Waitcalls24Releasecalls with pinned sources/build, unchanged code/unrelated checked globals and original manifests before/after; static clients pass. Nested wait/drawing, actual OS handles/ownership/abandoned behavior, all lock ordering and safe diagnostic source synchronization remain pending. Shared historical claims/statuses remain independent."
+      }
     }
   ]
 }
