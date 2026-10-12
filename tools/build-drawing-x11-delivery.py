@@ -11,7 +11,7 @@ def build(glx=False,egl=False):
  subprocess.run(['gcc','-std=c11','-O2','-fPIC','-shared','-Wall','-Wextra','-Werror','-pthread',str(ROOT/('runtime/display/egl_delivery.c' if egl else 'runtime/display/glx_delivery.c' if glx else 'runtime/display/x11_delivery.c')),*([str(ROOT/'runtime/display/glx_symbol.S')] if glx or egl else []),'-ldl','-o',str(binary)],check=True)
  sources={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in (('runtime/display/x11_delivery.c','runtime/display/glx_delivery.c','runtime/display/glx_symbol.S','tools/build-drawing-x11-delivery.py') if glx or egl else ('runtime/display/x11_delivery.c','tools/build-drawing-x11-delivery.py'))}
  if egl:
-  for name in ('runtime/display/egl_delivery.c','runtime/display/egl_physical.h'):sources[name]=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+  for name in ('runtime/display/egl_delivery.c','runtime/display/egl_physical.h','runtime/display/egl_worker_context.h','protocols/include/mnm/drawing_worker_context_v1.h'):sources[name]=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
  (out/'manifest.json').write_text(json.dumps(dict(schema=1,binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),sources=sources,scope='Selected Unix X11 calls only; no source bytes, all-route, frame or driver-equivalence claim.'),indent=2)+'\n');return binary
 if __name__=='__main__':
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--glx',action='store_true');p.add_argument('--egl',action='store_true');a=p.parse_args();print(build(a.glx,a.egl))

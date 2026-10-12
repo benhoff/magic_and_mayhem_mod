@@ -1,3 +1,4 @@
+static void wine_worker_context_publish(const void*,u32,u32);
 static void wine_blit_packet_worker(const void*,u32,u32);
 /* Selected opcode42 worker metadata; no pixel payload or inferred queue pairing. */
 static HANDLE wine_blit_worker_file;
@@ -8,9 +9,9 @@ static void __attribute__((cdecl)) wine_blit_worker(void* context,const u32* pac
  u32 error=GetLastError(),r[48]={0};u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
  if(wine_submission_enabled){EnterCriticalSection(journal_lock);if(!readable(packet,100)||packet[0]!=42)ExitProcess(99);r[1]=1;++wine_blit_worker_pending;r[2]=++wine_blit_worker_calls;r[3]=42;r[4]=GetCurrentThreadId();r[5]=GetTickCount();r[7]=wine_lifetime_records;
   r[8]=wine_submission_identity((void*)packet[1],1);r[9]=wine_lifetime_find((void*)packet[1],1);r[10]=wine_submission_identity((void*)packet[9],1);r[11]=wine_lifetime_find((void*)packet[9],1);
-  r[12]=packet[2];r[13]=packet[10];copy(r+14,packet+3,24);copy(r+20,packet+11,24);r[26]=packet[17];copy(r+27,packet+18,24);r[33]=packet[24];wine_blit_packet_worker(packet,r[2],2);wine_blit_worker_emit(r);LeaveCriticalSection(journal_lock);}
+  r[12]=packet[2];r[13]=packet[10];copy(r+14,packet+3,24);copy(r+20,packet+11,24);r[26]=packet[17];copy(r+27,packet+18,24);r[33]=packet[24];wine_blit_packet_worker(packet,r[2],2);wine_worker_context_publish(packet,r[2],2);wine_blit_worker_emit(r);LeaveCriticalSection(journal_lock);}
  restore_fp(fp);SetLastError(error);((void(__attribute__((cdecl))*)(void*,const void*))wine_blit_worker_original)(context,packet);
- error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled){EnterCriticalSection(journal_lock);r[1]=2;r[5]=GetTickCount();r[6]=error;wine_blit_packet_worker(packet,r[2],3);wine_blit_worker_emit(r);--wine_blit_worker_pending;LeaveCriticalSection(journal_lock);}restore_fp(fp);SetLastError(error);
+ error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled){EnterCriticalSection(journal_lock);r[1]=2;r[5]=GetTickCount();r[6]=error;wine_worker_context_publish(packet,r[2],3);wine_blit_packet_worker(packet,r[2],3);wine_blit_worker_emit(r);--wine_blit_worker_pending;LeaveCriticalSection(journal_lock);}restore_fp(fp);SetLastError(error);
 }
 static int wine_blit_worker_open(void){
  char flag[2];u32 n=GetEnvironmentVariableA("MNM_DRAW_WINE_BLIT_WORKER",flag,2);if(!n)return 1;if(n!=1||flag[0]!='1')return 0;

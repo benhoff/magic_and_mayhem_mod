@@ -11,6 +11,7 @@ static EglSwap egl_originals[16];
 static EglProc egl_proc_originals[16];
 static struct {void* handle;unsigned kind,id;} egl_handles[256];
 #include "egl_physical.h"
+#include "egl_worker_context.h"
 /* Equality is local only; reuse/lifetime is not inferred from these handles. */
 static unsigned egl_handle(void* handle,unsigned kind){
  int saved=errno;if(pthread_mutex_lock(&mutex))fail();unsigned id=0;
@@ -22,8 +23,8 @@ static unsigned egl_handle(void* handle,unsigned kind){
 }
 static EGLBoolean egl_swap_call(unsigned slot,EGLDisplay display,EGLSurface surface){
  EglSwap real=__atomic_load_n(&egl_originals[slot],__ATOMIC_ACQUIRE);if(!real)fail();
- uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);
- EGLBoolean result=real(display,surface);int saved=errno;record(2,id,11,args,(int)result,saved);egl_physical(id,args,result,saved);errno=saved;return result;
+ uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);egl_worker_context(id,1);
+ EGLBoolean result=real(display,surface);int saved=errno;egl_worker_context(id,2);record(2,id,11,args,(int)result,saved);egl_physical(id,args,result,saved);errno=saved;return result;
 }
 #define EGL_SLOT(n) static EGLBoolean egl_swap_##n(EGLDisplay d,EGLSurface s){return egl_swap_call(n,d,s);}
 EGL_SLOT(0) EGL_SLOT(1) EGL_SLOT(2) EGL_SLOT(3) EGL_SLOT(4) EGL_SLOT(5) EGL_SLOT(6) EGL_SLOT(7)

@@ -1,0 +1,33 @@
+# Portable active worker context around EGL
+
+A separately enabled64-bytefilemappingpublishes activeopcode42workerID,
+exactemittedcommand/submissionIDandWin32thread under a versionedseqlock.
+The Unixobserver takes boundedstable snapshots before/afteroriginalEGLswap and
+records scalarcontext only. No hostpointer/pixelbytes/nativeC++layout crosses.
+
+Unknown/odd/torn/changedcontext and competingworkers remainexplicit. A stable
+activeworkerinterval is a tested correlation boundary,not immutable source
+ownership orscanout;Win/Linuxthread relation andallroutes requireevidence.
+
+## Step 2 portable worker/EGL context checkpoint (2026-10-12 UTC)
+
+Versioned64bytefilemapping/seqlockpublishesactiveobservedworker/command/submission/
+WinthreadscalarIDs,refusescompetingworkers,clearsafterreturn. Unixsidebounded
+snapshotbefore/afteroriginalEGLswap retainsmissing/unstable/inactive/changed
+contextsandpreserveserrno;nohostpointers/pixelscrosswire. Fourparsermethods pass.
+ActualEGLfixture02passes4swaproutes in active/inactive/missingmappingcases,
+preservingBoolean/errno/EGLerror/sourcepixels. Fixture01missingfilenamebuildfailure
+remainsretained. ActualPEpublisherfixture01verifiesactivecontextduringoriginal
+callbackandclearedcontextafterreturn,2packetbindings/realshim/errorchecks.
+
+Original01admits458pairedEGLcontexts/331stableactive/0missingorunstablereads.
+Offlinecrosschecklinksall331worker/command/submissionIDs toadmittedpacketbinding;
+330havephysicalwitnesses,127otherEGLcallsremainexplicitlyunassigned.331APIand
+330EGLphysicalwitnessesremaincomparisonoracles. Winthread432/Unixthread765577
+areobservedassociation,notproventhread-equivalence orscanout/sourceownership.
+
+Reassessment:step2nextestablishesownedsourcebyteversions at actualsubmitted/
+worker-delivery boundary,thenallroutes/lifetimes/actionsemanticsand120advancing
+windows. Stablecontextdoesnotfreezebytes. Steps3–7remainordered/pending;all47/21
+requirementsremainopen. Reviewed7208c7e0..b6d3429dhas23matchedreceipts/0gaps.
+Storagearound940GiBworking/386GiBfree;historicalhashespreserved/nocleanup.

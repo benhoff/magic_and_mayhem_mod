@@ -28,6 +28,7 @@ static void wine_submission_parent(struct Context* c,u32 phase){
 #include "wine_buffer.h"
 #include "wine_blit_worker.h"
 #include "wine_blit_packet.h"
+#include "wine_worker_context.h"
 static void wine_submission_emit(u32* r){
  r[0]=++wine_submission_records;if(wine_submission_records>131072||!write(wine_submission_file,r,192))ExitProcess(99);
 }
@@ -65,7 +66,7 @@ static int wine_submission_open(void){
  if(n!=1||flag[0]!='1'||!physical_enabled)return 0;
  char name[600];path(name,"wine-submission.bin");wine_submission_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_submission_file==(HANDLE)-1)return 0;
  u32 h[16]={0};copy(h,"MNMWIN02",8);h[2]=2;h[3]=192;h[4]=0x40209ca7;h[5]=131072;h[6]=32;h[7]=2048;
- if(!write(wine_submission_file,h,64)||!wine_lifetime_open()||!wine_buffer_open()||!wine_blit_worker_open()||!wine_blit_packet_open())return 0;wine_submission_enabled=1;return 1;
+ if(!write(wine_submission_file,h,64)||!wine_lifetime_open()||!wine_buffer_open()||!wine_blit_worker_open()||!wine_blit_packet_open()||!wine_worker_context_open())return 0;wine_submission_enabled=1;return 1;
 }
 static int wine_submission_install(void* ddraw){
  if(!wine_submission_enabled||wine_submission_original[0])return 1;
