@@ -22,6 +22,7 @@ public:
     bool waitingForWorld() const{return waitingWorld_;}
     std::uint64_t preparedGeneration() const;
     std::uint64_t sealedGeneration() const;
+    mnm::render::CommandDisplayState displayState() const;
     bool presentSealed(const mnm::render::GpuFrame&,std::uint64_t);
     bool presentPrepared(const mnm::render::GpuFrame&,std::uint64_t);
     bool ended() const{return ended_;}

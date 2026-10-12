@@ -35,6 +35,16 @@ int main(int argc,char** argv){
         const auto before=probe.turns;probe.observe(start,start-std::chrono::milliseconds(1),RenderDeadlineProbe::Hidden);probe.observe({},start,RenderDeadlineProbe::Hidden);require(probe.turns==before,"Inactive/early deadline counted");
         probe.observe(start,start+std::chrono::milliseconds(40),RenderDeadlineProbe::IncompleteUi);probe.observe(start,start+std::chrono::milliseconds(41),RenderDeadlineProbe::PendingWorldImport);
         require(probe.opportunities[RenderDeadlineProbe::IncompleteUi]==1&&probe.opportunities[RenderDeadlineProbe::PendingWorldImport]==1,"Independent blocked reasons collapsed");
+        using Ui=mnm::render::CommandDisplayState;
+        require(nativeUiBlockReason(Ui{},4)==RenderDeadlineProbe::NoRecipe,"No recipe misclassified");
+        require(nativeUiBlockReason(Ui{4,false,false,false},4)==RenderDeadlineProbe::FirstSeal,"First seal wait misclassified");
+        require(nativeUiBlockReason(Ui{4,true,false,true},4)==RenderDeadlineProbe::StaticUi,"Static menu misclassified as World seal wait");
+        require(nativeUiBlockReason(Ui{3,true,true,true},4)==RenderDeadlineProbe::GenerationMismatch,"Stale generation misclassified as render attempt");
+        require(nativeUiBlockReason(Ui{4,true,true,false},4)==RenderDeadlineProbe::RenderAttempt,"Safe sealed partial UI misclassified");
+        for(auto reason:{RenderDeadlineProbe::NoRecipe,RenderDeadlineProbe::FirstSeal,RenderDeadlineProbe::StaticUi,RenderDeadlineProbe::GenerationMismatch}){
+            probe.observe(start,start+std::chrono::milliseconds(42),reason);
+            require(probe.opportunities[reason]==1,"Detailed UI blockage collapsed");
+        }
         RenderStageTiming timing;for(auto ms:{0.,1.,2.,4.,8.,16.667,33.334,100.,101.})timing.add(ms);require(timing.samples==9&&timing.bins.front()==2&&timing.bins.back()==1,"Elapsed histogram boundary error");
         // A continuous UI publication stream must not starve display deadlines.
         // World updates are kept ordered at20Hz; every source covers one display
@@ -50,6 +60,29 @@ int main(int argc,char** argv){
         require(sources==20&&frames==60,"Continuous UI traffic starved deterministic display deadlines");
         require(!nativeDisplayEligible(false,false,false,1,1)&&!nativeDisplayEligible(true,false,false,0,1),"Hidden/incomplete first frame admitted redraw");
         GlViewport viewport;viewport.resize(320,240);viewport.show();app.processEvents();require(viewport.ready(),"Viewport initialization");
+        {
+            mnm::render::GlBlitter renderer(viewport.context());
+            auto source=renderer.create({800,600,std::vector<std::uint32_t>(480000,0x7e0)},{16,{0xf800,0x7e0,31}});
+            mnm::render::CommandConsumer consumer(renderer,[](auto){},{mnm::render::CommandDiagnostics::Skip,false,mnm::render::CommandStreamMode::Streaming,[&](auto,auto){return renderer.presentGpu(source);},true});
+            unsigned seq=0;
+            auto submit=[&](unsigned op,std::initializer_list<unsigned> fields){
+                mnm::render::SurfaceCommand c;c.version=4;c.operation=op;c.sequence=++seq;std::copy(fields.begin(),fields.end(),c.words.begin());
+                if(op==1){c.image={800,600,std::vector<std::uint32_t>(480000)};c.format={16,{0xf800,0x7e0,31}};}
+                consumer.submit(c);
+            };
+            for(unsigned id:{1,2,3})submit(1,{id,800,600,16,0xf800,0x7e0,31});
+            submit(19,{1,1,0,123,0});
+            require(!consumer.displayState().sealed&&consumer.displayState().generation==1,"New WORLD retained sealed UI");
+            submit(6,{3});require(consumer.displayState().sealed&&!consumer.displayState().worldOutput&&!consumer.result().firstWorldSeal.samples,"Static PRESENT counted as first World seal");
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
+            submit(3,{1,2,0,0,800,600,0,0,0,0});submit(6,{2});
+            require(consumer.result().firstWorldSeal.samples==1&&consumer.result().firstWorldSeal.totalMs>=5,"First World seal omitted intervening wait");
+            submit(6,{2});require(consumer.result().firstWorldSeal.samples==1,"Repeated PRESENT double counted first seal");
+            submit(19,{1,2,0,123,0});submit(19,{1,3,0,123,0});
+            require(consumer.result().supersededBeforeSeal==1&&!consumer.sealedGeneration(),"Superseded generation reused sealed UI");
+            require(consumer.result().preparationTiming[1].samples==3&&consumer.result().preparationTiming[2].samples==3&&consumer.result().preparationTiming[3].samples==3,"Compilation phase counts disagree with commands");
+            consumer.abort();renderer.destroy(source);require(!renderer.stats().surfaces,"Diagnostic controls leaked surfaces");
+        }
         QTemporaryDir dir;require(dir.isValid(),"Temporary directory");
         NativeRenderWorker worker(viewport,dir.filePath("world"),dir.path(),dir.filePath("report.json"));
         require(worker.create(dir.filePath("commands"),271,2,10000),"Worker channel create");
@@ -92,6 +125,6 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
+        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

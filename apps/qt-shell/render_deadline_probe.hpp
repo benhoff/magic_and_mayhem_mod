@@ -1,4 +1,5 @@
 #pragma once
+#include "../../renderer/commands.hpp"
 #include <array>
 #include <algorithm>
 #include <chrono>
@@ -7,9 +8,9 @@
 // 16.667ms monotonic buckets; reasons may overlap and must not be summed.
 struct RenderDeadlineProbe {
     enum Reason { UiPublication, IncompleteUi, PendingWorldImport, Hidden,
-                  SourceCompleted, RenderAttempt, ReasonCount };
+                  SourceCompleted, RenderAttempt, NoRecipe, FirstSeal, StaticUi, GenerationMismatch, ReasonCount };
     std::array<std::uint64_t,ReasonCount> turns{},opportunities{};
-    std::array<std::int64_t,ReasonCount> lastBucket{{-1,-1,-1,-1,-1,-1}};
+    std::array<std::int64_t,ReasonCount> lastBucket=[] {std::array<std::int64_t,ReasonCount> result;result.fill(-1);return result;}();
     double maxLateMs=0;
     void observe(std::chrono::steady_clock::time_point deadline,
                  std::chrono::steady_clock::time_point now,Reason reason){
@@ -35,4 +36,12 @@ struct RenderStageTiming {
 inline bool nativeDisplayEligible(bool visible,bool pending,bool sourceCompleted,
                                   std::uint64_t sealedGeneration,std::uint64_t worldGeneration){
     return visible && !pending && !sourceCompleted && sealedGeneration && sealedGeneration==worldGeneration;
+}
+
+inline RenderDeadlineProbe::Reason nativeUiBlockReason(const mnm::render::CommandDisplayState& ui,std::uint64_t world){
+    if(!ui.generation)return RenderDeadlineProbe::NoRecipe;
+    if(ui.generation!=world)return RenderDeadlineProbe::GenerationMismatch;
+    if(!ui.sealed)return RenderDeadlineProbe::FirstSeal;
+    if(!ui.worldOutput)return RenderDeadlineProbe::StaticUi;
+    return RenderDeadlineProbe::RenderAttempt;
 }

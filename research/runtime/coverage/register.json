@@ -42803,7 +42803,8 @@
         "HOST.native-display-deadlines.baseline-controls-20261012",
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
         "HOST.native-display-deadlines.independent-worker-controls-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-controls-20261012"
       ],
       "remaining_gaps": [
         "Fresh current dedicated-owner controls and TITAN full native campaign support partial native policy and live observation. ActualWorld27.2142FPS andvisible35.8486/48.8832FPS fail60FPS;source19.0883Hz failsstricter19.5diagnostic although19FPSsmokefloor passes. Full original comparison/replacement,physicalscanout,interpolation,contextloss/recreation,format/dimension changes andunexecuted failurebranches remainpending. Initial50mscopy-order deadlinefailure ispreserved; repeated successfuljourneys do notproveaGAPfix."
@@ -42814,7 +42815,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Drive native World display deadlines independently of UI publications",
-      "scope": "Dedicated owned V5 render owner observes due World clock after source/command work, categorizing UI PRESENT barrier, incomplete UI, pending World import, hidden viewport, new source completion and render attempt. Per-reason opportunities deduplicate global monotonic16.667ms buckets; overlapping reasons are not additive and poll counts are not frame counts. Aggregate CPU elapsed stage histograms include driver waits, not GPU execution, and bounded256slow turns. Instrumented baseline retains existing source FIFO/two credits, UI PRESENT scheduling barrier, native rendering, immutable two-buffer handoff, original simulation/pacing and conservative failure/teardown. Diagnostics do not prove causal GPU/engine costs,60FPS or equivalence. Independent policy admits a due World/HUD redraw despite UI-only PRESENT traffic,using the latest sealed owned UI snapshot while current UI commands are incomplete. Source consumption/import covers its owner turn and prevents a duplicate World draw;pending imports,hidden viewport,unsealed first UI andmixed source generation refuse admission. Last sealed UI is never sampled across new WORLD generations;fresh native World still executes each redraw. Optional baseline environment policy exists only for bounded comparisons. Original strict current-frame replay API remains separate. No source dropping/reordering,simulation/ANI advance,CPUreadback orcached World screenshot substitution.",
+      "scope": "Dedicated owned V5 render owner observes due World clock after source/command work, categorizing UI PRESENT barrier, incomplete UI, pending World import, hidden viewport, new source completion and render attempt. Per-reason opportunities deduplicate global monotonic16.667ms buckets; overlapping reasons are not additive and poll counts are not frame counts. Aggregate CPU elapsed stage histograms include driver waits, not GPU execution, and bounded256slow turns. Instrumented baseline retains existing source FIFO/two credits, UI PRESENT scheduling barrier, native rendering, immutable two-buffer handoff, original simulation/pacing and conservative failure/teardown. Diagnostics do not prove causal GPU/engine costs,60FPS or equivalence. Independent policy admits a due World/HUD redraw despite UI-only PRESENT traffic,using the latest sealed owned UI snapshot while current UI commands are incomplete. Source consumption/import covers its owner turn and prevents a duplicate World draw;pending imports,hidden viewport,unsealed first UI andmixed source generation refuse admission. Last sealed UI is never sampled across new WORLD generations;fresh native World still executes each redraw. Optional baseline environment policy exists only for bounded comparisons. Original strict current-frame replay API remains separate. No source dropping/reordering,simulation/ANI advance,CPUreadback orcached World screenshot substitution. Diagnostic refinement separately identifies absent recipe, first unsealed World UI, sealed static-only UI and source-generation mismatch. Active-only poll costs exclude idle polls. Prepared command recording/reset/seal/import CPU elapsed aggregates and WORLD compilation-start to first World-mapped PRESENT wall latency are bounded aggregate observations; latency includes intervening producer/polling waits and is not attributed to GPU execution. Superseded first-seal waits are counted separately.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42884,10 +42885,11 @@
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
         "HOST.native-display-deadlines.independent-worker-controls-20261012",
         "HOST.native-display-deadlines.sealed-ui-controls-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-controls-20261012"
       ],
       "remaining_gaps": [
-        "Current controls/fullTITANsmoke support partial independent-display/latestsealedUI policy andliveobservation.60FPSfails:World34.59/visible28.17,40.37;UIbarrier0butcompoundincompleteUI8215opportunities include unavailable/nonWorld/mismatched/newWorld-firstseal statesnotyetseparatelyattributed. TrueGPUstage timing,additional nativeWorld/command CPU work,source-boundary first-seal delay,full originalcomparison/physicalscanout/interpolation/unexecutedfailures remainpending. No cross-generation UI reuse admitted."
+        "Current diagnostic refinement execution pending; historical controls and full live observation remain historical. Sustained60FPS fails in retained full run. First-seal and static-only/generation classification need a new source-bound observation. GPU execution cost, original comparison/physical scanout/interpolation/unexecuted failures remain pending. No cross-generation UI reuse admitted."
       ]
     }
   ],
@@ -90103,6 +90105,33 @@
           "equals": "independent-sealed-ui"
         }
       ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.attribution-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Source-bound detailed deadline-state and CPU-phase/first-World-seal controls; static PRESENT does not complete first World seal, repeated seal counts once, superseded generation remains unsealed, delayed first World seal includes intervening wall wait. Existing immutable two-lease/pixel/teardown/default GPU controls retained. No live rate or GPU execution claim.",
+      "record": "research/runtime/native-display-attribution-controls-20261012.json",
+      "sha256": "c40ac23bc0b8272232fb03b572cbeddb83f06f7118331e9b94fff45844df3027",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/first_world_seal_timing",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/detailed_ui_block_states",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -101467,8 +101496,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-display-independent-20261012.json",
-    "sha256": "7066efb0cf4e1f3ca47a33316f9eebeb8d20dc1f9c2227df39a36e6d7c329975"
+    "path": "research/runtime/coverage/source-index-native-display-attribution-20261012.json",
+    "sha256": "0db3d4d6827d8da8eaca18e0ef4bd04b9d35784177f6b559418e0239fb14ae71"
   },
   "claim_bindings_required": true
 }

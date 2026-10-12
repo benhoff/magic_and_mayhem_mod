@@ -68,13 +68,21 @@ void NativeRenderWorker::run(){
         next.report["presentation_exports_skipped"]=QString::number(skipped_);
         next.report["presentation_lease_high_water"]=int(highWater_);
         next.report["render_owner_turns"]=QString::number(turns_);
-        static const char* reasons[]={"ui_publication","incomplete_ui","pending_world_import","hidden","source_completed","render_attempt"};
+        static const char* reasons[]={"ui_publication","incomplete_ui","pending_world_import","hidden","source_completed","render_attempt","no_recipe","first_seal","static_ui","generation_mismatch"};
         QJsonObject reasonsJson;
         for(unsigned i=0;i<RenderDeadlineProbe::ReasonCount;++i)reasonsJson[reasons[i]]=QJsonObject{{"turns",QString::number(deadlineProbe_.turns[i])},{"opportunities",QString::number(deadlineProbe_.opportunities[i])}};
         const auto timing=[](const RenderStageTiming& t){QJsonArray bins;for(auto n:t.bins)bins.append(double(n));return QJsonObject{{"samples",double(t.samples)},{"mean_ms",t.samples?t.totalMs/t.samples:0},{"max_ms",t.maxMs},{"bins",bins}};};
+        QJsonObject compilation;
+        if(next.hasResult){
+            const auto cpu=[](const mnm::render::CommandCpuTiming& t){return QJsonObject{{"samples",double(t.samples)},{"total_ms",t.totalMs},{"mean_ms",t.samples?t.totalMs/t.samples:0},{"max_ms",t.maxMs}};};
+            static const char* phases[]={"record","reset","seal","import"};
+            for(unsigned i=0;i<4;++i)compilation[phases[i]]=cpu(next.result.preparationTiming[i]);
+            compilation["first_world_seal_wall"]=cpu(next.result.firstWorldSeal);
+            compilation["superseded_before_first_world_seal"]=QString::number(next.result.supersededBeforeSeal);
+        }
         next.report["display_deadline_probe"]=QJsonObject{{"policy",baselineUiClock_?"ui-present-barrier":"independent-sealed-ui"},{"ui_publication_redraws",QString::number(uiPublicationRedraws_)},{"partial_ui_sealed_redraws",QString::number(sealedUiRedraws_)},{"reasons",reasonsJson},{"max_late_ms",deadlineProbe_.maxLateMs},
-            {"world_poll",timing(worldTiming_)},{"command_poll",timing(commandTiming_)},{"extra_world_ui",timing(extraTiming_)},{"export",timing(exportTiming_)},{"turn",timing(turnTiming_)},{"slow_turns",slowTurns_},
-            {"scope","Observation after source/command work. Per-reason opportunities deduplicate global16.667ms monotonic buckets, may overlap and are not additive. CPU elapsed times include driver waits, not GPU execution. Histograms upper bounds1/2/4/8/16.667/33.334/100ms then overflow. Slow turns bounded256."}};
+            {"active_world_poll",timing(activeWorldTiming_)},{"active_command_poll",timing(activeCommandTiming_)},{"compilation",compilation},{"world_poll",timing(worldTiming_)},{"command_poll",timing(commandTiming_)},{"extra_world_ui",timing(extraTiming_)},{"export",timing(exportTiming_)},{"turn",timing(turnTiming_)},{"slow_turns",slowTurns_},
+            {"scope","Observation after source/command work. Per-reason opportunities deduplicate global16.667ms monotonic buckets, may overlap and are not additive. CPU elapsed times include driver waits, not GPU execution. Active polls contain accepted work; first_world_seal_wall runs from WORLD compilation start to first sealed World-mapped PRESENT, including intervening polling/source/UI waits. Static UI counts do not imply missing visible World frames. Histograms upper bounds1/2/4/8/16.667/33.334/100ms then overflow. Slow turns bounded256."}};
         {std::lock_guard<std::mutex> lock(mutex_);published_=std::move(next);}
     };
     auto save=[&]{
@@ -96,23 +104,27 @@ void NativeRenderWorker::run(){
             if(request)commands_->requestStop();
             const auto beforeWorld=world_->displayState().generation;
             if(!pause)world_->poll(quit);
-            const double worldMs=stageClock.nsecsElapsed()/1000000.;worldTiming_.add(worldMs);stageClock.restart();
+            const double worldMs=stageClock.nsecsElapsed()/1000000.;worldTiming_.add(worldMs);if(world_->displayState().generation!=beforeWorld)activeWorldTiming_.add(worldMs);stageClock.restart();
             double commandMs=0,extraMs=0,exportMs=0;unsigned presents=0;std::uint64_t generation=0;
             int reason=-1;
             if(!pause && !commands_->ended()){
                 const auto before=commands_->result()?commands_->result()->presents:0;
+                const auto commandsBefore=commands_->result()?commands_->result()->commands:0;
                 const auto importsBefore=commands_->result()?commands_->result()->residentWorldImports:0;
                 if(!commands_->poll())throw std::runtime_error(commands_->error().toStdString());
                 const auto after=commands_->result()?commands_->result()->presents:0;
                 presents=after-before;commandMs=stageClock.nsecsElapsed()/1000000.;commandTiming_.add(commandMs);stageClock.restart();
+                if(commands_->result()&&commands_->result()->commands!=commandsBefore)activeCommandTiming_.add(commandMs);
+                const auto uiState=commands_->displayState();
                 const auto strictGeneration=commands_->preparedGeneration();
                 generation=baselineUiClock_?strictGeneration:commands_->sealedGeneration();
                 const auto state=world_->displayState();const auto now=std::chrono::steady_clock::now();
                 const bool sourceCompleted=state.generation!=beforeWorld || (commands_->result()&&commands_->result()->residentWorldImports!=importsBefore);
                 if(state.active && now>=state.deadline){
                     reason=!draw?RenderDeadlineProbe::Hidden:state.pending?RenderDeadlineProbe::PendingWorldImport:
-                        sourceCompleted?RenderDeadlineProbe::SourceCompleted:!generation?RenderDeadlineProbe::IncompleteUi:
-                        (baselineUiClock_&&presents)?RenderDeadlineProbe::UiPublication:RenderDeadlineProbe::RenderAttempt;
+                        sourceCompleted?RenderDeadlineProbe::SourceCompleted:
+                        nativeUiBlockReason(uiState,state.generation)!=RenderDeadlineProbe::RenderAttempt?nativeUiBlockReason(uiState,state.generation):
+                        !generation?RenderDeadlineProbe::IncompleteUi:(baselineUiClock_&&presents)?RenderDeadlineProbe::UiPublication:RenderDeadlineProbe::RenderAttempt;
                     deadlineProbe_.observe(state.deadline,now,RenderDeadlineProbe::Reason(reason));
                 }
                 if(baselineUiClock_?(before==after && draw):nativeDisplayEligible(draw,state.pending,sourceCompleted,generation,state.generation)){

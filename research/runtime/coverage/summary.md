@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 649 |
-| evidence | 1379 |
+| evidence | 1380 |
 | scenarios | 410 |
 | functions | 6675 |
 | registered recovered ranges | 29 |
@@ -26,10 +26,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 178 |
 | behaviors without comparison | 544 |
 | behaviors without tests | 1 |
-| stale evidence | 1165 |
+| stale evidence | 1168 |
 | behavior anchors outside discovered functions | 50 |
-| validation gaps | 820 |
-| retired execution claims | 860 |
+| validation gaps | 832 |
+| retired execution claims | 862 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
@@ -46,9 +46,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 178; pending: 447; current: 24 |
+| implementation | none: 178; pending: 452; current: 19 |
 | comparison | none: 544; pending: 99; current: 6 |
-| integration | none: 366; pending: 268; current: 15 |
+| integration | none: 366; pending: 275; current: 8 |
 | replacement | none: 643; pending: 6; current: 0 |
 
 ## Animation checklist
@@ -2017,6 +2017,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **HOST.native-render-owner.cached-functional-performance-negative-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `apps/qt-shell/resident_world_session.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.hpp`, `renderer/native_frame_recipe.cpp`, `renderer/native_frame_recipe.hpp`, `tests/native-frame-recipe-test.cpp`, `tests/native-render-worker-test.cpp`, `tools/test-native-frame-recipe.py`, `tools/test-native-render-worker.py`
 - **HOST.native-display-deadlines.baseline-controls-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `apps/qt-shell/render_deadline_probe.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.hpp`, `renderer/native_frame_recipe.cpp`, `renderer/native_frame_recipe.hpp`, `tests/native-render-worker-test.cpp`
 - **HOST.native-display-deadlines.baseline-live-negative-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `apps/qt-shell/render_deadline_probe.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.hpp`, `renderer/native_frame_recipe.cpp`, `renderer/native_frame_recipe.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-display-deadlines.independent-worker-controls-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `apps/qt-shell/render_deadline_probe.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-display-deadlines.sealed-ui-controls-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `apps/qt-shell/render_deadline_probe.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-display-deadlines.independent-full-performance-negative-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `apps/qt-shell/render_deadline_probe.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.hpp`, `tests/native-render-worker-test.cpp`
 
 ## Checklist gaps
 

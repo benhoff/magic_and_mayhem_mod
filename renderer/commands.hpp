@@ -2,6 +2,7 @@
 #include "surface_copy.hpp"
 #include <QByteArray>
 #include <array>
+#include <algorithm>
 #include <functional>
 
 namespace mnm::render {
@@ -35,6 +36,15 @@ private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };
+struct CommandCpuTiming {
+    std::uint64_t samples=0;
+    double totalMs=0,maxMs=0;
+    void add(double ms){++samples;totalMs+=ms;maxMs=std::max(maxMs,ms);}
+};
+struct CommandDisplayState {
+    std::uint64_t generation=0;
+    bool sealed=false,worldOutput=false,currentReady=false;
+};
 struct CommandResult {
     QByteArray native;
     QImage presentation;
@@ -43,6 +53,10 @@ struct CommandResult {
     SurfaceCopyResult lastCopy;
     std::size_t liveSurfaces=0,livePixels=0,livePalettes=0;
     std::uint64_t residentWorldImports=0;
+    // Opt-in prepared-frame CPU elapsed time, including driver waits.
+    std::array<CommandCpuTiming,4> preparationTiming{}; // record, reset, seal, import
+    CommandCpuTiming firstWorldSeal;
+    std::uint64_t supersededBeforeSeal=0;
     RenderStats stats;
     Driver driver;
 };
@@ -77,6 +91,7 @@ public:
     std::uint64_t preparedGeneration() const;
     void presentPrepared(const GpuFrame&,std::uint64_t generation);
     std::uint64_t sealedGeneration() const;
+    CommandDisplayState displayState() const;
     void presentSealed(const GpuFrame&,std::uint64_t generation);
 private:
     struct Impl;

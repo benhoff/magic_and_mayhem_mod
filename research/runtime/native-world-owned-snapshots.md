@@ -388,3 +388,34 @@ delay classification and native render/command/GPU cost attribution/reduction.
 Cross-generation cachedUI reuse remains intentionally unadmitted until separately
 specified and proved. All originalsimulation/pacing/history/order/credit policies
 remain unchanged.
+
+## First-seal and active-cost attribution (2026-10-12)
+
+The next bounded measurement separates absent recipes, first unsealed World UI,
+sealed static-only UI, and generation mismatch from the former compound
+`incomplete_ui` category. Last sealed same-generation UI during a partial
+transaction stays eligible. No admission, source FIFO, two-credit, GPU lease,
+simulation, readback or cross-generation reuse policy changes.
+
+Prepared-command CPU aggregates separately record coordinate propagation,
+recipe reset/reconstruction, PRESENT sealing, and resident World import.
+`first_world_seal_wall` starts before WORLD compilation and ends after the first
+World-mapped PRESENT seal; it includes intervening producer and polling waits,
+reset/import work, and driver waits. A static-only PRESENT does not end it;
+repeated PRESENTs do not count it twice. Superseded waits are counted separately
+and never folded into successful-seal timing. Active World and command poll
+aggregates exclude idle polls. These are elapsed CPU/wall measurements, not GPU
+execution measurements or additive causal frame-loss accounting.
+
+Fresh native controls are retained in
+`native-display-attribution-controls-20261012.json`: explicit absent/first-seal/
+static/mismatch classification; static and repeated PRESENT timing controls;
+superseded generation refusal; existing171 native presentations, two immutable
+output leases,23 diagnostic pixel checks, slow-GUI bounds, malformed refusal and
+joined teardown. Default GPU presentation comparisons also pass.
+
+The exact committed range45dcf276..7f6d1ab1 was reviewed against preserved
+parent/current SHA-256 receipt chains:21 transitions, zero missing receipts.
+The retained history report is
+`working/tests/native-display-attribution-history-20261012.json`; this is
+committed-history accounting, not new execution or a historical gate-pass claim.

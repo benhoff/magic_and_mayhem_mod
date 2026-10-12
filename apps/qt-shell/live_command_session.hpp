@@ -30,6 +30,7 @@ public:
     std::uint64_t preparedGeneration() const{return renderer_?renderer_->preparedGeneration():0;}
     bool presentPrepared(const mnm::render::GpuFrame& frame,std::uint64_t generation){return renderer_ && renderer_->presentPrepared(frame,generation);}
     std::uint64_t sealedGeneration() const{return renderer_?renderer_->sealedGeneration():0;}
+    mnm::render::CommandDisplayState displayState() const{return renderer_?renderer_->displayState():mnm::render::CommandDisplayState{};}
     bool presentSealed(const mnm::render::GpuFrame& frame,std::uint64_t generation){return renderer_ && renderer_->presentSealed(frame,generation);}
     std::function<void(State)> stateChanged;
 private:

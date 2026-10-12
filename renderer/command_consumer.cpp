@@ -1,6 +1,7 @@
 #include "commands.hpp"
 #include "command_state.hpp"
 #include "native_frame_recipe.hpp"
+#include <chrono>
 #include "capture.hpp"
 #include "../protocols/include/mnm/render_stream_v4.h"
 #include <limits>
@@ -144,6 +145,13 @@ struct CommandConsumer::Impl {
     CommandConsumerState state=CommandConsumerState::Active;
     bool executing=false;
     std::unique_ptr<NativeFrameRecipe> recipe;
+    std::chrono::steady_clock::time_point importedAt{};
+    bool awaitingFirstWorldSeal=false;
+    template<class F> void measure(unsigned phase,F&& work){
+        if(!options.prepareResidentFrames){work();return;}
+        const auto start=std::chrono::steady_clock::now();work();
+        output.preparationTiming[phase].add(std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-start).count());
+    }
     Impl(GlBlitter& renderer,std::function<void(GpuFrame)> present,CommandConsumerOptions options):
         renderer(renderer),present(std::move(present)),options(options),admission(options.stream){
         require(options.exportImages || bool(this->present),"GPU execution requires a presentation callback");
@@ -157,9 +165,9 @@ struct CommandConsumer::Impl {
     void execute(const SurfaceCommand& c){
         const auto& w=c.words;admission.accept(c);
         if(recipe && c.operation!=1 && c.operation!=6 && c.operation!=13 && c.operation!=14 && c.operation!=MNM_RENDER_STREAM_V4_OPERATION_WORLD)
-            recipe->record(c,handles);
+            measure(0,[&]{recipe->record(c,handles);});
         switch(c.operation){
-        case 1:handles.emplace(w[0],renderer.create(c.image,c.format));bits.emplace(w[0],c.format.bits);if(recipe)recipe->record(c,handles);break;
+        case 1:handles.emplace(w[0],renderer.create(c.image,c.format));bits.emplace(w[0],c.format.bits);if(recipe)measure(0,[&]{recipe->record(c,handles);});break;
         case 2:renderer.update(handles.at(w[0]),int(w[1]),int(w[2]),c.image);break;
         case 3:renderer.copy(handles.at(w[0]),handles.at(w[1]),{int(w[2]),int(w[3]),int(w[4]),int(w[5])},int(w[6]),int(w[7]),
                              w[8]?std::optional<std::uint32_t>(w[9]):std::nullopt);break;
@@ -169,7 +177,13 @@ struct CommandConsumer::Impl {
             else ++output.skippedChecks;
             break;
         case 6:
-            if(recipe)recipe->seal(w[0],handles);
+            if(recipe){
+                measure(2,[&]{recipe->seal(w[0],handles);});
+                if(awaitingFirstWorldSeal && recipe->hasWorldOutput()){
+                    output.firstWorldSeal.add(std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-importedAt).count());
+                    awaitingFirstWorldSeal=false;
+                }
+            }
             if(options.exportImages){output.native=encodeNative(renderer.read(handles.at(w[0])),bits.at(w[0]));output.presentation=renderer.present(handles.at(w[0]));}
             else present(renderer.presentGpu(handles.at(w[0])));
             ++output.presents;break;
@@ -200,8 +214,12 @@ struct CommandConsumer::Impl {
             renderer.updateMasked(handles.at(w[0]),int(w[1]),int(w[2]),c.image,c.coverage);break;
         case MNM_RENDER_STREAM_V4_OPERATION_WORLD:
             require(bool(options.residentWorld),"Resident World provider unavailable");
-            if(options.prepareResidentFrames){recipe.reset();recipe=std::make_unique<NativeFrameRecipe>(renderer,w[0],admission.worldGeneration,handles);}
-            renderer.importGpu565(handles.at(w[0]),options.residentWorld(admission.worldGeneration,admission.worldNonce));
+            if(options.prepareResidentFrames){
+                if(awaitingFirstWorldSeal)++output.supersededBeforeSeal;
+                importedAt=std::chrono::steady_clock::now();awaitingFirstWorldSeal=true;
+                measure(1,[&]{recipe.reset();recipe=std::make_unique<NativeFrameRecipe>(renderer,w[0],admission.worldGeneration,handles);});
+            }
+            measure(3,[&]{renderer.importGpu565(handles.at(w[0]),options.residentWorld(admission.worldGeneration,admission.worldNonce));});
             ++output.residentWorldImports;break;
         default:throw std::runtime_error("Unsupported replay command");
         }
@@ -215,6 +233,10 @@ CommandConsumerState CommandConsumer::state() const{return impl_->state;}
 const CommandResult& CommandConsumer::result() const{return impl_->output;}
 std::uint64_t CommandConsumer::preparedGeneration() const{return impl_->recipe && impl_->recipe->ready() && impl_->recipe->hasWorldOutput()?impl_->recipe->generation():0;}
 std::uint64_t CommandConsumer::sealedGeneration() const{return impl_->recipe && impl_->recipe->sealedReady() && impl_->recipe->hasWorldOutput()?impl_->recipe->generation():0;}
+CommandDisplayState CommandConsumer::displayState() const{
+    const auto& p=impl_->recipe;
+    return p?CommandDisplayState{p->generation(),p->sealedReady(),p->hasWorldOutput(),p->ready()}:CommandDisplayState{};
+}
 void CommandConsumer::presentSealed(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(generation && generation==sealedGeneration(),"Sealed UI/World generation mismatch");
     try{p.present(p.recipe->renderSealed(world));p.refresh();}
