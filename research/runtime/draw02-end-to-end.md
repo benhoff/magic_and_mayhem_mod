@@ -1522,3 +1522,21 @@ opaque tokens, private handle operations, exact full512FX/error forwarding and
 worker callback/lock-order controls must be integrated and independently tested
 before bounded original acquisition. All47/21and steps3–7 retain their scope.
 Reviewed230295f8..735b6ff9contains10exact receipts and zero missing versions.
+
+## DRAW-02 isolated caller-preservation checkpoint (2026-10-12 UTC)
+
+Retirement model committed2cc37ae2with staged check and required hook passed.
+New native policy `NR.drawing-cursor-gate-forwarding` is an isolated callback
+adapter, preserving original input/poststate around extra diagnostic waits and
+releases. `draw02-cursor-gate-forward-fixture-01.json` passes64PE32owned raw
+wait/release cells with diagnostics deliberately clobbering LastError/FP: exactly
+one original call, distinct original raw result/error and all512FXbytes restored.
+Failed-release ownership remains explicit. Completed private prefix reused; no
+original game/artifacts, source pages or live hook integrated.
+
+Reassessment: step2 remains open. Actual constructor/global identity tracking,
+thread-owned opaque token integration, close retirement versus active duplicate
+leases, bounded source/worker callback order and original cadence/semantic
+controls must precede live synchronization. Passing synthetic caller state does
+not prove real callback cycles or complete source/frame/native parity. All47/21
+and steps3–7retain scope. Reviewed735b6ff9..2cc37ae2has11exact receipts, zero gaps.

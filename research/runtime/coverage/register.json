@@ -45142,6 +45142,44 @@
       "remaining_gaps": [
         "Fresh owned transition/thread fixture passes; caller serialization, actual original constructor/global identity pins, per-thread opaque lease tokens, OS duplicate/close handling, full512FX/error forwarding and live controls/integration remain unimplemented. No source alias/parity or safe live repair."
       ]
+    },
+    {
+      "id": "NR.drawing-cursor-gate-forwarding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Isolated cursor-source diagnostic gate original-call preservation",
+      "scope": "Owned PE32 synthetic forwarding adapter around native nonblocking gate. Exactly one original body call with raw result/error/full512FX preserved on64wait/release result cells despite clobbering diagnostics; release faults remain explicit. Not integrated with original game, lifetime registry, source protection or worker callbacks.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-gate-forwarding.md"
+      ],
+      "implementation": [
+        "runtime/drawing/cursor_gate_forward.h"
+      ],
+      "tests": [
+        "tests/drawing-cursor-gate-forward-test.c",
+        "tools/test-drawing-cursor-gate-forward.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/cursor_source_gate.h",
+        "runtime/shadow/win32_min.h",
+        "tools/coverage_claims.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-gate-forward-fixture-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh owned PE32 forwarding fixture passes. Actual original result/register/thread/lifetime/worker callback order, disabled/budget paths and live diagnostic controls remain unimplemented. No safe live repair/source alias/reference/parity claim."
+      ]
     }
   ],
   "evidence": [
@@ -96816,6 +96854,37 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-gate-forward-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 synthetic64wait/releasecells one original forward, raw result/LastError/full512FX preserved despite diagnostics; retained release faults, no actual game/lifetime/worker integration.",
+      "record": "research/runtime/draw02-cursor-gate-forward-fixture-01.json",
+      "sha256": "584d04d60514744d210709b46f7d54ecec5712e232b627f4104a320a79ad38ce",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_fx_state_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_result_last_error_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_forwards_per_cell",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108958,8 +109027,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-lifetime-20261012.json",
-    "sha256": "78489905a068b368ed3bdb0f7011e21f31e44ebe0825ee395dc4766090c46c1a"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-forward-20261012.json",
+    "sha256": "c6f1aba0e654f9b4dce1be1bd2b9aa142b6ad055396d91a7e92f75893d2d0097"
   },
   "claim_bindings_required": true
 }
