@@ -21,7 +21,7 @@ def fixture(version=4):
     for kind,manager in [(20,0x6def58),(21,0x689498),(22,0x6b1248)]:descriptors.append((kind,0,0,n,0,0,manager))
     rows=[]
     for i in range(8):
-        r=[0]*40;r[0]=i+1;r[1]=4 if version==4 else 3 if version>=2 else 2;r[5]=512+i*128;r[8]=r[9]=n;r[16]=1;r[17]=2;r[30]=r[31]=1
+        r=[0]*40;r[0]=i+1;r[1]=4 if version>=4 else 3 if version>=2 else 2;r[5]=512+i*128;r[8]=r[9]=n;r[16]=1;r[17]=2;r[30]=r[31]=1
         if version>=2:r[34]=r[35]=1
         rows.extend(r)
     h=[0]*16;h[2]=version;h[3]=160;h[4]=8;h[5]=rows[1];h[9]=7;h[10]=10000000;h[13]=16;h[14]=1536;h[15]=2
@@ -34,7 +34,7 @@ def run(output=None):
     data,n=fixture();state=64+8*160;payload=state+16+15*28;second=payload+n
     def word(source,at,value):
         out=bytearray(source);struct.pack_into('<I',out,at,value);return out
-    controls={'magic':b'BADMAGIC'+data[8:],'version':word(data,8,5),'version3-mode4':word(data,8,3),
+    controls={'magic':b'BADMAGIC'+data[8:],'version':word(data,8,6),'version3-mode4':word(data,8,3),
       'version1-mode3':word(data,8,1),'row-size':word(data,12,164),'case-limit':word(data,16,17),
       'critical-total':word(data,24,1),'zero-owner':word(data,36,0),'zero-clock':word(data,40,0),
       'truncated':data[:-1],'trailing':data+b'x','row-reserved':word(data,64+37*4,1),
@@ -49,6 +49,10 @@ def run(output=None):
         old,_=fixture(1);p.write_bytes(old);assert summarize(p)['protected_state_invariance']
         old,_=fixture(2);p.write_bytes(old);assert summarize(p)['protected_state_invariance']
         old,_=fixture(3);p.write_bytes(old);assert summarize(p)['protected_state_invariance']
+        modern,_=fixture(5);modern=word(modern,64+14*4,1000);modern=word(modern,64+37*4,750);modern=word(modern,64+39*4,1)
+        p.write_bytes(modern);assert summarize(p)['cases'][0]['extra_build_and_surround_ms']==0.025
+        controls['consumer-over-total']=word(modern,64+37*4,1001)
+        controls['consumer-call-count']=word(modern,64+39*4,2)
         for name,bad in controls.items():
             p.write_bytes(bad)
             try:decode(p)
@@ -57,7 +61,7 @@ def run(output=None):
         for field in (35,36):
             p.write_bytes(word(data,64+field*4,0 if field==35 else 1));assert not summarize(p)['protected_state_invariance']
         p.write_bytes(word(data,64+32*4,1));assert not summarize(p)['scene_record_equality']
-    result=dict(success=True,decoder_refusals=len(controls),controls=list(controls),negative_history_counts=2,negative_scene_equality=1,version1_compatibility=True,version2_compatibility=True,version3_compatibility=True)
+    result=dict(success=True,decoder_refusals=len(controls),controls=list(controls),negative_history_counts=2,negative_scene_equality=1,version1_compatibility=True,version2_compatibility=True,version3_compatibility=True,version4_compatibility=True)
     if output:Path(output).write_text(json.dumps(result,indent=2)+'\n')
     return result
 

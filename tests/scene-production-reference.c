@@ -47,15 +47,15 @@ void start(void){
  const u8 end[]={0xa0,0x0c,0x14,0x5e,0,0x84,0xc0};bytes(0x4fd5c1,end,7);
  *(u8*)0x4fd5c8=0xe8;put(0x4fd5c9,(u32)fixture_tail-0x4fd5cd);
  const u8 finish[]={0x5f,0x5e,0x5d,0x5b,0xf9,0xb8,0xdf,0x9b,0x57,0x13,0xb9,0xcd,0xab,0x68,0x24,0xc3};bytes(0x4fd5cd,finish,sizeof(finish));
- const u8 q1[]={0xe8,0xf0,0x2d,0,0},q2[]={0xe8,0x47,0x2d,0,0};bytes(0x4fd4ab,q1,5);bytes(0x4fd554,q2,5);*(u8*)0x4fd559=0xc3;*(u8*)0x5002a0=0xc3;
+ const u8 q1[]={0xe8,0xf0,0x2d,0,0},q2[]={0xe8,0x47,0x2d,0,0};bytes(0x4fd4ab,q1,5);bytes(0x4fd554,q2,5);const u8 qend1[]={0xb9,0xe0,0x49,0x6a,0},qend2[]={0xa1,0x2c,0x48,0x6c,0};bytes(0x4fd4b0,qend1,5);bytes(0x4fd559,qend2,5);*(u8*)0x4fd4b5=0xc3;*(u8*)0x4fd55e=0xc3;*(u8*)0x5002a0=0xc3;
  const u8 history_args[]={0x6a,0,0x6a,0,0x90,0x90,0x90,0x90},history_call[]={0xe8,0x6c,0x55,0x02,0},history_body[]={0xff,0x81,0x60,0x07,0,0,0xc2,8,0};
  bytes(0x4fa4e7,history_args,8);bytes(0x4fa4ef,history_call,5);*(u8*)0x4fa4f4=0xc3;bytes(0x51fa60,history_body,9);
  char option[3];u32 n=GetEnvironmentVariableA("MNM_PRODUCTION_TEST_CASE",option,3);require(n==2&&((option[0]>='0'&&option[0]<='9')||option[0]=='A')&&option[1]>='1'&&option[1]<='4',2);
  test_case=option[0]=='A'?10u:option[0]-'0';u32 candidate=option[1]-'0';reset();
  SetLastError(0x77);fixture_invoke((void*)0x4fd280,0x689930,baseline);require(GetLastError()==0xabc123&&draws==1,3);reset();
  /* Every anchor byte mutation must refuse before any hook is installed. */
- const u32 sites[]={0x4fd280,0x4fd315,0x4fd5ad,0x4fd5c1,0x4fd4ab,0x4fd554,0x4fa4ef},lengths[]={5,5,20,7,5,5,5};
- for(u32 i=0;i<7;++i)for(u32 j=0;j<lengths[i];++j){*(u8*)(sites[i]+j)^=1;SetLastError(0x77);require(!SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,4);*(u8*)(sites[i]+j)^=1;}
+ const u32 sites[]={0x4fd280,0x4fd315,0x4fd5ad,0x4fd5c1,0x4fd4ab,0x4fd554,0x4fa4ef,0x4fd4b0,0x4fd559},lengths[]={5,5,20,7,5,5,5,5,5};
+ for(u32 i=0;i<9;++i)for(u32 j=0;j<lengths[i];++j){*(u8*)(sites[i]+j)^=1;SetLastError(0x77);require(!SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,4);*(u8*)(sites[i]+j)^=1;}
  require(!SceneProductionInstallForTest(5),5);SetLastError(0x77);require(SceneProductionInstallForTest(candidate)&&GetLastError()==0x77,6);
  if(test_case==6)put(0x6def58,0xffffffff);
  SetLastError(0x77);fixture_invoke((void*)0x4fd280,0x689930,observed);
@@ -70,5 +70,6 @@ void start(void){
  if(test_case==9)require(SceneProductionStatusForTest(6)==(candidate>=3?1u:0u)&&SceneProductionStatusForTest(7)==(candidate>=3?1u:2u),13);
  if(test_case==10&&candidate==4)require(post_calls==1&&*(u32*)(0x689930+0x231)==1,15);
  if(test_case!=10)require(!*(u32*)(0x689930+0x231)&&*(u32*)(0x689930+0x22d)==*(u32*)(0x689930+0x229),14);
+ if(test_case!=6&&!(test_case==10&&candidate<4))require(SceneProductionStatusForTest(8)==1,16);
  require(!SceneProductionInstallForTest(candidate),12);ExitProcess(0);
 }

@@ -16,8 +16,8 @@ POOLS={20:(0x6def58,0xe4b,256),21:(0x689498,0x22e,2048),22:(0x6b1248,0x7e,4096)}
 def decode(path):
     if not 64<=path.stat().st_size<=64*1024*1024:raise ValueError('Scene production size limit')
     data=path.read_bytes();h=struct.unpack_from('<16I',data)
-    maximum_mode=2 if h[2]==1 else 4 if h[2]==4 else 3
-    if data[:8]!=b'MNMSPR01' or h[2] not in (1,2,3,4) or h[3]!=160 or not 1<=h[4]<=16 or h[5]>maximum_mode or h[12]>4096 or h[15] not in (0,2,4):raise ValueError('Scene production header')
+    maximum_mode=2 if h[2]==1 else 4 if h[2]>=4 else 3
+    if data[:8]!=b'MNMSPR01' or h[2] not in (1,2,3,4,5) or h[3]!=160 or not 1<=h[4]<=16 or h[5]>maximum_mode or h[12]>4096 or h[15] not in (0,2,4):raise ValueError('Scene production header')
     frequency=h[10]|h[11]<<32
     if not frequency or not h[9]:raise ValueError('Scene production clock/owner')
     at=64;end=at+h[4]*160+h[12]*32
@@ -25,7 +25,8 @@ def decode(path):
     rows=list(struct.iter_unpack('<40I',data[at:at+h[4]*160]));at+=h[4]*160
     diffs=list(struct.iter_unpack('<8I',data[at:end]));at=end
     for i,r in enumerate(rows):
-        if r[0]!=i+1 or r[1]!=h[5] or r[7]>2 or r[8]>STATE_MAX or r[9]>STATE_MAX or any(r[34 if h[2]==1 else 37:]):raise ValueError('Scene production row')
+        if r[0]!=i+1 or r[1]!=h[5] or r[7]>2 or r[8]>STATE_MAX or r[9]>STATE_MAX or any(r[34 if h[2]==1 else 37 if h[2]<5 else 40:]):raise ValueError('Scene production row')
+        if h[2]>=5 and ((r[37]|r[38]<<32)>(r[14]|r[15]<<32) or r[39]>r[16]):raise ValueError('Scene production consumer timing')
     if h[6]!=sum(bool(r[11]) for r in rows) or h[7]<sum(r[7]==2 for r in rows):raise ValueError('Scene production outcome counts')
     for d in diffs:
         if not 1<=d[0]<=h[4] or d[1] not in REGIONS or d[3]>=d[7] or max(d[4:6])>255 or d[6]!=(d[1]>=10):raise ValueError('Scene production difference')
@@ -78,6 +79,9 @@ def summarize(path):
           module_changed_bytes=r[12],renderer_changed_bytes=r[13],extra_worlds=r[16],total_window_worlds=r[17],
           counter_unchanged=r[18]==r[19],sequence_unchanged=r[20]==r[21],
           extra_production_ms=(r[14]|r[15]<<32)*1000/frequency,
+          extra_consumer_ms=(r[37]|r[38]<<32)*1000/frequency if h[2]>=5 else None,
+          extra_build_and_surround_ms=((r[14]|r[15]<<32)-(r[37]|r[38]<<32))*1000/frequency if h[2]>=5 else None,
+          timed_extra_consumers=r[39] if h[2]>=5 else None,
           primary_scene_draws=r[30],extra_scene_draws=r[31],raw_scene_changed_bytes=r[32],scene_refusals=r[33],
           primary_history_forwards=r[34],extra_history_skips=r[35],extra_history_forwards=r[36],
           first_critical_difference=None if not r[25] else dict(region=REGIONS[r[25]],offset=r[26],before=r[27],after=r[28])))

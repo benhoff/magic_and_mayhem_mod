@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+import time
 
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -20,6 +21,7 @@ def main():
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(out/'wineprefix'),WINEDEBUG='-all')
     report=dict(success=False,claims=declaration['claims'],sources=declaration['sources'],cases=[])
+    server=None
     try:
         subprocess.run(['python3',str(ROOT/'tests/test-scene-production-decoder.py'),str(out/'decoder-report.json')],check=True)
         report['decoder_controls']=json.loads((out/'decoder-report.json').read_text())
@@ -33,20 +35,42 @@ def main():
             executable=out/'fixture.exe'
             subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x400000','/fixed','/dynamicbase:no','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{executable}',
                             str(out/'scene-production-reference.c.obj'),str(out/'scene-production-reference.S.obj'),str(dll.with_suffix('.lib')),str(out/'kernel32.lib')],stdout=log,stderr=subprocess.STDOUT,check=True)
+        # One owned display/server prevents44 repeated startup/teardown cycles.
+        with (out/'display-number').open('w+') as number, (out/'display.log').open('x') as log:
+            server=subprocess.Popen(['Xvfb','-displayfd',str(number.fileno()),'-screen','0','1280x1024x24','-nolisten','tcp'],pass_fds=(number.fileno(),),stdout=log,stderr=subprocess.STDOUT)
+            deadline=time.monotonic()+30
+            while True:
+                number.seek(0);display=number.read().strip()
+                if display:break
+                if server.poll() is not None or time.monotonic()>deadline:raise ValueError('Private fixture display failed')
+                time.sleep(.05)
+        env['DISPLAY']=':'+display
+        (out/'wineprefix').mkdir(mode=0o700)
+        subprocess.run(['wineserver','-p'],env=env,cwd=out,check=True,timeout=10)
         for mode in (1,2,3,4):
             for case in range(11):
                 key=f'{case if case<10 else "A"}{mode}';case_env=dict(env,MNM_PRODUCTION_TEST_CASE=key)
                 with (out/f'case-{key}.log').open('x') as log:
-                    result=subprocess.run(['xvfb-run','-a','wine',str(executable)],env=case_env,cwd=out,stdout=log,stderr=subprocess.STDOUT,timeout=120)
+                    result=subprocess.run(['wine',str(executable)],env=case_env,cwd=out,stdout=log,stderr=subprocess.STDOUT,timeout=120)
                 report['cases'].append(dict(case=case,mode=mode,exit_code=result.returncode))
                 if result.returncode:raise ValueError(f'PE32 production control failed {key}:exit{result.returncode}')
         report.update(binary_sha256=sha(executable),dll_sha256=sha(dll),sources_unchanged=all(sha(ROOT/p)==h for p,h in report['sources'].items()),
-                      checks='44 PE32 full/slice/frozen-history/prepared-scene controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;52 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and post-primary queue leak refuse. Original queue postconditions hold after every extra. Prepared-phase repeat precedes the original once-only post-work, including authored post leak (not an extra admission input). History forwards twice for full/slice and once plus one skip for history policies. Authored stand-ins, not original engine execution.')
+                      checks='44 PE32 full/slice/frozen-history/prepared-scene controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;62 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and post-primary queue leak refuse. Original queue postconditions hold after every extra. Prepared-phase repeat precedes the original once-only post-work, including authored post leak (not an extra admission input). History forwards twice for full/slice and once plus one skip for history policies. Consumer interval entry/exit hooks preserve the original consumer return PCs and both resumed MOV instructions; one extra consumer completion is counted. Authored stand-ins, not original engine execution.')
         if not report['sources_unchanged']:raise ValueError('Fixture sources changed')
         report['success']=True
     except (OSError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)
     finally:
-        if (out/'wineprefix').exists():subprocess.run(['wineserver','-k'],env=env,timeout=10,check=True)
+        try:
+            if (out/'wineprefix').exists():
+                stopped=subprocess.run(['wineserver','-k'],env=env,timeout=10)
+                if stopped.returncode not in (0,1):raise ValueError('Private wineserver stop failed')
+                subprocess.run(['wineserver','-w'],env=env,timeout=10,check=True)
+            report['private_wine_stopped']=True
+        except (OSError,ValueError,subprocess.SubprocessError) as error:report.update(success=False,cleanup_error=str(error))
+        if server:
+            server.terminate()
+            try:server.wait(timeout=10)
+            except subprocess.TimeoutExpired:server.kill();server.wait()
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     print('Report: '+str(out/'report.json'),flush=True);return 0 if report['success'] else 1
 
