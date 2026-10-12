@@ -43569,7 +43569,8 @@
         "DRAW02.source-pending-native-01-native-20261012",
         "DRAW02.storage-pending-native-20261012",
         "DRAW02.storage-caller-native-20261012",
-        "DRAW02.storage-query-native-20261012"
+        "DRAW02.storage-query-native-20261012",
+        "DRAW02.whole120-epochs-native-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43944,7 +43945,8 @@
         "DRAW02.source-pending-link-refusal-01-static-20261012",
         "DRAW02.source-pending-original-01-live-20261012",
         "DRAW02.source-pending-original-02-live-20261012",
-        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012"
+        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44049,7 +44051,12 @@
         "DRAW02.draw02-storage-query-binding-01-20261012",
         "DRAW02.draw02-storage-query-parser-01-20261012",
         "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
-        "DRAW02.draw02-storage-query-fixture-negative-01-20261012"
+        "DRAW02.draw02-storage-query-fixture-negative-01-20261012",
+        "DRAW02.draw02-whole120-epochs-original-01-20261012",
+        "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-whole120-epochs-original-02-20261012",
+        "DRAW02.draw02-whole120-epochs-binding-01-20261012",
+        "DRAW02.draw02-whole120-epochs-chain-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44064,7 +44071,8 @@
         "Prospective caller normalization: only exact return at relocated hook9 prologue call may map to pinned58d329. Preserve original continuation pointer and explicit mapping flag; neighboring/unknown calls remain unknown. Original01 unknown18rows are historical until fresh execution.",
         "Version2 original01 resolves its18relocated caller rows to exact58d329 with0unknown; historical version1unknowns retained. This does not establish all unhooked/indirect calls, real allocation/alias lifetimes, caller effects or epoch-to-submission binding. Prefix binding shows numerical addresses shared across observed logical canvases; no ownership inference.",
         "Prospective explicit V2 storage-query ordinal into version3 transition journal, with latest observed Lock-return epoch under the same recorder scope. Missing/mismatched epochs and stopped/unknown/pending points remain unknown; allocation/alias ownership is not implied.",
-        "Version3 original02 closes1869queries482known epochs1387unknown; all exact external IDs/metadata bind with0unlinked. Combined01 fails at source9lease17foreign tag32copy1to5; strict source-copy guard retained and byte overlap unproved. Source-only replay02 passes104eligible frames225excluded. Real allocation/aliases/allwriters/uploads/everyroute/action/full47/21 remain pending."
+        "Version3 original02 closes1869queries482known epochs1387unknown; all exact external IDs/metadata bind with0unlinked. Combined01 fails at source9lease17foreign tag32copy1to5; strict source-copy guard retained and byte overlap unproved. Source-only replay02 passes104eligible frames225excluded. Real allocation/aliases/allwriters/uploads/everyroute/action/full47/21 remain pending.",
+        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -44243,7 +44251,12 @@
         "tools/analyze-drawing-two-stage-source.py"
       ],
       "evidence": [
-        "DRAW02.two-stage-source-analysis-20261012"
+        "DRAW02.two-stage-source-analysis-20261012",
+        "DRAW02.draw02-whole120-epochs-original-01-20261012",
+        "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-whole120-epochs-original-02-20261012",
+        "DRAW02.draw02-whole120-epochs-binding-01-20261012",
+        "DRAW02.draw02-whole120-epochs-chain-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44254,7 +44267,8 @@
       },
       "remaining_gaps": [
         "Direct final-source epoch links remain absent; validate complete two-stage chain without equating API/thread coincidence to storage ownership. Alternate/failed/multiple-stage routes and all47/21closure remain open.",
-        "All104retained eligible frames validate initial CPUmapped epoch\u2192intermediate texture\u2192primary two-blit chains with both lease commands and ordered checked workers. Final direct sourceepoch absence remains true and is explained by the intermediate stage. Other225contexts from original comparison remain excluded; no whole allocation/alias/driver/hardware/scanout/allroute/action/47/21closure."
+        "All104retained eligible frames validate initial CPUmapped epoch\u2192intermediate texture\u2192primary two-blit chains with both lease commands and ordered checked workers. Final direct sourceepoch absence remains true and is explained by the intermediate stage. Other225contexts from original comparison remain excluded; no whole allocation/alias/driver/hardware/scanout/allroute/action/47/21closure.",
+        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending."
       ],
       "validation_dependencies": [
         "tools/drawing_storage_transitions.py",
@@ -94830,6 +94844,96 @@
           "equals": 104
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-epochs-original-01-20261012",
+      "kind": "static",
+      "scope": "Preserved negative whole120run atqueue30/source61lease130foreign tag32copy5to1; input loses coordinates after strict refusal. No completed acquisition.",
+      "record": "research/runtime/draw02-whole120-epochs-original-01.json",
+      "sha256": "8705ee2c9271c6bd74062124daa7e6ff58b16d14855c20e3396b917684b93c2a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012",
+      "kind": "static",
+      "scope": "Exact preserved pending-frame/held diagnostic identifies owner source61copy61to2 plus foreign copy5to1. Backing overlap/disjointness unknown; admission unchanged.",
+      "record": "research/runtime/draw02-whole120-epochs-pending-diagnosis-01.json",
+      "sha256": "1b505ac926f4f74859dda708fd044362bec37aa8bbd99942ec18fe47770c3631",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-epochs-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Normal original Quit120cadence-bound queues631534records170046112bytes2166oracles151protected pairs290commands827API826EGL1345closed transitions1267Lockepochs. No allroute/journey closure.",
+      "record": "research/runtime/draw02-whole120-epochs-original-02.json",
+      "sha256": "b4fdfa1294c2936250078ae5255736b858a6b0687145b44bfccfa1cad37982da",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-whole120-epochs-binding-01-20261012",
+      "kind": "static",
+      "scope": "Exact current retained-source reanalysis4082known3466unknown cache points and4858external queries1477known3381unknown epochs0unlinked.",
+      "record": "research/runtime/draw02-whole120-epochs-binding-01.json",
+      "sha256": "0f1ceedb66720045240e7bee0992eeebd8ecd2902b62d10016d241dcc32f6b62",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole120-epochs-chain-01-20261012",
+      "kind": "static",
+      "scope": "All139current native-matched eligible frames bind known mapped sourceepoch/held state through two full blits/intermediate generations/both protected commands/ordered checked workers/final EGLphysical witness. No new engine run or whole allocation ownership.",
+      "record": "research/runtime/draw02-whole120-epochs-chain-01.json",
+      "sha256": "49b7137bcf8839b628112d43843e63742190c542eb14621269821c8b8bc5047b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.whole120-epochs-native-20261012",
+      "kind": "native_integration",
+      "scope": "139current exact eligible protected-source/worker/EGLframes match source-only native replay0diff688contexts excluded; no full journey/ownership.",
+      "record": "research/runtime/draw02-whole120-epochs-native-01.json",
+      "sha256": "46ff0d6f13983fb28c26590b7a8d63cb172b45f1c094494368d18e41fa67d278",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106972,7 +107076,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-two-stage-source-20261012.json",
+    "path": "research/runtime/coverage/source-index-draw02-whole120-epochs-20261012.json",
     "sha256": "55fe75ff433b60f0f63c6c13a1cdc2f77f219ec083adb756608702a6f9086b6d"
   },
   "claim_bindings_required": true

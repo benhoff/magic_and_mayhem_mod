@@ -1074,3 +1074,17 @@ whole allocation/alias lifetime/unobserved uploads/scanout/allroutes/actions.
 Other225original contexts/full47/21/steps3–7 remain open. Next extend the tested
 chain accounting to the longer whole-update reference, then remaining source
 lifetimes/routes/actions; no new engine execution is asserted by this analysis.
+
+DRAW-02 step2 current whole120epoch/chain result: attempt01fails atqueue30
+source61lease130foreign tag32copy5to1; exact diagnostics retained and strict
+admission unchanged. Attempt02normal Quit closes120cadence-bound queues,
+631534records170046112bytes2166oracles,151protected pairs290commands,
+827API826EGL and1345transitions/1267Lockepochs. Exact reanalysis binds4858
+external queries1477known3381unknown epochs0unlinked,4082known3466unknown
+producer-prefix cache points. Source-only native replay matches139eligible
+frames0diff688contexts excluded. All139pass full two-stage epoch/held-byte/
+intermediate texture/both protected commands/ordered worker/final EGLchain.
+This extends bounded evidence without fixing the intermittent foreign-frame
+race or proving whole allocation/alias/unobserved upload/hardware/scanout,
+allroutes/semantic actions/47requirements21operations. Continue remaining
+acquisition boundaries in step2; steps3–7 remain ordered and open.
