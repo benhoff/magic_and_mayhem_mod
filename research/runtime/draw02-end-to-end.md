@@ -1365,3 +1365,162 @@ complete; all47journey/21operation gates and steps3–7remain open. New source c
 and exact pending review acknowledge broader observer consumers' historical
 evidence staleness; bounded new execution does not refresh their old hashes.
 See `draw02-step2-selection.md` for procedure and boundaries.
+
+## Step 2 cursor mutex checkpoint (2026-10-12 UTC)
+
+Region callback observation is committed as `6afb42c3`; the staged gate and
+commit hook pass. Reviewed range `76264a6a..6afb42c3` has 28 exact file receipts
+and zero missing versions. A working-tree receipt initially captured the
+actor-control definition before its visual evidence addition; a supplemental
+receipt from the frozen staged tree resolves that mismatch without rewriting
+prior reviews or claiming new execution.
+
+Both original cursor mutex constructors pass three zero arguments. Foreground
+uses `642c58` with a 10 ms wait. Timer first waits on `6e1ec0` for 10 ms, then
+also waits on `642c58` with `ffffffff` when repainting; the latter result is not
+tested before copying. It releases the inner mutex before the outer mutex.
+The earlier outer-only timer description was incomplete. Exact static clients
+and the bounded missing-function disposal window are retained separately.
+
+Unchanged privately mapped original timer execution passes 240 type/result/
+screen/countdown/Release cells: 96 outer waits and 24 releases. Nonzero outer
+results skip Release; admitted early exits and countdown effects match. The
+inner cursor flag is fixed zero, so no nested wait, coordinate or drawing
+execution is claimed. Original bytes/unrelated checked globals and both
+2927-file manifests remain unchanged. Real handle lifecycle/ownership, all
+lock ordering, abandoned handling and safe source capture synchronization remain
+open. Next observe actual mutex identities and calls before adding any capture
+locking. Step 2 remains ongoing; all 47 journey/21 operation requirements and
+steps 3–7 remain open.
+
+
+## Step 2 original mutex observation checkpoint (2026-10-12 UTC)
+
+Cursor gates are committed as `ba828b8d`; staged gate and hook pass. Reviewed
+range `6afb42c3..ba828b8d` has 12 exact file receipts and zero missing versions.
+A separate opt-in PE32 module observes four pinned original Kernel32 imports,
+forwards each once and preserves arguments, raw result, LastError and 512-byte
+FX state. It adds no wait or input poll; neither its recorder lock nor point
+query spans an original call. Five decoder methods, three prefix-binding methods
+and existing cadence/input guards pass. Actual PE32 fixture passes 20 forwards,
+including timeouts/raw responses, failed/successful close, numeric handle reuse
+with distinct IDs, unknown handles and deliberately clobbering point queries.
+
+Fresh original metadata campaign/Mini/Preferences/resume/normal Quit retains
+6,849 paired import calls: two unnamed constructors with initial-owner zero,
+3,258 waits returning zero, 3,258 releases returning one, and 331 closes. Of
+the closes, 329 refer to untracked nonmutex handles; both tracked IDs close.
+Constructor callers `4e8f75` and `4a3706` establish IDs 1 and 2 within this run;
+no stable cross-launch numeric handle values are assumed.
+
+Current immutable reanalysis binds all 13,698 sampled API/cursor points, retaining
+72 inactive points and zero query refusals. Another exact caller-order analysis
+retains 286 timer outer-ID1 wait → inner-ID2 wait with `ffffffff` → inner release
+→ outer release chains, with zero pairing gaps. These are observed calls/results,
+not full ownership/alias/abandoned or safe additional-locking proofs. Point queries
+precede row publication and do not create atomic call-entry/frame boundaries.
+
+Adding an offline order test link leaves prior 240-cell cursor gate claims
+historical for the changed contract. Shared capture/runner/control edits also
+leave Region V2 frontend evidence historical; this capture keeps Region tracing
+off and asserts no fresh Region or pixel equivalence. Historical hashes remain
+unchanged. Next compare mutex intervals with exact source-copy/lease callers,
+then validate any proposed bounded synchronization in isolation before live use.
+Step 2 remains ongoing; all 47 journey/21 operation and steps 3–7 remain open.
+
+
+## Step 2 protected-source/mutex joint diagnostic (2026-10-12 UTC)
+
+Mutex observation is committed as `4b66daac`; staged gate and hook pass.
+Reviewed `ba828b8d..4b66daac` range has 25 exact receipts and zero missing
+versions. The next original-active run keeps all source admission strict and
+adds no mutex acquisition or synchronization. Its eight-GiB reservation passes
+the unchanged guard; completed run size is 4.08 GiB. Broader storage changes
+cannot be attributed to this task-owned run.
+
+Normal original Quit retains 32 producer queues, 184,302 records, 1,318 oracles,
+362 API physical witnesses, 361 EGL witnesses and 5,156 mutex-call pairs. The
+existing protected-source diagnostic retains 128 stable held snapshot pairs and
+242 completed worker commands. No pending source refusal occurs in this run;
+that does not repair the intermittent foreign cursor-copy race or prove source
+allocation/alias ownership, hardware completion or whole native parity.
+
+Current immutable reanalysis binds all 10,312 API/cursor point samples with zero
+inactive/query-refused points. Exact caller-order analysis retains 100 complete
+timer nested wait/release chains with zero gaps. Conservative same-thread API
+entry-prefix intervals sampled after inner Wait return and before Release entry
+contain 198 surface calls from `58c488`, with zero exclusions. The point query
+precedes row publication, so this is not an atomic original critical-region
+proof. Native source synchronization remains unchanged and unproved.
+
+Adding the source-interval analyzer to the binding contract leaves analysis01
+historical; analysis02 is rerun against the new declaration, preserving all
+prior hashes. These are offline results, without new engine execution. Next
+retain a bounded failure reproduction with mutex/source identities or prove
+precise acquisition/release boundaries before testing any added diagnostic lock.
+All 47 journey/21 operation requirements and steps 3–7 remain open; step 2
+continues with source lifetime/routes and semantic completeness boundaries.
+
+## Step 2 diagnostic source concurrency and storage checkpoint (2026-10-12 UTC)
+
+The isolated actor-latch branch integrates the three committed cursor mutex
+increments through `1e046f2d`. The exact committed parent/current file hashes are
+reviewed in `coverage/history-draw02-pending-policy-merge-20261012.json`:52 files,
+zero missing receipts, append-only review metadata classified separately. Both
+branches' research and receipts are preserved; source indices are reconciled.
+No original mutex wait is added, and the original raster remains active.
+
+New opt-in `--source-pending-copy` uses checked diagnostic read-only source pages,
+exact worker completion and paired held snapshots. Admission is limited to one
+selected current-thread tag7 and known foreign COPY shapes: V1 tag32, V2 tags32/39.
+Numeric identities do not prove separate storage. Actual aliased protected-page
+writes still produce a fault and terminate. Unknown/source/lifetime/primitive/
+reserved/duplicate states refuse. Every admitted overlap has an exact metadata
+file; held snapshot V2 binds its ordinal and independently verifies source/lease/
+owner/prefix/queue/pending identities, rejecting missing, duplicate or extra files.
+Old formats, reports and hashes are retained. See `draw02-source-pending-policy.md`
+and `../formats/drawing-source-pending-admission.md`.
+
+Fresh owned-page suites `draw02-pending-policy-*-fixture-02.json` pass:16 pending
+shape guards, disabled/unleased/protection-loss/identity guards, a real foreign
+aliased write, padded export, default refusal behavior, checked page restoration
+and8 held-snapshot V1/V2 cases. Decoder/cadence/mutex/Region and prefix guards also
+pass. An explicit private serial fixture prefix saves four additional disposable
+prefix copies while keeping separate result artifacts and exclusive ownership.
+Previous prefixes and raw evidence are preserved.
+
+Original attempt01 retains six admitted tag32 overlaps, then refuses an exact
+foreign tag39 at lease130/queue27. Its failure is retained under a new negative
+ID. Corrected tag39 policy is validated on owned pages; current-code original
+execution remains pending. The next120-update capture preflight refuses:
+working1219.629GiB/free106.333GiB; a9GiB reservation would cross the100GiB floor.
+No capture is started by that refusal and no budget is reduced to bypass it.
+
+A new storage inventory is retained in the main checkout's
+`working/retention/draw02-step2-continuation-storage-20261012.json`. Reviewed older
+completed payloads are proposed for verified cold backups, retaining sources,
+reports, pins, active/latest runs, the current prefix template and latest passed
+joint source/mutex reference. Cleanup requires explicit user approval. Storage
+provenance cannot serve as fresh engine validation.
+
+Step2 remains open: current original execution, complete source/frame/action and
+caller/lifetime accounting, all encountered output routes and diagnostic controls
+still require closure. All47 journey/21 operation gates and steps3–7 stay open.
+
+The exact continuation's accounting draft also refuses at free102.852GiB with a
+3GiB reservation. The source census/discovery audit completes with zero errors;
+Git snapshot/staged checks and the merge commit remain pending storage headroom.
+Cold backups of five reviewed older quiet reference runs (18.023GiB/22,200
+payloads) are being verified; current templates/latest passed joint reference and
+all tracked sources/reports/pins remain hot. No local pruning is authorized.
+
+The monitored backup stops at99.68GiB free when other writers consume main-disk
+headroom. No local file is removed. An independent read-only reconciliation then
+checks12952completed warm/cold copies, both durable receipts and4461unique raw/
+compressed objects:10.381GiB in the exact reviewed subset. The new proposal is
+`working/retention/draw02-step2-verified-cleanup-proposal-20261012.json` in the main
+checkout, SHA256 `d1829e586292c690c2a09faf9d96453f7706abde8760de1771fb67a3cd30e751`.
+It is unapproved. Only that verified subset may be proposed for local cleanup;
+remaining copies, current templates/references, source/report/pin files stay hot.
+Original retry, exact Git review/staged checks and the merge commit still await
+storage headroom; audit and owned suites pass without a milestone promotion.

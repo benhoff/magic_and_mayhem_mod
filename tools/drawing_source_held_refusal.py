@@ -6,7 +6,7 @@ REASONS = {1: 'source getter refused', 2: 'source metadata invalid or changed',
            3: 'call geometry outside full-frame contract', 4: 'canvas identity changed',
            5: 'protected source bytes changed', 6: 'worker completion incomplete',
            7: 'snapshot acquisition already active', 8: 'snapshot owner mismatch',
-           9: 'snapshot allocation failed', 10: 'snapshot budget exceeded'}
+           9: 'snapshot allocation failed', 10: 'snapshot budget exceeded', 11: 'pending-copy admission point missing'}
 
 
 def decode(data):

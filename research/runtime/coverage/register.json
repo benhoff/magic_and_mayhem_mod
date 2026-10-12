@@ -14287,7 +14287,11 @@
         "protocols/include/mnm/menu_v11.h",
         "protocols/include/mnm/menu_v12.h",
         "research/runtime/drawing-callers-movie-sites-20261010.json",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
+      ],
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -19863,7 +19867,8 @@
         "tools/prepare-scene-observer.py",
         "runtime/scene/canvas_producers.c",
         "runtime/scene/canvas_producers.S",
-        "protocols/include/mnm/canvas_producers_v1.h"
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.world-live-history.synthetic-20261008",
@@ -19878,7 +19883,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-live-history",
@@ -20067,7 +20075,8 @@
         "tools/test-world-frames.py",
         "runtime/scene/canvas_producers.c",
         "runtime/scene/canvas_producers.S",
-        "protocols/include/mnm/canvas_producers_v1.h"
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.world-live-history.synthetic-20261008",
@@ -20086,7 +20095,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.canvas-producer-sequence",
@@ -20307,7 +20319,8 @@
         "protocols/include/mnm/world_channel_v2.h",
         "runtime/scene/vertical_bar_trace.h",
         "reconstruction/rendering/vertical_bar.h",
-        "tools/inspect-drawing-source-buffer.py"
+        "tools/inspect-drawing-source-buffer.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Selected original 800x600 Quick Battle menu/loading/HUD producer history through a bounded contiguous prefix of up to16 World returns; format0 only, diagnostic checkpoints require original successful lock pointers. Missing writer/checkpoint, unknown alpha/clip, allocation and driver branches remain refused/pending.",
       "historical_status": {
@@ -20320,7 +20333,8 @@
       "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
       "remaining_gaps": [
         "New opt-in producer recorder synchronization and per-thread nesting require PE32 ownership/legacy forwarding checks and original source/physical coupling. Recorder serialization does not synchronize original bytes or assign a coherent physical frame.",
-        "The unobserved uniform colour leaf is a hypothesis for the two4x75physical residuals; native/original comparison must establish its actual reachability and clipping behavior before closure."
+        "The unobserved uniform colour leaf is a hypothesis for the two4x75physical residuals; native/original comparison must establish its actual reachability and clipping behavior before closure.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -20571,7 +20585,8 @@
         "tools/prepare-scene-observer.py",
         "tools/scene-game-runner.py",
         "tools/test-canvas-producers.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Selected isolated original800x600 Quick Battle, fully reconstructed menu/loading/HUD state and contiguous startup queues1..16; selected outer indexed-copy bypass at most8 requests in queue16 only, original simulation/menu/presentation retained.",
       "historical_status": {
@@ -20581,7 +20596,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code."
+      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "subsystem": "native_rendering",
@@ -20750,7 +20768,8 @@
         "tools/prepare-scene-observer.py",
         "tools/scene-game-runner.py",
         "tools/test-canvas-producers.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Selected isolated original800x600 Quick Battle, fully reconstructed menu/loading/HUD state and contiguous startup queues1..16; selected outer indexed-copy bypass at most8 requests in queue16 only, original simulation/menu/presentation retained.",
       "historical_status": {
@@ -20760,7 +20779,10 @@
         "integration": "live_equivalence",
         "replacement": "scoped_live"
       },
-      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code."
+      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-kind-diagnostic",
@@ -21287,7 +21309,8 @@
         "tools/scene-game-runner.py",
         "tools/test-canvas-producers.py",
         "tools/test-world-producer-handoff.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Pinned800x600 format0 Quick Battle, every admitted raster in selected queue16 followed by complete startup prefix1..16; caller whitelist and return-low16 behavior only, no full dispatcher/menu/HUD/native simulation replacement.",
       "evidence": [
@@ -21318,7 +21341,10 @@
         "comparison": "recorded",
         "integration": "live_equivalence",
         "replacement": "scoped_live"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.world-kind8-colour",
@@ -21632,7 +21658,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-batch.py",
         "tools/test-world-raster-queue.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Pinned800x600 format0 Quick Battle map2, protected original destination from selected World entry until return; initial queue1 then complete startup1..16. Every observed admitted raster has actual entry/source/AX binding, source-only CPU/GPU final parity and independent original intermediate comparison. One correlated canvas writeback per selected queue before observed checkpoint/HUD. Any unexpected access or producer refuses. No full dispatcher/simulation/menu/HUD/other-format/unsampled caller-global or real-time claim.",
       "evidence": [
@@ -21739,6 +21766,9 @@
           "address": 5761248,
           "scope": "Wrapper mask/store oflow16AX; remains original traversal."
         }
+      ],
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -21903,7 +21933,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-batch.py",
         "tools/test-world-raster-queue.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Pinned800x600 format0 Quick Battle map2, protected original destination from selected World entry until return; initial queue1 then complete startup1..16. Every observed admitted raster has actual entry/source/AX binding, source-only CPU/GPU final parity and independent original intermediate comparison. One correlated canvas writeback per selected queue before observed checkpoint/HUD. Any unexpected access or producer refuses. No full dispatcher/simulation/menu/HUD/other-format/unsampled caller-global or real-time claim.",
       "evidence": [
@@ -21934,7 +21965,10 @@
       "kind": "native_policy",
       "title": "Owned World raster queue batches with one canvas completion",
       "scope": "Intentional V3 native transport: append owned source records, bind all raster descriptors by sequence/exact entry/AX/source hash, validate complete queue closure and publish one full-canvas reply. Native source-only CPU/GPU parity, independent original comparisons and fail-closed identity/hash/size checks remain distinct milestones.",
-      "original": []
+      "original": [],
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-startup-launcher",
@@ -22130,7 +22164,8 @@
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.world-startup-launcher.normal-20261008",
@@ -22147,7 +22182,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.minimap-terrain-raster",
@@ -22564,7 +22602,8 @@
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Pinned800x600 RGB565 first16 Quick Battle map2/zero-items automatic startup completion; manual native-window close before queue1 as an independent live cancellation scenario. General manual menu journeys and original-window cancellation unvalidated.",
       "evidence": [
@@ -22583,7 +22622,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-batch-profiling",
@@ -22783,7 +22825,8 @@
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Pinned800x600 RGB565 first16 Quick Battle map2/zero-items automatic startup completion; manual native-window close before queue1 as an independent live cancellation scenario. General manual menu journeys and original-window cancellation unvalidated.",
       "evidence": [
@@ -22801,7 +22844,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-resource-reuse",
@@ -23007,7 +23053,8 @@
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Synthetic cold/warm upload reuse, changed/restored resource revision rejection, failed-revision retry, owned-colour/ambiguous embedded palette and GL context restoration; frozen owned-source first16 map2/zero-items startup replay baseline versus optimized with all checkpoints compared; separate guarded public first16 live completion and precise-original intermediate/AX comparison. Timing is Debug software-OpenGL diagnostic native consumer, excludes original simulation and pre-entry work.",
       "evidence": [
@@ -23026,7 +23073,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-frame-identity-cache",
@@ -23355,7 +23405,8 @@
         "tools/prepare-scene-observer.py",
         "tools/run-game.sh",
         "tools/scene-game-runner.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Bounded first16 original-active World startup prefix with all available producer checkpoints; four-view/two-format synthetic owned adapter and malformed wire/result/selected-entry refusals, V1/V2 budget separation and distinct stored-orientation/outline-entry fixtures. Only actually observed camera/rotation/fog/flash changes count as live validation; source generation and replacement excluded.",
       "evidence": [
@@ -23368,7 +23419,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.minimap-input-fixture",
@@ -23565,7 +23619,8 @@
         "tools/test-canvas-producers.py",
         "tools/test-minimap-live.py",
         "tools/test-native-canvas-producers.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Completed World-return records schedule input after rendering, with private focus/pointer centering; first16 map2/zero-items original-active World calls; actual orientations0..3 and at least two source centers required, complete source-only replay checkpoints equal. Strict malformed/empty fixture flag and missing owned opt-in refuse before mutation. No original camera memory writes.",
       "evidence": [
@@ -23577,7 +23632,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "INPUT.camera-minimap-orientation-update",
@@ -23905,7 +23963,8 @@
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Public launcher paced motion and independent unpaced first16 startup; complete CPU/GPU delivery and external original checkpoint equality, version-bound header ingestion and source/compiled dependency provenance. Diagnostic timings only; no replacement.",
       "evidence": [
@@ -23917,7 +23976,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-cpu-composition-reuse",
@@ -26778,7 +26840,11 @@
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
+      ],
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -27270,7 +27336,8 @@
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.world-throughput.budget-negative-20261010",
@@ -27286,7 +27353,10 @@
         "comparison": "none",
         "integration": "live_equivalence",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.word-backend-state",
@@ -27686,7 +27756,8 @@
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Pinned saved owned V3 World32 corpus with no oracle pixel inputs; retained GlBlitter across finite session resets and seeded mixed native operations. Default20 sessions/40 rounds, median50ms/p95100ms/max250ms warm native work and32MiB growth. Software Mesa default8 workers; GL3.3 fallback separately selectable. CPU/GPU World final parity plus saved checkpoint assertions; original code and live producer are not executed.",
       "evidence": [
@@ -27700,7 +27771,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.word-clip-shadow",
@@ -28518,7 +28592,8 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "tools/test-word-sprites.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "RS.word-clip-takeover.original-20261010",
@@ -28543,7 +28618,10 @@
           "actual nested reentry and real Windows",
           "full-session/all-assets/performance"
         ]
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.word-clipped-takeover-admission",
@@ -28613,7 +28691,8 @@
         "tools/build-shadow-bridge.py",
         "tools/original-manifest.sh",
         "tools/test-word-sprites.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.word-clipped-takeover-admission.host-20261010"
@@ -28632,7 +28711,10 @@
           "FP fault delivery",
           "original malformed acceptance"
         ]
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.font-glyph-live-shadow",
@@ -28827,7 +28909,8 @@
         "tools/scene-game-runner.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.font-glyph-live-shadow.live-20261010",
@@ -28839,7 +28922,10 @@
         "comparison": "none",
         "integration": "live_equivalence",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.glyph-backend-state",
@@ -30100,7 +30186,8 @@
         "tools/test-glyph-backend-state.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "RS.glyph-live-route.host-20261010",
@@ -30130,7 +30217,10 @@
           "public interactive gameplay equivalence",
           "performance benefit"
         ]
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.glyph-live-admission",
@@ -30336,7 +30426,8 @@
         "tools/test-glyph-backend-state.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.glyph-live-admission.host-20261010",
@@ -30362,7 +30453,10 @@
           "public interactive gameplay equivalence",
           "performance benefit"
         ]
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.fade-live-pixels",
@@ -31122,7 +31216,8 @@
         "research/runtime/drawing-surface-api-layouts-20261011.json",
         "tools/drawing_cpu_sites.py",
         "research/runtime/drawing-cpu-sites-static-20261011.json",
-        "research/runtime/drawing-terminal-observer-original-menu-20261011.json"
+        "research/runtime/drawing-terminal-observer-original-menu-20261011.json",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "TOOL.drawing-inventory.guards-20261010",
@@ -31152,7 +31247,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.glyph-default-launch",
@@ -31340,7 +31438,8 @@
         "tools/test-glyph-backend-state.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.glyph-default-launch.host-20261010"
@@ -31351,7 +31450,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "DRAW.unattributed-caller",
@@ -32664,9 +32766,13 @@
         "runtime/menu/drawing_action.h",
         "tools/build-menu-observer.py",
         "tools/inspect-drawing-source-buffer.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
-      "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches."
+      "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches.",
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.drawing-publication",
@@ -33109,7 +33215,11 @@
         "tests/minimap-live-input/CMakeLists.txt",
         "apps/qt-shell/window_host.cpp",
         "apps/qt-shell/window_host.hpp",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
+      ],
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -33727,7 +33837,8 @@
         "renderer/gpu_canvas_mirror.hpp",
         "runtime/scene/drawing_publication.h",
         "runtime/scene/drawing_publication.S",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Guarded finite original World32 source producer connected through a native broker and independently mapped ordered rolling consumer. Exact original request identity/extent/entry/source hash/AX validation before publication, anticipated native closure independently verified against actual original checkpoint/return after writeback; retained CPU/GPU history and resources, all completed checkpoint assertions, zero teardown surfaces. Native cold500ms/warm median60ms and request-to-reply warm median120ms excluding measured diagnostic assertions. Separate actual consumer/private-Wine producer death after at least one native World completion with a later original request outstanding; terminal refusal/private cleanup and fresh-session recovery. No unbounded original admission, uncaptured gameplay, original intermediate equivalence or hardware/desktop pacing claim.",
       "evidence": [
@@ -33746,7 +33857,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-rolling-hardware",
@@ -34220,7 +34334,8 @@
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Independent exact-original validation of a successful guarded rolling32-queue live capture. Each actual original entry and low16AX executes over owned native-only reconstructed entry state; every native CPU intermediate and final GPU canvas is compared, and the live rolling replies must match the native replay finals. Original lifetime/destination guard and live return acknowledgement are separately captured; post-writeback original canvases are not sole original equivalence evidence. Scoped observed canonical sources/callers, no unbounded gameplay/replacement, unsupported branches or timing/physics equivalence.",
       "evidence": [
@@ -34237,7 +34352,10 @@
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-continuous-source",
@@ -34480,7 +34598,8 @@
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV4 binds the full canonical96-byte header to the exact owned-payload FNV; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
       "evidence": [
@@ -34492,7 +34611,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.world-continuous-producer",
@@ -34811,7 +34933,8 @@
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV4 binds the full canonical96-byte header to the exact owned-payload FNV; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
       "evidence": [
@@ -34823,7 +34946,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-continuous-normal-performance",
@@ -35066,7 +35192,8 @@
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
         "tools/world_refusal.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Normal actual original-to-native continuous4096-queue delivery without CPU reference raster composition or diagnostic files/mirror uploads. Retain owned source/header/descriptor/entry/AX/destination guards andmandatory finalGPU readback/original writeback andactual return. Source/transport/nativeGPU/Qtpaint costs measured separately; bounded1024 timing rows,source/cache/storage/memory caps,zero dropped queues/image fallback/teardown surfaces. Guarded actual WinMM uptime precision policy retains original wait target/preferences andLastError; no fabricated/scaled clock or full timer/physics equivalence assertion. Prospective warm fullWorld median50ms,p9575ms,max150ms,cold delivery500ms,steady original/Qtpaint19FPS,retained growth32MiB limits. Performance failure mustfail withcorrect pixels; impossible0.001ms negative control. Separate4096 verification run andrefusal/death/recovery cases; headless hardware/physical scanout/input cadence anduncaptured gameplay remain outside scope.",
       "evidence": [
@@ -35078,7 +35205,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-gpu-resident-frame",
@@ -35582,7 +35712,8 @@
         "tools/prepare-native-draw.py",
         "runtime/scene/drawing_publication.h",
         "runtime/scene/drawing_publication.S",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
@@ -35637,7 +35768,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.world-gpu-ack-delivery",
@@ -35912,7 +36046,8 @@
         "tools/world_refusal.py",
         "runtime/scene/drawing_publication.h",
         "runtime/scene/drawing_publication.S",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.world-gpu-ack-delivery.live-4096-20261010",
@@ -35955,7 +36090,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.directdraw-import-retirement",
@@ -36784,7 +36922,8 @@
         "protocols/schemas/render_commands-v2.json",
         "protocols/schemas/render_stream-v2.json",
         "runtime/menu/drawing_action.h",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
@@ -36806,7 +36945,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.directdraw-native-opengl-launch",
@@ -37575,7 +37717,8 @@
         "protocols/schemas/render_control-v1.json",
         "protocols/schemas/render_commands-v2.json",
         "protocols/schemas/render_stream-v2.json",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
@@ -37590,7 +37733,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.minimap-continuous-read-window",
@@ -37641,7 +37787,8 @@
       ],
       "validation_dependencies": [
         "runtime/scene/drawing_publication.h",
-        "runtime/scene/drawing_publication.S"
+        "runtime/scene/drawing_publication.S",
+        "runtime/scene/source_pending_policy.h"
       ],
       "status": {
         "understanding": "scoped",
@@ -37649,7 +37796,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.native-draw-status-session-file",
@@ -37984,11 +38134,13 @@
         "tools/inspect-canvas-producers.py",
         "runtime/scene/vertical_bar_trace.h",
         "reconstruction/rendering/vertical_bar.h",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
       "remaining_gaps": [
-        "Physical API mode broadens selected mutation-route witnesses only. Source-owned frame inputs, full presentation/GDI/movie accounting, action semantics and generic presented-session catalogs remain pending; first new original capture is diagnostic and cannot establish native parity."
+        "Physical API mode broadens selected mutation-route witnesses only. Source-owned frame inputs, full presentation/GDI/movie accounting, action semantics and generic presented-session catalogs remain pending; first new original capture is diagnostic and cannot establish native parity.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -38143,7 +38295,8 @@
         "compat/legacy/world-rolling/CMakeLists.txt",
         "compat/legacy/canvas-producers/CMakeLists.txt",
         "runtime/scene/drawing_publication.h",
-        "runtime/scene/drawing_physical.h"
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.public-resident-world.import-fixture-20261011",
@@ -38201,7 +38354,8 @@
         "Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending.",
         "Fresh diagnostic camera/menu attempt reaches651 balanced Worlds then public bind tracker admission expires at observed16ms under cursor-copy ownership, cancelling the resident producer. Serialize bind with callback/copy ownership and prove bounded live continuity; phase33 Unlock GAP suboperation remains unresolved.",
         "Ordinary unprofiled/uncaptured isolated TITAN3x120s/2menu/normal-Quit journey passes19FPS harness at19.6335engine FPS and7284balanced Worlds without GAP/timeout/fallback/readback. Retained instrumented run completes7091Worlds but fails a3.243s sample and truncates capture183/7091at256MiB queue. Full instrumented capture/performance, original-frame/driver equivalence, uninstrumented casting/combat rerun at final headers, arbitrary OS stalls and60FPS remain unproven.",
-        "Final-header casting/combat/spell-refusal/portrait/movement/Mini/normal-Quit rerun now passes under bounded engine-cadence instrumentation on TITAN:4545balanced Worlds at19.29295aggregateFPS. This is separate from ordinary uninstrumented and previous overloaded capture/performance results;60FPS and original UI/driver/frame equivalence remain unproven."
+        "Final-header casting/combat/spell-refusal/portrait/movement/Mini/normal-Quit rerun now passes under bounded engine-cadence instrumentation on TITAN:4545balanced Worlds at19.29295aggregateFPS. This is separate from ordinary uninstrumented and previous overloaded capture/performance results;60FPS and original UI/driver/frame equivalence remain unproven.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -38233,7 +38387,8 @@
       "validation_dependencies": [
         "runtime/scene/readable_extent.h",
         "runtime/scene/world_continuous.c",
-        "compat/legacy/world-rolling/CMakeLists.txt"
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.world-source-region-epoch.fixtures-20261011",
@@ -38248,7 +38403,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "RS.displacement-linear-stride",
@@ -38567,7 +38725,8 @@
         "research/runtime/drawing-inventory.json",
         "research/runtime/coverage/binary-nocd.json",
         "tools/drawing_census_bindings.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW.census.journal-guards-20261010",
@@ -38603,7 +38762,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "DRAW.census.journey-driver",
@@ -38699,7 +38861,8 @@
         "tests/test-drawing-api-resources.py",
         "tools/drawing_api_sites.py",
         "tools/export-drawing-api-sites.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -38732,7 +38895,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "DRAW.queue-dispatch",
@@ -39022,7 +39188,8 @@
         "research/runtime/drawing-inventory.json",
         "research/runtime/coverage/binary-nocd.json",
         "research/runtime/drawing-api-sites-expanded-static-20261011.json",
-        "tools/drawing_api_pairs.py"
+        "tools/drawing_api_pairs.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW.api-splices.static-20261011",
@@ -39042,7 +39209,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "TOOL.drawing-api-observer",
@@ -39286,7 +39456,8 @@
         "tests/test-drawing-api-resources.py",
         "tools/drawing_api_sites.py",
         "tools/export-drawing-api-sites.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW.api-menu.observation-20261011",
@@ -39305,7 +39476,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "TOOL.drawing-api-cohorts",
@@ -40360,7 +40534,8 @@
         "tools/export-menu-support.py",
         "runtime/scene/canvas_producers.c",
         "research/runtime/drawing-inventory.json",
-        "research/runtime/coverage/binary-nocd.json"
+        "research/runtime/coverage/binary-nocd.json",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "TOOL.drawing-cpu-sites.guards-20261011",
@@ -40372,7 +40547,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "DRAW.raster-pointer-assignments",
@@ -41265,7 +41443,8 @@
         "tools/scene-game-runner.py",
         "tools/test-drawing-presented-session.py",
         "tools/test-native-drawing-session-runner.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.drawing-fenced-acquisition.original-20261011",
@@ -41285,7 +41464,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "validation_domain": "Exact publication request/ack generation and source/thread/action identities, full physical planes, stable double capture, fixed normalized-nearest RGB565 display conversion and source-only separate native presentation. Excludes unobserved routes, whole-process quiescence, unobtrusive performance, semantic action equivalence and true driver loss."
+      "validation_domain": "Exact publication request/ack generation and source/thread/action identities, full physical planes, stable double capture, fixed normalized-nearest RGB565 display conversion and source-only separate native presentation. Excludes unobserved routes, whole-process quiescence, unobtrusive performance, semantic action equivalence and true driver loss.",
+      "remaining_gaps": [
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+      ]
     },
     {
       "id": "NR.resident-stage-profiling",
@@ -41498,7 +41680,8 @@
         "tools/test-native-world-rolling-hardware.py",
         "tools/test-native-world-rolling.py",
         "tools/test-public-resident-fixtures.py",
-        "tools/test-resident-leaf-abi.py"
+        "tools/test-resident-leaf-abi.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.resident-stage-profiling.instrumentation-20261011",
@@ -41523,7 +41706,8 @@
         "CPU-sampled Apprentice physical casting/combat/movement/normal Quit completes5421 balanced Worlds, but diagnostic19FPS cadence gate fails. Complete compressed capture journeys fail (drawing-history GAP/wizard death); current offline proof is an explicit2423-World verified prefix, not a full capture/menu/Quit or uninstrumented performance guarantee.",
         "Frozen actual-prefix TITAN EGL completed average throughput exceeds60FPS at O2 and O3, with matching terminal hashes and no ordinary readbacks. Pipeline p95 exceeds16.667ms; steady60FPS and public gameplay are not proven. Matching97 compiled source hashes and O2 settings still leave backend/context/UI/original/capture/report workload differences; causal attribution remains pending.",
         "Original paired pacing and millisecond residual observations do not establish universal20Hz simulation behavior. Preserve selected50ms target; presentation/original-work attribution, crowded/other-scene workloads and safe60FPS gameplay remain outstanding.",
-        "CPU symbolization is deferred until campaign cleanup; fresh execution of that deferred sampling branch is pending. Growing diagnostic JSON publication every64 Worlds remains outside stage timing and unoptimized."
+        "CPU symbolization is deferred until campaign cleanup; fresh execution of that deferred sampling branch is pending. Growing diagnostic JSON publication every64 Worlds remains outside stage timing and unoptimized.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -42220,7 +42404,8 @@
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
-        "tools/build-scene-observer.py"
+        "tools/build-scene-observer.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "NR.producer-recorder-thread-policy.native-20261012"
@@ -42233,7 +42418,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Actual opt-in producer entry/return source-state and physical API binding remains pending. Recorder locking does not own original source bytes, deduce unknown writers or synchronize scanout."
+        "Actual opt-in producer entry/return source-state and physical API binding remains pending. Recorder locking does not own original source bytes, deduce unknown writers or synchronize scanout.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -42274,7 +42460,8 @@
         "tools/drawing-session-runner.py",
         "tools/inspect-canvas-producers.py",
         "runtime/scene/vertical_bar_trace.h",
-        "reconstruction/rendering/vertical_bar.h"
+        "reconstruction/rendering/vertical_bar.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-point-getter-fixture-01-20261012",
@@ -42307,7 +42494,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Paired getter/API synthetic guards and bounded original03acquisition are recorded; complete immutable source ownership, all writers/routes, actual scanout and journey admission remain pending. Metadata and sixteen World queues do not fulfill step2."
+        "Paired getter/API synthetic guards and bounded original03acquisition are recorded; complete immutable source ownership, all writers/routes, actual scanout and journey admission remain pending. Metadata and sixteen World queues do not fulfill step2.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -42473,7 +42661,8 @@
         "runtime/scene/canvas_producers.S",
         "runtime/shadow/win32_min.h",
         "tools/build-scene-observer.py",
-        "tools/test-canvas-producers.py"
+        "tools/test-canvas-producers.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "RS.canvas-vertical-bar.isolated-reference-01-20261012",
@@ -42500,7 +42689,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Original02reaches five generated4x75bars with zero recorder failures; isolated reference04matches3444cases/8512504words and the combined source cohort matches49920000CPU pixels. Full allocation/reuse lifetime, arbitrary source-buffer mutation, current/max arithmetic, original bad inputs and all display/journey behavior remain unproved. Default mode retains53hooks; new56-site ABI and cache guards are scoped fixtures."
+        "Original02reaches five generated4x75bars with zero recorder failures; isolated reference04matches3444cases/8512504words and the combined source cohort matches49920000CPU pixels. Full allocation/reuse lifetime, arbitrary source-buffer mutation, current/max arithmetic, original bad inputs and all display/journey behavior remain unproved. Default mode retains53hooks; new56-site ABI and cache guards are scoped fixtures.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -42799,7 +42989,8 @@
         "protocols/include/mnm/canvas_producers_v2.h",
         "protocols/include/mnm/canvas_producers_v1.h",
         "runtime/scene/producer_trace_guard.h",
-        "tools/build-scene-observer.py"
+        "tools/build-scene-observer.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-trace32-original-01-live_observation-20261012",
@@ -42825,7 +43016,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Original03closes32World returns with171339records/81091310wire bytes and separate491API/490EGLwitnesses. Source submission/full lifetimes/all routes/action semantics and120consecutive advancing windows remain pending. Run01preMain gate refusal and Run02record-cap truncation retained."
+        "Original03closes32World returns with171339records/81091310wire bytes and separate491API/490EGLwitnesses. Source submission/full lifetimes/all routes/action semantics and120consecutive advancing windows remain pending. Run01preMain gate refusal and Run02record-cap truncation retained.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43250,7 +43442,9 @@
         "runtime/scene/drawing_source_point.h",
         "runtime/drawing/source_points.h",
         "tools/compare-drawing-source-points.py",
-        "runtime/scene/source_pending_refusal.h"
+        "runtime/scene/source_pending_refusal.h",
+        "runtime/scene/source_pending_policy.h",
+        "tools/drawing_fixture_prefix.py"
       ],
       "evidence": [
         "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
@@ -43265,7 +43459,9 @@
         "DRAW02.draw02-source-lease-original-01-live_observation-20261012",
         "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012",
         "DRAW02.source-pending-byte-regression-01-native_integration-20261012",
-        "DRAW02.source-pending-byte-link-refusal-01-static-20261012"
+        "DRAW02.source-pending-byte-link-refusal-01-static-20261012",
+        "DRAW02.pending-policy-byte-fixture-01-20261012",
+        "DRAW02.pending-policy-byte-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43280,7 +43476,8 @@
         "Original02hitsunchanged128MiBproducerbytecapinsidequeue32(31returns,176416records/134217096bytes),retains266CPUplanes/1234refusals butoverallsourceprefixunadmitted. Next focused16returnintervaldoesnotreducefull32/120windowdenominators.",
         "Focusedoriginal03admits241CPUplanes/1347refusalsand16return54903recordprefix/336API335EGLwitnesses. NativeexactprefixCPUcomparisonpending;31of32bytecapfailureoriginal02retained. No immutableownership/full32/120window/allroute/semanticclaims.",
         "Focusedoriginal03nativeprediction01matches106selectedphysical/230excluded;externalCPU01matches212entryreturnplanes/101760000pixels0diffatidenticalsourceprefix/canvas. Sampledcopydoesnotfreezeoriginalstorage;allwriter/ownership/full32/120windows/allroutes/semanticsremainpending.",
-        "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion."
+        "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43312,7 +43509,9 @@
         "runtime/scene/drawing_source_bytes.h",
         "runtime/scene/producer_trace_guard.h",
         "runtime/drawing/source_byte_witness.h",
-        "runtime/scene/source_pending_refusal.h"
+        "runtime/scene/source_pending_refusal.h",
+        "runtime/scene/source_pending_policy.h",
+        "tools/drawing_fixture_prefix.py"
       ],
       "evidence": [
         "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
@@ -43320,7 +43519,10 @@
         "DRAW02.draw02-source-lease-recorder-fixture-01-native_integration-20261012",
         "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
         "DRAW02.draw02-source-lease-original-01-live_observation-20261012",
-        "DRAW02.source-pending-lease-regression-01-native_integration-20261012"
+        "DRAW02.source-pending-lease-regression-01-native_integration-20261012",
+        "DRAW02.pending-policy-lease-fixture-01-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-lease-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43332,7 +43534,8 @@
       "remaining_gaps": [
         "Pendingpageownership/protection/ABI/writefault/restorefixtures;actuallease/sourcecheckpoint/nativecomparisonandasyncworker/EGLreleaseboundary. Writeguardisexplicitdiagnosticnotbaseline,sharedheapaliases/otherwriters remainunknown.",
         "Original01admits123APIbodyreadonlyleases/669refusals/noobservedwritefault,fullcheckedrestore. APIreturnrelease doesnotcoverasyncworker/EGLbyteownership. Sharedheap/allroutes/fullsemantic120windowsremainpending.",
-        "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion."
+        "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43361,7 +43564,8 @@
         "runtime/drawing/wine_blit_worker.h",
         "runtime/scene/drawing_source_lease.h",
         "runtime/drawing/session.c",
-        "runtime/drawing/wine_submission.h"
+        "runtime/drawing/wine_submission.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012",
@@ -43369,7 +43573,8 @@
         "DRAW02.draw02-source-worker-lease-original-01-live_observation-20261012",
         "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012",
         "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012",
-        "DRAW02.draw02-source-worker-lease-crosslinks-02-static-20261012"
+        "DRAW02.draw02-source-worker-lease-crosslinks-02-static-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43380,7 +43585,8 @@
       },
       "remaining_gaps": [
         "Fixtures pass delayed/early completion and missing/unknown/timeout refusals. Original01 closes 118 accepted leases and 222 checked command returns; no observed protected write. 104 selected native physical witnesses and 208 CPU planes match. CPU copies sit outside the protected interval, so source-version identity during the lease remains pending.",
-        "Other command routes, whole texture/storage lifetime, asynchronous hardware/scanout, cadence controls, complete semantic journeys and 120 advancing windows remain pending. No full DRAW02 acceptance or replacement promotion."
+        "Other command routes, whole texture/storage lifetime, asynchronous hardware/scanout, cadence controls, complete semantic journeys and 120 advancing windows remain pending. No full DRAW02 acceptance or replacement promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43402,7 +43608,8 @@
       "tests": [
         "tests/drawing-source-held-snapshot-test.c",
         "tools/test-drawing-source-held-snapshot.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tests/test-drawing-source-held-pending.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/source_readonly_lease.h",
@@ -43410,7 +43617,11 @@
         "runtime/drawing/source_byte_witness.h",
         "runtime/drawing/session.c",
         "runtime/scene/drawing_source_lease.h",
-        "runtime/scene/drawing_source_bytes.h"
+        "runtime/scene/drawing_source_bytes.h",
+        "runtime/scene/source_pending_policy.h",
+        "tools/drawing_source_pending_admission.py",
+        "tools/drawing_source_pending_refusal.py",
+        "tools/drawing_fixture_prefix.py"
       ],
       "evidence": [
         "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
@@ -43418,7 +43629,10 @@
         "DRAW02.draw02-source-held-original-01-live_observation-20261012",
         "DRAW02.draw02-source-held-native-analysis-01-static-20261012",
         "DRAW02.draw02-source-held-egl-context-01-static-20261012",
-        "DRAW02.draw02-producer-update-held-analysis-01-static-20261012"
+        "DRAW02.draw02-producer-update-held-analysis-01-static-20261012",
+        "DRAW02.pending-policy-held-fixture-01-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-held-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43429,7 +43643,9 @@
       },
       "remaining_gaps": [
         "Four PE32 protected-copy cases and five decoder guards pass. Original01 closes119snapshot pairs/238planes, identical through224checkedcommands, no observed protected write.104selected native physical witnesses and208held-source planes match exactly. Shared allocation/alias policy, whole source/storage lifetime and other routes remain pending.",
-        "120consecutive advancing original update identities with contiguous owned producer/presentation capture, diagnostic cadence controls, full semantic journeys, asynchronous hardware/scanout and all47/21acceptance requirements remain open. No status promotion."
+        "120consecutive advancing original update identities with contiguous owned producer/presentation capture, diagnostic cadence controls, full semantic journeys, asynchronous hardware/scanout and all47/21acceptance requirements remain open. No status promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Opt-in diagnostic held V2 pending-admission joins require fresh source/recorder/decoder/original execution; historical V1 evidence remains immutable and no all-route ownership or status promotion follows."
       ]
     },
     {
@@ -43463,7 +43679,8 @@
         "protocols/include/mnm/menu_v1.h",
         "runtime/menu/channel.h",
         "tools/drawing_api_session.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-engine-windows-fixture-01-native_integration-20261012",
@@ -43478,7 +43695,8 @@
       },
       "remaining_gaps": [
         "Six synthetic guards pass. Original01 normal Quit closes68complete consecutive counter+sequence advancing windows, excluded final sequence69, each with one selected World queue. Source prefix remains16returns; exact producer/update binding and120contiguousowned/presented windows remain pending.",
-        "Nonadvancing/pause/mode/alternate-route branch evidence in this capture, source/action identity, all presentation retention, cadence controls, whole source/storage lifetime and full47/21semanticacceptance remain open. No broader status promotion."
+        "Nonadvancing/pause/mode/alternate-route branch evidence in this capture, source/action identity, all presentation retention, cadence controls, whole source/storage lifetime and full47/21semanticacceptance remain open. No broader status promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43514,7 +43732,8 @@
         "tools/build-scene-observer.py",
         "tools/engine_cadence.py",
         "tools/drawing_engine_windows.py",
-        "tools/inspect-canvas-producers.py"
+        "tools/inspect-canvas-producers.py",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-producer-update-fixture-01-native_integration-20261012",
@@ -43531,7 +43750,8 @@
       },
       "remaining_gaps": [
         "PE32getter two caller IDs/twelve guards/LastError and producer point order/four failures pass; six decoder guards refuse. Original01 exact cadence event/producer queue boundaries bind all16sourcequeues to advancing updates1\u201316, with same return point; overall69completewindows. No count-only binding.",
-        "Source prefix closes at sixteen World queue returns; complete UI composition, source/action/physical frame ownership through whole120advancing windows, larger bounded decoders, lifetime/alternate-route policy and diagnostic cadence controls remain pending. Full47/21acceptance remains open."
+        "Source prefix closes at sixteen World queue returns; complete UI composition, source/action/physical frame ownership through whole120advancing windows, larger bounded decoders, lifetime/alternate-route policy and diagnostic cadence controls remain pending. Full47/21acceptance remains open.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43572,7 +43792,8 @@
         "tools/build-scene-observer.py",
         "tools/drawing_producer_updates.py",
         "tools/drawing_engine_windows.py",
-        "compat/legacy/canvas-producers/CMakeLists.txt"
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-whole-update-boundary-fixture-01-native_integration-20261012",
@@ -43596,7 +43817,8 @@
       },
       "remaining_gaps": [
         "Original01/02refuse foreigntag39copyatnextaccepted17;exactdiagnostic retained. Fresh13casefixturevalidates5sforeignwaitoutsideproducerlock/sameowner/timeoutplusidentity/failures. Original05closes16whole sourcequeues/updateswithpostlude,end27exactnextaccepted17,87542records/37653258bytes/0failures.",
-        "Native/PythonV4postlude1,16,120queuefixtures andlegacyregressionspass. Fresh106selected physical witnesses and212held-sourceplanesmatchnativeexactly;actual120windowcapture/decoder gates,completephysical source/action/frame/lifetimeownership,alternate/mode/cadencecontrolsandfull47/21acceptance remain open. No broad status promotion."
+        "Native/PythonV4postlude1,16,120queuefixtures andlegacyregressionspass. Fresh106selected physical witnesses and212held-sourceplanesmatchnativeexactly;actual120windowcapture/decoder gates,completephysical source/action/frame/lifetimeownership,alternate/mode/cadencecontrolsandfull47/21acceptance remain open. No broad status promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43638,7 +43860,8 @@
         "tools/inspect-canvas-producers.py",
         "tools/build-scene-observer.py",
         "compat/legacy/canvas_producers.cpp",
-        "compat/legacy/drawing_scene_main.cpp"
+        "compat/legacy/drawing_scene_main.cpp",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.draw02-whole120-fixture-01-native_integration-20261012",
@@ -43649,7 +43872,8 @@
         "DRAW02.draw02-whole120-original-02-live_observation-20261012",
         "DRAW02.draw02-whole120-interval-analysis-01-static-20261012",
         "DRAW02.draw02-whole120-reader-fixture-01-native_integration-20261012",
-        "DRAW02.draw02-whole120-held-analysis-01-static-20261012"
+        "DRAW02.draw02-whole120-held-analysis-01-static-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43661,7 +43885,8 @@
       "remaining_gaps": [
         "Original01sourcecaprefusesinside118;cachecountdiagnosisretained. TestedV4-only4096definitionsunder16MiB/512MiB yieldsOriginal02source157595636bytes565700records2162oracles0failures and120exactqueues across122consecutiveadvancingwindows1\u2013122,endbefore123. Sequences34/35advancewithoutselectedWorldqueue;this is retained,not waived.",
         "795API794EGLwitnesses162heldpairs311commandsretained;Freshnative140selectedwitnessesmatch0diff,655excluded. Allpresentations/source/action/frame/lifetimeownership,alternate/mode/cadencecontrols andcomplete47/21acceptance remainopen. Thisadvanceslongerboundedsourceacquisition only.",
-        "Longernativeprediction01refuseslegacydeclarationsequencecap262144beforedrawing;V4version-aware1MsequenceadmissionandNaN/fraction/overbudget/legacyguardsrequirefreshcomparison."
+        "Longernativeprediction01refuseslegacydeclarationsequencecap262144beforedrawing;V4version-aware1MsequenceadmissionandNaN/fraction/overbudget/legacyguardsrequirefreshcomparison.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43692,7 +43917,9 @@
         "tools/compare-drawing-source-points.py",
         "tools/drawing_scene_corpus.py",
         "compat/legacy/drawing_scene_main.cpp",
-        "compat/legacy/drawing_scene_limits.hpp"
+        "compat/legacy/drawing_scene_limits.hpp",
+        "tools/drawing_source_pending_admission.py",
+        "tools/drawing_source_pending_refusal.py"
       ],
       "evidence": [
         "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
@@ -43798,13 +44025,18 @@
         "runtime/drawing/session.c",
         "runtime/drawing/source_readonly_lease.h",
         "runtime/drawing/source_worker_lease.h",
-        "runtime/drawing/source_byte_witness.h"
+        "runtime/drawing/source_byte_witness.h",
+        "tools/drawing_source_pending_admission.py",
+        "tools/drawing_source_pending_refusal.py",
+        "tools/drawing_fixture_prefix.py"
       ],
       "evidence": [
         "DRAW02.held-refusal-fixture-01-native-20261012",
         "DRAW02.held-refusal-parser-01-native-20261012",
         "DRAW02.held-refusal-original-01-live-20261012",
-        "DRAW02.held-refusal-original-02-live-20261012"
+        "DRAW02.held-refusal-original-02-live-20261012",
+        "DRAW02.pending-policy-held-fixture-01-20261012",
+        "DRAW02.pending-policy-held-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43858,7 +44090,8 @@
         "tools/drawing-session-runner.py",
         "protocols/include/mnm/drawing_storage_point_v2.h",
         "runtime/scene/drawing_storage_transitions.h",
-        "runtime/scene/drawing_storage_caller.h"
+        "runtime/scene/drawing_storage_caller.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.map-storage-export-fixture-01-native-20261012",
@@ -43888,7 +44121,8 @@
         "PE32 cache-only export and 12-forward observer fixtures plus four decoder methods pass. Original01 records 1242 successful maps: 795 known canvas points across six canvases, 14 unknown and 433 stopped. 760 known points are full 800x600 stride800. One resource map remains open at observation close. 118 held pairs/222 source commands, 333 API/332 EGL witnesses and actual normal Quit exit0 remain separate observations.",
         "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned.",
         "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
-        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -43932,7 +44166,8 @@
         "tools/drawing-session-runner.py",
         "protocols/include/mnm/drawing_storage_point_v2.h",
         "runtime/scene/drawing_storage_transitions.h",
-        "runtime/scene/drawing_storage_caller.h"
+        "runtime/scene/drawing_storage_caller.h",
+        "runtime/scene/source_pending_policy.h"
       ],
       "evidence": [
         "DRAW02.client-memory-imports-01-static-20261012",
@@ -43967,7 +44202,8 @@
         "Pinned descriptor-update import/export and PE32 cache-only export/forwarding/lifetime/generation controls plus five decoder methods pass. Original01 records52setters1595queries:145known UI sources,342unbound493unknown615stopped. 118heldpairs223sourcecommands329API328EGLnormalQuit0 remain separate. Compile, FP-comparison and harness failures retained; no original execution for those negatives.",
         "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged.",
         "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
-        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -44070,7 +44306,9 @@
         "runtime/scene/drawing_source_lease.h",
         "runtime/scene/canvas_producers.c",
         "runtime/scene/producer_trace_guard.h",
-        "tools/build-scene-observer.py"
+        "tools/build-scene-observer.py",
+        "runtime/scene/source_pending_policy.h",
+        "tools/drawing_fixture_prefix.py"
       ],
       "evidence": [
         "DRAW02.source-pending-fixture-01-native_integration-20261012",
@@ -44080,7 +44318,9 @@
         "DRAW02.source-pending-original-01-live-20261012",
         "DRAW02.source-pending-original-02-live-20261012",
         "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
-        "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012"
+        "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012",
+        "DRAW02.pending-policy-refusal-fixture-01-20261012",
+        "DRAW02.pending-policy-refusal-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44092,7 +44332,8 @@
       "remaining_gaps": [
         "Two exact refusal PE32 cases and three decoder methods pass; corrected existing byte export and readonly protection/write-fault fixtures pass. Two original combined runs close normally without emitting refusal files; intermittent earlier extra frame identity/overlap remains unreproduced and unassigned. No source-copy admission was loosened.",
         "Numeric canvas/record equality is not alias/overlap proof. Whole source/COM/resource/texture/storage lifetime and all writers/uploads/versions, unknown/stopped routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending.",
-        "A fresh version3 run identifies foreign tag32owned copy source1/destination5 during source9lease17owner tag7copy; whether backing overlaps remains unknown. Guard unchanged; successful retry does not prove race resolved."
+        "A fresh version3 run identifies foreign tag32owned copy source1/destination5 during source9lease17owner tag7copy; whether backing overlaps remains unknown. Guard unchanged; successful retry does not prove race resolved.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ]
     },
     {
@@ -44209,7 +44450,8 @@
         "Version2 original01 resolves its18relocated caller rows to exact58d329 with0unknown; historical version1unknowns retained. This does not establish all unhooked/indirect calls, real allocation/alias lifetimes, caller effects or epoch-to-submission binding. Prefix binding shows numerical addresses shared across observed logical canvases; no ownership inference.",
         "Prospective explicit V2 storage-query ordinal into version3 transition journal, with latest observed Lock-return epoch under the same recorder scope. Missing/mismatched epochs and stopped/unknown/pending points remain unknown; allocation/alias ownership is not implied.",
         "Version3 original02 closes1869queries482known epochs1387unknown; all exact external IDs/metadata bind with0unlinked. Combined01 fails at source9lease17foreign tag32copy1to5; strict source-copy guard retained and byte overlap unproved. Source-only replay02 passes104eligible frames225excluded. Real allocation/aliases/allwriters/uploads/everyroute/action/full47/21 remain pending.",
-        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending."
+        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -44223,7 +44465,8 @@
         "runtime/drawing/wine_map_storage_point.h",
         "runtime/drawing/wine_client_memory.h",
         "runtime/drawing/wine_retained_map_source.h",
-        "tools/build-drawing-session.py"
+        "tools/build-drawing-session.py",
+        "runtime/scene/source_pending_policy.h"
       ]
     },
     {
@@ -44265,7 +44508,8 @@
       },
       "remaining_gaps": [
         "All104native-matched version3frames have no direct submitted map/client epoch link despite known held CPU source snapshots. Address offsets/mapped aliases or an unobserved transfer path remain hypotheses; diagnose them without changing admission.",
-        "Original01normal Quit267candidate rows shows0span overlap247different20equal allocation bases. Relevant client-source address differs1048592bytes from cached canvas2 with a different base. Small-offset hypothesis excluded within this sample; physical alias versus actual transfer remains unresolved. No protected-source/native parity run for this isolated metadata probe; prior104frame parity remains separately historical."
+        "Original01normal Quit267candidate rows shows0span overlap247different20equal allocation bases. Relevant client-source address differs1048592bytes from cached canvas2 with a different base. Small-offset hypothesis excluded within this sample; physical alias versus actual transfer remains unresolved. No protected-source/native parity run for this isolated metadata probe; prior104frame parity remains separately historical.",
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
       ],
       "validation_dependencies": [
         "runtime/scene/drawing_storage_transitions.h",
@@ -44274,7 +44518,8 @@
         "runtime/scene/canvas_producers.c",
         "runtime/shadow/win32_min.h",
         "tools/drawing_storage_point.py",
-        "tools/build-scene-observer.py"
+        "tools/build-scene-observer.py",
+        "runtime/scene/source_pending_policy.h"
       ]
     },
     {
@@ -44953,7 +45198,8 @@
         "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
         "DRAW02.draw02-actor-latches-original-03-20261012",
         "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
-        "DRAW02.draw02-actor-latches-original-04-20261012"
+        "DRAW02.draw02-actor-latches-original-04-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44965,7 +45211,8 @@
       "remaining_gaps": [
         "Actual callback meaning, input-to-state causality, queue/control/thread lifetimes, persistent selection/tooltip and full source/physical/native parity pending. Numeric pool IDs are address-change counters, not allocation/generation proof. Callback4fdad0has bounded static discovery only and unknown inventory ranges remain intact.",
         "Initial V1actorlabels incorrect; current strict decoder normalizes without changingraw/reporthashes and V2writercorrects offsets. Initial fixed-address fixtureallocation exits202; conflictunassigned. V1results stayhistorical. V2currentlyretains14callbackpairs but complete selection/tooltip and actor lifetime remain pending.",
-        "Initial prospective declaration used unsupportednativekindlabel; correctnative_policycategory changes contractfingerprint. PriorV2execution retained as historical; fresh corrected-contractfixture/original executions recorded separately."
+        "Initial prospective declaration used unsupportednativekindlabel; correctnative_policycategory changes contractfingerprint. PriorV2execution retained as historical; fresh corrected-contractfixture/original executions recorded separately.",
+        "Cursor-mutex capture flag changes sharedcapture/runner/controlsources. Existing RegionV2rawexecution remains historical for currentfrontendfingerprints; no freshRegion comparison/integration assertion frommutexcapture, which keepsRegionflagoff."
       ]
     },
     {
@@ -45070,7 +45317,8 @@
         "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
         "DRAW02.draw02-actor-latches-original-03-20261012",
         "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
-        "DRAW02.draw02-actor-latches-original-04-20261012"
+        "DRAW02.draw02-actor-latches-original-04-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45124,6 +45372,259 @@
       },
       "remaining_gaps": [
         "Same numeric slot/type/owner and sampled raw latch does not establish allocation generations or uninterrupted persistence. Complete selection/tooltip, resource/source lifetimes and physical/native frame parity remain pending."
+      ]
+    },
+    {
+      "id": "DRAW.cursor-mutex-clients",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original cursor mutex setup and wait/release clients",
+      "scope": "Exact static foreground/timer mutex creation, client waits/releases and bounded disposal. Execute unchanged4a4910type/outer-wait/early-release/countdown gates over240owned cells, with inner cursor flag fixedzero. Nested repaint wait remains static only; real handle lifetime/ownership/fulllock order and safe diagnostic source synchronization pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4862128,
+          "scope": "Exact inventory-bounded original cursor/mutex client; scope limited to stated static or owned gate execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4863952,
+          "scope": "Exact inventory-bounded original cursor/mutex client; scope limited to stated static or owned gate execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4864416,
+          "scope": "Exact inventory-bounded original cursor/mutex client; scope limited to stated static or owned gate execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4867504,
+          "scope": "Exact inventory-bounded original cursor/mutex client; scope limited to stated static or owned gate execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4868368,
+          "scope": "Exact inventory-bounded original cursor/mutex client; scope limited to stated static or owned gate execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5148032,
+          "scope": "Exact inventory-bounded original cursor/mutex client; scope limited to stated static or owned gate execution."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/cursor-mutex-clients.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-drawing-cursor-mutexes.py",
+        "tools/test-drawing-cursor-waits.py",
+        "tests/drawing-cursor-wait-reference.cpp",
+        "tools/analyze-drawing-cursor-mutex-order.py"
+      ],
+      "validation_dependencies": [
+        "tools/inspect-drawing-canvas-storage.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "tests/surface-retry-reference.cpp"
+      ],
+      "evidence": [
+        "DRAW02.draw02-cursor-mutexes-static-01-20261012",
+        "DRAW02.draw02-cursor-waits-original-01-20261012",
+        "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-order-analysis-01-20261012",
+        "DRAW02.draw02-cursor-source-interval-analysis-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "4e9df6disposal lacks whole discovered function and remains a bounded static window. Original642c58/6e1ec0handle lifetime, aliases, real wait/abandoned/failure ownership, nested-wait execution and complete lock ordering unproved. No new capture synchronization or source ownership/native parity claim.",
+        "Adding offline order-analysis test linkage changes the prospective cursor contract; the prior240celloriginal gate evidence remains historical. New offline order evidence does not assert fresh execution of that gate or all runtime ownership."
+      ]
+    },
+    {
+      "id": "NR.drawing-cursor-mutex-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Read-only original cursor mutex import observation",
+      "scope": "Separate opt-in PE32 module observes pinned original CreateMutexA/WaitForSingleObject/ReleaseMutex/CloseHandle imports with one forward, exact args/result/LastError/512FXstate, bounded paired memory records and numeric Create/Close identities. Query existing API/cursor point without input polling outside recorder lock; no lock spans an original call. Raw results do not prove ownership, complete aliases/lock order or safe source protection.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6049976,
+          "relation": "data",
+          "scope": "Pinned original CreateMutexA import cell."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6050112,
+          "relation": "data",
+          "scope": "Pinned original WaitForSingleObject import cell."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6050108,
+          "relation": "data",
+          "scope": "Pinned original ReleaseMutex import cell."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6049952,
+          "relation": "data",
+          "scope": "Pinned original CloseHandle import cell."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/formats/drawing-cursor-mutex.md"
+      ],
+      "implementation": [
+        "runtime/cursor-mutex/observer.c"
+      ],
+      "tests": [
+        "tools/test-drawing-cursor-mutex-observer.py",
+        "tests/drawing-cursor-mutex-test.c",
+        "tools/drawing_cursor_mutex.py",
+        "tests/test-drawing-cursor-mutex.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-cursor-mutex-observer.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/drawing_input_point.py",
+        "protocols/include/mnm/drawing_input_point_v1.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
+        "DRAW02.draw02-cursor-mutex-original-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-original-01-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual original constructor/wait/release/close lifetime/order and raw call classification pending. Named/external handle aliases, concurrent close/use, real ownership/abandoned semantics and safe diagnostic source synchronization remain unproved. Recorder loss/pending/identity overflow and missing points stay visible; full pixel/source/native parity remains independent."
+      ]
+    },
+    {
+      "id": "NR.drawing-cursor-mutex-prefix-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact retained cursor mutex API-prefix binding",
+      "scope": "Offline strict binding of sampled mutex entry/return point payloads to completed original API/cursor journal prefixes, including pending entry counts, inactive terminal prefixes and query refusals. No atomic mutex-event/frame boundary, real ownership or safe source synchronization claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-cursor-mutex.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "tools/drawing_cursor_mutex_binding.py"
+      ],
+      "tests": [
+        "tests/test-drawing-cursor-mutex-binding.py",
+        "tools/analyze-drawing-cursor-mutex.py",
+        "tools/analyze-drawing-cursor-source-intervals.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_cursor_mutex.py",
+        "tools/drawing_input_point.py",
+        "tools/drawing_api_session.py",
+        "protocols/include/mnm/drawing_input_point_v1.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-binding-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-binding-analysis-02-20261012",
+        "DRAW02.draw02-cursor-source-interval-analysis-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Sampled prefix query occurs before row publication; completed record order differs from entered call order. Refused/inactive points remain explicit. Ownership, handles/aliases, concurrent close/use, source protection and complete original/native equivalence pending.",
+        "Adding source-interval analyzer linkage changes contractfingerprint; prior exactprefixanalysis remains historical. Conservative sourcecall correlation doesnot proveatomicoriginalcriticalregions, sourceoverlap or repairedrace."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-pending-copy-policy",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Diagnostic readonly-source exact pending-copy admission",
+      "scope": "Opt-in exact foreign nonprimitive tags32/39 known COPY metadata alongside one selected current-thread tag7 source submission. Require checked readonly lease and preserve write-fault refusal even for different numeric IDs; retain every multi-frame byte export admission metadata. Disabled/unleased/unknown/primitive/reserved/duplicate/source/lifetime/protection failure refuses. Diagnostic policy, not disjoint backing, unobtrusive capture or all-route ownership. Held V2 binds multi-frame source planes to the exact cached admission ordinal and independently rejoins lease/source/thread/producer prefix/queue/pending count; missing/duplicate/extra metadata refuses. V1 retains its original pending-frame rule. Admission journal V1 stays strict to tag32, V2 adds only observed tag39; other COPY tags remain refused.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-pending-policy.md",
+        "research/formats/drawing-source-pending-admission.md"
+      ],
+      "implementation": [
+        "runtime/scene/source_pending_policy.h",
+        "tools/drawing_source_pending_admission.py",
+        "runtime/scene/source_pending_refusal.h",
+        "tools/drawing_fixture_prefix.py"
+      ],
+      "tests": [
+        "tests/drawing-source-pending-policy-test.c",
+        "tools/test-drawing-source-pending-policy.py",
+        "tests/test-drawing-source-pending-admission.py",
+        "tools/capture-drawing-interactive.py",
+        "tests/drawing-source-held-snapshot-test.c",
+        "tools/test-drawing-source-held-snapshot.py",
+        "tests/test-drawing-source-held-pending.py",
+        "tests/test-drawing-fixture-prefix.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/drawing_source_point.h",
+        "runtime/scene/drawing_source_bytes.h",
+        "runtime/scene/drawing_source_lease.h",
+        "runtime/scene/source_pending_refusal.h",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/shadow/win32_min.h",
+        "tools/drawing_source_pending_refusal.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "runtime/drawing/source_held_snapshot.h",
+        "tools/drawing_source_held_snapshot.py",
+        "tools/drawing_source_held_refusal.py",
+        "tools/build-scene-observer.py",
+        "tools/drawing_fixture_prefix.py"
+      ],
+      "evidence": [
+        "DRAW02.pending-policy-policy-fixture-01-20261012",
+        "DRAW02.pending-policy-held-fixture-01-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-policy-fixture-02-20261012",
+        "DRAW02.pending-policy-held-fixture-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned PE32 admission/refusal/foreign-aliased-write and exact protection restore execution pending. Actual original diagnostic acquisition, independent lease/worker/held-snapshot joins, all source/COM/resource/storage lifetime/routes and unobtrusive cadence remain pending without status promotion."
       ]
     }
   ],
@@ -96814,6 +97315,390 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutexes-static-01-20261012",
+      "kind": "static",
+      "scope": "Exact static zero-argument constructors, foreground10mswait, timerouter10ms/innerFFFFFFFFwait and release order, plus bounded disposal. Full runtime ownership/lifetime/source synchronization unproved.",
+      "record": "research/runtime/draw02-cursor-mutexes-static-01.json",
+      "sha256": "1fc97ba463a765b8a077f1b7f98f816faa149908ff928e31d973b69363430a63",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-waits-original-01-20261012",
+      "kind": "isolated_original",
+      "scope": "Unchanged original4a4910outer type/result/screen/countdown/early-release gates over240owned cells,96Waitcalls24Releasecalls; no nested drawing/wait, real OS ownership/lifetime or safe source synchronization.",
+      "record": "research/runtime/draw02-cursor-waits-original-01.json",
+      "sha256": "58d64d5b2159fe61dd3e07112ba26b442693c98a835b1256e103d4ae92b45246",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_timer_instructions_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Current actualPE32observer20single synthetic forwards verifiesstdcallargs/rawresult/LastError/512FXdespiteclobberingpointquery, waitresponses/timeouts, failed/successfulclose, reusedhandle2IDsandunknownhandles; no realOSownership/game/sourceprotection.",
+      "record": "research/runtime/draw02-cursor-mutex-fixture-01.json",
+      "sha256": "b0f721c233d5c49e4e41be15bca87d8c1f31dd8f916f05270aee3d769008ca07",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active normalQuit6849pairedcalls:2unnamed/unownedcreates,3258waitsreturn0,3258releasesreturn1,331closes329unknownand2trackedIDsclosed. No addedwait/inputpoll, ownership/sourceprotection/fullpixelnativeclaim.",
+      "record": "research/runtime/draw02-cursor-mutex-original-01.json",
+      "sha256": "1d3d52ef97a1c1b791fe5db43c226ef088cc4f0ab391014ed846b1b2df22ff3e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Current immutable offline6849call13698pointsbindexactAPI/cursorprefixes,72inactive0queryrefusal; pendingentriesallowed andterminalpreserved. No newgame/atomiccallframe/ownership/sourceprotection.",
+      "record": "research/runtime/draw02-cursor-mutex-binding-analysis-01.json",
+      "sha256": "be4d93408f719bad720f1a4d540d476570ad24ce6555553ff68084c87b62620d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Immutable originalcaller/orderanalysis286timerouter1\u2192inner2FFFFFFFFwait\u2192innerrelease\u2192outerreleasechains0gaps; bothtrackedIDsclosed. Scope onlyoneobservedrun, no allaliases/ownership/abandoned/safeaddedlocking.",
+      "record": "research/runtime/draw02-cursor-mutex-order-analysis-01.json",
+      "sha256": "a49a7f92b30b170adf6b43d394d031e0ed3828fda5a9fb24c3e04c61b47319fe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active32queueprotectedsource/physicalnormalQuit diagnostic:184302producerrecords1318oracles,362API361EGLwitnesses,5156mutexpairs,128stableheldpairs242commands. No pendingrefusal inthisrun; intermittentrace/sourceownership/fullparity notfixed.",
+      "record": "research/runtime/draw02-cursor-mutex-source-original-01.json",
+      "sha256": "6cdbec37ffef7b39e43f1d4b18ad0645be29ace645e4f99ec181cfff7ba05289",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-binding-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Historical prior-contract offline5156calls10312exactpoints0inactive0refusal; sourceintervaltestlinkchangescontract, new02reanalysisregisteredseparately.",
+      "record": "research/runtime/draw02-cursor-mutex-source-binding-analysis-01.json",
+      "sha256": "1f76764881ae05c3855979a58bb65582bdd8fe3df9fd495d2399c9b32a705126",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-binding-analysis-02-20261012",
+      "kind": "native_integration",
+      "scope": "Current declaration-bound immutable5156calls10312exactAPI/cursorpoints0inactive0refusal; no atomiccallframe/ownership/sourceprotection/newgameclaim.",
+      "record": "research/runtime/draw02-cursor-mutex-source-binding-analysis-02.json",
+      "sha256": "ef8e080ac0f353a551d19c2ff04db5a1d85703ff0d205c64baeeff904b504879",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-order-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Immutable100completeobservedtimerouterwait/innerwait/innerrelease/outerreleasechains0gapsinprotectedsourcecapture; noownership/alias/fullorder/safesynchronizationclaim.",
+      "record": "research/runtime/draw02-cursor-mutex-source-order-analysis-01.json",
+      "sha256": "8fc44f920843a7de74c2d27fa7fe16a5682496443342a340df04b8623d7983b5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-source-interval-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Conservative100same-threadinnerWaitReturn\u2192ReleaseEntrypointprefixintervalscontain198surfacecallsfrom58c488,0exclusions. Sampledpointsnotatomicoriginalcriticalregions; no sourceoverlap/ownership/racerepair ornativeparity.",
+      "record": "research/runtime/draw02-cursor-source-interval-analysis-01.json",
+      "sha256": "3b3c265b18972fb11fe784e496c8fffd8754b99d2ea05efef406425f8868a511",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-policy-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 pages: opt-in exact foreign tag32 source-copy admission only under checked readonly lease; disabled/unleased/unknown/lifetime/primitive/reserved/duplicate/refusal guards and real foreign-thread aliased protected-page write exits99. Diagnostic policy, not unobtrusive original ownership.",
+      "record": "research/runtime/draw02-pending-policy-policy-fixture-01.json",
+      "sha256": "8a796eea3574f670648d3228fbdd491e9f390365a61f92a8360f0eaf7cfc7c97",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-refusal-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 source lease plus exact pending-frame refusal snapshot: foreign object/owner versus duplicate selected frame; unleased refusals skipped and one record perlease. Admission remains refusal, output sentinel unchanged, LastError preserved.",
+      "record": "research/runtime/draw02-pending-policy-refusal-fixture-01.json",
+      "sha256": "7aa09d936504e52fc756afb385e6f919a453aaefad30ef6e740a30d00d4a6826",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-byte-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic read-onlypaddedcanvasexport/ABI/LastError/refusalguards; nooriginalCPUownership orEGLassignment.",
+      "record": "research/runtime/draw02-pending-policy-byte-fixture-01.json",
+      "sha256": "bf482b47092ab4574e1556ed67f031025bbce3812f03c5fc2dd53a1d7832770c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-lease-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32isolatedVirtualAllocpagelease/protection/restore/writefaultfixture; nooriginalsharedheap/asyncEGLsourceownership orcompletejourney.",
+      "record": "research/runtime/draw02-pending-policy-lease-fixture-01.json",
+      "sha256": "3bce91631daf90765d44740cfef012aa21231f2ba9b2fe7b86ad73e91b95dd3f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-held-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Eight actual PE32 explicit rejection and protected source cases; protected source pages, ordered copies after protection and before restore, exact V1/V2 plane identity and pending admission file joins; mismatch, changed canvas and copy refusal. No original source ownership or hardware completion.",
+      "record": "research/runtime/draw02-pending-policy-held-fixture-01.json",
+      "sha256": "99ca689b420824209a1c9a6ded8a9467ded3ef944d0ff44be09aef7f8968add4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-original-refusal-01-20261012",
+      "kind": "live_observation",
+      "scope": "Negative original-active attempt: six exact tag32 admissions; foreign tag39 source-byte refusal at lease130/queue27, input fixture exits. No complete120 source interval or normal Quit/pixel parity.",
+      "record": "research/runtime/draw02-pending-policy-original-01.json",
+      "sha256": "ca782d5a8fad4fdd48eb27b67985f66d534d8328ef3ac85ccefe3f587ad19c02",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-policy-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 pages: opt-in exact foreign tags32/39 source-copy admission only under checked readonly lease; disabled/unleased/unknown/lifetime/primitive/reserved/duplicate/refusal guards and real foreign-thread aliased protected-page write exits99. Diagnostic policy, not unobtrusive original ownership.",
+      "record": "research/runtime/draw02-pending-policy-policy-fixture-02.json",
+      "sha256": "3cc682d6f66910faf88e9fcd6eea9a0bd73d52ca9bd66c3fb1d4ae7bf00c48aa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-refusal-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 source lease plus exact pending-frame refusal snapshot: foreign object/owner versus duplicate selected frame; unleased refusals skipped and one record perlease. Admission remains refusal, output sentinel unchanged, LastError preserved.",
+      "record": "research/runtime/draw02-pending-policy-refusal-fixture-02.json",
+      "sha256": "4589b93bb48a1f558780b83dfc120097a351c7eb2241caf2548f5b99ff65e0d9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-byte-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic read-onlypaddedcanvasexport/ABI/LastError/refusalguards; nooriginalCPUownership orEGLassignment.",
+      "record": "research/runtime/draw02-pending-policy-byte-fixture-02.json",
+      "sha256": "64d3660b25780507221468081eb6f1b491db2340e869f55292723a63c5bd6272",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-lease-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32isolatedVirtualAllocpagelease/protection/restore/writefaultfixture; nooriginalsharedheap/asyncEGLsourceownership orcompletejourney.",
+      "record": "research/runtime/draw02-pending-policy-lease-fixture-02.json",
+      "sha256": "6bcddc5f78db87a3ac25dd03df4c3b31284c4e7045a8a1716611de0eda25ba5c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-held-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Eight actual PE32 explicit rejection and protected source cases; protected source pages, ordered copies after protection and before restore, exact V1/V2 plane identity and pending admission file joins; mismatch, changed canvas and copy refusal. No original source ownership or hardware completion.",
+      "record": "research/runtime/draw02-pending-policy-held-fixture-02.json",
+      "sha256": "73599c013bd2b0ea83dd93a20d9f2696c1db72870593221125a2f79b8fa07a50",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108066,7 +108951,9 @@
         "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
         "DRAW02.draw02-source-byte-fixture-refusals-01-static-20261012",
         "DRAW02.draw02-source-byte-export-fixture-05-native_integration-20261012",
-        "DRAW02.source-pending-byte-regression-01-native_integration-20261012"
+        "DRAW02.source-pending-byte-regression-01-native_integration-20261012",
+        "DRAW02.pending-policy-byte-fixture-01-20261012",
+        "DRAW02.pending-policy-byte-fixture-02-20261012"
       ]
     },
     {
@@ -108120,7 +109007,9 @@
         "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
         "DRAW02.draw02-source-lease-fixture-07-native_integration-20261012",
         "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
-        "DRAW02.source-pending-lease-regression-01-native_integration-20261012"
+        "DRAW02.source-pending-lease-regression-01-native_integration-20261012",
+        "DRAW02.pending-policy-lease-fixture-01-20261012",
+        "DRAW02.pending-policy-lease-fixture-02-20261012"
       ]
     },
     {
@@ -108196,7 +109085,9 @@
         "tools/test-drawing-source-held-snapshot.py"
       ],
       "evidence": [
-        "DRAW02.draw02-source-held-fixture-01-native_integration-20261012"
+        "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
+        "DRAW02.pending-policy-held-fixture-01-20261012",
+        "DRAW02.pending-policy-held-fixture-02-20261012"
       ]
     },
     {
@@ -108304,7 +109195,8 @@
         "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
       ],
       "evidence": [
-        "DRAW02.draw02-whole120-original-02-live_observation-20261012"
+        "DRAW02.draw02-whole120-original-02-live_observation-20261012",
+        "DRAW02.pending-policy-original-refusal-01-20261012"
       ]
     },
     {
@@ -108373,7 +109265,9 @@
       ],
       "evidence": [
         "DRAW02.held-refusal-fixture-01-native-20261012",
-        "DRAW02.held-refusal-parser-01-native-20261012"
+        "DRAW02.held-refusal-parser-01-native-20261012",
+        "DRAW02.pending-policy-held-fixture-01-20261012",
+        "DRAW02.pending-policy-held-fixture-02-20261012"
       ]
     },
     {
@@ -108507,7 +109401,9 @@
       ],
       "evidence": [
         "DRAW02.source-pending-fixture-01-native_integration-20261012",
-        "DRAW02.source-pending-parser-01-native_integration-20261012"
+        "DRAW02.source-pending-parser-01-native_integration-20261012",
+        "DRAW02.pending-policy-refusal-fixture-01-20261012",
+        "DRAW02.pending-policy-refusal-fixture-02-20261012"
       ]
     },
     {
@@ -108660,6 +109556,40 @@
         "DRAW02.draw02-actor-latch-region-fixture-02-20261012",
         "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
         "DRAW02.draw02-actor-latch-region-fixture-04-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-copy-owned",
+      "level": "headless",
+      "scope": "Owned PE32 pages: diagnostic admission and 15 refusal guards plus actual foreign-thread aliased protected-page write; no original execution.",
+      "behaviors": [
+        "NR.drawing-source-pending-copy-policy"
+      ],
+      "tests": [
+        "tools/test-drawing-source-pending-policy.py",
+        "tests/test-drawing-source-pending-admission.py",
+        "tools/test-drawing-source-held-snapshot.py",
+        "tests/test-drawing-source-held-pending.py"
+      ],
+      "evidence": [
+        "DRAW02.pending-policy-policy-fixture-01-20261012",
+        "DRAW02.pending-policy-held-fixture-01-20261012",
+        "DRAW02.pending-policy-policy-fixture-02-20261012",
+        "DRAW02.pending-policy-held-fixture-02-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-copy-original",
+      "level": "live_observation",
+      "scope": "Bounded original-active diagnostic acquisition with explicit pending-copy policy, protected source/worker/held snapshots and storage transitions; incomplete routes/frames remain open.",
+      "behaviors": [
+        "NR.drawing-source-pending-copy-policy"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.pending-policy-original-refusal-01-20261012"
       ]
     }
   ],
@@ -109034,8 +109964,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-actor-latches-20261012.json",
-    "sha256": "f8c5178c020d65e9c84729d3dc74020498af6b7863114713bc370f5ac9781b7a"
+    "path": "research/runtime/coverage/source-index-draw02-pending-copy-20261012.json",
+    "sha256": "747020f50f095702dc644bdc5b91a5399118301ce38950878c13eb272e30cde2"
   },
   "claim_bindings_required": true
 }

@@ -27,6 +27,8 @@ if metadata.get('wine_worker_context'):os.environ['MNM_DRAW_WINE_WORKER_CONTEXT'
 else:os.environ.pop('MNM_DRAW_WINE_WORKER_CONTEXT',None)
 if metadata.get('source_byte_witness'):os.environ['MNM_DRAW_SOURCE_BYTES']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_BYTES',None)
+if metadata.get('source_pending_copy'):os.environ['MNM_DRAW_SOURCE_PENDING_COPY']='1'
+else:os.environ.pop('MNM_DRAW_SOURCE_PENDING_COPY',None)
 if metadata.get('source_readonly_lease'):os.environ['MNM_DRAW_SOURCE_LEASE']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_LEASE',None)
 if metadata.get('source_worker_lease'):os.environ['MNM_DRAW_SOURCE_WORKER_LEASE']='1'
@@ -37,6 +39,7 @@ if metadata.get('hud_input_point'):os.environ.update(MNM_DRAW_INPUT_POINT='1',MN
 if metadata.get('hud_state'):os.environ['MNM_DRAW_HUD_STATE_FILE']='Z:'+str(root/'capture/hud-state.bin').replace('/','\\')
 if metadata.get('actor_latches'):os.environ['MNM_DRAW_ACTOR_LATCH_FILE']='Z:'+str(root/'capture/actor-latches.bin').replace('/','\\')
 if metadata.get('region_input'):os.environ['MNM_DRAW_REGION_INPUT_FILE']='Z:'+str(root/'capture/region-input.bin').replace('/','\\')
+if metadata.get('cursor_mutex'):os.environ['MNM_DRAW_CURSOR_MUTEX_FILE']='Z:'+str(root/'capture/cursor-mutex.bin').replace('/','\\')
 if metadata.get('semantic_state'):os.environ['MNM_DRAW_SEMANTIC_STATE_FILE']='Z:'+str(root/'capture/semantic-state.bin').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SEMANTIC_STATE_FILE',None)
 if metadata.get('engine_cadence'):os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(root/'capture/engine-cadence.bin').replace('/','\\')

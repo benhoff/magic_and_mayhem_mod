@@ -1,6 +1,4 @@
 /* Diagnostic read-onlypages; no originalbyte mutation/unobtrusiveclaim. */
-static u32 source_lease_active,source_lease_next,source_lease_id,source_lease_canvas;
-static u32 source_lease_base,source_lease_extent,source_lease_old,source_lease_owner,source_lease_pixels,source_lease_object;
 static void* source_lease_handler;
 static i32 WIN source_lease_fault(struct BatchExceptionPointers* pointers){
  struct BatchExceptionRecord* e=pointers?pointers->record:0;
@@ -21,7 +19,7 @@ u32 WIN SceneDrawingSourceLeaseV1(void* com,u32 lease,u32* metadata,u32 size){
  if(!SceneDrawingSourcePointV1(com,metadata,64)||metadata[2]!=19||metadata[5]||metadata[13]){SetLastError(error);return 3;}
  struct Surface* s=0;for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].id==metadata[6]&&surfaces[i].object){s=surfaces+i;break;}
  if(!s||s->width!=800||s->height!=600||s->stride!=800||!s->pixels||s->pixels>~0u-960000-4095){SetLastError(error);return 3;}
- if(metadata[12]){u32 count=0;for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp){if(frames[i].sp==0xffffffffu||frames[i].tag!=7||frames[i].owner!=GetCurrentThreadId()||frames[i].ecx!=s->object||frames[i].primitive){SetLastError(error);return 3;}++count;}if(count!=1){SetLastError(error);return 3;}}
+ if(metadata[12]&&source_pending_check(s,1)){SetLastError(error);return 3;}
  u32 base=s->pixels&~4095u,bytes=((s->pixels+960000+4095u)&~4095u)-base,m[7],end[7];
  if(VirtualQuery((void*)base,m,28)!=28||VirtualQuery((void*)(base+bytes-1),end,28)!=28||m[1]!=end[1]||m[4]!=0x1000||m[5]!=4||base<m[0]){SetLastError(error);return 4;}
  for(u32 at=base;at<base+bytes;){u32 region[7];if(VirtualQuery((void*)at,region,28)!=28||region[1]!=m[1]||region[4]!=0x1000||region[5]!=4||region[0]+region[3]<=at){SetLastError(error);return 4;}at=region[0]+region[3];}
