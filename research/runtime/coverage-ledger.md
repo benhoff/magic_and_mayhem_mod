@@ -7343,3 +7343,25 @@ worker/EGLdelivery or records/refuses interveningwrites,thenallroutes/lifetimes/
 semantic120windows. No sample/protectioncountercloses47/21requirements;steps3–7
 stayordered/pending. Reviewedc20dde96..c704c2c8has33exactreceipts/0gaps.Storage
 around966GiBworking/360GiBfree;historicalhashesretained/nocleanup.
+
+## Step 2 diagnostic source lease through worker return (2026-10-12 UTC)
+
+A separate opt-in retains accepted source pages read-only until every command
+emitted under that exact API entry has a checked worker return. It preserves
+early completions and waits outside the journal mutex for at most five seconds.
+The PE32 fixture passes delayed/early completion, unrelated API exclusion and
+missing/unknown/timeout refusals; five malformed journal checks also refuse.
+Original01 closes 118 leases and 222 exact command returns, with 658 lease
+refusals and no observed protected write. All 222 crosslink to lease/API/Wine
+submission/worker; 104 have an observed active EGL swap. Worker return remains
+separate from hardware completion. This cadence change is diagnostic.
+
+Source-only native replay matches all 104 selected physical witnesses with zero
+differences (233 excluded). External CPU comparison matches 208 planes and
+99,840,000 pixels. CPU copies currently sit outside the protected interval;
+the next increment captures a snapshot while protection is held, then compares
+that source version independently. Whole source/storage lifetimes, other command
+routes, cadence controls and semantic 120 advancing windows stay pending.
+Step 2 remains open and steps 3–7 remain ordered. No full 47/21 acceptance
+promotion. Reviewed c704c2c8..256070dd has 28 matched receipts and zero gaps.
+Storage is approximately 974 GiB working / 352 GiB free; no cleanup performed.

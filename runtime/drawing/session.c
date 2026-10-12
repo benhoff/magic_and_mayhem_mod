@@ -33,6 +33,7 @@ static void wine_submission_close(u32);
 static void source_bytes_close(u32);
 static void source_lease_close(u32);
 static u32 wine_blit_worker_pending;
+static void source_worker_lease_packet(u32,u32,u32,u32);
 static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);producer_points_close(reason);source_lease_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
 static void install(void*,u32);
 /* Observer APIs preserve the application's result LastError and x87/SSE state. */

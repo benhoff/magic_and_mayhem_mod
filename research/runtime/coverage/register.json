@@ -42242,7 +42242,8 @@
         "DRAW02.draw02-egl-post-return-api-prediction-01-native_integration-20261012",
         "DRAW02.trace32-regression-01-20261012",
         "DRAW02.trace32-prediction-01-native-integration-20261012",
-        "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43033,7 +43034,8 @@
         "DRAW02.draw02-egl-worker-context-links-01-static-20261012",
         "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
-        "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012"
+        "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
+        "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43088,7 +43090,8 @@
         "DRAW02.draw02-api-source-byte-cap-diagnosis-01-static-20261012",
         "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012",
-        "DRAW02.draw02-source-lease-original-01-live_observation-20261012"
+        "DRAW02.draw02-source-lease-original-01-live_observation-20261012",
+        "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43152,6 +43155,54 @@
       "remaining_gaps": [
         "Pendingpageownership/protection/ABI/writefault/restorefixtures;actuallease/sourcecheckpoint/nativecomparisonandasyncworker/EGLreleaseboundary. Writeguardisexplicitdiagnosticnotbaseline,sharedheapaliases/otherwriters remainunknown.",
         "Original01admits123APIbodyreadonlyleases/669refusals/noobservedwritefault,fullcheckedrestore. APIreturnrelease doesnotcoverasyncworker/EGLbyteownership. Sharedheap/allroutes/fullsemantic120windowsremainpending."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-worker-lease",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Diagnostic source lease through exact emitted worker completion",
+      "scope": "Separate opt-in diagnostic API read-only source lease retained until all command IDs emitted under its exact observed API entry have checked bound worker entry/return. Preserve early completion, wait at most 5s outside journal mutex, reject missing emission/unknown packet/timeout/write fault, restore on original owner. Checked worker completion does not assert hardware or scanout completion.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-worker-lease.md"
+      ],
+      "implementation": [
+        "runtime/drawing/source_worker_lease.h",
+        "tools/drawing_source_worker_lease.py"
+      ],
+      "tests": [
+        "tests/drawing-source-worker-lease-test.c",
+        "tools/test-drawing-source-worker-lease.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/scene/drawing_source_lease.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_submission.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-source-worker-lease-parser-01-static-20261012",
+        "DRAW02.draw02-source-worker-lease-original-01-live_observation-20261012",
+        "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012",
+        "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012",
+        "DRAW02.draw02-source-worker-lease-crosslinks-02-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fixtures pass delayed/early completion and missing/unknown/timeout refusals. Original01 closes 118 accepted leases and 222 checked command returns; no observed protected write. 104 selected native physical witnesses and 208 CPU planes match. CPU copies sit outside the protected interval, so source-version identity during the lease remains pending.",
+        "Other command routes, whole texture/storage lifetime, asynchronous hardware/scanout, cadence controls, complete semantic journeys and 120 advancing windows remain pending. No full DRAW02 acceptance or replacement promotion."
       ]
     }
   ],
@@ -91322,6 +91373,137 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 synthetic delayed and early worker completion, unrelated API exclusion, missing/unknown/timeout refusals. No original page ownership or hardware completion.",
+      "record": "research/runtime/draw02-source-worker-lease-fixture-01.json",
+      "sha256": "a7e2c6d63efc09e599ed641561c3ebdf030a429ee78b6ba49bc5c21b395b1c9b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-parser-01-static-20261012",
+      "kind": "static",
+      "scope": "Five malformed synthetic journal refusals: premature counter, wrong API, unknown packet, changed command and reserved data. No execution of original engine.",
+      "record": "research/runtime/draw02-source-worker-lease-parser-01.json",
+      "sha256": "4b103fa07f41bf44bb51701da8c28178bef1dcd9d488085e500d5b371bbafec0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Original stock Quick Battle diagnostic: 118 accepted source leases, 222 exact-API commands checked through worker return, no observed protected write, 337 API and 336 post-EGL physical witnesses; focused 16 returns and shortened schedule, no full journey/hardware claim.",
+      "record": "research/runtime/draw02-source-worker-lease-original-01.json",
+      "sha256": "bf1a3ccdb64e8a0e1dc6673ed7891ed2fd857e52e2ce21c9e285524aeced1628",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/api_source_worker_lease_observation/accepted_leases",
+          "equals": 118
+        },
+        {
+          "pointer": "/api_source_worker_lease_observation/completed_commands",
+          "equals": 222
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Source-only native replay: 104 selected full physical witnesses with zero differences, 233 explicitly excluded.",
+      "record": "research/runtime/draw02-source-worker-lease-prediction-01.json",
+      "sha256": "a43439aedc1143154b160248475bfde330079729af0559bc2b4a9f4cde1d4911",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "External CPU oracle analysis: 208 selected entry/return planes, 99840000 pixels, zero differences; snapshots not inside protected lease.",
+      "record": "research/runtime/draw02-source-worker-lease-cpu-analysis-01.json",
+      "sha256": "894333ae7bc14aeee436cd460a1864c72ec2bcc892c59dc5e11753c18a4739e5",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012",
+      "kind": "static",
+      "scope": "337 stable active worker/packet/submission EGL links, 336 with physical witnesses; no thread equivalence or scanout claim.",
+      "record": "research/runtime/draw02-source-worker-lease-egl-context-01.json",
+      "sha256": "6bc7dc0ced6d20a3fe7c05f56d1599e156196b50ed16202b5d5b0f032d89b6a4",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-source-worker-lease-crosslinks-02-static-20261012",
+      "kind": "static",
+      "scope": "Reviewed 222 exact API/lease/packet/submission/worker links; 104 have an observed active EGL swap. No hardware completion claim.",
+      "record": "research/runtime/draw02-source-worker-lease-crosslinks-02.json",
+      "sha256": "9c0aec41c0770816edfe793a4f1cb6880bec8141c63f99533125213758168632",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -102659,6 +102841,36 @@
       "evidence": [
         "DRAW02.draw02-source-lease-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.source-worker-lease-fixture",
+      "level": "headless",
+      "scope": "Actual PE32 synthetic delayed/early completion, unrelated API exclusion, missing/unknown/timeout refusals; no original source protection or hardware completion.",
+      "behaviors": [
+        "NR.drawing-source-worker-lease"
+      ],
+      "tests": [
+        "tests/drawing-source-worker-lease-test.c",
+        "tools/test-drawing-source-worker-lease.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-worker-lease-original",
+      "level": "live_observation",
+      "scope": "Bounded original stock Quick Battle diagnostic exact-API worker completion lease; semantic journeys and hardware completion remain open.",
+      "behaviors": [
+        "NR.drawing-source-worker-lease"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-worker-lease-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -103032,8 +103244,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-lease-20261012.json",
-    "sha256": "9ee123948022d90477d8467bd717b4f499e9a57197149cb8fe9a80edbcd7031d"
+    "path": "research/runtime/coverage/source-index-draw02-worker-lease-20261012.json",
+    "sha256": "5045bb836defe71b82019a85e69064dcb0527652197cb9fe28a0da4eafa9862c"
   },
   "claim_bindings_required": true
 }
