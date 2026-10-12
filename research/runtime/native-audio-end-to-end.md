@@ -344,3 +344,22 @@ Native voice backend/Restore/consumed-timeline actual endpoint validation,
 initial no-device voice admission, native manager/config/cache/events, wider
 casting input and long original listening/playlist scenarios remain pending.
 Exact1a5aa59d history reviews22 transitions without receipt gaps.
+
+## Actual native voice software endpoint recovery (2026-10-12)
+
+Fresh native-voice-backend-private-endpoints-20261012.json records33 real
+version5 native host requests with one expected DSERR_BUFFERLOST Restore result.
+It loads/compares576000 native WAV bytes, creates/uploads/duplicates static PCM,
+retains root45000Hz/clone40000Hz and primary-2000 gain, and preserves IDs/ready
+through actual endpoint removal, replacement and distinct default switch.
+Consumed byte cursor32960 advances to36368 before loss settles, stays frozen,
+then resumes to70928. Status carries playing|looping5 and lost bit2 truthfully;
+release/stop retires ready0. Graphs start/end empty and owned daemons stop.
+
+The initial test's incorrect looping status1 expectation is retained; the
+corrected test passes without production source changes. Current-epoch output
+counters are generated7520/consumed5119. This host software-endpoint result
+does not establish PE32 ABI, audible waveform/tail/latency or original driver
+equivalence. Initial no-device voice admission remains strict; native
+manager/config/cache/events, wider casting/input and long playlist/listening
+remain pending. Exact5285cf12 history reviews12 transitions without receipt gaps.
