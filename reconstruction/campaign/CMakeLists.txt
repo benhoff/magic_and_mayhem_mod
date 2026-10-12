@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(mnm_campaign_contract LANGUAGES CXX)
+add_library(mnm-campaign-selection STATIC realm_selection.cpp)
+target_include_directories(mnm-campaign-selection PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+target_compile_features(mnm-campaign-selection PUBLIC cxx_std_17)
+target_compile_options(mnm-campaign-selection PRIVATE -Wall -Wextra -Werror -pedantic)

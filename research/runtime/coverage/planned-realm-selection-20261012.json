@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "scope": "Prospective scope/source declaration only. Execute the experiment and verify source stability before registering its result.",
+  "claims": [
+    {
+      "behavior": "CP.realm-region-selection",
+      "contract_sha256": "f3ebd5b670f929a2a15624d2ea78650bc5cd88fb919c126c9afb587ac018573d",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "reconstruction/campaign/CMakeLists.txt": "3747f5f576ad4242d39637dcf4a0a1ac3ac9b4a2a31442629583cc97f2382b8e",
+    "reconstruction/campaign/realm_selection.cpp": "d72651297ea9a9a520d68f617c86cff91752c53a8bfe2f16f64b71b35046dbd4",
+    "reconstruction/campaign/realm_selection.hpp": "e4de5a58a80a5634504ad85c9692620a6317390341852ac38479722503de8fbd",
+    "tests/realm-selection-contract-reference.cpp": "22e0cec85440a544f85c95f390ce5619813b972ce72851286e1717db2730dd93",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/test-realm-selection-contract.py": "f9f8e8390c5d6f266b8784d45224c1f720fc974d7cc5c06afddbdf9b77f9850d"
+  }
+}

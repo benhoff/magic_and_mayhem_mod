@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Fresh campaign entry, gameplay Mini Cancel/Quit, original confirmation and native Quit defeat report/OK with original World/Realm return; other outcomes, native Realm/confirmation, auxiliary actions, loaded scenarios and pause/scoring contracts pending.",
+  "scope": "Fresh campaign entry, gameplay Mini Cancel/Quit, original confirmation and native Quit defeat report/OK with original World/Realm return; other outcomes, native Realm/confirmation, auxiliary actions, loaded scenarios and pause/scoring contracts pending. Settled Realm state0 region selection now has a bounded native reconstruction and isolated-original comparison; live map/Character/Portmanteau/research/progression remain pending.",
   "builds": [
     {
       "id": "nocd-40209ca7",
@@ -1295,6 +1295,55 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.realm-region-selection",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Settled Realm region selection admission and release latch",
+      "scope": "Resolved region0/3, normal/alternate ownership and owned-adjacency admission, original press/release latch, tutorial/auxiliary blocking, destination/Region Entry/capacity refusal; 15360 isolated original comparisons,54 adjacency bounds,14 canvas bounds. Resource/movement/drawing/audio/push dependencies privately stubbed; no live readiness, complete input ABI, map initialization, progression or Qt dispatch.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Settled state0 region selection in the complete private original tick, bounded matrix; entry anchor is not whole-function recovery.",
+          "recovered_range": "campaign-entry-5517a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5564048,
+          "scope": "Original eligible-occupant counter retained for alternate-mode capacity cases"
+        }
+      ],
+      "documents": [
+        "research/runtime/realm-selection-contract.md"
+      ],
+      "implementation": [
+        "reconstruction/campaign/realm_selection.cpp",
+        "reconstruction/campaign/realm_selection.hpp",
+        "reconstruction/campaign/CMakeLists.txt"
+      ],
+      "tests": [
+        "tools/test-realm-selection-contract.py",
+        "tests/realm-selection-contract-reference.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI47.realm-selection-original",
+        "UI47.realm-selection-bound-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -2026,6 +2075,79 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI47.realm-selection-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Resolved region0/3, normal/alternate ownership and owned-adjacency admission, original press/release latch, tutorial/auxiliary blocking, destination/Region Entry/capacity refusal; 15360 isolated original comparisons,54 adjacency bounds,14 canvas bounds. Resource/movement/drawing/audio/push dependencies privately stubbed; no live readiness, complete input ABI, map initialization, progression or Qt dispatch.",
+      "record": "research/runtime/realm-selection-original-20261012.json",
+      "sha256": "c8190037fd573dd49ae40045e9d888764905e7effc2b60e3786c8ffce6ce64d8",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 15360
+        },
+        {
+          "pointer": "/adjacency_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/coordinate_cases",
+          "equals": 14
+        },
+        {
+          "pointer": "/original_tick_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_occupancy_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI47.realm-selection-bound-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Resolved region0/3, normal/alternate ownership and owned-adjacency admission, original press/release latch, tutorial/auxiliary blocking, destination/Region Entry/capacity refusal; 15360 isolated original comparisons,54 adjacency bounds,14 canvas bounds. Resource/movement/drawing/audio/push dependencies privately stubbed; no live readiness, complete input ABI, map initialization, progression or Qt dispatch.",
+      "record": "research/runtime/realm-selection-bound-original-20261012.json",
+      "sha256": "1288a2c128925a3de236ce939ef80575641e94dabddc604982d9e78d92450060",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 15360
+        },
+        {
+          "pointer": "/adjacency_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/coordinate_cases",
+          "equals": 14
+        },
+        {
+          "pointer": "/original_tick_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_occupancy_unchanged",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/execution_claims"
     }
   ],
   "scenarios": [
