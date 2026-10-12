@@ -8,6 +8,9 @@ import subprocess
 REPO = Path(__file__).resolve().parents[1]
 
 def build(selftest=False):
+    inputs=[p for p in (REPO/'runtime/audio').iterdir() if p.is_file()]
+    inputs += [REPO/'runtime/shadow/win32_min.h',REPO/'tools/build-audio-bridge.py',REPO/'tools/build-shadow-bridge.py']
+    compiled_sources={p.relative_to(REPO).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
     spec = importlib.util.spec_from_file_location('shadow_build', REPO/'tools/build-shadow-bridge.py')
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -23,7 +26,8 @@ def build(selftest=False):
     subprocess.run(flags+['-c',str(source/'bridge.c'),'-o',str(root/'bridge.obj')],check=True)
     dll = root/'MnmAudio.dll'
     subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/export:AudioCreateForTest=_AudioCreateForTest@4',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib')],check=True)
-    (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()}},indent=2)+'\n')
+    if any(hashlib.sha256((REPO/name).read_bytes()).hexdigest()!=digest for name,digest in compiled_sources.items()):raise ValueError('Audio compiler inputs changed during build')
+    (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'compiled_sources':compiled_sources,'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()}},indent=2)+'\n')
     if selftest:
         definition = root/'audio.def'
         definition.write_text('LIBRARY MnmAudio.dll\nEXPORTS\nAudioCreateForTest@4\n')

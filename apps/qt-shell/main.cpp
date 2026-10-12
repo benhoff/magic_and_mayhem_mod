@@ -112,6 +112,8 @@ public:
                 else if(action==QuickBattleMenuWidget::Action::CreateSinglePlayer)liveMenus_->request(MNM_MENU_OPEN_SINGLE);
             });
             liveMenus_->nativeCommandsEnabled=nativeCommands_;
+            liveMenus_->nativeVoicesEnabled=nativeVoices_;
+            liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path);};
             liveMenus_->prepareNativePresentation=[this](const QString& directory){
                 QStringList arguments;
                 return createNativePresentation(directory+"/render-frame.bin",directory+"/render-input.bin",directory+"/render-commands.bin",true,arguments);
@@ -266,6 +268,14 @@ protected:
         detach();event->accept();
     }
 private:
+    bool createNativeVoices(const QString& path){
+        voices_=std::make_unique<mnm::audio::VoiceBroker>();
+        voices_->failed=[this](const QString& error){log_->appendPlainText("Native voice output failed: "+error);};
+        if(voices_->create(path))return true;
+        const auto error=voices_->lastError();voices_.reset();
+        log_->appendPlainText("Native voice output could not start: "+error);
+        statusBar()->showMessage(error);return false;
+    }
     void useOriginalPresentation(){
         nativeFallback_=true;
         frames_.stop();commandDrain_.stop();inputTimer_.stop();input_->suspend(true);input_->setTarget(0);
@@ -329,9 +339,7 @@ private:
             if(!createNativePresentation(path,path+".input",path+".commands",continuous,arguments)){finished();return;}
             frames_.start();
             if(nativeVoices_){
-                voices_=std::make_unique<mnm::audio::VoiceBroker>();
-                voices_->failed=[this](const QString& error){log_->appendPlainText("Native voice output failed: "+error);};
-                if(!voices_->create(path+".audio")){const auto error=voices_->lastError();finished();statusBar()->showMessage(error);return;}
+                if(!createNativeVoices(path+".audio")){finished();return;}
                 arguments.append({"--voice-channel",path+".audio"});
             }
             if(nativeMedia_){
@@ -364,6 +372,20 @@ private:
         if(elapsed_.elapsed()>(liveMenus_?120000:30000)){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        if(voices_&&liveMenus_){
+            const auto activity=voices_->activity();voices_->stop();
+            const QJsonObject report{{"requests",qint64(activity.requests)},{"creates",qint64(activity.creates)},
+                {"uploads",qint64(activity.uploads)},{"uploaded_bytes",qint64(activity.uploadedBytes)},
+                {"plays",qint64(activity.plays)},{"releases",qint64(activity.releases)},
+                {"failed_requests",qint64(activity.failures)},{"native_selections",int(activity.nativeSelections)},
+                {"fallbacks",int(activity.fallbacks)},{"adapter_failures",int(activity.adapterFailures)},
+                {"audible_output",activity.audible},{"ready_before_stop",activity.ready},
+                {"ready_after_stop",voices_->activity().ready},{"error",voices_->lastError()}};
+            QFile evidence(QDir(liveMenus_->evidenceDirectory()).filePath("native-audio-report.json"));
+            const auto bytes=QJsonDocument(report).toJson();
+            if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())
+                log_->appendPlainText("Cannot save native audio session evidence.");
+        }
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
         residentWorld_.reset();
@@ -409,7 +431,8 @@ int main(int argc,char** argv){
                     "  --audio-map ID        Map classifications/preload (default 1)\n"
                     "  --audio-sound ID      Select a sound or group in the preview\n"
                     "  --native-media        Opt in to Qt movies and supported file sounds\n"
-                    "  --native-voices       Experimental native mixer/Qt output for DirectSound voices\n"
+                    "  --native-voices       Native DirectSound voices (default with native commands)\n"
+                    "  --legacy-audio        Keep original DirectSound voices\n"
                     "  --main-menu           Preview the native main menu without launching a game\n"
                     "  --quick-battle-menu   Preview the native Quick Battle menu\n"
                     "  --mini-menu MODE      Preview the campaign or battle Mini Menu\n"
@@ -470,7 +493,8 @@ int main(int argc,char** argv){
     parser.addOption({"menu-audio-policy","Preview source filenames: literal or dequote-missing-leaf.","policy","literal"});
     parser.addOption({"menu-click-sound","Native preview action cue catalog ID.","id","822"});
     parser.addOption({"menu-page-sound","Native preview page-turn cue catalog ID.","id","830"});
-    parser.addOption({"native-voices","Experimental native DirectSound voices through the PCM mixer and Qt output."});
+    parser.addOption({"native-voices","Route supported DirectSound voices through native PCM/Qt output (default with native commands)."});
+    parser.addOption({"legacy-audio","Keep original DirectSound voices instead of native PCM/Qt output."});
     parser.addOption({"live-menu-test","Bounded Qt-driven live menu round trip; write a new JSON report.","file"});
     parser.addOption({"live-menus","Connect native menus to the engine; --native-commands uses native gameplay presentation."});
     parser.addOption({"main-menu","Preview the native main menu without launching the game."});
@@ -544,7 +568,7 @@ int main(int argc,char** argv){
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
-    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("native-voices")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
+    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
     if(menuPreview){
         MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
@@ -692,6 +716,9 @@ int main(int argc,char** argv){
             app.exit(ok?0:7);
         });return app.exec();
     }
+    if(parser.isSet("native-voices")&&parser.isSet("legacy-audio")){
+        std::fputs("--native-voices and --legacy-audio select different audio backends.\n",stderr);return 2;
+    }
     const auto renderer=parser.isSet("live-menus")&&!parser.isSet("native-commands")?QString("native"):parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
     if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-commands") || parser.isSet("frame-readback") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
@@ -701,17 +728,21 @@ int main(int argc,char** argv){
     // Explicit capture/readback diagnostics retain their existing launch policy.
     const bool captureDiagnostic=parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("capture-locks") || parser.isSet("no-readback");
     const bool nativeCommands=parser.isSet("native-commands") || (renderer=="opengl" && !parser.isSet("embedding-test") && !parser.isSet("frame-readback") && !captureDiagnostic);
+    const bool nativeVoices=!parser.isSet("legacy-audio")&&(nativeCommands||parser.isSet("native-voices"));
     if(parser.isSet("resident-world")){
         if(!parser.isSet("live-menus") || !nativeCommands || qEnvironmentVariable("MNM_RENDER_CONTINUOUS")=="0" || qEnvironmentVariable("MNM_NATIVE_DRAW")=="0")parser.showHelp(2);
         qputenv("MNM_PUBLIC_RESIDENT_WORLD","1");
     }
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
     if(parser.isSet("live-menu-test")){
         if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     }
-    if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
+    if(parser.isSet("smoke-test")){
+        std::printf("Native audio policy: %s\n",nativeVoices?"native":"legacy");
+        QTimer::singleShot(100,&app,&QCoreApplication::quit);
+    }
     if(parser.isSet("embedding-test")){
         if(!shell.host().available())return 2;
         QProcess fixture;fixture.start(QCoreApplication::applicationFilePath(),{"--fixture-window"});

@@ -13,11 +13,14 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None):
+    if native_voices and not (native_render and actions):raise ValueError('Native voices require native menus and command presentation')
     if resident_world and not (native_render and native_draw and actions):raise ValueError("Resident World requires native menus, commands and owned drawing")
     if native_draw and not (native_render and actions):raise ValueError('Native graphics requires native menus and command presentation')
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
-    source=(REPO/'working/game-nocd').resolve();data=(source/'Chaos.exe').read_bytes()
+    source=(Path(source_game) if source_game else REPO/'working/game-nocd').resolve()
+    if not source.is_relative_to(REPO/'working') or not source.is_dir():raise ValueError('Menu source game must be a directory under working/')
+    data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
     dll=module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini)
     parent=REPO/'working/experiments/menu-observer';parent.mkdir(parents=True,exist_ok=True)
@@ -44,6 +47,12 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         shutil.copy2(render_dll,game/render_dll.name)
         shutil.copy2(render_dll.parent/'manifest.json',root/'render-bridge-build.json')
         (root/'lock-capture').mkdir()
+    audio_dll=None
+    if native_voices:
+        audio_dll=module('menu_audio_build','tools/build-audio-bridge.py').build()
+        patched=module('menu_audio_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmAudio.dll','AudioAnchor',b'.mnmaud')
+        shutil.copy2(audio_dll,game/'MnmAudio.dll')
+        shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
     patched,glyph_metadata=stage_glyph(root,data,patched,None if resident_world else mode_from_environment())
     resident_metadata={}
@@ -87,7 +96,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     for start,end in [*exporter.CALLBACKS.values(),(0x4a9700,0x4a97c7),(0x4a9840,0x4a9b00),(0x4ce730,0x4ce798),(0x4cdf40,0x4cdfe4),(0x4a88f0,0x4a8ae6),(0x4a8b60,0x4a8bcd)]:
         at=exporter.image_offset(data,start,end-start)
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
-    metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
+    metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_game':str(source),'source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
               'campaign_observe':campaign_observe,'experimental_mini':experimental_mini,'preference_store':stored,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'native_draw':native_draw,'native_draw_sha256':hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,'native_draw_status':str(root/'native-draw-status.bin') if native_draw else None,
@@ -95,6 +104,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
+    metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
+                    audio_channel=str(root/'native-voices.bin') if native_voices else None)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
         immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
@@ -111,8 +122,10 @@ if __name__=='__main__':
     parser.add_argument('--native-render',action='store_true',help='Stage native command rendering alongside native menus')
     parser.add_argument('--resident-world',action='store_true',help='Bind resident GPU World completion to the public command stream')
     parser.add_argument('--native-draw',action='store_true',help='Use owned native graphics services with real DirectDraw disabled')
+    parser.add_argument('--native-voices',action='store_true',help='Stage native DirectSound voices for the native menu/render session')
+    parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; default working/game-nocd')
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

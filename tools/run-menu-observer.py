@@ -31,12 +31,14 @@ def main():
         if channel.stat().st_size==69632 and not metadata.get('experimental_mini',False):raise ValueError('V4 requires explicitly staged experimental Mini Menu hooks')
     env=dict(os.environ,MNM_MENU_EXPERIMENT=str(root),WINEDEBUG=os.environ.get('WINEDEBUG','fixme-all'))
     env.pop('MNM_MENU_CHANNEL',None)
+    env.pop('MNM_AUDIO_CHANNEL',None)
     env['MNM_MENU_NATIVE_RENDER']='1' if args.native_render else '0'
     if args.menu_channel:env['MNM_MENU_CHANNEL']='Z:'+str(channel).replace('/','\\')
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         command=[str(REPO/'tools/run-game.sh'),'smoke' if args.seconds else 'launch','--no-gamescope',
                  '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools/menu-game-runner.py')]
+        if metadata.get('source_game') and Path(metadata['source_game']).resolve()!=(REPO/'working/game-nocd').resolve():command+=['--source-game',metadata['source_game']]
         if args.seconds:command+=['--seconds',str(args.seconds)]
         result=subprocess.run(command,env=env)
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
