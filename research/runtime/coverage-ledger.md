@@ -6891,3 +6891,45 @@ as failures. Native voices default in native menu/command sessions; native media
 remains explicit while music and broader fallback retirement progress. Complete
 catalog/manager/CD routing, consumption timing, device recovery, physical
 listening and long/original comparisons remain pending.
+
+## Native CD track assets and static control discovery —2026-10-12
+
+`HOST.native-cd-assets` provides strict read-only CUE/BINARY extraction with
+complete-sector/index validation, bounded streaming, output overwrite refusal,
+per-track PCM/WAV hashes and before/after CUE/image/source/immutable checks.
+[Installed extraction](native-cd-assets-installed-20261012.json) prepares all12
+supplied audio tracks2..13,438,057,648PCM bytes at stereo signed16 little-endian
+44100Hz. Five independent synthetic cases cover byte/sample/spans, unpadded CUE
+numbers, malformed inputs, image symlinks and output refusal. The explicit
+INDEX1-to-next-INDEX1 span policy retains trailing pregap; it is native asset
+preparation and headless integration, with no original MCI/playback comparison.
+The first attempt refused the supplied unpadded TRACK/INDEX syntax before output;
+its log and original checks are retained, and a fresh declaration/retry passes.
+
+`AU.cd_music` records selected original MCI OPEN/SET TMSF/PLAY/pause/resume,
+last-track retry and mixer-volume arguments from a guarded static export.
+[Control discovery](cd-audio-control.md) distinguishes release/disc-validation
+entries from provisional export labels. Original execution, notification/error
+behavior, catalog routing, native music output, volume/device recovery and live
+replacement remain pending. Asset extraction does not promote those milestones.
+
+## Original/native CD track-control primitives —2026-10-12
+
+`AU.cd_track_controls` now separates four recovered primitives from broader CD
+startup/playlist/mixer work. [Original comparison](native-cd-track-controls-original-20261012.json)
+passes6,912 scripted-MCI/receiver cases with exact return, call-order/argument,
+state and guard equality. Raw nonzero gates, low8bit/wrapping tracks, positive/
+HRESULT-shaped errors, last-track retries, pause/resume and length-byte queries
+are covered. Successful retry preserves paused in64 cases, matching the
+original return branch. Whole original function bytes and source/input hashes
+remain unchanged; immutable manifests pass. Scoped understanding/implementation
+and recorded original comparison are independent from integration/replacement,
+which remain none. The sandbox SIGSYS attempt is retained as a refusal, followed
+by a fresh guarded external execution pass. No original driver, notification,
+initialization/catalog, mixer/fade/playlist or live playback claim is added.
+
+All61 audio/assets CTests pass after integrating the native CD primitives into
+the reconstruction build. Five CD extraction fixtures pass. The shared audio
+CMake change leaves prior live-audio evidence historical where its source
+fingerprints include that file; no old hash is refreshed. Fresh live routing
+validation belongs to the upcoming native music integration milestone.

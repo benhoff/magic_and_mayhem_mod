@@ -43004,6 +43004,124 @@
         "tools/run-menu-observer.py",
         "renderer/CMakeLists.txt"
       ]
+    },
+    {
+      "id": "AU.cd_music",
+      "subsystem": "audio_contracts",
+      "kind": "recovered",
+      "title": "Original CD audio control and routing",
+      "scope": "Initial discovery: WINMM mciSendCommandA IAT0x005c52dc and mixer imports have static operands in0x00481330..0x00482c00 and other unassigned caller ranges. Supplied cue/CCD describes data track1 and audio tracks2..13. Command flags, event routing, timing, mixer roles and live behavior are pending; imports/operand references do not establish execution or full function semantics. Guarded static export identifies selected OPEN/SET TMSF10, PLAY track low8/from-to/last-track retry, pause/resume and mixer level*0x1111 arguments; object offsets local only. Export labels cd_open/cd_play are provisional and clarified as release/disc-validation entries in the research; no original execution or native driver claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4723504,
+          "scope": "Static MCI import operand reference only; command behavior/callers remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-audio-end-to-end.md",
+        "research/runtime/cd-audio-control.md"
+      ],
+      "implementation": [
+        "tools/export-cd-audio.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "AU.cd-music.static-control-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-cd-assets",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Read-only native CD audio asset preparation",
+      "scope": "Single-image CUE BINARY MODE1/2352 plus contiguous AUDIO tracks. Validate 75-frame timecodes, index ordering and image-sector bounds; extract little-endian stereo signed16 PCM44100 into individual WAVs from INDEX1 to next INDEX1 or leadout, retaining following-track pregap as an explicit native span policy. Hash original CUE/image before and after, refuse output overwrite and retain track PCM/file hashes. No original MCI command, CD mixer, playback routing or listening equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/cd-audio-assets.md"
+      ],
+      "implementation": [
+        "tools/cd_audio.py",
+        "tools/extract-cd-audio.py"
+      ],
+      "tests": [
+        "tests/test-cd-audio.py"
+      ],
+      "evidence": [
+        "HOST.native-cd-assets.installed-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AU.cd_track_controls",
+      "subsystem": "audio_contracts",
+      "kind": "recovered",
+      "title": "Original CD track play/pause/status primitives",
+      "scope": "Whole pinned0x481dc0 track play,0x481ed0 play-from-track,0x481930 pause/resume and0x481e90 length-byte query with authored initialized/active/paused/device/callback/status state and scripted MCI backend results. Exact gates, low8 track/from-to arithmetic, last-track retry and return/mutation policy; original driver/notifications/mixer/initialization/catalog/playlist/live playback excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4726208,
+          "scope": "Selected whole CD control primitive, authored receiver/MCI result domain; external driver and caller semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4726480,
+          "scope": "Selected whole CD control primitive, authored receiver/MCI result domain; external driver and caller semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4725040,
+          "scope": "Selected whole CD control primitive, authored receiver/MCI result domain; external driver and caller semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4726416,
+          "scope": "Selected whole CD control primitive, authored receiver/MCI result domain; external driver and caller semantics excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/cd-audio-control.md"
+      ],
+      "implementation": [
+        "reconstruction/audio/cd_track_controls.cpp",
+        "reconstruction/audio/cd_track_controls.hpp"
+      ],
+      "tests": [
+        "tests/cd-track-controls-reference.cpp",
+        "tools/test-cd-track-controls.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/drawing_census.py",
+        "audio/CMakeLists.txt"
+      ],
+      "evidence": [
+        "AU.cd-track-controls.original-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -89369,6 +89487,122 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-cd-assets.installed-20261012",
+      "kind": "native_integration",
+      "scope": "Native read-only CD asset extraction of all12 supplied audio tracks:438057648PCM bytes; original CUE/image, tool/test/document fingerprints unchanged, per-track PCM/WAV hashes retained, immutable manifests before/after. INDEX1 span policy, no MCI or playback claim.",
+      "record": "research/runtime/native-cd-assets-installed-20261012.json",
+      "sha256": "fa9713b8323d85097154f26672b8547cea393a49b72235a5b72de5931181a14b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AU.cd-track-controls.original-20261012",
+      "kind": "isolated_original",
+      "scope": "Four whole unchanged original CD control primitives versus native models:6912 authored receiver/scripted-MCI cases, exact returns/argument ordering/state and guard bytes. Gates, track low8/wrapping, status failure/last-track retry, successful retry preserving paused, resume/pause and length-byte independent gates. Original driver, notification/window delivery, SEH initialization/allocation, mixer/fade/catalog/playlist/full callers and live playback excluded.",
+      "record": "research/runtime/native-cd-track-controls-original-20261012.json",
+      "sha256": "2d0c9064528ca2e11cf85b999a74f44835166c40f53c1f6b2ab0435a29bbbbee",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_control_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 6912
+        },
+        {
+          "pointer": "/original/calls",
+          "equals": 5184
+        },
+        {
+          "pointer": "/original/retry_success_preserved_pause",
+          "equals": 64
+        },
+        {
+          "pointer": "/original/guard_bytes",
+          "equals": 7299072
+        },
+        {
+          "pointer": "/original_returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AU.cd-music.static-control-20261012",
+      "kind": "static",
+      "scope": "Guarded original CD/MCI assembly ranges and direct callers; selected command/flag/object-field/mixer volume operands only. Provisional export labels clarified by research. No original execution, native driver or whole-function equivalence.",
+      "record": "research/runtime/native-cd-control-static-20261012.json",
+      "sha256": "3bf18e8fad5328c476185a465fa3a2e5a22a9144898e842f7d96aae3d66b6cb3",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100011,6 +100245,21 @@
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012"
       ]
+    },
+    {
+      "id": "native-cd-assets-installed-20261012",
+      "level": "headless",
+      "scope": "Read-only supplied CUE/BINARY image extraction of audio tracks2..13, exact native INDEX1 span policy, PCM/WAV hashes and stable source/input/original manifest checks. No original MCI behavior or output playback.",
+      "behaviors": [
+        "HOST.native-cd-assets"
+      ],
+      "tests": [
+        "tools/extract-cd-audio.py",
+        "tests/test-cd-audio.py"
+      ],
+      "evidence": [
+        "HOST.native-cd-assets.installed-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100384,8 +100633,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-factory-media-commit-20261012.json",
-    "sha256": "a7de3c702576fc340a2f1dd4fb76a28985216cd1b78e34b2929076402b74f9ee"
+    "path": "research/runtime/coverage/source-index-native-cd-foundations-commit-20261012.json",
+    "sha256": "d0cc3c09bbd118047a22f1f2c2b05af23bb36d6c2502369efb1e1bcfe8610274"
   },
   "claim_bindings_required": true
 }
