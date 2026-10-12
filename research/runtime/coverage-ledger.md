@@ -6740,3 +6740,15 @@ checkpoint16matches protected state and ordered scenes:30.55809ms total,
 The full campaign fails19FPS at18.68812FPS; no formal gameplay/performance
 promotion follows. Immutable negative evidence is registered; native delivery
 cost reduction and sustained render scheduling remain outstanding.
+
+
+### Minimap scratch preparation (2026-10-12)
+
+Known traced dual-background services recycle bounded owned planes/receipts,
+restore sentinels after success/throw, validate before mutation and avoid sorting
+idempotent duplicate assignments; generic callbacks retain full scans.
+Independent16service/40recycle/24producer and refusal controls pass. Same2423
+actual World prefix on O2 TITAN EGL preserves terminal hash and improves
+completed throughput72–78to91–98FPS; producer CPU4.0to1.7ms. This is native
+preparation/replay evidence only. Public gameplay, frame scheduling, simulation
+cadence and steady60FPS remain pending; historical claims/hashes are preserved.

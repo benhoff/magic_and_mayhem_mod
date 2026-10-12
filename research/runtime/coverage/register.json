@@ -38106,7 +38106,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Dual-background minimap comparison at traced service writes",
-      "scope": "Known owned terrain/cell/creature/camera services optionally collect every committed destination word after atomic admission. Canvas composition retains two distinct fresh backgrounds and equal-word detection, comparing only the union of traced writes; generic callbacks retain complete scans. Source/return semantics, equal-to-sentinel values, duplicates,padded rows,unknown CPU validity and atomic failures must remain unchanged. No original World pixels/reads enter replay. Bounded native integration/performance proof pending; arbitrary traced callbacks and whole original driver/UI equivalence excluded.",
+      "scope": "Known owned terrain/cell/creature/camera services optionally collect every committed destination word after atomic admission. Canvas composition retains two distinct fresh backgrounds and equal-word detection, comparing only the union of traced writes; generic callbacks retain complete scans. Source/return semantics, equal-to-sentinel values, duplicates,padded rows,unknown CPU validity and atomic failures must remain unchanged. No original World pixels/reads enter replay. Bounded native integration/performance proof pending; arbitrary traced callbacks and whole original driver/UI equivalence excluded. Known traced services now recycle one bounded independent sentinel pair and receipt vectors per CanvasSequence, resetting every receipted word on success or exception. Fresh backgrounds at each call, generic full scans, atomic refusal and nested detached ownership remain. Repeated equal-word assignments are idempotent; receipt sorting is removed after validating both lists. Reserve exact owned history conversion capacity. No arbitrary unreceipted traced-callback guarantee or inferred live FPS gain.",
       "confidence": "high_within_scope",
       "original": [],
       "implementation": [
@@ -38120,7 +38120,9 @@
       "tests": [
         "tests/minimap-candidates-test.cpp",
         "tests/minimap-producer-test.cpp",
-        "tools/test-public-resident-fixtures.py"
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-minimap-scratch.py",
+        "tools/benchmark-native-resident.py"
       ],
       "validation_dependencies": [
         "compat/legacy/canvas-producers/CMakeLists.txt"
@@ -38132,7 +38134,8 @@
         "research/runtime/public-resident-campaign-complete-20261011.json",
         "research/runtime/public-resident-master-integration-fixtures-20261011.json",
         "research/runtime/public-resident-master-final-campaign-20261011.json",
-        "research/runtime/public-resident-master-final-fixtures-20261011.json"
+        "research/runtime/public-resident-master-final-fixtures-20261011.json",
+        "research/runtime/minimap-scratch-reuse.md"
       ],
       "evidence": [
         "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011",
@@ -38140,7 +38143,9 @@
         "NR.minimap-write-candidates.resident-campaign-complete-20261011",
         "NR.minimap-write-candidates.master-integration-fixtures-20261011",
         "NR.minimap-write-candidates.master-final-campaign-20261011",
-        "NR.minimap-write-candidates.master-final-fixtures-20261011"
+        "NR.minimap-write-candidates.master-final-fixtures-20261011",
+        "NR.minimap-write-candidates.scratch-controls-20261012",
+        "NR.minimap-write-candidates.scratch-titan-replay-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -41224,7 +41229,8 @@
         "NR.resident-stage-profiling.serialized-gap-failure-20261011",
         "NR.resident-stage-profiling.prefix-controls-20261011",
         "NR.resident-stage-profiling.offline-o3-20261011",
-        "NR.resident-stage-profiling.offline-o2-20261011"
+        "NR.resident-stage-profiling.offline-o2-20261011",
+        "NR.minimap-write-candidates.scratch-titan-replay-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -87750,6 +87756,52 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.minimap-write-candidates.scratch-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound native minimap scratch comparison and refusal recovery controls.",
+      "record": "research/runtime/minimap-scratch-controls-20261012.json",
+      "sha256": "8dd973f75ea265ad03eebc79582ab9d0d5523301832d575c59b8963eedf5762a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.minimap-write-candidates.scratch-titan-replay-20261012",
+      "kind": "native_integration",
+      "scope": "Same2423actual captured prefix, O2 NVIDIA TITAN EGL repeated completed replay; matching baseline terminal hash, reduced preparation and higher throughput. Original simulation/UI/Qt scanout/full-campaign/steady60FPS excluded. Historical baseline not rerun and timing noise retained.",
+      "record": "research/runtime/minimap-scratch-titan-replay-20261012.json",
+      "sha256": "661a1dd058b85733973da7139b4ac6e12000e8d8367d9e477120806a1b79a643",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/baseline_comparison/same_terminal_output",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98148,7 +98200,8 @@
       "scope": "NVIDIA EGL ordered captured public gameplay through ownedV5 handoff/resident renderer, timestamped and uninstrumented throughput modes, repeated output digest and bounded query controls. Excludes original simulation, public UI/Qt paint/scanout and hardware-general60FPS. Explicit diagnostic completed-prefix mode does not assert full campaign/capture retirement; complete-file validation and balanced verified returns bound selected actual Worlds.",
       "level": "headless",
       "behaviors": [
-        "NR.resident-stage-profiling"
+        "NR.resident-stage-profiling",
+        "NR.minimap-write-candidates"
       ],
       "tests": [
         "tools/benchmark-native-resident.py",
@@ -98160,7 +98213,8 @@
         "NR.resident-stage-profiling.worker-fixtures-20261011",
         "NR.resident-stage-profiling.prefix-controls-20261011",
         "NR.resident-stage-profiling.offline-o3-20261011",
-        "NR.resident-stage-profiling.offline-o2-20261011"
+        "NR.resident-stage-profiling.offline-o2-20261011",
+        "NR.minimap-write-candidates.scratch-titan-replay-20261012"
       ]
     },
     {
@@ -98295,6 +98349,22 @@
         "NR.scene-production-repetition.queue-cleanup-performance-negative-20261012",
         "NR.scene-production-repetition.prepared-titan-20261012",
         "NR.scene-production-repetition.timing-performance-negative-20261012"
+      ]
+    },
+    {
+      "id": "NR.minimap-write-candidates.scratch-fixture",
+      "level": "headless",
+      "scope": "Independent fresh versus recycled backgrounds over all four orientations/terrain/cell/creature/camera; mixed extents/stride/padding/duplicates/sentinel-colour writes and exception recovery with atomic/undefined/return refusals. No original execution or GPU throughput.",
+      "behaviors": [
+        "NR.minimap-write-candidates"
+      ],
+      "tests": [
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tools/test-minimap-scratch.py"
+      ],
+      "evidence": [
+        "NR.minimap-write-candidates.scratch-controls-20261012"
       ]
     }
   ],
@@ -98669,8 +98739,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-production-cost-result-20261012.json",
-    "sha256": "9d12d4afaf5f26579dc1083d2f938859e97edfd41e5d60fe54a1ac4721e590e9"
+    "path": "research/runtime/coverage/source-index-minimap-scratch-result-20261012.json",
+    "sha256": "18bee0725521cb48b67658dad41eb9e4afac231748832ce9c3010cd89c054a37"
   },
   "claim_bindings_required": true
 }
