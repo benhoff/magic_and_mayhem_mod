@@ -8031,3 +8031,20 @@ candidate. NativeGPU timeline is not busytime; EGL and publiczink workloads are
 not a causal pair. Failed preflights and the historical source journey stay
 failed. New cache, current full gameplay,60FPS,original equivalence and broader
 shared-source validation remain pending.
+
+
+### Native colour-source cache: matched TITAN milestone (2026-10-12)
+
+`NR.native-colour-rectangle-cache.fixture-20261012` passes independent arithmetic/
+clipping/overlap/source ownership/refusal/LRU/bounds/retirement controls and
+40native destination-dependent redraws with unchanged producer history.
+`NR.native-colour-rectangle-cache.paired-titan-20261012` matches every selected
+World/redraw native checkpoint on128identical ordered TITAN EGL sources. Warm
+extra CPUmedian3.2589to1.4449ms, GPUtimeline2.70344to0.63744ms anduploadcalls189to12;
+75native draw submissions stay unchanged. Native source cache is bounded to
+64LRUtiles/two512x512surfaces/1MiBCPUkeys; slot updates flush queued sampling
+before overwrite. Original/input/source integrity and query/resource retirement
+pass. Full public native casting/combat/portrait/menu/resume/normalQuit and
+19/60FPS validation are running under a prospective declaration; its scenario
+will be registered with the completed result. Original equivalence, hardware
+generality/driver busy time and shared-source historical freshness remain pending.

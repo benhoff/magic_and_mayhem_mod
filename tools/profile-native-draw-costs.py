@@ -8,11 +8,13 @@ def main():
  p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--input-record',type=Path,default=ROOT/'research/runtime/resident-profile-offline-o2-20261011.json')
  p.add_argument('--worlds',type=int,default=128)
+ p.add_argument('--behavior',action='append')
+ p.add_argument('--scenario',default='native-draw-cost-offline-20261012')
  p.add_argument('--prepared',type=Path,help='Reuse a compiled source closure verified before replay, including an earlier refused preflight')
  p.add_argument('--baseline',type=Path,help='Previous successful source-bound draw-cost run; replay its frozen binary again')
  a=p.parse_args();assert 64<=a.worlds<=8192
  parent=ROOT/'working/tests/native-draw-costs';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
- subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.native-draw-cost-profiling','--scenario','native-draw-cost-offline-20261012','--output',str(out/'claims.json')],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
+ subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),*[arg for b in (a.behavior or ['NR.native-draw-cost-profiling']) for arg in ['--behavior',b]],'--scenario',a.scenario,'--output',str(out/'claims.json')],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
  d=json.load(open(out/'claims.json'));report=dict(success=False,sources=d['sources'],claims=d['claims'],scope=__doc__,worlds=a.worlds,extra_replays_per_world=2,live_gameplay_executed=False,original_pixels_used_as_native_inputs=False)
  env={k:v for k,v in os.environ.items() if k not in ('DISPLAY','WAYLAND_DISPLAY','LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER','QT_XCB_GL_INTEGRATION','QT_QPA_PLATFORM_PLUGIN_PATH','MNM_PROFILE_CHECKPOINTS')}
  env.update(QT_QPA_PLATFORM='mnm-headless-egl',MNM_PROFILE_EGL_VENDOR='NVIDIA',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/10_nvidia.json')
