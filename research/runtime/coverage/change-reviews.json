@@ -530961,6 +530961,178 @@
         "evidence": [],
         "reason": "Fresh source/contract-bound actual owned kernel-handle fixture passes; original constructors/globals/import forwarding, caller state integration, real concurrent close and worker callbacks, versioned exports/live source synchronization remain unimplemented. No safe live repair, complete source/reference/native parity or completion promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "6f37991f8bedbfc2e3871fca6214380125d58e133d4ee19eccc22257cfc90488",
+          "before_sha256": "94df8cd19af6fcfebb3103d11206536ba49e3b2d942c64f7168e555ab38524a8",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "8ad3bf3b22725d4b066828acddf70076b27af145d3185d16c8382cd6f0540074",
+          "before_sha256": "a57a6439512c74b8bd97ef684468c055df23857ed26c7095b487622d6aea1057",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "499217822c3b1b68cfbd2e24c75a1e675690f683a517c5f9fbad4a1083bf4faf",
+          "before_sha256": "7e08c5a43e13a1ae26d424f6fef6e9fb3ad9cedec69abb19e3e3ade2048d7201",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "1f5bc1e91f4fae077594208f98e4fbf3a01d70f76132e9dd9a684f3a7bec8e30",
+          "before_sha256": "e67c181dfc29be319a171d6f3dd01ca4b1979a4175be68f5a7aa8169fd3d09b2",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "0a555d7d75fd4797e40e26f244ae7d8df0167222cde5f1aa19c6d0f062f6c4bd",
+          "before_sha256": "5a102f0f9d400c0c32fa1185c03c33dcb1d236cf3c13d5d66e61bb4ba0011625",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "cedae079c23d2110fc4104a9af6ef1f212b8b8cd52aa5e6e3c2eb4d9be1454df",
+          "before_sha256": "97f120e9f6534d9d09cb51a7fcf460fb674086b3e5b817ac91d486181a29184a",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "9bdce7121efd5ea81d459c30c80f5192af618f33fd565e5dba50065d5cb445f8",
+          "before_sha256": "5b036ba70c4948405125ece4a48119f4401214f43d4be83cbcbe0f17372e4250",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "c6076591b1039e58adc4e67c7047f1cbe0ce7cd9bdfc50c5526cd2ffcdd5bfbb",
+          "before_sha256": "0d4732980eda78ab4bbcfc3fe7795f8103e09de1164e5632a1b0d27c5a288dac",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "610dffc565c0be42d2130cca917c3d9fb27f160e3315af726a1611b46c3b5d6b",
+          "before_sha256": "5d9bb6406e00f4a749a6dc90cfed0d1d542bcc87325c86051fb21053085cd50a",
+          "id": "NR.drawing-cursor-kernel-lease-state"
+        },
+        {
+          "after_sha256": "47eb67c2d9d3d76078146a80358e7abafdb8b74bb40b48ea5864f324585263bf",
+          "before_sha256": "4f5372c211025a1058cc4c6e3754d809c5df60e18ffc878b6164b8e059e05719",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "edff2a54bd8a0c16107aa2d553115defbfaba14b705de7cde0555d37c9cd5a49",
+          "before_sha256": "00a7eaed9e3a1e4c942323f87718fc0a9d2b2316b661f76e8aff12d52ba946d2",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "d7ac610492faa23cef25caa6b7ae5516f6d03d8e9fb3aaa0457f3b603cc61f19",
+          "before_sha256": "a3a5634e9f87f83005cdc03b83e8e029e3b80810bedad72590d140505651435e",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "bff59a73d780bd24470c3c363a49eb162dd593ea6bf6765a23883698afc209a5",
+          "before_sha256": "adf10815b508d15c0e9a3c8f972a8659ade77efa6fafeb48f3a7bc21dfc21418",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "3d17d86434f019dc475d34c44cd534ec25aefd09f8c35b59bbb4e2c405ac91e5",
+          "before_sha256": "c6318b161624f5cf5dd11d0a0ee9104348f7ef6a280110af73c8e7cc69903f22",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "cd6432c4a4dcf43a7a416669aea31a29431cdda838dcae9edff25e4107626e8c",
+          "before_sha256": "64e2768b4f2bf91bd7a64f41c0994f53aabf94992ff7cdc9c5a48217e0177bf1",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "630998a8a8ce023a9120cef5fb8aac2ea5738154216fe0a8eb7ef7cb9bda5704",
+          "before_sha256": "caef8da87cbb9c9762e4a1874415ba48067862c6d1845131aca1d71e44d19553",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "d876d04028f5ea183bfe137c383e37515103c6632f396782c6f86117895abe90",
+          "before_sha256": "65caa4dc06c0ee7a477c140da8777a2c886834aef4bc634a898b1482f046a208",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "83f04f72b3450aa8e0e98e9a49a1e78c36b419a7115633a1dbef8c6255773b7c",
+          "before_sha256": "38b7eb4342ca6ce03622209d946e04db90b7ed73b6c3d52df08dd61dbf404a8b",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "d4ddc24e8ccf93cde1600188cb19b679a0d8eea9ffcba0b5b793438f62e50caa",
+          "before_sha256": "5ca4c74a98ef034b54760e6a9aedd640f709776ca5d1769969eef6eacf057776",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "38e2e6fc1dae2b027698846b5eef2d60b8810e5c4d87e4c0e85a5d0b4c3715d3",
+          "before_sha256": "119a029db73e4c492633eb441a0c18b824ee69d0a9fcd5bd00bbd1b8ec4a1ea3",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "29c75cc9705ff41e83f6f234580a32fa052e6ab1c8b97e507ad96604393a3469",
+          "before_sha256": "d3d2ae9177d56e2ea08789b922cb09ddb7a771f2131877b9dbe7a1674996e19c",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "8e3604815fec9944e9f234cf767e153a97c0ee41706916bd29ff8c2235602719",
+          "before_sha256": "f58bdc0e77eb865761ec92f49df4c915cc7845e2a84a864b2b97178445af9f37",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e5535aeb252a7546bb04e5b809905624def308b8bd68b49d936ea86d0b35b203",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-cursor-concurrent-start-20261012.json"
+        },
+        {
+          "after_sha256": "6f700e028d7e0ac54024b5866e6ac2becae2d3d9c2b87faf26f414700be0d745",
+          "before_sha256": "dc400eb174e0758d1f5c7739dee4a872e3d46a962656a36b16edc9b1b107fafa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f52fe9f4ec491d118a07cd8dbf0ff52afeef4f17bf60732d5021e0fef96854ad",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-cursor-concurrent-20261012.json"
+        },
+        {
+          "after_sha256": "a46807fce3e2dc6498344e6c8d970e4871f478f8f548da4a9ce90f8b7fb2750c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-cursor-concurrent-20261012.md"
+        },
+        {
+          "after_sha256": "a4bfd01e3f8c2118ffe2e6aababd2c1cdcb2b8e3e9d1ca198d404fafa5cde715",
+          "before_sha256": "db8bbd7bf1945720aa8826cd99ac0be90b1ba1089e96492581d3d1ab6cc3aff7",
+          "path": "research/runtime/cursor-kernel-adapter.md"
+        },
+        {
+          "after_sha256": "74bc0c808266895e38dfcd1c46e56d16f575dd1f9876b3ffe24fd458ca2d5ab1",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-kernel-fixture-02.json"
+        },
+        {
+          "after_sha256": "cdd5b8ab87efc5951a543d8526dbd02edcdcbc8195697c44a891a51d87cd1746",
+          "before_sha256": "23a1d0d5c97bf21db6791f60e3da4ff73466ba19fe55614e21d90834de31c5a9",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "53b14f04f91373475f69357041a846e1203b03f514cddaecfcd2988fb756bb57",
+          "before_sha256": "5674a53dbfecf684324b7ca8ff90e0a9c9bef5f96b7acd2e35b734fc92a9b625",
+          "path": "tests/drawing-cursor-kernel-adapter-test.c"
+        },
+        {
+          "after_sha256": "1be32abd0079451a1b3050f2bacd5d9d3a70acb779bcafa957768c0d917d72cc",
+          "before_sha256": "e7c65243af57429d75d171f84976f9f7cfcc2aa1ac591da7f350c3da4c0759a8",
+          "path": "tools/test-drawing-cursor-kernel-adapter.py"
+        }
+      ],
+      "id": "draw02-cursor-foreign-thread-retirement-20261012",
+      "pending_gaps": [
+        "stale_evidence:24003423b4d302b597a0e6d7a6649bd40f004e783c6abac536c73b28c8a64088",
+        "stale_evidence:4ce42c63f582662a681cfdd8222a3543ca0fceaabb05a41ac50a7ee4aaa1bc91"
+      ],
+      "reason": "Review current-source PE32 event-synchronized foreign-thread retirement/original Close during main-owned actual private mutex gate. Fresh fixture02 passes retired admission/close refusal, retained duplicates, stored acquired-level/token/ref drainage and separately scripted private-close failure then real successful close. Caller-state phases require serialization; no game callback/worker lock-order inferred. Preserve prior immutable fixture01 historical after extended test/runner/scope, updated census and twelve exact prior-commit receipts.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh owned actual PE32 foreign-thread lifetime boundary passes; pinned original constructor/global/import installer, exact caller-preservation integration, versioned scalar exports, worker controls and bounded original source/cadence capture remain unimplemented. No safe live synchronization/full reference/source alias/native parity/completion promotion."
+      }
     }
   ]
 }

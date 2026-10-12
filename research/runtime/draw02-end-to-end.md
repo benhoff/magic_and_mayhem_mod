@@ -1583,3 +1583,20 @@ pins, serialized retirement before original Close, versioned scalar exports,
 full caller-preservation integration, real concurrent-close/worker controls and
 bounded original capture remain prerequisites. All47/21and steps3–7remain open.
 Reviewedf5eb9576..626631b9has13exact receipts and zero missing versions.
+
+## DRAW-02 foreign-thread retirement checkpoint (2026-10-12 UTC)
+
+Owning kernel lease state committed7d6ae833with both coverage checks passed.
+`draw02-cursor-kernel-fixture-02.json` freshly passes actual Wine PE32 event-
+synchronized foreign-thread retirement/close while main owns both private gate
+levels and token. Retired identities block admission/close until release and
+return drain stored levels/refcounts. Private duplicates survive original close;
+scripted private-close failure remains separate from real successful closing.
+Fixture01 stays historical after extended test/runner/scope; no hashes refreshed.
+
+Reassessment: step2 remains open. The exact original constructor/global/import
+identity installer, versioned scalar token exports, full caller-state integration,
+worker callback/lock-order and bounded original cadence/source controls remain
+necessary before live capture synchronization. Owned foreign-thread close does
+not establish full original lifetime or source aliases/parity. All47/21and
+steps3–7retain scope. Reviewed626631b9..7d6ae833has12exact receipts, zero gaps.

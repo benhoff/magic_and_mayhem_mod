@@ -35,7 +35,7 @@ def main():
     parent.mkdir(parents=True, exist_ok=True)
     run = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(run, flush=True)
-    imports = dict(CreateMutexA=12, DuplicateHandle=28, GetCurrentProcess=0, GetCurrentThreadId=0, WaitForSingleObject=8, ReleaseMutex=4, CloseHandle=4, ExitProcess=4)
+    imports = dict(CreateMutexA=12, DuplicateHandle=28, GetCurrentProcess=0, GetCurrentThreadId=0, WaitForSingleObject=8, ReleaseMutex=4, CloseHandle=4, ExitProcess=4, CreateEventA=16, SetEvent=4, CreateThread=24, InitializeCriticalSection=4, EnterCriticalSection=4, LeaveCriticalSection=4)
     definition = run / 'kernel32.def'
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n' + ''.join(f'{name}@{size}\n' for name, size in imports.items()))
     with (run / 'build.log').open('x') as log:
@@ -71,7 +71,7 @@ def main():
         current_behavior = next(b for b in current['behaviors'] if b['id'] == behavior['id'])
         if behavior_contract(current_behavior, {b['id']: b for b in current['builds']}) != expected['contract_sha256']:
             raise ValueError('Behavior contract changed during execution')
-        report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, actual_mutex_handles=True, private_close_failure_scripted=True, scope='Owned PE32 real duplicates, stored gate levels block token return, retired identities block admission and closing, originals close during owned active lease, duplicate releases drain token/refs, scripted close failure retained then actual successful private close. No game installer, actual concurrent-close/worker controls or full source/native parity.')
+        report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, actual_mutex_handles=True, concurrent_original_close=True, private_close_failure_scripted=True, scope='Owned PE32 real duplicates, stored gate levels block token return, retired identities block admission and closing, synchronized real foreign thread retires identities and closes originals outside caller lock during owned active lease, duplicate releases drain token/refs, scripted close failure retained then actual successful private close. No game installer, actual concurrent-close/worker controls or full source/native parity.')
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

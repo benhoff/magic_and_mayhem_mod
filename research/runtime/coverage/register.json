@@ -45224,7 +45224,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owning diagnostic cursor mutex gate and kernel lease state",
-      "scope": "Caller-serialized owning-module phase model binds actual stored gate levels to numeric thread/identity tokens, publishes private duplicate identities, retires originals, defers closes until stored levels and leases drain. Owned PE32 actual mutex duplicate/acquire/source-close/release plus scripted private-close failure; no game installer/live exports/source capture.",
+      "scope": "Caller-serialized owning-module phase model binds actual stored gate levels to numeric thread/identity tokens, publishes private duplicate identities, retires originals, defers closes until stored levels and leases drain. Owned PE32 actual mutex duplicate/acquire/source-close/release plus scripted private-close failure; no game installer/live exports/source capture. Synchronized real foreign-thread retirement/original closure while main owns the active gate is tested separately; no real game callbacks.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45248,7 +45248,8 @@
         "tools/drawing_api_session.py"
       ],
       "evidence": [
-        "DRAW02.cursor-kernel-fixture-01-20261012"
+        "DRAW02.cursor-kernel-fixture-01-20261012",
+        "DRAW02.cursor-kernel-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45258,7 +45259,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh real PE32 owning-model fixture passes. Caller synchronization around phase transitions, original constructor/global pins/import forwarding, actual concurrent-close/worker callback controls, versioned exports and live source capture remain unimplemented. Scripted close failure is not actual failed OS close. Invariant fault freezes admission and retains uncertain refs; no safe live repair/reference/parity claim."
+        "Fresh synchronized foreign-thread fixture passes; previous single-thread fixture remains historical after extended test/runner/scope. Original constructor/global pins/import forwarding, callback/worker controls, versioned exports/live capture remain unimplemented. Scripted private-close failure not actual OS failure; no lock-order/complete reference/parity claim."
       ]
     }
   ],
@@ -97022,6 +97023,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-kernel-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Actual Wine PE32 synchronized foreign-thread retirement/original close during main-owned gate lease, retained private duplicates/storedlevels/token drain; scripted private-close failure separate. No original game/installer/worker controls.",
+      "record": "research/runtime/draw02-cursor-kernel-fixture-02.json",
+      "sha256": "74bc0c808266895e38dfcd1c46e56d16f575dd1f9876b3ffe24fd458ca2d5ab1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/concurrent_original_close",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_mutex_handles",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109164,8 +109192,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-kernel-20261012.json",
-    "sha256": "3e07250645ffe975c4e8f1cdc6c8cdf2a8de4e6f1a701ba6fae95b8f44162b82"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-concurrent-20261012.json",
+    "sha256": "f52fe9f4ec491d118a07cd8dbf0ff52afeef4f17bf60732d5021e0fef96854ad"
   },
   "claim_bindings_required": true
 }

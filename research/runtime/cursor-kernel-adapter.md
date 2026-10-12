@@ -28,3 +28,26 @@ game installation/forwarding, worker callback, source pages or parity occurs.
 fixture. Real duplicate lifetime is bounded to this owned active-lease case;
 private close failure is scripted, not a failed real CloseHandle. No actual
 game/concurrent-close/worker synchronization or reference/parity claim.
+
+## Synchronized foreign-thread retirement fixture
+
+The next owned PE32 fixture uses real event and thread handles. Main acquires
+both private mutex levels and holds its diagnostic token. Another thread waits
+for a go event, retires both original identities under a caller critical section,
+drops the section, then closes both originals and signals completion. Main waits
+for this observed completion before checking retired admission/close refusal,
+releasing private levels and draining the token/refcounts.
+
+This verifies the private duplicate retention boundary across foreign-thread
+original Close. Events define exact test phases, not arbitrary sleep timing.
+The model requires serialized state phases; source shows OS closes outside the
+fixture lock, but no broad game callback/worker lock-order claim follows. The
+scripted private-close failure and later actual successful close stay separate.
+No original imports/installer, source protection, real worker pipeline or pixel
+comparison is present. Previous fixture01 remains immutable historical evidence
+after test/runner/scope changes; a fresh result must bind the extended sources.
+
+`draw02-cursor-kernel-fixture-02.json` passes the fresh synchronized foreign-
+thread retirement/close fixture, binding current test/runner/scope. Fixture01
+remains immutable historical evidence. No complete game callback/worker
+lock-order or actual original handle lifecycle is inferred.
