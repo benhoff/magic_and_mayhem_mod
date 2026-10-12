@@ -7056,3 +7056,42 @@ scenarios and actual Wine API census/whole library retirement remain pending.
 The prior169c7d6 commit's40 parent/current transitions have exact receipts and0
 gaps. Historical source fingerprints are preserved, with renewed scoped results
 registered separately.
+
+
+## Native backend-consumed voice progress (2026-10-12)
+
+Implemented a bounded render journal for audible native voices. Status and static
+play/write cursors follow Qt processed frames, capped by accepted whole stereo
+frames. One-shots retain playing status through their queued tails; repeated Play
+does not replay that tail. Queued pitch/phase is preserved, stale logical
+seek/stop/release generations cannot advance surviving state, and sink retirement
+restores consumed position/phase before a fresh clock epoch.
+
+The independent per-frame phase oracle covers360 steps across pitches, lengths
+and loops, with partial byte writes, completion, controls, release, wire queries
+and both journal bounds. Silent Qt backend completion and restart pass on the
+current48000Hz output. See `NA.output_timing.queued-seek-20261012` and
+`native-audio-output-timing-queued-seek-20261012.json`. An earlier successful run with a
+prospective scenario level later corrected is retained separately; it cannot
+supply current scope binding.64 audio/assets regressions passed (63 in the bounded
+sandbox run, the local multimedia test rerun with backend access). The failed
+sandbox backend/decoder attempts remain under working/tests.
+
+Headless queries still use generated progress. Physical loudspeaker latency,
+original DirectSound driver timing, automatic voice device recovery, primary or
+streaming rings, CD fades/full original playlist notification delivery, manager
+integration and an executed Wine API census remain separate. No original-driver
+comparison or whole-audio retirement promotion is made by this native policy.
+The previous controls commit6e4a0cc9 has30 exact parent/current file transitions
+with zero unresolved receipt gaps in native-audio-controls-history-20261012.json.
+
+Current native menu/campaign/normal-Quit run-cjx23nux passes with7 WAV uploads,
+349862 PCM bytes,12 plays and116 request/ACK pairs; unsupported COM, failed voice
+requests, adapter errors and fallback counts are0. Native CD music publishes
+feature mask31 and40960 PCM frames with no unsupported/fallback/failed music
+requests. Source/input/original manifests and private Wine cleanup pass. Intros
+are skipped; this does not renew full movie validation. Native menu retirement
+at startup in run-2q5hp9_3 is retained as an unresolved intermittent integration
+limitation; its cause is not attributed to the audio clock. See
+HOST.output-timing.public-pass-20261012. The final current-code64-test suite
+passes with backend access; earlier source versions retain their recorded hashes.

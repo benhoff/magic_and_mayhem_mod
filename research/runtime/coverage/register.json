@@ -2496,7 +2496,11 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp"
+      ]
     },
     {
       "id": "NA.voice_bridge",
@@ -42665,14 +42669,17 @@
         "tools/run-qt-shell.sh",
         "tools/test-live-campaign-mini.py",
         "tools/test-native-clock.py",
-        "tools/test-native-pacer.py"
+        "tools/test-native-pacer.py",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp"
       ],
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
         "HOST.native-menu-audio.default-worker-public-pass-20261012",
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.output-timing.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42856,7 +42863,8 @@
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.wave-v4-installed-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.output-timing.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42880,7 +42888,9 @@
         "audio/qt_output.cpp",
         "audio/qt_output.hpp",
         "audio/mixer.cpp",
-        "audio/voices.cpp"
+        "audio/voices.cpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp"
       ]
     },
     {
@@ -42921,7 +42931,8 @@
       ],
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.output-timing.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42949,7 +42960,9 @@
         "assets/asset_file.cpp",
         "assets/asset_file.hpp",
         "assets/path_resolver.cpp",
-        "assets/path_resolver.hpp"
+        "assets/path_resolver.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp"
       ]
     },
     {
@@ -45827,7 +45840,7 @@
       "subsystem": "audio_contracts",
       "kind": "native_policy",
       "title": "Version4 static voice controls through native host and PE32 buffer methods",
-      "scope": "MNMAUD01 version4 advertises extended controls before readiness; guarded native PE static GetFrequency/SetFrequency, aligned byte position and generated play/write cursor dispatch to native Device. Failure preserves output pointers/state; unsupported primary/streaming scopes remain explicit. Native play/write cursor equality is a static-memory policy, not original or physically consumed driver cursor equivalence.",
+      "scope": "MNMAUD01 version4 advertises extended controls before readiness; guarded native PE static GetFrequency/SetFrequency, aligned byte position and generated play/write cursor dispatch to native Device. Failure preserves output pointers/state; unsupported primary/streaming scopes remain explicit. Native play/write cursor equality is a static-memory policy, not original or physically consumed driver cursor equivalence. Audible host queries now use the bounded backend-consumed clock; headless fixtures retain generated cursors. Current consumed timing validation is registered separately.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -45886,10 +45899,65 @@
         "runtime/shadow/win32_min.h",
         "tools/build-audio-bridge.py",
         "tools/build-shadow-bridge.py",
-        "tools/test-native-music-service.py"
+        "tools/test-native-music-service.py",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp"
       ],
       "evidence": [
         "HOST.extended-voice-wire.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NA.output_timing",
+      "subsystem": "native_audio",
+      "kind": "native_policy",
+      "title": "Backend-consumed voice clock and bounded render journal",
+      "scope": "Live audible static voice status/cursor use monotonically processed backend frames bounded by accepted whole stereo PCM frames. Rendered block checkpoints retain original pitch/phase, logical generations prevent stale seek/stop/release updates, completion waits for consumed tail and repeated Play cannot rewind queued one-shots. Retiring output restores consumed position/phase and starts a fresh sink epoch. Journal at most256 blocks and two seconds. Offline queries retain generated clock. Physical speaker latency, original driver equivalence, automatic device recovery and streaming ring remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-audio-output-timing.md"
+      ],
+      "implementation": [
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp"
+      ],
+      "tests": [
+        "tests/audio-output-timeline-test.cpp",
+        "tools/test-native-audio-output-timing.py"
+      ],
+      "validation_dependencies": [
+        "audio/CMakeLists.txt",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/voices.cpp",
+        "audio/mixer.cpp",
+        "runtime/audio/protocol.h",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp"
+      ],
+      "evidence": [
+        "NA.output_timing.synthetic-20261012",
+        "NA.output_timing.bound-20261012",
+        "NA.output_timing.queued-seek-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -93097,6 +93165,122 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NA.output_timing.synthetic-20261012",
+      "kind": "native_integration",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Independent fake consumed-frame oracle and silent current Qt backend completion/restart. No original-driver, physical speaker, physical loss, live game timing or audible equivalence.",
+      "record": "research/runtime/native-audio-output-timing-synthetic-20261012.json",
+      "sha256": "5acf7beb58dd8c5d3e587b75bee55c1e86d1b58336f802c0e3273731cdffd943",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NA.output_timing.bound-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-audio-output-timing-bound-20261012.json",
+      "sha256": "13da5c86dd320f16f9a7a65164f2280f636e849a862fcf04a5fadd8958338d54",
+      "scope": "Independent fake consumed-frame oracle and silent current Qt backend completion/restart. No original-driver, physical speaker, physical loss, live game timing or audible equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NA.output_timing.queued-seek-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-audio-output-timing-queued-seek-20261012.json",
+      "sha256": "bc24f3a978878181aafd88da6091becb431a3e47177ade389b2ceba76a81e053",
+      "scope": "Independent fake consumed-frame oracle and silent current Qt backend completion/restart. No original-driver, physical speaker, physical loss, live game timing or audible equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.output-timing.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Current backend-consumed voice implementation with default native voices/WAV/factory/CD music, native menu/campaign and normal Quit; intros skipped. This is integration observation, not original/physical cursor or every control-use equivalence. Earlier startup menu-retirement failure and invalid movie-skip verification remain retained.",
+      "record": "research/runtime/native-audio-output-timing-public-pass-20261012.json",
+      "sha256": "a59d6b77fa059a5517458d73d14fc92a2ba5563f59b98ebcbb5ead546577aa7d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -103661,7 +103845,8 @@
         "HOST.native-menu-audio.default-worker-public-pass-20261012",
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.output-timing.public-pass-20261012"
       ]
     },
     {
@@ -103694,7 +103879,8 @@
       "evidence": [
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.output-timing.public-pass-20261012"
       ]
     },
     {
@@ -103727,7 +103913,8 @@
       ],
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.output-timing.public-pass-20261012"
       ]
     },
     {
@@ -103916,6 +104103,24 @@
       "evidence": [
         "HOST.extended-voice-wire.synthetic-20261012"
       ]
+    },
+    {
+      "id": "native-audio-output-timing-synthetic-20261012",
+      "title": "Independent consumed-frame oracle and silent Qt backend completion/restart",
+      "scope": "360 per-frame phase oracle cases plus controls, partial bytes, lifetime, wire queries, bounded memory, silent current backend queued completion and sink epochs; no original/physical fault/game timing equivalence.",
+      "behaviors": [
+        "NA.output_timing"
+      ],
+      "tests": [
+        "tests/audio-output-timeline-test.cpp",
+        "tools/test-native-audio-output-timing.py"
+      ],
+      "evidence": [
+        "NA.output_timing.synthetic-20261012",
+        "NA.output_timing.bound-20261012",
+        "NA.output_timing.queued-seek-20261012"
+      ],
+      "level": "headless"
     }
   ],
   "recovered_ranges": [
@@ -104289,8 +104494,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-audio-controls-commit-20261012.json",
-    "sha256": "1f25871f60c1e9d1a31aba3420cd1f57abeb401cc938ec644b121aa2d2e5b617"
+    "path": "research/runtime/coverage/source-index-native-output-timing-commit-20261012.json",
+    "sha256": "3caee402d74fefa60c73e2bf6ddde706a0d196f6ccf2bd00c3741ad4a45df029"
   },
   "claim_bindings_required": true
 }

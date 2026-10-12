@@ -87,3 +87,16 @@ claimed. Existing native mixer interpolation/allocation limits still apply.
 A later [optional x86 voice bridge](native-audio-voice-bridge.md) now connects
 selected game-facing contracts to this adapter. Its fixtures and staging are
 separate evidence; live game output remains unvalidated.
+
+## October 12 consumed-clock update
+
+The earlier generated-position restart policy above is historical. Live audible
+voice queries now use a bounded render journal and Qt's processed-frame clock,
+clamped to accepted whole stereo frames. Completion waits for the queued tail.
+Retiring output restores consumed voice positions and fractional phases before
+starting a fresh sink epoch. Headless/offline mixing retains generated positions.
+See [native-audio-output-timing.md](native-audio-output-timing.md) for current
+implementation scope and independent fake-clock/silent-backend validation.
+Native live voice/WAV/factory/music integration is separately recorded in the
+coverage ledger; physical speaker timing and automatic device recovery remain
+pending.

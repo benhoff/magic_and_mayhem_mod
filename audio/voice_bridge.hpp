@@ -16,10 +16,11 @@ struct VoiceActivity {
 };
 class VoiceCommands {
 public:
-    explicit VoiceCommands(Device& device):device_(device){}
+    explicit VoiceCommands(Device& device,OutputTimeline* timeline=nullptr):device_(device),timeline_(timeline){}
     BridgeReply execute(const std::uint32_t* words,const QByteArray& payload);
 private:
     Device& device_;
+    OutputTimeline* timeline_;
 };
 class VoiceBroker:public QObject {
 public:

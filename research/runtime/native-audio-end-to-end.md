@@ -164,3 +164,14 @@ methods. Native ramp/phase/duplicate tests, real PE controls and63 CTests pass;
 installed WAV and current native campaign/normal Quit are renewed. See
 native-audio-controls.md. Generated position remains distinct from actual
 output-consumed position; physical recovery and original timing remain pending.
+
+## Backend-consumed voice progress
+
+Live audible voice status and static cursors now follow Qt backend consumption,
+bounded by accepted whole stereo frames. A rendered one-shot tail remains
+playing until consumed. Queued blocks preserve their own pitch/phase; seek,
+stop and release cannot receive stale progress. Sink retirement rewinds queued
+material and starts a fresh clock epoch. See native-audio-output-timing.md for
+the independent phase oracle and silent Qt completion/restart protocol.
+Physical speaker latency, automatic device recovery and original-driver
+comparison remain distinct milestones.
