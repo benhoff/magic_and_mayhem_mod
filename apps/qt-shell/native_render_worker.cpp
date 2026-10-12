@@ -15,6 +15,7 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
     commands_->residentWorld=[this](auto g,auto n){return world_->import(g,n);};
     commands_->residentReady=[this](auto g,auto n){return world_->ready(g,n);};
     commands_->prepareResidentFrames=true;
+    commands_->reuseSealedUi=!baselineUiClock_ && qEnvironmentVariableIntValue("MNM_WORLD_FIRST_SEAL_BASELINE")!=1;
 }
 NativeRenderWorker::~NativeRenderWorker(){join(false);}
 bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 version,int timeout){
@@ -77,6 +78,10 @@ void NativeRenderWorker::run(){
             const auto cpu=[](const mnm::render::CommandCpuTiming& t){return QJsonObject{{"samples",double(t.samples)},{"total_ms",t.totalMs},{"mean_ms",t.samples?t.totalMs/t.samples:0},{"max_ms",t.maxMs}};};
             static const char* phases[]={"record","reset","seal","import"};
             for(unsigned i=0;i<4;++i)compilation[phases[i]]=cpu(next.result.preparationTiming[i]);
+            compilation["inherited_ui_imports"]=QString::number(next.result.inheritedUiImports);
+            compilation["inherited_source_presentations"]=QString::number(next.result.inheritedSourcePresentations);
+            compilation["inherited_ui_redraws"]=QString::number(inheritedUiRedraws_);
+            compilation["reuse_sealed_ui_enabled"]=commands_->reuseSealedUi;
             compilation["first_world_seal_wall"]=cpu(next.result.firstWorldSeal);
             compilation["superseded_before_first_world_seal"]=QString::number(next.result.supersededBeforeSeal);
         }
@@ -133,6 +138,7 @@ void NativeRenderWorker::run(){
                         if(!(baselineUiClock_?commands_->presentPrepared(frame,generation):commands_->presentSealed(frame,generation)))throw std::runtime_error(commands_->error().toStdString());
                         if(!baselineUiClock_&&presents)++uiPublicationRedraws_;
                         if(!baselineUiClock_&&!strictGeneration)++sealedUiRedraws_;
+                        if(uiState.sealedSourceGeneration && uiState.sealedSourceGeneration<uiState.generation)++inheritedUiRedraws_;
                         world_->noteIndependentPresentation(clock.nsecsElapsed()/1000000.0);
                     }}
                 }

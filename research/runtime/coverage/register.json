@@ -42363,7 +42363,8 @@
         "HOST.native-render-owner.functional-performance-negative-20261012",
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42433,7 +42434,8 @@
         "HOST.native-render-owner.functional-performance-negative-20261012",
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42444,7 +42446,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Prepare native HUD and World composition for independent rendering",
-      "scope": "Opt-in native command-frame compilation tracks exact per-pixel World coordinates versus literal native UI ownership through updates/masked coverage,keyed copies,translated copies,ordered opaque self copies,clippers and swaps. PRESENT freezes the native-produced UI values and coordinate map, discarding intermediate source history; an extra frame assembles freshly drawn matching native World pixels with the owned UI layer in one native shader pass. No original output/CPU readback initialization, cached World screenshot substitute, reordered source imports, DirectDraw restoration or simulation advance. UI colors equal to World pixels remain literal UI. Only source metadata and World-derived coordinate planes remain live; released identities retire maps and partial frames refuse replay. Bounds stay explicit; original comparison/interpolation/60FPS remain separate. Strict replay still refuses incomplete current UI. Explicit sealed replay may draw freshly supplied matching native World with the last complete frozen UI/coordinate snapshot during later UI-only transactions;first-unsealed UI andmismatched sourcegeneration refuse. It exposes no partial updates anddoesnot reuse a World screenshot.",
+      "scope": "Opt-in native command-frame compilation tracks exact per-pixel World coordinates versus literal native UI ownership through updates/masked coverage,keyed copies,translated copies,ordered opaque self copies,clippers and swaps. PRESENT freezes the native-produced UI values and coordinate map, discarding intermediate source history; an extra frame assembles freshly drawn matching native World pixels with the owned UI layer in one native shader pass. No original output/CPU readback initialization, cached World screenshot substitute, reordered source imports, DirectDraw restoration or simulation advance. UI colors equal to World pixels remain literal UI. Only source metadata and World-derived coordinate planes remain live; released identities retire maps and partial frames refuse replay. Bounds stay explicit; original comparison/interpolation/60FPS remain separate. Strict replay still refuses incomplete current UI. Explicit sealed replay may draw freshly supplied matching native World with the last complete frozen UI/coordinate snapshot during later UI-only transactions;first-unsealed UI andmismatched sourcegeneration refuse. Explicit opt-in restart may preserve only complete World-mapped native UI snapshots across consecutive source generations with stable native World/final identities and extents, while clearing current mutable coordinate maps and retaining seal-origin generation. New source can present once through inherited UI outside command batches without repeating World drawing; strict current replay still refuses until a current-generation PRESENT. Static-only seals retire World mapping; changed/released identities, skipped generations and unsealed first frames refuse restart. Default consumer policy stays opt-out. It exposes no partial updates anddoesnot reuse a World screenshot.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42499,10 +42501,12 @@
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.sealed-ui-controls-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ],
       "remaining_gaps": [
-        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+        "Carry-forward policy current-code controls/live validation pending. Historical native controls/live observations remain retained.60FPS/GPU cost/original comparison/interpolation/physical scanout and unexecuted failures remain separate; no live replacement promotion."
       ]
     },
     {
@@ -42578,7 +42582,8 @@
         "HOST.native-render-owner.functional-performance-negative-20261012",
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion.",
@@ -42624,7 +42629,8 @@
       "evidence": [
         "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
         "NR.native-prepared-command-frame.compiled-controls-20261012",
-        "HOST.native-display-deadlines.sealed-ui-controls-20261012"
+        "HOST.native-display-deadlines.sealed-ui-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42678,7 +42684,8 @@
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "NR.native-prepared-command-frame.compiled-controls-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.sealed-ui-controls-20261012"
+        "HOST.native-display-deadlines.sealed-ui-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42804,7 +42811,9 @@
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
         "HOST.native-display-deadlines.independent-worker-controls-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-controls-20261012"
+        "HOST.native-display-deadlines.attribution-controls-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-worker-controls-20261012"
       ],
       "remaining_gaps": [
         "Fresh current dedicated-owner controls and TITAN full native campaign support partial native policy and live observation. ActualWorld27.2142FPS andvisible35.8486/48.8832FPS fail60FPS;source19.0883Hz failsstricter19.5diagnostic although19FPSsmokefloor passes. Full original comparison/replacement,physicalscanout,interpolation,contextloss/recreation,format/dimension changes andunexecuted failurebranches remainpending. Initial50mscopy-order deadlinefailure ispreserved; repeated successfuljourneys do notproveaGAPfix."
@@ -42815,7 +42824,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Drive native World display deadlines independently of UI publications",
-      "scope": "Dedicated owned V5 render owner observes due World clock after source/command work, categorizing UI PRESENT barrier, incomplete UI, pending World import, hidden viewport, new source completion and render attempt. Per-reason opportunities deduplicate global monotonic16.667ms buckets; overlapping reasons are not additive and poll counts are not frame counts. Aggregate CPU elapsed stage histograms include driver waits, not GPU execution, and bounded256slow turns. Instrumented baseline retains existing source FIFO/two credits, UI PRESENT scheduling barrier, native rendering, immutable two-buffer handoff, original simulation/pacing and conservative failure/teardown. Diagnostics do not prove causal GPU/engine costs,60FPS or equivalence. Independent policy admits a due World/HUD redraw despite UI-only PRESENT traffic,using the latest sealed owned UI snapshot while current UI commands are incomplete. Source consumption/import covers its owner turn and prevents a duplicate World draw;pending imports,hidden viewport,unsealed first UI andmixed source generation refuse admission. Last sealed UI is never sampled across new WORLD generations;fresh native World still executes each redraw. Optional baseline environment policy exists only for bounded comparisons. Original strict current-frame replay API remains separate. No source dropping/reordering,simulation/ANI advance,CPUreadback orcached World screenshot substitution. Diagnostic refinement separately identifies absent recipe, first unsealed World UI, sealed static-only UI and source-generation mismatch. Active-only poll costs exclude idle polls. Prepared command recording/reset/seal/import CPU elapsed aggregates and WORLD compilation-start to first World-mapped PRESENT wall latency are bounded aggregate observations; latency includes intervening producer/polling waits and is not attributed to GPU execution. Superseded first-seal waits are counted separately.",
+      "scope": "Dedicated owned V5 render owner observes due World clock after source/command work, categorizing UI PRESENT barrier, incomplete UI, pending World import, hidden viewport, new source completion and render attempt. Per-reason opportunities deduplicate global monotonic16.667ms buckets; overlapping reasons are not additive and poll counts are not frame counts. Aggregate CPU elapsed stage histograms include driver waits, not GPU execution, and bounded256slow turns. Instrumented baseline retains existing source FIFO/two credits, UI PRESENT scheduling barrier, native rendering, immutable two-buffer handoff, original simulation/pacing and conservative failure/teardown. Diagnostics do not prove causal GPU/engine costs,60FPS or equivalence. Independent policy admits a due World/HUD redraw despite UI-only PRESENT traffic,using the latest sealed owned UI snapshot while current UI commands are incomplete. Source consumption/import covers its owner turn and prevents a duplicate World draw;pending imports,hidden viewport,unsealed first UI andmixed source generation refuse admission. A separately opt-in owned-worker policy carries the last complete World-mapped native UI/coordinate snapshot across strictly consecutive WORLD generations only while native World and final-surface identities and extents remain unchanged. It clears current command maps and retains bounded frozen GPU surfaces; first-ever UI, static-only seal, replaced/released identities and skipped generations refuse carry-forward. Newly imported native World is composed once after command batches through inherited UI without an extra World redraw; later due redraws use freshly executed native World. New PRESENT replaces inherited UI, and strict current-frame replay remains unavailable until current-generation seal. Source generation and UI seal-origin generation remain distinct. An environment baseline disables carry-forward for experiments;default command consumers remain opt-out. Optional baseline environment policy exists only for bounded comparisons. Original strict current-frame replay API remains separate. No source dropping/reordering,simulation/ANI advance,CPUreadback orcached World screenshot substitution. Diagnostic refinement separately identifies absent recipe, first unsealed World UI, sealed static-only UI and source-generation mismatch. Active-only poll costs exclude idle polls. Prepared command recording/reset/seal/import CPU elapsed aggregates and WORLD compilation-start to first World-mapped PRESENT wall latency are bounded aggregate observations; latency includes intervening producer/polling waits and is not attributed to GPU execution. Superseded first-seal waits are counted separately.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42886,10 +42895,13 @@
         "HOST.native-display-deadlines.independent-worker-controls-20261012",
         "HOST.native-display-deadlines.sealed-ui-controls-20261012",
         "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
-        "HOST.native-display-deadlines.attribution-controls-20261012"
+        "HOST.native-display-deadlines.attribution-controls-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.carry-forward-worker-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ],
       "remaining_gaps": [
-        "Current diagnostic refinement execution pending; historical controls and full live observation remain historical. Sustained60FPS fails in retained full run. First-seal and static-only/generation classification need a new source-bound observation. GPU execution cost, original comparison/physical scanout/interpolation/unexecuted failures remain pending. No cross-generation UI reuse admitted."
+        "Pre-carry diagnostic full run confirms23.16ms WORLD-to-first-World-seal wall latency,4824 first-seal and3491 static-only opportunities;no generation mismatch/superseded seals. Current carry-forward policy implementation/controls/live observation pending. Sustained60FPS, GPU execution attribution, full original comparison/scanout/interpolation/unexecuted failure branches remain pending. UI is an intentional last-complete presentation policy, not recovered cross-generation original behavior."
       ]
     }
   ],
@@ -90132,6 +90144,83 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.attribution-full-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Pre-carry-forward diagnostic full TITAN native journey;4550 balanced imports/returns,source19.3629Hz,World34.7699FPS,visible28.7063/42.2981,zero readback/fallback. First World seal23.1597ms wall mean;4824 first-seal and3491 static-only due opportunities, zero mismatches/superseded seals. Record/reset/seal/import CPU costs separate. Functional19FPSsmoke passes;60performance fails. Not a paired comparison or GPU execution timing.",
+      "record": "research/runtime/native-display-attribution-full-performance-negative-20261012.json",
+      "sha256": "b7c4756a54462c452778ccaacb52e9694bc19c5b2975332c6399214778b2f81c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/smoke_success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_success",
+          "equals": false
+        },
+        {
+          "pointer": "/functional_flow_success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.carry-forward-worker-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh carry-forward native controls: forty fresh GPU World frames use immutable prior sealed native HUD through pending new-generation UI; current replay remains unsealed, static seal retires mapping, missing/replaced identities/skipped generations refuse. Imported native source presents exactly once outside command batches without duplicate World drawing; default opt-out/strict controls and bounded leases/scratch/shared budget retained. No live60FPS or original comparison claim.",
+      "record": "research/runtime/native-display-carry-forward-worker-controls-20261012.json",
+      "sha256": "3febdeb16a7abdefd3470ff029bf13f5702be4cb1fd7907ec85be9a1c538517f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh carry-forward native controls: forty fresh GPU World frames use immutable prior sealed native HUD through pending new-generation UI; current replay remains unsealed, static seal retires mapping, missing/replaced identities/skipped generations refuse. Imported native source presents exactly once outside command batches without duplicate World drawing; default opt-out/strict controls and bounded leases/scratch/shared budget retained. No live60FPS or original comparison claim.",
+      "record": "research/runtime/native-display-carry-forward-recipe-controls-20261012.json",
+      "sha256": "6b425cb906c07fa4d9385e689b1d9f3a444631577f6ad23ed90560f46ff3fe07",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100873,7 +100962,8 @@
         "NR.native-prepared-command-frame.controls-20261012",
         "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
         "NR.native-prepared-command-frame.compiled-controls-20261012",
-        "HOST.native-display-deadlines.sealed-ui-controls-20261012"
+        "HOST.native-display-deadlines.sealed-ui-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ]
     },
     {
@@ -100898,7 +100988,8 @@
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ]
     },
     {
@@ -100923,7 +101014,8 @@
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ]
     },
     {
@@ -100948,7 +101040,8 @@
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "HOST.independent-native-world-loop.functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ]
     },
     {
@@ -100977,7 +101070,8 @@
         "HOST.native-render-owner.functional-performance-negative-20261012",
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ]
     },
     {
@@ -100994,7 +101088,8 @@
       "evidence": [
         "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
         "NR.native-prepared-command-frame.compiled-controls-20261012",
-        "HOST.native-display-deadlines.sealed-ui-controls-20261012"
+        "HOST.native-display-deadlines.sealed-ui-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ]
     },
     {
@@ -101011,7 +101106,8 @@
       "evidence": [
         "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
         "NR.native-prepared-command-frame.compiled-controls-20261012",
-        "HOST.native-display-deadlines.sealed-ui-controls-20261012"
+        "HOST.native-display-deadlines.sealed-ui-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ]
     },
     {
@@ -101066,7 +101162,8 @@
         "HOST.native-render-owner.buffer-reuse-controls-20261012",
         "HOST.native-render-owner.producer-cache-controls-20261012",
         "HOST.native-display-deadlines.baseline-controls-20261012",
-        "HOST.native-display-deadlines.independent-worker-controls-20261012"
+        "HOST.native-display-deadlines.independent-worker-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-worker-controls-20261012"
       ]
     },
     {
@@ -101086,7 +101183,8 @@
         "HOST.native-render-owner.pooled-performance-negative-20261012",
         "HOST.native-render-owner.cached-functional-performance-negative-20261012",
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ]
     },
     {
@@ -101105,7 +101203,9 @@
       "evidence": [
         "HOST.native-display-deadlines.baseline-controls-20261012",
         "HOST.native-display-deadlines.independent-worker-controls-20261012",
-        "HOST.native-display-deadlines.sealed-ui-controls-20261012"
+        "HOST.native-display-deadlines.sealed-ui-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-worker-controls-20261012",
+        "HOST.native-display-deadlines.carry-forward-recipe-controls-20261012"
       ]
     },
     {
@@ -101121,7 +101221,8 @@
       ],
       "evidence": [
         "HOST.native-display-deadlines.baseline-live-negative-20261012",
-        "HOST.native-display-deadlines.independent-full-performance-negative-20261012"
+        "HOST.native-display-deadlines.independent-full-performance-negative-20261012",
+        "HOST.native-display-deadlines.attribution-full-performance-negative-20261012"
       ]
     }
   ],
@@ -101496,8 +101597,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-display-attribution-20261012.json",
-    "sha256": "0db3d4d6827d8da8eaca18e0ef4bd04b9d35784177f6b559418e0239fb14ae71"
+    "path": "research/runtime/coverage/source-index-native-display-carry-forward-20261012.json",
+    "sha256": "7f049c41924111d1e24dc665e4eddb4f8708d3f0e88f5de03225338d2d2f0b32"
   },
   "claim_bindings_required": true
 }

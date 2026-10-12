@@ -7149,3 +7149,21 @@ classification, immutable leases, pixel checks and teardown. Evidence:
 TITAN observation is in progress; retained60FPS failure remains outstanding.
 No cross-generation reuse, simulation, source FIFO, readback or replacement
 policy change. Other shared-source historical validation remains historical.
+
+### Compatible native UI across source imports (2026-10-12)
+
+Pre-carry TITAN diagnostic confirms23.16ms average WORLD-to-first-World-seal
+wall delay; reset/seal CPU means1.14/0.20ms.4550 balanced source completions,
+functional19FPS smoke passed;60FPS failed (World34.77/paints28.71,42.30).
+Evidence `HOST.native-display-deadlines.attribution-full-performance-negative-20261012`
+retains source/scenario hashes and that failure separately.
+
+An opt-in owned-worker native policy carries the last complete World-mapped
+UI snapshot across consecutive source generations with unchanged native
+World/final identities and extents, while clearing current provenance and
+keeping UI origin separate. New native World can present through it once
+outside command batches, without another World draw. Strict current replay,
+first-frame/static-menu/identity refusals and surface/source/output bounds
+remain explicit. This is a native last-complete UI policy; original equivalence
+is unclaimed. Worker/recipe carry-forward controls pass; full current-code
+TITAN functional/performance validation is pending.60FPS remains outstanding.

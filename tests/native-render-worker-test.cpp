@@ -83,6 +83,24 @@ int main(int argc,char** argv){
             require(consumer.result().preparationTiming[1].samples==3&&consumer.result().preparationTiming[2].samples==3&&consumer.result().preparationTiming[3].samples==3,"Compilation phase counts disagree with commands");
             consumer.abort();renderer.destroy(source);require(!renderer.stats().surfaces,"Diagnostic controls leaked surfaces");
         }
+        {
+            mnm::render::GlBlitter renderer(viewport.context());
+            auto source=renderer.create({800,600,std::vector<std::uint32_t>(480000,0x7e0)},{16,{0xf800,0x7e0,31}});
+            unsigned presented=0;
+            mnm::render::CommandConsumer consumer(renderer,[&](auto){++presented;},{mnm::render::CommandDiagnostics::Skip,false,mnm::render::CommandStreamMode::Streaming,[&](auto,auto){return renderer.presentGpu(source);},true,true});
+            unsigned seq=0;auto submit=[&](unsigned op,std::initializer_list<unsigned> fields){
+                mnm::render::SurfaceCommand c;c.version=4;c.operation=op;c.sequence=++seq;std::copy(fields.begin(),fields.end(),c.words.begin());
+                if(op==1){c.image={800,600,std::vector<std::uint32_t>(480000)};c.format={16,{0xf800,0x7e0,31}};}consumer.submit(c);
+            };
+            submit(1,{1,800,600,16,0xf800,0x7e0,31});submit(1,{2,800,600,16,0xf800,0x7e0,31});
+            submit(19,{1,1,0,123,0});require(!consumer.presentImportedSealed(),"First source invented UI");
+            submit(3,{1,2,0,0,800,600,0,0,0,0});submit(6,{2});
+            submit(19,{1,2,0,123,0});
+            require(!consumer.preparedGeneration()&&consumer.sealedGeneration()==2&&consumer.displayState().sealedSourceGeneration==1,"Carried UI source identity lost");
+            require(consumer.presentImportedSealed()&&presented==2&&!consumer.presentImportedSealed(),"Imported World failed exactly-once native presentation");
+            require(consumer.result().inheritedSourcePresentations==1&&consumer.result().inheritedUiImports==1&&consumer.result().firstWorldSeal.samples==1,"Carried source presentation confused first new UI seal");
+            consumer.abort();renderer.destroy(source);require(!renderer.stats().surfaces,"Inherited source controls leaked surfaces");
+        }
         QTemporaryDir dir;require(dir.isValid(),"Temporary directory");
         NativeRenderWorker worker(viewport,dir.filePath("world"),dir.path(),dir.filePath("report.json"));
         require(worker.create(dir.filePath("commands"),271,2,10000),"Worker channel create");
@@ -125,6 +143,6 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
+        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

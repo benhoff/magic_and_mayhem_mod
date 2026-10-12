@@ -419,3 +419,64 @@ parent/current SHA-256 receipt chains:21 transitions, zero missing receipts.
 The retained history report is
 `working/tests/native-display-attribution-history-20261012.json`; this is
 committed-history accounting, not new execution or a historical gate-pass claim.
+
+### Full diagnostic result and compatible UI carry-forward
+
+The pre-carry full TITAN run is preserved separately in
+`native-display-attribution-full-performance-negative-20261012.json`. All
+casting/combat/spell/portrait/menu/resume/normal-Quit checks and the19FPS smoke
+passed:4550 World completions/imports/original returns balanced, zero ordinary
+readbacks/fallback, two source/output credits, private Wine cleanup and original
+manifest checks passed. Source19.3629Hz, World34.7699FPS, visible paint28.7063/
+42.2981FPS. The60FPS benchmark failed and stays a negative result.
+
+First World-mapped UI seal mean23.1597ms wall/max889.026ms (startup included),
+with4550 completed seals and no superseded seals. Due opportunity classifications
+include4824 first-seal and3491 static-only; absent recipe, pending import, mixed
+generation, and UI-publication barrier counts are zero. Counts can overlap and
+are not additive causal losses. Compilation record mean0.0411ms per record
+(150569 records), reset1.1384ms per World, seal0.1950ms per PRESENT, import0.5091ms
+per World. Active command polls mean2.3952ms, active World polls17.0575ms including
+startup; extra World9.0047ms plus UI1.8638ms. This distinguishes a substantial
+first-seal wall wait from reset/seal costs, while retaining native draw cost as
+another budget pressure. It does not isolate GPU execution or prove a paired
+performance gain.
+
+An explicit opt-in native presentation policy now permits `restart` to retain
+only the complete frozen native UI/coordinate/work surfaces across consecutive
+WORLD generations when both native World and final-surface identities and
+extents remain unchanged. Current mutable coordinate maps are destroyed and
+initialized for the new source, so no previous command provenance is admitted
+as current. Current generation and sealed-UI origin generation remain distinct.
+The frozen UI replaces old World-owned pixels with freshly supplied native World
+pixels; its literal HUD stays the last complete UI until a new PRESENT. Strict
+current-frame replay continues to refuse the incomplete generation.
+
+Absent first UI, static-only seals, released/replaced native identities, changed
+World handle and nonconsecutive generations refuse carry-forward. A new static
+PRESENT retires the old World map; menus cannot resurrect it. The same explicit
+prepared-surface/pixel bounds count retained snapshots together with new maps;
+there is no growing per-generation history. This is an intentional native UI
+presentation policy, not recovered original cross-generation behavior.
+
+The newly imported native World can be composed through inherited UI once after
+command batches finish, without reexecuting the World draw or advancing engine
+state. Its counter is separate from ordinary PRESENT and extra World redraws.
+Default command consumers opt out. Only the dedicated owned worker enables it;
+`MNM_WORLD_FIRST_SEAL_BASELINE=1` or the existing UI-clock baseline disables it
+for bounded comparisons. Source FIFO/ACK/two credits, normal Quit, immutable
+output leases and zero-readback requirements are unchanged.
+
+Current native controls are retained in
+`native-display-carry-forward-worker-controls-20261012.json` and
+`native-display-carry-forward-recipe-controls-20261012.json`. They cover40 fresh
+World frames with prior sealed HUD through partial new-generation updates,
+strict-current refusal, incompatible identity/skipped-generation refusal,
+static-map retirement, replacement by new seal, exactly-once imported-source
+presentation, existing pixel/key/clip/translation and scratch/shared bounds.
+
+The committed implementation range7f6d1ab1..d517eb95 was reviewed:15 exact file
+receipt transitions, no unresolved chains; report
+`working/tests/native-display-attribution-implementation-history-20261012.json`.
+Prior broad shared-source consumers retain pending historical validation.
+Full current carry-forward TITAN observation remains pending at this milestone.

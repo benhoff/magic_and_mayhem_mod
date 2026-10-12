@@ -7,7 +7,7 @@ namespace mnm::render {
 namespace {const PixelFormat tags{32,{0xff0000,0xff00,0xff}};}
 NativeFrameRecipe::NativeFrameRecipe(GlBlitter& renderer,unsigned world,std::uint64_t generation,const std::map<unsigned,SurfaceId>& handles):renderer_(renderer),world_(world),generation_(generation),worldSize_(renderer.dimensions(handles.at(world))){
  if(!world || !generation)throw std::invalid_argument("Prepared native frame identity");
- ensure(world,handles,true);
+ worldIdentity_=handles.at(world);ensure(world,handles,true);
 }
 NativeFrameRecipe::~NativeFrameRecipe(){for(auto& pair:maps_)renderer_.destroy(pair.second);drop(work_);drop(coordinates_);drop(ui_);}
 void NativeFrameRecipe::drop(SurfaceId& surface){if(surface){const auto s=renderer_.dimensions(surface);pixels_-=std::size_t(s.width())*s.height();renderer_.destroy(surface);surface=0;}}
@@ -69,7 +69,15 @@ void NativeFrameRecipe::seal(unsigned id,const std::map<unsigned,SurfaceId>& han
   if(!coordinates_){budget(count);coordinates_=renderer_.cloneSurface(found->second);pixels_+=count;}else renderer_.restoreSurface(found->second,coordinates_);
   if(!work_){budget(count);work_=renderer_.allocate(size.width(),size.height(),{16,{0xf800,0x7e0,31}});pixels_+=count;}
  }else{drop(work_);drop(coordinates_);}
- final_=id;dirty_=false;recorded_=0;
+ final_=id;finalIdentity_=original;sealedSourceGeneration_=generation_;dirty_=false;recorded_=0;
+}
+bool NativeFrameRecipe::restart(unsigned world,std::uint64_t generation,const std::map<unsigned,SurfaceId>& handles){
+ const auto source=handles.find(world),final=handles.find(final_);
+ if(!sealedReady() || !hasWorldOutput() || world!=world_ || generation_==UINT64_MAX || generation!=generation_+1 ||
+    source==handles.end() || source->second!=worldIdentity_ || final==handles.end() || final->second!=finalIdentity_ ||
+    renderer_.dimensions(source->second)!=worldSize_ || renderer_.dimensions(final->second)!=renderer_.dimensions(ui_))return false;
+ for(auto& pair:maps_){auto id=pair.second;drop(id);}maps_.clear();
+ generation_=generation;dirty_=true;recorded_=0;ensure(world,handles,true);return true;
 }
 GpuFrame NativeFrameRecipe::render(const GpuFrame& world){
  if(!ready())throw std::logic_error("Incomplete compiled native frame");
