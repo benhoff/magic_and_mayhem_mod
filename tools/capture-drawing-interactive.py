@@ -43,7 +43,7 @@ def main():
     if a.whole_updates:names += ['runtime/engine-cadence/update_boundary.h','runtime/scene/whole_update_capture.h','protocols/include/mnm/canvas_producers_v4.h','runtime/scene/sample_admission.h','tools/drawing_source_completion.py']
     if a.producer_update_binding:names += ['runtime/engine-cadence/queue_point.h','protocols/include/mnm/engine_cadence_queue_point_v1.h','runtime/scene/drawing_update_points.h','tools/drawing_producer_updates.py']
     if a.engine_cadence:names += ['runtime/engine-cadence/observer.c','runtime/engine-cadence/entry.S','tools/build-engine-cadence.py','tools/engine_cadence.py','tools/drawing_engine_windows.py','tools/drawing_quit_completion.py']
-    if a.source_held_snapshot:names += ['runtime/drawing/source_held_snapshot.h','tools/drawing_source_held_snapshot.py']
+    if a.source_held_snapshot:names += ['runtime/drawing/source_held_snapshot.h','tools/drawing_source_held_snapshot.py','tools/drawing_source_held_refusal.py']
     if a.source_worker_lease:names += ['runtime/drawing/source_worker_lease.h','tools/drawing_source_worker_lease.py']
     if a.source_readonly_lease:names += ['runtime/scene/drawing_source_lease.h','runtime/drawing/source_readonly_lease.h','tools/drawing_source_lease.py']
     if a.source_byte_witness:names += ['runtime/scene/drawing_source_bytes.h','runtime/drawing/source_byte_witness.h','tools/drawing_source_byte_witness.py']
@@ -218,6 +218,15 @@ def main():
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
         if channel:channel.close();channel_file.close()
         verify('original-after')
+    rejection_path=capture/'source-held-refusal.bin'
+    if rejection_path.exists():
+        from drawing_source_held_refusal import decode as decode_held_refusal
+        try:
+            report['source_held_rejection']=decode_held_refusal(rejection_path.read_bytes())
+            report.update(success=False,admitted=False)
+            failure=failure or ValueError('Held-source diagnostic refused')
+        except Exception as error:
+            failure=error;report.update(success=False,admitted=False,error=str(error))
     if x11_library and report.get('success'):
         from drawing_x11_delivery import decode_delivery
         try:

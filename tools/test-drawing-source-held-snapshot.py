@@ -24,7 +24,7 @@ def main():
     claims = json.loads(a.claims.read_text())
     sources = dict(claims['sources'])
     for name in ('tools/test-drawing-source-held-snapshot.py', 'tests/drawing-source-held-snapshot-test.c',
-                 'runtime/drawing/wine_submission.h', 'runtime/drawing/source_byte_witness.h', 'runtime/drawing/source_held_snapshot.h', 'runtime/drawing/source_worker_lease.h', 'runtime/drawing/source_readonly_lease.h', 'runtime/drawing/session.c'):
+                 'runtime/drawing/wine_submission.h', 'runtime/drawing/source_byte_witness.h', 'runtime/drawing/source_held_snapshot.h', 'runtime/drawing/source_worker_lease.h', 'runtime/drawing/source_readonly_lease.h', 'runtime/drawing/session.c', 'tools/drawing_source_held_refusal.py', 'tests/test-drawing-source-held-refusal.py'):
         sources[name] = sha((ROOT/name).read_bytes())
     if any(sha((ROOT/n).read_bytes()) != h for n, h in sources.items()):
         raise ValueError('Prospective source changed')
@@ -52,8 +52,9 @@ def main():
         with (run/'wineboot.log').open('x') as out:
             subprocess.run(['wineboot', '-u'], env=env, stdout=out, stderr=subprocess.STDOUT, check=True, timeout=90)
         from drawing_source_held_snapshot import analyze
+        from drawing_source_held_refusal import decode as rejection
         cases=[]
-        for mode,expected in [('g',0),('c',99),('m',99),('r',99)]:
+        for mode,expected in [('g',0),('c',99),('m',99),('r',99),('b',99),('s',99)]:
             target=run/mode;target.mkdir()
             env.update(MNM_FIXTURE_MODE=mode,MNM_DRAW_SESSION_DIRECTORY='Z:'+str(target).replace('/', '\\'))
             with (target/'fixture.log').open('x') as out:
@@ -66,6 +67,10 @@ def main():
                 expected=b''.join(struct.pack('<H',i&65535) for i in range(480000))
                 if any((target/f['path']).read_bytes()!=expected for f in observed['frames']):raise ValueError('Protected snapshot pixels')
                 case.update(journal_sha256=sha(raw),observed=observed)
+            else:
+                diagnostic=rejection((target/'source-held-refusal.bin').read_bytes())
+                if diagnostic['reason_code']!={'c':5,'m':4,'r':1,'b':3,'s':2}[mode]:raise ValueError('Wrong held rejection guard')
+                case['rejection']=diagnostic
             cases.append(case)
         if any(sha((ROOT/n).read_bytes()) != h for n,h in sources.items()):
             raise ValueError('Fixture sources changed during execution')
@@ -73,7 +78,7 @@ def main():
                       artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),
                       cases=cases,protected_snapshot_pairs=1,exact_begin_end_identity_verified=True,
                       original_game_executed=False,async_egl_completion_covered=False,
-                      scope='Actual PE32 protected source pages, ordered copies after protection and before restore, exact plane identity; mismatch, changed canvas and copy refusal. No original source ownership or hardware completion.')
+                      scope='Six actual PE32 explicit rejection and protected source cases; protected source pages, ordered copies after protection and before restore, exact plane identity; mismatch, changed canvas and copy refusal. No original source ownership or hardware completion.')
         a.report.parent.mkdir(parents=True,exist_ok=True)
         a.report.write_text(json.dumps(report,indent=2)+'\n')
         print(json.dumps(dict(success=True,cases=len(cases))))

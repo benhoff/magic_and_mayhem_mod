@@ -7557,3 +7557,21 @@ pointerreuse/wholeCOM/resource/textureownership next;resolve sourcelease shutdow
 coupling separately. Allroute/caller/action/cadence/full47/21gaps remainopen,
 step2ongoingsteps3–7ordered. Reviewedf04d3bc5..a8ac7fdfhas14matchedreceipts/0gaps.
 Storageapproximately1048GiBworking279GiBfree;no cleanupperformed.
+
+### DRAW-02 step 2: held-source refusal diagnostics
+
+A separate bounded record now identifies the exact selected snapshot guard
+before diagnostic exit99. The accepted snapshot protocol remains unchanged.
+Six PE32 cases and three decoder methods pass, including partial geometry,
+getter refusal, invalid metadata, changed canvas and changed protected bytes.
+Two combined resource/source-lease original captures completed normally with
+118 protected pairs and 222 completed source commands each, without emitting
+a refusal record. Original resource run01 remains an unresolved, unreproduced
+negative result; teardown state does not establish its cause. No whole ownership,
+all-route cadence or DRAW-02 completion status is promoted.
+
+The second combined run also supplies 104 eligible protected-source/worker/EGL
+witnesses that match native replay exactly, with 262 exclusions retained. The
+first comparison attempt is preserved as an Xvfb failure with zero frames
+compared; the rerun exits0 and compares all104. This validates only the admitted
+cohort and does not resolve the earlier refusal or whole DRAW-02 acceptance.

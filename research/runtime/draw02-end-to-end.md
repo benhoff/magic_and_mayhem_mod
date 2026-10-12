@@ -890,3 +890,16 @@ unobservedexplicit. Earlier combinedleaseexit andQuitACKrace reports stayfailed;
 metadata-onlysuccess doesnotresolvelease shutdown coupling. No mapbuffer/private/
 GPUbytes are read. Reassessment: exact CPUbuffer/mapbuffer/upload lifetime,
 resource/COMreuse/callers/routes/actions/cadence remainopenbeforestep2completion.
+
+Step 2 reassessment after resource/held-source diagnostics: the bounded refusal
+record is tested, and two combined original runs close normally. The earlier
+refusal remains unreproduced, so a shutdown-race fix is not claimed. Continue
+with exact public map-buffer association to known original canvas storage;
+complete upload/lifetime, route/action and cadence evidence is still required
+before step 3.
+
+The second combined run also supplies 104 eligible protected-source/worker/EGL
+witnesses that match native replay exactly, with 262 exclusions retained. The
+first comparison attempt is preserved as an Xvfb failure with zero frames
+compared; the rerun exits0 and compares all104. This validates only the admitted
+cohort and does not resolve the earlier refusal or whole DRAW-02 acceptance.

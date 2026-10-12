@@ -43524,7 +43524,9 @@
       "evidence": [
         "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
         "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012"
+        "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012",
+        "DRAW02.held-refusal-native-01-negative-20261012",
+        "DRAW02.held-refusal-native-02-native-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43592,6 +43594,50 @@
       "remaining_gaps": [
         "SevenPE32forward/error/512BFP/nullfailedmap/unreadablebox/interval controls andresource/Quithelper tests pass. Finaloriginal04observes5229calls2647getters1291map/unmapclosed0unknown/allmapsknowntexturegen;365API364EGLnormalexit0ACKnotobservedexplicit. Original01combinedleaseearlyshutdownand02QuitACKrace retainednegative;03historicalsuccessful1openinterval.",
         "CPUsource/mapbuffer exactidentity/bytes andupload ownership,resourcepointerreuse/newgeneration/wholetexture/COMlifetimes,unobservedroutes/callers/actions/cadencecontrols/full47/21acceptance remainopen. Sourcelease shutdowncoupling01unresolvedseparately. Metadataobserverneverreadsprivateobjectlayouts/GPU/mapbufferbytes."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-held-refusal",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded held-source rejection record",
+      "scope": "Record the exact failed protected-source snapshot guard, API/lease/phase identity, scalar call geometry and source metadata before diagnostic exit99. Accepted snapshot protocol is unchanged. A rejection report diagnoses admission only; it never establishes source ownership or native parity.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-held-refusal.md"
+      ],
+      "implementation": [
+        "runtime/drawing/source_held_snapshot.h",
+        "tools/drawing_source_held_refusal.py"
+      ],
+      "tests": [
+        "tests/drawing-source-held-snapshot-test.c",
+        "tools/test-drawing-source-held-snapshot.py",
+        "tests/test-drawing-source-held-refusal.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/source_byte_witness.h"
+      ],
+      "evidence": [
+        "DRAW02.held-refusal-fixture-01-native-20261012",
+        "DRAW02.held-refusal-parser-01-native-20261012",
+        "DRAW02.held-refusal-original-01-live-20261012",
+        "DRAW02.held-refusal-original-02-live-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Six PE32 cases and three decoder methods pass. Two original-active combined runs close normally without rejection; the earlier resource-original01 refusal remains unreproduced and cause unassigned. Diagnostic cannot identify an event it did not capture.",
+        "All guard branches beyond fixture coverage, source/map/upload ownership and storage reuse, whole source/COM/texture lifetimes, other routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
       ]
     }
   ],
@@ -92873,6 +92919,127 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.held-refusal-fixture-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Six PE32 protected-copy and exact rejection guards; no original storage ownership.",
+      "record": "research/runtime/draw02-held-refusal-fixture-01.json",
+      "sha256": "dcea052b175fec397f7b6d8114a46c7ffee0531138f748f50b16098aaaac14e5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.held-refusal-parser-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Three bounded rejection decoder methods; no original execution.",
+      "record": "research/runtime/draw02-held-refusal-parser-01.json",
+      "sha256": "3bcd15087f2c52bec2c0df9a1cf1df20fcf3e96ff0fe99486dba0be9945053b0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.held-refusal-original-01-live-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded combined resource/held-source original-active run with no rejection; normal exit. Earlier refusal not reproduced or resolved.",
+      "record": "research/runtime/draw02-held-refusal-original-01.json",
+      "sha256": "da304047f23843f51f8339489038018cea577a7c1fdbb796360ab6532c999654",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.held-refusal-original-02-live-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded combined resource/held-source original-active run with no rejection; normal exit. Earlier refusal not reproduced or resolved.",
+      "record": "research/runtime/draw02-held-refusal-original-02.json",
+      "sha256": "1ff841eac2717ee12a14862bb8fbdd6295aafd5ae7d1fbdf55f7afadcecdc18c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.held-refusal-native-01-negative-20261012",
+      "kind": "static",
+      "scope": "Xvfb aborted before native frames; 104 selected candidates but zero compared. No parity result.",
+      "record": "research/runtime/draw02-held-refusal-native-01.json",
+      "sha256": "ecfae4dd9a6c8f884a9beb288a973904dbbc38335d005258ff4a5ca5f0157725",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.held-refusal-native-02-native-20261012",
+      "kind": "native_integration",
+      "scope": "104 exact protected-source/API command/worker/EGL physical witnesses match native replay; 262 exclusions retained. No full drawing or source lifetime claim.",
+      "record": "research/runtime/draw02-held-refusal-native-02.json",
+      "sha256": "7a3edd60da8a7004b531ceffe54e7f7eb1fd723489ac98ce198620de3c9891fc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104378,7 +104545,8 @@
       "evidence": [
         "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
         "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012"
+        "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012",
+        "DRAW02.held-refusal-native-02-native-20261012"
       ]
     },
     {
@@ -104414,6 +104582,36 @@
       "evidence": [
         "DRAW02.draw02-wine-resource-original-03-live_observation-20261012",
         "DRAW02.draw02-wine-resource-original-04-live_observation-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.held-source-refusal-fixture",
+      "level": "headless",
+      "scope": "Explicit held-source guard rejection; no ownership or complete drawing claim.",
+      "behaviors": [
+        "NR.drawing-source-held-refusal"
+      ],
+      "tests": [
+        "tools/test-drawing-source-held-snapshot.py"
+      ],
+      "evidence": [
+        "DRAW02.held-refusal-fixture-01-native-20261012",
+        "DRAW02.held-refusal-parser-01-native-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.held-source-refusal-original",
+      "level": "live_observation",
+      "scope": "Explicit held-source guard rejection; no ownership or complete drawing claim.",
+      "behaviors": [
+        "NR.drawing-source-held-refusal"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.held-refusal-original-01-live-20261012",
+        "DRAW02.held-refusal-original-02-live-20261012"
       ]
     }
   ],
@@ -104788,8 +104986,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-resource-map-quit-20261012.json",
-    "sha256": "5c6118ebce84e0a0299d41e72880a1e34e3944e0145864da78dc16aecaaccce7"
+    "path": "research/runtime/coverage/source-index-draw02-held-refusal-20261012.json",
+    "sha256": "d67b201dd256f08ef49db69255ee0ff74c039a0f075321278bc0c595b9bae24e"
   },
   "claim_bindings_required": true
 }
