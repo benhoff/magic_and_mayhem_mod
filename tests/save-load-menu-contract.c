@@ -10,6 +10,7 @@ __declspec(allocate(".fixture")) volatile u8 fixture_space[0x300000];
 u32 saved_esp,callback_result,abi_failure;
 u32 invoke_action(u32,void*,u32);
 static u32 fades,disabled,loads,writes,writer_result,overwrite,modal_count;
+static u32 deferred,enabled,closed;
 static u8 modal[0x100],allocated[0x100];
 static char passed_name[128];
 static u32 get(const void* p){const u8* b=p;return b[0]|((u32)b[1]<<8)|((u32)b[2]<<16)|((u32)b[3]<<24);}
@@ -20,6 +21,9 @@ static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
 static void require(int condition,u32 code){if(!condition)ExitProcess(code);}
 static void THIS fade(void* p){require(p==(void*)0x6de4e8||p==(void*)0x6de7c8,10);++fades;}
 static void THIS disable(void* p){require(p==(void*)0x680000,11);++disabled;}
+static void THIS enable(void* p){require(p==(void*)0x680000,34);++enabled;}
+static void THIS close_modal(void* p){require(p==modal,35);++closed;}
+static u32 THIS request(void* p,u32 argument){require(p==(void*)0x6de7c8&&!argument,36);++deferred;return 0;}
 static u32 THIS load(const char* name){++loads;copy(passed_name,name,12);return writer_result;}
 static u32 __attribute__((fastcall)) save(const char* name,u32 admitted){++writes;overwrite=admitted;copy(passed_name,name,12);return writer_result;}
 static void* allocate(u32 size){require(size==0x61,12);zero(allocated,sizeof(allocated));return allocated;}
@@ -34,10 +38,11 @@ static void reset(void* object,u32 id){zero(object,0x80);put((u8*)object+4,id);p
 void start(void){
  fixture_space[0]=1;u32 old;require(VirtualProtect((void*)0x470000,0x290000,0x40,&old),1);
 #define INSTALL(name) install(name##_address,name##_bytes,sizeof(name##_bytes))
- INSTALL(load_button);INSTALL(load_tick);INSTALL(save_button);INSTALL(save_tick);INSTALL(edit_set);INSTALL(list_select);INSTALL(list_get);
+ INSTALL(load_button);INSTALL(load_tick);INSTALL(save_button);INSTALL(save_tick);INSTALL(save_confirmation);INSTALL(edit_set);INSTALL(list_select);INSTALL(list_get);
  stub(0x557510,(void*)&fade);stub(0x4ca950,(void*)&disable);stub(0x4ea280,(void*)&load);stub(0x4ea5a0,(void*)&save);
  stub(0x597850,(void*)&allocate);stub(0x4cef40,(void*)&construct);stub(0x4cefa0,(void*)&destroy);stub(0x597870,(void*)&release);
  stub(0x4cfbd0,(void*)&bind);stub(0x4cfbe0,(void*)&bind);stub(0x4cf010,(void*)&message);
+ stub(0x4ca930,(void*)&enable);stub(0x4a5000,(void*)&close_modal);stub(0x4ab870,(void*)&request);
  void* object=(void*)0x6de4e8;u8* p=object;Action button=(Action)load_button_address;Tick tick=(Tick)load_tick_address;
  for(u32 caller=3;caller<=17;caller+=14){reset(object,12);put(p+0x60,caller);put((void*)0x657d37,123);
    require(!invoke_action((u32)button,object,1)&&fades==1&&get(p+0x43)==1&&get((void*)0x657d37)==(caller==3?0:123),20);}
@@ -52,6 +57,9 @@ void start(void){
  for(u32 admitted=0;admitted<=1;++admitted){reset(object,13);copy((void*)0x680300,"  fixture-save",15);put(p+0x5f,admitted);tick(object);
    require(writes==1&&overwrite==admitted&&passed_name[0]=='f'&&!get(p+0x5f)&&get(p+0x43)==1&&fades==1,28);}
  reset(object,13);writer_result=2;tick(object);require(writes==1&&modal_count==1&&get(p+0x3b)==(u32)modal&&get(p+0x5f)==1&&!p[0x63]&&!fades,29);
+ for(u32 answer=0;answer<3;++answer){reset(object,13);put(p+0x5f,1);put(p+0x3b,(u32)modal);put(p+0x57,0x680000);deferred=enabled=closed=0;
+   require(!invoke_action(save_confirmation_address,object,answer)&&get(p+0x5f)==1&&!writes,37);
+   require(deferred==(answer==0)&&closed==(answer<2)&&enabled==(answer<2)&&get(p+0x3b)==(answer<2?0:(u32)modal),38);}
  /* The filename setter copies a terminator; list selection is reset then selected,
   * preventing the original toggle-on-selected behavior from undoing a request. */
  void* edit=(void*)0x680200;invoke_action(edit_set_address,edit,(u32)"second-save");require(!((char*)0x680300)[11],30);
@@ -59,6 +67,6 @@ void start(void){
  Action select=(Action)list_select_address;invoke_action((u32)select,list,1);invoke_action((u32)select,list,1);require(get((u8*)list+0x5b)==0xffffffff,31);
  invoke_action((u32)select,list,0xffffffff);invoke_action((u32)select,list,1);require(get((u8*)list+0x5b)==1&&((Tick)list_get_address)(list)==0x680701,32);
  require(!abi_failure,33);
- const char report[]="{\"success\":true,\"cases\":13,\"real_game_launched\":false,\"save_io_stubbed\":true}\n";u32 wrote;
+ const char report[]="{\"success\":true,\"cases\":16,\"real_game_launched\":false,\"save_io_stubbed\":true}\n";u32 wrote;
  WriteFile(GetStdHandle(0xfffffff5),report,sizeof(report)-1,&wrote,0);ExitProcess(0);
 }

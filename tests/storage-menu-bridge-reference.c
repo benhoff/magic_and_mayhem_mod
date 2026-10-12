@@ -8,7 +8,7 @@ static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
 static u32 saves,deletes,removals,fades;
 static void THIS fade(void* p){++fades;((u8*)p)[0xc]=1;}
 static void THIS disable(void* p){(void)p;}
-static u32 THIS save_request(void* p,u32 index){require(!index,10);++saves;((u8*)p)[0x63]=((u8*)p)[0x64]=1;return 0;}
+static u32 THIS save_request(void* p,u32 index){require(!index&&!get((u8*)p+0x5f),10);++saves;((u8*)p)[0x63]=((u8*)p)[0x64]=1;return 0;}
 static int WIN delete_file(const char* path){require(equal(path,"Save\\second.sav",16),11);++deletes;return 1;}
 static void THIS remove_row(void* p,const char* stem){(void)p;require(equal(stem,"second",7),12);++removals;}
 static void stub(u32 address,void* target){((u8*)address)[0]=0xe9;put((void*)(address+1),(u32)target-address-5);}
@@ -36,8 +36,9 @@ void start(void){
     host(3,MNM_MENU_STORAGE_ACCEPT,2,0);menu_poll(p,1);require(menu_status==MNM_MENU_OK&&p[0x64]&&get((void*)0x6e385b)==1&&equal((void*)0x6e3b10,"second",7),43);
     p[0x64]=0;menu_poll(p,1);require(!p[0x64]&&menu_request==3,44);
     p=setup(1,1);menu_poll(p,0);require(menu_ready&&menu_screen==13,45);
-    for(u32 i=0;i<3;++i){const char* bad=i==0?"../escape":i==1?"CON":"trailing.";host(4+i,MNM_MENU_STORAGE_ACCEPT,0,bad);menu_poll(p,1);require(menu_status==MNM_MENU_INVALID&&!saves,46);}
-    host(7,MNM_MENU_STORAGE_ACCEPT,0,"new-save");menu_poll(p,1);require(menu_status==MNM_MENU_OK&&saves==1&&p[0x64]&&equal((void*)0x6e3b10,"new-save",9),47);p[0x64]=0;menu_poll(p,1);require(saves==1,48);
+    put(p+0x5f,2);require(storage_dispatch(p,MNM_MENU_STORAGE_ACCEPT,0,(const u8*)"new-save")==MNM_MENU_UNAVAILABLE&&get(p+0x5f)==2&&!saves,52);put(p+0x5f,1);
+    for(u32 i=0;i<3;++i){const char* bad=i==0?"../escape":i==1?"CON":"trailing.";host(4+i,MNM_MENU_STORAGE_ACCEPT,0,bad);menu_poll(p,1);require(menu_status==MNM_MENU_INVALID&&!saves&&get(p+0x5f)==1,46);}
+    host(7,MNM_MENU_STORAGE_ACCEPT,0,"new-save");menu_poll(p,1);require(menu_status==MNM_MENU_OK&&saves==1&&!get(p+0x5f)&&p[0x64]&&equal((void*)0x6e3b10,"new-save",9),47);p[0x64]=0;put(p+0x5f,1);menu_poll(p,1);require(saves==1&&get(p+0x5f)==1,48);
     p=setup(1,1);menu_poll(p,0);host(8,MNM_MENU_STORAGE_DELETE,2,0);menu_poll(p,1);require(menu_status==MNM_MENU_OK&&deletes==1&&removals==1,49);
     put(p+0x3b,0x6e3d00);menu_poll(p,0);host(9,MNM_MENU_STORAGE_CANCEL,0,0);menu_poll(p,1);require(menu_status==MNM_MENU_UNAVAILABLE&&!fades,50);
     put(p+0x3b,0);menu_poll(p,0);menu_retired=1;host(10,MNM_MENU_STORAGE_CANCEL,0,0);menu_poll(p,1);require(menu_status==MNM_MENU_RETIRED&&!fades,51);ExitProcess(0);

@@ -604,6 +604,21 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI39 validates campaign Save overwrite No/Yes, native Delete No/Yes,
+original/native row refresh, Save/Load Cancel, deleted-row exclusion and normal
+Quit/exit0 on Wine-window embedding. All pre-existing owned saves stay unchanged;
+only a unique test-created save is deleted. [Result and policy](storage-confirmations-live.md).
+The first live attempt exposed original confirmation `0x4abb20`: No closes its
+modal while retaining admission `+0x5f`, so another Save can bypass confirmation.
+Sixteen private original cases and a private adapter fixture pass. Each fresh
+native Save now clears retained admission after guards, preserving original Yes
+continuation; this is intentional native policy, not baseline equivalence.
+Negative evidence and historical hashes remain retained. Persistent-baseline
+deletion, write/load failures, crash durability, more callers, native-command
+startup and remaining campaign/multiplayer menu integration remain outstanding.
+The committed `8e18162..596d6a4` audit has zero missing required exact receipts,
+separate from current source changes.
+
 2026-10-12 UI38 validates native Qt campaign Save/Load on the Wine-window
 embedding route: an actual 351,734-byte original save, original list-row load,
 World/Mini return, original confirmation/report and normal Quit/exit0; owned

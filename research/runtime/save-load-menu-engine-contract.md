@@ -42,6 +42,13 @@ and returns; result 2 creates the original overwrite modal and sets admission 1.
 The original confirmation and remaining error/delete branches must be retained
 and separately tested before live activation. Result 1 is not durable-write proof.
 
+The later [confirmation investigation](storage-confirmations-live.md) executes
+original Yes/No callback `0x004abb20`. No closes the modal while retaining
+overwrite admission, permitting a subsequent writer call without another
+confirmation. Each fresh native Save now obtains fresh original approval;
+original Yes still completes its existing deferred request. This is intentional
+native transaction policy, not recovered baseline equivalence.
+
 Fixture correction, 2026-10-12: the first private fixture omitted the two
 immediate bytes after the Load button/list setter `RET` opcodes. Its process
 completed without a calling-convention assertion, so its retained result does

@@ -521732,6 +521732,538 @@
         ],
         "reason": "Final bounded live scenarios are separately recorded only for HOST.native-campaign-save-load and NP.storage-menu-ownership. Corrected depth6 private PE32 adapter and Qt transaction checks pass; four owned-store unit groups pass. Other shared historical campaign/render/audio/menu/coverage contracts keep their old statuses and stale fingerprints after source/index/document dependencies changed. Native command startup, overwrite/delete dialogs, write/load failures, more realms/callers, cadence and whole restored-state/durability comparisons remain pending. Audit is clean with no census/import drift; no comparison or replacement is promoted."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "d9d93d30464474c76ec3cc1621f455c28c7d739133d0722aabb4af830e4d5380",
+          "before_sha256": null,
+          "id": "HOST.native-storage-confirmations"
+        },
+        {
+          "after_sha256": "d765930bf3612ff6902c9acc5c75af747c4a5eafa110c6ddf755e36a84f7b735",
+          "before_sha256": "ae2e4e35694585773926b3ffa1348cb27412d0a585137e0f213694bf568aa5c4",
+          "id": "NP.storage-menu-ownership"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "be2ba537e7c21c65011c29bdc58ec8f6cabe5d66209afb5b5c53d058005c7c3e",
+          "before_sha256": "c3b6701e5b262c734c0c7c606206d15ecd4ad1636ddbcae86a3b8521f2608414",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "ef7b62982b2d97e7765ae866da271aa56b256b32999e3015b2c8bafd39877d45",
+          "before_sha256": "fa5896b60dc82ca9d4d53b074b5d6ddc555108e29d8aa0f62209ec0a13a8672c",
+          "path": "apps/qt-shell/campaign_smoke_test.hpp"
+        },
+        {
+          "after_sha256": "1005b3bf0385a732a1d75e271efc3ac126a821a710f2a3dcc8f145de45001f79",
+          "before_sha256": null,
+          "path": "apps/qt-shell/campaign_storage_boundary_test.cpp"
+        },
+        {
+          "after_sha256": "cce480d4a0a20c4c9a3de6c6416fd38287410c609866d7e690480ad31eca9f82",
+          "before_sha256": "77906f08ffc6b2bdea040d5d6574d7c3c6ca2a56dd4364c72a49d2e52de54256",
+          "path": "apps/qt-shell/campaign_storage_test.cpp"
+        },
+        {
+          "after_sha256": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+          "before_sha256": "76b5747013970fa0bdd74aff5cd7703cf2ebda72d686e83a2646d6248d4aa6d6",
+          "path": "runtime/menu/storage.h"
+        },
+        {
+          "after_sha256": "f1039d30d5902c072458468eb11ec34595038e11f2b6eef31702fc7de49ec541",
+          "before_sha256": "344e3f41ff8c9586416754e7d1961997ba93bfc8ceee6da4ceecda28c8bcc19b",
+          "path": "tools/menu-storage-input.py"
+        },
+        {
+          "after_sha256": "1a945f1fe7a06e5483ab9b41ddf2f01d09a436edeb6807d2f126a09d4d676b99",
+          "before_sha256": null,
+          "path": "tools/test-live-storage-confirmations.py"
+        }
+      ],
+      "id": "storage-confirmations-fresh-live-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed the exact native transaction and harness versions. After ownership/control/name/destination guards, a fresh Save clears retained admission before the original callback; unknown admission rejects, invalid/duplicate requests preserve it, and original Yes continues the same deferred write. Live private unique-save journey checks No byte/time preservation, renewed original confirmation, Yes replacement write, native Delete No/Yes, original/native list refresh, Save/Load Cancel and deleted-row absence, same thread, exact callbacks and normal Quit/exit0. Full owned baseline remains unchanged. These are bounded native policies on Wine-window embedding with original writer/graphics/audio/simulation; not serializer, renderer or baseline-admission equivalence.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI39.confirmations-live"
+        ],
+        "reason": "Source-stable run-afe0t_z1 pins prospective NP.storage-menu-ownership and HOST.native-storage-confirmations contracts/scenario and complete current source/compiler dependencies. Required original callback sequence matches, original overwrite No preserves bytes/time, renewed Yes changes the hash/time, one delete callback refreshes rows, native/original Load exclude the deleted unique save, normal Quit returns launcher0 and final owned merge has no baseline changes. Native command presentation and full failure/durability/state comparisons are outside this proof."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "f7e96cec73e84f1c944d5d6342c2faee0c86bd378dd4b9b5cc2c58a7468eddd4",
+          "before_sha256": "f7e96cec73e84f1c944d5d6342c2faee0c86bd378dd4b9b5cc2c58a7468eddd4",
+          "id": "BR.main"
+        },
+        {
+          "after_sha256": "16c6ff8b50b60fc5579841890f592f8eda1775ba0b4d0de276b0636c3277ac9c",
+          "before_sha256": "cfb54684f4a3cf4d4031952dcfb1806462ace779eb7cbf918603e0312136fe52",
+          "id": "CP.campaign-defeat-report"
+        },
+        {
+          "after_sha256": "fb5038e49b6d25cf0f32fbd6014fc2bef124e2c01ffb69ae78fdaae5c46ca62a",
+          "before_sha256": "797713b4ec36b43dcbbf38106387274210970d08586c8c78ffb66689a291e8b0",
+          "id": "CP.campaign-mini-cancel"
+        },
+        {
+          "after_sha256": "e4a788fccba9d82fcf5c3c70070b2f5da07d43b0591b4e570ef695c6070f8a3e",
+          "before_sha256": "c32dd6d46baee15492cd00253375feee39402714e9b69d26f712a0162bb56638",
+          "id": "CP.campaign-mini-lifecycle"
+        },
+        {
+          "after_sha256": "4f1b334c20434ed85363b52e77995d77c90af39fc1373da59f9e3e350aa5d41a",
+          "before_sha256": "540944689a83226bfb290f7ec8f7c67d16f6fc33a85d7795b441c1a6e18ee6dd",
+          "id": "CP.campaign-mini-preferences"
+        },
+        {
+          "after_sha256": "8c79312e82a3e7ff51da2b01da9f2a70e1ea45759c9c6b2f9cdd982bdf044ad3",
+          "before_sha256": "393aa50acd8553211b9640144d1e686222799f59e5b22896b949508dfab02e66",
+          "id": "CP.campaign-mini-quit"
+        },
+        {
+          "after_sha256": "6770b13298e247773b42703967aea6348058b074b8930f2d7fa0ea52d34436f3",
+          "before_sha256": "9b066611c6b9ff41ca61680b8136ea407093aeb6aac59d87ec772008e8c41577",
+          "id": "CP.campaign-mini-quit-lifecycle"
+        },
+        {
+          "after_sha256": "47ea61678e05c8c5fc3b269d812eaf38dd45e6fa36353f1f8b7ccbf44e98c65e",
+          "before_sha256": "47ea61678e05c8c5fc3b269d812eaf38dd45e6fa36353f1f8b7ccbf44e98c65e",
+          "id": "CP.campaign-preferences-lifecycle"
+        },
+        {
+          "after_sha256": "4063338772560fb4a0db20349541026fb99fefd631d43db0cdc8c5ba6a1fc9fd",
+          "before_sha256": "b3a4c27151b10e101f0a42538b22af9a3b8428530ff6cf644ca1f59028eb61db",
+          "id": "CP.campaign-world-handoff-observation"
+        },
+        {
+          "after_sha256": "17a10d1a759078965109fa4210a8525cb362e19f467a0c4b02f338e90cf87295",
+          "before_sha256": "34199be868550b4c732a92b00443bdbd3c7abf2a9b0740792466a37a6b0f52e3",
+          "id": "CP.region-entry-bridge"
+        },
+        {
+          "after_sha256": "c8adce17c19b1abed3e90d92b30f37567ccab75e4b8e28fa6b3a4deba96ab240",
+          "before_sha256": "cee18890c98abe8f17a8a6f6ba4e339ba3cb57b52cd5dd0f3b0ff1a1ff9530c0",
+          "id": "CP.region-entry-enter"
+        },
+        {
+          "after_sha256": "8133c09809050b9a1fae6adb3ee0b2370a1d4872ba76b5af2b5720e57e01f21f",
+          "before_sha256": "c752ad4c7e33ce36c80c6893df5fbd1309ca8946fc4f5c9616319a7868f24cf5",
+          "id": "CP.save-load-menu-controls"
+        },
+        {
+          "after_sha256": "8046f0df088679f9c99d55e0ef9c25479206ec4bd816d250173a3af626e072f9",
+          "before_sha256": "f1e41c526e619b9cc2db8cbb2fccd4a089d4a37b13a02994e86645da9bcbb7fd",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "74cf33334db3fe61566d9cba63f0e277b6020f6ec85e7aca636162e7df88868b",
+          "before_sha256": "f4f01d7f73b730a85649b02ac53ca8d48a3f48cf83656fd808c5f77deca4753a",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "d5b169062f46c58f0937e90d44c736e6ab3a547e03977fec65f287af6cc46871",
+          "before_sha256": "1ecbcd1017a3a292b823bc2e8f86cb25e95bf69f7c27da066dfc6b81a1d850ed",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "60b925f3d48c125db499e509262c9a2abe00b11703787d0b952588d6488d8cb2",
+          "before_sha256": "d0cea3c62c5b661db9299015926daf1816b395cab0f3ff6e3fa9a193c312bc40",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "2b029a8f131f05525753ad816c7a94aebbb8366547ffa32c3c40a2cb83b2d9c8",
+          "before_sha256": "1188f9baa6dc3519f046209c15e669a5f917f2e13b1a90653dcdbab150801477",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "4778d4be7d534de30b1bac866cefe2099f4c01f2f1a82adca670e762096c985f",
+          "before_sha256": "0c4ec6e30e202333206323506928f04b4942cc84c8305976c913e74540dec0fb",
+          "id": "HOST.native-campaign-save-load"
+        },
+        {
+          "after_sha256": "09bc2e955aa76a5af9c07fb8332af9e5c38dc26731bfd8fdc36656234363fcf0",
+          "before_sha256": "bba32dacb063cfc9b6e50a8a0755c8478ddbbe3bac3cd9b58116145b1abeec0b",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "ab52c97bfb86fe264220409fec1883e236ab295f492750c7f8fae6d24f90d9da",
+          "before_sha256": "7a6d5fa850287d2b17460eaee26812fe4ebdcad68235f78d747ec4159570086f",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "b5ebe428c4d8316c6170576c24e88decf065c63701aa261ae3b7d06c81166b06",
+          "before_sha256": "2b8bceeabbbcd9f93450ed26fa583737ef3685c6478e41781a4856e692e88a62",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "bbe336c0b5da1e95a3ad960f06e1c4dd298f038e7292e790b63b47372dedddf2",
+          "before_sha256": "e6b8f153936d8e62760af7d41f3ffffbad17913a16581cad11f8646518e8696a",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "8093c430c57de6bef4eee320288132150db17eb22bd27f0ea9df24caa1b121ad",
+          "before_sha256": "9bfb37f0704c725c6d315e2e2377ca4746df88b08e8c0c086b969a80f63f092a",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "81b0d327d42fd6fd67c424f345205c80f5fdefcf9a6427ee119e24936838abd7",
+          "before_sha256": "e97bab6ab25327bd569c44141b545c16d207312c89596ca8b1d9604cc1d1c1b5",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "c90213f75a8c48427b93ee189e256ffeddc9bcdefa5a1cc042e8980c33b5ccb7",
+          "before_sha256": "5c6aefa46e09b664426b70cba7ddde5361e387885d478fc5f2357e2c13e96abe",
+          "id": "HOST.native-menu-audio"
+        },
+        {
+          "after_sha256": "06b67c97c5ad9b3a7b4ed5b2032c91628258c7f25a023dbac6463a5e0d15e7e5",
+          "before_sha256": "5809ea772c10bad6efefc02544c8d6432f191ea37849e374c635d391958aba9f",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "c82f8977cb3e3a0edcdf40589d9c0ece684040420df36b6c96037d0e5fcf9459",
+          "before_sha256": "3dd52c994c95879cc6abba36895efde9c300738326258c238527d02df043854c",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "5c2b846bd3f5214f159b298ef1c655dcd817b7cd99addf6946aa043fb48a37fc",
+          "before_sha256": "896a0ff5383087d0f9e39479cb78bb353b804b5ad4a829ce5089de89fbaaa685",
+          "id": "HOST.native-render-draw-cadence"
+        },
+        {
+          "after_sha256": "5c6f22e7dd6e2aacb1dfd0bb9c2fa8a289786e8009eba268a337e760b7d6455d",
+          "before_sha256": "6e243f2067d95fc595c5b06e6554fcf953c6ef88360f2d07bc20f27d2e07deb6",
+          "id": "HOST.presentation"
+        },
+        {
+          "after_sha256": "208dccade2213efc5166d28781c09167153bc727ab3b3823c0b44095c6d36a55",
+          "before_sha256": "9ba3f0cfc2a107ff636db19346424fb7ade3da12faa0ebd861124713e2cf3fbb",
+          "id": "NP.campaign-defeat-policy"
+        },
+        {
+          "after_sha256": "dc2fc96a81f69d904e70df3f02259d7d8e2649b50c4cae07c01472db8ceabf2b",
+          "before_sha256": "c99b3d5054a9af423513e8a3352d864b9bb38a95dee16c3166c6c525373af364",
+          "id": "NP.campaign-mini-cancel-policy"
+        },
+        {
+          "after_sha256": "8c14160028cff02530ea669da8aa93e32a5bae7356b9483e84354a6ab3d3b665",
+          "before_sha256": "4f8a9856023d14a775aa85a1d3ec76b93df0d968682816fa538614e15d8cff1b",
+          "id": "NP.campaign-mini-quit-policy"
+        },
+        {
+          "after_sha256": "54e84a76a59189f6e3ccd2590d8affcf6e49ffc61c0681616e52343a7b210e5f",
+          "before_sha256": "ede59169a42cab59e24356b69a1eca928f51390ed0f053e72380781b08b0fa88",
+          "id": "NP.campaign-preferences-policy"
+        },
+        {
+          "after_sha256": "31f4f50a73713b5fdf1826a318180f3cdd8c0a68ea3848616f855ccbd1144eee",
+          "before_sha256": "31f4f50a73713b5fdf1826a318180f3cdd8c0a68ea3848616f855ccbd1144eee",
+          "id": "NP.menu-save-store"
+        },
+        {
+          "after_sha256": "afd74e39629dc469134b8b21ead214b7472bb93144668da72d8caf1300f5a393",
+          "before_sha256": "afd74e39629dc469134b8b21ead214b7472bb93144668da72d8caf1300f5a393",
+          "id": "NP.preferences-draft"
+        },
+        {
+          "after_sha256": "95cee300dd83a75546f8c14e8fe9be3194bc43081dbf8a83bbfc603c74df39f8",
+          "before_sha256": "95cee300dd83a75546f8c14e8fe9be3194bc43081dbf8a83bbfc603c74df39f8",
+          "id": "NP.preferences-persistence"
+        },
+        {
+          "after_sha256": "dfdb247d353eabb662a5e492e3d004cf26573b956d7f0ad0b312d070098d15b3",
+          "before_sha256": "3d8205a6cd198604965106e40ad92b6d095e7a632b26ce683e1e8d041aa0e31f",
+          "id": "NP.region-entry-fresh-policy"
+        },
+        {
+          "after_sha256": "bf6b97d776bc1663fa246e7df7bd3829ddaeaed2957939862eb2256c33063379",
+          "before_sha256": "12104e79b829b99fa8536197aa49d755bd05aab41dc9faf7e50ad64f21f0b206",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "3d8c1e585034211801c255e07790cc3b63452b7d3b3a8271f0dd66e2c15360e8",
+          "before_sha256": "2377029a7cc6c694542d93e052b6ba1aa142bd48dedf4448750e9f5a9ccd4287",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "398ccd45a2b078ec4ddde7a2a9deed5eba9ef679570ca2887f00189089bfb4e2",
+          "before_sha256": "faf5e181ed5b0e7949c6236ca8aa93fc1020add30090e5caf79e4d81417413bd",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "4cc5b5df9315a1096b5665e30a54c7c0fb8146d80ede691b46314bec7c71cb36",
+          "before_sha256": "b5316756753b8e155ee781a3b7b4650ef14a073570b962ac5a71031dc363c3ba",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "926c9c6cf0bb16af1dc5937bb1c061e3e7243434d34e68675b122bad02a6c5c1",
+          "before_sha256": "600100b052423fe4bd32eec7e751998b7e19f2e312f64727d926f8c9a80d6420",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "8f865b1dd0ee3aced49c527530d933e113166287cec79f4e36a1d5d171f70199",
+          "before_sha256": "f2a129faaef7e49303d503b2c5867ae165fac7199ec2d3212a0c85a67e0a67dc",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "fa4db0b7be1a95600273baa0b5593a01fa7f7b00add136d4eae2f3d9bdf54b72",
+          "before_sha256": "07cc63871a4e8893078f5bdad211db3b63d66d1b4a8684238e83137e6c0062b5",
+          "id": "NR.movie-frame-production"
+        },
+        {
+          "after_sha256": "3c503e630ef9d3b1d817b82d84d0895d492fbe841eb7de15f7b12056543c441c",
+          "before_sha256": "eaaec38d6b4784bfdee4a101362eecbcdf636553ab1776f281ca0b32870c70c5",
+          "id": "NR.presentation-damage"
+        },
+        {
+          "after_sha256": "1261d2488a5d5878f5bc259af1923e29cde6a5c4a1fde1319d915bedbf066331",
+          "before_sha256": "0ee372c249747ed15c26ec4e69993dde250c0c2526e038928f2a6642e1a55102",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "5eda5c5f80811f29467018c7c2735c04a798e8010efb49d0c8cfdad18300c4fc",
+          "before_sha256": "cccde2c116b207d5c985178048f3bc385aa0e91ca49c4009c9fa00ac5b97ae25",
+          "id": "NR.resident-normal-shutdown"
+        },
+        {
+          "after_sha256": "4253ddc5a72a9c7433cc1efab023c39e34f9bb6f526c8e795cc4c6c0c998384a",
+          "before_sha256": "fa1fe82f98f58bb195503560b3d4342c919b5cc502d4450d6c831eb218574966",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "d0fa4d1f3839216ff87ee4e7dc126a51a022083d073f7428b8391daf2fbbb40a",
+          "before_sha256": "d0fa4d1f3839216ff87ee4e7dc126a51a022083d073f7428b8391daf2fbbb40a",
+          "id": "PR.apply"
+        },
+        {
+          "after_sha256": "f563e584df11da8b7a5d580076c2b83654bf2500cb308fc6f4146b57cf548a48",
+          "before_sha256": "f563e584df11da8b7a5d580076c2b83654bf2500cb308fc6f4146b57cf548a48",
+          "id": "PR.audio-preview-cancel"
+        },
+        {
+          "after_sha256": "0876874445554da747abd538c7ba0b2263f0d1a2bc0c7d73aaf9c1703282761d",
+          "before_sha256": "0876874445554da747abd538c7ba0b2263f0d1a2bc0c7d73aaf9c1703282761d",
+          "id": "PR.control-admission"
+        },
+        {
+          "after_sha256": "6fcc0719be156087cf43051a9ac887990d432f0ec005754e7f23882ff7b443fa",
+          "before_sha256": "6fcc0719be156087cf43051a9ac887990d432f0ec005754e7f23882ff7b443fa",
+          "id": "PR.main-entry"
+        },
+        {
+          "after_sha256": "f2c1588a3a65274089751ab616df9374c1cdc5811295f43c71697bb01d7a7044",
+          "before_sha256": "0052df88011e592733c6626251d59ebaf29531ad1ab996ff97e5cb5faaf8a7e7",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "19f8058f9cc5e721cfe747a7922516d6fbe3b44b5dc2d6bc27744e916ffbf466",
+          "before_sha256": "19f8058f9cc5e721cfe747a7922516d6fbe3b44b5dc2d6bc27744e916ffbf466",
+          "id": "UI.save_game"
+        },
+        {
+          "after_sha256": "aadfbaf7e56cc6063b4168fb13c6b92e968511705882499fca95441c84c4caae",
+          "before_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+          "id": "WIRE.menu_fixtures"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "be2ba537e7c21c65011c29bdc58ec8f6cabe5d66209afb5b5c53d058005c7c3e",
+          "before_sha256": "c3b6701e5b262c734c0c7c606206d15ecd4ad1636ddbcae86a3b8521f2608414",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "ef7b62982b2d97e7765ae866da271aa56b256b32999e3015b2c8bafd39877d45",
+          "before_sha256": "fa5896b60dc82ca9d4d53b074b5d6ddc555108e29d8aa0f62209ec0a13a8672c",
+          "path": "apps/qt-shell/campaign_smoke_test.hpp"
+        },
+        {
+          "after_sha256": "1005b3bf0385a732a1d75e271efc3ac126a821a710f2a3dcc8f145de45001f79",
+          "before_sha256": null,
+          "path": "apps/qt-shell/campaign_storage_boundary_test.cpp"
+        },
+        {
+          "after_sha256": "cce480d4a0a20c4c9a3de6c6416fd38287410c609866d7e690480ad31eca9f82",
+          "before_sha256": "77906f08ffc6b2bdea040d5d6574d7c3c6ca2a56dd4364c72a49d2e52de54256",
+          "path": "apps/qt-shell/campaign_storage_test.cpp"
+        },
+        {
+          "after_sha256": "2c48cb831cb169999e71367cc0086d864be9a69e88d8f35943fdd4a0cc54f693",
+          "before_sha256": "2c48cb831cb169999e71367cc0086d864be9a69e88d8f35943fdd4a0cc54f693",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "fbe099474b8e9c965c3a2afadd0b5768f7fa387298aaa558ea70f955afc6b5f8",
+          "before_sha256": "fbe099474b8e9c965c3a2afadd0b5768f7fa387298aaa558ea70f955afc6b5f8",
+          "path": "apps/qt-shell/live_storage_menu_controller.cpp"
+        },
+        {
+          "after_sha256": "dae2e5902e7b97b46cdb9a3f8941186eff13a29f873975184f5923efeaea7ce0",
+          "before_sha256": "dae2e5902e7b97b46cdb9a3f8941186eff13a29f873975184f5923efeaea7ce0",
+          "path": "apps/qt-shell/save_game_widget.cpp"
+        },
+        {
+          "after_sha256": "fba030b0258405b2f254571c23626d4a62a1a7faecca24030e6a9d99c6e21c13",
+          "before_sha256": "b72ca090094348b4402f454f9c7d3da1bbc324ad94ef8d09ef92b71e186cf4d4",
+          "path": "research/formats/menu-migration-inventory.md"
+        },
+        {
+          "after_sha256": "0ad845dd4e17d1a4e71e2f7f5e25c0b482ffe6518f53cbc73d9bb945e2f3d43b",
+          "before_sha256": "54410716e91eacdb19e70ddc187f01d55c61cd23d758f49184be148d8095d8e0",
+          "path": "research/runtime/campaign-save-load-live.md"
+        },
+        {
+          "after_sha256": "1b4af462d1970870424ec8ac0282aa6ee325ad0390838de0d668458ea583f7fd",
+          "before_sha256": "a060a644d4a1ed366f2f434babd5cc221c5519f75098a3046edc63caba952757",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8a66b94bb2ee5b46e3f7f090057f84f60efda71836bd9a9eddcbb5e16102d8f2",
+          "before_sha256": "87033386d571c5cbad8a9cac967bfd7ecafce726bcd6d8a0e966c39432238e2a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "397f77d501095eeed07298454cc0180b8ee1bb485681d9c7f9be6023bd9c7725",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-storage-confirmations-20261012.json"
+        },
+        {
+          "after_sha256": "7c5a524c5968f5eb9b0cab1a6aa3e20081c1320da415f089332ee95e8177198d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/storage-confirmation-history-20261012.json"
+        },
+        {
+          "after_sha256": "197bfb5532489c4e449f260909b7b26e66b141038d867ec2c90fbaf1004fc053",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-storage-confirmations-20261012.md"
+        },
+        {
+          "after_sha256": "ad20921d36c4fea4d74fcd59611f2296fe5e0f3cf333a93dc2cae51095d94af4",
+          "before_sha256": null,
+          "path": "research/runtime/save-load-confirmation-contract-20261012.json"
+        },
+        {
+          "after_sha256": "cef37fea0211533aa68ef4ff4826ff104e665d978f3cf9c719f160f48508bdf4",
+          "before_sha256": "d8618f13b7887fbb8435b0e3e8486b4c620293ca2a1412224726c874e03d6a59",
+          "path": "research/runtime/save-load-menu-engine-contract.md"
+        },
+        {
+          "after_sha256": "9cb858e1954fdcc4939030e0c32c38ed2d4e135ea7eb473182a5ba3bd920d6d3",
+          "before_sha256": null,
+          "path": "research/runtime/storage-confirmations-live-20261012.json"
+        },
+        {
+          "after_sha256": "7d7fa12617815e62941ddb613355d82bf3378afc10974bde52bbc2b12c225194",
+          "before_sha256": null,
+          "path": "research/runtime/storage-confirmations-live.md"
+        },
+        {
+          "after_sha256": "2eb0dd2f4fedff4ee5f10e5c836313c0f235103ce80627b188cbcfd9bcb15819",
+          "before_sha256": null,
+          "path": "research/runtime/storage-fresh-admission-fixture-20261012.json"
+        },
+        {
+          "after_sha256": "dbbf7e1e083d155088165a9b4530647ab583c543dac4926cc49908713495c59f",
+          "before_sha256": null,
+          "path": "research/runtime/storage-overwrite-admission-negative-20261012.json"
+        },
+        {
+          "after_sha256": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+          "before_sha256": "76b5747013970fa0bdd74aff5cd7703cf2ebda72d686e83a2646d6248d4aa6d6",
+          "path": "runtime/menu/storage.h"
+        },
+        {
+          "after_sha256": "fa14f114a7ec592b73cae0efb752703f9ca95602d7f9dbb735398d9daf9624a3",
+          "before_sha256": "03b9a8fee0a832825c623b1b7044208446b3fd2e2876f96a9e39a014c1a92f81",
+          "path": "tests/save-load-menu-contract.c"
+        },
+        {
+          "after_sha256": "f8f20e612333a6a570e9ee8683ff78e00d06cb9359b709a99154506da2b307db",
+          "before_sha256": "caed4eb9e8f575de9aa56a9a3c22b0e7918537328b04e297a6639ccb1dcb75ee",
+          "path": "tests/storage-menu-bridge-reference.c"
+        },
+        {
+          "after_sha256": "f1039d30d5902c072458468eb11ec34595038e11f2b6eef31702fc7de49ec541",
+          "before_sha256": "344e3f41ff8c9586416754e7d1961997ba93bfc8ceee6da4ceecda28c8bcc19b",
+          "path": "tools/menu-storage-input.py"
+        },
+        {
+          "after_sha256": "140152d2802856ec4d3b12a0795cd96fc1c2c09ee3d925c4414fdf4a545a60a7",
+          "before_sha256": "140152d2802856ec4d3b12a0795cd96fc1c2c09ee3d925c4414fdf4a545a60a7",
+          "path": "tools/menu_save_store.py"
+        },
+        {
+          "after_sha256": "7e2c049d16dd2023a4cff7331c82f77084bcfade1457344652e51ac649e1c5bd",
+          "before_sha256": "7e2c049d16dd2023a4cff7331c82f77084bcfade1457344652e51ac649e1c5bd",
+          "path": "tools/run-menu-observer.py"
+        },
+        {
+          "after_sha256": "1a945f1fe7a06e5483ab9b41ddf2f01d09a436edeb6807d2f126a09d4d676b99",
+          "before_sha256": null,
+          "path": "tools/test-live-storage-confirmations.py"
+        },
+        {
+          "after_sha256": "8fad6824d067484521bc2a977da5241baf856672ab64cbcea3bea3d5cdeb5635",
+          "before_sha256": "c737df8c5b936e676e3412cda31c21dd307507e5062854bebd44d35c400f982d",
+          "path": "tools/test-save-load-menu-contract.py"
+        }
+      ],
+      "id": "storage-confirmations-recovered-policy-and-historical-gaps-20261012",
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:d15201890b4838df874db553cbdf2eedbd82fc51e4688aa9b6296d6ca593a1f1",
+        "behaviors_without_comparison:d1fdc7e2c5c43924ad130362e1e59065c168113ec1da4002210adddd9bfb5eff",
+        "retired_execution_claims:5fa9a9862c3f5d404b37b18b8029d4aeeb4cc814d7c181dd56fe3130059791a0",
+        "stale_evidence:00a0480bbd7a90c4892ac21f005dd7b8cd2b3706955e4f7c8aebbcc9923cd090",
+        "stale_evidence:01d76ae8aec3fa879e26f7b53eb8e98ddb6154501c718ba8edebcc9fda3f3af7",
+        "stale_evidence:086d0e00b11fc273c4e7dffb5bfc00a1c418e7e4e01258c273346748ced114e9",
+        "stale_evidence:08f8e054f717ee73e85e39d6666f71c54130e97a5e1c2e238e3ec7048919f5c4",
+        "stale_evidence:08fb7c4f6953b13ce275c7b8a04c9553a16e7d8cd27d716db5227521bdbcf2b1",
+        "stale_evidence:1c368534fa5091b9f1190969aac4b83e7f3b0d48d3e1084a311d96df2c8316bc",
+        "stale_evidence:206ea317a5eb54176755fa1ed4a6173ba7fb949f7e647a11eb0f57e4073e299a",
+        "stale_evidence:2462e0cbc83429581a17ba2b171007f60a722bba62d90d886d2f36d395962f66",
+        "stale_evidence:2d1a3edc731920511b2cff195beae87f66a4343641c6f0ba74a2e46960de791c",
+        "stale_evidence:2e04d6d627d89cb38fc52aec2700acf23f53c160f084b1613debe1349cc1eee7",
+        "stale_evidence:3568b0e95877d831ba06acae573f0275a25d9bb618891207d923b5111e489bc7",
+        "stale_evidence:3e5c7683e78571172e961328d76326d1394a029f9ce6f1d38c8ae6450723be76",
+        "stale_evidence:45581f956d99b6aa7eeefb9255d7f9a7049f343d0cf5682922ece48f5246bb46",
+        "stale_evidence:4bbf11f2f88ed81d019c1ab854f0756604906eee31720e779931b7cb0285f8aa",
+        "stale_evidence:4c156a13067d60115e4f01a42b3b7cb43969c1e75f027b6b8e2149a6d86e1cc0",
+        "stale_evidence:5166d78e89cfa175e6db0e3ea00766b3efba4e3b0025b42d34dc8de23a79ec4f",
+        "stale_evidence:51ffc50746a54b07499424705ec322a79e75004992803ae0045f53b727a73533",
+        "stale_evidence:5514ea45b8d96009ae48baa0886c876ce5c94b489acd08ee9276b8e7d620c951",
+        "stale_evidence:5fa42fbae4555d5ef5381d49cdeb0d83eb2ebc055f8f6ead547f61b525538da0",
+        "stale_evidence:63cb7e9d87107b29c7e80c493bea325591b57d3ea6e70950366cb24f7e0c4f55",
+        "stale_evidence:68d39aed92a7d096518020b71a339282a9f8cc0daefc86ba5eb33ce8e1e1b7de",
+        "stale_evidence:88b24565e6ea0f95982777c9f9dda98048c9aa1e87b92507d10c8bc7f12c49b2",
+        "stale_evidence:9135efa17d584b3e6ac7c8108ed93f2d3fdaf7098ee8e3c26612f99faf80892b",
+        "stale_evidence:a19e2bf810107cb248128de60604154dfe48b04aa8cf7c66e048d1f0b9d764f6",
+        "stale_evidence:add643bc37acdf0ca9030f4f9a554c982f58697451928476eca2f03e8752dd96",
+        "stale_evidence:b008f87a1cab752fa3ff2bcff719773c9ff6e5bbe11f2823353b0e8031bba715",
+        "stale_evidence:cab3b7532cdccc4d2db7ba6d616459be5b2890bec298a0d8b78fc59d4bec2a78",
+        "stale_evidence:cf19344cd60483216b88ca4ee8a228a0c2196174dde3ee92ff06b9a60308c5db",
+        "stale_evidence:d1c89fb5b030a584208bfa6aab2724e9da9a2693561ea150e42770fd095f7755",
+        "stale_evidence:d7312b576538213864c0b10f96775ff72adbaa3d869a91a18e5ce986d91cf170",
+        "stale_evidence:ec0f0ffc52d331f0614a79fe672a7e4c0a4dfefae07d04e2c965bb23eaecab6d",
+        "stale_evidence:f0dc7567bfa7ebde0d598faebc1497ad35b969b2fd5a4edd472518fdef0636f2",
+        "validation_gaps:11546ecdca7dde5dde0e546defa83abd15bebc9dfd2a5e99ff9794e2cd5ab272",
+        "validation_gaps:93b5382c7f237abf72df8d7cea5804f1e60971b8721d0f9a84a064af98cc27ed"
+      ],
+      "reason": "Reviewed all 28 exact source/link/research transitions and 57 affected contracts, source census and generated summary. New original confirmation range 0x4abb20..0x4abb7f is absent from pinned Ghidra owning functions, so its tested full return and eight pinned entry bytes justify a scoped recovered-range exception without altering discovery boundaries or dropping unknowns. Sixteen original private cases establish No retaining admission, Yes deferring and invalid answers preserving state, with helper/I/O stubs and ABI checks. Private native fixture rejects unknown admission, preserves invalid/duplicate requests and resets only a fresh valid Save. Bounded live negative report retains No preservation and subsequent unconfirmed write/timeout; positive successor separately binds current NP/HOST claims. Menu inventory/ledger/docs now distinguish preview from tested live Save/Load and explain native policy. Committed 8e18162..596d6a4 required receipts are complete; no retrospective gate/equivalence is inferred. Historical evidence hashes and old code indexes are preserved.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "UI39.original-confirmation",
+          "UI39.admission-fixture",
+          "UI39.confirmations-live"
+        ],
+        "reason": "Original and adapter private fixtures pass, three focused Qt storage/Save/Load checks pass, and bounded live confirmations/normal Quit pass. Fresh scope-bound validation is separately recorded only for the NP/HOST native policies. CP understanding has newly executed original branches with private helper stubs, retains implementation/comparison/integration/replacement none and makes no serializer equivalence claim. Shared historical menus/render/audio/coverage contracts retain their old independent statuses with the 37 explicit new anchor, comparison, retired-claim and stale-evidence limitations. Failed writes/loads, persistent-baseline deletion, broader callers/realms, cadence/crash/full-state equivalence and native-command startup remain pending. Audit has zero errors/census/import drift."
+      }
     }
   ]
 }

@@ -60,11 +60,17 @@ retain the source session. Store `.retain` pins prevent automatic cleanup.
 
 The source store is `working/user-saves/native-menu`; original media and the
 installation template are not modified by saving. Per-file atomic copying is
-native policy, not original serializer/durability equivalence. Overwrite/No/Yes,
-delete confirmation, failed writes/loads, more realms/parents, long play and
+native policy, not original serializer/durability equivalence. Failed writes/loads,
+more realms/parents, long play and
 full restored-state comparison remain separate validation cases. The original
 overwrite/error dialogs remain active. Native command/audio startup and live
 save/load on that route remain unresolved.
+
+The later [confirmation run](storage-confirmations-live.md) validates original
+overwrite No/Yes, native Delete No/Yes and refreshed Save/Load rows for a unique
+test-created save. It also fixes retained original admission between distinct
+native requests. Deletion of a save present in the persistent baseline remains
+a separate file-store integration case.
 
 ```sh
 python3 tools/working-retention.py run --reserve-gib 3 -- python3 tools/test-live-campaign-storage.py

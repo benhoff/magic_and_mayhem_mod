@@ -92,11 +92,20 @@ enumeration and original battle setup/return semantics remain unconnected.
 
 Load Game now has a [native save-selection preview](../runtime/load-game-qt.md)
 with caller-supplied save IDs, synchronized filename/list controls and guarded
-Load/Cancel actions. Actual save enumeration/loading remain unconnected.
+Load/Cancel actions. [Live Main/campaign integration](../runtime/campaign-save-load-live.md)
+now projects original enumeration and selection, delegates original loading,
+returns to World/Mini and restores a persistent save in a fresh process on
+Wine-window embedding. Other callers, failures and complete restored-state
+comparison remain pending.
 
 Save Game now has a [native naming/selection preview](../runtime/save-game-qt.md)
 with supplied save IDs, local overwrite/delete confirmation and caller-specific
-Cancel navigation. Actual persistence and engine overwrite rules remain open.
+Cancel navigation. [Live campaign Save](../runtime/campaign-save-load-live.md)
+delegates original serialization and merges normal-exit files into an owned
+store. [Overwrite and delete confirmation](../runtime/storage-confirmations-live.md)
+passes bounded No/Yes and row-refresh cases; fresh native Save obtains fresh
+original overwrite approval. Original error dialogs remain active. Failed writes,
+persistent-baseline deletion and full durability comparison remain pending.
 
 Preferences has a [native settings preview](../runtime/preferences-qt.md),
 [recovered original contract](../runtime/preferences-engine-contract.md), and

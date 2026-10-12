@@ -13,3 +13,4 @@ void installCampaignSmokeTest(QApplication&,QMainWindow&,LiveMenuSession&,const 
 void installNativeHealingSmokeTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);
 
 void installCampaignStorageTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);
+void installCampaignStorageBoundaryTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
