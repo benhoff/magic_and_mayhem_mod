@@ -55,7 +55,7 @@ def main():
             while struct.unpack_from('<I',mapping,80)[0]!=1:
                 if server.poll() is not None or time.monotonic()>deadline:raise RuntimeError('Native wave broker not ready')
                 time.sleep(.001)
-            if mapping[:8]!=b'MNMAUD01' or struct.unpack_from('<II',mapping,8)!=(3,SIZE) or struct.unpack_from('<I',mapping,124)[0]!=1:
+            if mapping[:8]!=b'MNMAUD01' or struct.unpack_from('<II',mapping,8)!=(4,SIZE) or struct.unpack_from('<I',mapping,124)[0]!=3:
                 raise RuntimeError('Invalid native wave channel')
             sequence=0;total=0
             def load(name):

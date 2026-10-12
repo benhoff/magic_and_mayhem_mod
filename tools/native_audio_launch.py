@@ -3,7 +3,7 @@ import hashlib
 import struct
 
 SIZE = 128 + 16 * 1024 * 1024
-VERSION = 3
+VERSION = 4
 
 
 def authorize(root, metadata, environment):
@@ -28,7 +28,7 @@ def authorize(root, metadata, environment):
     if header[:8] != b'MNMAUD01' or words[2:4] != (VERSION, SIZE) or words[20] != 1:
         raise ValueError('Native voice broker is not ready')
     wave_enabled = metadata.get('native_wave_loading', False)
-    if type(wave_enabled) is not bool or words[31] != int(wave_enabled):
+    if type(wave_enabled) is not bool or metadata.get('native_extended_controls') is not True or words[31] != (2|int(wave_enabled)):
         raise ValueError('Native WAV policy differs from the staged session')
     if any(words[4:19]) or any(words[21:31]):
         raise ValueError('Refusing stale native voice channel')

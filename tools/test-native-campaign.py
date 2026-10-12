@@ -388,6 +388,7 @@ def main():
     parser.add_argument('--default-music',action='store_true',help='Verify native CD routing without an explicit shell music flag')
     parser.add_argument('--legacy-media',action='store_true',help='Opt out of native movie/file-sound routing')
     parser.add_argument('--no-native-music',action='store_true',help='Opt out of the native CD route')
+    parser.add_argument('--skip-movies',action='store_true',help='Suppress intro playback in this bounded campaign run')
     parser.add_argument('--disable-wine-dsound',action='store_true',help='Diagnostic: disable transitive Wine DirectSound module; known movie-stack dependency')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
@@ -554,6 +555,7 @@ def main():
         if explicit_native_music:command.append('--native-music')
         if args.legacy_media:command.append('--legacy-media')
         if args.no_native_music:command.append('--no-native-music')
+        if args.skip_movies:command.append('--skip-movies')
         if args.legacy_audio:command.append('--legacy-audio')
         if args.resident_world:command.append('--resident-world')
         with (out / 'mode-probe.log').open('w') as log:
@@ -624,6 +626,7 @@ def main():
             if explicit_native_music:command.append('--native-music')
             if args.legacy_media:command.append('--legacy-media')
             if args.no_native_music:command.append('--no-native-music')
+            if args.skip_movies:command.append('--skip-movies')
             if args.legacy_audio:command.append('--legacy-audio')
             report['launch_command'] = command
             if args.resident_world:command.append('--resident-world')

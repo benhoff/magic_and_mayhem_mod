@@ -11,7 +11,7 @@ static u32 music_next,music_opened,music_notify_id,music_notify_window,music_eve
 static MusicMci music_original_mci;static MusicPost music_post;static MusicVolume music_original_volume;
 static struct MnmMusicWatchdog music_watchdog;
 #define MUSIC_DEVICE 0x7321u
-static int music_readable(const void* pointer,u32 bytes,int write){
+static int audio_memory_readable(const void* pointer,u32 bytes,int write){
     u32 start=(u32)pointer;if(!start || bytes>0xffffffffu-start)return 0;
     while(bytes){u32 info[7];if(!VirtualQuery((void*)start,info,sizeof(info)) || info[4]!=0x1000 || (info[5]&0x101))return 0;
         if(write && !(info[5]&0xcc))return 0;
@@ -20,7 +20,7 @@ static int music_readable(const void* pointer,u32 bytes,int write){
 }
 static int music_type(const char* value){
     static const char name[]="cdaudio";
-    for(u32 i=0;i<sizeof(name);++i){if(!music_readable(value+i,1,0))return 0;u8 c=value[i];if(c>='A' && c<='Z')c+=32;if(c!=(u8)name[i])return 0;}
+    for(u32 i=0;i<sizeof(name);++i){if(!audio_memory_readable(value+i,1,0))return 0;u8 c=value[i];if(c>='A' && c<='Z')c+=32;if(c!=(u8)name[i])return 0;}
     return 1;
 }
 static u32 music_unsupported(void){if(music_words)__atomic_add_fetch(music_words+MNM_MUSIC_V1_UNSUPPORTED_CD_CALLS_OFFSET/4,1,__ATOMIC_RELAXED);return 274;}
@@ -81,7 +81,7 @@ static u32 music_request(u32 operation,u32 track,u32 from,u32 flags,u32* request
 }
 static u32 music_msf(u32 frames){return ((frames/4500)&255u)|(((frames/75)%60)<<8)|((frames%75)<<16);}
 static u32 music_status(u32 flags,u32* parameters){
-    if((flags&~0x312u) || !(flags&0x100) || !music_readable(parameters,16,1))return music_unsupported();
+    if((flags&~0x312u) || !(flags&0x100) || !audio_memory_readable(parameters,16,1))return music_unsupported();
     u32 phase,position,current,sequence,started=GetTickCount();
     for(;;){if(GetTickCount()-started>MNM_MUSIC_V1_REQUEST_TIMEOUT_MS || !music_live())return 276;
         sequence=__atomic_load_n(music_words+MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE);if(sequence&1){Sleep(1);continue;}
@@ -105,9 +105,9 @@ static u32 music_status(u32 flags,u32* parameters){
 }
 static u32 WIN music_mci(u32 device,u32 message,u32 flags,u32* parameters){
     u32 error=GetLastError(),result=0;
-    if(message==0x803 && music_readable(parameters,20,0) && (flags&0x2000) && !(flags&0x1000) && music_type((const char*)parameters[2])){
+    if(message==0x803 && audio_memory_readable(parameters,20,0) && (flags&0x2000) && !(flags&0x1000) && music_type((const char*)parameters[2])){
         if(!music_words)return music_original_mci?music_original_mci(device,message,flags,parameters):276;
-        if(device || (flags&~0x2302u) || !music_readable(parameters+1,4,1)){u32 invalid=music_unsupported();SetLastError(error);return invalid;}
+        if(device || (flags&~0x2302u) || !audio_memory_readable(parameters+1,4,1)){u32 invalid=music_unsupported();SetLastError(error);return invalid;}
     }else if(device!=MUSIC_DEVICE){
         if(music_words)__atomic_add_fetch(music_words+MNM_MUSIC_V1_LEGACY_OTHER_MCI_CALLS_OFFSET/4,1,__ATOMIC_RELAXED);
         SetLastError(error);return music_original_mci?music_original_mci(device,message,flags,parameters):257;
@@ -118,9 +118,9 @@ static u32 WIN music_mci(u32 device,u32 message,u32 flags,u32* parameters){
     if(!music_live()){result=276;goto done;}
     if(message==0x803){result=music_request(MNM_MUSIC_V1_OPERATION_OPEN,0,0,0,0);if(!result){music_opened=1;parameters[1]=MUSIC_DEVICE;__atomic_or_fetch(music_words+MNM_MUSIC_V1_PRODUCER_FEATURES_OFFSET/4,MNM_MUSIC_V1_FEATURE_NATIVE_SELECTED,__ATOMIC_RELEASE);}goto done;}
     if(message==0x814){result=music_status(flags,parameters);goto done;}
-    if(message==0x80d){result=(flags==0x402 && music_readable(parameters,12,0) && parameters[1]==10)?0:music_unsupported();goto done;}
+    if(message==0x80d){result=(flags==0x402 && audio_memory_readable(parameters,12,0) && parameters[1]==10)?0:music_unsupported();goto done;}
     if(message==0x806){
-        if((flags&~0xfu) || !(flags&4) || !music_readable(parameters,flags&8?12:8,0)){result=music_unsupported();goto done;}
+        if((flags&~0xfu) || !(flags&4) || !audio_memory_readable(parameters,flags&8?12:8,0)){result=music_unsupported();goto done;}
         u32 track=parameters[1]&255u;if(parameters[1]!=track || track<2 || track>music_words[MNM_MUSIC_V1_TRACK_COUNT_OFFSET/4] || ((flags&8)&&parameters[2]!=track+1)){result=282;goto done;}
         u32 request=0;result=music_request(MNM_MUSIC_V1_OPERATION_PLAY,track,0,0,&request);
         if(!result){if(music_notify_id && music_notify_window && music_post)music_post((void*)music_notify_window,0x3b9,2,MUSIC_DEVICE);
@@ -140,14 +140,14 @@ done:
 static u32 WIN music_zero_mixers(void){return 0;}
 static i32 __fastcall music_volume(void* object,void* unused,i32 level){
     (void)unused;i32 result=music_original_volume(object,level);if(result || !music_words)return result;
-    if(!music_readable((u8*)object+0x32c,4,0) || !*(u32*)((u8*)object+0x32c))return result;
+    if(!audio_memory_readable((u8*)object+0x32c,4,0) || !*(u32*)((u8*)object+0x32c))return result;
     u32 volume=level<=0?0u:level>=15?65535u:(u32)level*4369u;
     if(!music_acquire())return -6;
     u32 status=music_request(MNM_MUSIC_V1_OPERATION_VOLUME,0,volume,0,0);__atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);return status?-6:result;
 }
 static i32 __fastcall music_get_volume(void* object,void* unused,i32* value){
     (void)unused;u32 error=GetLastError();i32 result=-6;
-    if(!music_readable(value,4,1) || !music_readable((u8*)object+0x328,8,0))goto done;
+    if(!audio_memory_readable(value,4,1) || !audio_memory_readable((u8*)object+0x328,8,0))goto done;
     if(!*(u32*)((u8*)object+0x32c) || !*(u32*)((u8*)object+0x328)){*value=0;result=0;goto done;}
     if(!music_acquire())goto done;
     u32 start=GetTickCount();
@@ -178,7 +178,7 @@ static int music_install(u32 base){
     u8* mixer_call=(u8*)(base+0x8157b);u8* entry=(u8*)(base+0x82190);void** iat=(void**)(base+0x1c52dc);
     u8* query_entry=(u8*)(base+0x818b0);
     void* winmm=GetModuleHandleA("winmm.dll");music_original_mci=winmm?(MusicMci)GetProcAddress(winmm,"mciSendCommandA"):0;
-    if(!music_original_mci || !music_readable(iat,4,0) || *iat!=(void*)music_original_mci || !music_readable(mixer_call,6,0) || !same(mixer_call,mixer,6) || !music_readable(entry,6,0) || !same(entry,volume,6) || !music_readable(query_entry,7,0) || !same(query_entry,query,7))return 0;
+    if(!music_original_mci || !audio_memory_readable(iat,4,0) || *iat!=(void*)music_original_mci || !audio_memory_readable(mixer_call,6,0) || !same(mixer_call,mixer,6) || !audio_memory_readable(entry,6,0) || !same(entry,volume,6) || !audio_memory_readable(query_entry,7,0) || !same(query_entry,query,7))return 0;
     u8* trampoline=VirtualAlloc(0,11,0x3000,4);if(!trampoline)return 0;copy(trampoline,entry,6);trampoline[6]=0xe9;u32 back=(u32)(entry+6)-(u32)(trampoline+11);copy(trampoline+7,&back,4);
     u32 old_iat,old_mixer,old_volume,old_query,ignored;
     if(!VirtualProtect(trampoline,11,0x20,&ignored) || !FlushInstructionCache(GetCurrentProcess(),trampoline,11))return 0;

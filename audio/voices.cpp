@@ -40,6 +40,30 @@ Error Device::resetPosition(BufferId id){
     if(v.playback==Playback::completed)v.playback=Playback::stopped;
     return Error::ok;
 }
+Error Device::setPosition(BufferId id,std::size_t offset){
+    const auto it=buffers_.find(id);
+    if(it==buffers_.end())return Error::invalid;
+    auto& buffer=it->second;if(buffer.primary)return Error::unsupported;
+    const auto alignment=buffer.format->alignment;
+    if(offset>=buffer.voice.frames*alignment || offset%alignment)return Error::invalid;
+    buffer.voice.frame=offset/alignment;buffer.phase=0;
+    if(buffer.voice.playback==Playback::completed)buffer.voice.playback=Playback::stopped;
+    return Error::ok;
+}
+Error Device::setFrequency(BufferId id,std::uint32_t value){
+    const auto it=buffers_.find(id);if(it==buffers_.end())return Error::invalid;
+    if(it->second.primary)return Error::unsupported;
+    if(value && (value<100 || value>200000))return Error::invalid;
+    it->second.voice.frequency=value;return Error::ok;
+}
+std::optional<std::uint32_t> Device::frequency(BufferId id)const{
+    const auto it=buffers_.find(id);if(it==buffers_.end() || it->second.primary)return {};
+    const auto& b=it->second;return b.voice.frequency?b.voice.frequency:b.format->rate;
+}
+std::optional<std::size_t> Device::generatedCursor(BufferId id)const{
+    const auto it=buffers_.find(id);if(it==buffers_.end() || it->second.primary)return {};
+    const auto& b=it->second;return std::size_t(b.voice.frame%b.voice.frames)*b.format->alignment;
+}
 Error Device::setVolume(BufferId id,std::int32_t value){
     const auto it=buffers_.find(id);
     if(it==buffers_.end())return Error::invalid;

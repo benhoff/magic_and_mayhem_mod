@@ -155,3 +155,12 @@ Independent opt-outs/skip policy, coherent startup admission, actual frozen-host
 PE retirement/no revival and guarded native gain query are tested. Successful
 native file sounds no longer call Wine merely to stop an inactive legacy channel.
 See native-audio-defaults.md and its fresh records for scope and remaining work.
+
+## Extended static voice controls
+
+Native secondary pitch, aligned byte seek and generated play/write cursor
+queries are implemented through version4 native voice transport and PE COM
+methods. Native ramp/phase/duplicate tests, real PE controls and63 CTests pass;
+installed WAV and current native campaign/normal Quit are renewed. See
+native-audio-controls.md. Generated position remains distinct from actual
+output-consumed position; physical recovery and original timing remain pending.

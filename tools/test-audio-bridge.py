@@ -9,9 +9,13 @@ import shutil
 import subprocess
 import tempfile
 import time
+import argparse
 REPO = Path(__file__).resolve().parents[1]
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path);args=parser.parse_args()
+    declaration=json.loads(args.claims.read_text()) if args.claims else None
+    if declaration and any(hashlib.sha256((REPO/path).read_bytes()).hexdigest()!=digest for path,digest in declaration['sources'].items()):raise ValueError('Voice bridge source declaration drift')
     parent=REPO/'working/tests/audio-bridge'
     parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
@@ -33,6 +37,7 @@ def main():
     with wave.open(str(root/'fixture.wav'),'wb') as fixture:
         fixture.setnchannels(1);fixture.setsampwidth(2);fixture.setframerate(48000)
         fixture.writeframes(struct.pack('<4h',-32768,-1,1000,32767))
+    input_hash=hashlib.sha256((root/'fixture.wav').read_bytes()).hexdigest()
     env={key:value for key,value in os.environ.items() if not key.startswith('MNM_')}
     env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
                WINEDLLOVERRIDES='dsound=disabled',
@@ -74,11 +79,16 @@ def main():
             'checks':['native_pcm_and_controls','COM_method_slots_stdcall','primary_metadata','primary_volume_roundtrip','primary_format_validation',
                       'primary_stop_preserves_secondary_playback','manager_gate_failure_order_matrices',
                       'secondary_lock_unlock','duplicate_source_retirement','independent_status','native_wave_abi_exact_pcm','native_wave_small_destination_and_traversal_refusal',
-                      'invalid_unlock_and_flags','unsupported_pitch_and_seek','reference_lifetime',
+                      'invalid_unlock_and_flags','native_pitch_and_aligned_seek','generated_static_cursor_and_pointer_guards','reference_lifetime',
                       'stale_host_timeout_and_permanent_retirement']}
     assert report['last_request']==report['last_ack'] and report['last_ack']>10,report
     assert report['native_devices_selected']==1 and report['fallback_attempts']==0,report
-    assert report['unsupported_local_calls']>=3,report
+    assert report['unsupported_local_calls']>=1,report
+    if declaration:
+        report.update(schema=1,success=True,sources=declaration['sources'],claims=declaration['claims'],
+                      sources_stable=all(hashlib.sha256((REPO/path).read_bytes()).hexdigest()==digest for path,digest in declaration['sources'].items()),
+                      inputs={'fixture.wav':input_hash},inputs_stable=hashlib.sha256((root/'fixture.wav').read_bytes()).hexdigest()==input_hash)
+        if not report['sources_stable'] or not report['inputs_stable']:raise ValueError('Voice bridge final source/input drift')
     (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     print(f'Voice bridge checks passed: {root/"report.json"}')
 

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "audio/CMakeLists.txt": "9e8ac94ba5f6734700da2e4da2c3987757fe77d1610f00eb3131077b767bc430",
+    "audio/buffers.cpp": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76",
+    "audio/buffers.hpp": "20d3688ae5f25bdb32ae421bca194ccfdf0bd9651dd365608d3469c52ab9d81b",
+    "audio/mixer.cpp": "1f7cc8295adb0d7a8688d8a09f2f5bfa99964bcd4a0efb6a59c8d3cbd105e972",
+    "audio/voices.cpp": "d590421fd9af1fb276f1d63a46a39f15f6d6153805ecb267e54b9e01d779fe8c",
+    "tests/audio-controls-test.cpp": "dad3241973a1e2fa0475a698bf6739b19d02b2d2aae13d3a34df715f5f6e50e9",
+    "tools/test-native-audio-controls.py": "9bdb5346628f9ed4c95f94b89ddb952410566dd2a95cbefd348bae8aa8b90227"
+  },
+  "claims": [
+    {
+      "behavior": "NA.extended_voice_controls",
+      "contract_sha256": "ba2224eebf43033d22413e7373d209be8f9bcc633c9d31937e5a68288b6e9d39",
+      "scenarios": {
+        "native-audio-controls-synthetic-20261012": "150b576a45ece48cd6334e395888940c7b487c90bebcdd312d8a6bfe129dfd2d"
+      }
+    }
+  ],
+  "inputs": {
+    "pcm_s16le_hex": "0000e803d007b80b",
+    "source_rate": 1000,
+    "output_rate": 2000
+  },
+  "scope": "Native static pitch/seek/generated-cursor ramp, phase continuity, duplicate independence, strict bounds, active/completed lifecycle and primary/released refusal; no original or physical consumed-cursor equivalence.",
+  "sources_stable": true,
+  "inputs_stable": true
+}

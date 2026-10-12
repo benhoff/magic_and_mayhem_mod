@@ -21,6 +21,11 @@ int main(int argc,char** argv){
     check(!run(MNM_AUDIO_VOLUME,id,std::uint32_t(-2000)).status && !run(MNM_AUDIO_PAN,id,2000).status,"signed controls");
     check(run(MNM_AUDIO_VOLUME,id,1).status && d.voice(id)->volume==-2000,"invalid controls retain state");
     check(!run(MNM_AUDIO_PLAY,id,1).status && run(MNM_AUDIO_STATUS,id).value==5,"loop status");
+    check(!run(MNM_AUDIO_FREQUENCY,id,24000).status&&run(MNM_AUDIO_GET_FREQUENCY,id).value==24000,"wire pitch roundtrip");
+    check(run(MNM_AUDIO_FREQUENCY,id,99).status&&run(MNM_AUDIO_GET_FREQUENCY,id).value==24000,"wire pitch refusal preserves clock");
+    check(!run(MNM_AUDIO_SEEK,id,2).status&&run(MNM_AUDIO_CURSOR,id).value==2,"wire aligned seek/cursor");
+    check(run(MNM_AUDIO_SEEK,id,1).status&&run(MNM_AUDIO_CURSOR,id).value==2,"wire unaligned seek preserves cursor");
+    check(!run(MNM_AUDIO_RESET,id).status&&!run(MNM_AUDIO_FREQUENCY,id,0).status,"wire reset/source clock");
     reply=run(MNM_AUDIO_DUPLICATE,id);check(!reply.status,"duplicate");const auto child=reply.value;
     check(!run(MNM_AUDIO_RELEASE,id).status && !run(MNM_AUDIO_PLAY,child).status,"duplicate survives source");
     std::vector<std::int16_t> output;check(d.mixStereo(5,output)==Error::ok,"mix wire voice");
@@ -85,7 +90,7 @@ int main(int argc,char** argv){
             check(QByteArray(reinterpret_cast<char*>(map+128),8)==pcm,"native WAV transfers exact PCM");
         }else check(words[18]==0&&words[24]==0,"failed wave does not publish old result metadata");
     };
-    check(qFromLittleEndian(words[31])==MNM_AUDIO_CAP_NATIVE_WAVE,"native wave capability published before ready");
+    check(qFromLittleEndian(words[31])==(MNM_AUDIO_CAP_NATIVE_WAVE|MNM_AUDIO_CAP_EXTENDED_CONTROLS),"native capabilities published before ready");
     waveRequest("FIXTURE.wav",true);waveRequest("'fixture'.wav",true);
     waveRequest("missing.wav",false);waveRequest("../fixture.wav",false);waveRequest("bad.wav",false);
     waveRequest(QByteArray("fixture.wav\0",12),false);
