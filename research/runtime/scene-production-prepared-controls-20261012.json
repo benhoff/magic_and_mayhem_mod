@@ -1,0 +1,291 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.scene-production-repetition",
+      "contract_sha256": "ea018658eb9c470be08cdf3831d0f49bf82be4b7d35a37a6fb41195ea4e88832",
+      "scenarios": {
+        "NR.scene-production-repetition.fixture": "93953e724e755744b89442d1ea3ebe76415108ab5211dcd2f161f9313f7937ae"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/scene-production/entry.S": "f59f6f79e6991a775ac45d154a370ad508f7d24fc2defa1755113f777615d812",
+    "runtime/scene-production/observer.c": "0e3050cb2f2a8dad510b7d66bd21eb3f5e297d6f9d48dfedd73b4ae31696cf3e",
+    "runtime/scene-production/state_audit.h": "e610cd55319d68a8922c6dc3740bdd755d324f0c6480f5310861c5f678148d4b",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/scene-production-reference.S": "592d68dea6470f07ab8ef078cbc181dfe50aa4e5c80421cd463041ed5b1d31c2",
+    "tests/scene-production-reference.c": "349af32acfbba03ce9385b7e0faef09d0e552152687d9d4a65432a994bdb4c6f",
+    "tests/test-scene-production-decoder.py": "d7593718ca798d03192827e08a85c25c1861490871315485cbe5ced185d1c76b",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-scene-production.py": "7b2fd4741e6a275f3fdf614d4868a917df277172c699df8bf38a404401880640",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/export-scene-production.py": "377ed71c5e6c88a2844232c817ddc50b9ede09884e0fe99bd2513667f25a4b50",
+    "tools/menu-game-runner.py": "1d63efbb6cdf630a90dd0847a97423dc8d69398b54e9c283b806e6546cd940a9",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "b72503117140d2f7b85a48a7b822c95a862790984fde29d33bbc3ac6aa4e4665",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/probe-scene-production.py": "c5d08bb5714d624ffcc584433e2c68f3e63241451cd0ea85d6ee40412c2b548b",
+    "tools/scene_production.py": "557651571f8373e1557bdf68f5b3194013927395da3945d482daf3bc450c942b",
+    "tools/test-native-campaign.py": "e7c01b922da79ba183853893dd8b519e73ca7cec7ddf6d8ee57e326fd5978980",
+    "tools/test-scene-production.py": "b5326cc209b635f82572e381b2d0c9e9bb884f2b5428eda949a1d2517423c5d6"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 4,
+      "exit_code": 0
+    },
+    {
+      "case": 10,
+      "mode": 4,
+      "exit_code": 0
+    }
+  ],
+  "decoder_controls": {
+    "success": true,
+    "decoder_refusals": 18,
+    "controls": [
+      "magic",
+      "version",
+      "version3-mode4",
+      "version1-mode3",
+      "row-size",
+      "case-limit",
+      "critical-total",
+      "zero-owner",
+      "zero-clock",
+      "truncated",
+      "trailing",
+      "row-reserved",
+      "fixed-region-size",
+      "duplicate-region",
+      "missing-protected-kind",
+      "pool-shape",
+      "state-reserved",
+      "independent-byte-contradiction"
+    ],
+    "negative_history_counts": 2,
+    "negative_scene_equality": 1,
+    "version1_compatibility": true,
+    "version2_compatibility": true,
+    "version3_compatibility": true
+  },
+  "binary_sha256": "c7a571d0e23d81ae56f11078b94a2e6c946e1944e5ddec02a66ef6acb0328b6c",
+  "dll_sha256": "719f83c56f66461bd4be8a5e748f013a315c52c4640a388918050d24bbf0eb0f",
+  "sources_unchanged": true,
+  "checks": "44 PE32 full/slice/frozen-history/prepared-scene controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;52 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and post-primary queue leak refuse. Original queue postconditions hold after every extra. Prepared-phase repeat precedes the original once-only post-work, including authored post leak (not an extra admission input). History forwards twice for full/slice and once plus one skip for history policies. Authored stand-ins, not original engine execution.",
+  "raw_report": "working/tests/scene-production-controls/run-py_jjxp5/report.json",
+  "raw_report_sha256": "66cc79699f7582a3ca32072f578c9019b31be5f869f45e25328a1bb73c5b2e3e",
+  "scope": "Final-source44 PE32 authored full/slice/frozen-history/prepared-scene controls:caller/FP/error/stack/RET8,52 guard mutations, protected state/queue/shape/unreadable refusals, exact prepared marker frame and original once-only post-work.18 malformed decoder refusals, negative history/scene gates andversions1..3 compatibility. No original helper equivalence or quiet TITAN integration proof."
+}

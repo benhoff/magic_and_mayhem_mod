@@ -14,7 +14,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True)
-    parser.add_argument('--candidate',choices=('observe','full','slice','frozen-history'),required=True);args=parser.parse_args()
+    parser.add_argument('--candidate',choices=('observe','full','slice','frozen-history','prepared-scene'),required=True);args=parser.parse_args()
     declaration=json.loads(args.claims.read_text())
     if any(sha(ROOT/p)!=h for p,h in declaration['sources'].items()):raise ValueError('Changed prospective production sources')
     parent=ROOT/'working/tests/scene-production';parent.mkdir(parents=True,exist_ok=True)

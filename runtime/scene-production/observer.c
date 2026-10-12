@@ -56,7 +56,7 @@ void production_queue_seen(u32* r){
 void production_history_gate(u32* r){
  u32 error=GetLastError();r[3]=0; /* PUSHAD's ignored saved ESP is decision storage. */
  if(enabled&&owned()){
-  if(mode==3&&scene_capture&&scene_phase&&r[9]==0x4fa4f4){
+  if((mode==3||mode==4)&&scene_capture&&scene_phase&&r[9]==0x4fa4f4){
    u32 base=get(0x6def58),capacity=get(0x6def5c),object=r[6];
    if(object>=base&&(object-base)%0xe4b==0&&(object-base)/0xe4b<capacity){r[3]=1;++history_skipped;}
    else{++refused;++history_forward;}
@@ -101,11 +101,7 @@ static void compare(u32* row){
  if(!have_first){retain(&first_before,&first_after);have_first=1;}
  if(row[7]&&!have_bad){retain(&bad_before,&bad_after);have_bad=1;}
 }
-void production_after(u32* r,void* fx){
- u32 error=GetLastError(),sp=(u32)r+40;
- for(u32 i=0;i<8;++i)if(frames[i].sp==sp){
-  struct SceneFrame f=frames[i];frames[i].sp=0;r[9]=f.caller;
-  if(!f.selected||!enabled||count==CASE_MAX){SetLastError(error);return;}
+static void production_record(struct SceneFrame f,void* fx,u32 error){
   u32* row=rows[count];row[0]=count+1;row[1]=mode;row[2]=get(0x6c4830);row[3]=get(0x6cbb78+0xfd62);
   row[4]=f.object;row[5]=primary_calls;row[6]=queue_calls;row[18]=get(0x6c4830);row[20]=get(0x6cbb78+0xfd62);
   u32 history_base=history_forward;row[34]=history_base-f.histories;
@@ -135,10 +131,33 @@ void production_after(u32* r,void* fx){
   if(mode&&row[32]){row[7]=2;++refused;}
   ++count;
   if(count==CASE_MAX||(mode&&(failed||refused)))finish();
+}
+void production_after(u32* r,void* fx){
+ u32 error=GetLastError(),sp=(u32)r+40;
+ for(u32 i=0;i<8;++i)if(frames[i].sp==sp){
+  struct SceneFrame f=frames[i];frames[i].sp=0;r[9]=f.caller;
+  if(f.selected&&enabled&&count<CASE_MAX&&mode!=4)production_record(f,fx,error);
   SetLastError(error);return;
  }
  ++refused;SetLastError(error);
 }
+void production_middle(u32* r,void* fx){
+ u32 error=GetLastError();
+ if(enabled&&mode==4&&owned()){
+  /* Original four-register prologue remains on the stack at the cleanup marker. */
+  u32 return_sp=(u32)r+56;
+  for(u32 i=0;i<8;++i)if(frames[i].sp==return_sp){
+   if(frames[i].selected&&count<CASE_MAX){
+    struct SceneFrame f=frames[i];frames[i].selected=0;
+    production_record(f,fx,error);
+   }
+   SetLastError(error);return;
+  }
+  ++refused;
+ }
+ SetLastError(error);
+}
+
 static int guards(void){
  static const u8 entry[5]={0x53,0x55,0x56,0x8b,0xf1},start[5]={0x8b,0x46,0x25,0x8b,0xce};
  static const u8 cleanup[20]={0x33,0xdb,0x8b,0x96,0x29,0x02,0,0,0x89,0x9e,0x31,0x02,0,0,0x89,0x96,0x2d,0x02,0,0};
@@ -155,7 +174,7 @@ static int patch(u32 at,u32 target,u32 n,u8 opcode){
  return FlushInstructionCache(GetCurrentProcess(),(void*)at,n)&&VirtualProtect((void*)at,n,old,&restore);
 }
 static int install(u32 candidate){
- if(candidate>3||production_trampoline||!guards())return 0;
+ if(candidate>4||production_trampoline||!guards())return 0;
  u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));if(!(d&(1u<<24)))return 0;
  u8* t=VirtualAlloc(0,10,0x3000,0x40);if(!t)return 0;
  copy(t,(void*)0x4fd280,5);t[5]=0xe9;put(t+6,0x4fd285-(u32)t-10);
@@ -171,7 +190,7 @@ static int save_state(u32 tag,const struct SceneState* s){
  u32 h[4]={tag,s->count,s->bytes,0};return write(h,sizeof(h))&&write(s->regions,s->count*sizeof(*s->regions))&&write(s->data,s->bytes);
 }
 static void finish(void){
- if(!file)return;enabled=0;u32 h[16]={0};copy(h,"MNMSPR01",8);h[2]=3;h[3]=ROW_WORDS*4;h[4]=count;h[5]=mode;h[6]=failed;h[7]=refused;h[8]=foreign;h[9]=owner;h[10]=frequency[0];h[11]=frequency[1];h[12]=diff_count;h[13]=queue_calls;h[14]=primary_calls;h[15]=2*have_first+2*have_bad;
+ if(!file)return;enabled=0;u32 h[16]={0};copy(h,"MNMSPR01",8);h[2]=4;h[3]=ROW_WORDS*4;h[4]=count;h[5]=mode;h[6]=failed;h[7]=refused;h[8]=foreign;h[9]=owner;h[10]=frequency[0];h[11]=frequency[1];h[12]=diff_count;h[13]=queue_calls;h[14]=primary_calls;h[15]=2*have_first+2*have_bad;
  if(write(h,sizeof(h))&&write(rows,count*sizeof(*rows))&&write(diffs,diff_count*sizeof(*diffs))){
   if(have_first){save_state(1,&first_before);save_state(2,&first_after);}
   if(have_bad){save_state(3,&bad_before);save_state(4,&bad_after);}
@@ -189,7 +208,7 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
   char path[2048],option[2];u32 n=GetEnvironmentVariableA("MNM_SCENE_PRODUCTION_FILE",path,sizeof(path));
   if(n){
    u32 m=GetEnvironmentVariableA("MNM_SCENE_PRODUCTION_MODE",option,2);
-   if(n>=sizeof(path)||m!=1||option[0]<'0'||option[0]>'3')ok=0;
+   if(n>=sizeof(path)||m!=1||option[0]<'0'||option[0]>'4')ok=0;
    else{file=CreateFileA(path,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1){file=0;ok=0;}else ok=install(option[0]-'0');}
   }
  }else if(reason==0)finish();SetLastError(error);return ok;

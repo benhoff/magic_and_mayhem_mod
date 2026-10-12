@@ -64,7 +64,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     production_metadata={}
     production=os.environ.get('MNM_SCENE_PRODUCTION_PROBE')
     if production is not None:
-        if production not in ('0','1','2','3') or not resident_world or cadence is not None:raise ValueError('Scene production requires isolated resident diagnostic staging')
+        if production not in ('0','1','2','3','4') or not resident_world or cadence is not None:raise ValueError('Scene production requires isolated resident diagnostic staging')
         production_dll=module('scene_production_build','tools/build-scene-production.py').build(root/'scene-production-build')
         patched=module('scene_production_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmSceneProduction.dll','SceneProductionAnchor',b'.mnprod')
         shutil.copy2(production_dll,game/production_dll.name)

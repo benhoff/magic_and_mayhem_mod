@@ -1,9 +1,10 @@
 # Repeated original scene production experiment
 
-Current candidate:004fd315..004fd5c1 includes original queue cleanup and applies
-extra-only position-history suppression. Final33 PE32/52 byte-guard controls and17
-decoder refusals pass. Corrected TITAN state/scene equality and normal Quit are
-pending; earlier failures remain historical evidence, not safe defaults.
+Current candidate:mode4 (`prepared-scene`) repeats004fd315..004fd5c1 inside the
+original primary draw, after queue cleanup and before creature/camera post-work.
+It retains original prepared state, suppresses only extra history shifting and
+performs the original post-work once. Final44 PE32/18 decoder controls pass; quiet TITAN
+state/scene/19FPS/normal Quit proof is pending; earlier failures remain negative.
 
 Pinned No-CD hash40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168.
 
@@ -114,3 +115,30 @@ campaigns still fail even when a checkpoint proves protected equality. The wrapp
 records campaign/source/original/cleanup outcomes before attempting to decode a
 possibly missing trace. Corrected live state+scene+queue and normal Quit proof
 remain pending; simulation pacing and default launch remain unchanged.
+
+
+The queue-cleanup live run completes input and flow, retires the producer normally
+and balances4465 Worlds with no delivery readback/pixel reply, but fails the19FPS
+performance gate at18.55584FPS. Its checkpoint shows9 exact protected-state/scene
+repeats, then repeat10 has1154 primary/1150 extra rows while protected bytes remain
+unchanged; probing stops. This is neither a performance pass nor generic scene
+parity. The formal gameplay checks were skipped after the performance failure;
+completed input/flow do not retroactively supply those assertions. Concurrent
+accounting ran during this instrumented journey; it is a limit on attribution,
+not proof of the slowdown's cause.
+
+A proposed separation boundary is inside the primary draw:after original queue
+cleanup, before0052ab80 clears temporary+6e4 preparation and before camera/cache
+post-work. `RS.creature-draw-preparation` retains that partial static boundary;
+which missing rows depend on preparation, wall time or other nested state remains
+unknown. Mode4 matches the exact four-register original frame at004fd5c1, repeats
+the existing slice with that phase's FP/error context, then resumes the original
+normal instructions/post-work/return once. It never resurrects cleared bytes or
+calls creature preparation again. Marker and final-return observations share one
+bounded recorder; extra markers exit through their exact owned stack identity.
+Wireversion4 adds prepared-scene mode and readsversions1..3. Final44 controlled
+caller/FP/error/stack/RET8, original once-only post-work and state/queue/shape/guard
+cases plus18 decoder refusals pass with source stability. A quiet TITAN journey
+is pending. The next live run
+will start after accounting checks finish; all simulation pacing/default/60FPS,
+map/nested/visibility/driver/pixel exclusions remain.
