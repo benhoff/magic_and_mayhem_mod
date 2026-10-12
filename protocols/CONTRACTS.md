@@ -126,3 +126,23 @@ checkpoint admission, falling back to fresh observations only when completeness
 is unavailable before claim. Borrowed/uncertain lifecycle admission still refuses;
 a failed claimed checkpoint is never retried as fresh in the same candidate. Both share the existing three-request budget, immutable negotiation and
 matching-response-before-polling rule. See [checkpoint policy](../research/runtime/opengl-command-checkpoint.md).
+
+## Original import census v1
+
+MNMAPI01 is an optional observation file, not an audio command channel. Its
+64-byte header and190 fixed256-byte rows use little-endian DWORD fields. The
+creator initializes magic/version/size and zeroes everything else. Admission
+requires a fresh owned file and matching observer DLL. The producer checks the
+supported image, fixed import catalog, readable slots/targets and protection
+acquisition before changing any original IAT slot. It labels all rows before
+publishing active state with release ordering.
+
+Rows contain original build RVAs/import names and current DLL basenames, target
+classification, and atomic low/overflow counters. Every forwarding proxy saves
+flags, increments counters, restores flags and tail-jumps without changing
+registers, stack or arguments. Targets and generated code addresses remain
+private to the PE process. A final consumer requires observed process shutdown;
+a detach marker is not itself quiescence. Validate fixed original row identities
+and labels, reserved bytes, installation/refusal state and known classifications
+before interpreting counts. Dynamic calls, COM, shim forwarding/cached pointers
+and transitive/prefix Wine activity are excluded from this boundary.

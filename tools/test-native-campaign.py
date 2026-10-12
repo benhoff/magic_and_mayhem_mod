@@ -389,7 +389,8 @@ def main():
     parser.add_argument('--legacy-media',action='store_true',help='Opt out of native movie/file-sound routing')
     parser.add_argument('--no-native-music',action='store_true',help='Opt out of the native CD route')
     parser.add_argument('--skip-movies',action='store_true',help='Suppress intro playback in this bounded campaign run')
-    parser.add_argument('--disable-wine-dsound',action='store_true',help='Diagnostic: disable transitive Wine DirectSound module; known movie-stack dependency')
+    parser.add_argument('--disable-wine-dsound',action='store_true',help='Force Wine DirectSound disable; marked native factory/media staging disables it by default')
+    parser.add_argument('--wine-import-census',action='store_true',help='Count original import calls after native adapters; excludes dynamic/COM/forwarded calls')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
@@ -460,6 +461,7 @@ def main():
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
         if args.native_media:declaration_command.extend(['--behavior','HOST.native-menu-media','--scenario','native-menu-media-campaign-20261012','--behavior','HOST.native-media-startup-probe','--scenario','native-media-startup-probe-campaign-20261012'])
         if args.native_factory and args.native_media:declaration_command.extend(['--behavior','HOST.native-dsound-module-policy'])
+        if args.wine_import_census:declaration_command.extend(['--behavior','HOST.wine-import-census','--scenario','wine-import-census-campaign-20261012'])
         if args.native_music:declaration_command.extend(['--behavior','HOST.native-menu-music','--scenario','native-menu-music-campaign-20261012'])
         if args.default_music or args.default_media:declaration_command.extend(['--behavior','HOST.native-audio-defaults','--scenario','native-audio-defaults-campaign-20261012'])
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
@@ -521,6 +523,7 @@ def main():
         env['MNM_RESIDENT_POLL_TIMING']='1'
     env.pop('MNM_NATIVE_DISABLE_DSOUND',None)
     if args.disable_wine_dsound:env['MNM_NATIVE_DISABLE_DSOUND']='1'
+    if args.wine_import_census:env['MNM_WINE_IMPORT_CENSUS']='1'
     if args.profile_resident:env.update(MNM_RESIDENT_STAGE_PROFILE='1',MNM_RENDER_PACER_OBSERVE='1')
     if args.capture_resident:env['MNM_RESIDENT_PROFILE_CAPTURE']=str(out/'resident-source.bin')
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
@@ -817,7 +820,16 @@ def main():
                 subprocess.run(['wineserver', '-w'], env=env, stdout=subprocess.DEVNULL,
                                stderr=subprocess.DEVNULL, timeout=15, check=True)
                 report['private_wine_stopped']=True
-            except (OSError, subprocess.SubprocessError) as error:
+                if args.wine_import_census and report.get('success'):
+                    from wine_import_census import decode as decode_census
+                    census_file=roots[0]/'wine-import-census.bin'
+                    report['wine_import_census']=decode_census(census_file,True)
+                    census_build=json.loads((roots[0]/'api-census-build.json').read_text())
+                    if any(report['sources'].get(path)!=digest for path,digest in census_build['compiled_sources'].items()):
+                        raise ValueError('Undeclared or changed census compiler source')
+                    report['wine_import_census_compiled_sources']=census_build['compiled_sources']
+                    report['wine_import_census_file']=str(census_file)
+            except (OSError, ValueError, subprocess.SubprocessError) as error:
                 report.update(success=False, status='failed', cleanup_error=str(error))
                 exit_code = 1
         try:

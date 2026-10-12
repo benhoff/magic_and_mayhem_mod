@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "success": true,
+  "origin": "synthetic_pe_counter_and_decoder",
+  "claims": [
+    {
+      "behavior": "HOST.wine-import-census",
+      "contract_sha256": "9f5ff679ed7443d1327fd90e2ec14c5319b63086dc952690dbbb6c80e22375ad",
+      "scenarios": {
+        "wine-import-census-synthetic-20261012": "1d4338fb22180b6efaab6f1e30587bf559391d6324ddae23069ec5aa7346a074"
+      }
+    }
+  ],
+  "sources": {
+    "protocols/include/mnm/api_census_v1.h": "4bf4641029178a1d75f993e24cdaf705eb42db6363279248ca03dc851d640bad",
+    "protocols/python/mnm_protocols/api_census_v1.py": "8a6507b6dae5ea50d52586063ed81ef7103fe6d85ce712e95bb28fca1f37808a",
+    "protocols/schemas/api-census-v1.json": "a8fcd08c8e008bcf4f83f92cd0b5642746b85f989afb145bd6368c0b769c0f5e",
+    "runtime/api-census/nocd-imports.h": "bd4d9b5e74c3403a1a245639715f1473d51ec49be2ddeeeafc24cfc1636114dc",
+    "runtime/api-census/observer.c": "7626a217fb2bbbce1609cc91bfc431249c9d67210d482210f7efb441f3465e49",
+    "runtime/api-census/selftest.c": "26612b4f550439806849665fed8e3dba56771523c212b5d6bb898746a40e8b34",
+    "tools/build-api-census.py": "cf6dfc3067e614f0ff872276daa385777fda7b24bd08944e09e284dfde8ace87",
+    "tools/export-wine-imports.py": "e9a97a09c04060ce26ded1413952ddb8fc5e1292a9c8432a6852a247545bb383",
+    "tools/menu-game-runner.py": "8fe4fcee327befa56514b3e7ab71ea30c9e7de93404c2d748f5bfcadd0b99abd",
+    "tools/prepare-menu-observer.py": "0cc26f339657190861806ed6d5d72c021cbd722ca8a49a904fbc516c87e6b24a",
+    "tools/test-api-census.py": "eaa569b18706e34d8060aaa9f5982e9ec5bc4a88fa8e91392a5719499b92c4a8",
+    "tools/test-native-campaign.py": "a7af1d0f054af8735ca2ef1ac8fa143a1d8561b9bafb0f832c61f007d7dc1d61",
+    "tools/wine_import_census.py": "a8d433648726188cd6ab2b99489e01566144a19c5f534b8f147ee4974a330fb5"
+  },
+  "sources_stable": true,
+  "checks": [
+    "stdcall_arguments_return_last_error",
+    "cdecl_arguments_return",
+    "fastcall_register_stack_arguments_return",
+    "arithmetic_flags_ecx_edx_forwarding",
+    "low_overflow_counter",
+    "10000_repeat_calls",
+    "quiescent_decoder_u64",
+    "malformed_or_active_refused"
+  ],
+  "refusals": 10,
+  "dll_sha256": "5728a4c69458cd20693eac3a4b5eb25ee4739e6d0ada016fb78b42a342e84f13"
+}

@@ -18,6 +18,8 @@ from native_music_launch import authorize as authorize_music
 authorize_music(root,metadata,os.environ)
 from native_media_launch import authorize as authorize_media
 authorize_media(root,metadata,os.environ)
+from wine_import_census import authorize as authorize_census
+authorize_census(root,metadata,os.environ)
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')

@@ -42693,7 +42693,9 @@
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
         "HOST.movie-controls.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42883,7 +42885,9 @@
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
         "HOST.movie-controls.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42957,7 +42961,9 @@
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
         "HOST.movie-controls.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -43031,7 +43037,9 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.movie-controls.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44138,7 +44146,9 @@
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
         "HOST.movie-controls.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45054,7 +45064,9 @@
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
         "HOST.movie-controls.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46355,7 +46367,9 @@
       ],
       "evidence": [
         "HOST.native-media-startup-probe.synthetic-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46392,7 +46406,61 @@
         "protocols/include/mnm/media_v1.h"
       ],
       "evidence": [
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.wine-import-census",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded original import execution census after native adapters",
+      "scope": "Opt-in pinned NoCD190 originalIAT-slot forwarding counters after native adapters: preserve flags/registers/stack/arguments and original targets, atomic low/overflow increments, label original import and current target DLL, classify direct Windows/Wine targets, toolkit shims and legacy codec. Guard staging/source/runtime image and acquire protection before mutation; read final counts only after private process cleanup. Dynamic calls, COM/vtables, shim forwarding/cached pointers and transitive/prefix Wine activity are excluded; no complete Wine total or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6049792,
+          "scope": "Fixed190 original PE import slots only; original imported function implementations and indirect calls remain unmapped.",
+          "relation": "data"
+        }
+      ],
+      "documents": [
+        "research/runtime/wine-import-census.md",
+        "protocols/CONTRACTS.md"
+      ],
+      "implementation": [
+        "runtime/api-census/observer.c",
+        "runtime/api-census/nocd-imports.h",
+        "tools/export-wine-imports.py",
+        "tools/build-api-census.py",
+        "tools/wine_import_census.py",
+        "protocols/schemas/api-census-v1.json",
+        "protocols/include/mnm/api_census_v1.h",
+        "protocols/python/mnm_protocols/api_census_v1.py"
+      ],
+      "tests": [
+        "runtime/api-census/selftest.c",
+        "tools/test-api-census.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "evidence": [
+        "HOST.wine-import-census.synthetic-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.wine-import-census.data-synthetic-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -94315,6 +94383,210 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "HOST.wine-import-census.synthetic-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/wine-import-census-synthetic-20261012.json",
+      "sha256": "612d923d0dedea0928197662f362842fe0b0d7c5e9186e4865a99b3700f03dae",
+      "scope": "Real PE forwarding proxy stdcall/cdecl/fastcall args/return, arithmetic flags/ECX/EDX/LastError,32-bit low overflow/high and10000 repeats; strict fixed-original metadata decoder/u64 and10 malformed/active refusals. Synthetic only; no original game execution or all-Wine count.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "HOST.wine-import-census.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded native default DSOUND-disabled voice/WAV/movie/CD/menu/render/campaign/Quit with optional190 original-import proxies and final quiescent counts. Direct Windows/Wine targets versus native shims/legacy codec; excludes dynamic/COM/shim forwarding/transitive/prefix calls and physical equivalence.",
+      "record": "research/runtime/wine-import-census-public-pass-20261012.json",
+      "sha256": "16cca230ca853302d789a35949ff46bc45cdd0c50d5effceac232f571846ebdb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_launch_policy/native_media_startup_probe",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_dsound_disable_requested",
+          "equals": false
+        },
+        {
+          "pointer": "/wine_import_census/process_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_import_census/available_imports",
+          "equals": 190
+        }
+      ]
+    },
+    {
+      "id": "HOST.wine-import-census.data-public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded native default DSOUND-disabled voice/WAV/movie/CD/menu/render/campaign/Quit with optional190 original-import proxies and final quiescent counts. Direct Windows/Wine targets versus native shims/legacy codec; excludes dynamic/COM/shim forwarding/transitive/prefix calls and physical equivalence.",
+      "record": "research/runtime/wine-import-census-data-public-pass-20261012.json",
+      "sha256": "efa420d86ca195a1157d4bbd41e5051e3279072186b672f50c5ff01c375d4bf4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_launch_policy/native_media_startup_probe",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_dsound_disable_requested",
+          "equals": false
+        },
+        {
+          "pointer": "/wine_import_census/process_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_import_census/available_imports",
+          "equals": 190
+        }
+      ]
+    },
+    {
+      "id": "HOST.wine-import-census.data-synthetic-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/wine-import-census-data-synthetic-20261012.json",
+      "sha256": "713a9c7180275dac62ae810712af411bb335b0db28a4f7a8f4c8ab789452b178",
+      "scope": "Real PE forwarding proxy stdcall/cdecl/fastcall args/return, arithmetic flags/ECX/EDX/LastError,32-bit low overflow/high and10000 repeats; strict fixed-original metadata decoder/u64 and10 malformed/active refusals. Synthetic only; no original game execution or all-Wine count.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 10
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104883,7 +105155,9 @@
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     },
     {
@@ -104920,7 +105194,9 @@
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     },
     {
@@ -104958,7 +105234,9 @@
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     },
     {
@@ -104975,7 +105253,9 @@
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     },
     {
@@ -105057,7 +105337,9 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     },
     {
@@ -105106,7 +105388,9 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     },
     {
@@ -105254,7 +105538,41 @@
         "tools/native_audio_launch.py"
       ],
       "evidence": [
-        "HOST.media-startup-default.public-pass-20261012"
+        "HOST.media-startup-default.public-pass-20261012",
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
+      ]
+    },
+    {
+      "id": "wine-import-census-synthetic-20261012",
+      "level": "headless",
+      "scope": "PE proxy calling conventions, arguments/returns/flags/LastError, low/overflow counters and guarded metadata decoding; no game",
+      "behaviors": [
+        "HOST.wine-import-census"
+      ],
+      "tests": [
+        "runtime/api-census/selftest.c",
+        "tools/test-api-census.py"
+      ],
+      "evidence": [
+        "HOST.wine-import-census.synthetic-20261012",
+        "HOST.wine-import-census.data-synthetic-20261012"
+      ]
+    },
+    {
+      "id": "wine-import-census-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Full native menus/render/audio/WAV/media/music/campaign/normal Quit with explicitly enabled import counters, final quiescent raw file and exact scope/source bindings; no total Wine/COM census",
+      "behaviors": [
+        "HOST.wine-import-census"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/wine_import_census.py"
+      ],
+      "evidence": [
+        "HOST.wine-import-census.public-pass-20261012",
+        "HOST.wine-import-census.data-public-pass-20261012"
       ]
     }
   ],
@@ -105629,8 +105947,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-media-probe-commit-v2-20261012.json",
-    "sha256": "79d73f3d1b4354c65c8dee98db9b7eeeb4cab0122515022a4c57917ab5fc2dd1"
+    "path": "research/runtime/coverage/source-index-wine-import-census-commit-v2-20261012.json",
+    "sha256": "9a18e7a8aecea28fe9eda4178c75442bdc517c7f67d500854080872d9e6152e7"
   },
   "claim_bindings_required": true
 }
