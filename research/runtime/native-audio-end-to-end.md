@@ -323,3 +323,24 @@ The scenario level was corrected from evidence kind native_integration to the
 coverage schema level headless before this fresh declaration/execution. The
 earlier successful synthetic record retains its original claim fingerprint;
 no historical hash is rewritten to match the correction.
+
+## Actual native media software endpoint recovery (2026-10-12)
+
+Fresh native-media-backend-private-endpoints-20261012.json tests actual Qt movie
+and file-sound recovery with an owned private PipeWire/Pulse graph, stock configs
+under unique names, no automatic sinks/restore modules, policy-only WirePlumber,
+private runtime/config/state/cache and no desktop session bus. It verifies the
+owned server and empty graphs before/after; all owned daemon groups stop.
+
+Actual initial absence, endpoint arrival, active removal, paused replacement
+and distinct nonnull default switch pass with1 loss/2 recoveries/1 switch and
+one media acceptance. Both preserve exact66150-frame decoded PCM; the movie
+preserves all30 RGBA frames. No source replay or logical-position/caller-pause
+loss occurs. Gain is muted; these software endpoint/decoder observations do not
+establish physical hardware, audible waveform/tail or original-driver equivalence.
+The existing production playback source is unchanged from1a5aa59d.
+
+Native voice backend/Restore/consumed-timeline actual endpoint validation,
+initial no-device voice admission, native manager/config/cache/events, wider
+casting input and long original listening/playlist scenarios remain pending.
+Exact1a5aa59d history reviews22 transitions without receipt gaps.

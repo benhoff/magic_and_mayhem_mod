@@ -46518,6 +46518,43 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-media-backend-recovery",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native media recovery against isolated software endpoints",
+      "scope": "Actual Qt default-output topology and decoder behavior under an owned private PipeWire/Pulse graph: empty initial graph, endpoint appearance, removal of active endpoint, retained caller pause on replacement, distinct nonnull default switch and complete PCM/RGBA continuity. Private stock configs, policy-only routing, namespace/state isolation, strict owned-server and empty-graph guards and bounded daemon cleanup. No desktop routing changes; software endpoints do not establish physical hardware or original-driver audible equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-media-backend-recovery.md"
+      ],
+      "implementation": [
+        "tools/private_audio_backend.py"
+      ],
+      "tests": [
+        "tools/test-native-media-backend.py",
+        "tests/native-media-backend-test.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/native-media-backend/CMakeLists.txt",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/playback_audio_devices.hpp",
+        "apps/qt-shell/playback_audio_devices.cpp",
+        "protocols/include/mnm/media_v1.h"
+      ],
+      "evidence": [
+        "HOST.native-media-backend-recovery.private-endpoints-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -94809,6 +94846,49 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-media-backend-recovery.private-endpoints-20261012",
+      "kind": "native_integration",
+      "scope": "Current-source prospectively headless-bound actual Qt movie/file-sound under private PipeWire/Pulse endpoints: initial absence, active removal, paused replacement, distinct nonnull default switch, exact66150-frame PCM and all30 movie RGBA, graph empty before/after and owned daemon cleanup. Muted gain; physical/driver-without-topology/audible tail/original equivalence excluded.",
+      "record": "research/runtime/native-media-backend-private-endpoints-20261012.json",
+      "sha256": "e12dc9aac17b3a506509ffbe475aa09de3ed69fdbb13ee91ba0f5933182e34c0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/backend_cleanup/0/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/0/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/0/owned_daemons_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/backend_cleanup/1/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/1/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/1/owned_daemons_stopped",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105833,6 +105913,21 @@
       "evidence": [
         "HOST.native-media-output-recovery.public-pass-20261012"
       ]
+    },
+    {
+      "id": "native-media-backend-recovery-20261012",
+      "level": "headless",
+      "scope": "Real Qt finite movie/file-sound playback with actual isolated software endpoint arrival/removal/default switch, caller pause and full decoded PCM/RGBA; no hardware listening or original equivalence.",
+      "behaviors": [
+        "HOST.native-media-backend-recovery"
+      ],
+      "tests": [
+        "tools/test-native-media-backend.py",
+        "tests/native-media-backend-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-media-backend-recovery.private-endpoints-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -106206,8 +106301,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-media-output-recovery-commit-v2-20261012.json",
-    "sha256": "0bc32c2108d3c4f9cd1b6c97e47e13a5247de778463897df4bd52240aaab45be"
+    "path": "research/runtime/coverage/source-index-native-media-backend-commit-v1-20261012.json",
+    "sha256": "cf1e2f0d20e0bf5cbfc741aca84ecc4e8dc8ef55004ea36a7a17c0e41ddb9d41"
   },
   "claim_bindings_required": true
 }
