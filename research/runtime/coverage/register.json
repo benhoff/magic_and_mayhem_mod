@@ -48566,7 +48566,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native draw and upload cost attribution",
-      "scope": "Diagnostic submitted OpenGL draw calls/instances, CPU-to-texture upload calls/bytes, program switches and framebuffer attachment changes. Native renderer timestamps are bounded to64 outstanding pairs and polled without waiting. Source-only exact ordered captured World prefix on verified TITAN compares primary processing and up tothree baseline-restored native redraws per source, with timestamps enabled/disabled and separate diagnostic pixel hashes. GPU timeline includes CPU feeding gaps; excludes GPU busy-time attribution, engine simulation, UI/scanout and60FPS proof. Historical failed source journey stays failed. No source drop/order/pacing or native drawing policy change.",
+      "scope": "Diagnostic submitted OpenGL draw calls/instances, CPU-to-texture upload calls/bytes, program switches and framebuffer attachment changes. Native renderer timestamps are bounded to64 outstanding pairs and polled without waiting. Source-only exact ordered captured World prefix on verified TITAN compares primary processing and up tothree baseline-restored native redraws per source, with timestamps enabled/disabled and separate diagnostic pixel hashes. GPU timeline includes CPU feeding gaps; excludes GPU busy-time attribution, engine simulation, UI/scanout and60FPS proof. Historical failed source journey stays failed. No source drop/order/pacing or native drawing policy change. Optional identical binary/input comparison uses an owned private NVIDIA Xorg with the public xcb/zink context backend and Qt xcb with NVIDIA EGL versus isolated NVIDIA EGL; every selected native World and redraw must match. This isolates backend capacity, not public worker sharing/UI/export/scanout or gameplay performance.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -48773,10 +48773,12 @@
       "evidence": [
         "NR.native-draw-cost-profiling.baseline-titan-20261012",
         "NR.native-colour-rectangle-cache.paired-titan-20261012",
-        "NR.native-colour-rectangle-cache.final-paired-titan-20261012"
+        "NR.native-colour-rectangle-cache.final-paired-titan-20261012",
+        "NR.native-draw-cost-profiling.public-context-checkpoints-20261012"
       ],
       "remaining_gaps": [
-        "Current TITAN EGL128World/256redraw controls pass; publiczink/GLXGPU attribution, measured optimization, current full gameplay/60FPS and original/shared-source equivalence remain pending. Earlier compiler-closure and benchmark diagnostic-read accounting refusals stay retained."
+        "Current TITAN EGL128World/256redraw controls pass; publiczink/GLXGPU attribution, measured optimization, current full gameplay/60FPS and original/shared-source equivalence remain pending. Earlier compiler-closure and benchmark diagnostic-read accounting refusals stay retained.",
+        "Extended2423World public-zink checkpoint comparison fails once with a changed prepared redraw; fresh diagnostic repetition and posthoc EGL hashes pass. Intermittent native pixel instability remains unresolved, not repaired or excused by performance measurements. Later scenes show189median uploads/271draws, versus12/75early; cache pressure is a hypothesis pending controls. CPU samples include excluded diagnostic work; public worker/sharing/UI/scanout and60FPS remain pending."
       ]
     },
     {
@@ -105255,6 +105257,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.native-draw-cost-profiling.public-context-checkpoints-20261012",
+      "kind": "native_integration",
+      "scope": "One successful2423World public-zink diagnostic checkpoint replay, two prepared redraws each, exact native self-equality. Posthoc comparison with earlier EGL checkpoint rows also agrees. Earlier extended comparison remains failed: public pixel mismatch is intermittent/unresolved. Diagnostic sampling is not throughput/live gameplay/60FPS or fixed rendering proof.",
+      "record": "research/runtime/native-public-context-checkpoints-20261012.json",
+      "sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_display_stopped",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -117490,6 +117523,22 @@
         "NR.native-colour-rectangle-cache.fixed-player-death-negative-20261012",
         "NR.native-colour-rectangle-cache.fixed-full-performance-negative-20261012"
       ]
+    },
+    {
+      "id": "native-public-context-cost-20261012",
+      "scope": "Same compiled native renderer and ordered selected bounded World source-only prefix, two native redraws each, TITAN EGL versus public xcb/zink and Qt xcb/NVIDIA EGL offscreen contexts; exact pixels and bounded diagnostics, no public worker/widget/shared-export/UI or60FPS claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.native-draw-cost-profiling"
+      ],
+      "tests": [
+        "tools/profile-native-draw-costs.py",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-draw-cost-profiling.public-context-checkpoints-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -117998,8 +118047,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-gpu-cost-final-merge-20261012.json",
-    "sha256": "e91fd7565f8bc975e5db6f51c93b7a74464abb4c78efa781fc1fb91dc01fb7ef"
+    "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json",
+    "sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d"
   },
   "claim_bindings_required": true
 }

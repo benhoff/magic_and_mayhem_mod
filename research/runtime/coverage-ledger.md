@@ -8309,3 +8309,26 @@ attribution is next; no pending-import/UI-blocking explanation is established
 for the successful final run. Both parent histories and all negative results
 remain retained. The storage reservation was reviewed after4GiBrefusal: previous
 full run1.44GiB,2GiBreservation used,100GiBfree minimum unchanged.
+
+
+## Public native context costs — 2026-10-12
+
+Identical compiled native World inputs now run on verified TITAN EGL and
+the public xcb/zink backend, with bounded timestamps, ordinary-readback
+refusal and separate exact diagnostic pixel checks. The optional xcb/NVIDIA
+EGL route cannot create desktop OpenGL3.3; backend policy stays unchanged.
+Early128World redraw medians are1.48ms EGL/2.24ms zink. Extended2423World
+throughput observations average1.75ms/5.65ms; later redraws submit median
+189uploads and271draws, versus12/75early. These observations belong to an
+overall failed comparison: public checkpoint redraw pixels changed once.
+A fresh public diagnostic repeat matches everyWorld/redraw and every prior
+EGL primary hash; intermittent pixel instability remains an explicit gap.
+
+`NR.native-draw-cost-profiling.public-context-checkpoints-20261012` records
+only that successful diagnostic repeat. Failure reports retain original
+source hashes. A partial CPU sample has2046samples/no loss;299redraw-ancestry
+samples include153copy-submission samples. Diagnostic hashing/readback and
+unwind/inlining gaps prevent treating overall sample percentages as normal
+rendering cost. No live gameplay, repaired pixels, original replacement or
+60FPS promotion. Bounded source-cache pressure and public sharing/UI/export
+remain next measurements.
