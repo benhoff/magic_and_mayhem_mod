@@ -1,4 +1,5 @@
 #pragma once
+#include "native_render_target.hpp"
 #include "command_channel.hpp"
 #include "commands.hpp"
 #include <memory>
@@ -7,6 +8,7 @@ class GlViewport;
 class LiveCommandRenderer final {
 public:
     explicit LiveCommandRenderer(GlViewport& viewport,bool verify=false);
+    explicit LiveCommandRenderer(NativeRenderTarget,bool verify=false);
     ~LiveCommandRenderer();
     bool create(const QString& path,quint32 session,quint32 version=1);
     bool open(const QString& path);
@@ -27,7 +29,7 @@ public:
     const mnm::render::CommandResult* result() const;
 private:
     void fail(const QString& reason);
-    GlViewport& viewport_;bool verify_,ended_=false,closed_=false;
+    NativeRenderTarget target_;bool verify_,ended_=false,closed_=false;
     CommandChannel channel_;std::unique_ptr<mnm::render::CommandDecoder> decoder_;
     std::unique_ptr<mnm::render::GlBlitter> renderer_;
     std::unique_ptr<mnm::render::CommandConsumer> consumer_;

@@ -42494,7 +42494,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Render owned native World and HUD independently of engine production",
-      "scope": "Opt-in public independent-world mode requires resident native graphics/menu/command routing and explicit owned V5 snapshot acceptance. Capture/validate/actual-return owner remains separate from GUI-owned native GL; finite two-snapshot credits include deferred native/GUI imports. A16.667ms native clock chooses queued source updates or prepared World/HUD replays, preserving source FIFO/generation/nonce, exact original20Hz pacing and once-only producer history. WORLD commands wait for matching completed native data; extra rendered/presented frames and source/simulation counts are separate. No GUI wait on background work, original producer repeats, readback/pixel reply/DirectDraw restoration or simulation/ANI advance. Strict pending/error/normal Quit retirement and joined cancellation remain mandatory; interpolation is a separate native policy.",
+      "scope": "Opt-in public independent-world mode requires resident native graphics/menu/command routing and explicit owned V5 snapshot acceptance. Capture/validate/actual-return owner remains separate from dedicated-thread native GL in owned mode; finite two-snapshot credits include deferred native imports. A16.667ms native clock chooses queued source updates or prepared World/HUD replays, preserving source FIFO/generation/nonce, exact original20Hz pacing and once-only producer history. WORLD commands wait for matching completed native data; extra rendered/presented frames and source/simulation counts are separate. No GUI wait on background work, original producer repeats, readback/pixel reply/DirectDraw restoration or simulation/ANI advance. Strict pending/error/normal Quit retirement and joined cancellation remain mandatory; interpolation is a separate native policy.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42510,7 +42510,10 @@
         "apps/qt-shell/main.cpp",
         "tools/menu-game-runner.py",
         "tools/prepare-menu-observer.py",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_render_target.hpp"
       ],
       "tests": [
         "tests/menu-resident-quit-test.cpp",
@@ -42557,7 +42560,8 @@
         "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion.",
+        "Dedicated render-thread integration is pending fresh gameplay proof; previous GUI-owned observations remain historical."
       ]
     },
     {
@@ -42694,6 +42698,80 @@
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Dedicated native render owner and bounded immutable presentation leases",
+      "scope": "Opt-in owned V5 independent-world mode has one joined native render thread owning source consumption/preparation, native World history/GL drawing, command/UI compilation, original command control and report snapshots. GUI creates platform offscreen surface, handles semantic input/menus and samples immutable native-produced GPU exports only. At most two exported leases; coalescing display output never drops/reorders source snapshots or WORLD imports. Render owner retains textures until GUI leases return, uses cross-context production/sampling fences and destroys all contexts/resources on its own thread after GUI lease release. GUI polling copies bounded status/frame data without waiting for rendering. V4/default GUI route remains separate. Synthetic static RGB565 command controls validate immutability under slow GUI, source-independent ordered command counts, malformed refusal and normal/cancel teardown; actual World/gameplay/performance require fresh live execution. No readback/original-output seeding, simulation pacing changes or interpolation.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/commands.cpp",
+        "renderer/command_state.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "renderer/dib.hpp",
+        "renderer/CMakeLists.txt",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-render-owner.controls-20261012",
+        "HOST.native-render-owner.current-controls-20261012"
+      ],
+      "remaining_gaps": [
+        "Full native World gameplay/menu/Quit integration and sustained60FPS await fresh execution. GPU-export copies consume bounded extra presentation storage and time. Original comparison, context-loss/recreation, interpolation and unexecuted failure branches remain pending. Default route needs regression checks after the target abstraction."
       ]
     }
   ],
@@ -89518,6 +89596,52 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-render-owner.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh synthetic dedicated-owner immutable RGB565 presentation/slow GUI/refusal/join controls; default GPU presentation regression is also retained, no World gameplay or original equivalence assertion.",
+      "sha256": "047ff91655add17e04247ea769868a20af7a554e2d067502506ddb9403c988a7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/success",
+          "equals": true
+        }
+      ],
+      "record": "research/runtime/native-render-owner-controls-20261012.json"
+    },
+    {
+      "id": "HOST.native-render-owner.current-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh synthetic dedicated-owner immutable RGB565 presentation/slow GUI/refusal/join controls; default GPU presentation regression is also retained, no World gameplay or original equivalence assertion.",
+      "sha256": "219b99c1419f704d389ad812783c8bbee89778f9ccda14a9810d896a5fc2a002",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/success",
+          "equals": true
+        }
+      ],
+      "record": "research/runtime/native-render-owner-current-controls-20261012.json"
     }
   ],
   "classifications": [],
@@ -100423,6 +100547,22 @@
       "evidence": [
         "HOST.native-campaign-party-lethal-oracle.controls-20261012"
       ]
+    },
+    {
+      "id": "HOST.native-render-owner.fixture",
+      "scope": "Synthetic streaming RGB565 command processing on a dedicated native thread with immutable cross-thread GPU sampling, slow GUI bounded exports, malformed refusal and joined teardown; no actual World/gameplay equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-render-owner"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py"
+      ],
+      "evidence": [
+        "HOST.native-render-owner.controls-20261012",
+        "HOST.native-render-owner.current-controls-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100796,8 +100936,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-compiled-frame-milestone-20261012.json",
-    "sha256": "60399336a8570427f942e66d45fe4f03319d12c9dfb6eec11c53a14b24fd3550"
+    "path": "research/runtime/coverage/source-index-native-render-owner-final-20261012.json",
+    "sha256": "e8c2f9dd1acd6b5685a5754799c3703dc2dd467a60c954ee02c43652828e5eb1"
   },
   "claim_bindings_required": true
 }

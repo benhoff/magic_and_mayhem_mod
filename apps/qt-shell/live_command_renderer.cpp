@@ -3,11 +3,12 @@
 #include "../../protocols/include/mnm/render_stream_v4.h"
 #include <stdexcept>
 #include <algorithm>
-LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):viewport_(viewport),verify_(verify){}
+LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):LiveCommandRenderer(viewportRenderTarget(viewport),verify){}
+LiveCommandRenderer::LiveCommandRenderer(NativeRenderTarget target,bool verify):target_(std::move(target)),verify_(verify){}
 LiveCommandRenderer::~LiveCommandRenderer(){abort();}
 bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
-void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();viewport_.setGpuFrame({});}
+void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();target_.present({});}
 void LiveCommandRenderer::abort(){
     channel_.cancel();if(decoder_)decoder_->abort();pending_.clear();cursor_=0;
     if(consumer_ && consumer_->state()==mnm::render::CommandConsumerState::Active)consumer_->abort();
@@ -16,14 +17,14 @@ void LiveCommandRenderer::abort(){
 bool LiveCommandRenderer::poll(quint32 budget){
     if(closed_)return false;
     try {
-        if(!viewport_.ready())return true;
+        if(!target_.ready())return true;
         if(!budget || budget>MNM_RENDER_COMMANDS_V1_POLL_BYTES)throw std::runtime_error("Invalid command poll budget");
         if(!consumer_){
-            renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());
+            renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
                 // setGpuFrame queues an update. Qt coalesces historical frames
                 // and composes the latest lease after this bounded poll yields.
-                viewport_.setGpuFrame(std::move(frame));
+                target_.present(std::move(frame));
                 if(framePresented)framePresented();
             },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames});
         }
@@ -59,7 +60,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
         }
         // Diagnostic callbacks may paint explicitly. Normal execution never
         // waits for a display repaint in the command reader.
-        if(!viewport_.error().isEmpty())throw std::runtime_error(viewport_.error().toStdString());
+        if(!target_.error().isEmpty())throw std::runtime_error(target_.error().toStdString());
         if(channel_.state()==MNM_RENDER_COMMANDS_V1_STATE_ENDED && channel_.drained() && pending_.empty()){
             // poll() can expose terminal state before all bounded bytes drain.
             decoder_->finish();consumer_->finish();ended_=true;closed_=true;

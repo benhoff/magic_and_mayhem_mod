@@ -16,7 +16,7 @@ target_include_directories(mnm-main-menu PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(mnm-main-menu PUBLIC Qt6::Widgets PRIVATE mnm-assets mnm-bmp-loader mnm-jpeg-loader mnm-sprite-loader mnm-fp-loader mnm-sft-loader mnm-pcx-loader mnm-animation-loader)
 target_compile_options(mnm-main-menu PRIVATE -Wall -Wextra -Werror -pedantic)
 option(MNM_EXPERIMENTAL_MINI_MENUS "Enable unvalidated Mini Menu integration for dedicated validation builds" OFF)
-add_executable(mnm-qt-shell main.cpp resident_world_session.cpp resident_profile_capture.cpp live_campaign_defeat_controller.cpp live_campaign_defeat_test.cpp live_campaign_preferences_test.cpp live_region_entry_controller.cpp live_region_entry_test.cpp live_region_enter_test.cpp live_campaign_mini_test.cpp live_campaign_quit_test.cpp live_preferences_menu_controller.cpp live_result_menu_controller.cpp live_mini_menu_controller.cpp live_spell_menu_controller.cpp live_battle_menu_controller.cpp live_menu_test.cpp live_preferences_menu_test.cpp live_preferences_restore_test.cpp live_preferences_display_test.cpp live_battle_menu_test.cpp menu_bridge.cpp engine_preferences_store.cpp live_menu_session.cpp window_host.cpp gl_viewport.cpp frame_stream.cpp input_forwarder.cpp input_state.cpp media_broker.cpp media_cli.cpp)
+add_executable(mnm-qt-shell main.cpp native_render_worker.cpp resident_world_session.cpp resident_profile_capture.cpp live_campaign_defeat_controller.cpp live_campaign_defeat_test.cpp live_campaign_preferences_test.cpp live_region_entry_controller.cpp live_region_entry_test.cpp live_region_enter_test.cpp live_campaign_mini_test.cpp live_campaign_quit_test.cpp live_preferences_menu_controller.cpp live_result_menu_controller.cpp live_mini_menu_controller.cpp live_spell_menu_controller.cpp live_battle_menu_controller.cpp live_menu_test.cpp live_preferences_menu_test.cpp live_preferences_restore_test.cpp live_preferences_display_test.cpp live_battle_menu_test.cpp menu_bridge.cpp engine_preferences_store.cpp live_menu_session.cpp window_host.cpp gl_viewport.cpp frame_stream.cpp input_forwarder.cpp input_state.cpp media_broker.cpp media_cli.cpp)
 target_link_libraries(mnm-qt-shell PRIVATE Qt6::Widgets Qt6::OpenGLWidgets Qt6::OpenGL Qt6::Multimedia PkgConfig::XCB mnm-renderer mnm-world-rolling mnm-main-menu mnm-audio-bridge)
 target_compile_options(mnm-qt-shell PRIVATE -Wall -Wextra -Werror -pedantic)
 if(MNM_EXPERIMENTAL_MINI_MENUS)
@@ -352,3 +352,10 @@ target_sources(mnm-qt-shell PRIVATE campaign_smoke_test.cpp healing_smoke_test.c
 
 # Bounded mapped command transport and presentation adapter.
 target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp render_control.cpp live_command_session.cpp)
+
+if(BUILD_TESTING)
+    add_executable(native-render-worker-test ../../tests/native-render-worker-test.cpp native_render_worker.cpp resident_world_session.cpp resident_profile_capture.cpp gl_viewport.cpp command_channel.cpp live_command_renderer.cpp live_command_session.cpp render_control.cpp)
+    target_include_directories(native-render-worker-test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+    target_link_libraries(native-render-worker-test PRIVATE Qt6::Widgets Qt6::OpenGLWidgets mnm-world-rolling mnm-renderer)
+    target_compile_options(native-render-worker-test PRIVATE -Wall -Wextra -Werror -pedantic)
+endif()

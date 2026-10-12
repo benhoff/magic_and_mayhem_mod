@@ -6941,3 +6941,27 @@ preparation/UI compilation/native submission and presentation remain the critica
 path. Removing that GUI dependency is the next substantial performance milestone.
 Committed b3757828..fdd1875e history was reviewed against41exact parent/current
 file receipts withzero gaps; this accounting does not assert retrospective tests.
+
+
+### Dedicated native render owner (2026-10-12)
+
+Owned V5 independent-world mode now moves native source preparation, World drawing
+and UI/command compilation to one joined render owner. GUI work is semantic input,
+menus and sampling immutable completed native GPU frames. Two bounded exported
+leases use production/sampling fences and return to the render owner before GL
+teardown; display coalescing does not drop source updates or WORLD imports. V4
+and default presentation retain their separate GUI target. Source credits remain
+two, and original engine pacing/ANI/RNG are unchanged.
+
+Fresh `HOST.native-render-owner.controls-20261012` supports partial implementation
+and headless integration: 151 ordered synthetic presentations, immutable held
+frame under a slow GUI, bounded output pressure, malformed refusal and joined
+teardown, zero ordinary readbacks. Existing GPU presentation controls passed.
+Full live World/gameplay/performance validation, context recreation, and 60 FPS
+remain pending. Existing source/scope-bound historical results are retained; no
+original comparison or live replacement status is promoted.
+
+The final header contract clarification has a fresh rerun under
+`HOST.native-render-owner.current-controls-20261012` (same successful 151-frame
+thread controls and 109 default GPU comparisons). The earlier source-bound result
+is retained unchanged rather than updating its hashes.

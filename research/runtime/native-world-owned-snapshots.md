@@ -131,3 +131,47 @@ preparation/UI compilation/native submission and presentation remain the critica
 path. Removing that GUI dependency is the next substantial performance milestone.
 Committed b3757828..fdd1875e history was reviewed against41exact parent/current
 file receipts withzero gaps; this accounting does not assert retrospective tests.
+
+
+## Dedicated native render owner — 2026-10-12
+
+Confirmed within the synthetic controls: independent owned V5 mode now delegates
+source consumption/native World preparation, GPU drawing and command/UI compilation
+to one joined `NativeRenderWorker`. The existing original-source validation/return
+worker remains distinct. `NativeRenderTarget` isolates presentation from widgets.
+The GUI creates/destroys the platform offscreen surface; the render thread creates,
+uses and destroys its sharing GL contexts and native storage. The legacy V4/default
+route still uses the GUI target. No original artifact or simulation policy changes.
+
+Cross-thread output is an immutable native RGBA GPU copy, with production/sampling
+fences. Mutable World/UI presentation textures never reach the GUI. The render
+owner retains at most two exported leases, waits for GUI references to return,
+and releases their textures on the owning thread. A stalled GUI coalesces display
+output while source updates and command imports still process in order. GUI
+polling reads only copied status/report data and a completed lease; ordinary polling
+does not join or wait for native rendering. Terminal finish/cancel clears the GUI
+lease before joining. Extra GPU copy/storage cost is explicit and bounded; it is
+not a GPU readback or original-output screenshot substitution.
+
+Evidence `HOST.native-render-owner.controls-20261012` fingerprints current sources
+and scope before execution. The static RGB565 fixture processed 151 presentations
+while holding the GUI's first red frame for 200ms; that frame stayed red while
+new blue draws continued, all commands were processed, the two-lease limit and
+skipped display publications were exercised, malformed input refused, and joined
+normal/cancel teardown released the GUI lease. Native/ordinary RGBA readbacks were
+zero; three separate diagnostic framebuffer checks supply a pixel oracle. Existing
+GPU presentation controls also passed (including canonical RGB565 and retained
+legacy leases). This is headless synthetic integration, not live World validation.
+
+Full TITAN casting/combat/portrait/menu/resume/Quit and sustained 60 native draws
+and visible paints remain pending. Context loss/recreation and unexecuted failure
+branches remain pending. Historical GUI-owned results retain their source hashes.
+Committed range fdd1875e..8a184eef was reviewed: all 34 file transitions have exact
+receipt chains, with no unresolved gaps, in
+`working/tests/native-render-owner-history-20261012.json`; this is committed-history
+accounting, not retrospective validation or a gate-pass assertion.
+
+The final header contract clarification has a fresh rerun under
+`HOST.native-render-owner.current-controls-20261012` (same successful 151-frame
+thread controls and 109 default GPU comparisons). The earlier source-bound result
+is retained unchanged rather than updating its hashes.

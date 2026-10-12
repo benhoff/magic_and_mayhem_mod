@@ -1,4 +1,5 @@
 #pragma once
+#include "native_render_target.hpp"
 #include "../../compat/legacy/world_continuous.hpp"
 #include "../../compat/legacy/world_snapshot_queue.hpp"
 #include <chrono>
@@ -16,6 +17,7 @@ class ResidentProfileCapture;
 class ResidentWorldSession final {
 public:
     ResidentWorldSession(GlViewport&,const QString& channel,const QString& game,bool independent=false);
+    ResidentWorldSession(NativeRenderTarget,const QString& channel,const QString& game,bool independent=false);
     ~ResidentWorldSession();
     void poll(bool acceptedNormalQuit=false);
     void abort(const QString&);
@@ -43,7 +45,7 @@ private:
         bool imported=false,returned=false;
         QElapsedTimer deadline;
     };
-    GlViewport& viewport_;
+    NativeRenderTarget target_;
     mnm::legacy::WorldContinuousChannel channel_;
     std::unique_ptr<mnm::render::GlBlitter> renderer_;
     std::unique_ptr<mnm::legacy::WorldRollingSession> world_;
