@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(mnm_native_audio_file_sizes LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+add_subdirectory(../../audio audio)
+add_executable(native-audio-file-sizes-host host.cpp)
+target_link_libraries(native-audio-file-sizes-host PRIVATE mnm-audio-bridge)
+target_compile_options(native-audio-file-sizes-host PRIVATE -Wall -Wextra -Werror)
