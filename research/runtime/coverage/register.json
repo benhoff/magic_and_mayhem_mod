@@ -52222,13 +52222,13 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original complete motion action event and completion control flow",
-      "scope": "Instruction-derived5104b0 port: numeric substeps, reverse/sample/event processing, pending orders/effect release, displacement/response and movement failure. Visual/occupancy/segment/ANI/world callbacks are typed services; current comparison and full native application composition pending. Bounded iteration/event admission is separate from recovered baseline.",
-      "confidence": "provisional",
+      "scope": "Complete5104b0 motion control-flow projection within valid owned actor/grid/sample domains: signed32 arithmetic, retained direction deltas, reverse/events, completion/pending/queue effects, response/displacement and legality failure. Lower segment/ANI/visual/sound/effect/stun/behavior/geometry services are supplied with declared ABI; full world ownership and native application integration remain pending. Six native-only admission refusals are separate policy.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5309616,
-          "scope": "Full control-flow projection with declared callbacks; new implementation is unvalidated.",
+          "scope": "Whole5104b0..510e3a control-flow projection with supplied lower services; selected unchanged50a930 resolver arms and coordinate constructors. Original world/ANI timing and live replacement excluded.",
           "recovered_range": "motion-action"
         }
       ],
@@ -52239,18 +52239,102 @@
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp"
       ],
-      "tests": [],
+      "tests": [
+        "tests/creature-execution-motion-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
       "validation_dependencies": [
-        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
-        "reconstruction/creature-ai/movement_behavior.hpp"
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS28.motion-original",
+        "NS28.motion-original-v2",
+        "NS28.motion-native-v2"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Signed accumulator quotient; horizontal and vertical steps; retained out-of-range direction deltas; height clamp and wrapped arithmetic; forward/reverse sample cursor; event0/1/2/3/4/5/6/100; type12 forced32; completion removal; reversal pending2/3/5/8; normal pending transitions; queue effects; response/displacement; legal/refused movement",
+          "Distinct footprint width1..2 and height1..4, movementKind0..7 in original22-byte legality-query ABI"
+        ],
+        "services": "Segment completion, behavior/action/reset, response, ANI/visual/sound/effect/stun, queue update and geometry are typed supplied services. Original body and resolver execute unchanged; service ABI and all actor/queue/sample bytes are compared.",
+        "excluded": [
+          "Full512460 segment completion semantics",
+          "Real ANI playback/terrain sound catalog/visual effect ownership",
+          "Original world route/geometry/upkeep/scoring/composition",
+          "Invalid pointer/index/division domains",
+          "Live replacement",
+          "Broader coordinate-constructor domains; grid inputs here are valid16x16x4"
+        ],
+        "native_policy": [
+          "Bounded4096 substeps/events; bounds-checked owned samples and world indices",
+          "Positive owned world dimensions; primitive refusals need caller-staged rollback"
+        ]
+      }
+    },
+    {
+      "id": "NP.motion-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Bounded native motion arithmetic and event admission",
+      "scope": "Native refusal of zero/overflowing division, more than4096 substeps/events, invalid owned sample index and nonpositive world dimensions. Caller must stage rollback. Processor faults and nonterminating original inputs are excluded from recovered baseline equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-motion-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS28.motion-native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -105255,6 +105339,163 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS28.motion-original",
+      "kind": "isolated_original",
+      "scope": "57344 source/scope-bound whole5104b0 motion-control projections against unchanged pinned original, with native64 and sanitized64 agreement. Typed lower services and valid grid/record/sample domains; six native-only refusals are distinct admission policy. No full world/application/ANI timing or live replacement.",
+      "record": "research/runtime/original-motion-action-20261012.json",
+      "sha256": "b023325fa369853804bf4c1cf7935dd5ea60f8c3eb96cf80e1adbf7342e65e55",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 57344
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS28.motion-original-v2",
+      "kind": "isolated_original",
+      "scope": "57344 source/scope-bound whole5104b0 motion-control projections against unchanged pinned original, with native64 and sanitized64 agreement. Typed lower services and valid grid/record/sample domains; six native-only refusals are distinct admission policy. No full world/application/ANI timing or live replacement.",
+      "record": "research/runtime/original-motion-action-v2-20261012.json",
+      "sha256": "6d4fc87ee7e2305e865eb9bc1b8adbefe8be97f0a38e512c1d203723847fcaa2",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 57344
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS28.motion-native-v2",
+      "kind": "native_integration",
+      "scope": "Native64 and ASan/UBSan/LSan motion projection and six native-only admission refusals, prospectively bound to current sources and behavior scopes. Headless conformance fixture; no recovered World/session/application integration or original unsafe-input equivalence.",
+      "record": "research/runtime/original-motion-action-v2-20261012.json",
+      "sha256": "6d4fc87ee7e2305e865eb9bc1b8adbefe8be97f0a38e512c1d203723847fcaa2",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 57344
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -117998,8 +118239,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-gpu-cost-final-merge-20261012.json",
-    "sha256": "e91fd7565f8bc975e5db6f51c93b7a74464abb4c78efa781fc1fb91dc01fb7ef"
+    "path": "research/runtime/coverage/source-index-original-motion-v2-20261012.json",
+    "sha256": "ac002128fa43adc7defab6a5c26574914715566dc96e0613d476abb5047308d0"
   },
   "claim_bindings_required": true
 }

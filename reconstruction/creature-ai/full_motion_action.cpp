@@ -36,6 +36,8 @@ void disengageMotion(AutonomousCreature &a, AutonomousWorld &w) {
 void tickMotionAction(AutonomousCreature &a, CreatureExecution &e,
                       MotionActionState &m, MovementBehaviorState &landing,
                       AutonomousWorld &w, const MotionActionServices &s) {
+  if (w.dimensions.x <= 0 || w.dimensions.y <= 0 || w.dimensions.z <= 0)
+    throw std::invalid_argument("owned motion world dimensions");
   if (a.animationKind == 1)
     s.poll(a, true);
   m.accumulator = add(m.accumulator, word(e.moveVariant));
@@ -46,22 +48,23 @@ void tickMotionAction(AutonomousCreature &a, CreatureExecution &e,
     return;
   if (count > 4096)
     throw std::invalid_argument("bounded original motion substep domain");
-  bool force32 = a.ai.type == 12 && (e.mode10c == 2 || e.mode10c == 3);
-  if (force32)
-    count = 1;
   constexpr int dx[] = {0, 1, 1, 1, 0, -1, -1, -1},
                 dy[] = {-1, -1, 0, 1, 1, 1, 0, -1};
   for (int i = 0; i < count; ++i) {
-    int step =
-        force32 ? 32 : mul(m.samples.at(m.sampleCursor), m.vertical ? 2 : 1);
-    int sx = 0, sy = 0;
-    if (!m.vertical && m.direction < 8) {
-      sx = mul(step, dx[m.direction]);
-      sy = mul(step, dy[m.direction]);
+    m.step = mul(m.samples.at(m.sampleCursor), m.vertical ? 2 : 1);
+    if (a.ai.type == 12 && (e.mode10c == 2 || e.mode10c == 3)) {
+      m.step = 32;
+      count = 1;
     }
-    m.progress = add(m.progress, step);
-    m.travelX = add(m.travelX, sx);
-    m.travelY = add(m.travelY, sy);
+    if (m.vertical) {
+      m.deltaX = m.deltaY = 0;
+    } else if (m.direction < 8) {
+      m.deltaX = mul(m.step, dx[m.direction]);
+      m.deltaY = mul(m.step, dy[m.direction]);
+    }
+    m.progress = add(m.progress, m.step);
+    m.travelX = add(m.travelX, m.deltaX);
+    m.travelY = add(m.travelY, m.deltaY);
     m.heightStep = std::clamp(mul(m.heightDelta, m.progress) / 192, -16, 16);
     a.finePosition.z = add(m.heightOrigin, m.heightStep);
     Cell old = a.finePosition;
@@ -105,7 +108,7 @@ void tickMotionAction(AutonomousCreature &a, CreatureExecution &e,
         }
       }
     }
-    m.accumulator = add(m.accumulator, word(0u-unsigned(m.duration)));
+    m.accumulator = add(m.accumulator, word(0u - unsigned(m.duration)));
     if (unsigned(m.progress) < 192u)
       continue;
     if (a.ai.behavior == 14)

@@ -6,14 +6,15 @@ endif()
 add_library(mnm-original-creature-execution STATIC
     ../execution.cpp ../route_execution.cpp ../orders.cpp ../periodic.cpp
     ../ranged_execution.cpp ../action_execution.cpp ../behavior_execution.cpp ../strategy.cpp
-    ../maintenance.cpp ../movement_behavior.cpp ../death_behavior.cpp ../action_callbacks.cpp)
+    ../maintenance.cpp ../movement_behavior.cpp ../death_behavior.cpp ../action_callbacks.cpp
+    ../full_motion_action.cpp)
 target_compile_features(mnm-original-creature-execution PUBLIC cxx_std_17)
 target_include_directories(mnm-original-creature-execution PUBLIC ..)
 target_compile_options(mnm-original-creature-execution PRIVATE -Wall -Wextra -Werror -pedantic)
 target_link_libraries(mnm-original-creature-execution PUBLIC mnm-original-creature-ai)
 include(CTest)
 if(BUILD_TESTING)
-    foreach(suite IN ITEMS test actions-test orders-test strategy-test behaviors-test lifecycle-test callbacks-test)
+    foreach(suite IN ITEMS test actions-test orders-test strategy-test behaviors-test lifecycle-test callbacks-test motion-test)
         add_executable(creature-execution-${suite}
             ../../../tests/creature-execution-${suite}.cpp)
         target_link_libraries(creature-execution-${suite} PRIVATE mnm-original-creature-execution)
