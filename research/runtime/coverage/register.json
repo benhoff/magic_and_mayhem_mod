@@ -43084,7 +43084,8 @@
       "validation_dependencies": [
         "runtime/scene/drawing_source_point.h",
         "runtime/drawing/source_points.h",
-        "tools/compare-drawing-source-points.py"
+        "tools/compare-drawing-source-points.py",
+        "runtime/scene/source_pending_refusal.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
@@ -43097,7 +43098,9 @@
         "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012",
         "DRAW02.draw02-source-lease-original-01-live_observation-20261012",
-        "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012"
+        "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012",
+        "DRAW02.source-pending-byte-regression-01-native_integration-20261012",
+        "DRAW02.source-pending-byte-link-refusal-01-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43111,7 +43114,8 @@
         "Original01closes1570refusedpoints/0planesbecausecalleroutertransferframeswereallrefused;pendingnarrowexacttag7caller/sourceframeadmissionfixture05/freshoriginal02. Zero-plane resultretained.",
         "Original02hitsunchanged128MiBproducerbytecapinsidequeue32(31returns,176416records/134217096bytes),retains266CPUplanes/1234refusals butoverallsourceprefixunadmitted. Next focused16returnintervaldoesnotreducefull32/120windowdenominators.",
         "Focusedoriginal03admits241CPUplanes/1347refusalsand16return54903recordprefix/336API335EGLwitnesses. NativeexactprefixCPUcomparisonpending;31of32bytecapfailureoriginal02retained. No immutableownership/full32/120window/allroute/semanticclaims.",
-        "Focusedoriginal03nativeprediction01matches106selectedphysical/230excluded;externalCPU01matches212entryreturnplanes/101760000pixels0diffatidenticalsourceprefix/canvas. Sampledcopydoesnotfreezeoriginalstorage;allwriter/ownership/full32/120windows/allroutes/semanticsremainpending."
+        "Focusedoriginal03nativeprediction01matches106selectedphysical/230excluded;externalCPU01matches212entryreturnplanes/101760000pixels0diffatidenticalsourceprefix/canvas. Sampledcopydoesnotfreezeoriginalstorage;allwriter/ownership/full32/120windows/allroutes/semanticsremainpending.",
+        "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion."
       ]
     },
     {
@@ -43142,14 +43146,16 @@
       "validation_dependencies": [
         "runtime/scene/drawing_source_bytes.h",
         "runtime/scene/producer_trace_guard.h",
-        "runtime/drawing/source_byte_witness.h"
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/scene/source_pending_refusal.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
         "DRAW02.draw02-source-lease-fixture-07-native_integration-20261012",
         "DRAW02.draw02-source-lease-recorder-fixture-01-native_integration-20261012",
         "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
-        "DRAW02.draw02-source-lease-original-01-live_observation-20261012"
+        "DRAW02.draw02-source-lease-original-01-live_observation-20261012",
+        "DRAW02.source-pending-lease-regression-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43160,7 +43166,8 @@
       },
       "remaining_gaps": [
         "Pendingpageownership/protection/ABI/writefault/restorefixtures;actuallease/sourcecheckpoint/nativecomparisonandasyncworker/EGLreleaseboundary. Writeguardisexplicitdiagnosticnotbaseline,sharedheapaliases/otherwriters remainunknown.",
-        "Original01admits123APIbodyreadonlyleases/669refusals/noobservedwritefault,fullcheckedrestore. APIreturnrelease doesnotcoverasyncworker/EGLbyteownership. Sharedheap/allroutes/fullsemantic120windowsremainpending."
+        "Original01admits123APIbodyreadonlyleases/669refusals/noobservedwritefault,fullcheckedrestore. APIreturnrelease doesnotcoverasyncworker/EGLbyteownership. Sharedheap/allroutes/fullsemantic120windowsremainpending.",
+        "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion."
       ]
     },
     {
@@ -43526,7 +43533,8 @@
         "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
         "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012",
         "DRAW02.held-refusal-native-01-negative-20261012",
-        "DRAW02.held-refusal-native-02-native-20261012"
+        "DRAW02.held-refusal-native-02-native-20261012",
+        "DRAW02.source-pending-native-01-native-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43800,6 +43808,55 @@
       "remaining_gaps": [
         "PE32 28 original forwards/10 queries and four decoder methods pass. Original01 negative records64 partial address matches, then phase2 source-byte getter refuses two pending producer frames after one command completed; extra frame identity/overlap remains unknown. Metadata-only original02 closes1675queries:340known/1027unbound308stopped, all340known afterobservedunmap,336API335EGLnormalQuit0; resource intervals allclose.",
         "Known points include fullframe canvas2/7/8/9/10/13 andUI12/14/15/22/53/54. Last observed map address at submission is not post-unmap allocation ownership or actualupload/sourceversion/writer/alias/reuse/wholeCOM/resource/texture/storage lifetime. Combined protected source copying still needs a sound pending-frame diagnosis/admission contract. Other routes/actions/cadencecontrols/current nativeparity/full DRAW-02 47/21 acceptance remain pending."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-pending-frame-refusal",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Protected source-byte pending-frame refusal snapshot",
+      "scope": "At the exact pending-frame rejection inside the producer recorder scope, retain one bounded pointer-free snapshot per active matching source lease: selected source canvas, frame slots/tags/owners/primitive state/known object and owned record canvas IDs. Only diagnostics on refusal; no source-copy admission change, bytes or allocation ownership claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-pending-frame-refusal.md"
+      ],
+      "implementation": [
+        "runtime/scene/source_pending_refusal.h",
+        "tools/drawing_source_pending_refusal.py"
+      ],
+      "tests": [
+        "tests/drawing-source-pending-refusal-test.c",
+        "tools/test-drawing-source-pending-refusal.py",
+        "tests/test-drawing-source-pending-refusal.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/drawing_source_bytes.h",
+        "runtime/scene/drawing_source_point.h",
+        "runtime/scene/drawing_source_lease.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/producer_trace_guard.h",
+        "tools/build-scene-observer.py"
+      ],
+      "evidence": [
+        "DRAW02.source-pending-fixture-01-native_integration-20261012",
+        "DRAW02.source-pending-parser-01-native_integration-20261012",
+        "DRAW02.source-pending-compile-refusal-01-static-20261012",
+        "DRAW02.source-pending-link-refusal-01-static-20261012",
+        "DRAW02.source-pending-original-01-live-20261012",
+        "DRAW02.source-pending-original-02-live-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Two exact refusal PE32 cases and three decoder methods pass; corrected existing byte export and readonly protection/write-fault fixtures pass. Two original combined runs close normally without emitting refusal files; intermittent earlier extra frame identity/overlap remains unreproduced and unassigned. No source-copy admission was loosened.",
+        "Numeric canvas/record equality is not alias/overlap proof. Whole source/COM/resource/texture/storage lifetime and all writers/uploads/versions, unknown/stopped routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
       ]
     }
   ],
@@ -93547,6 +93604,189 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.source-pending-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 active lease exact-frame snapshots: foreign frame and duplicate selected frames; unleased skip/one file perlease/refusal output and LastError unchanged.",
+      "record": "research/runtime/draw02-source-pending-fixture-01.json",
+      "sha256": "79ba858e726f80fefa7f9b3e5d67ee4b895c39b55c59b2850848be80c7310902",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-pending-parser-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Three bounded frame identity decoder methods; no original execution.",
+      "record": "research/runtime/draw02-source-pending-parser-01.json",
+      "sha256": "32206731288221a2eaf4b5c9f0ca8551f9d8b74660bd9649c937426f53fa03a0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-pending-compile-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "Standalone fixture unused-depth helper compile failure; no execution.",
+      "record": "research/runtime/draw02-source-pending-compile-refusal-01.json",
+      "sha256": "a2d15ad04c0821f0de6c2080cead607d2dfa6a5e28e2aa83f49be842b2642b97",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-link-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "8KiB diagnostic stack __chkstk dependency link failure; corrected streaming rows tested separately.",
+      "record": "research/runtime/draw02-source-pending-link-refusal-01.json",
+      "sha256": "e3f8dc171bbe37d8a6b76736a34df3dd1a5860de958434ac59a98ea1032a6747",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-byte-regression-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Current PE32 byte-export capacity/unknown/primitive/stopped/output/LastError guards after refusal diagnostic.",
+      "record": "research/runtime/draw02-source-pending-byte-regression-01.json",
+      "sha256": "fd30eaacde11cacbcf62e360f64d7cacb3ad8f26926ea64997c19baa8cbd73e2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-pending-lease-regression-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Current PE32 exact page protection restore and write-fault refusal after diagnostic.",
+      "record": "research/runtime/draw02-source-pending-lease-regression-01.json",
+      "sha256": "49aeba5c0844699f6312dc49f1644834f0d88dafb2bf3a1c856f7ccaa26352dd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-pending-byte-link-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "Byte-export harness link omission exposed by shared diagnostic; no execution.",
+      "record": "research/runtime/draw02-source-pending-byte-link-refusal-01.json",
+      "sha256": "200d15691413a097bdc0bc77e6c5e3a2e73ca22365692bb332b8c3d188283858",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-original-01-live-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active combined capture with unchanged pending-frame admission closes normally and emits no rejection snapshot. Earlier extra frame identity remains unreproduced/unassigned.",
+      "record": "research/runtime/draw02-source-pending-original-01.json",
+      "sha256": "1c273b8c7e911acc225032e674d15b60499972d8f44e1e53592546fe1e1398e8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-original-02-live-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active combined capture with unchanged pending-frame admission closes normally and emits no rejection snapshot. Earlier extra frame identity remains unreproduced/unassigned.",
+      "record": "research/runtime/draw02-source-pending-original-02.json",
+      "sha256": "d66d54530991ed6f26684709a7d632e96e9ed0b5e85a0fb2092d4737f55f9455",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-native-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "104eligible exact protected-source/API command/worker/EGL physical frames match source-only native replay,223exclusions retained; no full drawing or lifetime claim.",
+      "record": "research/runtime/draw02-source-pending-native-01.json",
+      "sha256": "fe806bd8e56a6de7a8e6058a1c506e67c74ac2a65c47c1d5a4c767c337c202b7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104798,7 +105038,8 @@
       "evidence": [
         "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
         "DRAW02.draw02-source-byte-fixture-refusals-01-static-20261012",
-        "DRAW02.draw02-source-byte-export-fixture-05-native_integration-20261012"
+        "DRAW02.draw02-source-byte-export-fixture-05-native_integration-20261012",
+        "DRAW02.source-pending-byte-regression-01-native_integration-20261012"
       ]
     },
     {
@@ -104851,7 +105092,8 @@
       "evidence": [
         "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
         "DRAW02.draw02-source-lease-fixture-07-native_integration-20261012",
-        "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012"
+        "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
+        "DRAW02.source-pending-lease-regression-01-native_integration-20261012"
       ]
     },
     {
@@ -105053,7 +105295,8 @@
         "DRAW02.draw02-held-egl-fixture-01-native_integration-20261012",
         "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
         "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012",
-        "DRAW02.held-refusal-native-02-native-20261012"
+        "DRAW02.held-refusal-native-02-native-20261012",
+        "DRAW02.source-pending-native-01-native-20261012"
       ]
     },
     {
@@ -105222,6 +105465,36 @@
       ],
       "evidence": [
         "DRAW02.retained-map-original-02-live-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-fixture",
+      "level": "headless",
+      "scope": "Bounded frame identity snapshot at protected source-copy refusal; no ownership or admission promotion.",
+      "behaviors": [
+        "NR.drawing-source-pending-frame-refusal"
+      ],
+      "tests": [
+        "tools/test-drawing-source-pending-refusal.py"
+      ],
+      "evidence": [
+        "DRAW02.source-pending-fixture-01-native_integration-20261012",
+        "DRAW02.source-pending-parser-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-pending-original",
+      "level": "live_observation",
+      "scope": "Bounded frame identity snapshot at protected source-copy refusal; no ownership or admission promotion.",
+      "behaviors": [
+        "NR.drawing-source-pending-frame-refusal"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.source-pending-original-01-live-20261012",
+        "DRAW02.source-pending-original-02-live-20261012"
       ]
     }
   ],
@@ -105596,8 +105869,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-retained-map-20261012.json",
-    "sha256": "01e497223df518bfcf1326a0139a53bf6ce4b71a9e2d373d5fbbf55181fbfcc9"
+    "path": "research/runtime/coverage/source-index-draw02-source-pending-20261012.json",
+    "sha256": "700df2576b77f006a0fd62afb8ad3e504dd3140ee4ae7e551d7f0014e08ff933"
   },
   "claim_bindings_required": true
 }

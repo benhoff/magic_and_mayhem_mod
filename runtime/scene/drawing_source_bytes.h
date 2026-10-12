@@ -1,3 +1,4 @@
+static void source_pending_refusal(struct Surface*,const u32*,u32);
 /* External comparison oracle only. Metadata consistency is not byte ownership. */
 u32 WIN SceneDrawingSourceBytesV1(void* com,u32* before,u32* after,u8* pixels,u32 capacity){
  u32 error=GetLastError();
@@ -8,8 +9,8 @@ u32 WIN SceneDrawingSourceBytesV1(void* com,u32* before,u32* after,u8* pixels,u3
  struct Surface* source=0;for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object&&surfaces[i].id==before[6]){source=surfaces+i;break;}
  if(!source||!source->width||!source->height||source->width>2048||source->height>2048||source->stride<source->width||source->stride>4096){copy(after,before,64);SetLastError(error);return 3;}
  if(before[12]){u32 permitted=0;
-  for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp){if(frames[i].sp==0xffffffffu||frames[i].tag!=7||frames[i].owner!=GetCurrentThreadId()||frames[i].ecx!=source->object||frames[i].primitive){copy(after,before,64);SetLastError(error);return 2;}++permitted;}
-  if(permitted!=1){copy(after,before,64);SetLastError(error);return 2;}
+  for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp){if(frames[i].sp==0xffffffffu||frames[i].tag!=7||frames[i].owner!=GetCurrentThreadId()||frames[i].ecx!=source->object||frames[i].primitive){source_pending_refusal(source,before,1);copy(after,before,64);SetLastError(error);return 2;}++permitted;}
+  if(permitted!=1){source_pending_refusal(source,before,2);copy(after,before,64);SetLastError(error);return 2;}
  }
  u32 bytes=source->width*source->height*2;
  if(bytes>capacity||!bypass_writable((u32)pixels,bytes)||!readable(source->pixels,source->stride*source->height*2)){copy(after,before,64);SetLastError(error);return 3;}

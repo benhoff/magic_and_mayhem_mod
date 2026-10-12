@@ -32,3 +32,4 @@ u32 WIN SceneDrawingSourcePairV1(void* destination,void* source,u32* out,u32 siz
 #include "drawing_source_bytes.h"
 
 #include "drawing_source_lease.h"
+#include "source_pending_refusal.h"

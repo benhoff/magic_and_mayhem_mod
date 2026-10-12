@@ -12,7 +12,7 @@ struct BatchExceptionPointers{struct BatchExceptionRecord* record;void* context;
 static u32 get(const void* p){return *(const u32*)p;}
 static struct Surface{u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[2];
 struct Thread{u32 unused;};
-static struct{u32 sp,tag,owner,ecx,primitive;} frames[128];
+static struct{u32 sp,tag,owner,ecx,primitive,caller;u8* record;} frames[128];
 static void copy(void* out,const void* in,u32 n){u8* a=out;const u8* b=in;while(n--)*a++=*b++;}
 static int readable(u32 p,u32 n){u32 m[7];return p&&p+n>=p&&VirtualQuery((void*)p,m,28)==28&&m[4]==0x1000&&!(m[5]&0x101)&&p+n<=m[0]+m[3];}
 static int bypass_writable(u32 p,u32 n){u32 m[7];return readable(p,n)&&VirtualQuery((void*)p,m,28)==28&&(m[5]&0xcc);}

@@ -941,3 +941,20 @@ actual uploads/all writers/whole lifetimes and full DRAW-02 47/21 acceptance
 remain open. Next diagnose pending frames before changing protected-copy
 admission. Other routes/actions/cadence controls and current native parity
 remain pending; step3 is not yet admitted.
+
+DRAW-02 step2 pending-frame diagnostic is fixture-validated at the exact
+protected byte-copy rejection, without changing admission. Two PE32 cases and
+three decoder methods plus corrected byte/lease regressions pass. Two original
+combined runs close normally (119/117protected pairs,224/221commands) without
+rejection snapshots. Earlier extra-frame identity/overlap remains unassigned.
+Current source contracts explicitly include the shared diagnostic, retaining
+historical declaration fingerprints. Continue step2 with bounded diagnostic
+controls and whole-source lifetime/version accounting; other routes/actions,
+all47/21requirements and later steps remain open.
+
+The second current diagnostic run supplies104eligible exact protected-source/
+API-command/worker/EGLphysical frames that match source-only native replay
+with zero differing pixels;223exclusions remain explicit. This is bounded
+comparison evidence, not all-source lifetime, cadence or full journey closure.
+Next complete bounded diagnostic cadence controls while leaving the intermittent
+pending-frame identity open and keeping source-copy admission unchanged.

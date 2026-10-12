@@ -48,7 +48,7 @@ def main():
     if a.engine_cadence:names += ['runtime/engine-cadence/observer.c','runtime/engine-cadence/entry.S','tools/build-engine-cadence.py','tools/engine_cadence.py','tools/drawing_engine_windows.py','tools/drawing_quit_completion.py']
     if a.source_held_snapshot:names += ['runtime/drawing/source_held_snapshot.h','tools/drawing_source_held_snapshot.py','tools/drawing_source_held_refusal.py']
     if a.source_worker_lease:names += ['runtime/drawing/source_worker_lease.h','tools/drawing_source_worker_lease.py']
-    if a.source_readonly_lease:names += ['runtime/scene/drawing_source_lease.h','runtime/drawing/source_readonly_lease.h','tools/drawing_source_lease.py']
+    if a.source_readonly_lease:names += ['runtime/scene/drawing_source_lease.h','runtime/scene/source_pending_refusal.h','tools/drawing_source_pending_refusal.py','runtime/drawing/source_readonly_lease.h','tools/drawing_source_lease.py']
     if a.source_byte_witness:names += ['runtime/scene/drawing_source_bytes.h','runtime/drawing/source_byte_witness.h','tools/drawing_source_byte_witness.py']
     if a.wine_worker_context:names += ['runtime/drawing/wine_worker_context.h','runtime/display/egl_worker_context.h','protocols/include/mnm/drawing_worker_context_v1.h','tools/drawing_worker_context.py']
     if a.wine_blit_packet:names += ['runtime/drawing/wine_blit_packet.h','runtime/drawing/wine_blit_packet.S','tools/drawing_wine_blit_packet.py']
@@ -225,6 +225,13 @@ def main():
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
         if channel:channel.close();channel_file.close()
         verify('original-after')
+    pending_paths=sorted(capture.glob('source-pending-refusal-*.bin'))
+    if pending_paths:
+        from drawing_source_pending_refusal import decode as decode_pending_frames
+        try:
+            report['source_pending_frame_refusals']=[dict(path=p.name,**decode_pending_frames(p.read_bytes())) for p in pending_paths]
+        except Exception as error:
+            failure=error;report.update(success=False,admitted=False,error=str(error))
     rejection_path=capture/'source-held-refusal.bin'
     if rejection_path.exists():
         from drawing_source_held_refusal import decode as decode_held_refusal
