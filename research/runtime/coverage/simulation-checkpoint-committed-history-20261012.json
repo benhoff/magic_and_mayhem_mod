@@ -1,0 +1,3736 @@
+{
+  "schema": 1,
+  "scope": "Exact committed checkpoint file hashes checked against parent/current receipts. Behavior/evidence/scenario fingerprints come from the successful actual staged gate; equality of committed linked sources/register/scenarios to that tree preserves that accounting. No new behavioral execution assertion.",
+  "base": "868f2cad5c83e7c7bb5057b31fdb9628aa7f5c7c",
+  "head": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+  "files": [
+    {
+      "path": "apps/creature-lab/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "1d649e4386f6895bcde3893deaca88227cc22376a14cace4fbc016e996c9087c",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/README.md",
+      "before_sha256": null,
+      "after_sha256": "46dda964a59a49edb52161e405b2e8ababdd2b1398dbb4fb45586fddff4bbd16",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/cli.cpp",
+      "before_sha256": null,
+      "after_sha256": "b3cc39523d8f407095e5e8cf0a92032e8df46f89c874c8b3f71b70319580888c",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "b94f2bd0a3c59318368ff4797e1aea18dcdabac271da7841e361d5cf6130633f",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "5b7e96efbfa0d1d6b02414a02a051240225bf0cfa0d821d2fcd148f33dc30936",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "ca337431213a6537c72577c6a5049bc57876168346765cc844b04ca2bdefaf39",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/profile.cpp",
+      "before_sha256": null,
+      "after_sha256": "0b16ed9fa8e62f74c4d50f4c11d90a57866c8cc9b72ee5b53bfb7f9b6d712aa5",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/profile.hpp",
+      "before_sha256": null,
+      "after_sha256": "e757725550fa04a11083d3e87610282bb9fb59aaa96bd3aa599d52099e74fc9f",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/window.cpp",
+      "before_sha256": null,
+      "after_sha256": "6da62e4a0396e816f20b2beaa75b057179a00f6684f7d1f5853d1cb9b65dc008",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/creature-lab/window.hpp",
+      "before_sha256": null,
+      "after_sha256": "9b30ab05eb7afb76c3433bd519269c366da0a8f8e51e3762cceb95d62e207752",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "eb568d210a7eed8b054564b7d6d2f144fb6d3baa3818f100b6ee0dec16cd5001",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/README.md",
+      "before_sha256": null,
+      "after_sha256": "771ff7b3e1e359622bbb9d1e6c9c1ba50c37f8d28aa180047f034676958e8a60",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/cli.cpp",
+      "before_sha256": null,
+      "after_sha256": "0be69bb024863b4d4fcd0e84e0f7530e5907b6703755cde24ede9f47a131aebd",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "95d04f28e020c178a2c59f89145472fcf4eb32fcd8c9cd00b74a53c82d71c062",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "b6e598caa8f44dd9deb59ecb03612f582cc1a08640d8b94634eb92bc3e1eaad7",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "1c672cd7baeac426885c1912cd2e946b711beb3a3d0aa805b312bf4d75e6b1f1",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/profile.cpp",
+      "before_sha256": null,
+      "after_sha256": "d72e5825da31a034cbf3175a148f013d13be2014b478c05da9f5163c2d453ad3",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/profile.hpp",
+      "before_sha256": null,
+      "after_sha256": "15eee19aa40edd0393a13a88fcab236c43edc7edc7b46cd715b3a485f45f3376",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/window.cpp",
+      "before_sha256": null,
+      "after_sha256": "9f0fc050c6e6583d4a807761fbfeb7a1f7386a022686205c5f4f43892f2e1c81",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/melee-lab/window.hpp",
+      "before_sha256": null,
+      "after_sha256": "9972d09367d41f529f479c63f63d330b5b82d0a0d1dcc9c80892208aaa47b181",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "1e9676137993ece60ed5055fc9a307b820dfbc8a44e017f988fda8b7380875e4",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/README.md",
+      "before_sha256": null,
+      "after_sha256": "74c75f48732a33c560675fa780d883a4a02dde5c0ba9f41e9ae0fd48ffcfbd66",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/arena.cpp",
+      "before_sha256": null,
+      "after_sha256": "09e47eb5a45ff798e0990ef6e5194f4a3729f41a77de492e09215946a17f4591",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/arena.hpp",
+      "before_sha256": null,
+      "after_sha256": "f4fee6f00690744bfac6eb3d36ebe196bd531c76e21f52fa82eaa3da6351bb13",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/cli.cpp",
+      "before_sha256": null,
+      "after_sha256": "cb0858a15e4bb6e94009d389bf15127c402fbb487fd532976a2fb19436c3c50a",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "2e9864cf4b681ca43e0540c0de11411dfe23866810f1c8cadcdee7cf5ac1d6d6",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "fe15db23e80c419f408e01b7a1bb228f03353ea2ed8a66104fb9b9b182a67e26",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/health_rules.cpp",
+      "before_sha256": null,
+      "after_sha256": "5298672a7bc36dac396cfa45f017fee527c51af0846dd62028931f05d27fca25",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/health_rules.hpp",
+      "before_sha256": null,
+      "after_sha256": "5691d0fcef51d8ccb3e46845b12d8317801ce23d1aadc47303f3383be9bec252",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "c4fe60af774e963a829e61fb2b0fab3489d3acee77d35e234ff28f522c1a7057",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/trace.cpp",
+      "before_sha256": null,
+      "after_sha256": "ff95a6b3edb48e478a17afb3de275744b3d135b39cce6ea358c1dad874f18c5b",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/trace.hpp",
+      "before_sha256": null,
+      "after_sha256": "25601b41e0122eb079d59b98ae1827f09240de202430d06a3a25cf8cecebbd51",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/view.hpp",
+      "before_sha256": null,
+      "after_sha256": "8833a0ee59467bb8347cec3cac7468d6113c389353d69faad20d29607a1d45e7",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/window.cpp",
+      "before_sha256": null,
+      "after_sha256": "6ddd12b74c4c6adda1649edec39d8b6ea690971f6a2069ee00e085c4b01d4cbc",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "apps/skirmish/window.hpp",
+      "before_sha256": null,
+      "after_sha256": "f4bbb2cc22f3e4e514470c3af3536d6b052d18a09ea85de8eb6ef85768f396ee",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "docs/architecture.md",
+      "before_sha256": "32de96b927267d177c61736d8c0cea78eaf16cfcffc0fbdaecda9049575ac247",
+      "after_sha256": "a5e48bbba71ec43e63b9cf1fe8b63ca91eddf58f8d21fec990de8febd408ffcb",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "d283b2a044cfe172ab872c72efd7ddc0831c7d0315cd2f37937d36c1a1251b70",
+      "after_sha256": "b81aeb0d7560a04d80956ac5681ff1e43176cb54c5edf46516375bdfbd7810cd",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/combat.cpp",
+      "before_sha256": "a587561a03bcf9b530db983b9d55ff12dcdf9a042f4f511df58a415433658965",
+      "after_sha256": "9d72f6cdfb7444620bb3a020a673ca08fc286b14c6a2ae5a5ead97ca6db9a8c5",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/combat.hpp",
+      "before_sha256": "b79858ade42e58c10a0975054b8e0c5812d5ecf566061d5ecf260cae532564ae",
+      "after_sha256": "ba4b04e90a9a2f9070fc8a0339436b4b4c9413d360c667ff834d086dc8a90dee",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/creature_encounter.cpp",
+      "before_sha256": null,
+      "after_sha256": "79143956584304620374fec04b8153d83dfbd4e0d7fcf1ad0c618c0bc47501ba",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/creature_encounter.hpp",
+      "before_sha256": null,
+      "after_sha256": "838e028f4bb2c767685e10ff0f6aae6cbf25eecd2d141ac47dde352d9d11eae0",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/health_rules.cpp",
+      "before_sha256": null,
+      "after_sha256": "3799dab0d63238583ffa9223caa2f8aeb79ba5af189e8dcf2b69ebe25f2b3b12",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/health_rules.hpp",
+      "before_sha256": null,
+      "after_sha256": "8f13dc356188a914adea0632c1b7c5a9c5559d97749f8c250402663bf487d1d4",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/melee_exchange.cpp",
+      "before_sha256": null,
+      "after_sha256": "4e4b272e0352994aed7a93aafe4bea569df55aaa9807c3a4e2f305d64b8fb1d9",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/melee_exchange.hpp",
+      "before_sha256": null,
+      "after_sha256": "3a9e6781f2471ee969ea48e004a212a5d0b57c9a67b40b86f833fe0040388978",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/skirmish.cpp",
+      "before_sha256": null,
+      "after_sha256": "35a23758a06237fe735d8ac7ac80d2168002c6daa1da58b718e58606bc4f6748",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "game/simulation/skirmish.hpp",
+      "before_sha256": null,
+      "after_sha256": "ac80214484383815a0e3f4d8d137afe9a0573e71cb6396d060d09d2e33f5a753",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "6554e5ff8e209318b7093eab0281e79f7a0d35a596e0b1f191c1d9ebcddb6d56",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/ai.cpp",
+      "before_sha256": null,
+      "after_sha256": "011a6b6bbb851a69ec13bab9c936a2d6497b66b5d07608e0f09d2988a19552a2",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/ai.hpp",
+      "before_sha256": null,
+      "after_sha256": "c935eeb0d637d7c25d172a29defcfcaa9bf0b77e49acb7c1a3973f6c64a15fb4",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/autonomy.cpp",
+      "before_sha256": null,
+      "after_sha256": "df2e2c1c87501456fcbe1152232b6935518226da2170903a69e92b6ba2dd165c",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/autonomy.hpp",
+      "before_sha256": null,
+      "after_sha256": "ff7165b923082895039a76acd5778997c45c5ef03100ab376bd2f44ef327e4e7",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/autonomy_tables.hpp",
+      "before_sha256": null,
+      "after_sha256": "45eccff0f457161df7ae9b64524aa1865e75c445472733410a73e13e10e9e0f1",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/control.cpp",
+      "before_sha256": null,
+      "after_sha256": "f06b0c486e8aacf5cc35fb3e61a89bbed448d5a00a72a02098a8b458a1ca47ed",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/control.hpp",
+      "before_sha256": null,
+      "after_sha256": "6eec7999f863732d15ff27f3f1429f71823f7f141a2b0d729a31815aeff59dc5",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/health.cpp",
+      "before_sha256": null,
+      "after_sha256": "432fc66e11946f15cb9724e28f005fb050732760737a7d9c5619db156caaa3a4",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/health.hpp",
+      "before_sha256": null,
+      "after_sha256": "7e91e0a0bd60170cc1c6c70f4efde5e2b448a46b6d72463eb6e27f666c56f7d0",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/melee.cpp",
+      "before_sha256": null,
+      "after_sha256": "0afc31da331b76ab9cd40e77b2c1e9476aa2dae0161a8ba3e364ebf06a4afaae",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/combat/melee.hpp",
+      "before_sha256": null,
+      "after_sha256": "be581608ce9ab1fdcb392424b191174a802f124fb355e7947a6c2b9d940769ca",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/creature-ai/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "f3c9690706b645113022b2ae7dfefffcf2f2e94a97c5e9313a1b62506a560ba7",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "reconstruction/creature-ai/README.md",
+      "before_sha256": null,
+      "after_sha256": "219b482dd9bd3595089edd082b5b4f70107afd86273f4511975728a293a02ead",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/formats/native-combat-subsystem.md",
+      "before_sha256": "d90f645b5a83bc18324511211ecf4697884f228aec394123ed92dd07bf57efd2",
+      "after_sha256": "b3489918207658a1953c5514b1e36dfe510e6a8fdc111532b81275bea2f69aaf",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/formats/native-creature-encounter.md",
+      "before_sha256": null,
+      "after_sha256": "974a80792b873041bf5252b6a1ec4f93832813386925fa9448b3d52312b4ff2f",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/formats/native-melee-exchange.md",
+      "before_sha256": null,
+      "after_sha256": "bb9022c11404eb1cb934c634f93a5086a0a0a2f3873a84ec51986992fcc2314e",
+      "receipts": [
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/formats/native-skirmish-subsystem.md",
+      "before_sha256": null,
+      "after_sha256": "1f898043ae9a05b1008f3386db76fd2f6837a34c2757b778e9c2fc634ee77134",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "17684d10c20e688cf70c9266a19b943e51aa14473f5d9280b41fadad8862cb5a",
+      "after_sha256": "63f4a20ab986fae1fd48fdfe6783f7856ba72b7375f8b14df94ec5ee3e917b01",
+      "receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/ai-checkpoint-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5e4d30a712063f77475c94bfd95a133f3511492691befacafc800a77b1c01a09",
+      "receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/creature-control-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0ab69d5f8249b1722c2d088b952a040af596f40f078c67e62b140a49d9448946",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/creature-control-history-resolution-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2d3b38e395142327a02c30d893c086378b8763b03aacfcff19ce8a61394cbd55",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/native-skirmish-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca42720e84e155a64b88a45c1e9b1d0d7e2faaa4d319edc5ff7915c7324e92a4",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/ordinary-health-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5dbe71cc2beabfd6aa7b84fd600c0f9215ea4275c8a954fdce72ea9eb1a852fb",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/ordinary-health-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "490b35400f2a54d8526694153c172867b907d31861d88abe785c13ce73dc2861",
+      "receipts": [
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/ordinary-melee-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e9f2a428fd3ba2fdfed976fb335961ce7ca5b25e019015fc52834bef469fd627",
+      "receipts": [
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "ec0841b868060241ba90b2ca2d652f210ea4203dae72e9d7c59052bd9e8e5012",
+      "after_sha256": "0e5509a9a0001642f056025d87db68ecaa5b5260b038a412005b5b6f7bbeb334",
+      "receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-creature-autonomy-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "42431de2c814108a76bdb97c027ca781238301449d777cc02395d3db73cc81a1",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-creature-autonomy-validated-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1ddd28e7e4b9b817f24080f598d7e3d1e7ce9d82b7a5826c731f6edc0b8b24ea",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-creature-control-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e41e984a546067b75eb4e1bfd9c6d70a4960d08bcd4955484daf119482a2d2c6",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-skirmish-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "96964cb2406bcb00c4fe479ff9b18fdc9bfa3661e73172c083b3b5d75240a043",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-ordinary-health-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f50ec9dacf1d2148e8e57b675f2f17d33ef6ee5f02223e10913de39739285160",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-ordinary-health-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "50f3203806f760ef44cee376792a2aa1ba6940fa8eb87bb9e219460abb204cff",
+      "receipts": [
+        "ns23-final-workspace-metadata-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-ordinary-melee-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "43b02db72fde30e55a6b0ae7b0d3f2de7422a35f35650d57ef66446b5eefc52d",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-ordinary-melee-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "6b8aefb9f398134c195084cd9430b1897ef87bd5244c87efff836851c60a6a75",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-simulation-checkpoint-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a3a88c30595f88b2aa207f1322bc0f56198bb97f6b7ea8ddc3049dcbee99c677",
+      "receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-autonomy-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "96abe441940ae0c6774de56ebdb571ca0d14735706723f4c7c46882edcaf2c76",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-autonomy-dispatch-pending-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "bfe46bd8068f9b4c5b5c8b7f96316a35aec4eb7c8562c14903cfc6ed5616cf1b",
+      "receipts": [
+        "ns26-autonomous-dispatch-map-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-autonomy-pending-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a339bd0469d761cab05d381846698e81ffe56668794e6277f954d04622840c7e",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-autonomy-validated-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "c61f3906ba15120dd06c59d6b75a90076e75ff0700e1b56f71e58a93e43734f7",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-autonomy-validated-v2-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "22b5f81d054521e2a7cca9455fb83ed7647820b66f5c3ee44dc2f72bfb30926e",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-autonomy-validated-v3-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a53993e069d8b7de9da13df09bed0531a7e08dc0316e16c55111e555e2c225bc",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-control-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a3ca6bfabe95a99c34d44c271d6428c72f1ad38cfe47dd782f414ce07ec630c0",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-control-final-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "bf818026fe48481af0191c316aee7c96d293e05d88633e3533e01ea8fef7f1f0",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-creature-control-regressions-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f2247a7a49fb7e6126c61c957af64c6fe037f0679e1180e234c91270414cd99c",
+      "receipts": [
+        "ns25-final-generated-summary-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-skirmish-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "907f4d3cfafd2a5f5d09d2ed24deac1f3c4784841ea02ae17b76c345bdc7e6aa",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-ordinary-health-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f69b599cb92c08e95eeee6e8fc12ef1892433b5eb431711157764b51e12e511e",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-ordinary-melee-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "846295273f449574a520a6fc1aa94017e908b6513719a2bd64be82a87a82c9f1",
+      "receipts": [
+        "ns24-owned-summary-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-autonomy-initial-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "deac38166c2ccfb15a88a96864e33b47130fd0333474bfb4ad8b609bd02c104c",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-autonomy-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca2e9de4c76eacbb656113e57f4e4a4d9bc3458a44b7162f26dc2025660aeac5",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-autonomy.md",
+      "before_sha256": null,
+      "after_sha256": "8cc44fd580e65055e223de4652320b20b395fbef2fbad452867d8f8a18024a6f",
+      "receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-arena-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "bb85674f93071fcd695f571268256d000cb891f1b8fca9a99ec8146628c761dd",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-health-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e5c786afd3b00e906f32a50112b12fc300797b78f73cb6f1a40c79021a0364f9",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-lab-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "728278de87282dfedb8b32c81287dce50514c8d9119e7641b1fd4b2bb7c67ae0",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-melee-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "cfc7b5c2ebbcd6c15c3aee1529e2a303cf632d7e3f4325eeebbecfba44b47ab5",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-native-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "c98b3b738394107556316b37128f4be974089a1e3b6a7b10b9220db396826ae9",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4334e87d6cdad63761d1c238df7a0f05b3986d9bdd814c236094096418605d17",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-original-v2-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a92f9779b0de486e72272efdcd55c011221c4972df7808410597c56bc9a897ca",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "083bc8910845b1997e1a0d33c1600e254487a6bef61797398db38313520bc3a4",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control-window-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f47fb16dace6ad523c54bdabedb1608ca6784cd38ce898df6baf084b27ea5412",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/creature-control.md",
+      "before_sha256": null,
+      "after_sha256": "d689ff61b83e89c015c886641c2d16f71a9fc4fe5efd7ca9822f236ea2c6bfb4",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/native-combat-regression-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "185ec3aa09a79db73f32bd6fc96034ecc403a514e2789338e88afd195ae23d83",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/native-combat-regression-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d71f457d169237709658ef84ca542f5178df5770db09e36379feba7723eb43fc",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/native-skirmish-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "60bb9e40274e6d704f670844ad6739ab5585e330b11cbcef4000ed6e28561e75",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/native-skirmish-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "667704c70ed8729b73b57d6951c06ef101393bc402a147fc8b7305b644a34ee0",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/native-skirmish-window-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "83350340cb9d2e5738b6ada4acc79d4adffd0d34372b6ad43a1fc3eb73d4d682",
+      "receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/native-skirmish.md",
+      "before_sha256": null,
+      "after_sha256": "5ac59484b2e0d164a12adc5f096421d817592edb2447d7b5d5e1302d5de665da",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health-arena-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d8b0b04e310d352a30f756b969b2e85c2a84108737e481ca1548723514f23b72",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health-arena-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9e6a056755068780f21741cda7f2dfc4e7a4c66d6c6ff15a5e92f6eb5e55ca11",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health-combat-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f0f830835f536092c1ef408a9ef1226361caa4c7071f09ade234e86e40a3882e",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health-combat-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "36b685f5b93b7acdc5f769b870fce928ac06527fa3ee98e5a9a01bf14a25382f",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca3e7abb82759418ad70810fd037a78b3586d1b985c641189669809e862be2e1",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health-window-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "af2d7b4030243f263954ba446c9d8d339fcb49da94497890b73cbca23fb04285",
+      "receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-health.md",
+      "before_sha256": null,
+      "after_sha256": "fc4a3637eb69eae14e1be3970d9dc4e0ecee92bd664db1e5606eff3771f41028",
+      "receipts": [
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee-arena-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0c8666abc78275e4e4f9eb6992ed0dc32b4a97f8f83e2dc080bcea4c2536bc63",
+      "receipts": [
+        "ns24-skirmish-regression-execution-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee-health-followup-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "939f398dcf5c325b0b55cc9d16f1b257bfd0d1ee33fe14875ba98f485c056dd9",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee-native-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "212d4c867d181bd688ce6aae481261e9bfbe2367b377c46169139c3bf4570ce7",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8bdc1d62a7491a266b9805f384e9542947b60cf5900b5cd1be04ccee54d06bcc",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a512442c4369c50f7345c00fabbe2b7d2be5156ecf907c5a22b9466e4b3dc626",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee-window-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2fc0dd4ebb6885ca5d0862c9305a6687678b4ce2cd227fbfd2a3a04295e11b60",
+      "receipts": [
+        "ns24-skirmish-regression-execution-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/ordinary-melee.md",
+      "before_sha256": null,
+      "after_sha256": "e280167b3d7737aeb1b6baaad7622a429f0fea538150108ef80efd4fa3888613",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/creature-autonomy-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "821ca1fe62eaf3c5f34ca166462c4441b079d2213d3932c522f15036dbb6b566",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/creature-control-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "97490be95a44957056990615b7b53114a3fd3c4312ba3bcf7719f8c504fc0252",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/creature-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "1492f9b6bdaaa4e0c6136a762a889616d302b744558a6a21e937c40d4a0635b4",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/creature-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "1dacd7afea6aef47931a1908a1e4bf8c5e6468f12f59e2ba1ecf302182752c13",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/melee-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "1cd3f53bae7a7642df244ddb3d18b3fca61c51ba787d54036eda86576d22650a",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/melee-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "bafaf2f49adc9bc0c8d2cbbca413c77ce77e3d25dc3cd5dee7f4cee1d7dade41",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/native-creature-encounter-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5bb56ce68d1e3a085e3df59c685c35e1d4969b6b1b7d0acd9f5006a1e50e1906",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/native-health-rules-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "bb59023376646bcf112db98c0503c00876bfdcaf7d3d38ccff60397e727e6cc9",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/native-melee-exchange-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "627812715a7a144ea5df9c0a53c4798920f7d5e75d0e2d21471c2e794323ea0a",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/ordinary-health-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "18498de63dcf2f5ad5cd489488c4cfd3bf5318d49a1b69412041e3f70d1e9619",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/ordinary-melee-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "20a963c3eafc7a2e871f2efa9ed45a7a1da115939666bd3c7f49cf116eab9289",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/skirmish-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ffb6f7aaa03cceeb3259c6f861732129c08898d8a2b1df5e33c4f485c63a8f13",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/skirmish-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "a918fbcb04832b8d3fa11a7c8d7fb4424d91c9c49d6fae6cf22c7e2395cad2a2",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/skirmish-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "dc4b6eba5605d805a60c99a21f7339a47839f02aa00c9850c6e98bc42211f96b",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-creature-encounter.py",
+      "before_sha256": null,
+      "after_sha256": "ced76c7647e0420c3be2b6627b4c2e4733572fcce98e391a0c87d5d040396285",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-melee-exchange.py",
+      "before_sha256": null,
+      "after_sha256": "ecbf8083beab75b6ef571f4f9c24b89fdbc333fd7814bd1cdcf7809e03385a44",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-skirmish-window.py",
+      "before_sha256": null,
+      "after_sha256": "38544bcf272d91bd1e807c73528e7ef40cb05de6129a97e20a87cf48fbd1727d",
+      "receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-skirmish.py",
+      "before_sha256": null,
+      "after_sha256": "43f776909789113e7ab3a23af2db9aa327a281a89ecbe611360d2bfa0fc49f6c",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/export-creature-autonomy.py",
+      "before_sha256": null,
+      "after_sha256": "d3f54491e3723ca69352c5d1592ba97beb51aba86436a8a65a2269291f522749",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/export-creature-control.py",
+      "before_sha256": null,
+      "after_sha256": "9faffe02336e1093e065065513f803e1efa34b5ba72060335df7ac9070f4564b",
+      "receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/export-health-contract.py",
+      "before_sha256": null,
+      "after_sha256": "daec1ee822dc252f5dda68ce22960d8d572e1b612340ea935f659c3b0c699c54",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/test-creature-autonomy.py",
+      "before_sha256": null,
+      "after_sha256": "71e27519ab6944284f9b4a7ada02a4d7659564d7d47ccbd61d950814635aeba6",
+      "receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/test-creature-control.py",
+      "before_sha256": null,
+      "after_sha256": "de3ee55189cd354ffc0ed504cbb6f7d4c581341c3e8fbf6de45d977f644a5833",
+      "receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/test-ordinary-health.py",
+      "before_sha256": null,
+      "after_sha256": "57748413d3e73ad6d06560f0545c31a8dbd49311f4abb6094949acf732803ee2",
+      "receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "path": "tools/test-ordinary-melee.py",
+      "before_sha256": null,
+      "after_sha256": "b4a699f20b021e44e33564c5de398eb2b2d2b58947cfde66308c83fb8af234e2",
+      "receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    }
+  ],
+  "behavior_transitions": [
+    {
+      "after_sha256": "25628612ea3641612315b40430d441352c0d8d9ff25a9921b633cba260c53b46",
+      "before_sha256": null,
+      "id": "AI.autonomous-behaviors"
+    },
+    {
+      "after_sha256": "11e8c776cd3a900ff394c7b6f504f879f77ba75b58cc2fd695c5364dfe1f7345",
+      "before_sha256": null,
+      "id": "AI.autonomy-controller"
+    },
+    {
+      "after_sha256": "ac5ca6bf8aa1a7a5763f8bcfd84a4f37dc8d4c2f47941a723c96afa81a801051",
+      "before_sha256": null,
+      "id": "AI.creature-control"
+    },
+    {
+      "after_sha256": "cb8e064509fc364a8eaeef7f635aaf4bbf19d24e5fe088ba7a6db7e0ea195c78",
+      "before_sha256": null,
+      "id": "AI.immediate-defense"
+    },
+    {
+      "after_sha256": "b0cefa4509e673bf0420c13493411621d01bc71a9cc300417a3a74c9c629f233",
+      "before_sha256": null,
+      "id": "AI.local-navigation"
+    },
+    {
+      "after_sha256": "af65b412fc9d0c0fc5cf2b60b7a83ea41dab59ffebeab5c8491f131832e2239a",
+      "before_sha256": null,
+      "id": "AI.world-object-selection"
+    },
+    {
+      "after_sha256": "f4d2e50816bd5e8b6d30b946ca5b81712db82cb55a55b94de5a9a93d8a6e3805",
+      "before_sha256": "f4d2e50816bd5e8b6d30b946ca5b81712db82cb55a55b94de5a9a93d8a6e3805",
+      "id": "AN.attachment"
+    },
+    {
+      "after_sha256": "7f0c5c6d13891f001883ab55a703fce35486d7cd7c917fb36ab578555e834b4c",
+      "before_sha256": "7f0c5c6d13891f001883ab55a703fce35486d7cd7c917fb36ab578555e834b4c",
+      "id": "AN.direction"
+    },
+    {
+      "after_sha256": "7d5c04364f02467980d24778a4ecd58855a2116e72555e883bf2a3754c49cb39",
+      "before_sha256": "7d5c04364f02467980d24778a4ecd58855a2116e72555e883bf2a3754c49cb39",
+      "id": "AN.forward"
+    },
+    {
+      "after_sha256": "cccd1abe01c1d3cac108bf2b529b4edc310bd0ec559caac60f500e173d325ee9",
+      "before_sha256": "cccd1abe01c1d3cac108bf2b529b4edc310bd0ec559caac60f500e173d325ee9",
+      "id": "AN.placement"
+    },
+    {
+      "after_sha256": "4ae40deb972f36132a8d42d2c74b581587bc3bb700831b6d64f3c7d861fd6816",
+      "before_sha256": "4ae40deb972f36132a8d42d2c74b581587bc3bb700831b6d64f3c7d861fd6816",
+      "id": "AS.access"
+    },
+    {
+      "after_sha256": "f86ece00049c6855c3248f8da53048ab42f63a368c1c4b3c97d07866fcbb3de6",
+      "before_sha256": "f86ece00049c6855c3248f8da53048ab42f63a368c1c4b3c97d07866fcbb3de6",
+      "id": "AS.animation"
+    },
+    {
+      "after_sha256": "f7606eb69afb8103641bbbeb93157530031689e0295414d87e83194390820ab1",
+      "before_sha256": "f7606eb69afb8103641bbbeb93157530031689e0295414d87e83194390820ab1",
+      "id": "AS.effect-animation-catalog"
+    },
+    {
+      "after_sha256": "27048480d2a4fa12d105ce670f151508302780f13ff70512968553794689e27c",
+      "before_sha256": "27048480d2a4fa12d105ce670f151508302780f13ff70512968553794689e27c",
+      "id": "AS.legacy"
+    },
+    {
+      "after_sha256": "c293b3efcec126c0d3e825eadd4eec3aa26d13f01a2ac5ba310c573954169bfc",
+      "before_sha256": "c293b3efcec126c0d3e825eadd4eec3aa26d13f01a2ac5ba310c573954169bfc",
+      "id": "AS.persistence"
+    },
+    {
+      "after_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+      "before_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+      "id": "AS.resource-preparation"
+    },
+    {
+      "after_sha256": "f4f55d4fc3400d397f0993c96a1c542cf4d06aa6188f91b0dbcf1dab142f23bc",
+      "before_sha256": "f4f55d4fc3400d397f0993c96a1c542cf4d06aa6188f91b0dbcf1dab142f23bc",
+      "id": "AS.save_world"
+    },
+    {
+      "after_sha256": "746c6734027814f14b6b410b59d38990879b055618ec5ac27661057523354ab8",
+      "before_sha256": "746c6734027814f14b6b410b59d38990879b055618ec5ac27661057523354ab8",
+      "id": "AU.cd_music"
+    },
+    {
+      "after_sha256": "0b063599d8598999027ec2f6b0575b112da76af1f9c7d4e9b48995b162aaada1",
+      "before_sha256": "0b063599d8598999027ec2f6b0575b112da76af1f9c7d4e9b48995b162aaada1",
+      "id": "AU.cd_stop_controls"
+    },
+    {
+      "after_sha256": "e4dffd28a4161648326f806d929ab273ca34fc9a849659b662aa835ac03692d0",
+      "before_sha256": "e4dffd28a4161648326f806d929ab273ca34fc9a849659b662aa835ac03692d0",
+      "id": "AU.cd_track_controls"
+    },
+    {
+      "after_sha256": "d6e521f623ed28555cced1c58bd7d497147a69f952598175b905d55cf3cee7ab",
+      "before_sha256": "d6e521f623ed28555cced1c58bd7d497147a69f952598175b905d55cf3cee7ab",
+      "id": "AU.media_startup_probe"
+    },
+    {
+      "after_sha256": "8d7c0b6c1766843a0f7f43e587c589e52eb83ba6ff4d0baf0dd9af389e638f76",
+      "before_sha256": null,
+      "id": "CB.creature-stun"
+    },
+    {
+      "after_sha256": "9698a86707962e5cef54bde05ebc46177adff6e0e243020b144b29db0e657b82",
+      "before_sha256": null,
+      "id": "CB.defended-damage"
+    },
+    {
+      "after_sha256": "39fa5b8990db02a95d4aacb5ed28c345391f41fbd62ba684c5b1f544e240a4a6",
+      "before_sha256": null,
+      "id": "CB.melee-animation-event"
+    },
+    {
+      "after_sha256": "bff896bf3c6859c335522e4c272d51df9195bcc3ab6b7d3db2e548b28b616744",
+      "before_sha256": null,
+      "id": "CB.melee-reach"
+    },
+    {
+      "after_sha256": "ce73d05a9b63f2d4ebc884b2c612b947692df767f6e90c6dade9c16b00bcee43",
+      "before_sha256": null,
+      "id": "CB.ordinary-health"
+    },
+    {
+      "after_sha256": "bcfd321e03ac082c689e4211232961f29e2877dd795c59de7e5a19c2a3725d8f",
+      "before_sha256": null,
+      "id": "CB.ordinary-melee"
+    },
+    {
+      "after_sha256": "b299aad71188750e9f6d9b9b6bb063397a0a8d66dbdcc36c1f953ac472870725",
+      "before_sha256": "b299aad71188750e9f6d9b9b6bb063397a0a8d66dbdcc36c1f953ac472870725",
+      "id": "CP.campaign-defeat-report"
+    },
+    {
+      "after_sha256": "36dcd722b1ff4b0b8a3d8031580c8581b271117b2d612ce28639abd0dd8d8a0f",
+      "before_sha256": "36dcd722b1ff4b0b8a3d8031580c8581b271117b2d612ce28639abd0dd8d8a0f",
+      "id": "CP.campaign-world-handoff-observation"
+    },
+    {
+      "after_sha256": "2262ade9dde84f1ab8c51d19d09f0a72033bb30334bfa319a2d163568c017d4f",
+      "before_sha256": "2262ade9dde84f1ab8c51d19d09f0a72033bb30334bfa319a2d163568c017d4f",
+      "id": "CP.realm-observation"
+    },
+    {
+      "after_sha256": "befe002347b799bc9e3a0c5ac769468cf6aecaad5cad9b1f41ba669b64747c26",
+      "before_sha256": "befe002347b799bc9e3a0c5ac769468cf6aecaad5cad9b1f41ba669b64747c26",
+      "id": "CP.region-entry-bridge"
+    },
+    {
+      "after_sha256": "1e6f9cb6e7fcdd6d7abec21c5678a406382e4c623cf94a42cfe7e0e9d32086de",
+      "before_sha256": "1e6f9cb6e7fcdd6d7abec21c5678a406382e4c623cf94a42cfe7e0e9d32086de",
+      "id": "CP.region-entry-enter"
+    },
+    {
+      "after_sha256": "c32a23799dd106c8e7368f91a323b1ab321947c14e85748950682ea317223340",
+      "before_sha256": "c32a23799dd106c8e7368f91a323b1ab321947c14e85748950682ea317223340",
+      "id": "DRAW.census.call-journal"
+    },
+    {
+      "after_sha256": "8479b955b777b5592de3e0ecc90575daff41f7c65082cfb394dd8c48bb5eb61c",
+      "before_sha256": "8479b955b777b5592de3e0ecc90575daff41f7c65082cfb394dd8c48bb5eb61c",
+      "id": "DRAW.census.journey-driver"
+    },
+    {
+      "after_sha256": "0a833631fd64a23d3edc2bb5c23a7e5d7f5a384da73ff4e9249ea7700dfd8f46",
+      "before_sha256": "0a833631fd64a23d3edc2bb5c23a7e5d7f5a384da73ff4e9249ea7700dfd8f46",
+      "id": "DRAW.queue-client-state"
+    },
+    {
+      "after_sha256": "ece0e365ab5d849d3110c82c1f73e6cb548af518a64b28d7d54fdd436cef4095",
+      "before_sha256": "ece0e365ab5d849d3110c82c1f73e6cb548af518a64b28d7d54fdd436cef4095",
+      "id": "DRAW.queue-dispatch"
+    },
+    {
+      "after_sha256": "912b9c0cd33f5e028115b031b79f2186fa433d59ec9b4f9b029df403223925de",
+      "before_sha256": "912b9c0cd33f5e028115b031b79f2186fa433d59ec9b4f9b029df403223925de",
+      "id": "DRAW.queue-render-postlude"
+    },
+    {
+      "after_sha256": "f076a2275afe6145da389613563fc11043ee7a56e94bd2c27b97f4f203338927",
+      "before_sha256": "f076a2275afe6145da389613563fc11043ee7a56e94bd2c27b97f4f203338927",
+      "id": "DRAW.world-kind-16"
+    },
+    {
+      "after_sha256": "14f375f8b42c10a84923400d52df8c016889e63bc51ab33ad5926ac91a2f767a",
+      "before_sha256": "14f375f8b42c10a84923400d52df8c016889e63bc51ab33ad5926ac91a2f767a",
+      "id": "DRAW.world-kind-17"
+    },
+    {
+      "after_sha256": "af60e17afb1cd6b0c9cee72715c282f223f9b6e20f9bbb0370e557f34cb878c9",
+      "before_sha256": "af60e17afb1cd6b0c9cee72715c282f223f9b6e20f9bbb0370e557f34cb878c9",
+      "id": "DRAW.world-kind-20"
+    },
+    {
+      "after_sha256": "1446121100c1e09a6c058f851f51cd5cf68a973c1e4a13a86fad97ede2114df2",
+      "before_sha256": "1446121100c1e09a6c058f851f51cd5cf68a973c1e4a13a86fad97ede2114df2",
+      "id": "GP.ai"
+    },
+    {
+      "after_sha256": "ef5d64aa17efa8f1e4c3afeb873f2da854c45e6f96dd3d4246b7832c3120b647",
+      "before_sha256": "ef5d64aa17efa8f1e4c3afeb873f2da854c45e6f96dd3d4246b7832c3120b647",
+      "id": "GP.cast"
+    },
+    {
+      "after_sha256": "4836c2accd5d97e6bb97f594be122b0cc94d37ce58bd2da77a4318b805be727a",
+      "before_sha256": "4836c2accd5d97e6bb97f594be122b0cc94d37ce58bd2da77a4318b805be727a",
+      "id": "GP.combat"
+    },
+    {
+      "after_sha256": "41218feac1b88428f5e0e233e39e1d849f731526db14dadda70690759e727606",
+      "before_sha256": "3baa50e8a272dcdc2bc0ddaba3f0d35671f30a1c4f59ca7f69ee252575ea302d",
+      "id": "GP.commander"
+    },
+    {
+      "after_sha256": "22f379e8685cb79643f86d6a0cddde68226babe187fc3201d5c4087452973592",
+      "before_sha256": "bab154d3a83103036fd0e5bd528222342238966713a7a32cb231dee366943729",
+      "id": "GP.mana"
+    },
+    {
+      "after_sha256": "1c09d522362efb2a4026cf50dbd46f86caf3019da81b8c309ad2d654a5218ac2",
+      "before_sha256": "7514aa7c91e88fa05015af84dc512723e6c26b72aaf4464ee87e1f27049b6c37",
+      "id": "GP.veterancy"
+    },
+    {
+      "after_sha256": "88870b847b34b1442e87e07b7f0eac2bdc8359eee46bb4f630b3f9518106ffae",
+      "before_sha256": "88870b847b34b1442e87e07b7f0eac2bdc8359eee46bb4f630b3f9518106ffae",
+      "id": "HOST.campaign-progress-publication"
+    },
+    {
+      "after_sha256": "2e1ee8f79e51cc6a547aba933f6ecf8248b7eb28a48a787ed3ae8e0181e364f3",
+      "before_sha256": "2e1ee8f79e51cc6a547aba933f6ecf8248b7eb28a48a787ed3ae8e0181e364f3",
+      "id": "HOST.command-input-fallback"
+    },
+    {
+      "after_sha256": "5378c05dcf251a02071cdb48d7192aadd73d347252106ada40d17af682d90b6d",
+      "before_sha256": "5378c05dcf251a02071cdb48d7192aadd73d347252106ada40d17af682d90b6d",
+      "id": "HOST.extended-voice-wire"
+    },
+    {
+      "after_sha256": "61c2ad2ec426544b00caa865381311c7106461a2354500ffd95f59e61f3b7cdb",
+      "before_sha256": "61c2ad2ec426544b00caa865381311c7106461a2354500ffd95f59e61f3b7cdb",
+      "id": "HOST.independent-native-world-loop"
+    },
+    {
+      "after_sha256": "b7a0cd8d1e8cf495177fcbf6d33b2b90410ddf60a8582a0101454640c73adfbf",
+      "before_sha256": "b7a0cd8d1e8cf495177fcbf6d33b2b90410ddf60a8582a0101454640c73adfbf",
+      "id": "HOST.menu-render-progress-heartbeat"
+    },
+    {
+      "after_sha256": "2e0c88d590efee7ff4e1edae85d839c41286d752ab5c7556aa8695d51099ba36",
+      "before_sha256": "2e0c88d590efee7ff4e1edae85d839c41286d752ab5c7556aa8695d51099ba36",
+      "id": "HOST.native-audio-defaults"
+    },
+    {
+      "after_sha256": "54bebe88df764ad2caf37001b698c766a5ea4b5ccb1469b3f8b7f0d70814f097",
+      "before_sha256": "54bebe88df764ad2caf37001b698c766a5ea4b5ccb1469b3f8b7f0d70814f097",
+      "id": "HOST.native-audio-factory"
+    },
+    {
+      "after_sha256": "d1686615e99e91d17369b0499871127a68ec047e264cb492b4dd8bf9df901612",
+      "before_sha256": "d1686615e99e91d17369b0499871127a68ec047e264cb492b4dd8bf9df901612",
+      "id": "HOST.native-audio-file-sizes"
+    },
+    {
+      "after_sha256": "99e334852f0656314c1a33f47c54497811c1f2270a171d5bcd5d06d99c396791",
+      "before_sha256": "99e334852f0656314c1a33f47c54497811c1f2270a171d5bcd5d06d99c396791",
+      "id": "HOST.native-audio-initial-silence"
+    },
+    {
+      "after_sha256": "f35dfb2882b5df3059a863ad1bf13dcf0a1f4a2cd77516e1936f52359e99886c",
+      "before_sha256": "f35dfb2882b5df3059a863ad1bf13dcf0a1f4a2cd77516e1936f52359e99886c",
+      "id": "HOST.native-audio-profile-reads"
+    },
+    {
+      "after_sha256": "51cfc998e30aeed50f26c6d2a52bc1b4f32051c25c71502294eca0489d9f2a80",
+      "before_sha256": "51cfc998e30aeed50f26c6d2a52bc1b4f32051c25c71502294eca0489d9f2a80",
+      "id": "HOST.native-campaign-capture-retry"
+    },
+    {
+      "after_sha256": "0dca2ace5079793415dc40e0d24734f5e6d26f775abaa3585a056518207cf7ea",
+      "before_sha256": "0dca2ace5079793415dc40e0d24734f5e6d26f775abaa3585a056518207cf7ea",
+      "id": "HOST.native-campaign-casting-combat"
+    },
+    {
+      "after_sha256": "7e24283feb13cd16d5c7f0dbfdc3e9e1ae013a115024714f958b03f3ebacf28a",
+      "before_sha256": "7e24283feb13cd16d5c7f0dbfdc3e9e1ae013a115024714f958b03f3ebacf28a",
+      "id": "HOST.native-campaign-dialogue-readiness"
+    },
+    {
+      "after_sha256": "d1bba2993223bac06abe4f944dfbc4096d2151dcb6a44400380e385fc8c525f6",
+      "before_sha256": "d1bba2993223bac06abe4f944dfbc4096d2151dcb6a44400380e385fc8c525f6",
+      "id": "HOST.native-campaign-movement-probes"
+    },
+    {
+      "after_sha256": "be50a2ee4d7e40f5ce5a4c7561598fd6326e15301f2ffb2795e97034188b1d9b",
+      "before_sha256": "be50a2ee4d7e40f5ce5a4c7561598fd6326e15301f2ffb2795e97034188b1d9b",
+      "id": "HOST.native-campaign-normal-quit"
+    },
+    {
+      "after_sha256": "9e934a340231585b01c925546799739c779c595c6fe93b6472b8779721086e44",
+      "before_sha256": "9e934a340231585b01c925546799739c779c595c6fe93b6472b8779721086e44",
+      "id": "HOST.native-campaign-party-lethal-oracle"
+    },
+    {
+      "after_sha256": "c67a06b236f7a3e9fd6c5e45f244e06d199f8c6501dc464352298739ce5c6dd5",
+      "before_sha256": "c67a06b236f7a3e9fd6c5e45f244e06d199f8c6501dc464352298739ce5c6dd5",
+      "id": "HOST.native-campaign-session"
+    },
+    {
+      "after_sha256": "f85428fe1fef62674688fb7f4dae06ea93929004e451c83ae72dd14aa022f117",
+      "before_sha256": "f85428fe1fef62674688fb7f4dae06ea93929004e451c83ae72dd14aa022f117",
+      "id": "HOST.native-campaign-spell-cases"
+    },
+    {
+      "after_sha256": "9a51984e77bae2a724c1651c2231064d8faf538d9eb74e73493da4a89be13e77",
+      "before_sha256": "9a51984e77bae2a724c1651c2231064d8faf538d9eb74e73493da4a89be13e77",
+      "id": "HOST.native-campaign-spell-observation"
+    },
+    {
+      "after_sha256": "e2c7ca22d3b59f3d5219575b4a6490c003206cd732ce72fde337ddfd26057099",
+      "before_sha256": "e2c7ca22d3b59f3d5219575b4a6490c003206cd732ce72fde337ddfd26057099",
+      "id": "HOST.native-cd-fade-gain"
+    },
+    {
+      "after_sha256": "6746970a8f6cc820e59512973013446fa6379413be9881cf39efbb6951597772",
+      "before_sha256": "6746970a8f6cc820e59512973013446fa6379413be9881cf39efbb6951597772",
+      "id": "HOST.native-cd-volume-query"
+    },
+    {
+      "after_sha256": "e5d28cf23ffe6bd8e44a5f529c987f5d040c50add357578c8371cb704c41ea9c",
+      "before_sha256": "e5d28cf23ffe6bd8e44a5f529c987f5d040c50add357578c8371cb704c41ea9c",
+      "id": "HOST.native-command-launch"
+    },
+    {
+      "after_sha256": "ed811d25951c50b721f0b3b3895e0e584c1a5093e4eb46cd96dad564e029052a",
+      "before_sha256": "ed811d25951c50b721f0b3b3895e0e584c1a5093e4eb46cd96dad564e029052a",
+      "id": "HOST.native-command-responsiveness"
+    },
+    {
+      "after_sha256": "bb176450abb0a4f93fef7c0939cb34c21ff057de18de8896c343b9ca0bc43152",
+      "before_sha256": "bb176450abb0a4f93fef7c0939cb34c21ff057de18de8896c343b9ca0bc43152",
+      "id": "HOST.native-crowded-battle-stress"
+    },
+    {
+      "after_sha256": "4e7f274665661593a64e088315915e609c2b063e903b2609999ff546f50e23b0",
+      "before_sha256": "4e7f274665661593a64e088315915e609c2b063e903b2609999ff546f50e23b0",
+      "id": "HOST.native-display-deadlines"
+    },
+    {
+      "after_sha256": "d6964349d000fa6ed28b90b816652aa911cf4ede62580944929b9d004b95d860",
+      "before_sha256": "d6964349d000fa6ed28b90b816652aa911cf4ede62580944929b9d004b95d860",
+      "id": "HOST.native-dsound-module-policy"
+    },
+    {
+      "after_sha256": "8a3510e0591ce859b156c5127d1a8041f710fa5d01ee4e6499ebb40da4852851",
+      "before_sha256": "8a3510e0591ce859b156c5127d1a8041f710fa5d01ee4e6499ebb40da4852851",
+      "id": "HOST.native-file-sound-retirement"
+    },
+    {
+      "after_sha256": "7a53fd77f6512b9301b715dfe8553bd1ff60d27ac17e0601dbb9c43b82f7ab2a",
+      "before_sha256": "7a53fd77f6512b9301b715dfe8553bd1ff60d27ac17e0601dbb9c43b82f7ab2a",
+      "id": "HOST.native-healing-loadout"
+    },
+    {
+      "after_sha256": "c191899cc90350a0977fbd46aee2363a0ca847c85d74bf9f22f3084e873e6afb",
+      "before_sha256": "c191899cc90350a0977fbd46aee2363a0ca847c85d74bf9f22f3084e873e6afb",
+      "id": "HOST.native-mci-cd-adapter"
+    },
+    {
+      "after_sha256": "5a3f9d9f19f9f0801193c3a6497bffa869af179de6a599cef2f6fe904b55f718",
+      "before_sha256": "5a3f9d9f19f9f0801193c3a6497bffa869af179de6a599cef2f6fe904b55f718",
+      "id": "HOST.native-media-output-recovery"
+    },
+    {
+      "after_sha256": "8a05d34e5b7d721a36548ea2afadd4b6d0660a0794fe7227c03b4a1f62a14e18",
+      "before_sha256": "8a05d34e5b7d721a36548ea2afadd4b6d0660a0794fe7227c03b4a1f62a14e18",
+      "id": "HOST.native-media-startup-probe"
+    },
+    {
+      "after_sha256": "e2b28228195db33da79dd1016db5862bb06235457b59800f8799a74ba866bbcd",
+      "before_sha256": "e2b28228195db33da79dd1016db5862bb06235457b59800f8799a74ba866bbcd",
+      "id": "HOST.native-menu-audio"
+    },
+    {
+      "after_sha256": "7ceae17d46dd787a8157b3ad3a7cdb9ea70c214fc189234b7651f2f9f4ebc6c4",
+      "before_sha256": "7ceae17d46dd787a8157b3ad3a7cdb9ea70c214fc189234b7651f2f9f4ebc6c4",
+      "id": "HOST.native-menu-media"
+    },
+    {
+      "after_sha256": "3cc9afc104bb60cf9024b935638e7de4876d0651282b6397499654773157e905",
+      "before_sha256": "3cc9afc104bb60cf9024b935638e7de4876d0651282b6397499654773157e905",
+      "id": "HOST.native-menu-music"
+    },
+    {
+      "after_sha256": "de09f03b99de896f581f079c21f6f106659b2411fe114002c5df84bd27e7c9c3",
+      "before_sha256": "de09f03b99de896f581f079c21f6f106659b2411fe114002c5df84bd27e7c9c3",
+      "id": "HOST.native-movie-hidden-video"
+    },
+    {
+      "after_sha256": "c20ebb6306436fadb797c03b94db8cbef97014b0262fa17b5a37bdf70334710a",
+      "before_sha256": "c20ebb6306436fadb797c03b94db8cbef97014b0262fa17b5a37bdf70334710a",
+      "id": "HOST.native-music-backend-recovery"
+    },
+    {
+      "after_sha256": "4c3fff2605c638a067283e1cd22ca0ee85e014f883e6fb7c95aed2a70276ae6a",
+      "before_sha256": "4c3fff2605c638a067283e1cd22ca0ee85e014f883e6fb7c95aed2a70276ae6a",
+      "id": "HOST.native-music-service"
+    },
+    {
+      "after_sha256": "67e0d6c80a6073292563f2a22951764a2006aa49ffd88dd0b92961fb352d00e0",
+      "before_sha256": "67e0d6c80a6073292563f2a22951764a2006aa49ffd88dd0b92961fb352d00e0",
+      "id": "HOST.native-music-transport"
+    },
+    {
+      "after_sha256": "7132987e16b61a4ee89658739878e9b7144ac2e91c63fd33ed74c0fa43e8caab",
+      "before_sha256": "7132987e16b61a4ee89658739878e9b7144ac2e91c63fd33ed74c0fa43e8caab",
+      "id": "HOST.native-music-watchdog"
+    },
+    {
+      "after_sha256": "cd74fce264b5b254c016cd369d9eb98ea8c5c247a07102715eef29bcb296169d",
+      "before_sha256": "cd74fce264b5b254c016cd369d9eb98ea8c5c247a07102715eef29bcb296169d",
+      "id": "HOST.native-pacer-yield"
+    },
+    {
+      "after_sha256": "f9716da577f20b6c9999fdefb47bcaa90d58ddcf80102ac0abdf7f1e1ff102ff",
+      "before_sha256": "f9716da577f20b6c9999fdefb47bcaa90d58ddcf80102ac0abdf7f1e1ff102ff",
+      "id": "HOST.native-precise-uptime-clock"
+    },
+    {
+      "after_sha256": "6d04347e0d743b8506167871c9ed5c40de2feb3dac2f22b163923e27029dce6d",
+      "before_sha256": "6d04347e0d743b8506167871c9ed5c40de2feb3dac2f22b163923e27029dce6d",
+      "id": "HOST.native-render-draw-cadence"
+    },
+    {
+      "after_sha256": "2fdafef5d53de5f01111eb5c7d89b84f4c4a072bd65264a6c99bce02f2a6013a",
+      "before_sha256": "2fdafef5d53de5f01111eb5c7d89b84f4c4a072bd65264a6c99bce02f2a6013a",
+      "id": "HOST.native-render-owner"
+    },
+    {
+      "after_sha256": "58b9de8d7ddb54ab321c371cde4fdbf9214b155baeec1471945a43b780200336",
+      "before_sha256": "58b9de8d7ddb54ab321c371cde4fdbf9214b155baeec1471945a43b780200336",
+      "id": "HOST.native-smoke-cleanup"
+    },
+    {
+      "after_sha256": "d5d55648db7b0b1347bdc136b1ec16bad04ff918e3d33becf89177518fd1d054",
+      "before_sha256": "d5d55648db7b0b1347bdc136b1ec16bad04ff918e3d33becf89177518fd1d054",
+      "id": "HOST.native-voice-backend-recovery"
+    },
+    {
+      "after_sha256": "632c59986cd919eb9dc2d0b3b7120a412830638845fb21b3602fc543e7545783",
+      "before_sha256": "632c59986cd919eb9dc2d0b3b7120a412830638845fb21b3602fc543e7545783",
+      "id": "HOST.native-voice-output-waveforms"
+    },
+    {
+      "after_sha256": "5ef672a90019412d3eb82820705d6c8f8e430ddc0a65e076a3010766f99905bd",
+      "before_sha256": "5ef672a90019412d3eb82820705d6c8f8e430ddc0a65e076a3010766f99905bd",
+      "id": "HOST.native-wave-loading"
+    },
+    {
+      "after_sha256": "dd624c317ddc2b1598e2daec71de93ca4e447fdfe0ac005193149793182c8396",
+      "before_sha256": "dd624c317ddc2b1598e2daec71de93ca4e447fdfe0ac005193149793182c8396",
+      "id": "HOST.presentation"
+    },
+    {
+      "after_sha256": "c08d940a8b77fbadea34cee05c0cb9076d561aa6acd0a93a45627d528fbee935",
+      "before_sha256": "c08d940a8b77fbadea34cee05c0cb9076d561aa6acd0a93a45627d528fbee935",
+      "id": "HOST.resident-report-publication"
+    },
+    {
+      "after_sha256": "27f8e3175755444672305233d31f812d1eccf32642dda3f03f498c3587e0c05a",
+      "before_sha256": "27f8e3175755444672305233d31f812d1eccf32642dda3f03f498c3587e0c05a",
+      "id": "HOST.session"
+    },
+    {
+      "after_sha256": "7cda26edc8696060626f604596f421038fed147f7bbb91bfcbb5de2267d207d6",
+      "before_sha256": "7cda26edc8696060626f604596f421038fed147f7bbb91bfcbb5de2267d207d6",
+      "id": "HOST.wine-import-census"
+    },
+    {
+      "after_sha256": "fa1bb964335a76b9199ee546e9d56554964ba55166da1a284c3bce6d0c5ddf0b",
+      "before_sha256": "fa1bb964335a76b9199ee546e9d56554964ba55166da1a284c3bce6d0c5ddf0b",
+      "id": "MV.ani-forward"
+    },
+    {
+      "after_sha256": "70d5fae8c7c328b8bf335e5ed77e6bc8e03859fb66ef31b3cf55f05589fa0697",
+      "before_sha256": "70d5fae8c7c328b8bf335e5ed77e6bc8e03859fb66ef31b3cf55f05589fa0697",
+      "id": "MV.creature-profile"
+    },
+    {
+      "after_sha256": "06d76c82d83615a633e23c6b83d183a1e37a3e5683644977f8c3cfd0ce5f1e22",
+      "before_sha256": "06d76c82d83615a633e23c6b83d183a1e37a3e5683644977f8c3cfd0ce5f1e22",
+      "id": "MV.event-0"
+    },
+    {
+      "after_sha256": "91651c5b80941b09d500b97758fe07be49a0e858a1b38d6c16b942d2e2b5f5a6",
+      "before_sha256": "91651c5b80941b09d500b97758fe07be49a0e858a1b38d6c16b942d2e2b5f5a6",
+      "id": "MV.event-1"
+    },
+    {
+      "after_sha256": "d43186ff50cf51a1da1c0656f06fa503da62c37408b7fb0faef5481517cbda30",
+      "before_sha256": "d43186ff50cf51a1da1c0656f06fa503da62c37408b7fb0faef5481517cbda30",
+      "id": "MV.event-2"
+    },
+    {
+      "after_sha256": "63f0ce193b82b02735924154639128ee928d7f6f636a368ca09c9d8d8c0ff855",
+      "before_sha256": "63f0ce193b82b02735924154639128ee928d7f6f636a368ca09c9d8d8c0ff855",
+      "id": "MV.event-3"
+    },
+    {
+      "after_sha256": "5ce46111b60fc6c9c56c18f495959a97c3721aedaea72f2a991dec228e2e46e8",
+      "before_sha256": "5ce46111b60fc6c9c56c18f495959a97c3721aedaea72f2a991dec228e2e46e8",
+      "id": "MV.event-4"
+    },
+    {
+      "after_sha256": "87c8ab6e4a49501cab54fceb3503462d0115a79aef2d12ffca914f85eb67e819",
+      "before_sha256": "87c8ab6e4a49501cab54fceb3503462d0115a79aef2d12ffca914f85eb67e819",
+      "id": "MV.event-5"
+    },
+    {
+      "after_sha256": "15ec389c899f0dac56bcff53e2f5172842d78af5aedf5e6ffad88fb7e0887d88",
+      "before_sha256": "15ec389c899f0dac56bcff53e2f5172842d78af5aedf5e6ffad88fb7e0887d88",
+      "id": "MV.event-6"
+    },
+    {
+      "after_sha256": "697a25815c5df0c155d1c2375684e6ceee78b959ea889ddd70e162cef3599ed4",
+      "before_sha256": "697a25815c5df0c155d1c2375684e6ceee78b959ea889ddd70e162cef3599ed4",
+      "id": "MV.fine-motion"
+    },
+    {
+      "after_sha256": "4f7972ab8bec2a6388cf5ac597532df58d7e2d8453cdb16c403d90b0abd79a8d",
+      "before_sha256": "4f7972ab8bec2a6388cf5ac597532df58d7e2d8453cdb16c403d90b0abd79a8d",
+      "id": "MV.follow-target"
+    },
+    {
+      "after_sha256": "659b227fb6f24d886b96f9bfdc39c19d5153ddeda9fb0cdff53d40fe2fbf9f40",
+      "before_sha256": "659b227fb6f24d886b96f9bfdc39c19d5153ddeda9fb0cdff53d40fe2fbf9f40",
+      "id": "MV.legality"
+    },
+    {
+      "after_sha256": "1867851648f06cd1f60a9086cdd7da633ec0ead11f468cc94bb1d7d2871c74bb",
+      "before_sha256": "1867851648f06cd1f60a9086cdd7da633ec0ead11f468cc94bb1d7d2871c74bb",
+      "id": "MV.ordinary-terrain-height"
+    },
+    {
+      "after_sha256": "5e60805708f82fe365b2066d08f753dc295fb8689c8bbda7f7747299c07783e1",
+      "before_sha256": "5e60805708f82fe365b2066d08f753dc295fb8689c8bbda7f7747299c07783e1",
+      "id": "MV.original-orders"
+    },
+    {
+      "after_sha256": "770f0bc4b4c21aecc2a327b73cd1f6cd943d90fbb49041f461fa007fdbecfc3f",
+      "before_sha256": "770f0bc4b4c21aecc2a327b73cd1f6cd943d90fbb49041f461fa007fdbecfc3f",
+      "id": "MV.planar-setup"
+    },
+    {
+      "after_sha256": "27dfb8fc1d65e9b57d0e0ff1b032d00b5302cd9eaf201d6913ebaf6f6bad45c8",
+      "before_sha256": "27dfb8fc1d65e9b57d0e0ff1b032d00b5302cd9eaf201d6913ebaf6f6bad45c8",
+      "id": "MV.profile-selection"
+    },
+    {
+      "after_sha256": "96558e4293918fa0cdee33f393a2dd71a8d4d5aaa0352b1c8ba5b98614d78012",
+      "before_sha256": "96558e4293918fa0cdee33f393a2dd71a8d4d5aaa0352b1c8ba5b98614d78012",
+      "id": "MV.request"
+    },
+    {
+      "after_sha256": "d72717f514f6392158b7dc63a6931d8fef955c8e0670197f9cd653ecd8a9f72e",
+      "before_sha256": "d72717f514f6392158b7dc63a6931d8fef955c8e0670197f9cd653ecd8a9f72e",
+      "id": "MV.route-consumption"
+    },
+    {
+      "after_sha256": "664ca460f92a186c9672fe81bfc477bf95981ce25795eaf7e248fa6b0262605d",
+      "before_sha256": "664ca460f92a186c9672fe81bfc477bf95981ce25795eaf7e248fa6b0262605d",
+      "id": "MV.scheduler"
+    },
+    {
+      "after_sha256": "0d6cfd6b9e621be95fd7c9e1acb0d6db3ffcdfc87e367a39431966c2a50ea1da",
+      "before_sha256": "0d6cfd6b9e621be95fd7c9e1acb0d6db3ffcdfc87e367a39431966c2a50ea1da",
+      "id": "MV.search"
+    },
+    {
+      "after_sha256": "3def006104bce4738e915bc291275c46084fca4de1e2040b76552cb20c8818d7",
+      "before_sha256": "3def006104bce4738e915bc291275c46084fca4de1e2040b76552cb20c8818d7",
+      "id": "MV.special-profile"
+    },
+    {
+      "after_sha256": "689853df0c5a71a781e004859b16b39694631529f4b29e8d59ae3ced6aeef672",
+      "before_sha256": "689853df0c5a71a781e004859b16b39694631529f4b29e8d59ae3ced6aeef672",
+      "id": "MV.vertical-setup"
+    },
+    {
+      "after_sha256": "8b1de98b333e05837faaede105470ce00db990b1766799d1250371fc129cfb3c",
+      "before_sha256": "8b1de98b333e05837faaede105470ce00db990b1766799d1250371fc129cfb3c",
+      "id": "NA.output_timing"
+    },
+    {
+      "after_sha256": "f81f428dd846946d73c0928ac52f9e73c9f8b408b5996b20f3f7cc505e06e803",
+      "before_sha256": "f81f428dd846946d73c0928ac52f9e73c9f8b408b5996b20f3f7cc505e06e803",
+      "id": "NA.voice_output_recovery"
+    },
+    {
+      "after_sha256": "0ad64add136098244dd2a1c01e1efe7e8353c2d6bb40293f0b3dbf16b2aec2d9",
+      "before_sha256": "0ad64add136098244dd2a1c01e1efe7e8353c2d6bb40293f0b3dbf16b2aec2d9",
+      "id": "NP.campaign-defeat-policy"
+    },
+    {
+      "after_sha256": "4ba2996b8e33a9bab1a31833cc17d663017437dc4d0b3be8953a5491eda400c7",
+      "before_sha256": "4ba2996b8e33a9bab1a31833cc17d663017437dc4d0b3be8953a5491eda400c7",
+      "id": "NP.checkpoints"
+    },
+    {
+      "after_sha256": "9c47c13f7f0799872321ee8d18bd05a8fe7cfb90d9779b0ffa750f87da7aac09",
+      "before_sha256": "4fbae46f67a9b92b3c2eae8a603ef3a03882c51f98dcaf709a15caf87c910def",
+      "id": "NP.combat-encounter"
+    },
+    {
+      "after_sha256": "34f0fc2c61b87e90358022ed7a7f312f5ab44e450085863dee81f8af8099b90c",
+      "before_sha256": null,
+      "id": "NP.combat-orders"
+    },
+    {
+      "after_sha256": "d9d4d8a2194b05f698b8e6e275c817a52df5046caa3a64d81218b69f352bd599",
+      "before_sha256": null,
+      "id": "NP.creature-encounter"
+    },
+    {
+      "after_sha256": "110784ef1814f46cdcd5e4b16c23ddcdd2040a90bda51ac077c5a79a4837a625",
+      "before_sha256": null,
+      "id": "NP.creature-window"
+    },
+    {
+      "after_sha256": "aa35896d38552c978b50792cedfd9f609e28b5671da316dfeabb0463b17403aa",
+      "before_sha256": "aa35896d38552c978b50792cedfd9f609e28b5671da316dfeabb0463b17403aa",
+      "id": "NP.idle-display"
+    },
+    {
+      "after_sha256": "4a1328d9e390ec8a34eaf85889de62d648c5fa97b4cc56c4eed5f8035ab22989",
+      "before_sha256": "4a1328d9e390ec8a34eaf85889de62d648c5fa97b4cc56c4eed5f8035ab22989",
+      "id": "NP.map-navigation"
+    },
+    {
+      "after_sha256": "0d1187cf920c6bdeb1d7e04ff53b119b9b0ebdbd7d4cebdd4d084a78907b98ad",
+      "before_sha256": null,
+      "id": "NP.melee-exchange"
+    },
+    {
+      "after_sha256": "fc070dadc22b7b232b5db6e1ba03912a03d0eacbc3ede47acbd935ec79e21879",
+      "before_sha256": null,
+      "id": "NP.melee-lab-window"
+    },
+    {
+      "after_sha256": "3fcd5182e3d55855d0a4153345c162f411dbddf6b61068404498b3ce6bb3483d",
+      "before_sha256": "3fcd5182e3d55855d0a4153345c162f411dbddf6b61068404498b3ce6bb3483d",
+      "id": "NP.move-orders"
+    },
+    {
+      "after_sha256": "8fc52a501558f80cf00169924afe1ebfb6452417e8c058a344681c4e9cca2fb2",
+      "before_sha256": "8fc52a501558f80cf00169924afe1ebfb6452417e8c058a344681c4e9cca2fb2",
+      "id": "NP.multi-movement"
+    },
+    {
+      "after_sha256": "ef9a96d2967fb83564a566d48c0288840be7dbe0509e1b7bcdb3f7c746c7e790",
+      "before_sha256": null,
+      "id": "NP.ordinary-health-adapter"
+    },
+    {
+      "after_sha256": "e9a644fdbdf7a77f51e1ffd568300d2e6412e1eda1cba6889da6903f3c982d86",
+      "before_sha256": "e9a644fdbdf7a77f51e1ffd568300d2e6412e1eda1cba6889da6903f3c982d86",
+      "id": "NP.preferences-persistence"
+    },
+    {
+      "after_sha256": "8d5caace641fd26232db1161f88655fac2bb2b19fb360a3805d54db4511e5ca5",
+      "before_sha256": "8d5caace641fd26232db1161f88655fac2bb2b19fb360a3805d54db4511e5ca5",
+      "id": "NP.presentation"
+    },
+    {
+      "after_sha256": "07f6e3382ae81acd9f18672f23072b88a0905596d9f77a4117b4b48f4360448e",
+      "before_sha256": "07f6e3382ae81acd9f18672f23072b88a0905596d9f77a4117b4b48f4360448e",
+      "id": "NP.region-entry-fresh-policy"
+    },
+    {
+      "after_sha256": "9f71e7151f0265f5de336fc9d251f626c63c5e376c69dcb93899cf6ae6a50816",
+      "before_sha256": "9f71e7151f0265f5de336fc9d251f626c63c5e376c69dcb93899cf6ae6a50816",
+      "id": "NP.scene-orders"
+    },
+    {
+      "after_sha256": "53c001dbe2cc3c491475307f45b53ee2f348abe9d95e26f35f5f6e9da04f8bbe",
+      "before_sha256": "53c001dbe2cc3c491475307f45b53ee2f348abe9d95e26f35f5f6e9da04f8bbe",
+      "id": "NP.scene-picking"
+    },
+    {
+      "after_sha256": "0b53b0c2f8f8677ff5041385071f7944b3293074285fd08391a26100eb098d10",
+      "before_sha256": "0b53b0c2f8f8677ff5041385071f7944b3293074285fd08391a26100eb098d10",
+      "id": "NP.scene-playback"
+    },
+    {
+      "after_sha256": "b048a11dd4479d9e059bae0e4c369b8e7e20fb775e4971dfd8f1b6d2b3fc5565",
+      "before_sha256": "b048a11dd4479d9e059bae0e4c369b8e7e20fb775e4971dfd8f1b6d2b3fc5565",
+      "id": "NP.scene-spawning"
+    },
+    {
+      "after_sha256": "b4f544d0b3174b560db6abe16539612f028082dc2ca0de09880fcb81c2b205ce",
+      "before_sha256": null,
+      "id": "NP.skirmish-simulation"
+    },
+    {
+      "after_sha256": "2f61f751ebf78264b3779f4386f7755fb06605934121a161c14d54e307a1c182",
+      "before_sha256": null,
+      "id": "NP.skirmish-window"
+    },
+    {
+      "after_sha256": "aa1462688485b1beab631d2546664281c5f3c4138325570a55e486b4f6618bef",
+      "before_sha256": "aa1462688485b1beab631d2546664281c5f3c4138325570a55e486b4f6618bef",
+      "id": "NP.spawn-display"
+    },
+    {
+      "after_sha256": "7b2092b4333220ef86ffdc15ecbc5598ca2b7af73e5ba6efdf72cd0037e51718",
+      "before_sha256": "7b2092b4333220ef86ffdc15ecbc5598ca2b7af73e5ba6efdf72cd0037e51718",
+      "id": "NP.stationary-occupancy"
+    },
+    {
+      "after_sha256": "855441a1c3b65512b5a2e88e713ec7e724f3215611b782db5f5afbe4c83a1ddd",
+      "before_sha256": "855441a1c3b65512b5a2e88e713ec7e724f3215611b782db5f5afbe4c83a1ddd",
+      "id": "NP.stop-orders"
+    },
+    {
+      "after_sha256": "6853f19b735c7c3509e345aabe9549bd83a966b5eb0a6530cd31c35b60c2a75c",
+      "before_sha256": "6853f19b735c7c3509e345aabe9549bd83a966b5eb0a6530cd31c35b60c2a75c",
+      "id": "NR.application-shutdown"
+    },
+    {
+      "after_sha256": "ebb0ee0ec9098f412d6b2fcb1a500fac3f6b157b6503e5f05d0288cce1aac075",
+      "before_sha256": "ebb0ee0ec9098f412d6b2fcb1a500fac3f6b157b6503e5f05d0288cce1aac075",
+      "id": "NR.bounded-copy-order"
+    },
+    {
+      "after_sha256": "4fabb8cebe99de03458a75009cc1b354c77165c1c8d596a40e4f12bdd643a35f",
+      "before_sha256": "4fabb8cebe99de03458a75009cc1b354c77165c1c8d596a40e4f12bdd643a35f",
+      "id": "NR.callback-publication-isolation"
+    },
+    {
+      "after_sha256": "9560d21370e9fb1e4af33f360e0451b9d50827859e6be92e93cf9258943aa0dc",
+      "before_sha256": "70f9f6a975e7d6f832a6d6c923da99e6f99981f58855a8b00c7159d87cbb7f93",
+      "id": "NR.canvas-fade-row-damage"
+    },
+    {
+      "after_sha256": "1ec64eaff40cb52832e22d31ca870c523c266d4b7b299e51b8cb4bb1d5ec4e03",
+      "before_sha256": "1ec64eaff40cb52832e22d31ca870c523c266d4b7b299e51b8cb4bb1d5ec4e03",
+      "id": "NR.canvas-image-production"
+    },
+    {
+      "after_sha256": "af429ccf3786ff970c485256eb5b63ff8ce5f9771426182baf8bd0b8267ca43b",
+      "before_sha256": "af429ccf3786ff970c485256eb5b63ff8ce5f9771426182baf8bd0b8267ca43b",
+      "id": "NR.canvas-producer-replay"
+    },
+    {
+      "after_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+      "before_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+      "id": "NR.canvas-writer-admission"
+    },
+    {
+      "after_sha256": "436f51207cafc5569704556ef46311ed9255b795004e3bae9ea8eb9c20ef6588",
+      "before_sha256": "436f51207cafc5569704556ef46311ed9255b795004e3bae9ea8eb9c20ef6588",
+      "id": "NR.command-host-recovery"
+    },
+    {
+      "after_sha256": "834f7fe1dfa5f3af848f7449ba89cf4046b957e09fc0e8ce589fec290c65a55f",
+      "before_sha256": "834f7fe1dfa5f3af848f7449ba89cf4046b957e09fc0e8ce589fec290c65a55f",
+      "id": "NR.continuous-producer"
+    },
+    {
+      "after_sha256": "6a6f49eead851f0e7cdc9f3aaffa12103179ad715e1862233dc462eda1160501",
+      "before_sha256": "6a6f49eead851f0e7cdc9f3aaffa12103179ad715e1862233dc462eda1160501",
+      "id": "NR.directdraw-native-opengl-launch"
+    },
+    {
+      "after_sha256": "8dd0618b0ec2c8fd87dcd3d135c333e08c660ccebfadaf817ef827c87b5b6940",
+      "before_sha256": "8dd0618b0ec2c8fd87dcd3d135c333e08c660ccebfadaf817ef827c87b5b6940",
+      "id": "NR.directdraw-public-native-menu"
+    },
+    {
+      "after_sha256": "d788501acfc2af618f668d3640d28aa69b7e21e3fc1c3571ae16bb90e0217f44",
+      "before_sha256": "d788501acfc2af618f668d3640d28aa69b7e21e3fc1c3571ae16bb90e0217f44",
+      "id": "NR.directdraw-retirement"
+    },
+    {
+      "after_sha256": "09293a4ce5b5dc0a7448f0b7f4215159f8bf4efc16585ca040ec5967bff32aab",
+      "before_sha256": "09293a4ce5b5dc0a7448f0b7f4215159f8bf4efc16585ca040ec5967bff32aab",
+      "id": "NR.drawing-actions"
+    },
+    {
+      "after_sha256": "8fada3521bfa81449b455d9ced932f8350ac4f7b927089593423d48ebd255948",
+      "before_sha256": "8fada3521bfa81449b455d9ced932f8350ac4f7b927089593423d48ebd255948",
+      "id": "NR.drawing-fenced-acquisition"
+    },
+    {
+      "after_sha256": "a9d73c26b4fbf2048384dd7c4d7d5793c60c1f8ba3780d1ec97f36cfb8d110c6",
+      "before_sha256": "a9d73c26b4fbf2048384dd7c4d7d5793c60c1f8ba3780d1ec97f36cfb8d110c6",
+      "id": "NR.drawing-interactive-acquisition"
+    },
+    {
+      "after_sha256": "5819a73ef09374c6dccfcf147db27eb69eb318130103935d78e359fc19996434",
+      "before_sha256": "5819a73ef09374c6dccfcf147db27eb69eb318130103935d78e359fc19996434",
+      "id": "NR.drawing-journey"
+    },
+    {
+      "after_sha256": "58de83728f2d16ab15ee5f62fd9b11fd5fe6a54fa30f850c2a064b87ad3d5f48",
+      "before_sha256": "58de83728f2d16ab15ee5f62fd9b11fd5fe6a54fa30f850c2a064b87ad3d5f48",
+      "id": "NR.drawing-presented-session"
+    },
+    {
+      "after_sha256": "2dfe2db7f91917c9efc61f68e05bd3260ca5afed59093da8cf9b91f826894a22",
+      "before_sha256": "2dfe2db7f91917c9efc61f68e05bd3260ca5afed59093da8cf9b91f826894a22",
+      "id": "NR.drawing-publication"
+    },
+    {
+      "after_sha256": "289d3c4ce7e354506c6a3a51cd40ab4123f6bf751a46d68820cab97c3520659b",
+      "before_sha256": "289d3c4ce7e354506c6a3a51cd40ab4123f6bf751a46d68820cab97c3520659b",
+      "id": "NR.drawing-raster-results"
+    },
+    {
+      "after_sha256": "5b9331e985af485294ce45bb30d66c45e93777dc40f6e6182717723fcd4a4c8e",
+      "before_sha256": "5b9331e985af485294ce45bb30d66c45e93777dc40f6e6182717723fcd4a4c8e",
+      "id": "NR.drawing-scene"
+    },
+    {
+      "after_sha256": "52a525a00d99755ea6dd1d64dce7a361f584a86962ccbdd5b127bcd9f85c5e78",
+      "before_sha256": "52a525a00d99755ea6dd1d64dce7a361f584a86962ccbdd5b127bcd9f85c5e78",
+      "id": "NR.drawing-sequence"
+    },
+    {
+      "after_sha256": "5e3ea14bf586232221cb7ce0727d76972ad8f2e3eddfa8a47f8cd41f04755406",
+      "before_sha256": "5e3ea14bf586232221cb7ce0727d76972ad8f2e3eddfa8a47f8cd41f04755406",
+      "id": "NR.drawing-session"
+    },
+    {
+      "after_sha256": "bcaa2163a654cf01b38979c39f39c07d6682d2516d9ab98f5435c5d39e019c41",
+      "before_sha256": "bcaa2163a654cf01b38979c39f39c07d6682d2516d9ab98f5435c5d39e019c41",
+      "id": "NR.drawing-session-api"
+    },
+    {
+      "after_sha256": "15e6b22f7c444a5a93d26e5ea5bff291014fffd75c567d89a7dc50172f092da0",
+      "before_sha256": "15e6b22f7c444a5a93d26e5ea5bff291014fffd75c567d89a7dc50172f092da0",
+      "id": "NR.engine-cadence-observation"
+    },
+    {
+      "after_sha256": "a7f8f36a1189767e72af4f5eee642c18f86507a6ad1ff2d148e718f0a9b316cd",
+      "before_sha256": "a7f8f36a1189767e72af4f5eee642c18f86507a6ad1ff2d148e718f0a9b316cd",
+      "id": "NR.font-byte-producer"
+    },
+    {
+      "after_sha256": "80236c3e620d473e48944dff4db7ccb52e733f17df9ef2ec717f0a7277d4640d",
+      "before_sha256": "80236c3e620d473e48944dff4db7ccb52e733f17df9ef2ec717f0a7277d4640d",
+      "id": "NR.font-glyph-admission"
+    },
+    {
+      "after_sha256": "15b6dd3ddf128a7d118317a17fa9bc8bfc371c1e75224ac94a086de906f99dff",
+      "before_sha256": "15b6dd3ddf128a7d118317a17fa9bc8bfc371c1e75224ac94a086de906f99dff",
+      "id": "NR.font-glyph-live-shadow"
+    },
+    {
+      "after_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+      "before_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+      "id": "NR.glyph-backend-admission"
+    },
+    {
+      "after_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+      "before_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+      "id": "NR.glyph-backend-state-admission"
+    },
+    {
+      "after_sha256": "42d78c3fe7a893216112a8ccb48eb3901d7dfd938e65a576e9474cbad91e1f73",
+      "before_sha256": "42d78c3fe7a893216112a8ccb48eb3901d7dfd938e65a576e9474cbad91e1f73",
+      "id": "NR.glyph-default-launch"
+    },
+    {
+      "after_sha256": "6cec366137eeb4de4f7b7992fc2f47ca50c6fdc22a6c784ff4b271fcd1c62315",
+      "before_sha256": "6cec366137eeb4de4f7b7992fc2f47ca50c6fdc22a6c784ff4b271fcd1c62315",
+      "id": "NR.glyph-live-admission"
+    },
+    {
+      "after_sha256": "d8e5b01bf1169565f3644878c2175702c2d3067969206836e04a2787a8ec3bfe",
+      "before_sha256": "d8e5b01bf1169565f3644878c2175702c2d3067969206836e04a2787a8ec3bfe",
+      "id": "NR.gpu-presentation"
+    },
+    {
+      "after_sha256": "0d35f8b423453b9f18f493090af8655f015975967679c8b67c79931a2528b666",
+      "before_sha256": "0d35f8b423453b9f18f493090af8655f015975967679c8b67c79931a2528b666",
+      "id": "NR.minimap-input-fixture"
+    },
+    {
+      "after_sha256": "c7b207cc7d69124dde99844e195b75162c1cccbcdb165bea3126ffc5fd370805",
+      "before_sha256": "c7b207cc7d69124dde99844e195b75162c1cccbcdb165bea3126ffc5fd370805",
+      "id": "NR.minimap-interactive-presentation"
+    },
+    {
+      "after_sha256": "9d5e1b2d87bace42a0d23b01ae9a3819a892cf6bd4730a07941f413359339765",
+      "before_sha256": "9d5e1b2d87bace42a0d23b01ae9a3819a892cf6bd4730a07941f413359339765",
+      "id": "NR.minimap-owned-observation"
+    },
+    {
+      "after_sha256": "33d7053600abe74ce5775b4811ffcd442ef34ba7851720e176eeb028dc284db7",
+      "before_sha256": "33d7053600abe74ce5775b4811ffcd442ef34ba7851720e176eeb028dc284db7",
+      "id": "NR.movie-enabled-startup"
+    },
+    {
+      "after_sha256": "45d2df07e399c001d92c82e7f9bb663155db2e7a0492743c0548099a0f9f6b1a",
+      "before_sha256": "45d2df07e399c001d92c82e7f9bb663155db2e7a0492743c0548099a0f9f6b1a",
+      "id": "NR.native-draw-status-session-file"
+    },
+    {
+      "after_sha256": "d106fdead086617d7d902a7dad07795f1aa3e3d97e2e5e775bd817ec50d93e35",
+      "before_sha256": "d106fdead086617d7d902a7dad07795f1aa3e3d97e2e5e775bd817ec50d93e35",
+      "id": "NR.observer-lock-avoidance"
+    },
+    {
+      "after_sha256": "1ef424fca9debfcff0060f3a92825b37f03e05ce4b930c054128f9a4aa9526d6",
+      "before_sha256": "1ef424fca9debfcff0060f3a92825b37f03e05ce4b930c054128f9a4aa9526d6",
+      "id": "NR.offline-render-soak"
+    },
+    {
+      "after_sha256": "2d59fe965217ed06aa3b6b6d0c9b54346f290c2d12d7e1510603463380b7aaf6",
+      "before_sha256": "2d59fe965217ed06aa3b6b6d0c9b54346f290c2d12d7e1510603463380b7aaf6",
+      "id": "NR.other-producer-checkpoints"
+    },
+    {
+      "after_sha256": "049afd951d5c5bee1bfeb2f41af7f273673841bb6a4843778f13363984e6962b",
+      "before_sha256": "049afd951d5c5bee1bfeb2f41af7f273673841bb6a4843778f13363984e6962b",
+      "id": "NR.other-writer-atomic-admission"
+    },
+    {
+      "after_sha256": "efa1e93247706a62b27d2b7d3e85902e39691a4f5bda0aff42334e48afec0de6",
+      "before_sha256": "efa1e93247706a62b27d2b7d3e85902e39691a4f5bda0aff42334e48afec0de6",
+      "id": "NR.panel-atomic-admission"
+    },
+    {
+      "after_sha256": "375a782a7853c00135bc6fc1713426960f3a8f6b9923b0662a004cf5e7612f87",
+      "before_sha256": "375a782a7853c00135bc6fc1713426960f3a8f6b9923b0662a004cf5e7612f87",
+      "id": "NR.presentation-damage"
+    },
+    {
+      "after_sha256": "b9b2e7a764da7339fe9458ea72b63798eeffe7a99d8c3907a312325ca940646c",
+      "before_sha256": "b9b2e7a764da7339fe9458ea72b63798eeffe7a99d8c3907a312325ca940646c",
+      "id": "NR.public-resident-world"
+    },
+    {
+      "after_sha256": "a1cfc6a0564c85eee52db7a442c2ff29286ed8ce5979a7b665406edcd4e560d5",
+      "before_sha256": "a1cfc6a0564c85eee52db7a442c2ff29286ed8ce5979a7b665406edcd4e560d5",
+      "id": "NR.resident-bind-admission"
+    },
+    {
+      "after_sha256": "3c453ef6893bc15c33fba4d6a787167aac7b597e42d9b9727427e70ccff95831",
+      "before_sha256": "3c453ef6893bc15c33fba4d6a787167aac7b597e42d9b9727427e70ccff95831",
+      "id": "NR.resident-normal-shutdown"
+    },
+    {
+      "after_sha256": "a4964e63137b89d48eb959ae0cd9c93fa272338745649deb7fa11ae048f0b733",
+      "before_sha256": "a4964e63137b89d48eb959ae0cd9c93fa272338745649deb7fa11ae048f0b733",
+      "id": "NR.resident-stage-profiling"
+    },
+    {
+      "after_sha256": "edfd132b1e1ad58d7961ff2c9b36ad8afcf7ee300f2efe16a73a5f4aba9c4a63",
+      "before_sha256": "edfd132b1e1ad58d7961ff2c9b36ad8afcf7ee300f2efe16a73a5f4aba9c4a63",
+      "id": "NR.scene-draw-budget"
+    },
+    {
+      "after_sha256": "d6bd5812e29a3075abcfe859df2ebbbb08781caf7708c1ea04f78712a7c8f964",
+      "before_sha256": "d6bd5812e29a3075abcfe859df2ebbbb08781caf7708c1ea04f78712a7c8f964",
+      "id": "NR.scene-production-repetition"
+    },
+    {
+      "after_sha256": "e038efb852e36205133793ca337ebcb97e562048b400eefc6e7f58745cfd2895",
+      "before_sha256": "6cef92d0c45872fd4ba757556050a98587759750c2152a623a88caeb1650e5ce",
+      "id": "NR.scene-snapshot"
+    },
+    {
+      "after_sha256": "594cc595c81c30099eb60dcb99269297b5d58ed894993285eded65ca810ac43b",
+      "before_sha256": "594cc595c81c30099eb60dcb99269297b5d58ed894993285eded65ca810ac43b",
+      "id": "NR.sprites"
+    },
+    {
+      "after_sha256": "bbf17d40e7918de3807a03c6fb532dd2cd72b40e3ad05dd2cc1e1d72862c2048",
+      "before_sha256": "bbf17d40e7918de3807a03c6fb532dd2cd72b40e3ad05dd2cc1e1d72862c2048",
+      "id": "NR.upload-preparation"
+    },
+    {
+      "after_sha256": "076c950d1c6356dd373c5cf972ce14a4864b3daf0ceacfbeeb73278621ab033f",
+      "before_sha256": "076c950d1c6356dd373c5cf972ce14a4864b3daf0ceacfbeeb73278621ab033f",
+      "id": "NR.word-clipped-takeover-admission"
+    },
+    {
+      "after_sha256": "4a157964e14f16064118af9cde3368bcc42bf7b100b93f3c4ae9cbe9669378d2",
+      "before_sha256": "4a157964e14f16064118af9cde3368bcc42bf7b100b93f3c4ae9cbe9669378d2",
+      "id": "NR.word-clipping-plane-bounds"
+    },
+    {
+      "after_sha256": "ea484d0e2586b0625eed95403793f12e76c9bbdbb8329c3407a2761203bfecb3",
+      "before_sha256": "ea484d0e2586b0625eed95403793f12e76c9bbdbb8329c3407a2761203bfecb3",
+      "id": "NR.world-admission"
+    },
+    {
+      "after_sha256": "1b4202842d0d1f9212a78560f9262c9c638b56468b567c86910411c916e9a4f6",
+      "before_sha256": "1b4202842d0d1f9212a78560f9262c9c638b56468b567c86910411c916e9a4f6",
+      "id": "NR.world-batch-extended-prefix"
+    },
+    {
+      "after_sha256": "3cd0eebf88c7bebb59c74962a8d317ed950cf805d54fe4dcf7cbe1a8516f2831",
+      "before_sha256": "3cd0eebf88c7bebb59c74962a8d317ed950cf805d54fe4dcf7cbe1a8516f2831",
+      "id": "NR.world-batch-profiling"
+    },
+    {
+      "after_sha256": "3d5932fdb40662ae1c435439e4662fe1e96b7ca64290fcb95579d1d29d178532",
+      "before_sha256": "3d5932fdb40662ae1c435439e4662fe1e96b7ca64290fcb95579d1d29d178532",
+      "id": "NR.world-batch-throughput"
+    },
+    {
+      "after_sha256": "dd83c633285989d07840898c5453451915b2d2f4d33a924b6550e7fa4e42977a",
+      "before_sha256": "dd83c633285989d07840898c5453451915b2d2f4d33a924b6550e7fa4e42977a",
+      "id": "NR.world-continuous-normal-performance"
+    },
+    {
+      "after_sha256": "8229f1f1de8d808c26014fd86dd41d2e0c697782c85063f2aaaf4b7ea8dfa252",
+      "before_sha256": "8229f1f1de8d808c26014fd86dd41d2e0c697782c85063f2aaaf4b7ea8dfa252",
+      "id": "NR.world-continuous-source"
+    },
+    {
+      "after_sha256": "69a1c839c840feee5e471066b7a03abadfb707d87bce2ae15e62671903eab2a3",
+      "before_sha256": "69a1c839c840feee5e471066b7a03abadfb707d87bce2ae15e62671903eab2a3",
+      "id": "NR.world-cpu-composition-reuse"
+    },
+    {
+      "after_sha256": "426b89aa6c0d5c2ca7514e85f0a64d658dc29fd850bd03f8713aab73ff56e213",
+      "before_sha256": "426b89aa6c0d5c2ca7514e85f0a64d658dc29fd850bd03f8713aab73ff56e213",
+      "id": "NR.world-frame-identity-cache"
+    },
+    {
+      "after_sha256": "7616a456691f4ec2e4d2ec90765464328b1b575a1aff7cf3f0c3e4199239e5da",
+      "before_sha256": "7616a456691f4ec2e4d2ec90765464328b1b575a1aff7cf3f0c3e4199239e5da",
+      "id": "NR.world-gpu-ack-delivery"
+    },
+    {
+      "after_sha256": "ad606d4219e6f15801f81a0b41ed3b0ba013245fefda2818d09b7d4042ee41f3",
+      "before_sha256": "ad606d4219e6f15801f81a0b41ed3b0ba013245fefda2818d09b7d4042ee41f3",
+      "id": "NR.world-gpu-resident-frame"
+    },
+    {
+      "after_sha256": "6e68339d7265b6c7bdaf1191f2c1acf5ea69249ad9a537be509590ff0e1784f7",
+      "before_sha256": "6e68339d7265b6c7bdaf1191f2c1acf5ea69249ad9a537be509590ff0e1784f7",
+      "id": "NR.world-history-channel"
+    },
+    {
+      "after_sha256": "3bedf5bdb249f017cfb7ed485ddb51b9686cb76200eaee382b71daf7a7cb8ffa",
+      "before_sha256": "3bedf5bdb249f017cfb7ed485ddb51b9686cb76200eaee382b71daf7a7cb8ffa",
+      "id": "NR.world-interactive-batch-launcher"
+    },
+    {
+      "after_sha256": "43895c32bf8902fc96b4b2642517bdac0aa0ae83d10e3d25493961024554c750",
+      "before_sha256": "43895c32bf8902fc96b4b2642517bdac0aa0ae83d10e3d25493961024554c750",
+      "id": "NR.world-live-history"
+    },
+    {
+      "after_sha256": "6a39c2c2b82a47020f03dbf40156dcb16584913de55c80bddde43490c8356fb4",
+      "before_sha256": "6a39c2c2b82a47020f03dbf40156dcb16584913de55c80bddde43490c8356fb4",
+      "id": "NR.world-preparation"
+    },
+    {
+      "after_sha256": "9e4933ea19beecd2c4b7f64efd00a333c62670044cfa444b25a38c0430b25734",
+      "before_sha256": "9e4933ea19beecd2c4b7f64efd00a333c62670044cfa444b25a38c0430b25734",
+      "id": "NR.world-prepared-admission"
+    },
+    {
+      "after_sha256": "95c9c7b6aa9a6d4d7b259e38c8f0aeb84755718313e52d74e39be2a5b7eda71c",
+      "before_sha256": "95c9c7b6aa9a6d4d7b259e38c8f0aeb84755718313e52d74e39be2a5b7eda71c",
+      "id": "NR.world-producer-handoff"
+    },
+    {
+      "after_sha256": "c29268b40ce4bc9abbb5e636a97836b65b2347ae5a39f6788132314336700e99",
+      "before_sha256": "c29268b40ce4bc9abbb5e636a97836b65b2347ae5a39f6788132314336700e99",
+      "id": "NR.world-raster-batch-transport"
+    },
+    {
+      "after_sha256": "6ce31c649af13e0f3e13432ee90a56f458ec8e19637eff550bd51a2ee3a2c098",
+      "before_sha256": "6ce31c649af13e0f3e13432ee90a56f458ec8e19637eff550bd51a2ee3a2c098",
+      "id": "NR.world-resource-reuse"
+    },
+    {
+      "after_sha256": "08987a155ee31127d00b703e73ea0d44ac77cad82e706387620728d175ecb4ef",
+      "before_sha256": "08987a155ee31127d00b703e73ea0d44ac77cad82e706387620728d175ecb4ef",
+      "id": "NR.world-rolling-delivery"
+    },
+    {
+      "after_sha256": "79583b91f97cdbf887afe7091582a4e2bb5a22ee7bb23d08642bc38296c984e5",
+      "before_sha256": "79583b91f97cdbf887afe7091582a4e2bb5a22ee7bb23d08642bc38296c984e5",
+      "id": "NR.world-rolling-hardware"
+    },
+    {
+      "after_sha256": "40e0a27964873a56f28dcb04ccadad40c4606a39cf931adf440fec58b6a426bd",
+      "before_sha256": "40e0a27964873a56f28dcb04ccadad40c4606a39cf931adf440fec58b6a426bd",
+      "id": "NR.world-rolling-live-handoff"
+    },
+    {
+      "after_sha256": "9174dcf22fd946d9b541d61aca6dc4f285cc61e4176f7e5f836aec0d67069ef8",
+      "before_sha256": "9174dcf22fd946d9b541d61aca6dc4f285cc61e4176f7e5f836aec0d67069ef8",
+      "id": "NR.world-source-region-epoch"
+    },
+    {
+      "after_sha256": "b930c74c5111877a476a22ac6892eba6d13030c03462ebb4f962514263b68c4d",
+      "before_sha256": "b930c74c5111877a476a22ac6892eba6d13030c03462ebb4f962514263b68c4d",
+      "id": "NR.world-startup-launcher"
+    },
+    {
+      "after_sha256": "ff75e9017afb292cb2d5ecc7a314bc499cc183c3001cdc2e2e135d33dc389771",
+      "before_sha256": "ff75e9017afb292cb2d5ecc7a314bc499cc183c3001cdc2e2e135d33dc389771",
+      "id": "NR.world-startup-sequence"
+    },
+    {
+      "after_sha256": "f0af65b495c5c21dc5d4955d3e32fe71c7a4c510c80fc2c26d40a1040afbc261",
+      "before_sha256": "f0af65b495c5c21dc5d4955d3e32fe71c7a4c510c80fc2c26d40a1040afbc261",
+      "id": "PF.boundary"
+    },
+    {
+      "after_sha256": "0bed3e9c942c8bc32b02e30add5b0280933507091f9d88ff3ec233793801d520",
+      "before_sha256": "0bed3e9c942c8bc32b02e30add5b0280933507091f9d88ff3ec233793801d520",
+      "id": "PF.cell"
+    },
+    {
+      "after_sha256": "de63f725296d102edf8e5196a82799368b4757eef00d0604cd49b51f897f6842",
+      "before_sha256": "de63f725296d102edf8e5196a82799368b4757eef00d0604cd49b51f897f6842",
+      "id": "PF.cell_support"
+    },
+    {
+      "after_sha256": "45cac35464c20c91e88ac012c2b0fe8519654a4a7996c8ae6660aa797528e24e",
+      "before_sha256": "45cac35464c20c91e88ac012c2b0fe8519654a4a7996c8ae6660aa797528e24e",
+      "id": "PF.cell_validity"
+    },
+    {
+      "after_sha256": "6feff8ebd65409b141e498029ca9ee8ca8b0060d72e39efaba552f9ef2dfe526",
+      "before_sha256": "6feff8ebd65409b141e498029ca9ee8ca8b0060d72e39efaba552f9ef2dfe526",
+      "id": "PF.clearance"
+    },
+    {
+      "after_sha256": "744706621475ea9a172a237aeed778e7109f3b78398123f1d6ff02cfaca67dba",
+      "before_sha256": "744706621475ea9a172a237aeed778e7109f3b78398123f1d6ff02cfaca67dba",
+      "id": "PF.creature_acceptance"
+    },
+    {
+      "after_sha256": "03950cc88096117ce4f77de42f0b6bfd105894c43cd28bc3a4577f7ba1829251",
+      "before_sha256": "03950cc88096117ce4f77de42f0b6bfd105894c43cd28bc3a4577f7ba1829251",
+      "id": "PF.frozen_world"
+    },
+    {
+      "after_sha256": "2147214f1861dae5e2bcfc20003e1771aa5da6878d669d1592f0e73f8e93fe2c",
+      "before_sha256": "2147214f1861dae5e2bcfc20003e1771aa5da6878d669d1592f0e73f8e93fe2c",
+      "id": "PF.movement"
+    },
+    {
+      "after_sha256": "61a30613709616f26d308e7a01e898600753e0a577580aef16723ba40fb071d0",
+      "before_sha256": "61a30613709616f26d308e7a01e898600753e0a577580aef16723ba40fb071d0",
+      "id": "PF.occupancy"
+    },
+    {
+      "after_sha256": "eee45fff7097ef4353c9fc73680eb9411293e9313640911bb556556556eb57b3",
+      "before_sha256": "eee45fff7097ef4353c9fc73680eb9411293e9313640911bb556556556eb57b3",
+      "id": "PF.record_query"
+    },
+    {
+      "after_sha256": "6b0798bcf9db5e42e509e011eab52766bf3901b8733d198603e15d726e01edee",
+      "before_sha256": "6b0798bcf9db5e42e509e011eab52766bf3901b8733d198603e15d726e01edee",
+      "id": "PF.scalar"
+    },
+    {
+      "after_sha256": "df141cb5727b99d799a14dd4fee5b1a2c7053417293d551b6ee4ecface3b5332",
+      "before_sha256": "df141cb5727b99d799a14dd4fee5b1a2c7053417293d551b6ee4ecface3b5332",
+      "id": "PF.validity"
+    },
+    {
+      "after_sha256": "d6ca5ae4f6cd0b6e4f8c98af503d5267cd8441f084c227cb2d9569ba255a7713",
+      "before_sha256": "d6ca5ae4f6cd0b6e4f8c98af503d5267cd8441f084c227cb2d9569ba255a7713",
+      "id": "RE.palette_preferences"
+    },
+    {
+      "after_sha256": "e975e35b6740c855a7001a2bc980d952ed8a44d46df6e868c7ad320ae02cbc3e",
+      "before_sha256": "e975e35b6740c855a7001a2bc980d952ed8a44d46df6e868c7ad320ae02cbc3e",
+      "id": "RI.movies"
+    },
+    {
+      "after_sha256": "aee016c1cd2231950ee06d74a2667d15ede70023f3db702408375ca7b3b014b7",
+      "before_sha256": "aee016c1cd2231950ee06d74a2667d15ede70023f3db702408375ca7b3b014b7",
+      "id": "RS.canvas-bind-clip"
+    },
+    {
+      "after_sha256": "ca77c5127859accba12a897358b2a772e43b57a08dc1f6d602bb80bea8a4cde2",
+      "before_sha256": "ca77c5127859accba12a897358b2a772e43b57a08dc1f6d602bb80bea8a4cde2",
+      "id": "RS.canvas-create-lock"
+    },
+    {
+      "after_sha256": "5275e1d36317a9a3c10d62fe4d7b22d72aef0258e46fddb8dc7ae0699a3143d4",
+      "before_sha256": "5275e1d36317a9a3c10d62fe4d7b22d72aef0258e46fddb8dc7ae0699a3143d4",
+      "id": "RS.canvas-fade-span"
+    },
+    {
+      "after_sha256": "c44b6423d10d9e571f778fa41991193cd31b474ac3daf413c169920abe4b5bd2",
+      "before_sha256": "c44b6423d10d9e571f778fa41991193cd31b474ac3daf413c169920abe4b5bd2",
+      "id": "RS.canvas-preworld-reuse"
+    },
+    {
+      "after_sha256": "2b11a48f7746ee6794aeb3919a4a33ee5c7c0337e056aa164e32af4c3ea25bc8",
+      "before_sha256": "2b11a48f7746ee6794aeb3919a4a33ee5c7c0337e056aa164e32af4c3ea25bc8",
+      "id": "RS.canvas-producer-sequence"
+    },
+    {
+      "after_sha256": "7cbb0d368d2ae583ecaff1d2fce05c468b04935998801ee03ab3917b04e49dbd",
+      "before_sha256": "7cbb0d368d2ae583ecaff1d2fce05c468b04935998801ee03ab3917b04e49dbd",
+      "id": "RS.canvas-startup-clear"
+    },
+    {
+      "after_sha256": "4b5e4829c1b798b06a795e3fe2bcb1480ea002b72daa0811fb0501c8d5994874",
+      "before_sha256": "4b5e4829c1b798b06a795e3fe2bcb1480ea002b72daa0811fb0501c8d5994874",
+      "id": "RS.displacement-linear-stride"
+    },
+    {
+      "after_sha256": "79c35aba361c1864ebdebc2097dd435a331886a1b1dc44285167bf2b148e3fae",
+      "before_sha256": "79c35aba361c1864ebdebc2097dd435a331886a1b1dc44285167bf2b148e3fae",
+      "id": "RS.drawing-publication"
+    },
+    {
+      "after_sha256": "37295249bb0ea6c1709c02ef8e1cd1956831aabb36664c473587f1c94dcfd5a4",
+      "before_sha256": "37295249bb0ea6c1709c02ef8e1cd1956831aabb36664c473587f1c94dcfd5a4",
+      "id": "RS.fade-live-pixels"
+    },
+    {
+      "after_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+      "before_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+      "id": "RS.fade-loop-state"
+    },
+    {
+      "after_sha256": "094b2b706a7ff68a45b7f19d50bb47fb975905e867a91ce786c34662c66da959",
+      "before_sha256": "094b2b706a7ff68a45b7f19d50bb47fb975905e867a91ce786c34662c66da959",
+      "id": "RS.font-byte-consumer"
+    },
+    {
+      "after_sha256": "7b2bb69053b413aa6357d0ce34318f745458767390f574f4737db75227044fc8",
+      "before_sha256": "7b2bb69053b413aa6357d0ce34318f745458767390f574f4737db75227044fc8",
+      "id": "RS.font-glyph-raster"
+    },
+    {
+      "after_sha256": "726b96c196bb7de8f17b4822c27bbb8a638a12f8ca8388ce5decb641623c9601",
+      "before_sha256": "726b96c196bb7de8f17b4822c27bbb8a638a12f8ca8388ce5decb641623c9601",
+      "id": "RS.font-line-layout"
+    },
+    {
+      "after_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+      "before_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+      "id": "RS.glyph-backend"
+    },
+    {
+      "after_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+      "before_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+      "id": "RS.glyph-backend-state"
+    },
+    {
+      "after_sha256": "8c4717e955e1cd0a70100a6ebe1628f12ef71aad80a37764026c1fd8b75d56e1",
+      "before_sha256": "8c4717e955e1cd0a70100a6ebe1628f12ef71aad80a37764026c1fd8b75d56e1",
+      "id": "RS.glyph-live-route"
+    },
+    {
+      "after_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+      "before_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+      "id": "RS.minimap-camera-corners"
+    },
+    {
+      "after_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+      "before_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+      "id": "RS.minimap-cell-marker"
+    },
+    {
+      "after_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+      "before_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+      "id": "RS.minimap-creature-markers"
+    },
+    {
+      "after_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+      "before_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+      "id": "RS.minimap-terrain-raster"
+    },
+    {
+      "after_sha256": "07954665a9aaa11a7f40b06610c2a3ab512631f667c74f1c6ff7374ca0218510",
+      "before_sha256": "07954665a9aaa11a7f40b06610c2a3ab512631f667c74f1c6ff7374ca0218510",
+      "id": "RS.panel-pixel-domain"
+    },
+    {
+      "after_sha256": "e9b2b73ece891a47cc17da49e125d797e5229d86004e5c29d88105e112e8b323",
+      "before_sha256": "e9b2b73ece891a47cc17da49e125d797e5229d86004e5c29d88105e112e8b323",
+      "id": "RS.shadow-linear-stride"
+    },
+    {
+      "after_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+      "before_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+      "id": "RS.word-backend-state"
+    },
+    {
+      "after_sha256": "1fea99b042bed9c89e9b08b57cfc68ec1477a8b308a33f760eed783495d5236b",
+      "before_sha256": "1fea99b042bed9c89e9b08b57cfc68ec1477a8b308a33f760eed783495d5236b",
+      "id": "RS.word-clip-aux-shadow"
+    },
+    {
+      "after_sha256": "e402987f411705b62e8957e2a6121b0612c94c46de5c494ed2f8c0c4d03655e9",
+      "before_sha256": "e402987f411705b62e8957e2a6121b0612c94c46de5c494ed2f8c0c4d03655e9",
+      "id": "RS.word-clip-shadow"
+    },
+    {
+      "after_sha256": "3d7f8eb5e82ea56aa4618599eb577f18841d4bcdca44796f284a728bbc451151",
+      "before_sha256": "3d7f8eb5e82ea56aa4618599eb577f18841d4bcdca44796f284a728bbc451151",
+      "id": "RS.word-clip-takeover"
+    },
+    {
+      "after_sha256": "c4dbb206968931604524deba3e3c2ea6de7f808f2d896c2fe2a4a5c4ce50e78c",
+      "before_sha256": "c4dbb206968931604524deba3e3c2ea6de7f808f2d896c2fe2a4a5c4ce50e78c",
+      "id": "RS.word-clipping"
+    },
+    {
+      "after_sha256": "471736c2f03d1d72af34bc03a04479fec7495194e6a1d36e952de623b0d6938e",
+      "before_sha256": "471736c2f03d1d72af34bc03a04479fec7495194e6a1d36e952de623b0d6938e",
+      "id": "RS.world-composition"
+    },
+    {
+      "after_sha256": "dd1c8394316e4db1d69f1f8621cb1cba3d269d8428861d4aed6220a0dbaa4eaa",
+      "before_sha256": "dd1c8394316e4db1d69f1f8621cb1cba3d269d8428861d4aed6220a0dbaa4eaa",
+      "id": "RS.world-continuous-producer"
+    },
+    {
+      "after_sha256": "7e63863328055d0954eb1b58605049070b3f4748ef8d652b594cbce753ea3274",
+      "before_sha256": "7e63863328055d0954eb1b58605049070b3f4748ef8d652b594cbce753ea3274",
+      "id": "RS.world-frame"
+    },
+    {
+      "after_sha256": "d5403210847cd63cb64418f90c73025cb42270765384523c8de0b43f57de17b0",
+      "before_sha256": "d5403210847cd63cb64418f90c73025cb42270765384523c8de0b43f57de17b0",
+      "id": "RS.world-kind8-additive"
+    },
+    {
+      "after_sha256": "1923548f39b363828f4af8ce9b7de2c6d470f1771b920838399139a1e618a119",
+      "before_sha256": "1923548f39b363828f4af8ce9b7de2c6d470f1771b920838399139a1e618a119",
+      "id": "RS.world-kind8-colour"
+    },
+    {
+      "after_sha256": "aa319314d04b491de6b417a89489a49ed16c33ad0ca434e6a8822653c136fe52",
+      "before_sha256": "aa319314d04b491de6b417a89489a49ed16c33ad0ca434e6a8822653c136fe52",
+      "id": "RS.world-kind8-noop"
+    },
+    {
+      "after_sha256": "6a7aa2c6fbff73e2651730a2541ba6cc5b9b979b022bf6fe57ea21a1dd3b99b9",
+      "before_sha256": "6a7aa2c6fbff73e2651730a2541ba6cc5b9b979b022bf6fe57ea21a1dd3b99b9",
+      "id": "RS.world-kind8-virtual"
+    },
+    {
+      "after_sha256": "a31c3f49346b3d0e469317e89bb2258821090d1db998b10814c1b8d0f1a9e04c",
+      "before_sha256": "a31c3f49346b3d0e469317e89bb2258821090d1db998b10814c1b8d0f1a9e04c",
+      "id": "RS.world-producer-bypass"
+    },
+    {
+      "after_sha256": "7213db4dc37ea457f54c617d28e520574f9c5884931c738bbae938390633b952",
+      "before_sha256": "7213db4dc37ea457f54c617d28e520574f9c5884931c738bbae938390633b952",
+      "id": "RS.world-raster-batch-return"
+    },
+    {
+      "after_sha256": "201324cd57556e56dbab11f0bb6d4dc269560b4799f2e8b8a04b7909c235d083",
+      "before_sha256": "201324cd57556e56dbab11f0bb6d4dc269560b4799f2e8b8a04b7909c235d083",
+      "id": "RS.world-raster-queue-replacement"
+    },
+    {
+      "after_sha256": "9774476fe66447fc5d6b2c5a4fedec6967256fc59f1d3d6726f5f67570ac31f0",
+      "before_sha256": "9774476fe66447fc5d6b2c5a4fedec6967256fc59f1d3d6726f5f67570ac31f0",
+      "id": "RS.world-rolling-handoff-equivalence"
+    },
+    {
+      "after_sha256": "467eb2871c4f1c34cf934831a85ad7ff4812274a0f824de82c741bd113f15ca1",
+      "before_sha256": "467eb2871c4f1c34cf934831a85ad7ff4812274a0f824de82c741bd113f15ca1",
+      "id": "RS.world-startup-palette"
+    },
+    {
+      "after_sha256": "0c161585577d4b76b758f31d8d6fd65ac8478692a3bc227be56ab7501e1b7a99",
+      "before_sha256": "0c161585577d4b76b758f31d8d6fd65ac8478692a3bc227be56ab7501e1b7a99",
+      "id": "RS.world-startup-queues"
+    },
+    {
+      "after_sha256": "a1223dc9d192a39e753a623434c1b307cc08661c49778f84769c43bb9fd84a32",
+      "before_sha256": "a1223dc9d192a39e753a623434c1b307cc08661c49778f84769c43bb9fd84a32",
+      "id": "RS.world-startup-wave"
+    },
+    {
+      "after_sha256": "3fbb6a8135596c5b4736dd31d58a417c0f28ab17447f595db01df39c4e31e8f6",
+      "before_sha256": "3fbb6a8135596c5b4736dd31d58a417c0f28ab17447f595db01df39c4e31e8f6",
+      "id": "RT.shadow"
+    },
+    {
+      "after_sha256": "4c6fdd1ae37419007fcd3524f2e8ba36df11dcb579022c5c24492b48f135ee25",
+      "before_sha256": "4c6fdd1ae37419007fcd3524f2e8ba36df11dcb579022c5c24492b48f135ee25",
+      "id": "SP.000"
+    },
+    {
+      "after_sha256": "67c07a31dee4c4dfc18dd5137da4893de86b76834fc366bda9d4c3490bdb9a1e",
+      "before_sha256": "67c07a31dee4c4dfc18dd5137da4893de86b76834fc366bda9d4c3490bdb9a1e",
+      "id": "SP.001"
+    },
+    {
+      "after_sha256": "35199b9c8c97a9cd9e353cc346f284913cc2ad26ee9ac9c9275612c38158d8d8",
+      "before_sha256": "35199b9c8c97a9cd9e353cc346f284913cc2ad26ee9ac9c9275612c38158d8d8",
+      "id": "SP.002"
+    },
+    {
+      "after_sha256": "6517bc6c053134cc801b1208fbaccbe11c476c787b10b052e91f697eb05bdd6b",
+      "before_sha256": "6517bc6c053134cc801b1208fbaccbe11c476c787b10b052e91f697eb05bdd6b",
+      "id": "SP.003"
+    },
+    {
+      "after_sha256": "f26d3c3da07b06392b30ab20ddf0f06da3db0e20dbc60c461849187ad73659e8",
+      "before_sha256": "f26d3c3da07b06392b30ab20ddf0f06da3db0e20dbc60c461849187ad73659e8",
+      "id": "SP.004"
+    },
+    {
+      "after_sha256": "8d29dcf87d6c5ed066da17b30c71ff8f1bc2aba83d957426eed52bed94bcb8f8",
+      "before_sha256": "8d29dcf87d6c5ed066da17b30c71ff8f1bc2aba83d957426eed52bed94bcb8f8",
+      "id": "SP.005"
+    },
+    {
+      "after_sha256": "cbed0051388fdee130f30609789117a98b0465e98be581e3cb2362754ea1f58e",
+      "before_sha256": "cbed0051388fdee130f30609789117a98b0465e98be581e3cb2362754ea1f58e",
+      "id": "SP.006"
+    },
+    {
+      "after_sha256": "4c895faedb4d0c40a7531bca240d389b6b96c7ee3a1c1b5c9dc5c359026b532c",
+      "before_sha256": "4c895faedb4d0c40a7531bca240d389b6b96c7ee3a1c1b5c9dc5c359026b532c",
+      "id": "SP.007"
+    },
+    {
+      "after_sha256": "9ffd4679b06799e44146cc136810b51a1642ddfa0d26d2a8340e552010d69122",
+      "before_sha256": "9ffd4679b06799e44146cc136810b51a1642ddfa0d26d2a8340e552010d69122",
+      "id": "SP.008"
+    },
+    {
+      "after_sha256": "29787290b7a6de7ee119a70c395a72b229022003a228def68fd0e23e654bab66",
+      "before_sha256": "29787290b7a6de7ee119a70c395a72b229022003a228def68fd0e23e654bab66",
+      "id": "SP.009"
+    },
+    {
+      "after_sha256": "a424f42966de4557ac670a4c43713c09aeb9fa22be990623fb95622d53489c15",
+      "before_sha256": "a424f42966de4557ac670a4c43713c09aeb9fa22be990623fb95622d53489c15",
+      "id": "SP.010"
+    },
+    {
+      "after_sha256": "085314ea0447215da9075256cf71aaa25d2f857fa90f74c36a3daee7534f272b",
+      "before_sha256": "085314ea0447215da9075256cf71aaa25d2f857fa90f74c36a3daee7534f272b",
+      "id": "SP.011"
+    },
+    {
+      "after_sha256": "5962fcf45be29a9ec97cc309f3c6429bc692d85af495bac1570c0d569939757e",
+      "before_sha256": "5962fcf45be29a9ec97cc309f3c6429bc692d85af495bac1570c0d569939757e",
+      "id": "SP.012"
+    },
+    {
+      "after_sha256": "25162cda772d3b22344f60192700cdc6c47318908765a6303d90fb41605c5fc1",
+      "before_sha256": "25162cda772d3b22344f60192700cdc6c47318908765a6303d90fb41605c5fc1",
+      "id": "SP.013"
+    },
+    {
+      "after_sha256": "0d48ab66583d7e5e1228ebb4ae50578a2e0be022a4de4e302759aeddfb9c4bec",
+      "before_sha256": "0d48ab66583d7e5e1228ebb4ae50578a2e0be022a4de4e302759aeddfb9c4bec",
+      "id": "SP.014"
+    },
+    {
+      "after_sha256": "249e77828e06ad875f2ad7fe75b26d999c0a8c903ed82cf6d9bc33534ed469cd",
+      "before_sha256": "249e77828e06ad875f2ad7fe75b26d999c0a8c903ed82cf6d9bc33534ed469cd",
+      "id": "SP.015"
+    },
+    {
+      "after_sha256": "e74362c6f8018bda1394300de186b37fa3036b8bcee1601a0a52bccf59c23b51",
+      "before_sha256": "e74362c6f8018bda1394300de186b37fa3036b8bcee1601a0a52bccf59c23b51",
+      "id": "SP.016"
+    },
+    {
+      "after_sha256": "d8a5d9a34074bd88949e004e1c9a5ff1335a46edd2ba27315f7abb2212a8f4ac",
+      "before_sha256": "d8a5d9a34074bd88949e004e1c9a5ff1335a46edd2ba27315f7abb2212a8f4ac",
+      "id": "SP.017"
+    },
+    {
+      "after_sha256": "5d081a15c68314f211877e4c27f6b7b75aa4687fcce9a39c53229317d824db7d",
+      "before_sha256": "5d081a15c68314f211877e4c27f6b7b75aa4687fcce9a39c53229317d824db7d",
+      "id": "SP.018"
+    },
+    {
+      "after_sha256": "ec2fd75e942ab000e8cd5ba0fbf22c3f60dd1b37a386bc5d56a8fdffbf2fca2f",
+      "before_sha256": "ec2fd75e942ab000e8cd5ba0fbf22c3f60dd1b37a386bc5d56a8fdffbf2fca2f",
+      "id": "SP.019"
+    },
+    {
+      "after_sha256": "f81d1890aceaa5df34eb7660ff027e2160e49371d8d6457ab18cb18c80b27559",
+      "before_sha256": "f81d1890aceaa5df34eb7660ff027e2160e49371d8d6457ab18cb18c80b27559",
+      "id": "SP.020"
+    },
+    {
+      "after_sha256": "7495600b448b7d913acf3bc6cf43aa08ba5d25bd93e2b9ca88183adcecda4d1c",
+      "before_sha256": "7495600b448b7d913acf3bc6cf43aa08ba5d25bd93e2b9ca88183adcecda4d1c",
+      "id": "SP.021"
+    },
+    {
+      "after_sha256": "ac96c67ecad0027034deef97a39f3bd0023fe8c7ab1b454805ddf6950b01e254",
+      "before_sha256": "ac96c67ecad0027034deef97a39f3bd0023fe8c7ab1b454805ddf6950b01e254",
+      "id": "SP.022"
+    },
+    {
+      "after_sha256": "dfc22125daceb5117713bb2b5c35a1118907d81ff3714dad0b3d609d6bb8a0eb",
+      "before_sha256": "dfc22125daceb5117713bb2b5c35a1118907d81ff3714dad0b3d609d6bb8a0eb",
+      "id": "SP.023"
+    },
+    {
+      "after_sha256": "4128057cd99df24db344f4ef888bc85dfb3a3b91202ddc5878e6343453b64b99",
+      "before_sha256": "4128057cd99df24db344f4ef888bc85dfb3a3b91202ddc5878e6343453b64b99",
+      "id": "SP.024"
+    },
+    {
+      "after_sha256": "a6cb9a6787c9c45ede40c667a53599ccbf58bfc83ac45cfaa2e9ee827d0b1e08",
+      "before_sha256": "a6cb9a6787c9c45ede40c667a53599ccbf58bfc83ac45cfaa2e9ee827d0b1e08",
+      "id": "SP.025"
+    },
+    {
+      "after_sha256": "5c70e38760ab12d470d2861508b3b890746031ea712895d0a3331fcf1fc05b60",
+      "before_sha256": "5c70e38760ab12d470d2861508b3b890746031ea712895d0a3331fcf1fc05b60",
+      "id": "SP.026"
+    },
+    {
+      "after_sha256": "e7d60ae865c9110ea1d2a73fd0b6866643d4d3056cb48b7ec800b714311dd3e0",
+      "before_sha256": "e7d60ae865c9110ea1d2a73fd0b6866643d4d3056cb48b7ec800b714311dd3e0",
+      "id": "SP.027"
+    },
+    {
+      "after_sha256": "bc47018030aac83b1d896c4581422d05f50c331348a8bb2a9763eda6b3ac082b",
+      "before_sha256": "bc47018030aac83b1d896c4581422d05f50c331348a8bb2a9763eda6b3ac082b",
+      "id": "SP.028"
+    },
+    {
+      "after_sha256": "28040cfb7a3722ae3d873ccfd3a2d0995c5959a45e6bd088e6cdcf3afdd4153e",
+      "before_sha256": "28040cfb7a3722ae3d873ccfd3a2d0995c5959a45e6bd088e6cdcf3afdd4153e",
+      "id": "SP.029"
+    },
+    {
+      "after_sha256": "1220ec1feb00adaea6b29b3df52d9e0f203b19e6ee41d72e3769491cef690ad8",
+      "before_sha256": "1220ec1feb00adaea6b29b3df52d9e0f203b19e6ee41d72e3769491cef690ad8",
+      "id": "SP.030"
+    },
+    {
+      "after_sha256": "ddd93b1e3d789126908caa242f6af5d16ab1b360150d2ccdbb2fc593e9b2c57e",
+      "before_sha256": "ddd93b1e3d789126908caa242f6af5d16ab1b360150d2ccdbb2fc593e9b2c57e",
+      "id": "SP.031"
+    },
+    {
+      "after_sha256": "a36bb3b6ad5dbb8fcab293d8e41739f5e08cf3adba4dfd671e19a06fcf7a2a8a",
+      "before_sha256": "a36bb3b6ad5dbb8fcab293d8e41739f5e08cf3adba4dfd671e19a06fcf7a2a8a",
+      "id": "SP.032"
+    },
+    {
+      "after_sha256": "1f19918e26eec68a97b912b3e887c3c73154d464237a1c475b6a716ee26fdf21",
+      "before_sha256": "1f19918e26eec68a97b912b3e887c3c73154d464237a1c475b6a716ee26fdf21",
+      "id": "SP.033"
+    },
+    {
+      "after_sha256": "9889a139a091a97dc3d0b9f35e4405bef939f95fb66841e0fa88b7892eab984b",
+      "before_sha256": "9889a139a091a97dc3d0b9f35e4405bef939f95fb66841e0fa88b7892eab984b",
+      "id": "SP.034"
+    },
+    {
+      "after_sha256": "2870868befc5df79641b6722aad9f5e7e4526a8ff332f7db47a12ad5957b43f4",
+      "before_sha256": "2870868befc5df79641b6722aad9f5e7e4526a8ff332f7db47a12ad5957b43f4",
+      "id": "SP.035"
+    },
+    {
+      "after_sha256": "489a50b56a6e8c67e13af436c2388b5f559d30551b71c9c0c16e338e2fba0ed5",
+      "before_sha256": "489a50b56a6e8c67e13af436c2388b5f559d30551b71c9c0c16e338e2fba0ed5",
+      "id": "SP.036"
+    },
+    {
+      "after_sha256": "94a1fd44a10681bfe87770e62d878746f959c45d45e779e6b1a215d6522c4ffc",
+      "before_sha256": "94a1fd44a10681bfe87770e62d878746f959c45d45e779e6b1a215d6522c4ffc",
+      "id": "SP.037"
+    },
+    {
+      "after_sha256": "d94d000beee72f7d0f1617abee61e45417864476d9c4755c39bb9dc43560b048",
+      "before_sha256": "d94d000beee72f7d0f1617abee61e45417864476d9c4755c39bb9dc43560b048",
+      "id": "SP.038"
+    },
+    {
+      "after_sha256": "90858e6979124971ffa99fbf4c41889db40b31fa7fdbf826cf728832fa17e5bd",
+      "before_sha256": "90858e6979124971ffa99fbf4c41889db40b31fa7fdbf826cf728832fa17e5bd",
+      "id": "SP.039"
+    },
+    {
+      "after_sha256": "9354a2146fb9ee7042c2c056188e3178c4bd4da6edd3fc30070cff797e384a20",
+      "before_sha256": "9354a2146fb9ee7042c2c056188e3178c4bd4da6edd3fc30070cff797e384a20",
+      "id": "SP.040"
+    },
+    {
+      "after_sha256": "2f72fc6fc9b8bd5981bb4ed3c64dfcb608ade42cecc0ff57f8be40a4fb68866a",
+      "before_sha256": "2f72fc6fc9b8bd5981bb4ed3c64dfcb608ade42cecc0ff57f8be40a4fb68866a",
+      "id": "SP.041"
+    },
+    {
+      "after_sha256": "8af9e6539d7d18793e01c6939ebaa391a6ab9b4b3edd47f5a3f19d263eced8a8",
+      "before_sha256": "8af9e6539d7d18793e01c6939ebaa391a6ab9b4b3edd47f5a3f19d263eced8a8",
+      "id": "SP.042"
+    },
+    {
+      "after_sha256": "516382524962242521c14b6a93a806a7869acccabc13d7c36261d97ad6cfc892",
+      "before_sha256": "516382524962242521c14b6a93a806a7869acccabc13d7c36261d97ad6cfc892",
+      "id": "SP.043"
+    },
+    {
+      "after_sha256": "7322f2037f61fb7d1cdb299fce259a8adb84b46b67527b2d195f5fb34ce623ea",
+      "before_sha256": "7322f2037f61fb7d1cdb299fce259a8adb84b46b67527b2d195f5fb34ce623ea",
+      "id": "SP.044"
+    },
+    {
+      "after_sha256": "70a3687e4a25d002014607c7933b03041c2b16d6564efd102f231c9b94c1adce",
+      "before_sha256": "70a3687e4a25d002014607c7933b03041c2b16d6564efd102f231c9b94c1adce",
+      "id": "SP.045"
+    },
+    {
+      "after_sha256": "5062baec94d3ac3582bcba1da9f60db45fd311a41816a3e3d427f01ba3a5b194",
+      "before_sha256": "5062baec94d3ac3582bcba1da9f60db45fd311a41816a3e3d427f01ba3a5b194",
+      "id": "SP.046"
+    },
+    {
+      "after_sha256": "56c5ab95380c81b7a3de0b6c6871097abe5e68ddd919205451106152a10b72cd",
+      "before_sha256": "56c5ab95380c81b7a3de0b6c6871097abe5e68ddd919205451106152a10b72cd",
+      "id": "SP.047"
+    },
+    {
+      "after_sha256": "4651a845eb6d3b2331421854bfd29794a3932669d2bcf4bb45e45edc8b047679",
+      "before_sha256": "4651a845eb6d3b2331421854bfd29794a3932669d2bcf4bb45e45edc8b047679",
+      "id": "SP.048"
+    },
+    {
+      "after_sha256": "af945119ea63560642aa2978871815fe2f7a8364ab7390ba1fa35701e05c807e",
+      "before_sha256": "af945119ea63560642aa2978871815fe2f7a8364ab7390ba1fa35701e05c807e",
+      "id": "SP.049"
+    },
+    {
+      "after_sha256": "0e6bc3e3e6117dc14e662734ce95fdc12df1eaf1453ec4f7f7efb2fbd444b6c2",
+      "before_sha256": "0e6bc3e3e6117dc14e662734ce95fdc12df1eaf1453ec4f7f7efb2fbd444b6c2",
+      "id": "SP.050"
+    },
+    {
+      "after_sha256": "690722006606134d5986160d3bcf67c91175278ba031a3d6a2ceed9fd125f876",
+      "before_sha256": "690722006606134d5986160d3bcf67c91175278ba031a3d6a2ceed9fd125f876",
+      "id": "SP.051"
+    },
+    {
+      "after_sha256": "107460ba4940633eb486efbdadfe1004cfa0f4b27e56cecaccc8a8335c4453b1",
+      "before_sha256": "107460ba4940633eb486efbdadfe1004cfa0f4b27e56cecaccc8a8335c4453b1",
+      "id": "SP.052"
+    },
+    {
+      "after_sha256": "02a1b974520cd8f9bcbdf0cd7384021832c67938726738cb44b824084e8d1c5d",
+      "before_sha256": "02a1b974520cd8f9bcbdf0cd7384021832c67938726738cb44b824084e8d1c5d",
+      "id": "SP.053"
+    },
+    {
+      "after_sha256": "a3197f83efc8f53e8f547255bcc719f98f0deac42e7202858f26062059c688d2",
+      "before_sha256": "a3197f83efc8f53e8f547255bcc719f98f0deac42e7202858f26062059c688d2",
+      "id": "SP.054"
+    },
+    {
+      "after_sha256": "9a5ec64c7203d9b1cbf8322cd794cbe693cee3ba93e5df1b8120a3171fed5276",
+      "before_sha256": "9a5ec64c7203d9b1cbf8322cd794cbe693cee3ba93e5df1b8120a3171fed5276",
+      "id": "SP.055"
+    },
+    {
+      "after_sha256": "cb733f3e8b9abb8f0af7a8da656789c852223192144a41a6cbd47efa61943440",
+      "before_sha256": "cb733f3e8b9abb8f0af7a8da656789c852223192144a41a6cbd47efa61943440",
+      "id": "SP.056"
+    },
+    {
+      "after_sha256": "03d6de5b73a964963ca4e26f17a35f2ea8c841d73b660796fa93c245b38a0a97",
+      "before_sha256": "03d6de5b73a964963ca4e26f17a35f2ea8c841d73b660796fa93c245b38a0a97",
+      "id": "SP.057"
+    },
+    {
+      "after_sha256": "c5b07749e3a6813fe9e59855739b4cc7fcd0088e80233964e2272e79041bb746",
+      "before_sha256": "c5b07749e3a6813fe9e59855739b4cc7fcd0088e80233964e2272e79041bb746",
+      "id": "SP.058"
+    },
+    {
+      "after_sha256": "800bbd4df0fde91d32f2b580e5016305d663af741fc04807f2459391c77b6bc0",
+      "before_sha256": "800bbd4df0fde91d32f2b580e5016305d663af741fc04807f2459391c77b6bc0",
+      "id": "SP.059"
+    },
+    {
+      "after_sha256": "7c8ae46afe5ad6ce687e3c0d68d30aa591045b7cf016aeb1e24cbc806b266cd6",
+      "before_sha256": "7c8ae46afe5ad6ce687e3c0d68d30aa591045b7cf016aeb1e24cbc806b266cd6",
+      "id": "SP.060"
+    },
+    {
+      "after_sha256": "4635ec2b8c4d441c0f73c2f1b248c7237132cb1d19d6ada95c248d8abdc0289f",
+      "before_sha256": "4635ec2b8c4d441c0f73c2f1b248c7237132cb1d19d6ada95c248d8abdc0289f",
+      "id": "SP.061"
+    },
+    {
+      "after_sha256": "5c7b6f1dfcacb9fbdfce4c29dd360fa9fb4ac8f0d1a79a4e18850e9e43c4e389",
+      "before_sha256": "5c7b6f1dfcacb9fbdfce4c29dd360fa9fb4ac8f0d1a79a4e18850e9e43c4e389",
+      "id": "SP.062"
+    },
+    {
+      "after_sha256": "c7ddaae4614ac7ff753bcd9baddd260ba168482433acbb747c4abc7776a32e40",
+      "before_sha256": "c7ddaae4614ac7ff753bcd9baddd260ba168482433acbb747c4abc7776a32e40",
+      "id": "SP.063"
+    },
+    {
+      "after_sha256": "4c921cfc28204c10105d312cfeb726e4c829b3379a647c53d69daa8e3d783ead",
+      "before_sha256": "4c921cfc28204c10105d312cfeb726e4c829b3379a647c53d69daa8e3d783ead",
+      "id": "SP.064"
+    },
+    {
+      "after_sha256": "4f1258afa9e34939c4787e0fb0e0ff57648e587afcdffe4015391fe9554a3e8a",
+      "before_sha256": "4f1258afa9e34939c4787e0fb0e0ff57648e587afcdffe4015391fe9554a3e8a",
+      "id": "SP.065"
+    },
+    {
+      "after_sha256": "6c0c014eedb3fd706379248e447f8acf10c78b6ba3fd7899bc208846c73c4d2c",
+      "before_sha256": "6c0c014eedb3fd706379248e447f8acf10c78b6ba3fd7899bc208846c73c4d2c",
+      "id": "SP.066"
+    },
+    {
+      "after_sha256": "cb813b367d2df72774597fda9a9dad953fc1133c4e236ad38b1423349426996d",
+      "before_sha256": "cb813b367d2df72774597fda9a9dad953fc1133c4e236ad38b1423349426996d",
+      "id": "SP.067"
+    },
+    {
+      "after_sha256": "647a92d02a7cd95c82984aeeecafb676639106571c9ae6e23c08621e9c135bea",
+      "before_sha256": "647a92d02a7cd95c82984aeeecafb676639106571c9ae6e23c08621e9c135bea",
+      "id": "SP.068"
+    },
+    {
+      "after_sha256": "fd3244684da214d2f118d80c746af9895584bc8eba12ceda57eedbe66787211a",
+      "before_sha256": "fd3244684da214d2f118d80c746af9895584bc8eba12ceda57eedbe66787211a",
+      "id": "SP.069"
+    },
+    {
+      "after_sha256": "01a7a0c259e54177bd4e8bf0a5004b5fce556730a5939a35077791d02d9455ec",
+      "before_sha256": "01a7a0c259e54177bd4e8bf0a5004b5fce556730a5939a35077791d02d9455ec",
+      "id": "SP.070"
+    },
+    {
+      "after_sha256": "80a0057d04d5094917feb2f73589d4c60ff8ee76409125d3c4dec84f7f20ceed",
+      "before_sha256": "80a0057d04d5094917feb2f73589d4c60ff8ee76409125d3c4dec84f7f20ceed",
+      "id": "SP.071"
+    },
+    {
+      "after_sha256": "37f7a3d7d3c495032dae0f5f1bafaafbf2e8bfac3e31a81df4ecd6bda3a43e06",
+      "before_sha256": "37f7a3d7d3c495032dae0f5f1bafaafbf2e8bfac3e31a81df4ecd6bda3a43e06",
+      "id": "SP.072"
+    },
+    {
+      "after_sha256": "9b74bd713c44b270633204cfc1458f80182caf353f68c6bd699062ec46bb50ba",
+      "before_sha256": "9b74bd713c44b270633204cfc1458f80182caf353f68c6bd699062ec46bb50ba",
+      "id": "SP.073"
+    },
+    {
+      "after_sha256": "88c8660d1c67976eb162dd86326b7781fcc7cbb6276416c68bc4d1e29729571a",
+      "before_sha256": "88c8660d1c67976eb162dd86326b7781fcc7cbb6276416c68bc4d1e29729571a",
+      "id": "SP.074"
+    },
+    {
+      "after_sha256": "b069bbff95ebae8366bc8a15b4d86ac31c248a41c91f15a4f1b5a892f415d9b1",
+      "before_sha256": "b069bbff95ebae8366bc8a15b4d86ac31c248a41c91f15a4f1b5a892f415d9b1",
+      "id": "SP.075"
+    },
+    {
+      "after_sha256": "bccbcc918f1fe92f232bd4642ac1578c4fc5fbd3958fb3a21f47d04093c4bd27",
+      "before_sha256": "bccbcc918f1fe92f232bd4642ac1578c4fc5fbd3958fb3a21f47d04093c4bd27",
+      "id": "SP.076"
+    },
+    {
+      "after_sha256": "5ae0f446df1a852b540f4b805368c14b9151e727dea1161fbb5f7c99f857bd16",
+      "before_sha256": "5ae0f446df1a852b540f4b805368c14b9151e727dea1161fbb5f7c99f857bd16",
+      "id": "SP.077"
+    },
+    {
+      "after_sha256": "405736129aae36e400672fa44e2ed7de9f203ab0f8e2b02620d59d461dca5642",
+      "before_sha256": "405736129aae36e400672fa44e2ed7de9f203ab0f8e2b02620d59d461dca5642",
+      "id": "SP.078"
+    },
+    {
+      "after_sha256": "7a94b48db091852e5c5c9bf6137ed735a3c25a099ea24c522d50a57d7ec8a23d",
+      "before_sha256": "7a94b48db091852e5c5c9bf6137ed735a3c25a099ea24c522d50a57d7ec8a23d",
+      "id": "SP.079"
+    },
+    {
+      "after_sha256": "629289d1d0adb71f71d4a218fdf0cdb994cef68932c6484c24e5f106181650d4",
+      "before_sha256": "629289d1d0adb71f71d4a218fdf0cdb994cef68932c6484c24e5f106181650d4",
+      "id": "SP.080"
+    },
+    {
+      "after_sha256": "4f04f906c855dc67f8cf9c6516e2a20c5263635360bf3ea8a0f95955b10fe953",
+      "before_sha256": "4f04f906c855dc67f8cf9c6516e2a20c5263635360bf3ea8a0f95955b10fe953",
+      "id": "SP.081"
+    },
+    {
+      "after_sha256": "0fb4c497f58384ccba7c7b237f8dc3634c0520976879c153936127661fb8f2d8",
+      "before_sha256": "0fb4c497f58384ccba7c7b237f8dc3634c0520976879c153936127661fb8f2d8",
+      "id": "SP.082"
+    },
+    {
+      "after_sha256": "6350d11f58908fb164e0df028eb617714799618ca7e2cd55e96fa95b68e02412",
+      "before_sha256": "6350d11f58908fb164e0df028eb617714799618ca7e2cd55e96fa95b68e02412",
+      "id": "SP.083"
+    },
+    {
+      "after_sha256": "586268400d0e03705c6b7b117db6eae6b090a2143fec27fdb8c950b1e909235c",
+      "before_sha256": "586268400d0e03705c6b7b117db6eae6b090a2143fec27fdb8c950b1e909235c",
+      "id": "SP.084"
+    },
+    {
+      "after_sha256": "181e185be4045ee1e53758e6292e5cb6c76acb62b3548600d964ca6560d4b1d0",
+      "before_sha256": "181e185be4045ee1e53758e6292e5cb6c76acb62b3548600d964ca6560d4b1d0",
+      "id": "SP.085"
+    },
+    {
+      "after_sha256": "6fcdbd891ed4d64b88e96c61d35130bbaa7843cbe0085c5df78bcadf0e460dd2",
+      "before_sha256": "6fcdbd891ed4d64b88e96c61d35130bbaa7843cbe0085c5df78bcadf0e460dd2",
+      "id": "SP.086"
+    },
+    {
+      "after_sha256": "9f09ceb7991773fd6e952d6e2e4a34eb12c60f8b195bfb042460ad6c5d6decc2",
+      "before_sha256": "9f09ceb7991773fd6e952d6e2e4a34eb12c60f8b195bfb042460ad6c5d6decc2",
+      "id": "SP.087"
+    },
+    {
+      "after_sha256": "d3707aa4664434b603379800624340bf71b08c87f3923b8baa1b92addd73f91c",
+      "before_sha256": "d3707aa4664434b603379800624340bf71b08c87f3923b8baa1b92addd73f91c",
+      "id": "SP.088"
+    },
+    {
+      "after_sha256": "32f4b67a5e1996965288a38b535ca8a578303ef4babdec2024b66f083d63ca41",
+      "before_sha256": "32f4b67a5e1996965288a38b535ca8a578303ef4babdec2024b66f083d63ca41",
+      "id": "SP.089"
+    },
+    {
+      "after_sha256": "6cae301c99f4d25a943b0d8d81b08342a486bcb9d30286b054ce42bd58a7763e",
+      "before_sha256": "6cae301c99f4d25a943b0d8d81b08342a486bcb9d30286b054ce42bd58a7763e",
+      "id": "SP.090"
+    },
+    {
+      "after_sha256": "82cfe98d0086d1e8e16f44c039490b782274b74a33ffbca8b4a9837a2a3576ad",
+      "before_sha256": "82cfe98d0086d1e8e16f44c039490b782274b74a33ffbca8b4a9837a2a3576ad",
+      "id": "SP.091"
+    },
+    {
+      "after_sha256": "61ace7b0958f96bc10176a2c7abda656818bedc21929ed8ccc741f50f442b9a5",
+      "before_sha256": "61ace7b0958f96bc10176a2c7abda656818bedc21929ed8ccc741f50f442b9a5",
+      "id": "SP.092"
+    },
+    {
+      "after_sha256": "63694a263745c572f08b83f27fa6f1c0e4ca2bf8b293c51d48a54e53e83adf42",
+      "before_sha256": "63694a263745c572f08b83f27fa6f1c0e4ca2bf8b293c51d48a54e53e83adf42",
+      "id": "SP.093"
+    },
+    {
+      "after_sha256": "2817471c5a4149cc9e77920e6a114903f56b2a80d7d6e64b6ac68b831dd846d2",
+      "before_sha256": "2817471c5a4149cc9e77920e6a114903f56b2a80d7d6e64b6ac68b831dd846d2",
+      "id": "SP.094"
+    },
+    {
+      "after_sha256": "835fbc68daff56b131c8b6788f6ef6b28d8bcb13395cb0284dae306b5b0a5acf",
+      "before_sha256": "835fbc68daff56b131c8b6788f6ef6b28d8bcb13395cb0284dae306b5b0a5acf",
+      "id": "SP.095"
+    },
+    {
+      "after_sha256": "75544c1c93c0d55c2a56bb4116ecad0c830ec1f79896a0d23c0cfff2a0f82c33",
+      "before_sha256": "75544c1c93c0d55c2a56bb4116ecad0c830ec1f79896a0d23c0cfff2a0f82c33",
+      "id": "SP.096"
+    },
+    {
+      "after_sha256": "c061c3fd7b460949d08d5706dedc937283e77b221740bf8394f9e943060eeb95",
+      "before_sha256": "c061c3fd7b460949d08d5706dedc937283e77b221740bf8394f9e943060eeb95",
+      "id": "SP.097"
+    },
+    {
+      "after_sha256": "7ea13650a34fa994b1286d09a7c25e1cd582452ce523c09d2bf005e5ea24e591",
+      "before_sha256": "7ea13650a34fa994b1286d09a7c25e1cd582452ce523c09d2bf005e5ea24e591",
+      "id": "SP.098"
+    },
+    {
+      "after_sha256": "d69660d74303077b19c8f63155ea22ec3de4607d134a034f5f8078d174097e32",
+      "before_sha256": "d69660d74303077b19c8f63155ea22ec3de4607d134a034f5f8078d174097e32",
+      "id": "SP.099"
+    },
+    {
+      "after_sha256": "2d563dcd86df9d3b81c157e837cc79edd42987c160e6511ed047b0a8b7720867",
+      "before_sha256": "2d563dcd86df9d3b81c157e837cc79edd42987c160e6511ed047b0a8b7720867",
+      "id": "SP.100"
+    },
+    {
+      "after_sha256": "a911bbc4acdbb19e29323a3bee688d1355b438f9a9fdc29a4085d7072671c6af",
+      "before_sha256": "a911bbc4acdbb19e29323a3bee688d1355b438f9a9fdc29a4085d7072671c6af",
+      "id": "SP.101"
+    },
+    {
+      "after_sha256": "ec8077e2da8b5dc1becc78693a5f3af3c8dd627d995705ce0f2fc7ea291f7e70",
+      "before_sha256": "ec8077e2da8b5dc1becc78693a5f3af3c8dd627d995705ce0f2fc7ea291f7e70",
+      "id": "SP.102"
+    },
+    {
+      "after_sha256": "73bcb5080748b3510d52049bbe81993f2cfdec6a1f8504b64796a7eb6e421af4",
+      "before_sha256": "73bcb5080748b3510d52049bbe81993f2cfdec6a1f8504b64796a7eb6e421af4",
+      "id": "SP.103"
+    },
+    {
+      "after_sha256": "3b789eddf369d59ac55df4a18bdee5cb0d325b4ae80934c4021410f920d0d340",
+      "before_sha256": "3b789eddf369d59ac55df4a18bdee5cb0d325b4ae80934c4021410f920d0d340",
+      "id": "TL.effect-table-policy"
+    },
+    {
+      "after_sha256": "0f7f19dde689a840c0442266a3db989e3158b7df285ff58a3b0dddeac86bc766",
+      "before_sha256": "53dc4e16b7649d85979f604d201812dafb7622ccfe2512865f164cda97628824",
+      "id": "TOOL.coverage-accounting"
+    },
+    {
+      "after_sha256": "f8612ab0f9ff716d4fc3f7241f09836d9262a6945621b8a211c23c69abb5a715",
+      "before_sha256": "2440d0b17b920f1141e540e1d47db97bec5848f615a109677830496d1409b810",
+      "id": "TOOL.coverage-gate"
+    },
+    {
+      "after_sha256": "c86eb3c2134b119248c25cd1b1405c01f10b37cf8f8b97f90bceed16a6f022da",
+      "before_sha256": null,
+      "id": "TOOL.creature-autonomy-export"
+    },
+    {
+      "after_sha256": "9c95396e8e3747c05a67ad4955c085d6d286db4b470e93c43608d147b06fdf58",
+      "before_sha256": "9c95396e8e3747c05a67ad4955c085d6d286db4b470e93c43608d147b06fdf58",
+      "id": "TOOL.drawing-api-bindings"
+    },
+    {
+      "after_sha256": "22c858378d8da41f6aa99288b3a9ee1832c08f9bd6d5d27afc18a30d792ab3a2",
+      "before_sha256": "22c858378d8da41f6aa99288b3a9ee1832c08f9bd6d5d27afc18a30d792ab3a2",
+      "id": "TOOL.drawing-api-journey"
+    },
+    {
+      "after_sha256": "c48385116eac015e734f58156ae32e0d44c954e6b138055b7dffcd3cb9e69f06",
+      "before_sha256": "c48385116eac015e734f58156ae32e0d44c954e6b138055b7dffcd3cb9e69f06",
+      "id": "TOOL.drawing-api-observer"
+    },
+    {
+      "after_sha256": "0ea81b7a75079901be0c046a63c1507a23126a6ebdd637f2548732b5234019c0",
+      "before_sha256": "0ea81b7a75079901be0c046a63c1507a23126a6ebdd637f2548732b5234019c0",
+      "id": "TOOL.drawing-compact-cpu"
+    },
+    {
+      "after_sha256": "265f3ee398600cc5afffd190759afdde9e3931fb417c7c39339a2a5dbc002fef",
+      "before_sha256": "265f3ee398600cc5afffd190759afdde9e3931fb417c7c39339a2a5dbc002fef",
+      "id": "TOOL.drawing-core-bindings"
+    },
+    {
+      "after_sha256": "bd72be1cd207766ee8c23c14ae716910223803e238aff9b0467d6b001c5d6d81",
+      "before_sha256": "bd72be1cd207766ee8c23c14ae716910223803e238aff9b0467d6b001c5d6d81",
+      "id": "TOOL.drawing-cpu-observer"
+    },
+    {
+      "after_sha256": "c86726ae722da918758abf5d1ff38b62c3892470edca80972f23bce3f9b0d6ae",
+      "before_sha256": "c86726ae722da918758abf5d1ff38b62c3892470edca80972f23bce3f9b0d6ae",
+      "id": "TOOL.drawing-dispatch-slices"
+    },
+    {
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "id": "TOOL.drawing-movie-reference"
+    },
+    {
+      "after_sha256": "a4e8cb87e6361cb568b499d1f80392eece0d3e12103641cd5d0737ce3ee8c382",
+      "before_sha256": "a4e8cb87e6361cb568b499d1f80392eece0d3e12103641cd5d0737ce3ee8c382",
+      "id": "TOOL.drawing-publication-corpus"
+    },
+    {
+      "after_sha256": "b66035a765b5485c37243b01d0c9d06679265992921ea718788192788a82b36b",
+      "before_sha256": "b66035a765b5485c37243b01d0c9d06679265992921ea718788192788a82b36b",
+      "id": "TOOL.drawing-terminal-observer"
+    },
+    {
+      "after_sha256": "f348b8119a65c166e60c3e1647959a3b21069ab934007d27b383f2cb38115fab",
+      "before_sha256": "f348b8119a65c166e60c3e1647959a3b21069ab934007d27b383f2cb38115fab",
+      "id": "WORLD.owned"
+    },
+    {
+      "after_sha256": "3a4ea690e1f52072a2954d136fd5bacc208a5f37594008864582a99765254261",
+      "before_sha256": "3a4ea690e1f52072a2954d136fd5bacc208a5f37594008864582a99765254261",
+      "id": "WORLD.sandbox"
+    }
+  ],
+  "staged_gate_record": "working/tests/original-ai-execution-20261012/completed-gate-final.json",
+  "staged_gate_sha256": "2c5bc31236122d5e48a80105f4e6794276938b97c553dafe9696f9d08040f15a",
+  "unresolved_gaps": [],
+  "counts": {
+    "file_transitions": 153,
+    "reviewed_behavior_transitions": 400,
+    "unresolved_gaps": 0
+  }
+}
