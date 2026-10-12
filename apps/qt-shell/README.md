@@ -5,6 +5,11 @@ continues its simulation and drawing; complete live drawing replacement is
 unavailable. The [authoritative replacement plan](../../docs/live-drawing-replacement.md)
 defines the remaining work and criteria for enabling a complete launcher mode.
 
+`./tools/run-qt-shell.sh` configures with `BUILD_TESTING=OFF` and builds only
+`mnm-qt-shell` and its dependencies. To also build the tests before launching,
+run `MNM_QT_BUILD_TESTS=ON ./tools/run-qt-shell.sh`. Each launch sets the option
+explicitly, overriding any previous test setting in the CMake cache.
+
 A standalone continuous native World shadow viewer is available with:
 
 ```bash
@@ -246,7 +251,7 @@ unsupported.
 ## Verification
 
 ```bash
-cmake -S apps/qt-shell -B working/build/qt-shell
+cmake -S apps/qt-shell -B working/build/qt-shell -DBUILD_TESTING=ON
 cmake --build working/build/qt-shell --parallel 4
 ctest --test-dir working/build/qt-shell --output-on-failure
 ./tools/test-render-bridge.py
