@@ -7162,3 +7162,25 @@ allroutes and full semantic journeys stay open. Steps3–7 remain ordered/pendin
 and all47/21acceptance requirements remain open. The reviewed4c4762a..ff36674
 range has26matching exact file-version receipts and0gaps. Storage remains about
 890GiBworking/436GiBfree;no cleanup or historical hash refresh.
+
+## Step 2 observed Wine lifetime checkpoint (2026-10-12 UTC)
+
+Final-source submissionfixture03andoriginal03pass undernewimmutableevidenceIDs;
+original03retains1545bltcalls/344API/343EGLwitnessesandclosed32returns.
+The next selected-import lifecycle extension preservesexisting submissionV1and
+addsaseparate96byterowjournal. ActualPE32fixture01passes14cdeclcaseswith
+4generations,createfailure/nonfinalrelease/finalrelease/addressreusechecks.
+Three lifecycleparserandfive submissionparsermethods pass.
+
+Original-lifetime01retains82generations/71retirements/11activeobjectsand0unknown
+releaseentries,butfailsoldsubmissiondecoder's62allocated/45blitusedIDequality.
+Failedreport/countdiagnosisremainhistorical. Correctedboundadmitsunusedshared
+allocatorIDs;freshoriginal-lifetime02closesits32returnprefix,selectedlifetimes,
+368APIand367EGLwitnesses. ExactactualcountsstayintheimmutableJSONreport.
+
+Reassessment:step2nextsamplestexturegenerationsdirectlyatsubmissioninaversioned
+contract;separatejournalTickCountmatchingcannotproveownership.InternalWine
+creation/releaseandaliases,storageimmutability,asyncEGLassignment,allroutesand
+semantic120advancingwindowsremainopen.Steps3–7remainordered/pending;all47/21
+requirementsremainopen.Reviewedff36674..83ab30chas31exactreceiptsand0gaps.
+Storagearound903GiBworking/423GiBfreeremainswithin1280/100policy.

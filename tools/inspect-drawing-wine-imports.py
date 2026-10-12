@@ -9,7 +9,9 @@ import struct
 ROOT = Path(__file__).resolve().parents[1]
 PINS = {'ddraw': '24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28',
         'wined3d': '3481e6904716421951615d8ee2ca097b55ea20eee65dea6bac1596426d950c82'}
-NAMES = ('wined3d_device_context_blt', 'wined3d_swapchain_present')
+NAMES = ('wined3d_device_context_blt', 'wined3d_swapchain_present',
+         'wined3d_texture_create', 'wined3d_texture_decref',
+         'wined3d_swapchain_create', 'wined3d_swapchain_decref')
 
 
 class Pe32:

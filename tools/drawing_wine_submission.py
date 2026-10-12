@@ -42,7 +42,7 @@ def decode(data, api_calls=None):
                                   source_rect=list(r[16:20]),destination_rect=list(r[20:24]),
                                   argument_flags=r[15],flags=r[14],source_submission_identity_bound=False))
     terminal = rows[-1]
-    if pending or terminal[0] != len(rows) or terminal[2] not in (1,2) or terminal[3] != entered or terminal[10] != len(identities) or any(terminal[5:7]) or any(terminal[8:10]) or any(terminal[11:]):
+    if pending or terminal[0] != len(rows) or terminal[2] not in (1,2) or terminal[3] != entered or (terminal[10] < max(identities,default=0) or terminal[10] > 2048) or any(terminal[5:7]) or any(terminal[8:10]) or any(terminal[11:]):
         raise ValueError('Wine submission incomplete terminal/count')
     return dict(schema=1,success=True,boundary='observed_wine_ddraw_submissions',journal_sha256=sha(data),
                 calls=completed,unbound_calls=sum(not c['api_entry'] for c in completed),

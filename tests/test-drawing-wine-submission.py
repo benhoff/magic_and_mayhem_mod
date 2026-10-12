@@ -18,6 +18,8 @@ def wire():
 class Submission(unittest.TestCase):
     def test_paired_arguments_and_unbound_scope(self):
         x=decode(wire());self.assertEqual(x['calls'][0]['api_entry'],42);self.assertFalse(x['source_submission_identity_bound']);self.assertFalse(x['egl_temporal_assignment_performed'])
+    def test_shared_allocator_may_include_non_submission_objects(self):
+        raw=bytearray(wire());struct.pack_into('<I',raw,64+384+10*4,3);self.assertTrue(decode(raw)['success'])
     def test_truncation_and_header_refuse(self):
         for raw in (wire()[:-1],wire()[:-192],b'BAD'+wire()[3:]):
             with self.assertRaises(ValueError):decode(raw)
@@ -29,7 +31,7 @@ class Submission(unittest.TestCase):
         call=[0]*32;call[1]=1;call[6]=7;decode(wire(),{42:call})
         call[6]=8
         with self.assertRaises(ValueError):decode(wire(),{42:call})
-        raw=bytearray(wire());struct.pack_into('<I',raw,64+384+10*4,3)
+        raw=bytearray(wire());struct.pack_into('<I',raw,64+384+10*4,1)
         with self.assertRaises(ValueError):decode(raw)
 
 
