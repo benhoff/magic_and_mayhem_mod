@@ -37,7 +37,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
             if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,hostLobbyEnabled&&sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
-            QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
+            QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix};
             if(nativeCommandsEnabled)arguments.append("--native-render");
             if(smokeSeconds)arguments.append({"--seconds",QString::number(smokeSeconds)});
             process_.start(QDir(repo_).filePath("tools/run-menu-observer.py"),arguments);
@@ -55,6 +55,7 @@ bool LiveMenuSession::start(){
     preferencesStore_.begin(preferencesStorePath,{});
     preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=normalQuitAccepted_=false;
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");env.remove("MNM_AUDIO_CHANNEL");
+    if(!env.contains("MNM_MENU_DIRECTPLAY_DX6"))env.insert("MNM_MENU_DIRECTPLAY_DX6",hostLobbyEnabled?"1":"0");
     process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
     QStringList arguments{"--actions"};if(env.value("MNM_GRIMOIRE_TEST_OBSERVE")=="1")arguments.append("--grimoire-observe");if(nativeCommandsEnabled)arguments.append("--native-render");if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(MNM_MENU_MINI_EXPERIMENTAL)arguments.append("--experimental-mini");
     if(nativeCommandsEnabled&&env.value("MNM_NATIVE_DRAW",QStringLiteral("1"))!=QStringLiteral("0"))arguments.append("--native-draw");
@@ -187,7 +188,7 @@ void LiveMenuSession::poll(){
             transition_=action_!=MNM_MENU_PREFERENCES_PREVIEW&&action_!=MNM_MENU_REGION_DIFFICULTY;
         }
         if(!inBattle_&&!pending_&&state_.screen==7&&next.screen==0&&next.handoff==2){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
-        if(hostLobbyEnabled&&!inBattle_&&!pending_&&state_.screen==24&&next.screen==0&&next.thread==state_.thread&&next.ack==state_.ack){
+        if(hostLobbyEnabled&&!inBattle_&&!pending_&&!transition_&&state_.screen==24&&next.screen==0&&next.thread==state_.thread&&next.ack==state_.ack){
             inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
         }
         if(storageMenusEnabled&&!inBattle_&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==13)&&next.storage.modal&&next.thread==state_.thread&&next.ack==state_.ack){

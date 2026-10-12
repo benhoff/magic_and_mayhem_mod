@@ -14,6 +14,8 @@ events=Path(metadata['events']).resolve()
 if events!=root/'events.bin' or events.exists():raise ValueError('Refusing stale or redirected observation output')
 from native_audio_launch import authorize as authorize_audio
 authorize_audio(root,metadata,os.environ)
+from directplay_dx6_launch import authorize as authorize_directplay
+authorize_directplay(root,metadata,os.environ)
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')
@@ -105,4 +107,7 @@ if metadata.get('resident_world'):
 else:
     os.environ.pop('MNM_PUBLIC_RESIDENT_WORLD',None)
 os.chdir(game)
+if metadata.get('directplay_dx6') is not None:
+    from directplay_dx6_launch import launch as launch_directplay
+    raise SystemExit(launch_directplay(root,metadata,sys.argv[2:]))
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

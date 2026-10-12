@@ -530882,6 +530882,659 @@
         "reason": "The live attempt ended at the original Could not create game session modal and180-second deadline; no host view/Cancel/peer/rules/chat/map/start behavior was validated. Failed negative diagnostic evidence is intentionally unbound to successful implementation/integration claims. All statuses remain unchanged and host ownership disabled by default. Existing source fingerprints and private/historical evidence are preserved. No source code changed, so no additional callback/Qt execution is asserted or necessary for this diagnostic accounting update.",
         "status": "pending"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "59ef7257f5e448a75f4d742b3fcb1917f4b5c5c42d69f2e7e5af4b149e857c1f",
+          "before_sha256": "1c9ad9a6c2b55f6a0d908e9ad0032fc92308f74f9be45d876821c726212a6745",
+          "id": "HOST.native-host-lobby-view"
+        },
+        {
+          "after_sha256": "6da903308fdcba1b0737e5444b9d70a3885dcebac0d4cfb7e7be2e5074a4a8b9",
+          "before_sha256": null,
+          "id": "HOST.original-directplay-dx6-launch"
+        },
+        {
+          "after_sha256": "e727913508fef39b482cbaf53feb7ad19541cf3fccdb1877665ed93df7495f4b",
+          "before_sha256": null,
+          "id": "NP.directplay-prefix-installation-guards"
+        },
+        {
+          "after_sha256": "c80283571138c0b5c2162ca6ba7e703e9a26ac9ec87b1c287dfc7ebb983d1a32",
+          "before_sha256": "5b5486bedf4cc1724e936bb0cb4d50c210a93a56e2d69eb07481bd4b9363979e",
+          "id": "NP.host-lobby-view-ownership"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d32bd2a4ee41bb474a3ab3bbe16875295d49f4264c80329f403e2603c4b79325",
+          "before_sha256": "994331c1985d0898f74478b3e8dfdf780d11d677ac5a5f2c841bf932801b77f6",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "9384d7c73153b3ac93ee5f35b9f42139558d074327da00a88040d709924c3145",
+          "before_sha256": "a79c0ca5bbfa099c6998e37d1fb1c7942879155b1bc68218e8377f0bae6c2e33",
+          "path": "apps/qt-shell/live_menu_session.hpp"
+        },
+        {
+          "after_sha256": "eb7af5f33674e333609bff822b25b200f375a526226b074f6f2d9414a4a9019d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-directplay-prefix-guards-20261012.json"
+        },
+        {
+          "after_sha256": "deaf823cbe35f48af2bd648a111ac20ae9d0b7993df1affd90b125139872b7a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-owned-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "39417463b267f83b8007e7d54752b34877ccb936731c6f5ced3816802b500760",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-prefix-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "9e94ecff6bce4e8864fe2a47c6460d587af07675b3e3e723c9525087b6616b7d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-provider-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "873a924fd1184f4f0e6ea2c37317eef51915ffbf2c44be4523357d07bd73fc0a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "49daf3245de9dc5528b50082ab9ba0103e46c2a4f30a89cb8e22bc5d38cef2a6",
+          "before_sha256": null,
+          "path": "tools/directplay_dx6_launch.py"
+        },
+        {
+          "after_sha256": "ed449bf329926f78f8ee3eda6138ffb7c1634a49e71ac43c88c2f8ac78b472ee",
+          "before_sha256": "e7e534f9e04bf2e5475383a79fc3dda871efa55e6e4efbbb6414903206bff47e",
+          "path": "tools/menu-game-runner.py"
+        },
+        {
+          "after_sha256": "875fa1d02ec5b1122aa7c45f96b8c71413193d015e05ce50d0a349d8a8581b7b",
+          "before_sha256": "eb3308b04c5242b210638b31edf0b54e24ba7ddbe2ca61242ab6b237fd79244d",
+          "path": "tools/prepare-menu-observer.py"
+        },
+        {
+          "after_sha256": "cf5a37fdb9f9fc74c1cb6eb170b8e062e46278f933c8567999bd3c1a60667e6a",
+          "before_sha256": "942ca02b6867ca55f242782fd54262ce57d35dfeddd858e8975565f1784d8de4",
+          "path": "tools/run-menu-observer.py"
+        },
+        {
+          "after_sha256": "4965a8ad5d18c2d85230f49f8e734f5831ee821d09e4ce5411ea3aed227cd6f1",
+          "before_sha256": null,
+          "path": "tools/test-directplay-dx6-launch.py"
+        },
+        {
+          "after_sha256": "d3e945fef298a78d2359187ffa9cc70de0866ba824285367015ec07600de9c51",
+          "before_sha256": "c4247852728cb57d5781268dc3fb91e47937c62e8d5924ca4fe3a13eccd65e0b",
+          "path": "tools/test-live-host-lobby.py"
+        },
+        {
+          "after_sha256": "a8b411e156840f4645bc9b242aa811435fefbd708fb0ca1d7d3953b05064258c",
+          "before_sha256": "4be23d8396b4c0150502050e01fc904f65718779ff64e212ca735e77ca94fdff",
+          "path": "tools/test-live-menus.py"
+        }
+      ],
+      "id": "host-lobby-current-live-and-prefix-guards-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed current one-local-player host view/Cancel ownership, known Cancel transition handling, enabled default and dedicated supplied-stack prefix. Exact full/primary receiver/stack/service/roster guards remain scoped; unsupported controls stay original. Reviewed pinned archive extraction, all-before-write builtin hashes and backups, guarded atomic prefix installation/reuse, session lease, actual native loads on the original thread, separate Wine Start /wait original exit capture and helper cleanup only afterward. Reviewed independent file safety fixtures. Recorded files are restricted to exact inputs fingerprinted by the relevant fresh live/headless records; historical/negative attempts retain separate hashes and source snapshots.",
+      "validation": {
+        "evidence": [
+          "UI46.host-lobby-live",
+          "UI46.prefix-guards"
+        ],
+        "reason": "Fresh rebuilt default-enabled code passes seven ready states and nine original callbacks on one thread, two real TCP rooms/host visits, exactly two viewport handoffs, original Cancel/window-close unwind and game/desktop exit0. Native DPLAYX/DPWSOCKX loads match the observed original thread and all staged/installed hashes. Six copied-prefix rejection cases preserve inputs; initial installation and idempotent reuse pass without DLL/game/network execution. Prospective contracts/scenarios and pre/post source hashes match. These promote only the declared live-observation and headless scopes, with comparison/replacement none.",
+        "status": "recorded"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "48f638988294e442595223a33c26a0ec68333797d161e3b1093c41b61fb54c17",
+          "before_sha256": "c59cf7c0893cbbc3d1d1f192fcd3f3a7fe0c8d8939f2020ab84a4c24ccb621ec",
+          "id": "BR.main"
+        },
+        {
+          "after_sha256": "a043b4c7475bf5f08bf58390644467333e5b6a18ba1bf9a1d59a4d20a49dd411",
+          "before_sha256": "64f9549ab7fc4ec1a61a7fa1a4be21e1229caa1658209defef873659e47b0f4d",
+          "id": "CP.campaign-defeat-report"
+        },
+        {
+          "after_sha256": "d19b8ef1fd93bfe0d1d1aba61184f83c15fc514fd3f4a911508e267a0027881f",
+          "before_sha256": "d237f6736a04de6ff13d6bb9724a4c79cfd1d8adf6d65ac9619dd7bf696b9d3d",
+          "id": "CP.campaign-mini-cancel"
+        },
+        {
+          "after_sha256": "afce0ee27ebdfae049c4a47964078abc34c5edc0b664ec4a0762af87824e77be",
+          "before_sha256": "084bd88796a0ec177155054a74242e5e8fd48bd8f4e94645be742e9629c1e1c9",
+          "id": "CP.campaign-mini-lifecycle"
+        },
+        {
+          "after_sha256": "90dac0ccc2b31badc3870f18f82f34c06a26c00f3ab1ef4183a25eea90d909f8",
+          "before_sha256": "30c1fc587bf97df97fa00cf1a4a702688478288ee24f9037caf97632fab8514a",
+          "id": "CP.campaign-mini-preferences"
+        },
+        {
+          "after_sha256": "152b9da4913a08e29110fda88b9f320f182a598bde5df75b502b4c065f22fd1e",
+          "before_sha256": "b5e38bcab6cde9ef37ec285dd39e4653291df6546ec218f6d9bfbf0606e517aa",
+          "id": "CP.campaign-mini-quit"
+        },
+        {
+          "after_sha256": "f840299fc707fcb50730ae7bbaf03ecda2a65c40a9f201e7360f46676de2529a",
+          "before_sha256": "d353fef5e4fde7d53e1b25c07ee523057efc9e1240abf83285d77bb55c683def",
+          "id": "CP.campaign-mini-quit-lifecycle"
+        },
+        {
+          "after_sha256": "6829ec923a9471b96289fad66f21308f23cc11ce9362a3e3df7ad7117d1eeb11",
+          "before_sha256": "87bf1ba4b8a81f503dc67ba50ce99892f4eaca56bb131c4510cb8d4c0fba1233",
+          "id": "CP.campaign-preferences-lifecycle"
+        },
+        {
+          "after_sha256": "91050079330f17967c4adc062f8922434882733a733a2138173deae5d17ee31c",
+          "before_sha256": "c99b4c6b28c742ed6f469923b1d6c6dc55f669ff9e31d506ee6d23bb171225fe",
+          "id": "CP.campaign-world-handoff-observation"
+        },
+        {
+          "after_sha256": "578f9bc7d9ebc27a85157cad43187d676b1d546bbcdac04361b38d3ee023c54d",
+          "before_sha256": "fea75ac9995dbf9645ac006866d1fd16975606d76bccf84d6f7ec154ea5260dc",
+          "id": "CP.grimoire-observation"
+        },
+        {
+          "after_sha256": "67cd43c8ca7d5d0b8fd2428c6cfdde76aebce371242cb8ac3ce3d5f8db8b663f",
+          "before_sha256": "29c6a81e518da5f4fb6d47395e34a638e69d3e8f9a037b375457bfbbf9791718",
+          "id": "CP.realm-observation"
+        },
+        {
+          "after_sha256": "1c3a5e8995570a7c9723d68bfa2fb2f241bc2008c50cd9475b43c0fcd91f94a8",
+          "before_sha256": "9359f98691f3d64159e14f4f71a2bab9b609629fd6be88f7f469a53b8e6f6ce1",
+          "id": "CP.region-entry-bridge"
+        },
+        {
+          "after_sha256": "bfcea6903e6d1e3b7f2373afa3f14661718a65fb365f75abf2541ce4e2212942",
+          "before_sha256": "a7ea93a416e61c29929780c7ecdb6a25b0be62b50a0571abff4f2104bb0fd6c3",
+          "id": "CP.region-entry-enter"
+        },
+        {
+          "after_sha256": "c1c505f5de11175a02767c5516f554af7c805f7e3e44494dcebf0eed3768122d",
+          "before_sha256": "0df9b48d909a1d38e597a69aa99744d1247fa0b283d7978b510b665bb043abaf",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "b9b29a6095944bf6d49c9db4f1148a8f0b9675c730b01083cc785982acb18d52",
+          "before_sha256": "62c004f5a05200795d7213b48f4c9273972dad69f3596a0e06805bffb3800fb8",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "f5965acc0a889e1ae7aa1fc1a4e1a0054eaec77b2f16b0a2d4eb6a0906921c28",
+          "before_sha256": "997fbc3f9d50452db85b7263a7e8590baa4857e6f37c7bce61bbe79df5f2dcc8",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "5a1b08432f6580c926e473d50759b87a51592470d5ed114c03c2f873310fb97f",
+          "before_sha256": "c5b1ed8fc0a11a99faf810ec647b12edf9ba89bd10fa877eb6961112e8a67828",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "bd3f6fc9dd3ab21de939192322a8627f3a9a05e0132f55adf9c095954709c4be",
+          "before_sha256": "94898722039fb76f8311551147a8d1fbb01ac88d0a38e40700acb6342bdebe20",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "51023ceeef629886efdecab626e47778851f77a3b49e489adae18904ef204c8b",
+          "before_sha256": "43cd3fae7e0b87a8d0082a321dfb128c020cdb9d951c25fe6761a53a7a8387bd",
+          "id": "HOST.native-campaign-save-load"
+        },
+        {
+          "after_sha256": "4547963d5b5d34592aea63749a6d4aa62fd0d8f525758268d3faf8a2a466fa07",
+          "before_sha256": "5f213dcbfddb7fa4f5dfdfe88d94119fa967044eb2fc88a56ed42c76a0e6aaf2",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "a1830a4ecf7a54b01bbd99ed9c434a8e421016c9d55285c53f524b504a35716e",
+          "before_sha256": "491438317cf6af18b8e0ad4dd2b89a02f29bc21760b7c4f3c02094001f331a89",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "f719d8ee3ee5abc02c864a279fd935f03d7c373f360ece0e85020ad03368fae6",
+          "before_sha256": "4cb20fde3b46ba409e742c3d44eaba3270b562919bd2bb257810e61a1b68e15e",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "50b29d2e0754e208711a489c99398c2994cb82c4a600ef7d62b75c24006214a4",
+          "before_sha256": "187b85521a0ee62e59e9b744f4f4f3eebd68844a7941acbd79762feabe48f49a",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "fd1d0a66f361ab00bcc182d01355a98a5b62dbee3932103534ef2ca7d83e76b3",
+          "before_sha256": "f58c653d2ece83a9e153816ec8f9e0afee385a7dde9db2bad4f13afae6c1f54c",
+          "id": "HOST.native-grimoire-introduction"
+        },
+        {
+          "after_sha256": "e2217e0cd93d0b0e6031723d9e1b12adb005f7862f6c8f60fe09e5f56e5175df",
+          "before_sha256": "95580b9b14daaf432fb78cdb9cdf2c1f42d8ea9ee9fed3e9e8bc1a578b384581",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "59ef7257f5e448a75f4d742b3fcb1917f4b5c5c42d69f2e7e5af4b149e857c1f",
+          "before_sha256": "1c9ad9a6c2b55f6a0d908e9ad0032fc92308f74f9be45d876821c726212a6745",
+          "id": "HOST.native-host-lobby-view"
+        },
+        {
+          "after_sha256": "1bcb5c45fcbb184dc1f4331f0575cbda83be18d41599e069304366b35df51863",
+          "before_sha256": "d6724c7ec4497629a8371e7dac0871c53d55947f6ffb880690917096db22ed55",
+          "id": "HOST.native-menu-audio"
+        },
+        {
+          "after_sha256": "d2edfad5dfbb54e8497c7e241c8739e957d6626f0a2db3341617b79a05948bf4",
+          "before_sha256": "e4e4840508c48daf5d28dc998d2a1aa2718188e15a02b122fe889f9515859737",
+          "id": "HOST.native-multiplayer-sessions"
+        },
+        {
+          "after_sha256": "d32913ee1092ef7ef8e14aa8a00aceedb2c0fa078195ef5fe410c0fc56b57a04",
+          "before_sha256": "19dc38e5724672c242464b9082def1903fe002916c2297cf95edcfd1b6739259",
+          "id": "HOST.native-multiplayer-setup"
+        },
+        {
+          "after_sha256": "538a5046017960c765f4955f5bcafbf3182587ed793ba034bfe5eaeeba843ee4",
+          "before_sha256": "e63a77af84037c0eb0f0ce591ebc71b15abe45a3a92494fd0ea7e739858d75bb",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "421232e2e1db8dcd1fa97e3be56ad707fc0738a1a139fabfbd55c2dc7e8e4ff8",
+          "before_sha256": "f3359943858c229c6a2576fa5f094b49814612592fab50dc12ab9a824ea40819",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "b4588c31cdf9acf90df3794c4cc9ab430793e9d6c0189829d0411fc1446afe73",
+          "before_sha256": "fcbab92de7e1c8d2b5383afde7ce1215ce63a6bfd4919dd1b5e67241f22e7d42",
+          "id": "HOST.native-render-draw-cadence"
+        },
+        {
+          "after_sha256": "e6a94dd06aa5a97247a4f369ab703c918948405899ef819960ed2dc97c951187",
+          "before_sha256": "dd04bdb1619c1cee69fef74f49f1e3f4fdf8b4e2377a9bd7db59615a01938308",
+          "id": "HOST.native-storage-confirmations"
+        },
+        {
+          "after_sha256": "6da903308fdcba1b0737e5444b9d70a3885dcebac0d4cfb7e7be2e5074a4a8b9",
+          "before_sha256": null,
+          "id": "HOST.original-directplay-dx6-launch"
+        },
+        {
+          "after_sha256": "ca9b7d98d268539cc0373a5aa3b352294169151a3cffb19a4aa909a3ce4a5763",
+          "before_sha256": "57c95fc26277be751ed32039a0e8bbecd4344b971c4323a703017c635f112f1f",
+          "id": "MP.multiplayer-lobby-controls"
+        },
+        {
+          "after_sha256": "7bcc83593c5f08769aaad21049a3f7f7b3c5ea120ef8338a196f691c01d30388",
+          "before_sha256": "3c38f087f55f5557ad6ab888774d9753e7b78e01220a257045710cab30ff2d88",
+          "id": "NP.campaign-defeat-policy"
+        },
+        {
+          "after_sha256": "9402afdf964f57c5c82e383918afea06ee0e013a08e50bbe5104e19fc7c39105",
+          "before_sha256": "81c1c70049c7f60e9819574db463471cdd7f978baa60b26919fa23f110179e0f",
+          "id": "NP.campaign-mini-cancel-policy"
+        },
+        {
+          "after_sha256": "25908f3a99263f6a759c5cb0c9edca18d85ef7f10d46e30cb05552552fcadb48",
+          "before_sha256": "8aaf08b8a4e46acc63a21019793449e5260eee9ae25f077739522a12091e8bfd",
+          "id": "NP.campaign-mini-quit-policy"
+        },
+        {
+          "after_sha256": "35864924b83e67792ff9d76dcdc49edd60054227aa12ec6e31428ff200e8edcd",
+          "before_sha256": "289fbe526503819cd93216ef981233716dfc48bbe1b20d65c323a21017a279d5",
+          "id": "NP.campaign-preferences-policy"
+        },
+        {
+          "after_sha256": "e727913508fef39b482cbaf53feb7ad19541cf3fccdb1877665ed93df7495f4b",
+          "before_sha256": null,
+          "id": "NP.directplay-prefix-installation-guards"
+        },
+        {
+          "after_sha256": "a423889e0ce6d37bd7e926995abcaae96ed3946bea7321fe28d7aa7f1ee166e9",
+          "before_sha256": "74da75ccad5d050899a18d5dd77f37daf54134e184aad401c3fe1d0b38049d3e",
+          "id": "NP.grimoire-introduction-ownership"
+        },
+        {
+          "after_sha256": "c80283571138c0b5c2162ca6ba7e703e9a26ac9ec87b1c287dfc7ebb983d1a32",
+          "before_sha256": "5b5486bedf4cc1724e936bb0cb4d50c210a93a56e2d69eb07481bd4b9363979e",
+          "id": "NP.host-lobby-view-ownership"
+        },
+        {
+          "after_sha256": "e233c53c3af11ad39dc32de95369c095071843bd8f570313d3a5ac683e2af872",
+          "before_sha256": "674e877d551ab01710a6889a3eaa3375d105b3a905f0c2429d5e3bc758486d91",
+          "id": "NP.multiplayer-session-ownership"
+        },
+        {
+          "after_sha256": "de61706ed0dbd13f3fc6012a82af66401a14f27d1a5b2e0cecc5c876313e5d76",
+          "before_sha256": "3b3f8931564bdf8d84ef17640b86ac89c8fefa1700cbe6c94b1d6bdd3e46dc34",
+          "id": "NP.multiplayer-setup-ownership"
+        },
+        {
+          "after_sha256": "84c17e5f97db1151863fc726a6c9890aa0467b29cebbfecb941926e034ba7cf0",
+          "before_sha256": "40bbebd004a762071fe5228857dcd68f6a86c525c17823a6919b310e80d6f989",
+          "id": "NP.preferences-draft"
+        },
+        {
+          "after_sha256": "12b0b81fe77d0410950a463b13bfa33cf3c7c3168d74df953f94931d7f386590",
+          "before_sha256": "7f9ae26372f0734eb181ee98b2933aba7a351e3c2ccd49e607851df197579f3e",
+          "id": "NP.preferences-persistence"
+        },
+        {
+          "after_sha256": "f51ec2c263fa3d03dd762a1c942cbd1870dc53738e38fc6380518f2604bae661",
+          "before_sha256": "496459ed27ac610df26004baa0c304636449ff22f05727c95c8d7432912909fa",
+          "id": "NP.region-entry-fresh-policy"
+        },
+        {
+          "after_sha256": "dd2008d80a22043ce20e0b9926b5dbbabb018defd448316375ff900ded397593",
+          "before_sha256": "bfe7b5816a956c4a9ba6378ac7c5fe6403542a9b0eb634a1b44f58b9a24c9821",
+          "id": "NP.storage-menu-ownership"
+        },
+        {
+          "after_sha256": "592eb8c926519365093367bcd94ef2371890b58e22b151073e9db81bb9af4bc0",
+          "before_sha256": "3c3d432e79a5bc4c2069567a9cff4f81d16e6f202ea9e4c4b75bc91fb11f20df",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "f645cdcaf28e1b830b19c52cc70ef8db6ad5e0ab83390dbb2d7460c75c82949f",
+          "before_sha256": "038a87bac384b8656e95df8f1920af8effd63198bf122d89260ee2d63ec4786f",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "0bda0ab9610dece2d9f7b52f1d31d175d31df9482a89edbabfaf7aa7d5a68ddd",
+          "before_sha256": "ed521720e3356989d8a02dfea1d11f24833326a139c747ce111542393830fb93",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "49544a18180816b137060564f03cd9818d56afb473c19436f679115582757533",
+          "before_sha256": "197bb863c696b7f3555fa5b693301accafdc7f901abaf531a212d7af16501076",
+          "id": "NR.drawing-fenced-acquisition"
+        },
+        {
+          "after_sha256": "adc19a691df67f043c9b2b7b2135ef8817d3ea66e6def57203df469d01fef457",
+          "before_sha256": "2d7b57ce5da4fa93acf7ba8e5e433ebdbdc25d2f1b9b47456abe5c63ea340f4a",
+          "id": "NR.engine-cadence-observation"
+        },
+        {
+          "after_sha256": "37bfa5ae413532d943c5c20e114dfdc1dd96454ba10ab28daa1c5a0bca893652",
+          "before_sha256": "9e645789e7bd2c3298f789eb78ce6ab2ee5f167936909eb3f58a324e41f01a5b",
+          "id": "NR.glyph-default-launch"
+        },
+        {
+          "after_sha256": "23faae636f5cbf5b83f5085ac0f95df3c0b50232593e9830ecf1becb5a55fdd6",
+          "before_sha256": "790d79d1f42fbe5faf5e9440025b2944627f1a2194bc9700cb50e56b5e96ecbb",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "cb23b37275c710180f18867e8468f655f1411589a75a6ad979304ab523e07770",
+          "before_sha256": "9504d7735b8f30ef69dde7fa199b739cc348ead40aab944b288e2280b18ec579",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "0d650179888bd83e3f55e67310f5e45f90220be92104b6fe76e08ca4bf87bd4d",
+          "before_sha256": "db220c6c51c03dbaf20fe555cffaeb977928095b8c45c86c3e12e228714e0855",
+          "id": "NR.presentation-damage"
+        },
+        {
+          "after_sha256": "508e6232f012d945442871cf17e2b6a8af4988a34263b9ef52f6ecbb0eeb9b23",
+          "before_sha256": "00e2198c28945d29bf2390282abdbbe4f67697b32a2bd13ddda5d35f09f0c6c4",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "684d26aa96db23343c298d51a361c72629f812f8dab873761f9d78db228afd93",
+          "before_sha256": "552c93c3dff217415abac369172c4e696fac1caa85bf4ac4f6c0d1161c381335",
+          "id": "NR.resident-normal-shutdown"
+        },
+        {
+          "after_sha256": "f3478a1ec73bc6f0dc3e9f8bc3f6d456a0eae4b0260e9b4f908fdf8d422ecb17",
+          "before_sha256": "e896cd808537bb56f78ead5a0eeb38aeeae0f40f17e2f81ce355b88b26f483e0",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "77bb78c2d3407e833283cc07db3a8e499938e947e01be5336670e3b3105f5aca",
+          "before_sha256": "6adda65dc1b3dd711fc1fa2b4132842b35967946ba7e0b2b22cfa6bde69077a6",
+          "id": "NR.scene-production-repetition"
+        },
+        {
+          "after_sha256": "3009d4ff5ac700705a657b1c0841ddd22739bbc63c9abc3e92af6d9cc4d7dccd",
+          "before_sha256": "fab92e547f7dc53de5198de3d299a1950d1be270f5990a58313095f6ecbedaa7",
+          "id": "PR.apply"
+        },
+        {
+          "after_sha256": "ce05c1bf0be5a7c8bc5d9a4f2afdb90821847f450223d2d5ae761e627c398656",
+          "before_sha256": "90e19a7d4482cb20416baccee3f92c716a890e957e2e2f296710be89b0de515b",
+          "id": "PR.audio-preview-cancel"
+        },
+        {
+          "after_sha256": "09049ac7a3c49b4fd121f9e6b2d8074bd50278366d2839c71274bc8ac3acda5c",
+          "before_sha256": "f4345d6eb284be10c973794cddb9ecea7a9665426090a2f9983ba631741bd804",
+          "id": "PR.control-admission"
+        },
+        {
+          "after_sha256": "ec3c507fb0734b2ae5dfc68ff9c3946f1a92a06247fc9f4149580d0803cb3daa",
+          "before_sha256": "6f8626fdec993515ec3e76f11af1f5c0c5ff5173605a49d9b2a928f95944775e",
+          "id": "PR.display-rebuild"
+        },
+        {
+          "after_sha256": "1e7870a625b030a25873560346e50070b4439f08c51674a85e51ec01aaf41eed",
+          "before_sha256": "a50a9f46135d0ad8ed535117f0675eb88560a2ab2871244574f91ad27f4a9fce",
+          "id": "PR.main-entry"
+        },
+        {
+          "after_sha256": "660ab0f0c5bc23f8cef2ca082fea23d3b109c9c88b35862b7bd7a998bf3c2b41",
+          "before_sha256": "8307a45634f0fd567bbe6532309130dd73c433612e751de4ca736968354693bb",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "b23457286ec2b3a2a45d95f0881782102a200d3c3584eb87eaac1c0ea70f519b",
+          "before_sha256": "0ad729a85933b753edc0c04d401481671a23e9a5708c1787f1cbeabbd535250b",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d32bd2a4ee41bb474a3ab3bbe16875295d49f4264c80329f403e2603c4b79325",
+          "before_sha256": "994331c1985d0898f74478b3e8dfdf780d11d677ac5a5f2c841bf932801b77f6",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "9384d7c73153b3ac93ee5f35b9f42139558d074327da00a88040d709924c3145",
+          "before_sha256": "a79c0ca5bbfa099c6998e37d1fb1c7942879155b1bc68218e8377f0bae6c2e33",
+          "path": "apps/qt-shell/live_menu_session.hpp"
+        },
+        {
+          "after_sha256": "e585dd3c0c26287d90f5488b69d578bc53e931624f2cdc1a34bc1e4e362b8287",
+          "before_sha256": "6b29792a8f730d9724a73d50e1d57295f44172943bf415504978803fe1794ae7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "d4c8d40aeeb3814370f540bbe986986b4edeeeb037775df7d06310274e731e89",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/host-lobby-dx6-history-20261012.json"
+        },
+        {
+          "after_sha256": "eb7af5f33674e333609bff822b25b200f375a526226b074f6f2d9414a4a9019d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-directplay-prefix-guards-20261012.json"
+        },
+        {
+          "after_sha256": "deaf823cbe35f48af2bd648a111ac20ae9d0b7993df1affd90b125139872b7a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-owned-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "39417463b267f83b8007e7d54752b34877ccb936731c6f5ced3816802b500760",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-prefix-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "9e94ecff6bce4e8864fe2a47c6460d587af07675b3e3e723c9525087b6616b7d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-provider-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "873a924fd1184f4f0e6ea2c37317eef51915ffbf2c44be4523357d07bd73fc0a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-host-lobby-dx6-scenario-20261012.json"
+        },
+        {
+          "after_sha256": "2a065f8ba8966d335da9848c5ff17b2d610fe134f38230a3c43b8ba87934909d",
+          "before_sha256": "85220de999b7a867c285f8caac10672728b6aff21f114b883f2fdc1073e016c2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "018c5446ba74674df1f27d8dcbff29e3c8f1e875dca190790dfcfe13f70ed559",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-host-lobby-live-20261012.json"
+        },
+        {
+          "after_sha256": "9141b31e8078f3dc9e79d6e8e44a22b73e888071c59ddd3bfa89393006f290bf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-host-lobby-live-20261012.md"
+        },
+        {
+          "after_sha256": "316444ddce84c6101e4452c7026dde49bfcc5823c8b75f6aa6a893bbc21f6cdf",
+          "before_sha256": null,
+          "path": "research/runtime/directplay-prefix-guards-20261012.json"
+        },
+        {
+          "after_sha256": "7d638062253e097fcc0e079398733afa2c98b9ed197e72dd75b2b09864f673a6",
+          "before_sha256": null,
+          "path": "research/runtime/host-lobby-cancel-handoff-failure-20261012.json"
+        },
+        {
+          "after_sha256": "22efbcf8e34df97a2a429f6a3930da37fbbe61f8571bb6bd011885c4770c5e7f",
+          "before_sha256": null,
+          "path": "research/runtime/host-lobby-directplay-init-failure-20261012.json"
+        },
+        {
+          "after_sha256": "6f1ed59e98135d6546d475e20b3c77a6beb2e01daa9808a52f6ce7172721067b",
+          "before_sha256": null,
+          "path": "research/runtime/host-lobby-native-helper-exit-pending-20261012.json"
+        },
+        {
+          "after_sha256": "15926ab0f60b27f3c3a25980a604e84ab0b34094986b22428675b30d53313cc6",
+          "before_sha256": null,
+          "path": "research/runtime/host-lobby-native-live-20261012.json"
+        },
+        {
+          "after_sha256": "724297362fb879899aaeb6488de08a5b70087e5bb679334df7b630ac8fa5c175",
+          "before_sha256": null,
+          "path": "research/runtime/host-lobby-native-tcp-failure-20261012.json"
+        },
+        {
+          "after_sha256": "247b3a8a005b407ddcbfadcd06c91f7550e656ec908565f8906ef03bb5303b10",
+          "before_sha256": null,
+          "path": "research/runtime/host-lobby-prefix-initialization-refusal-20261012.json"
+        },
+        {
+          "after_sha256": "e3aecb199619f053a79b2ded693d4baec0aa989ed42114488f8599e82a1223e6",
+          "before_sha256": "2903bd46cbcd522ed186f8ad1d4e96fc3e7cf41312ce39db5f93c7ec95181531",
+          "path": "research/runtime/multiplayer-lobby-engine-contract.md"
+        },
+        {
+          "after_sha256": "49daf3245de9dc5528b50082ab9ba0103e46c2a4f30a89cb8e22bc5d38cef2a6",
+          "before_sha256": null,
+          "path": "tools/directplay_dx6_launch.py"
+        },
+        {
+          "after_sha256": "ed449bf329926f78f8ee3eda6138ffb7c1634a49e71ac43c88c2f8ac78b472ee",
+          "before_sha256": "e7e534f9e04bf2e5475383a79fc3dda871efa55e6e4efbbb6414903206bff47e",
+          "path": "tools/menu-game-runner.py"
+        },
+        {
+          "after_sha256": "875fa1d02ec5b1122aa7c45f96b8c71413193d015e05ce50d0a349d8a8581b7b",
+          "before_sha256": "eb3308b04c5242b210638b31edf0b54e24ba7ddbe2ca61242ab6b237fd79244d",
+          "path": "tools/prepare-menu-observer.py"
+        },
+        {
+          "after_sha256": "cf5a37fdb9f9fc74c1cb6eb170b8e062e46278f933c8567999bd3c1a60667e6a",
+          "before_sha256": "942ca02b6867ca55f242782fd54262ce57d35dfeddd858e8975565f1784d8de4",
+          "path": "tools/run-menu-observer.py"
+        },
+        {
+          "after_sha256": "4965a8ad5d18c2d85230f49f8e734f5831ee821d09e4ce5411ea3aed227cd6f1",
+          "before_sha256": null,
+          "path": "tools/test-directplay-dx6-launch.py"
+        },
+        {
+          "after_sha256": "d3e945fef298a78d2359187ffa9cc70de0866ba824285367015ec07600de9c51",
+          "before_sha256": "c4247852728cb57d5781268dc3fb91e47937c62e8d5924ca4fe3a13eccd65e0b",
+          "path": "tools/test-live-host-lobby.py"
+        },
+        {
+          "after_sha256": "a8b411e156840f4645bc9b242aa811435fefbd708fb0ca1d7d3953b05064258c",
+          "before_sha256": "4be23d8396b4c0150502050e01fc904f65718779ff64e212ca735e77ca94fdff",
+          "path": "tools/test-live-menus.py"
+        }
+      ],
+      "id": "host-lobby-accounting-historical-and-unsupported-limits-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:88e62469ad50f32d5f34d839a8233f5ee69835c678f9e54cd796bf035fc90aef",
+        "behaviors_without_comparison:c5a9fbd93912777682f527d1c48e3e02a0c8cfdf24f2a8e06854adcce2e10279",
+        "stale_evidence:02fd61fab5437fdc8111c906d7625b6a1f7a4d12ddf8a485a0b56cd3f0fda21e",
+        "stale_evidence:09019e2b989299ed8d87c8887788beeb2c1effcd45eedf4219c9fdbc6ec4d3cb",
+        "stale_evidence:0a967dc479b1dd1480d0dd52a3cea01ca3eb8ad07d14b49834a396d5920e4d42",
+        "stale_evidence:104be7616fd240ce194f6a9963c943abe9e28f875dff28ede89e379dcf0620f2",
+        "stale_evidence:133e846b426368a355e6a6b604815b9cf8a641daf8db0e1cf99e3d3e0b1a0673",
+        "stale_evidence:14b27b01d83b484c6a59a5093be5f9a393e56cd5efa03afa7638112e3bd677f0",
+        "stale_evidence:19022ca39e887dfabb441d0d538a516e1213ef810c5289850b657ed5ad9f99a5",
+        "stale_evidence:1b5cb4d9aac57e1258496aebd519104dafe5401d91a55e2b6d6f8e07ae9984c0",
+        "stale_evidence:1f4fa30bd550f9d9a59831c7814ef95518bed7badefddb94ee474b468f520f0a",
+        "stale_evidence:20ca36f8de6839606c13a428d5c2e77db81e48387306c65fde071ef0faac2d20",
+        "stale_evidence:24f696ea452ba77377d88485fdfb24ffe41efbe344c0a3675924e59958903c43",
+        "stale_evidence:266e1d04e63888db2646fb99804220ede3b65b070943565049fce4d0d2d565b6",
+        "stale_evidence:274433d50df95ab2d56bb6e7578bd322a8ac87b258207f441f1d9e0fd28f2b08",
+        "stale_evidence:2e99bc1565fc6fd3d562c31168a98d9c4770695e62f3f9f313c1faccad77f27b",
+        "stale_evidence:329586a48dc6910520bb1e76591be1e7d23cbb2177a7ef522ab801fc5cf83abf",
+        "stale_evidence:364df2995f621afdb6a27f7afebfa6b23f8dde29da9f31eb79e4a5267b0f08b4",
+        "stale_evidence:3c36ef131d626c5088526316eecad4725c9a8373361472a9c6f378cf98f1ce10",
+        "stale_evidence:3cbb919f5a08925d392aa59178de192fdeab66e857943c5902e9e8627949c858",
+        "stale_evidence:41e77a0d73caad988c6a68e6432047e041debbdc47db8920af0fc884cc53e6c9",
+        "stale_evidence:48a09173fd9bba0164ff44a8f87334c875914c6b098418c22b9214926f585375",
+        "stale_evidence:4c5552915335d01e4d4bb37d871fea2cd83c532d1c6328f751833b91cab8af8c",
+        "stale_evidence:4d6e424379c87bdb1f16b0684c14306c6228dc241e2bf32ed91a56569aeff1f6",
+        "stale_evidence:5109296001b6d72a4b8f5aa190dc8216dfad085962696d9d13a03de05a132742",
+        "stale_evidence:51816ba539e4a704aab6c4803742af5bff9180ec9783427a57ddca8161144eb5",
+        "stale_evidence:54d4b5237317964f9aa6c6951bd4ac7d18cc9d19cfa96c0db8b6af748ade8d2c",
+        "stale_evidence:5a394779b175d59e7276d804ced1d438d58900c8913f4d79559780b9dee110ac",
+        "stale_evidence:623ee0f24a7ddcc0f974302c3c67e7adc93ed427a0567e0a2fe04aa8c068e532",
+        "stale_evidence:6cd3cdead7aa795115c1077bf3d9be5675389517a7fa90978c7a7fa7fb19fb5e",
+        "stale_evidence:6fdd3cb4d143e10f2a50f48c3b9cd976492eee52ccd8458766eaeada0d8c6338",
+        "stale_evidence:7345d9428a493a5ac6d0a5405cba0adb0a315e397cd0e9157983ecac5cf80b8a",
+        "stale_evidence:742841677f6684ada0ea2db374d8c9febd88a345213895da8269b7668e1fc7dc",
+        "stale_evidence:7f9b140e8ccce92a58181d33d2d35dab3a17a71fdb2713a0e44a66738cadfad6",
+        "stale_evidence:85fd7ddcf818e630a4195d8b6b25a9a685e08ea920474e85f6a61c0a0e36624e",
+        "stale_evidence:947ed5a7a59362765a5af75988b8ff34a74f3f3cdf5fc34b97dbf440929e47de",
+        "stale_evidence:96aef096306af8bcee15c379fd266e13f8fa59d3656b0afb081519e8f722af57",
+        "stale_evidence:995fc10cf2243b3593a483a40b587ac0d1dcd9fdd203437042ffea7399fffb44",
+        "stale_evidence:9e37d076e58826fd7cef3ffb591263f0218e93258c35d10f29c435a6cfe5f487",
+        "stale_evidence:a0a0557b1afd48acb0622f332fde060a35c27a36b531b9e3cab0d521506e4202",
+        "stale_evidence:a0afca9945ac9d00e4cd7d542b2abad6755e92dd6662bd35422a7644019f5e98",
+        "stale_evidence:a20c7aafe9cb5c0d528d513db9c406246d39355bc9723c4bea0166a24bb1463f",
+        "stale_evidence:a73344ee413c333d368dcb50778b87eecff3004084900fa3461261a7fa4da725",
+        "stale_evidence:aa13314f79a6b54449f5407aa1a5ebc20451025114e624f51f67953f7457b011",
+        "stale_evidence:b2f8193a7f91f11ac3bba26a419445eeb4a5e2e16740a994b527f85719c3d1f2",
+        "stale_evidence:b7193207a9b2f677834a97bc578179e8c1ff889cec10d1659f0473132aa91384",
+        "stale_evidence:c3e788318d342e7738e3e2da4d5e431e181e5bd305f3dd4399a638aeebb24e7a",
+        "stale_evidence:c5494359ef5f3ee43dc027c07f0a9fe443f187e83f9e01805b7fa8d103689818",
+        "stale_evidence:ea02f3ed15929c62cfc78605e5d3826f5844a053097877012319fa46c482f110",
+        "stale_evidence:eb1ac29be97c5aa4fdca844840751551d50403d671805283d1860dc3ab604387",
+        "stale_evidence:ed049027aeca63d84441e65c6638ba471e29f470db53fcfa756f21c2814e3294",
+        "stale_evidence:eeea30b2c5535f274d42f23a3216c92a7fd2b0313a89d0bf57ff51ef6a5b1038",
+        "stale_evidence:f87b81e4a1324f963c36a5067d03da65cc3729a0ae3b6d43de95ec35e02af00e"
+      ],
+      "reason": "Reviewed all27 affected source/research/coverage files and68 behavior versions, including shared orchestrator/session dependencies, source-census links, exact committed-history d7f73255..799688cc receipts, independent frozen plans and every negative/partial attempt. Five pre-final attempts preserve their exact source snapshots and raw records; the original builtin TCP failure remains separately committed. Current host and file-guard execution proofs are prospectively bound, while prior menu/renderer/audio/campaign evidence keeps its historical fingerprints. No inventory/baseline reset or gameplay balance change occurs.",
+      "validation": {
+        "evidence": [
+          "UI46.host-lobby-live",
+          "UI46.prefix-guards"
+        ],
+        "reason": "Only NP.host-lobby-view-ownership, HOST.native-host-lobby-view, HOST.original-directplay-dx6-launch and NP.directplay-prefix-installation-guards have fresh scoped validation. Peer/guest admission, chat/rules/map/start/player editing, gameplay, wider lobby/service semantics, interrupted installation recovery, concurrent initialization and other Wine/platform/path compatibility remain unvalidated. Existing menu/renderer/campaign/audio proofs and failed intermediate sources remain historical/unbound or stale where shared dependencies changed; none is refreshed or asserted equivalent. Recovered original lobby statuses remain independent. All53 new gaps, including missing comparisons and historical source staleness, are explicitly pending.",
+        "status": "pending"
+      }
     }
   ],
   "schema": 1

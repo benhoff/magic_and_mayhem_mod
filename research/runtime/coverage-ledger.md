@@ -6992,3 +6992,26 @@ registered. Host ownership remains opt-in/disabled by default. No originals,
 permanent storage policy, networking implementation or retained evidence were
 modified. History`acab86fa..d7f73255` reviews30 exact committed file versions
 with no missing receipts, without asserting retrospective gate/validation.
+
+2026-10-12 UI46.host-lobby-live enables the V17 one-local-player host view/Cancel
+by default. [Live record](host-lobby-native-live-20261012.json):7 ready states,
+9 original callback ACKs on one thread,2 real TCP room creations/host visits,
+2 viewport handoffs, Cancel/window-close unwind and original game/desktop exit0.
+A supplied hash-guarded DirectX6 stack in a fresh or previously owned private
+Wine11.16 WOW64 prefix supplies real host creation. All builtin hashes are
+checked before scripted replacement; original bytes are retained. Native module
+loads are bound to the original observed thread. Game process waiting precedes
+private-prefix helper cleanup, with an exclusive session lease.
+[Contract](multiplayer-lobby-engine-contract.md). NP.directplay-prefix-installation-guards
+has independent headless2-case/6-refusal file safety evidence. Prior object,
+room, prefix-initialization, helper-lifetime and Cancel-handoff failures retain
+unique raw evidence/source snapshots and assert no successful frozen scenario.
+Host view ownership, Qt host presentation and the supplied launch profile have
+scoped live-observation status only; comparison/replacement remain none.
+Recovered MP lobby contracts keep their independent private/static status.
+Rules/chat/map/start/player editing, peer/guest admission and gameplay remain
+original/pending; other menu proofs keep exact historical hashes and current
+source limitations. `d7f73255..799688cc` reviews6 exact committed versions with
+no missing receipts, without retrospective gate/validation claims. Temporary90GiB
+reserve was authorized for this host commit/validation; permanent policy and
+retained evidence were not changed and no cleanup occurred.
