@@ -616505,6 +616505,55 @@
         "reason": "Fresh prospective native skirmish/melee/creature contract, window, refusal and checkpoint-continuation regressions pass with the extended game CMake file and are registered under NS27.checkpoint-* IDs. The source-stable thirteen-handler development comparison passes 53248 original/native/sanitized cases without prospective claims. New executor/core current-scope comparison, complete motion validation, lower route/world/effect/upkeep/scoring services, all-species state construction and recovered AI application integration remain pending. Existing validation stages stay historical; no complete AI or live replacement promotion.",
         "evidence": []
       }
+    },
+    {
+      "id": "repository-navigation-ownership-docs-20261012",
+      "reason": "Reviewed the new root navigation README and refreshed architecture ownership against current component READMEs, CMake source/target ownership, protocol schemas and handwritten wire headers, Qt sessions/controllers, and the scoped semantic menu bridge. Describes existing modules separately from proposed directory groupings, preserves native-policy/recovered-contract and campaign/lab boundaries, and identifies remaining build ownership crossings. All 57 local Markdown links resolve and whitespace checks pass. Committed-history reports under working/retention/navigation-docs-history-20261012.json and navigation-docs-incoming-history-20261012.json cover 868f2cad through 792b3766 with no missing exact file receipts beyond the excluded append-only journal. This receipt covers only this task's documentation changes; incoming AI work has independent receipts.",
+      "files": [
+        {
+          "after_sha256": "e5e37eb87ef7cf40e03afd07bb68ac957d77430b49aa532fc0fe8cbbe57dee4b",
+          "before_sha256": "a5e48bbba71ec43e63b9cf1fe8b63ca91eddf58f8d21fec990de8febd408ffcb",
+          "path": "docs/architecture.md"
+        },
+        {
+          "path": "README.md",
+          "before_sha256": null,
+          "after_sha256": "814230d812c0d5dec6187ecae796f5fea5950bcf56b9c8f1200a3245a288bad4"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "95d41e9072a48c2d6f7fefe9737900c21cdf0902147a699e6c7fbe96e3ca9ada",
+          "before_sha256": "41218feac1b88428f5e0e233e39e1d849f731526db14dadda70690759e727606",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "5dd5073501a50c53c2061abdde3ea55f916c5c74db0e4f8e278ab9eb18bed09f",
+          "before_sha256": "22f379e8685cb79643f86d6a0cddde68226babe187fc3201d5c4087452973592",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "b4609b808669ca10ad507c98a96753da67cfbb7910099250f45e7f3ed849f1e6",
+          "before_sha256": "1c09d522362efb2a4026cf50dbd46f86caf3019da81b8c309ad2d654a5218ac2",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "c3497e976308f373dfcda2061403580bd7c2488c98648cf927c091c373c2c417",
+          "before_sha256": "e038efb852e36205133793ca337ebcb97e562048b400eefc6e7f58745cfd2895",
+          "id": "NR.scene-snapshot"
+        },
+        {
+          "after_sha256": "7dd579da3915e8cc709ba049fef905cdc3a3b8969ffe67b5b4950224c2491d26",
+          "before_sha256": "f8612ab0f9ff716d4fc3f7241f09836d9262a6945621b8a211c23c69abb5a715",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Documentation navigation and ownership review only. The coverage audit reports zero errors and no new gap identities from these edits. Architecture prose is linked to the gameplay objectives, coverage gate and scene-snapshot behavior, so its changed document fingerprint requires exact accounting; historical stage statuses, evidence fingerprints and existing unbound/pending validation remain unchanged. No engine/protocol source, behavior scope, scenario, balance policy or status is changed, and no new execution/equivalence validation is asserted.",
+        "evidence": []
+      }
     }
   ]
 }

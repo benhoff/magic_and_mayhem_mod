@@ -1,8 +1,10 @@
 # Project architecture
 
-Design direction recorded 2026-10-04. This document describes current boundaries
-and an incremental target structure. Proposed directories and interfaces below
-are not claims that those components exist or have been validated.
+Design direction recorded 2026-10-04; directory and ownership descriptions
+reviewed 2026-10-12. This document describes current boundaries and an incremental
+target structure. Proposed directories and interfaces below are not claims that
+those components exist or have been validated. The [repository guide](../README.md)
+provides launch, component, and contributor entry points.
 
 ## Purpose
 
@@ -22,8 +24,11 @@ establish complete live replacement of a gameplay subsystem. Consult the
 integration, validation, confidence, and remaining boundaries.
 
 The separate [native skirmish](../apps/skirmish/README.md) runs without Wine or
-original assets. Its authored arena rules establish a bounded simulation and
-window integration milestone; they do not replace original campaign behavior.
+original assets. It combines authored arena rules with a recovered ordinary-health
+backend. Its bounded simulation and window integration do not replace original
+campaign behavior. The melee and creature labs integrate additional recovered
+contracts with explicit native policies; their guides and the coverage ledger
+own the precise validation boundaries.
 
 ## Current structure
 
@@ -31,15 +36,21 @@ window integration milestone; they do not replace original campaign behavior.
 | --- | --- |
 | `reconstruction/` | Build-specific recovered algorithms and contracts, with explicit evidence and scope |
 | `runtime/` | Injected PE32 observation hooks and adapters |
+| `protocols/` | Shared versioned wire contracts, schemas, and generated C/C++ and Python bindings |
+| `compat/legacy/` | Host-side original scene decoding, resource adaptation, replay, and live drawing-session adapters |
 | `apps/qt-shell/` | Qt host, viewport, launch lifecycle, input forwarding, and media integration |
 | `assets/` | Native asset resolution, read-only access, and comparison |
 | `audio/` | Native PCM storage and playback foundations |
 | `renderer/` | Native OpenGL surface operations and capture replay |
 | `game/simulation/` | Native bounded entity ownership, transactional tick phases, movement through a native navigation interface and separate bounded native melee/skirmish policies |
-| `game/persistence/` | Native-v1 through v6 checkpoints, staged restoration and POSIX publication; separate from original save decoding |
+| `game/persistence/` | Versioned native checkpoints, staged restoration and POSIX publication; separate from original save decoding |
 | `apps/world-sandbox/` | Headless lifecycle/movement/checkpoint harness and frozen reconstructed navigation/sample-motion adapters |
-| `apps/skirmish/` | Entirely native authored arena: semantic controller, Qt vector presentation and headless/checkpoint harness; no original campaign equivalence |
-| `apps/world-scene/` | Bounded Qt/OpenGL diagnostic terrain and creature presentation from owned movement checkpoints; explicit visual fixture, separate from installed MAP admission |
+| `apps/skirmish/` | Native authored arena, ordinary-health adapter, semantic controller, Qt vector presentation and headless/checkpoint harness; no original campaign equivalence |
+| `apps/melee-lab/` | Installed-profile adapter, native two-actor melee harness, semantic controller and Qt presentation |
+| `apps/creature-lab/` | Installed-profile and recovered-control adapters, native encounter harness, semantic controller and Qt presentation |
+| `apps/world-scene/`, `apps/terrain-preview/`, `apps/sprite-scene/` | Bounded terrain, sprite, lighting and creature diagnostics; component guides distinguish installed inputs from native fixtures |
+| `apps/combat-sandbox/`, `apps/drawing-session/` | Native combat and legacy drawing-session diagnostic entry points |
+| `apps/coverage-ui/` | Read-only coverage atlas over registered behaviors, evidence and remaining gaps |
 | `tools/` | Preparation, inspection, staging, launch, patch, and validation workflows |
 | `tests/` | Automated checks, independent references, fixtures, and manual protocols |
 | `research/` | Reverse-engineering evidence, formats, runtime findings, and coverage |
@@ -47,16 +58,37 @@ window integration milestone; they do not replace original campaign behavior.
 | `original/` | Immutable source artifacts |
 | `working/` | Disposable installations, builds, captures, and experiment outputs |
 
-Existing separation is useful and should be retained. The main pressure point
-is `apps/qt-shell/main.cpp`: its main window also owns launch orchestration,
-channel creation, frame polling, input, media transitions, and cleanup. Adding
-menus should lead to extracting those responsibilities into a session controller.
+Existing separation is useful and should be retained. The Qt shell now has
+separate widgets, controllers, sessions, channels and presentation helpers, but
+they share a flat directory. `apps/qt-shell/main.cpp` still coordinates the main
+window, launch orchestration, frame polling, input, media transitions and cleanup.
+Continue extracting application/session responsibilities as concrete work
+requires it; `ui/` and `application/` remain proposed directory groupings.
 
-Shared frame, input, and media layouts currently have definitions in injected
-code, Qt clients, and Python tooling. They need a common protocol owner as the
-interface grows. Audio reconstruction sources are separated on disk, but their
-target is currently defined in `audio/CMakeLists.txt`; build ownership should
-eventually follow source ownership.
+[Shared protocols](../protocols/README.md) already own schemas and generated
+bindings for frame, input, media and other channels. Additional handwritten wire
+contracts also live under `protocols/include/mnm/`. Publication and lifecycle
+semantics belong with the relevant contract; bindings do not own mapping,
+platform APIs, Qt event handling or injected-hook execution. Keep independent
+encoded-byte checks when extending these contracts.
+
+Build ownership still crosses source boundaries:
+
+- `audio/CMakeLists.txt` defines reconstruction targets from
+  `reconstruction/audio/` sources.
+- `game/CMakeLists.txt` builds world/combat sandbox applications, the frozen
+  navigation adapter under `apps/world-sandbox/`, and an asset animation decoder.
+- `compat/legacy/CMakeLists.txt` builds a live session from Qt-shell session and
+  viewport sources.
+- `apps/melee-lab/` compiles the skirmish health adapter, and
+  `apps/creature-lab/` adds the melee lab's build tree to reuse profile adapters.
+- The creature-AI library target is owned by `reconstruction/creature-ai/`, while
+  its controller/autonomy sources currently live under `reconstruction/combat/`.
+
+Give reusable libraries and adapters their own build ownership in bounded
+refactors. Current cross-directory compilation is a migration boundary, not the
+intended dependency direction. There is no root native CMake entry point yet;
+standalone component builds remain the documented entry points.
 
 ## Target structure
 
@@ -71,6 +103,7 @@ apps/
     application/           # Session controller, navigation, user actions
 game/
   simulation/              # Native world state and gameplay systems
+  persistence/             # Owned native checkpoints and publication
   rules/
     classic/               # Explicit baseline rules
     enhanced/              # Intentional gameplay changes
@@ -98,9 +131,11 @@ content-to-native-resource adapter and diagnostic replay executable. Original
 draw order and anchors feed the shared scene service through resource IDs;
 unshaded replay and live observation remain separate from original pixel
 equivalence and replacement. See [the adapter](../compat/legacy/README.md).
-This directory would also own host-side bridge clients, Wine/X11 integration, and
-the legacy session implementation. `runtime/` remains the injected side of that
-connection. The two processes communicate through protocols, rather than sharing
+It also contains host-side drawing-scene, canvas-producer and World-rolling
+builds. Other host-side bridge clients, Wine/X11 integration and session code
+remain under `apps/qt-shell/`; migrate reusable legacy mechanics here as their
+boundaries are extracted. `runtime/` remains the injected side of that connection.
+The two processes communicate through versioned protocols, rather than sharing
 host pointers or C++ object layouts.
 
 `game/` now contains a bounded native ownership/tick/checkpoint foundation; see
@@ -174,15 +209,19 @@ not displace a native menu. Keep QWidget mutations on the Qt GUI thread. Execute
 legacy game actions at a verified engine-thread point, with no direct calls from
 the Qt process into game addresses.
 
-The current bridge does not establish a semantic menu-action contract. Recover
-and observe original menu readiness and dispatch before replacing them. A widget
-can first be exercised with a fake controller. Validate protocol/ABI behavior
-separately, then live transitions before suppressing original work. Retain a
-legacy fallback while integration remains incomplete.
+The [menu-action bridge](../research/runtime/menu-action-bridge.md) now provides
+semantic actions and engine-confirmed snapshots for bounded Main/Quick Battle
+flows, with further campaign and preferences extensions documented in the
+[Qt shell guide](../apps/qt-shell/README.md). Original callbacks and simulation
+retain their documented responsibilities; this bridge is not complete native
+campaign ownership.
 
-See the [main-menu migration assessment](../research/runtime/main-menu-qt-migration.md)
-for action-specific unknowns, bounded integration steps, and validation, and
-[layout findings](../research/formats/main-menu-layout.md) for static inputs.
+For additional actions, recover and observe readiness and dispatch, exercise
+widgets with a fake controller, validate protocol/ABI behavior, then test live
+transitions before suppressing original work. Retain a legacy fallback while
+integration remains incomplete. The [main-menu migration assessment](../research/runtime/main-menu-qt-migration.md)
+records the initial assessment; [layout findings](../research/formats/main-menu-layout.md)
+own static inputs, and the coverage ledger owns current milestones.
 
 ## Recovered behavior and enhancements
 
@@ -199,12 +238,14 @@ Gameplay balance changes remain separate from engine behavior validation.
 
 ## Build and incremental migration
 
-1. Extract session lifecycle and orchestration from the Qt main window as menu
-   work requires it, preserving existing launch and shutdown contracts.
-2. Add menu widgets under `ui/` and application actions/state under
-   `application/`. Exercise them independently of the game.
-3. Establish shared protocol ownership and move host-side compatibility code
-   behind the application boundary in bounded steps.
+1. Continue extracting session lifecycle and orchestration from the Qt main
+   window, preserving existing launch and shutdown contracts.
+2. Group existing widgets under `ui/` and application actions/state under
+   `application/` as concrete refactors require it. Exercise them independently
+   of the game.
+3. Extend the existing shared protocol ownership consistently and move reusable
+   host-side compatibility mechanics behind the application boundary in bounded
+   steps.
 4. Give each library ownership of its CMake target. Add a root native CMake
    entry point to compose targets without breaking useful standalone builds.
    Keep injected PE32 build tooling distinct from the host toolchain.
@@ -283,6 +324,8 @@ validated behavioral scope.
 
 ## Documentation ownership
 
+- The root [README](../README.md) owns repository navigation and links to launch,
+  build, contributor and component guides; it does not duplicate coverage status.
 - This document owns the overall architecture and migration direction.
 - [Complete live drawing replacement](live-drawing-replacement.md) owns the
   authoritative drawing replacement plan and launcher readiness criteria.
