@@ -94,6 +94,7 @@ static u32 THIS result_tick(void* object){
 #include "campaign_world_observe.h"
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
+#include "grimoire_observe.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
     const u8 quick_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0xf1,0x0a,0x00};
@@ -126,6 +127,7 @@ static int install(void){
         original_tick=(TickFn)0x5595d0;
         if(!drawing_action_init())return 0;
         menu_init();
+        if(!install_grimoire_observe())menu_retired=1;
         if(!install_campaign_observe())menu_retired=1;
         if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
         if(!install_gameplay_observe())menu_retired=1;
@@ -209,5 +211,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

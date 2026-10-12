@@ -32,6 +32,8 @@ def main():
     env=dict(os.environ,MNM_MENU_EXPERIMENT=str(root),WINEDEBUG=os.environ.get('WINEDEBUG','fixme-all'))
     env.pop('MNM_MENU_CHANNEL',None)
     env.pop('MNM_AUDIO_CHANNEL',None)
+    env.pop('MNM_MENU_GRIMOIRE_OBSERVE',None)
+    if metadata.get('grimoire_observe'):env['MNM_MENU_GRIMOIRE_OBSERVE']='Z:'+str(root/'grimoire.bin').replace('/','\\')
     env['MNM_MENU_NATIVE_RENDER']='1' if args.native_render else '0'
     if args.menu_channel:env['MNM_MENU_CHANNEL']='Z:'+str(channel).replace('/','\\')
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

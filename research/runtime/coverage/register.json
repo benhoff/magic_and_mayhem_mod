@@ -43127,6 +43127,55 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.grimoire-observation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Isolated original Grimoire tick and caller-state observation",
+      "scope": "Opt-in pinned Grimoire tick forwarding with bounded before/after raw packed state, owner/stack/control identity and fade/return diagnostics. No action dispatch, native book ownership, reconstructed page/knowledge/stats or original work bypass; forwarding and live entry/return validation pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5011600,
+          "scope": "Forwarding and selected packed-state observation boundary only; not full tick/draw reconstruction."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056832,
+          "relation": "data",
+          "scope": "Pinned Grimoire tick vtable slot only."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-observation.md",
+        "research/runtime/grimoire-engine-contract.md"
+      ],
+      "implementation": [
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/observer.c",
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/grimoire-observer-reference.c",
+        "tools/test-grimoire-observer.py",
+        "tools/test-live-grimoire-observation.py"
+      ],
+      "evidence": [
+        "UI41.grimoire-probe-fixture",
+        "UI41.animation-entry-close-live",
+        "UI41.settled-entry-return-live",
+        "UI41.grimoire-probe-final-fixture"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -89695,6 +89744,124 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI41.grimoire-probe-fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic private probe guard/forward/result/LastError/dedup/return/bound checks; actual original tick stubbed and no game launched.",
+      "record": "research/runtime/grimoire-observer-fixture-20261012.json",
+      "sha256": "1f77402828b11604fd8e8ecdc50091e92efd5e2937048729a5c7d1e6d42ac8ae",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_tick_stubbed",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/bounded_records",
+          "equals": 256
+        }
+      ]
+    },
+    {
+      "id": "UI41.animation-entry-close-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Original book entry and Escape/Region return twice during its opening animation, normal Main Quit; raw screen/initialized bothzero, parsed resource/callback/parent identities observed. Settled readable page and native book ownership not validated.",
+      "record": "research/runtime/grimoire-animation-close-observation-20261012.json",
+      "sha256": "cdad193e4d48a0a38e8bc7149f0b484daeae9c1e45a557135e1e523c515b89f5",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_book_ownership",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI41.settled-entry-return-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Original Region/settled introductory book/Escape/Region twice and normal Main Quit, one original thread; no native book ownership or original bypass, page/knowledge/dynamic-field equivalence.",
+      "record": "research/runtime/grimoire-settled-live-observation-20261012.json",
+      "sha256": "76b24328ab2f8350de1c2ec033e53b7ef240555e92d8898791a573db6726a739",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_graphics_audio",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_book_ownership",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI41.grimoire-probe-final-fixture",
+      "kind": "native_integration",
+      "scope": "Final-source synthetic probe guards/forwarding/LastError/dedup/owner-return/bounds; actual original tick stubbed, no game launched.",
+      "record": "research/runtime/grimoire-observer-final-fixture-20261012.json",
+      "sha256": "9807efcb7cebf00c410cca6b73107dea6ad63d207525a89dc5b8d14218aac6d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_tick_stubbed",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/bounded_records",
+          "equals": 256
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100325,6 +100492,20 @@
         "tools/menu-storage-input.py",
         "apps/qt-shell/campaign_storage_boundary_test.cpp"
       ]
+    },
+    {
+      "id": "UI.grimoire-original-roundtrip",
+      "scope": "Original physical Main/NewGame/fresh Region/Grimoire settled-page/Escape/Region twice, Region Cancel/Main and normal Quit on original Wine graphics/audio. Opt-in custom tick observation only; no native book ownership, formatted text/knowledge/pagination, loaded callers or bypass equivalence.",
+      "level": "live_observation",
+      "behaviors": [
+        "CP.grimoire-observation"
+      ],
+      "evidence": [
+        "UI41.settled-entry-return-live"
+      ],
+      "tests": [
+        "tools/test-live-grimoire-observation.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100707,8 +100888,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-grimoire-contract-20261012.json",
-    "sha256": "bb576c6726956682d22463e164ce4a75a86acb243127c2accf08710672eea8ca"
+    "path": "research/runtime/coverage/source-index-grimoire-observation-20261012.json",
+    "sha256": "e4f769130ccb9ebdc4a1921bcf74c1f7cb03ba9e40fd22d68b791b7663f27658"
   },
   "claim_bindings_required": true
 }
