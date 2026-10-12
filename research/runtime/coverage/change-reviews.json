@@ -642116,6 +642116,231 @@
         ],
         "reason": "Current final native source/compiled scopes pass all selected matched native checkpoints and full TITAN casting/combat/spells/portrait/movement/menu/resume/normalQuit with4612balancedreturns, zero readbacks/fallback/outstanding andtwo bounds; original/source/privatecleanup pass. ExtraCPU3.0856to1.4300ms,GPUtimeline2.551264to0.64088ms,189to12uploads withsame native draws.19.5966Hzsource meets19floor;48.9985WorldFPS misses60, kept separate. No original-equivalence/fullreplacement/scanout/interpolation/movieWorldclaim."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8f6cd4e57e31e14dec4955786fd237f14979331e316962d2e0a21faa2b384896",
+          "before_sha256": "83ca0c6330b8ab0f8f3f934e49f4b8bafedd93c90ee7e2f3a8a983d513ea6f39",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "132faeac5033b1e3a99d769695ed0039ac739846d58c16a963bd68023590d96b",
+          "before_sha256": "7e9ca46c401df40d552a3ab265d6983d531800085c023f77adb8920332531484",
+          "id": "NR.masked-displacement-admission"
+        },
+        {
+          "after_sha256": "b8d869c6fe09ee156f015238e2855fe92b1180b529dc0c95a9974c3ec9323092",
+          "before_sha256": "c8b6ed45f731f544920a835c6cc7e84df327f24b284663faee8a9759936d029a",
+          "id": "NR.native-colour-rectangle-cache"
+        },
+        {
+          "after_sha256": "66f0d0dfd8800a2a4e8f0ec7427d69784e978d4da227b3a0d2ee3b746007fa78",
+          "before_sha256": "44effb744b72136d2ea75e9f57390fa583a9f077f17b2c993f3e31c9becedc4b",
+          "id": "NR.native-draw-cost-profiling"
+        },
+        {
+          "after_sha256": "46ed15ce4919a30f8631e28fd7efa444c8523f18e058146b1aad390c3f6f2969",
+          "before_sha256": "cd3cfa71364c07439d1813913c2a17f37ef000acdc498bd224595cf1f74bc057",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "42cdd24c3012cbb1b0485c2da6b1cde856d1b9cbe485a48816241152592e78d9",
+          "before_sha256": "0d87cea4782dcc1bfff14b9ba42805f4443cb291ba7b3a2b2d57db29db997d9a",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "c42e844596f1f0dff9d180b8a1cb8b1c3b1fc6f7bfe0822a152868f06df6b8c9",
+          "before_sha256": "897236f8f90f7b9f423cb6bc7944ac70f53022adf1b9c86f29fae2bd6faa6f6e",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8c50806edad493cb1b0e64d3674cb7596d55ad7b765aedf29cbfae1265dc3212",
+          "before_sha256": "1eeee2c9e3576a54cd36ffb1bc1ac6c84c4392bd4d21ba3476d0ead1d5356a9f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json"
+        },
+        {
+          "after_sha256": "0b23d6daea9d684bb75aa4eb16d5f89eb5b77e977d2dda7ce1ac780f074ebf98",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-public-context-cost-20261012.md"
+        },
+        {
+          "after_sha256": "32156c1ba91831ddf655e27e8a13834020d5cfdd42b25eeb7ef252379b0756af",
+          "before_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+          "path": "research/runtime/native-draw-cost-profiling.md"
+        },
+        {
+          "after_sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-checkpoints-20261012.json"
+        },
+        {
+          "after_sha256": "c3890c6314be6ce8e589e7cc060b8268e7d45d5cce6851d14afd2b4a157ce1ab",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-pixels-negative-20261012.json"
+        },
+        {
+          "after_sha256": "5c777d567ee140286fe4ceec4d9b33227f31bd4e14cbf1ac4c6f13c9bde3c0ea",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-relative-path-negative-20261012.json"
+        },
+        {
+          "after_sha256": "a51b7611f6ec96486efbf1f6c0bac4df239d728577b85789a9fa54bcb8c9549b",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-vendor-negative-20261012.json"
+        },
+        {
+          "after_sha256": "efd568c38e0264f50ba0b83caaa81ca88e056474c4b29f018e7c94347ad0ea77",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-xcb-egl-negative-20261012.json"
+        },
+        {
+          "after_sha256": "e17491b53b674e836d36ec3a473088a69b6f18161dc6b81633d1a9e9162062d8",
+          "before_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+          "path": "tools/native-render-profile/resident_profile.cpp"
+        },
+        {
+          "after_sha256": "c4cafa3329dcab5fedaf21ebcecda9bc8acef62ad7de73940ec5308cd2113818",
+          "before_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+          "path": "tools/profile-native-draw-costs.py"
+        }
+      ],
+      "id": "native-public-context-cost-accounting-20261012",
+      "pending_gaps": [
+        "stale_evidence:01d392e57f705b38c4cc0d0cf894a52dc253fc1f2ea14985750e11552462e02e",
+        "stale_evidence:12562cb7a391b162835cf277f3820686518afb55dc864800c6d943591a7e884a",
+        "stale_evidence:263b51109ab1a85a30061bbe9255cb1201f23d3a3c5ea639ad018bd92a31bbd4",
+        "stale_evidence:4480e5376258e19a35c5997fed12da849f5fb991a5283fdc6bb3bb62919885d1",
+        "stale_evidence:4a207aaba196a8e78ca72bf05dc831dcad8073a4eaac6b6ed9be37d2d4d45052",
+        "stale_evidence:50b02ae1428ad65095ce4f021eb347e3de6005eabbef0e40fdaadbcbb79451e3",
+        "stale_evidence:5a302cf4ca5d684fd9fbbde390c933d99ef1eadfd3085449d419896d6a0deecb",
+        "stale_evidence:676d26d7786108fb2179643e0e302f4260f6198fb03c4dc9ba683906054fe955",
+        "stale_evidence:9495084e89fbbff4d68b8cf9fa77454467496f0b9005efbcb6a33cb84c1cc516",
+        "stale_evidence:95997914db2a538c808de7b67dc3e74362afe12bf50dbea52b5400e4a20b8cc2",
+        "stale_evidence:a27441d40c48cab2239121ec2645ac81b512ea8bccf9943d240d0919b1b383f2",
+        "stale_evidence:a382f520bddf5302a58a98efa90c7ecf86bf070be2d0041f6de41dd5d906d1fa",
+        "stale_evidence:ae460c06212ea76deef0a92395513237d3ecc39f0bb0ccb98c6d039617d566e3",
+        "stale_evidence:d2ea5dbd6a906e9abf730dfeb98fb6ef13b3b706ffa2371f92b413399253de8a",
+        "stale_evidence:e8312c9a60f6512272fb32bc2eb8b195df88e64adf6cfe69740457dd77ba32ed",
+        "validation_gaps:01a5bf6fb8c332a2ad05f40dc2a05c145050020dcf61dfa210e0521b97f5f745",
+        "validation_gaps:0a12c986c5f0d01cdaeb02f563d524e7adc5e3b1591712a33f688fa39838a32d",
+        "validation_gaps:17660234d4d1915b88848591483699e5c21980bcebc86134fbc24cae61d77cf7",
+        "validation_gaps:1b999c26142f0db1c1dad53a28a60e96d296604b7d9168f4e9c7990240df7b83",
+        "validation_gaps:24ce5ea1703f6a85323666eaadedafea92d9f2f6bf45c11507049fe73c93bbd3",
+        "validation_gaps:24e21f180f6536b3562a4753cf4f43a4bd3b3ded3d68bd876ab68ed2e4f5ad78",
+        "validation_gaps:321977af61d2d8a25489999e06e8e7efc55640a43a534289a9ea80fb20a14711",
+        "validation_gaps:40aff0d1dd829579f1175a6c3af2e77f2769db8366a9e7fe94863bb0991215fe",
+        "validation_gaps:545a7d5b5c8d59dc64ca9ca0e9190087f63ebc2f5c80cc2d95bbf44882ea43fe",
+        "validation_gaps:550355619a6277b6a82f3334d4d5ea0e1559c0089b36306b5bb9d55f0912fe25",
+        "validation_gaps:62cace07a74f51d9b230df54829ae0926f8f9a5cda630f1d7c38d06c48f1dbb8",
+        "validation_gaps:65857945a26954a700dee5d4dcfb7d5c92b1fffc25dbce8f81678596cb343e14",
+        "validation_gaps:6e003763ee653a1b4955f2234162c8f9db61211fe634b515eca249e7749b1beb",
+        "validation_gaps:745dd27f6d40c22918c55a60b91aad3bab17d6b04373d33b84c38dd94f403aff",
+        "validation_gaps:834ad5134fa328b925c08766370d396f91233a413367257c7ba069d4a5e6396e",
+        "validation_gaps:86165f445ebb1b650f71301c8acdbd1e1a21c70219eb77e2dff7fa4df6e313ff",
+        "validation_gaps:890a50cb8fdbf9a5c254d0ec537d02f1f6c6f6c5e973b369de398921db7b3c75",
+        "validation_gaps:9459db67ad01f9bb6c2048d1eedc3695bb746d17db7d2dc177af2142c76e3de3",
+        "validation_gaps:a9475dd43717e7fce09b2c2a137bd57405ef0f67625a44383b279624d845dd4c",
+        "validation_gaps:ad6b42c2f6a8f815eafac62356e03757b49df6529283bb1f6dfb33e5dcbdcdf0",
+        "validation_gaps:b9f2a6c98a0f1724889936f4970b68fed73afb8468ee56e4a2ea890d47506e85",
+        "validation_gaps:d844297e9a5da851a0f405116a7eff50add05344df903ce34dfa661bde308530",
+        "validation_gaps:eb020b00b9c25fcc408932766abc308891ca0c2e52561f42f1e8c4f369f0e7f9",
+        "validation_gaps:eb5255de7ad6886eb35baabdf41f2f38dc5da12d6eca4a81bf0ba4e1544ae1e7",
+        "validation_gaps:fde7a02be7114006e6ed239f8c1ab3059276695b9bdf3ba6d67eba791f988469"
+      ],
+      "reason": "Reviewed same-binary backend selection/refusal, hardware identity, absolute prepared paths, bounded diagnostic pixel failure retention, captured-prefix timing observations and exact source indexing. Retain failed public checkpoint/xcb-EGL reports without promoting FPS or declaring intermittent pixels repaired.",
+      "validation": {
+        "status": "pending",
+        "reason": "The native diagnostic repeat passes2423Worlds and two redraws each, with original/input/source checks; posthoc prior EGL hashes agree. An earlier public repeat failed native self-equality and remains unresolved. Live worker/sharing/UI/export, repaired pixel stability and60FPS remain pending; shared-source consumers keep historical evidence."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "66f0d0dfd8800a2a4e8f0ec7427d69784e978d4da227b3a0d2ee3b746007fa78",
+          "before_sha256": "44effb744b72136d2ea75e9f57390fa583a9f077f17b2c993f3e31c9becedc4b",
+          "id": "NR.native-draw-cost-profiling"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "c42e844596f1f0dff9d180b8a1cb8b1c3b1fc6f7bfe0822a152868f06df6b8c9",
+          "before_sha256": "897236f8f90f7b9f423cb6bc7944ac70f53022adf1b9c86f29fae2bd6faa6f6e",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8c50806edad493cb1b0e64d3674cb7596d55ad7b765aedf29cbfae1265dc3212",
+          "before_sha256": "1eeee2c9e3576a54cd36ffb1bc1ac6c84c4392bd4d21ba3476d0ead1d5356a9f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json"
+        },
+        {
+          "after_sha256": "0b23d6daea9d684bb75aa4eb16d5f89eb5b77e977d2dda7ce1ac780f074ebf98",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-public-context-cost-20261012.md"
+        },
+        {
+          "after_sha256": "32156c1ba91831ddf655e27e8a13834020d5cfdd42b25eeb7ef252379b0756af",
+          "before_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+          "path": "research/runtime/native-draw-cost-profiling.md"
+        },
+        {
+          "after_sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-checkpoints-20261012.json"
+        },
+        {
+          "after_sha256": "c3890c6314be6ce8e589e7cc060b8268e7d45d5cce6851d14afd2b4a157ce1ab",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-pixels-negative-20261012.json"
+        },
+        {
+          "after_sha256": "5c777d567ee140286fe4ceec4d9b33227f31bd4e14cbf1ac4c6f13c9bde3c0ea",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-relative-path-negative-20261012.json"
+        },
+        {
+          "after_sha256": "a51b7611f6ec96486efbf1f6c0bac4df239d728577b85789a9fa54bcb8c9549b",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-vendor-negative-20261012.json"
+        },
+        {
+          "after_sha256": "efd568c38e0264f50ba0b83caaa81ca88e056474c4b29f018e7c94347ad0ea77",
+          "before_sha256": null,
+          "path": "research/runtime/native-public-context-xcb-egl-negative-20261012.json"
+        },
+        {
+          "after_sha256": "e17491b53b674e836d36ec3a473088a69b6f18161dc6b81633d1a9e9162062d8",
+          "before_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+          "path": "tools/native-render-profile/resident_profile.cpp"
+        },
+        {
+          "after_sha256": "c4cafa3329dcab5fedaf21ebcecda9bc8acef62ad7de73940ec5308cd2113818",
+          "before_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+          "path": "tools/profile-native-draw-costs.py"
+        }
+      ],
+      "id": "native-public-context-cost-diagnostic-execution-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed same-binary backend selection/refusal, hardware identity, absolute prepared paths, bounded diagnostic pixel failure retention, captured-prefix timing observations and exact source indexing. Retain failed public checkpoint/xcb-EGL reports without promoting FPS or declaring intermittent pixels repaired.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.native-draw-cost-profiling.public-context-checkpoints-20261012"
+        ],
+        "reason": "Fresh prospective source/scenario-bound single diagnostic public replay passes2423primaryWorlds and4846prepared redraw pixel hashes, zero ordinary readbacks/query/resource leaks, original/source/input verification and owned display cleanup. It supports diagnostic instrumentation only. Previous failed comparisons and partial CPU sampling are retained; no throughput/gameplay/pixel repair/60FPS assertion."
+      }
     }
   ]
 }
