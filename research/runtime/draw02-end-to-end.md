@@ -1088,3 +1088,12 @@ This extends bounded evidence without fixing the intermittent foreign-frame
 race or proving whole allocation/alias/unobserved upload/hardware/scanout,
 allroutes/semantic actions/47requirements21operations. Continue remaining
 acquisition boundaries in step2; steps3–7 remain ordered and open.
+
+DRAW-02 step2 current cadence reassessment: fresh counter/menu/input-only
+original control closes normally with0drawing planes. Shared declared schedule,
+settings/input/counter binaries and raw traces revalidate. Short47queued updates
+have diagnostic median229.913ms versus control59.851ms(3.8414x); current whole120
+has442.21505ms versus59.2184ms(7.4675x). This is expensive diagnostic capture,
+not identical workload/exclusive-cost/zerooverhead/unobtrusive/FPS proof. Next
+focus on semantic action/presentation-route boundaries while retaining bounded
+source/epoch/chain parity and all47/21later-step requirements as open.

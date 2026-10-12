@@ -43995,7 +43995,9 @@
         "DRAW02.cadence-control-comparison-01-native_integration-20261012",
         "DRAW02.cadence-control-original-02-live_observation-20261012",
         "DRAW02.cadence-control-comparison-02-native_integration-20261012",
-        "DRAW02.cadence-control-repeat-01-native_integration-20261012"
+        "DRAW02.cadence-control-repeat-01-native_integration-20261012",
+        "DRAW02.current-cadence-control-20261012",
+        "DRAW02.current-cadence-comparison-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44006,7 +44008,8 @@
       },
       "remaining_gaps": [
         "Four mode/timing guard methods and two original counter-only controls pass normal Quit. Same schedule/settings/input/counter binary comparisons show diagnostic median queued intervals3.571/3.504 times firstcontrol,3.399/3.349 times second over62/58queued updates. Control repeat first120queued medians differ3.76%,p950.67%. This distinguishes expensive diagnostics from the counter-only condition; neither zero-overhead gameplay nor identical work/equivalence is proved.",
-        "Control still observes counters/menu/input, randomized original workloads and diagnostic interval lengths differ. Unobtrusive delivery/FPS, source ownership/all writers/uploads/whole lifetimes, all routes/semantic actions/full DRAW-02 47/21 acceptance remain open. Native parity not performed for this cadence-control change."
+        "Control still observes counters/menu/input, randomized original workloads and diagnostic interval lengths differ. Unobtrusive delivery/FPS, source ownership/all writers/uploads/whole lifetimes, all routes/semantic actions/full DRAW-02 47/21 acceptance remain open. Native parity not performed for this cadence-control change.",
+        "Current short47queued median3.8414x/control and whole120median7.4675x. Shared declared inputs/settings do not prove identical workload or exclusive instrumentation cost. Expensive diagnostics, no unobtrusive timing/FPS claim; source/frame/journey/semantic completion independent."
       ]
     },
     {
@@ -94934,6 +94937,35 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.current-cadence-control-20261012",
+      "kind": "live_observation",
+      "scope": "Current counter/menu/input-only original normal Quit with0drawing planes, no source/Wine/physical observer. Counter observation still diagnostic.",
+      "record": "research/runtime/draw02-current-cadence-control-01.json",
+      "sha256": "262d04ea4daf55a99d799a1c05eec0efc6b7e8f47fadbc9590dfb60d574575e5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.current-cadence-comparison-20261012",
+      "kind": "static",
+      "scope": "Revalidated exact raw traces/shared schedule/settings/input/counter binary; short47queued median229.913ms/control59.851ms3.8414x, whole120median442.21505ms/control59.2184ms7.4675x. No identical-work/exclusive-cost/unobtrusive claim.",
+      "record": "research/runtime/draw02-current-cadence-comparison-01.json",
+      "sha256": "79e138223827059d57e1dd09586dd1da1e01d87d212e87e8740eba25df15db87",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107076,7 +107108,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-whole120-epochs-20261012.json",
+    "path": "research/runtime/coverage/source-index-draw02-current-cadence-20261012.json",
     "sha256": "55fe75ff433b60f0f63c6c13a1cdc2f77f219ec083adb756608702a6f9086b6d"
   },
   "claim_bindings_required": true
