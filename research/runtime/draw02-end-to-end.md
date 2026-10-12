@@ -928,3 +928,16 @@ The rebuilt standard drawing DLL is byte-identical to the original01 staged
 observer; all manifest source hashes match current files. This is provenance
 validation, not a fresh engine run. Original01 and prior fixture source
 declarations retain their historical hashes after the builder change.
+
+DRAW-02 step2 last-observed map reassessment: prefix-bound source queries now
+associate known cache points with exact texture generations and public map
+intervals. PE32 28-forward/10-query and four decoder controls pass. Combined
+original01 is negative: source byte copying refuses two pending frames after
+worker completion; extra frame identity/overlap remains unknown. Separate
+metadata-only original02 succeeds with340known closed-map points,1027unbound
+308stopped,336API335EGLnormalQuit0and closed resource intervals. Fullframe
+source canvases are now point-associated, but post-unmap allocation ownership,
+actual uploads/all writers/whole lifetimes and full DRAW-02 47/21 acceptance
+remain open. Next diagnose pending frames before changing protected-copy
+admission. Other routes/actions/cadence controls and current native parity
+remain pending; step3 is not yet admitted.

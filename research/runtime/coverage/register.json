@@ -43751,6 +43751,56 @@
         "Pinned descriptor-update import/export and PE32 cache-only export/forwarding/lifetime/generation controls plus five decoder methods pass. Original01 records52setters1595queries:145known UI sources,342unbound493unknown615stopped. 118heldpairs223sourcecommands329API328EGLnormalQuit0 remain separate. Compile, FP-comparison and harness failures retained; no original execution for those negatives.",
         "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged."
       ]
+    },
+    {
+      "id": "NR.drawing-wine-retained-map-source",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Submitted source association to last observed public map address",
+      "scope": "Separate optional local retention of a successful public map descriptor address/pitches and exact resource/texture generation/subresource/map interval. Mark observed successful unmap closure. At an exact source texture blit query that last observed address against the live canvas cache outside the journal lock, revalidate its epoch/open state and emit only portable metadata. No pointer or map bytes on wire. A closed map address match is a point association, not retained driver allocation ownership or completed upload.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-retained-map-source.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_retained_map_source.h",
+        "tools/drawing_wine_retained_map_source.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-retained-map-source-test.c",
+        "tools/test-drawing-wine-retained-map-source.py",
+        "tests/test-drawing-wine-retained-map-source.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/scene/drawing_storage_point.h",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.retained-map-fixture-01-native-20261012",
+        "DRAW02.retained-map-parser-01-native-20261012",
+        "DRAW02.retained-map-original-01-static-20261012",
+        "DRAW02.retained-map-refusal-analysis-01-static-20261012",
+        "DRAW02.retained-map-original-02-live-20261012",
+        "DRAW02.retained-map-fault-check-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "PE32 28 original forwards/10 queries and four decoder methods pass. Original01 negative records64 partial address matches, then phase2 source-byte getter refuses two pending producer frames after one command completed; extra frame identity/overlap remains unknown. Metadata-only original02 closes1675queries:340known/1027unbound308stopped, all340known afterobservedunmap,336API335EGLnormalQuit0; resource intervals allclose.",
+        "Known points include fullframe canvas2/7/8/9/10/13 andUI12/14/15/22/53/54. Last observed map address at submission is not post-unmap allocation ownership or actualupload/sourceversion/writer/alias/reuse/wholeCOM/resource/texture/storage lifetime. Combined protected source copying still needs a sound pending-frame diagnosis/admission contract. Other routes/actions/cadencecontrols/current nativeparity/full DRAW-02 47/21 acceptance remain pending."
+      ]
     }
   ],
   "evidence": [
@@ -93390,6 +93440,113 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.retained-map-fixture-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 28 original forwards and10source queries:5matches/5unknown/3closed matches; failed remap/reuse/ambiguous/map/lifetime change guards and FP/LastError.",
+      "record": "research/runtime/draw02-retained-map-fixture-01.json",
+      "sha256": "0917b246ef59ede36ef3233acbbfc7faa964da2819d67a6ea757cd7568d87a4f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.retained-map-parser-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Four strict decoder methods for last-observed address points and prefix/lifetime/refusal guards; no original execution.",
+      "record": "research/runtime/draw02-retained-map-parser-01.json",
+      "sha256": "926bc28af23f6e0afe4635a3af77493fb768b079c6aa1d7c498d4ae206543dee",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.retained-map-original-01-static-20261012",
+      "kind": "static",
+      "scope": "Retained original01 early input exit with exact held-source phase2 pending-frame refusal; no complete capture.",
+      "record": "research/runtime/draw02-retained-map-original-01.json",
+      "sha256": "0bb4578259db3b687546146523c9e13f80163f20a7eb24cdd01decaaa4b29301",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.retained-map-refusal-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "Read-only partial address/worker/refusal artifacts:161queries64matches, source byte admission rejects two pending frames; extra frame identity/overlap unknown.",
+      "record": "research/runtime/draw02-retained-map-refusal-analysis-01.json",
+      "sha256": "e9bd8347992face77e01445e6924b5d23f8ff45c6733ab63ed04500b5ced9bbf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.retained-map-original-02-live-20261012",
+      "kind": "live_observation",
+      "scope": "Metadata-only original1675source queries:340known last-observed closed-map address points,1027unbound308stopped; all resource intervals close and normal Quit exit0. No post-unmap ownership or source byte/whole upload proof.",
+      "record": "research/runtime/draw02-retained-map-original-02.json",
+      "sha256": "329cd0cfa6a37fc7b9cd3d940880afd366676727ec6770b84e54ac1bbe5b6490",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.retained-map-fault-check-01-static-20261012",
+      "kind": "static",
+      "scope": "Actual numbered source write-fault pattern check is empty; pending-frame byte getter refusal remains the recorded failure boundary.",
+      "record": "research/runtime/draw02-retained-map-fault-check-01.json",
+      "sha256": "56a36b9d92ebb235f74c3d91b785da9dbd2d2a8b81d409255496b82b18bed882",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/write_fault_record_observed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105037,6 +105194,35 @@
       "evidence": [
         "DRAW02.client-memory-original-01-live-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.retained-map-fixture",
+      "level": "headless",
+      "scope": "Last observed map address at submitted source, with open/closed lifetime boundary explicit.",
+      "behaviors": [
+        "NR.drawing-wine-retained-map-source"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-retained-map-source.py"
+      ],
+      "evidence": [
+        "DRAW02.retained-map-fixture-01-native-20261012",
+        "DRAW02.retained-map-parser-01-native-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.retained-map-original",
+      "level": "live_observation",
+      "scope": "Last observed map address at submitted source, with open/closed lifetime boundary explicit.",
+      "behaviors": [
+        "NR.drawing-wine-retained-map-source"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.retained-map-original-02-live-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -105410,8 +105596,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-client-memory-manifest-20261012.json",
-    "sha256": "405beb9930ba05655718454cf9abb2227a4eb99d9ba6b0af5df0823736eb978d"
+    "path": "research/runtime/coverage/source-index-draw02-retained-map-20261012.json",
+    "sha256": "01e497223df518bfcf1326a0139a53bf6ce4b71a9e2d373d5fbbf55181fbfcc9"
   },
   "claim_bindings_required": true
 }

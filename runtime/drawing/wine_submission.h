@@ -51,7 +51,7 @@ static void wine_submission_return(u32* r,u32 result,u32 error){
 }
 static u32 __attribute__((cdecl)) wine_submission_blt(void* context,void* dst,u32 dstsub,const void* dstrect,void* src,u32 srcsub,const void* srcrect,u32 flags,const void* fx,u32 filter){
  u32 error=GetLastError(),r[48]={0};u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
- if(wine_submission_enabled){r[12]=dstsub;r[13]=srcsub;r[14]=flags;r[24]=filter;r[25]=fx!=0;wine_submission_entry(r,1,dst,src,srcrect,dstrect);wine_client_source(r,src);}
+ if(wine_submission_enabled){r[12]=dstsub;r[13]=srcsub;r[14]=flags;r[24]=filter;r[25]=fx!=0;wine_submission_entry(r,1,dst,src,srcrect,dstrect);wine_client_source(r,src);wine_retained_source(r,src);}
  restore_fp(fp);SetLastError(error);
  u32 result=((u32(__attribute__((cdecl))*)(void*,void*,u32,const void*,void*,u32,const void*,u32,const void*,u32))wine_submission_original[0])(context,dst,dstsub,dstrect,src,srcsub,srcrect,flags,fx,filter);
  error=GetLastError();snapshot_fp(fp);if(wine_submission_enabled)wine_submission_return(r,result,error);restore_fp(fp);SetLastError(error);return result;

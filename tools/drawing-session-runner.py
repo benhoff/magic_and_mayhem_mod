@@ -39,6 +39,8 @@ if metadata.get('producer_update_binding'):os.environ['MNM_DRAW_UPDATE_BINDING']
 else:os.environ.pop('MNM_DRAW_UPDATE_BINDING',None)
 if metadata.get('whole_updates'):os.environ['MNM_DRAW_WHOLE_UPDATES']='1'
 else:os.environ.pop('MNM_DRAW_WHOLE_UPDATES',None)
+if metadata.get('wine_retained_map_source'):os.environ['MNM_DRAW_WINE_RETAINED_MAP']='1'
+else:os.environ.pop('MNM_DRAW_WINE_RETAINED_MAP',None)
 if metadata.get('wine_client_memory'):os.environ['MNM_DRAW_WINE_CLIENT_MEMORY']='1'
 else:os.environ.pop('MNM_DRAW_WINE_CLIENT_MEMORY',None)
 if metadata.get('wine_map_storage_point'):os.environ['MNM_DRAW_WINE_MAP_STORAGE']='1'
