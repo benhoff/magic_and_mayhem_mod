@@ -44117,6 +44117,57 @@
         "tools/drawing_storage_point.py",
         "tools/build-scene-observer.py"
       ]
+    },
+    {
+      "id": "NR.drawing-wine-resource-copy",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public Wine resource subresource copy observation",
+      "scope": "Prospective pinned cdecl10argument copy_sub_resource_region observer. Preserve exact forwarding/result/error/FP; record pointer-free source/destination resource IDs, observed texture associations/generations, subresources/coordinates/box/flags, API thread/entry/depth and resource/lifetime prefixes. No private layouts, source pixels, async completion or ownership claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/runtime/draw02-wine-resource-copy.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_resource_copy.h",
+        "tools/drawing_wine_resource_copy.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-resource-copy-test.c",
+        "tests/test-drawing-wine-resource-copy.py",
+        "tools/test-drawing-wine-resource-copy.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.resource-copy-imports-20261012",
+        "DRAW02.resource-copy-fixture-20261012",
+        "DRAW02.resource-copy-original-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Candidate probe excludes a small numeric offset for relevant client/CPU buffers. Actual alias/transfer unresolved; public copy boundary is a tested source lead, not an assumed bridge.",
+        "Original01normal Quit has353API352EGL witnesses but0copy_sub_resource_region calls. This public copy boundary does not explain the observed split client/CPU buffers in the bounded sample. Inspect original58d540source-buffer construction and actual copy routing next; private layouts/physical aliasing/transfer completion remain unassigned."
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/session.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/inspect-drawing-wine-resource-copy.py",
+        "tools/inspect-drawing-wine-imports.py"
+      ]
     }
   ],
   "evidence": [
@@ -94584,6 +94635,50 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.resource-copy-imports-20261012",
+      "kind": "static",
+      "scope": "Exact installed Wine PE32 module hashes/public copy IAT/export/prologue and official cdecl10argument HRESULT ABI source lead; no execution or transfer proof.",
+      "record": "research/runtime/draw02-resource-copy-imports-01.json",
+      "sha256": "fa20cbe62deebad0f86411842268e4f1112ffe4ace4b3fffbbb6310b8e71d7d0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.resource-copy-fixture-20261012",
+      "kind": "native_integration",
+      "scope": "Three actual PE32 copy calls with exact10args/once-forward/result/LastError/512byte FP state; known/null/unreadable boxes and original failure.",
+      "record": "research/runtime/draw02-resource-copy-fixture-01.json",
+      "sha256": "d98180b26967d237b34da3b1896a90580fd071d2b3df9aa691bb0bbfe922ac48",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.resource-copy-original-20261012",
+      "kind": "live_observation",
+      "scope": "Normal original Quit352+physical source session observes zero public resource-copy calls. Negative transfer-route finding for this bounded run, not all-path absence.",
+      "record": "research/runtime/draw02-resource-copy-original-01.json",
+      "sha256": "d4a75ac9efdec809055cba88adc879763739efa0a021ca339a4ac66f0e024d73",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -106726,8 +106821,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-storage-candidates-20261012.json",
-    "sha256": "4a2d07e9fb8f366b5a76545e60cfdd4e3946a6e41589c937030505d95f80d27c"
+    "path": "research/runtime/coverage/source-index-draw02-resource-copy-20261012.json",
+    "sha256": "8b70abdeeca461859af7490eb0a2abe218e7aa26ca56b99ead80b6c7b44cb58d"
   },
   "claim_bindings_required": true
 }

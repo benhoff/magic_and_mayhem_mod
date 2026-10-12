@@ -1040,3 +1040,12 @@ probe; previous104matched frames have0direct submitted epochs. Next observe
 public copy_sub_resource_region boundaries with pinned ABI/forwarding first.
 Allownership/uploads/routes/actions/47requirements21operations remain open;
 steps3–7 remain ordered/pending.
+
+DRAW-02 step2 public resource-copy increment: exact installed module/IAT/export/
+prologue pins, three PE32cdecl10arg result/error/FP forwards and4decoder/control
+methods pass. Original01normal Quit353API352EGL observes0public copy calls,
+so this boundary doesnot explain split client/CPU buffers within the sample.
+A source lead is the original58d540routine called during surface setup; inspect
+its exact bytes/behavior before extending hooks. No alias/upload/ownership/full
+47/21orsteps3–7promotion follows; current native parity is not asserted for
+this isolated metadata increment.
