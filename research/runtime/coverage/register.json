@@ -45218,6 +45218,48 @@
       "remaining_gaps": [
         "Fresh owned token/paired lease fixture passes. Caller lock/token ownership of actual duplicate refs, kernel operations, pinned original constructors/globals/close retirement, versioned exports/wire, full caller-state/callback/worker controls and live integration unimplemented. No safe repair/reference/source alias/parity claim."
       ]
+    },
+    {
+      "id": "NR.drawing-cursor-kernel-lease-state",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owning diagnostic cursor mutex gate and kernel lease state",
+      "scope": "Caller-serialized owning-module phase model binds actual stored gate levels to numeric thread/identity tokens, publishes private duplicate identities, retires originals, defers closes until stored levels and leases drain. Owned PE32 actual mutex duplicate/acquire/source-close/release plus scripted private-close failure; no game installer/live exports/source capture.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-kernel-adapter.md"
+      ],
+      "implementation": [
+        "runtime/cursor-mutex/cursor_kernel_adapter_core.h",
+        "runtime/cursor-mutex/cursor_kernel_adapter.h"
+      ],
+      "tests": [
+        "tests/drawing-cursor-kernel-adapter-test.c",
+        "tools/test-drawing-cursor-kernel-adapter.py"
+      ],
+      "validation_dependencies": [
+        "runtime/cursor-mutex/diagnostic_lifetime.h",
+        "runtime/cursor-mutex/cursor_gate_tokens.h",
+        "runtime/cursor-mutex/cursor_gate_lease.h",
+        "runtime/drawing/cursor_source_gate.h",
+        "runtime/shadow/win32_min.h",
+        "tools/coverage_claims.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-kernel-fixture-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh real PE32 owning-model fixture passes. Caller synchronization around phase transitions, original constructor/global pins/import forwarding, actual concurrent-close/worker callback controls, versioned exports and live source capture remain unimplemented. Scripted close failure is not actual failed OS close. Invariant fault freezes admission and retains uncertain refs; no safe live repair/reference/parity claim."
+      ]
     }
   ],
   "evidence": [
@@ -96953,6 +96995,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-kernel-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned actual Wine PE32 duplicate/stored-gate/source-close/release/drain; scripted failed private close retained before real successful close. No original installer/concurrent-close/worker/source parity.",
+      "record": "research/runtime/draw02-cursor-kernel-fixture-01.json",
+      "sha256": "de5f114a201eb2e5d1250ba62250ea4a851acd256c53c96199d55f1e509ce87f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_mutex_handles",
+          "equals": true
+        },
+        {
+          "pointer": "/private_close_failure_scripted",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109095,8 +109164,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-leases-20261012.json",
-    "sha256": "0216223208e0c121bda9d9bbd27d96302cde49212c6c9d4636c90062f54a48ed"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-kernel-20261012.json",
+    "sha256": "3e07250645ffe975c4e8f1cdc6c8cdf2a8de4e6f1a701ba6fae95b8f44162b82"
   },
   "claim_bindings_required": true
 }

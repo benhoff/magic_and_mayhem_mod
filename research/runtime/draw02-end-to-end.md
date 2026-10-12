@@ -1563,3 +1563,23 @@ fault handling, real PE32 concurrent-close/active-lease fixtures and bounded
 original cadence/source controls before enabling live capture synchronization.
 All47/21and steps3–7remain open. Reviewed2cc37ae2..f5eb9576has11exact receipts
 with zero missing versions; retrospective accounting does not assert execution.
+
+## DRAW-02 owning real-kernel lease checkpoint (2026-10-12 UTC)
+
+Bounded token/lease accounting committed626631b9with staged retry and required
+hook passed. New native policy `NR.drawing-cursor-kernel-lease-state` stores
+actual gate levels in the owning token cell: caller cannot request false zero.
+State phases are caller-serialized; kernel calls occur between phases outside
+locks. Invariant mismatch freezes admission and retains uncertain references.
+`draw02-cursor-kernel-fixture-01.json` passes actual Wine PE32 duplicate/acquire/
+original-close/release/drain: wrong owner and outstanding levels refuse return,
+retirement blocks new admission/private close, original handles close during
+owned active lease, private gate releases drain tokens/refcounts. Scripted
+private-close failure retains identity before real successful private close.
+No game imports/source pages/worker callbacks or actual concurrent-close tested.
+
+Reassessment: step2 remains open. Original constructor/global byte/identity
+pins, serialized retirement before original Close, versioned scalar exports,
+full caller-preservation integration, real concurrent-close/worker controls and
+bounded original capture remain prerequisites. All47/21and steps3–7remain open.
+Reviewedf5eb9576..626631b9has13exact receipts and zero missing versions.
