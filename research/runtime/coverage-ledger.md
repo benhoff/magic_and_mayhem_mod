@@ -7396,3 +7396,18 @@ the earlier broader successful record remains unchanged. No production voice
 change was necessary. This is native headless backend integration, without
 physical/original waveform or latency/tail equivalence. Previous quiet whole-game
 commit26c2c3e4 exact history:10 file transitions, zero receipt gaps.
+
+## Actual native music output recovery (2026-10-12)
+
+`HOST.native-music-backend-recovery` exercises actual private Qt output topology
+through startup-broker teardown, active loss/frozen371ms, caller pause, replacement,
+1200ms seek, non-null default switch retaining1200ms/track2/loop/gain12345 and
+resume1478ms.2 losses/2 recoveries, close, source stability and empty graph/owned
+cleanup pass. It exposed and fixes a stale cached-device availability report and
+unwanted source advancement before restoring paused re-admission. Both failed
+source versions and raw reports remain unchanged. Current music regression CTest
+and fresh healthy full native game/normal Quit pass with source/input/original
+and private cleanup checks. Historical quiet whole-game fingerprints remain
+older music source; no original/physical or uninterrupted decode/tail inference.
+Native manager/config/cache/event rules remain original in live execution until
+separately ported/compared. Waveform commit1e043917 exact history retained.
