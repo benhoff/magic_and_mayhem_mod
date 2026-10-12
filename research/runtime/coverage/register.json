@@ -45180,6 +45180,44 @@
       "remaining_gaps": [
         "Fresh owned PE32 forwarding fixture passes. Actual original result/register/thread/lifetime/worker callback order, disabled/budget paths and live diagnostic controls remain unimplemented. No safe live repair/source alias/reference/parity claim."
       ]
+    },
+    {
+      "id": "NR.drawing-cursor-gate-leases",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded thread-owned diagnostic cursor mutex lease accounting",
+      "scope": "Caller-serialized64cell monotonic owner/identity token pool and paired lifetime reservation/return. Capacity/wrap/foreign/stale refusals, partial reservation unwind, retirement drainage only after zero outstanding mutex levels. Pure model with no OS calls/live exports/original capture.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-gate-leases.md"
+      ],
+      "implementation": [
+        "runtime/cursor-mutex/cursor_gate_tokens.h",
+        "runtime/cursor-mutex/cursor_gate_lease.h"
+      ],
+      "tests": [
+        "tests/test-drawing-cursor-gate-tokens.cpp",
+        "tests/test-drawing-cursor-gate-lease.cpp",
+        "tools/test-drawing-cursor-gate-leases.py"
+      ],
+      "validation_dependencies": [
+        "runtime/cursor-mutex/diagnostic_lifetime.h",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-gate-leases-fixture-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh owned token/paired lease fixture passes. Caller lock/token ownership of actual duplicate refs, kernel operations, pinned original constructors/globals/close retirement, versioned exports/wire, full caller-state/callback/worker controls and live integration unimplemented. No safe repair/reference/source alias/parity claim."
+      ]
     }
   ],
   "evidence": [
@@ -96885,6 +96923,36 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-gate-leases-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned64token pool and paired pure lifetime reservations, capacity/wrap/owner/stale refusal, partial unwind, retire/drain and explicit outstanding level refusal; no OS/kernel/game/live synchronization.",
+      "record": "research/runtime/draw02-cursor-gate-leases-fixture-01.json",
+      "sha256": "b52c9ad3fc29a89d2090387985314354cbc46a8b18f5fcc73a8763c196ba1718",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/return_codes",
+          "equals": [
+            0,
+            0
+          ]
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/os_mutex_handle_calls",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109027,8 +109095,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-forward-20261012.json",
-    "sha256": "c6f1aba0e654f9b4dce1be1bd2b9aa142b6ad055396d91a7e92f75893d2d0097"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-leases-20261012.json",
+    "sha256": "0216223208e0c121bda9d9bbd27d96302cde49212c6c9d4636c90062f54a48ed"
   },
   "claim_bindings_required": true
 }

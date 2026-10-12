@@ -1540,3 +1540,26 @@ leases, bounded source/worker callback order and original cadence/semantic
 controls must precede live synchronization. Passing synthetic caller state does
 not prove real callback cycles or complete source/frame/native parity. All47/21
 and steps3–7retain scope. Reviewed735b6ff9..2cc37ae2has11exact receipts, zero gaps.
+
+## DRAW-02 bounded token/lease checkpoint (2026-10-12 UTC)
+
+Caller-state forwarding committedf5eb9576after the unchanged storage guard
+stopped two earlier hooks below100GiB; the retry passed when free space
+recovered. Interrupted logs remain inworking, staged tree unchanged, no hook
+bypass/policy reduction/additional pruning.
+
+New native policy `NR.drawing-cursor-gate-leases` combines a64cell monotonic
+owner/identity token pool with paired retirement-model reservations. The
+current-source `draw02-cursor-gate-leases-fixture-01.json` passes two owned
+fixtures: capacity/wrap/foreign owner/stale token/swapped identity refusal,
+partial reserve unwind, active-retirement deferral, outstanding mutex-level
+return refusal, stale identity after reuse and complete64lease drainage. No OS
+handles/game calls, worker callbacks or exported API integration. The future
+owning adapter must store gate levels itself rather than trust a requester.
+
+Reassessment: step2 remains open. Implement verified constructor/global handle
+tracking and versioned scalar token exports, exact kernel duplicate/retire/close
+fault handling, real PE32 concurrent-close/active-lease fixtures and bounded
+original cadence/source controls before enabling live capture synchronization.
+All47/21and steps3–7remain open. Reviewed2cc37ae2..f5eb9576has11exact receipts
+with zero missing versions; retrospective accounting does not assert execution.
