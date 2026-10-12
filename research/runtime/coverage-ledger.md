@@ -604,6 +604,21 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI43 connects native Create15 and Join16 forms from Quick Battle.
+V15 projects the original names/default provider and availability; guarded
+printable ASCII game63/user15 submissions call original edit/radio setters and
+original OK, leaving deferred networking and its viewport original. Live
+admission/defaults/availability, draft retention across eight engine refreshes,
+Cancel/Escape/window-close unwind and normal Quit pass. Private original callback
+and setter execution covers20 cases and50 transactional rejection checks;14
+related Qt protocol/lifecycle/widget checks pass. [Contract and limitations](multiplayer-menu-engine-contract.md).
+Live submission, network/error return, session list and lobby remain pending;
+original networking/graphics/audio/lifecycle are not replaced. Older shared
+menu evidence retains its historical hashes and current-source limitations.
+Exact-history review `cf23c406..ed4d70ed` finds33 committed file versions and no
+missing receipts; this is accounting, not a retrospective gate pass.
+
+
 2026-10-12 UI42 adds bounded V14 native Introduction book wiring. Region
 Grimoire entry requires the final standard-button vtable5c6bd0; the constructor's
 base5c5f24 is explicitly rejected. Semantic screen27, current section and

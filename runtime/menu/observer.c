@@ -150,6 +150,18 @@ static int install(void){
                !VirtualProtect((void*)0x5c776c,4,0x40,&old))menu_retired=1;
             else{put((void*)0x5c776c,(u32)&spell_tick);VirtualProtect((void*)0x5c776c,4,old,&unused);}
         }
+        if(menu_version>=15){
+            u32 old,other,restore;
+            if(!readable((void*)0x5c65ac,4)||get((void*)0x5c65ac)!=0x5595d0||
+               !readable((void*)0x5c661c,4)||get((void*)0x5c661c)!=0x5595d0||
+               !equal((void*)0x4af910,(u8[]){0x8b,0x44,0x24,4,0x55,0x57,0x83,0xe8},8)||
+               !equal((void*)0x4b1840,(u8[]){0x8b,0x44,0x24,4,0x53,0x55,0x56,0x83},8)||
+               !equal((void*)0x4cd0e0,(u8[]){0x57,0x8b,0x7c,0x24,8},5))menu_retired=1;
+            else if(!VirtualProtect((void*)0x5c65ac,4,0x40,&old))menu_retired=1;
+            else if(!VirtualProtect((void*)0x5c661c,4,0x40,&other)){VirtualProtect((void*)0x5c65ac,4,old,&restore);menu_retired=1;}
+            else {put((void*)0x5c65ac,(u32)&result_tick);put((void*)0x5c661c,(u32)&result_tick);
+                VirtualProtect((void*)0x5c661c,4,other,&restore);VirtualProtect((void*)0x5c65ac,4,old,&restore);}
+        }
         if(menu_version>=13){
             u32 old,other,restore;
             if(!readable((void*)0x5c64d4,4)||get((void*)0x5c64d4)!=0x5595d0||
