@@ -130,7 +130,7 @@ public:
                 media_->movieChanged=[this](bool playing){input_->suspend(playing || (commands_&&commands_->state()!=LiveCommandSession::State::Active));
                     if(liveMenus_)liveMenus_->setMediaActive(playing);
                     if(commands_)commands_->setMediaActive(playing);
-                    if(playing){menuStack_->setCurrentWidget(viewport_);statusBar()->showMessage("Playing movie. Press Escape to skip.");}
+                    if(playing){if(media_->moviePresentationRequested())menuStack_->setCurrentWidget(viewport_);statusBar()->showMessage("Playing media. Press Escape to skip.");}
                     else if(liveMenus_&&liveMenus_->running())statusBar()->showMessage("Movie finished; resuming native session.");};
                 return media_->create(path);
             };

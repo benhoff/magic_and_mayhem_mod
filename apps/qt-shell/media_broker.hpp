@@ -14,6 +14,7 @@ public:
     ~MediaBroker() override;
     bool create(const QString& path);
     bool movieActive() const{return movie_ && movie_->active();}
+    bool moviePresentationRequested() const{return moviePresented_;}
     void skipMovie();
     void stop();
     QJsonArray history() const{return history_;}
@@ -30,5 +31,6 @@ private:
     void record(unsigned id,unsigned operation,unsigned status,const QString& path,QJsonObject report={});
     GlViewport& viewport_;QString root_;bool audible_;QFile file_;uchar* map_=nullptr;
     QTimer timer_;unsigned last_=0,movieId_=0,soundId_=0,soundCancelled_=0;
+    bool moviePresented_=false;
     std::unique_ptr<NativePlayback> movie_,sound_;QJsonArray history_;
 };

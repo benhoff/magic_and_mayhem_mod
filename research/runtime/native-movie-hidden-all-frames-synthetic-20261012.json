@@ -1,0 +1,153 @@
+{
+  "origin": "synthetic_qt_media_to_pe32",
+  "architecture": "PE32 i386",
+  "live_game_validated": false,
+  "audible_output_validated": false,
+  "directsound_replaced": false,
+  "decoded": {
+    "movie": {
+      "accepted": true,
+      "audible_output_requested": false,
+      "audio_bytes": 88200,
+      "audio_device_available": true,
+      "audio_frames": 22050,
+      "audio_s16le_stereo_22050_sha256": "9e11a88efd2baf60fcd773bcfc06770fcdf7aa9bb5a6251be13a9bd6d75fb440",
+      "error": "",
+      "first_frame_quadrants": [
+        [
+          255,
+          0,
+          0,
+          255
+        ],
+        [
+          0,
+          255,
+          0,
+          255
+        ],
+        [
+          0,
+          0,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255,
+          255
+        ]
+      ],
+      "first_frame_rgba_sha256": "781098a7070c20767b54feddb87e880f4aadfe47742caf741c202fdb5b9ff8a4",
+      "height": 48,
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-media/run-uhs6q7w3/assets/FMV/Test.avi",
+      "pixel_format": 10,
+      "presented_video_frames": 10,
+      "result": 3,
+      "video_frames": 10,
+      "video_presentation_requested": true,
+      "video_rgba_sha256": "09080cec3cc2d6bfd77b0ce648960a5fd38b761dba32e309002ae6137b607f56",
+      "width": 64
+    },
+    "sound": {
+      "accepted": true,
+      "audible_output_requested": false,
+      "audio_bytes": 88200,
+      "audio_device_available": true,
+      "audio_frames": 22050,
+      "audio_s16le_stereo_22050_sha256": "9e11a88efd2baf60fcd773bcfc06770fcdf7aa9bb5a6251be13a9bd6d75fb440",
+      "error": "",
+      "first_frame_quadrants": [],
+      "first_frame_rgba_sha256": "",
+      "height": -1,
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-media/run-uhs6q7w3/assets/Sounds/Test.wav",
+      "pixel_format": 0,
+      "presented_video_frames": 0,
+      "result": 3,
+      "video_frames": 0,
+      "video_presentation_requested": true,
+      "video_rgba_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "width": -1
+    },
+    "missing": {
+      "accepted": false,
+      "audible_output_requested": false,
+      "audio_bytes": 0,
+      "audio_device_available": true,
+      "audio_frames": 0,
+      "audio_s16le_stereo_22050_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "Could not open file",
+      "first_frame_quadrants": [],
+      "first_frame_rgba_sha256": "",
+      "height": -1,
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-media/run-uhs6q7w3/assets/FMV/Missing.avi",
+      "pixel_format": 0,
+      "presented_video_frames": 0,
+      "result": 5,
+      "video_frames": 0,
+      "video_presentation_requested": true,
+      "video_rgba_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "width": -1
+    }
+  },
+  "checks": [
+    "exact_movie_rgba",
+    "exact_movie_pcm",
+    "exact_wav_pcm",
+    "missing_media",
+    "movie_complete",
+    "movie_skip",
+    "nonzero_control_consumes_exact_video_pcm_without_presentation",
+    "control_low_byte_wrap",
+    "async_sound",
+    "loop_stop",
+    "nostop_busy",
+    "path_traversal_rejected",
+    "unsupported_sound_fallback",
+    "native_to_legacy_sound_replacement",
+    "stale_host_fallback",
+    "last_error",
+    "fastcall_trampoline",
+    "prologue_guard"
+  ],
+  "dll_sha256": "0f2787a61fb30c6f0ba21da29718718d158d006a2aa9810e21e09d8dbd267bf4",
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "HOST.native-movie-hidden-video",
+      "contract_sha256": "55158872699d48daed2f6c09e4aa255172e3007c66678a0db08a5ed0b924d540",
+      "scenarios": {
+        "native-movie-hidden-video-synthetic-20261012": "7b709cd8d1d251f6659bb9382089221b985618c00ef285c66d951830c2e07d22"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "27db9a256ca4788724bf16b00811b87691e0db56276d56118f559f1a5aa0a005",
+    "apps/qt-shell/main.cpp": "f0d6801758fff5b32d58ac62d1dcaa62abf6017197c60ff922eb9ff664d4c98f",
+    "apps/qt-shell/media_broker.cpp": "65c05b7643b7a05d779b6fad9ffd62415cb0b8869d7a7f941391bd0886bdaf1d",
+    "apps/qt-shell/media_broker.hpp": "daa71e789ba39d7a2b68ca48e57cc88459dab5c7f148731c6216bfdbb3855643",
+    "apps/qt-shell/media_cli.cpp": "51c606632683b95e375e0b67d71845066ca28e502024d07f1067903f778d5555",
+    "apps/qt-shell/media_cli.hpp": "74dee678693f256a06c538824abfce1c60e443a4c55aad6c6b01ad8f106a2e01",
+    "apps/qt-shell/native_playback.cpp": "d8487c330c9280f5df225204e41ca3e6019dce2257beca0996987566e726982d",
+    "apps/qt-shell/native_playback.hpp": "ff482a8ff98996acf7bcf7962a8e1c04011db8c1f8a3926617dcde4a6c4193ae",
+    "protocols/include/mnm/media_v1.h": "c324fc76595c105d38c02c5ff6e714331e89d636f9ce80fa2ee412d782919cc0",
+    "protocols/python/mnm_protocols/media_v1.py": "858b2e7e4dd3def53006978c8db0b257883551ab6977254850b6ed11d1b3c798",
+    "protocols/schemas/media-v1.json": "df6177c53ef571d4cfc14d6424585df2fbf24e624d1dcaee5022c185a6893670",
+    "renderer/CMakeLists.txt": "99dcd34db3b9d95b1c62d1a23b2391a44f7805506666ddc2738a9eddff1e424c",
+    "runtime/render/bridge.c": "44ea78287afc585691e5805ca5158a2a23602870133fda328d0eaf3d0fe26acb",
+    "runtime/render/media_bridge.h": "a160f0b7bdb9c3bc2d4f299f36cc3ed4e8d655f29e2b7ae59d91f09511950af4",
+    "runtime/render/media_selftest.h": "c7795effbf1172168ae59554755332bbf3680b00d94be2733c42e20b38518276",
+    "tools/build-render-bridge.py": "dea919101db686d200c543bb5c381d0983d941c13d0e5fa2efa6143ec8571321",
+    "tools/run-menu-observer.py": "ef3caca4c16b0f4faf730a4e2ac55645464c305b0b2227069da91421e902f34d",
+    "tools/test-native-media.py": "fef4efc4b57f357c5874ab40a2f6eb231766143e48bda0b3263e12b858a346de"
+  },
+  "sources_stable": true,
+  "inputs": {
+    "assets/FMV/Skip.avi": "adf4b6351264fd9fb5d710b0238aace5422d359c68768e3e9c604e2a684e426e",
+    "assets/FMV/Test.avi": "adf4b6351264fd9fb5d710b0238aace5422d359c68768e3e9c604e2a684e426e",
+    "assets/Sounds/Test.wav": "ee9af05bf19b7b458206aedb5ab7b3a231f57c10cea4620e0337feb37b82db71"
+  },
+  "inputs_stable": true
+}
