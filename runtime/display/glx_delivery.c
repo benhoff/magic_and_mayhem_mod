@@ -1,4 +1,6 @@
+#ifndef MNM_X11_PROTOCOL_VERSION
 #define MNM_X11_PROTOCOL_VERSION 2
+#endif
 #include "x11_delivery.c"
 #include <GL/glx.h>
 /* Each alias keeps the exact original function returned by the real resolver. */
@@ -65,6 +67,10 @@ static void* wrapped_symbol(void* handle,const char* name){
  else if(!strcmp(name,"glXGetProcAddressARB")||!strcmp(name,"glXGetProcAddress")){
   unsigned which=!strcmp(name,"glXGetProcAddress");Proc fn;memcpy(&fn,&ptr,sizeof(fn));fn=bind_proc(which,fn);memcpy(&ptr,&fn,sizeof(ptr));
  }
+#ifdef MNM_EGL_DELIVERY
+ else if(!strcmp(name,"eglSwapBuffers")){EglSwap fn;memcpy(&fn,&ptr,sizeof(fn));fn=bind_egl_swap(fn);memcpy(&ptr,&fn,sizeof(ptr));}
+ else if(!strcmp(name,"eglGetProcAddress")){EglProc fn;memcpy(&fn,&ptr,sizeof(fn));fn=bind_egl_proc(fn);memcpy(&ptr,&fn,sizeof(ptr));}
+#endif
  errno=saved;return ptr;
 }
 /* Assembly tail forwarding preserves caller-relative RTLD_NEXT semantics.
@@ -72,6 +78,9 @@ static void* wrapped_symbol(void* handle,const char* name){
 __attribute__((visibility("hidden"))) Symbol mnm_delivery_symbol_target(void* handle,const char* name){
  int saved=errno;Symbol target=symbol_resolver();
  if(handle!=RTLD_NEXT&&(!strcmp(name,"glXSwapBuffers")||!strcmp(name,"glXGetProcAddressARB")||!strcmp(name,"glXGetProcAddress")))target=wrapped_symbol;
+#ifdef MNM_EGL_DELIVERY
+ if(handle!=RTLD_NEXT&&(!strcmp(name,"eglSwapBuffers")||!strcmp(name,"eglGetProcAddress")))target=wrapped_symbol;
+#endif
  errno=saved;return target;
 }
 void glXSwapBuffers(Display* display,GLXDrawable drawable){

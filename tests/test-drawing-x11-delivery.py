@@ -36,4 +36,14 @@ class Delivery(unittest.TestCase):
   for at,value in ((40,0),(40,17),(44,1),(28,1)):
    broken=bytearray(returned);struct.pack_into('<I',broken,at,value)
    with self.assertRaises(ValueError):decode_delivery(bytes(h)+entry+broken)
+ def test_egl_version_handles_and_boolean(self):
+  h=bytearray(header());struct.pack_into('<I',h,8,3)
+  entry=bytearray(row());returned=bytearray(row(2,time=11,result=1))
+  for item in (entry,returned):struct.pack_into('<I',item,8,11);struct.pack_into('<3I',item,36,1,2,1)
+  self.assertEqual(decode_delivery(bytes(h)+entry+returned)['methods'],{'eglSwapBuffers':1})
+  older=bytearray(h);struct.pack_into('<I',older,8,2)
+  with self.assertRaises(ValueError):decode_delivery(bytes(older)+entry+returned)
+  for at,value in ((36,0),(36,257),(40,0),(44,0),(44,17),(48,1),(28,2)):
+   broken=bytearray(returned);struct.pack_into('<I',broken,at,value)
+   with self.assertRaises(ValueError):decode_delivery(bytes(h)+entry+broken)
 if __name__=='__main__':unittest.main()

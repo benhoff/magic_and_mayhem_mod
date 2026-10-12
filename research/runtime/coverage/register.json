@@ -20184,7 +20184,8 @@
         "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
         "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012"
+        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -37735,7 +37736,8 @@
         "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
         "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012"
+        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42111,7 +42113,8 @@
         "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
         "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012"
+        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42214,7 +42217,8 @@
         "DRAW02.draw02-vertical-bar-cpu-analysis-01-static-20261012",
         "DRAW02.draw02-x11-delivery-prediction-01-native_integration-20261012",
         "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012",
-        "DRAW02.draw02-glx-delivery-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-glx-delivery-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-egl-delivery-prediction-01-native-integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42287,7 +42291,8 @@
         "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
         "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012"
+        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42335,7 +42340,8 @@
         "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012",
         "DRAW02.draw02-glx-x11-regression-01-native_integration-20261012",
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012"
+        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42390,7 +42396,8 @@
         "DRAW02.draw02-glx-delivery-fixture-07-native_integration-20261012",
         "DRAW02.draw02-glx-delivery-aliases-01-native_integration-20261012",
         "DRAW02.draw02-glx-delivery-original-01-live_observation-20261012",
-        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012"
+        "DRAW02.draw02-glx-delivery-original-02-live_observation-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42401,6 +42408,52 @@
       },
       "remaining_gaps": [
         "Actual fixture07passes five direct/resolved GLX routes and control source/front output,errno/missing symbol;six journal guards pass. Independent alias fixture01checks16exact providers and both seventeenth-alias refusals. Original01/02reach zero ordinary GLX swaps despite observer present in Chaos.exe. Process Main/World snapshots show EGL modules; actual EGL dispatch is the next unproved route. RTLD_NEXT selected lookups,alternate swaps,loader error-state baseline,function-pointer identity,module lifetimes and complete source/physical causality remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-egl-delivery-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded reached EGL swap dispatch metadata",
+      "scope": "Pending opt-in EGL swap observation through direct ELF,named symbol and EGL proc-address dispatch. Sixteen exact original-function aliases and local opaque display/surface diagnostic IDs; original Boolean/errno and EGL error state are not queried or rewritten by the observer. No EGL/GL/image calls from recorder,no pointers or output bytes in metadata. Handle generations,module/loader/caller identity and alternate swap APIs remain unproved; no complete source/physical causal frame or replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-egl-delivery.md",
+        "research/formats/drawing-egl-delivery-v3.md"
+      ],
+      "implementation": [
+        "runtime/display/egl_delivery.c"
+      ],
+      "tests": [
+        "tests/drawing-egl-delivery-test.c",
+        "tools/test-drawing-egl-delivery.py",
+        "tests/test-drawing-x11-delivery.py"
+      ],
+      "validation_dependencies": [
+        "runtime/display/glx_delivery.c",
+        "runtime/display/glx_symbol.S",
+        "runtime/display/x11_delivery.c",
+        "tools/build-drawing-x11-delivery.py",
+        "tools/drawing_x11_delivery.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing_process_snapshot.py",
+        "tools/drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-egl-delivery-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-egl-delivery-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh actual EGL fixture02passes four lookup/swap routes,control source pixels,Boolean/errno/EGL error/missing symbol; seven decoder methods pass. Original01records737successful EGL swaps on one Unix worker thread versus559API physical witnesses,with no pending selected calls. Reached EGL is observed,but exact physical sample times/source submission mapping,handle generations,module/caller state,alternate swaps,all routes and complete journeys remain pending."
       ]
     }
   ],
@@ -89547,6 +89600,70 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-egl-delivery-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual private Xvfb EGL window context,direct/named/proc/default-scope swaps with identical control known source pixels,Boolean/errno/EGL error and missing-symbol outcome. No original game,full handle generation/lifetime,alternate swaps or physical-source causality.",
+      "record": "research/runtime/draw02-egl-delivery-fixture-01.json",
+      "sha256": "ced249b22c6bc947df9d8d5f3395f2b20be3216c885dbc3ae0a1029b2a3d0b0c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-egl-delivery-fixture-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual private Xvfb EGL window context,direct/named/proc/default-scope swaps with identical control known source pixels,Boolean/errno/EGL error and missing-symbol outcome. No original game,full handle generation/lifetime,alternate swaps or physical-source causality.",
+      "record": "research/runtime/draw02-egl-delivery-fixture-02.json",
+      "sha256": "5cc3c46ac17e94c1ab30f7c8136a3522a48d92abd5d59c66ce55924413b90645",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded original-active reached EGL swap/API physical/source observations; no complete source/physical causal frame or global route proof.",
+      "record": "research/runtime/draw02-egl-delivery-original-01.json",
+      "sha256": "b87d7accdd93516b0cd2f46d4c52096a7c528266a3416e9c817f19cb5b058e5e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-egl-delivery-prediction-01-native-integration-20261012",
+      "kind": "native_integration",
+      "scope": "Source-only native composed-canvas prediction of an explicitly restricted API physical cohort. Every excluded witness remains listed; stable metadata/zero differences do not prove all original writers, immutable storage, complete presented journeys, driver recovery or replacement.",
+      "record": "research/runtime/draw02-egl-delivery-prediction-01.json",
+      "sha256": "ad5e6d913408bab737adeb14c17419f2cbc8020c2a02347bce9e5b1990f73fb0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100227,7 +100344,8 @@
         "DRAW02.draw02-vertical-bar-cpu-analysis-01-static-20261012",
         "DRAW02.draw02-x11-delivery-prediction-01-native_integration-20261012",
         "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012",
-        "DRAW02.draw02-glx-delivery-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-glx-delivery-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-egl-delivery-prediction-01-native-integration-20261012"
       ]
     },
     {
@@ -100347,6 +100465,44 @@
       ],
       "evidence": [
         "DRAW02.draw02-glx-delivery-aliases-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.egl-delivery-forwarding",
+      "level": "headless",
+      "scope": "Private Xvfb actual EGL window context checks direct/dlsym/proc swap dispatch,known source buffer and unchanged control output/Boolean/errno/EGL error/missing symbol. No original game,full handle lifetime or physical-source binding.",
+      "behaviors": [
+        "NR.drawing-egl-delivery-observation"
+      ],
+      "tests": [
+        "tests/drawing-egl-delivery-test.c",
+        "tools/test-drawing-egl-delivery.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-egl-delivery-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-egl-delivery-fixture-02-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-egl-delivery-quick",
+      "level": "live_observation",
+      "scope": "Pinned original-active Quick Battle with selected EGL swap metadata,private module snapshots and full API physical/source witnesses. Opaque IDs are local only; complete source/display causality,lifetime,all routes and semantic journeys unproved.",
+      "behaviors": [
+        "NR.drawing-egl-delivery-observation",
+        "NR.drawing-glx-delivery-observation",
+        "NR.drawing-x11-delivery-observation",
+        "NR.drawing-interactive-acquisition",
+        "NR.drawing-producer-source-points",
+        "RS.canvas-producer-sequence",
+        "RS.canvas-vertical-bar"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json",
+        "tools/drawing_x11_delivery.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-egl-delivery-original-01-live_observation-20261012"
       ]
     }
   ],
@@ -100721,8 +100877,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-glx-delivery-20261012.json",
-    "sha256": "5d9b5bc5043de2e49f8149f03942523a4bf91f71b26167a805786e4202a96b62"
+    "path": "research/runtime/coverage/source-index-draw02-egl-delivery-20261012.json",
+    "sha256": "f23386dcb56afdca0d08f549cd238e4bf6c5e772b90e80b98b888a9e6a00270d"
   },
   "claim_bindings_required": true
 }
