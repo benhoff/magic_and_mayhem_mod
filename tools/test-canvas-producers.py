@@ -5,7 +5,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
+ if a.report and a.report.exists():p.error('Refusing evidence overwrite')
  spec=importlib.util.spec_from_file_location('inspector',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
  paths=['runtime/scene/canvas_producers.c','runtime/scene/canvas_producers.S','tests/canvas-producers-test.c','tests/canvas-startup-call.S','tools/test-canvas-producers.py','tools/inspect-canvas-producers.py','runtime/shadow/win32_min.h','protocols/include/mnm/canvas_producers_v1.h','tools/build-scene-observer.py','runtime/scene/world_producer_bypass.c','protocols/include/mnm/world_producer_bypass_v1.h','tests/world-producer-bypass-call.S','runtime/scene/world_raster_callers.h']
  paths += ['protocols/include/mnm/canvas_producers_v3.h','protocols/include/mnm/canvas_producers_v2.h','runtime/scene/world_raster_batch.c','protocols/include/mnm/world_raster_batch_v3.h']
@@ -15,17 +16,23 @@ def main():
   for name,h in claims['sources'].items():
    if sha(ROOT/name)!=h:raise ValueError('Changed prospective source: '+name)
    sources[name]=h
+ paths += ['runtime/scene/producer_trace_guard.h','runtime/scene/drawing_publication.h','runtime/scene/drawing_publication.S','runtime/scene/drawing_physical.h','runtime/scene/glyph_live.c','runtime/scene/glyph_live.h','runtime/scene/glyph_leave.S','runtime/scene/glyph_route.c','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_x87.S','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.h']
+ sources.update({name:sha(ROOT/name) for name in paths})
  parent=ROOT/'working/tests/canvas-producers';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));capture=out/'capture';capture.mkdir();print(out,flush=True)
  env={**{k:v for k,v in os.environ.items() if not k.startswith('MNM_')},'WINEPREFIX':str(ROOT/'working/tests/scene-selftest-wine'),'WINEDEBUG':'-all','MNM_CANVAS_PRODUCERS':'1','MNM_SCENE_DIR':'Z:'+str(capture).replace('/','\\'),'MNM_SCENE_SAMPLES':'1'}
  env.pop('MNM_CANVAS_STARTUP',None);env.pop('MNM_SCENE_WORLD',None)
+ if a.prefix_template:
+  subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(out/'wineprefix')],check=True)
+  env['WINEPREFIX']=str(out/'wineprefix')
  def run(name,command):
   with (out/(name+'.log')).open('x') as log:subprocess.run([str(x) for x in command],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
  run('bridge-build',['python3',ROOT/'tools/build-scene-observer.py','--selftest']);build=ROOT/'working/build/scene-observer-selftest'
  objects=[]
  for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S']:
   obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',ROOT/name,'-o',obj])
- run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,build/'kernel32.lib'])
+ run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
+ if (capture/'producer-fixture-pass-0000.bin').read_bytes()!=b'MNMPFP01'+struct.pack('<6I',1,53,1,1,1,1):raise ValueError('Fixture completion marker missing or changed')
  budget_negative=[]
  for budget in ('0','3073','99999999',''):
   trial=out/('budget-'+(budget or 'empty'));trial.mkdir();trial_env={**env,'MNM_CANVAS_ORACLE_MIB':budget,'MNM_SCENE_DIR':'Z:'+str(trial).replace('/','\\')}
@@ -64,7 +71,8 @@ def main():
   except ValueError:refused+=1
   else:raise AssertionError('Malformed producer stream accepted')
  assert sources=={name:sha(ROOT/name) for name in sources}
- report={'success':True,'sources':sources,'sources_stable':True,'forwarded_entries':52,'native_bypass_entries':1,'complete_raster_bypass_entries':13,'complete_raster_ax_and_cleanup_preserved':True,'outside_world_raster_forwarded':True,'native_bypass_state_preserved':True,'malformed_bypass_refusals':2,'nested_jpeg_lock_forwarded':True,'register_flags_float_error_preserved':True,'signature_refusal_before_mutation':True,'malformed_refusals':refused,'original_renderer_executed':False,'scope':'Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues, all52hook sites, post-close calls, full register/flags/x87/SSE/LastError and atomic signature refusal. No original pixel equivalence.'}
+ report={'success':True,'sources':sources,'sources_stable':True,'forwarded_entries':53,'native_bypass_entries':1,'complete_raster_bypass_entries':13,'complete_raster_ax_and_cleanup_preserved':True,'outside_world_raster_forwarded':True,'native_bypass_state_preserved':True,'malformed_bypass_refusals':2,'nested_jpeg_lock_forwarded':True,'register_flags_float_error_preserved':True,'signature_refusal_before_mutation':True,'malformed_refusals':refused,'original_renderer_executed':False,'scope':'Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues, all52hook sites, post-close calls, full register/flags/x87/SSE/LastError and atomic signature refusal. No original pixel equivalence.'}
+ report.update(exact_fixture_completion_marker=True,colour_rect_entry_forwarded=True,actual_producer_hook_sites=53)
  report.update(buffered_journal_byte_equality=True,buffered_journal_capacity=65536,buffered_journal_flush_failure_refused=True)
  report.update(batch_body_skips=13,batch_canvas_writebacks=1,batch_prescribed_ax_cleanup=True,batch_guard_refusals=negative,malformed_batch_reply_refusals=3,batch_original_canvas_unwritten_before_return=True,batch_hud_forwarded_after_return=True)
  report.update(oracle_budget_invalid_values_refused=7,oracle_budget_max_mib=3072,oracle_budget_default_mib=1024,oracle_budget_crosses_old_ceiling=True,oracle_budget_exact_ceiling_accepted=True,oracle_budget_over_ceiling_refusals=3,oracle_budget_counter_underflow_refused=True)
@@ -72,5 +80,7 @@ def main():
  report['minimap_environment_refused_before_hook_mutation']=owned_negative
  report['minimap_fixture_refused_before_hook_mutation']=fixture_negative
  if claims:report['claims']=claims['claims']
+ if a.report:
+  a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n')
  (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
 if __name__=='__main__':main()

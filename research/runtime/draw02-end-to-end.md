@@ -207,3 +207,37 @@ make the344conservative competing-mutator windows complete presented frames.
 Steps3–7 remain in order and pending; all47journey/21operation requirements stay
 open. Source-only analyzer changes retain older original execution hashes and
 explicitly do not assert current-source original validation.
+
+## Step 2 producer recorder checkpoint (2026-10-12 UTC)
+
+Temporal lifetime work is committed as`38979ff`, with staged gate and hook passed.
+The native recorder policy is now separate from recovered producer behavior.
+Opt-in`MNM_DRAW02_PRODUCER_BIND=1`serializes recorder entry/return/close state and
+keeps primitive nesting per thread. No scope holds the mutex across an original
+body;32thread slots/wrong-owner/exhaustion and incompatible replacement configs
+remain explicit native limits/refusals. Original source bytes are not locked by
+this policy. Actual original trace-mode/source/physical coupling is pending.
+
+Final-source `draw02-producer-trace-fixture-03.json` passes seven actual PE32
+Win32 thread/mutex/flag cases, independent nesting,2000serialized increments,
+LastError and bounded exhaustion. Earlier passing helper runs remain historical.
+`draw02-producer-legacy-fixture-04.json` passes all53compatible synthetic producer
+entry sites, registers/flags/x87/SSE/LastError and the existing controlled raster/
+batch/budget/malformed cases. Its new exact positive completion marker prevents
+exit0after an externally stopped Wine process from implying completed checks.
+
+The legacy fixture needed existing glyph/publication link dependencies and a
+correct entry52synthetic tail. The rotated tail faulted at0x7; the first repair
+misread the stack allocation as0x18and faulted at0x4. Matching the actual0x24
+allocation/callee-pop8 resolves it. All failures/logs/private prefixes are retained;
+only failed private process groups were stopped. No original or production failure
+is inferred. The repaired runner can clone the known-working prefix and retain a
+new report path. Guarded storage remains within the1280/100GiB policy, roughly
+784GiBworking/542GiBfree at the final preflight.
+
+Reassessment: step2 next adds portable source-point identities and owned producer
+prefix bindings to original API acquisition, verifies their pending/overlap/
+lifetime refusal conditions and then compares bounded native source replay. This
+synchronization increment does not complete step2 or any47/21requirement; steps3–7
+remain ordered and pending. Reviewed ab99f46..38979ffcontains13matching committed
+file-version receipts and zero gaps, independently from uncommitted changes.

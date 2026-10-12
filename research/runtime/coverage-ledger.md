@@ -6782,3 +6782,16 @@ fresh PE32 eight-competing-thread forwarding fixture pass. This is offline
 analysis and synthetic native validation, not new original execution, shared
 backing alias completeness, raw CPU write/source ownership, physical frame
 causality, native pixels or any complete journey/operation gate.
+
+### DRAW02 producer recorder policy foundation (2026-10-12)
+
+The separate [native recorder policy](draw02-producer-recorder.md) serializes
+opt-in original-active recorder state and uses per-thread primitive nesting, with
+32slots and explicit exhaustion/incompatible-mode refusal. Actual PE32 helper
+threads pass seven cases/2000increments/LastError without holding the recorder
+mutex across simulated original bodies. Default-mode53site producer ABI and
+controlled raster/batch/budget/refusal checks pass with an exact completion marker.
+Prior missing link objects and two incorrect synthetic entry52tails are retained
+as fixture failures. Original trace-mode source/physical coupling, immutable
+producers and coherent presented frames remain pending; no14journey/21operation
+completion, original pixels, actual driver equivalence or replacement is claimed.

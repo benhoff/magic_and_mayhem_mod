@@ -19998,7 +19998,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Owned pre-World/menu/loading/HUD producer requests and completion checkpoints",
-      "scope": "Bounded selected RGB565 surface create/release/lock/bind/clip, full/rectangle fills, source-wrapper-to-destination-wrapper copies, JPEG filename inputs, tinted font RLE coverage and selected raster inputs, process-local logical identities, every observed queue boundary and diagnostic completed canvases. Capture original pixel outputs only as separate oracles; no output seeding. Unknown writers, unavailable samples, allocation failures, format changes and incomplete producer chains remain explicit gaps. Selected panel bevel58ddf0, border highlight58d8c0 and rectangular whitewash58e2c0 retain destination dependence; RGB-add545c10 is instrumented as a discovered branch but requires an observed scenario. PCX source54b2d0 captures owned encoded bytes and its effective RGB palette for auxiliary initialization. Closed bitmap58d240 source header/palette/rows, rectangular opaque58c360 and opaque58c4a0 copies, direct-word HUD589c90 are observed separately. Bitmap file58d280 inputs initialize HUD icons; in-memory bitmap58d240 remains a discovered separately instrumented branch. Selected direct-word596cb8, opaque rectangle58c6a0 and keyed rectangle58c8a0/58ca90 close additional menu/cursor/deferred-copy branches. Additional wrapper BMP58d1a0 and whole/rectangular copy variants58cbc0/58cd50/58cf20; Diagnostic oracle storage defaults to1GiB with a strict opt-in1..3072MiB allowance; fail11 remains mandatory at the byte/count ceiling, invalid settings refuse before hook mutation. This is native diagnostic policy, not an original engine limit. Selected fade58ed80 halves packed RGB565 words; two-rectangle keyed58cbc0 admits equal extents only and refuses stretch. BMP DC draws clip source rows to the destination. Minimap553a40 owns terrain-cell source colors, grid dimensions/center and logical destination placement; orientation0, even grid width only, captured source visibility and native prior auxiliary canvas for hidden cells; markers and other orientations pending. Selected orientation0 camera outline5527a0, cell marker5536c0 and visible creature markers553850 close source-derived point/color requests; coordinates resolve from original geometry/visibility source state, never sampled destination words. Native replay composes those point requests; full native minimap simulation/visibility generation remains outside this contract. The separately registered bounded native bypass emits selected source requests at entry with incoming EAX; mixed post-bypass destination checkpoints are not original-only oracles. Original-active producer observation and the new native-writeback branch retain separate validation scopes.",
+      "scope": "Bounded selected RGB565 surface create/release/lock/bind/clip, full/rectangle fills, source-wrapper-to-destination-wrapper copies, JPEG filename inputs, tinted font RLE coverage and selected raster inputs, process-local logical identities, every observed queue boundary and diagnostic completed canvases. Capture original pixel outputs only as separate oracles; no output seeding. Unknown writers, unavailable samples, allocation failures, format changes and incomplete producer chains remain explicit gaps. Selected panel bevel58ddf0, border highlight58d8c0 and rectangular whitewash58e2c0 retain destination dependence; RGB-add545c10 is instrumented as a discovered branch but requires an observed scenario. PCX source54b2d0 captures owned encoded bytes and its effective RGB palette for auxiliary initialization. Closed bitmap58d240 source header/palette/rows, rectangular opaque58c360 and opaque58c4a0 copies, direct-word HUD589c90 are observed separately. Bitmap file58d280 inputs initialize HUD icons; in-memory bitmap58d240 remains a discovered separately instrumented branch. Selected direct-word596cb8, opaque rectangle58c6a0 and keyed rectangle58c8a0/58ca90 close additional menu/cursor/deferred-copy branches. Additional wrapper BMP58d1a0 and whole/rectangular copy variants58cbc0/58cd50/58cf20; Diagnostic oracle storage defaults to1GiB with a strict opt-in1..3072MiB allowance; fail11 remains mandatory at the byte/count ceiling, invalid settings refuse before hook mutation. This is native diagnostic policy, not an original engine limit. Selected fade58ed80 halves packed RGB565 words; two-rectangle keyed58cbc0 admits equal extents only and refuses stretch. BMP DC draws clip source rows to the destination. Minimap553a40 owns terrain-cell source colors, grid dimensions/center and logical destination placement; orientation0, even grid width only, captured source visibility and native prior auxiliary canvas for hidden cells; markers and other orientations pending. Selected orientation0 camera outline5527a0, cell marker5536c0 and visible creature markers553850 close source-derived point/color requests; coordinates resolve from original geometry/visibility source state, never sampled destination words. Native replay composes those point requests; full native minimap simulation/visibility generation remains outside this contract. The separately registered bounded native bypass emits selected source requests at entry with incoming EAX; mixed post-bypass destination checkpoints are not original-only oracles. Original-active producer observation and the new native-writeback branch retain separate validation scopes. Pending opt-in original-active producer binding mode serializes recorder entry/return/close state without holding a lock across original bodies. Primitive nesting is local to each observed thread;32thread slots and wrong-owner/exhaustion refusal are diagnostic limits. Native raster/batch/continuous/opaque-publication and glyph replacement configurations are incompatible and refused before producer hook mutation. This records native diagnostic policy only, not immutable source storage or complete presentation causality.",
       "confidence": "provisional",
       "original": [
         {
@@ -20143,25 +20143,36 @@
       "documents": [
         "research/runtime/native-canvas-producers.md",
         "research/formats/canvas-producers-v1.md",
-        "research/runtime/native-world-producer-handoff.md"
+        "research/runtime/native-world-producer-handoff.md",
+        "research/runtime/draw02-producer-recorder.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
         "runtime/scene/canvas_producers.S",
         "runtime/scene/observer.c",
         "tools/capture-scene-game.py",
-        "tools/inspect-canvas-producers.py"
+        "tools/inspect-canvas-producers.py",
+        "runtime/scene/producer_trace_guard.h"
       ],
       "tests": [
         "tests/canvas-producers-test.c",
         "tests/canvas-startup-call.S",
-        "tools/test-canvas-producers.py"
+        "tools/test-canvas-producers.py",
+        "tests/drawing-producer-trace-test.c",
+        "tools/test-drawing-producer-trace.py"
       ],
       "evidence": [
         "RS.canvas-producers.forwarding-20261008",
         "NR.canvas-producers.live-20261008",
         "RS.canvas-producers.negative-index-20261008",
-        "RS.canvas-producers.oracle-budget-20261008"
+        "RS.canvas-producers.oracle-budget-20261008",
+        "NR.producer-recorder-thread-policy.native-20261012",
+        "RS.canvas-producer-sequence.trace-addition-legacy-native-20261012",
+        "RS.canvas-producer-sequence.trace-link-refusal-20261012",
+        "RS.canvas-producer-sequence.trace-tail-refusal-02-20261012",
+        "RS.canvas-producer-sequence.trace-tail-refusal-03-20261012",
+        "NR.producer-recorder-thread-policy.development-01-20261012",
+        "NR.producer-recorder-thread-policy.development-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -20187,7 +20198,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code."
+      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
+      "remaining_gaps": [
+        "New opt-in producer recorder synchronization and per-thread nesting require PE32 ownership/legacy forwarding checks and original source/physical coupling. Recorder serialization does not synchronize original bytes or assign a coherent physical frame."
+      ]
     },
     {
       "id": "NR.canvas-producer-replay",
@@ -41965,6 +41979,44 @@
       ],
       "remaining_gaps": [
         "Complete target/pointer/predicate/consumer semantics and isolated original comparison unproved. Native prepared-phase repetition is a separate policy experiment; missing-row causality remains a hypothesis."
+      ]
+    },
+    {
+      "id": "NR.producer-recorder-thread-policy",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in original-active producer recorder serialization and thread nesting",
+      "scope": "Intentional opt-in recorder synchronization through Win32 critical sections with per-thread primitive nesting and32local thread slots. Recorder entry/return/close scopes release before original bodies; original bytes are not synchronized. Slot exhaustion/wrong return owner refuse with98; malformed flags and incompatible raster/batch/continuous/opaque-publication/glyph configurations refuse. Actual PE32 helper concurrency and legacy default53-site ABI/forwarding are separate from pending original trace-mode source/physical coupling. No immutable producers, native pixels, global frames, driver equivalence or original suppression.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-producer-recorder.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/scene/canvas_producers.c"
+      ],
+      "tests": [
+        "tests/drawing-producer-trace-test.c",
+        "tools/test-drawing-producer-trace.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py"
+      ],
+      "evidence": [
+        "NR.producer-recorder-thread-policy.native-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual opt-in producer entry/return source-state and physical API binding remains pending. Recorder locking does not own original source bytes, deduce unknown writers or synchronize scanout."
       ]
     }
   ],
@@ -88242,6 +88294,163 @@
           "equals": 8
         }
       ]
+    },
+    {
+      "id": "NR.producer-recorder-thread-policy.native-20261012",
+      "kind": "native_integration",
+      "scope": "Final actual PE32 two-thread recorder helper,2000increments/independent nesting/LastError,32slot/malformed flag refusals; no original source, producer trampoline or physical proof.",
+      "record": "research/runtime/draw02-producer-trace-fixture-03.json",
+      "sha256": "bbfc9c244fefab461819771c11a38c1377c3f148c0bc0cd11646ac712f9c393c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/shared_increments",
+          "equals": 2000
+        },
+        {
+          "pointer": "/thread_local_primitive_depth",
+          "equals": true
+        },
+        {
+          "pointer": "/mutex_released_across_simulated_original_body",
+          "equals": true
+        },
+        {
+          "pointer": "/slot_exhaustion_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence.trace-addition-legacy-native-20261012",
+      "kind": "native_integration",
+      "scope": "Final default-mode53compatible synthetic PE32 entries/return/ABI, exact positive marker, existing raster/batch, budget and malformed guards after current glyph/publication link and entry52tail repair. No original game or trace-mode source/pixels.",
+      "record": "research/runtime/draw02-producer-legacy-fixture-04.json",
+      "sha256": "6826856deed693dc892cfe608119e8c1e2122e0c52201c1c7dc670499a085291",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/forwarded_entries",
+          "equals": 53
+        },
+        {
+          "pointer": "/exact_fixture_completion_marker",
+          "equals": true
+        },
+        {
+          "pointer": "/register_flags_float_error_preserved",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence.trace-link-refusal-20261012",
+      "kind": "native_integration",
+      "scope": "Retained pre-execution existing-fixture glyph/publication link refusal.",
+      "record": "research/runtime/draw02-producer-legacy-link-refusal-01.json",
+      "sha256": "b2da8c7e374e28898b6fd11409259275f133839bad38b18295964bbc5af806ad",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/fixture_execution_started",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence.trace-tail-refusal-02-20261012",
+      "kind": "native_integration",
+      "scope": "Retained synthetic entry52incompatible rotated tail fault0x7 and private cleanup; original game not executed.",
+      "record": "research/runtime/draw02-producer-legacy-tail-refusal-02.json",
+      "sha256": "67597b8d040aa0bf1385789cb80d183f06f7dba66c540cbc91de88950096c4d0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence.trace-tail-refusal-03-20261012",
+      "kind": "native_integration",
+      "scope": "Retained first tail repair used0x18rather than actual0x24 allocation, fault0x4/private cleanup; no production engine failure claim.",
+      "record": "research/runtime/draw02-producer-legacy-tail-refusal-03.json",
+      "sha256": "7da753fc110752ae44bd898e7d13aea56b8af720a101ee026740d209cd002e12",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.producer-recorder-thread-policy.development-01-20261012",
+      "kind": "native_integration",
+      "scope": "Retained successful development helper fixture; former source/scope fingerprints remain historical.",
+      "record": "research/runtime/draw02-producer-trace-fixture-01.json",
+      "sha256": "b4b3e6fbdc5b8ba0c6153fb4f1e5b6977adb9864254137b3785ebe6ac2ec5beb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.producer-recorder-thread-policy.development-02-20261012",
+      "kind": "native_integration",
+      "scope": "Retained successful development helper fixture; former source/scope fingerprints remain historical.",
+      "record": "research/runtime/draw02-producer-trace-fixture-02.json",
+      "sha256": "34b32d03c5543af1a62798e86f787808c778e8823af23d793a485b20040d5692",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98838,6 +99047,22 @@
       "evidence": [
         "NR.drawing-session-api.query-lifetimes-native-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.producer-recorder-thread-ownership",
+      "level": "headless",
+      "scope": "Actual PE32 Win32 critical sections and two original-body surrogate threads exercise recorder ownership and separate primitive nesting,2000serialized increments, LastError,32slot exhaustion and malformed opt-in flags. No original game/producer bytes, producer trampoline or physical frame proof.",
+      "behaviors": [
+        "RS.canvas-producer-sequence",
+        "NR.producer-recorder-thread-policy"
+      ],
+      "tests": [
+        "tests/drawing-producer-trace-test.c",
+        "tools/test-drawing-producer-trace.py"
+      ],
+      "evidence": [
+        "NR.producer-recorder-thread-policy.native-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -99211,8 +99436,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-query-lifetimes-20261012.json",
-    "sha256": "0bec1bb68bc2af71ccf95667bd65e283565fac0e75d4e0b904772e77eb6d8ea4"
+    "path": "research/runtime/coverage/source-index-draw02-producer-thread-policy-20261012.json",
+    "sha256": "a3ee4553d19a74ddac33403bbbda81c5b3fb74b80f45b3c15fb08faaaa0e5e90"
   },
   "claim_bindings_required": true
 }

@@ -69,7 +69,7 @@ static struct Hook {u32 address,length,pop;u8 bytes[10];void(*entry)(void);i32 r
  {0x547d80,8,8,{0x83,0xec,0x24,0xa1,0x88,0x1f,0x6e,0},producer_enter_52,-1}
 };
 static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[MAX_SURFACES];
-static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch;u8* record;} frames[MAX_FRAMES];
+static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner;u8* record;} frames[MAX_FRAMES];
 static HANDLE file;
 static u8* continuous_map;
 
@@ -106,6 +106,7 @@ static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;
 static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
 static u32 continuous_region_queries;
 API u32 WIN GetCurrentThreadId(void);
+#include "producer_trace_guard.h"
 static u32 producer_uncached_region_query(u32 p,u32* m){if(continuous_map)++continuous_region_queries;return VirtualQuery((void*)p,m,28);}
 #define MNM_WORLD_REGION_QUERY(p,m) producer_uncached_region_query(p,m)
 #include "world_source_regions.h"
@@ -136,7 +137,7 @@ static int journal_write(const void* data,u32 n){
 }
 int canvas_producers_continuous(void){return continuous_map!=0;}
 static void publication_close(void);
-void canvas_producers_close(void){continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
@@ -350,8 +351,9 @@ static void raster_state(u8* record,u32 tag){u32* r=(u32*)record;if(r[2]!=MNM_PR
 }
 static void frame_enter(u32* registers,u32 tag){
  u32* args=registers+9;struct Frame f={0};f.tag=tag;f.caller=args[0];f.ecx=registers[6];f.edx=registers[5];f.sp=(u32)args+4+(tag==100?0:hooks[tag].pop);for(u32 i=0;i<6;++i)f.args[i]=args[i+1];
+ f.owner=producer_trace_mode?GetCurrentThreadId():0;u32* nesting=producer_trace_depth(f.owner);
  if(tag==7&&f.caller==0x46ba01)continuous_mark_screen(1);
- if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!depth)f.record=request(&f);if(f.primitive)++depth;}
+ if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!*nesting)f.record=request(&f);if(f.primitive)++*nesting;}
  for(u32 i=0;i<MAX_FRAMES;++i)if(__sync_bool_compare_and_swap(&frames[i].sp,0,0xffffffffu)){u32 sp=f.sp;f.sp=0xffffffffu;frames[i]=f;__atomic_store_n(&frames[i].sp,sp,__ATOMIC_RELEASE);args[0]=(u32)producer_leave;return;}
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
@@ -370,6 +372,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
  if(tag==52 && !(continuous_public_bind && batch_guard_open)){SetLastError(error);return 0;}
+ PRODUCER_TRACE_SCOPE;
  if(enabled&&!stopped){
   if(batch_guard_open && continuous_public_bind && GetCurrentThreadId()!=batch_owner){
    int copy_tag=tag==7||tag==8||tag==37||tag==38||tag==39||tag==41||tag==42||tag==43;
@@ -388,7 +391,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
    ((u32*)data)[21]=0;emit((u32*)data,data+96,((u32*)data)[18]);HeapFree(producer_heap(),0,data);
    ++batch_surface->dirty;registers[7]=0;SetLastError(error);return 1;
   }
-  if(!depth&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
+  if(!*producer_trace_depth(producer_trace_mode?GetCurrentThreadId():0)&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
    if(raster_active()&&(!raster_caller((registers+9)[0],tag)||bypass_completed>=MNM_WORLD_RASTER_MAX)){u32 refusal[24]={0};refusal[2]=MNM_PRODUCER_FAILURE;refusal[14]=43;refusal[15]=tag;refusal[22]=(registers+9)[0];++failures;emit(refusal,0,0);ExitProcess(95);}
    if(raster_active()&&tag==21&&get((void*)0x5f14d0)==0x7d00){
     /* Preserve original non-drawing lazy table preparation, on a zero-size frame. */
@@ -411,15 +414,17 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  }
  SetLastError(error);return 0;
 }
-void canvas_producers_queue(u32* registers){u32 error=GetLastError();if(enabled&&!stopped){continuous_mark_entry();raster_world_open=1;++queue;struct Surface* s=bound();checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}frame_enter(registers,100);}SetLastError(error);}
+void canvas_producers_queue(u32* registers){u32 error=GetLastError();PRODUCER_TRACE_SCOPE;if(enabled&&!stopped){continuous_mark_entry();raster_world_open=1;++queue;struct Surface* s=bound();checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}frame_enter(registers,100);}SetLastError(error);}
 /* Activate only after all entry observers have finished their snapshots and
  * freed temporary process-heap buffers, immediately before original traversal. */
 void canvas_producers_protect(void){u32 error=GetLastError();if(enabled&&!stopped&&batch_enabled&&raster_active()&&!batch_start(bound())){fail(46,batch_reject);ExitProcess(95);}SetLastError(error);}
 void producer_leave_observe(u32* registers){
  u32 error=GetLastError(),sp=(u32)registers+40;
+ PRODUCER_TRACE_SCOPE;
  for(u32 i=0;i<MAX_FRAMES;++i)if(__atomic_load_n(&frames[i].sp,__ATOMIC_ACQUIRE)==sp){struct Frame f=frames[i];__atomic_store_n(&frames[i].sp,0,__ATOMIC_RELEASE);registers[9]=f.caller;
   if(f.tag==7&&f.caller==0x46ba01)continuous_mark_screen(0);
-  if(f.primitive&&depth)--depth;
+  if(producer_trace_mode&&f.owner!=GetCurrentThreadId())ExitProcess(98);
+  u32* nesting=producer_trace_depth(f.owner);if(f.primitive&&*nesting)--*nesting;
   if(!stopped){
    if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
    else if(f.tag==1){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}}
@@ -447,8 +452,10 @@ void producer_leave_observe(u32* registers){
  ExitProcess(94);
 }
 int canvas_producers_install(void){
+ if(!producer_trace_configure())return 0;
  int glyph=glyph_live_configure();if(glyph<0)return 0;
  if(glyph){
+  if(producer_trace_mode)return 0;
   if((u32)GetModuleHandleA(0)!=0x400000)return 0;
   struct Hook* h=hooks+10;if(!readable(h->address,h->length))return 0;
   for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;
@@ -475,6 +482,11 @@ int canvas_producers_install(void){
  limit=1;u32 n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);if(n){if(n>=sizeof(number))return 0;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 0;limit=limit*10+number[i]-'0';}if(!limit||(limit>16&&limit!=MNM_PRODUCER_V3_QUEUES))return 0;}
  if(!bypass_init(limit)||!raster_init(limit)||(bypass_limit&&raster_first))return 0;
  if(!batch_init()||!continuous_init())return 0;
+ if(producer_trace_mode){
+  if(bypass_limit||raster_first||batch_enabled||continuous_map)return 0;
+  SetLastError(0);u32 publication=GetEnvironmentVariableA("MNM_DRAW02_PUBLICATION",flag,2);
+  if(publication||GetLastError()!=203)return 0;
+ }
  if(continuous_public_bind)minimap_owned=1;
  if(limit>16&&(!batch_enabled||(minimap_owned&&!continuous_public_bind)||raster_first!=1||raster_last!=limit))return 0;
  n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 0;
