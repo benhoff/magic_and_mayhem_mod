@@ -43271,6 +43271,228 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "MP.setup-menu-controls",
+      "subsystem": "multiplayer",
+      "kind": "recovered",
+      "title": "Original Create/Join Multiplayer form and callback controls",
+      "scope": "Pinned Join/Create entry, controls, original empty-name/valid-name/Cancel/unknown callback branches, edit allocation and unchecked setter, group setter, deferred original network handoff destinations. Static recovery and bounded private callback execution only; network helpers/session/lobby/live Submit remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883360,
+          "scope": "Create/Join destination branches only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4910144,
+          "scope": "Join constructor identity only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4917904,
+          "scope": "Create constructor identity only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055324,
+          "relation": "data",
+          "scope": "Join screen vtable candidate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055436,
+          "relation": "data",
+          "scope": "Create screen vtable candidate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4913424,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence.",
+          "recovered_range": "multiplayer-join-callback"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4921408,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence.",
+          "recovered_range": "multiplayer-create-callback"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4913584,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4921904,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4922480,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5034208,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5033152,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5039920,
+          "scope": "Bounded original form callback, initialization or deferred networking helper. No whole-network equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "tools/export-multiplayer-menu.py",
+        "tools/test-multiplayer-menu-contract.py"
+      ],
+      "tests": [
+        "tests/multiplayer-menu-contract.c",
+        "tools/test-multiplayer-menu-contract.py"
+      ],
+      "evidence": [
+        "UI43.original-form-fixture"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.multiplayer-setup-ownership",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "multiplayer-setup-ownership",
+      "scope": "V15 normal Main/Quick/Create and Join forms only: original identity/stack/context/callback/edit/radio guards, engine names and availability, printable ASCII game63/user15 transaction to original setters and OK/Cancel callbacks, deferred networking remains original. Live form admission/Cancel/Escape/window-close and draft retention; live Submit/network/errors/session selection/lobby remain pending; no replacement or multiplayer gameplay claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4913424,
+          "scope": "Form callback or setter only; original networking helpers retained.",
+          "recovered_range": "multiplayer-join-callback"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4921408,
+          "scope": "Form callback or setter only; original networking helpers retained.",
+          "recovered_range": "multiplayer-create-callback"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5034208,
+          "scope": "Form callback or setter only; original networking helpers retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5039920,
+          "scope": "Form callback or setter only; original networking helpers retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v15.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/multiplayer-menu-contract.c",
+        "tools/test-multiplayer-menu-contract.py",
+        "tools/test-live-multiplayer.py"
+      ],
+      "evidence": [
+        "UI43.original-form-fixture",
+        "UI43.forms-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-multiplayer-setup",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "native-multiplayer-setup",
+      "scope": "V15 normal Main/Quick/Create and Join forms only: original identity/stack/context/callback/edit/radio guards, engine names and availability, printable ASCII game63/user15 transaction to original setters and OK/Cancel callbacks, deferred networking remains original. Live form admission/Cancel/Escape/window-close and draft retention; live Submit/network/errors/session selection/lobby remain pending; no replacement or multiplayer gameplay claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4913424,
+          "scope": "Form callback or setter only; original networking helpers retained.",
+          "recovered_range": "multiplayer-join-callback"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4921408,
+          "scope": "Form callback or setter only; original networking helpers retained.",
+          "recovered_range": "multiplayer-create-callback"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5034208,
+          "scope": "Form callback or setter only; original networking helpers retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5039920,
+          "scope": "Form callback or setter only; original networking helpers retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_multiplayer_controller.hpp",
+        "apps/qt-shell/live_multiplayer_controller.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp",
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "apps/qt-shell/live_multiplayer_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/test-live-multiplayer.py",
+        "tests/menu-multiplayer-bridge-test.cpp"
+      ],
+      "evidence": [
+        "UI43.forms-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -90079,6 +90301,83 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI43.original-form-fixture",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Original Join/Create form callbacks and setters in private PE32; fade/focus stubbed, networking not executed.",
+      "record": "research/runtime/multiplayer-form-contract-20261012.json",
+      "sha256": "ca09319298eadfee4c38807451c6de33eb5e1b6b2071f2d83d93ba9064a23f81",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 20
+        },
+        {
+          "pointer": "/guard_rejections",
+          "equals": 50
+        },
+        {
+          "pointer": "/original_callbacks_setters_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/networking_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI43.forms-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Normal original Main/Quick/Create/Join forms, default names/transport availability, bounded native drafts survive idle refresh, Cancel/Escape/window-close return and original normal Quit. Original graphics/audio/lifecycle retained; no live submission/network/session/lobby proof.",
+      "record": "research/runtime/multiplayer-forms-live-20261012.json",
+      "sha256": "f28f2f87b507cafa2f90be6dd1877f8d9f9d19119fe5d043d71148bd3e94b92e",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/draft_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_multiplayer_forms",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_submission",
+          "equals": false
+        },
+        {
+          "pointer": "/networking_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -93339,6 +93638,70 @@
         "relation": "data",
         "scope": "Four raw dispatch slots at555e08, mapped to three direct call sites; not global minimap orientation dispatch equivalence."
       }
+    },
+    {
+      "id": "multiplayer-join-form-actions",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4913424,
+        "recovered_range": "multiplayer-join-callback",
+        "scope": "Button0OK and1Cancel; unknown action ignored."
+      },
+      "document": "research/runtime/multiplayer-menu-engine-contract.md",
+      "scope": "Form action only; deferred networking and external modal paths remain pending.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "MP.setup-menu-controls",
+            "NP.multiplayer-setup-ownership"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "MP.setup-menu-controls",
+            "NP.multiplayer-setup-ownership"
+          ]
+        },
+        {
+          "value": "unknown-action-noop-networking-not-enumerated",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "multiplayer-create-form-actions",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4921408,
+        "recovered_range": "multiplayer-create-callback",
+        "scope": "Button0OK and1Cancel; unknown action ignored."
+      },
+      "document": "research/runtime/multiplayer-menu-engine-contract.md",
+      "scope": "Form action only; deferred networking and external modal paths remain pending.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "MP.setup-menu-controls",
+            "NP.multiplayer-setup-ownership"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "MP.setup-menu-controls",
+            "NP.multiplayer-setup-ownership"
+          ]
+        },
+        {
+          "value": "unknown-action-noop-networking-not-enumerated",
+          "behaviors": []
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -100740,6 +101103,22 @@
         "tools/test-live-grimoire.py",
         "apps/qt-shell/live_grimoire_test.cpp"
       ]
+    },
+    {
+      "id": "UI.multiplayer-setup-native",
+      "scope": "V15 normal Main/Quick/Create and Join forms only: original identity/stack/context/callback/edit/radio guards, engine names and availability, printable ASCII game63/user15 transaction to original setters and OK/Cancel callbacks, deferred networking remains original. Live form admission/Cancel/Escape/window-close and draft retention; live Submit/network/errors/session selection/lobby remain pending; no replacement or multiplayer gameplay claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.multiplayer-setup-ownership",
+        "HOST.native-multiplayer-setup"
+      ],
+      "evidence": [
+        "UI43.forms-live"
+      ],
+      "tests": [
+        "tools/test-live-multiplayer.py",
+        "apps/qt-shell/live_multiplayer_test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -101012,6 +101391,24 @@
       "document": "research/runtime/storage-confirmations-live.md",
       "evidence": "UI39.original-confirmation",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "multiplayer-join-callback",
+      "build": "nocd-40209ca7",
+      "start": 4913424,
+      "end": 4913561,
+      "document": "research/runtime/multiplayer-menu-engine-contract.md",
+      "evidence": "UI43.original-form-fixture",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "multiplayer-create-callback",
+      "build": "nocd-40209ca7",
+      "start": 4921408,
+      "end": 4921628,
+      "document": "research/runtime/multiplayer-menu-engine-contract.md",
+      "evidence": "UI43.original-form-fixture",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -101122,8 +101519,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-grimoire-reader-scroll-20261012.json",
-    "sha256": "adf71a64ac91ae6e657fb1fcc059edec24e810e6e75bef302d5b3163e51ddf89"
+    "path": "research/runtime/coverage/source-index-multiplayer-forms-20261012.json",
+    "sha256": "b31e3cca0e6c5dadb8667bdbd2e925191a41ac3b682e63d7e60614db8a0616fe"
   },
   "claim_bindings_required": true
 }

@@ -1,0 +1,214 @@
+{
+  "draft_preserved": true,
+  "draft_refreshes": 8,
+  "error": "",
+  "scope": "Native Main/Quick/Create/Join form admission, original defaults and availability, bounded edits and draft retention, Cancel/Escape/window-close original return. No networking or live submission.",
+  "states": [
+    {
+      "ack": 0,
+      "available": 0,
+      "game_name": "",
+      "generation": 1,
+      "screen": 3,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    },
+    {
+      "ack": 1,
+      "available": 0,
+      "game_name": "",
+      "generation": 4,
+      "screen": 22,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    },
+    {
+      "ack": 2,
+      "available": 7,
+      "game_name": "game 54",
+      "generation": 8,
+      "screen": 15,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    },
+    {
+      "ack": 3,
+      "available": 0,
+      "game_name": "",
+      "generation": 12,
+      "screen": 22,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    },
+    {
+      "ack": 4,
+      "available": 7,
+      "game_name": "",
+      "generation": 16,
+      "screen": 16,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    },
+    {
+      "ack": 5,
+      "available": 0,
+      "game_name": "",
+      "generation": 20,
+      "screen": 22,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    },
+    {
+      "ack": 6,
+      "available": 7,
+      "game_name": "game 30",
+      "generation": 24,
+      "screen": 15,
+      "thread": 408,
+      "transport": 0,
+      "user_name": ""
+    }
+  ],
+  "success": true,
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "f9b31a0f8c08232adf4df9765fe65c490383034989070f01835071fe7b8f439e",
+    "apps/qt-shell/live_menu_session.cpp": "6828e0f76556bd7bc9cd5325a2ac451cd91b3be4e27b971c27f50352eebc9b77",
+    "apps/qt-shell/live_menu_session.hpp": "459dc88689396eb355ef823407ad02bbb771f8d558aeb52965c0e6ed4125ac4d",
+    "apps/qt-shell/live_menu_test.cpp": "8e3cf9c38280e6f89347c793b9b11993db73d1689cf7a5c1ce2b828b349f7808",
+    "apps/qt-shell/live_menu_test.hpp": "557a527d4e5fd24ab70d78e41f6b014b962d0bd85879dc585991a7cd2299b438",
+    "apps/qt-shell/live_multiplayer_controller.cpp": "2fcceb6d2a0be55c7a7b9fabe255c35acdc009903f42438873bbfb8d413e7a65",
+    "apps/qt-shell/live_multiplayer_controller.hpp": "4acc2587081c7fdb8865e90a40dc406737ac3dd3b8364645187311c0921707e8",
+    "apps/qt-shell/live_multiplayer_test.cpp": "a028483d2b501e64201706627fb90b22fe7d72c851f3bb3d63c74d5f9b831785",
+    "apps/qt-shell/main.cpp": "e0a6343401c6645861c09628e5cdf7a0d1510c27a77416a8f916028a68cdb803",
+    "apps/qt-shell/menu_bridge.cpp": "2d72a72b180d15167d13e6a6eb2420461fde83b8ac645808f8ef0a91fb223494",
+    "apps/qt-shell/menu_bridge.hpp": "ff9ce94fc4e6eab7ba4bc62abdaa150cca927278e35d42a2b8925cf8f143645e",
+    "apps/qt-shell/multiplayer_setup_widget.cpp": "ee57fd426196868395dd7baf2fc4e5ffb89eab753ddeae3361bbb89c98b99b01",
+    "apps/qt-shell/multiplayer_setup_widget.hpp": "40de68cbce6a9a532b4138c9f6160dee048f24b242dc6dd35c03fe308c0dad9b",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+    "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "protocols/include/mnm/menu_v13.h": "c62b8bc68d223c18341f88339d57738dc8fa13ab99b33bda42778c468ae130a5",
+    "protocols/include/mnm/menu_v14.h": "e1289bafe3015b57527ad68b81bb8f06cd232e0f4cd323ebf567528dd0737c22",
+    "protocols/include/mnm/menu_v15.h": "b6787e786e5c6cb4b5997f5ce8df77a5f2b0ea7ec38d846369131cf8496f8d19",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+    "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+    "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+    "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+    "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+    "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "4ea7ae3320520cec05af529ccc1aac68f1528e5958a3155c0813c875444cd55e",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/drawing_action.h": "9d75c9ac70f01cb2a90d8b25897e134681c0e0f7c9a34b7563bcd36f9375d5c5",
+    "runtime/menu/grimoire.h": "5209a9be7cae1db008b54ab0e59f2c037a8df86ae4875a6c3807317a1fe5b84f",
+    "runtime/menu/grimoire_observe.h": "f2c617cd0bbce1ca77861714eb7b5860a67bdeca143f0a16ea6b00631218b777",
+    "runtime/menu/mini.h": "feb3305d85c77856a0da52931bdabd6646b6e28727196b7eda90b7222abba50f",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/multiplayer.h": "d07556a96ee331106b6891e82dbdd327ec965a435a19f82f3b8d0b9ba141a6c8",
+    "runtime/menu/observer.c": "9435d34c7b85db3dd39022f041300c4438f422494e9f0d70290dafacef7089f6",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "e16e21093ee2da8b50b278004e538bae9bba149b00afa11a0f5f85686a33934f",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/menu-multiplayer-bridge-test.cpp": "fdfaada4d8f3d7de783a0a1f9636a8469677b7519ac739083a3fa2ee1078f455",
+    "tests/multiplayer-menu-contract.c": "9e6777982685f442fb78759f2a4308f3dc7eab8939b5d3d621080f5b7ba081bf",
+    "tools/build-menu-observer.py": "ba79b2808aaea146faf5e82bb2db5981f5a6999e22f3c5d36808f7e80c5effd6",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/menu-game-runner.py": "e7e534f9e04bf2e5475383a79fc3dda871efa55e6e4efbbb6414903206bff47e",
+    "tools/prepare-menu-observer.py": "eb3308b04c5242b210638b31edf0b54e24ba7ddbe2ca61242ab6b237fd79244d",
+    "tools/run-game.sh": "073ed34678f0fdd5032f30133d329f48931eb61e40541b65960017cc975b890f",
+    "tools/run-menu-observer.py": "1709b07c18674d82b0261fd9f7f9c4690e66c2441ee7c499d6b87e1f40592cbb",
+    "tools/test-live-menus.py": "4be23d8396b4c0150502050e01fc904f65718779ff64e212ca735e77ca94fdff",
+    "tools/test-live-multiplayer.py": "d816577c9a75c0ae1d05cf4e3ab4fa2e3f74ad0cbffb5f78ecb1c47702fa1b88",
+    "tools/test-multiplayer-menu-contract.py": "735b03d45ba5cc2315adc9638beedb0d02acdb4c0a6dd3947391b07a1e80009a"
+  },
+  "claims": [
+    {
+      "behavior": "NP.multiplayer-setup-ownership",
+      "contract_sha256": "0ac37f7936ea455fc4c48ea977e389125e449871a9bda4b68de4ab1b7002bfd9",
+      "scenarios": {
+        "UI.multiplayer-setup-native": "059cde573cc0fc3580dd4fac87a33f09fdcffd783676672e365c07a6b07ba043"
+      }
+    },
+    {
+      "behavior": "HOST.native-multiplayer-setup",
+      "contract_sha256": "9252340e383341389fb6a40cd31c702573f456aab413a7d929aa7890f15958ad",
+      "scenarios": {
+        "UI.multiplayer-setup-native": "059cde573cc0fc3580dd4fac87a33f09fdcffd783676672e365c07a6b07ba043"
+      }
+    }
+  ],
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/experiments/menu-observer/run-2ts5zn_j",
+  "original_callback_trace": [
+    [
+      3,
+      2
+    ],
+    [
+      22,
+      0
+    ],
+    [
+      15,
+      1
+    ],
+    [
+      22,
+      1
+    ],
+    [
+      16,
+      1
+    ],
+    [
+      22,
+      0
+    ],
+    [
+      15,
+      1
+    ],
+    [
+      22,
+      3
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "normal_quit": true,
+  "source_stable": true,
+  "original_work_bypassed": false,
+  "native_multiplayer_forms": true,
+  "live_submission": false,
+  "networking_executed": false,
+  "original_graphics_audio": true
+}

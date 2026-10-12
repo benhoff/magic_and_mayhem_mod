@@ -7,6 +7,7 @@
 #include "preferences.h"
 #include "region_entry.h"
 #include "grimoire.h"
+#include "multiplayer.h"
 #include "campaign_defeat.h"
 #include "../../protocols/include/mnm/menu_v12.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
@@ -22,13 +23,14 @@ static int menu_retired;
 static u32 menu_handoff;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
-static int menu_header(void){return equal(menu_words,menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_version==15?MNM_MENU_V15_MAGIC:menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
     if(menu_version>=3)for(u32 i=0;i<63;++i)out[23+i]=menu_load(menu_words+MNM_MENU_V3_HOST_SLOTS/4+i);
     if(menu_version>=6)for(u32 i=0;i<7;++i)out[86+i]=menu_load(menu_words+MNM_MENU_V6_HOST_PREFERENCES/4+i);
     if(menu_version>=13)for(u32 i=0;i<32;++i)out[93+i]=menu_load(menu_words+MNM_MENU_V13_HOST_NAME/4+i);
+    if(menu_version>=15)for(u32 i=0;i<20;++i)out[125+i]=menu_load(menu_words+MNM_MENU_V15_HOST_NAMES/4+i);
     __atomic_thread_fence(__ATOMIC_ACQUIRE);return seq==menu_load(p);
 }
 static void menu_publish(void){
@@ -37,6 +39,7 @@ static void menu_publish(void){
     u32 fields[6]={menu_generation,menu_screen,menu_retired?0:menu_ready,menu_request,menu_status,menu_thread};
     for(u32 i=0;i<6;++i)menu_store(p+1+i,fields[i]);
     if(menu_version>=2)menu_store(p+7,menu_handoff);
+    if(menu_version>=15)copy((u8*)menu_words+MNM_MENU_V15_MULTIPLAYER,multiplayer_payload,sizeof(multiplayer_payload));
     if(menu_version>=14)copy((u8*)menu_words+MNM_MENU_V14_GRIMOIRE,grimoire_payload,sizeof(grimoire_payload));
     if(menu_version>=13)copy((u8*)menu_words+MNM_MENU_V13_STORAGE,storage_payload,sizeof(storage_payload));
     if(menu_version>=2)copy((u8*)menu_words+MNM_MENU_V2_MAP,battle_payload,sizeof(battle_payload));
@@ -52,12 +55,12 @@ static void menu_init(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE){CloseHandle(file);return;}
-    menu_version=menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE){CloseHandle(file);return;}
+    menu_version=menu_size==MNM_MENU_V15_SIZE?15:menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
     campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
-    u32 host[125];
+    u32 host[145];
     if(!menu_header()||!menu_host(host)||!host[0]||host[2]||menu_load(menu_words+(menu_version>=2?32:16))){
         UnmapViewOfFile(menu_words);menu_words=0;return;
     }
@@ -134,6 +137,12 @@ static void menu_state(void* object){
             u8* p=object;ready=!p[0xc]&&!get(p+0x1e)&&!get(p+0x3a)&&!get(p+0x3e)&&!get(p+0x1a2e);
         }
     }
+    if(menu_version>=15&&owner==(u32)object){
+        u8 next[MNM_MENU_V15_MULTIPLAYER_SIZE];if(multiplayer_snapshot(object,next)){
+            screen=get((u8*)object+4);if(!equal(next,multiplayer_payload,sizeof(next)))++menu_generation;copy(multiplayer_payload,next,sizeof(next));
+            u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43)&&!get(next+24)&&!get(next+28);
+        }
+    }
     if(menu_version>=11&&screen==3&&ready)defeat_quit_pending=0;
     if(owner!=menu_owner||screen!=menu_screen||ready!=menu_ready){
         ++menu_generation;menu_owner=owner;menu_screen=screen;menu_ready=ready;
@@ -147,7 +156,7 @@ static void menu_poll(void* object,int execute){
     if(!menu_header()){menu_retired=1;SetLastError(error);return;}
     menu_state(object);
     if(menu_version>=2&&menu_handoff&&menu_ready&&(menu_screen==3||menu_screen==22))menu_handoff=0;
-    u32 host[125],now=GetTickCount();
+    u32 host[145],now=GetTickCount();
     if(menu_host(host)){
         if(host[1]!=menu_heartbeat){menu_heartbeat=host[1];menu_seen=now;}
         if(!host[0]||now-menu_seen>MNM_MENU_V1_LEASE_MS)menu_retired=1;
@@ -161,6 +170,8 @@ static void menu_poll(void* object,int execute){
             else if(!menu_ready)menu_status=MNM_MENU_UNAVAILABLE;
             else if(host[3]==MNM_MENU_OPEN_QUICK&&menu_screen==3)main_action(object,2);
             else if(menu_version>=13&&host[3]==MNM_MENU_OPEN_LOAD&&menu_screen==3)main_action(object,1);
+            else if(menu_version>=15&&menu_screen==22&&(host[3]==MNM_MENU_OPEN_CREATE||host[3]==MNM_MENU_OPEN_JOIN))quick_action(object,host[3]==MNM_MENU_OPEN_CREATE?0:1);
+            else if(menu_version>=15&&(menu_screen==15||menu_screen==16))menu_status=multiplayer_dispatch(object,host[3],host[5],(const u8*)(host+125));
             else if(menu_version>=13&&(menu_screen==MNM_MENU_LOAD_SCREEN||menu_screen==13))menu_status=storage_dispatch(object,host[3],host[5],(const u8*)(host+93));
             else if(menu_version>=7&&host[3]==MNM_MENU_NEW_GAME&&menu_screen==3)main_action(object,0);
             else if(menu_version>=14&&menu_screen==MNM_MENU_GRIMOIRE_SCREEN)menu_status=grimoire_dispatch(object,host[3],host[5]);
