@@ -1643,3 +1643,19 @@ forward/installer matrix, writer freeze/import restoration/quiescent normal
 shutdown, fault/orphan disposition, build/frontend/scripted capture integration
 and bounded real original source/worker/cadence controls remain necessary.
 All47/21and steps3–7remain open. Reviewedc7c92d6a..392de8d8has15exact receipts,0gaps.
+
+## DRAW-02 explicit gate drainage accounting checkpoint (2026-10-12 UTC)
+
+Bounded snapshots committed10f0759bafter storage-guard-stopped hooks were
+retained and unchanged retry passed. New phase10records successful stored
+gate-level/token/ref drainage before private cleanup. Decoder pairs numeric
+creation/publication/retirement/close, begin/drain/end and final terminal.
+Fixture07freshly passes20rows/0scopedpairinggaps/0liveidentities; complete=false.
+Five malformed-data guards pass extent/reserved/token-binding/loss visibility.
+Build06negative duplicate memset copied from draft preserved before correction
+and new claims. Earlier19row snapshots remain historical with exact hashes.
+
+Reassessment: step2 remains open. Quiescent normal shutdown/import restoration,
+late-writer boundary, full forwarding/installer/fault/orphan case matrix and
+actual build/frontend/source/worker/cadence capture controls still necessary.
+All47/21and steps3–7remain open. Reviewed392de8d8..10f0759bhas15exactreceipts,0gaps.

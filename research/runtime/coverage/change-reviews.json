@@ -532149,6 +532149,198 @@
         "evidence": [],
         "reason": "Fresh current-source/contract owned bounded snapshot fixture05passes, with no complete journal/normal shutdown admission. Strict lifecycle/token pairing, drain event, writer freeze/restore/quiescence, exact original-forward/installer matrix, orphan/fault disposition and actual frontend/source/worker/cadence integration remain open. No original comparison/full reference/source alias/native parity/completion promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "48c9a0256790370bc105a471943a641a4de7406c4e8ba4299d9b564c4bdee24c",
+          "before_sha256": "0f59d37af10bed2d93826053a8df33ba5b83a178405006e6667cd235edf5cbf8",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "4aec664830be001207f10ed6d925a91a1e5c0786c4a6d8e97026e968cb5658f3",
+          "before_sha256": "1d0ed39000b4f5187bddfb0affefbcc7e23305b1b49d4f27cdf145ebfad0c511",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "1ee4d59716b0643c6e889afac05577a1c0f6aaaf922300a80cc9a5bb43083d56",
+          "before_sha256": "118f79b0cfd74dee495f993e9e3e978d1d7b968471b6a35cbd326208bf8fad60",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "1ee61cbe934eaf236ea2c0c328a8d1e24461d87a4ef67f4f5889c430fb19e25c",
+          "before_sha256": "7a6826b9d11d8a001e0d1c4089b4c5aa9f16a6c5551cf2cde6dffacc4672adf8",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "7233b0e932e4cb2f1c5501683c8f6a9c6f0d4148d5c20f600c408ee27b8d12ff",
+          "before_sha256": "295cf93b484f3b4f48a61f5a133f8f41cb725b7036a2eaac7fe44c0305803946",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "219cfebe053650f4d209a5422d2a7a4502207af7882a26205bed6e6c0f19bcf7",
+          "before_sha256": "4581a1b7b08dbe2d1b9cfdca81b71f7a38d54fa81756a129ef35626a592fee79",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "de87442f7862f7874f6bb07882865faa21a7450c597a425aceb756b68825af50",
+          "before_sha256": "da6df15b14b8f69bf28d76750773c093f9e5b9792696030ec90e6c24b3954ad4",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "f346f874801788beffcd0779f0385705aee9f08c401d79c9740d57cf7792408c",
+          "before_sha256": "fa6fd7b26e6e4135db41de7cfa8da0210907cec144fc1c03cba04a5f5546fe11",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "47e0e5802494585407b3c6226a5f0e1194be564cc7c85a94caa90ef7a8832b4f",
+          "before_sha256": "d7f2c8882aaecc3149a92abfde29285822783ec7eeb2450edd500ebce93afa0c",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "56b156c4ec581e5c86aad5d9fc6f952f5a2930c4b205b7f76c5f88a565a30933",
+          "before_sha256": "a19825287e4ddb4fdc4c1cf741caa5f28bed523afec46bc196df32c4a0b49b95",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "5ada4b698f07d0ba4db185a133b0accfa7a8db9800b8f87cb1779fe00b0e8ac8",
+          "before_sha256": "935269d217992b2bebeeff2f564b9c38b1b7e32898ce692e5c67b84448e19e15",
+          "id": "NR.drawing-cursor-source-gate-module"
+        },
+        {
+          "after_sha256": "cb388402960e0275c50a3a42bd9a1534055fbc73ee2a75d45f62c7060b6b4f0e",
+          "before_sha256": "0f13ac30d6689285a27d0436f768fe8a17fbeabea509dc419f36edcc1c2e4bb6",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "1c78bb31d2622a10f26463cd11609c4bf8d5630791b5c555c29dbce55d6776b4",
+          "before_sha256": "6b88d3d611da966ca86b741233d38436066022618d59d7efcb8c51698d04a516",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "21d15974ef96657bf4ef8465f9b3ea222e9a5e45066061586358d35f03f2543c",
+          "before_sha256": "e5637475634150f83fb4eae51ac83e69072831ae4bf7e3cae5d0baea88f89ad2",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "dd2f19624342956751f01b2ead0738b8f5b34287793cf0c5b6d660132bbf748b",
+          "before_sha256": "7e143d4c7e17f0e4340b760dcd4e3ceb77b2329d49a6b69abfb85f9cfa01f23a",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "11c8c3cb3838963149047cfdcb679e0b024e9b7554f10155efd6666e9d5b5384",
+          "before_sha256": "2b8e4f88e0c901182e5583638bb3db1afef34853c76f4fc142417b567f430468",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "daabf58ee61e30931cd43dbea2a8eefab700cfe456e6d0fb761ad64aa734ee27",
+          "before_sha256": "ea62187228e4c5b6d135c3faefdd082c6af88fc55eb02981099ef6e7dd3817a7",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "ef2927d35e19f9030a30077c5408ec3a1c30a96a7605229b72c253fdaf90220d",
+          "before_sha256": "2a491de265e72ccad2a27e91a4a7f42fa3c67f11b62e43f3c042645ccc12f740",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "cea6f46619212aec4728204306e375c766906ffc0891b9885c47d6d8afec22da",
+          "before_sha256": "30ade3e46dff7f581d3fb6a5e243186c4576a2c19f958ba8a01cc3500694c0ba",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "59ea8d86cdeda19ba1d4316df05578757aecc99558d85128da1faadfe5835995",
+          "before_sha256": "679b9c36b85cbe8cd4264496c2ea0cbc7e4be1012454254418e826e9667fc663",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "ec84157b37d418700070449e6ef25a109bbeaa2506d596106ea8ad659c617b9b",
+          "before_sha256": "cda997ae27ed912f0bc26916a163fc50320bd6624c425622010da5168c3c8242",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9acc150f1b0dd2bf47e8339bed3753f87f9becc02315e4f8cd6393cc40fc01f2",
+          "before_sha256": "a351a35e636cdc6cd15cb5f172baedf84a38dfc45aabe9331ddc51fe28e1b9fc",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "902df1c9c920db37d1407106e4918367ca5341ef7fb82082ec36f4aa51626ab7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-cursor-drain-start-20261012.json"
+        },
+        {
+          "after_sha256": "85030782f048f91f8b564adb5e372d56efc3b5dedff99b2851a853b7dcd26c03",
+          "before_sha256": "fa0273b1d487a637a77e291865b4df04883eb3de31357b1256ef8365a95540b7",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "acab75df01b0fe3c99088ac9d278f68fc57541c64b64f0f13ce105df3d982bdd",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-cursor-drain-20261012.json"
+        },
+        {
+          "after_sha256": "df0f95391e87e21b9f6c12e1ad542b8ff388387551124af50433994b1272e873",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-cursor-drain-20261012.md"
+        },
+        {
+          "after_sha256": "1724df9a6b391d7a07763012c8546a93a048000ea4313b2c3e9137c036606798",
+          "before_sha256": "b6c1fda49718afe3ab6716eb71b9c819b23c47bf9e384a22a08b2f01c2a202ed",
+          "path": "research/runtime/cursor-source-gate-module.md"
+        },
+        {
+          "after_sha256": "4704fe2e8ee8cc903b5fc287819a29672f23edf6d0aeb9bda1b9028036bd863b",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-module-build-negative-06.json"
+        },
+        {
+          "after_sha256": "812fa8ab7b15df043576226b2403a05db6a2201629f1bd01e2a533a393210687",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-module-fixture-07.json"
+        },
+        {
+          "after_sha256": "b6d16917362c9c5ffb6d90d57bbaed4e2de101666f548a28756c5bf364d617c6",
+          "before_sha256": "3be27aa40f215406b292eab4d58c5aa84026661680296af35c500a560770d913",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "858d48f935c1c7d005fe42e8c64220173e8f06c787a486dc9a71144a7425bd47",
+          "before_sha256": "1e579391b44b95cfd610f5445f616b0ecd7b277c165b6e01d0f32c4a3321b957",
+          "path": "runtime/cursor-source-gate/module.c"
+        },
+        {
+          "after_sha256": "95f000ce87638332d903109dcf08004d0055e3d6e4c1e332d4a9f38178193f7c",
+          "before_sha256": null,
+          "path": "tests/test-drawing-cursor-gate-journal.py"
+        },
+        {
+          "after_sha256": "bcf44af81caf59880197200f566ce3133b52b352dd71a7c1b326e44450561b4f",
+          "before_sha256": "026a682d85e84a7415eb7124166b3eb4983d88553ee118cc21b03498d7ac7b9e",
+          "path": "tools/drawing_cursor_gate_journal.py"
+        },
+        {
+          "after_sha256": "25196a2ec6fdc9685384201a24a3d00589211ff5f6ed9ab57e6f200299151b8f",
+          "before_sha256": "5262493feca00c0d5cefff8a22fbefa1b8caf2a2f4b0479c63433f7d3ed21009",
+          "path": "tools/test-drawing-cursor-source-gate-module.py"
+        }
+      ],
+      "id": "draw02-explicit-cursor-drain-lifecycle-pairing-20261012",
+      "pending_gaps": [
+        "stale_evidence:34ab0c3f0d4287e47b04691d4b899eab8f7d5c81cda6aea8387ced04b2eea7d5",
+        "stale_evidence:4a39258effadb07d39c4bccfbefffed58948fae27bdbd7d0d215f90c0307927e",
+        "stale_evidence:90e08a8ea56c7185f3c613b14e08fb483aded7bd0bf720a29b32e5f8849d4766",
+        "stale_evidence:9b9851c447cd05d786b2b5bc897af2467e2aff326a30a1b8c434795195514fbd",
+        "stale_evidence:e093642a9fb44d3c260ea10e2d5478da19f576add1b41132dbb7abe383ff05da",
+        "stale_evidence:ebc963389e493788f9c27b007f337bbceec3def842132696cd69aeb76953fe4d",
+        "stale_evidence:f267818679de56676a15074d04d0ae94d3b07e6559c9eabad6728bf644733ca0"
+      ],
+      "reason": "Review explicit phase10stored-level/token/ref drainage before private cleanup and strict scoped numeric creation/publication/retirement/close/begin/drain/end/final-terminal pairing. Fresh owned PE32 fixture07passes20rows/0pairinggaps/0liveidentities; five malformed-data guards pass extent/reserved/token mismatch/loss visibility. Preserve build06negative duplicated memset before correction/new claims and immutable earlier snapshots. No normal quiescence/import restoration or completejournal admission. Source census and fifteen exact prior-commit receipts reviewed; guard-stopped commit attempts retained before unchanged successful retry.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh current-source/contract owned drain/pairing fixture passes but complete journal remains false. Normal shutdown writer/late-call boundary and import restoration, full original-forward/installer/fault/orphan matrix, build/frontend/source/worker/cadence controls and bounded original trials remain open. No full original comparison/reference/source alias/native parity/completion promotion."
+      }
     }
   ]
 }

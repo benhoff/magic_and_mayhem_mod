@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 from drawing_api_session import sha
-from drawing_cursor_gate_journal import decode
+from drawing_cursor_gate_journal import decode, account
 from coverage_claims import behavior_contract, required_sources
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,7 +75,9 @@ def main():
             raise ValueError('Behavior contract changed during execution')
         observation=decode(capture.read_bytes())
         if observation['complete'] or observation['terminal_reason']!=3 or observation['active_leases'] or observation['fault'] or observation['orphans']:raise ValueError('Snapshot boundary differs')
-        report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, journal=observation, journal_sha256=sha(capture.read_bytes()), complete_journal_admitted=False, actual_mutex_handles=True, full_fx_state_preserved=True, last_error_preserved=True, relocated_owned_installer=True, scope='Owned PE32 relocated installer byte refusal, real kernel Create/duplicate/Close, versioned begin/end raw responses/stored token levels, original close during active token retains duplicate then drains, wrong owner/stale token/invalid output refusal and full512FX/error preservation. Production pins unchanged; no original game/frontend/source/worker or complete reference/parity.')
+        accounting=account(observation)
+        if accounting['gaps'] or accounting['remaining_live_identities']:raise ValueError('Lifecycle pairing differs')
+        report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, journal=observation, lifecycle_accounting=accounting, journal_sha256=sha(capture.read_bytes()), complete_journal_admitted=False, actual_mutex_handles=True, full_fx_state_preserved=True, last_error_preserved=True, relocated_owned_installer=True, scope='Owned PE32 relocated installer byte refusal, real kernel Create/duplicate/Close, versioned begin/end raw responses/stored token levels, original close during active token retains duplicate then drains, wrong owner/stale token/invalid output refusal and full512FX/error preservation. Production pins unchanged; no original game/frontend/source/worker or complete reference/parity.')
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

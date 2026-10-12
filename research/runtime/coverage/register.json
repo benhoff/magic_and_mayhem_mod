@@ -45267,7 +45267,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Separate pinned original cursor-source diagnostic mutex module",
-      "scope": "Opt-in separate PE32 module pins original NoCD base/IAT/exact two constructor and close anchors; forwards original Create/Close once with exact args/raw result/error/full512FX. Tracks private duplicates at observed constructor returns, retires before original Close, offers versioned scalar token begin/end with stored gate state, raw outcomes and bounded token/owner refusals. Not yet integrated with source capture; native diagnostic synchronization intentionally changes timing/lifetime. Separate bounded scalar lifecycle/gate journal and explicit one-shot diagnostic snapshot, never a complete shutdown/normal capture terminal. Snapshot admission remains partial; late writer and restoration/quiescence limitations explicit.",
+      "scope": "Opt-in separate PE32 module pins original NoCD base/IAT/exact two constructor and close anchors; forwards original Create/Close once with exact args/raw result/error/full512FX. Tracks private duplicates at observed constructor returns, retires before original Close, offers versioned scalar token begin/end with stored gate state, raw outcomes and bounded token/owner refusals. Not yet integrated with source capture; native diagnostic synchronization intentionally changes timing/lifetime. Separate bounded scalar lifecycle/gate journal and explicit one-shot diagnostic snapshot, never a complete shutdown/normal capture terminal. Snapshot admission remains partial; late writer and restoration/quiescence limitations explicit. Explicit phase10stored-state drain precedes private cleanup; decoder checks scoped publication/retirement/close/token/drain/end/terminal pairing, still no complete normal shutdown admission.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45281,7 +45281,8 @@
       "tests": [
         "tests/drawing-cursor-source-gate-module-test.c",
         "tools/test-drawing-cursor-source-gate-module.py",
-        "tools/drawing_cursor_gate_journal.py"
+        "tools/drawing_cursor_gate_journal.py",
+        "tests/test-drawing-cursor-gate-journal.py"
       ],
       "validation_dependencies": [
         "runtime/cursor-mutex/cursor_kernel_adapter_core.h",
@@ -45300,7 +45301,9 @@
         "DRAW02.cursor-module-fixture-02-20261012",
         "DRAW02.draw02-cursor-module-build-negative-03-20261012",
         "DRAW02.draw02-cursor-module-fixture-04-20261012",
-        "DRAW02.draw02-cursor-module-fixture-05-20261012"
+        "DRAW02.draw02-cursor-module-fixture-05-20261012",
+        "DRAW02.draw02-cursor-module-build-negative-06-20261012",
+        "DRAW02.draw02-cursor-module-fixture-07-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45310,7 +45313,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh fixture05passes19row bounded snapshot; fixture04historical after decoder fields exposed, build03negative preserved. Earlier module fixtures remain historical after source/scope changes. Original forwarding matrix, complete lifecycle journal pairing/admission, writer freeze/import restoration/quiescent normal shutdown, fault/orphan disposition, frontend/source/worker/cadence controls and live capture remain open; no complete journal/reference/parity claim."
+        "Fresh fixture07passes20row scoped drain/pairing0gaps and5malformed-data guards; build06negative retained; earlier snapshots historical after source/decoder/test changes. Quiescent normal shutdown/import restoration, late writer boundary, full original forwarding/installer/fault/orphan matrix and original capture/worker/cadence controls remain open; no complete journal/reference/parity claim."
       ]
     }
   ],
@@ -97196,6 +97199,44 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-build-negative-06-20261012",
+      "kind": "native_integration",
+      "scope": "Owned drain/pairing negative duplicate memset compile, no execution.",
+      "record": "research/runtime/draw02-cursor-module-build-negative-06.json",
+      "sha256": "4704fe2e8ee8cc903b5fc287819a29672f23edf6d0aeb9bda1b9028036bd863b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-fixture-07-20261012",
+      "kind": "native_integration",
+      "scope": "Owned drain/pairing 20rows explicit phase10drain before private cleanup, scoped identity/token/terminal pairing0gaps; completefalse no game.",
+      "record": "research/runtime/draw02-cursor-module-fixture-07.json",
+      "sha256": "812fa8ab7b15df043576226b2403a05db6a2201629f1bd01e2a533a393210687",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109338,8 +109379,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-journal-20261012.json",
-    "sha256": "b7bcb1a695342075f705a0f4f1d47cfd53c5e2e88c9398e6cbaf8ca5ea0bdff5"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-drain-20261012.json",
+    "sha256": "acab75df01b0fe3c99088ac9d278f68fc57541c64b64f0f13ce105df3d982bdd"
   },
   "claim_bindings_required": true
 }

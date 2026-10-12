@@ -41,3 +41,13 @@ implementation precedes fixture04pass. Decoder then exposes retained role/call/
 identity/pending/flags; fixture05freshly passes19rows with no drops and snapshot
 reason3. Complete=false regardless of clean bounded snapshot. Lifecycle pairing,
 late-writer boundary/import restoration/quiescent shutdown remain unvalidated.
+
+Drain increment phase10records successful stored-level/reference/token drainage
+before private cleanup; strict decoder pairs numeric publication/retirement/close
+and begin/drain/end/terminal. Complete journal remains false pending writer
+quiescence/import restoration/normal shutdown and all remaining lifecycle cases.
+
+Fresh fixture07passes20rows with explicit drain before private cleanup and
+scoped lifecycle/token/terminal pairing0gaps. Build06negative duplicate memset
+was preserved before correction/new claims. Five decoder malformed-data guards
+pass. Complete admission remains false: normal quiescence and full cases open.

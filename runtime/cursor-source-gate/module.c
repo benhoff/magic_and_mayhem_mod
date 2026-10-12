@@ -183,7 +183,11 @@ __declspec(dllexport) unsigned WIN CursorSourceGateEndV1(unsigned owner,unsigned
    int released=raw?mnm_cursor_gate_release(&lease->gate,cursor_gate_release):0;
    if(raw)cursor_gate_raw_end();else lease->gate.failure=9;
    point[4]=lease->gate.failure;point[13]=lease->gate.acquired;
-   if(released){EnterCriticalSection(cursor_gate_lock);result=mnm_cursor_kernel_return(&cursor_gate_adapter,owner,token);LeaveCriticalSection(cursor_gate_lock);cursor_gate_close_retired(1);cursor_gate_close_retired(0);}
+   if(released){
+    EnterCriticalSection(cursor_gate_lock);result=mnm_cursor_kernel_return(&cursor_gate_adapter,owner,token);LeaveCriticalSection(cursor_gate_lock);
+    cursor_gate_journal_emit(10,result?0:15,0,result,error,0,0,0,0,point);
+    cursor_gate_close_retired(1);cursor_gate_close_retired(0);
+   }
   }else cursor_gate_point(point,2,8,0);
   cursor_gate_copy(output,point,128);cursor_gate_journal_emit(point[3]==1?6:7,point[4],0,result,error,0,0,0,0,point);
  }else cursor_gate_journal_emit(7,13,0,0,error,0,0,0,0,0);
