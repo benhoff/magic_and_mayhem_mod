@@ -12,6 +12,8 @@
 #include "live_battle_menu_controller.hpp"
 #include "live_spell_menu_controller.hpp"
 #include "live_mini_menu_controller.hpp"
+#include "live_storage_menu_controller.hpp"
+#include "../../protocols/include/mnm/menu_v13.h"
 #include "live_result_menu_controller.hpp"
 #include "live_campaign_defeat_controller.hpp"
 #include "../../protocols/include/mnm/menu_v11.h"
@@ -87,6 +89,8 @@ public:
             menuStack_->addWidget(liveSetup_);menuStack_->addWidget(liveMap_);
             liveSpells_=new SpellboxWidget(menuStack_);liveSpells_->setObjectName("liveSpellSelection");menuStack_->addWidget(liveSpells_);
             liveMenus_=std::make_unique<LiveMenuSession>(repo_,this);
+            liveLoad_=new LoadGameWidget(menuStack_);liveSave_=new SaveGameWidget(menuStack_);menuStack_->addWidget(liveLoad_);menuStack_->addWidget(liveSave_);
+            storageMenus_=std::make_unique<LiveStorageMenuController>(*liveMenus_,*liveLoad_,*liveSave_);
             battleMenus_=std::make_unique<LiveBattleMenuController>(*liveMenus_,*liveSetup_,*liveMap_);
             spellMenus_=std::make_unique<LiveSpellMenuController>(*liveMenus_,*liveSpells_);
             liveDefeat_=new BattleResultWidget(menuStack_);menuStack_->addWidget(liveDefeat_);
@@ -103,6 +107,7 @@ public:
             }
             connect(liveMain_,&MainMenuWidget::actionRequested,this,[this](MainMenuWidget::Action action){
                 if(action==MainMenuWidget::Action::NewGame)liveMenus_->request(MNM_MENU_NEW_GAME);
+                else if(action==MainMenuWidget::Action::LoadGame)liveMenus_->request(MNM_MENU_OPEN_LOAD);
                 else if(action==MainMenuWidget::Action::QuickBattle)liveMenus_->request(MNM_MENU_OPEN_QUICK);
                 else if(action==MainMenuWidget::Action::Preferences)liveMenus_->request(MNM_MENU_OPEN_PREFERENCES);
                 else if(action==MainMenuWidget::Action::Quit)close();
@@ -126,23 +131,25 @@ public:
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
-                    if(!liveDefeat_->loadAssets(root,BattleResultWidget::Outcome::Defeat,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
+                    if(!liveLoad_->loadAssets(root,&error)||!liveSave_->loadAssets(root,&error)||!liveDefeat_->loadAssets(root,BattleResultWidget::Outcome::Defeat,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
                     if(liveMini_&&!liveMini_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
-                    for(int i=0;i<6;++i)if(i!=0&&i!=2&&i!=3&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
+                    for(int i=0;i<6;++i)if(i!=0&&i!=1&&i!=2&&i!=3&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
+                    liveMain_->findChild<QPushButton*>("mainMenuAction1")->setEnabled(liveMenus_->storageMenusEnabled&&liveMenus_->campaignPreferencesEnabled);
                     for(int i=0;i<2;++i)liveQuick_->findChild<QPushButton*>(QString("quickBattleAction%1").arg(i))->setEnabled(false);
                     menuAssetsLoaded_=true;
                 }
-                QString error;if(!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
-                QWidget* screen=state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
+                QString error;if(!storageMenus_->present(state,&error)||!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
+                QWidget* screen=state.screen==MNM_MENU_LOAD_SCREEN?static_cast<QWidget*>(liveLoad_):state.screen==13?static_cast<QWidget*>(liveSave_):state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
                 if(input_)input_->suspend(screen!=viewport_);
                 fallback_->setEnabled(true);const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
                 liveSpells_->setEnabled(state.ready&&state.screen==7);liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
+                liveLoad_->setEnabled(state.ready&&state.screen==MNM_MENU_LOAD_SCREEN);liveSave_->setEnabled(state.ready&&state.screen==13);
                 liveRegion_->setEnabled(state.ready&&state.screen==18);
                 livePreferences_->setEnabled(state.ready&&state.screen==10);
                 liveDefeat_->setEnabled(state.ready&&state.screen==MNM_MENU_DEFEAT_SCREEN);
                 liveResults_->setEnabled(state.ready&&state.screen==MNM_MENU_RESULT_SCREEN);
                 if(liveMini_)liveMini_->setEnabled(state.ready&&state.screen==MNM_MENU_MINI_SCREEN);
-                if(gainedReady){if(state.screen==MNM_MENU_DEFEAT_SCREEN)liveDefeat_->focusContinue();else if(state.screen==18)liveRegion_->focusFirstControl();else if(state.screen==10)livePreferences_->focusFirstControl();else if(state.screen==MNM_MENU_RESULT_SCREEN)liveResults_->focusFirstAction();else if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
+                if(gainedReady){if(state.screen==MNM_MENU_LOAD_SCREEN)liveLoad_->focusSelection();else if(state.screen==13)liveSave_->focusSelection();else if(state.screen==MNM_MENU_DEFEAT_SCREEN)liveDefeat_->focusContinue();else if(state.screen==18)liveRegion_->focusFirstControl();else if(state.screen==10)livePreferences_->focusFirstControl();else if(state.screen==MNM_MENU_RESULT_SCREEN)liveResults_->focusFirstAction();else if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
                 statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
@@ -403,6 +410,7 @@ private:
     PreferencesWidget* livePreferences_=nullptr;std::unique_ptr<LivePreferencesMenuController> preferencesMenus_;
     BattleResultWidget* liveDefeat_=nullptr;std::unique_ptr<LiveCampaignDefeatController> defeatMenus_;
     QuickBattleResultWidget* liveResults_=nullptr;std::unique_ptr<LiveResultMenuController> resultMenus_;
+    LoadGameWidget* liveLoad_=nullptr;SaveGameWidget* liveSave_=nullptr;std::unique_ptr<LiveStorageMenuController> storageMenus_;
     MiniMenuWidget* liveMini_=nullptr;std::unique_ptr<LiveMiniMenuController> miniMenus_;
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;

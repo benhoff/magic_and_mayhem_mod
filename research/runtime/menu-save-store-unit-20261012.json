@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "tests": 4,
+  "generated_bytes_only": true,
+  "live_game_launched": false,
+  "command": [
+    "python3",
+    "tests/test-menu-save-store.py"
+  ],
+  "scope": "Linux locked, bounded opaque-file seed/copy/merge, no-change cancellation, delete retention and conflict preservation. Synthetic bytes only; service not connected to the game yet. No serializer compatibility, crash-transaction, arbitrary-path or live persistence claim.",
+  "sources": {
+    "tools/menu_save_store.py": "140152d2802856ec4d3b12a0795cd96fc1c2c09ee3d925c4414fdf4a545a60a7",
+    "tests/test-menu-save-store.py": "76e3edf472082e9d8430820132f57acaed847b17e434f8b36b4072bb6d730a42"
+  }
+}

@@ -604,6 +604,19 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI37 adds V13 Save/Load adapter preparation and fresh native Main
+Load/Cancel navigation: two ID12 parent3/depth3 returns, one original engine
+thread, exact callback/ACK trace and normal Quit pass on the default native
+command/audio route. [Result and boundaries](save-load-menu-engine-contract.md).
+This does not validate actual loading, campaign Save, loaded World or durability.
+The first fixture's truncated return operands and the adapter's assumed ID11
+were corrected from pinned instructions; historical reports/hashes are retained
+with explicit limitations. New private ABI/adapter fixtures and seven focused
+Qt checks pass. Shared historical evidence becomes stale after the controller,
+protocol and observer edits; only the new bounded Main Load scenario has fresh
+live support. A separately tested owned save-copying service is groundwork and
+is not yet connected to launch/exit.
+
 2026-10-12 UI36 starts the remaining live-menu work with Save/Load control
 recovery. The new [contract](save-load-menu-engine-contract.md) separates
 original callback/list/edit behavior from pending live screen admission,
