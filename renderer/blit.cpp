@@ -213,7 +213,7 @@ struct GpuFrame::Data {
     ~Data();
 };
 struct GlBlitter::Impl {
-    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;std::array<Rgb,256> paletteColors{};std::array<bool,256> paletteKnown{};std::optional<Rect> rgbaDamage,gpuDamage;};
+    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;std::array<Rgb,256> paletteColors{};std::array<bool,256> paletteKnown{};std::optional<Rect> rgbaDamage,gpuDamage;std::vector<std::uint8_t> coverage;};
     std::unique_ptr<QOffscreenSurface> ownedSurface;
     QOffscreenSurface* surface=nullptr;
     QOpenGLContext context;
@@ -397,7 +397,17 @@ struct GlBlitter::Impl {
             gl.glUniform1uiv(location,256,words.data());previous=*palette;++counters.paletteUpdates;
         }
     }
-    static void damage(Surface& s,Rect r){
+    static void uploadedCoverage(Surface& s,int x,int y,int width,int height,const std::uint32_t* words){
+        if(s.format.bits!=8)return;
+        if(std::any_of(words,words+std::size_t(width)*height,[](auto v){return v>1;})){s.coverage.clear();return;}
+        if(s.coverage.empty()){
+            if(x||y||width!=s.width||height!=s.height)return;
+            s.coverage.resize(std::size_t(s.width)*s.height);
+        }
+        for(int row=0;row<height;++row)for(int col=0;col<width;++col)s.coverage[std::size_t(y+row)*s.width+x+col]=std::uint8_t(words[std::size_t(row)*width+col]);
+    }
+    static void damage(Surface& s,Rect r,bool nativeWrite=true){
+        if(nativeWrite)s.coverage.clear();
         // CPU diagnostic and shared GPU outputs may resolve at different times.
         // Retain an independent envelope for each until its conversion succeeds.
         for(auto* pending:{&s.rgbaDamage,&s.gpuDamage}){
@@ -578,7 +588,7 @@ void GlBlitter::batch(const std::function<void()>& operations){
     try {operations();}catch(...){--p.batchDepth;if(!p.batchDepth)p.flushCopies();throw;}
     --p.batchDepth;if(!p.batchDepth)p.flushCopies();p.check();
 }
-RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();return result;}
+RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();for(const auto& entry:impl_->surfaces)result.coverageProofBytes+=entry.second.coverage.capacity();return result;}
 bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>& operations){
     auto& p=*impl_;p.thread();
     if(!sequence || !operations || p.profiling ||
@@ -621,6 +631,7 @@ SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
     if(image.width>p.maxTexture || image.height>p.maxTexture)throw std::runtime_error("Surface exceeds the OpenGL texture limit");
     if(p.surfaces.size()>=64 || image.pixels.size()>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
     const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;s.width=image.width;s.height=image.height;s.format=format;s.validity=KnownPixels(s.width,s.height);
+    if(format.bits==8){s.coverage.resize(std::size_t(s.width)*s.height);p.uploadedCoverage(s,0,0,s.width,s.height,image.pixels.data());}
     auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try {
         s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,s.width,s.height,image.pixels.data());
@@ -637,7 +648,7 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
     const auto count=std::size_t(width)*height;
     if(p.surfaces.size()>=64||count>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
     const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;
-    s.width=width;s.height=height;s.format=format;s.validity=KnownPixels(width,height);s.validity.invalidate();
+    s.width=width;s.height=height;s.format=format;s.validity=KnownPixels(width,height);s.validity.invalidate();if(format.bits==8)s.coverage.resize(std::size_t(width)*height);
     auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try{
         s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,width,height,nullptr);
@@ -661,7 +672,7 @@ void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
         throw std::runtime_error("Native snapshot extent/format/identity mismatch");
     // Unknown words remain unknown. A snapshot is not a read or a declaration
     // of new pixel knowledge, unlike an ordinary checked blit.
-    auto knowledge=src.validity;auto clipper=src.clipper;
+    auto knowledge=src.validity;auto clipper=src.clipper;auto coverage=src.coverage;
     Current current(p.context,p.surface);auto& g=p.gl;
     const auto copy=[&](GLuint from,GLuint to,int width,int height){
         if(p.copyImage)p.copyImage(from,GL_TEXTURE_2D,0,0,0,0,to,GL_TEXTURE_2D,0,0,0,0,width,height,1);
@@ -671,7 +682,7 @@ void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
     if(src.palette)copy(src.palette,dst.palette,256,1);
     p.check();dst.validity=std::move(knowledge);dst.clipper=std::move(clipper);
     dst.paletteColors=src.paletteColors;dst.paletteKnown=src.paletteKnown;
-    p.damage(dst,{0,0,dst.width,dst.height});++p.counters.nativeSnapshotCopies;
+    p.damage(dst,{0,0,dst.width,dst.height});dst.coverage=std::move(coverage);++p.counters.nativeSnapshotCopies;
 }
 void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
     auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(id);
@@ -688,7 +699,7 @@ void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int
     if(std::any_of(begin,end,[maximum](auto value){return value>maximum;}))throw std::runtime_error("Native upload pixel exceeds format");
     Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y+first,plane.width,rows,GL_RED_INTEGER,GL_UNSIGNED_INT,&*begin);p.uploadBytes(std::uint64_t(plane.width)*rows*4);
-    p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});p.damage(s,{x,y+first,x+plane.width,y+first+rows});++p.counters.uploads;
+    p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});p.damage(s,{x,y+first,x+plane.width,y+first+rows},false);p.uploadedCoverage(s,x,y+first,plane.width,rows,&*begin);++p.counters.uploads;
 }
 void GlBlitter::destroy(SurfaceId id){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);Current current(p.context,p.surface);
@@ -699,7 +710,7 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     if(x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height)throw std::runtime_error("Update rectangle is out of bounds");
     Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());p.uploadBytes(std::uint64_t(patch.width)*patch.height*4);
-    p.check();s.validity.define({x,y,x+patch.width,y+patch.height});p.damage(s,{x,y,x+patch.width,y+patch.height});++p.counters.uploads;
+    p.check();s.validity.define({x,y,x+patch.width,y+patch.height});p.damage(s,{x,y,x+patch.width,y+patch.height},false);p.uploadedCoverage(s,x,y,patch.width,patch.height,patch.pixels.data());++p.counters.uploads;
 }
 void GlBlitter::updateMasked(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
  impl_->thread();const auto& s=impl_->get(id);
@@ -824,14 +835,21 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
         if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Displacement row period outside bounds");
         for(unsigned i=0;i<c.rowPeriod;++i){if(c.rowOffsets[i]<0||c.rowOffsets[i]>16)throw std::invalid_argument("Backward or excessive displacement unsupported");reach=std::max(reach,c.rowOffsets[i]);}
         const auto lastSample=std::int64_t(y+r.bottom-r.top-1)*dst.width+x+r.right-r.left-1+reach;
-        if(lastSample>=std::int64_t(dst.width)*dst.height)throw std::invalid_argument("Displacement sample outside destination");
+        if(lastSample>=std::int64_t(dst.width)*dst.height){
+            if(coverage.coverage.empty())throw std::invalid_argument("Displacement sample outside destination without owned mask proof");
+            for(int row=0;row<r.bottom-r.top;++row)for(int col=0;col<r.right-r.left;++col){
+                if(!coverage.coverage[std::size_t(r.top+row)*coverage.width+r.left+col])continue;
+                const auto at=std::int64_t(y+row)*dst.width+x+col+c.rowOffsets[unsigned(y+row)%c.rowPeriod];
+                if(at>=std::int64_t(dst.width)*dst.height)throw std::invalid_argument("Covered displacement sample outside destination");
+            }
+        }
     }
     src.validity.require(r);coverage.validity.require(r);dst.validity.require({0,0,dst.width,dst.height});
     Current current(p.context,p.surface);
     if(c.mode==CompositeMode::copy){p.copyTexture(src.native,coverage.native,dst,r,x,y,std::nullopt,UINT32_MAX,palette);return;}
     p.damage(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top});
     const int extraRows=(x+r.right-r.left-1+reach)/dst.width;
-    const Rect freeze=extraRows?Rect{0,y,dst.width,y+r.bottom-r.top+extraRows}:Rect{x,y,x+r.right-r.left+reach,y+r.bottom-r.top};
+    const Rect freeze=extraRows?Rect{0,y,dst.width,std::min(dst.height,y+r.bottom-r.top+extraRows)}:Rect{x,y,x+r.right-r.left+reach,y+r.bottom-r.top};
     auto& g=p.gl;const auto frozen=p.snapshot(dst,freeze);
     p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
     g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coverage.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
@@ -861,7 +879,7 @@ void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::
     p.check();++p.counters.copies;
 }
 void GlBlitter::invalidateContents(SurfaceId id){
-    auto& p=*impl_;p.thread();p.flushCopies();p.get(id).validity.invalidate();
+    auto& p=*impl_;p.thread();p.flushCopies();p.get(id).validity.invalidate();p.get(id).coverage.clear();
 }
 void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
@@ -903,8 +921,8 @@ void GlBlitter::swapContents(SurfaceId first,SurfaceId second){
     if(first==second || a.width!=b.width || a.height!=b.height ||
        a.format.bits!=b.format.bits || a.format.masks!=b.format.masks)
         throw std::runtime_error("Aliased or incompatible surface swap");
-    std::swap(a.native,b.native);std::swap(a.validity,b.validity);
-    p.damage(a,{0,0,a.width,a.height});p.damage(b,{0,0,b.width,b.height});
+    std::swap(a.native,b.native);std::swap(a.validity,b.validity);std::swap(a.coverage,b.coverage);
+    p.damage(a,{0,0,a.width,a.height},false);p.damage(b,{0,0,b.width,b.height},false);
 }
 void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& colors){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
@@ -913,7 +931,7 @@ void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& c
     for(auto c:colors){bytes.push_back(c.red);bytes.push_back(c.green);bytes.push_back(c.blue);bytes.push_back(255);}
     Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,int(first),0,int(colors.size()),1,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,bytes.data());p.uploadBytes(colors.size()*4);
-    p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}p.damage(s,{0,0,s.width,s.height});++p.counters.paletteUpdates;
+    p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}p.damage(s,{0,0,s.width,s.height},false);++p.counters.paletteUpdates;
 }
 Image GlBlitter::read(SurfaceId id){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);p.attach(s.native,s.width,s.height);

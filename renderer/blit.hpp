@@ -76,7 +76,7 @@ struct RenderStats {
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
     std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;
     std::uint64_t maskedScratchAllocations=0,maskedScratchPixels=0;
-    std::size_t surfaces=0,pixels=0;
+    std::size_t surfaces=0,pixels=0,coverageProofBytes=0;
 };
 
 // Thread-affine owner of a dedicated OpenGL 3.3 context. Worker construction

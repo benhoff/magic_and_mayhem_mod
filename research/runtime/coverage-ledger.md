@@ -8048,3 +8048,23 @@ pass. Full public native casting/combat/portrait/menu/resume/normalQuit and
 19/60FPS validation are running under a prospective declaration; its scenario
 will be registered with the completed result. Original equivalence, hardware
 generality/driver busy time and shared-source historical freshness remain pending.
+
+
+### Displacement boundary found during native performance work (2026-10-12)
+
+Full cache run reaches3707orderedWorlds, then fails at3708Scene displacement
+admission during resumed gameplay. Initial summon/lethal combat passed; complete
+flow/normalQuit fail, one outstanding source remains, original/source/private
+cleanup pass.17.2034Hzsource/43.6183nativeFPS are partial failed-run observations.
+`NR.native-colour-rectangle-cache.full-displacement-negative-20261012` retains
+the failure without promotion. WholeWorld isolated attempts refuse missing prior
+native history; admission-only captured geometry is the relevant control.
+
+`NR.masked-displacement-admission.controls-20261012` confirms1old conservative
+envelope refusal for actual fully in-bounds covered samples, matches6captured
+atlas/nonatlas draws against480000-word scalar references, and passes11mask
+proof/phase/bounds controls plus4renderer regressions. No ordinary readback or
+source/order/pacing/AX change. Binary mask metadata is bounded bynative16Mpixels;
+unknown proofs and real covered overflow remain refusals. Current full gameplay
+and19/60FPS,original comparison/replacement and shared-source freshness remain
+pending. The source-cache same-input performance gain remains a headless result.

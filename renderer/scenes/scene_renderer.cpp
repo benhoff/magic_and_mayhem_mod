@@ -100,7 +100,14 @@ void SceneRenderer::validate(const SceneDraw& draw){
     if(draw.composite.mode==CompositeMode::displace){const auto& c=draw.composite;if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Invalid displacement period");int reach=0;for(unsigned i=0;i<c.rowPeriod;++i){if(c.rowOffsets[i]<0||c.rowOffsets[i]>16)throw std::invalid_argument("Invalid displacement offset");reach=std::max(reach,c.rowOffsets[i]);}const auto r=draw.viewport.value_or(viewport_);
         const auto left=std::max(x,std::int64_t(r.left)),right=std::min(x+width,std::int64_t(r.right));
         const auto top=std::max(y,std::int64_t(r.top)),bottom=std::min(y+height,std::int64_t(r.bottom));
-        if(left<right&&top<bottom&&(bottom-1)*viewport_.right+right-1+reach>=std::int64_t(viewport_.right)*viewport_.bottom)throw std::invalid_argument("Scene displacement samples outside canvas");
+        if(left<right&&top<bottom&&(bottom-1)*viewport_.right+right-1+reach>=std::int64_t(viewport_.right)*viewport_.bottom){
+            const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+            for(auto row=top;row<bottom;++row)for(auto col=left;col<right;++col){
+                if(sprite&&!sprite->frames[draw.frame].opaqueMask.at(std::size_t(row-y)*width+col-x))continue;
+                const auto at=row*viewport_.right+col+c.rowOffsets[unsigned(row)%c.rowPeriod];
+                if(at>=std::int64_t(viewport_.right)*viewport_.bottom)throw std::invalid_argument("Scene covered displacement samples outside canvas");
+            }
+        }
     }
     if(width && !draw.clip && (x<0 || y<0 || x+width>viewport_.right || y+height>viewport_.bottom))
         throw std::invalid_argument("Unclipped scene draw outside canvas");
