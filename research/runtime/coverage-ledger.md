@@ -7575,3 +7575,13 @@ witnesses that match native replay exactly, with 262 exclusions retained. The
 first comparison attempt is preserved as an Xvfb failure with zero frames
 compared; the rerun exits0 and compares all104. This validates only the admitted
 cohort and does not resolve the earlier refusal or whole DRAW-02 acceptance.
+
+DRAW-02 step 2 now has an opt-in public map-buffer address association to the
+live producer canvas cache. PE32 export/forwarding/state guards and four decoder
+methods pass. Original01 records 795 known points, 14 unknown and 433 stopped
+out of1242 successful maps; one map interval remains open. This links a public
+resource/texture generation to a known canvas at a recorded point without
+reading private Wine layouts or source bytes. Continue with exact command/source
+version and storage lifetime accounting. Whole upload/alias/reuse/lifetime,
+all routes/actions, diagnostic cadence controls and DRAW-02 47/21 closure remain
+open; step3 is not yet admitted. Native parity remains historical for this code.

@@ -43639,6 +43639,59 @@
         "Six PE32 cases and three decoder methods pass. Two original-active combined runs close normally without rejection; the earlier resource-original01 refusal remains unreproduced and cause unassigned. Diagnostic cannot identify an event it did not capture.",
         "All guard branches beyond fixture coverage, source/map/upload ownership and storage reuse, whole source/COM/texture lifetimes, other routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
       ]
+    },
+    {
+      "id": "NR.drawing-wine-map-storage-point",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public Wine map-buffer association to known original canvas storage",
+      "scope": "Opt-in read-only in-process comparison of successful public map descriptor data/pitches to the live producer recorder canvas cache, under its recorder scope. Export only portable point metadata and link it to the exact map interval, resource and texture generation. Unknown, ambiguous, stopped and extent-mismatched caches remain explicit. No source bytes, private Wine layouts, upload ownership or exclusive storage lifetime claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-map-storage-point.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_storage_point.h",
+        "protocols/include/mnm/drawing_storage_point_v1.h",
+        "runtime/drawing/wine_map_storage_point.h",
+        "tools/drawing_wine_map_storage_point.py"
+      ],
+      "tests": [
+        "tests/drawing-storage-point-test.c",
+        "tools/test-drawing-storage-point.py",
+        "tests/drawing-wine-map-storage-point-test.c",
+        "tools/test-drawing-wine-map-storage-point.py",
+        "tests/test-drawing-wine-map-storage-point.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_lifetime.h",
+        "tools/build-scene-observer.py",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.map-storage-export-fixture-01-native-20261012",
+        "DRAW02.map-storage-observer-fixture-01-native-20261012",
+        "DRAW02.map-storage-parser-01-native-20261012",
+        "DRAW02.map-storage-original-01-live-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "PE32 cache-only export and 12-forward observer fixtures plus four decoder methods pass. Original01 records 1242 successful maps: 795 known canvas points across six canvases, 14 unknown and 433 stopped. 760 known points are full 800x600 stride800. One resource map remains open at observation close. 118 held pairs/222 source commands, 333 API/332 EGL witnesses and actual normal Quit exit0 remain separate observations.",
+        "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned."
+      ]
     }
   ],
   "evidence": [
@@ -93040,6 +93093,86 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.map-storage-export-fixture-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 cache-only storage export with unreadable storage address, live/unknown/ambiguous/extent/failure/stopped/nesting/output/LastError guards.",
+      "record": "research/runtime/draw02-map-storage-export-fixture-01.json",
+      "sha256": "b5988331e90063bff5fb7e7dca57670ff8df3341d68b8de36b6ab5e4e91dcf6e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.map-storage-observer-fixture-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 12 original forwards, five successful map points, failed map exclusion and FP/LastError preservation through mutating export.",
+      "record": "research/runtime/draw02-map-storage-observer-fixture-01.json",
+      "sha256": "8965232bdf28f9b01ca1a3a55d25472a6673692a693d1936b5f199eb527176e7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.map-storage-parser-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Four portable point decoder methods; no original execution.",
+      "record": "research/runtime/draw02-map-storage-parser-01.json",
+      "sha256": "b2ce1863e3fece7984a3218269661f431e5ba0eb3bcbc8c3d42b72c4e23c7aff",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.map-storage-original-01-live-20261012",
+      "kind": "live_observation",
+      "scope": "1242 successful public maps yield 795 unique live canvas-cache associations, 14 unknown and 433 stopped; one open interval retained. Combined source diagnostics and normal Quit pass; no upload/lifetime ownership claim.",
+      "record": "research/runtime/draw02-map-storage-original-01.json",
+      "sha256": "fd49b66d6e758893be4e8163ebbea75dc20ff152033570301ed3c8caf9fe488b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104613,6 +104746,49 @@
         "DRAW02.held-refusal-original-01-live-20261012",
         "DRAW02.held-refusal-original-02-live-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.map-storage-export-fixture",
+      "level": "headless",
+      "scope": "Bounded public descriptor to known recorder canvas cache association only.",
+      "behaviors": [
+        "NR.drawing-wine-map-storage-point"
+      ],
+      "tests": [
+        "tools/test-drawing-storage-point.py"
+      ],
+      "evidence": [
+        "DRAW02.map-storage-export-fixture-01-native-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.map-storage-observer-fixture",
+      "level": "headless",
+      "scope": "Bounded public descriptor to known recorder canvas cache association only.",
+      "behaviors": [
+        "NR.drawing-wine-map-storage-point"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-map-storage-point.py"
+      ],
+      "evidence": [
+        "DRAW02.map-storage-observer-fixture-01-native-20261012",
+        "DRAW02.map-storage-parser-01-native-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.map-storage-original",
+      "level": "live_observation",
+      "scope": "Bounded public descriptor to known recorder canvas cache association only.",
+      "behaviors": [
+        "NR.drawing-wine-map-storage-point"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.map-storage-original-01-live-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -104986,8 +105162,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-held-refusal-20261012.json",
-    "sha256": "d67b201dd256f08ef49db69255ee0ff74c039a0f075321278bc0c595b9bae24e"
+    "path": "research/runtime/coverage/source-index-draw02-map-storage-20261012.json",
+    "sha256": "5ee06dd17c54cc743028b28209eb2c67545923be035aac034c84a88260f31ed1"
   },
   "claim_bindings_required": true
 }

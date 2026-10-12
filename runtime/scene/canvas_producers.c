@@ -395,6 +395,7 @@ static void producer_source_region_end(void){
 
 #include "drawing_publication.h"
 #include "drawing_source_point.h"
+#include "drawing_storage_point.h"
 #include "drawing_update_points.h"
 #include "whole_update_capture.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
