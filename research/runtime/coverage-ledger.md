@@ -7913,3 +7913,31 @@ function. Corrected report02pins only its exact8byteCALL4a4910/RET14anchor;
 whole_inventory_function=false and unassigned ranges remain intact. Both
 original2927-file manifests pass. The exact foreign cursor copy caller is
 confirmed statically; allocation/source lifetime and game input remain pending.
+
+
+## Step 2 original mouse ring and Region callback checkpoint (2026-10-12 UTC)
+
+Cursor client discovery is committed as `902dfbff`; its staged gate and hook
+pass. Reviewed committed range82819fad..902dfbffhas9exact file receipts and
+zero missing versions. The separate original mouse initializer4a3720and
+writer4a3800use a32record/40byte ring at641ab8, with write641a88, selected
+record641fbc and collision-tail641a74indices. Masked unsigned low16coordinate
+values, button/modifier bits, coordinate/button transitions, one original
+GetAsyncKeyState(VK18) poll, independent selected/write wrap and collision-tail
+advancement are confirmed by55296owned privately mapped original writer cells.
+All original writer instructions and unrelated ring cells remain unchanged.
+This executes the bounded writer, not a running game or actual window procedure.
+The first sandbox attempt stopsSIGSYS before case output; exact syscall unknown.
+The static inspector initially refuses the incorrect GetKeyState label; both
+failures and their historical source hashes are retained separately.
+
+Exact constructor4bfda0sets the Region table5c6a54, whose first entry4fdad0
+is absent from the discovered-function inventory. Its bounded prefix reads hit
+class6a5134; complete function/dispatch recovery remains open. Control helper
+4a5000copies the current40byte mouse record to a virtual slot0event0x40, then
+clears control activity/capture-like state; it is not established queue consumption.
+Two exact4a3800call sites4ea052/4ea11flack whole-function inventory boundaries.
+Unknown ranges remain intact; no selection/tooltip/native parity promotion.
+Next trace the control event dispatcher and bounded Region callback effects,
+then observe actual action/state causality. Step2is ongoing; all47journey/21operation
+requirements and steps3–7remain open.

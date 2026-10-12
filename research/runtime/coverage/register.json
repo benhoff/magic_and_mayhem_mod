@@ -44648,6 +44648,115 @@
         "research/runtime/coverage/binary-nocd.json",
         "research/runtime/draw02-whole120-epochs-pending-diagnosis-01.json"
       ]
+    },
+    {
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "confidence": "provisional",
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/mouse-input-ring.md"
+      ],
+      "implementation": [],
+      "evidence": [
+        "DRAW02.draw02-mouse-ring-negative-01-20261012",
+        "DRAW02.draw02-mouse-dispatch-static-negative-01-20261012",
+        "DRAW02.draw02-mouse-dispatch-static-02-20261012",
+        "DRAW02.draw02-mouse-ring-original-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/inspect-drawing-canvas-storage.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "tests/surface-retry-reference.cpp"
+      ],
+      "id": "DRAW.mouse-ring-input",
+      "title": "Original mouse ring initialization and message-fed record writer",
+      "scope": "Prospective exact32record/40byte ring initialization, input bit/coordinate/transition writes and valid-index wrap behavior. Distinct from cursor painting and persistent selection; observed Windows message call anchors lack whole inventory functions.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4863776,
+          "scope": "Prospective exact bounded input/client review; absent whole-function boundaries remain unassigned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4864000,
+          "scope": "Prospective exact bounded input/client review; absent whole-function boundaries remain unassigned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4627248,
+          "scope": "Prospective exact bounded input/client review; absent whole-function boundaries remain unassigned."
+        }
+      ],
+      "tests": [
+        "tools/inspect-drawing-mouse-dispatch.py",
+        "tools/test-drawing-mouse-ring.py",
+        "tests/drawing-mouse-ring-reference.cpp"
+      ],
+      "remaining_gaps": [
+        "Actual window procedure/queue consumer, concurrency, invalid index handling, input causality, persistent selection/tooltip and runtime equivalence remain open."
+      ]
+    },
+    {
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "confidence": "provisional",
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/mouse-input-ring.md"
+      ],
+      "implementation": [],
+      "evidence": [
+        "DRAW02.draw02-mouse-dispatch-static-negative-01-20261012",
+        "DRAW02.draw02-mouse-dispatch-static-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/inspect-drawing-canvas-storage.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "tests/surface-retry-reference.cpp"
+      ],
+      "id": "DRAW.region-mouse-callback",
+      "title": "Original Region control mouse callback entry",
+      "scope": "Prospective exact Region constructor/control deactivation and virtual-table entry link to bounded4fdad0callback prefix. Scope only static reviewed instructions; actual callback routes and selection/tooltip effects pending.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4980128,
+          "scope": "Prospective exact bounded input/client review; absent whole-function boundaries remain unassigned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4870144,
+          "scope": "Prospective exact bounded input/client review; absent whole-function boundaries remain unassigned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "scope": "Exact static Region virtual-table slot0points to4fdad0; callback lacks discovered whole-function boundary, and bounded static windows do not qualify for a recovered-range execution exception.",
+          "relation": "data"
+        }
+      ],
+      "tests": [
+        "tools/inspect-drawing-mouse-dispatch.py"
+      ],
+      "remaining_gaps": [
+        "4fdad0and4bdd50anchors lack discovered whole-function inventory; bounded windows retain unassigned ranges. Persistent state, complete callback semantics, source/lifetime and native parity remain open."
+      ]
     }
   ],
   "evidence": [
@@ -95811,6 +95920,81 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-mouse-ring-negative-01-20261012",
+      "kind": "static",
+      "scope": "Retained sandboxSIGSYS before emitted case rows; no successful original execution.",
+      "record": "research/runtime/draw02-mouse-ring-negative-01.json",
+      "sha256": "b195657a31aaeeac043c8bcca3302aa5a29c918edbb04265c93c44eea752e964",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-mouse-dispatch-static-negative-01-20261012",
+      "kind": "static",
+      "scope": "Retained static refusal of mistaken GetKeyState label; import isGetAsyncKeyState.",
+      "record": "research/runtime/draw02-mouse-dispatch-static-negative-01.json",
+      "sha256": "722e03d59bc5a2a552358e32b992f37eeb6daa209af7bf7262dddbb835ceea6c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-mouse-dispatch-static-02-20261012",
+      "kind": "static",
+      "scope": "Exact bounded mouse initializer/writer/control deactivation/Region constructor/camera input and missing-function caller/Region callback anchors; whole callback/selection/tooltip unverified.",
+      "record": "research/runtime/draw02-mouse-dispatch-static-02.json",
+      "sha256": "732760d5d0690b56bcf470a7a4bf8bec799419ec77852b36c61b14cf04b18462",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-mouse-ring-original-02-20261012",
+      "kind": "isolated_original",
+      "scope": "Unchanged original4a3800privately mapped32bit owned valid-index mouse ring over55296cells; full record/unrelated cells/flags/unsignedlow16coordinates/one mocked Alt poll/indexwrap/collisiontail checked. No running game/window procedure/concurrency/invalidindices/persistent selection/tooltip/native parity.",
+      "record": "research/runtime/draw02-mouse-ring-original-02.json",
+      "sha256": "e0c62299ae1a8c659e1db2ed0f2732a9b5e80f6687071f98dd4229821d27a460",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_writer_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 55296
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -107953,8 +108137,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-clients-20261012.json",
-    "sha256": "e2f5f3990572f5bb6aadcb046675e7ddb89fd41be35878790ca15999b33cd861"
+    "path": "research/runtime/coverage/source-index-draw02-mouse-ring-20261012.json",
+    "sha256": "236234a2648e9a54240d2426f111f06b4f90826fd6ff37e28c6d3d31a357e275"
   },
   "claim_bindings_required": true
 }

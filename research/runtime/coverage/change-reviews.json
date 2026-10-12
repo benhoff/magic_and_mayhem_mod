@@ -524915,6 +524915,217 @@
         "reason": "Exact executable/call-byte/import/client inspection and both2927inputmanifests pass. This is static caller attribution only; complete cursor state/hotspot/resource/mutex lifecycle, source overlap/quiescence, original game input/selection/tooltip and full47/21/native/physical equivalence remain pending. No new game execution or status promotion.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "7467aafbd63e9be395c6585220c2a6978912c6255c69fa4006ebf361a41f23c3",
+          "before_sha256": "7467aafbd63e9be395c6585220c2a6978912c6255c69fa4006ebf361a41f23c3",
+          "id": "DRAW.canvas-lock-recovery"
+        },
+        {
+          "after_sha256": "24236e71aca5adfc1c6fab95175e7f29ecaab02100ac0ff51b2d413598a630e3",
+          "before_sha256": "24236e71aca5adfc1c6fab95175e7f29ecaab02100ac0ff51b2d413598a630e3",
+          "id": "DRAW.canvas-release-client"
+        },
+        {
+          "after_sha256": "69e1ce187b77a62b37fd68291bf99cbb7f3b753b4821b4868d19df39309f8f2f",
+          "before_sha256": "69e1ce187b77a62b37fd68291bf99cbb7f3b753b4821b4868d19df39309f8f2f",
+          "id": "DRAW.canvas-source-buffer-setup"
+        },
+        {
+          "after_sha256": "f7886f9a6e812d252347124579d47518d64046c8c8e723f5572ce8e33fda1150",
+          "before_sha256": "7acef7659b73c7a82d146a9acca9248a0685c9b6cc742c0a9dc898f21384ba4f",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "2fd488dcc2a43eb7b31f29f4c3a88a0624db78695be3bb547fd5683691c77441",
+          "before_sha256": null,
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "d3c0195aeeced455ca1b1b136b88ef813d3f6d052ae1c732099e561346f9947e",
+          "before_sha256": null,
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "7f91c9abb35d82603f16442840fa038d4a96b799ee50acb2a22a974e861f2e10",
+          "before_sha256": "2b08871d454a78419f1269fa16b63d2e5b603ac24ba64650803ef67f9eb41752",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "3bc542b61a3d5d50eb4ba6427e75f47e7599297d4a0bed098f0e04b15de2b1e0",
+          "before_sha256": "3bc542b61a3d5d50eb4ba6427e75f47e7599297d4a0bed098f0e04b15de2b1e0",
+          "id": "DRAW.terminal-canvas-wrappers"
+        },
+        {
+          "after_sha256": "b4419fb47cbeee5dc71aab7b1140304ab5a1b40d637d5b12b22b10861ae05840",
+          "before_sha256": "752bf190eb3554feeb970023924b682919a30eb6e0d6c60f779b63cb24ae77cc",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "20cf9b540f0b557502516dcb98be8a1965d836ad9bd1cdfa09ddad049f6afa11",
+          "before_sha256": "070f1dda94fa3884422c5f782ca3bc93d0c111befcb09f486eb897fd40d7f2fe",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "cc77abb51b6ccefecbfa11bc60840d662928b50ce05e836a948c66368d093516",
+          "before_sha256": "8fde907a0a1c05ea2aa529289f37736be4630bff31585e66b58e8733c6ab06b6",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "007b960582431ffdbce01ec44a3184104e974901221b3b44090ffd8e3aefdb7e",
+          "before_sha256": "be1bd4725a1e355c223ba5d2049c9561886278dbc0d976f9a2bb48ea48373ec7",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "6879863b64f6093857257b984fad8cfd41145293c8bfbcbbdebec31579037c2f",
+          "before_sha256": "1d33a024e0f51bc03dad15ef142733fe6f05906e39ea98ab6d84981010237975",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "eb3b86d451e009dad20dd25a02ae53e8a00e948e1d9ea17d4474f4bd7bfef0aa",
+          "before_sha256": "7663289b9c386d943e3cad242a4c348f1b67b5dfd1c0aeb11991818e154f1f7f",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "c45f79cb79d369c2d5659d6959497f6429c9cf2f72c3ea33f7b378182e0783f3",
+          "before_sha256": "b79efcd25463a7bab408816e722d5a6ff7cc37f0ac8eeea7a15b7d2c21306480",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "ffd99d237c60e5d5c568fd757bfbf9da4252f7689d146f52d46817007c9f4e6b",
+          "before_sha256": "b6ae6f33ebf289a78cf9b36c0ccd56f72e3031984835569b9f83231003c76f82",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "9edb81d9bb9de4a61b77e7c8b1f1d326fae5f7cfb2e57fd89a1bf9338d293d4d",
+          "before_sha256": "9aaad9ab814d000554fb603354e14064ebb7e341b6a8ef1b02a402b8f98c537f",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+          "before_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "ad5d189a3c979a3b7a1381e50130b403c12532fec020bd992a068d29cdf785b5",
+          "before_sha256": "ad5d189a3c979a3b7a1381e50130b403c12532fec020bd992a068d29cdf785b5",
+          "id": "RS.canvas-create-lock"
+        },
+        {
+          "after_sha256": "00d460e4027c0b3ffbc0e4106e8fd4c89148e5e34bec6f50ed6904655034a99d",
+          "before_sha256": "17bb0c2e6ad56acb8f0081cda22bf5f05c019305952a3207b7400dc219c51d2c",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "ca674bbc9f98be446237e04cc09e746bf6c1d77ce4a93f4e250d388718cdbed5",
+          "before_sha256": "4fdd4ba982a451c61a70e6dbb3847cfd45407e0c9b4a64a717bd53249d037598",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f0ba8fe001db529233acae25b25030ecab5cbbed4f5e528a10a76eb9c9d2f0e0",
+          "before_sha256": "c77082482c9063847322561f030ea48bca90f6036c8e83e82e9760d60be85411",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "bc5a9f46fac2053e6e8eefb4892310995cfab6fec32ee83090796064e61aadc6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-mouse-ring-start-20261012.json"
+        },
+        {
+          "after_sha256": "c9f702e138a8ab3b1c9c48d9e40dba19b12d738e3b335cb57b2b704f2ec5523f",
+          "before_sha256": "c379f7f134ae24df3ddb688679b3a74d5209fe51cac1d209a3802726b5db8b4d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "236234a2648e9a54240d2426f111f06b4f90826fd6ff37e28c6d3d31a357e275",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-mouse-ring-20261012.json"
+        },
+        {
+          "after_sha256": "009d95e598bf3ff766646f8a8d57a80385b26161a36b1ff40bb66dc17c480fbe",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-mouse-ring-20261012-03.md"
+        },
+        {
+          "after_sha256": "9fb26a5f874c6bf0bb44c06d72727baf4a4fdfbf8f6573ad291f17df11a595de",
+          "before_sha256": "44f8c15bc9d65e2c6ffb200882e90749a8ac63ac20d97350e1a5762f22b7d312",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "732760d5d0690b56bcf470a7a4bf8bec799419ec77852b36c61b14cf04b18462",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-mouse-dispatch-static-02.json"
+        },
+        {
+          "after_sha256": "722e03d59bc5a2a552358e32b992f37eeb6daa209af7bf7262dddbb835ceea6c",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-mouse-dispatch-static-negative-01.json"
+        },
+        {
+          "after_sha256": "b195657a31aaeeac043c8bcca3302aa5a29c918edbb04265c93c44eea752e964",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-mouse-ring-negative-01.json"
+        },
+        {
+          "after_sha256": "e0c62299ae1a8c659e1db2ed0f2732a9b5e80f6687071f98dd4229821d27a460",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-mouse-ring-original-02.json"
+        },
+        {
+          "after_sha256": "313817bb092e813205b1dfa50fd1101b8bd224903587870323794742064ad436",
+          "before_sha256": null,
+          "path": "research/runtime/mouse-input-ring.md"
+        },
+        {
+          "after_sha256": "3074870a9062e39ecb49f59a7da9c0ef77176d45f4998d110d00b90a259a4b78",
+          "before_sha256": null,
+          "path": "tests/drawing-mouse-ring-reference.cpp"
+        },
+        {
+          "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "before_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "path": "tests/surface-retry-reference.cpp"
+        },
+        {
+          "after_sha256": "2513652d0ed8b5c9382b3b32b393fdb2ea4e15d02b10d5f297cadd45e3a5dcd8",
+          "before_sha256": "2513652d0ed8b5c9382b3b32b393fdb2ea4e15d02b10d5f297cadd45e3a5dcd8",
+          "path": "tools/inspect-drawing-canvas-storage.py"
+        },
+        {
+          "after_sha256": "72066df842e3c0b0a2b9712fe880efa8e8373e05998c26c3619fda9a247e20fb",
+          "before_sha256": null,
+          "path": "tools/inspect-drawing-mouse-dispatch.py"
+        },
+        {
+          "after_sha256": "4a8c56fef1f07bfc5d5182610daccc3bd31a01f16cf87b06545a7b2e97040729",
+          "before_sha256": null,
+          "path": "tools/test-drawing-mouse-ring.py"
+        }
+      ],
+      "id": "draw02-original-mouse-ring-and-region-callback-anchors-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:50dcc435794ed959ffa34e53c401a692ee2fb959e6e4c6444d14635de8bfec85",
+        "behaviors_without_comparison:53eb98e1ff2c428ecf7d02c90da29eef4e20c82f39999b854f5b74adb47cff03",
+        "behaviors_without_implementation:50dcc435794ed959ffa34e53c401a692ee2fb959e6e4c6444d14635de8bfec85",
+        "behaviors_without_implementation:53eb98e1ff2c428ecf7d02c90da29eef4e20c82f39999b854f5b74adb47cff03",
+        "behaviors_without_scenarios:50dcc435794ed959ffa34e53c401a692ee2fb959e6e4c6444d14635de8bfec85",
+        "behaviors_without_scenarios:53eb98e1ff2c428ecf7d02c90da29eef4e20c82f39999b854f5b74adb47cff03",
+        "stale_evidence:2c1b39c6e03f2b5fc5f27b94eacb5668526c7d131f0fcd036bef11c3246debff",
+        "stale_evidence:2c481dbe759ca12912d547b96da58a85d0f69e96e6cb277488f2c7959ebf8af5",
+        "stale_evidence:c95f466970b3c19e231a377773548cc0f307a70596df8daabc3246b8a1c7fbc9"
+      ],
+      "reason": "Review unchanged original4a3800writer55296owned cells, exact mouse ring/client/Region constructor and data-table anchors, retained sandbox/import failures, independent unknown callback/caller boundaries, source census and9exact committed-history receipts. No unknown function erased or complete input/selection/tooltip/native status promoted.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "DRAW02.draw02-mouse-ring-original-02-20261012"
+        ],
+        "reason": "Fresh original owned writer fixture passes55296valid-index cells with unchanged bytes/full ring/index checks and pinned build/sources; static windows pass and failures retained. Running-game dispatch, queue concurrency/lifetime, invalid indices, selection/tooltip and full presentation/native equivalence remain pending; older unrelated evidence/statuses stay historical."
+      }
     }
   ]
 }
