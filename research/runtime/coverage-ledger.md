@@ -604,6 +604,20 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI41 validates an isolated original Grimoire tick probe and fresh
+Region/settled introductory book/Escape/Region twice, Region Cancel/Main and
+normal Quit, on one original thread with original graphics/audio. [Evidence and
+remaining scope](grimoire-observation.md). The book owns depth5 above Region18;
+screen and initialized fields remain zero while readable, so standard readiness
+rules are invalid. Original fade/pop cleans allocated catalog/display/callbacks
+and restores Region. Synthetic guards/forwarding/LastError/dedup/bounds pass;
+the original tick is stubbed only in that private fixture. The earlier live
+during-animation close and failed fixture attempts stay retained. No native
+reader ownership, original work bypass, page/knowledge/stats equivalence or
+cadence claim is made. Current native book commands/presentation and remaining
+campaign/multiplayer menus still require implementation and validation. The
+committed `b49bc43..556ded9` audit has14 exact versions and no missing receipts.
+
 2026-10-12 UI40 starts Grimoire control recovery. Static constructors/resource
 consumers correct earlier reversed names: Grimoire is `0x6e0088`/vtable5c6b70,
 Region action2/Realm auxiliary3; Character is `0x6c5148`/vtable5c66b4/ID20,
