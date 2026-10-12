@@ -8,7 +8,15 @@
 namespace {
 QAudioFormat captureFormat(){QAudioFormat f;f.setSampleRate(22050);f.setChannelCount(2);f.setSampleFormat(QAudioFormat::Int16);return f;}
 }
-NativePlayback::NativePlayback(bool movie,bool audible):movie_(movie),audible_(audible),audio_(captureFormat()){
+NativePlayback::NativePlayback(bool movie,bool audible,std::unique_ptr<PlaybackAudioDevices> devices)
+    :movie_(movie),audible_(audible),audio_(captureFormat()),devices_(std::move(devices)){
+    outputRefresh_.setSingleShot(true);
+    outputRetry_.setInterval(500);
+    connect(&outputRefresh_,&QTimer::timeout,this,[this]{refreshOutput();});
+    connect(&outputRetry_,&QTimer::timeout,this,[this]{refreshOutput();});
+    if(devices_)devices_->changed=[this]{
+        if(audible_ && followDefault_ && !finished_ && !outputRefresh_.isActive())outputRefresh_.start(0);
+    };
     player_.setVideoSink(&video_);player_.setAudioBufferOutput(&audio_);
     if(audible_)player_.setAudioOutput(&output_);
     connect(&video_,&QVideoSink::videoFrameChanged,this,[this](const QVideoFrame& video){
@@ -94,26 +102,57 @@ NativePlayback::NativePlayback(bool movie,bool audible):movie_(movie),audible_(a
         error_=error;finish(MNM_MEDIA_V1_STATUS_DECODER_ERROR);
     });
 }
-NativePlayback::~NativePlayback(){finished_=true;player_.stop();player_.setVideoSink(nullptr);player_.setAudioBufferOutput(nullptr);player_.setAudioOutput(nullptr);}
+NativePlayback::~NativePlayback(){finished_=true;outputRefresh_.stop();outputRetry_.stop();if(devices_)devices_->changed={};player_.stop();player_.setVideoSink(nullptr);player_.setAudioBufferOutput(nullptr);player_.setAudioOutput(nullptr);}
 void NativePlayback::start(const QString& path,bool loop,bool presentVideo){
     path_=path;finished_=false;accepted_=false;result_=0;error_.clear();videoFrames_=0;audioFrames_=audioBytes_=0;
     videoSize_={};pixelFormat_=0;firstColors_={};audioHash_.reset();videoHash_.reset();firstFrameHash_.clear();
     presentVideo_=presentVideo;presentedFrames_=0;
-    player_.setLoops(loop?QMediaPlayer::Infinite:1);player_.setSource(QUrl::fromLocalFile(path));player_.play();
+    requestedPaused_=false;waitingOutput_=false;outputLosses_=outputRecoveries_=outputChanges_=0;
+    outputRefresh_.stop();outputRetry_.stop();
+    if(audible_ && followDefault_){
+        const auto device=devices_?devices_->defaultOutput():QAudioDevice{};
+        waitingOutput_=device.isNull();output_.setDevice(device);
+        if(waitingOutput_)outputRetry_.start();
+    }
+    player_.setLoops(loop?QMediaPlayer::Infinite:1);player_.setSource(QUrl::fromLocalFile(path));
+    if(!waitingOutput_)player_.play();
 }
 void NativePlayback::finish(unsigned result){
     if(finished_)return;
-    finished_=true;result_=result;player_.stop();if(finished)finished(result);
+    finished_=true;result_=result;outputRefresh_.stop();outputRetry_.stop();player_.stop();if(finished)finished(result);
 }
 void NativePlayback::stop(unsigned result){finish(result);}
-void NativePlayback::pause(bool value){if(finished_)return;if(value)player_.pause();else player_.play();}
+void NativePlayback::pause(bool value){if(finished_)return;requestedPaused_=value;if(value || waitingOutput_)player_.pause();else player_.play();}
 void NativePlayback::setVolume(float volume){output_.setVolume(std::clamp(volume,0.0f,1.0f));}
-void NativePlayback::setAudioDevice(const QAudioDevice& device){output_.setDevice(device);}
+void NativePlayback::setAudioDevice(const QAudioDevice& device){
+    followDefault_=false;outputRefresh_.stop();outputRetry_.stop();
+    const bool wasWaiting=waitingOutput_;waitingOutput_=false;output_.setDevice(device);
+    if(wasWaiting && !finished_ && !requestedPaused_)player_.play();
+}
+void NativePlayback::refreshOutput(){
+    if(finished_ || !audible_ || !followDefault_)return;
+    const auto device=devices_?devices_->defaultOutput():QAudioDevice{};
+    if(device.isNull()){
+        if(!waitingOutput_){++outputLosses_;waitingOutput_=true;player_.pause();}
+        if(!outputRetry_.isActive())outputRetry_.start();
+        return;
+    }
+    const bool recovering=waitingOutput_;
+    if(recovering || output_.device().id()!=device.id()){
+        player_.pause();output_.setDevice(device);
+        if(recovering)++outputRecoveries_;else ++outputChanges_;
+    }
+    waitingOutput_=false;outputRetry_.stop();
+    if(!requestedPaused_)player_.play();
+}
 QJsonObject NativePlayback::report() const{
     return {{"path",path_},{"result",int(result_)},{"error",error_},{"accepted",accepted_},{"video_frames",int(videoFrames_)},
         {"pixel_format",pixelFormat_},{"first_frame_quadrants",firstColors_},{"width",videoSize_.width()},{"height",videoSize_.height()},{"first_frame_rgba_sha256",QString::fromLatin1(firstFrameHash_)},
         {"video_rgba_sha256",QString::fromLatin1(videoHash_.result().toHex())},
         {"audio_frames",audioFrames_},{"audio_bytes",audioBytes_},{"audio_s16le_stereo_22050_sha256",QString::fromLatin1(audioHash_.result().toHex())},
         {"video_presentation_requested",presentVideo_},{"presented_video_frames",int(presentedFrames_)},
-        {"audible_output_requested",audible_},{"audio_device_available",!output_.device().isNull()}};
+        {"audible_output_requested",audible_},{"audio_device_available",!waitingOutput_ && !output_.device().isNull()},
+        {"waiting_for_audio_output",waitingOutput_},{"caller_paused",requestedPaused_},
+        {"position_ms",player_.position()},{"output_losses",int(outputLosses_)},
+        {"output_recoveries",int(outputRecoveries_)},{"default_output_changes",int(outputChanges_)}};
 }
