@@ -77,3 +77,24 @@ native worker has nonzero gain. A guarded native getter uses a7-byte prologue
 then reads its own fresh coherent music-volume snapshot. This is per-output
 native policy, not original desktop-mixer equivalence. See native-audio-defaults.md
 for the actual PE getter and shared-page protection checks.
+
+## Stop/fade caller reconstruction
+
+The unchanged0x482010..0x482186 caller now matches the native model across
+62,208 authored cases and93,568 scripted callee events. Whole receiver/guard
+comparison covers65,691,648 bytes. Initialized/active gates and successful
+MODE OPEN0x212/STOP0x20d/NOT_READY0x20c returns retain paused state; other modes
+and failed mode queries proceed. A nonzero fade argument queries the first
+mixer when present, converts raw0..65535 to level/4369, descends to0 with
+`(1000/initialLevel)/2` positive clock delays, and stops descending on a setter
+error after its delay. A failed mixer read skips descent and restores the
+initial default level15. STOP0 and saved-level restoration errors are ignored;
+the proceeding path always clears paused and returns0.
+
+The mixer, volume and clock callees are scripted boundaries. This does not prove
+their implementations, nested setter stop/enable effects, clock wrap, physical
+fade timing or playlist integration. See AU.cd_stop_controls and
+native-cd-stop-controls-original-20261012.json. The native zero-mixer path had
+skipped the raw-volume-based descent. Its native gain supply is separate policy
+in [native-cd-fade-gain.md](native-cd-fade-gain.md), preserving original conversion
+and the original caller's subsequent controls.

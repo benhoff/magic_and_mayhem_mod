@@ -42679,7 +42679,9 @@
         "audio/output_timeline.cpp",
         "audio/output_timeline.hpp",
         "audio/voice_output.cpp",
-        "audio/voice_output.hpp"
+        "audio/voice_output.hpp",
+        "reconstruction/audio/cd_stop_controls.cpp",
+        "reconstruction/audio/cd_stop_controls.hpp"
       ],
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
@@ -42688,7 +42690,8 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42875,7 +42878,8 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.wave-v5-installed-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42946,7 +42950,8 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44122,7 +44127,8 @@
         "HOST.native-menu-music.initial-pass-20261012",
         "HOST.native-menu-music.media-public-pass-20261012",
         "HOST.native-audio-defaults.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44184,7 +44190,8 @@
         "tools/test-native-music-service.py"
       ],
       "evidence": [
-        "HOST.native-music-watchdog.synthetic-20261012"
+        "HOST.native-music-watchdog.synthetic-20261012",
+        "HOST.cd-fade.watchdog-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45034,7 +45041,8 @@
       ],
       "evidence": [
         "HOST.native-audio-defaults.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46066,6 +46074,122 @@
       "evidence": [
         "NA.voice_output_recovery.wire-initial-20261012",
         "NA.voice_output_recovery.wire-backend-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AU.cd_stop_controls",
+      "subsystem": "audio_contracts",
+      "kind": "recovered",
+      "title": "Original CD stop/fade caller control order",
+      "scope": "Pinned0x482010 caller initialized/active gates, MODE4 status and successful OPEN/STOP/NOT_READY early returns, optional first-mixer raw0..65535 read and level/4369 conversion, descending volume steps and scripted positive nonwrapping clock polling, early volume failure, unconditional STOP0/ignored stop return, optional saved-level restore/ignored restore return and paused clear. Volume/mixer/clock callees are scripted boundaries: nested actual volume setter stop/enable behavior, clock wrap/driver timing and whole mixer/playlist remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4726800,
+          "scope": "Selected caller body through ret4 at0x482183; scripted MCI/mixer/volume/clock callees and bounded raw/clock domain only."
+        }
+      ],
+      "documents": [
+        "research/runtime/cd-audio-control.md"
+      ],
+      "implementation": [
+        "reconstruction/audio/cd_stop_controls.cpp",
+        "reconstruction/audio/cd_stop_controls.hpp"
+      ],
+      "tests": [
+        "tests/cd-stop-controls-reference.cpp",
+        "tools/test-cd-stop-controls.py"
+      ],
+      "evidence": [
+        "AU.cd-stop-controls.original-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "audio/CMakeLists.txt",
+        "reconstruction/audio/cd_track_controls.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "renderer/pixel_rows.hpp",
+        "tools/drawing_census.py",
+        "tools/coverage_claims.py",
+        "tools/original-manifest.sh"
+      ]
+    },
+    {
+      "id": "HOST.native-cd-fade-gain",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Guarded native music raw gain for original fade conversion",
+      "scope": "Pinned native zero-mixer object: guarded five-byte MOV at0x4820d8 replaced by CALL supplying native per-music level*4369 into original raw local, preserving registers/flags/LastError and original magic EAX/conversion/control order. No desktop mixer mutation; source caller descending volume/timing/STOP/restore remains original. All guard-before-mutation and shared RX-page reverse restoration, producer feature32/fullmask63 and PE original-stack/conversion native-gain cases. Original callee recursion/clock wrap/physical fade waveform, whole playlist and broader hooks remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4727000,
+          "scope": "Five-byte converter operand inside original stop caller, supplied native raw gain only."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-cd-fade-gain.md",
+        "research/runtime/cd-audio-control.md"
+      ],
+      "implementation": [
+        "runtime/audio/music.h",
+        "protocols/schemas/music-v1.json",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "tools/native_music_launch.py"
+      ],
+      "tests": [
+        "runtime/audio/music_selftest.c",
+        "tools/test-native-mci-cd.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "audio/CMakeLists.txt",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_server_main.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "protocols/generate.py",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "protocols/schemas/music-v1.json",
+        "runtime/audio/bridge.c",
+        "runtime/audio/music.h",
+        "runtime/audio/music_fault_selftest.c",
+        "runtime/audio/music_liveness.h",
+        "runtime/audio/protocol.h",
+        "runtime/audio/selftest.c",
+        "runtime/audio/wave_loading.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-audio-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/test-native-music-service.py"
+      ],
+      "evidence": [
+        "HOST.native-cd-fade-gain.synthetic-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -93521,6 +93645,184 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "AU.cd-stop-controls.original-20261012",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-cd-stop-controls-original-20261012.json",
+      "sha256": "6bfafd95ffdccc6daefc10c9f9034937bac4be352aa19b9ea35522d500e40cfd",
+      "scope": "Whole unchanged original CD stop caller versus native model:62208 authored receiver/scripted MCI, first-mixer, volume and nonwrapping positive clock cases, exact return/event ordering/receiver and guard bytes. Gates, MODE4 early returns, fade raw0..65535 conversion, descending levels/clock polling, volume/query failures, ignored STOP/restore returns and paused clearing. Callee implementations, nested original setter stop/enable semantics, clock wrap, real driver timing, notifications/playlist and live playback excluded.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_control_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 62208
+        },
+        {
+          "pointer": "/original/events",
+          "equals": 93568
+        },
+        {
+          "pointer": "/original/guard_bytes",
+          "equals": 65691648
+        },
+        {
+          "pointer": "/original_returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_returncode",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "HOST.native-cd-fade-gain.synthetic-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-cd-fade-gain-synthetic-20261012.json",
+      "sha256": "5c5695d60cac9cce76a24375d7eed254ac757bbacbf27c4c12b8e05aac2d2801",
+      "scope": "Guarded actual PE native fade raw-gain converter with original stack/conversion instructions: native7/inactive0, LastError, drift/no mutation and shared RX-page restoration. Selected native MCI lifecycle with feature63; no complete original caller or physical fade output.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.cd-fade.watchdog-20261012",
+      "kind": "native_integration",
+      "scope": "Pure monotonic32 rollover/retirement helper and actual PE32 producer versus frozen/resumed silent native music worker. Status failure276, local failure notification8 and permanent no-revival are fixture assertions; no physical device or original window/driver equivalence.",
+      "record": "research/runtime/native-cd-fade-watchdog-synthetic-20261012.json",
+      "sha256": "74783be64998d14eec187e5b2926b0e065fc3d032d85b01400eb925ca0bbc23b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/helper_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_ready",
+          "equals": 1
+        },
+        {
+          "pointer": "/heartbeat_resumed",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture_returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "HOST.cd-fade.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Default native voice/WAV/factory/CD music/menu/campaign/normal Quit with guarded fade feature63 installed; intros skipped. Composition observation, not measured fade branches/waveform, original callee equivalence or complete Wine retirement.",
+      "record": "research/runtime/native-cd-fade-public-pass-20261012.json",
+      "sha256": "362c6fc9512f434334b824467f85f728fd5d677f9a8479212bb72814145bd11c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104087,7 +104389,8 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ]
     },
     {
@@ -104122,7 +104425,8 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ]
     },
     {
@@ -104158,7 +104462,8 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ]
     },
     {
@@ -104254,7 +104559,8 @@
         "HOST.native-menu-music.media-public-pass-20261012",
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ]
     },
     {
@@ -104301,7 +104607,8 @@
       "evidence": [
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.cd-fade.public-pass-20261012"
       ]
     },
     {
@@ -104386,6 +104693,21 @@
       "evidence": [
         "NA.voice_output_recovery.wire-initial-20261012",
         "NA.voice_output_recovery.wire-backend-20261012"
+      ]
+    },
+    {
+      "id": "native-cd-fade-gain-synthetic-20261012",
+      "level": "headless",
+      "scope": "Actual guarded PE converter call with original stack/conversion bytes, native7/inactive0 gain, LastError, guard drift and shared RX-page restoration plus selected MCI primitive lifecycle. Synthetic receiver/TOC/PCM only; no original full caller/live or physical fade output.",
+      "behaviors": [
+        "HOST.native-cd-fade-gain"
+      ],
+      "tests": [
+        "runtime/audio/music_selftest.c",
+        "tools/test-native-mci-cd.py"
+      ],
+      "evidence": [
+        "HOST.native-cd-fade-gain.synthetic-20261012"
       ]
     }
   ],
@@ -104760,8 +105082,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-voice-recovery-commit-20261012.json",
-    "sha256": "273caef7a9e6f2f9adfce33239140ccfaddce9dbe3456a75221568a4c9247578"
+    "path": "research/runtime/coverage/source-index-native-cd-fade-commit-v2-20261012.json",
+    "sha256": "c3e20989d0c5e1ebdfe29538ea159f76d1befb3db8902a017ecb4708d2d7a3a2"
   },
   "claim_bindings_required": true
 }

@@ -187,3 +187,13 @@ pass. The version5 native WAV transport again matches362 installed requests and
 12002990 PCM bytes. See native-voice-output-recovery.md. Physical disappearance,
 platform default-event delivery, initial missing-device policy and original
 driver equivalence remain separate; a stopped/frozen host cannot be revived.
+
+## CD stop/fade control order and native gain
+
+The original stop/fade caller is reconstructed and compared separately with
+scripted callee boundaries:62,208 cases,93,568 events and full receiver guards.
+A guarded five-byte converter hook supplies native music gain so the zero-mixer
+policy can retain original descending steps, clock polling, stop and restoration.
+Its PE stack/conversion/LastError/drift/page-protection checks pass. See
+native-cd-fade-gain.md. Original callee recursion, clock wrap, actual waveform
+and whole playlist behavior remain distinct from this caller comparison.

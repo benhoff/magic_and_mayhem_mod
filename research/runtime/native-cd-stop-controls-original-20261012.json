@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "audio/CMakeLists.txt": "eead56f4e618814114c8d28d5f0c2f7f9997b8b4f007ad4cb823ce51f970559a",
+    "reconstruction/audio/cd_stop_controls.cpp": "e162bf57f35eed69081ec269bded714a50e91f63c5148dc8ad72978269b4fbc2",
+    "reconstruction/audio/cd_stop_controls.hpp": "c10cbd27c1b95c1d7aa81b7914d1c40e9afd5321e2a0c86509119cb05ef36f6d",
+    "reconstruction/audio/cd_track_controls.hpp": "ccb057869e50aed0ec4fcdd22261459de7d8c3e07ffaeb989360f50e6e9650c0",
+    "renderer/pixel_rows.hpp": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+    "tests/cd-stop-controls-reference.cpp": "c557e68e02c28125d76cdecb85d1a927b182a49be15eccb3eba1a555f59d6b77",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-cd-stop-controls.py": "f2c3e4ee851d11888aa01ed405b12e2c1a0bc6b7f430a24a9bf49f738b22c10d"
+  },
+  "claims": [
+    {
+      "behavior": "AU.cd_stop_controls",
+      "contract_sha256": "f944e0c6e695a52af511715235e21860f216e63f754db0600cdc82c50c51b112",
+      "scenarios": {}
+    }
+  ],
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Whole unchanged original CD stop caller versus native model:62208 authored receiver/scripted MCI, first-mixer, volume and nonwrapping positive clock cases, exact return/event ordering/receiver and guard bytes. Gates, MODE4 early returns, fade raw0..65535 conversion, descending levels/clock polling, volume/query failures, ignored STOP/restore returns and paused clearing. Callee implementations, nested original setter stop/enable semantics, clock wrap, real driver timing, notifications/playlist and live playback excluded.",
+  "native_returncode": 0,
+  "native": {
+    "success": true,
+    "cases": 62208,
+    "events": 93568,
+    "guard_bytes": 0
+  },
+  "original_returncode": 0,
+  "original": {
+    "success": true,
+    "cases": 62208,
+    "events": 93568,
+    "guard_bytes": 65691648
+  },
+  "input_unchanged": true,
+  "sources_stable": true,
+  "original_control_instructions_unchanged": true,
+  "artifacts": {
+    "working/tests/cd-stop-controls/run-jvfy1zk1/build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/cd-stop-controls/run-jvfy1zk1/native.log": {
+      "sha256": "a0c5129b41a05823eb2b7619c2d2be7e1b1cf1a1891d7fbe019596a7b86f59ae",
+      "bytes": 62
+    },
+    "working/tests/cd-stop-controls/run-jvfy1zk1/original": {
+      "sha256": "5be3cf3901594da34d7cdc88f2ec389d485d75830f15938834ad32d67eaacd36",
+      "bytes": 46184
+    },
+    "working/tests/cd-stop-controls/run-jvfy1zk1/native": {
+      "sha256": "ee05d5ace05dafd71a737adfd16c1bff59afcfd7c58ad823c32b22a54a5b0116",
+      "bytes": 27880
+    },
+    "working/tests/cd-stop-controls/run-jvfy1zk1/original.log": {
+      "sha256": "63492b611036f509ffeb7fa10fa6ae79d433e7c3df19cf008211b531f9faddd2",
+      "bytes": 69
+    }
+  },
+  "original_manifest_verified_before_after": true
+}

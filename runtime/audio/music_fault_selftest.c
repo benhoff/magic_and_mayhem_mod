@@ -16,8 +16,10 @@ static void install_fixture(void){
     u8* mixer=image+0x8157b;static const u8 mixerBytes[7]={0xff,0x15,0xf8,0x52,0x5c,0,0xc3};
     u8* volume=image+0x82190;static const u8 volumeBytes[13]={0x53,0x8b,0xd9,0x55,0x33,0xed,0x5d,0x5b,0x33,0xc0,0xc2,4,0};
     u8* query=image+0x818b0;static const u8 queryBytes[7]={0x51,0x8b,0x81,0x2c,3,0,0};
+    u8* fade=image+0x820d8;static const u8 fadeBytes[5]={0xb8,1,0x78,0,0x78};
     for(u32 i=0;i<7;++i)mixer[i]=mixerBytes[i];for(u32 i=0;i<13;++i)volume[i]=volumeBytes[i];
     for(u32 i=0;i<7;++i)query[i]=queryBytes[i];
+    for(u32 i=0;i<5;++i)fade[i]=fadeBytes[i];
     *iat=0;expect(!AudioMusicInstallForTest((u32)image)&&mixer[0]==0xff&&volume[0]==0x53,226);*iat=original;
     mixer[5]=1;expect(!AudioMusicInstallForTest((u32)image)&&*iat==original&&volume[0]==0x53,227);mixer[5]=0;
     volume[5]=0;expect(!AudioMusicInstallForTest((u32)image)&&*iat==original&&mixer[0]==0xff,228);volume[5]=0xed;
