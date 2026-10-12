@@ -7031,3 +7031,37 @@ sampling, with original source delivery still separately measured. Context/
 format/dimension changes and unexecuted failure branches remain explicit pending
 boundaries. Current controls and this journey support partial implementation
 and live observation; prior negatives retain their source/scope hashes.
+
+
+### Instrumented UI publication barrier baseline (2026-10-12)
+
+`HOST.native-display-deadlines` observes existing V5 worker scheduling without
+changing it. Due opportunities are sampled after source/command processing and
+deduplicated per reason in global monotonic16.667ms buckets. Reasons may overlap
+and must not be summed. Native worker CPU elapsed histograms (including driver
+waits and idle polls) and at most256slow turns distinguish source/commands/extra
+World+UI/export costs; these are not GPU execution timings.
+
+Fresh controls retain171orderedpresentations/23pixels/oneproducer/twooutputs,
+slowGUI/refusal/join behavior and109defaultGPUcomparisons, and verify deduplication,
+early/inactive deadline omission and histogram boundaries. The short TITAN
+baseline completes native menu/movement/resume/Quit at639balancedWorlds and
+zeroordinaryreadbacks/fallback/outstanding. It is a failed performance result:
+source18.6797Hzbelow19floor,actualWorld32.8672FPS,visible56.7617/63.0493FPS.
+No casting/combat/portrait or60actualWorldFPS claim.
+
+Observed due opportunity counts: UIpublication606,incompleteUI1081,pendingimport2,
+hidden38,sourcecompletion550,renderattempt681. The first two provide a bounded
+scheduling suspect, not a sum of recoverable frames. Source completion/import
+counts are kept distinct to avoid labeling a newly drawn source as UI starvation.
+The largest recorded World poll is833ms; marker/CPU elapsed data do not distinguish
+GPU shader/resource work from driver/scheduler stalls. Existing strict partial UI
+refusal and source-generation identity remain unchanged in this baseline.
+
+The next separate milestone will allow a due frame despite UI-only publications,
+using only the last sealed owned UI snapshot while current UI mutations remain
+incomplete; new World imports must still require a matching-generation complete
+UI snapshot. Original FIFO/two source credits/simulation/ANI/RNG and error/Quit
+contracts remain fixed. Committed range6de9bbc0..46adc82a was reviewed:17exactfile
+receipt chains,zero unresolved,in working/tests/native-display-deadline-prior-history-20261012.json;
+this is history accounting,not retrospective execution/gate proof.

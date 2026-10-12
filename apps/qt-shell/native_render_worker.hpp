@@ -1,6 +1,7 @@
 #pragma once
 #include "live_command_session.hpp"
 #include "resident_world_session.hpp"
+#include "render_deadline_probe.hpp"
 #include <QThread>
 #include <QOffscreenSurface>
 #include <mutex>
@@ -46,5 +47,8 @@ private:
     std::condition_variable wake_;
     bool frameChanged_=false,started_=false,stop_=false,producerExited_=false,requestStop_=false;
     bool normalQuit_=false,drawAllowed_=false,paused_=false;
+    RenderDeadlineProbe deadlineProbe_;
+    RenderStageTiming worldTiming_,commandTiming_,extraTiming_,exportTiming_,turnTiming_;
+    QJsonArray slowTurns_;
     std::uint64_t exports_=0,skipped_=0,highWater_=0,turns_=0,exportAllocations_=0;
 };

@@ -27,6 +27,15 @@ int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);
     try{
+        RenderDeadlineProbe probe;using Clock=std::chrono::steady_clock;
+        const auto start=Clock::time_point(std::chrono::seconds(10));
+        // A 1ms polling loop must not count fifteen misses for one frame tick.
+        for(unsigned i=0;i<16;++i)probe.observe(start,start+std::chrono::milliseconds(i),RenderDeadlineProbe::UiPublication);
+        require(probe.turns[RenderDeadlineProbe::UiPublication]==16&&probe.opportunities[RenderDeadlineProbe::UiPublication]<=2,"Deadline observations counted polls as frames");
+        const auto before=probe.turns;probe.observe(start,start-std::chrono::milliseconds(1),RenderDeadlineProbe::Hidden);probe.observe({},start,RenderDeadlineProbe::Hidden);require(probe.turns==before,"Inactive/early deadline counted");
+        probe.observe(start,start+std::chrono::milliseconds(40),RenderDeadlineProbe::IncompleteUi);probe.observe(start,start+std::chrono::milliseconds(41),RenderDeadlineProbe::PendingWorldImport);
+        require(probe.opportunities[RenderDeadlineProbe::IncompleteUi]==1&&probe.opportunities[RenderDeadlineProbe::PendingWorldImport]==1,"Independent blocked reasons collapsed");
+        RenderStageTiming timing;for(auto ms:{0.,1.,2.,4.,8.,16.667,33.334,100.,101.})timing.add(ms);require(timing.samples==9&&timing.bins.front()==2&&timing.bins.back()==1,"Elapsed histogram boundary error");
         GlViewport viewport;viewport.resize(320,240);viewport.show();app.processEvents();require(viewport.ready(),"Viewport initialization");
         QTemporaryDir dir;require(dir.isValid(),"Temporary directory");
         NativeRenderWorker worker(viewport,dir.filePath("world"),dir.path(),dir.filePath("report.json"));
@@ -70,6 +79,6 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1}\n");return 0;
+        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true}\n");return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }
