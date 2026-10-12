@@ -64,13 +64,17 @@ bool QtOutput::start(const QAudioDevice& device){
     if(!writer_ || sink_->error()!=QtAudio::NoError){stop();error_="QAudioSink could not start";return false;}
     timer_.start();pump();return running();
 }
+void QtOutput::startSilent(){
+    if(QThread::currentThread()!=thread())throw std::logic_error("Audio output used from another thread");
+    stop();error_.clear();silent_=true;silentClock_.start();timer_.start();
+}
 void QtOutput::stop(){
     if(QThread::currentThread()!=thread())throw std::logic_error("Audio output used from another thread");
     timer_.stop();writer_=nullptr;
     refreshClock();
     // reset() discards queued audio; stop() may drain/block on some backends.
     if(sink_)sink_->reset();
-    sink_.reset();queue_.reset();timeline_.discard();
+    sink_.reset();silent_=false;silentClock_.invalidate();queue_.reset();timeline_.discard();
 }
 void QtOutput::refreshClock(){
     if(!sink_)return;
@@ -80,6 +84,20 @@ void QtOutput::refreshClock(){
 }
 void QtOutput::fail(const QString& message){stop();error_=message;if(failed)failed(message);}
 void QtOutput::pump(){
+    if(silent_){
+        try{
+            const auto target=std::uint64_t(std::max<qint64>(0,silentClock_.elapsed()))*device_.outputRate()/1000;
+            auto remaining=target>timeline_.generatedFrames()?target-timeline_.generatedFrames():0;
+            remaining=std::min<std::uint64_t>(remaining,4096); // Bound catch-up work per tick.
+            std::vector<std::int16_t> discarded;
+            while(remaining){
+                const auto frames=std::size_t(std::min<std::uint64_t>(remaining,1024));
+                if(timeline_.render(frames,discarded)!=Error::ok)throw std::runtime_error("Native discard output failed");
+                timeline_.consume(timeline_.generatedFrames());remaining-=frames;
+            }
+        }catch(const std::exception& error){silent_=false;fail(QString::fromUtf8(error.what()));}
+        return;
+    }
     if(!sink_ || !writer_)return;
     refreshClock();
     // Old Qt reports starvation as an error in IdleState; newer Qt only uses

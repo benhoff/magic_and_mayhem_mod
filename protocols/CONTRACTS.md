@@ -146,3 +146,14 @@ a detach marker is not itself quiescence. Validate fixed original row identities
 and labels, reserved bytes, installation/refusal state and known classifications
 before interpreting counts. Dynamic calls, COM, shim forwarding/cached pointers
 and transitive/prefix Wine activity are excluded from this boundary.
+# Initial native audio silence
+
+MNMAUD01 version5 retains its layout. Optional low capability bit16 records a
+native initial-discard-output policy before ready publication. Staging must
+explicitly admit that bit; unknown capability bits still refuse. The host
+reports `initial_silence`, current `output_silent` and physical
+`output_available` separately. Native discarded PCM advances logical consumed
+timing, so expired one-shots are not replayed on first endpoint attachment.
+The initial marker remains fixed after attachment. A first silent-to-physical
+recovery can occur without a prior physical loss. Existing admitted-device
+loss/Restore semantics and explicit output selection remain separate policies.

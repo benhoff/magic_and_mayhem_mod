@@ -88,11 +88,14 @@ struct VoiceBroker::State:QObject {
         }
         QAudioFormat format;
         if(audible)format=selectOutputFormat(outputDevice);
+        bool initialSilence=audible && outputDevice.isNull();
+        if(initialSilence){format.setSampleRate(48000);format.setChannelCount(2);format.setSampleFormat(QAudioFormat::Int16);}
         if(audible&&!format.isValid()){error_="No supported native voice output device";return false;}
         device_=std::make_unique<Device>(MNM_AUDIO_PAYLOAD,128,audible?std::uint32_t(format.sampleRate()):48000);
         if(audible){
             output_=std::make_unique<VoiceOutput>(*device_);
-            if(!output_->start()){error_=output_->lastError();return false;}
+            if(!output_->start(true)){error_=output_->lastError();return false;}
+            initialSilence=output_->silent();
         }
         commands_=std::make_unique<VoiceCommands>(*device_,output_?&output_->timeline():nullptr,output_.get());
         file_.setFileName(path);
@@ -105,14 +108,15 @@ struct VoiceBroker::State:QObject {
         auto* words=reinterpret_cast<quint32*>(map_);
         words[2]=qToLittleEndian(MNM_AUDIO_VERSION);words[3]=qToLittleEndian(MNM_AUDIO_SIZE);
         words[31]=qToLittleEndian(MNM_AUDIO_CAP_EXTENDED_CONTROLS|MNM_AUDIO_CAP_OUTPUT_RECOVERY|
-                                  (audible?MNM_AUDIO_CAP_CONSUMED_CLOCK:0u)|(waveSource_?MNM_AUDIO_CAP_NATIVE_WAVE:0u));
+                                  (audible?MNM_AUDIO_CAP_CONSUMED_CLOCK:0u)|(waveSource_?MNM_AUDIO_CAP_NATIVE_WAVE:0u)|
+                                  (initialSilence?MNM_AUDIO_CAP_INITIAL_SILENCE:0u));
         __atomic_store_n(words+20,qToLittleEndian(1u),__ATOMIC_RELEASE);
-        activity_.audible=audible;timer_.start();return true;
+        activity_.audible=audible;activity_.initialSilence=initialSilence;timer_.start();return true;
     }
     VoiceActivity activity() const{
         auto result=activity_;
         if(output_){
-            result.outputAvailable=output_->available();result.outputLosses=output_->losses();
+            result.outputAvailable=output_->audible();result.outputSilent=output_->silent();result.outputLosses=output_->losses();
             result.outputRecoveries=output_->recoveries();result.outputAttempts=output_->attempts();
             result.generatedFrames=output_->timeline().generatedFrames();result.consumedFrames=output_->timeline().consumedFrames();
         }

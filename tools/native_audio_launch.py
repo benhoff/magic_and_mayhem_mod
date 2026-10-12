@@ -28,8 +28,11 @@ def authorize(root, metadata, environment):
     if header[:8] != b'MNMAUD01' or words[2:4] != (VERSION, SIZE) or words[20] != 1:
         raise ValueError('Native voice broker is not ready')
     wave_enabled = metadata.get('native_wave_loading', False)
+    initial_silence = metadata.get('native_initial_silence', False)
+    if type(initial_silence) is not bool or ((words[31]&16) and not initial_silence):
+        raise ValueError('Unadmitted native initial-silence policy')
     if (type(wave_enabled) is not bool or metadata.get('native_extended_controls') is not True or
-            metadata.get('native_output_recovery') is not True or words[31] != (14|int(wave_enabled))):
+            metadata.get('native_output_recovery') is not True or (words[31]&~16) != (14|int(wave_enabled))):
         raise ValueError('Native audio capabilities differ from the staged session')
     if any(words[4:19]) or any(words[21:31]):
         raise ValueError('Refusing stale native voice channel')
@@ -55,13 +58,17 @@ def directsound_disabled(environment):
     return policy==''
 
 
-def validate_activity(report, native_wave=False, native_factory=False):
+def validate_activity(report, native_wave=False, native_factory=False, allow_initial_silence=False):
+    for name in ('initial_silence','output_silent'):
+        if name in report and type(report[name]) is not bool:
+            raise ValueError('Invalid native silence health marker')
     for name in ('output_losses', 'output_recoveries', 'output_attempts', 'generated_frames', 'consumed_frames'):
         if type(report.get(name)) is not int or report[name] < 0:
             raise ValueError('Missing native output health: ' + name)
-    if (report.get('output_available') is not True or report['output_attempts'] < 1 or
+    quiet=allow_initial_silence and report.get('output_silent') is True and report.get('initial_silence') is True
+    if ((report.get('output_available') is not True and not quiet) or report['output_attempts'] < 1 or
             not 0 < report['consumed_frames'] <= report['generated_frames'] or
-            report['output_recoveries'] > report['output_losses']):
+            report['output_recoveries'] > report['output_losses']+int(report.get('initial_silence',False) is True)):
         raise ValueError('Native audio backend consumption/availability was not confirmed')
     for name in ('requests', 'creates', 'uploads', 'uploaded_bytes', 'plays', 'releases', 'native_selections'):
         if type(report.get(name)) is not int or report[name] < 1:
@@ -92,6 +99,8 @@ def validate_retirement(path, report):
         raise ValueError('Native audio report differs from the final channel')
     if bool(words[31]&0x10000) != report.get('wave_hook_installed',False):
         raise ValueError('Native WAV installation differs from the final channel')
+    if bool(words[31]&16) != report.get('initial_silence',False):
+        raise ValueError('Native initial-silence marker differs from the final channel')
     if bool(words[31]&0x40000) != report.get('native_factory_only',False) or words[31]>>24 != report.get('unsupported_calls',0):
         raise ValueError('Native factory/local-call census differs from the final channel')
     return dict(request=words[4], acknowledgement=words[16], ready=words[20],

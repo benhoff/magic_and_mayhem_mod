@@ -72,9 +72,10 @@ def authorize(root,metadata,environment):
     if word(wire.TRACK_COUNT_OFFSET)!=len(toc) or word(wire.LEADOUT_SECTOR_OFFSET)!=toc[-1][1] or data[wire.TOC_OFFSET:wire.TOC_OFFSET+len(expected)]!=expected or any(data[wire.TOC_OFFSET+len(expected):]):raise ValueError('Native music channel TOC differs')
     environment['MNM_MUSIC_CHANNEL']='Z:'+str(path).replace('/','\\')
 
-def validate_activity(report):
+def validate_activity(report,allow_initial_silence=False):
     if report.get('producer_features')!=63 or report.get('unsupported_cd_calls')!=0 or report.get('failed_requests')!=0 or report.get('error')!='':raise ValueError('Native CD hooks/requests failed or unsupported')
     if report.get('plays',0)<1 or report.get('requests',0)<1 or report.get('ready_after_stop') is not False or report.get('audible_output_requested') is not True:raise ValueError('Native music activity/retirement missing')
     output=report.get('output',{})
-    if output.get('audio_frames',0)<1 or output.get('audio_device_available') is not True or output.get('error'):raise ValueError('Native music PCM/output missing')
+    quiet=allow_initial_silence and output.get('initial_silent_output') is True
+    if output.get('audio_frames',0)<1 or (output.get('audio_device_available') is not True and not quiet) or output.get('error'):raise ValueError('Native music PCM/output missing')
     return report

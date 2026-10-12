@@ -10,7 +10,8 @@
 int main(int argc,char** argv) try {
     QGuiApplication app(argc,argv);
     if(argc!=6)throw std::runtime_error("Expected movie/sound, asset, status, command, final report");
-    NativePlayback playback(QString::fromLocal8Bit(argv[1])=="movie",true);
+    const auto kind=QString::fromLocal8Bit(argv[1]);
+    NativePlayback playback(kind.endsWith("movie"),true,makePlaybackAudioDevices(),kind.startsWith("quiet-"));
     playback.setVolume(0);
     QElapsedTimer clock;clock.start();QTimer poll;poll.setInterval(20);
     unsigned accepted=0,lastCommand=0;QString failure;

@@ -8,8 +8,8 @@
 namespace {
 QAudioFormat captureFormat(){QAudioFormat f;f.setSampleRate(22050);f.setChannelCount(2);f.setSampleFormat(QAudioFormat::Int16);return f;}
 }
-NativePlayback::NativePlayback(bool movie,bool audible,std::unique_ptr<PlaybackAudioDevices> devices)
-    :movie_(movie),audible_(audible),audio_(captureFormat()),devices_(std::move(devices)){
+NativePlayback::NativePlayback(bool movie,bool audible,std::unique_ptr<PlaybackAudioDevices> devices,bool allowInitialSilence)
+    :movie_(movie),audible_(audible),audio_(captureFormat()),devices_(std::move(devices)),allowInitialSilence_(allowInitialSilence){
     outputRefresh_.setSingleShot(true);
     outputRetry_.setInterval(500);
     connect(&outputRefresh_,&QTimer::timeout,this,[this]{refreshOutput();});
@@ -107,12 +107,16 @@ void NativePlayback::start(const QString& path,bool loop,bool presentVideo){
     path_=path;finished_=false;accepted_=false;result_=0;error_.clear();videoFrames_=0;audioFrames_=audioBytes_=0;
     videoSize_={};pixelFormat_=0;firstColors_={};audioHash_.reset();videoHash_.reset();firstFrameHash_.clear();
     presentVideo_=presentVideo;presentedFrames_=0;
-    requestedPaused_=false;waitingOutput_=false;outputLosses_=outputRecoveries_=outputChanges_=0;
+    requestedPaused_=false;waitingOutput_=false;initialSilent_=false;outputLosses_=outputRecoveries_=outputChanges_=0;
     outputRefresh_.stop();outputRetry_.stop();
     if(audible_ && followDefault_){
         const auto device=devices_?devices_->defaultOutput():QAudioDevice{};
-        waitingOutput_=device.isNull();output_.setDevice(device);
-        if(waitingOutput_)outputRetry_.start();
+        initialSilent_=allowInitialSilence_ && device.isNull();
+        waitingOutput_=device.isNull() && !initialSilent_;output_.setDevice(device);
+        // Keep the audio renderer attached from source admission. Attaching a
+        // new renderer mid-stream can duplicate PCM and skip video frames.
+        player_.setAudioOutput(&output_);
+        if(waitingOutput_ || initialSilent_)outputRetry_.start();
     }
     player_.setLoops(loop?QMediaPlayer::Infinite:1);player_.setSource(QUrl::fromLocalFile(path));
     if(!waitingOutput_)player_.play();
@@ -126,23 +130,25 @@ void NativePlayback::pause(bool value){if(finished_)return;requestedPaused_=valu
 void NativePlayback::setVolume(float volume){output_.setVolume(std::clamp(volume,0.0f,1.0f));}
 void NativePlayback::setAudioDevice(const QAudioDevice& device){
     followDefault_=false;outputRefresh_.stop();outputRetry_.stop();
-    const bool wasWaiting=waitingOutput_;waitingOutput_=false;output_.setDevice(device);
+    const bool wasWaiting=waitingOutput_;waitingOutput_=false;initialSilent_=false;output_.setDevice(device);
+    if(audible_)player_.setAudioOutput(&output_);
     if(wasWaiting && !finished_ && !requestedPaused_)player_.play();
 }
 void NativePlayback::refreshOutput(){
     if(finished_ || !audible_ || !followDefault_)return;
     const auto device=devices_?devices_->defaultOutput():QAudioDevice{};
     if(device.isNull()){
+        if(initialSilent_)return; // Logical decoder timing continues without a sink.
         if(!waitingOutput_){++outputLosses_;waitingOutput_=true;player_.pause();}
         if(!outputRetry_.isActive())outputRetry_.start();
         return;
     }
-    const bool recovering=waitingOutput_;
+    const bool recovering=waitingOutput_ || initialSilent_;
     if(recovering || output_.device().id()!=device.id()){
         player_.pause();output_.setDevice(device);
         if(recovering)++outputRecoveries_;else ++outputChanges_;
     }
-    waitingOutput_=false;outputRetry_.stop();
+    waitingOutput_=false;initialSilent_=false;outputRetry_.stop();
     if(!requestedPaused_)player_.play();
 }
 QJsonObject NativePlayback::report() const{
@@ -151,7 +157,8 @@ QJsonObject NativePlayback::report() const{
         {"video_rgba_sha256",QString::fromLatin1(videoHash_.result().toHex())},
         {"audio_frames",audioFrames_},{"audio_bytes",audioBytes_},{"audio_s16le_stereo_22050_sha256",QString::fromLatin1(audioHash_.result().toHex())},
         {"video_presentation_requested",presentVideo_},{"presented_video_frames",int(presentedFrames_)},
-        {"audible_output_requested",audible_},{"audio_device_available",!waitingOutput_ && !output_.device().isNull()},
+        {"audible_output_requested",audible_},{"audio_device_available",!waitingOutput_ && !initialSilent_ && !output_.device().isNull()},
+        {"initial_silent_output",initialSilent_},
         {"waiting_for_audio_output",waitingOutput_},{"caller_paused",requestedPaused_},
         {"position_ms",player_.position()},{"output_losses",int(outputLosses_)},
         {"output_recoveries",int(outputRecoveries_)},{"default_output_changes",int(outputChanges_)}};
