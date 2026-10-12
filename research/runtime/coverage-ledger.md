@@ -8018,3 +8018,16 @@ defaults are enabled; intros are skipped for this rendering probe. Full movie
 with World, audiovisual/original equivalence, source-rate attribution, sustained
 60 FPS and broader shared-source validation remain pending. The owned V5 route
 remains opt-in and does not promote a complete native gameplay engine.
+
+
+### Native drawing cost baseline (2026-10-12)
+
+`NR.native-draw-cost-profiling.baseline-titan-20261012` passes128TITANEGLWorlds,
+256baseline-restored redraws, all selected diagnostic native pixel comparisons,
+bounded timestamp/overflow/refusal controls and source/input/original integrity.
+Warm extra redraw median3.0219ms,189textureuploads/571232bytes and75draws perframe.
+Repeated colour-rectangle source allocation/upload is the measured optimization
+candidate. NativeGPU timeline is not busytime; EGL and publiczink workloads are
+not a causal pair. Failed preflights and the historical source journey stay
+failed. New cache, current full gameplay,60FPS,original equivalence and broader
+shared-source validation remain pending.
