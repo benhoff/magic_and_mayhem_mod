@@ -52525,6 +52525,233 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "AI.segment-initialization",
+      "subsystem": "creature-segments",
+      "kind": "recovered",
+      "title": "Whole original route-segment initialization",
+      "scope": "Whole510e80 initialization projection for valid modes0..4 and owned actor/grid/type/sample domains: precheck/early returns, signed vertical/facing/visual order, target-cell scalar argument/raw base/rate input, acceptance/fallback/hazard, occupancy, continuity/reset, all mode/type12/vertical profile banks, inline sample and hostile-target admission, reverse residual/cursor snapshots and action. Lower scalar/geometry/visual/action services are ABI-checked supplied functions; actual ANI/world ownership, installed construction and native session integration are excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5312128,
+          "scope": "Whole510e80 initialization projection for valid modes0..4 and owned actor/grid/type/sample domains: precheck/early returns, signed vertical/facing/visual order, target-cell scalar argument/raw base/rate input, acceptance/fallback/hazard, occupancy, continuity/reset, all mode/type12/vertical profile banks, inline sample and hostile-target admission, reverse residual/cursor snapshots and action. Lower scalar/geometry/visual/action services are ABI-checked supplied functions; actual ANI/world ownership, installed construction and native session integration are excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-segment-initialization.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp"
+      ],
+      "tests": [
+        "tests/creature-segment-setup-test.cpp",
+        "tools/test-creature-segment-setup.py"
+      ],
+      "evidence": [
+        "NS30.setup-original",
+        "NS30.setup-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment-setup/CMakeLists.txt",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Complete510e80..511c0c unchanged control flow and both pinned dispatch tables",
+          "Valid16x16x4 grid positions,28 type IDs including explicit type12 sampling, modes0..4, signed vertical and retained out-of-range directions, forward/reverse/continuity, all profile branches",
+          "Wrapped signed32 samples/sums/base modifiers, raw duration versus modified rate input, target-cell/current-XYZ scalar-argument ABI, whole actor-byte and ordered consequence guards",
+          "Ten separately classified native refusal cases"
+        ],
+        "excluded": [
+          "Malformed route mode above4 reaching uninitialized original sample-count local",
+          "Actual lower scalar/geometry/ANI/presentation/action ownership and timing",
+          "Installed constructor/all-species profile assets and full native World/session composition",
+          "Invalid raw pointer/coordinate/divisor/owner/reference domains",
+          "Live replacement"
+        ],
+        "composition_boundary": "Logical sample-bank selection requires an owned composition layer to bind MotionActionState.samples; this fixture is a control-flow projection, not full movement scheduling."
+      }
+    },
+    {
+      "id": "NP.segment-setup-admission",
+      "subsystem": "creature-segments",
+      "kind": "native_policy",
+      "title": "Owned initialization coordinate/sample/target admission",
+      "scope": "Ten native admission refusals: route count, malformed movement mode, nonpositive dimension, invalid owned planar/layer position, zero distance divisor, invalid target or either owner, and absent owned sample provider. Caller-staged rollback; original invalid pointer/division/uninitialized-stack domains are excluded from baseline equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-segment-initialization.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp"
+      ],
+      "tests": [
+        "tests/creature-segment-setup-test.cpp",
+        "tools/test-creature-segment-setup.py"
+      ],
+      "evidence": [
+        "NS30.setup-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment-setup/CMakeLists.txt",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Complete510e80..511c0c unchanged control flow and both pinned dispatch tables",
+          "Valid16x16x4 grid positions,28 type IDs including explicit type12 sampling, modes0..4, signed vertical and retained out-of-range directions, forward/reverse/continuity, all profile branches",
+          "Wrapped signed32 samples/sums/base modifiers, raw duration versus modified rate input, target-cell/current-XYZ scalar-argument ABI, whole actor-byte and ordered consequence guards",
+          "Ten separately classified native refusal cases"
+        ],
+        "excluded": [
+          "Malformed route mode above4 reaching uninitialized original sample-count local",
+          "Actual lower scalar/geometry/ANI/presentation/action ownership and timing",
+          "Installed constructor/all-species profile assets and full native World/session composition",
+          "Invalid raw pointer/coordinate/divisor/owner/reference domains",
+          "Live replacement"
+        ],
+        "composition_boundary": "Logical sample-bank selection requires an owned composition layer to bind MotionActionState.samples; this fixture is a control-flow projection, not full movement scheduling."
+      }
+    },
+    {
+      "id": "AI.actor-route-request",
+      "subsystem": "creature-routing",
+      "kind": "recovered",
+      "title": "Original creature route request and region continuation",
+      "scope": "Whole actor routing entry under investigation. Original request/scalar/search/region/geometry and shared budget ownership, owned native implementation and comparison remain pending; no integration/replacement claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5318816,
+          "scope": "Whole entry identified by pinned binary inventory; semantic branches and lower-service boundaries under review."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-routing.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS31.routing-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.actor-displacement",
+      "subsystem": "creature-routing",
+      "kind": "recovered",
+      "title": "Original creature displacement admission",
+      "scope": "Whole actor routing entry under investigation. Original request/scalar/search/region/geometry and shared budget ownership, owned native implementation and comparison remain pending; no integration/replacement claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5350912,
+          "scope": "Whole entry identified by pinned binary inventory; semantic branches and lower-service boundaries under review."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-routing.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS31.routing-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.creature-routing-export",
+      "subsystem": "coverage-tooling",
+      "kind": "native_policy",
+      "title": "Read-only original creature routing evidence export",
+      "scope": "Hash-pinned static body/anchor export with immutable-manifest checks and new output refusal. Static only; semantic projection and original execution are separate.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-routing.md"
+      ],
+      "implementation": [
+        "tools/export-creature-routing.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS31.routing-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -105786,6 +106013,132 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS31.routing-static",
+      "kind": "static",
+      "scope": "Whole pinned5128a0/51a600 disassembly, image/body/exporter hashes and verified immutable input. No semantic comparison, native implementation or integration.",
+      "record": "research/runtime/original-creature-routing-static-20261012.json",
+      "sha256": "faa7217107727a30a3e9b4f10766b87516523ebe11e427fcc8dd1d52c2c6ccd4",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS30.setup-original",
+      "kind": "isolated_original",
+      "scope": "24576 prospectively bound whole510e80 valid-profile projections against unchanged pinned original32, agreeing with native64 and ASan/UBSan/LSan64. Supplied lower ABI services, valid owned actor/grid/type/sample storage and ten separate native refusals; actual ANI/world ownership, installed construction, native session and live replacement excluded.",
+      "record": "research/runtime/original-creature-segment-setup-20261012.json",
+      "sha256": "f124d714ab09bea92786c4fd4702dfd13fdc9e68d2ad8975eeab5f90bbd5f606",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS30.setup-native",
+      "kind": "native_integration",
+      "scope": "Source/scope-bound native64 and sanitized64 initialization projection plus ten native admission refusals. Logical sample binding and full World/native session composition remain pending. No original unsafe-domain equivalence.",
+      "record": "research/runtime/original-creature-segment-setup-20261012.json",
+      "sha256": "f124d714ab09bea92786c4fd4702dfd13fdc9e68d2ad8975eeab5f90bbd5f606",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109128,6 +109481,126 @@
             "AI.autonomous-behaviors"
           ],
           "target": 5359058
+        }
+      ]
+    },
+    {
+      "id": "AI.segment-profile-dispatch",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5315596,
+        "relation": "data",
+        "scope": "All five valid movement-mode table entries are projected. Malformed/default mode and its uninitialized original local remain a documented excluded input domain."
+      },
+      "document": "research/runtime/creature-segment-initialization.md",
+      "complete": true,
+      "scope": "All five valid movement-mode table entries are projected. Malformed/default mode and its uninitialized original local remain a documented excluded input domain.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": "default",
+          "behaviors": [
+            "AI.segment-initialization",
+            "NP.segment-setup-admission"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AI.segment-direction-dispatch",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5315616,
+        "relation": "data",
+        "scope": "All eight reverse residual direction entries and unsigned out-of-range fallthrough are projected within valid setup profiles."
+      },
+      "document": "research/runtime/creature-segment-initialization.md",
+      "complete": true,
+      "scope": "All eight reverse residual direction entries and unsigned out-of-range fallthrough are projected within valid setup profiles.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "AI.segment-initialization"
+          ]
+        },
+        {
+          "value": "default",
+          "behaviors": [
+            "AI.segment-initialization",
+            "NP.segment-setup-admission"
+          ]
         }
       ]
     }
@@ -118529,8 +119002,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-segments-20261012.json",
-    "sha256": "52e3279ebfd95cd086100416feae44bc1770bd21fbf21a3f0f0ea29491f8de60"
+    "path": "research/runtime/coverage/source-index-original-segment-setup-20261012.json",
+    "sha256": "783a579e0b7161089b4611f918989491dbb3c6f4ad9832fa8b03ba95528f2155"
   },
   "claim_bindings_required": true
 }

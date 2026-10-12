@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "source_sha256": {
+    "tools/export-creature-routing.py": "64ee08b9115ca252236d9addd4c83b3eb3bb7fdbd33bd02fc607bfe117d0024b"
+  },
+  "scope": "Static disassembly only; no execution or semantic equivalence.",
+  "commands": [
+    [
+      "objdump",
+      "-d",
+      "-M",
+      "intel",
+      "--start-address=5318816",
+      "--stop-address=5321580",
+      "/home/hoff/swdev/magic_and_mayhem_mod/original/Arcane_Nocd/Chaos.exe"
+    ],
+    [
+      "objdump",
+      "-d",
+      "-M",
+      "intel",
+      "--start-address=5350912",
+      "--stop-address=5351544",
+      "/home/hoff/swdev/magic_and_mayhem_mod/original/Arcane_Nocd/Chaos.exe"
+    ]
+  ],
+  "bodies": {
+    "actor-route-request": {
+      "start": 5318816,
+      "end": 5321580,
+      "sha256": "0a58ff6b4ef9b3ae507e88955b39cf11d2f11d8d7975d67984d3e9e2a8bf6d67",
+      "anchor": "81ecac020000535556578be98db424c4"
+    },
+    "actor-displacement": {
+      "start": 5350912,
+      "end": 5351544,
+      "sha256": "84f65dbd7aa92fa246e75c5ad2b95cd10d93f5701de0ccc529e5e8da37ab5519",
+      "anchor": "a184f16d0053555683f801578bf17512"
+    }
+  },
+  "artifacts": {
+    "actor-route-request.asm": "e0eeb058676406d7db5eb144fa69feb717989ee0f1781833d90f74e47efb4336",
+    "actor-displacement.asm": "8a353c09765bc73fab05e924f85042aa73736f5fe782cf7d2a15474b21fb2c58"
+  },
+  "input_unchanged": true,
+  "original_manifest_verified_before_after": true
+}
