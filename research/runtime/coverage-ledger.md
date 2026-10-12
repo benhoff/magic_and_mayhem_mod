@@ -7365,3 +7365,27 @@ routes, cadence controls and semantic 120 advancing windows stay pending.
 Step 2 remains open and steps 3–7 remain ordered. No full 47/21 acceptance
 promotion. Reviewed c704c2c8..256070dd has 28 matched receipts and zero gaps.
 Storage is approximately 974 GiB working / 352 GiB free; no cleanup performed.
+
+## Step 2 protected external source snapshots (2026-10-12 UTC)
+
+A separate opt-in copies source pixels after accepted page protection and after
+checked worker completion, before original-owner restoration. Each complete
+800×600 RGB565 pair must match exactly; known source/lease/API metadata and
+worker counts crosscheck both lease journals. Source pixels remain external
+oracles and never enter native reconstruction. Four PE32 cases pass actual
+protected copy order, exact pixels, restore/write and byte/canvas/copy failures;
+five malformed decoder guards also refuse.
+
+Original01 closes 119 identical pairs / 238 planes through 224 commands, with
+no observed protected write. Independent source-only replay matches all 104
+selected physical witnesses (239 excluded), and held-source analysis matches
+208 selected planes / 99,840,000 pixels with zero differences. Shared aliases,
+whole storage lifetimes, other routes and hardware completion remain pending.
+No whole-subsystem equivalence or replacement is promoted.
+
+Reassessment: reuse the existing counter/sequence engine cadence observer for
+actual advancing update identities before expanding the owned producer prefix
+toward 120 contiguous windows. Cadence controls and full semantic journeys stay
+open; step 2 and all 47/21 requirements remain open, steps 3–7 stay ordered.
+Reviewed 256070dd..5047e22e has 26 matching exact receipts and zero gaps. Storage
+is approximately 981 GiB working / 345 GiB free; no cleanup performed.

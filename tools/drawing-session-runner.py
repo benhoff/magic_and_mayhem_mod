@@ -31,6 +31,8 @@ if metadata.get('source_readonly_lease'):os.environ['MNM_DRAW_SOURCE_LEASE']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_LEASE',None)
 if metadata.get('source_worker_lease'):os.environ['MNM_DRAW_SOURCE_WORKER_LEASE']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_WORKER_LEASE',None)
+if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHOT']='1'
+else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')

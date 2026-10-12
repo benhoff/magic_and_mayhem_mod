@@ -42243,7 +42243,8 @@
         "DRAW02.trace32-regression-01-20261012",
         "DRAW02.trace32-prediction-01-native-integration-20261012",
         "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-source-held-prediction-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43035,7 +43036,8 @@
         "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
-        "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012"
+        "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012",
+        "DRAW02.draw02-source-held-egl-context-01-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43203,6 +43205,54 @@
       "remaining_gaps": [
         "Fixtures pass delayed/early completion and missing/unknown/timeout refusals. Original01 closes 118 accepted leases and 222 checked command returns; no observed protected write. 104 selected native physical witnesses and 208 CPU planes match. CPU copies sit outside the protected interval, so source-version identity during the lease remains pending.",
         "Other command routes, whole texture/storage lifetime, asynchronous hardware/scanout, cadence controls, complete semantic journeys and 120 advancing windows remain pending. No full DRAW02 acceptance or replacement promotion."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-held-snapshot",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "External source snapshot under diagnostic read-only worker lease",
+      "scope": "Separate opt-in selected full800x600 RGB565 source snapshots after accepted page protection and after all exact API emitted worker returns, before original-owner restoration. Check known source metadata, retain independent external oracles, compare all960000 bytes exactly, reject copy/identity/mutation/budget failures. No observed bytes enter native replay; no hardware or other-route ownership claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-held-snapshot.md"
+      ],
+      "implementation": [
+        "runtime/drawing/source_held_snapshot.h",
+        "tools/drawing_source_held_snapshot.py",
+        "tools/analyze-drawing-held-source-bytes.py"
+      ],
+      "tests": [
+        "tests/drawing-source-held-snapshot-test.c",
+        "tools/test-drawing-source-held-snapshot.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/drawing/session.c",
+        "runtime/scene/drawing_source_lease.h",
+        "runtime/scene/drawing_source_bytes.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-source-held-parser-01-static-20261012",
+        "DRAW02.draw02-source-held-original-01-live_observation-20261012",
+        "DRAW02.draw02-source-held-native-analysis-01-static-20261012",
+        "DRAW02.draw02-source-held-egl-context-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Four PE32 protected-copy cases and five decoder guards pass. Original01 closes119snapshot pairs/238planes, identical through224checkedcommands, no observed protected write.104selected native physical witnesses and208held-source planes match exactly. Shared allocation/alias policy, whole source/storage lifetime and other routes remain pending.",
+        "120consecutive advancing original update identities with contiguous owned producer/presentation capture, diagnostic cadence controls, full semantic journeys, asynchronous hardware/scanout and all47/21acceptance requirements remain open. No status promotion."
       ]
     }
   ],
@@ -91504,6 +91554,123 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 protected pages and exact snapshot pixels; copies after protection and before restore; byte mismatch, changed canvas and copy failure refuse. Synthetic source only.",
+      "record": "research/runtime/draw02-source-held-fixture-01.json",
+      "sha256": "d352b3460f312853777094b47bd8d0441dc71b0f43789592355b2ca19a94fc96",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-held-parser-01-static-20261012",
+      "kind": "static",
+      "scope": "Five malformed synthetic protected snapshot journal refusals. No original execution.",
+      "record": "research/runtime/draw02-source-held-parser-01.json",
+      "sha256": "d823b2219ccb43a1db405d4c4cc8be6b53fdad62f4e610352bde16e7a90bbae6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-held-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Original stock Quick Battle focused16-return diagnostic: 119 protected snapshot pairs/238planes, exact pair bytes unchanged through224 checked commands,343API342post-EGLphysicalwitnesses. No whole-lifetime ownership, hardware completion or full semantic acceptance.",
+      "record": "research/runtime/draw02-source-held-original-01.json",
+      "sha256": "27b7d3ffd7cc225bee4f892276b2a3758588c40ca7f0fedfd5831d0c5fc34012",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/source_held_snapshot_observation/stable_snapshot_pairs",
+          "equals": 119
+        },
+        {
+          "pointer": "/api_source_worker_lease_observation/completed_commands",
+          "equals": 224
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-source-held-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Independent source-only native replay matches104selected physical witnesses,239excluded,zero differences.",
+      "record": "research/runtime/draw02-source-held-prediction-01.json",
+      "sha256": "768918b8a60fad8eb714bcbc51421398227debe293edd6f5357b843de17d7f26",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-held-native-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "External held source snapshots match208selected entry/after-worker planes,99840000pixels,zero differences. No observed planes used as native input.",
+      "record": "research/runtime/draw02-source-held-native-analysis-01.json",
+      "sha256": "ed4da373d9ecbf87c312a2b5a06baa5913f4f432116f39f9c454e38aa8c95b9c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-held-egl-context-01-static-20261012",
+      "kind": "static",
+      "scope": "343stable active EGL worker/packet/submission links,342withphysicalwitnesses; no hardware completion or thread equivalence claim.",
+      "record": "research/runtime/draw02-source-held-egl-context-01.json",
+      "sha256": "65f4dbafb678ff3c2bdbc91e570bcb9534b78cc72c59a964109405db7d59266b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102871,6 +103038,36 @@
       "evidence": [
         "DRAW02.draw02-source-worker-lease-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.source-held-snapshot-fixture",
+      "level": "headless",
+      "scope": "Synthetic PE32 actual protected pages, snapshot-before-body and snapshot-after-worker order; mismatch and copy failure refusal. No original source ownership.",
+      "behaviors": [
+        "NR.drawing-source-held-snapshot"
+      ],
+      "tests": [
+        "tests/drawing-source-held-snapshot-test.c",
+        "tools/test-drawing-source-held-snapshot.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-held-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-held-snapshot-original",
+      "level": "live_observation",
+      "scope": "Bounded original stock Quick Battle protected source version snapshots; focused producer prefix, no full journey or hardware claim.",
+      "behaviors": [
+        "NR.drawing-source-held-snapshot"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-held-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -103244,8 +103441,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-worker-lease-20261012.json",
-    "sha256": "5045bb836defe71b82019a85e69064dcb0527652197cb9fe28a0da4eafa9862c"
+    "path": "research/runtime/coverage/source-index-draw02-held-snapshot-20261012.json",
+    "sha256": "8b3da710426c879c27019144699becb86ecc734b70ab0e3256f40b1f79226f6f"
   },
   "claim_bindings_required": true
 }
