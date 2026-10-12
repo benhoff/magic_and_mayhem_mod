@@ -48,11 +48,19 @@ int main(int argc,char** argv){
         require(worker.report()["presentation_lease_high_water"].toInt()==2,"Presentation lease bound not exercised");
         require(worker.report()["presentation_exports_skipped"].toString().toULongLong()>0,"Slow GUI did not exercise bounded output coalescing");
         pixel(viewport,Qt::blue);
+        // Exercise returned-buffer reuse over separately published frames.
+        for(unsigned i=0;i<20;++i){
+            input.clear();record(input,2,sequence,{1,0,0,1,1},QByteArray::fromHex(i%2?"1f00":"00f8"));record(input,6,sequence,{1});
+            const auto before=shown;require(mnm_ring_write(&producer,input.data(),unsigned(input.size()))==1,"Reuse publication");
+            wait([&]{return shown>before;});pixel(viewport,i%2?Qt::blue:Qt::red);
+        }
+        require(worker.report()["presentation_export_allocations"].toString().toULongLong()==2,"Output textures were reallocated instead of reused");
         input.clear();record(input,7,sequence,{1});record(input,8,sequence,{});
         require(mnm_ring_write(&producer,input.data(),unsigned(input.size()))==1&&mnm_ring_end(&producer),"Clean producer END");
         wait([&]{return worker.ended();});require(worker.finishProducer(),"Joined normal teardown failed");
         require(viewport.frameSize().isEmpty(),"GUI retained worker lease after join");
-        const auto* result=worker.result();require(result&&result->presents==151&&!result->stats.nativeReadbacks&&!result->stats.rgbaReadbacks,"Native counts/readback contract");
+        const auto* result=worker.result();require(result&&result->presents==171&&!result->stats.nativeReadbacks&&!result->stats.rgbaReadbacks,"Native counts/readback contract");
+        require(result->stats.gpuPresentationAllocations==1,"Mutable producer presentation storage was recreated between polls");
         file.unmap(mapping);
         // Malformed input is terminal and cancellation must return retained leases.
         NativeRenderWorker failed(viewport,dir.filePath("world-fail"),dir.path(),dir.filePath("fail-report.json"));
@@ -62,6 +70,6 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":151,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":3}\n");return 0;
+        std::printf("{\"success\":true,\"native_presentations\":171,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":23,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1}\n");return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

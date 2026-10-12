@@ -42358,7 +42358,11 @@
         "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
-        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012",
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42423,7 +42427,11 @@
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "NR.native-prepared-world-replay.current-controls-20261012",
-        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012",
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42483,7 +42491,11 @@
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
         "NR.native-prepared-command-frame.compiled-controls-20261012",
-        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012",
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
@@ -42557,11 +42569,16 @@
         "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
-        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012",
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion.",
-        "Dedicated render-thread integration is pending fresh gameplay proof; previous GUI-owned observations remain historical."
+        "Dedicated render-thread integration is pending fresh gameplay proof; previous GUI-owned observations remain historical.",
+        "Current cached dedicated-owner TITAN campaign passes functional/19FPSsmokechecks at4707balanced sources;60FPS andstricter19.5Hz source benchmarkremainfailed. GUI-owned observations arehistorical; current thread route hasfreshlive observation only."
       ]
     },
     {
@@ -42705,7 +42722,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Dedicated native render owner and bounded immutable presentation leases",
-      "scope": "Opt-in owned V5 independent-world mode has one joined native render thread owning source consumption/preparation, native World history/GL drawing, command/UI compilation, original command control and report snapshots. GUI creates platform offscreen surface, handles semantic input/menus and samples immutable native-produced GPU exports only. At most two exported leases; coalescing display output never drops/reorders source snapshots or WORLD imports. Render owner retains textures until GUI leases return, uses cross-context production/sampling fences and destroys all contexts/resources on its own thread after GUI lease release. GUI polling copies bounded status/frame data without waiting for rendering. V4/default GUI route remains separate. Synthetic static RGB565 command controls validate immutability under slow GUI, source-independent ordered command counts, malformed refusal and normal/cancel teardown; actual World/gameplay/performance require fresh live execution. No readback/original-output seeding, simulation pacing changes or interpolation.",
+      "scope": "Opt-in owned V5 independent-world mode has one joined native render thread owning source consumption/preparation, native World history/GL drawing, command/UI compilation, original command control and report snapshots. GUI creates platform offscreen surface, handles semantic input/menus and samples immutable native-produced GPU exports only. At most two exported leases; coalescing display output never drops/reorders source snapshots or WORLD imports. Render owner retains textures until GUI leases return, uses cross-context production/sampling fences and destroys all contexts/resources on its own thread after GUI lease release. GUI polling copies bounded status/frame data without waiting for rendering. V4/default GUI route remains separate. Synthetic static RGB565 command controls validate immutability under slow GUI, source-independent ordered command counts, malformed refusal and normal/cancel teardown; actual World/gameplay/performance require fresh live execution. No readback/original-output seeding, simulation pacing changes or interpolation. Returned immutable exports reuse two persistent GPU texture buffers only after the last GUI lease has returned and its sampling fence is ordered; no per-export texture allocation in stable dimensions/format. Headless alternating-color controls separately exercise reuse and unchanged held frames. Retain the latest mutable producer GPU lease within the render owner across polls to preserve existing presentation storage/damage behavior; only newly produced native frames are exported. Mutable producer leases never cross to the GUI.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42763,15 +42780,21 @@
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
         "HOST.native-render-owner.controls-20261012",
-        "HOST.native-render-owner.current-controls-20261012"
+        "HOST.native-render-owner.current-controls-20261012",
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.buffer-reuse-controls-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.producer-cache-controls-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Full native World gameplay/menu/Quit integration and sustained60FPS await fresh execution. GPU-export copies consume bounded extra presentation storage and time. Original comparison, context-loss/recreation, interpolation and unexecuted failure branches remain pending. Default route needs regression checks after the target abstraction."
+        "Fresh current dedicated-owner controls and TITAN full native campaign support partial native policy and live observation. ActualWorld27.2142FPS andvisible35.8486/48.8832FPS fail60FPS;source19.0883Hz failsstricter19.5diagnostic although19FPSsmokefloor passes. Full original comparison/replacement,physicalscanout,interpolation,contextloss/recreation,format/dimension changes andunexecuted failurebranches remainpending. Initial50mscopy-order deadlinefailure ispreserved; repeated successfuljourneys do notproveaGAPfix."
       ]
     }
   ],
@@ -89642,6 +89665,208 @@
         }
       ],
       "record": "research/runtime/native-render-owner-current-controls-20261012.json"
+    },
+    {
+      "id": "HOST.native-render-owner.copy-timeout-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Private TITAN dedicated render owner enters gameplay then original BltFast ordered-call phase3 times out at434ms (50ms native history limit), leading GAP.345source/native/imports balanced,zerooutstanding/readbacks,presentationhighwater2.Wholejourney fails; not a completed gameplay/performance proof. Source stable/privateWine stopped/original verified. Timeout location does not establish causal host-worker fault or original-operation duration versus preemption.",
+      "record": "research/runtime/native-render-owner-copy-timeout-negative-20261012.json",
+      "sha256": "0a291a64c8598efe53c081e981981a86fc8da615b08e1eb34f9bf33eeb14d32a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/native_render_owner",
+          "equals": "dedicated-thread"
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner.functional-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Unchanged dedicated-owner TITAN repeat completes all functionaljourney checks andnormalQuitwithoutGAP/fallback;4626source/native/imports balance,outputtwo,ordinaryreadbacks0. Whole performance gate stillfails:source19.2517Hz,native27.1119FPS,visible34.495/47.948FPS with0/4.533FPS worstwindows. No sixty-FPS or fixed drawing-history deadline claim. Preserves rawwrapper/child reports and explicitderived functional/performance separation.",
+      "record": "research/runtime/native-render-owner-functional-performance-negative-20261012.json",
+      "sha256": "62aee113af23c7ef75ed2d00a448136e211837cc7651d1fea7c9a99e06de53c1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/functional_journey_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/native_render_owner",
+          "equals": "dedicated-thread"
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner.buffer-reuse-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh dedicated-owner immutable RGB565 buffer controls:171 ordered native presentations,20 separately published alternating-color frames reuse exactly two output texture allocations,heldGUIframe remains unchanged,slowGUI output pressure,malformed refusal,normal/cancel joined teardown.23 diagnostic pixel checks and109defaultGPU comparisons; no live/original equivalence.",
+      "record": "research/runtime/native-render-owner-buffer-reuse-controls-20261012.json",
+      "sha256": "d6ac7de9064bc7bdf6ddcce70ebb8a7d6a411e6c3ed80c86a5d2797793ce6c13",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/presentation_export_allocations",
+          "equals": 2
+        },
+        {
+          "pointer": "/native-render-worker-test/native_presentations",
+          "equals": 171
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner.pooled-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Private TITAN pooled output native thread completes all functional journey/normalQuit checks at4702 balanced source/native/imports;9520exports reuse exactlytwo textures,readbacks/fallback0. Performance stillfails minimum-window/60FPS:source19.6139Hz,native28.044FPS. Bufferallocation reduction is proven, not a stall fix; rawfailed reports retained.",
+      "record": "research/runtime/native-render-owner-pooled-performance-negative-20261012.json",
+      "sha256": "2bb22a99ac3d75c49e080be17c02437f4a8428b341e8b6b0ed97c6dc18e82401",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/functional_journey_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/presentation_export_allocations",
+          "equals": "2"
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner.producer-cache-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh owner/cache/staticRGB565 controls:171 ordered presentations/23diagnosticpixels use one mutable producer presentation texture andtwoimmutable output buffers. Heldframeimmutable,slowGUI bound,malformedrefusal/normalcanceljoins/readbacks0;109defaultGPUcomparisons pass. No World/live/original equivalence.",
+      "record": "research/runtime/native-render-owner-producer-cache-controls-20261012.json",
+      "sha256": "c34fba9550d75020c1971a50954ef0b0301e7c4d78a2ef89119617f83d971b98",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native-render-worker-test/presentation_source_allocations",
+          "equals": 1
+        },
+        {
+          "pointer": "/native-render-worker-test/presentation_export_allocations",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner.cached-functional-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh cache-preserving dedicated-owner TITAN campaign passes complete functional journey and19FPS smoke floor:4707balancedWorldsources/native/imports,readbacks/pixelreply/fallback0,normalQuitretired,twooutputallocationsfor9734exports. Wrapper remainsfailed:source19.0883below19.5diagnostic threshold;actualWorld27.2142FPS,visible35.8486/48.8832FPS alsofail59target;worst10.9389/20FPS passsmokefloor. Scopedlive observation,not original equivalence,replacement,physicalscanout/interpolation or60FPS. Prior failures/rawreports preserved.",
+      "record": "research/runtime/native-render-owner-cached-functional-performance-negative-20261012.json",
+      "sha256": "5647782293cafe753623a0359f36bed9d950679abd13ac8008b0fb1e6bb11e2f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/functional_journey_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/presentation_export_allocations",
+          "equals": "2"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100478,7 +100703,11 @@
         "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
         "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
         "HOST.independent-native-world-loop.retained-history-negative-20261012",
-        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012",
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ]
     },
     {
@@ -100550,7 +100779,7 @@
     },
     {
       "id": "HOST.native-render-owner.fixture",
-      "scope": "Synthetic streaming RGB565 command processing on a dedicated native thread with immutable cross-thread GPU sampling, slow GUI bounded exports, malformed refusal and joined teardown; no actual World/gameplay equivalence.",
+      "scope": "Synthetic streaming RGB565 command processing on a dedicated native thread with immutable cross-thread GPU sampling, slow GUI bounded exports, malformed refusal and joined teardown; no actual World/gameplay equivalence. Twenty separately published alternating-color frames prove returned-buffer reuse with exactly two texture allocations and 171 total ordered native presentations.",
       "level": "headless",
       "behaviors": [
         "HOST.native-render-owner"
@@ -100561,7 +100790,27 @@
       ],
       "evidence": [
         "HOST.native-render-owner.controls-20261012",
-        "HOST.native-render-owner.current-controls-20261012"
+        "HOST.native-render-owner.current-controls-20261012",
+        "HOST.native-render-owner.buffer-reuse-controls-20261012",
+        "HOST.native-render-owner.producer-cache-controls-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner.live",
+      "scope": "Private TITAN owned V5 full native campaign on the dedicated render owner: casting/combat/portrait/menu/resume/normal Quit with ordered balanced source imports, bounded GPU leases and zero ordinary readbacks. Native render and visible paint cadence measured separately; target failures retained without equivalence or interpolation claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-render-owner"
+      ],
+      "tests": [
+        "tools/probe-independent-native-world.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-render-owner.copy-timeout-negative-20261012",
+        "HOST.native-render-owner.functional-performance-negative-20261012",
+        "HOST.native-render-owner.pooled-performance-negative-20261012",
+        "HOST.native-render-owner.cached-functional-performance-negative-20261012"
       ]
     }
   ],
@@ -100936,8 +101185,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-render-owner-final-20261012.json",
-    "sha256": "e8c2f9dd1acd6b5685a5754799c3703dc2dd467a60c954ee02c43652828e5eb1"
+    "path": "research/runtime/coverage/source-index-native-render-owner-cached-pool-20261012.json",
+    "sha256": "51fdc351ba8f699855ded4e839f94b38ed9b12af61d8232021ae246d7c5e0915"
   },
   "claim_bindings_required": true
 }

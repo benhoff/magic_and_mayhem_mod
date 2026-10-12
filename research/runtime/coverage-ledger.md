@@ -6965,3 +6965,69 @@ The final header contract clarification has a fresh rerun under
 `HOST.native-render-owner.current-controls-20261012` (same successful 151-frame
 thread controls and 109 default GPU comparisons). The earlier source-bound result
 is retained unchanged rather than updating its hashes.
+
+
+### Render-owner failure boundaries and output-buffer reuse (2026-10-12)
+
+The first dedicated-owner TITAN journey fails original drawing-history
+ordering at 345 balanced sources; phase3/434ms locates the held original
+BltFast call span but does not establish preemption/operation duration or
+host-worker causality. The unchanged repeat completes the full functional
+journey and normal Quit at 4,626 balanced sources, with no readbacks/fallback,
+but fails performance: 27.11 actual World FPS, 34.50/47.95 visible paint FPS,
+worst windows 0/4.53FPS and 19.25Hz source delivery. Whole campaign/wrapper
+failures remain failures; no 60FPS, original equivalence or GAP fix claim.
+
+A bounded pair of persistent GPU output textures now replaces per-export
+allocation. Only a uniquely owner-held texture may be rewritten, after its
+consumer sampling fence; current ordinary GUI polling still performs no
+World/native command preparation/drawing or worker wait. Fresh
+`HOST.native-render-owner.buffer-reuse-controls-20261012` passes 171 ordered
+presentations/23 diagnostic pixel checks/two allocations, held-frame
+immutability, slow-GUI bounds, malformed refusal and joined teardown, plus
+109 default GPU comparisons. Pooled live gameplay/performance, context/format
+changes and the existing history-deadline boundary remain pending.
+
+
+The pooled live journey reaches normal Quit at 4,702 balanced Worlds with
+9,520 exports/two output allocations, but performance still fails (actual
+World 28.04FPS; source19.61Hz). Producer-cache review found an unnecessary
+mutable-frame lease release after each export. The render owner now retains
+its latest mutable producer lease across polls, preserving existing native
+presentation storage/damage, and exports only when new native work completes.
+Fresh `HOST.native-render-owner.producer-cache-controls-20261012` validates
+171 presentations/23 pixel checks/one producer allocation/two output buffers
+and joins, plus 109 legacy GPU comparisons; final pooled/cache-preserving
+live gameplay/performance remain pending. Historical negative evidence is
+retained, with no original equivalence, replacement or sustained60FPS claim.
+
+
+### Final dedicated-owner/cache proof (2026-10-12)
+
+Fresh `HOST.native-render-owner.cached-functional-performance-negative-20261012`
+passes the complete TITAN native campaign and its 19FPS smoke floor: successful
+casting/Fireball/melee/party lethal, movement/retreat/refusals, portrait stress,
+native menu return/resume and normal Quit. All 4,707 owned sources, native
+completions, original returns and imports balance; outstanding zero, source
+credits/output leases high-water two, ordinary readbacks/pixel replies/fallback
+zero, original verification/source stability/private Wine cleanup pass.
+9,734 immutable exports require exactly two output allocations. Producer
+presentation allocations (4,459 across changing original/recipe identities)
+are counted separately; the static control reuses one producer allocation.
+
+Performance remains failed. Actual World drawing is 27.2142FPS; visible paints
+35.8486/48.8832FPS over 176.827/61.964 seconds, with worst windows 10.9389/20FPS.
+Those windows pass the smoke's 19FPS average/half-floor checks, but fail the
+59FPS benchmark. Source19.0883Hz also fails the stricter diagnostic19.5Hz
+threshold; the wrapper retains that first failure and is not made successful
+by deriving the visible-paint windows. No simulation pacing or original
+ordering deadline was changed. No 60FPS, interpolation, original equivalence,
+physical scanout, full replacement or drawing-history GAP-fix claim.
+
+The owned V5 GUI now presents immutable completed frames and handles input/menus;
+native World preparation/drawing and command/UI compilation have one dedicated
+render owner. Remaining throughput cost is on that native path and GPU submission/
+sampling, with original source delivery still separately measured. Context/
+format/dimension changes and unexecuted failure branches remain explicit pending
+boundaries. Current controls and this journey support partial implementation
+and live observation; prior negatives retain their source/scope hashes.
