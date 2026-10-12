@@ -531946,6 +531946,209 @@
         "evidence": [],
         "reason": "Fresh current-source/contract owned module fixture02passes, but durable lifecycle/gate journal, full original-forward/installer matrix, orphan fault/bounded shutdown, frontend/import/source integration and actual original worker/cadence/source controls remain unimplemented. Observation-only module unchanged; no safe unobtrusive synchronization, full reference/parity or completion promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "0f59d37af10bed2d93826053a8df33ba5b83a178405006e6667cd235edf5cbf8",
+          "before_sha256": "9dd6fb2fb8304173139c21237e5aff3a1a09a9443629708cb6b944cf5a14f4fd",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "1d0ed39000b4f5187bddfb0affefbcc7e23305b1b49d4f27cdf145ebfad0c511",
+          "before_sha256": "1b156564f8a449d65c9774f86a6d0f7a170a39beb9c59d1134e7eb05bc8e9274",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "118f79b0cfd74dee495f993e9e3e978d1d7b968471b6a35cbd326208bf8fad60",
+          "before_sha256": "431d0e3865781bcb4da8a9158656738a9872fc2d36844c8e8b47b042fbb874f7",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "7a6826b9d11d8a001e0d1c4089b4c5aa9f16a6c5551cf2cde6dffacc4672adf8",
+          "before_sha256": "9132846f21f0babb765b07b56cc15c73e2c2c7016ab34f3a36d480d56e0c58b8",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "295cf93b484f3b4f48a61f5a133f8f41cb725b7036a2eaac7fe44c0305803946",
+          "before_sha256": "e91da0e0e015abc8b1f30cdf58b808d6a91372ba299bfa595543de7fed5b7626",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "4581a1b7b08dbe2d1b9cfdca81b71f7a38d54fa81756a129ef35626a592fee79",
+          "before_sha256": "f4f2fd1b2ef24033ab213cd6ac3ad0875fd3428a64370840262ba42039ba1161",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "da6df15b14b8f69bf28d76750773c093f9e5b9792696030ec90e6c24b3954ad4",
+          "before_sha256": "d6ae6b1628d1f0b4f4181dc2533fd82d8621e376b7e1908e0d8fdd58c8e65b6e",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "fa6fd7b26e6e4135db41de7cfa8da0210907cec144fc1c03cba04a5f5546fe11",
+          "before_sha256": "6e2b77e64b99607283d9bac5916e29373ebb81da631ed5737a32db75abb3064e",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "d7f2c8882aaecc3149a92abfde29285822783ec7eeb2450edd500ebce93afa0c",
+          "before_sha256": "1b17279db7b25c7596cde6b48df8c5f65c3c74d5fd597f0b6d4b7a67fd63c360",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "a19825287e4ddb4fdc4c1cf741caa5f28bed523afec46bc196df32c4a0b49b95",
+          "before_sha256": "ca0e2af250e07ed1c7341df20efc16dccb9675893420ec2b4c18c3167da2e491",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "935269d217992b2bebeeff2f564b9c38b1b7e32898ce692e5c67b84448e19e15",
+          "before_sha256": "fe1d7efdcd0e98e75df06d15c7591a702eee74587b358a067951959a9cc2364b",
+          "id": "NR.drawing-cursor-source-gate-module"
+        },
+        {
+          "after_sha256": "0f13ac30d6689285a27d0436f768fe8a17fbeabea509dc419f36edcc1c2e4bb6",
+          "before_sha256": "bda4202ab93f7e5b65f124bea36361fe26359f204b42bd2352ee18507a55e4e9",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "6b88d3d611da966ca86b741233d38436066022618d59d7efcb8c51698d04a516",
+          "before_sha256": "c01192dd1737eb5381a07da608666d659d75e0ff1727702f406254b233b3fd54",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "e5637475634150f83fb4eae51ac83e69072831ae4bf7e3cae5d0baea88f89ad2",
+          "before_sha256": "3637300a6c3c1220686a618e739b925b61f9a8c5be4eaa50aca71f49396a9e81",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "7e143d4c7e17f0e4340b760dcd4e3ceb77b2329d49a6b69abfb85f9cfa01f23a",
+          "before_sha256": "9022b079261a23c51ba06f2f553415b3b58f21127040ef23ae07f34cde057c44",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "2b8e4f88e0c901182e5583638bb3db1afef34853c76f4fc142417b567f430468",
+          "before_sha256": "d1a5be731758ca4837c12da3a7b1f9965bf1f63fd682b04e5ea20d71af8c2cce",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "ea62187228e4c5b6d135c3faefdd082c6af88fc55eb02981099ef6e7dd3817a7",
+          "before_sha256": "6bd6a23f98341aa006df0382d15327b5fd50e0596da2c4ba1edd0e3939429cd1",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "2a491de265e72ccad2a27e91a4a7f42fa3c67f11b62e43f3c042645ccc12f740",
+          "before_sha256": "258f144b5e98c516ac3abdf674af9db1889a8d15e9eda8634f67ed3b5c68a036",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "30ade3e46dff7f581d3fb6a5e243186c4576a2c19f958ba8a01cc3500694c0ba",
+          "before_sha256": "3417e35d894eceab8dcfae52955ee839f9d70b1781b5f826ac3f9b6a39d429d4",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "679b9c36b85cbe8cd4264496c2ea0cbc7e4be1012454254418e826e9667fc663",
+          "before_sha256": "739f86aa84b400b7357494950b493add0cc01b41cdd6a20d40d3d05e78d58dec",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "cda997ae27ed912f0bc26916a163fc50320bd6624c425622010da5168c3c8242",
+          "before_sha256": "8791104eb2e9c5e2d965bd47cc86b6e7358b52677a83b98bc7e80273e733769f",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a351a35e636cdc6cd15cb5f172baedf84a38dfc45aabe9331ddc51fe28e1b9fc",
+          "before_sha256": "40241bb83c78cb63fccbf918a8bbec56d57346e6d44ea5234497d16c24109e2f",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ba6c86f8abf7c5c0676f5ca8e7ad2cd9dc6da498a4b563600345eb57aae8eb5b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-cursor-journal-start-20261012.json"
+        },
+        {
+          "after_sha256": "fa0273b1d487a637a77e291865b4df04883eb3de31357b1256ef8365a95540b7",
+          "before_sha256": "589d7952c2f1e6da56214900f9fdbcbff41f0877695b0c92daa2649dff225442",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b7bcb1a695342075f705a0f4f1d47cfd53c5e2e88c9398e6cbaf8ca5ea0bdff5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-cursor-journal-20261012.json"
+        },
+        {
+          "after_sha256": "417970d6936a6ad4d1220958c5453c0bc1a3641ffe524a852d1f6b6673cfde28",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-cursor-journal-20261012.md"
+        },
+        {
+          "after_sha256": "b6c1fda49718afe3ab6716eb71b9c819b23c47bf9e384a22a08b2f01c2a202ed",
+          "before_sha256": "f6163af8d03fd5bd4c3e17261a941087ac103881343707be7d05ce06d4afbd80",
+          "path": "research/runtime/cursor-source-gate-module.md"
+        },
+        {
+          "after_sha256": "23ef5a14ef084ce93d5c94454a5625ceb9f24d936d2ddb76d7250271282a9cdc",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-module-build-negative-03.json"
+        },
+        {
+          "after_sha256": "7f0b6fed941ea2ff2c7bb349b9cd0c6d88dce637a58cddb7219d1a0dd55307ce",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-module-fixture-04.json"
+        },
+        {
+          "after_sha256": "67c5c00d6c93598802f6eb662791e4e00ec8856210d28183384b4c41547d1b38",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-module-fixture-05.json"
+        },
+        {
+          "after_sha256": "3be27aa40f215406b292eab4d58c5aa84026661680296af35c500a560770d913",
+          "before_sha256": "68205cce21114f3047d67abf87376b42e1e2143775961a7651b1ed72bfb224dd",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "06d6ebafa62d2cecb90ee1720d3aee399bf1842a07efaf829e5f167f0ce5accb",
+          "before_sha256": null,
+          "path": "runtime/cursor-source-gate/journal.h"
+        },
+        {
+          "after_sha256": "1e579391b44b95cfd610f5445f616b0ecd7b277c165b6e01d0f32c4a3321b957",
+          "before_sha256": "1c8de21093d23aa842659712c87c12a62919c758e80c0ce350de4db25fd45c4f",
+          "path": "runtime/cursor-source-gate/module.c"
+        },
+        {
+          "after_sha256": "03596d26764195bbfabb4c9b0123a0b920b15397e1fdfa722b26c1131be5115f",
+          "before_sha256": "4b25b6f6caa3c5dfb3be3aa9e0fb25e5135d5eca5f7b347c235e2cfa17d75652",
+          "path": "tests/drawing-cursor-source-gate-module-test.c"
+        },
+        {
+          "after_sha256": "026a682d85e84a7415eb7124166b3eb4983d88553ee118cc21b03498d7ac7b9e",
+          "before_sha256": null,
+          "path": "tools/drawing_cursor_gate_journal.py"
+        },
+        {
+          "after_sha256": "5262493feca00c0d5cefff8a22fbefa1b8caf2a2f4b0479c63433f7d3ed21009",
+          "before_sha256": "7303abbd66305cc19e6f956d7577208d682aa0ddad1fd79f93e187738cfa9361",
+          "path": "tools/test-drawing-cursor-source-gate-module.py"
+        }
+      ],
+      "id": "draw02-bounded-cursor-gate-journal-snapshot-20261012",
+      "pending_gaps": [
+        "stale_evidence:28116b96823b951102fa25e5e79690957a82b4aedc5b80b4cd4acf8384607396",
+        "stale_evidence:31d268a0c94e7e5a42a07630db72ee300d3c7eb625820f524d3015116de2fc81",
+        "stale_evidence:5dd67a3be069c6f912e859140d9268458712491ffa6d3fc532c0a664d31d1d38",
+        "stale_evidence:7ae56d2bbe47efe7f0c0066ff6c5cf8f0b2be49060cf6612fc10ae8e1f6cd147",
+        "stale_evidence:cf8ea76d9ba6efb427ee9e54af8f58d021b7635a5c500f3a3b2b0207a4142174",
+        "stale_evidence:d34260df81e8aecf2706bfceebf2b7919a1b7d4a9e35d98b3b5fe20ca5ddf308",
+        "stale_evidence:fccb4344ca72a3200714c2110d22ab0e3fd1b4b6547eefb5a1e41b71800990f8",
+        "stale_evidence:fe2e52816521601457c9103e74b4e172557580e0f3529b481fa1a80379935336"
+      ],
+      "reason": "Review bounded separate MNMDGT01scalar lifecycle/gate snapshot, raw results/numeric role-call-identity-token fields, invalid request records, active/pending/fault/orphan boundaries and one-shot reason3snapshot. Fresh fixture05passes19rows/no drops, caller state and completejournalfalse. Preserve build03negative unresolvedmemset and fixture04historical after exposing stored decoder fields; no hashes refreshed. Source census/dependencies and fifteen exact prior-commit receipts reviewed. Snapshot order/private-close-before-End remains partial pending explicit drain/lifecycle pairing; normal writer quiescence/import restoration not claimed.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh current-source/contract owned bounded snapshot fixture05passes, with no complete journal/normal shutdown admission. Strict lifecycle/token pairing, drain event, writer freeze/restore/quiescence, exact original-forward/installer matrix, orphan/fault disposition and actual frontend/source/worker/cadence integration remain open. No original comparison/full reference/source alias/native parity/completion promotion."
+      }
     }
   ]
 }

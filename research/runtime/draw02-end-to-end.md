@@ -1622,3 +1622,24 @@ fault/orphan/shutdown disposition, installer failure matrix and exact original
 forwarding fixture, capture import/frontend integration and bounded real original
 worker/cadence/source controls remain necessary before live synchronization.
 All47/21and steps3–7remain open. Reviewed7d6ae833..c7c92d6ahas10exact receipts,0gaps.
+
+## DRAW-02 bounded durable gate snapshot checkpoint (2026-10-12 UTC)
+
+Separate pinned module committed392de8d8with both coverage gates passed. The
+module now writes a distinct bounded MNMDGT01scalar lifecycle/gate journal and
+explicit diagnostic snapshotreason3. Original creation/publication, close
+retirement/return, private close, gate begin/end/invalid requests and shutdown
+snapshot/terminal rows retain raw results and numeric identities, never handles.
+Pending wrapper/publication/active/fault/orphan counts remain negative boundaries.
+
+Build03negative unresolvedmemset remains preserved; corrected freestanding byte
+implementation precedes fixture04pass. Decoder initially did not expose stored
+role/call/identity/pending/flags; fresh fixture05passes19rows with current source/
+contract after correction. Snapshot0drops/0active/0fault/0orphans, reason3,
+completejournal=false. No originalgame, complete shutdown/reference or parity.
+
+Reassessment: step2 stays open. Strict lifecycle/token pairing, exact original
+forward/installer matrix, writer freeze/import restoration/quiescent normal
+shutdown, fault/orphan disposition, build/frontend/scripted capture integration
+and bounded real original source/worker/cadence controls remain necessary.
+All47/21and steps3–7remain open. Reviewedc7c92d6a..392de8d8has15exact receipts,0gaps.

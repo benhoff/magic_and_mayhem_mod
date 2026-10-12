@@ -44,5 +44,6 @@ void start(void){
  check(!cursor_gate_adapter.outer.duplicate&&!cursor_gate_adapter.inner.duplicate&&!cursor_gate_adapter.outer.leases&&!cursor_gate_adapter.inner.leases,211);
  prepare();check(!CursorSourceGateEndV1(owner,token,point,128),212);verify();
  prepare();check(!CursorSourceGateBeginV1(owner,0,128)&&!CursorSourceGateBeginV1(owner,point,127),213);verify();
+ prepare();check(CursorSourceGateShutdownV1(owner,point,128)&&point[13]==0&&point[14]==0,214);verify();
  ExitProcess(0);
 }

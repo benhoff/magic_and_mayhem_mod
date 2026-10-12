@@ -30,3 +30,14 @@ fixture-only page-base macro/parameter name collision. Renamed initial-owner
 parameter leaves production defaults intact. Fresh source-bound fixture02passes
 pin refusal, actual kernel lifecycle/token/raw results, output guards and all512
 FXbytes/LastError. Durable journaling, fault/shutdown and live integration pending.
+
+Journal increment is a bounded diagnostic snapshot only (reason3), not a normal
+complete terminal. Strict extent/rows/point checks never set complete=true.
+Lifecycle pairing, import restore/writer freeze and quiescent shutdown remain
+open; late-event/drop limitation prevents complete capture admission.
+
+Journal fixture build03retains unresolvedmemset link failure; freestanding byte
+implementation precedes fixture04pass. Decoder then exposes retained role/call/
+identity/pending/flags; fixture05freshly passes19rows with no drops and snapshot
+reason3. Complete=false regardless of clean bounded snapshot. Lifecycle pairing,
+late-writer boundary/import restoration/quiescent shutdown remain unvalidated.

@@ -7,6 +7,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 from drawing_api_session import sha
+from drawing_cursor_gate_journal import decode
 from coverage_claims import behavior_contract, required_sources
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,7 +36,7 @@ def main():
     parent.mkdir(parents=True, exist_ok=True)
     run = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(run, flush=True)
-    imports = dict(GetProcAddress=8, GetModuleHandleA=4, GetEnvironmentVariableA=12, SetEnvironmentVariableA=8, GetLastError=0, SetLastError=4, VirtualQuery=12, VirtualAlloc=16, VirtualProtect=16, CreateMutexA=12, DuplicateHandle=28, GetCurrentProcess=0, GetCurrentThreadId=0, WaitForSingleObject=8, ReleaseMutex=4, CloseHandle=4, ExitProcess=4, InitializeCriticalSection=4, EnterCriticalSection=4, LeaveCriticalSection=4)
+    imports = dict(GetTickCount=0, CreateFileA=28, WriteFile=20, GetProcAddress=8, GetModuleHandleA=4, GetEnvironmentVariableA=12, SetEnvironmentVariableA=8, GetLastError=0, SetLastError=4, VirtualQuery=12, VirtualAlloc=16, VirtualProtect=16, CreateMutexA=12, DuplicateHandle=28, GetCurrentProcess=0, GetCurrentThreadId=0, WaitForSingleObject=8, ReleaseMutex=4, CloseHandle=4, ExitProcess=4, InitializeCriticalSection=4, EnterCriticalSection=4, LeaveCriticalSection=4)
     definition = run / 'kernel32.def'
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n' + ''.join(f'{name}@{size}\n' for name, size in imports.items()))
     with (run / 'build.log').open('x') as log:
@@ -52,7 +53,8 @@ def main():
         fixture_prefix = run / 'wineprefix'
         subprocess.run(['cp', '-a', '--reflink=auto', str(args.prefix_template.resolve()), str(fixture_prefix)], check=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
-    env.update(WINEPREFIX=str(fixture_prefix), WINEDEBUG='-all')
+    capture = run / 'cursor-gate.bin'
+    env.update(WINEPREFIX=str(fixture_prefix), WINEDEBUG='-all', MNM_DRAW_CURSOR_SOURCE_GATE_FILE='Z:' + str(capture).replace('/', '\\'))
     try:
         with (run / 'wineboot.log').open('x') as log:
             subprocess.run(['wineboot', '-u'], env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=90)
@@ -71,7 +73,9 @@ def main():
         current_behavior = next(b for b in current['behaviors'] if b['id'] == behavior['id'])
         if behavior_contract(current_behavior, {b['id']: b for b in current['builds']}) != expected['contract_sha256']:
             raise ValueError('Behavior contract changed during execution')
-        report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, actual_mutex_handles=True, full_fx_state_preserved=True, last_error_preserved=True, relocated_owned_installer=True, scope='Owned PE32 relocated installer byte refusal, real kernel Create/duplicate/Close, versioned begin/end raw responses/stored token levels, original close during active token retains duplicate then drains, wrong owner/stale token/invalid output refusal and full512FX/error preservation. Production pins unchanged; no original game/frontend/source/worker or complete reference/parity.')
+        observation=decode(capture.read_bytes())
+        if observation['complete'] or observation['terminal_reason']!=3 or observation['active_leases'] or observation['fault'] or observation['orphans']:raise ValueError('Snapshot boundary differs')
+        report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, journal=observation, journal_sha256=sha(capture.read_bytes()), complete_journal_admitted=False, actual_mutex_handles=True, full_fx_state_preserved=True, last_error_preserved=True, relocated_owned_installer=True, scope='Owned PE32 relocated installer byte refusal, real kernel Create/duplicate/Close, versioned begin/end raw responses/stored token levels, original close during active token retains duplicate then drains, wrong owner/stale token/invalid output refusal and full512FX/error preservation. Production pins unchanged; no original game/frontend/source/worker or complete reference/parity.')
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

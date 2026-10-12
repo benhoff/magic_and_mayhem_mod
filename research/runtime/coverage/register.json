@@ -45267,7 +45267,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Separate pinned original cursor-source diagnostic mutex module",
-      "scope": "Opt-in separate PE32 module pins original NoCD base/IAT/exact two constructor and close anchors; forwards original Create/Close once with exact args/raw result/error/full512FX. Tracks private duplicates at observed constructor returns, retires before original Close, offers versioned scalar token begin/end with stored gate state, raw outcomes and bounded token/owner refusals. Not yet integrated with source capture; native diagnostic synchronization intentionally changes timing/lifetime.",
+      "scope": "Opt-in separate PE32 module pins original NoCD base/IAT/exact two constructor and close anchors; forwards original Create/Close once with exact args/raw result/error/full512FX. Tracks private duplicates at observed constructor returns, retires before original Close, offers versioned scalar token begin/end with stored gate state, raw outcomes and bounded token/owner refusals. Not yet integrated with source capture; native diagnostic synchronization intentionally changes timing/lifetime. Separate bounded scalar lifecycle/gate journal and explicit one-shot diagnostic snapshot, never a complete shutdown/normal capture terminal. Snapshot admission remains partial; late writer and restoration/quiescence limitations explicit.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45275,11 +45275,13 @@
       ],
       "implementation": [
         "runtime/cursor-source-gate/module.c",
-        "runtime/cursor-source-gate/pins.h"
+        "runtime/cursor-source-gate/pins.h",
+        "runtime/cursor-source-gate/journal.h"
       ],
       "tests": [
         "tests/drawing-cursor-source-gate-module-test.c",
-        "tools/test-drawing-cursor-source-gate-module.py"
+        "tools/test-drawing-cursor-source-gate-module.py",
+        "tools/drawing_cursor_gate_journal.py"
       ],
       "validation_dependencies": [
         "runtime/cursor-mutex/cursor_kernel_adapter_core.h",
@@ -45295,7 +45297,10 @@
       ],
       "evidence": [
         "DRAW02.cursor-module-fixture-01-20261012",
-        "DRAW02.cursor-module-fixture-02-20261012"
+        "DRAW02.cursor-module-fixture-02-20261012",
+        "DRAW02.draw02-cursor-module-build-negative-03-20261012",
+        "DRAW02.draw02-cursor-module-fixture-04-20261012",
+        "DRAW02.draw02-cursor-module-fixture-05-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45305,7 +45310,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Owned relocated PE32 fixture02 passes; fixture01negative/historical. Original capture frontend/scripted import integration, real original constructor/global/lifetime/cadence/source/worker controls, full route/native references and parity remain open. Bounded faults retain raw outcomes/uncertain references; no safe unobtrusive gate or original replacement claim. Durable module journal, orphan fault/cleanup disposition and explicit shutdown pending."
+        "Fresh fixture05passes19row bounded snapshot; fixture04historical after decoder fields exposed, build03negative preserved. Earlier module fixtures remain historical after source/scope changes. Original forwarding matrix, complete lifecycle journal pairing/admission, writer freeze/import restoration/quiescent normal shutdown, fault/orphan disposition, frontend/source/worker/cadence controls and live capture remain open; no complete journal/reference/parity claim."
       ]
     }
   ],
@@ -97134,6 +97139,63 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-build-negative-03-20261012",
+      "kind": "native_integration",
+      "scope": "Owned journal snapshot negative unresolvedmemset build, no execution.",
+      "record": "research/runtime/draw02-cursor-module-build-negative-03.json",
+      "sha256": "23ef5a14ef084ce93d5c94454a5625ceb9f24d936d2ddb76d7250271282a9cdc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Owned journal snapshot 19boundedrows/raw lifecycle identities/gate refusals/snapshotreason3; completejournalfalse, no originalgame/normalshutdown.",
+      "record": "research/runtime/draw02-cursor-module-fixture-04.json",
+      "sha256": "7f0b6fed941ea2ff2c7bb349b9cd0c6d88dce637a58cddb7219d1a0dd55307ce",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-fixture-05-20261012",
+      "kind": "native_integration",
+      "scope": "Owned journal snapshot 19boundedrows/raw lifecycle identities/gate refusals/snapshotreason3; completejournalfalse, no originalgame/normalshutdown.",
+      "record": "research/runtime/draw02-cursor-module-fixture-05.json",
+      "sha256": "67c5c00d6c93598802f6eb662791e4e00ec8856210d28183384b4c41547d1b38",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109276,8 +109338,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-module-20261012.json",
-    "sha256": "951abf89718ff9d9244857ed5d4f8a6748918878d423813ab7a2983db6c8b939"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-journal-20261012.json",
+    "sha256": "b7bcb1a695342075f705a0f4f1d47cfd53c5e2e88c9398e6cbaf8ca5ea0bdff5"
   },
   "claim_bindings_required": true
 }
