@@ -150,6 +150,13 @@ static int install(void){
                !VirtualProtect((void*)0x5c776c,4,0x40,&old))menu_retired=1;
             else{put((void*)0x5c776c,(u32)&spell_tick);VirtualProtect((void*)0x5c776c,4,old,&unused);}
         }
+        if(menu_version>=17){
+            u32 old,restore;
+            if(!readable((void*)0x5c68ac,4)||get((void*)0x5c68ac)!=0x5595d0||
+               !equal((void*)0x4b7bf0,(u8[]){0x8b,0x44,0x24,4,0x56,0x85,0xc0,0x8b},8)||
+               !VirtualProtect((void*)0x5c68ac,4,0x40,&old))menu_retired=1;
+            else {put((void*)0x5c68ac,(u32)&result_tick);VirtualProtect((void*)0x5c68ac,4,old,&restore);}
+        }
         if(menu_version>=16){
             u32 old,restore;
             if(!readable((void*)0x5c65e4,4)||get((void*)0x5c65e4)!=0x5595d0||

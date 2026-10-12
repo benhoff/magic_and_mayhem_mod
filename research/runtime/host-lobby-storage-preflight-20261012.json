@@ -1,0 +1,13 @@
+{
+  "working_gib": 1223.8340225219727,
+  "free_gib": 102.53064727783203,
+  "refusal_reasons": [
+    "reservation would leave less than the minimum free disk space"
+  ],
+  "scope": "Host view live validation not launched: unchanged100GiB free-space policy refused the6GiB reservation. No input or original engine execution occurred.",
+  "command": "tools/test-live-host-lobby.py",
+  "reserve_gib": 6,
+  "minimum_free_gib": 100,
+  "launched": false,
+  "feature_enabled_by_default": false
+}
