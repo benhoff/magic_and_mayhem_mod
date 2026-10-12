@@ -92,3 +92,5 @@ bool LiveCommandRenderer::presentSealed(const mnm::render::GpuFrame& frame,std::
     try{if(!consumer_ || closed_ || ended_)return false;consumer_->presentSealed(frame,generation);return true;}
     catch(const std::exception& e){fail(e.what());return false;}
 }
+
+mnm::render::CommandDisplayState LiveCommandRenderer::displayState() const{return consumer_ && !closed_ && !ended_?consumer_->displayState():mnm::render::CommandDisplayState{};}

@@ -7136,3 +7136,16 @@ delay classification and native render/command/GPU cost attribution/reduction.
 Cross-generation cachedUI reuse remains intentionally unadmitted until separately
 specified and proved. All originalsimulation/pacing/history/order/credit policies
 remain unchanged.
+
+### Native first-seal / active-cost diagnostics (2026-10-12)
+
+The dedicated owned V5 render owner now distinguishes absent recipes, first
+unsealed World UI, sealed static-only UI, and generation mismatch. Prepared
+command record/reset/seal/import CPU costs and WORLD-to-first-World-seal wall
+latency are measured separately, with active-only World/command poll aggregates.
+Fresh controls cover static/repeated PRESENT, superseded first seal, detailed
+classification, immutable leases, pixel checks and teardown. Evidence:
+`HOST.native-display-deadlines.attribution-controls-20261012`. Full current-code
+TITAN observation is in progress; retained60FPS failure remains outstanding.
+No cross-generation reuse, simulation, source FIFO, readback or replacement
+policy change. Other shared-source historical validation remains historical.

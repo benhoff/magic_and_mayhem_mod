@@ -51,6 +51,7 @@ private:
     std::uint64_t uiPublicationRedraws_=0,sealedUiRedraws_=0;
     RenderDeadlineProbe deadlineProbe_;
     RenderStageTiming worldTiming_,commandTiming_,extraTiming_,exportTiming_,turnTiming_;
+    RenderStageTiming activeWorldTiming_,activeCommandTiming_;
     QJsonArray slowTurns_;
     std::uint64_t exports_=0,skipped_=0,highWater_=0,turns_=0,exportAllocations_=0;
 };
