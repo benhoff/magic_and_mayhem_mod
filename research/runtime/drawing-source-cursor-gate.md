@@ -18,3 +18,8 @@ Buildnegative01missing fixture GetProcAddress declaration retained; corrected
 fixture02passes. Console stale actualmutex label corrected and builder deps
 added before fresh fixture03passes5records. Production drawing DLL compiles;
 source/contract/build fingerprints retained, actual production session unexecuted.
+
+`draw02-source-gate-legacy-regression-01.json` passes the current production
+PE32 session with gate mode disabled:32COMcallback cases/eightplanes, exact raw
+result/error/x87, original forwarding/reentrant menu input. Prefix reuse avoids
+new installation. Enabled gate/source/worker path remains pending separately.

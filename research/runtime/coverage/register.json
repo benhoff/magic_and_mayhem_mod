@@ -45324,7 +45324,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded drawing API cursor gate and source lease binding",
-      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim.",
+      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45338,19 +45338,53 @@
       ],
       "tests": [
         "tests/drawing-source-cursor-gate-test.c",
-        "tools/test-drawing-source-cursor-gate.py"
+        "tools/test-drawing-source-cursor-gate.py",
+        "tools/test-drawing-api-session.py",
+        "runtime/drawing/selftest.c"
       ],
       "validation_dependencies": [
-        "runtime/shadow/win32_min.h",
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "protocols/include/mnm/drawing_worker_context_v1.h",
+        "runtime/drawing/call_intervals.h",
+        "runtime/drawing/input_point.h",
+        "runtime/drawing/physical_fence.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_byte_witness.h",
+        "runtime/drawing/source_cursor_gate.h",
+        "runtime/drawing/source_held_snapshot.h",
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/source_readonly_lease.h",
+        "runtime/drawing/source_worker_lease.h",
+        "runtime/drawing/storage_point_exports.h",
+        "runtime/drawing/wine_blit_packet.S",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_buffer.h",
+        "runtime/drawing/wine_client_memory.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_resource_copy.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_texture_entry.h",
+        "runtime/drawing/wine_worker_context.h",
+        "runtime/shadow/win32_min.h",
+        "tests/drawing-api-physical-peer.py",
         "tools/build-drawing-session.py",
-        "tools/build-shadow-bridge.py"
+        "tools/build-shadow-bridge.py",
+        "tools/drawing_api_physical.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_presented_session.py"
       ],
       "evidence": [
         "DRAW02.draw02-source-cursor-gate-build-negative-01-20261012",
         "DRAW02.draw02-source-cursor-gate-fixture-02-20261012",
         "DRAW02.draw02-source-cursor-gate-fixture-03-20261012",
-        "DRAW02.draw02-source-cursor-gate-production-build-01-20261012"
+        "DRAW02.draw02-source-cursor-gate-production-build-01-20261012",
+        "DRAW02.source-gate-legacy-regression-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45360,7 +45394,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh fixture03passes5ownedbindingrecords and production drawing DLL compile passes; buildnegative01andfixture02historical retained. Capture frontend/scripted imports and current original module/control/source/worker/cadence integration not implemented. Refused point never claims immutable source; all exclusions remain explicit. Full callback/lifetime/normal shutdown/reference/native parity open."
+        "Fresh current production session gate-disabled regression passes32COMcases/eightplanes/reentrant/menu/error/x87; gate-enabled full production source/worker/early-return fixture and frontend/import/original controls remain pending. Prior owned binding evidence historical after dependency/scope extension. No enabled synchronization/full reference/native parity claim."
       ]
     }
   ],
@@ -97398,6 +97432,29 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.source-gate-legacy-regression-01-20261012",
+      "kind": "native_integration",
+      "scope": "Current production PE32 session gate-disabled32COM/eightplanes/reentrant/error/x87 baseline only; no enabledsource/worker/game integration.",
+      "record": "research/runtime/draw02-source-gate-legacy-regression-01.json",
+      "sha256": "803ae306974c1d0876ed25864ff67dc8d22d6c1d95b1c52a999f3d3971c4305a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109540,8 +109597,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-capture-20261012.json",
-    "sha256": "b863f33ab43a19df9ee00a71b8bd8899a483f49e36c3ad2cce6393a6d0962bda"
+    "path": "research/runtime/coverage/source-index-draw02-source-gate-regression-20261012.json",
+    "sha256": "d1f389549db4fb5567fe4b48a143c6f49a2ead8375e3fffead03b5fe980c7655"
   },
   "claim_bindings_required": true
 }

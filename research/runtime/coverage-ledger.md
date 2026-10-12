@@ -8371,3 +8371,20 @@ provenance, current original controls and bounded32original-active acquisition
 remain necessary. Refusal excludes ownership proof and cannot silently omit
 frame/reference denominator. All47/21and steps3–7retain scope. Reviewed
 632741f0..99cd92dahas12exact receipts,0gaps.
+
+## DRAW-02 full session gate-disabled regression checkpoint (2026-10-12 UTC)
+
+API/token/source adapter committed2fcd7878with staged and hook checks passed.
+Current-source `draw02-source-gate-legacy-regression-01.json` passes the production
+PE32 session gate-disabled32COMcallbacks/eightprimaryplanes/18menuphases/eight
+reentrantthreads with exact raw result/LastError/x87 and original forwarding.
+Runner now permits only a completed isolated fixture prefix reuse; no copied
+installation or original game execution. Declaration includes full current
+production builder dependency manifest, keeping prior owned evidence historical
+without refreshing hashes after scope/dependency changes.
+
+Reassessment: step2stillopen. Gate-enabled full session source/worker/early-return
+fixture, capture frontend/scripted import/token binding/partial snapshot and
+bounded original32acquisition with controls remain necessary. Gate-disabled
+regression cannot prove enabled synchronization or source ownership. All47/21
+and steps3–7retain scope. Reviewed99cd92da..2fcd7878has18exactreceipts,0gaps.
