@@ -37600,14 +37600,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Original-active common DirectDraw/input API session observer and strict admission",
-      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission. Additive mode3 observes primary API physical witnesses with no diagnostic Lock/Unlock; exact original API journal request/ACK and full stable X11 planes remain reference-only. Other threads continue, source inputs are not yet bound, alternate/GDI/movie/global routes and semantic outcomes remain open. Mode3 frame byte budgets are prospectively configured1..3072MiB with the1024frame cap retained; other modes keep their original fixed1GiB header. Budget exhaustion and successful-primary-without-plane admission refuse.",
+      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission. Additive mode3 observes primary API physical witnesses with no diagnostic Lock/Unlock; exact original API journal request/ACK and full stable X11 planes remain reference-only. Other threads continue, source inputs are not yet bound, alternate/GDI/movie/global routes and semantic outcomes remain open. Mode3 frame byte budgets are prospectively configured1..3072MiB with the1024frame cap retained; other modes keep their original fixed1GiB header. Budget exhaustion and successful-primary-without-plane admission refuse. Additive physical-mode call-interval journal records observer entry, original return observation and observer completion/physical ACK for every admitted API/input/action call. Exact journal identities, result, pending ownership and closed terminal are required. Conservative competing mutators and CPU/DC acquire/release leases are exposed without claiming source ownership, alias resolution or driver/scanout ordering.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/draw02-interactive-session.md",
         "research/formats/drawing-api-session-v1.md",
         "research/runtime/native-master-final-draw02-original-pass-20261011.json",
-        "research/formats/drawing-api-physical-witness.md"
+        "research/formats/drawing-api-physical-witness.md",
+        "research/formats/drawing-call-intervals-v1.md"
       ],
       "implementation": [
         "runtime/drawing/session.c",
@@ -37615,14 +37616,17 @@
         "tools/build-drawing-session.py",
         "tools/drawing_api_session.py",
         "runtime/drawing/physical_fence.h",
-        "tools/drawing_api_physical.py"
+        "tools/drawing_api_physical.py",
+        "runtime/drawing/call_intervals.h",
+        "tools/drawing_call_intervals.py"
       ],
       "tests": [
         "runtime/drawing/selftest.c",
         "tests/test-drawing-api-session.py",
         "tools/test-drawing-api-session.py",
         "tests/test-drawing-api-physical.py",
-        "tests/drawing-api-physical-peer.py"
+        "tests/drawing-api-physical-peer.py",
+        "tests/test-drawing-call-intervals.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -37643,7 +37647,10 @@
         "NR.drawing-session-api.physical-development-physical-03-20261012",
         "NR.drawing-session-api.physical-development-physical-04-20261012",
         "NR.drawing-session-api.physical-development-legacy-01-20261012",
-        "NR.drawing-session-api.physical-development-legacy-02-20261012"
+        "NR.drawing-session-api.physical-development-legacy-02-20261012",
+        "NR.drawing-session-api.call-intervals-native-20261012",
+        "NR.drawing-session-api.call-intervals-legacy-native-20261012",
+        "NR.drawing-session-api.call-intervals-source-change-refusal-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -37654,7 +37661,8 @@
       },
       "validation_domain": "Synthetic PE32 stdcall callback result/error/x87, eight complete readback planes and eight second-thread reentrant readbacks; original-active strict live API observation is recorded separately. No global presentation or complete semantic journey.",
       "remaining_gaps": [
-        "New physical API mode is a bounded reference-only increment. Synthetic ACK tests do not acquire original frames; actual X11 witnesses, source input bindings, all presentation/GDI/movie routes, semantic input/lifetime and full journey admission remain pending. Historical forwarding/original capture hashes are preserved and shared changes require new comparisons."
+        "New physical API mode is a bounded reference-only increment. Synthetic ACK tests do not acquire original frames; actual X11 witnesses, source input bindings, all presentation/GDI/movie routes, semantic input/lifetime and full journey admission remain pending. Historical forwarding/original capture hashes are preserved and shared changes require new comparisons.",
+        "Shared producer depth/surface state requires concurrency-safe ownership before source binding; call intervals do not make API physical witnesses complete presented frames."
       ]
     },
     {
@@ -37665,7 +37673,8 @@
       "documents": [
         "research/runtime/draw02-interactive-session.md",
         "research/runtime/native-master-final-draw02-original-pass-20261011.json",
-        "research/formats/drawing-api-physical-witness.md"
+        "research/formats/drawing-api-physical-witness.md",
+        "research/formats/drawing-call-intervals-v1.md"
       ],
       "evidence": [
         "NR.drawing-interactive-acquisition.original-active-20261011",
@@ -37675,7 +37684,8 @@
         "NR.drawing-interactive-acquisition.physical-api-original-20261012",
         "NR.drawing-interactive-acquisition.physical-baseline-timeout-20261012",
         "NR.drawing-interactive-acquisition.physical-unstable-original-20261012",
-        "NR.drawing-interactive-acquisition.physical-budget-original-20261012"
+        "NR.drawing-interactive-acquisition.physical-budget-original-20261012",
+        "NR.drawing-interactive-acquisition.call-intervals-original-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -37686,7 +37696,7 @@
       },
       "id": "NR.drawing-interactive-acquisition",
       "title": "Original-active Quick Battle XTest acquisition with strict API admission",
-      "scope": "Pinned original executable staged by verified added imports, V12 original menu actions and bounded stock map2 Quick Battle schedule. XTest inputs and observed polling are separate from semantic game outcomes; only strict terminal/no-loss/no-gap wire-tagged API journals can be admitted; full primary references additionally require readback mode. Original drawing/simulation stay active; no completed journey, complete selection/tooltip/pause/combat outcomes, global presentation or native pixel parity claim. Default metadata-only mode avoids additional driver Lock/Unlock calls. Physical viewport PNGs accompany actions with journal-byte fences and hashes, explicitly unsynchronized with original frame publication. API full-readback diagnostics perturbed gameplay relative to controls and cannot assert unobtrusive live observation. Scoped Quick Battle results Continue/Quit and return through Quick to fresh Main are explicitly requested through their existing original callbacks; this verifies World exit separately from campaign Mini pause semantics. Optional physical API mode requires a separate reference-only X11 peer, binds stable full-plane output to exact primary API journal rows and preserves pending counts through ACK. Descriptor classification is observed without diagnostic Lock/Unlock. Source-owned scene bindings/global routes/semantic outcomes remain open; no complete journey claim. Scripted reference-input preparation preserves every installed asset/configuration byte and substitutes only the hash-checked supplied unchanged No-CD executable in a new working copy. API-only physical settling retains each observed unequal sample (32 per point,1..2048MiB prospectively configured total) before two equal samples; it never asserts every physical change was captured. The earlier immediate double-read failure is retained. Physical mode3 frame storage is prospectively configured1..3072MiB; earlier modes retain the fixed1GiB envelope. The original1GiB acquisition exhaustion remains negative.",
+      "scope": "Pinned original executable staged by verified added imports, V12 original menu actions and bounded stock map2 Quick Battle schedule. XTest inputs and observed polling are separate from semantic game outcomes; only strict terminal/no-loss/no-gap wire-tagged API journals can be admitted; full primary references additionally require readback mode. Original drawing/simulation stay active; no completed journey, complete selection/tooltip/pause/combat outcomes, global presentation or native pixel parity claim. Default metadata-only mode avoids additional driver Lock/Unlock calls. Physical viewport PNGs accompany actions with journal-byte fences and hashes, explicitly unsynchronized with original frame publication. API full-readback diagnostics perturbed gameplay relative to controls and cannot assert unobtrusive live observation. Scoped Quick Battle results Continue/Quit and return through Quick to fresh Main are explicitly requested through their existing original callbacks; this verifies World exit separately from campaign Mini pause semantics. Optional physical API mode requires a separate reference-only X11 peer, binds stable full-plane output to exact primary API journal rows and preserves pending counts through ACK. Descriptor classification is observed without diagnostic Lock/Unlock. Source-owned scene bindings/global routes/semantic outcomes remain open; no complete journey claim. Scripted reference-input preparation preserves every installed asset/configuration byte and substitutes only the hash-checked supplied unchanged No-CD executable in a new working copy. API-only physical settling retains each observed unequal sample (32 per point,1..2048MiB prospectively configured total) before two equal samples; it never asserts every physical change was captured. The earlier immediate double-read failure is retained. Physical mode3 frame storage is prospectively configured1..3072MiB; earlier modes retain the fixed1GiB envelope. The original1GiB acquisition exhaustion remains negative. Physical captures additionally admit a closed exact API call-interval journal to expose concurrent mutations and unresolved CPU/DC leases; still no source/frame ownership claim.",
       "implementation": [
         "tools/capture-drawing-interactive.py",
         "tools/drawing-session-runner.py",
@@ -37753,7 +37763,9 @@
         "runtime/drawing/physical_fence.h",
         "tools/drawing_api_physical.py",
         "apps/drawing-session/observe.cpp",
-        "apps/drawing-session/CMakeLists.txt"
+        "apps/drawing-session/CMakeLists.txt",
+        "runtime/drawing/call_intervals.h",
+        "tools/drawing_call_intervals.py"
       ],
       "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
       "remaining_gaps": [
@@ -88012,6 +88024,144 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session-api.call-intervals-native-20261012",
+      "kind": "native_integration",
+      "scope": "Synthetic32original callback cases/eight competing failed second-thread mutators/eight primary physical ACKs; exact interval overlap/pending bindings and original result/LastError/x87 without diagnostic Lock/Unlock.",
+      "record": "research/runtime/draw02-call-intervals-fixture-02.json",
+      "sha256": "166146202d39fa81331969a56506f8152825b9b7431ac7a3d4c34223c9e4daf6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/competing_thread_calls",
+          "equals": 8
+        },
+        {
+          "pointer": "/call_intervals/frames_with_other_thread_mutations",
+          "equals": 8
+        },
+        {
+          "pointer": "/call_intervals/calls",
+          "equals": 42
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.call-intervals-legacy-native-20261012",
+      "kind": "native_integration",
+      "scope": "Legacy32callback/eight primary readback/eight reentrant-thread forwarding survives additive physical-only interval code; no physical/caller/source equivalence.",
+      "record": "research/runtime/draw02-call-intervals-legacy-01.json",
+      "sha256": "9c55402f22936c50d1ecb5e3f6f3568843a2df6f07acec7b83ce288ce3c893b0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/driver_reentrant_threads",
+          "equals": 8
+        },
+        {
+          "pointer": "/physical_fence_enabled",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.call-intervals-source-change-refusal-20261012",
+      "kind": "static",
+      "scope": "Retained development fixture refusal due source mutation during execution; no current-code or original validation.",
+      "record": "research/runtime/draw02-call-intervals-fixture-source-change-01.json",
+      "sha256": "162fda8fe4b54e0383d5ff791a2ba06c9fc56617cefc4bc67693e717cb511944",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "recorded_inputs": [
+        "failed-fixture.log"
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.call-intervals-original-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active stock map2 Quick Battle;585API-point physical planes,8818exact call intervals,344physical points overlapping second-thread mutations. Local CPU/DC identity lease gaps remain diagnostic; no alias/source/global/semantic/journey equivalence.",
+      "record": "research/runtime/draw02-call-intervals-original-01.json",
+      "sha256": "a028aefc9accb892f7f908b162058f94025a6bd67617551086918b0890fbec61",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_drawing_active",
+          "equals": true
+        },
+        {
+          "pointer": "/native_parity_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_journey_coverage",
+          "equals": false
+        },
+        {
+          "pointer": "/call_intervals/events",
+          "equals": 26455
+        },
+        {
+          "pointer": "/call_intervals/calls",
+          "equals": 8818
+        },
+        {
+          "pointer": "/call_intervals/frames_with_other_thread_mutations",
+          "equals": 344
+        },
+        {
+          "pointer": "/physical_api_observation/complete_presented_journey",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98561,23 +98711,25 @@
     {
       "id": "DRAW02.api-physical-fence-fixture",
       "level": "headless",
-      "scope": "Synthetic PE32 eight-route success/lost/busy/error callback forwarding with eight physical ACKs, original result/LastError/x87 and one application callback, no observer Lock/Unlock; no original game/real physical screen/source ownership or journey closure.",
+      "scope": "Synthetic PE32 eight-route success/lost/busy/error callback forwarding with eight physical ACKs, original result/LastError/x87 and one application callback, no observer Lock/Unlock; no original game/real physical screen/source ownership or journey closure. Also eight separate failed mutators on second-thread descriptor callbacks during the primary return-to-ACK interval; exact interval detection, pending/lifetime admission and CPU/DC lease guards.",
       "behaviors": [
         "NR.drawing-session-api"
       ],
       "tests": [
         "tools/test-drawing-api-session.py",
         "tests/test-drawing-api-physical.py",
-        "tests/drawing-api-physical-peer.py"
+        "tests/drawing-api-physical-peer.py",
+        "tests/test-drawing-call-intervals.py"
       ],
       "evidence": [
-        "NR.drawing-session-api.physical-fence-native-20261012"
+        "NR.drawing-session-api.physical-fence-native-20261012",
+        "NR.drawing-session-api.call-intervals-native-20261012"
       ]
     },
     {
       "id": "DRAW02.api-physical-original-quick",
       "level": "live_observation",
-      "scope": "Original-active bounded Main/setup/Quick Battle/results/Main physical API witnesses with exact request/ACK/journal binding, no extra Lock/Unlock. No source-owned replay/all-global-route/semantic journey/parity closure.",
+      "scope": "Original-active bounded Main/setup/Quick Battle/results/Main physical API witnesses with exact request/ACK/journal binding, no extra Lock/Unlock. No source-owned replay/all-global-route/semantic journey/parity closure. Exact observer entry/return/completion intervals expose overlapping mutators and unresolved CPU/DC leases; no producer/scanout ownership inference.",
       "behaviors": [
         "NR.drawing-interactive-acquisition"
       ],
@@ -98586,7 +98738,8 @@
         "tests/fixtures/drawing-journeys/interactive-schedule.json"
       ],
       "evidence": [
-        "NR.drawing-interactive-acquisition.physical-api-original-20261012"
+        "NR.drawing-interactive-acquisition.physical-api-original-20261012",
+        "NR.drawing-interactive-acquisition.call-intervals-original-20261012"
       ]
     }
   ],
@@ -98961,8 +99114,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-api-physical-20261012.json",
-    "sha256": "77cb54dfb5aaad796c0821e04a9b70021c238960a7eba81a4cd7501cf63deaae"
+    "path": "research/runtime/coverage/source-index-draw02-call-intervals-20261012.json",
+    "sha256": "561997e3fe8b0f5398d1cc53a2140efe20a8082c980ea97cef2074da3e84fa17"
   },
   "claim_bindings_required": true
 }

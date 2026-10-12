@@ -137,3 +137,44 @@ routes, and add semantic observations for each matrix assertion. API completion
 plus a sampled stable screen must not be renamed `presented_frame`. Step3 through
 step7 remain pending; their existing independent source replay/operation fixtures
 are retained and can be reused within scope after coherent admission is established.
+
+## Step 2 call-order checkpoint (2026-10-12 UTC)
+
+The additive physical-mode `MNMDINT1` recorder now retains exact observer entry,
+original return observation and observer completion/physical ACK points. No
+critical section spans a driver call or peer wait. Strict admission checks every
+identity/result, ordered pair, main journal/frame link, pending owner and terminal.
+Seven Python guards pass, including a mutation after API return but before ACK,
+CPU/DC acquire/release and failed release.
+
+`draw02-call-intervals-fixture-02.json` passes32original callback cases plus eight
+separate failed second-thread mutators during descriptor callbacks. All eight
+primary witness intervals detect the competing thread, with127events/42calls and
+maximum two pending entries. Original result/LastError/x87, exactly one original
+callback and zero diagnostic Lock/Unlock remain verified. The separate legacy
+fixture passes32cases/eight readback planes/eight reentrant threads. A development
+fixture invalidated by sources changing during execution remains explicitly
+negative; its artifacts are retained without a current-source validation claim.
+
+`draw02-call-intervals-original-01.json` acquires585physical witnesses and admits
+26455events/8818calls.344witness intervals overlap conservative mutators from a
+second original thread; maximum pending count is two. The two primary writers
+produce327and258witnesses. The bounded Main/setup/map2 Quick Battle/Results
+Continue/Quit/Main flow completes again;65passive ticks/541movement/16health
+reductions/zero melee do not fulfill the120advancing-update acceptance policy.
+
+The first CPU/DC diagnostic tracks individual local interface generations:
+4310lease events expose2150unobserved acquisitions,2129duplicate acquisitions and
+21remaining leases. Successful original QueryInterface rows link several Lock
+and Unlock identities (for example11→12 and21→22). Shared interface aliases are
+a concrete next investigation; these diagnostic gaps do not establish broken
+original lifetime behavior. Preserve this first parser/result before adding
+explicit query-bound alias grouping and checking persistent leases at witnesses.
+
+Reassessment: step2 remains open; its next increment is alias-aware lifetime and
+producer ownership.344overlapping intervals forbid assuming a stable physical
+sample corresponds to just the initiating producer call. Steps3–7 retain their
+existing order and acceptance requirements, with no reference/parity gate
+promotions. Reviewed committed range82f9bff..1122a20 has42exact file receipts and
+zero missing intermediate versions; the retained report makes no retrospective
+gate or new validation claim.

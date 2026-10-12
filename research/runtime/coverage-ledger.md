@@ -6756,3 +6756,17 @@ original acquisition have independent evidence IDs. Shared observer/admission
 changes leave broader historical drawing/host comparison stale; only the new
 scoped policy executions establish current support. See
 [ordered execution, evidence and reassessment](draw02-end-to-end.md).
+
+### DRAW02 original call-order diagnostic (2026-10-12)
+
+The [call interval format](../formats/drawing-call-intervals-v1.md) and
+[execution journal](draw02-end-to-end.md) record an additive physical-only
+entry/return/completion journal. Fresh PE32 forwarding detects eight intentionally
+competing second-thread mutators; legacy32case/eight-plane/eight reentrant-thread
+behavior also passes. Fresh original-active stock Quick Battle retains585full
+physical witnesses/26455events/8818calls;344witness intervals overlap observed
+mutators on another original thread. These are API-point observer intervals, not
+owned presented frames. QueryInterface alias/lifetime grouping and persistent
+CPU/DC lease accounting remain pending; local-interface gaps are not original
+engine lifetime failures. No complete14journey/21operation, native parity, global
+route, driver recovery or live replacement claim is promoted.
