@@ -1,0 +1,703 @@
+{
+  "schema": 1,
+  "scope": "Exact Git parent/current file and behavior-contract receipt accounting, including original/evidence/scenario links; separate from uncommitted NS23 changes. No historical gate pass or new validation assertion.",
+  "base": "0144cb6c",
+  "head": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+  "files": [
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "1f511952d43966bc01c8a74fe9782b2e4169c324dea887883d72dedb4185db99",
+      "after_sha256": "55ccebbc93f0559d01f7cdd82a9c0b4801d8bc408d379ce7943b6df84c8005fe",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "protocols/include/mnm/api_census_v1.h",
+      "before_sha256": null,
+      "after_sha256": "4bf4641029178a1d75f993e24cdaf705eb42db6363279248ca03dc851d640bad",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "protocols/python/mnm_protocols/api_census_v1.py",
+      "before_sha256": null,
+      "after_sha256": "8a6507b6dae5ea50d52586063ed81ef7103fe6d85ce712e95bb28fca1f37808a",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "protocols/schemas/api-census-v1.json",
+      "before_sha256": null,
+      "after_sha256": "a8fcd08c8e008bcf4f83f92cd0b5642746b85f989afb145bd6368c0b769c0f5e",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "6052f5d13d44182c054b4e15ea14a27401c22fd9ea87d49c040afe8fe1462ebd",
+      "after_sha256": "71b120dbba9edbfbcedd371aa902878f4daa4e844f5eea5a3aed63a7c4a5162f",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/coverage/native-media-startup-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ac5cb7e8ab554aeb2ad3f90ad534e750b2070f1cc7eb93524e9c419493908f9e",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "43651a7e2961fd81b63acbcf00f6d87b95827a9fd6d5716c5ab543a4c32a1f5d",
+      "after_sha256": "877a870787678eed668232944faa1ab7a36623f9db9c0e251a3364a2646b9702",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/coverage/source-index-wine-import-census-commit-v2-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9a18e7a8aecea28fe9eda4178c75442bdc517c7f67d500854080872d9e6152e7",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/coverage/summary-wine-import-census-commit-v2-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a6401a74159bbb3ace4903419bd195b8042471e717c6b2f92c69c4a0d4ca3fb7",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "5d81a2c7f6a4d425de57643f84e9031aecf7e900ee933fbc30c06702498d09fa",
+      "after_sha256": "c1292c89278fd2b521d2efc6fa713ac9401dcd296ccb58505bcb6bad8f16c5e5",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/wine-import-census-data-public-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "efa420d86ca195a1157d4bbd41e5051e3279072186b672f50c5ff01c375d4bf4",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/wine-import-census-data-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "713a9c7180275dac62ae810712af411bb335b0db28a4f7a8f4c8ab789452b178",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/wine-import-census-initial-provenance-failure-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "73d6483a03f777899bd79839f81dbe7a4137988de79749af0456c342e7789d64",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/wine-import-census-public-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "16cca230ca853302d789a35949ff46bc45cdd0c50d5effceac232f571846ebdb",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/wine-import-census-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "612d923d0dedea0928197662f362842fe0b0d7c5e9186e4865a99b3700f03dae",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "research/runtime/wine-import-census.md",
+      "before_sha256": null,
+      "after_sha256": "831d3038bea109990302908e8db149da27e1734cd62b017dc77854f6c4c9a1d7",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "runtime/api-census/nocd-imports.h",
+      "before_sha256": null,
+      "after_sha256": "bd4d9b5e74c3403a1a245639715f1473d51ec49be2ddeeeafc24cfc1636114dc",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "runtime/api-census/observer.c",
+      "before_sha256": null,
+      "after_sha256": "7626a217fb2bbbce1609cc91bfc431249c9d67210d482210f7efb441f3465e49",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "runtime/api-census/selftest.c",
+      "before_sha256": null,
+      "after_sha256": "26612b4f550439806849665fed8e3dba56771523c212b5d6bb898746a40e8b34",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/build-api-census.py",
+      "before_sha256": null,
+      "after_sha256": "619e938c1243a7d99872fbf622365d57f32b0e9c150f1d96ee1e12b8b85f3a55",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/export-wine-imports.py",
+      "before_sha256": null,
+      "after_sha256": "e9a97a09c04060ce26ded1413952ddb8fc5e1292a9c8432a6852a247545bb383",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "cfd229cd9fc3cc0762541d3cddc3b565d0949977da349e0a6319df335c6c3c87",
+      "after_sha256": "8fe4fcee327befa56514b3e7ab71ea30c9e7de93404c2d748f5bfcadd0b99abd",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "baae717dc8b89c42d96cf8e3a539b833a7ebebf46a6afb016bebe0bbb0927016",
+      "after_sha256": "0cc26f339657190861806ed6d5d72c021cbd722ca8a49a904fbc516c87e6b24a",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/test-api-census.py",
+      "before_sha256": null,
+      "after_sha256": "eaa569b18706e34d8060aaa9f5982e9ec5bc4a88fa8e91392a5719499b92c4a8",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "2d21811531c0be0bbb1e9243b0f9e9b4c9747b7dbc9640eac0a05e936379dba3",
+      "after_sha256": "a7af1d0f054af8735ca2ef1ac8fa143a1d8561b9bafb0f832c61f007d7dc1d61",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "path": "tools/wine_import_census.py",
+      "before_sha256": null,
+      "after_sha256": "a8d433648726188cd6ab2b99489e01566144a19c5f534b8f147ee4974a330fb5",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "AU.cd_music",
+      "before_sha256": "fcca5687147e931caa16ce0d0de6d8e105bc27ff5e505689eabeb31695a8225b",
+      "after_sha256": "f1d2a3d540d72ef6e860fd75eca68634a12dd3685fe62c8d17a9dedf9b68c935",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "CP.realm-observation",
+      "before_sha256": "2ac771492b557567cc3822bc0e28dffa6ba198e0b2b215af3c66f3f29847a142",
+      "after_sha256": "1d479810eb7845f251fdacd1de1df398d1fe1e254f765b01b4d0a92b8c790cb4",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-audio-defaults",
+      "before_sha256": "27436694dcfbc00b2cb2e7d7af67e9f3f367572e97876045ba40ee706c37f106",
+      "after_sha256": "7c40d4bcc3d5b42497a92f523f71cfb623e47ecdb7d973b6542cee2187d1452c",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-audio-factory",
+      "before_sha256": "96c49914172f5f4eb3e1a7bb46e672559ff08c3ac987ee270e76395bcf086574",
+      "after_sha256": "6d634f40ca638d7ece7b0d5e55753f704ae418ff43f6931c6ce5b9348a87e6a5",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-capture-retry",
+      "before_sha256": "ae199ddfeeb36537c212c8d679ce577087efb3277d0cabd42e5a4fb3a24b6bcc",
+      "after_sha256": "d9a73fdb812b205983abca22273380ddfaba44f65fe7de8318e64be1246d181b",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-casting-combat",
+      "before_sha256": "e5597e67138535b468e01b14ca54a099c52384f3c20e0f4951eaea90d815d329",
+      "after_sha256": "b5956a0045717f0aa9133ad361ec4e3dc9604cee1f7b5f4f17e9145f1f596005",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-dialogue-readiness",
+      "before_sha256": "8763ce1c29156948fb12c92f09bb1d00684e3f0c16bba52488f86fa8c8ece46f",
+      "after_sha256": "0c0923a27a9f1ad17ee8a7c9b9064aeb616e59200b9669e49fa914f2b7095808",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-movement-probes",
+      "before_sha256": "f3c584f77bd66f7034b1dbb337e7c90e15724ac1ebcad07c4e32f0ae5b18e6bc",
+      "after_sha256": "e62e39fa342b4ad3858bca6b742a3e4055304c85700af1eb555b904a6c8e1a66",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-normal-quit",
+      "before_sha256": "97aeced1cb668c31b1bbf8d2209a2a62777a83aa5c051c98fb001b497ebfef7b",
+      "after_sha256": "08a27503fa4057a8f7dd8f3bc22d6e57505f2a96428cc0717fa998d5884e61e1",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-session",
+      "before_sha256": "8e8792060f06e8c9b6d3ed48e4103274b90c8e01243d42b283c00d8d82012569",
+      "after_sha256": "4efde27874413b0ca03d7f91b10583b20622850dd71634e9afdd8131a808ff31",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-spell-cases",
+      "before_sha256": "cf4772a432f3f39d85d94e5f167b7a2f2824bbd1eb33ba474e385460ea5071eb",
+      "after_sha256": "91926739285614d1a5b60c72b12445f3079fd138ea960c6dcf54077d60194532",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-campaign-spell-observation",
+      "before_sha256": "96576878a0d5ad6cf0e478343c5c07af08bf477c304ad635b69901bc8462cc97",
+      "after_sha256": "048bb84dda72b5e2bca76516a12dd9cfe94021fe29c63668763e8bb08b5d4e95",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "974976f41cbab3d4b25389003ee84ad770cf284e33c030bf22f5ebdd30e0b763",
+      "after_sha256": "f055b9f33a86202784bc90c9eb747d562ba269126383ecf975049d43f5147a1e",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-crowded-battle-stress",
+      "before_sha256": "91a49a160b251b0a39740a639336bf61612daca5af50685902fac70604f3416c",
+      "after_sha256": "e386126c324006b7bb7da86b4fa063fba061adc946ab6fb9dbe89a6e77aabb04",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-dsound-module-policy",
+      "before_sha256": "e9fd2a2d54bec01d2b20a4dc2930ca724e65931c901e2281bc5f90633f8c7567",
+      "after_sha256": "5f7c6344854303ba58fec2ba95f71b8257f35f2fb99d9ed6d8a0fc5488406dbd",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-file-sound-retirement",
+      "before_sha256": "315c661311e37f1b586b854a9a694a58083034a61cb94f4df564062ca6698580",
+      "after_sha256": "19f6490f5c6f3b74a7ea0be60b5e045c90f26c31e6e03621c9c02dc336a4f63d",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-healing-loadout",
+      "before_sha256": "2d2a385bac1e6181ff7aec9ad778b39f28d6b5265bedb3e4dd137fde444fa2b4",
+      "after_sha256": "2eb0398b2937c8624e6e012f75ca12783e81b16b48d2dfe833f2ea4b74be0c1c",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-media-startup-probe",
+      "before_sha256": "367ccc56b47732d38916402b564c9fec6eb7ed2b0f89bff734e47b5fdc41b5a0",
+      "after_sha256": "445f3c92b9375fbf4a30a4adbbae24548443ff098719cdfebd24e5bc61385816",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-menu-audio",
+      "before_sha256": "23b6698a181ccf150eb614198ca91564e3316fbe1990c6d0240f896e18595e46",
+      "after_sha256": "4505757f7a9565c8fe4966456a481d4e4f3f178a5b3049f1e79fc0c717eefe00",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-menu-media",
+      "before_sha256": "4d159c5cacd0f9f1e85eb1b734a547ea79a5a395a18b393631fe23d4af098401",
+      "after_sha256": "266c1c6dbfd4078db443ea7bddbe7533e3438dbb08359e3992dcd102d7374965",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-menu-music",
+      "before_sha256": "735fc739dd9623d45d7bbb8ef3a34860ff7a1b2690f6fbdeee8aaec6f39e9852",
+      "after_sha256": "27e2db6658f7166047f4de0943cad127b70e510e0eb1287a860907b85bfc0add",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-pacer-yield",
+      "before_sha256": "4fbad8b117172e0cd62498848ff56c34dd11d7811b5b13f7e019a97097439d8c",
+      "after_sha256": "9715a791fa8d1b9de25039b097eb81c34f6d6bfe2857588dfe00cfcc49fa02bf",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-precise-uptime-clock",
+      "before_sha256": "2e374d783b43e2f3b71e00b71bd2147aa6bd79c937e43d9cc3319937c5723fd8",
+      "after_sha256": "3bbe020bd79eb227f7df06a2f8fa9774fc1d39bed58b4081fa8480defa8ce959",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-render-draw-cadence",
+      "before_sha256": "a50c268b90475cba1d216788cf9f23661c5c93ef60709e95edc3dec44bf8bb8b",
+      "after_sha256": "0b9936fbdc451cfd9bd47b2969e22ef18ca691f0dea1f62d8a13f1ce1a565a9f",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-smoke-cleanup",
+      "before_sha256": "07c579ba2fa02bd96a68c01afb79d988da809736d364b7415ade60ce40fcad58",
+      "after_sha256": "ff0d8c14a0558e264d6c3c1b1e462ac93b8c731f7b4064eb8af07f4e1268df8f",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.native-wave-loading",
+      "before_sha256": "5ea3ef77ccc17381949fc9149a4c12efa0a09e01619adf2c6df9f721262e13ba",
+      "after_sha256": "abd0a574db6d6cf09cee3c08bf7c83c47cb84956c83e01e8dffca694b05105ee",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "HOST.wine-import-census",
+      "before_sha256": null,
+      "after_sha256": "14a9848e61a51ec1d823954d5242ba318d342c88b53ba7afe0f441e315ad58e8",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "wine-import-census-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "9ebb269d70fd3612d81b40b360568f76b45bc72298675f81d10ea1f333540880",
+      "after_sha256": "228aca37adcc280a59706a9ce22bb56392386362131dbef8aea38d6b8e47b28d",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.canvas-fade-row-damage",
+      "before_sha256": "0cc6690712f067e8a2e015399478cd90f850d650e37da1805047a54f6e016586",
+      "after_sha256": "0e0ebdcba4b20a2f80cab33a262060d229df41bd8d5594beebe90d29ff28919a",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.command-checkpoint-attachment",
+      "before_sha256": "c24f5b4a99e6acf62406592345742e1ef9a7e7c8957df6be7ee2cb5bf036594e",
+      "after_sha256": "bcdc116c028d569309f5d873874a393f4a6d96cb6b4ba69ff369ed3aeb97cd83",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.command-host-recovery",
+      "before_sha256": "33f99c9bbefb8d04b56d32d7ec2e7457329aa743b9e9483384402e71951d1f4a",
+      "after_sha256": "2bd3e298cc944e89f66837559a287d9b0a21713b7db584f7722b9d675b88dddf",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.directdraw-public-native-menu",
+      "before_sha256": "a8c6ff3670207d0a3a1e0cb629022e070962b56154b0428d27c38b7528526edb",
+      "after_sha256": "2c2a10f8b258181e86e21df4f77c04db944140af61d6d9ea42ae01f504d70b74",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.drawing-fenced-acquisition",
+      "before_sha256": "75ab53c15836c11452c17d193038a4381d99fb5a7aafe0b694a0babcd1ee7045",
+      "after_sha256": "e3a039ad51a1eda6b49c2ce72dafb4aa8fcd135d36bba7c00cb81a65aaefe4ba",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.engine-cadence-observation",
+      "before_sha256": "61bdf09f7c24002c865fef633244d334616c421e596eba7291afa0fd422fd474",
+      "after_sha256": "7b65c3286e42ba75771bcc109ce3fcdcc55edca570c77220683c84a872e50fb6",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.glyph-default-launch",
+      "before_sha256": "21028e9b97be60c0bf158265aad673f75b64d634bd2efa1b67b7c8ff11a3ea92",
+      "after_sha256": "40196d3b5c79e66e7c496736a83a559a61c568776687530907ac63150d374831",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.glyph-live-admission",
+      "before_sha256": "340f4c5496da0ba596e98e6c630b4f38bc395cdadaacb491a4122eb3e3717632",
+      "after_sha256": "510ab40ad4aa0ddfa0803bba7e9ed26c87a186e83e2568cf5594e391228bab5a",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.native-draw-status-session-file",
+      "before_sha256": "f766cb502cfae92f1a63018503247607e05080914989f5156e33429032b1b52e",
+      "after_sha256": "7851310fd521ebc2209259f7e3eebd1f7217ac51bf18451c5aec29b95dad6985",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.palette-resources",
+      "before_sha256": "c0c09877590f084ba537a368ee44959a94f66653fa25670df6c03db9ce78a232",
+      "after_sha256": "72e69fe5d50788d71620c2c2aafc1c6fa68b3161129818ade3ee78b22867ad5a",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.presentation-damage",
+      "before_sha256": "0e04615d4dc6fb57af97c88eab370d3efd34ebf6f6b8c22b54147deb9b8a8396",
+      "after_sha256": "f8fabdcd1e969c5942d69c3340f919d2a93a73c728b03066d4067bac68ca66e1",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.public-resident-world",
+      "before_sha256": "7cac8aa27fdbdfe28a262677f8341a1610006853b56ac88a1036c36a4806de88",
+      "after_sha256": "3190151474b3830f80f10de4c69640547a11fc0dc2b008cb071d641cda7341e0",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.resident-normal-shutdown",
+      "before_sha256": "6a39f35b65a86de365ec0ca4c4a20f02d46499b5aa84ce9543bfa8e5ad7aa7bc",
+      "after_sha256": "25736d1ea71da0830c9be30bed0f2984d6d2414406f940729ce69fdad777b090",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.resident-stage-profiling",
+      "before_sha256": "1443455edebd2a322ddd204b7d1a9a180fdc09569e5b120d9b1b2f85573924a4",
+      "after_sha256": "9f212bf2468ae4d84eed01322fa9dfd958a270826d23114d2aabd7311587fcab",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.scene-production-repetition",
+      "before_sha256": "fe2568d5a37e31c7e31f27a676fcc3088da6fb0ddbf216b3325b7b8fe1b261b9",
+      "after_sha256": "1524bc2c3e44dd23d31ac1ebdfa4f9071b556ee42cba002cd51e87b43804b797",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "NR.world-source-region-epoch",
+      "before_sha256": "227b19061f9e8b57a0253264dd07f1fcc30f68ac7d2522fff394ef3f38e2f5a9",
+      "after_sha256": "6ca249e1ec9559a0829b7bb03eff04a4b7833198ac2ef54f8266d33089ba4553",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "RS.glyph-live-route",
+      "before_sha256": "181c1bca120d5a0a39a65aaba0df7c711534798fb5c68de7cff320bb70c1b759",
+      "after_sha256": "8b20aec96238a5199a6038a0e80a3e829ca204bebb3330a55ddf25e725c73eeb",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "d94bd66f7a4d2ce8344adec5318a827ee8c719ca",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "9ad13877272f892ece6272c3290bcb42032448a95c86575807f78420b72f5748",
+      "after_sha256": "55ff1bb431a78c6e6d4c193d0a8d37590e709c264e659733e41fe99cc9336cf3",
+      "receipts": [
+        "wine-import-census-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_files": [],
+  "unresolved_behaviors": []
+}

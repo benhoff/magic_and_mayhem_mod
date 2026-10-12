@@ -1,0 +1,181 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "CB.ordinary-health",
+      "contract_sha256": "7aefdae19a650847bbda0717b47c3f16b9bd8decceabcb12662d81e25b87f1db",
+      "scenarios": {
+        "combat.ordinary-health": "199523ced455fc12c28e4e579d19ca2930f84cd8916668d2c9a03055ea5481fc"
+      }
+    },
+    {
+      "behavior": "CB.defended-damage",
+      "contract_sha256": "45ccc1c581679bc6de19089e7819a2eef78adede789f4e3324580c0fff3b6d57",
+      "scenarios": {
+        "combat.ordinary-health": "199523ced455fc12c28e4e579d19ca2930f84cd8916668d2c9a03055ea5481fc"
+      }
+    }
+  ],
+  "source_sha256": {
+    "reconstruction/combat/CMakeLists.txt": "4901a88f531c2cf6527532bbc8f86a25f426633765c08930025417f55a6787f2",
+    "reconstruction/combat/health.cpp": "432fc66e11946f15cb9724e28f005fb050732760737a7d9c5619db156caaa3a4",
+    "reconstruction/combat/health.hpp": "7e91e0a0bd60170cc1c6c70f4efde5e2b448a46b6d72463eb6e27f666c56f7d0",
+    "tests/ordinary-health-test.cpp": "18498de63dcf2f5ad5cd489488c4cfd3bf5318d49a1b69412041e3f70d1e9619",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/export-health-contract.py": "daec1ee822dc252f5dda68ce22960d8d572e1b612340ea935f659c3b0c699c54",
+    "tools/test-ordinary-health.py": "57748413d3e73ad6d06560f0545c31a8dbd49311f4abb6094949acf732803ee2"
+  },
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "original_target_text_unchanged": true,
+  "scope": "Class1/type17 ordinary creature projection: maximum, signed health, defended/direct damage and empty-pool ordinary cleanup. Explicit callback returns/endpoints; not complete helper effects, special death, melee timing, AI, XP or live replacement.",
+  "endpoint_addresses": [
+    "0x54de10",
+    "0x51fd60",
+    "0x513e40",
+    "0x51fba0",
+    "0x56c290",
+    "0x570bd0",
+    "0x411e50",
+    "0x5137d0",
+    "0x4d9ac0",
+    "0x50aa30",
+    "0x522340",
+    "0x416d80",
+    "0x416c30",
+    "0x4656c0",
+    "0x466870",
+    "0x58f830",
+    "0x58f890",
+    "0x4d9890"
+  ],
+  "wine_required": false,
+  "live_replacement": false,
+  "commands": [
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+      "verify"
+    ],
+    [
+      "g++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Ireconstruction/combat",
+      "-O2",
+      "-MMD",
+      "-MF",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/native.d",
+      "tests/ordinary-health-test.cpp",
+      "reconstruction/combat/health.cpp",
+      "-o",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/native"
+    ],
+    [
+      "g++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Ireconstruction/combat",
+      "-m32",
+      "-O1",
+      "-g",
+      "-no-pie",
+      "-DMNM_HEALTH_REFERENCE",
+      "-MMD",
+      "-MF",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/reference.d",
+      "tests/ordinary-health-test.cpp",
+      "reconstruction/combat/health.cpp",
+      "-o",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/reference"
+    ],
+    [
+      "g++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Ireconstruction/combat",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-fno-pie",
+      "-no-pie",
+      "tests/ordinary-health-test.cpp",
+      "reconstruction/combat/health.cpp",
+      "-o",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/sanitized"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/native"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/reference",
+      "/home/hoff/swdev/magic_and_mayhem_mod/original/Arcane_Nocd/Chaos.exe"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/melee-ns24/health-final-2/sanitized"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+      "verify"
+    ]
+  ],
+  "original_entry_anchors": {
+    "0x5075f0": "568bb1ac0000008b0685c0740f83f818",
+    "0x5076f0": "51a058986e005684c0578bf10f851805",
+    "0x514860": "568b742408578bf985f60f8ecd000000",
+    "0x514990": "81ec080100005355568bf133edbb0100",
+    "0x51f5e0": "5355568bf133ed578b8eac00000089ae"
+  },
+  "original_target_sha256": {
+    "0x5075f0": "0501499f2b65f95a0390ca11a6d1a6225bf00dcc5f650163ac1b2b6b88c57b5a",
+    "0x5076f0": "4959ad5f0dd4c9fd015792175173dfcdefec1e186a7ab9259ea6794bc2e0b406",
+    "0x514860": "994a58cd603a847d461f0e67a59a28a902e856283f309e3ea0a092e8c07510ee",
+    "0x514990": "118a216ffc820d5fc58f23904523223cb3741e7505961963bfaeb2421beef6dd",
+    "0x51f5e0": "37e96c868785d963c3e9068b6871bd54a5a0c7b7258fa4dce11061be62298961"
+  },
+  "redirect_original_bytes": {
+    "0x54de10": "8b81800000",
+    "0x51fd60": "6aff687b24",
+    "0x513e40": "568bf15783",
+    "0x51fba0": "64a1000000",
+    "0x56c290": "81ec000100",
+    "0x570bd0": "a1b4016b00",
+    "0x411e50": "8b0185c074",
+    "0x5137d0": "53558be956",
+    "0x4d9ac0": "5355568bf1",
+    "0x50aa30": "53558b6c24",
+    "0x522340": "8b81740100",
+    "0x416d80": "8d04c983ec",
+    "0x416c30": "8b44240483",
+    "0x4656c0": "83ec085355",
+    "0x466870": "8b54240483",
+    "0x58f830": "8b54240456",
+    "0x58f890": "83ec08538b",
+    "0x4d9890": "8b54240883"
+  },
+  "compiler_dependencies": [
+    "reconstruction/combat/CMakeLists.txt",
+    "reconstruction/combat/health.cpp",
+    "reconstruction/combat/health.hpp",
+    "tools/test-ordinary-health.py"
+  ],
+  "cases": 8622,
+  "events": 36895,
+  "object_write_guards": true,
+  "native_passed": true,
+  "sanitizer_passed": true,
+  "input_unchanged": true,
+  "binaries": {
+    "native": "2c3161cccd42d083c45b5ad0526fbcddd6b04a34db4c9f84607da7eff4d7342e",
+    "reference": "920a9b6fec125c0a548f7994527ae105073d54f820899cc97c8c405117c61b1c",
+    "sanitized": "dbb7b5a397dbbcf856c91fa59a18973939c27a318e1bfa63829efa41dcafc657"
+  },
+  "compiler": "g++ (GCC) 16.2.1 20260810",
+  "original_manifest_verified_before_after": true,
+  "sources_unchanged": true
+}

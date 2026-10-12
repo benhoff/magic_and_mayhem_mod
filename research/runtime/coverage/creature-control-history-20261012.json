@@ -1,0 +1,1754 @@
+{
+  "schema": 1,
+  "scope": "Exact Git parent/current file and behavior-contract receipt accounting, including original/evidence/scenario links; separate from uncommitted NS25 changes. No historical gate pass or new validation assertion.",
+  "base": "c8426f6c",
+  "head": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+  "files": [
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "f0d6801758fff5b32d58ac62d1dcaa62abf6017197c60ff922eb9ff664d4c98f",
+      "after_sha256": "042b4af0c7b87b05d00d0edfd460a20cdd51977bf2ef59fba74bdbd162f4ee72",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/media_broker.cpp",
+      "before_sha256": "95afef53be41e447a9ded2404ed2f837af2294a675a44c9e203f0e26b447ba16",
+      "after_sha256": "59f1fd5ec885b148018b7c5dadab8aa97ab46c88e2822a3087fb440d743457e7",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/native_playback.cpp",
+      "before_sha256": "6666017ae06308d8a579eaf5940930b09f9b7254d9b98c821832c32dcfec23b5",
+      "after_sha256": "900abd275c625fd3f552805b0bbc33f48ed3df11e1a1bb204ada8b3cbc6f0cd3",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/native_playback.hpp",
+      "before_sha256": "2db277a8183e4292b93a17891bfd3bffcf152d51007743d54b0d1d72b92c6995",
+      "after_sha256": "8bcaf11d29fe0fdecc7e5f11eff0e2ed65ff1d0fecbe967cb2544d742dd93e06",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/music_bridge.cpp",
+      "before_sha256": "2b2a156d25afba1faff2d88d66a162beebf02006e0c14d4a2eee709cd682abfb",
+      "after_sha256": "0cbd9ef7c331e552977241e3e5d054c41dbf61871b3620720f5c0ef8bcf4cd9e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/music_output.cpp",
+      "before_sha256": "68ee5896d9c98fb757b7469a19acd9e05ffd2ee1054bd6925c2c4dbe555993e9",
+      "after_sha256": "f801091822a9ff2c9b2e497bfaf9e8d0ef3d87a191c5bf3f9fc31ae13c1c34fa",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/qt_output.cpp",
+      "before_sha256": "a4e1360e0f59904580952a2d9d09410520a42b4f2ee16a62c36f7ac8a22d1251",
+      "after_sha256": "312bbe99fa0382463d7312e4749f7e26f447ac4515697b074d30dc6b4d94d46d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/qt_output.hpp",
+      "before_sha256": "f340f0ba4bae3478bdc808062058b867ffc88cf926fdf5313ff03923e5132b8b",
+      "after_sha256": "5b97195e8eb864141c81f58c9bdf7db9275dd71f75335505db5b58f9867acf3d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_bridge.cpp",
+      "before_sha256": "b8a839f0a325db51eefeb891aa620be884a7423f498a8bbeeaba0c8d645953cd",
+      "after_sha256": "ab215221d8b6e904014e2a594d89057ea8c9916a409bbe951eea249477e6b8df",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_bridge.hpp",
+      "before_sha256": "cfb09e13c9115270123920b322b3a9ac92194854c10520f70273efdc9d2ae921",
+      "after_sha256": "7a194d08792a87187f54e6291a27296e1ba4c4919303bbc02dd7c77d0b734a40",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_output.cpp",
+      "before_sha256": "9e9c09013b5da5be7ac9b29605da36926ed664a0f0eb42e2505b0905664b58c8",
+      "after_sha256": "aa2785068d46a1a11b1ed6b2548bd9756af98ab66f0c58dfcc18112ab22b391d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_output.hpp",
+      "before_sha256": "3e36672f12832adfbeecdf8755f4de215e4f00f7938365fc70a099a63d1dcca8",
+      "after_sha256": "ef72ed00b3a99a1df7d82f64acfb95cfaa1495810bff99f3fdbf1dbb37bb68f7",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "55ccebbc93f0559d01f7cdd82a9c0b4801d8bc408d379ce7943b6df84c8005fe",
+      "after_sha256": "184ff2671c82c4f1559af7f39bf1ca712c38bb80cb54ab13f8555c7776bda60a",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a9c2a45fff72bebfaa508f41e952ff0986cf4625a69b92d24a5773385a2684e9",
+      "after_sha256": "2e2d24d84211f54f2355f84dfe49563be5ec6594e636ae38b2a0c0b2ea6a00d1",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/native-voice-backend-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "050f3363580dbb081a2f2666c74f752c5cc5c5f6ab4c02306d810c3861301c74",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "98f3550748418b9234b7cb7d936abaf4018167c1937c946892b7e79345eb4c3b",
+      "after_sha256": "1f8fa87a1b97e9bf49efe089246436aada58b1a973049c90525f9f2b1450ecf2",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/source-index-native-initial-silence-commit-v2-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "75997169d557772fe5bd4fcde7f146eab73a9afb311c07f207c4e0e1017a0c1d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/summary-native-initial-silence-commit-v2-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "4dac42fa1d510766ca8a747d62daac687480572e9d4e93d041c60754cc197aae",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "42ce7582659ba3c1c4ea98b97c2d53f9e58b9bd353c9f63a1097143897284aa2",
+      "after_sha256": "674f030011b5ad69872c9646fc81e33afe64d86ae919a3c02968c02ecb4701ce",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-initial-silence-endpoints-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "761190a28df181b86a714e440592925a4c8c2d4b2d91b2590a2378c8750ef1cb",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-initial-silence-healthy-public-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "40ced5def410de78032538e6098baf7e4333c38b057551c9de8dc8ede4cb0156",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-initial-silence.md",
+      "before_sha256": null,
+      "after_sha256": "f7981a49d7500ad9599cc1e57a6d8e0bfd565b36fb74b00dfadd0529ac388e00",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "runtime/audio/protocol.h",
+      "before_sha256": "4a31cc554d0d7daf64a8eb6e5e23c73cc41a32b1bf99347706afb188ae1eabda",
+      "after_sha256": "0b100fb882c2012e83630be3be0cde5413f911deddbad8d90ab55f4c0831cb4f",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-initial-music-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "9bc52dc29414272a8940488fb27cc90200b53fa63ee62608406395b13b84bdc7",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-initial-silence/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "339fde94a938bfb01c88f61ec4365d3f7915a53a21f68891f9cc0299ea3fde71",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-media-backend-test.cpp",
+      "before_sha256": "4843860b281814fa5b11078eb3255b7479a76ed0ea1f48f76a111dff3f08f8c4",
+      "after_sha256": "93769c246ca2631c0b6f976725f58a0456406754eb30a932f6b7ae999c95e1be",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-voice-backend-test.cpp",
+      "before_sha256": "ea43710925e95320c5a781e87bddf7858cf70a28d002ed8519a0b18f35e5825a",
+      "after_sha256": "ff49de69b49f6d0633cd28995e871a6f23d78438dff6f638ac5ed0da04d8110f",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/test-native-audio-launch.py",
+      "before_sha256": "554d2121a11da21b507febc16941203417ab2b3e599aab64eb4aef26c5350cc4",
+      "after_sha256": "a59e385783f61ddf98ceae06def685a100ebdeedbd26dd08bdf8010614aa080a",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/native_audio_launch.py",
+      "before_sha256": "8de3edc0c8a6830511d956ecfa96d611d6557ec4bdad0138ce8f16ed2cc78d5f",
+      "after_sha256": "5217499afaa34fcc34c6da4cddaa967be2fbdd1028de6ad416248a8a658aa657",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/native_music_launch.py",
+      "before_sha256": "0e8d42bf3c2b975476ba9841517975456cef979c2c64f29855711449f32f2782",
+      "after_sha256": "a263acad932b90d70cc2a8d01d082c8237f991f315dad00b27a84bbd1b0d4dcf",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "0cc26f339657190861806ed6d5d72c021cbd722ca8a49a904fbc516c87e6b24a",
+      "after_sha256": "540c43916a71439bcfcb453d45f18452ae483cf01113b1e0ecbe0de357e14489",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/private_audio_backend.py",
+      "before_sha256": "13079dc563428004efb28e273fae53569c0f9d53433a075cfefb053243234421",
+      "after_sha256": "e083bd8a20570f609de6744d76cb3fa6ef07e1f37bfcf55c2ebd1657d3358515",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "70ddebe8e6a356ffa287c3d472335973eef818bdfd81ea99bf4ed98f624fd134",
+      "after_sha256": "f3dd6ebb7eae1a1e865b08a54bdc5b980a24ab159c823e7158a5938c964a3429",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/test-native-initial-silence.py",
+      "before_sha256": null,
+      "after_sha256": "62fa278e3f9620bf67ab6e62e723bb861865268f671f9f8971803436bae4590d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/test-native-silent-campaign.py",
+      "before_sha256": null,
+      "after_sha256": "70bfdae150f3e8ce34782d8c408e6474d2625ec5f4f823820a63de782c0a691d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "2e2d24d84211f54f2355f84dfe49563be5ec6594e636ae38b2a0c0b2ea6a00d1",
+      "after_sha256": "ed225cb50e68df29385f3c756358a9fb769b4ff674c53a6f887f2057a6e2959d",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/coverage/native-initial-silence-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8f2a66724832118f780a02dd509b75116c5a586800498a1713c4070c730329a6",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "1f8fa87a1b97e9bf49efe089246436aada58b1a973049c90525f9f2b1450ecf2",
+      "after_sha256": "4d3f6fff0a67e7f6b88acb0f437cc612d396d71a5a86b05b66521750c7001a30",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/coverage/source-index-native-empty-output-commit-v1-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a7099c9182681a44af6ac5876ad156ff1c663d53d50a3923ca198e993e322275",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/coverage/summary-native-empty-output-commit-v1-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "8cff05d33311ed1d07e9f763913776e0f924acc17fcfae8018dd8e06c592a344",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "674f030011b5ad69872c9646fc81e33afe64d86ae919a3c02968c02ecb4701ce",
+      "after_sha256": "95a5771da24c19e4308f19a44eb61588257586afb799df0c6474ae35117388f8",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/native-audio-initial-silence-empty-public-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d0e7e7508416c4c156d4e28ca6a4f6bb87a8d26da13417787e23a748cc4db021",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/native-audio-initial-silence-endpoints-final-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "6b1f520aea23c403f16d65ee233eff864635778b06ac08798263c25af3039acf",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "research/runtime/native-audio-initial-silence.md",
+      "before_sha256": "f7981a49d7500ad9599cc1e57a6d8e0bfd565b36fb74b00dfadd0529ac388e00",
+      "after_sha256": "c4ebbd259c9ce9d49aa00ad6313f236956f9699139c747645f9bc2a6d7c9b27b",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "path": "tools/test-native-silent-campaign.py",
+      "before_sha256": "70bfdae150f3e8ce34782d8c408e6474d2625ec5f4f823820a63de782c0a691d",
+      "after_sha256": "91b1b2f4d87505534543d3b2e186617a66ccd3a1bf46bdaff94ec186e441c15f",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "ed225cb50e68df29385f3c756358a9fb769b4ff674c53a6f887f2057a6e2959d",
+      "after_sha256": "d74b46bc45e3031a6755ae8aebb3210f7398217a29989a64f789131c9c21a24b",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/coverage/native-empty-output-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "550552f87c58230e2a9b528f3166d125d68f14def456847ab699661686abc9bf",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "4d3f6fff0a67e7f6b88acb0f437cc612d396d71a5a86b05b66521750c7001a30",
+      "after_sha256": "112cb624b83ef07ed0d9d01f4ecf5b282b28e491e33a2bad8cbd533e2f80ef27",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/coverage/source-index-native-waveforms-commit-v1-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "035484e7edfc7d32862b8a05b09ff002ed288be1a8c8ec0ede390ac43df72127",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/coverage/summary-native-waveforms-commit-v1-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "906ba27110f622ba2d14424e571b460a418bbdd79ceeff4899ff14c27b03212f",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/native-voice-output-waveforms-endpoint-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7df67d033d52f936e8d41afd7881c7ec537b138aa937e429754c0efc26740709",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/native-voice-output-waveforms-focused-endpoint-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4e8c68be03f8c9d4263f710c880e64061000b1d39060a704bddbf4fe98af5e61",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "research/runtime/native-voice-output-waveforms.md",
+      "before_sha256": null,
+      "after_sha256": "e1b30ae8ebeadc766db1edaa1fbede800507d70c8cc2f940d7658871553f8d91",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "tests/native-voice-waveforms/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "687cb3005fc83923b0e7c0c1c9e0dbb515c0a536c30e6aae6535227b207e7ea6",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "path": "tools/test-native-voice-waveforms.py",
+      "before_sha256": null,
+      "after_sha256": "3777e23f138167b0e861fc4f05b6d0d724e5de335abd9cebec17c02573144bc4",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "audio/music_output.cpp",
+      "before_sha256": "f801091822a9ff2c9b2e497bfaf9e8d0ef3d87a191c5bf3f9fc31ae13c1c34fa",
+      "after_sha256": "5bece656965cd496e97fd72466edfad3c637517fe101399c68d4d64830f94944",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d74b46bc45e3031a6755ae8aebb3210f7398217a29989a64f789131c9c21a24b",
+      "after_sha256": "df39dafb48f4d70153d91980b4f84555102bcbe82d402bd19812e4928b228ed9",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/coverage/native-waveforms-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "62bed99c64608a46c6f04e4baf37120f070f8c917fbe37e9e86a036fc1c60b53",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "112cb624b83ef07ed0d9d01f4ecf5b282b28e491e33a2bad8cbd533e2f80ef27",
+      "after_sha256": "00735f841f6ed6166a5ea15fba06ef433b369150cc79435bfaa7941797ad89e1",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/coverage/source-index-native-music-backend-commit-v1-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b4f94b303dccb0a9b7678d36408c874f3192603ce310a9d942c8132f433bf076",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/coverage/summary-native-music-backend-commit-v1-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "2625ff46751e33ed2159b73053e29bfaab3d9b831fcf6857f95c8c1a8858dacb",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "95a5771da24c19e4308f19a44eb61588257586afb799df0c6474ae35117388f8",
+      "after_sha256": "2dd4939cd75fb4246d63f9a088ab8ed77871e3b874f39447bdb6bd770396bd9b",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/native-music-backend-healthy-public-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "121948c629de07e4517804bb77d68ed9caabd2d8a75358dde5f1024d900d2f77",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/native-music-backend-paused-default-failure-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "30a2208bb126cb6b304a3b5cfb420135f7fbfca2aabfcd2f6e6cb8892a93827e",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/native-music-backend-private-endpoints-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "6197044b7f8fcc214ee09f814dec9d820f0c4500f25d384b64c0927692d8de30",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/native-music-backend-recovery.md",
+      "before_sha256": null,
+      "after_sha256": "ce039c1f43ed8f9462d77fd98fa999a32e65d1351f2941543c6f973d947fadb8",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "research/runtime/native-music-backend-stale-device-failure-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1e0bceeb5a97174e1c2bda2c5a8ae250339aa47c6b8bd8a1f3b3f9f91142af36",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "tests/native-music-backend-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5fc0d2dd3882e2a37571a0838acc39b48ad637d668ae86a0c44369699a5daad1",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "tests/native-music-backend/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "fb624b60ff6bc63b4984b6617d43f6889ff948fad21b44499ebea4f7ca24e8d2",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "path": "tools/test-native-music-backend.py",
+      "before_sha256": null,
+      "after_sha256": "bb454b784181ed4c71a7ebdc819328c398c89b44cb15b6f16001c0aa577c9062",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "AU.cd_music",
+      "before_sha256": "252e37b854629524ae0e24916fadd0430609cf0230243ed66014c2d1fb4b1165",
+      "after_sha256": "c3eb157601dff4833370e074202a8bb61ebf806986c2861c29de5f45b2e0a230",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": "72457b2806037aa4da51c9ab0a73cf3ec46da49972890154835da48d114d8d14",
+      "after_sha256": "249d897f6a38474c43d641e47d61c120c01f9d65575e344daefbe901b6495b6e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "2c4854a041d0f4b5712cf894b2b3820093a3d79d4350d2f9f708755df6d81161",
+      "after_sha256": "4304d5f4852fd7fdb3d06301d24deca2fea1c4125978ebc9d9aad5a961d3b798",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "CP.realm-observation",
+      "before_sha256": "1d479810eb7845f251fdacd1de1df398d1fe1e254f765b01b4d0a92b8c790cb4",
+      "after_sha256": "01a5a1f0d15f4ceff01657353bd5b897bf1df642fe5a11914fdecce8af7e4eb8",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "1a65665c8a7e0a5043b68c830cb0efbbd53e949e4abba8740135914111b9d2e8",
+      "after_sha256": "1d6ad02688b3bd56e2bbf06ab86f5625573782b09d2e8c28d8373c0c04a382ef",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "CP.region-entry-enter",
+      "before_sha256": "8f01b2768003395fa86e789fd7ef37cc2e9ec5d15404a4d71017754e4bbfc9b2",
+      "after_sha256": "8290e418746b4028f6dfa5f4aa8b1f48782eab04ef3e12fbb54245afedb3a630",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.command-input-fallback",
+      "before_sha256": "981d53b9a73ad75c6c6416abf090af1e6f8605ba561d596d7ddfe9123774ab96",
+      "after_sha256": "70852964a21886f06a584924428703e605271bc57ebd5ba7f8d93b2fe9a50722",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.extended-voice-wire",
+      "before_sha256": "03ec6bb79d0769ce05ea90665e9cd38afc69264e75a961d625965fa2bcbfad31",
+      "after_sha256": "639de9bd4e57efd0ac8af1f3bfe4c25c55400246c39859c5aab524c25605d31e",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.media",
+      "before_sha256": "624b14519237f233ed9bcdde73c09710673e94e7ecca55cca7838f8086f0a19b",
+      "after_sha256": "88493a011c958129c566695b2ade7f6651189baf637d4d75b9781625c91c4170",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-audio-defaults",
+      "before_sha256": "5be891e676e1d132dd251910592a54e535005cf253eeea83008fdee2e945f7b0",
+      "after_sha256": "9ff0916d087e212eae7c805afc7753795b61869abb6490ca7da2660a5ca4b68e",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-audio-factory",
+      "before_sha256": "ce7497f14ba9640ca4d4401d3f3793da1e7201c8b86dd87819eecc51c49ff27d",
+      "after_sha256": "70b12ce383368fa615f63912d31bc440ec4380740bdf383862f87895c2f8d321",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-audio-initial-silence",
+      "before_sha256": null,
+      "after_sha256": "06ec50b643a13e272144e4b01a485854d5275bed902f41cf061c4dbd7d3164c2",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-capture-retry",
+      "before_sha256": "e93bb5cdce830ce719ba35a926d6a1f8a8216fb49c3a1006e0bbcebc4651fb73",
+      "after_sha256": "4e87b8b2642c5d01d99b83ff34cd5bf2a5adcadc260c53c0916c78b6f398f29d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-casting-combat",
+      "before_sha256": "d30b6580c721e021a763ccccbf037c6b9b69d25444958224dc1e9f527e15ff82",
+      "after_sha256": "aac35ba1055c46df4d3a27c794443dc609cad2ba126777dc672975ff169f5c5e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-dialogue-readiness",
+      "before_sha256": "332356c9eed657e7ae85aafb8ecee6675f00a4a28e8342894fa0a80db0ca35db",
+      "after_sha256": "94742c294bfd2fad2347c3fd374d411866a79426afbe212782934e3150dc17e2",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-movement-probes",
+      "before_sha256": "ccc2578eb906b6949464af49235917a3b272a020364d4109b65f6289f6df5f88",
+      "after_sha256": "30ae1f911f19c8c106c6fe68f42431a44935f4186fc14b4c1a9f91c2db0e8b08",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-normal-quit",
+      "before_sha256": "721f3338043b470d57624922a597b11f90fc5e99b63443b84033b94f3dc8d009",
+      "after_sha256": "cf3191c1eee43af05bc78b26ec848b5de5052dabd6f53cbd8d818a48e78813a0",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-session",
+      "before_sha256": "dfb1c58462170d1705db166c2bde38745c7e8d08f9f035badef39b937c78d5b6",
+      "after_sha256": "fc0640031449e11f3c2908bcff3fca9239254b1d025d5a400bd77749c2ceed89",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-spell-cases",
+      "before_sha256": "1a0a951f521401fa7667891f7a4f22076266dd2f915b9f54a6d0ebeb8a787abe",
+      "after_sha256": "5df44d3c61124f46de3a5be5dbb6f6d90de2129c999b0f8b7578dc5bf5f682fa",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-campaign-spell-observation",
+      "before_sha256": "4a9a6fabfc5939d848565c795d5c916e1326546bd6856ddf3b278e0463808148",
+      "after_sha256": "67ef69ac324ba1581a6aae516858eb7e4278f2a36cc633f695d030ae43d7bfb7",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-cd-fade-gain",
+      "before_sha256": "8ec28acaadab8a34844055cbd43464d75214b9b78d6d6e09df1f53d43592b255",
+      "after_sha256": "dfeaf6aa914356d5d278d0aaad8274fb4368daf3d71e8e97d8e17b03fc0cfe4f",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-cd-volume-query",
+      "before_sha256": "9bf2a748da3a11ea1b744b9f13ff82bbeb8c84a2f1b58923b326c53f3dd95707",
+      "after_sha256": "421fae10baec75e4604b00b901b8988478a36d28f2d1af767f48cafafdb02797",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "58765004f25d44f5b07fdef889425469e20a49400704ded2cfb6017d8c299bf2",
+      "after_sha256": "58f5125be907f212d89dab65dbada520fed1fdfe58058bdd6f50a79b7f898b18",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-command-responsiveness",
+      "before_sha256": "033c14f75c3d70d5882ff4c3331fe37df9ef95a877d91e9be78938207da641ca",
+      "after_sha256": "bbac56e014de1c83a87500db4ee0761080bb53978244640dab08292827f8ddcf",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-crowded-battle-stress",
+      "before_sha256": "92c7febdebf63adbc04d6f9c5bae8f6236766d2e3bffb33c248fc8aad66ce8fe",
+      "after_sha256": "ad46fe763cbbfdb76688ebb08e519d235594f72c7fac75349b81d45cebbb0108",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-dsound-module-policy",
+      "before_sha256": "356394d0fdcf575eef56a0daee6cb6576ea317f90ddbbd4b9589bf169b4b1bfb",
+      "after_sha256": "a383b73df4465b5743ac4f4afc650ce08ee79ef928460ce1c540c53ab7a040ef",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-file-sound-retirement",
+      "before_sha256": "39da9475ed0a4704a438d3d26e0a021c7ef459bf80bd8ebba71b7a9191999deb",
+      "after_sha256": "daf81d33e053975e2d0bcf812d2b7a363f51210267878731580233c930e3546a",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-healing-loadout",
+      "before_sha256": "9a44885de9573b6e43da2d751db265f9ede1bb8780d6c607ddca59b2268909e9",
+      "after_sha256": "a963cfadff11b9860dd7006462d4e473b3fc1010c11df6b5ddac5d913d0b256e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-mci-cd-adapter",
+      "before_sha256": "85ad57150045b0b72c8c1b7b5a0b9045b1e7b03d66807a11a6d3db2e40b1aa31",
+      "after_sha256": "7420016e518796ddd3af684cd33e5bca9b8d597a3cdba00027e9c93dc4464970",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-media-backend-recovery",
+      "before_sha256": "b4dbb518800c3ec8ac639d4acf45fc3a2464d669ebc2945a9cb28280df20d181",
+      "after_sha256": "ea9dc6e1e2f84d202c156bd0a5ee2bb4ae97656464d9f9cd9722daf3c42fcb45",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-media-output-recovery",
+      "before_sha256": "6a36b5c44785b741eab037b70c4924b06c5541c7b6978437cda14526b52df2ff",
+      "after_sha256": "07d39127a37d9bb3f69b26b5df1dc6178c67fda73831862dbbef1e2bfe57a6a1",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-media-startup-probe",
+      "before_sha256": "b33674058369bc0073158dc5249c8811eccb4bff442e67ee75bdf7f606203bad",
+      "after_sha256": "aa818010850422b140118871ba128b65236e963cb32d09d85c9bf196491177eb",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-menu-audio",
+      "before_sha256": "560d1df01b0aa82ddcab9c0833e509683b4a9c9061c0be685d4cda24b7947a51",
+      "after_sha256": "4f1b84acb68e0898c0cd742ffd7896d4ecac72f1b216e8f61ba022686896acf5",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-menu-media",
+      "before_sha256": "c48660921f8114631178a848d3f649848e80a4967f015d624a54a9818c0e48c4",
+      "after_sha256": "11adad98b7e228bd8e73c3ccbdeaffe19eff124d68bb5155c3fca353c17067f8",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-menu-music",
+      "before_sha256": "b8c1c001df51cf9baf34c8de217ac8c65327fcd7b24fd25600563d000760941c",
+      "after_sha256": "58e749e9d7233007e651ea512f69f6692497dc4c769acfe9f02f31f6d2fcceae",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-movie-hidden-video",
+      "before_sha256": "1f4d800962628ddcb535039490b8bed2aea44835f8a0a38ee39e1a9460462a38",
+      "after_sha256": "ecf63b47f46dd4c4adad13a9396802a2e91a879ffd684d47ffd0c3a756094017",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-music-bridge",
+      "before_sha256": "01f39613a00f5b6be967f8d10d5bfeeb4eb52f29b119dbba755f064593d97a1d",
+      "after_sha256": "f1fe1ae751373d873ec6d425fd1a2bebbe3460c434d850f508ccfc8d020375fe",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-music-service",
+      "before_sha256": "fc198198f056cb7a39ecd0de5bd7d2d017ea078b3511b56bc73eb9ec20ca9534",
+      "after_sha256": "17d44bab63fa082117052f4717da7ece7f77b65c462737a941feebaeb399f506",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-music-transport",
+      "before_sha256": "639abff02f73d775b509d154bee1460b159fc72491295c6fab54aaf619ea6dbb",
+      "after_sha256": "054b88d29a04298d86e8f127edc60e8c12eef6b8a2429eea5aad90e1205684cf",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-music-watchdog",
+      "before_sha256": "298aeb4e3c90f32f1bcf615ba26b167b3fba9bd16246f243624aa51729a25e6f",
+      "after_sha256": "1c00106002f3c69f1f74353a30fd05d62a448f592402bb86e36357475a604a35",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-pacer-yield",
+      "before_sha256": "9b4877967186f0c5932100542d92464e7f4e626fb49a08f5e05865df042984c9",
+      "after_sha256": "78ac324eab104e476cc29bb47e1b6b8c0dcbae9eabb4acb579c6fd3569e5b548",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-precise-uptime-clock",
+      "before_sha256": "40bef5014690fa53df5f25f3e94f654ddf0dd5e0ebaeb2825cbf1fc1496feb37",
+      "after_sha256": "4079544662c10a7c6e2ce15710e0643654d14a34ad6ae76a0e242aea88e3379c",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-render-draw-cadence",
+      "before_sha256": "6cdb14ee643a966e7bf755214c0ea3090275620b1f31bd6caffdb1620989984c",
+      "after_sha256": "352cd9747ab605ff14bd08f3ff0637fc78eb4dba2e0f5efe44ac16cd079f9fc6",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-smoke-cleanup",
+      "before_sha256": "e439f9e8e0849f8af5d829740fff669cbf44277e4768e91db38772180efbcf0a",
+      "after_sha256": "88a34c58cb59334485eee72756478336d7483368cf70005752ce146bfd0e1c32",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-voice-backend-recovery",
+      "before_sha256": "6579c4db36883922d698b0b8285f12f382731d43643729b8e6cf8abe22cb845f",
+      "after_sha256": "4f4cf8545223daee4bd05acce3657e2b44e7c1b48b9fdc05e3e5d4ac9b4d3a9c",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.native-wave-loading",
+      "before_sha256": "0b042e1fb5c68bc88eb0b646344d93cc31682961f6a6aba8fa623f3a98e10480",
+      "after_sha256": "68fab5c5ac2363881982332ff97e8fa5334f72e2b38fa291c7cf85d515f48af0",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012",
+        "native-initial-silence-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.presentation",
+      "before_sha256": "17267cf54d1b66642e697d212b4b7574c9069c63eb5a59c3e4adcedeaeff4b0d",
+      "after_sha256": "df280c0f25a3fe5687c870103a6a04fab0665598f45d3bc00b8c541fa79c0743",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.session",
+      "before_sha256": "b5afea4d9b6b0d2f6b4447edd13820c88e18e9bc8728265e6432f40acc1d7c7e",
+      "after_sha256": "14e60d6c4b7d0762bf2df3b478de6aecdd2f43b9d7779e35ff79e4c67755d99a",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "HOST.wine-import-census",
+      "before_sha256": "be37e7200ab37be499b171fa33c6130ea2e6e8fe2dfeed37b90a388fb955b363",
+      "after_sha256": "1f6e2b1ec69151f0ef3f08f723d9c34bae5c5c04a98495c05ec66e1903df1f0d",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NA.output",
+      "before_sha256": "abc1e1bec79fa465f9c487ab771022e1921ba9d82e93c3a3b5e28e1fd3ab9b5b",
+      "after_sha256": "199d274fd202c48867bb3efc946e23a87cedfc7b5a298c8374586ecf57a7862c",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NA.output_timing",
+      "before_sha256": "2b693ee02244add2d1cbba3326bf9a5606e534d92beabd236535e00c2c50ee94",
+      "after_sha256": "c664abc73557cb7182d7e421a3e1b850d5f609c8f78b61f3e14c18683704f297",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NA.voice_bridge",
+      "before_sha256": "5358635dc04b3330626c7b07fa4eabb2c2e38c387dc408c695741f43fd6341a8",
+      "after_sha256": "0ff8f7cd19214833ae801b451669f689c531f5a9fbd65fbf375e2586a030d624",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NA.voice_output_recovery",
+      "before_sha256": "9f2a6d14ff9dd90015355854c7a2f4cb9b3bc0196e099b748cb7692534f189c1",
+      "after_sha256": "a0be13473f45c9f1f511a84d1ea170591a949b3cfa46851243f503bf0c8b45d0",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": "b3e9be5d51c545e3ca448b6a3822d7a2c377537804f8b9a9d11f594f182a6dd9",
+      "after_sha256": "bc5b5ea8238cdcdfe43955f577d0bbea1b9b179a83867bfd16be8e2cb480e16e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "228aca37adcc280a59706a9ce22bb56392386362131dbef8aea38d6b8e47b28d",
+      "after_sha256": "6d62be2ef40b2dd5d9ac71d8fc4beeb883c1188771a89a70d5590afeee3c67af",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "5c4014c96584511118fd0f3eb58e9935afb4a096a77e91ce950fb3cdf990f396",
+      "after_sha256": "fbd45ee9d2dfa5aeb03574466f660621e3eecea9cc6ff093d368a1c48629e740",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.application-shutdown",
+      "before_sha256": "3357c41827532e4950598e9e3255e77a809340b84e4263d8b6e5185aaabe1696",
+      "after_sha256": "29b96f224d14073e579d587aa8907cfd33b33feee26e7959d3e985e0f9cb8bca",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.canvas-fade-row-damage",
+      "before_sha256": "8035b8ccb501642e060e634ddffc6640a033c530971454ee8818dca99b13c026",
+      "after_sha256": "e56b339746e9dee249e8e6fe6d27b6f5e989cfe1ee562bff5b3defdb80b4f8d2",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.command-checkpoint-attachment",
+      "before_sha256": "bcdc116c028d569309f5d873874a393f4a6d96cb6b4ba69ff369ed3aeb97cd83",
+      "after_sha256": "0bca486b31d8c7084d43686d85f35a79c5e25126ce8dbe1aeb027ef0af094b72",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.command-host-recovery",
+      "before_sha256": "2273b3ce7a1b90af00cd452b6ec1e3ac23e1383a330b04534019ef70168fda35",
+      "after_sha256": "b0670a03b9d9f9b4713a918d60786f030fa5721e1eeb05f5d781c6b1e14a055b",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.continuous-producer",
+      "before_sha256": "b2294da2f088483f2a408f6a8db71bde4aaf5e97c6ca2d674fd9a60e43d688bb",
+      "after_sha256": "bccc18237425c0bb63d51589d63e82b70debbcf98c09d8a4ae51af5cf0112609",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.directdraw-native-opengl-launch",
+      "before_sha256": "c17828b197f949ee608aa726286e52d6857d893bc78830103d5fcaf6007076db",
+      "after_sha256": "40ca980436180159f8a8b3ab81ca22da754c567506df109ccf4040ec72ef4f08",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.directdraw-public-native-menu",
+      "before_sha256": "c05437ce4f6423a43b5b93150f44fb57bb066ce65f206081345c40a2d11d0429",
+      "after_sha256": "439693bd50ecb0f07e10cab9d87823fc656f8a09e1286857169ca817c8c11455",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.drawing-fenced-acquisition",
+      "before_sha256": "e3a039ad51a1eda6b49c2ce72dafb4aa8fcd135d36bba7c00cb81a65aaefe4ba",
+      "after_sha256": "d05db5c3bfb7eac115c9fdd05fee98af438d0fd581c37ddb3a160d1a3b0354cf",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.engine-cadence-observation",
+      "before_sha256": "0d695161a9774d11acc38c5ddcac6d9c07faef70b801f62c68611632ccdaacb3",
+      "after_sha256": "f0167804c4381fe23ba9caec4aa691e3738b4e44489453b63ad0f12986aa6a97",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.glyph-default-launch",
+      "before_sha256": "40196d3b5c79e66e7c496736a83a559a61c568776687530907ac63150d374831",
+      "after_sha256": "c6fef8534600e3f5775fa0a9cbace510e341003fd055316b5b38b471b1deed09",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.glyph-live-admission",
+      "before_sha256": "510ab40ad4aa0ddfa0803bba7e9ed26c87a186e83e2568cf5594e391228bab5a",
+      "after_sha256": "07f083c68d1d92ae2ba673d53e584376b764361b4fc7bc7dc87bbb9151fc4eed",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "4789f559a3590a327327079aa91063ef40e9cc1a9f394364e37f222d514e753d",
+      "after_sha256": "e30daa3c59a2646e7979e7fa74d73e54fd84c955afccfff30f31a1838bd6dd6e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.movie-enabled-startup",
+      "before_sha256": "1b71317d7df02a80923478c043b7af505b03a8edc4f164b17a436f1e15218680",
+      "after_sha256": "f74153856a855d2cf52d01b450acbc2dee663465ba2ea215c9306f67f8c86da5",
+      "receipts": []
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.movie-frame-production",
+      "before_sha256": "c3bf8440f785a3aa4987fc611a6680786abe9005a2bc80a9251ae84c2d7242ae",
+      "after_sha256": "35708ba178a8587372e1ec7353a5f22be24224b8d13b4979f1ddd8d3d9ac60a1",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.native-draw-status-session-file",
+      "before_sha256": "b41daa169ddca5908c9c1b711ee2c79f684e055a03ad4a80e6781acd21a07dca",
+      "after_sha256": "5362f8162b40965a7f8af4c02d8bdc92638ff16d8c25568b3016f36bcf7c4172",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.observer-lock-avoidance",
+      "before_sha256": "bb644ed2e6744e91c9c341f2630b1ca237e9f46c006ca9acae04bd78ff783322",
+      "after_sha256": "26e59d0988109dae3a3a8b8170a8082a5fb1fc63f7740c05b1e5fbe7c2c1c712",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.palette-resources",
+      "before_sha256": "72e69fe5d50788d71620c2c2aafc1c6fa68b3161129818ade3ee78b22867ad5a",
+      "after_sha256": "608f25e64b7f3fdd200cf12bb011ea8f2e0c5dbcb5f5eeeeaf515a850a9b6367",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.presentation-damage",
+      "before_sha256": "e1e59afee906f9eb055dff03b91ee0be2b4e60699f4eaac304dffb5249d9d016",
+      "after_sha256": "323b9dd0aad1d32d3f16bf6f7becf2f1543dae12d1a1f3e01bf9af066ede4711",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.public-resident-world",
+      "before_sha256": "5aa78984b4658eb711518c357653afb56d241cf3c7042accefc0a13164681c84",
+      "after_sha256": "21f46ad25209fb7caaa2972a87bdcf7231bbd3fe9d606e639637c273e002f338",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.resident-normal-shutdown",
+      "before_sha256": "9871c9350fb4b948a7dec115fbd6ce4cc68a14422bad23c4fccdd4cd9ec90c9e",
+      "after_sha256": "61f1273b449666e09f3835376fc740f7b1962daec370906817badee542508abd",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.resident-stage-profiling",
+      "before_sha256": "8671b75cd0af0ec1ce66bca22f32f8d85996027c068c0294b0a1cb6b539ca1e4",
+      "after_sha256": "a41fc34ba2478a91710cea287c7bb51bd278f21f35e24c99fe50aa56ee1655a2",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.scene-production-repetition",
+      "before_sha256": "348be15a54b951fa41c64d63ee67f394964164dd56c022a6bd5757722e0eb5f4",
+      "after_sha256": "b597d1824203d21b852a75b22c2ffc38d0319c3723fcb9baba2061aa71b3c9f2",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.world-source-region-epoch",
+      "before_sha256": "0281fa5b94d40e44e6e3121d805cf80f8b6bb9dc6eddafbb72ef7e594d8ad96b",
+      "after_sha256": "9f4ac5394805720560f8985255c89979812b986e97f452529d5c8be240fe5e9e",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "RS.glyph-live-route",
+      "before_sha256": "8b20aec96238a5199a6038a0e80a3e829ca204bebb3330a55ddf25e725c73eeb",
+      "after_sha256": "6da99b72347ad98c061b86757cbb5b9ec87fc9331d3d38bb34eebfb3d72da096",
+      "receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "RT.audio",
+      "before_sha256": "6aacc6a6818d268c277c3041a4b3b8379802cb4bf52125b13462a247f7267c68",
+      "after_sha256": "4be49c901e9f1b1011aa6bde5552823b8e4b37860d3fa2a5951b48f024a0089a",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "4b2e687ed782f7d140fb2b05877fa2076288fb2db4e4f8a72dfb48b8a882c50c",
+      "after_sha256": "4ae9ecaeba9931a2cf47d0ead6945e329ac0eb32d166c02c19233519cc9d4666",
+      "receipts": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "AU.cd_music",
+      "before_sha256": "c3eb157601dff4833370e074202a8bb61ebf806986c2861c29de5f45b2e0a230",
+      "after_sha256": "1a32d6b4cea623fcaecffd8999ba04176ee341a1d4f22283a873c4e319afd1fb",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "HOST.native-audio-factory",
+      "before_sha256": "70b12ce383368fa615f63912d31bc440ec4380740bdf383862f87895c2f8d321",
+      "after_sha256": "f76d8e591c1deda171b01f91be2d537d799fb1fdf0913548bb6595c1851f6c58",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "HOST.native-audio-initial-silence",
+      "before_sha256": "06ec50b643a13e272144e4b01a485854d5275bed902f41cf061c4dbd7d3164c2",
+      "after_sha256": "a8bc5bcb32990af8301d44c1ef2ce30185568450157b47afe67dc75dc366ecaa",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012",
+        "native-empty-output-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "HOST.native-dsound-module-policy",
+      "before_sha256": "a383b73df4465b5743ac4f4afc650ce08ee79ef928460ce1c540c53ab7a040ef",
+      "after_sha256": "a1864a85fb92f7fcdff0cda11ab38d2507613d6cb9e49b470c9c836dfb3a9ded",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "HOST.native-menu-media",
+      "before_sha256": "11adad98b7e228bd8e73c3ccbdeaffe19eff124d68bb5155c3fca353c17067f8",
+      "after_sha256": "ce7069c5f3f91f75ce53308f4f1fb0e3d6bd4e4ddff2b4ab10513a35106af586",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "HOST.native-wave-loading",
+      "before_sha256": "68fab5c5ac2363881982332ff97e8fa5334f72e2b38fa291c7cf85d515f48af0",
+      "after_sha256": "0b57d6468202dd2ff64cef7386c4be2ae2d565de8e0911dd9768759184c375d2",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "NR.canvas-fade-row-damage",
+      "before_sha256": "e56b339746e9dee249e8e6fe6d27b6f5e989cfe1ee562bff5b3defdb80b4f8d2",
+      "after_sha256": "3ae68eb869db6321d3ab94ba9d6600c4a930a92c4e348f19d57ab4d4a333acea",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "26c2c3e47197d17079a577ced59117cb57af10f9",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "4ae9ecaeba9931a2cf47d0ead6945e329ac0eb32d166c02c19233519cc9d4666",
+      "after_sha256": "c4e3e2e34bc65378a73c3e623a95dcde80a70f3b4556831d78fc92800397d869",
+      "receipts": [
+        "native-empty-output-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "id": "HOST.native-voice-output-waveforms",
+      "before_sha256": null,
+      "after_sha256": "1936788506801879a8c68839ad686eac9f61931c737399c9749a2ac4053f5e47",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012",
+        "native-waveforms-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "id": "NR.canvas-fade-row-damage",
+      "before_sha256": "3ae68eb869db6321d3ab94ba9d6600c4a930a92c4e348f19d57ab4d4a333acea",
+      "after_sha256": "03ead7112e0b5884311805eddc6edfc536bb52572d613c05cc184db753d56b00",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "1e0439179464a6375ef92cac8ccf105b6b504487",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "c4e3e2e34bc65378a73c3e623a95dcde80a70f3b4556831d78fc92800397d869",
+      "after_sha256": "a41607590932add7e7101843dab53992dc81707537abfb1825e1bb931a714dbb",
+      "receipts": [
+        "native-waveforms-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "AU.cd_music",
+      "before_sha256": "1a32d6b4cea623fcaecffd8999ba04176ee341a1d4f22283a873c4e319afd1fb",
+      "after_sha256": "5e61d67ecc817baac1e293010f00709177ff25ce442e719e1d28a01470c9fd7d",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.extended-voice-wire",
+      "before_sha256": "639de9bd4e57efd0ac8af1f3bfe4c25c55400246c39859c5aab524c25605d31e",
+      "after_sha256": "55deb08c2017df01fc38c3405bec7c2949cdd3ac3a3bea16a47df417ed4e0d99",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-audio-defaults",
+      "before_sha256": "9ff0916d087e212eae7c805afc7753795b61869abb6490ca7da2660a5ca4b68e",
+      "after_sha256": "2a9338a7b0e3f7d8aa473e2ad3aeba0354689df0962b1740d42e53e5ba183222",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-audio-factory",
+      "before_sha256": "f76d8e591c1deda171b01f91be2d537d799fb1fdf0913548bb6595c1851f6c58",
+      "after_sha256": "0e5fed6781c06a1022a1340156b0d48b7ff7dad17700ec06f7e73d570c58df93",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-audio-initial-silence",
+      "before_sha256": "a8bc5bcb32990af8301d44c1ef2ce30185568450157b47afe67dc75dc366ecaa",
+      "after_sha256": "7f737e06b32b979c62c7949225dc6c55e87c56c756a4450a37dad0e391097413",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-cd-fade-gain",
+      "before_sha256": "dfeaf6aa914356d5d278d0aaad8274fb4368daf3d71e8e97d8e17b03fc0cfe4f",
+      "after_sha256": "8454a171cb7cfc5425991df11905d7503181d84f24727735fd06d9d0459b86c9",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-cd-volume-query",
+      "before_sha256": "421fae10baec75e4604b00b901b8988478a36d28f2d1af767f48cafafdb02797",
+      "after_sha256": "8c78a1b43da795ee5859dd7c331acee7304b76e52c4220e1f18d6a156c272c6d",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-dsound-module-policy",
+      "before_sha256": "a1864a85fb92f7fcdff0cda11ab38d2507613d6cb9e49b470c9c836dfb3a9ded",
+      "after_sha256": "fc5318309c19816d22b9ce690f7cb365607f760d5bd9196c98350882eba1a796",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-file-sound-retirement",
+      "before_sha256": "daf81d33e053975e2d0bcf812d2b7a363f51210267878731580233c930e3546a",
+      "after_sha256": "c0bf3a720ceec16ce92accb5c70858509bd3648becc0e163d74f3a9d28cb2080",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-mci-cd-adapter",
+      "before_sha256": "7420016e518796ddd3af684cd33e5bca9b8d597a3cdba00027e9c93dc4464970",
+      "after_sha256": "d91858749cdf8af2b343fc863147e93d52c6b684f129f49049c39be2e42877b5",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-media-output-recovery",
+      "before_sha256": "07d39127a37d9bb3f69b26b5df1dc6178c67fda73831862dbbef1e2bfe57a6a1",
+      "after_sha256": "b6760b464484e243ae544e1a45c39bc6c3ba69ce78e9c02e52c0ed740bec639b",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-media-startup-probe",
+      "before_sha256": "aa818010850422b140118871ba128b65236e963cb32d09d85c9bf196491177eb",
+      "after_sha256": "5264e328f974d4c72425c0b3efe1b1f39a469fe762d97d53b50652a2972d77cc",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-menu-audio",
+      "before_sha256": "4f1b84acb68e0898c0cd742ffd7896d4ecac72f1b216e8f61ba022686896acf5",
+      "after_sha256": "cef703dbaba950a6ebba7025a4b269593f4c884f258bbb43673a2b82a7436844",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-menu-media",
+      "before_sha256": "ce7069c5f3f91f75ce53308f4f1fb0e3d6bd4e4ddff2b4ab10513a35106af586",
+      "after_sha256": "ab035a48c6d8e664b535231784072ee1dd3c304643527ea374293af7ddc904e3",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-menu-music",
+      "before_sha256": "58e749e9d7233007e651ea512f69f6692497dc4c769acfe9f02f31f6d2fcceae",
+      "after_sha256": "24e96741ce285fd1be8afa188647e00e7d84cdc9695923e7f2da7e3a7a2304e1",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-music-backend-recovery",
+      "before_sha256": null,
+      "after_sha256": "beaffc9b7205f3d63f1cf70577a9809b7b0b6508f884c5ca450586662a697198",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-music-bridge",
+      "before_sha256": "f1fe1ae751373d873ec6d425fd1a2bebbe3460c434d850f508ccfc8d020375fe",
+      "after_sha256": "408be95c5c675dcdab5514da9ebc93cb20f2b7d2714e1b39bf5bb8367fe140a8",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-music-service",
+      "before_sha256": "17d44bab63fa082117052f4717da7ece7f77b65c462737a941feebaeb399f506",
+      "after_sha256": "b654f0c9ba024d4f141ada575158b2b6f687c93493c332c807dd8f712ed98915",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-music-transport",
+      "before_sha256": "054b88d29a04298d86e8f127edc60e8c12eef6b8a2429eea5aad90e1205684cf",
+      "after_sha256": "924ad4e227dd5312e48f07029cc6d02b5ca1144992696207363c470049e27d90",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-music-watchdog",
+      "before_sha256": "1c00106002f3c69f1f74353a30fd05d62a448f592402bb86e36357475a604a35",
+      "after_sha256": "6f5c87ee792ec01bef1d37ef5857cf13e8ab8a75b1fc7b31ae2bf00fac7769b0",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-voice-backend-recovery",
+      "before_sha256": "4f4cf8545223daee4bd05acce3657e2b44e7c1b48b9fdc05e3e5d4ac9b4d3a9c",
+      "after_sha256": "b8ec77be0509f71de6c2444eb6381561210ce1928f04f8202cc23ec553e771d0",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "HOST.native-wave-loading",
+      "before_sha256": "0b57d6468202dd2ff64cef7386c4be2ae2d565de8e0911dd9768759184c375d2",
+      "after_sha256": "0b92ad255fa7ee648a358df49f93aef783fbe042347d9e13ff70050af7afbbe0",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012",
+        "native-music-backend-execution-review-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "NA.voice_output_recovery",
+      "before_sha256": "a0be13473f45c9f1f511a84d1ea170591a949b3cfa46851243f503bf0c8b45d0",
+      "after_sha256": "ba30693815a08d2bf42fbce0b8926c35e037da19ac05f494208255284ed951c9",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "NR.canvas-fade-row-damage",
+      "before_sha256": "03ead7112e0b5884311805eddc6edfc536bb52572d613c05cc184db753d56b00",
+      "after_sha256": "ea32c3ea70102cd49a27f32fda3b01cef5a3fd3efc5245be37c4dba1bc102010",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7235e7f6fb2834d80ddc21a2ff6dbd4432ae94f7",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "a41607590932add7e7101843dab53992dc81707537abfb1825e1bb931a714dbb",
+      "after_sha256": "d7871cf57e07aea902675daa125873e9212ae6b298cb1126c70f25eb6870a561",
+      "receipts": [
+        "native-music-backend-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_files": [],
+  "unresolved_behaviors": [
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "id": "NR.movie-enabled-startup",
+      "before_sha256": "1b71317d7df02a80923478c043b7af505b03a8edc4f164b17a436f1e15218680",
+      "after_sha256": "f74153856a855d2cf52d01b450acbc2dee663465ba2ea215c9306f67f8c86da5",
+      "receipts": []
+    }
+  ]
+}

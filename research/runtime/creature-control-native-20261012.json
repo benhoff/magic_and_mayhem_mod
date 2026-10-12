@@ -1,0 +1,916 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NP.creature-encounter",
+      "contract_sha256": "8ee07a1094c125ea3a5b1f8f079a23a8ddcb5873e55bb940ac6dc309cf4e78a5",
+      "scenarios": {
+        "NS25.creature-encounter": "f6d3eba6efd23c160bb009c136ed37028f149f5f64e311b67c875089b031f916"
+      }
+    },
+    {
+      "behavior": "NP.creature-window",
+      "contract_sha256": "795f67cc08b209dffcf4641b1411731ae7db10f807f545124426471a5542d7c1",
+      "scenarios": {
+        "NS25.creature-window": "c8684ce561d399c52d33612322fb09e820cbea113e7ce23293d2349066ef0922"
+      }
+    }
+  ],
+  "source_sha256": {
+    "apps/creature-lab/CMakeLists.txt": "1d649e4386f6895bcde3893deaca88227cc22376a14cace4fbc016e996c9087c",
+    "apps/creature-lab/cli.cpp": "b3cc39523d8f407095e5e8cf0a92032e8df46f89c874c8b3f71b70319580888c",
+    "apps/creature-lab/controller.cpp": "b94f2bd0a3c59318368ff4797e1aea18dcdabac271da7841e361d5cf6130633f",
+    "apps/creature-lab/controller.hpp": "5b7e96efbfa0d1d6b02414a02a051240225bf0cfa0d821d2fcd148f33dc30936",
+    "apps/creature-lab/main.cpp": "ca337431213a6537c72577c6a5049bc57876168346765cc844b04ca2bdefaf39",
+    "apps/creature-lab/profile.cpp": "0b16ed9fa8e62f74c4d50f4c11d90a57866c8cc9b72ee5b53bfb7f9b6d712aa5",
+    "apps/creature-lab/profile.hpp": "e757725550fa04a11083d3e87610282bb9fb59aaa96bd3aa599d52099e74fc9f",
+    "apps/creature-lab/window.cpp": "6da62e4a0396e816f20b2beaa75b057179a00f6684f7d1f5853d1cb9b65dc008",
+    "apps/creature-lab/window.hpp": "9b30ab05eb7afb76c3433bd519269c366da0a8f8e51e3762cceb95d62e207752",
+    "apps/melee-lab/CMakeLists.txt": "eb568d210a7eed8b054564b7d6d2f144fb6d3baa3818f100b6ee0dec16cd5001",
+    "apps/melee-lab/cli.cpp": "0be69bb024863b4d4fcd0e84e0f7530e5907b6703755cde24ede9f47a131aebd",
+    "apps/melee-lab/controller.cpp": "95d04f28e020c178a2c59f89145472fcf4eb32fcd8c9cd00b74a53c82d71c062",
+    "apps/melee-lab/controller.hpp": "b6e598caa8f44dd9deb59ecb03612f582cc1a08640d8b94634eb92bc3e1eaad7",
+    "apps/melee-lab/main.cpp": "1c672cd7baeac426885c1912cd2e946b711beb3a3d0aa805b312bf4d75e6b1f1",
+    "apps/melee-lab/profile.cpp": "d72e5825da31a034cbf3175a148f013d13be2014b478c05da9f5163c2d453ad3",
+    "apps/melee-lab/profile.hpp": "15eee19aa40edd0393a13a88fcab236c43edc7edc7b46cd715b3a485f45f3376",
+    "apps/melee-lab/window.cpp": "9f0fc050c6e6583d4a807761fbfeb7a1f7386a022686205c5f4f43892f2e1c81",
+    "apps/melee-lab/window.hpp": "9972d09367d41f529f479c63f63d330b5b82d0a0d1dcc9c80892208aaa47b181",
+    "apps/skirmish/health_rules.cpp": "5298672a7bc36dac396cfa45f017fee527c51af0846dd62028931f05d27fca25",
+    "apps/skirmish/health_rules.hpp": "5691d0fcef51d8ccb3e46845b12d8317801ce23d1aadc47303f3383be9bec252",
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/config_loader.cpp": "706851875120533c7a49492eb34ff158314b4d17c8328749766d1a7ea9c1bb6a",
+    "assets/creature_movement.cpp": "0ceaa3cdc3e9a5f45a695ac2f8f0f5f122288e296af04c586185524582d337c6",
+    "assets/creature_movement.hpp": "5f2ac13f91904f8af7a9737fc357b1751745217d73de9f4103ef0ca8f6996953",
+    "assets/packed_container.cpp": "1a69d4236536be0ae9f9944b00ea816b33a4a249010bc4e011e4a43cb2e17e0d",
+    "assets/palette_lighting.cpp": "de05923d86bd5d76fbca30942d2d5ac9dffa3cc943e27ce0cef22637d9c0b769",
+    "assets/palette_lighting.hpp": "75bf4bf2fb0a9bcce1995572acf0a67a8033e985f345a605a33aad5ee0890b75",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/persistence.hpp": "3013cefe3f0cfe931b8f7c3961c66765233f2826fc417d2f48da3574501249b1",
+    "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+    "assets/save_loader.cpp": "8f0d9f2c5314a168e9aba80a52772b8a8cda8c9c32ea4dfcb3a16d57a2046895",
+    "assets/save_world.cpp": "fc792c919a6bbb3b9af6535da4b976880e4ec13dfe7a15e4be41195f5f6db31c",
+    "assets/save_world.hpp": "fca5bec61c6ae42971d713f2ea188ea59ff6ec261404a9105dc44761f05b7995",
+    "game/CMakeLists.txt": "b81aeb0d7560a04d80956ac5681ff1e43176cb54c5edf46516375bdfbd7810cd",
+    "game/persistence/snapshot.cpp": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/combat.cpp": "9d72f6cdfb7444620bb3a020a673ca08fc286b14c6a2ae5a5ead97ca6db9a8c5",
+    "game/simulation/combat.hpp": "ba4b04e90a9a2f9070fc8a0339436b4b4c9413d360c667ff834d086dc8a90dee",
+    "game/simulation/creature_encounter.cpp": "79143956584304620374fec04b8153d83dfbd4e0d7fcf1ad0c618c0bc47501ba",
+    "game/simulation/creature_encounter.hpp": "838e028f4bb2c767685e10ff0f6aae6cbf25eecd2d141ac47dde352d9d11eae0",
+    "game/simulation/health_rules.cpp": "3799dab0d63238583ffa9223caa2f8aeb79ba5af189e8dcf2b69ebe25f2b3b12",
+    "game/simulation/health_rules.hpp": "8f13dc356188a914adea0632c1b7c5a9c5559d97749f8c250402663bf487d1d4",
+    "game/simulation/melee_exchange.cpp": "4e4b272e0352994aed7a93aafe4bea569df55aaa9807c3a4e2f305d64b8fb1d9",
+    "game/simulation/melee_exchange.hpp": "3a9e6781f2471ee969ea48e004a212a5d0b57c9a67b40b86f833fe0040388978",
+    "game/simulation/movement.cpp": "8880e491dbd23e55378cd155366fa46c8cedd603c0ce5aaf7d7950f6ae3c4cba",
+    "game/simulation/movement.hpp": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/tick_clock.cpp": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+    "game/simulation/tick_clock.hpp": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+    "game/simulation/world.cpp": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+    "game/simulation/world.hpp": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+    "reconstruction/animation/CMakeLists.txt": "5a0c2a822e1bd366fd994b6fdaef12437637f7700dfb91c2de40f0662b3a6733",
+    "reconstruction/animation/attachment.cpp": "ba7553a6fb17554a2a93bab299eb60a65098f96df9b6a4db303e48e443c36ed7",
+    "reconstruction/animation/attachment.hpp": "c731bc66c9f1192fd105749251554fdf105d36321d9bf205e5645256f858aac8",
+    "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+    "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+    "reconstruction/animation/placement.cpp": "1726861a7123aa6c593b05a4a47a59f5b61ebae086ea3a53be287a97f7f14ea7",
+    "reconstruction/animation/placement.hpp": "f0c92b58017bb6b33aefacaa2b77f99e222f24fe662bf410fac46b1728f5bb6c",
+    "reconstruction/combat/CMakeLists.txt": "6554e5ff8e209318b7093eab0281e79f7a0d35a596e0b1f191c1d9ebcddb6d56",
+    "reconstruction/combat/ai.cpp": "011a6b6bbb851a69ec13bab9c936a2d6497b66b5d07608e0f09d2988a19552a2",
+    "reconstruction/combat/ai.hpp": "c935eeb0d637d7c25d172a29defcfcaa9bf0b77e49acb7c1a3973f6c64a15fb4",
+    "reconstruction/combat/control.cpp": "f06b0c486e8aacf5cc35fb3e61a89bbed448d5a00a72a02098a8b458a1ca47ed",
+    "reconstruction/combat/control.hpp": "6eec7999f863732d15ff27f3f1429f71823f7f141a2b0d729a31815aeff59dc5",
+    "reconstruction/combat/health.cpp": "432fc66e11946f15cb9724e28f005fb050732760737a7d9c5619db156caaa3a4",
+    "reconstruction/combat/health.hpp": "7e91e0a0bd60170cc1c6c70f4efde5e2b448a46b6d72463eb6e27f666c56f7d0",
+    "reconstruction/combat/melee.cpp": "0afc31da331b76ab9cd40e77b2c1e9476aa2dae0161a8ba3e364ebf06a4afaae",
+    "reconstruction/combat/melee.hpp": "be581608ce9ab1fdcb392424b191174a802f124fb355e7947a6c2b9d940769ca",
+    "tests/creature-window-driver.cpp": "1492f9b6bdaaa4e0c6136a762a889616d302b744558a6a21e937c40d4a0635b4",
+    "tests/creature-window-driver.hpp": "1dacd7afea6aef47931a1908a1e4bf8c5e6468f12f59e2ba1ecf302182752c13",
+    "tests/melee-window-driver.cpp": "1cd3f53bae7a7642df244ddb3d18b3fca61c51ba787d54036eda86576d22650a",
+    "tests/melee-window-driver.hpp": "bafaf2f49adc9bc0c8d2cbbca413c77ce77e3d25dc3cd5dee7f4cee1d7dade41",
+    "tests/native-creature-encounter-test.cpp": "5bb56ce68d1e3a085e3df59c685c35e1d4969b6b1b7d0acd9f5006a1e50e1906",
+    "tests/test-creature-encounter.py": "ced76c7647e0420c3be2b6627b4c2e4733572fcce98e391a0c87d5d040396285"
+  },
+  "commands": [
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+      "verify"
+    ],
+    [
+      "cmake",
+      "-S",
+      "apps/creature-lab",
+      "-B",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal",
+      "-DCMAKE_BUILD_TYPE=Debug",
+      "-DBUILD_TESTING=ON"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal",
+      "--target",
+      "native-creature-encounter-test",
+      "mnm-creature-cli",
+      "creature-window-test",
+      "mnm-creature-lab",
+      "-j",
+      "4"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/native-creature-encounter-test",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "8192",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/full.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "0",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-0.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-0.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-0.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "1",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-1.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-1.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-1.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "2",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-2.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-2.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-2.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "3",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-3.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-3.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-3.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "4",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-4.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-4.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-4.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "5",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-5.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-5.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-5.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "6",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-6.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-6.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-6.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "7",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-7.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-7.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-7.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "8",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-8.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-8.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-8.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "9",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-9.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-9.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-9.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "10",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-10.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-10.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-10.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "11",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-11.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-11.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-11.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "12",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-12.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-12.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-12.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "13",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-13.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-13.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-13.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "14",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-14.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-14.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-14.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "15",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-15.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-15.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-15.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "16",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-16.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-16.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-16.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "17",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-17.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-17.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-17.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "18",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-18.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-18.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-18.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "19",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-19.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-19.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-19.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "21",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-21.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-21.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-21.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "22",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-22.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-22.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-22.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "23",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-23.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-23.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-23.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "37",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-37.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-37.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-37.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "38",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-38.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-38.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-38.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "39",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-39.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-39.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-39.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "77",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-77.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-77.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-77.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "78",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-78.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-78.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-78.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "79",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-79.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-79.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-79.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "93",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-93.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-93.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-93.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "94",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-94.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-94.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-94.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "95",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-95.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-95.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-95.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "635",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-635.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-635.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-635.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "636",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-636.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-636.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-636.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "637",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-637.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-637.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-637.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "812",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-812.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/save-812.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/resumed-812.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/truncated.mnm",
+      "1",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/bad.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "new",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "1",
+      "1",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/full.mnm"
+    ],
+    [
+      "xvfb-run",
+      "-a",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/creature-window-test",
+      "--installation",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-clean",
+      "--test-output",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/window"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/creature-ns25/normal/mnm-creature-cli",
+      "resume",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/window/mid-attack.mnm",
+      "8192",
+      "0",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/creature-ai-ns25/native-final2/window-resumed.mnm"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+      "verify"
+    ]
+  ],
+  "wine_required": false,
+  "live_replacement": false,
+  "scope": "Recovered ordinary control behind native flat-map movement and authored animation/knockback/scheduling policies; complete original AI and live replacement excluded.",
+  "input_sha256": {
+    "CFG/Encrypted/creature.cfg": "05be54554522af9645d1fa22e7711fdbd23d44756973f68a3b902edf79f3108a",
+    "CFG/Encrypted/HTH.cfg": "f15a2084f608e63e0287014d859212abb228e884278ca86632b612d54aaa44de",
+    "Creatures/crocodile.ani": "9e0071f2ffd3b726ae01590836a4dee306f88a25556e66654510bac1353e2fef"
+  },
+  "compiler_dependencies": [
+    "apps/creature-lab/cli.cpp",
+    "apps/creature-lab/controller.cpp",
+    "apps/creature-lab/controller.hpp",
+    "apps/creature-lab/main.cpp",
+    "apps/creature-lab/profile.cpp",
+    "apps/creature-lab/profile.hpp",
+    "apps/creature-lab/window.cpp",
+    "apps/creature-lab/window.hpp",
+    "apps/melee-lab/profile.cpp",
+    "apps/melee-lab/profile.hpp",
+    "apps/skirmish/health_rules.cpp",
+    "apps/skirmish/health_rules.hpp",
+    "assets/animation.cpp",
+    "assets/animation.hpp",
+    "assets/animation_decode.cpp",
+    "assets/asset_file.cpp",
+    "assets/asset_file.hpp",
+    "assets/config_loader.cpp",
+    "assets/creature_movement.cpp",
+    "assets/creature_movement.hpp",
+    "assets/packed_container.cpp",
+    "assets/palette_lighting.cpp",
+    "assets/palette_lighting.hpp",
+    "assets/path_resolver.cpp",
+    "assets/path_resolver.hpp",
+    "assets/persistence.hpp",
+    "assets/persistence_internal.hpp",
+    "assets/save_loader.cpp",
+    "assets/save_world.cpp",
+    "assets/save_world.hpp",
+    "game/persistence/snapshot.cpp",
+    "game/persistence/snapshot.hpp",
+    "game/persistence/store_posix.cpp",
+    "game/simulation/combat.cpp",
+    "game/simulation/combat.hpp",
+    "game/simulation/creature_encounter.cpp",
+    "game/simulation/creature_encounter.hpp",
+    "game/simulation/health_rules.cpp",
+    "game/simulation/health_rules.hpp",
+    "game/simulation/melee_exchange.cpp",
+    "game/simulation/melee_exchange.hpp",
+    "game/simulation/movement.cpp",
+    "game/simulation/movement.hpp",
+    "game/simulation/occupancy.cpp",
+    "game/simulation/occupancy.hpp",
+    "game/simulation/tick_clock.cpp",
+    "game/simulation/tick_clock.hpp",
+    "game/simulation/world.cpp",
+    "game/simulation/world.hpp",
+    "reconstruction/animation/attachment.cpp",
+    "reconstruction/animation/attachment.hpp",
+    "reconstruction/animation/no_cd.cpp",
+    "reconstruction/animation/no_cd.hpp",
+    "reconstruction/animation/placement.cpp",
+    "reconstruction/animation/placement.hpp",
+    "reconstruction/combat/ai.cpp",
+    "reconstruction/combat/ai.hpp",
+    "reconstruction/combat/control.cpp",
+    "reconstruction/combat/control.hpp",
+    "reconstruction/combat/health.cpp",
+    "reconstruction/combat/health.hpp",
+    "reconstruction/combat/melee.cpp",
+    "reconstruction/combat/melee.hpp",
+    "tests/creature-window-driver.cpp",
+    "tests/creature-window-driver.hpp",
+    "tests/native-creature-encounter-test.cpp"
+  ],
+  "contract": {
+    "success": true,
+    "ticks": 6397,
+    "checkpoint_clones": 6397,
+    "stuns": 36,
+    "knockbacks": 22,
+    "moves": 108,
+    "hits": 530,
+    "deaths": 14,
+    "retargets": 1,
+    "facings": 2,
+    "semantic_rejections": 8
+  },
+  "process_continuations": 36,
+  "final": {
+    "tick": 812,
+    "actors": [
+      [
+        26,
+        3,
+        2,
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        4,
+        -1,
+        5,
+        0
+      ],
+      [
+        66,
+        12,
+        7,
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        10,
+        5,
+        -1,
+        5,
+        0
+      ]
+    ],
+    "events": [
+      [
+        2,
+        "hit",
+        3,
+        4
+      ],
+      [
+        3,
+        "died",
+        -1,
+        0
+      ]
+    ]
+  },
+  "window": {
+    "success": true,
+    "timer_advanced": true,
+    "pause_preserved": true,
+    "load_failure_atomic": true,
+    "tick": 812,
+    "health": [
+      26,
+      0
+    ]
+  },
+  "sanitizer_passed": false,
+  "binaries": {
+    "native-creature-encounter-test": "8d31fcb07fa3a811d7bc3d99dc77ca3e54800779716cd86f934f17420ed36ff3",
+    "mnm-creature-cli": "fc3fe1ea993869c161288866230c37f5632c7354fd083e3ad4a233711abdd237",
+    "creature-window-test": "77fab05c646db331a52db9d0cf57de69b953fcd3a2db53ecbc9cc589e0a36524",
+    "mnm-creature-lab": "7048220aac752eb87d5c15ca814553997b47b3b846135133e261b72e857ae522"
+  },
+  "input_unchanged": true,
+  "original_manifest_verified_before_after": true,
+  "sources_unchanged": true
+}

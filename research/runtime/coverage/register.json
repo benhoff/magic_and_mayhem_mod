@@ -42763,6 +42763,8 @@
         "game/persistence/snapshot.cpp",
         "game/persistence/snapshot.hpp",
         "game/persistence/store_posix.cpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
         "game/simulation/movement.cpp",
         "game/simulation/movement.hpp",
         "game/simulation/occupancy.cpp",
@@ -42848,7 +42850,11 @@
       },
       "evidence": [
         "NS21.combat-normal",
-        "NS21.combat-sanitized"
+        "NS21.combat-sanitized",
+        "NS22.combat-regression-normal",
+        "NS22.combat-regression-sanitized",
+        "NS23.combat-normal",
+        "NS23.combat-sanitized"
       ],
       "status": {
         "understanding": "scoped",
@@ -42950,6 +42956,599 @@
       ]
     },
     {
+      "id": "NP.combat-orders",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Explicit native creature orders",
+      "scope": "Native queued move/stop/attack controls and external projectile damage, v1 automatic encounter compatibility and v2 control checkpoints; excludes original commander semantics and balance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-skirmish.md",
+        "research/formats/native-skirmish-subsystem.md",
+        "apps/skirmish/README.md",
+        "research/formats/native-combat-subsystem.md"
+      ],
+      "implementation": [
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp"
+      ],
+      "tests": [
+        "tests/skirmish-test.cpp",
+        "tests/test-skirmish.py",
+        "tests/native-combat-test.cpp",
+        "tests/test-native-combat.py"
+      ],
+      "evidence": [
+        "NS22.skirmish-normal",
+        "NS22.skirmish-sanitized",
+        "NS23.arena-normal",
+        "NS23.arena-sanitized",
+        "NS24.arena-regression",
+        "NS25.arena-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/skirmish/../../tests/skirmish-window-driver.hpp",
+        "apps/skirmish/../world-scene/playback.hpp",
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/cli.cpp",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/trace.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/window.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "game/../apps/world-sandbox/frozen_navigation.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/../../assets/animation.hpp",
+        "reconstruction/animation/../../assets/asset_file.hpp",
+        "reconstruction/animation/../../assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/motion/../pathfinding/route_neighbors.hpp",
+        "reconstruction/motion/../pathfinding/route_request.hpp",
+        "reconstruction/motion/../pathfinding/route_scalar.hpp",
+        "reconstruction/motion/../pathfinding/route_search.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "tests/ani-motion-test.cpp",
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-model-test.cpp",
+        "tests/animation-placement-test.cpp",
+        "tests/creature-motion-test.cpp",
+        "tests/native-ani-restore-test.cpp",
+        "tests/native-health-rules-test.cpp",
+        "tests/native-idle-display-test.cpp",
+        "tests/native-movement-test.cpp",
+        "tests/native-multi-movement-test.cpp",
+        "tests/native-occupancy-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/native-terrain-restore-test.cpp",
+        "tests/native-world-test.cpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/route-boundary-test.cpp",
+        "tests/route-cell-support-test.cpp",
+        "tests/route-cell-test.cpp",
+        "tests/route-cell-validity-test.cpp",
+        "tests/route-clearance-test.cpp",
+        "tests/route-creature-acceptance-test.cpp",
+        "tests/route-movement-test.cpp",
+        "tests/route-neighbors-test.cpp",
+        "tests/route-occupancy-test.cpp",
+        "tests/route-record-query-test.cpp",
+        "tests/route-request-test.cpp",
+        "tests/route-scalar-test.cpp",
+        "tests/route-search-test.cpp",
+        "tests/route-validity-test.cpp",
+        "tests/route-world-test.cpp",
+        "tests/segment-setup-test.cpp",
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/test-skirmish-window.py",
+        "tools/create-movement-fixture.py"
+      ],
+      "validation_domain": {
+        "inputs": [
+          "synthetic sealed 8x8 arena; stationary wizards and homogeneous Sentinels"
+        ],
+        "branches": [
+          "pending command continuation",
+          "cast windup/full flight and fixed-aim misses",
+          "mana debit/regeneration/cap/refusals",
+          "summon completion collision/refund",
+          "move/stop/explicit attack",
+          "projectile capacity and simultaneous terminal damage",
+          "victory/defeat freeze",
+          "wire/semantic/resource restore refusal"
+        ],
+        "exclusions": [
+          "original combat/mana/commander equivalence",
+          "installed campaign maps/assets",
+          "veterancy",
+          "live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.skirmish-simulation",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Authored native skirmish rules and persistence",
+      "scope": "Bounded authored 8x8 arena, stationary hostile wizards, one Sentinel profile, summon/bolt admission and windup, fixed-aim projectile impact, bounded mana regeneration, rival AI, terminal outcome and full pending-order/checkpoint continuation. Original game equivalence, campaign, veterancy and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-skirmish.md",
+        "research/formats/native-skirmish-subsystem.md",
+        "apps/skirmish/README.md"
+      ],
+      "implementation": [
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/cli.cpp",
+        "apps/skirmish/trace.cpp",
+        "apps/skirmish/trace.hpp"
+      ],
+      "tests": [
+        "tests/skirmish-test.cpp",
+        "tests/test-skirmish.py"
+      ],
+      "evidence": [
+        "NS22.skirmish-normal",
+        "NS22.skirmish-sanitized",
+        "NS23.arena-normal",
+        "NS23.arena-sanitized",
+        "NS24.arena-regression",
+        "NS25.arena-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/skirmish/../../tests/skirmish-window-driver.hpp",
+        "apps/skirmish/../world-scene/playback.hpp",
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/window.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "game/../apps/world-sandbox/frozen_navigation.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/../../assets/animation.hpp",
+        "reconstruction/animation/../../assets/asset_file.hpp",
+        "reconstruction/animation/../../assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/motion/../pathfinding/route_neighbors.hpp",
+        "reconstruction/motion/../pathfinding/route_request.hpp",
+        "reconstruction/motion/../pathfinding/route_scalar.hpp",
+        "reconstruction/motion/../pathfinding/route_search.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "tests/ani-motion-test.cpp",
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-model-test.cpp",
+        "tests/animation-placement-test.cpp",
+        "tests/creature-motion-test.cpp",
+        "tests/native-ani-restore-test.cpp",
+        "tests/native-combat-test.cpp",
+        "tests/native-health-rules-test.cpp",
+        "tests/native-idle-display-test.cpp",
+        "tests/native-movement-test.cpp",
+        "tests/native-multi-movement-test.cpp",
+        "tests/native-occupancy-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/native-terrain-restore-test.cpp",
+        "tests/native-world-test.cpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/route-boundary-test.cpp",
+        "tests/route-cell-support-test.cpp",
+        "tests/route-cell-test.cpp",
+        "tests/route-cell-validity-test.cpp",
+        "tests/route-clearance-test.cpp",
+        "tests/route-creature-acceptance-test.cpp",
+        "tests/route-movement-test.cpp",
+        "tests/route-neighbors-test.cpp",
+        "tests/route-occupancy-test.cpp",
+        "tests/route-record-query-test.cpp",
+        "tests/route-request-test.cpp",
+        "tests/route-scalar-test.cpp",
+        "tests/route-search-test.cpp",
+        "tests/route-validity-test.cpp",
+        "tests/route-world-test.cpp",
+        "tests/segment-setup-test.cpp",
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/test-native-combat.py",
+        "tests/test-skirmish-window.py",
+        "tools/create-movement-fixture.py"
+      ],
+      "validation_domain": {
+        "inputs": [
+          "synthetic sealed 8x8 arena; stationary wizards and homogeneous Sentinels"
+        ],
+        "branches": [
+          "pending command continuation",
+          "cast windup/full flight and fixed-aim misses",
+          "mana debit/regeneration/cap/refusals",
+          "summon completion collision/refund",
+          "move/stop/explicit attack",
+          "projectile capacity and simultaneous terminal damage",
+          "victory/defeat freeze",
+          "wire/semantic/resource restore refusal"
+        ],
+        "exclusions": [
+          "original combat/mana/commander equivalence",
+          "installed campaign maps/assets",
+          "veterancy",
+          "live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.skirmish-window",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native playable skirmish window",
+      "scope": "Qt arena selection, summon/bolt and creature orders, semantic controller, timer admission, pause/step, save/load and outcome presentation against native snapshots; authored vector visuals and fixture rules only. Original game rendering, assets, input equivalence and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-skirmish.md",
+        "research/formats/native-skirmish-subsystem.md",
+        "apps/skirmish/README.md"
+      ],
+      "implementation": [
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/window.hpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/test-skirmish-window.py"
+      ],
+      "evidence": [
+        "NS22.skirmish-window",
+        "NS23.window",
+        "NS24.window-regression",
+        "NS25.arena-window-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/skirmish/../../tests/skirmish-window-driver.hpp",
+        "apps/skirmish/../world-scene/playback.hpp",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/cli.cpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/trace.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "game/../apps/world-sandbox/frozen_navigation.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/../../assets/animation.hpp",
+        "reconstruction/animation/../../assets/asset_file.hpp",
+        "reconstruction/animation/../../assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/motion/../pathfinding/route_neighbors.hpp",
+        "reconstruction/motion/../pathfinding/route_request.hpp",
+        "reconstruction/motion/../pathfinding/route_scalar.hpp",
+        "reconstruction/motion/../pathfinding/route_search.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "tests/ani-motion-test.cpp",
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-model-test.cpp",
+        "tests/animation-placement-test.cpp",
+        "tests/creature-motion-test.cpp",
+        "tests/native-ani-restore-test.cpp",
+        "tests/native-combat-test.cpp",
+        "tests/native-health-rules-test.cpp",
+        "tests/native-idle-display-test.cpp",
+        "tests/native-movement-test.cpp",
+        "tests/native-multi-movement-test.cpp",
+        "tests/native-occupancy-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/native-terrain-restore-test.cpp",
+        "tests/native-world-test.cpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/route-boundary-test.cpp",
+        "tests/route-cell-support-test.cpp",
+        "tests/route-cell-test.cpp",
+        "tests/route-cell-validity-test.cpp",
+        "tests/route-clearance-test.cpp",
+        "tests/route-creature-acceptance-test.cpp",
+        "tests/route-movement-test.cpp",
+        "tests/route-neighbors-test.cpp",
+        "tests/route-occupancy-test.cpp",
+        "tests/route-record-query-test.cpp",
+        "tests/route-request-test.cpp",
+        "tests/route-scalar-test.cpp",
+        "tests/route-search-test.cpp",
+        "tests/route-validity-test.cpp",
+        "tests/route-world-test.cpp",
+        "tests/segment-setup-test.cpp",
+        "tests/skirmish-test.cpp",
+        "tests/test-native-combat.py",
+        "tests/test-skirmish.py",
+        "tools/create-movement-fixture.py"
+      ],
+      "validation_domain": {
+        "inputs": [
+          "synthetic sealed 8x8 arena; stationary wizards and homogeneous Sentinels"
+        ],
+        "branches": [
+          "pending command continuation",
+          "cast windup/full flight and fixed-aim misses",
+          "mana debit/regeneration/cap/refusals",
+          "summon completion collision/refund",
+          "move/stop/explicit attack",
+          "projectile capacity and simultaneous terminal damage",
+          "victory/defeat freeze",
+          "wire/semantic/resource restore refusal"
+        ],
+        "exclusions": [
+          "original combat/mana/commander equivalence",
+          "installed campaign maps/assets",
+          "veterancy",
+          "live replacement"
+        ]
+      }
+    },
+    {
       "id": "HOST.native-audio-factory",
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
@@ -43036,6 +43635,39 @@
       ]
     },
     {
+      "id": "AU.cd_music",
+      "subsystem": "audio_contracts",
+      "kind": "recovered",
+      "title": "Original CD audio control and routing",
+      "scope": "Initial discovery: WINMM mciSendCommandA IAT0x005c52dc and mixer imports have static operands in0x00481330..0x00482c00 and other unassigned caller ranges. Supplied cue/CCD describes data track1 and audio tracks2..13. Command flags, event routing, timing, mixer roles and live behavior are pending; imports/operand references do not establish execution or full function semantics. Guarded static export identifies selected OPEN/SET TMSF10, PLAY track low8/from-to/last-track retry, pause/resume and mixer level*0x1111 arguments; object offsets local only. Export labels cd_open/cd_play are provisional and clarified as release/disc-validation entries in the research; no original execution or native driver claim. Retained assembly also confirms STOP0 at0x48214d/0x482155; original stop/fade/mixer semantics remain pending. Static getter0x4818b0 uses initialized/active gates and mixerCount; zero mixers yield level0. Native per-output gain query is a separate policy.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4723504,
+          "scope": "Static MCI import operand reference only; command behavior/callers remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-audio-end-to-end.md",
+        "research/runtime/cd-audio-control.md"
+      ],
+      "implementation": [
+        "tools/export-cd-audio.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "AU.cd-music.static-control-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "HOST.native-menu-media",
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
@@ -43109,39 +43741,6 @@
       "remaining_gaps": [
         "Merged dedicated render-owner movie pause/drain/resume requires current scoped controls and full merged-code validation; World-producing during native movie and audiovisual synchronization remain unexecuted. Historical proofs preserved."
       ]
-    },
-    {
-      "id": "AU.cd_music",
-      "subsystem": "audio_contracts",
-      "kind": "recovered",
-      "title": "Original CD audio control and routing",
-      "scope": "Initial discovery: WINMM mciSendCommandA IAT0x005c52dc and mixer imports have static operands in0x00481330..0x00482c00 and other unassigned caller ranges. Supplied cue/CCD describes data track1 and audio tracks2..13. Command flags, event routing, timing, mixer roles and live behavior are pending; imports/operand references do not establish execution or full function semantics. Guarded static export identifies selected OPEN/SET TMSF10, PLAY track low8/from-to/last-track retry, pause/resume and mixer level*0x1111 arguments; object offsets local only. Export labels cd_open/cd_play are provisional and clarified as release/disc-validation entries in the research; no original execution or native driver claim. Retained assembly also confirms STOP0 at0x48214d/0x482155; original stop/fade/mixer semantics remain pending. Static getter0x4818b0 uses initialized/active gates and mixerCount; zero mixers yield level0. Native per-output gain query is a separate policy.",
-      "confidence": "provisional",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 4723504,
-          "scope": "Static MCI import operand reference only; command behavior/callers remain pending."
-        }
-      ],
-      "documents": [
-        "research/runtime/native-audio-end-to-end.md",
-        "research/runtime/cd-audio-control.md"
-      ],
-      "implementation": [
-        "tools/export-cd-audio.py"
-      ],
-      "tests": [],
-      "evidence": [
-        "AU.cd-music.static-control-20261012"
-      ],
-      "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
-      }
     },
     {
       "id": "HOST.native-cd-assets",
@@ -46548,6 +47147,339 @@
       }
     },
     {
+      "id": "CB.ordinary-health",
+      "subsystem": "combat",
+      "kind": "recovered",
+      "title": "Ordinary creature signed health and lethal projection",
+      "scope": "No-CD class1/type17 creature projection, empty creature/effect pools and declared helper returns: ordinary/rank1/rank2 configured maximum arithmetic; rank0 signed healing cap, dead/global refusals, nonlethal/ordinary lethal health and selected cleanup fields, health bar/dirty, incoming damage displays, contribution increments and ordered callback arguments. Full helper effects/XP semantics, cached linked contributions, special leader/illusion/explosion/scenario or ranked lethal branches, melee RNG/timing and live replacement excluded. NS24 extends explicit contribution IDs/nullable lookup returns and lethal detach slot argument; helper internals remain excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5273072,
+          "scope": "Selected declared ordinary-domain branches only; whole function/callers are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5273328,
+          "scope": "Selected declared ordinary-domain branches only; whole function/callers are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5327248,
+          "scope": "Selected declared ordinary-domain branches only; whole function/callers are not implied."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5371360,
+          "scope": "Selected declared ordinary-domain branches only; whole function/callers are not implied."
+        }
+      ],
+      "documents": [
+        "research/runtime/ordinary-health.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp"
+      ],
+      "tests": [
+        "tests/ordinary-health-test.cpp",
+        "tools/test-ordinary-health.py"
+      ],
+      "evidence": [
+        "NS23.health-original",
+        "NS23.health-native",
+        "NS24.health-original",
+        "NS24.health-native",
+        "NS25.health-regression-original",
+        "NS25.health-regression-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-health-contract.py",
+        "tools/test-ordinary-health.py"
+      ],
+      "validation_domain": {
+        "inputs": [
+          "class1/type17 synthetic creature",
+          "empty original creature/effect pools and null cached contribution links",
+          "explicit helper return values; endpoint argument traces",
+          "original body and18 private endpoint redirects"
+        ],
+        "branches": [
+          "signed INT_MIN/INT_MAX and zero/nonpositive requests",
+          "dead/global/status/immunity refusals",
+          "unsigned multiply/division wrap and percent0/25/99/100/101/UINT_MAX",
+          "quarter and absorption response/notification branches",
+          "healing cap and zero maximum",
+          "rank0 ordinary lethal cleanup and retained active flag",
+          "incoming per-owner damage fields and contribution/statistics call arguments",
+          "healthbar/dirty state and maximum rank0/1/2 arithmetic",
+          "explicit contribution IDs including UINT_MAX, null lookup returns and arbitrary supplied detach slot"
+        ],
+        "exclusions": [
+          "live replacement",
+          "whole helper effects and experience semantics",
+          "leaders/illusions/scenario/explosion and ranked lethal branches",
+          "nonempty entity/effect pools and cached contribution chains"
+        ]
+      }
+    },
+    {
+      "id": "CB.defended-damage",
+      "subsystem": "combat",
+      "kind": "recovered",
+      "title": "Ordinary creature defended damage admission",
+      "scope": "No-CD class1/type17 rank0 defended entry projection: signed nonpositive refusal, supplied status8/immunity gate, low32 mitigation multiply with unsigned /100, quarter reduction, absorption modes1/2 with declared response returns, feedback callback ordering and signed health handoff. Status/response/feedback helper internals, special creature effects, complete AI/combat and live replacement excluded. NS24 extends explicit contribution IDs/nullable lookup returns and lethal detach slot argument; helper internals remain excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326944,
+          "scope": "Selected declared ordinary-domain branches only; whole function/callers are not implied."
+        }
+      ],
+      "documents": [
+        "research/runtime/ordinary-health.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp"
+      ],
+      "tests": [
+        "tests/ordinary-health-test.cpp",
+        "tools/test-ordinary-health.py"
+      ],
+      "evidence": [
+        "NS23.health-original",
+        "NS23.health-native",
+        "NS24.health-original",
+        "NS24.health-native",
+        "NS25.health-regression-original",
+        "NS25.health-regression-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-health-contract.py",
+        "tools/test-ordinary-health.py"
+      ],
+      "validation_domain": {
+        "inputs": [
+          "class1/type17 synthetic creature",
+          "empty original creature/effect pools and null cached contribution links",
+          "explicit helper return values; endpoint argument traces",
+          "original body and18 private endpoint redirects"
+        ],
+        "branches": [
+          "signed INT_MIN/INT_MAX and zero/nonpositive requests",
+          "dead/global/status/immunity refusals",
+          "unsigned multiply/division wrap and percent0/25/99/100/101/UINT_MAX",
+          "quarter and absorption response/notification branches",
+          "healing cap and zero maximum",
+          "rank0 ordinary lethal cleanup and retained active flag",
+          "incoming per-owner damage fields and contribution/statistics call arguments",
+          "healthbar/dirty state and maximum rank0/1/2 arithmetic",
+          "explicit contribution IDs including UINT_MAX, null lookup returns and arbitrary supplied detach slot"
+        ],
+        "exclusions": [
+          "live replacement",
+          "whole helper effects and experience semantics",
+          "leaders/illusions/scenario/explosion and ranked lethal branches",
+          "nonempty entity/effect pools and cached contribution chains"
+        ]
+      }
+    },
+    {
+      "id": "NP.ordinary-health-adapter",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native ordinary health backend and checkpoint identity",
+      "scope": "Stateless app adapter projects the verified No-CD ordinary numerical damage/heal/death rules into bounded native fighters. Health<=maximum<=1e6; defenses neutral, no original wizard special branches; native cleanup remains independently owned. V3 checkpoints pin immutable health rules identity; v1/v2 keep authored fixture rules; heal cap/refusals and bad/throwing backend restore/tick rollback. Original status profile loading, callback effects, original wizard death, live replacement and balance changes excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/ordinary-health.md",
+        "research/formats/native-combat-subsystem.md"
+      ],
+      "implementation": [
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp"
+      ],
+      "tests": [
+        "tests/native-health-rules-test.cpp"
+      ],
+      "evidence": [
+        "NS23.arena-normal",
+        "NS23.arena-sanitized",
+        "NS24.arena-regression",
+        "NS25.arena-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/skirmish/../../tests/skirmish-window-driver.hpp",
+        "apps/skirmish/../world-scene/playback.hpp",
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/cli.cpp",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/trace.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/window.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "game/../apps/world-sandbox/frozen_navigation.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/../../assets/animation.hpp",
+        "reconstruction/animation/../../assets/asset_file.hpp",
+        "reconstruction/animation/../../assets/path_resolver.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/motion/../pathfinding/route_neighbors.hpp",
+        "reconstruction/motion/../pathfinding/route_request.hpp",
+        "reconstruction/motion/../pathfinding/route_scalar.hpp",
+        "reconstruction/motion/../pathfinding/route_search.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "tests/ani-motion-test.cpp",
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-model-test.cpp",
+        "tests/animation-placement-test.cpp",
+        "tests/creature-motion-test.cpp",
+        "tests/native-ani-restore-test.cpp",
+        "tests/native-combat-test.cpp",
+        "tests/native-idle-display-test.cpp",
+        "tests/native-movement-test.cpp",
+        "tests/native-multi-movement-test.cpp",
+        "tests/native-occupancy-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/native-terrain-restore-test.cpp",
+        "tests/native-world-test.cpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/route-boundary-test.cpp",
+        "tests/route-cell-support-test.cpp",
+        "tests/route-cell-test.cpp",
+        "tests/route-cell-validity-test.cpp",
+        "tests/route-clearance-test.cpp",
+        "tests/route-creature-acceptance-test.cpp",
+        "tests/route-movement-test.cpp",
+        "tests/route-neighbors-test.cpp",
+        "tests/route-occupancy-test.cpp",
+        "tests/route-record-query-test.cpp",
+        "tests/route-request-test.cpp",
+        "tests/route-scalar-test.cpp",
+        "tests/route-search-test.cpp",
+        "tests/route-validity-test.cpp",
+        "tests/route-world-test.cpp",
+        "tests/segment-setup-test.cpp",
+        "tests/skirmish-test.cpp",
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/test-native-combat.py",
+        "tests/test-skirmish-window.py",
+        "tests/test-skirmish.py",
+        "tools/create-movement-fixture.py"
+      ]
+    },
+    {
       "id": "HOST.native-media-output-recovery",
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
@@ -46941,6 +47873,371 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CB.ordinary-melee",
+      "subsystem": "combat",
+      "kind": "recovered",
+      "title": "Ordinary type17 melee arithmetic and original random draw ordering",
+      "scope": "No-CD type17 vs type17, no evasion/charge/cached contributions, hostile distinct owners: signed wrapping HTH/power/physical/height/response/rank/status arithmetic, damage and conditional stun draw ordering, composed rank0 ordinary target health. Response classification/modifier and stun returns explicit boundaries; full stun, audio/XP/effect helpers, special creatures, reach/target selection and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5292240,
+          "scope": "Selected declared ordinary melee branches only; whole function/callers excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5562736,
+          "scope": "Selected declared ordinary melee branches only; whole function/callers excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5562880,
+          "scope": "Selected declared ordinary melee branches only; whole function/callers excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326944,
+          "scope": "Selected declared ordinary melee branches only; whole function/callers excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/ordinary-melee.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp"
+      ],
+      "tests": [
+        "tests/ordinary-melee-test.cpp",
+        "tools/test-ordinary-melee.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "NS24.melee-original",
+        "NS24.melee-native",
+        "NS25.melee-regression-original",
+        "NS25.melee-regression-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "inputs": [
+          "type17 vs type17 ordinary creature pair",
+          "original global RNG words/cursors",
+          "supplied response/stun/null effect and credit lookup returns",
+          "shipped Crocodile ANI24..31"
+        ],
+        "branches": [
+          "signed DWORD arithmetic and overflow",
+          "physical/power/height/rank/status adjustments",
+          "nonpositive damage early return and conditional stun draws",
+          "blocked/missing event2 target and event1 cooldown",
+          "full installed animation-to-melee-to-health chain with lethal/nonlethal targets"
+        ],
+        "exclusions": [
+          "evasion and charge",
+          "special creatures",
+          "stun/effect/audio/credit helper internals",
+          "AI/reach/sequence selection",
+          "live equivalence and replacement"
+        ]
+      }
+    },
+    {
+      "id": "CB.melee-animation-event",
+      "subsystem": "combat",
+      "kind": "recovered",
+      "title": "Original main melee action event and installed forward animation timing",
+      "scope": "Main action a with no attached secondary animation: supplied events0/1/2/3/4, valid/missing event2 target, engagement decrement/clamp, blocked hit, post-damage recent attacker, event1 ready request and randomized cooldown/slow flag; Crocodile ANI24..31 unchanged forward controller timing and native continuation. Event4 creature audio, full ready/behavior callbacks, attack sequence selection, reach, live scheduling and replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5302176,
+          "scope": "Selected declared main action/forward controller branches only.",
+          "recovered_range": "combat-main-melee-action-50e7a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607152,
+          "scope": "Selected declared main action/forward controller branches only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607680,
+          "scope": "Selected declared main action/forward controller branches only."
+        }
+      ],
+      "documents": [
+        "research/runtime/ordinary-melee.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp"
+      ],
+      "tests": [
+        "tests/ordinary-melee-test.cpp",
+        "tools/test-ordinary-melee.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "NS24.melee-original",
+        "NS24.melee-native",
+        "NS25.melee-regression-original",
+        "NS25.melee-regression-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "inputs": [
+          "type17 vs type17 ordinary creature pair",
+          "original global RNG words/cursors",
+          "supplied response/stun/null effect and credit lookup returns",
+          "shipped Crocodile ANI24..31"
+        ],
+        "branches": [
+          "signed DWORD arithmetic and overflow",
+          "physical/power/height/rank/status adjustments",
+          "nonpositive damage early return and conditional stun draws",
+          "blocked/missing event2 target and event1 cooldown",
+          "full installed animation-to-melee-to-health chain with lethal/nonlethal targets"
+        ],
+        "exclusions": [
+          "evasion and charge",
+          "special creatures",
+          "stun/effect/audio/credit helper internals",
+          "AI/reach/sequence selection",
+          "live equivalence and replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.melee-exchange",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native original-profile melee lab and complete checkpoint continuation",
+      "scope": "Two stationary type17 native actors, loaded Crocodile HTH/health/ANI24, supplied neutral response and handled-stun endpoint without stun effects, once-per-tick recovery/rearm, slot-ordered ordinary numerical health and native retained dead identity, complete owned RNG/animation/profile checkpoint, atomic failed adapter/load refusal. Original reach/footprint placement/sequence selection/ready behavior reentrancy/AI, full fight equivalence, gameplay balance changes and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/ordinary-melee.md",
+        "research/formats/native-melee-exchange.md",
+        "apps/melee-lab/README.md"
+      ],
+      "implementation": [
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "apps/melee-lab/profile.cpp",
+        "apps/melee-lab/profile.hpp",
+        "apps/melee-lab/cli.cpp"
+      ],
+      "tests": [
+        "tests/native-melee-exchange-test.cpp",
+        "tests/test-melee-exchange.py"
+      ],
+      "validation_dependencies": [
+        "apps/melee-lab/CMakeLists.txt",
+        "apps/melee-lab/controller.cpp",
+        "apps/melee-lab/controller.hpp",
+        "apps/melee-lab/main.cpp",
+        "apps/melee-lab/window.cpp",
+        "apps/melee-lab/window.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "tests/melee-window-driver.cpp",
+        "tests/melee-window-driver.hpp"
+      ],
+      "evidence": [
+        "NS24.exchange-normal",
+        "NS24.exchange-sanitized",
+        "NS25.lab-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.melee-lab-window",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native melee lab window lifecycle and playback",
+      "scope": "Native Qt window/controller drives the same stationary original-profile melee service; actual Play/Pause/Step buttons, real timer, save/reload and failed-load preservation, terminal result and captured vector canvas. Actual picker interactions, original sprite presentation, Qt sanitizer execution, installed campaign and live simulation replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/ordinary-melee.md",
+        "research/formats/native-melee-exchange.md",
+        "apps/melee-lab/README.md"
+      ],
+      "implementation": [
+        "apps/melee-lab/controller.cpp",
+        "apps/melee-lab/controller.hpp",
+        "apps/melee-lab/window.cpp",
+        "apps/melee-lab/window.hpp",
+        "apps/melee-lab/main.cpp"
+      ],
+      "tests": [
+        "tests/melee-window-driver.cpp",
+        "tests/melee-window-driver.hpp",
+        "tests/test-melee-exchange.py"
+      ],
+      "validation_dependencies": [
+        "apps/melee-lab/CMakeLists.txt",
+        "apps/melee-lab/cli.cpp",
+        "apps/melee-lab/profile.cpp",
+        "apps/melee-lab/profile.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "tests/native-melee-exchange-test.cpp"
+      ],
+      "evidence": [
+        "NS24.window",
+        "NS25.lab-window-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     },
@@ -47364,6 +48661,873 @@
       }
     },
     {
+      "id": "CB.melee-reach",
+      "subsystem": "creature-control",
+      "kind": "recovered",
+      "title": "Melee footprints and diagonal admission",
+      "scope": "Wrapped XY, footprint perimeter, vertical overlap and endpoint selection; diagonal legality supplied separately.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5291360,
+          "scope": "Wrapped XY, footprint perimeter, vertical overlap and endpoint selection; diagonal legality supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5294384,
+          "scope": "Wrapped XY, footprint perimeter, vertical overlap and endpoint selection; diagonal legality supplied separately."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5196592,
+          "scope": "Wrapped XY, footprint perimeter, vertical overlap and endpoint selection; diagonal legality supplied separately."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/creature-control.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp"
+      ],
+      "tests": [
+        "tests/creature-control-test.cpp",
+        "tools/test-creature-control.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp"
+      ],
+      "evidence": [
+        "NS25.control-original",
+        "NS25.control-native",
+        "NS25.control-original-v2",
+        "NS25.control-native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "CB.creature-stun",
+      "subsystem": "creature-control",
+      "kind": "recovered",
+      "title": "Stun admission, action timer and knockback",
+      "scope": "Typed control state and helper event ordering; ordinary empty effect ownership; movement legality and request outcomes supplied; special effect ownership and live composition pending.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5296224,
+          "scope": "Typed control state and helper event ordering; ordinary empty effect ownership; movement legality and request outcomes supplied; special effect ownership and live composition pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305744,
+          "scope": "Typed control state and helper event ordering; ordinary empty effect ownership; movement legality and request outcomes supplied; special effect ownership and live composition pending.",
+          "recovered_range": "creature-stun-action-50f590"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5378400,
+          "scope": "Typed control state and helper event ordering; ordinary empty effect ownership; movement legality and request outcomes supplied; special effect ownership and live composition pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5379104,
+          "scope": "Typed control state and helper event ordering; ordinary empty effect ownership; movement legality and request outcomes supplied; special effect ownership and live composition pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5306304,
+          "scope": "Typed control state and helper event ordering; ordinary empty effect ownership; movement legality and request outcomes supplied; special effect ownership and live composition pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/creature-control.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp"
+      ],
+      "tests": [
+        "tests/creature-control-test.cpp",
+        "tools/test-creature-control.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp"
+      ],
+      "evidence": [
+        "NS25.control-original",
+        "NS25.control-native",
+        "NS25.control-original-v2",
+        "NS25.control-native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "AI.creature-control",
+      "subsystem": "creature-control",
+      "kind": "recovered",
+      "title": "Creature AI orchestration and target selection",
+      "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342240,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5343056,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5343712,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5344336,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5345152,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5345536,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5346096,
+          "scope": "Controller precedence with explicit helper returns and bounded ordinary enemy/assist/corpse/retaliation selection; spell/interaction/hazard helpers, all species special states and complete original AI equivalence pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/creature-control.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp"
+      ],
+      "tests": [
+        "tests/creature-control-test.cpp",
+        "tools/test-creature-control.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp"
+      ],
+      "evidence": [
+        "NS25.control-original",
+        "NS25.control-native",
+        "NS25.control-original-v2",
+        "NS25.control-native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_domain": {
+        "included": [
+          "bounded controller branches with supplied helper returns",
+          "enemy/home/assist/corpse selectors",
+          "ordinary recent-attacker threshold/substate branch"
+        ],
+        "excluded": [
+          "hostile spell46 scan",
+          "original complete admission bodies",
+          "spell/interaction/hazard producers",
+          "all species behavior and ownership",
+          "original full encounter and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.creature-encounter",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Autonomous native creature encounter and checkpoint continuation",
+      "scope": "Four installed-profile type17 actors: recovered ordinary enemy selection, footprint reach, relative direction, melee draw ordering and timed stun; explicit native flat toroidal BFS/occupancy, all-visible hostility, attack24 and stun112 directional sequence selection, one-tick knockback relocation, slot traversal, retained corpses and automatic retargeting. Complete original AI, animation selection, movement timing, queue/effect ownership, spells, all species and live replacement remain pending. Native termination after160 ticks without control progress is a stalemate policy; it need not produce a winning team.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-control.md",
+        "research/formats/native-creature-encounter.md",
+        "apps/creature-lab/README.md"
+      ],
+      "implementation": [
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "apps/creature-lab/profile.cpp",
+        "apps/creature-lab/profile.hpp",
+        "apps/creature-lab/cli.cpp"
+      ],
+      "tests": [
+        "tests/native-creature-encounter-test.cpp",
+        "tests/test-creature-encounter.py"
+      ],
+      "validation_dependencies": [
+        "apps/creature-lab/CMakeLists.txt",
+        "apps/creature-lab/cli.cpp",
+        "apps/creature-lab/controller.cpp",
+        "apps/creature-lab/controller.hpp",
+        "apps/creature-lab/main.cpp",
+        "apps/creature-lab/profile.cpp",
+        "apps/creature-lab/profile.hpp",
+        "apps/creature-lab/window.cpp",
+        "apps/creature-lab/window.hpp",
+        "apps/melee-lab/CMakeLists.txt",
+        "apps/melee-lab/cli.cpp",
+        "apps/melee-lab/controller.cpp",
+        "apps/melee-lab/controller.hpp",
+        "apps/melee-lab/main.cpp",
+        "apps/melee-lab/profile.cpp",
+        "apps/melee-lab/profile.hpp",
+        "apps/melee-lab/window.cpp",
+        "apps/melee-lab/window.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "tests/creature-window-driver.cpp",
+        "tests/creature-window-driver.hpp",
+        "tests/melee-window-driver.cpp",
+        "tests/melee-window-driver.hpp",
+        "tests/native-creature-encounter-test.cpp",
+        "tests/test-creature-encounter.py"
+      ],
+      "evidence": [
+        "NS25.encounter-normal",
+        "NS25.encounter-sanitized"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.creature-window",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native autonomous creature lab presentation",
+      "scope": "Production Qt Play/Pause/Step/Restart, displayed native grid/footprints/stun and self-contained API Save/Load; bounded timer and failure continuation. Original sprites, original encounter equivalence and picker interaction remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-control.md",
+        "research/formats/native-creature-encounter.md",
+        "apps/creature-lab/README.md"
+      ],
+      "implementation": [
+        "apps/creature-lab/controller.cpp",
+        "apps/creature-lab/controller.hpp",
+        "apps/creature-lab/window.cpp",
+        "apps/creature-lab/window.hpp",
+        "apps/creature-lab/main.cpp"
+      ],
+      "tests": [
+        "tests/creature-window-driver.cpp",
+        "tests/creature-window-driver.hpp",
+        "tests/test-creature-encounter.py"
+      ],
+      "validation_dependencies": [
+        "apps/creature-lab/CMakeLists.txt",
+        "apps/creature-lab/cli.cpp",
+        "apps/creature-lab/controller.cpp",
+        "apps/creature-lab/controller.hpp",
+        "apps/creature-lab/main.cpp",
+        "apps/creature-lab/profile.cpp",
+        "apps/creature-lab/profile.hpp",
+        "apps/creature-lab/window.cpp",
+        "apps/creature-lab/window.hpp",
+        "apps/melee-lab/CMakeLists.txt",
+        "apps/melee-lab/cli.cpp",
+        "apps/melee-lab/controller.cpp",
+        "apps/melee-lab/controller.hpp",
+        "apps/melee-lab/main.cpp",
+        "apps/melee-lab/profile.cpp",
+        "apps/melee-lab/profile.hpp",
+        "apps/melee-lab/window.cpp",
+        "apps/melee-lab/window.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "tests/creature-window-driver.cpp",
+        "tests/creature-window-driver.hpp",
+        "tests/melee-window-driver.cpp",
+        "tests/melee-window-driver.hpp",
+        "tests/native-creature-encounter-test.cpp",
+        "tests/test-creature-encounter.py"
+      ],
+      "evidence": [
+        "NS25.window"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.world-object-selection",
+      "subsystem": "creature-autonomy",
+      "kind": "recovered",
+      "title": "Interaction and world-object destination decisions",
+      "scope": "Exact interaction object ordering, class and inventory gates, destination reservations and hostile threat exclusion; inventory execution and object reachability remain service boundaries.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5363632,
+          "scope": "Exact interaction object ordering, class and inventory gates, destination reservations and hostile threat exclusion; inventory execution and object reachability remain service boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5364528,
+          "scope": "Exact interaction object ordering, class and inventory gates, destination reservations and hostile threat exclusion; inventory execution and object reachability remain service boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5363296,
+          "scope": "Exact interaction object ordering, class and inventory gates, destination reservations and hostile threat exclusion; inventory execution and object reachability remain service boundaries."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-autonomy.md",
+        "reconstruction/creature-ai/README.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp"
+      ],
+      "tests": [
+        "tests/creature-autonomy-test.cpp",
+        "tools/test-creature-autonomy.py"
+      ],
+      "evidence": [
+        "NS26.autonomy-initial-original",
+        "NS26.autonomy-initial-native",
+        "NS26.autonomy-original",
+        "NS26.autonomy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt"
+      ],
+      "validation_domain": {
+        "included": [
+          "Bounded valid actor pools, all28 class/type indices, status gates and native callback outcomes",
+          "27unchanged original controller/selector/behavior bodies with complete actor byte and helper ordering comparisons",
+          "Supplied terrain hazard classification, movement legality, reach, LOS, effect/region input data and consequences"
+        ],
+        "excluded": [
+          "Original geometry, inventory/cast/health/action execution and reentrant behavior composition",
+          "Complete route continuation, scheduler, orders/follow and strategic/scenario AI",
+          "Existing Crocodile lab integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "AI.local-navigation",
+      "subsystem": "creature-autonomy",
+      "kind": "recovered",
+      "title": "Local hazard, escape and target admission",
+      "scope": "Original terrain hazard accumulation, local escape candidate order and greedy target admission; movement legality, reach and route execution use explicit native service contracts.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5347504,
+          "scope": "Original terrain hazard accumulation, local escape candidate order and greedy target admission; movement legality, reach and route execution use explicit native service contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5362176,
+          "scope": "Original terrain hazard accumulation, local escape candidate order and greedy target admission; movement legality, reach and route execution use explicit native service contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5392656,
+          "scope": "Original terrain hazard accumulation, local escape candidate order and greedy target admission; movement legality, reach and route execution use explicit native service contracts."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-autonomy.md",
+        "reconstruction/creature-ai/README.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp"
+      ],
+      "tests": [
+        "tests/creature-autonomy-test.cpp",
+        "tools/test-creature-autonomy.py"
+      ],
+      "evidence": [
+        "NS26.autonomy-initial-original",
+        "NS26.autonomy-initial-native",
+        "NS26.autonomy-original",
+        "NS26.autonomy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt"
+      ],
+      "validation_domain": {
+        "included": [
+          "Bounded valid actor pools, all28 class/type indices, status gates and native callback outcomes",
+          "27unchanged original controller/selector/behavior bodies with complete actor byte and helper ordering comparisons",
+          "Supplied terrain hazard classification, movement legality, reach, LOS, effect/region input data and consequences"
+        ],
+        "excluded": [
+          "Original geometry, inventory/cast/health/action execution and reentrant behavior composition",
+          "Complete route continuation, scheduler, orders/follow and strategic/scenario AI",
+          "Existing Crocodile lab integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "AI.immediate-defense",
+      "subsystem": "creature-autonomy",
+      "kind": "recovered",
+      "title": "Immediate nearby opponent selection",
+      "scope": "Original immediate target, orienting threat scan, assistance admission and attack response; exact RNG order and species/status gates. Lower-level geometry and effect execution remain service contracts.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5333536,
+          "scope": "Original immediate target, orienting threat scan, assistance admission and attack response; exact RNG order and species/status gates. Lower-level geometry and effect execution remain service contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5362592,
+          "scope": "Original immediate target, orienting threat scan, assistance admission and attack response; exact RNG order and species/status gates. Lower-level geometry and effect execution remain service contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5365904,
+          "scope": "Original immediate target, orienting threat scan, assistance admission and attack response; exact RNG order and species/status gates. Lower-level geometry and effect execution remain service contracts."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342912,
+          "scope": "Original immediate target, orienting threat scan, assistance admission and attack response; exact RNG order and species/status gates. Lower-level geometry and effect execution remain service contracts."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-autonomy.md",
+        "reconstruction/creature-ai/README.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp"
+      ],
+      "tests": [
+        "tests/creature-autonomy-test.cpp",
+        "tools/test-creature-autonomy.py"
+      ],
+      "evidence": [
+        "NS26.autonomy-initial-original",
+        "NS26.autonomy-initial-native",
+        "NS26.autonomy-original",
+        "NS26.autonomy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt"
+      ],
+      "validation_domain": {
+        "included": [
+          "Bounded valid actor pools, all28 class/type indices, status gates and native callback outcomes",
+          "27unchanged original controller/selector/behavior bodies with complete actor byte and helper ordering comparisons",
+          "Supplied terrain hazard classification, movement legality, reach, LOS, effect/region input data and consequences"
+        ],
+        "excluded": [
+          "Original geometry, inventory/cast/health/action execution and reentrant behavior composition",
+          "Complete route continuation, scheduler, orders/follow and strategic/scenario AI",
+          "Existing Crocodile lab integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "AI.autonomy-controller",
+      "subsystem": "creature-autonomy",
+      "kind": "recovered",
+      "title": "Composed original autonomous decisions and hostile spell avoidance",
+      "scope": "Original518420 controller composed with recovered immediate/target/assist/corpse/world-object/inventory/hazard producers,519330 hostile spell70 avoidance, and51c3a0 state admission. Geometry, region graph and behavior/action execution are explicit world services; full behavior handlers, route scheduler, strategy and live replacement pending.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342240,
+          "scope": "Original518420 controller composed with recovered immediate/target/assist/corpse/world-object/inventory/hazard producers,519330 hostile spell70 avoidance, and51c3a0 state admission. Geometry, region graph and behavior/action execution are explicit world services; full behavior handlers, route scheduler, strategy and live replacement pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5346096,
+          "scope": "Original518420 controller composed with recovered immediate/target/assist/corpse/world-object/inventory/hazard producers,519330 hostile spell70 avoidance, and51c3a0 state admission. Geometry, region graph and behavior/action execution are explicit world services; full behavior handlers, route scheduler, strategy and live replacement pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5358496,
+          "scope": "Original518420 controller composed with recovered immediate/target/assist/corpse/world-object/inventory/hazard producers,519330 hostile spell70 avoidance, and51c3a0 state admission. Geometry, region graph and behavior/action execution are explicit world services; full behavior handlers, route scheduler, strategy and live replacement pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-autonomy.md",
+        "reconstruction/creature-ai/README.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp"
+      ],
+      "tests": [
+        "tests/creature-autonomy-test.cpp",
+        "tools/test-creature-autonomy.py"
+      ],
+      "evidence": [
+        "NS26.autonomy-initial-original",
+        "NS26.autonomy-initial-native",
+        "NS26.autonomy-original",
+        "NS26.autonomy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt"
+      ],
+      "validation_domain": {
+        "included": [
+          "Bounded valid actor pools, all28 class/type indices, status gates and native callback outcomes",
+          "27unchanged original controller/selector/behavior bodies with complete actor byte and helper ordering comparisons",
+          "Supplied terrain hazard classification, movement legality, reach, LOS, effect/region input data and consequences"
+        ],
+        "excluded": [
+          "Original geometry, inventory/cast/health/action execution and reentrant behavior composition",
+          "Complete route continuation, scheduler, orders/follow and strategic/scenario AI",
+          "Existing Crocodile lab integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "AI.autonomous-behaviors",
+      "subsystem": "creature-autonomy",
+      "kind": "recovered",
+      "title": "Autonomous behavior handlers and local retreat",
+      "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5358864,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5359104,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5359616,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5359744,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5360832,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5361232,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5361552,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5362176,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5365488,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5365696,
+          "scope": "Nine autonomous substates: home-radius attack, combat retreat, Troll/Redcap corpse actions, ally attack, hazard escape, return home, interaction and destination pursuit. Exact state/target/route/action requests and corpse writes; geometry, signed health, ranged aiming, movement and animation execution remain world services."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-autonomy.md",
+        "reconstruction/creature-ai/README.md"
+      ],
+      "implementation": [
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp"
+      ],
+      "tests": [
+        "tests/creature-autonomy-test.cpp",
+        "tools/test-creature-autonomy.py"
+      ],
+      "evidence": [
+        "NS26.autonomy-initial-original",
+        "NS26.autonomy-initial-native",
+        "NS26.autonomy-original",
+        "NS26.autonomy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt"
+      ],
+      "validation_domain": {
+        "included": [
+          "Bounded valid actor pools, all28 class/type indices, status gates and native callback outcomes",
+          "27unchanged original controller/selector/behavior bodies with complete actor byte and helper ordering comparisons",
+          "Supplied terrain hazard classification, movement legality, reach, LOS, effect/region input data and consequences"
+        ],
+        "excluded": [
+          "Original geometry, inventory/cast/health/action execution and reentrant behavior composition",
+          "Complete route continuation, scheduler, orders/follow and strategic/scenario AI",
+          "Existing Crocodile lab integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "TOOL.creature-autonomy-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned original autonomy disassembly exporter",
+      "scope": "Read-only bounded instruction and data exports with immutable executable hash and before/after manifest checks. Static export only; no behavioral equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-autonomy.md"
+      ],
+      "implementation": [
+        "tools/export-creature-autonomy.py"
+      ],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "AU.scheduler-original-cases",
       "subsystem": "audio_reconstruction",
       "kind": "recovered",
@@ -47422,6 +49586,66 @@
         "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-audio-file-sizes",
+      "subsystem": "native_audio",
+      "kind": "native_policy",
+      "title": "Selected audio pool file-size reads through native storage",
+      "scope": "Only pinned pool caller0x56ed0f and consumed DWORD at stat output+0x14; native read-only Sounds-root leaf WAV size without PCM decoding, bounded ASCII/path policy and optional v5 capability64/op26. Full CRT stat structure, errno/LastError equivalence, arbitrary helper callers, filesystem races, original selector/cache/scheduler/events and full manager migration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5695760,
+          "scope": "Selected stat call0x56ed0f and successful size read0x56ed1b only; whole pool function not implied."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-audio-file-sizes.md",
+        "research/runtime/audio-manager-configuration.md"
+      ],
+      "implementation": [
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "runtime/audio/file_sizes.h",
+        "runtime/audio/bridge.c",
+        "runtime/audio/protocol.h",
+        "tools/native_audio_launch.py",
+        "tools/prepare-menu-observer.py",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tools/test-native-audio-file-sizes.py",
+        "tests/native-audio-file-sizes/producer.c",
+        "tests/native-audio-file-sizes/host.cpp",
+        "tests/native-audio-file-sizes/CMakeLists.txt",
+        "tests/test-native-audio-launch.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-audio-bridge.py",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "audio/CMakeLists.txt",
+        "assets/asset_file.hpp"
+      ],
+      "evidence": [
+        "HOST.native-audio-file-sizes.installed-20261012",
+        "HOST.native-audio-file-sizes.controlled-public-20261012",
+        "HOST.native-audio-file-sizes.default-public-20261012",
+        "HOST.native-render-latest-master.audio-file-size-20261012",
+        "HOST.native-render-latest-master.full-performance-negative-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -48461,66 +50685,6 @@
       "remaining_gaps": [
         "Current carry-forward worker/recipe controls and unchanged-source full TITAN rerun support partial native policy/live observation:4616 balanced imports,first-seal blocking0,source19.8068Hz,World44.2446FPS,paints52.7221/54.1183.60FPSfails. First full attempt failed existing conservative copy-order/history timeout; recurrence/cause remain unresolved and rerun success does not eliminate that reliability boundary. GPU execution attribution/native World/driver cost,physical scanout/full original comparison/interpolation/unexecuted failures remain pending. UI carry-forward is intentional native presentation policy."
       ]
-    },
-    {
-      "id": "HOST.native-audio-file-sizes",
-      "subsystem": "native_audio",
-      "kind": "native_policy",
-      "title": "Selected audio pool file-size reads through native storage",
-      "scope": "Only pinned pool caller0x56ed0f and consumed DWORD at stat output+0x14; native read-only Sounds-root leaf WAV size without PCM decoding, bounded ASCII/path policy and optional v5 capability64/op26. Full CRT stat structure, errno/LastError equivalence, arbitrary helper callers, filesystem races, original selector/cache/scheduler/events and full manager migration excluded.",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 5695760,
-          "scope": "Selected stat call0x56ed0f and successful size read0x56ed1b only; whole pool function not implied."
-        }
-      ],
-      "documents": [
-        "research/runtime/native-audio-file-sizes.md",
-        "research/runtime/audio-manager-configuration.md"
-      ],
-      "implementation": [
-        "audio/wave_source.cpp",
-        "audio/wave_source.hpp",
-        "audio/voice_bridge.cpp",
-        "audio/voice_bridge.hpp",
-        "runtime/audio/file_sizes.h",
-        "runtime/audio/bridge.c",
-        "runtime/audio/protocol.h",
-        "tools/native_audio_launch.py",
-        "tools/prepare-menu-observer.py",
-        "apps/qt-shell/main.cpp"
-      ],
-      "tests": [
-        "tools/test-native-audio-file-sizes.py",
-        "tests/native-audio-file-sizes/producer.c",
-        "tests/native-audio-file-sizes/host.cpp",
-        "tests/native-audio-file-sizes/CMakeLists.txt",
-        "tests/test-native-audio-launch.py",
-        "tools/test-native-campaign.py"
-      ],
-      "validation_dependencies": [
-        "tools/build-audio-bridge.py",
-        "runtime/shadow/win32_min.h",
-        "tools/build-shadow-bridge.py",
-        "audio/CMakeLists.txt",
-        "assets/asset_file.hpp"
-      ],
-      "evidence": [
-        "HOST.native-audio-file-sizes.installed-20261012",
-        "HOST.native-audio-file-sizes.controlled-public-20261012",
-        "HOST.native-audio-file-sizes.default-public-20261012",
-        "HOST.native-render-latest-master.audio-file-size-20261012",
-        "HOST.native-render-latest-master.full-performance-negative-20261012"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "live_observation",
-        "replacement": "none"
-      }
     }
   ],
   "evidence": [
@@ -94721,6 +96885,188 @@
       ]
     },
     {
+      "id": "NS22.skirmish-normal",
+      "kind": "native_integration",
+      "scope": "Declared-source Debug authored skirmish contract, independent wire/phase oracle and32 exact fresh-process match checkpoints;16 malformed/CLI refusals; no original equivalence.",
+      "record": "research/runtime/native-skirmish-normal-20261012.json",
+      "sha256": "60bb9e40274e6d704f670844ad6739ab5585e330b11cbcef4000ed6e28561e75",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 16
+        }
+      ]
+    },
+    {
+      "id": "NS22.skirmish-window",
+      "kind": "native_integration",
+      "scope": "Production Qt entry-point mouse/buttons/dialogs and timer victory/defeat, failed-load rollback, paused time, five fresh-window and headless checkpoint continuations with final canvas equality. Authored vector arena; no original equivalence.",
+      "record": "research/runtime/native-skirmish-window-20261012.json",
+      "sha256": "83350340cb9d2e5738b6ada4acc79d4adffd0d34372b6ad43a1fc3eb73d4d682",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/timer_victory",
+          "equals": true
+        },
+        {
+          "pointer": "/timer_defeat",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_save_load_dialogs",
+          "equals": true
+        },
+        {
+          "pointer": "/failed_load_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/pause_frozen",
+          "equals": true
+        },
+        {
+          "pointer": "/window_continuations",
+          "equals": 5
+        },
+        {
+          "pointer": "/headless_continuations",
+          "equals": 5
+        }
+      ]
+    },
+    {
+      "id": "NS22.combat-regression-normal",
+      "kind": "native_integration",
+      "scope": "Debug v1 automatic encounter regression after v2 controls: original native fixture timing/health/wire oracle,32 exact coarse/fine checkpoints and15 refusals. No original combat equivalence.",
+      "record": "research/runtime/native-combat-regression-normal-20261012.json",
+      "sha256": "185ec3aa09a79db73f32bd6fc96034ecc403a514e2789338e88afd195ae23d83",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "NS22.skirmish-sanitized",
+      "kind": "native_integration",
+      "scope": "ASan/UBSan with leak detection: authored skirmish production contract, independent wire/phase oracle,32 exact fresh-process match checkpoints and16 malformed/CLI refusals. No original equivalence.",
+      "record": "research/runtime/native-skirmish-sanitized-20261012.json",
+      "sha256": "667704c70ed8729b73b57d6951c06ef101393bc402a147fc8b7305b644a34ee0",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 16
+        }
+      ]
+    },
+    {
+      "id": "NS22.combat-regression-sanitized",
+      "kind": "native_integration",
+      "scope": "ASan/UBSan with leak detection: v1 automatic encounter regression after v2 controls,32 coarse/fine checkpoints, seven hits/one death and15 refusals. No original combat equivalence.",
+      "record": "research/runtime/native-combat-regression-sanitized-20261012.json",
+      "sha256": "d71f457d169237709658ef84ca542f5178df5770db09e36379feba7723eb43fc",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-cd-assets.installed-20261012",
+      "kind": "native_integration",
+      "scope": "Native read-only CD asset extraction of all12 supplied audio tracks:438057648PCM bytes; original CUE/image, tool/test/document fingerprints unchanged, per-track PCM/WAV hashes retained, immutable manifests before/after. INDEX1 span policy, no MCI or playback claim.",
+      "record": "research/runtime/native-cd-assets-installed-20261012.json",
+      "sha256": "fa9713b8323d85097154f26672b8547cea393a49b72235a5b72de5931181a14b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
       "id": "HOST.native-audio-factory-media.public-pass-20261012",
       "kind": "live_observation",
       "scope": "Default native voices, guarded native WAV loads and native-only game DirectSound factory during full native startup Intro0/Intro1, campaign and normal Quit. Seven loads/uploads349862bytes,12plays,116request/ACK,zero local unsupported COM,failed requests,adapter errors or fallback;3870087movie soundtrack PCM frames,2781displayed video frames. Native output requested/available, stable compiler/source/media/config inputs and owned Wine cleanup. No human listening/original timing/full manager/WinMM/transitive library retirement claim.",
@@ -94883,37 +97229,6 @@
         },
         {
           "pointer": "/native_media/1/audible_output_requested",
-          "equals": true
-        }
-      ]
-    },
-    {
-      "id": "HOST.native-cd-assets.installed-20261012",
-      "kind": "native_integration",
-      "scope": "Native read-only CD asset extraction of all12 supplied audio tracks:438057648PCM bytes; original CUE/image, tool/test/document fingerprints unchanged, per-track PCM/WAV hashes retained, immutable manifests before/after. INDEX1 span policy, no MCI or playback claim.",
-      "record": "research/runtime/native-cd-assets-installed-20261012.json",
-      "sha256": "fa9713b8323d85097154f26672b8547cea393a49b72235a5b72de5931181a14b",
-      "sources_pointer": "/sources",
-      "claims_pointer": "/claims",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_unchanged",
-          "equals": true
-        },
-        {
-          "pointer": "/inputs_unchanged",
-          "equals": true
-        },
-        {
-          "pointer": "/original_manifest_verified_before",
-          "equals": true
-        },
-        {
-          "pointer": "/original_manifest_verified_after",
           "equals": true
         }
       ]
@@ -96539,6 +98854,269 @@
       ]
     },
     {
+      "id": "NS23.health-original",
+      "kind": "isolated_original",
+      "scope": "Declared-source unchanged No-CD x86 execution:8614 ordinary state/callback projections and36803 ordered endpoint events; five target bodies and object/config guards, explicit18 helper boundaries. Full helper effects and special deaths excluded.",
+      "record": "research/runtime/ordinary-health-original-20261012.json",
+      "sha256": "ca3e7abb82759418ad70810fd037a78b3586d1b985c641189669809e862be2e1",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8614
+        },
+        {
+          "pointer": "/events",
+          "equals": 36803
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS23.health-native",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan ordinary model corpus/literal controls, scoped alongside isolated-original comparison; callback projections only.",
+      "record": "research/runtime/ordinary-health-original-20261012.json",
+      "sha256": "ca3e7abb82759418ad70810fd037a78b3586d1b985c641189669809e862be2e1",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8614
+        },
+        {
+          "pointer": "/events",
+          "equals": 36803
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS23.arena-normal",
+      "kind": "native_integration",
+      "scope": "Debug rules-bound arena,32 fresh-process continuations/18 refusals, native heal/death/legacy/binding/backend rollback contract controls. No original full gameplay equivalence.",
+      "record": "research/runtime/ordinary-health-arena-normal-20261012.json",
+      "sha256": "d8b0b04e310d352a30f756b969b2e85c2a84108737e481ca1548723514f23b72",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 18
+        },
+        {
+          "pointer": "/health_contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/health_backend_identity",
+          "equals": 5643909953862582577
+        }
+      ]
+    },
+    {
+      "id": "NS23.arena-sanitized",
+      "kind": "native_integration",
+      "scope": "ASan/UBSan/leak checked rules-bound arena,32 continuations/18 refusals and native health/binding/rollback contract controls. Qt/window sanitizing excluded.",
+      "record": "research/runtime/ordinary-health-arena-sanitized-20261012.json",
+      "sha256": "9e6a056755068780f21741cda7f2dfc4e7a4c66d6c6ff15a5e92f6eb5e55ca11",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 18
+        },
+        {
+          "pointer": "/health_contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/health_backend_identity",
+          "equals": 5643909953862582577
+        }
+      ]
+    },
+    {
+      "id": "NS23.window",
+      "kind": "native_integration",
+      "scope": "Production-entry Qt actions/dialogs/timer victory/defeat, five fresh-window/headless checkpoint continuations and final canonical canvas equality with the ordinary numerical health backend. No original input/rendering/full combat equivalence.",
+      "record": "research/runtime/ordinary-health-window-20261012.json",
+      "sha256": "af2d7b4030243f263954ba446c9d8d339fcb49da94497890b73cbca23fb04285",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/timer_victory",
+          "equals": true
+        },
+        {
+          "pointer": "/timer_defeat",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_save_load_dialogs",
+          "equals": true
+        },
+        {
+          "pointer": "/failed_load_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/pause_frozen",
+          "equals": true
+        },
+        {
+          "pointer": "/window_continuations",
+          "equals": 5
+        },
+        {
+          "pointer": "/headless_continuations",
+          "equals": 5
+        }
+      ]
+    },
+    {
+      "id": "NS23.combat-normal",
+      "kind": "native_integration",
+      "scope": "Debug automatic v1 native encounter regression after stateless health interface:32 coarse/fine continuations,7 hits/1 death and15 refusals. No original combat equivalence.",
+      "record": "research/runtime/ordinary-health-combat-normal-20261012.json",
+      "sha256": "f0f830835f536092c1ef408a9ef1226361caa4c7071f09ade234e86e40a3882e",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "NS23.combat-sanitized",
+      "kind": "native_integration",
+      "scope": "ASan/UBSan automatic v1 native encounter regression:32 coarse/fine continuations,7 hits/1 death and15 refusals. No original combat equivalence.",
+      "record": "research/runtime/ordinary-health-combat-sanitized-20261012.json",
+      "sha256": "36b685f5b93b7acdc5f769b870fce928ac06527fa3ee98e5a9a01bf14a25382f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 15
+        }
+      ]
+    },
+    {
       "id": "HOST.wine-import-census.data-public-pass-20261012",
       "kind": "live_observation",
       "scope": "Bounded native default DSOUND-disabled voice/WAV/movie/CD/menu/render/campaign/Quit with optional190 original-import proxies and final quiescent counts. Direct Windows/Wine targets versus native shims/legacy codec; excludes dynamic/COM/shim forwarding/transitive/prefix calls and physical equivalence.",
@@ -96912,6 +99490,179 @@
       ]
     },
     {
+      "id": "NS24.melee-original",
+      "kind": "isolated_original",
+      "scope": "Declared ordinary melee/action/installed animation/RNG/health projection, with explicit supplied helper boundaries.",
+      "record": "research/runtime/ordinary-melee-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "sha256": "8bdc1d62a7491a266b9805f384e9542947b60cf5900b5cd1be04ccee54d06bcc"
+    },
+    {
+      "id": "NS24.melee-native",
+      "kind": "native_integration",
+      "scope": "Declared ordinary melee/action/installed animation/RNG/health projection, with explicit supplied helper boundaries.",
+      "record": "research/runtime/ordinary-melee-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "sha256": "8bdc1d62a7491a266b9805f384e9542947b60cf5900b5cd1be04ccee54d06bcc"
+    },
+    {
+      "id": "NS24.health-original",
+      "kind": "isolated_original",
+      "scope": "Extended ordinary health explicit contribution IDs/null returns and detach slot arguments.",
+      "record": "research/runtime/ordinary-melee-health-followup-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "sha256": "939f398dcf5c325b0b55cc9d16f1b257bfd0d1ee33fe14875ba98f485c056dd9"
+    },
+    {
+      "id": "NS24.health-native",
+      "kind": "native_integration",
+      "scope": "Extended ordinary health explicit contribution IDs/null returns and detach slot arguments.",
+      "record": "research/runtime/ordinary-melee-health-followup-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "sha256": "939f398dcf5c325b0b55cc9d16f1b257bfd0d1ee33fe14875ba98f485c056dd9"
+    },
+    {
+      "id": "NS24.exchange-normal",
+      "kind": "native_integration",
+      "scope": "Stationary native original-profile melee policy, deterministic checkpoints, strict refusals and adapter rollback.",
+      "record": "research/runtime/ordinary-melee-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "212d4c867d181bd688ce6aae481261e9bfbe2367b377c46169139c3bf4570ce7"
+    },
+    {
+      "id": "NS24.window",
+      "kind": "native_integration",
+      "scope": "Production native window Play/Pause/Step, timer, checkpoint service/load failure, screenshot and headless final equality; actual file pickers not exercised.",
+      "record": "research/runtime/ordinary-melee-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "212d4c867d181bd688ce6aae481261e9bfbe2367b377c46169139c3bf4570ce7"
+    },
+    {
+      "id": "NS24.exchange-sanitized",
+      "kind": "native_integration",
+      "scope": "Native stationary original-profile exchange and complete checkpoint/refusal/rollback checks under ASan/UBSan/LeakSanitizer; Qt window excluded.",
+      "record": "research/runtime/ordinary-melee-sanitized-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        }
+      ],
+      "sha256": "a512442c4369c50f7345c00fabbe2b7d2be5156ecf907c5a22b9466e4b3dc626"
+    },
+    {
       "id": "HOST.native-audio-initial-silence.endpoints-20261012",
       "kind": "native_integration",
       "scope": "Final-source actual empty private graph startup for voices/movie/file-sound/music and endpoint attachment, native discard clock/one-shot expiry/loop progress, exact decoded PCM/RGBA and owned graph/daemon cleanup. Includes MusicBroker startup/teardown and surviving device-provider lifecycle. Physical/original equivalent behavior excluded.",
@@ -96975,6 +99726,29 @@
         {
           "pointer": "/cases/3/backend_cleanup/owned_daemons_stopped",
           "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS24.arena-regression",
+      "kind": "native_integration",
+      "scope": "Current-source original-health adapter and authored skirmish/orders continuation regression;32 fresh processes/18 refusals. No original skirmish equivalence.",
+      "record": "research/runtime/ordinary-melee-arena-regression-20261012.json",
+      "sha256": "0c8666abc78275e4e4f9eb6992ed0dc32b4a97f8f83e2dc080bcea4c2536bc63",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/health_contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
         }
       ]
     },
@@ -97086,6 +99860,29 @@
         {
           "pointer": "/native_audio/output_silent",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NS24.window-regression",
+      "kind": "native_integration",
+      "scope": "Current-source authored skirmish production window timer/victory/defeat, actual save/load dialogs, pause/failure preservation and five fresh-window/headless checkpoint/canvas continuations.",
+      "record": "research/runtime/ordinary-melee-window-regression-20261012.json",
+      "sha256": "2fc0dd4ebb6885ca5d0862c9305a6687678b4ce2cd227fbfd2a3a04295e11b60",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_save_load_dialogs",
+          "equals": true
+        },
+        {
+          "pointer": "/window_continuations",
+          "equals": 5
         }
       ]
     },
@@ -97654,6 +100451,519 @@
       ]
     },
     {
+      "id": "NS25.control-original",
+      "kind": "isolated_original",
+      "scope": "Exact declared bounded creature reach/stun/knockback/ready/controller and selector projections with supplied endpoints; complete original AI and live replacement excluded.",
+      "record": "research/runtime/creature-control-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "sha256": "4334e87d6cdad63761d1c238df7a0f05b3986d9bdd814c236094096418605d17",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS25.control-native",
+      "kind": "native_integration",
+      "scope": "Exact declared bounded creature reach/stun/knockback/ready/controller and selector projections with supplied endpoints; complete original AI and live replacement excluded.",
+      "record": "research/runtime/creature-control-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "sha256": "4334e87d6cdad63761d1c238df7a0f05b3986d9bdd814c236094096418605d17"
+    },
+    {
+      "id": "NS25.encounter-normal",
+      "kind": "native_integration",
+      "scope": "Autonomous native four-creature policy, headless continuations and production Qt controls; original full encounter equivalence excluded.",
+      "record": "research/runtime/creature-control-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 36
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "c98b3b738394107556316b37128f4be974089a1e3b6a7b10b9220db396826ae9"
+    },
+    {
+      "id": "NS25.window",
+      "kind": "native_integration",
+      "scope": "Autonomous native four-creature policy, headless continuations and production Qt controls; original full encounter equivalence excluded.",
+      "record": "research/runtime/creature-control-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 36
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "c98b3b738394107556316b37128f4be974089a1e3b6a7b10b9220db396826ae9"
+    },
+    {
+      "id": "NS25.encounter-sanitized",
+      "kind": "native_integration",
+      "scope": "ASan/UBSan/LSan ordinary native encounter control, complete checkpoints, fresh-process continuations and strict refusals; Qt execution and original full AI excluded.",
+      "record": "research/runtime/creature-control-sanitized-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "sha256": "083bc8910845b1997e1a0d33c1600e254487a6bef61797398db38313520bc3a4"
+    },
+    {
+      "id": "NS25.control-original-v2",
+      "kind": "isolated_original",
+      "scope": "Current scoped reach/stun/ready/knockback/AI projections, including explicit discovered-range exception for50f590; supplied helper effects remain separate.",
+      "record": "research/runtime/creature-control-original-v2-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "sha256": "a92f9779b0de486e72272efdcd55c011221c4972df7808410597c56bc9a897ca",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS25.control-native-v2",
+      "kind": "native_integration",
+      "scope": "Current scoped reach/stun/ready/knockback/AI projections, including explicit discovered-range exception for50f590; supplied helper effects remain separate.",
+      "record": "research/runtime/creature-control-original-v2-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "sha256": "a92f9779b0de486e72272efdcd55c011221c4972df7808410597c56bc9a897ca"
+    },
+    {
+      "id": "NS25.health-regression-original",
+      "kind": "isolated_original",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Extended ordinary health explicit contribution IDs/null returns and detach slot arguments.",
+      "record": "research/runtime/creature-control-health-regression-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "sha256": "e5c786afd3b00e906f32a50112b12fc300797b78f73cb6f1a40c79021a0364f9"
+    },
+    {
+      "id": "NS25.health-regression-native",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Extended ordinary health explicit contribution IDs/null returns and detach slot arguments.",
+      "record": "research/runtime/creature-control-health-regression-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "sha256": "e5c786afd3b00e906f32a50112b12fc300797b78f73cb6f1a40c79021a0364f9"
+    },
+    {
+      "id": "NS25.melee-regression-original",
+      "kind": "isolated_original",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Declared ordinary melee/action/installed animation/RNG/health projection, with explicit supplied helper boundaries.",
+      "record": "research/runtime/creature-control-melee-regression-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "sha256": "cfc7b5c2ebbcd6c15c3aee1529e2a303cf632d7e3f4325eeebbecfba44b47ab5"
+    },
+    {
+      "id": "NS25.melee-regression-native",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Declared ordinary melee/action/installed animation/RNG/health projection, with explicit supplied helper boundaries.",
+      "record": "research/runtime/creature-control-melee-regression-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        }
+      ],
+      "sha256": "cfc7b5c2ebbcd6c15c3aee1529e2a303cf632d7e3f4325eeebbecfba44b47ab5"
+    },
+    {
+      "id": "NS25.lab-regression",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Stationary native original-profile melee policy, deterministic checkpoints, strict refusals and adapter rollback.",
+      "record": "research/runtime/creature-control-lab-regression-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "728278de87282dfedb8b32c81287dce50514c8d9119e7641b1fd4b2bb7c67ae0"
+    },
+    {
+      "id": "NS25.lab-window-regression",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Production native window Play/Pause/Step, timer, checkpoint service/load failure, screenshot and headless final equality; actual file pickers not exercised.",
+      "record": "research/runtime/creature-control-lab-regression-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "728278de87282dfedb8b32c81287dce50514c8d9119e7641b1fd4b2bb7c67ae0"
+    },
+    {
+      "id": "NS25.arena-regression",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Current-source original-health adapter and authored skirmish/orders continuation regression;32 fresh processes/18 refusals. No original skirmish equivalence.",
+      "record": "research/runtime/creature-control-arena-regression-20261012.json",
+      "sha256": "bb85674f93071fcd695f571268256d000cb891f1b8fca9a99ec8146628c761dd",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/health_contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        }
+      ]
+    },
+    {
+      "id": "NS25.arena-window-regression",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Current-source authored skirmish production window timer/victory/defeat, actual save/load dialogs, pause/failure preservation and five fresh-window/headless checkpoint/canvas continuations.",
+      "record": "research/runtime/creature-control-window-regression-20261012.json",
+      "sha256": "f47fb16dace6ad523c54bdabedb1608ca6784cd38ce898df6baf084b27ea5412",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_save_load_dialogs",
+          "equals": true
+        },
+        {
+          "pointer": "/window_continuations",
+          "equals": 5
+        }
+      ]
+    },
+    {
+      "scope": "Initial passing30,720 paired cases and sanitizers before the outcome-digest test and standalone CMake binding additions; historical result, final-source validation pending.",
+      "record": "research/runtime/creature-autonomy-initial-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "deac38166c2ccfb15a88a96864e33b47130fd0333474bfb4ad8b609bd02c104c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "id": "NS26.autonomy-initial-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "scope": "Initial passing30,720 paired cases and sanitizers before the outcome-digest test and standalone CMake binding additions; historical result, final-source validation pending.",
+      "record": "research/runtime/creature-autonomy-initial-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "deac38166c2ccfb15a88a96864e33b47130fd0333474bfb4ad8b609bd02c104c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "id": "NS26.autonomy-initial-native",
+      "kind": "native_integration"
+    },
+    {
+      "scope": "Fresh source/scope-bound30,720 paired cases across27 original bodies; complete owned actor projections, ordered geometry/consequences/RNG and matching native64/reference32/sanitized outcome digest. Standalone native CMake library builds. Declared world services and complete-AI exclusions retained.",
+      "record": "research/runtime/creature-autonomy-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "ca2e9de4c76eacbb656113e57f4e4a4d9bc3458a44b7162f26dc2025660aeac5",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_library_build/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_library_build/default_policy_unchanged",
+          "equals": true
+        }
+      ],
+      "id": "NS26.autonomy-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "scope": "Fresh source/scope-bound30,720 paired cases across27 original bodies; complete owned actor projections, ordered geometry/consequences/RNG and matching native64/reference32/sanitized outcome digest. Standalone native CMake library builds. Declared world services and complete-AI exclusions retained.",
+      "record": "research/runtime/creature-autonomy-original-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "sha256": "ca2e9de4c76eacbb656113e57f4e4a4d9bc3458a44b7162f26dc2025660aeac5",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_library_build/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_library_build/default_policy_unchanged",
+          "equals": true
+        }
+      ],
+      "id": "NS26.autonomy-native",
+      "kind": "native_integration"
+    },
+    {
       "id": "AU.scheduler-original-cases.original-20261012",
       "kind": "isolated_original",
       "record": "research/runtime/audio-scheduler-original-pass-20261012.json",
@@ -97712,6 +101022,235 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "HOST.native-audio-file-sizes.installed-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-audio-file-sizes-installed-pass-20261012.json",
+      "sha256": "53012204743c99ec305ccbced67813d22afcf9495f95a9d933e3a88329e989b9",
+      "scope": "All356 installed WAV whole-file bytes plus4 quoted aliases, zero/malformed metadata and explicit missing/suffix/traversal refusal.365 native requests,363 successes,2 expected host refusals; caller field-only writes, LastError native policy, two prewrite guards/reinstall refusal and actual patched cdecl call pass. No original stat implementation/general CRT or live manager equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_waves",
+          "equals": 356
+        },
+        {
+          "pointer": "/native_successful_queries",
+          "equals": 363
+        },
+        {
+          "pointer": "/expected_host_refusals",
+          "equals": 2
+        },
+        {
+          "pointer": "/native/requests",
+          "equals": 365
+        },
+        {
+          "pointer": "/native/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/only_consumed_field_written",
+          "equals": true
+        },
+        {
+          "pointer": "/last_error_preserved_native_policy",
+          "equals": true
+        },
+        {
+          "pointer": "/patched_cdecl_call_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/call_and_consumed_field_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/reinstall_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-audio-file-sizes.controlled-public-20261012",
+      "kind": "live_observation",
+      "record": "research/runtime/native-audio-file-sizes-controlled-public-pass-20261012.json",
+      "sha256": "6f7e26c3e92ca38e4889ac16f3d02d7847e655b57aafed3f83ab37cc9c6cd65b",
+      "scope": "Controlled private input adds permanent residency for existing ID812/picview1 in map0/1/2; existing test music preference15 retained. Actual selected original pool caller sends1 successful native file-size query,8 nativeWAV loads/368902PCM bytes,12 plays/201ACK with zero audio errors; full native movies/CD/menu/render/campaign/normalQuit and source/input/original/private cleanup pass. Returned size/pool budget not directly logged; no default-config, general CRT or whole manager equivalence inferred.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/file_size_hook_installed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/file_size_queries",
+          "equals": 1
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/requests",
+          "equals": 201
+        },
+        {
+          "pointer": "/native_audio/plays",
+          "equals": 12
+        },
+        {
+          "pointer": "/native_audio/wave_loads",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_audio/wave_bytes",
+          "equals": 368902
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_import_census/process_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-audio-file-sizes.default-public-20261012",
+      "kind": "live_observation",
+      "record": "research/runtime/native-audio-file-sizes-default-public-pass-20261012.json",
+      "sha256": "7ea9fa0df21b8201741c6de0c8d5ccee79719324f6b6b3e4bed1ded7de83284a",
+      "scope": "Fresh complete default-native route with unchanged audio configuration from existing music-enabled test input; no permanent preload edits. Selected file-size hook/capability installed, zero size queries expected from empty permanent sections. Native profile76/4/1,7 WAV loads349862PCMbytes,12 plays197ACK, both full movies/CD/menu/render/campaign/normalQuit and zero audio errors/source/input/original/private cleanup pass. Hook composition only for this zero-query branch; no inferred actual stat execution or general CRT/whole manager equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/file_size_hook_installed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/file_size_queries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/requests",
+          "equals": 197
+        },
+        {
+          "pointer": "/native_audio/plays",
+          "equals": 12
+        },
+        {
+          "pointer": "/native_audio/wave_loads",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_audio/wave_bytes",
+          "equals": 349862
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_import_census/process_stopped",
+          "equals": true
+        }
+      ]
     },
     {
       "id": "NR.scene-production-repetition.timing-controls-20261012",
@@ -99521,235 +103060,6 @@
         },
         {
           "pointer": "/resident_world/normal_quit_retired",
-          "equals": true
-        }
-      ]
-    },
-    {
-      "id": "HOST.native-audio-file-sizes.installed-20261012",
-      "kind": "native_integration",
-      "record": "research/runtime/native-audio-file-sizes-installed-pass-20261012.json",
-      "sha256": "53012204743c99ec305ccbced67813d22afcf9495f95a9d933e3a88329e989b9",
-      "scope": "All356 installed WAV whole-file bytes plus4 quoted aliases, zero/malformed metadata and explicit missing/suffix/traversal refusal.365 native requests,363 successes,2 expected host refusals; caller field-only writes, LastError native policy, two prewrite guards/reinstall refusal and actual patched cdecl call pass. No original stat implementation/general CRT or live manager equivalence.",
-      "sources_pointer": "/sources",
-      "claims_pointer": "/claims",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/input_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/installed_waves",
-          "equals": 356
-        },
-        {
-          "pointer": "/native_successful_queries",
-          "equals": 363
-        },
-        {
-          "pointer": "/expected_host_refusals",
-          "equals": 2
-        },
-        {
-          "pointer": "/native/requests",
-          "equals": 365
-        },
-        {
-          "pointer": "/native/ready_after_stop",
-          "equals": false
-        },
-        {
-          "pointer": "/only_consumed_field_written",
-          "equals": true
-        },
-        {
-          "pointer": "/last_error_preserved_native_policy",
-          "equals": true
-        },
-        {
-          "pointer": "/patched_cdecl_call_passed",
-          "equals": true
-        },
-        {
-          "pointer": "/call_and_consumed_field_guards",
-          "equals": true
-        },
-        {
-          "pointer": "/reinstall_refused",
-          "equals": true
-        },
-        {
-          "pointer": "/private_wine_stopped",
-          "equals": true
-        },
-        {
-          "pointer": "/original_manifest_verified_before_after",
-          "equals": true
-        }
-      ]
-    },
-    {
-      "id": "HOST.native-audio-file-sizes.controlled-public-20261012",
-      "kind": "live_observation",
-      "record": "research/runtime/native-audio-file-sizes-controlled-public-pass-20261012.json",
-      "sha256": "6f7e26c3e92ca38e4889ac16f3d02d7847e655b57aafed3f83ab37cc9c6cd65b",
-      "scope": "Controlled private input adds permanent residency for existing ID812/picview1 in map0/1/2; existing test music preference15 retained. Actual selected original pool caller sends1 successful native file-size query,8 nativeWAV loads/368902PCM bytes,12 plays/201ACK with zero audio errors; full native movies/CD/menu/render/campaign/normalQuit and source/input/original/private cleanup pass. Returned size/pool budget not directly logged; no default-config, general CRT or whole manager equivalence inferred.",
-      "sources_pointer": "/sources",
-      "claims_pointer": "/claims",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_unchanged",
-          "equals": true
-        },
-        {
-          "pointer": "/inputs_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/normal_quit_verified",
-          "equals": true
-        },
-        {
-          "pointer": "/private_wine_stopped",
-          "equals": true
-        },
-        {
-          "pointer": "/original_manifest_verified_after",
-          "equals": true
-        },
-        {
-          "pointer": "/native_audio/file_size_hook_installed",
-          "equals": true
-        },
-        {
-          "pointer": "/native_audio/file_size_queries",
-          "equals": 1
-        },
-        {
-          "pointer": "/native_audio/failed_requests",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/fallbacks",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/unsupported_calls",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/requests",
-          "equals": 201
-        },
-        {
-          "pointer": "/native_audio/plays",
-          "equals": 12
-        },
-        {
-          "pointer": "/native_audio/wave_loads",
-          "equals": 8
-        },
-        {
-          "pointer": "/native_audio/wave_bytes",
-          "equals": 368902
-        },
-        {
-          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
-          "equals": true
-        },
-        {
-          "pointer": "/wine_import_census/process_stopped",
-          "equals": true
-        }
-      ]
-    },
-    {
-      "id": "HOST.native-audio-file-sizes.default-public-20261012",
-      "kind": "live_observation",
-      "record": "research/runtime/native-audio-file-sizes-default-public-pass-20261012.json",
-      "sha256": "7ea9fa0df21b8201741c6de0c8d5ccee79719324f6b6b3e4bed1ded7de83284a",
-      "scope": "Fresh complete default-native route with unchanged audio configuration from existing music-enabled test input; no permanent preload edits. Selected file-size hook/capability installed, zero size queries expected from empty permanent sections. Native profile76/4/1,7 WAV loads349862PCMbytes,12 plays197ACK, both full movies/CD/menu/render/campaign/normalQuit and zero audio errors/source/input/original/private cleanup pass. Hook composition only for this zero-query branch; no inferred actual stat execution or general CRT/whole manager equivalence.",
-      "sources_pointer": "/sources",
-      "claims_pointer": "/claims",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_unchanged",
-          "equals": true
-        },
-        {
-          "pointer": "/inputs_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/normal_quit_verified",
-          "equals": true
-        },
-        {
-          "pointer": "/private_wine_stopped",
-          "equals": true
-        },
-        {
-          "pointer": "/original_manifest_verified_after",
-          "equals": true
-        },
-        {
-          "pointer": "/native_audio/file_size_hook_installed",
-          "equals": true
-        },
-        {
-          "pointer": "/native_audio/file_size_queries",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/failed_requests",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/fallbacks",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/unsupported_calls",
-          "equals": 0
-        },
-        {
-          "pointer": "/native_audio/requests",
-          "equals": 197
-        },
-        {
-          "pointer": "/native_audio/plays",
-          "equals": 12
-        },
-        {
-          "pointer": "/native_audio/wave_loads",
-          "equals": 7
-        },
-        {
-          "pointer": "/native_audio/wave_bytes",
-          "equals": 349862
-        },
-        {
-          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
-          "equals": true
-        },
-        {
-          "pointer": "/wine_import_census/process_stopped",
           "equals": true
         }
       ]
@@ -103143,6 +106453,90 @@
         "relation": "data",
         "scope": "Four raw dispatch slots at555e08, mapped to three direct call sites; not global minimap orientation dispatch equivalence."
       }
+    },
+    {
+      "id": "creature-autonomous-substates",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5359060,
+        "relation": "data",
+        "scope": "Nine-entry jump table after unsigned substate-minus-one bounds check in51c510."
+      },
+      "document": "research/runtime/creature-autonomy.md",
+      "complete": false,
+      "scope": "All nine cases and default are statically mapped and have current source-bound native handler projections; full original action/route/effect consequences remain pending. Complete original AI is not asserted.",
+      "entries": [
+        {
+          "value": 1,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358890
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358899
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358908
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358917
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358926
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358935
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5358944
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5359042
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5359051
+        },
+        {
+          "value": "default",
+          "behaviors": [
+            "AI.autonomous-behaviors"
+          ],
+          "target": 5359058
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -110487,7 +113881,11 @@
       ],
       "evidence": [
         "NS21.combat-normal",
-        "NS21.combat-sanitized"
+        "NS21.combat-sanitized",
+        "NS22.combat-regression-normal",
+        "NS22.combat-regression-sanitized",
+        "NS23.combat-normal",
+        "NS23.combat-sanitized"
       ]
     },
     {
@@ -110534,6 +113932,46 @@
         "HOST.native-wave-loading.installed-pass-20261012",
         "HOST.voice-controls.wave-v4-installed-20261012",
         "HOST.voice-recovery.wave-v5-installed-20261012"
+      ]
+    },
+    {
+      "id": "world.native-skirmish",
+      "level": "headless",
+      "behaviors": [
+        "NP.combat-orders",
+        "NP.skirmish-simulation"
+      ],
+      "scope": "Authored arena complete victory/defeat, independent wire/cast/flight/mana oracle, every-tick fresh-process continuation, malformed and atomic restore refusals. Original game behavior excluded.",
+      "tests": [
+        "tests/skirmish-test.cpp",
+        "tests/test-skirmish.py"
+      ],
+      "evidence": [
+        "NS22.skirmish-normal",
+        "NS22.skirmish-sanitized",
+        "NS23.arena-normal",
+        "NS23.arena-sanitized",
+        "NS24.arena-regression",
+        "NS25.arena-regression"
+      ]
+    },
+    {
+      "id": "window.native-skirmish",
+      "level": "preview",
+      "behaviors": [
+        "NP.skirmish-window"
+      ],
+      "scope": "Production Qt arena mouse actions, summon/bolt/move/stop/attack, timer victory/defeat, save/load dialogs, paused time and rejected load; fresh-window/headless checkpoints during pending commands, movement, casting, flight and combat; final canonical canvas equality. Original game behavior excluded.",
+      "tests": [
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/test-skirmish-window.py"
+      ],
+      "evidence": [
+        "NS22.skirmish-window",
+        "NS23.window",
+        "NS24.window-regression",
+        "NS25.arena-window-regression"
       ]
     },
     {
@@ -110929,6 +114367,41 @@
       ]
     },
     {
+      "id": "combat.ordinary-health",
+      "level": "headless",
+      "behaviors": [
+        "CB.ordinary-health",
+        "CB.defended-damage"
+      ],
+      "tests": [
+        "tests/ordinary-health-test.cpp",
+        "tools/test-ordinary-health.py"
+      ],
+      "scope": "Class1/type17 ordinary state/callback projections and native literal controls, including unsigned defense arithmetic, heal caps, refusals and empty-pool ordinary cleanup; not whole callback effects or live game.",
+      "evidence": [
+        "NS23.health-native",
+        "NS24.health-native",
+        "NS25.health-regression-native"
+      ]
+    },
+    {
+      "id": "world.ordinary-health-adapter",
+      "level": "headless",
+      "behaviors": [
+        "NP.ordinary-health-adapter"
+      ],
+      "tests": [
+        "tests/native-health-rules-test.cpp"
+      ],
+      "scope": "Native original numerical backend: defended damage/healing cap, ordinary owned death/occupancy cleanup, rules-bound/legacy checkpoint resolution, unknown/invalid/throwing backend and whole-tick restore rollback.",
+      "evidence": [
+        "NS23.arena-normal",
+        "NS23.arena-sanitized",
+        "NS24.arena-regression",
+        "NS25.arena-regression"
+      ]
+    },
+    {
       "id": "native-media-output-recovery-synthetic-20261012",
       "level": "headless",
       "scope": "Injected endpoint topology around actual Qt decoded finite media: initial absence, active loss, retry/default switch, caller paused recovery, no source replay, exact PCM/frame continuity and cancellation; physical endpoint/listening excluded.",
@@ -111012,6 +114485,21 @@
       ]
     },
     {
+      "id": "native-audio-initial-silence-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Private actual empty output graph through complete native intros/voices/WAV/CD/menu/render/campaign and normal Quit; initial-silence/discard markers and absence verified; physical/original equivalence excluded.",
+      "behaviors": [
+        "HOST.native-audio-initial-silence"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/test-native-silent-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-audio-initial-silence.empty-public-20261012"
+      ]
+    },
+    {
       "id": "native-audio-initial-silence-healthy-campaign-20261012",
       "level": "live_observation",
       "scope": "Current default native quiet-capable composition with healthy output through complete intros/voices/WAV/CD/campaign/normal Quit; no absent-device inference.",
@@ -111030,18 +114518,57 @@
       ]
     },
     {
-      "id": "native-audio-initial-silence-campaign-20261012",
-      "level": "live_observation",
-      "scope": "Private actual empty output graph through complete native intros/voices/WAV/CD/menu/render/campaign and normal Quit; initial-silence/discard markers and absence verified; physical/original equivalence excluded.",
+      "id": "NS24.exchange",
+      "title": "Bounded Crocodile melee headless",
+      "scope": "Two stationary type17 native actors, loaded Crocodile HTH/health/ANI24, supplied neutral response and handled-stun endpoint without stun effects, once-per-tick recovery/rearm, slot-ordered ordinary numerical health and native retained dead identity, complete owned RNG/animation/profile checkpoint, atomic failed adapter/load refusal. Original reach/footprint placement/sequence selection/ready behavior reentrancy/AI, full fight equivalence, gameplay balance changes and live replacement excluded.",
+      "level": "headless",
       "behaviors": [
-        "HOST.native-audio-initial-silence"
+        "NP.melee-exchange"
       ],
       "tests": [
-        "tools/test-native-campaign.py",
-        "tools/test-native-silent-campaign.py"
+        "tests/native-melee-exchange-test.cpp",
+        "tests/test-melee-exchange.py"
       ],
       "evidence": [
-        "HOST.native-audio-initial-silence.empty-public-20261012"
+        "NS24.exchange-normal",
+        "NS24.exchange-sanitized",
+        "NS25.lab-regression"
+      ]
+    },
+    {
+      "id": "NS24.window",
+      "title": "Bounded Crocodile melee preview",
+      "scope": "Native Qt window/controller drives the same stationary original-profile melee service; actual Play/Pause/Step buttons, real timer, save/reload and failed-load preservation, terminal result and captured vector canvas. Actual picker interactions, original sprite presentation, Qt sanitizer execution, installed campaign and live simulation replacement remain pending.",
+      "level": "preview",
+      "behaviors": [
+        "NP.melee-lab-window"
+      ],
+      "tests": [
+        "tests/melee-window-driver.cpp",
+        "tests/melee-window-driver.hpp",
+        "tests/test-melee-exchange.py"
+      ],
+      "evidence": [
+        "NS24.window",
+        "NS25.lab-window-regression"
+      ]
+    },
+    {
+      "id": "NS24.original-exchange",
+      "title": "Isolated ordinary melee/action/animation/health projection",
+      "scope": "Pinned original comparison and native execution of the declared ordinary no-evasion/no-charge domain, supplied helpers and installed Crocodile forward ANI24..31; complete callback effects/AI/reach/stun/live scheduling excluded.",
+      "level": "headless",
+      "behaviors": [
+        "CB.ordinary-melee",
+        "CB.melee-animation-event"
+      ],
+      "tests": [
+        "tests/ordinary-melee-test.cpp",
+        "tools/test-ordinary-melee.py"
+      ],
+      "evidence": [
+        "NS24.melee-native",
+        "NS25.melee-regression-native"
       ]
     },
     {
@@ -111106,6 +114633,115 @@
       ],
       "evidence": [
         "HOST.native-audio-profile-reads.public-census-20261012",
+        "HOST.native-audio-file-sizes.controlled-public-20261012",
+        "HOST.native-audio-file-sizes.default-public-20261012"
+      ]
+    },
+    {
+      "id": "NS25.creature-encounter",
+      "title": "Autonomous native creature encounter and checkpoint continuation",
+      "scope": "Four installed-profile type17 actors: recovered ordinary enemy selection, footprint reach, relative direction, melee draw ordering and timed stun; explicit native flat toroidal BFS/occupancy, all-visible hostility, attack24 and stun112 directional sequence selection, one-tick knockback relocation, slot traversal, retained corpses and automatic retargeting. Complete original AI, animation selection, movement timing, queue/effect ownership, spells, all species and live replacement remain pending. Native termination after160 ticks without control progress is a stalemate policy; it need not produce a winning team.",
+      "level": "headless",
+      "behaviors": [
+        "NP.creature-encounter"
+      ],
+      "tests": [
+        "tests/native-creature-encounter-test.cpp",
+        "tests/test-creature-encounter.py"
+      ],
+      "evidence": [
+        "NS25.encounter-normal",
+        "NS25.encounter-sanitized"
+      ]
+    },
+    {
+      "id": "NS25.creature-window",
+      "title": "Native autonomous creature lab presentation",
+      "scope": "Production Qt Play/Pause/Step/Restart, displayed native grid/footprints/stun and self-contained API Save/Load; bounded timer and failure continuation. Original sprites, original encounter equivalence and picker interaction remain pending.",
+      "level": "preview",
+      "behaviors": [
+        "NP.creature-window"
+      ],
+      "tests": [
+        "tests/creature-window-driver.cpp",
+        "tests/creature-window-driver.hpp",
+        "tests/test-creature-encounter.py"
+      ],
+      "evidence": [
+        "NS25.window"
+      ]
+    },
+    {
+      "id": "NS25.control",
+      "title": "Isolated native and pinned original creature control projections",
+      "scope": "Exact declared reach, stun, ready, knockback and AI selector/controller projections with explicit helper endpoints; full encounter, special ownership, spell scan and live replacement excluded.",
+      "level": "headless",
+      "behaviors": [
+        "CB.melee-reach",
+        "CB.creature-stun",
+        "AI.creature-control"
+      ],
+      "tests": [
+        "tests/creature-control-test.cpp",
+        "tools/test-creature-control.py"
+      ],
+      "evidence": [
+        "NS25.control-native",
+        "NS25.control-native-v2"
+      ]
+    },
+    {
+      "id": "NS26.autonomy",
+      "level": "headless",
+      "scope": "Original autonomous controller, selectors, spell70 threat-region avoidance and nine behavior handlers with bounded actor pools, world objects, inventory and declared native geometry/consequence services; full AI simulation pending.",
+      "behaviors": [
+        "AI.autonomous-behaviors",
+        "AI.autonomy-controller",
+        "AI.immediate-defense",
+        "AI.local-navigation",
+        "AI.world-object-selection"
+      ],
+      "tests": [
+        "tests/creature-autonomy-test.cpp",
+        "tools/test-creature-autonomy.py"
+      ],
+      "evidence": [
+        "NS26.autonomy-initial-native",
+        "NS26.autonomy-native"
+      ],
+      "title": "Bounded original autonomous controller and behavior comparisons"
+    },
+    {
+      "id": "native-audio-file-sizes-installed-20261012",
+      "scope": "Installed native whole-file metadata through PE32 adapter, consumed-field guards and actual patched cdecl call; no game or output.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-audio-file-sizes"
+      ],
+      "tests": [
+        "tools/test-native-audio-file-sizes.py",
+        "tests/native-audio-file-sizes/producer.c",
+        "tests/native-audio-file-sizes/host.cpp",
+        "tests/native-audio-file-sizes/CMakeLists.txt",
+        "tests/test-native-audio-launch.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-audio-file-sizes.installed-20261012",
+        "HOST.native-render-latest-master.audio-file-size-20261012"
+      ]
+    },
+    {
+      "id": "native-audio-file-sizes-campaign-20261012",
+      "scope": "Current full native game with selected file-size capability/hook; count actual queries separately, no inferred unexercised branch coverage.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-audio-file-sizes"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
         "HOST.native-audio-file-sizes.controlled-public-20261012",
         "HOST.native-audio-file-sizes.default-public-20261012"
       ]
@@ -111652,41 +115288,6 @@
       ]
     },
     {
-      "id": "native-audio-file-sizes-installed-20261012",
-      "scope": "Installed native whole-file metadata through PE32 adapter, consumed-field guards and actual patched cdecl call; no game or output.",
-      "level": "headless",
-      "behaviors": [
-        "HOST.native-audio-file-sizes"
-      ],
-      "tests": [
-        "tools/test-native-audio-file-sizes.py",
-        "tests/native-audio-file-sizes/producer.c",
-        "tests/native-audio-file-sizes/host.cpp",
-        "tests/native-audio-file-sizes/CMakeLists.txt",
-        "tests/test-native-audio-launch.py",
-        "tools/test-native-campaign.py"
-      ],
-      "evidence": [
-        "HOST.native-audio-file-sizes.installed-20261012",
-        "HOST.native-render-latest-master.audio-file-size-20261012"
-      ]
-    },
-    {
-      "id": "native-audio-file-sizes-campaign-20261012",
-      "scope": "Current full native game with selected file-size capability/hook; count actual queries separately, no inferred unexercised branch coverage.",
-      "level": "live_observation",
-      "behaviors": [
-        "HOST.native-audio-file-sizes"
-      ],
-      "tests": [
-        "tools/test-native-campaign.py"
-      ],
-      "evidence": [
-        "HOST.native-audio-file-sizes.controlled-public-20261012",
-        "HOST.native-audio-file-sizes.default-public-20261012"
-      ]
-    },
-    {
       "id": "native-render-latest-master-full-20261012",
       "level": "live_observation",
       "scope": "Merged committed master/rendering TITAN owned V5 native World/HUD full casting/combat/spells/portrait/movement/menu/resume/normal Quit. Verify ordered source/ACK/import/returns, two outstanding/export bounds, progress/report publication, zero delivery readbacks/pixel replies/fallback, original/source integrity and private cleanup. Native intro movies skipped; audiovisual/movie-with-World/original equivalence/scanout/interpolation/full replacement excluded. Performance targets and functional observations remain separate; failures retained. Includes merged selected native audio file-size routing and final master4c8070b2 source closure; scope remains partial and performance failures retained.",
@@ -111973,6 +115574,24 @@
       "document": "research/runtime/draw01-inventory.md",
       "evidence": "DRAW.terminal-canvas-wrappers.original-range-20261011",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "combat-main-melee-action-50e7a0",
+      "build": "nocd-40209ca7",
+      "start": 5302176,
+      "end": 5303076,
+      "document": "research/runtime/ordinary-melee.md",
+      "evidence": "NS24.melee-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-stun-action-50f590",
+      "build": "nocd-40209ca7",
+      "start": 5305744,
+      "end": 5306299,
+      "document": "research/runtime/creature-control.md",
+      "evidence": "NS25.control-original",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -112083,8 +115702,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-render-latest-master-20261012.json",
-    "sha256": "442c8c935de53a9799d8ebce5159f7fc973bb8a9fa82d96690711fb42155ca1e"
+    "path": "research/runtime/coverage/source-index-simulation-checkpoint-20261012.json",
+    "sha256": "a3a88c30595f88b2aa207f1322bc0f56198bb97f6b7ea8ddc3049dcbee99c677"
   },
   "claim_bindings_required": true
 }

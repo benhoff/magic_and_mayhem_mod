@@ -12,7 +12,7 @@ choices and intentional gameplay changes through module responsibilities and
 dependencies. QWidget menus are an acceptable native implementation choice;
 preserving gameplay behavior does not require preserving the original UI code.
 
-The current application is a hybrid: a native Qt host cooperates with the
+The campaign application is a hybrid: a native Qt host cooperates with the
 original PE32 game through Wine, injected adapters, and shared channels.
 The [complete live drawing replacement plan](live-drawing-replacement.md) owns
 rendering takeover scope, implementation order and the complete-mode release gates.
@@ -20,6 +20,10 @@ Reconstructed algorithms and native services exist, but their presence does not
 establish complete live replacement of a gameplay subsystem. Consult the
 [coverage ledger](../research/runtime/coverage-ledger.md) for implementation,
 integration, validation, confidence, and remaining boundaries.
+
+The separate [native skirmish](../apps/skirmish/README.md) runs without Wine or
+original assets. Its authored arena rules establish a bounded simulation and
+window integration milestone; they do not replace original campaign behavior.
 
 ## Current structure
 
@@ -31,9 +35,10 @@ integration, validation, confidence, and remaining boundaries.
 | `assets/` | Native asset resolution, read-only access, and comparison |
 | `audio/` | Native PCM storage and playback foundations |
 | `renderer/` | Native OpenGL surface operations and capture replay |
-| `game/simulation/` | Native bounded entity ownership, transactional tick phases, movement through a native navigation interface and a separate bounded native melee policy |
+| `game/simulation/` | Native bounded entity ownership, transactional tick phases, movement through a native navigation interface and separate bounded native melee/skirmish policies |
 | `game/persistence/` | Native-v1 through v6 checkpoints, staged restoration and POSIX publication; separate from original save decoding |
 | `apps/world-sandbox/` | Headless lifecycle/movement/checkpoint harness and frozen reconstructed navigation/sample-motion adapters |
+| `apps/skirmish/` | Entirely native authored arena: semantic controller, Qt vector presentation and headless/checkpoint harness; no original campaign equivalence |
 | `apps/world-scene/` | Bounded Qt/OpenGL diagnostic terrain and creature presentation from owned movement checkpoints; explicit visual fixture, separate from installed MAP admission |
 | `tools/` | Preparation, inspection, staging, launch, patch, and validation workflows |
 | `tests/` | Automated checks, independent references, fixtures, and manual protocols |
@@ -293,3 +298,26 @@ validated behavioral scope.
 - Add short records under `docs/decisions/` when consequential alternatives
   need a durable rationale. Record context, decision, and consequences; do not
   create records for every routine implementation choice.
+
+The native combat service now accepts a stateless health backend with a versioned
+checkpoint identity. The build-specific ordinary No-CD adapter is owned by
+`apps/skirmish/`, with recovered arithmetic in `reconstruction/combat/`;
+`game/simulation/health_rules.*` contains only the native interface and legacy
+fixture policy. Native cleanup/ownership and original callback projections remain
+separate validation scopes.
+
+The separate native melee lab adds an immutable `MeleeDriver` interface around
+owned animation/RNG continuation. Its native two-actor service owns lifecycle,
+checkpoint publication and explicit recovery policy; `apps/melee-lab` loads the
+original profile and adapts recovered melee/animation models. Qt widgets express
+playback/save/load actions through a controller. This is a diagnostic integration
+slice, separate from authored skirmish balance and original campaign scheduling.
+
+The native creature lab adds an immutable `CreatureRules` boundary around
+ordinary targeting, footprint reach, directional animation, melee and stun.
+`game/simulation/creature_encounter.*` owns targets, occupied footprints,
+transactional control/RNG continuation and termination. `apps/creature-lab`
+loads the installed profile and adapts recovered models; its Qt controller and
+widgets remain presentation-only. The fixture uses explicit native movement,
+animation-selection, knockback and stalemate policies. Complete original AI,
+special creatures, spells and original live replacement remain pending.
