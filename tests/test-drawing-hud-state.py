@@ -20,6 +20,18 @@ class HUDState(unittest.TestCase):
         self.assertEqual(r['samples'][0]['camera_whole'],[40,30,0])
         self.assertFalse(r['selection_verified']);self.assertFalse(r['actor_generation_proved'])
 
+    def test_v2_cursor_point_and_missing_or_stale_point_are_explicit(self):
+        raw=fixture();struct.pack_into('<I',raw,8,2)
+        for i in range(2):struct.pack_into('<10I',raw,64+i*128+22*4,3,10,12,8,9,80,400,300,2,0)
+        r=decode(raw);self.assertTrue(r['samples'][0]['input_point']['timely_cursor'])
+        struct.pack_into('<I',raw,64+128+27*4,1)
+        self.assertFalse(decode(raw)['samples'][1]['input_point']['timely_cursor'])
+        struct.pack_into('<10I',raw,64+22*4,8,*([0]*9))
+        self.assertIsNone(decode(raw)['samples'][0]['input_point'])
+        struct.pack_into('<I',raw,64+23*4,1)
+        with self.assertRaises(ValueError):decode(raw)
+
+
     def test_loss_thread_cadence_reserved_and_pool_shape_refuse(self):
         for offset,value in [(28,1),(64+8,19),(64+128+4,120),(64+22*4,1),(64+8*4,257),(64+9*4,9),(64+7*4,2)]:
             raw=fixture();struct.pack_into('<I',raw,offset,value)

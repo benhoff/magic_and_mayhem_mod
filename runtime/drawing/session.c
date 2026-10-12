@@ -39,6 +39,7 @@ static void install(void*,u32);
 /* Observer APIs preserve the application's result LastError and x87/SSE state. */
 static void snapshot_fp(void* p){__asm__ volatile("fxsave (%0)"::"r"(p):"memory");}
 static void restore_fp(void* p){__asm__ volatile("fxrstor (%0)"::"r"(p):"memory");}
+#include "input_point.h"
 #include "wine_submission.h"
 #include "source_byte_witness.h"
 #include "source_readonly_lease.h"
@@ -119,7 +120,7 @@ static u32 end(struct Context* c,void* object,u32 result){
   u32 size=c->r[14]*c->r[15]*4;
   if(planes>=1024||bytes>physical_byte_limit||size>physical_byte_limit-bytes){++drops;}else{c->r[12]=++planes;bytes+=size;}
  }
- c->r[30]=planes;emit(c->r);
+ c->r[30]=planes;emit(c->r);input_point_record(c);
  LeaveCriticalSection(journal_lock);physical_fence(c);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
  char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending)finish(2);}
  LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;
@@ -189,11 +190,13 @@ void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 ar
 void WIN DrawingAnchor(void){}
 #ifdef MNM_DRAWING_SELFTEST
 u32 WIN DrawingInstallForTest(void* object,u32 k){install(object,k);return enabled;}
+u32 WIN DrawingInstallCursorForTest(void* callback){original_cursor=callback;return enabled&&input_point_enabled;}
+i32 WIN DrawingObserveCursorForTest(i32* point){return cursor(point);}
 #endif
 static int initialize(void){
  InitializeCriticalSection(journal_lock);
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
- if(!physical_budget())return 0;
+ if(!physical_budget()||!input_point_open())return 0;
  u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;
  char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!producer_points_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST

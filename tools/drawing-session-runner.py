@@ -33,6 +33,7 @@ if metadata.get('source_worker_lease'):os.environ['MNM_DRAW_SOURCE_WORKER_LEASE'
 else:os.environ.pop('MNM_DRAW_SOURCE_WORKER_LEASE',None)
 if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHOT']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
+if metadata.get('hud_input_point'):os.environ.update(MNM_DRAW_INPUT_POINT='1',MNM_DRAW_HUD_INPUT_POINT='1')
 if metadata.get('hud_state'):os.environ['MNM_DRAW_HUD_STATE_FILE']='Z:'+str(root/'capture/hud-state.bin').replace('/','\\')
 if metadata.get('semantic_state'):os.environ['MNM_DRAW_SEMANTIC_STATE_FILE']='Z:'+str(root/'capture/semantic-state.bin').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SEMANTIC_STATE_FILE',None)

@@ -37695,7 +37695,9 @@
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
         "tools/build-shadow-bridge.py",
-        "tools/drawing_presented_session.py"
+        "tools/drawing_presented_session.py",
+        "runtime/drawing/input_point.h",
+        "protocols/include/mnm/drawing_input_point_v1.h"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -37718,7 +37720,8 @@
         "NR.drawing-session-api.query-lifetimes-native-20261012",
         "NR.drawing-session-api.query-lifetimes-forwarding-native-20261012",
         "DRAW02.draw02-source-points-api-legacy-fixture-01-20261012",
-        "DRAW02.draw02-source-points-api-physical-fixture-01-20261012"
+        "DRAW02.draw02-source-points-api-physical-fixture-01-20261012",
+        "DRAW02.draw02-input-point-api-baseline-01-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44315,7 +44318,8 @@
         "DRAW02.draw02-campaign-pause-timing-correction-01-20261012",
         "DRAW02.draw02-semantic-state-timing-fixture-01-20261012",
         "DRAW02.draw02-hud-state-original-04-20261012",
-        "DRAW02.draw02-hud-state-pause-analysis-01-20261012"
+        "DRAW02.draw02-hud-state-pause-analysis-01-20261012",
+        "DRAW02.draw02-hud-input-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44382,7 +44386,9 @@
         "DRAW02.draw02-hud-input-static-negative-01-20261012",
         "DRAW02.draw02-hud-input-static-02-20261012",
         "DRAW02.draw02-hud-input-static-03-20261012",
-        "DRAW02.draw02-hud-state-analysis-01-20261012"
+        "DRAW02.draw02-hud-state-analysis-01-20261012",
+        "DRAW02.draw02-hud-input-binding-analysis-01-20261012",
+        "DRAW02.draw02-hud-input-camera-analysis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44436,7 +44442,9 @@
         "DRAW02.draw02-hud-state-budget-scalar-analysis-01-20261012",
         "DRAW02.draw02-hud-storage-reassessment-01-20261012",
         "DRAW02.draw02-hud-state-original-04-20261012",
-        "DRAW02.draw02-hud-state-analysis-01-20261012"
+        "DRAW02.draw02-hud-state-analysis-01-20261012",
+        "DRAW02.draw02-hud-input-camera-analysis-01-20261012",
+        "DRAW02.draw02-hud-input-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44476,7 +44484,9 @@
         "tools/capture-drawing-interactive.py"
       ],
       "evidence": [
-        "DRAW02.draw02-hud-state-original-04-20261012"
+        "DRAW02.draw02-hud-state-original-04-20261012",
+        "DRAW02.draw02-guidance-timing-correction-01-20261012",
+        "DRAW02.draw02-hud-input-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44492,6 +44502,103 @@
         "tests/fixtures/drawing-journeys/hud-hit-camera-schedule.json",
         "tools/drawing-session-runner.py",
         "tests/drawing-session-input.cpp"
+      ]
+    },
+    {
+      "id": "NR.drawing-original-cursor-point",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact original cursor journal point for HUD samples",
+      "scope": "Prospective opt-in read-only versioned cursor-point export: cache completed original GetCursorPos result per observed thread under API journal mutex; expose exact API record/entry/frame prefix and cursor values to same-owner HUD sampler without extra cursor polling. Missing/failed cursor, inactive/loss/gap/capacity cases remain explicit and cannot prove semantic selection, click dispatch or actor lifetime.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/formats/drawing-input-point.md"
+      ],
+      "implementation": [
+        "runtime/drawing/input_point.h",
+        "tools/drawing_input_point.py"
+      ],
+      "tests": [
+        "tests/drawing-input-point-test.c",
+        "tests/test-drawing-input-point.py",
+        "tools/test-drawing-input-point.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-input-point-fixture-01-20261012",
+        "DRAW02.draw02-input-point-fixture-02-20261012",
+        "DRAW02.draw02-hud-input-original-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Getter ABI/output/readability/owner isolation/error-FP preservation, current original journal joins and consumer integration pending. Exact cursor/HUD correlation is not recovered click selection/tooltip/persistent actor state.",
+        "First fixture original-FP flag exceeds its direct forwarding assertions; second fixture adds original x87 control checks while query preserves full512FXstate. Whole original input call context/semantic outcomes remain separate."
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "tools/build-drawing-session.py"
+      ]
+    },
+    {
+      "id": "NR.drawing-hud-cursor-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "HUD samples with exact original cursor journal metadata",
+      "scope": "Optional V2HUDjournal appends the same-owner completed original cursor point and exact APIrecord/entry/frame prefixes without extra polling. Missing/refused/stopped/lost/gapped/failed cursor stays unadmitted;100msage is an explicit native timeliness policy, not recovered timing. Exact journal linkage does not establish click dispatch, persistent selection, source allocation or whole physical frame ownership.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-hud-state.md",
+        "research/formats/drawing-input-point.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "runtime/menu/drawing_hud_state.h",
+        "tools/drawing_hud_state.py",
+        "tools/drawing_hud_input_binding.py"
+      ],
+      "tests": [
+        "tests/test-drawing-hud-state.py",
+        "tools/capture-drawing-interactive.py",
+        "tests/test-drawing-hud-input-binding.py",
+        "tools/analyze-drawing-hud-input.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-hud-input-preexecution-negative-01-20261012",
+        "DRAW02.draw02-input-metadata-storage-reassessment-01-20261012",
+        "DRAW02.draw02-hud-input-binding-negative-01-20261012",
+        "DRAW02.draw02-hud-input-binding-analysis-01-20261012",
+        "DRAW02.draw02-hud-input-original-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current original cursor/APIprefix joins and consumer execution pending; source actor lifetime/generations, click/selection/tooltip semantics and complete physical/native parity remain unproved.",
+        "Original02captures685samples/0planes, then terminal-prefix analyzer/test correction reruns immutable journal comparison. Original analysis-module fingerprint remains historical. Cursor/hit transition disagreements retain temporal ambiguity; hook at actual scene/hit consumer boundary needed before original picking or persistent selection claim."
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/input_point.h",
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "tools/drawing_input_point.py",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/drawing-session-runner.py",
+        "tools/build-menu-observer.py",
+        "tools/drawing_api_session.py"
       ]
     }
   ],
@@ -95484,6 +95591,150 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-input-point-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Initial cross-DLL fixture:18once-only cursor callbacks/fivepoints, query full512FP/error preservation and owner/failure/output/capacity guards. The broad original-FP flag lacks a direct forwarding FP assertion; do not claim that portion.",
+      "record": "research/runtime/draw02-input-point-fixture-01.json",
+      "sha256": "16f710fba24fc4fac4f7d2923350f9d0674dd1ec522de4b7e01f5ec0179922f7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-input-point-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Strengthened actual cross-DLL fixture:18callbacks/fiveexactpoints; original result/error/x87control and query512FP/error preservation, owner isolation, failed coordinates cleared, invalid/read-only output and17live-owner overflow refusal. No original game or click semantics.",
+      "record": "research/runtime/draw02-input-point-fixture-02.json",
+      "sha256": "65d027254ad25dccd229a773fd37feff53658958659bd10121c47f3bdbc47827",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-input-point-api-baseline-01-20261012",
+      "kind": "native_integration",
+      "scope": "Current original-active observer with cursor point disabled retains existing32surfacecallback/eightplane/18menuphase fixture result/error/x87controls; no original game or new input semantics.",
+      "record": "research/runtime/draw02-input-point-api-baseline-01.json",
+      "sha256": "8265477b4470d3ccd4ce360339feedc34ba5d8e516a3050963764d1d276de5b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-preexecution-negative-01-20261012",
+      "kind": "static",
+      "scope": "Cadence-mode guard refuses metadata probe before execution. Narrow cursor metadata exception is reviewed separately.",
+      "record": "research/runtime/draw02-hud-input-preexecution-negative-01.json",
+      "sha256": "df5d373a073e157199d406d0951a3f6f01af0d3993417d770af8c02b15b19930",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-input-metadata-storage-reassessment-01-20261012",
+      "kind": "static",
+      "scope": "Measured completed metadata footprint1.15GiBsupports1.75GiBcomponent allowance/reserve2GiB; unchanged100GiBfloor, no cleanup or exemption.",
+      "record": "research/runtime/draw02-input-metadata-storage-reassessment-01.json",
+      "sha256": "b42e5a1e5404c0befdc18fa6b8f090d71610e901a80cb6b0568d0e14f5408932",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-guidance-timing-correction-01-20261012",
+      "kind": "static",
+      "scope": "Retained image6showsHermes beforecamera actions8/9; trigger/opening frame unassigned, earlier aftercamera timing description corrected.",
+      "record": "research/runtime/draw02-guidance-timing-correction-01.json",
+      "sha256": "34b0d899918ebbd42830f7129126df6894b3e4e318802b62afa0a1b0ce4e162d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-binding-negative-01-20261012",
+      "kind": "static",
+      "scope": "Current binder initially omits exact terminal prefix and refuses inactive sample678; diagnosis preserves raw20304row terminal.",
+      "record": "research/runtime/draw02-hud-input-binding-negative-01.json",
+      "sha256": "771304933414e31a578deabd57b662c0ad9354f52da75e2d76334da674d2eaf6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-binding-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Current reanalysis binds685exact cursor/APIprefix samples, eightinactive/640timely/92timelyactor samples. No interpolation/click/selection/tooltip/frame/causality proof.",
+      "record": "research/runtime/draw02-hud-input-binding-analysis-01.json",
+      "sha256": "e6e5db243d408205cbc6896ebf150229e9708df032e57a88b438153e2433a196",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-camera-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Current retainedV2scalar camera analysis:685exactpairs/92hits/twoactor tuples/59camera states and bounded menu camera stability. Metadata-only, no physical/native closure.",
+      "record": "research/runtime/draw02-hud-input-camera-analysis-01.json",
+      "sha256": "60081ae49bdf4de1ef73cad263960cfede58ba1982bf05c4a2ba2a8fbc335eea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Current original-active metadata-only campaign/guidance/Mini/Preferences/resume/normal Quit records685V2HUDsamples and4397originalinput calls;0physicalplanes. Subsequent analysis-only terminal fix leaves original consumer-analysis fingerprint historical; no full-current physical/native/selection assertion.",
+      "record": "research/runtime/draw02-hud-input-original-02.json",
+      "sha256": "3539a8e5104eff5d98c508f2a0644b1cb7c47ed45e9cbc58dcce81cc63ef7d71",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107626,8 +107877,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-hud-state-20261012.json",
-    "sha256": "8a678a9dadb2d5e5c38d3437da23dfe86ae43fd162d2548cc93f7e350600f1ea"
+    "path": "research/runtime/coverage/source-index-draw02-input-point-20261012.json",
+    "sha256": "83d3a0b33a5691708da16262316c950acf1239833ae3b16501dcc381597cd958"
   },
   "claim_bindings_required": true
 }

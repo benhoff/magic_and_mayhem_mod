@@ -1181,3 +1181,39 @@ selection/tooltip verification, generations/allocations or full modal source
 ownership/presentation/native parity. Prior 01/02 route and 03 plane-budget
 failures remain retained. Continue step 2 with exact input/state bindings and
 original selection/tooltip producer/caller discovery; all 47/21/steps3–7 open.
+
+Guidance timing correction: retained original04 input image6 already shows
+Hermes during icon dwell, before camera request actions8/9. Earlier descriptions
+placed the observation after camera actions; that is not the opening boundary
+or a causal finding. Preserve historical reports and register this image/order
+review separately. Dialogue trigger, opening frame and lifecycle remain unknown.
+
+DRAW-02 step 2 exact original cursor binding: optional V1 stdcall export
+caches completed original cursor calls per bounded numeric thread under the API
+journal mutex. Query performs no cursor poll, preserves error/512FXstate and
+refuses wrong size/ownerzero/unwritable output/cache overflow without writes.
+Two cross-DLL PE32 results retain 18 original callbacks/five exact points; second
+adds explicit original x87-control assertions missing from the first broad flag.
+Current point-disabled 32-case/eight-plane/18-phase API baseline passes. V2 HUD
+wire remains additive; V1 decoding is unchanged. Five decoder/five prefix-binder
+controls and existing cadence guards pass. 100 ms cursor age is a native policy.
+
+Metadata attempt initially refuses the old physical-only cadence guard before
+execution. A narrow original cursor-metadata diagnostic exception requires
+HUD/semantic/cursor flags; controls still prohibit observer additions. Storage
+review measures1.15GiBmetadata run, reserves2GiBagainst1.75GiBallowance under
+unchanged100GiBfloor. Original02normal Quit retains685paired scalar samples and
+4397input calls with0physical planes. Immutable reanalysis corrects an omitted
+terminal prefix (eight samples remain inactive), binds all685points and counts
+640timely/92validatedactor samples. Actualcamera59states and bounded menu
+stability are separately observed. Original analysis fingerprint becomes
+historical after this analysis-only correction; current comparison is rerun
+without asserting new original execution or full current integration.
+
+World cursor(400,265) has41wizard-slot0 and11slot5/type27hit samples; cursor
+(450,350) has108no-hit samples and one transitional wizard-hit sample. These
+are retained correlations, not click dispatch or persistent selection proof.
+Earlier aftercamera guidance timing is corrected by retained image6, already
+showingHermes beforeactions8/9; trigger/opening frame unknown. Next inspect
+and observe the actual scene/hit consumer boundary and tooltip producers while
+retaining source/physical/actor lifetime gaps. All47/21/steps3–7 remain open.

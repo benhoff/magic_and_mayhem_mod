@@ -46,3 +46,24 @@ The analyzer pairs only identical thread/tick/menu identities and reports
 unpaired samples. It does not interpolate state or infer input causality,
 persistent selection, tooltip contents, frame ownership or whole pause behavior.
 Physical acquisition, source-owned replay and native parity are independent.
+
+## Additive V2 cursor binding
+
+With `MNM_DRAW_HUD_INPUT_POINT=1`, header version 2 uses the same row size and
+preserves words 0–21. Words 22–31 contain the original cursor-point observation:
+
+| Word | Meaning |
+|---|---|
+| 22 | Cursor-point flags 1 active/2 valid, or 8 getter missing/refused |
+| 23–24 | API completed-record prefix and entered-call prefix |
+| 25–27 | Last cursor record, entry and completion tick |
+| 28–29 | Original cursor X/Y words |
+| 30 | Physical-plane prefix (zero in metadata-only captures) |
+| 31 | Conditions: 1 drops present; 2 gaps present; 4 calls pending |
+
+Refusal requires all other appended words zero. The consumer validates the
+versioned getter envelope and owner; no extra cursor poll occurs. Version 1
+continues to require zero reserved words and decodes unchanged. Cursor age at
+most 100 ms is an intentional diagnostic timeliness policy, not recovered game
+timing. Exact API journal linkage, semantic click dispatch and physical frame
+binding remain separate claims.
