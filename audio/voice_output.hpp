@@ -11,11 +11,13 @@ public:
     explicit VoiceOutput(Device&,QObject* parent=nullptr);
     VoiceOutput(std::unique_ptr<QtOutput>,Selector,bool monitor,QObject* parent=nullptr);
     ~VoiceOutput() override;
-    bool start();
+    bool start(bool allowInitialSilence=false);
     void stop();
     bool recover();
     void rescan();
     bool available() const{return active_ && output_->running();}
+    bool silent() const{return active_ && output_->silent();}
+    bool audible() const{return available() && !silent();}
     OutputTimeline& timeline(){return output_->timeline();}
     void refreshClock(){output_->refreshClock();}
     QString lastError() const{return error_;}

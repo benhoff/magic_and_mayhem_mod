@@ -58,6 +58,7 @@ class PrivateAudioBackend:
         for path in [main,pulse]:
             (self.evidence/path.name).write_bytes(path.read_bytes())
         self._launch('pipewire','-c',str(main))
+        self.wait(lambda:(self.runtime/'pipewire-0').is_socket(),'Private PipeWire socket',15)
         self._launch('pipewire-pulse','-c',str(pulse))
         # This installed profile provides routing policy without opening audio,
         # Bluetooth or camera hardware. State/config/cache belong to the fixture.

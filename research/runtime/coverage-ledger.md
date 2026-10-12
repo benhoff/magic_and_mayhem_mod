@@ -7353,3 +7353,18 @@ does not establish PE32 ABI, audible waveform/tail/latency or original driver
 equivalence. Initial no-device voice admission remains strict; native
 manager/config/cache/events, wider casting/input and long playlist/listening
 remain pending. Exact5285cf12 history reviews12 transitions without receipt gaps.
+
+## Native initial silence (2026-10-12)
+
+`HOST.native-audio-initial-silence` implements an intentional native no-output
+startup policy: bounded discard consumption expires one-shots, preserves loops
+and controls, and attaches a compatible default endpoint. Movies/file sounds
+and music retain their renderer/source while silent; Qt device discovery survives
+startup-broker teardown. Version5 optional capability16 is explicitly admitted.
+Four actual empty private endpoint tests preserve exact PCM/RGBA and cleanup;
+a fresh healthy full native game run passes normal Quit with zero audio fallback.
+67 audio CTests and11 admission tests pass after the provider fix.
+Whole-game empty-output attempts stall before hooks initialize and remain pending;
+physical/original waveform and native manager/config/event ownership are unclaimed.
+Historical fingerprints remain immutable and broad changed-source evidence is
+explicitly pending. See `research/runtime/native-audio-initial-silence.md`.

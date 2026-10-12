@@ -18,19 +18,24 @@ public:
         devices_.setParent(this);output_.setParent(this);
         connect(&devices_,&QMediaDevices::audioOutputsChanged,this,[this]{
             const auto current=QMediaDevices::defaultAudioOutput();
+            if(initialSilent_ && player_ && !ended_ && error_.isEmpty() && !current.isNull()){
+                player_->pause();device_=current;output_.setDevice(device_);
+                initialSilent_=false;realOutputSeen_=true;if(!desiredPaused_)player_->play();
+            }
             const auto devices=QMediaDevices::audioOutputs();bool present=false;
             for(const auto& device:devices)present|=device.id()==device_.id();
-            if(audible_&&player_&&player_->playbackState()!=QMediaPlayer::StoppedState&&(!present||current.id()!=device_.id())){
+            if(audible_&&!initialSilent_&&player_&&player_->playbackState()!=QMediaPlayer::StoppedState&&(!present||current.id()!=device_.id())){
                 if(lost)lost(present?QString("Default music output changed"):QString("Music output disconnected"));
             }
             if(available()&&outputAvailable)outputAvailable();
         });
     }
     ~QtMusicOutput()override{stop();}
-    bool available()const override{return !audible_||!QMediaDevices::defaultAudioOutput().isNull();}
+    bool available()const override{return !audible_||!realOutputSeen_||!QMediaDevices::defaultAudioOutput().isNull();}
     bool start(const QString& file,bool loop,qint64 offsetMs,bool paused,QString& error)override{
         stop();if(!available()){error="No music output device is available";return false;}
-        device_=QMediaDevices::defaultAudioOutput();if(audible_)output_.setDevice(device_);
+        device_=QMediaDevices::defaultAudioOutput();initialSilent_=audible_&&device_.isNull();
+        if(audible_&&!initialSilent_){realOutputSeen_=true;output_.setDevice(device_);}
         file_=file;frames_=bytes_=0;position_=0;accepted_=ended_=false;error_.clear();hash_.reset();
         desiredPaused_=paused;offset_=offsetMs;pendingSeek_=true;setVolume(level_);
         auto* player=new QMediaPlayer(this);player_=player;auto* buffers=new QAudioBufferOutput(captureFormat(),player);
@@ -71,9 +76,11 @@ public:
     void setVolume(std::uint16_t value)override{level_=value;output_.setVolume(float(value)/65535.0f);}
     QJsonObject report()const override{return {{"file",file_},{"accepted",accepted_},{"completed",ended_},{"error",error_},
         {"audio_frames",qint64(frames_)},{"audio_bytes",qint64(bytes_)},{"pcm_s16le_stereo_44100_sha256",QString::fromLatin1(hash_.result().toHex())},
-        {"audible_output_requested",audible_},{"audio_device_available",!device_.isNull()},{"volume",int(level_)}};}
+        {"audible_output_requested",audible_},{"audio_device_available",!initialSilent_&&!device_.isNull()},
+        {"initial_silent_output",initialSilent_},{"volume",int(level_)}};}
 private:
     bool audible_,accepted_=false,ended_=false,desiredPaused_=false,pendingSeek_=false;
+    bool initialSilent_=false,realOutputSeen_=false;
     std::uint16_t level_=65535;std::uint64_t generation_=0,frames_=0,bytes_=0;
     qint64 position_=0,offset_=0;
     QString file_,error_;

@@ -17,7 +17,8 @@ int main(int argc,char** argv) try {
     auto report=[&]{const auto a=broker.activity();return QJsonObject{
         {"requests",qint64(a.requests)},{"failures",qint64(a.failures)},
         {"wave_loads",qint64(a.waveLoads)},{"wave_bytes",qint64(a.waveBytes)},
-        {"output_available",a.outputAvailable},{"output_losses",qint64(a.outputLosses)},
+        {"output_available",a.outputAvailable},{"output_silent",a.outputSilent},{"initial_silence",a.initialSilence},
+        {"output_losses",qint64(a.outputLosses)},
         {"output_recoveries",qint64(a.outputRecoveries)},{"output_attempts",qint64(a.outputAttempts)},
         {"generated_frames",qint64(a.generatedFrames)},{"consumed_frames",qint64(a.consumedFrames)},
         {"ready",a.ready},{"error",broker.lastError()},{"fixture_error",failure},

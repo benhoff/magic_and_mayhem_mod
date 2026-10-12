@@ -50,6 +50,15 @@ class AudioLaunchTest(unittest.TestCase):
         self.words[31]=0x1000f;self.write_channel()
         with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_wave_loading':True},{})
 
+    def test_initial_silence_requires_an_explicit_staging_policy(self):
+        self.words[31]=30;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,self.metadata,{})
+        authorize(self.root,{**self.metadata,'native_initial_silence':True},{})
+        for policy in [False,1,'yes']:
+            with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_initial_silence':policy},{})
+        self.words[31]=62;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_initial_silence':True},{})
+
     def test_native_factory_disables_wine_directsound(self):
         env={'WINEDLLOVERRIDES':'example=n','MNM_NATIVE_DISABLE_DSOUND':'1'}
         authorize(self.root,{**self.metadata,'native_audio_factory':True,'native_media':True},env)

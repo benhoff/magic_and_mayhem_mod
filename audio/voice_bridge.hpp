@@ -16,6 +16,7 @@ struct VoiceActivity {
     quint64 outputLosses=0,outputRecoveries=0,outputAttempts=0;
     quint64 generatedFrames=0,consumedFrames=0;
     bool outputAvailable=false;
+    bool outputSilent=false,initialSilence=false;
     bool ready=false,audible=false,waveHookInstalled=false,nativeFactoryOnly=false;
 };
 class VoiceCommands {

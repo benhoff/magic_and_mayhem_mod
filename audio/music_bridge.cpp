@@ -35,7 +35,6 @@ struct MusicBroker::State {
     }
     ~State(){stop();if(map)file.unmap(map);}
     bool create(const QString& channel,const QString& root){
-        if(audible&&QMediaDevices::defaultAudioOutput().isNull()){error="No native music output device is available";return false;}
         if(!service.initialize(root.toStdString())){error=service.snapshot().error;return false;}
         if(service.catalog()->tracks().size()>MNM_MUSIC_V1_MAX_TRACKS){error="Native music catalog exceeds wire track count";return false;}
         file.setFileName(channel);if(!file.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file.resize(MNM_MUSIC_V1_SIZE)){error=file.errorString();return false;}
@@ -113,6 +112,10 @@ MusicBroker::MusicBroker(QObject* parent):QObject(parent){}
 MusicBroker::~MusicBroker(){stop();}
 bool MusicBroker::create(const QString& channel,const QString& root,bool audible){
     if(worker_)return false;
+    // Initialize the process-wide device provider on the facade's surviving
+    // thread before constructing outputs on a disposable worker. Otherwise
+    // stopping the first broker can strand later topology notifications.
+    (void)QMediaDevices::audioOutputs();
     worker_=new QObject;worker_->moveToThread(&thread_);QObject::connect(&thread_,&QThread::finished,worker_,&QObject::deleteLater);thread_.start();
     bool accepted=false;QMetaObject::invokeMethod(worker_,[&]{
         try{state_=std::make_unique<State>(audible);accepted=state_->create(channel,root);if(!accepted)error_=state_->error;}

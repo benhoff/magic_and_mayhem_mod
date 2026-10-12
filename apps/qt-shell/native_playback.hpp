@@ -17,7 +17,8 @@ class QAudioDevice;
 class NativePlayback final:public QObject {
 public:
     NativePlayback(bool movie,bool audible,
-                   std::unique_ptr<PlaybackAudioDevices> devices=makePlaybackAudioDevices());
+                   std::unique_ptr<PlaybackAudioDevices> devices=makePlaybackAudioDevices(),
+                   bool allowInitialSilence=false);
     ~NativePlayback() override;
     void start(const QString& path,bool loop=false,bool presentVideo=true);
     void stop(unsigned result=MNM_MEDIA_V1_STATUS_CANCELLED);
@@ -43,5 +44,6 @@ private:
     std::unique_ptr<PlaybackAudioDevices> devices_;
     QTimer outputRefresh_,outputRetry_;
     bool followDefault_=true,waitingOutput_=false,requestedPaused_=false;
+    bool allowInitialSilence_=false,initialSilent_=false;
     unsigned outputLosses_=0,outputRecoveries_=0,outputChanges_=0;
 };

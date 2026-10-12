@@ -7,6 +7,7 @@
 #define MNM_AUDIO_CAP_EXTENDED_CONTROLS 2u
 #define MNM_AUDIO_CAP_OUTPUT_RECOVERY 4u
 #define MNM_AUDIO_CAP_CONSUMED_CLOCK 8u
+#define MNM_AUDIO_CAP_INITIAL_SILENCE 16u
 #define MNM_AUDIO_WAVE_INSTALLED 0x10000u
 #define MNM_AUDIO_FACTORY_NATIVE_ONLY 0x40000u
 /* Header[31]: host capabilities in bits0..15; producer installation flags in

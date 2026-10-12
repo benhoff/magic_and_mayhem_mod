@@ -5,6 +5,7 @@
 #include <QAudioFormat>
 #include <QAudioSink>
 #include <QByteArray>
+#include <QElapsedTimer>
 #include <QIODevice>
 #include <QObject>
 #include <QTimer>
@@ -35,8 +36,11 @@ public:
     explicit QtOutput(Device&,QObject* parent=nullptr);
     ~QtOutput() override;
     virtual bool start(const QAudioDevice& device);
+    // Native discard clock for initial absence; expired cues still complete.
+    void startSilent();
+    bool silent() const{return silent_;}
     virtual void stop();
-    virtual bool running() const{return bool(sink_);}
+    virtual bool running() const{return bool(sink_) || silent_;}
     qint64 processedUSecs() const{return sink_?sink_->processedUSecs():0;}
     void refreshClock();
     OutputTimeline& timeline(){return timeline_;}
@@ -46,5 +50,6 @@ private:
     void pump();void fail(const QString&);
     Device& device_;OutputTimeline timeline_;PcmQueue queue_;QTimer timer_;
     std::unique_ptr<QAudioSink> sink_;QIODevice* writer_=nullptr;QString error_;
+    QElapsedTimer silentClock_;bool silent_=false;
 };
 }

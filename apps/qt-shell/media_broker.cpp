@@ -82,7 +82,7 @@ void MediaBroker::poll(){
     if(resolved.isEmpty()){respond(id,MNM_MEDIA_V1_STATUS_UNSUPPORTED);record(id,operation,MNM_MEDIA_V1_STATUS_UNSUPPORTED,QString::fromLatin1(path));return;}
     auto& player=operation==MNM_MEDIA_V1_OPERATION_MOVIE?movie_:sound_;
     if(player && player->active())player->stop(MNM_MEDIA_V1_STATUS_CANCELLED);
-    player=std::make_unique<NativePlayback>(operation==MNM_MEDIA_V1_OPERATION_MOVIE,audible_);
+    player=std::make_unique<NativePlayback>(operation==MNM_MEDIA_V1_OPERATION_MOVIE,audible_,makePlaybackAudioDevices(),true);
     const bool presentVideo=!(operation==MNM_MEDIA_V1_OPERATION_MOVIE && (flags&MNM_MEDIA_V1_MOVIE_FLAG_NO_PRESENT));
     if(operation==MNM_MEDIA_V1_OPERATION_MOVIE){movieId_=id;moviePresented_=presentVideo;if(movieChanged)movieChanged(true);}else soundId_=id;
     player->accepted=[this,id]{respond(id,MNM_MEDIA_V1_STATUS_ACCEPTED);};

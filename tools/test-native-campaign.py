@@ -391,6 +391,7 @@ def main():
     parser.add_argument('--skip-movies',action='store_true',help='Suppress intro playback in this bounded campaign run')
     parser.add_argument('--disable-wine-dsound',action='store_true',help='Force Wine DirectSound disable; marked native factory/media staging disables it by default')
     parser.add_argument('--wine-import-census',action='store_true',help='Count original import calls after native adapters; excludes dynamic/COM/forwarded calls')
+    parser.add_argument('--initial-silent-start',action='store_true',help='Require initially absent physical outputs and progressing native discard/decoder playback')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
@@ -427,6 +428,8 @@ def main():
         if not args.stress_seconds:args.stress_seconds=60
     if args.spell_cases and not args.require_casting_combat:parser.error('--spell-cases requires casting/combat')
     if args.native_voices and not (args.check_only or args.normal_quit):parser.error('Native voice retirement proof requires --normal-quit')
+    if args.initial_silent_start and not (args.native_voices and args.native_loading and args.native_factory and args.native_media and args.native_music and args.normal_quit):
+        parser.error('Silent-start proof requires all native audio/media/music paths and normal Quit')
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
@@ -462,6 +465,7 @@ def main():
         if args.native_media:declaration_command.extend(['--behavior','HOST.native-menu-media','--scenario','native-menu-media-campaign-20261012','--behavior','HOST.native-media-startup-probe','--scenario','native-media-startup-probe-campaign-20261012'])
         if args.native_media:declaration_command.extend(['--behavior','HOST.native-media-output-recovery','--scenario','native-media-output-recovery-campaign-20261012'])
         if args.native_factory and args.native_media:declaration_command.extend(['--behavior','HOST.native-dsound-module-policy'])
+        if args.native_voices and args.native_media:declaration_command.extend(['--behavior','HOST.native-audio-initial-silence','--scenario','native-audio-initial-silence-campaign-20261012' if args.initial_silent_start else 'native-audio-initial-silence-healthy-campaign-20261012'])
         if args.wine_import_census:declaration_command.extend(['--behavior','HOST.wine-import-census','--scenario','wine-import-census-campaign-20261012'])
         if args.native_music:declaration_command.extend(['--behavior','HOST.native-menu-music','--scenario','native-menu-music-campaign-20261012'])
         if args.default_music or args.default_media:declaration_command.extend(['--behavior','HOST.native-audio-defaults','--scenario','native-audio-defaults-campaign-20261012'])
@@ -691,7 +695,9 @@ def main():
                 scene=json.loads((roots[0]/'scene-bridge-build.json').read_text())
                 report['scene_bridge_build']=scene
             if args.native_voices:
-                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()),native_wave=args.native_loading,native_factory=args.native_factory)
+                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()),native_wave=args.native_loading,native_factory=args.native_factory,allow_initial_silence=args.initial_silent_start)
+                if args.initial_silent_start and (report['native_audio'].get('initial_silence') is not True or report['native_audio'].get('output_silent') is not True or report['native_audio'].get('output_available') is not False):
+                    raise ValueError('Silent-start proof did not retain the initially absent physical output')
                 report['native_audio_channel']=validate_audio_retirement(roots[0]/'native-voices.bin',report['native_audio'])
                 audio_build=json.loads((roots[0]/'audio-bridge-build.json').read_text())
                 manifest=json.loads((roots[0]/'manifest.json').read_text())
@@ -712,13 +718,14 @@ def main():
                 movies=[entry for entry in media if entry.get('operation')==1]
                 if not movies or any(entry.get('status') not in (3,4) or not entry.get('accepted') or entry.get('error') or
                                      entry.get('video_frames',0)<1 or entry.get('audio_frames',0)<1 or
-                                     entry.get('audible_output_requested') is not True or entry.get('audio_device_available') is not True for entry in movies):
+                                     entry.get('audible_output_requested') is not True or
+                                     (entry.get('audio_device_available') is not True and not (args.initial_silent_start and entry.get('initial_silent_output') is True)) for entry in movies):
                     raise ValueError('Native movie decoding/output/completion history missing or failed')
                 if any(entry.get('status') in (5,6) for entry in media):raise ValueError('Native media rejected or failed a submitted request')
                 report['native_media']=media
             if args.native_music:
                 from native_music_launch import validate_activity as validate_music,catalog_inputs
-                report['native_music']=validate_music(json.loads((roots[0]/'native-music-report.json').read_text()))
+                report['native_music']=validate_music(json.loads((roots[0]/'native-music-report.json').read_text()),allow_initial_silence=args.initial_silent_start)
                 manifest=json.loads((roots[0]/'manifest.json').read_text());inputs,toc=catalog_inputs(roots[0]/'native-music')
                 if inputs!=manifest['music_inputs'] or [list(x) for x in toc]!=manifest['music_toc']:raise ValueError('Native music staged inputs changed')
                 report['native_music_inputs']=inputs;report['native_music_inputs_stable']=True

@@ -15,9 +15,16 @@ VoiceOutput::VoiceOutput(std::unique_ptr<QtOutput> output,Selector selector,bool
     output_->failed=[this](const QString& error){lost(error);};
 }
 VoiceOutput::~VoiceOutput(){stop();output_->failed={};}
-bool VoiceOutput::start(){
+bool VoiceOutput::start(bool allowInitialSilence){
     stop();active_=true;recovering_=false;error_.clear();
-    const auto started=attempt(select_());
+    const auto selected=select_();
+    if(allowInitialSilence && selected.isNull()){
+        ++attempts_;
+        output_->startSilent();recovering_=true;error_.clear();retry_.start();
+        if(changed)changed();
+        return true;
+    }
+    const auto started=attempt(selected);
     // Initial admission stays strict; automatic recovery concerns admitted output.
     if(!started){active_=false;retry_.stop();}
     return started;
@@ -47,11 +54,18 @@ void VoiceOutput::lost(const QString& error){
 }
 bool VoiceOutput::recover(){
     if(!active_)return false;
+    if(silent()){
+        const auto selected=select_();if(selected.isNull())return true;
+        if(attempt(selected))return true;
+        // An incompatible newly arrived endpoint must not stop logical cues.
+        output_->startSilent();retry_.start();return true;
+    }
     if(available())return true;
     return attempt(select_());
 }
 void VoiceOutput::rescan(){
     if(!active_)return;
+    if(silent()){recover();return;}
     const auto selected=select_();
     if(available() && !selected.isNull() && selected.id()==selected_)return;
     output_->stop();lost("Native voice output selection changed");attempt(selected);

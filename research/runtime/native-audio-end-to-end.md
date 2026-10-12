@@ -363,3 +363,11 @@ does not establish PE32 ABI, audible waveform/tail/latency or original driver
 equivalence. Initial no-device voice admission remains strict; native
 manager/config/cache/events, wider casting/input and long playlist/listening
 remain pending. Exact5285cf12 history reviews12 transitions without receipt gaps.
+
+## Initial absent output
+
+Native voices, movie/file-sound decoders and music now start silently when the
+initial default output is absent and attach automatically when it appears.
+[Scoped evidence and unresolved full-game launch](native-audio-initial-silence.md)
+separate exact private-endpoint tests and healthy full-game validation from the
+empty-output game launch that currently stalls before hooks initialize.
