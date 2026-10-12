@@ -42669,7 +42669,8 @@
       ],
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
-        "HOST.native-menu-audio.default-worker-public-pass-20261012"
+        "HOST.native-menu-audio.default-worker-public-pass-20261012",
+        "HOST.native-wave-loading.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42806,6 +42807,76 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-wave-loading",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native WAV input for live static voices",
+      "scope": "Session-selected native Sounds directory and strict PCM parsing replace the eight original WAV calls within No-CD static upload 0x00570140 after all call-target byte guards pass. Version3 wire carries leaf filename and PCM/format/duration response; no pointers cross the channel. Local PE instance associations close owned PCM; original source-cache/manager, wrapper metadata and control order remain active. Explicit notFound-only quoted-leaf compatibility; reject missing/malformed/traversal/over-limit inputs without replay. Preserve recovered wrapping DWORD duration arithmetic. Host capability is bound to staging and installed-hook state plus load/byte activity is observed. Original malformed/unchecked WinMM behavior, profile/catalog/full-manager replacement, physical audibility and timing equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5701952,
+          "scope": "Only the eight WAV helper call sites in the static-upload function; other branches and callees are not covered."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-audio-end-to-end.md"
+      ],
+      "implementation": [
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "runtime/audio/bridge.c",
+        "runtime/audio/wave_loading.h",
+        "runtime/audio/protocol.h",
+        "apps/qt-shell/main.cpp",
+        "tools/native_audio_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "audio/voice_server_main.cpp",
+        "tools/build-audio-bridge.py"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "runtime/audio/selftest.c",
+        "tests/test-native-audio-launch.py",
+        "tools/test-audio-bridge.py",
+        "tools/test-audio-staging.py",
+        "tools/test-native-campaign.py",
+        "tools/test-native-wave-loading.py"
+      ],
+      "evidence": [
+        "HOST.native-wave-loading.installed-pass-20261012",
+        "HOST.native-wave-loading.public-pass-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "audio/CMakeLists.txt",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/mixer.cpp",
+        "audio/voices.cpp"
+      ]
     }
   ],
   "evidence": [
@@ -88834,6 +88905,176 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-wave-loading.installed-pass-20261012",
+      "kind": "native_integration",
+      "scope": "Silent WAV transport: all356 installed WAVs plus4 explicit quoted-leaf loads match Python wave byte-for-byte, with2 expected missing/escaping rejections and362request/ACK.12002990 compared PCM bytes; stable sources/inputs and original manifest before/after. No original engine, Wine, physical output or live-hook execution.",
+      "record": "research/runtime/native-wave-loading-installed-pass-20261012.json",
+      "sha256": "cbb6fcaa7c249cb0677a16e77a73adfb41f8a717cd64976fa6972ca6293f75a7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_pcm_bytes",
+          "equals": 12002990
+        },
+        {
+          "pointer": "/last_request",
+          "equals": 362
+        },
+        {
+          "pointer": "/last_ack",
+          "equals": 362
+        },
+        {
+          "pointer": "/fallbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-wave-loading.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh default-audio native-menu campaign with all8 guarded WAV helper call sites installed;7native WAV loads,349862PCM bytes matching uploaded byte count,7sample creates/uploads,12plays,9releases,116request/ACK,one native selection,zero fallback or failures, audible output started and normal Quit/channel retirement. Stable source/compiler/WAV/config inputs and original manifests; no human waveform/timing or full-manager/WinMM retirement claim.",
+      "record": "research/runtime/native-wave-loading-public-pass-20261012.json",
+      "sha256": "34bcc403a817dd9e169beaabdcf3d6b18fd255fb1fc28ee40758c295db243b26",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_default_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wave_loading_required",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_audio_requested",
+          "equals": false
+        },
+        {
+          "pointer": "/native_audio/adapter_failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/audible_output",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/creates",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_audio/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/native_selections",
+          "equals": 1
+        },
+        {
+          "pointer": "/native_audio/plays",
+          "equals": 12
+        },
+        {
+          "pointer": "/native_audio/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/native_audio/ready_before_stop",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/releases",
+          "equals": 9
+        },
+        {
+          "pointer": "/native_audio/requests",
+          "equals": 116
+        },
+        {
+          "pointer": "/native_audio/uploaded_bytes",
+          "equals": 349862
+        },
+        {
+          "pointer": "/native_audio/uploads",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_audio/wave_bytes",
+          "equals": 349862
+        },
+        {
+          "pointer": "/native_audio/wave_hook_installed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/wave_loads",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_audio_channel/request",
+          "equals": 116
+        },
+        {
+          "pointer": "/native_audio_channel/acknowledgement",
+          "equals": 116
+        },
+        {
+          "pointer": "/native_audio_channel/ready",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99394,7 +99635,8 @@
       ],
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
-        "HOST.native-menu-audio.default-worker-public-pass-20261012"
+        "HOST.native-menu-audio.default-worker-public-pass-20261012",
+        "HOST.native-wave-loading.public-pass-20261012"
       ]
     },
     {
@@ -99411,6 +99653,36 @@
       "evidence": [
         "NS21.combat-normal",
         "NS21.combat-sanitized"
+      ]
+    },
+    {
+      "id": "native-wave-loading-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Default-audio native-menu campaign with eight guarded native WAV call sites installed, successful native wave loads/nonempty PCM, no failed requests or fallback, normal original Quit/channel withdrawal, unchanged WAV/config and compiler inputs, original manifest and private Wine cleanup. Excludes full manager/profile retirement, human listening, all audio API retirement and timing equivalence.",
+      "behaviors": [
+        "HOST.native-wave-loading"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/native_audio_launch.py"
+      ],
+      "evidence": [
+        "HOST.native-wave-loading.public-pass-20261012"
+      ]
+    },
+    {
+      "id": "native-wave-loading-installed-20261012",
+      "level": "headless",
+      "scope": "Silent native WAV host transport compared byte-for-byte against Python wave for every installed WAV, plus four explicit quoted-leaf requests and missing/escaping input refusals; stable input/source hashes and original manifest verification. No original engine, physical output or installed runtime hook execution.",
+      "behaviors": [
+        "HOST.native-wave-loading"
+      ],
+      "tests": [
+        "tools/test-native-wave-loading.py",
+        "tests/audio-voice-bridge-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-wave-loading.installed-pass-20261012"
       ]
     }
   ],
@@ -99785,8 +100057,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-audio-default-shared-20261012.json",
-    "sha256": "b94b134db081c9c545de7bab18fc024e80982fd518256abbd843f20a04b545eb"
+    "path": "research/runtime/coverage/source-index-native-wave-loading-commit-20261012.json",
+    "sha256": "c04599753e36bc0fd0c3a9f724d310e3a108eaf607ac8f249d36241a3e8dca84"
   },
   "claim_bindings_required": true
 }

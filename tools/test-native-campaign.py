@@ -380,6 +380,7 @@ def main():
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--native-voices',action='store_true',help='Require native voice selection, successful upload/play and output retirement')
     parser.add_argument('--default-audio',action='store_true',help='Verify default native audio without an explicit shell audio flag; requires normal Quit')
+    parser.add_argument('--native-loading',action='store_true',help='Require guarded native WAV loading in the default audio route')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
@@ -390,8 +391,8 @@ def main():
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     explicit_native_audio=args.native_voices
-    if args.legacy_audio and (args.native_voices or args.default_audio):parser.error('Legacy and native audio are separate routes')
-    args.native_voices |= args.default_audio
+    if args.legacy_audio and (args.native_voices or args.default_audio or args.native_loading):parser.error('Legacy and native audio are separate routes')
+    args.native_voices |= args.default_audio or args.native_loading
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
@@ -424,6 +425,7 @@ def main():
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'native_wave_loading_required':args.native_loading,
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
@@ -433,6 +435,7 @@ def main():
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
+        if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
@@ -445,6 +448,7 @@ def main():
             if sha(ROOT/path)!=expected:raise ValueError('Declared source changed before execution: '+path)
         report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
         if args.native_voices and not any(c['behavior']=='HOST.native-menu-audio' for c in declaration['claims']):raise ValueError('Native audio requires its prospective behavior declaration')
+        if args.native_loading and not any(c['behavior']=='HOST.native-wave-loading' for c in declaration['claims']):raise ValueError('Native loading requires its prospective behavior declaration')
     if not args.legacy_audio:
         audio_sources=['tools/native_audio_launch.py','tools/build-audio-bridge.py','tools/build-shadow-bridge.py','runtime/shadow/win32_min.h']
         audio_sources += [p.relative_to(ROOT).as_posix() for p in (ROOT/'runtime/audio').iterdir() if p.is_file()]
@@ -637,7 +641,7 @@ def main():
                 scene=json.loads((roots[0]/'scene-bridge-build.json').read_text())
                 report['scene_bridge_build']=scene
             if args.native_voices:
-                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()))
+                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()),native_wave=args.native_loading)
                 report['native_audio_channel']=validate_audio_retirement(roots[0]/'native-voices.bin',report['native_audio'])
                 audio_build=json.loads((roots[0]/'audio-bridge-build.json').read_text())
                 manifest=json.loads((roots[0]/'manifest.json').read_text())

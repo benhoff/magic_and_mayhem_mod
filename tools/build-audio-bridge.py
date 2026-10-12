@@ -25,12 +25,12 @@ def build(selftest=False):
     source = REPO/'runtime/audio'
     subprocess.run(flags+['-c',str(source/'bridge.c'),'-o',str(root/'bridge.obj')],check=True)
     dll = root/'MnmAudio.dll'
-    subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/export:AudioCreateForTest=_AudioCreateForTest@4',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib')],check=True)
+    subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/export:AudioCreateForTest=_AudioCreateForTest@4','/export:AudioWaveForTest=_AudioWaveForTest@20',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib')],check=True)
     if any(hashlib.sha256((REPO/name).read_bytes()).hexdigest()!=digest for name,digest in compiled_sources.items()):raise ValueError('Audio compiler inputs changed during build')
     (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'compiled_sources':compiled_sources,'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()}},indent=2)+'\n')
     if selftest:
         definition = root/'audio.def'
-        definition.write_text('LIBRARY MnmAudio.dll\nEXPORTS\nAudioCreateForTest@4\n')
+        definition.write_text('LIBRARY MnmAudio.dll\nEXPORTS\nAudioCreateForTest@4\nAudioWaveForTest@20\n')
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'audio.lib')],check=True)
         subprocess.run(flags+['-c',str(source/'selftest.c'),'-o',str(root/'selftest.obj')],check=True)
         subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root/"selftest.exe"}',str(root/'selftest.obj'),str(root/'audio.lib'),str(root/'kernel32.lib')],check=True)

@@ -1,5 +1,6 @@
 #include "../shadow/win32_min.h"
 API i32 WIN AudioCreateForTest(void**);
+API i32 WIN AudioWaveForTest(const char*,void*,u32,u8*,u32*);
 #define CHECK(x) do {if(!(x))ExitProcess(__LINE__);}while(0)
 struct Com {void** v;};
 #define METHOD(o,n,type) ((type)((struct Com*)(o))->v[n])
@@ -23,6 +24,14 @@ void start(void){
         ExitProcess(0);
     }
     void* device=0;CHECK(AudioCreateForTest(&device)==0 && device);
+    if(GetEnvironmentVariableA("MNM_AUDIO_WAVE_TEST",mode,sizeof(mode))){
+        u8 pcm[8]={0},waveFormat[18]={0};u32 duration=999;
+        CHECK(AudioWaveForTest("Z:\\session\\Sounds\\FIXTURE.wav",pcm,8,waveFormat,&duration)==8);
+        CHECK(((u16*)pcm)[0]==0x8000&&((u16*)pcm)[1]==0xffff&&((u16*)pcm)[2]==1000&&((u16*)pcm)[3]==32767);
+        CHECK(waveFormat[0]==1&&waveFormat[2]==1&&waveFormat[12]==2&&waveFormat[14]==16&&duration==0);
+        CHECK(AudioWaveForTest("fixture.wav",pcm,7,waveFormat,&duration)<0);
+        CHECK(AudioWaveForTest("Z:\\session\\Sounds\\..\\fixture.wav",pcm,8,waveFormat,&duration)<0);
+    }
     u32 caps[24]={96};CHECK(METHOD(device,4,Caps)(device,caps)==0 && caps[1]==15);
     u32 primaryDesc[5]={20,0x81,0,0,0};void* primary=0;
     CHECK(METHOD(device,3,CreateBuffer)(device,primaryDesc,&primary,0)==0);

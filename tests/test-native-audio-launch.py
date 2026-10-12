@@ -10,7 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
-from native_audio_launch import SIZE, authorize, validate_activity, validate_retirement
+from native_audio_launch import SIZE, VERSION, authorize, validate_activity, validate_retirement
 
 
 class AudioLaunchTest(unittest.TestCase):
@@ -23,7 +23,7 @@ class AudioLaunchTest(unittest.TestCase):
         self.dll.write_bytes(b'fixture DLL')
         self.path = self.root / 'native-voices.bin'
         self.words = [0] * 32
-        self.words[2:4] = [2, SIZE]
+        self.words[2:4] = [VERSION, SIZE]
         self.words[19:21] = [27, 1]
         self.metadata = dict(native_voices=True, native_render=True, origin='menu_action_bridge',
                              audio_dll_sha256=hashlib.sha256(self.dll.read_bytes()).hexdigest(),
@@ -41,6 +41,13 @@ class AudioLaunchTest(unittest.TestCase):
         self.assertEqual(env['MNM_AUDIO_CHANNEL'], 'Z:' + str(self.path).replace('/', '\\'))
         authorize(self.root, {}, env)
         self.assertNotIn('MNM_AUDIO_CHANNEL', env)
+
+    def test_native_wave_capability_is_bound_to_staging(self):
+        self.words[31]=1;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,self.metadata,{})
+        authorize(self.root,{**self.metadata,'native_wave_loading':True},{})
+        self.words[31]=0x10001;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_wave_loading':True},{})
 
     def test_header_failures(self):
         for word, value in [(2, 1), (3, 1), (20, 0)] + [(i, 1) for i in list(range(4, 19)) + list(range(21, 32))]:

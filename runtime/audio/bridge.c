@@ -12,7 +12,8 @@ typedef i32 (WIN *Create)(void*,void**,void*);static Create legacy;
 #define INVALID ((i32)0x80070057)
 #define UNSUPPORTED ((i32)0x80004001)
 #define FAILED ((i32)0x80004005)
-static i32 request(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result){
+struct NativeWave {u8* pcm;u32 bytes,duration;u8 format[18];};
+static i32 request_wave(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result,struct NativeWave* wave){
     if(!channel || dead || !__atomic_load_n(channel+20,__ATOMIC_ACQUIRE))return FAILED;
     if(__atomic_exchange_n(&busy,1,__ATOMIC_ACQUIRE))return (i32)0x887800aa;
     i32 status=FAILED;
@@ -31,9 +32,26 @@ static i32 request(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags
         Sleep(1);
     }
     status=(i32)channel[17];if(!status && result)*result=channel[18];
+    if(!status && wave){
+        u32 bytes=channel[18];
+        if(op!=MNM_AUDIO_LOAD_WAVE || !bytes || bytes>MNM_AUDIO_PAYLOAD || channel[24]!=bytes || channel[30]){
+            __atomic_store_n(&dead,1,__ATOMIC_RELEASE);status=FAILED;goto done;
+        }
+        u8* pcm=HeapAlloc(GetProcessHeap(),0,bytes);if(!pcm){status=(i32)0x8007000e;goto done;}
+        copy(pcm,(u8*)channel+128,bytes);wave->pcm=pcm;wave->bytes=bytes;wave->duration=channel[29];
+        u16 tag=(u16)channel[27],channels=(u16)(channel[27]>>16);
+        u16 alignment=(u16)channel[28],bits=(u16)(channel[28]>>16),extra=0;
+        copy(wave->format,&tag,2);copy(wave->format+2,&channels,2);
+        copy(wave->format+4,channel+25,4);copy(wave->format+8,channel+26,4);
+        copy(wave->format+12,&alignment,2);copy(wave->format+14,&bits,2);copy(wave->format+16,&extra,2);
+    }
 done:if(status)__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);
     __atomic_store_n(&busy,0,__ATOMIC_RELEASE);return status;
 }
+static i32 request(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result){
+    return request_wave(op,id,value,length,format,flags,data,result,0);
+}
+#include "wave_loading.h"
 struct Object {void** table;volatile u32 refs;u32 kind,id,bytes,flags,playing;u8 format[18];i32 volume,pan;u8* staging;u32 locked;};
 static void* device_table[11];static void* buffer_table[21];
 static struct Object* object(u32 kind){struct Object* o=HeapAlloc(GetProcessHeap(),8,sizeof(*o));if(o){o->refs=1;o->kind=kind;o->table=kind==1?device_table:buffer_table;}return o;}
@@ -124,6 +142,13 @@ static i32 WIN create_sound(void* guid,void** out,void* outer){
 }
 __declspec(dllexport) void AudioAnchor(void){}
 __declspec(dllexport) i32 WIN AudioCreateForTest(void** out){tables();return create_sound(0,out,0);}
+__declspec(dllexport) i32 WIN AudioWaveForTest(const char* path,void* pcm,u32 capacity,u8* format,u32* duration){
+    u32 instance[8]={0};if(!wave_open(instance,path))return FAILED;
+    u32 bytes=wave_size(instance),result=0;
+    if(pcm && capacity>=bytes && format && duration && wave_format(instance,format) && wave_duration(instance,duration))
+        result=wave_read(instance,&pcm,capacity);
+    wave_close(instance);return result==(u32)bytes?(i32)bytes:FAILED;
+}
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;if(reason!=1)return 1;tables();
     char path[512];u32 size=GetEnvironmentVariableA("MNM_AUDIO_CHANNEL",path,sizeof(path));if(!size || size>=sizeof(path))return 1;
@@ -139,6 +164,10 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     void** iat=(void**)(base+0x1c501c);
     if(!VirtualProtect(iat,4,4,&protection))return 1;
     legacy=(Create)*iat;__atomic_store_n(iat,(void*)&create_sound,__ATOMIC_RELEASE);VirtualProtect(iat,4,protection,&ignored);
+    if(channel[31]&MNM_AUDIO_CAP_NATIVE_WAVE){
+        if(wave_install(base))__atomic_or_fetch(channel+31,MNM_AUDIO_WAVE_INSTALLED,__ATOMIC_RELEASE);
+        else{__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);__atomic_store_n(&dead,1,__ATOMIC_RELEASE);}
+    }
 #endif
     return 1;
 }

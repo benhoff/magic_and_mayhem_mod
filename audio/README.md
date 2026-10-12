@@ -1,5 +1,11 @@
 # Native DirectSound voice bridge
 
+Current native-command launches default to native voices with an independent
+audio worker and version-3 native WAV input. Current stage evidence and remaining
+manager/media/recovery boundaries are in
+[the end-to-end audio record](../research/runtime/native-audio-end-to-end.md).
+The optional version-2 bridge text below describes the earlier milestone.
+
 Reviewed 2026-10-04. This optional adapter routes selected game-facing audio
 contracts into the native Device mixer and Qt output. Offline COM/PCM tests and
 disposable import staging pass. No live game session, speaker audibility or

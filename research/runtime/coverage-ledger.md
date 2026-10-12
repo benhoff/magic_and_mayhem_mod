@@ -6836,3 +6836,30 @@ shutdown. Physical device failure/stale notification paths,long stress,audible
 comparison,full driver/COM/WinMM/loader retirement and broad timing equivalence
 remain gaps. Only the new default/worker host scope is refreshed;previous results
 and broader historical statuses/hashes remain separate.
+
+## Native static-WAV loading through public audio — 2026-10-12
+
+`HOST.native-wave-loading` was seeded before implementation. Version 3 returns
+strict native PCM/format/size/duration through the owned worker; the PE adapter
+checks and redirects only eight original WAV calls inside No-CD `0x00570140`.
+Session-owned Sounds resolution replaces those input calls, with explicit
+notFound-only quoted-leaf compatibility and no missing-payload substitution.
+
+`native-wave-loading-installed-pass-20261012.json` matches all 356 WAVs plus four
+quoted requests to independent Python wave: 12,002,990 PCM bytes; two expected
+negative requests reject, 362 request/ACK match, sources/inputs/manifests stay
+stable. `native-wave-loading-public-pass-20261012.json` completes the default
+native-menu campaign and normal Quit: seven native loads/uploads, 349,862 bytes
+each, 12 plays, nine releases, 116 request/ACK, installed guards, zero audio
+failures or fallback, started output, retired readiness and stopped private Wine.
+
+All 60 audio/asset CTests, the two focused Qt lifecycle checks, eight Python
+admission tests, 19 campaign validators and 10 CLI admissions/two refusals pass.
+The x86 COM/WAV and stopped-host fixture also passes. Preserve failed sandbox
+socket and oracle-casing attempts separately; neither contributes a pass.
+
+Implementation is scoped and integration is live observation. Comparison and
+replacement remain none: original configuration/cache/manager/positional and
+scheduling work still runs; movie/music/file-sound integration, device recovery,
+full listening/timing/stress comparison and traced whole-audio API retirement
+remain pending. See `native-audio-end-to-end.md`.
