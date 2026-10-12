@@ -35,6 +35,41 @@ int main() try {
   check(reference.minimap(1,stride,draw)==traced.minimap(1,stride,draw,true));
   check(reference.read(1).pixels==traced.read(1).pixels);++cases;
  }
+ // Repeated mixed extents share scratch storage. Compare against fresh generic
+ // dual-background evaluation, including sentinels, duplicate and padding writes.
+ CanvasSequence reusable, fresh;
+ reusable.create(1,width,height); fresh.create(1,width,height);
+ reusable.update(1,0,0,base); fresh.update(1,0,0,base);
+ const Image small{8,6,std::vector<std::uint32_t>(48,0x2468)};
+ reusable.create(2,8,6); fresh.create(2,8,6);
+ reusable.update(2,0,0,small); fresh.update(2,0,0,small);
+ unsigned recycled=0;
+ for(unsigned cycle=0;cycle<40;++cycle) {
+  const unsigned id=cycle%2?2:1;const int w=id==1?width:8,h=id==1?height:6,pitch=w+int(cycle%3)+1;
+  const auto draw=[&](MinimapPlane& p)->std::size_t {
+   const auto sentinel=p.words.front();
+   check(sentinel==0x1357 || sentinel==0xeca8);
+   check(std::all_of(p.words.begin(),p.words.end(),[sentinel](auto v){return v==sentinel;}));
+   const auto visible=std::size_t(h-2)*pitch+(cycle%unsigned(w));
+   const auto padding=std::size_t(h-1)*pitch+w;
+   const auto colour=std::uint16_t(cycle%3==0?0x1357:cycle%3==1?0xeca8:cycle*19);
+   for(auto at:{visible,visible,padding}) {
+    if(p.writeCandidates)p.writeCandidates->push_back(at);
+    p.words[at]=colour;
+   }
+   return visible;
+  };
+  check(reusable.minimap(id,pitch,draw,true)==fresh.minimap(id,pitch,draw));
+  check(reusable.read(id).pixels==fresh.read(id).pixels);++recycled;
+ }
+ const auto prior=reusable.read(1).pixels;
+ refuses([&]{reusable.minimap(1,stride,[](MinimapPlane& p)->std::size_t{
+  p.writeCandidates->push_back(3);p.words[3]=0x7777;throw std::runtime_error("after admitted scratch write");
+ },true);});++refusals;
+ check(reusable.read(1).pixels==prior);
+ reusable.minimap(1,stride,[](MinimapPlane& p){
+  check(std::all_of(p.words.begin(),p.words.end(),[s=p.words.front()](auto v){return v==s;}));return 0;
+ },true);
  CanvasSequence canvas;canvas.create(1,width,height);canvas.update(1,0,0,base);
  const auto before=canvas.read(1);
  // Untraced arbitrary callbacks continue to use the generic complete scan.
@@ -52,6 +87,6 @@ int main() try {
  refuses([&]{drawMinimapCameraOutline(plane,{80,60,40,30,80,60,400,150,0,false},invalid);});++refusals;
  check(plane.words==unchanged && writes.empty());
  check(uniqueWords<unsigned(width*height));check(before.pixels==base.pixels);
- std::cout<<"{\"cases\":"<<cases<<",\"compared_words\":"<<cases*std::size_t(width)*height<<",\"unique_service_words\":"<<uniqueWords<<",\"atomic_and_undefined_refusals\":"<<refusals<<",\"generic_callback_preserved\":true,\"sentinel_equal_writes\":true}"<<std::endl;
+ std::cout<<"{\"cases\":"<<cases<<",\"compared_words\":"<<cases*std::size_t(width)*height<<",\"unique_service_words\":"<<uniqueWords<<",\"recycled_cases\":"<<recycled<<",\"throw_recovery\":true,\"atomic_and_undefined_refusals\":"<<refusals<<",\"generic_callback_preserved\":true,\"sentinel_equal_writes\":true}"<<std::endl;
  return 0;
 } catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

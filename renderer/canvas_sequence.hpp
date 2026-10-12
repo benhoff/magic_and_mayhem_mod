@@ -47,6 +47,10 @@ private:
     std::vector<int> dirtyFirst, dirtyEnd;
   };
   std::unordered_map<std::uint32_t, Surface> surfaces_;
+  // One bounded scratch pair per sequence. Known traced services return every
+  // touched word to its diagnostic sentinel before recycling owned storage.
+  std::array<std::vector<std::uint16_t>, 2> minimapWords_;
+  std::array<std::vector<std::size_t>, 2> minimapCandidates_;
   std::size_t pixels_ = 0;
   CanvasMirror *mirror_ = nullptr;
   Surface &surface(std::uint32_t);
