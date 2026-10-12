@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "scope": "Source-bound native HUD composition recipe controls, no original/live claim.",
+  "claims": [
+    {
+      "behavior": "NR.native-prepared-command-frame",
+      "contract_sha256": "cd47fb1055babe2845377b00597bc6d9b39def41acb24e88c924631979969d1c",
+      "scenarios": {
+        "NR.native-prepared-command-frame.fixture": "1e0f28190d8b50a1a5367a9930b8d2bdf83d0feea19ae9c3221fb91250cfb28d"
+      }
+    },
+    {
+      "behavior": "NR.masked-update-scratch-reuse",
+      "contract_sha256": "1d63e5d19aa45a1863d9a9146cf35a424efa3da1d8840563f3c03e493274ebfe",
+      "scenarios": {
+        "NR.masked-update-scratch-reuse.fixture": "053e9e9d42e0728105cb5ef4c29d448c808309b43f2acedd15ec2fffa895b8a5"
+      }
+    },
+    {
+      "behavior": "NR.resident-prepared-shared-budget",
+      "contract_sha256": "793e2cb9b2592eeb23a84a0fbbc4beab9f26f671ce530081f4c6202f415da49b",
+      "scenarios": {
+        "NR.resident-prepared-shared-budget.fixture": "5a45f77e8ade486c79d486a517f59485d0aad2a9d719937a8cd91222c03d5fa4"
+      }
+    }
+  ],
+  "sources": {
+    "protocols/include/mnm/resident_frame_budget.h": "cb15b9f73dc9414cb190e46811810663e5e300a720ad92c4d2dedc8d75754d0d",
+    "renderer/CMakeLists.txt": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+    "renderer/blit.cpp": "7652e74a0479f10a98f1bba77c69308bed24e63fe1c21bec258525ccc873b8bb",
+    "renderer/blit.hpp": "679dbb4f5590db56eb4cf610e4a3845c15bd97929ad730850ffff17cb4dc9a42",
+    "renderer/command_consumer.cpp": "6969177f06ceba03a15a2747702e77064e9a5de532c919ed711c130892e79518",
+    "renderer/command_state.hpp": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+    "renderer/commands.hpp": "5e3bc3dedce647b880f12b3610c80caf7d5146066e00d33f347e70bbb3bcaf73",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/native_frame_recipe.cpp": "c0f426a8ba60adca2312f7b26bb063a57442bada44a469ad9f20ac511a1f7131",
+    "renderer/native_frame_recipe.hpp": "eb487079c73988c2d998ceb156f468acd302eb930ef6bd696b25761fcee96238",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "runtime/render/bridge.c": "44ea78287afc585691e5805ca5158a2a23602870133fda328d0eaf3d0fe26acb",
+    "runtime/render/lock_lifecycle.h": "ea410387714f4e3c06e54176f5f218ce5c4b4cc6a3befbeac7a7c3c7ce4e2d84",
+    "runtime/render/owned_session.h": "5a28124e883baa8b1cb6025fb0e96045447cc7d780fee47d53e9e6b30c3b8d65",
+    "tests/native-frame-recipe-test.cpp": "f5304c7faeb5a78a3fbff5eab3335b49435fea7ac151f9b7fa72ba7b1bd1a255",
+    "tools/build-render-bridge.py": "dea919101db686d200c543bb5c381d0983d941c13d0e5fa2efa6143ec8571321",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/probe-independent-native-world.py": "af65910c5661c9d850d7de8fad54d134970431daaa6c25b8b4f833eefc2cfa6d",
+    "tools/test-native-frame-recipe.py": "b48757cb09303c7092ee00e9341ec7a4239e8f0e11e7496c39f5ba2bf45287b8"
+  },
+  "controls": {
+    "world_hud_repeats": 30,
+    "source_mutation_release": true,
+    "partial_frame_refusal": true,
+    "same_update_hud_changes": true,
+    "fresh_world_used": true,
+    "ordinary_readbacks": 0,
+    "static_uploads_folded": 100,
+    "versioned_masked_reads": true,
+    "swap_repeats": 10,
+    "indexed_palette_owned": true,
+    "compiled_glyph_versions": 200,
+    "masked_scratch_repeats": 100,
+    "unknown_coverage_preserved": true,
+    "paired_scratch_bound": true,
+    "shared_budget_coexistence": true,
+    "fullscreen_mutable_versions": 40,
+    "single_assembly_pass": true,
+    "translated_self_copy": true,
+    "equal_color_ui_ownership": true,
+    "clipped_world_mapping": true,
+    "teardown_surfaces": 0
+  },
+  "sources_unchanged": true
+}

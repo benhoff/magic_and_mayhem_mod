@@ -206,7 +206,7 @@ public:
                         commandDrain_.start();
                     }
                 }
-                if(residentWorld_ && residentWorld_->independent() && gl_->isVisible() && (!menuStack_ || menuStack_->currentWidget()==viewport_)){
+                if(nativeCommandFrames_==beforeFrames && residentWorld_ && residentWorld_->independent() && gl_->isVisible() && (!menuStack_ || menuStack_->currentWidget()==viewport_)){
                     try{
                         const auto generation=commands_->preparedGeneration();
                         if(generation){auto frame=residentWorld_->drawIndependent(generation);if(frame.valid()){

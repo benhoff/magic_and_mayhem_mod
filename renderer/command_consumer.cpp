@@ -213,7 +213,7 @@ CommandConsumer::CommandConsumer(GlBlitter& renderer,std::function<void(GpuFrame
 CommandConsumer::~CommandConsumer(){try {abort();}catch(const std::exception&) {}}
 CommandConsumerState CommandConsumer::state() const{return impl_->state;}
 const CommandResult& CommandConsumer::result() const{return impl_->output;}
-std::uint64_t CommandConsumer::preparedGeneration() const{return impl_->recipe && impl_->recipe->ready()?impl_->recipe->generation():0;}
+std::uint64_t CommandConsumer::preparedGeneration() const{return impl_->recipe && impl_->recipe->ready() && impl_->recipe->hasWorldOutput()?impl_->recipe->generation():0;}
 void CommandConsumer::presentPrepared(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(p.recipe && p.recipe->ready() && generation==p.recipe->generation(),"Prepared UI/World generation mismatch");
     try{auto frame=p.recipe->render(world);p.present(std::move(frame));p.refresh();}

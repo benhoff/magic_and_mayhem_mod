@@ -42342,7 +42342,7 @@
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
@@ -42350,10 +42350,18 @@
         "NR.world-owned-snapshot-delivery.headless-controls-20261012",
         "HOST.independent-native-world-loop.startup-negative-20261012",
         "HOST.independent-native-world-loop.first-render-negative-20261012",
-        "NR.world-owned-snapshot-delivery.current-controls-20261012"
+        "NR.world-owned-snapshot-delivery.current-controls-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Opt-in V5 original callback and native World/HUD rendering executed in a negative live attempt:38.36569renderFPS,18.64224sourceHz, late drawing-history GAP and pending normal Quit. Two-source bound and ordinary zero-readback route observed, but sustained pacing/fullgameplay/60FPS not established. Earlier headless ownership evidence retains historical fingerprints; rerun after queue changes before current-code claims. No interpolation/default switch/original equivalence."
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
       ]
     },
     {
@@ -42400,16 +42408,25 @@
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
         "HOST.independent-native-world-loop.first-render-negative-20261012",
-        "NR.native-prepared-world-replay.controls-20261012"
+        "NR.native-prepared-world-replay.controls-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "NR.native-prepared-world-replay.current-controls-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Fresh bounded native controls pass for the stated scope. Full command admission/driver comparison, adversarial budget/clipper/failure coverage, independent live source pacing/gameplay/Quit and sustained60FPS remain pending. Interpolation is separate."
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
       ]
     },
     {
@@ -42417,7 +42434,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Prepare native HUD and World composition for independent rendering",
-      "scope": "Opt-in native command-frame recipe freezes native GPU source/destination baselines around the selected resident World reference and owns admitted updates, copy/swap/clipper/palette operations through PRESENT. Repeated frames restore private native storage and import matching native World generations, then execute ordinary native composition without rereading original output or replaying stream admission/producer counters. No original destination/CPU readback initialization, cached screenshot substitute, dropped/reordered engine imports, DirectDraw restoration or simulation advance. Bounded private resources and terminal refusal remain explicit.",
+      "scope": "Opt-in native command-frame compilation tracks exact per-pixel World coordinates versus literal native UI ownership through updates/masked coverage,keyed copies,translated copies,ordered opaque self copies,clippers and swaps. PRESENT freezes the native-produced UI values and coordinate map, discarding intermediate source history; an extra frame assembles freshly drawn matching native World pixels with the owned UI layer in one native shader pass. No original output/CPU readback initialization, cached World screenshot substitute, reordered source imports, DirectDraw restoration or simulation advance. UI colors equal to World pixels remain literal UI. Only source metadata and World-derived coordinate planes remain live; released identities retire maps and partial frames refuse replay. Bounds stay explicit; original comparison/interpolation/60FPS remain separate.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -42442,22 +42459,34 @@
         "renderer/known_pixels.hpp",
         "renderer/CMakeLists.txt",
         "tools/coverage_claims.py",
-        "tools/draft-coverage-claims.py"
+        "tools/draft-coverage-claims.py",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "renderer/dib.hpp"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
         "HOST.independent-native-world-loop.first-render-negative-20261012",
-        "NR.native-prepared-command-frame.controls-20261012"
+        "NR.native-prepared-command-frame.controls-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "NR.native-prepared-command-frame.compiled-controls-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Fresh bounded native controls pass for the stated scope. Full command admission/driver comparison, adversarial budget/clipper/failure coverage, independent live source pacing/gameplay/Quit and sustained60FPS remain pending. Interpolation is separate."
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
       ]
     },
     {
@@ -42502,21 +42531,169 @@
         "tools/build-scene-observer.py",
         "tools/coverage_claims.py",
         "tools/draft-coverage-claims.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "tools/campaign-combat-input.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
-        "HOST.independent-native-world-loop.first-render-negative-20261012"
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ],
       "remaining_gaps": [
-        "Opt-in V5 original callback and native World/HUD rendering executed in a negative live attempt:38.36569renderFPS,18.64224sourceHz, late drawing-history GAP and pending normal Quit. Two-source bound and ordinary zero-readback route observed, but sustained pacing/fullgameplay/60FPS not established. Earlier headless ownership evidence retains historical fingerprints; rerun after queue changes before current-code claims. No interpolation/default switch/original equivalence."
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+      ]
+    },
+    {
+      "id": "NR.masked-update-scratch-reuse",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Reuse bounded native masked-upload GPU scratch",
+      "scope": "Owned RGB565 masked update inputs retain exact coverage and undefined-word knowledge while reusable native colour/mask textures replace per-call texture creation. Flush native copies before scratch overwrite, preserve full patch validation/all-zero no-op and partial definition, bound eachpatch2Mpixels and paired scratch16MiB, dispose with renderer. No output readback, original comparison, driver timing equivalence or simulation change.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
+      ],
+      "tests": [
+        "tests/native-frame-recipe-test.cpp",
+        "tools/test-native-frame-recipe.py"
+      ],
+      "validation_dependencies": [
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/CMakeLists.txt",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "protocols/include/mnm/resident_frame_budget.h"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+        "NR.native-prepared-command-frame.compiled-controls-20261012"
+      ],
+      "remaining_gaps": [
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+      ]
+    },
+    {
+      "id": "NR.resident-prepared-shared-budget",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Partition shared native residency for independent frame preparation",
+      "scope": "Opt-in owned V5 public rendering partitions the existing64handle/16Mpixel renderer budget: original source cache retains32handles/5Mpixels via its existing FIFO DELETE/LRU admission; prepared native frame storage retains32handles/11Mpixels. Legacy/nonprepared source residency remains32handles/16Mpixels. No budget enlargement, source frame drop, handle reuse or original COM/gameplay lifetime change; held primary/DC/lock/current-copy operands remain excluded from eviction.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md",
+        "research/runtime/opengl-continuous-producer.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/resident_frame_budget.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_lifecycle.h",
+        "renderer/native_frame_recipe.cpp"
+      ],
+      "tests": [
+        "tests/native-frame-recipe-test.cpp",
+        "tools/test-native-frame-recipe.py",
+        "tools/probe-independent-native-world.py"
+      ],
+      "validation_dependencies": [
+        "renderer/native_frame_recipe.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "runtime/render/bridge.c",
+        "tools/build-render-bridge.py",
+        "renderer/CMakeLists.txt",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "NR.native-prepared-command-frame.compiled-controls-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-party-lethal-oracle",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Recognize same-party Fireball lethal after verified melee engagement",
+      "scope": "Smoke completion keeps living summoned-Zombie melee damage mandatory and permits an independently validated player Fireball to deplete the same enemy. Bind cast/effect provenance, original thread, bounded wrapping ticks, enemy slot/type/owner and nearest preceding living wizard snapshot across separate journals; sequence numbers are not cross-journal identities. Retain melee-only completion and refusal of unrelated/enemy/orphan/early/dead-caster effects. Read-only test oracle, no gameplay state/balance change or retrospective whole-journey success.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "tools/campaign_spell.py",
+        "tools/campaign-combat-input.py",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/campaign-spell-test.py",
+        "tests/test-native-campaign.py",
+        "tools/test-native-party-lethal.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-campaign-party-lethal-oracle.controls-20261012"
+      ],
+      "remaining_gaps": [
+        "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion."
       ]
     }
   ],
@@ -89025,6 +89202,322 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+      "kind": "live_observation",
+      "scope": "TITAN static native HUD folding executes6517native Worlds/3334matchingextra presentations;39.13145renderFPS/19.17214sourceHz/2752deadline misses remain failures. Terminal prepared-frame plane budget stops complete casting/combat/portrait/Quit journey;3183source/native/imports balance, no outstanding source, highwater2. Source/original/private cleanup pass; no60FPS/full gameplay success.",
+      "record": "research/runtime/independent-native-static-gpu-negative-20261012.json",
+      "sha256": "db8ee900c8feb3ca615123bca4325dd99799211335c655fb2e15c06d4eeb552b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Packed static native regions and reusable masked scratch execute without the earlier plane refusal, but original player wizard dies before required melee-party lethal completion. Native rendering remains near40FPS; full campaign/normalQuit/60FPS fail. Source/original/private cleanup verify; no causal attribution of death to rendering.",
+      "record": "research/runtime/independent-native-packed-gpu-combat-negative-20261012.json",
+      "sha256": "3a31d58398dcec14fb273ce9dd290dafd7930db3a3da1afeec866b9148da5866",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Native input journey completes summon,Fireball,melee/party lethal,ordinary retreat,blocked mana and portrait stress, but menu transition later refuses shared renderer resources.3617source/native/imports balance and2655extraWorld/presentations;19.87359sourceHz/34.31659nativeFPS still below60. Full campaign/normalQuit unpassed; sources/original/private cleanup verify.",
+      "record": "research/runtime/independent-native-menu-budget-negative-20261012.json",
+      "sha256": "69ca9c8650cc94cc3f853829ec7e5409adce45b4069158b50214a5cc6c76eef1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh native World/HUD repeats,200packed changingglyph readversions,100masked scratch repeats,exact partial unknown/coverage/history,opposing aspect16MiB scratch bound,source palette/delete/swap controls,32source slots coexisting with prepared cache and unchanged64handle/16Mpixel arithmetic. No actual runtime producer eviction/game/60FPS equivalence.",
+      "record": "research/runtime/native-frame-gpu-reuse-budget-controls-20261012.json",
+      "sha256": "c3ae921182f19f677682ffdc5a027c6879ee358ff0d9a6da705fce5bc2784455",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/packed_glyph_versions",
+          "equals": 200
+        },
+        {
+          "pointer": "/controls/masked_scratch_repeats",
+          "equals": 100
+        },
+        {
+          "pointer": "/controls/shared_budget_coexistence",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/controls/teardown_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.partition-negative-20261012",
+      "kind": "live_observation",
+      "scope": "First shared partition attempt refuses prepared private memory: sixteen surfaces/8248576pixels reveal fifteen800x600planes plusatlas. Source902near19.8Hz and no renderer cap expansion; nativeRender near30FPS and incomplete gameplay remain negative. Sources/original/private cleanup verify; motivates ordered mutable fullscreen source pairs.",
+      "record": "research/runtime/independent-native-partition-negative-20261012.json",
+      "sha256": "15bcfeedf19c42581a337af9a349dd371e5bbba20967ee906f0a3f3a0091134f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Ordered mutable fullscreen source pairs avoid earlier cache failures, but smoke rejects actual player Fireball enemyHP11to0 because its completion oracle only sees melee deaths. It keeps waiting until later wizard death. Whole journey remains negative; no retroactive pass. Source/original/private cleanup verify; render cadence still below60.",
+      "record": "research/runtime/independent-native-fireball-oracle-negative-20261012.json",
+      "sha256": "222c44538f0d06d136fdfe0f5c342b80c1e2080937ffe6e7f6a84dff8978f540",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Several distinct full-buffer private pairs still exhaust the initial8M preparation partition. Native combat input reaches same-party melee lethal, but frame budget refusal before menus/Quit keeps whole journey negative; source remains near20Hz and renderingbelow60. Sources/original/private cleanup verify. Leads to5Msource/11Mprivate split under unchanged16Mtotal.",
+      "record": "research/runtime/independent-native-distinct-sources-negative-20261012.json",
+      "sha256": "1e94192ba954c5a1c52f420eda1463badbee0c181d36e17f4900957693075f99",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.retained-history-negative-20261012",
+      "kind": "live_observation",
+      "scope": "5Msource/11Mprivate total16M partition still refuses intermediate replay history at24surfaces/11295456pixels. Melee-lethal input reaches ordinary retreat before renderer failure;2698source/native/imports balance near19.875Hz,render31.49FPS. Whole gameplay/Quit/60FPS remain unpassed; motivates bounded coordinate compilation instead of further budget changes. Sources/original/private cleanup verify.",
+      "record": "research/runtime/independent-native-retained-history-negative-20261012.json",
+      "sha256": "21d20bc7dc27ae1cab5d8ff41426fd17332a1fcd638cfdbfc8fe3ad5a5c3a819",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-prepared-command-frame.compiled-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Current compiled native UI/World-coordinate ownership controls:30repeats,200glyph versions,40fullscreen versions in5surfaces/oneassemblypass;translated/opaque selfcopy,clipper/equal-color UI ownership,source mutation/delete,palette/swaps,partialframe refusal,100masked scratch repeats/partial unknowns,16MiB pairedscratch and unchanged shared64/16M limits. No runtime/original/60FPS equivalence.",
+      "record": "research/runtime/native-compiled-frame-controls-20261012.json",
+      "sha256": "208caa1025171f5129990b6f0b2235afead0e8b40accedc8b04cad30e098d17d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-prepared-world-replay.current-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh exact native snapshot/baseline controls9,40destination-dependent repeats,two sourceupdates,four saved-source repeats,unchangedproducerhistory,zeroordinaryreadbacks/clean teardown. Saved/synthetic inputs; no current original/live60FPS proof.",
+      "record": "research/runtime/native-prepared-world-current-controls-20261012.json",
+      "sha256": "c4644f3c9a7541f760d0c6bb9ce26c8d6de7b6fba18ef1005074873af4586f1a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-party-lethal-oracle.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Source-bound26synthetic spell/campaign controls include matching enemy/thread/tick/living wizard,wrong source/caster/target/thread/dead/stale/early/orphan/positiveHP refusals and wraparound. Retained negative journals diagnose real Fireball enemyHP11to0 while preserving failed whole journey.",
+      "record": "research/runtime/native-party-lethal-controls-20261012.json",
+      "sha256": "be1c5dc3922008ded0d5c05b04dbc25f7d87106f67f3c218ce4e53e382c4007b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop.functional-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Private TITAN full native campaign succeeds:casting/Fireball/melee-party lethal/movement/retreat/refusals/portraits/menu-return-resume/normalQuit;4630source/native/imports balanced,zero outstanding/readbacks/pixel replies,highwater2/no fallback. Source19.50415Hz;native22.94413FPS;visible30.26498/42.89832FPS fail60 target. Wrapper successfalse remains performance failure; no interpolation/original equivalence/60FPS claim.",
+      "record": "research/runtime/independent-native-functional-performance-negative-20261012.json",
+      "sha256": "33e5702e710e54c939c8c797104518649bf36aa2d3c2872b530955c6c607c68c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99747,7 +100240,8 @@
         "tools/test-native-prepared-world.py"
       ],
       "evidence": [
-        "NR.native-prepared-world-replay.controls-20261012"
+        "NR.native-prepared-world-replay.controls-20261012",
+        "NR.native-prepared-world-replay.current-controls-20261012"
       ]
     },
     {
@@ -99762,7 +100256,9 @@
         "tools/test-native-frame-recipe.py"
       ],
       "evidence": [
-        "NR.native-prepared-command-frame.controls-20261012"
+        "NR.native-prepared-command-frame.controls-20261012",
+        "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+        "NR.native-prepared-command-frame.compiled-controls-20261012"
       ]
     },
     {
@@ -99778,7 +100274,15 @@
       ],
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
-        "HOST.independent-native-world-loop.first-render-negative-20261012"
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ]
     },
     {
@@ -99794,7 +100298,15 @@
       ],
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
-        "HOST.independent-native-world-loop.first-render-negative-20261012"
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ]
     },
     {
@@ -99810,7 +100322,15 @@
       ],
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
-        "HOST.independent-native-world-loop.first-render-negative-20261012"
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
       ]
     },
     {
@@ -99826,7 +100346,82 @@
       ],
       "evidence": [
         "HOST.independent-native-world-loop.startup-negative-20261012",
-        "HOST.independent-native-world-loop.first-render-negative-20261012"
+        "HOST.independent-native-world-loop.first-render-negative-20261012",
+        "HOST.independent-native-world-loop.static-gpu-negative-20261012",
+        "HOST.independent-native-world-loop.packed-gpu-combat-negative-20261012",
+        "HOST.independent-native-world-loop.menu-budget-negative-20261012",
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+      ]
+    },
+    {
+      "id": "NR.masked-update-scratch-reuse.fixture",
+      "scope": "Bounded GPU masked-update controls verify exact native pixels, partial unknowns, repeat stability, scratch reuse/growth/overflow fallback and cleanup; no original/live claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.masked-update-scratch-reuse"
+      ],
+      "tests": [
+        "tests/native-frame-recipe-test.cpp",
+        "tools/test-native-frame-recipe.py"
+      ],
+      "evidence": [
+        "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+        "NR.native-prepared-command-frame.compiled-controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.resident-prepared-shared-budget.fixture",
+      "scope": "Native shared-budget arithmetic,32source-plane residency with prepared native frames, exact repeated output and unchanged total renderer limits; no original/runtime eviction claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.resident-prepared-shared-budget"
+      ],
+      "tests": [
+        "tests/native-frame-recipe-test.cpp",
+        "tools/test-native-frame-recipe.py"
+      ],
+      "evidence": [
+        "NR.native-prepared-command-frame.gpu-reuse-budget-controls-20261012",
+        "NR.native-prepared-command-frame.compiled-controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.resident-prepared-shared-budget.live",
+      "scope": "Private TITAN owned-source/prepared rendering full gameplay/native menus/Quit with finite source/private cache partition and retained performance failures.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.resident-prepared-shared-budget"
+      ],
+      "tests": [
+        "tools/probe-independent-native-world.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.independent-native-world-loop.partition-negative-20261012",
+        "HOST.independent-native-world-loop.fireball-oracle-negative-20261012",
+        "HOST.independent-native-world-loop.distinct-sources-negative-20261012",
+        "HOST.independent-native-world-loop.retained-history-negative-20261012",
+        "HOST.independent-native-world-loop.functional-performance-negative-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-party-lethal-oracle.fixture",
+      "scope": "Source-bound synthetic cross-journal party lethal controls and read-only retained negative-journal diagnosis, preserving its failed whole journey.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-campaign-party-lethal-oracle"
+      ],
+      "tests": [
+        "tests/campaign-spell-test.py",
+        "tests/test-native-campaign.py",
+        "tools/test-native-party-lethal.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign-party-lethal-oracle.controls-20261012"
       ]
     }
   ],
@@ -100201,8 +100796,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-prepared-render-milestone-20261012.json",
-    "sha256": "54c28fd48191970d52fde50203073dabf710b78b414dff5efd66e44a818c658f"
+    "path": "research/runtime/coverage/source-index-native-compiled-frame-milestone-20261012.json",
+    "sha256": "60399336a8570427f942e66d45fe4f03319d12c9dfb6eec11c53a14b24fd3550"
   },
   "claim_bindings_required": true
 }

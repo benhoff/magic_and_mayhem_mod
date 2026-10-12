@@ -65,6 +65,7 @@ struct RenderStats {
     std::uint64_t presentationPixels=0;
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
     std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;
+    std::uint64_t maskedScratchAllocations=0,maskedScratchPixels=0;
     std::size_t surfaces=0,pixels=0;
 };
 
@@ -151,5 +152,10 @@ private:
     struct Impl;
     std::shared_ptr<Impl> impl_;
     friend class GpuFrame;
+    friend class NativeFrameRecipe;
+    ClipperState surfaceClipper(SurfaceId) const;
+    void updateCoveredWords(SurfaceId,int,int,const Image&,const std::vector<std::uint8_t>&);
+    void copyCoordinates(SurfaceId,std::optional<SurfaceId>,SurfaceId,Rect,int,int,std::optional<std::uint32_t>);
+    void assembleMappedWorld(SurfaceId,SurfaceId,SurfaceId,const GpuFrame&);
 };
 }

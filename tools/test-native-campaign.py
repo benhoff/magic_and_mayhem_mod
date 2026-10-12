@@ -19,7 +19,7 @@ import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_movement import validate_movement_probes
 from campaign_crowded import validate_crowded
-from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
+from campaign_spell import player_engaged_fireball_lethal, read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -152,12 +152,15 @@ def validate_casting_combat(experiment, inputs, capture_root):
     if not hits:
         raise ValueError('No observed original player Zombie versus enemy melee damage')
     lethal=player_lethal_rows(rows,owner,wizards[0]['slot'],hits)
-    if not lethal:raise ValueError('No observed player party lethal enemy health depletion')
+    spell_rows=read_spell_rows(experiment/'spell-events.bin',complete=True)
+    spell_lethal=player_engaged_fireball_lethal(spell_rows,rows,owner,wizards[0]['slot'],hits)
+    if not lethal and not spell_lethal:raise ValueError('No observed player party lethal enemy health depletion')
     return dict(casting_verified=True,combat_verified=True,summoned_slot=slot,player_owner=owner,
                 movement=validate_movement_probes(rows,inputs),
-                spells=validate_spell_observation(read_spell_rows(experiment/'spell-events.bin',complete=True),rows,inputs),
+                spells=validate_spell_observation(spell_rows,rows,inputs),
                 spell_trace_sha256=sha(experiment/'spell-events.bin'),
-                enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]),
+                enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]) if lethal else None,
+                lethal_fireball_events=len(spell_lethal),first_lethal_fireball=list(spell_lethal[0]) if spell_lethal else None,
                 combat_source_slots=sorted({r[4] for r in hits}),melee_damage_events=len(hits),first_melee_damage=list(hits[0]),trace_sha256=sha(experiment/'gameplay-events.bin'))
 
 

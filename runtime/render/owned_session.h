@@ -1,5 +1,6 @@
 #include "../../protocols/include/mnm/render_stream_v4.h"
 #include "dirty_region.h"
+#include "../../protocols/include/mnm/resident_frame_budget.h"
 /* Ordered opt-in production, independent of bounded diagnostic archives.
  * Every entry point holds game_locks_busy; pixels are owned snapshots only. */
 struct SessionSurface {void* object;u32 id,width,height,bits,r,g,b,palette_known,dc_pending,palette_id,palette_generation,used;u8 palette[1024];};
@@ -145,11 +146,12 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
            s->r!=pixels->r || s->g!=pixels->g || s->b!=pixels->b){game_session_gap(3);return 0;}
         return s;
     }
+    const u32 pixel_limit=mnm_resident_source_pixel_limit(game_prepared_world);
     u32 count=pixels->width*pixels->height;
-    if(count>16777216 || (game_session_continuous && session_last_id==0xffffffffu)){game_session_gap(2);return 0;}
+    if(count>pixel_limit || (game_session_continuous && session_last_id==0xffffffffu)){game_session_gap(2);return 0;}
     for(;;){
         s=0;for(u32 i=0;i<32;++i)if(!session_surfaces[i].id){s=session_surfaces+i;break;}
-        if(s && count<=16777216-session_pixels)break;
+        if(s && count<=pixel_limit-session_pixels)break;
         struct SessionSurface* victim=game_session_continuous?session_victim(keep):0;
         if(!victim){lock_diagnostic("session_cache_admission_refused",object,0,count,session_pixels,0,0,0);game_session_gap(2);return 0;}
         u32 old_id=victim->id;
