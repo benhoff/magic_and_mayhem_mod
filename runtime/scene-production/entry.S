@@ -103,6 +103,7 @@ _production_draw_end:
     ret
 normal_end:
     popfl
+    save_call production_middle 2
     movb 0x5e140c,%al
     testb %al,%al
     jmp *_draw_resume

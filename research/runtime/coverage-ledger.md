@@ -6666,3 +6666,25 @@ Actual corrected TITAN state/scene/queue equality and successful combat/normal Q
 are pending. Original allocator/nested map/visibility/driver/pixel and independent
 60FPS/default safety remain unproved. Exact0986a18..961ea3b committed-history
 review:25 files,zero missing receipts; no retrospective gate or execution claim.
+
+
+## Prepared-scene phase candidate and retained performance failure (2026-10-12 UTC)
+
+Corrected queue cleanup balances4465 native Worlds and completes input/flow/normal
+producer retirement, but the campaign fails19FPS at18.55584FPS. Formal gameplay
+validation is not asserted after that performance failure. The checkpoint has9
+exact protected/scene repeats; repeat10 retains protected bytes and queue ownership
+but has1154 versus1150 rows, so further repeats stop. Keep both negative outcomes.
+Concurrent accounting limits timing attribution; it does not explain the failure.
+
+Mode4 moves repetition to004fd5c1 inside the original draw, before clearing
+temporary creature preparation and camera/cache post-work. It uses the exact
+original stack/FP/error context, existing guarded body/history policy and original
+queue cleanup, then resumes original post-work/return once. No cleared state is
+restored. `RS.creature-draw-preparation` records partial conditional0051e260
+preparation and0052ab80 post-clear; missing-row causality is a hypothesis. Wire4
+adds the phase withversions1..3 compatibility. Final44 PE32/18 decoder controls pass; quiet TITAN state+scene+19FPS+normal Quit
+proof is pending. Complete original
+helper/pointer/allocator/nested map/visibility/driver/pixel/default/60FPS remain
+unproved. Exact961ea3b..bd177b6 committed-history review:19 files,zero gaps;
+no retrospective gate or execution claim.

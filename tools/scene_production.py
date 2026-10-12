@@ -16,7 +16,8 @@ POOLS={20:(0x6def58,0xe4b,256),21:(0x689498,0x22e,2048),22:(0x6b1248,0x7e,4096)}
 def decode(path):
     if not 64<=path.stat().st_size<=64*1024*1024:raise ValueError('Scene production size limit')
     data=path.read_bytes();h=struct.unpack_from('<16I',data)
-    if data[:8]!=b'MNMSPR01' or h[2] not in (1,2,3) or h[3]!=160 or not 1<=h[4]<=16 or h[5]>(2 if h[2]==1 else 3) or h[12]>4096 or h[15] not in (0,2,4):raise ValueError('Scene production header')
+    maximum_mode=2 if h[2]==1 else 4 if h[2]==4 else 3
+    if data[:8]!=b'MNMSPR01' or h[2] not in (1,2,3,4) or h[3]!=160 or not 1<=h[4]<=16 or h[5]>maximum_mode or h[12]>4096 or h[15] not in (0,2,4):raise ValueError('Scene production header')
     frequency=h[10]|h[11]<<32
     if not frequency or not h[9]:raise ValueError('Scene production clock/owner')
     at=64;end=at+h[4]*160+h[12]*32
@@ -81,8 +82,8 @@ def summarize(path):
           primary_history_forwards=r[34],extra_history_skips=r[35],extra_history_forwards=r[36],
           first_critical_difference=None if not r[25] else dict(region=REGIONS[r[25]],offset=r[26],before=r[27],after=r[28])))
     good=not h[6] and not h[7] and not h[8] and len(cases)>=8 and all(r['status']=='equal' and r['counter_unchanged'] and r['sequence_unchanged'] and r['extra_worlds']==1 and r['primary_scene_draws'] and r['extra_scene_draws'] and not r['scene_refusals'] for r in cases)
-    if h[5]==3:good=good and all(c['primary_history_forwards']>0 and c['extra_history_skips']==c['primary_history_forwards'] and not c['extra_history_forwards'] for c in cases)
-    return dict(mode=('observe','full','slice','frozen-history')[h[5]],cases=cases,critical_failures=h[6],refusals=h[7],foreign=h[8],
+    if h[5] in (3,4):good=good and all(c['primary_history_forwards']>0 and c['extra_history_skips']==c['primary_history_forwards'] and not c['extra_history_forwards'] for c in cases)
+    return dict(mode=('observe','full','slice','frozen-history','prepared-scene')[h[5]],cases=cases,critical_failures=h[6],refusals=h[7],foreign=h[8],
         original_scene_calls=h[14],actual_queue_calls=h[13],extra_worlds=sum(r['extra_worlds'] for r in cases),
         protected_state_invariance=good,independently_compared_retained_pairs=retained,
         scene_record_equality=bool(cases) and all(c['primary_scene_draws']==c['extra_scene_draws'] and c['raw_scene_changed_bytes']==0 and not c['scene_refusals'] for c in cases),

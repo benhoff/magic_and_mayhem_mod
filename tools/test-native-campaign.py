@@ -363,7 +363,7 @@ def main():
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
     parser.add_argument('--disable-precise-clock',action='store_true',help='Diagnostic control: retain original coarse GetTickCount uptime')
     parser.add_argument('--trace-engine-cadence',action='store_true',help='Memory-only original simulation/animation/World cadence trace; flush at normal process exit')
-    parser.add_argument('--scene-production-probe',choices=('observe','full','slice','frozen-history'),help='Bounded original scene production state audit; frozen-history skips history shifting only during extra drawing')
+    parser.add_argument('--scene-production-probe',choices=('observe','full','slice','frozen-history','prepared-scene'),help='Bounded original scene production audit; prepared-scene repeats after original queue cleanup before creature/camera post-work')
     pacer=parser.add_mutually_exclusive_group()
     pacer.add_argument('--enable-pacer-yield',dest='pacer_yield',action='store_true',help='Experimental opt-in cooperative Sleep0 wait; has no demonstrated portrait performance benefit')
     pacer.add_argument('--disable-pacer-yield',dest='pacer_yield',action='store_false')
@@ -461,7 +461,7 @@ def main():
         env['MNM_ENGINE_CADENCE_TRACE']='1'
     if args.scene_production_probe:
         if not args.resident_world or not args.normal_quit or args.trace_engine_cadence:raise ValueError('Scene production requires isolated resident World and normal Quit')
-        env['MNM_SCENE_PRODUCTION_PROBE']=str(('observe','full','slice','frozen-history').index(args.scene_production_probe))
+        env['MNM_SCENE_PRODUCTION_PROBE']=str(('observe','full','slice','frozen-history','prepared-scene').index(args.scene_production_probe))
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'

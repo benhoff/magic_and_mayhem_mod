@@ -496774,6 +496774,336 @@
         "status": "pending",
         "reason": "NR.scene-production-repetition.queue-cleanup-controls-20261012 passes33 authored PE32 full/slice/frozen-history caller/FP/error/stack/RET8 controls,52 guard mutations, normal/extra once-only history calls, all protected mutation/refusal cases, executed queue postconditions and preexisting leaked queue admission refusal.17 decoder failures plus negative history/scene counts andversion1/2 compatibility pass. Actual corrected TITAN gameplay/state/scene/queue/normal Quit and checkpoint timing are pending; initial live Fireball and page-fault failures remain negative. No causal attribution of the crash, original helper/allocator/pointer lifetime/driver/pixel/nested map/timer equivalence, default replacement or60FPS claim; all broad stages and original helper implementation/comparison remain unchanged."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5047c0a9e4cbf48d3d7c4fb754f18da6082c2d420c17bfd2ae43aabbd0ec769c",
+          "before_sha256": "edc79b2ae19a722aa80f5c0314c3410214cb5ab2100a1ed254f9928b94eb1dd2",
+          "id": "CP.realm-observation"
+        },
+        {
+          "after_sha256": "a80f4395cbf81e6c5ccf97771aefe71a39e65c6169c7fecd6ef757db83f6949c",
+          "before_sha256": "4a0dfcc37af7e47ee80084ea097551973c741ea0a8aaed046804d2f3a0f058b1",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "2daf01407e4181a4b6f972bcae309206b61c778fa24288f14731b7e1e2c36a49",
+          "before_sha256": "c5d45e764e182ed73a3bcc548eaf2eba6effa2cef57de2aac21194a6dec01536",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "52dc1ef8651b8705db345966163f00b78d22adacd7337335dcf4cd667d0df9ad",
+          "before_sha256": "58e6381c728d0bd2b728b38b48f2dd562de2fbe0f1ec1e8c6bb089c336cdbb1c",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "399d0c0b3d6b8bb271c55120137da30fa8a08b7e96a073882a5af053cf9e5223",
+          "before_sha256": "884fa9385c2421e51d6f2f11fa022323edbb57729ac1ba0922bcfe91989724b3",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "cb7a67f53e760ca1b8e5051e92831aa9dd9af6414ee3b70c15a0ec73824d36d5",
+          "before_sha256": "6a3bb8902ba00dfe09b3482a1d32cb123b715eebdca11e7c18463c80434c8bd0",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "dcf9f47de778f4e0e64455b1911558995793b726ac7d5fa184a1a2b3bb726e0c",
+          "before_sha256": "2efe861bc7a352aca89b28deb36a8b2a42bd3bef418350f56f7b4b6e3c5c6af2",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "b9cdde9fe5595bb286b7c7113ed5e0a8346cbb04d416b06e9c966004586cf78a",
+          "before_sha256": "f0dd0f627de80016fb5ccb691da05e6ed22c2a2c6efba7aa46b5422f9075af3f",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "783e6befc2d480d11122f97b42d46e23013319dcac4fa7ed7e2ef64a6fef2df6",
+          "before_sha256": "f3fb44d0f55fc00188e340bd79eb005de7e99fa005be6c2b58425b530abe8373",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "83ea3b16cc09c461842817972039e954c5562fb476a46980e804b5b6da41bda3",
+          "before_sha256": "2b12d7167e415c59ccf3d317bc5180f66c4f03190f91548661eb6b7eddefad99",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "07bf598bab5c3bf94dba508056669a8595131de5e2a019e92e623d11516ce3cc",
+          "before_sha256": "a5e49ca4172d42db46a2fb7fdd011baa7f1a6a9f2dd12e097bd0a813318c42f5",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "43df936fa2c101f515f4e7343d48c1f813353c1f47f4d8b353b132c11ca3a565",
+          "before_sha256": "5a6d07691960801ade8a9fd58597759a0e5c9fa0eee3d499ae345d1f6c5813bb",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "84bfecfa12516d6358a768f2db638ae8dd663a13748b7a6c95a7b23f03f2458e",
+          "before_sha256": "05b60fd85bd8daf6b190eebde7b211c02e3d6b949385c1e60e7b6722d4232a7b",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "2dcd41d8126132db21167529b3588e2eb1487eb2a5f20c84d84323b67cc77aac",
+          "before_sha256": "19c537561643fef95cee4189231064ab66ba963dea9dddc0ae588420bafbe5d5",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "cd708538b40c8029c98a59bcb9f6f0b4e41211bae317ee950e953fa79b8081ce",
+          "before_sha256": "13bb0db7ebe43913747ecf931a728c1685fec60cce653cbf39c00870a22e411c",
+          "id": "HOST.native-render-draw-cadence"
+        },
+        {
+          "after_sha256": "6ff18b1e3b16415c4b784c2826598c570cfbcf8dfd961c4a7f4442e5e9fa7452",
+          "before_sha256": "9cb26d42391d4e5bc1576a02107a445dd185ebe86e3cfbc73ebf108b5b4e14df",
+          "id": "HOST.native-smoke-cleanup"
+        },
+        {
+          "after_sha256": "6174007f53467f88241577cee83e6a8f88be3c803cd774cb063da3bb991bcfce",
+          "before_sha256": "96e7c7bbf898074a715be4c34d6a54d689024be28c9d745b8194cce57f27cdfa",
+          "id": "NP.preferences-persistence"
+        },
+        {
+          "after_sha256": "bde103b32e663c07f5737aab55bd5207631f2f3e45ba8b2af7a5f744bcea88aa",
+          "before_sha256": "9193efdd25add7816aeb56d6d3262ae4e527fdba03e6251f5150e886b52940cc",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "f636afabb6f150ec6980a8c103e20a50328eab7135e763b629d4e0b8adfcf41e",
+          "before_sha256": "8854e16b64685307866e050dff575bccbaf15d1e133ae82a552dd4a83a238da3",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "6290bf4d3c78e4cfe1ee020758decab2c52da28f6b7178726e4f59f224dc68c8",
+          "before_sha256": "8223f96b96939a2ded7140ab462c93398aac3c4e749838ce5bcd7178bd402183",
+          "id": "NR.drawing-fenced-acquisition"
+        },
+        {
+          "after_sha256": "e797ac50a5dda3938c2f311c39b4a5aa42af49c7fa2a9a4061975e519d8b4111",
+          "before_sha256": "3a3992f643e19fc1b164bbf7d241f99583c4caae3d0f37b0bebe31c22f9fc2b3",
+          "id": "NR.engine-cadence-observation"
+        },
+        {
+          "after_sha256": "74563227e01e3414a51b73f1d8034c18b7c8b1e18fbf8c5498904cb163499d65",
+          "before_sha256": "72b62773444738ea9a21d57dbc684e2edb7e31071ead8d9b051fbde87b73ad99",
+          "id": "NR.glyph-default-launch"
+        },
+        {
+          "after_sha256": "fe32736bea36d6b168f3314101789ee8e7737396e6a1617f70a5764b9bede1f8",
+          "before_sha256": "b8c629bcea3f464129f2a66a5885ac48b08bc8df2184389fa4a0d9aba5bb86ed",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "4d1cf45f6f2f00e20035f286e4d71b7325280492914ef3a6012c326d43ca36df",
+          "before_sha256": "61963f40e27c4252846ab01d83a767fc42503ea97f041f0412440fc17fedcfbe",
+          "id": "NR.native-draw-status-session-file"
+        },
+        {
+          "after_sha256": "46cb49a37a50230d224aca6f5aea0fc770905b351a79eed0462f542b955883bf",
+          "before_sha256": "ed34dacb05320624ddf30317f0ad446f858c83c20b4be20d2f13918916ddeaa3",
+          "id": "NR.presentation-damage"
+        },
+        {
+          "after_sha256": "0cfda45ac81331f3871de8fa40201b8f59fa96dd55074df5dfc7364650d416b5",
+          "before_sha256": "169f0bee773a1acecbe35d65041bda20781eb0b064c96967a878af3d0943dbd4",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "6744502cc273564bebc396d403e58f7fbec0570808a4c68003c809260115a6cc",
+          "before_sha256": "c474d4838a3987fa8f441311cf7db551f4039ecce0e57d1d45966023c29398b9",
+          "id": "NR.resident-normal-shutdown"
+        },
+        {
+          "after_sha256": "c04f5c1fa23a806ab97eb8d694dd4be6fe4ecae103cef994117fc2dd5dc8b0a7",
+          "before_sha256": "579ea3796c2d22a6fe81bfcc17f863897641c3dac1495e55c9083d6b2a3fa2dc",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "c4f979d9b83d1997a8f075bb3b957d783bf27bb71c74b6b7cf93ec6bc9df9862",
+          "before_sha256": "58bc06b52749cf039cca14f99fd6ee12f2f7612a9f0e2212835b4996de9fd82d",
+          "id": "NR.scene-production-repetition"
+        },
+        {
+          "after_sha256": "28cbc38398bb277a646b657a77ff2d4d329f007c936e0e8c203576bfb5ccf28f",
+          "before_sha256": "886283d306438726616b17bb956bf3c4366ebbfb530f3a89105cc36c6dcc7267",
+          "id": "NR.world-source-region-epoch"
+        },
+        {
+          "after_sha256": "8cdf29bf1afd27a344ef46b93261295b256f31559fcb2f598f44771dc3461656",
+          "before_sha256": "957921297255a5ce00697d3d8652853a2f92488f7e34dabea88e36eb8036c152",
+          "id": "RS.creature-draw-position-history"
+        },
+        {
+          "after_sha256": "219cfa36584670531acb15737e3cbb7d95a5f2ce8ec4ef0cdb7e7afed0a71157",
+          "before_sha256": null,
+          "id": "RS.creature-draw-preparation"
+        },
+        {
+          "after_sha256": "552667cb4d16dcc00db276b69029c26a6d0b0215855ac3c25481ed28d7ee7ec6",
+          "before_sha256": "c1a508fb32527e33aa2d635a541f09f961e0d07d90247439f6043b93e4e60877",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "71e0c05dcec6b68aa8cf22c2884beba9bb1d8aa675f07bbcc04154829c0587ca",
+          "before_sha256": "a7f6476fdfda3bb564a4da13b01db716fc2832d2b95415d2c59c581e01237002",
+          "id": "RS.scene-queue-retirement"
+        },
+        {
+          "after_sha256": "68481c2acc172eab3af14c20e2ce0387fbda57b0e5d5a913b6748b500ed4be5d",
+          "before_sha256": "6476877a432bd738c4249912fd3ceee5d82523fa5f4501445f4a09b2a6096db8",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "cf8c96e9956e5eaa86877fd78ab3c45d93df7021c8e51d35b2df5468ca544e14",
+          "before_sha256": "c216308d47a5894d9b18f42fbd4c29ee20bd537ebe10aa42262005c183f15fff",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8cb65b474882611923a5df09d19ff5dbf424bac25c3a446cc3d3cb83fdd18761",
+          "before_sha256": "0df629d006d8f277d1e510c04bb729f73003034628d29f72ad3585114d3afc6a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "edb84e5d7f1cc1f85cfc09dee98856dfa8324ded2af6e81219a03e104fba2d32",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-production-prepared-20261012.json"
+        },
+        {
+          "after_sha256": "3fa534980437c94102027d97767a132b918079bb3bed1985c0d4d30d69caf885",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-scene-production-prepared-20261012.md"
+        },
+        {
+          "after_sha256": "d6e4114cd202cd3669bfb225d916a2579f09d4d0633e4de9d07108548f133194",
+          "before_sha256": null,
+          "path": "research/runtime/scene-production-prepared-controls-20261012.json"
+        },
+        {
+          "after_sha256": "b4c032cf3c3245a49e5aef5b5b3244543423aba841617575ca655905af234dfc",
+          "before_sha256": null,
+          "path": "research/runtime/scene-production-queue-cleanup-performance-negative-20261012.json"
+        },
+        {
+          "after_sha256": "5ddfa73cfc20a70b41d3628f67adc31c864c092860134525b9c4a19db66718ae",
+          "before_sha256": "5ddfa73cfc20a70b41d3628f67adc31c864c092860134525b9c4a19db66718ae",
+          "path": "research/runtime/scene-production-queue-cleanup-static-20261012.json"
+        },
+        {
+          "after_sha256": "9825e6c2ba6f894c58475364b11933cea2fa47052c24b8278021e5cc63fb4649",
+          "before_sha256": "6c377a241eede74391d9eac075b729a699fdbe9732d27fcff8197b1001d1dab9",
+          "path": "research/runtime/scene-production-repetition.md"
+        },
+        {
+          "after_sha256": "f59f6f79e6991a775ac45d154a370ad508f7d24fc2defa1755113f777615d812",
+          "before_sha256": "07c4c270782293d0d99d03b395633d68c134aaf21d698905c60ca24be395fc4a",
+          "path": "runtime/scene-production/entry.S"
+        },
+        {
+          "after_sha256": "0e3050cb2f2a8dad510b7d66bd21eb3f5e297d6f9d48dfedd73b4ae31696cf3e",
+          "before_sha256": "c3ba6502cf5ca77233fe84d34887c596a6aabc63d0ce0775b6821297beefa905",
+          "path": "runtime/scene-production/observer.c"
+        },
+        {
+          "after_sha256": "349af32acfbba03ce9385b7e0faef09d0e552152687d9d4a65432a994bdb4c6f",
+          "before_sha256": "884f49760cbc92e58ea947b367c5d793f69c5eef31111b92d7309861b9473d76",
+          "path": "tests/scene-production-reference.c"
+        },
+        {
+          "after_sha256": "d7593718ca798d03192827e08a85c25c1861490871315485cbe5ced185d1c76b",
+          "before_sha256": "7888b11b9f6389996cb1f0e1a99db66cdd714f3f690c9634c4d654294f57d730",
+          "path": "tests/test-scene-production-decoder.py"
+        },
+        {
+          "after_sha256": "1d63efbb6cdf630a90dd0847a97423dc8d69398b54e9c283b806e6546cd940a9",
+          "before_sha256": "9353c8e51919c89ce37f351a759bb833b190ee4967afac4e8e245f291475252d",
+          "path": "tools/menu-game-runner.py"
+        },
+        {
+          "after_sha256": "b72503117140d2f7b85a48a7b822c95a862790984fde29d33bbc3ac6aa4e4665",
+          "before_sha256": "bd1cf6ee3d280881183dd4aaf1822d5f68dab5be02fb0971900cb767f506f9a3",
+          "path": "tools/prepare-menu-observer.py"
+        },
+        {
+          "after_sha256": "c5d08bb5714d624ffcc584433e2c68f3e63241451cd0ea85d6ee40412c2b548b",
+          "before_sha256": "a4edb710b5675e03b13df8289734f31a4e17c5ef957caa7042f0cace9d795a06",
+          "path": "tools/probe-scene-production.py"
+        },
+        {
+          "after_sha256": "557651571f8373e1557bdf68f5b3194013927395da3945d482daf3bc450c942b",
+          "before_sha256": "32f0105658545827b69fa78972dd6cb9ca2c50b2b1a95efd1013b354c2f03134",
+          "path": "tools/scene_production.py"
+        },
+        {
+          "after_sha256": "e7c01b922da79ba183853893dd8b519e73ca7cec7ddf6d8ee57e326fd5978980",
+          "before_sha256": "d93f55ccfc57d9692bd71cbef56fe84604e552469efd141939245bb60662e1eb",
+          "path": "tools/test-native-campaign.py"
+        },
+        {
+          "after_sha256": "b5326cc209b635f82572e381b2d0c9e9bb884f2b5428eda949a1d2517423c5d6",
+          "before_sha256": "a0457a7efbc1df7c4f97ee8b08e661abc90e15ed05edd1a3a7f7d6779f8b48b6",
+          "path": "tools/test-scene-production.py"
+        }
+      ],
+      "id": "scene-production-prepared-phase-candidate-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:9e35c9c1d8543c16f6fde89da529e8a6457327ae37bcff50536bc5a244591fa9",
+        "behaviors_without_implementation:9e35c9c1d8543c16f6fde89da529e8a6457327ae37bcff50536bc5a244591fa9",
+        "behaviors_without_scenarios:9e35c9c1d8543c16f6fde89da529e8a6457327ae37bcff50536bc5a244591fa9",
+        "retired_execution_claims:0591115cec8d95c9f642794285dad91de27652ebd60be43ddf9648891616b811",
+        "retired_execution_claims:0a9c1a31e4bc98684e91bddc3f05a85be7bf61581cd8c9ae6c641dcfb3d34b53",
+        "retired_execution_claims:162e29a585e806590a2f1b55dbfc4a4e46fefcf047dd8a0c576e5aa0e37266af",
+        "retired_execution_claims:1db30561a9b67d7d86ea8542b0566c6fc67c0b9c6a8a0a4ba5284ad5d6466e63",
+        "retired_execution_claims:1f46f461ca593a3ca685027b3d384933fdf392f96f2c8780aea8232245143342",
+        "retired_execution_claims:438850f137cec64a85d7f97cc761803f7b462f32eda313ff312ca6ab84aa2a53",
+        "retired_execution_claims:51a56821558f9699ec7808ac9f819bee7b22b80181830a2db86a12f144e01a8a",
+        "retired_execution_claims:5669c2b3f029d179cdddcfd46ddd67a95162e8a351370eed0296f8003056dbda",
+        "retired_execution_claims:95175235860d88ff048b1bfd5857683893c74e5485328b2da23a0229f6c4f40e",
+        "retired_execution_claims:a7c8a88261bb399cfe23579ca094a9d3527011c8ad3326791805fe3575349420",
+        "retired_execution_claims:abe5859b289e68fe25a44550155d1b009190e16963726c4cf66d399971103261",
+        "retired_execution_claims:b3456472fc617478ef71ada32901a11f25df8a5c0444660b4aa46c1895630428",
+        "retired_execution_claims:beb631d79209e3fddf1d34fa886552cddfb7bac0a45f5ab3664e49f50c3e2640",
+        "retired_execution_claims:dc04050e079926e74d539b63e1a6df21babf2baff2212dbb4f284f5a010871d8",
+        "retired_execution_claims:dcdd4dd2719411eaa3ea7440094a03bee41f5b60377191a625058d69f4ba919e",
+        "retired_execution_claims:e142af5be8b79f657b5e0ab3ae1631a7d82a6592ecfad0cb9ed27ba2349f07c3",
+        "stale_evidence:0017e46f663f866a3d1c6f9b0db33c0356be26e2c70bb0eb7ae0a8626ea34c7f",
+        "stale_evidence:02680b640e9105e096b51c9ce9589f94004e203652d2b2fc0d6dee8890195799",
+        "stale_evidence:0c0a1e4019a21bbfc19fe542feedaa55923d6dc9168da0a66ee1e64a2e4d7e0b",
+        "stale_evidence:26a2cba4ca9567eef1f05eaddd1410544bb39a27db9af11f8fdd34360a5c38aa",
+        "stale_evidence:2e6d099e9e0512245b4f081b822b572f28eac55cb9fc9432c1700a805fc7b65f",
+        "stale_evidence:30d7cddb9f9d866dcefceafe4772583847a4702c543b99abf91c78616614f289",
+        "stale_evidence:33c3e26717df505113b894ef7e7e83fed111934849119401150bcf94496f1e3e",
+        "stale_evidence:3a4bf39fba6d625ecb0031bc36bf232349e04dd17dc83e1d3624c9f801249e91",
+        "stale_evidence:3afb78c08c5fa971b9bdbe72ab6fd1a49eba3894c0f6a7868fb95d6c7051a2f4",
+        "stale_evidence:446e55185c161405f686094c4d56f7cbc4c5e574773312439cc42a66c172a8de",
+        "stale_evidence:4a48a6fbebb3928a9cd08a655af8b0dd04f347a29bc18bc2cd0c781d0c518de5",
+        "stale_evidence:508ee2362acb97d90803ce4d0bf294ea609caabf61dbb4e8b94bef8702b25ce3",
+        "stale_evidence:6829bfe6d85b2f850cfc25630000a429bdd605a0d56f6048dda73b47da75e109",
+        "stale_evidence:80754501074f130b98e5f252dc66047f48a663a3f1e0c3021f5bb565fbaaa00d",
+        "stale_evidence:88a7c64c4acff70249d7063188c8fa15ffe8a111f0239e00273f1e2b6c8b02eb",
+        "stale_evidence:8f82eb2f7019617d2e559f57cabdf2430d9e452e3abfab0d1b2ba116cdec2073",
+        "stale_evidence:97d91d32a29c94b5d281dbf87d0d091f54b1b43ca564b25a6e60f4e004b583ec",
+        "stale_evidence:9ab3df9fdcf252443608e0a3a64b69b0d2cd9c094caaa0744acc28916cf5cc04",
+        "stale_evidence:a4a60894ad9d7650996402fac0b39e93e59d8fad1b812509675a858c35a1a16f",
+        "stale_evidence:b3a165382956fb175b0c7661755b1483c7f39e146ca96e39061cd26a4d19efc1",
+        "stale_evidence:b42b188314df82ea47c8585e5051db50a9264ce2eb90f317f25518e0129f4ade",
+        "stale_evidence:ba1b08bcf4442c7f92501e95492a8e5b3a91478ca2daaf84afe3b04f18688bdd",
+        "stale_evidence:bbc0604c21281391e8f23a6597e2824ba9b2ffd200bb95dc6f7702b42b7d9fb7",
+        "stale_evidence:bf83e52d8f0cda39930f38faa9d0447874a386dbf7722bfb91003318871581da",
+        "stale_evidence:c9bcc215e06f7d798bac15344e94c32351c250d32939ad844128d7e7880766c1",
+        "stale_evidence:cb4b3d2ff6e30fe00deffb2d8ebff589f70527406cccd592c1d9434fa7545d23",
+        "stale_evidence:d152646968aa4847d68004692bbd9811d1a15ca3fcad1c370a46402c58df94ec",
+        "stale_evidence:dc0e7ee10f4d1a18344d63aed82649aa2391f1232d48500a5361dde4507f2dba",
+        "stale_evidence:f3c297706578fd93a6f2197995c2c3a0f2e287aa0199e157500e68e778b136b5",
+        "stale_evidence:f7261a58681887eb072c43646448d6b63415b9eac1cd0cde739e76085ffc88ef",
+        "stale_evidence:fa2ce6d3db435b9c1910ea8732b98ea09135d644eee0f7749fbe7c015b57ae91",
+        "stale_evidence:fcc87b735c1f4fab0bc6d0f4ac17bff7994ea344cb999e43a3faa9a5bc01fd00"
+      ],
+      "reason": "Reviewed retained corrected queue-cleanup run:4465balanced native Worlds, completed physical input/flow/normal retirement, but19FPS gate fails18.55584 and repeat10 scene rows1154/1150 refuse after9 exact pairs, with all protected bytes unchanged. Preserve formal gameplay validation boundary because performance failure precedes those checks; never promote this to a pass. Added mode4 repetition at exact original004fd5c1 four-register frame before preparation/cache/creature/camera post-work, using its current FP/error context, same original cleanup and extra-only history policy, then original normal post-work/return once. No reconstitution or rollback of cleared game/preparation bytes. Seeded partial RS.creature-draw-preparation static conditional increment/active clear, retaining missing-row causality as hypothesis. Wire4 readsversions1..3; reviewed44 final PE32 stack/ABI/once-post/guard/mutation controls and18 independent decoder failures. Census reconciles changed shared campaign/staging sources and historical source/scope limitations. Exact961ea3b..bd177b6 committed19-file parent/current receipt review has zero gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NR.scene-production-repetition.prepared-controls-20261012 passes44 PE32 cases across all four repeat candidates,52 guard mutations, caller flags/registers/512B FP/error/stack/RET8, protected state/queue/shape/unreadable and prepared marker/original once-only post-work controls.18 decoder refusals, independent retained-byte contradiction, negative history/scene gates andversions1..3 compatibility pass. Quiet TITAN state/scene/queue/casting/combat/normal Quit/19FPS remains pending and will start only after accounting finishes. Existing timing/scene/crash failures remain negative; original preparation/copy/allocator/pointer/consumer semantics, complete nested/map/visibility/driver/pixel safety, default scheduling and60FPS are unvalidated; no broad status promotion."
+      }
     }
   ]
 }
