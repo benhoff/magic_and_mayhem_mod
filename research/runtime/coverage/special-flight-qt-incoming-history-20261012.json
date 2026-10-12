@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "scope": "Incoming Qt opt-in commit source/behavior/evidence/scenario SHA-256 review, separate from current special-action changes. Exact receipt audit only; no retrospective gate or new execution claim.",
+  "base": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+  "head": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+  "files": [
+    {
+      "after_sha256": "6f5c1da296ee4bcdc3eac3697a7821440a2ef835731cfbc591dc0dc8b6692215",
+      "before_sha256": "22d426e590fdab2957a5c001dc7ac1d84ce3bc75ae19fd65ae0f9a8b3440fee0",
+      "path": "apps/qt-shell/README.md",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "869e055169eb53054c21c3c362fa39edb7556f4140caa7e2910a97b53dc5dab2",
+      "before_sha256": "a125c82a319b39e6a920a0702dd8c52408803f4f87d75435588d1994b1636157",
+      "path": "research/runtime/coverage/register.json",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "95fd96a7780f6f0ae5d3f286aa3448f9483af5993db69f18e55f9870960c6595",
+      "before_sha256": null,
+      "path": "research/runtime/coverage/source-index-qt-shell-tests-opt-in-20261012.json",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "53290e652a3444c03f8bf05a18b6cb92d97c160a544e9eace711360cb022590f",
+      "before_sha256": "78bd8cfc8a0ea69e73d6072a530b7fa7c08d730ef1de253acdf6c07d3b2fcbbf",
+      "path": "tools/run-qt-shell.sh",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    }
+  ],
+  "behaviors": [
+    {
+      "after_sha256": "15a31357f64116d8ead66979725f027d2d591bb9c13a4aa7dcf86f92416f4241",
+      "before_sha256": "3ebe8a23bce5251adfbf510680c0b93b2cc46c6ac73630c3f97b274505e805b2",
+      "id": "HOST.native-audio-defaults",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "9d4ddceffa77dbec6b95af98de5a7c22b52b0dfbddfb0cacf5a9951980dd9da5",
+      "before_sha256": "d333cc532fbd4033ba9b1ab93a26ffc796acd6e8b2050c47a37a227217cd8e28",
+      "id": "HOST.native-campaign-capture-retry",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "784dccadef26206502feb980cda67fe584c7ccff4fc852077bee4a0dfad6f60d",
+      "before_sha256": "8dbff735bc51c1c708687c7c87fa6c4c9c1c903f8cde2390ff5aa05e2387028b",
+      "id": "HOST.native-campaign-casting-combat",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "e93af17ac6005780930c248d4f61b2d884bdf8768ea0848269235c72ef25961d",
+      "before_sha256": "80e39729eb0392804bc9a6af59ba66acf17b763c745710eca61e40e60bed2d88",
+      "id": "HOST.native-campaign-dialogue-readiness",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "23ec8f60c9c1b35cc953be4f8408431b6aa218d7b3792882c734708ba291306e",
+      "before_sha256": "c023e9d66046addfe7ecc4043d8da34c7c79a3e7a8dcacd637afee5320769f95",
+      "id": "HOST.native-campaign-movement-probes",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "14f089e0c16a115320dff8ea8f880ab7fca565ccb08ce85bdfa251a4812a702b",
+      "before_sha256": "e0f68323697633f6c63f9d23de8aa25d8fdfb4a62064ea914e72fd477342d22b",
+      "id": "HOST.native-campaign-normal-quit",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "a229630740e2c592783f7d8f400978bb8957731ba979af17c8c9e5a0099b04b0",
+      "before_sha256": "fdc8fa0c6307d49a84bb7456083b106158465b3850c041a83bec3e5e3ff8b2b6",
+      "id": "HOST.native-campaign-session",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "9a636e377d058fd8e2e7f4b9066646a134957091783e222a695e23adb439a7d6",
+      "before_sha256": "dd615415e718e33632d20b3d99ba19c211976ef6c1d5303cde298baed7f3f679",
+      "id": "HOST.native-campaign-spell-cases",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "613a099cd0638d62f53e159492ba82df2015b186826b1cfb50d2d4a893142ba9",
+      "before_sha256": "811069cab5c1ccf88cafa70131ad359d3d453c5f7db34479ff181fd64cb2299e",
+      "id": "HOST.native-campaign-spell-observation",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "4cff49503d50250c0e45f5b6ae105b831a1751cb908404c4390cc7c873f522ac",
+      "before_sha256": "e5d28cf23ffe6bd8e44a5f529c987f5d040c50add357578c8371cb704c41ea9c",
+      "id": "HOST.native-command-launch",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "ce3f1020171fcabb6d4604d7e4ba81c2271f3fbebd09ad96f706f7f2cc91c7dd",
+      "before_sha256": "ed811d25951c50b721f0b3b3895e0e584c1a5093e4eb46cd96dad564e029052a",
+      "id": "HOST.native-command-responsiveness",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "f6947d0017d13eafcdb61199b59c8da31ef215891efe06f790d9c7792959dcf5",
+      "before_sha256": "74df37e6c4cf328748df198c892f9c3c39fbc09c261454d6b1e7266e5916b248",
+      "id": "HOST.native-crowded-battle-stress",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "7441c53bac672fc09d77b52ac880c319346e5c6fe5930b6b8d27bc9aadf0651e",
+      "before_sha256": "862168c273b62f65c4a47e5abe0d0037934deb40a3fe06a5bef704d5193439ec",
+      "id": "HOST.native-file-sound-retirement",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "528298f333eb7a0e0a87508060282dcebbdc45b21f4368bea66e92632af6f80c",
+      "before_sha256": "4e8adfdfcc22fccbe8f667b2ce5cca6d219a6ea273cf5af160850ba97f8a4c2a",
+      "id": "HOST.native-healing-loadout",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "4d90b7e63282a18b5250953cb2834ca9cf8e240b3e81514e5877fa2a1420b858",
+      "before_sha256": "15f9428ec2bc0f64d9a3df6c677595281ca5aa9df34d44a04e66abb52793f3e8",
+      "id": "HOST.native-menu-audio",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "1d5bcc9ff9173174fe5358637dc2ef24351d5e9b0d807c90b0b9364aa4bf8571",
+      "before_sha256": "d69a69a61e6979fe8cdaab7d361b97e954219362caf49edc78c024d35e1a87bd",
+      "id": "HOST.native-menu-music",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "28191b9b851a9fedf35121d61d3583508f718f8af1ec6d07edc0ff7d70520050",
+      "before_sha256": "cd74fce264b5b254c016cd369d9eb98ea8c5c247a07102715eef29bcb296169d",
+      "id": "HOST.native-pacer-yield",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "d45dd0b72bde12a3c5f9f7926a0947c4cc1a971b7bbcce97cec7c163a3a9bf14",
+      "before_sha256": "f9716da577f20b6c9999fdefb47bcaa90d58ddcf80102ac0abdf7f1e1ff102ff",
+      "id": "HOST.native-precise-uptime-clock",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "9fd8eeedd9aca180315cacfbd6cac04eec1a8d1e4584f14319c5c536e93f637e",
+      "before_sha256": "6d04347e0d743b8506167871c9ed5c40de2feb3dac2f22b163923e27029dce6d",
+      "id": "HOST.native-render-draw-cadence",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "85fa182f16bd975396fff17b1558f53d923bef2f93ed790041f2c2936e4f084c",
+      "before_sha256": "dd624c317ddc2b1598e2daec71de93ca4e447fdfe0ac005193149793182c8396",
+      "id": "HOST.presentation",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "ac1806799aec4ffeab4bac0546259c4e6a4efcae9e5fae0a738795956a7389ec",
+      "before_sha256": "6853f19b735c7c3509e345aabe9549bd83a966b5eb0a6530cd31c35b60c2a75c",
+      "id": "NR.application-shutdown",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "8d2421b5bf7908c400f2180a4f7ed934c2041f0eee2d750c749a7306296be755",
+      "before_sha256": "436f51207cafc5569704556ef46311ed9255b795004e3bae9ea8eb9c20ef6588",
+      "id": "NR.command-host-recovery",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "20bb6b437bb017759bb8d0a19218f01e0ad71734f4e69af38a625e01d623b4b6",
+      "before_sha256": "960bab9ba0bab9fe4f42b77a991505cdfd59ef1f4b26f27425110c6dd1afe430",
+      "id": "NR.directdraw-native-opengl-launch",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "65bd82a0e6f92871c232f53e6764434dfe72cc5d9cc128e3f96c3eacb4199278",
+      "before_sha256": "a758a949d7e7175342af8d7caca12b608fa82fa7a3393e1c259e2511409ff2e2",
+      "id": "NR.directdraw-public-native-menu",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "2d15bbaee5cd25053a85ac3977f00a9698a9f265e215bf57098a660381227b31",
+      "before_sha256": "42d78c3fe7a893216112a8ccb48eb3901d7dfd938e65a576e9474cbad91e1f73",
+      "id": "NR.glyph-default-launch",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "aae37ffd34480d9ad776b736dd8500c06204b6f73e48ed1d6c780c5622d2f3ba",
+      "before_sha256": "b228e98409b11e34723ebee21295304a5c1ea3383861fd2e74499b57da876f45",
+      "id": "NR.incremental-command-consumer",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "86979e79ac4dfef8097d55ecff338f4da8fd657ce31632ebcb9e838f93843b0b",
+      "before_sha256": "9bedfde8a323bc16fbfc28b8b365b52a6315d6aa8c525b1b609bf1361553326d",
+      "id": "NR.minimap-interactive-presentation",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "ebb580be8d9ef5057eaefbeb8b58f9fc36efe4a7c306cf860fbaab441af2c1c6",
+      "before_sha256": "45d2df07e399c001d92c82e7f9bb663155db2e7a0492743c0548099a0f9f6b1a",
+      "id": "NR.native-draw-status-session-file",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "44ea658b0503b9a4b097e887988487411221ac4771332c0f71b8b40d09949409",
+      "before_sha256": "b685d534ebf49eb3458d118dd3216d2b7805c95d9554c404a756b55dead60a1e",
+      "id": "NR.world-channel",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "48b29767db793031bab28c76fa35311e50521a29063dcb7423cc34f5e09aea5d",
+      "before_sha256": "4005fa55df74a0ab8057f4b9ad12f8c535f6cd3d317a6f67df3cb84cd6657732",
+      "id": "NR.world-live-view",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "ba0cdbd304ad667ce1a241657ee96cac3dd4676f98b3fb0cb54c2a3016c2b825",
+      "before_sha256": "cdc45975926323cabd3187bea9cb4c6cb26acf79bf3286695c55394ac1c241dd",
+      "id": "NR.world-shadow-refusal",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "c6efdbf3e5067c1961ff3e1b5260a2c397a0e19613540c925a9f5e2cfb0b2c4a",
+      "before_sha256": "c405145e67901dab7c65c8f5571aeb25f3df46699210f3663a584cb798b4c50b",
+      "id": "NR.world-startup-launcher",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    },
+    {
+      "after_sha256": "c366bab6e61b6c9669bc027ac71dec4b512d39fed05bdb5701cdc829e1880fde",
+      "before_sha256": "9abc1300844410d863f48f016a8f85e406d56b00d93184e56e8b4f05bce5c665",
+      "id": "UI.preview",
+      "receipt": "qt-shell-tests-opt-in-20261012"
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "file_transitions": 4,
+    "behavior_transitions": 33,
+    "unresolved_gaps": 0
+  }
+}

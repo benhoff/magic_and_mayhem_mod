@@ -52949,6 +52949,156 @@
         "tests/creature-execution-test.cpp",
         "tests/sprite-binary-reference.cpp"
       ]
+    },
+    {
+      "id": "AI.special-flight-actions",
+      "subsystem": "creature-special-actions",
+      "kind": "recovered",
+      "title": "Original finishing, ascent/relocation and descent callbacks",
+      "scope": "Whole521790/5217e0/521dd0 finishing/ascent/descent control-flow projections with ABI-checked lower poll/facing/segment/stun, occupancy/passability/ground/region, relocation/snap/update, response/reset/health/behavior services. Valid owned actor/route/peer/grid domains: finish after removal, signed direction rollover, immediate ascent, five transposed random probes and class-specific connectivity/descent, disengagement, corpse/live descent, forced landing descriptor3/1, inactive-before-restoration and defended fall/type15 damage. Actual lower ANI/geometry/World/health ownership, installed construction and native session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5379984,
+          "scope": "Whole521790/5217e0/521dd0 finishing/ascent/descent control-flow projections with ABI-checked lower poll/facing/segment/stun, occupancy/passability/ground/region, relocation/snap/update, response/reset/health/behavior services. Valid owned actor/route/peer/grid domains: finish after removal, signed direction rollover, immediate ascent, five transposed random probes and class-specific connectivity/descent, disengagement, corpse/live descent, forced landing descriptor3/1, inactive-before-restoration and defended fall/type15 damage. Actual lower ANI/geometry/World/health ownership, installed construction and native session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5380064,
+          "scope": "Whole521790/5217e0/521dd0 finishing/ascent/descent control-flow projections with ABI-checked lower poll/facing/segment/stun, occupancy/passability/ground/region, relocation/snap/update, response/reset/health/behavior services. Valid owned actor/route/peer/grid domains: finish after removal, signed direction rollover, immediate ascent, five transposed random probes and class-specific connectivity/descent, disengagement, corpse/live descent, forced landing descriptor3/1, inactive-before-restoration and defended fall/type15 damage. Actual lower ANI/geometry/World/health ownership, installed construction and native session/live integration excluded.",
+          "recovered_range": "creature-ascent-action-5217e0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5381584,
+          "scope": "Whole521790/5217e0/521dd0 finishing/ascent/descent control-flow projections with ABI-checked lower poll/facing/segment/stun, occupancy/passability/ground/region, relocation/snap/update, response/reset/health/behavior services. Valid owned actor/route/peer/grid domains: finish after removal, signed direction rollover, immediate ascent, five transposed random probes and class-specific connectivity/descent, disengagement, corpse/live descent, forced landing descriptor3/1, inactive-before-restoration and defended fall/type15 damage. Actual lower ANI/geometry/World/health ownership, installed construction and native session/live integration excluded.",
+          "recovered_range": "creature-descent-action-521dd0"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-special-actions.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp"
+      ],
+      "tests": [
+        "tests/creature-special-flight-test.cpp",
+        "tools/test-creature-special-flight.py"
+      ],
+      "evidence": [
+        "NS27.execution-static",
+        "NS32.flight-development-original",
+        "NS32.flight-original",
+        "NS32.flight-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/routing/CMakeLists.txt",
+        "reconstruction/creature-ai/segment-setup/CMakeLists.txt",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "reconstruction/creature-ai/special-flight/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "24576 paired projections across three unchanged bodies, non-square12/16 by14/16 grids/eight layers,28 types, class0/24/25/26 and ordinary classes",
+          "Finite supplied poll/random/geometry/region/health/reset services with asserted call ABI/order and all actor/peer bytes",
+          "Signed direction rollover, two masked transposed random draws per attempt, full five-attempt exhaustion, source-region\u22121 bypass, reserved occupancy, direct/random relocation and both engagement-release targets",
+          "Overlay/main finishing polls and stun after segment removal; live/dead descent, waterline/movement-kind2 gates, forced22-byte descriptor movementKind3/selector1, inactive return before104 restoration and response/fall/type15 damage",
+          "Five distinct native admission refusals"
+        ],
+        "excluded": [
+          "Complete lower ANI/segment/stun/region/geometry/corpse/health/World ownership",
+          "Uninitialized region-query padding and broader raw coordinate/index/pointer/scan domains",
+          "Installed constructors/profile assets and native World/session/portable continuation composition",
+          "Live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.special-flight-admission",
+      "subsystem": "creature-special-actions",
+      "kind": "native_policy",
+      "title": "Owned special action world, route, peer and column admission",
+      "scope": "Five refusals for nonpositive world dimensions, reserved route index, engagement peer index and more than4096 descent-column steps. Caller-staged rollback required; original pointer/fault and broader scan domains are separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-special-actions.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp"
+      ],
+      "tests": [
+        "tests/creature-special-flight-test.cpp",
+        "tools/test-creature-special-flight.py"
+      ],
+      "evidence": [
+        "NS32.flight-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/routing/CMakeLists.txt",
+        "reconstruction/creature-ai/segment-setup/CMakeLists.txt",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "reconstruction/creature-ai/special-flight/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
     }
   ],
   "evidence": [
@@ -106544,6 +106694,162 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS32.flight-development-original",
+      "kind": "isolated_original",
+      "scope": "24576 development whole special callback projections and five separate native refusals against unchanged original. No prospective contract claims; retained to pin recovered range entry/body identity, not to promote current readiness.",
+      "record": "research/runtime/original-creature-special-flight-development-20261012.json",
+      "sha256": "e85bd4268c4dadc8c86f912cdc483729766349282ee56d4d4cdbcfa550711aef",
+      "sources_pointer": "/build_inputs_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS32.flight-original",
+      "kind": "isolated_original",
+      "scope": "24576 prospectively source/scope-bound original finishing/ascent/descent projections and five separately classified native refusals, with unchanged pinned original32/native64/sanitized64 agreement. Typed supplied lower services; complete lower World/session/ANI/health ownership and live replacement excluded.",
+      "record": "research/runtime/original-creature-special-flight-20261012.json",
+      "sha256": "db37bddf4cf1a819bd7365efb5dd1fa1ee0d338ff77b1bcd8332fb9ea811b260",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS32.flight-native",
+      "kind": "native_integration",
+      "scope": "Source/scope-bound native64 and sanitized64 special finishing/ascent/descent projection and five native admission failures. No complete lower World/session ownership or original unsafe-input equivalence.",
+      "record": "research/runtime/original-creature-special-flight-20261012.json",
+      "sha256": "db37bddf4cf1a819bd7365efb5dd1fa1ee0d338ff77b1bcd8332fb9ea811b260",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -119297,6 +119603,24 @@
       "document": "research/runtime/creature-execution.md",
       "evidence": "NS27.callbacks-development-original",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-ascent-action-5217e0",
+      "build": "nocd-40209ca7",
+      "start": 5380064,
+      "end": 5381577,
+      "document": "research/runtime/creature-special-actions.md",
+      "evidence": "NS32.flight-development-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-descent-action-521dd0",
+      "build": "nocd-40209ca7",
+      "start": 5381584,
+      "end": 5382650,
+      "document": "research/runtime/creature-special-actions.md",
+      "evidence": "NS32.flight-development-original",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -119407,8 +119731,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-qt-shell-tests-opt-in-20261012.json",
-    "sha256": "95fd96a7780f6f0ae5d3f286aa3448f9483af5993db69f18e55f9870960c6595"
+    "path": "research/runtime/coverage/source-index-original-special-flight-20261012.json",
+    "sha256": "818a558edfe1c9d96952866a65a2445ae508c02878da9ec31af99b92ad6b12ef"
   },
   "claim_bindings_required": true
 }
