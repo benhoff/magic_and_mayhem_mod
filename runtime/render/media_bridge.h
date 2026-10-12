@@ -60,7 +60,7 @@ fallback:
 }
 static i32 __fastcall media_movie(const char* path,void* surface,void* window,i32 x,i32 y,i32 control){
     u32 error=GetLastError();
-    i32 result=(u8)control==0?media_request(MNM_MEDIA_V1_OPERATION_MOVIE,path,0):-1;
+    i32 result=media_request(MNM_MEDIA_V1_OPERATION_MOVIE,path,(u8)control?MNM_MEDIA_V1_MOVIE_FLAG_NO_PRESENT:0);
     SetLastError(error);
     if(result==-1)return media_original_movie(path,surface,window,x,y,control);
     return result>0;
@@ -111,8 +111,9 @@ static void media_install(u32 base){
     VirtualProtect(iat,4,protection,&ignored);
 }
 #else
+static i32 media_test_control;
 static i32 __fastcall media_test_movie(const char* path,void* surface,void* window,i32 x,i32 y,i32 control){
-    (void)path;if(surface!=(void*)0x1234 || window!=(void*)0x5678 || x!=11 || y!=22 || control!=0 || GetLastError()!=0x77)ExitProcess(310);
+    (void)path;if(surface!=(void*)0x1234 || window!=(void*)0x5678 || x!=11 || y!=22 || control!=media_test_control || GetLastError()!=0x77)ExitProcess(310);
     SetLastError(0x88);return 17;
 }
 static u32 media_test_sound_calls,media_test_sound_stops;
@@ -130,6 +131,7 @@ __declspec(dllexport) i32 WIN RenderMediaForTest(u32 operation,const char* path,
         if(!media_patch_movie(code))return 0;
         return ((MediaMovie)code)(0,0,0,0,0,0)==23;
     }
-    return operation==MNM_MEDIA_V1_OPERATION_MOVIE?media_movie(path,(void*)0x1234,(void*)0x5678,11,22,0):media_sound(path,0,flags);
+    media_test_control=(i32)flags;
+    return operation==MNM_MEDIA_V1_OPERATION_MOVIE?media_movie(path,(void*)0x1234,(void*)0x5678,11,22,(i32)flags):media_sound(path,0,flags);
 }
 #endif

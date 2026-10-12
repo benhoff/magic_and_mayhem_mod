@@ -75,14 +75,15 @@ void MediaBroker::poll(){
     if(id==cancelled){respond(id,MNM_MEDIA_V1_STATUS_CANCELLED);record(id,operation,MNM_MEDIA_V1_STATUS_CANCELLED,{});return;}
     if(operation==MNM_MEDIA_V1_OPERATION_STOP_FILE_SOUND){if(sound_ && sound_->active())sound_->stop(MNM_MEDIA_V1_STATUS_CANCELLED);respond(id,MNM_MEDIA_V1_STATUS_COMPLETE);record(id,MNM_MEDIA_V1_OPERATION_STOP_FILE_SOUND,MNM_MEDIA_V1_STATUS_COMPLETE,{});return;}
     if(operation!=MNM_MEDIA_V1_OPERATION_MOVIE && operation!=MNM_MEDIA_V1_OPERATION_FILE_SOUND){respond(id,MNM_MEDIA_V1_STATUS_UNSUPPORTED);record(id,operation,MNM_MEDIA_V1_STATUS_UNSUPPORTED,{});return;}
-    if((operation==MNM_MEDIA_V1_OPERATION_MOVIE && flags) || (operation==MNM_MEDIA_V1_OPERATION_FILE_SOUND && (!(flags&MNM_MEDIA_V1_SOUND_FLAG_FILENAME) || (flags&~MNM_MEDIA_V1_SOUND_ALLOWED_FLAGS) || ((flags&MNM_MEDIA_V1_SOUND_FLAG_LOOP) && !(flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC))))){respond(id,MNM_MEDIA_V1_STATUS_UNSUPPORTED);record(id,operation,MNM_MEDIA_V1_STATUS_UNSUPPORTED,{});return;}
+    if((operation==MNM_MEDIA_V1_OPERATION_MOVIE && (flags&~MNM_MEDIA_V1_MOVIE_FLAG_NO_PRESENT)) || (operation==MNM_MEDIA_V1_OPERATION_FILE_SOUND && (!(flags&MNM_MEDIA_V1_SOUND_FLAG_FILENAME) || (flags&~MNM_MEDIA_V1_SOUND_ALLOWED_FLAGS) || ((flags&MNM_MEDIA_V1_SOUND_FLAG_LOOP) && !(flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC))))){respond(id,MNM_MEDIA_V1_STATUS_UNSUPPORTED);record(id,operation,MNM_MEDIA_V1_STATUS_UNSUPPORTED,{});return;}
     if(operation==MNM_MEDIA_V1_OPERATION_FILE_SOUND && (flags&MNM_MEDIA_V1_SOUND_FLAG_NO_STOP) && sound_ && sound_->active()){respond(id,MNM_MEDIA_V1_STATUS_SOUND_BUSY);record(id,MNM_MEDIA_V1_OPERATION_FILE_SOUND,MNM_MEDIA_V1_STATUS_SOUND_BUSY,QString::fromLatin1(path));return;}
     const auto resolved=asset(path,operation);
     if(resolved.isEmpty()){respond(id,MNM_MEDIA_V1_STATUS_UNSUPPORTED);record(id,operation,MNM_MEDIA_V1_STATUS_UNSUPPORTED,QString::fromLatin1(path));return;}
     auto& player=operation==MNM_MEDIA_V1_OPERATION_MOVIE?movie_:sound_;
     if(player && player->active())player->stop(MNM_MEDIA_V1_STATUS_CANCELLED);
     player=std::make_unique<NativePlayback>(operation==MNM_MEDIA_V1_OPERATION_MOVIE,audible_);
-    if(operation==MNM_MEDIA_V1_OPERATION_MOVIE){movieId_=id;if(movieChanged)movieChanged(true);}else soundId_=id;
+    const bool presentVideo=!(operation==MNM_MEDIA_V1_OPERATION_MOVIE && (flags&MNM_MEDIA_V1_MOVIE_FLAG_NO_PRESENT));
+    if(operation==MNM_MEDIA_V1_OPERATION_MOVIE){movieId_=id;moviePresented_=presentVideo;if(movieChanged)movieChanged(true);}else soundId_=id;
     player->accepted=[this,id]{respond(id,MNM_MEDIA_V1_STATUS_ACCEPTED);};
     player->frame=[this,id,operation,resolved](QImage image){
         if(operation!=MNM_MEDIA_V1_OPERATION_MOVIE)return;
@@ -96,7 +97,7 @@ void MediaBroker::poll(){
         if(operation==MNM_MEDIA_V1_OPERATION_MOVIE && movieChanged)movieChanged(false);
         record(id,operation,result,resolved,playback->report());
     };
-    respond(id,MNM_MEDIA_V1_STATUS_LOADING);player->start(resolved,operation==MNM_MEDIA_V1_OPERATION_FILE_SOUND && (flags&MNM_MEDIA_V1_SOUND_FLAG_LOOP));
+    respond(id,MNM_MEDIA_V1_STATUS_LOADING);player->start(resolved,operation==MNM_MEDIA_V1_OPERATION_FILE_SOUND && (flags&MNM_MEDIA_V1_SOUND_FLAG_LOOP),presentVideo);
 }
 void MediaBroker::skipMovie(){if(movieActive())movie_->stop(MNM_MEDIA_V1_STATUS_CANCELLED);}
 void MediaBroker::stop(){timer_.stop();if(movie_ && movie_->active())movie_->stop(MNM_MEDIA_V1_STATUS_CANCELLED);if(sound_ && sound_->active())sound_->stop(MNM_MEDIA_V1_STATUS_CANCELLED);}

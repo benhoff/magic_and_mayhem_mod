@@ -77,6 +77,7 @@ def main():
     rgba = b''.join(rgb[i:i+3]+b'\xff' for i in range(0, len(rgb), 3))
     assert decoded['movie']['video_frames'] == 10 and decoded['movie']['width'] == 64 and decoded['movie']['height'] == 48, decoded['movie']
     assert decoded['movie']['first_frame_rgba_sha256'] == hashlib.sha256(rgba).hexdigest(), decoded['movie']
+    assert decoded['movie']['video_rgba_sha256'] == hashlib.sha256(rgba*10).hexdigest(), decoded['movie']
     dll = load('media_build', 'tools/build-render-bridge.py').build(True)
     stage = load('media_stage', 'tools/prepare-shadow-experiment.py')
     shutil.copy2(dll, root / dll.name)
@@ -91,7 +92,7 @@ def main():
     with (root/'wineboot.log').open('x') as wineboot:
         subprocess.run(['wineboot','-u'],env=env,stdout=wineboot,stderr=subprocess.STDOUT,check=True,timeout=60)
     with (root / 'broker.log').open('w') as log:
-        server = subprocess.Popen(['xvfb-run', '-a', str(shell), '--media-server-test', str(channel), '--assets', str(assets), '--media-count', '8', '--media-report', str(history)], env=env, stdout=log, stderr=log)
+        server = subprocess.Popen(['xvfb-run', '-a', str(shell), '--media-server-test', str(channel), '--assets', str(assets), '--media-count', '11', '--media-report', str(history)], env=env, stdout=log, stderr=log)
         try:
             deadline = time.monotonic()+5
             while not channel.exists() or channel.stat().st_size != media_protocol.SIZE:
@@ -109,12 +110,19 @@ def main():
                 server.wait(timeout=5)
             subprocess.run(['wineserver','-k'],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=False,timeout=10)
     records = json.loads(history.read_text())
-    assert [(r['operation'], r['status']) for r in records] == [(1, 3), (1, 4), (2, 4), (2, 7), (2, 4), (3, 3), (1, 6), (1, 6)], records
+    assert [(r['operation'], r['status']) for r in records] == [(1, 3), (1, 4), (1, 3), (1, 3), (1, 3), (2, 4), (2, 7), (2, 4), (3, 3), (1, 6), (1, 6)], records
     assert records[0]['first_frame_rgba_sha256'] == hashlib.sha256(rgba).hexdigest(), records[0]
     assert records[0]['audio_s16le_stereo_22050_sha256'] == hashlib.sha256(pcm).hexdigest(), records[0]
+    for record in records[2:4]:
+        assert record['video_presentation_requested'] is False and record['presented_video_frames']==0,record
+        assert record['video_frames']==10 and record['first_frame_rgba_sha256']==hashlib.sha256(rgba).hexdigest(),record
+        assert record['video_rgba_sha256']==hashlib.sha256(rgba*10).hexdigest(),record
+        assert record['audio_s16le_stereo_22050_sha256']==hashlib.sha256(pcm).hexdigest(),record
+    assert records[4]['video_presentation_requested'] is True and records[4]['presented_video_frames']==10,records[4]
     report = {'origin': 'synthetic_qt_media_to_pe32', 'architecture': 'PE32 i386', 'live_game_validated': False,
               'audible_output_validated': False, 'directsound_replaced': False, 'decoded': decoded,
               'checks': ['exact_movie_rgba', 'exact_movie_pcm', 'exact_wav_pcm', 'missing_media', 'movie_complete', 'movie_skip',
+                         'nonzero_control_consumes_exact_video_pcm_without_presentation','control_low_byte_wrap',
                          'async_sound', 'loop_stop', 'nostop_busy', 'path_traversal_rejected', 'unsupported_sound_fallback',
                          'native_to_legacy_sound_replacement', 'stale_host_fallback', 'last_error', 'fastcall_trampoline', 'prologue_guard'],
               'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest()}

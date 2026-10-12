@@ -16,7 +16,7 @@ class NativePlayback final:public QObject {
 public:
     NativePlayback(bool movie,bool audible);
     ~NativePlayback() override;
-    void start(const QString& path,bool loop=false);
+    void start(const QString& path,bool loop=false,bool presentVideo=true);
     void stop(unsigned result=MNM_MEDIA_V1_STATUS_CANCELLED);
     void pause(bool value);
     void setVolume(float volume);
@@ -28,7 +28,8 @@ public:
     std::function<void(unsigned)> finished;
 private:
     void finish(unsigned result);
-    bool movie_,audible_,finished_=true,accepted_=false;
+    bool movie_,audible_,finished_=true,accepted_=false,presentVideo_=true;
+    unsigned presentedFrames_=0;
     QJsonArray firstColors_;int pixelFormat_=0;QString path_,error_;unsigned result_=0,videoFrames_=0;
     qint64 audioFrames_=0,audioBytes_=0;QSize videoSize_;
     QMediaPlayer player_;QAudioOutput output_;QVideoSink video_;

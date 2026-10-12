@@ -42691,7 +42691,8 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.movie-controls.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42879,7 +42880,8 @@
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.wave-v5-installed-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.movie-controls.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42951,7 +42953,8 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.movie-controls.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -43023,7 +43026,8 @@
       ],
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.movie-controls.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44128,7 +44132,8 @@
         "HOST.native-menu-music.media-public-pass-20261012",
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.movie-controls.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45042,7 +45047,8 @@
       "evidence": [
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.movie-controls.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46190,6 +46196,64 @@
       ],
       "evidence": [
         "HOST.native-cd-fade-gain.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-movie-hidden-video",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native nonzero movie control: consume samples without presentation",
+      "scope": "Native movie adapter interprets low control byte0 as normal presentation and nonzero as consume video/audio samples without viewport delivery, matching recovered selected no-Blt intent. Explicit wire flag1, bounded decoder PCM/video/hash diagnostics with presented frame count0, unchanged visible game frame and owned Escape/cancel/completion/LastError/fastcall routing. Original low-byte sign/global skip/setup-failure/placement details and exact codec/driver waveform/Quartz startup retirement remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4626944,
+          "scope": "Recovered wrapper low-byte control and nonzero no-Blt branch only; native decoder policy follows intent, not original codec equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/qt-native-media.md",
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "implementation": [
+        "runtime/render/media_bridge.h",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "protocols/schemas/media-v1.json",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/python/mnm_protocols/media_v1.py"
+      ],
+      "tests": [
+        "tools/test-native-media.py",
+        "runtime/render/media_selftest.h"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/media_cli.cpp",
+        "apps/qt-shell/media_cli.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "renderer/CMakeLists.txt",
+        "runtime/render/bridge.c",
+        "tools/build-render-bridge.py",
+        "tools/run-menu-observer.py"
+      ],
+      "evidence": [
+        "HOST.native-movie-hidden-video.synthetic-20261012",
+        "HOST.native-movie-hidden-video.all-frames-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -93823,6 +93887,111 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-movie-hidden-video.synthetic-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-movie-hidden-video-synthetic-20261012.json",
+      "sha256": "36c48be5310e798248f1c67d561f43725226d20abcecfc5bd9d1f2abf61c854f",
+      "scope": "Actual PE movie controls1/-1 consume exact independent FFV1 video/PCM without presentation;256 low-byte wrap presents normally. Eleven owned complete/cancel/sound/refusal records, LastError/fastcall/guard/stale host checks. Synthetic assets/receiver only, no original codec or live waveform equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.movie-controls.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Default native voice/WAV/factory/media/CD music, both complete presented intros, campaign and normal Quit after nonzero movie control implementation. Ordinary control0 composition only; nonzero controls remain synthetic validation, without physical listening or complete Wine retirement.",
+      "record": "research/runtime/native-movie-controls-public-pass-20261012.json",
+      "sha256": "fb0f1a3170b2a1b332ea2fd2229e28f4e0c0b315adcb8c4c1b517c59619c7d70",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-movie-hidden-video.all-frames-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-movie-hidden-all-frames-synthetic-20261012.json",
+      "sha256": "7e9c44e0fd90ee00ab8b2958ed2bf2de73c05e2727d2143faed55d8bd24e52d1",
+      "scope": "Actual PE movie controls1/-1 consume exact independent FFV1 video/PCM without presentation;256 low-byte wrap presents normally. Eleven owned complete/cancel/sound/refusal records, LastError/fastcall/guard/stale host checks. Synthetic assets/receiver only, no original codec or live waveform equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -104709,6 +104878,22 @@
       "evidence": [
         "HOST.native-cd-fade-gain.synthetic-20261012"
       ]
+    },
+    {
+      "id": "native-movie-hidden-video-synthetic-20261012",
+      "level": "headless",
+      "scope": "Exact independent FFV1 color/video and PCM hashes through Qt and actual PE movie controls1/-1/256. Nonzero low-byte control consumes10 frames/22050 PCM samples without presentation; low-byte zero presents10. Native complete/cancel, movie lease/input ownership, LastError/fastcall/prologue guard and existing file-sound retirement/refusal paths. Synthetic receiver/assets only; no original codec/driver waveform/live branch equivalence.",
+      "behaviors": [
+        "HOST.native-movie-hidden-video"
+      ],
+      "tests": [
+        "tools/test-native-media.py",
+        "runtime/render/media_selftest.h"
+      ],
+      "evidence": [
+        "HOST.native-movie-hidden-video.synthetic-20261012",
+        "HOST.native-movie-hidden-video.all-frames-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -105082,8 +105267,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-cd-fade-commit-v2-20261012.json",
-    "sha256": "c3e20989d0c5e1ebdfe29538ea159f76d1befb3db8902a017ecb4708d2d7a3a2"
+    "path": "research/runtime/coverage/source-index-native-hidden-movie-commit-v2-20261012.json",
+    "sha256": "e5157ce47962f2e2692fce6dccbe87f4fea361e0267a46fe96edb074f3a920d4"
   },
   "claim_bindings_required": true
 }

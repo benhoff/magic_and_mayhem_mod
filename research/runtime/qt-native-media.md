@@ -33,8 +33,8 @@ Addresses below apply only to that executable at base `0x00400000`.
 | `0x005fbf5c` | Sign-extended movie control byte | Wrapper store and playback branch; high |
 | `0x005c52d8` | `WINMM.PlaySoundA` IAT slot | PE import table; high |
 
-The native movie hook handles control byte zero only. Other control values
-retain the original wrapper. Qt uses aspect-preserving presentation in its
+The initial native movie hook handled control byte zero only. The current
+nonzero-control milestone below also consumes samples without presentation. Qt uses aspect-preserving presentation in its
 viewport; the original x/y placement is not applied to that separate viewport.
 The volume of actual game calls through PlaySound versus DirectSound is still
 unknown: imports establish available paths, not their runtime frequency.
@@ -115,3 +115,25 @@ cursors, volume/pan/frequency and voice retirement, followed by an independently
 testable native mixer and isolated game adapter. CD music
 is already disabled in disposable OpenGL staging; this chunk does not replace
 the original CD playback path.
+
+## Native nonzero movie controls (2026-10-12)
+
+The selected movie adapter now sends every control through native playback.
+Its low byte selects presentation: zero delivers frames; nonzero consumes video
+and soundtrack without delivering video to the viewport. Media wire v1 adds
+flag1 without changing layout/version. Busy ownership, Escape cancellation,
+input suspension and menu/render lease suspension apply to both modes. The
+presentation intent is available before playback starts, avoiding a viewport
+switch for hidden video.
+
+Fresh PE/Qt synthetic evidence in
+`native-movie-hidden-video-synthetic-20261012.json` checks controls1/-1/256:
+the two nonzero low bytes decode10 exact RGBA frames and22050 exact PCM frames
+while presenting zero;256 presents all10. Eleven requests also cover completion,
+skip, file-sound ownership, unsupported/path/stale refusal, LastError and ABI.
+Fresh `native-movie-controls-public-pass-20261012.json` records both ordinary
+intros (1777/1004 presented frames), native voice/WAV/factory/CD music, campaign
+and normal Quit. It does not establish live use of nonzero controls. Original
+global skip/setup failure/placement details, codec/driver timing and Quartz
+startup dependencies remain distinct. Retrospective8358104a reviews26 exact
+transitions with zero receipt gaps; no historical validation is renewed.
