@@ -65,6 +65,17 @@ class AudioLaunchTest(unittest.TestCase):
         self.assertEqual(env['WINEDLLOVERRIDES'],'example=n;dsound=')
         with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_factory':1},{})
 
+    def test_profiles_require_exact_staging_and_channel_capability(self):
+        self.words[31]=46;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,self.metadata,{})
+        authorize(self.root,{**self.metadata,'native_audio_profiles':True},{})
+        for value in [False,1,'yes']:
+            with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_profiles':value},{})
+        self.words[31]=14;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_profiles':True},{})
+        self.words[31]=110;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_profiles':True},{})
+
     def test_guarded_native_media_retires_directsound_by_default(self):
         metadata={**self.metadata,'native_audio_factory':True,'native_media':True,'native_media_startup_probe':True}
         env={'WINEDLLOVERRIDES':'ddraw=;dsound=n,b'}

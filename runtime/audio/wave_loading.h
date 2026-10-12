@@ -27,7 +27,7 @@ static u32 WAVE_CALL wave_open(void* instance,const char* path){
     }
     if(!size || size>=512 || size-start>259 || size==start)return 0;
     struct WaveHandle* h=HeapAlloc(GetProcessHeap(),8,sizeof(*h));if(!h)return 0;
-    if(request_wave(MNM_AUDIO_LOAD_WAVE,0,0,size-start,0,0,path+start,0,&h->wave)){
+    if(request_wave(MNM_AUDIO_LOAD_WAVE,0,0,size-start,0,0,path+start,0,&h->wave,0)){
         HeapFree(GetProcessHeap(),0,h);return 0;
     }
     h->instance=instance;h->next=wave_handles;wave_handles=h;return 1;

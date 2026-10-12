@@ -7411,3 +7411,18 @@ and private cleanup checks. Historical quiet whole-game fingerprints remain
 older music source; no original/physical or uninterrupted decode/tail inference.
 Native manager/config/cache/event rules remain original in live execution until
 separately ported/compared. Waveform commit1e043917 exact history retained.
+
+## Native audio profile reads (2026-10-12)
+
+`HOST.native-audio-profile-reads` routes7 exact guarded audio call/import-load
+sites to session-owned native Sounds.ini storage via optional MNMAUD01 v5 cap32
+and bounded ASCII opcodes23..25. Response text is copied under the producer lock.
+497 installed nativePE/nativeworker-vsWine queries match8,144,836 bytes;7
+individual altered-site refusals/reinstall refusal,67 CTests and12 admissions pass.
+Current full native game/normal Quit passes76strings/4sections/1integer,194ACK
+and zero errors/fallback/unsupported; source/input/original/private cleanup holds.
+Current original-IAT census:88 distinct direct
+Wine imports, excluding cached/dynamic/COM/forwarded/transitive/prefix activity.
+Original manager decisions and generic profile callers remain active; malformed/
+duplicate/encoding/integer and immutable snapshot policies are separately native.
+Evidence/failure fingerprints retained; exact7235e7f6 history15 transitions0 gaps.

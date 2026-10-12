@@ -1,5 +1,6 @@
 #include "voice_bridge.hpp"
 #include "wave_source.hpp"
+#include "profile_source.hpp"
 #include <QMediaDevices>
 #include <QtEndian>
 #include <cstring>
@@ -80,10 +81,12 @@ struct VoiceBroker::State:QObject {
         connect(&timer_,&QTimer::timeout,this,[this]{poll();});
     }
     ~State() override{stop();}
-    bool create(const QString& path,bool audible,const QAudioDevice& outputDevice,const QString& soundsRoot){
+    bool create(const QString& path,bool audible,const QAudioDevice& outputDevice,const QString& soundsRoot,bool nativeProfiles){
+        if(nativeProfiles && soundsRoot.isEmpty()){error_="Native profiles require a Sounds root";return false;}
         if(!soundsRoot.isEmpty()){
             auto assets=mnm::assets::AssetStore::create(soundsRoot.toStdString());
             if(const auto* error=std::get_if<mnm::assets::Error>(&assets)){error_=QString::fromStdString(error->detail);return false;}
+            if(nativeProfiles)profileSource_=std::make_unique<ProfileSource>(std::get<mnm::assets::AssetStore>(assets));
             waveSource_=std::make_unique<WaveSource>(std::get<mnm::assets::AssetStore>(std::move(assets)),true);
         }
         QAudioFormat format;
@@ -109,7 +112,7 @@ struct VoiceBroker::State:QObject {
         words[2]=qToLittleEndian(MNM_AUDIO_VERSION);words[3]=qToLittleEndian(MNM_AUDIO_SIZE);
         words[31]=qToLittleEndian(MNM_AUDIO_CAP_EXTENDED_CONTROLS|MNM_AUDIO_CAP_OUTPUT_RECOVERY|
                                   (audible?MNM_AUDIO_CAP_CONSUMED_CLOCK:0u)|(waveSource_?MNM_AUDIO_CAP_NATIVE_WAVE:0u)|
-                                  (initialSilence?MNM_AUDIO_CAP_INITIAL_SILENCE:0u));
+                                  (initialSilence?MNM_AUDIO_CAP_INITIAL_SILENCE:0u)|(profileSource_?MNM_AUDIO_CAP_PROFILE_READS:0u));
         __atomic_store_n(words+20,qToLittleEndian(1u),__ATOMIC_RELEASE);
         activity_.audible=audible;activity_.initialSilence=initialSilence;timer_.start();return true;
     }
@@ -129,6 +132,7 @@ struct VoiceBroker::State:QObject {
             result.waveHookInstalled=(qFromLittleEndian(__atomic_load_n(words+31,__ATOMIC_ACQUIRE))&MNM_AUDIO_WAVE_INSTALLED)!=0;
             const auto capabilities=qFromLittleEndian(__atomic_load_n(words+31,__ATOMIC_ACQUIRE));
             result.nativeFactoryOnly=(capabilities&MNM_AUDIO_FACTORY_NATIVE_ONLY)!=0;
+            result.profileHookInstalled=(capabilities&MNM_AUDIO_PROFILE_INSTALLED)!=0;
             result.unsupportedCalls=capabilities>>24;
         }
         return result;
@@ -137,11 +141,12 @@ struct VoiceBroker::State:QObject {
     void stop(){
         timer_.stop();
         if(map_){__atomic_store_n(reinterpret_cast<quint32*>(map_)+20,0u,__ATOMIC_RELEASE);file_.unmap(map_);map_=nullptr;}
-        file_.close();output_.reset();commands_.reset();device_.reset();waveSource_.reset();
+        file_.close();output_.reset();commands_.reset();device_.reset();waveSource_.reset();profileSource_.reset();
     }
     QFile file_;uchar* map_=nullptr;std::unique_ptr<Device> device_;
     std::unique_ptr<VoiceCommands> commands_;std::unique_ptr<VoiceOutput> output_;
     std::unique_ptr<WaveSource> waveSource_;
+    std::unique_ptr<ProfileSource> profileSource_;
     QTimer timer_;std::uint32_t last_=0;QString error_;VoiceActivity activity_;
     std::function<void(const QString&)> failed;
     void poll(){
@@ -155,7 +160,36 @@ struct VoiceBroker::State:QObject {
         BridgeReply reply{0x80070057,0};
         for(unsigned i=24;i<31;++i)words[i]=0;
         try{
-            if(input[5]==MNM_AUDIO_LOAD_WAVE){
+            if(input[5]>=MNM_AUDIO_PROFILE_STRING && input[5]<=MNM_AUDIO_PROFILE_INTEGER){
+                if(!profileSource_)reply={0x80004001,0};
+                else if(input[8]>0 && input[8]<=1024 && !input[6] && !input[15]){
+                    bool reserved=false;for(unsigned i=9;i<15;++i)reserved|=input[i]!=0;
+                    if(reserved)throw std::invalid_argument("Reserved native profile fields");
+                    const std::string text(reinterpret_cast<const char*>(map_+128),input[8]);
+                    std::vector<std::string> fields;std::size_t start=0;
+                    for(std::size_t i=0;i<text.size();++i){
+                        const auto c=static_cast<unsigned char>(text[i]);
+                        if(!c){fields.push_back(text.substr(start,i-start));start=i+1;}
+                        else if(c<32 || c>=127)throw std::invalid_argument("Native profile request requires ASCII");
+                    }
+                    const auto op=input[5];const auto expected=op==MNM_AUDIO_PROFILE_SECTION?1u:op==MNM_AUDIO_PROFILE_INTEGER?2u:3u;
+                    if(start!=text.size() || fields.size()!=expected || fields[0].empty() || fields[0].size()>127 ||
+                       (expected>1 && (fields[1].empty() || fields[1].size()>127)) || (expected==3 && fields[2].size()>259))
+                        throw std::invalid_argument("Invalid native profile text fields");
+                    std::string bytes;std::uint32_t result=0;
+                    if(op==MNM_AUDIO_PROFILE_INTEGER){result=profileSource_->integer(fields[0],fields[1],input[7]);++activity_.profileIntegers;}
+                    else{
+                        if(!input[7] || input[7]>16384 || (op==MNM_AUDIO_PROFILE_SECTION && input[7]<2))throw std::invalid_argument("Native profile capacity");
+                        if(op==MNM_AUDIO_PROFILE_STRING){bytes=profileSource_->value(fields[0],fields[1],input[7],fields[2]);result=std::uint32_t(bytes.size());bytes.push_back(0);++activity_.profileStrings;}
+                        else{const auto section=profileSource_->section(fields[0],input[7]);result=section.returned;
+                            for(const auto& entry:section.entries){bytes+=entry;bytes.push_back(0);}
+                            bytes.push_back(0);if(bytes.size()==1)bytes.push_back(0);++activity_.profileSections;}
+                        if(bytes.size()>input[7])throw std::invalid_argument("Native profile reply capacity");
+                    }
+                    if(!bytes.empty())std::memcpy(map_+128,bytes.data(),bytes.size());
+                    words[24]=qToLittleEndian(std::uint32_t(bytes.size()));reply={0,result};
+                }
+            }else if(input[5]==MNM_AUDIO_LOAD_WAVE){
                 if(!waveSource_)reply={0x80004001,0};
                 else if(input[8]>0&&input[8]<=259&&input[6]==0&&input[7]==0&&input[15]==0){
                     const std::string leaf(reinterpret_cast<const char*>(map_+128),input[8]);
@@ -188,7 +222,7 @@ struct VoiceBroker::State:QObject {
 };
 VoiceBroker::VoiceBroker(QObject* parent):QObject(parent){workerThread_.setObjectName("native-audio");}
 VoiceBroker::~VoiceBroker(){stop();}
-bool VoiceBroker::create(const QString& path,bool audible,const QString& soundsRoot){
+bool VoiceBroker::create(const QString& path,bool audible,const QString& soundsRoot,bool nativeProfiles){
     stop();error_.clear();lastActivity_={};
     const auto outputDevice=audible?QMediaDevices::defaultAudioOutput():QAudioDevice{};
     worker_=new QObject;worker_->moveToThread(&workerThread_);
@@ -204,7 +238,7 @@ bool VoiceBroker::create(const QString& path,bool audible,const QString& soundsR
                     error_=message;if(failed)failed(message);
                 },Qt::QueuedConnection);
             };
-            created=state_->create(path,audible,outputDevice,soundsRoot);error=state_->error_;
+            created=state_->create(path,audible,outputDevice,soundsRoot,nativeProfiles);error=state_->error_;
         }catch(const std::exception& exception){error=QString::fromUtf8(exception.what());}
     },Qt::BlockingQueuedConnection);
     if(!created){stop();error_=error;return false;}

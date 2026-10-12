@@ -28,11 +28,14 @@ def authorize(root, metadata, environment):
     if header[:8] != b'MNMAUD01' or words[2:4] != (VERSION, SIZE) or words[20] != 1:
         raise ValueError('Native voice broker is not ready')
     wave_enabled = metadata.get('native_wave_loading', False)
+    profiles = metadata.get('native_audio_profiles', False)
+    if type(profiles) is not bool:
+        raise ValueError('Invalid native audio profile policy')
     initial_silence = metadata.get('native_initial_silence', False)
     if type(initial_silence) is not bool or ((words[31]&16) and not initial_silence):
         raise ValueError('Unadmitted native initial-silence policy')
     if (type(wave_enabled) is not bool or metadata.get('native_extended_controls') is not True or
-            metadata.get('native_output_recovery') is not True or (words[31]&~16) != (14|int(wave_enabled))):
+            metadata.get('native_output_recovery') is not True or (words[31]&~16) != (14|int(wave_enabled)|(32 if profiles else 0))):
         raise ValueError('Native audio capabilities differ from the staged session')
     if any(words[4:19]) or any(words[21:31]):
         raise ValueError('Refusing stale native voice channel')
@@ -101,6 +104,8 @@ def validate_retirement(path, report):
         raise ValueError('Native WAV installation differs from the final channel')
     if bool(words[31]&16) != report.get('initial_silence',False):
         raise ValueError('Native initial-silence marker differs from the final channel')
+    if bool(words[31]&0x80000) != report.get('profile_hook_installed',False):
+        raise ValueError('Native profile installation differs from the final channel')
     if bool(words[31]&0x40000) != report.get('native_factory_only',False) or words[31]>>24 != report.get('unsupported_calls',0):
         raise ValueError('Native factory/local-call census differs from the final channel')
     return dict(request=words[4], acknowledgement=words[16], ready=words[20],
