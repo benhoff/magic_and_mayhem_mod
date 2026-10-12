@@ -4,6 +4,11 @@ static u32 depth,enabled=1,stopped,sequence=7,queue,failures;
 #include "../runtime/scene/producer_trace_guard.h"
 #define MAX_SURFACES 2
 #define MAX_FRAMES 128
+API void* WIN AddVectoredExceptionHandler(u32,void*);
+static void path(char* out,const char* name,u32 number,const char* suffix){(void)number;u32 n=0;while(*name)out[n++]=*name++;while(*suffix)out[n++]=*suffix++;out[n]=0;}
+static int write(HANDLE file,const void* p,u32 n){u32 done;return WriteFile(file,p,n,&done,0)&&done==n;}
+struct BatchExceptionRecord{u32 code,flags,record,address,count,information[15];};
+struct BatchExceptionPointers{struct BatchExceptionRecord* record;void* context;};
 static u32 get(const void* p){return *(const u32*)p;}
 static struct Surface{u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[2];
 struct Thread{u32 unused;};

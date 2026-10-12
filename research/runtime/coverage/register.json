@@ -43087,7 +43087,8 @@
         "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-cap-diagnosis-01-static-20261012",
         "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
-        "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012"
+        "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012",
+        "DRAW02.draw02-source-lease-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43102,6 +43103,55 @@
         "Original02hitsunchanged128MiBproducerbytecapinsidequeue32(31returns,176416records/134217096bytes),retains266CPUplanes/1234refusals butoverallsourceprefixunadmitted. Next focused16returnintervaldoesnotreducefull32/120windowdenominators.",
         "Focusedoriginal03admits241CPUplanes/1347refusalsand16return54903recordprefix/336API335EGLwitnesses. NativeexactprefixCPUcomparisonpending;31of32bytecapfailureoriginal02retained. No immutableownership/full32/120window/allroute/semanticclaims.",
         "Focusedoriginal03nativeprediction01matches106selectedphysical/230excluded;externalCPU01matches212entryreturnplanes/101760000pixels0diffatidenticalsourceprefix/canvas. Sampledcopydoesnotfreezeoriginalstorage;allwriter/ownership/full32/120windows/allroutes/semanticsremainpending."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-readonly-lease",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded diagnostic read-only original source lease",
+      "scope": "Pending separatelyenabledsourcecanvaspage-readonlylease forknownfull800600CPUatAPIentry. Verifyextent/region/protection/identity;record leaseID/sourcepoint/pagerange locally,detectwritefaultswithoutchangingoriginalbytesandrestoreexactprotectiononcheckedrelease. Diagnosticpermissionpolicy/cadence,notunobtrusivebaseline; sharedheap-pagewrites/unknownaliases/refusalsremainexplicit. APIreturnalone isnotasyncEGLcompletion.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-readonly-lease.md",
+        "research/formats/drawing-api-source-lease-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_source_lease.h",
+        "runtime/drawing/source_readonly_lease.h",
+        "tools/drawing_source_lease.py"
+      ],
+      "tests": [
+        "tests/drawing-source-lease-test.c",
+        "tools/test-drawing-source-lease.py",
+        "tests/test-drawing-source-lease.py",
+        "tests/drawing-source-lease-recorder-test.c",
+        "tools/test-drawing-source-lease-recorder.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/drawing_source_bytes.h",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/drawing/source_byte_witness.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
+        "DRAW02.draw02-source-lease-fixture-07-native_integration-20261012",
+        "DRAW02.draw02-source-lease-recorder-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
+        "DRAW02.draw02-source-lease-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pendingpageownership/protection/ABI/writefault/restorefixtures;actuallease/sourcecheckpoint/nativecomparisonandasyncworker/EGLreleaseboundary. Writeguardisexplicitdiagnosticnotbaseline,sharedheapaliases/otherwriters remainunknown.",
+        "Original01admits123APIbodyreadonlyleases/669refusals/noobservedwritefault,fullcheckedrestore. APIreturnrelease doesnotcoverasyncworker/EGLbyteownership. Sharedheap/allroutes/fullsemantic120windowsremainpending."
       ]
     }
   ],
@@ -91198,6 +91248,80 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32isolatedVirtualAllocpagelease/protection/restore/writefaultfixture; nooriginalsharedheap/asyncEGLsourceownership orcompletejourney.",
+      "record": "research/runtime/draw02-source-lease-fixture-06.json",
+      "sha256": "b46ab0d7fa7f218c201dad1cba372a0d34d5d5bacc110b9e35e63123346a66f3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-lease-fixture-07-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32isolatedVirtualAllocpagelease/protection/restore/writefaultfixture; nooriginalsharedheap/asyncEGLsourceownership orcompletejourney.",
+      "record": "research/runtime/draw02-source-lease-fixture-07.json",
+      "sha256": "05acb6f64e28beebbd1b13945972d1b87c0a36790c097fccfb924733aa39d020",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-lease-recorder-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic APIbegin/returnleasejournal/ID/resultclosure,notoriginalpermissions orasyncEGLownership.",
+      "record": "research/runtime/draw02-source-lease-recorder-fixture-01.json",
+      "sha256": "a984f4a9e97479cedf299a9fb503e3f4d15b9f78fe3ef68ee7c063a4dcf40d14",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
+      "kind": "static",
+      "scope": "Retainedsyntheticleasefixturediagnosis,notoriginalownershipvalidation.",
+      "record": "research/runtime/draw02-source-lease-fixture-refusals-01.json",
+      "sha256": "70a125acb188a2586dfe94844324f35e768bcbedc2869fa9bbddd60cfe2f00b7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-lease-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "123APIbodyreadonlyleases/669refusals/noobservedwritefault,checkedrelease. EndsAPIreturn,notasyncEGLownership.",
+      "record": "research/runtime/draw02-source-lease-original-01.json",
+      "sha256": "1db2bf098d5fc2f0e2003f10e3d12b7959485dba658f8fc7c7eaaf2133bee442",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102487,6 +102611,54 @@
         "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
         "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.source-readonly-lease-fixture",
+      "level": "headless",
+      "scope": "ActualPE32VirtualAllocisolatedpageslease/readonly/wrongID/exactrestore/writefault99fixture;nooriginalsharedheap/asyncownership.",
+      "behaviors": [
+        "NR.drawing-source-readonly-lease"
+      ],
+      "tests": [
+        "tests/drawing-source-lease-test.c",
+        "tools/test-drawing-source-lease.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
+        "DRAW02.draw02-source-lease-fixture-07-native_integration-20261012",
+        "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-readonly-lease-recorder-fixture",
+      "level": "headless",
+      "scope": "ActualPE32syntheticAPIleasebegin/releaseID/journalclosure,permissionfixtureseparate.",
+      "behaviors": [
+        "NR.drawing-source-readonly-lease"
+      ],
+      "tests": [
+        "tests/drawing-source-lease-recorder-test.c",
+        "tools/test-drawing-source-lease-recorder.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-lease-recorder-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-source-readonly-lease-quick",
+      "level": "live_observation",
+      "scope": "PinnedoriginalactiveAPIbody-onlyread-onlyCPUsourcepagediagnosticwithwritefaultrefusal/exactrelease,focused16return/sourceexternaloracles/fullworker/EGLmetadata.Noasyncimmutableownership/fulljourney.",
+      "behaviors": [
+        "NR.drawing-source-readonly-lease",
+        "NR.drawing-api-source-byte-witness"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-lease-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -102860,8 +103032,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-bytes-20261012.json",
-    "sha256": "63132b5516a830a6f175483f41a72bb4bca892389741b38192e8a899c94426ab"
+    "path": "research/runtime/coverage/source-index-draw02-source-lease-20261012.json",
+    "sha256": "9ee123948022d90477d8467bd717b4f499e9a57197149cb8fe9a80edbcd7031d"
   },
   "claim_bindings_required": true
 }

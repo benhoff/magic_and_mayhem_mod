@@ -9,7 +9,7 @@ API void WIN LeaveCriticalSection(void*);
 API i32 WIN VirtualFree(void*,u32,u32);
 struct Table {void** vt;void* original[36];u32 kind;};
 struct Identity {void* object;u32 id;};
-struct Context {u32 r[32],args[6],observed,interval_related;};
+struct Context {u32 r[32],args[6],observed,interval_related,source_lease;};
 static struct Table tables[64];static u32 table_count;
 static struct Identity identities[1024];static u32 next_identity;
 static HANDLE journal;static char directory[512];
@@ -31,14 +31,16 @@ static u32 identity(void* object){if(!object)return 0;for(u32 i=0;i<1024;++i)if(
 static void emit(u32* r){if(!journal)return;r[0]=++records;if(records>262144||!write(journal,r,128)){++drops;enabled=0;}}
 static void wine_submission_close(u32);
 static void source_bytes_close(u32);
+static void source_lease_close(u32);
 static u32 wine_blit_worker_pending;
-static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);producer_points_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
+static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);producer_points_close(reason);source_lease_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
 static void install(void*,u32);
 /* Observer APIs preserve the application's result LastError and x87/SSE state. */
 static void snapshot_fp(void* p){__asm__ volatile("fxsave (%0)"::"r"(p):"memory");}
 static void restore_fp(void* p){__asm__ volatile("fxrstor (%0)"::"r"(p):"memory");}
 #include "wine_submission.h"
 #include "source_byte_witness.h"
+#include "source_readonly_lease.h"
 static struct Context begin(void* object,u32 method,u32* args,u32 count,u32 caller,u32 type){
  struct Context c={0};c.r[7]=GetLastError();if(!enabled||(type==1&&(caller<0x400000||caller>=0x5c0000)))return c;
  u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);
@@ -58,7 +60,7 @@ static struct Context begin(void* object,u32 method,u32* args,u32 count,u32 call
   else if(method==13||method==18||method==34||method==35)c.r[21]=args[0];
  }else if(type==2){c.r[21]=args[0];if(count>1)c.r[22]=args[1];}
  else if(type==5)for(u32 i=0;i<count&&i<6;++i)c.r[21+i]=args[i];
- c.interval_related=c.r[4];interval_event(&c,1);LeaveCriticalSection(journal_lock);wine_submission_parent(&c,1);producer_points_capture(&c,object,1);source_bytes_capture(&c,1);restore_fp(fp);SetLastError(c.r[7]);return c;
+ c.interval_related=c.r[4];interval_event(&c,1);LeaveCriticalSection(journal_lock);wine_submission_parent(&c,1);producer_points_capture(&c,object,1);source_bytes_capture(&c,1);source_lease_capture(&c,1);restore_fp(fp);SetLastError(c.r[7]);return c;
 }
 struct Pixels {void* data;u32 size;};
 /* Never hold the journal mutex across a driver call: Lock/GetDesc can
@@ -100,7 +102,7 @@ static void acquired(void* alias,u32 k,const void* guid){
  ++gaps;
 }
 static u32 end(struct Context* c,void* object,u32 result){
- u32 error=GetLastError();if(!c->observed||!enabled){SetLastError(error);return result;}u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);wine_submission_parent(c,2);
+ u32 error=GetLastError();if(!c->observed||!enabled){SetLastError(error);return result;}u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);source_lease_capture(c,2);wine_submission_parent(c,2);
  struct Pixels pixels={0};struct Table* capture_table=0;EnterCriticalSection(journal_lock);
  c->r[8]=result;c->r[9]=error;c->r[11]=GetTickCount();
  interval_event(c,2);
@@ -192,7 +194,7 @@ static int initialize(void){
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
  if(!physical_budget())return 0;
  u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;
- char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!producer_points_open()||!wine_submission_open()||!source_bytes_open())return 0;enabled=1;
+ char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!producer_points_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST
  u32 base=(u32)GetModuleHandleA(0);const u8 thunk[]={0xff,0x25,0x14,0x50,0x5c,0};if(base!=0x400000||!readable((void*)0x59755a,6)||!equal((void*)0x59755a,thunk,6))return 0;
  void* user=GetModuleHandleA("user32.dll");original_async=GetProcAddress(user,"GetAsyncKeyState");original_key=GetProcAddress(user,"GetKeyState");original_cursor=GetProcAddress(user,"GetCursorPos");original_map=GetProcAddress(user,"MapVirtualKeyA");

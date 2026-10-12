@@ -31,7 +31,7 @@ def build(selftest=False):
     for name in backend_names:
         subprocess.run([*flags,'-c',str(ROOT/'reconstruction/rendering'/name),'-o',str(output/(name+'.obj'))],check=True)
     dll = output/'MnmScene.dll'
-    exports = ['/export:SceneDrawingSourceBytesV1=_SceneDrawingSourceBytesV1@20','/export:SceneDrawingActionV1=_SceneDrawingActionV1@28','/export:ScenePacerObservationV1=_ScenePacerObservationV1@8','/export:SceneDrawingSourcePointV1=_SceneDrawingSourcePointV1@12','/export:SceneDrawingSourcePairV1=_SceneDrawingSourcePairV1@16']
+    exports = ['/export:SceneDrawingSourceLeaseV1=_SceneDrawingSourceLeaseV1@16','/export:SceneDrawingSourceBytesV1=_SceneDrawingSourceBytesV1@20','/export:SceneDrawingActionV1=_SceneDrawingActionV1@28','/export:ScenePacerObservationV1=_ScenePacerObservationV1@8','/export:SceneDrawingSourcePointV1=_SceneDrawingSourcePointV1@12','/export:SceneDrawingSourcePairV1=_SceneDrawingSourcePairV1@16']
     if selftest:
         exports += ['/export:SceneInstallForTest=_SceneInstallForTest@4','/export:GlyphAdmissionForTest=_GlyphAdmissionForTest@0']
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',

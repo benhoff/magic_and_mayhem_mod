@@ -7322,3 +7322,24 @@ Reassessment:step2nextneedsimmutable sourceversions/delivery/allroutes/semantic
 ordered/pending;all47/21requirementsremainopen. Reviewedb6d3429d..c20dde96has30
 matchedreceipts/0gaps.Storagearound962GiBworking/364GiBfree;historicalhashes
 retained/nocleanup.
+
+## Step 2 bounded read-only API source lease checkpoint (2026-10-12 UTC)
+
+SeparatelyenabledSceneleasechecksfull800600sourceidentity/extent/primitive/frame,
+walksallcommittedRWregionsinoneallocation,makescoveredpagesRO,recordswritefault
+andrefuses99. Releasecheckslease/owner/COM/canvas/pixeladdress/extent/everyROregion,
+thenrestoresexactRWprotection. No original/modulefile/sourcebyte patches.
+ActualPEpermissionfixtures06/07passwrongID/COM/primitive,RO,restore andintentional
+writefault. Earliercompile/begin/single-regionassumption failuresandexacttwoRW
+regionssameallocationdiagnosisremainretained. APIrecorderfixture01and3parser
+methods pass begin/releaseidentity/journalclosure. Permissionpolicyisdiagnostic.
+
+Original01admits123APIbodyROleases/669refusals,noobservedwritefault,allchecked
+restores.350API/349EGLwitnessesandfocused16producerreturnsremainseparate.
+TheleaseendsatAPIreturn andasync_egl_completion_covered remainsfalse.
+
+Reassessment:step2nextextendsa separatelyvalidatedlease through actualbound
+worker/EGLdelivery or records/refuses interveningwrites,thenallroutes/lifetimes/
+semantic120windows. No sample/protectioncountercloses47/21requirements;steps3–7
+stayordered/pending. Reviewedc20dde96..c704c2c8has33exactreceipts/0gaps.Storage
+around966GiBworking/360GiBfree;historicalhashesretained/nocleanup.

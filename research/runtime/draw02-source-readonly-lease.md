@@ -1,0 +1,42 @@
+# Bounded diagnostic read-only source lease
+
+A separateopt-inlease makes knownoriginalCPUcanvaspagesread-only duringa
+boundedsubmissioninterval. Verifyregion/extent/originalprotectionandsource
+identity beforepermissionmutation;observewritefaults andrestoreexactpermissions
+oncheckedrelease. No originalbytes are patched. This is a diagnosticpolicy,
+notunobtrusivegameplay. Sharedheap-pagewrites/aliases/unknownprotection remain
+explicitrefusals;no silentcontinue after fault.
+
+APIreturnalone doesnotproveasyncEGLdeliverycompletion. Begin/releaseidentity,
+worker/command/EGLassociation andsourceequivalence requireseparateevidence.
+Fixturesprecedeliveuse;all47/21/fulljourney milestones remainopen.
+
+## Admission review requirements
+
+Beforeliveuseverifyrelease matches exactCOM/canvas/pixeladdress/extent andevery
+coveredpage stillhasleaseprotection,notonlythefirstpage. Rejectunknown/pending
+primitive/otherframes as in the source-copyexport. Ensureall failurepathsrestore
+permissions orrefuseprocess;no activelease canoutliveitscapturedidentity/interval.
+APIreturn-onlylease is a bounded immutabilitydiagnostic,notasyncdeliveryownership.
+Futurecheckedworker/EGLrelease must be separatelyrecorded andvalidated.
+
+## Step 2 bounded read-only API source lease checkpoint (2026-10-12 UTC)
+
+SeparatelyenabledSceneleasechecksfull800600sourceidentity/extent/primitive/frame,
+walksallcommittedRWregionsinoneallocation,makescoveredpagesRO,recordswritefault
+andrefuses99. Releasecheckslease/owner/COM/canvas/pixeladdress/extent/everyROregion,
+thenrestoresexactRWprotection. No original/modulefile/sourcebyte patches.
+ActualPEpermissionfixtures06/07passwrongID/COM/primitive,RO,restore andintentional
+writefault. Earliercompile/begin/single-regionassumption failuresandexacttwoRW
+regionssameallocationdiagnosisremainretained. APIrecorderfixture01and3parser
+methods pass begin/releaseidentity/journalclosure. Permissionpolicyisdiagnostic.
+
+Original01admits123APIbodyROleases/669refusals,noobservedwritefault,allchecked
+restores.350API/349EGLwitnessesandfocused16producerreturnsremainseparate.
+TheleaseendsatAPIreturn andasync_egl_completion_covered remainsfalse.
+
+Reassessment:step2nextextendsa separatelyvalidatedlease through actualbound
+worker/EGLdelivery or records/refuses interveningwrites,thenallroutes/lifetimes/
+semantic120windows. No sample/protectioncountercloses47/21requirements;steps3–7
+stayordered/pending. Reviewedc20dde96..c704c2c8has33exactreceipts/0gaps.Storage
+around966GiBworking/360GiBfree;historicalhashesretained/nocleanup.
