@@ -1,0 +1,47 @@
+#include "../renderer/blit.hpp"
+#include "../renderer/scenes/scene_renderer.hpp"
+#include "../compat/legacy/canvas_world.hpp"
+#include "../compat/legacy/world_raster_batch.hpp"
+#include "resource-fixtures.hpp"
+#include <QGuiApplication>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <iostream>
+using namespace mnm;
+using namespace resource_test;
+static render::Image oracle(const render::Image& base,const assets::SpriteFrame& f,const render::SceneDraw& d){
+ auto result=base;const auto left=std::int64_t(d.anchorX)-f.originX,top=std::int64_t(d.anchorY)-f.originY;const auto clip=d.viewport.value_or(render::Rect{0,0,base.width,base.height});
+ for(unsigned row=0;row<f.height;++row)for(unsigned col=0;col<f.width;++col){const auto x=left+col,y=top+row;
+  if(x<clip.left||x>=clip.right||y<clip.top||y>=clip.bottom||!f.opaqueMask.at(std::size_t(row)*f.width+col))continue;
+  const auto at=y*base.width+x,source=at+d.composite.rowOffsets[unsigned(y)%d.composite.rowPeriod];require(source>=0&&source<std::int64_t(base.pixels.size()),"Actual covered overflow in expected source fixture");result.pixels.at(std::size_t(at))=base.pixels.at(std::size_t(source));
+ }
+ return result;
+}
+int main(int argc,char** argv)try{
+ QGuiApplication app(argc,argv);render::GlBlitter g;const render::PixelFormat rgb{16,{0xf800,0x7e0,31}};
+ const render::Image base{4,2,{1,2,3,4,5,6,7,8}};
+ auto dst=g.create(base,rgb),src=g.create({2,1,{0,0}},rgb),mask=g.create({2,1,{1,0}},{8,{}});
+ render::SpriteComposite c;c.mode=render::CompositeMode::displace;c.rowPeriod=2;c.rowOffsets[0]=3;c.rowOffsets[1]=1;
+ g.composite(src,dst,{0,0,2,1},2,1,mask,c);auto expected=base;expected.pixels[6]=8;require(g.read(dst).pixels==expected.pixels,"Transparent last pixel wrongly sampled or refused");
+ auto cloned=g.cloneSurface(mask);g.update(mask,0,0,{2,1,{1,1}});rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.restoreSurface(cloned,mask);g.composite(src,dst,{0,0,2,1},2,1,mask,c);
+ auto other=g.create({2,1,{1,1}},{8,{}});g.swapContents(mask,other);rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.swapContents(mask,other);g.composite(src,dst,{0,0,2,1},2,1,mask,c);
+ g.copy(cloned,mask,{0,0,2,1},0,0);rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.update(mask,0,0,{2,1,{1,0}});g.setPalette(mask,0,{{0,0,0},{255,255,255}});g.composite(src,dst,{0,0,2,1},2,1,mask,c);
+ g.update(mask,0,0,{2,1,{1,2}});rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.update(mask,0,0,{2,1,{1,0}});g.invalidateContents(mask);rejected([&]{g.composite(src,dst,{0,0,2,1},2,1,mask,c);});g.update(mask,0,0,{2,1,{1,1}});c.rowOffsets[1]=0;g.composite(src,dst,{0,0,2,1},2,1,mask,c); // unused larger phase must not refuse
+ require(g.stats().coverageProofBytes<=g.stats().pixels,"Mask proof exceeded native pixel budget");
+ for(auto id:{dst,src,mask,cloned,other})g.destroy(id);
+ unsigned cases=0,oldRefusals=0;
+ if(argc==3){
+  QFile file(QString::fromLocal8Bit(argv[1]));require(file.open(QIODevice::ReadOnly),"Captured source open");auto bytes=file.readAll();std::vector<std::uint8_t> raw(bytes.begin(),bytes.end());auto stream=legacy::decodeCanvasProducers(raw,false);auto assetStore=store(std::filesystem::path(argv[2]));assets::ResourceManager resources(assetStore);legacy::WorldResources bindings(assetStore,resources);
+  render::Image background{800,600,std::vector<std::uint32_t>(480000)};for(std::size_t i=0;i<background.pixels.size();++i)background.pixels[i]=i&65535;
+  for(const auto& producer:stream.operations){if(producer.fields[2]!=9||producer.fields[14]!=3||legacy::worldRasterAX(producer))continue;
+   auto original=legacy::producerWorldDraw(producer);legacy::WorldFrame frame{1,800,600,800,{original}};auto draws=bindings.display(frame);require(draws.size()==1,"Captured displacement binding");const auto& d=draws.front();const auto& sprite=std::get<assets::Sprite>(resources.resident(d.resource).image);const auto& f=sprite.frames.at(d.frame);
+   const auto x=std::int64_t(d.anchorX)-f.originX,y=std::int64_t(d.anchorY)-f.originY;const auto right=std::min<std::int64_t>(x+f.width,800),bottom=std::min<std::int64_t>(y+f.height,600);const auto reach=*std::max_element(d.composite.rowOffsets.begin(),d.composite.rowOffsets.begin()+d.composite.rowPeriod);
+   if(x>=800||y>=600||x+f.width<=0||y+f.height<=0)continue;
+   const auto expectedPixels=oracle(background,f,d);if((bottom-1)*800+right-1+reach>=480000)++oldRefusals;
+   for(bool atlas:{false,true}){render::SceneLimits limits;limits.cache.indexedAtlas=atlas;render::SceneRenderer scene(g,resources,background,limits);auto before=g.stats();scene.draw(draws);require(g.stats().nativeReadbacks==before.nativeReadbacks&&g.stats().rgbaReadbacks==before.rgbaReadbacks,"Captured displacement delivery readback");require(scene.read().pixels==expectedPixels.pixels,"Captured covered displacement differs from scalar oracle");++cases;}
+  }
+  require(oldRefusals>0&&cases>0,"Failed public geometry not exercised");
+ }
+ require(g.stats().surfaces==0,"Displacement controls leaked surfaces");std::cout<<QJsonDocument(QJsonObject{{"success",true},{"mask_controls",11},{"captured_pixel_cases",int(cases)},{"baseline_envelope_refusals",int(oldRefusals)},{"words_per_captured_case",480000},{"ordinary_readbacks",0},{"remaining_surfaces",0}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
+}catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

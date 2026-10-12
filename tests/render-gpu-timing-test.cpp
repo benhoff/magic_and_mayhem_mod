@@ -14,6 +14,8 @@ int main(int argc,char** argv) try {
     const Image image{32,32,std::vector<std::uint32_t>(1024,0x1234)};
     const auto plain=renderer.create(image,{16,{0xf800,0x07e0,0x001f}});
     const auto timed=renderer.create(image,{16,{0xf800,0x07e0,0x001f}});
+    require(renderer.stats().textureUploadCalls==2 && renderer.stats().textureUploadBytes==8192,"Native upload accounting");
+    const auto counts=renderer.stats();
     unsigned executed=0;const auto before=renderer.stats().nativeReadbacks;
     for(unsigned i=1;i<=64;++i)require(renderer.profileBatch(i,[&]{++executed;renderer.additiveRect(timed,{0,0,32,32},{1,2,3});}),"Query ring filled early");
     require(renderer.pendingGpuTimings()==64,"Query ring accounting");
@@ -32,6 +34,8 @@ int main(int argc,char** argv) try {
     refuses([&]{renderer.profileBatch(101,[&]{renderer.profileBatch(102,[]{});});});
     require(!renderer.pendingGpuTimings(),"Nested profile leaked query objects");
     for(unsigned i=0;i<65;++i)renderer.additiveRect(plain,{0,0,32,32},{1,2,3});
+    require(renderer.stats().drawCalls-counts.drawCalls==130 && renderer.stats().drawInstances-counts.drawInstances==130,"Submitted additive draws differ");
+    require(renderer.stats().textureUploadBytes==counts.textureUploadBytes,"Destination-dependent draws uploaded CPU pixels");
     // Explicit fixture readbacks occur after all measured/delivery operations.
     require(renderer.read(plain).pixels==renderer.read(timed).pixels,"Timing changed pixels");
     renderer.destroy(plain);renderer.destroy(timed);

@@ -69,11 +69,14 @@ private:
 struct RenderStats {
     std::uint64_t uploads=0,copies=0,paletteUpdates=0,nativeReadbacks=0,presentations=0;
     std::uint64_t rgbaReadbacks=0,gpuPresentations=0,gpuPresentationAllocations=0;
+    // Submitted GL operations, separate from logical copies/presentations.
+    std::uint64_t drawCalls=0,drawInstances=0,textureUploadCalls=0,textureUploadBytes=0;
+    std::uint64_t programChanges=0,framebufferAttachments=0;
     std::uint64_t presentationPixels=0;
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
     std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;
     std::uint64_t maskedScratchAllocations=0,maskedScratchPixels=0;
-    std::size_t surfaces=0,pixels=0;
+    std::size_t surfaces=0,pixels=0,coverageProofBytes=0;
 };
 
 // Thread-affine owner of a dedicated OpenGL 3.3 context. Worker construction

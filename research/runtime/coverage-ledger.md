@@ -8163,6 +8163,55 @@ with World, audiovisual/original equivalence, source-rate attribution, sustained
 remains opt-in and does not promote a complete native gameplay engine.
 
 
+### Native drawing cost baseline (2026-10-12)
+
+`NR.native-draw-cost-profiling.baseline-titan-20261012` passes128TITANEGLWorlds,
+256baseline-restored redraws, all selected diagnostic native pixel comparisons,
+bounded timestamp/overflow/refusal controls and source/input/original integrity.
+Warm extra redraw median3.0219ms,189textureuploads/571232bytes and75draws perframe.
+Repeated colour-rectangle source allocation/upload is the measured optimization
+candidate. NativeGPU timeline is not busytime; EGL and publiczink workloads are
+not a causal pair. Failed preflights and the historical source journey stay
+failed. New cache, current full gameplay,60FPS,original equivalence and broader
+shared-source validation remain pending.
+
+
+### Native colour-source cache: matched TITAN milestone (2026-10-12)
+
+`NR.native-colour-rectangle-cache.fixture-20261012` passes independent arithmetic/
+clipping/overlap/source ownership/refusal/LRU/bounds/retirement controls and
+40native destination-dependent redraws with unchanged producer history.
+`NR.native-colour-rectangle-cache.paired-titan-20261012` matches every selected
+World/redraw native checkpoint on128identical ordered TITAN EGL sources. Warm
+extra CPUmedian3.2589to1.4449ms, GPUtimeline2.70344to0.63744ms anduploadcalls189to12;
+75native draw submissions stay unchanged. Native source cache is bounded to
+64LRUtiles/two512x512surfaces/1MiBCPUkeys; slot updates flush queued sampling
+before overwrite. Original/input/source integrity and query/resource retirement
+pass. Full public native casting/combat/portrait/menu/resume/normalQuit and
+19/60FPS validation are running under a prospective declaration; its scenario
+will be registered with the completed result. Original equivalence, hardware
+generality/driver busy time and shared-source historical freshness remain pending.
+
+
+### Displacement boundary found during native performance work (2026-10-12)
+
+Full cache run reaches3707orderedWorlds, then fails at3708Scene displacement
+admission during resumed gameplay. Initial summon/lethal combat passed; complete
+flow/normalQuit fail, one outstanding source remains, original/source/private
+cleanup pass.17.2034Hzsource/43.6183nativeFPS are partial failed-run observations.
+`NR.native-colour-rectangle-cache.full-displacement-negative-20261012` retains
+the failure without promotion. WholeWorld isolated attempts refuse missing prior
+native history; admission-only captured geometry is the relevant control.
+
+`NR.masked-displacement-admission.controls-20261012` confirms1old conservative
+envelope refusal for actual fully in-bounds covered samples, matches6captured
+atlas/nonatlas draws against480000-word scalar references, and passes11mask
+proof/phase/bounds controls plus4renderer regressions. No ordinary readback or
+source/order/pacing/AX change. Binary mask metadata is bounded bynative16Mpixels;
+unknown proofs and real covered overflow remain refusals. Current full gameplay
+and19/60FPS,original comparison/replacement and shared-source freshness remain
+pending. The source-cache same-input performance gain remains a headless result.
+
 ## NS27 — Original creature execution recovery in progress (2026-10-12)
 
 The user authorized completing the remaining original AI and storage as needed.
@@ -8218,3 +8267,45 @@ staged accounting and the installed pre-commit hook passing. The follow-up
 committed-history report `coverage/simulation-checkpoint-committed-history-20261012.json`
 checks153 parent/current file pairs and the400 staged behavior transitions,
 with no unresolved receipt gaps. NS27 remains an explicitly partial checkpoint.
+
+
+### Corrected full native cache journey:19FPS pass,60FPS failure (2026-10-12)
+
+`NR.native-colour-rectangle-cache.fixed-player-death-negative-20261012` retains
+a renderer-error-free failed combat journey due to player death. The next
+unchanged-source/difficulty full run passes casting/combat/spells/portraits/
+movement/menu/resume/normalQuit with4612balanced native/source/import/verified
+returns, two source/output bounds, zero outstanding/readbacks/pixel replies/
+fallback, source/original/private cleanup and19.5966Hzsource.
+`NR.native-colour-rectangle-cache.fixed-full-performance-negative-20261012`
+keeps raw functional19FPS success separate from60FPS failure: nativeWorld48.9985,
+paint63.3835/57.3311(worst34.5769/40). Pending-import/incompleteUI blocked
+opportunities arezero; remaining live driver/context/CPU submission/scheduling
+cost needs attribution, not an assumed originalUI roundtrip. Direct nativeGLX
+probe times out20seconds on an owned private display, which is stopped; no
+backend policy change. Finalcode matched replay and merged source census are
+pending. Original comparison/replacement/interpolation/scanout/movies remain
+separate. Both native cache and covered-displacement scopes are partial with
+scoped live observation, not complete engine replacement.
+
+Merged master868f2cad..792b3766contains independent native gameplay checkpoints.
+None of its paths intersect the live rendering declaration. Exact parent/current
+receipt review finds202incoming and39rendering transitions withzero missing
+receipts; report files preserve that audit without retrospective gate/execution
+claims. Both parent journals/evidence are retained exactly.
+
+
+### Final native GPU-cost batch validation (2026-10-12)
+
+`NR.native-colour-rectangle-cache.final-paired-titan-20261012` refreshes exact
+final merged-code128World/256redraw checkpoint/throughput equality: extraCPU
+median3.0856to1.4300ms,GPUtimeline2.551264to0.64088ms,189to12textureuploads,
+unchanged75native draws. Source/input/original integrity, query retirement and
+zero ordinaryreadbacks pass. Full current public native journey independently
+passes4612balanced returns and19.5966Hzsource, while World48.9985/paint57.3311
+secondcycle stillfail60FPS. Native drawing is retained; original actor engine
+and20Hz pacing are not replaced or accelerated. Public context/driver/submission
+attribution is next; no pending-import/UI-blocking explanation is established
+for the successful final run. Both parent histories and all negative results
+remain retained. The storage reservation was reviewed after4GiBrefusal: previous
+full run1.44GiB,2GiBreservation used,100GiBfree minimum unchanged.
