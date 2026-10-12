@@ -1111,3 +1111,18 @@ Mini3045ms/Preferences2212ms; World counters then advance59→60→61→62. This
 bounded selected-state pause/resume evidence, not allanimation/timer equivalence,
 selection/tooltip verification or source-owned native menu/presentation parity.
 Continue action/route/source-lifetime acquisition; all47/21and steps3–7remain open.
+
+DRAW-02 step 2 HUD input reassessment: the pinned static inspector retains
+exact inventory-bounded HUD owner/helper, scene producer and action-consumer
+instructions, plus two explicitly bounded gameplay lifecycle windows absent
+from the inventory. The first gameplay virtual entries are initialization and
+teardown clients, not established mouse handlers. Helper 4fcf50 clears
+656600 and 657d40 before camera-orientation dispatch; scene producer 4f8960
+writes both at 4fa9a9/4fa9bd under a conditional branch. The latter is consumed
+as a 36-byte draw-entry index; the former has actor-like health/owner consumers.
+These are frame-local hit-result candidates, not proven persistent selection
+or tooltip identities. Direct absolute instruction references do not cover
+indirect aliases. Missing function boundaries and the initial inspector refusal
+remain explicit. No new game execution, semantic input success or status
+promotion follows. Next observe candidate identities across controlled pointer
+motion and clicks. All 47 requirements/21 operations and steps 3–7 remain open.

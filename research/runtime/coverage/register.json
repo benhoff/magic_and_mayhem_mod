@@ -44332,6 +44332,65 @@
         "tools/drawing-session-runner.py",
         "tools/drawing_diagnostic_cadence.py"
       ]
+    },
+    {
+      "id": "DRAW.hud-selection-input-state",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original HUD owner and selection/tooltip input state",
+      "scope": "Pinned static HUD owner/helper, scene producer and action consumers; frame-local hit-result candidates remain separate from persistent selection and tooltip state. Two gameplay lifecycle clients have bounded discovery windows only. No semantic input or actor lifetime proof.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231232,
+          "scope": "Bounded original post-World owner; selection/tooltip meaning pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5230416,
+          "scope": "Clears candidate actor/index fields before orientation dispatch; exact inventory range."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Scene producer writes candidate actor and draw-entry index under branch at4fa99a; exact inventory range."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4865136,
+          "scope": "Reads candidate actor health/owner and passes it to action evaluation; exact inventory range."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/draw02-vertical-bar.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-drawing-hud-input.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-hud-input-static-negative-01-20261012",
+        "DRAW02.draw02-hud-input-static-02-20261012",
+        "DRAW02.draw02-hud-input-static-03-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual selection/tooltip state, actor identity/lifecycle and full caller routes unverified; native diagnostic picking remains separate.",
+        "Gameplay table46a460/46ab30entries absent from inventory; bounded discovery windows do not recover whole functions or erase unknown ranges. Inspector initial refusal preserved."
+      ],
+      "validation_dependencies": [
+        "tools/inspect-drawing-canvas-storage.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ]
     }
   ],
   "evidence": [
@@ -95120,6 +95179,48 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-static-negative-01-20261012",
+      "kind": "static",
+      "scope": "Initial inspector refusal for absent gameplay function boundaries; no original execution.",
+      "record": "research/runtime/draw02-hud-input-static-negative-01.json",
+      "sha256": "6163f923f95fe950071671d2f7bc3f79a815882a618917674b1cd9aa3f4225a0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-static-02-20261012",
+      "kind": "static",
+      "scope": "Pinned HUD owner and four gameplay-client windows; absent entries remain bounded discovery only.",
+      "record": "research/runtime/draw02-hud-input-static-02.json",
+      "sha256": "2978abd9517d5e6f9f875eb9991f75e0b21c9074f4d85a5a48c9b93fde564c6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-hud-input-static-03-20261012",
+      "kind": "static",
+      "scope": "Pinned HUD owner/helper/producer/consumer windows and direct candidate global references; static only, indirect aliases/semantic selection pending.",
+      "record": "research/runtime/draw02-hud-input-static-03.json",
+      "sha256": "82dd8c93076a1c4cc7e4fc864f755dfa3188e1bd062fcf7f45ad42e9d95e1369",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107262,8 +107363,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-semantic-state-20261012.json",
-    "sha256": "db726456dd3e597475301955ade28b1d4fe2cd89a5324b1f363907b02713c7a0"
+    "path": "research/runtime/coverage/source-index-draw02-hud-input-20261012.json",
+    "sha256": "70d8edadbc11da0eccbf85dd8f90acc86b57a391c7e61e0325a088a87f9e9fdc"
   },
   "claim_bindings_required": true
 }
