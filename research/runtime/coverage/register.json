@@ -42129,7 +42129,9 @@
         "DRAW02.draw02-egl-post-return-original-01-live_observation-20261012",
         "DRAW02.draw02-trace32-original-01-live_observation-20261012",
         "DRAW02.draw02-trace32-original-02-live_observation-20261012",
-        "DRAW02.draw02-trace32-original-03-live_observation-20261012"
+        "DRAW02.draw02-trace32-original-03-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-original-02-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42578,7 +42580,9 @@
         "DRAW02.draw02-egl-post-return-content-01-static-20261012",
         "DRAW02.draw02-trace32-original-01-live_observation-20261012",
         "DRAW02.draw02-trace32-original-02-live_observation-20261012",
-        "DRAW02.draw02-trace32-original-03-live_observation-20261012"
+        "DRAW02.draw02-trace32-original-03-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-original-02-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42628,7 +42632,9 @@
         "DRAW02.draw02-trace32-original-02-live_observation-20261012",
         "DRAW02.draw02-trace32-cap-diagnosis-02-static-20261012",
         "DRAW02.draw02-trace32-original-03-live_observation-20261012",
-        "DRAW02.trace32-regression-01-20261012"
+        "DRAW02.trace32-regression-01-20261012",
+        "DRAW02.draw02-wine-submission-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-original-02-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42639,6 +42645,61 @@
       },
       "remaining_gaps": [
         "Original03closes32World returns with171339records/81091310wire bytes and separate491API/490EGLwitnesses. Source submission/full lifetimes/all routes/action semantics and120consecutive advancing windows remain pending. Run01preMain gate refusal and Run02record-cap truncation retained."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-submission-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned Wine DirectDraw submission metadata observation",
+      "scope": "Pending opt-in observation of installed Wine11.16ddraw PE32imports wined3d_device_context_blt and wined3d_swapchain_present. Record process-local texture/swapchain identity, rectangles/flags, original result/error and enclosing original API entry/source metadata; forward original call exactly once. No texture bytes/object-layout dependency,immutable ownership,EGLtemporalassignment or full-route/driver claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-submission.md",
+        "research/formats/drawing-wine-submission-v1.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_submission.h",
+        "tools/inspect-drawing-wine-imports.py",
+        "tools/test-drawing-wine-submission.py",
+        "tools/drawing_wine_submission.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/analyze-drawing-wine-submission.py"
+      ],
+      "tests": [
+        "tests/test-drawing-wine-imports.py",
+        "tests/drawing-wine-submission-test.c",
+        "tests/test-drawing-wine-submission.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/shadow/win32_min.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-import-inventory-01-static-20261012",
+        "DRAW02.draw02-wine-submission-parser-checks-01-static-20261012",
+        "DRAW02.draw02-wine-submission-fixture-build-refusal-01-static-20261012",
+        "DRAW02.draw02-wine-submission-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-wine-submission-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-budget-diagnosis-01-static-20261012",
+        "DRAW02.draw02-wine-submission-original-02-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-associations-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending pinned import inventory,malformed/mismatched input guards,actual wrapperABI/result/error/caller binding and original execution. Source storage ownership/async worker delivery remain separate.",
+        "Actual original01reaches contextblt but refuses1024EGLcount budget before Results; retain failure,no complete admission. Pending shorter declared diagnostic schedule.",
+        "Original02closes1676contextblt calls on2threads with0unbound;1675BltFast/1Blt parent APIs,739submission rows withAPIphysical ordinal,428withliveAPI-source points. Present import neverreached. Texture identities have no release/reuse generation; storage ownership/asyncEGLassignment/allroutes/semanticjourneys remain pending.",
+        "Post-observation source-only fix preserves FP around lazy import installation before DirectDrawCreate/CreateEx; build passes but fresh original/fixture execution for this final source version remains pending. Historical observed source hashes retained."
       ]
     }
   ],
@@ -90058,6 +90119,121 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-import-inventory-01-static-20261012",
+      "kind": "static",
+      "scope": "Exact pinned installed Wine import/export inventory,not ABI execution.",
+      "record": "research/runtime/draw02-wine-import-inventory-01.json",
+      "sha256": "17d2e72e1c2eac3cc66fe73854445a3e0b62d16f690cd68736b32caa0b2608af",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-parser-checks-01-static-20261012",
+      "kind": "static",
+      "scope": "Bounded pin/PE/journal decoder regression checks,no parity promotion.",
+      "record": "research/runtime/draw02-wine-submission-parser-checks-01.json",
+      "sha256": "e74ddcfe088e856818e2da9bfef0e17619f36ec233157999e99d0767f5f88aef",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-fixture-build-refusal-01-static-20261012",
+      "kind": "static",
+      "scope": "Retained fixture link refusal before any execution.",
+      "record": "research/runtime/draw02-wine-submission-fixture-build-refusal-01.json",
+      "sha256": "00bfc7694d63698e00de1a8341c048d2f0573f60416e6ce662ac0b5ab182a49e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-fixture-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic9cdecl/result/error/x87/reentry/nesting cases,no original game or driver.",
+      "record": "research/runtime/draw02-wine-submission-fixture-02.json",
+      "sha256": "ce2984b55247cc82f0c9ac771ed41496d5d7209c2e8dff5bd5c91756a205af36",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Actual original reaches contextblt but refuses1024EGLcount budget before Results;no closed admission.",
+      "record": "research/runtime/draw02-wine-submission-original-01.json",
+      "sha256": "461b35644210e8a17f4b3e4179c110947aeb78bf3fca1160b0c36ff81a048769",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-budget-diagnosis-01-static-20261012",
+      "kind": "static",
+      "scope": "Offline4169pairedbltrows/no terminal and retained EGLbudget refusal,no complete admission.",
+      "record": "research/runtime/draw02-wine-submission-budget-diagnosis-01.json",
+      "sha256": "28866c3fa1c60863df3cbe4845590c49d3d788295fc484c50172bfe7c52dd0cc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-original-02-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Closed original-active Wine submission metadata and separate32return/API/EGLwitnesses; no ownership/EGLmapping/complete journey.",
+      "record": "research/runtime/draw02-wine-submission-original-02.json",
+      "sha256": "f34747e9f2ddfbfe709dc730b556c0aca563d6051a5ec23283c1d6f319b5015b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-submission-associations-01-static-20261012",
+      "kind": "static",
+      "scope": "Offline exact enclosing API entry/thread and optional API source-point/witness association of admitted Wine submission rows. Opaque texture identities are not lifetime generations; no texture bytes, storage ownership or asynchronous EGL frame assignment.",
+      "record": "research/runtime/draw02-wine-submission-associations-01.json",
+      "sha256": "12086fd0f15efda9b0ce5a91c276052ba7bb88fd4506f6df13af2257e25000a3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100993,6 +101169,48 @@
         "DRAW02.draw02-trace32-cap-diagnosis-02-static-20261012",
         "DRAW02.draw02-trace32-original-03-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-submission-forward-fixture",
+      "level": "headless",
+      "scope": "Actual PE32 synthetic cdecl callback forwarding,thread reentry,nested/unbound API metadata and result/error/x87 checks. No original game or physical driver proof. Includes prerequisite pinned static import/export inventory; static records alone do not validate ABI.",
+      "behaviors": [
+        "NR.drawing-wine-submission-observation"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-submission.py",
+        "tests/drawing-wine-submission-test.c",
+        "tools/inspect-drawing-wine-imports.py",
+        "tests/test-drawing-wine-imports.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-submission-fixture-build-refusal-01-static-20261012",
+        "DRAW02.draw02-wine-submission-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-wine-import-inventory-01-static-20261012",
+        "DRAW02.draw02-wine-submission-parser-checks-01-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-wine-submission-quick",
+      "level": "live_observation",
+      "scope": "Pinned original-active Quick Battle and32return source prefix with actual Wine submission metadata,API/EGLphysical witnesses. No async source ownership/complete journey claim. Original01standard schedule failed1024EGLbudget; subsequent shorter schedule is explicitly diagnostic and retains boundaries.",
+      "behaviors": [
+        "NR.drawing-wine-submission-observation",
+        "NR.producer-trace32-acquisition",
+        "NR.drawing-egl-physical-witness",
+        "NR.drawing-producer-source-points"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-submission-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-budget-diagnosis-01-static-20261012",
+        "DRAW02.draw02-wine-submission-original-02-live_observation-20261012",
+        "DRAW02.draw02-wine-submission-associations-01-static-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -101366,8 +101584,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-trace32-final-20261012.json",
-    "sha256": "08168a8b9a7e72fa5a432ef9c3f61ff03ba9d055e30cd62e84932eaa9f913509"
+    "path": "research/runtime/coverage/source-index-draw02-wine-submission-fp-20261012.json",
+    "sha256": "17b4fec91c21d266f1fea082a53df40ac03ccda09f2f889acaf9edc06747875a"
   },
   "claim_bindings_required": true
 }

@@ -7138,3 +7138,27 @@ ordered and pending; all 47 journey and 21 operation requirements remain open.
 Committed-history review449929e..4c4762a finds23matching exact receipts and no
 missing versions. Historical reports/hashes are preserved. Storage remains about
 879 GiB working/447 GiB free, within the 1280/100 policy.
+
+## Step 2 pinned Wine submission checkpoint (2026-10-12 UTC)
+
+`draw02-wine-import-inventory-01.json` pins installed Wine11.16ddraw/wined3d
+modules and the two selected named import/export RVAs. Four pin/PE guards and
+four strict journal guards pass. The actual PE32 fixture02passes9cdecl callbacks,
+9cross-thread reentries,exact arguments/single forwarding/result/LastError/x87,
+nested parent42and one unbound call. The initial CRT-free link failure is retained.
+
+Original01reaches the hooks but hits the unchanged1024EGLwitness ceiling before
+Results. It retains4169pairedcontextblt rows without a terminal,so does not admit.
+Original02uses the separately declared shorter diagnostic schedule and closes
+all32World returns/173224source records,1676Winecontextblt calls on2threads,
+370APIphysical and369post-EGL witnesses. Original sections,source pins and
+manifest checks pass. The swapchain-present import is not reached in this cohort.
+
+Offline associations01binds1675submissions toBltFast and1toBlt parent entries;
+739rows haveAPIphysical ordinal and428have liveAPI-source points. These are
+exact enclosing call associations,not texture-storage ownership. Opaque Wine
+object identities lack release/reuse generations; asynchronousEGLassignment,
+allroutes and full semantic journeys stay open. Steps3–7 remain ordered/pending
+and all47/21acceptance requirements remain open. The reviewed4c4762a..ff36674
+range has26matching exact file-version receipts and0gaps. Storage remains about
+890GiBworking/436GiBfree;no cleanup or historical hash refresh.

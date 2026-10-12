@@ -9,9 +9,10 @@ def load(path):
     s=importlib.util.spec_from_file_location(Path(path).stem,ROOT/path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=[*range(1,17),32],help='Bind original-active producer metadata through the first1..16or32World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=[*range(1,17),32],help='Bind original-active producer metadata through the first1..16or32World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--wine-submission',action='store_true',help='Observe pinned Wine11.16DirectDraw submission metadata');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
     if (a.observer_mode=='physical') != (a.physical_peer is not None):p.error('Physical mode requires exactly one physical peer')
     if a.producer_samples and a.observer_mode!='physical':p.error('Producer binding requires physical mode')
+    if a.wine_submission and (a.observer_mode!='physical' or a.control):p.error('Wine submission requires original-active physical mode')
     if a.control and a.physical_peer:p.error('Physical API capture cannot be a control run')
     if a.observer_mode!='physical' and (a.physical_oracle_mib!=1024 or a.physical_transient_mib!=256):p.error('Physical budgets require physical mode')
     if a.egl_physical and (a.observer_mode!='physical' or not a.x11_delivery_library):p.error('EGL physical witnesses require physical/API mode and an EGL delivery library')
@@ -26,6 +27,7 @@ def main():
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('*producer*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('world_*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'reconstruction/rendering').glob('glyph_backend*') if x.suffix in ('.c','.h','.S')]
+    if a.wine_submission:names += ['runtime/drawing/wine_submission.h','tools/inspect-drawing-wine-imports.py','tools/drawing_wine_submission.py']
     sources={n:sha((ROOT/n).read_bytes()) for n in names};sources[str(a.schedule.resolve().relative_to(ROOT))]=sha(a.schedule.read_bytes())
     claims=json.loads(a.claims.read_text()) if a.claims else None
     if claims:sources.update(claims['sources'])
@@ -33,7 +35,9 @@ def main():
     source=a.source_game.resolve();original=(source/'Chaos.exe').read_bytes()
     if sha(original)!=BUILD:raise ValueError('Unsupported original executable; no staging writes')
     parent=ROOT/'working/experiments/drawing-api-session';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
-    game=run/'game';capture=run/'capture';capture.mkdir();x11_library=None
+    game=run/'game';capture=run/'capture';capture.mkdir();x11_library=None;wine_submission=None
+    if a.wine_submission:
+        pin=load('tools/inspect-drawing-wine-imports.py');wine_submission=pin.inspect(Path('/usr/lib/wine/i386-windows/ddraw.dll').read_bytes(),Path('/usr/lib/wine/i386-windows/wined3d.dll').read_bytes())
     if a.x11_delivery_library:
         library=a.x11_delivery_library.read_bytes()
         if library[:5]!=b'\x7fELF\x02' or struct.unpack_from('<H',library,18)[0]!=62:raise ValueError('Expected64-bit x86 Unix delivery library')
@@ -58,7 +62,7 @@ def main():
         binaries=([menu] if a.control else [drawing,menu])+([scene] if scene else [])
         for binary in binaries:shutil.copy2(binary,game/binary.name)
         settings=load('tools/run-opengl-game.py');preferences=settings.disable_cd_music(game)+settings.skip_movies(game)
-        manifest={'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+        manifest={'wine_submission':wine_submission,'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         raw=bytearray(106496);raw[:8]=b'MNMMCM12';struct.pack_into('<II',raw,8,12,len(raw));struct.pack_into('<III',raw,16,2,1,1);(run/'channel.bin').write_bytes(raw)
@@ -185,6 +189,13 @@ def main():
                 report['egl_physical_observation']=analyze_egl_physical(capture,run/'egl-physical-report.json')
                 report['egl_physical_peer_report_sha256']=sha((run/'egl-physical-report.json').read_bytes())
             report['private_process_snapshots']=[dict(stage=stage,sha256=sha((run/f'process-{stage}.json').read_bytes()),record=json.loads((run/f'process-{stage}.json').read_text())) for stage in ('main','world')]
+        except Exception as error:
+            failure=error;report.update(success=False,admitted=False,error=str(error))
+    if wine_submission and report.get('success'):
+        from drawing_wine_submission import decode as decode_submissions
+        try:
+            calls={r[29]:r for r in struct.iter_unpack('<32I',(capture/'session.bin').read_bytes()[64:-128])}
+            report['wine_submission_observation']=decode_submissions((capture/'wine-submission.bin').read_bytes(),calls)
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
     a.report.parent.mkdir(parents=True,exist_ok=True)

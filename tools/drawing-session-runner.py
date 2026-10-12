@@ -12,6 +12,11 @@ if metadata.get('producer_samples'):
 else:os.environ.pop('MNM_DRAW02_PRODUCER_BIND',None)
 if metadata['api_observer_enabled']:os.environ['MNM_DRAW_SESSION_DIRECTORY']='Z:'+str(root/'capture').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SESSION_DIRECTORY',None)
+if pin:=metadata.get('wine_submission'):
+    for name,digest in pin['module_sha256'].items():
+        if hashlib.sha256(Path('/usr/lib/wine/i386-windows',name+'.dll').read_bytes()).hexdigest()!=digest:raise ValueError('Installed Wine module changed: '+name)
+    os.environ['MNM_DRAW_WINE_SUBMISSION']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SUBMISSION',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')
