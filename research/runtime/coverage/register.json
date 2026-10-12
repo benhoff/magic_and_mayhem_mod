@@ -42806,6 +42806,48 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.save-load-menu-controls",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original Save/Load menu control and pending-request contracts",
+      "scope": "Bounded original Load pending/Cancel/caller flags, Save Cancel/success/overwrite admission/modal, list selection and edit setter in a private PE32 fixture. Save/load I/O and modal/fade helpers stubbed; actual persistence, admission, failure/delete branches and live returns pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4892112,
+          "scope": "Original Load pending consumption and successful return flags with stubbed serializer"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4896880,
+          "scope": "Original Save deferred-request callback statically inspected; disk-space and live ownership pending"
+        }
+      ],
+      "documents": [
+        "research/runtime/save-load-menu-engine-contract.md",
+        "research/runtime/persistence-progression.md"
+      ],
+      "implementation": [
+        "tools/export-save-load-menus.py"
+      ],
+      "tests": [
+        "tools/test-save-load-menu-contract.py",
+        "tests/save-load-menu-contract.c"
+      ],
+      "evidence": [
+        "UI36.static",
+        "UI36.original"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -88834,6 +88876,52 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "UI36.static",
+      "kind": "static",
+      "scope": "Hash-pinned Save/Load instruction ranges and vtable candidates; no execution or live admission.",
+      "record": "research/runtime/save-load-menu-static-20261012.json",
+      "sha256": "db3ead0f9f643c164c190efb7eba77635062cf0c30824b91b141a9ad7a104d25",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI36.original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "13 bounded private PE32 callback/control groups, with serializer/fade/modal resource stubs; no live ownership or save I/O.",
+      "record": "research/runtime/save-load-menu-contract-20261012.json",
+      "sha256": "7119450150101e58c484d9e9c3d60f2ab9a4a1abfcfe66fe3ead6b99d87ece8f",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 13
+        },
+        {
+          "pointer": "/save_io_stubbed",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99785,8 +99873,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-audio-default-shared-20261012.json",
-    "sha256": "b94b134db081c9c545de7bab18fc024e80982fd518256abbd843f20a04b545eb"
+    "path": "research/runtime/coverage/source-index-save-load-contract-20261012.json",
+    "sha256": "1da315842f8597aff24c2773b405b7cd297c424dfd04117122b8c6f879eea305"
   },
   "claim_bindings_required": true
 }

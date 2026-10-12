@@ -604,6 +604,17 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI36 starts the remaining live-menu work with Save/Load control
+recovery. The new [contract](save-load-menu-engine-contract.md) separates
+original callback/list/edit behavior from pending live screen admission,
+serializer I/O, delete/failure branches, confirmation and loaded-world returns.
+The everyday-use work order is Save/Load, Realm navigation and campaign
+auxiliary screens, remaining results, then multiplayer; it is not measured
+usage or completion evidence. Historical menu statuses/hashes are preserved.
+The [committed-history audit](coverage/save-load-menu-history-20261012.json)
+reviews 61 exact file versions in `82f9bff..122f5c8` with zero missing receipt
+chains, separately from this uncommitted menu work.
+
 Reconciled 2026-10-05 through UI35. Native preview behavior and recovered engine
 transitions have separate evidence. Bounded adapters delegate original actions;
 original drawing, simulation and unadapted menu paths remain active. Historical
