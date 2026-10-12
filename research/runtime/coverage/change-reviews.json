@@ -501457,6 +501457,225 @@
         "status": "pending",
         "reason": "Final isolated reference04matches3444cases/8512504words; PE32fixture01passes56compatible entries/53default hooks plus cache/clip/pending/storage guards. Original02has594witnesses/five bar draws/zero producer failures. Native prediction01matches103of104physical witnesses; CPU analysis matches all104source planes/49920000pixels. Initial display differs468103pixels and490witnesses are excluded. Actual display delivery, full source lifetimes, semantic120advancing-window policy, all47journey/21operation requirements and changed shared-source evidence remain pending. No status promotion, historical hash refresh or complete frame/journey assertion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4fe0791c41163333846e451c83028fb91fb4f238580558560260170ee99ff22c",
+          "before_sha256": "8c3ca6cd82e5656ecb56debd70e77856af98270f8868c140c085daeaa09d145b",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "552e592ae371f19d8dac8dc00553a69643923fb8266489d2d1f8acc3c9c4055e",
+          "before_sha256": "3580eab5114cdad646d8d5042893025a94a8caf5f8fd7d035f61947b4eda3f76",
+          "id": "NR.drawing-interactive-acquisition"
+        },
+        {
+          "after_sha256": "30e0f2842ff1ae62a18279e371de34e13562892b5b3cbbb1f347650695b92cd0",
+          "before_sha256": "5b130c66353fe34de8ddcf138ab4e02a3a2bd6a789c19d52ae18b3c0dfae1153",
+          "id": "NR.drawing-producer-source-points"
+        },
+        {
+          "after_sha256": "ba3c2f18e33bc30af332ddb2c99f2142ee04551db93429fcd072be8c9e495166",
+          "before_sha256": "ba3c2f18e33bc30af332ddb2c99f2142ee04551db93429fcd072be8c9e495166",
+          "id": "NR.drawing-result-comparison"
+        },
+        {
+          "after_sha256": "bd2f4f1f2bc5ca12d49d5197eba0b09535aca357e37b3e20961afffd84c6ab2d",
+          "before_sha256": "bd2f4f1f2bc5ca12d49d5197eba0b09535aca357e37b3e20961afffd84c6ab2d",
+          "id": "NR.drawing-session-api"
+        },
+        {
+          "after_sha256": "0ab8026103ae38553bd97ea8f7acbfc506c1a21d977d3cffd5b514630ef871d3",
+          "before_sha256": "5e2c05a3a6f7b131e82fe091de5dae611e0aa643b89a84ffd71031ad61aad613",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "52aa3e09fadf7f161bc692d806b0540befb14413221ca3c201bc1c4871516df9",
+          "before_sha256": null,
+          "id": "NR.drawing-x11-delivery-observation"
+        },
+        {
+          "after_sha256": "0127f1147e1ed17fc15fa752939eb758783131711c185e5b747d8ddda40d25e6",
+          "before_sha256": "ebc191c42d83e3ade918341dba5c135243ff0cd8825209ae02c81d432cc696eb",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "93752a0234eed9473183ab2d53715ef1035f5609f740a86fcab31d12d9eff2f9",
+          "before_sha256": "2b488221c161e5599658fd1990e8942f4a7c846302a3cb6eb1423632c527c415",
+          "id": "RS.canvas-producer-sequence"
+        },
+        {
+          "after_sha256": "d493c846684fa51698136972c2578fc39ca21cf05335ef6dcb684d5fb1a791a1",
+          "before_sha256": "3cc19fa0b1a980de3568663db6faa98ee09f67e0b428cd23984cd1caab7f2cde",
+          "id": "RS.canvas-vertical-bar"
+        },
+        {
+          "after_sha256": "364fac7d7f5be8a3791d72292641a6cceb1ad1a9c495b69b08b93ee821f051c6",
+          "before_sha256": "2ae9e7e9f8273de21fd6dbbe20231b0fae00cbfc8b534fa5df5efeb8b26f0a87",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "e27cc6d7be0ebb5a12b66c55ba0dc56d319bea1eec6e854f8141a90493e5d1df",
+          "before_sha256": "93893220f35984c22de75c55c8fc927c721ef6496473b6b13208c419320bae7c",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "982cca18f9ace20f858022c63388b4b74b9081ba45aeee08f9a34d8e3d3dca8e",
+          "before_sha256": null,
+          "path": "research/formats/drawing-x11-delivery-v1.md"
+        },
+        {
+          "after_sha256": "ea56dca5ea3ebc70f107b2d5fd3663eb62002d9f7d41cc30921744fc3c90d425",
+          "before_sha256": "dd3e4e27905c11837bff4087cb50d8ee70a382899e2bb78c00d9a2828b228fd1",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "afaf67c611646c4ce37ea0443c9fed86e1c00ffec1bf8bad026df23dd11a4faf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-x11-start-20261012.json"
+        },
+        {
+          "after_sha256": "07d188a80500df1cc1fc20c3fdc1cc5232dcb1bc0026d90b152649c112e36720",
+          "before_sha256": "510f0ef5bfb1405fc396483248b4068bcae92c963844ab23866ec38392a56d18",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "9c848422c40aa63d07ac6217747c5b0df8ca0b6d910af34a0b55139931722ca0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-x11-delivery-20261012.json"
+        },
+        {
+          "after_sha256": "ab80821832ce6c43f71a20b45c01d84630bad9a7d00f659cadbcad02ad1ff27f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-x11-delivery-20261012.md"
+        },
+        {
+          "after_sha256": "8799b7ed5820e645bb0d48b5acafefbe0e7dcacac09ae1219cae5d97ee70c175",
+          "before_sha256": "c41bb5ad86fe17f90daebf6079ebc1b0532946d8f75ca01877e6383b06c1f102",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "a2db7488d6a1c811c0c1fe4787d0823cbd40d1dfb2d14e2d9c4702a4220d3990",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-cpu-analysis-01.json"
+        },
+        {
+          "after_sha256": "2afa21f3ebb91791234e2cc2d55316b54523d1ac99642cbdce662860dff4e01e",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-fixture-01.json"
+        },
+        {
+          "after_sha256": "36c9660d9ab6cf3d6a3b5ac6c68229802f9307d64ff129fa8a9512d6c0af79fd",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-fixture-02.json"
+        },
+        {
+          "after_sha256": "f0d14049ba2a3b2cf06157e6380a29a71a731c5103d98c2d17e056dc9e2669a8",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-fixture-03.json"
+        },
+        {
+          "after_sha256": "45936598ff5216c872f5211bdd994d7d5e3ad800ce1b2a23c330268c6e842674",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-fixture-04.json"
+        },
+        {
+          "after_sha256": "88367a3543fcd6d2c8b5a95b735b07aad060d52b593b1992b68b5454c56f6caf",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-original-01.json"
+        },
+        {
+          "after_sha256": "5fa95539ca4d18173db5d922db53d533d774a9a3a651dee61fd18f23ff8cddd6",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery-prediction-01.json"
+        },
+        {
+          "after_sha256": "135727029fa5f0d83dd2f822c248d302ebfdf3d3a667f9420a504bf05ac4f1f6",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-x11-delivery.md"
+        },
+        {
+          "after_sha256": "0819b9ee90c79f3a3831560256eb9520d017baef9dc451174db9d8416808e527",
+          "before_sha256": null,
+          "path": "runtime/display/x11_delivery.c"
+        },
+        {
+          "after_sha256": "054f6608ddb18f366a24394ff5e39ba43639c5e77686d6dc982882e09bda5fc1",
+          "before_sha256": null,
+          "path": "tests/drawing-x11-delivery-test.c"
+        },
+        {
+          "after_sha256": "fce9c7af15ab5a7f17abe88653abb2874fec8444264bdf35d56ec31030d50de8",
+          "before_sha256": null,
+          "path": "tests/test-drawing-x11-delivery.py"
+        },
+        {
+          "after_sha256": "b036e6209bdf02a89b381722680c7f7506bd003d743cc150a7c3ee1198c21d98",
+          "before_sha256": null,
+          "path": "tools/build-drawing-x11-delivery.py"
+        },
+        {
+          "after_sha256": "e9ca7ca05590a5bf929611dc8fbe5a6320b71a99f3fafc69ff17145b9ac35294",
+          "before_sha256": "53d9f0428091eca00a776dadfb014b597acffc4436f80635401aa1a036a406dc",
+          "path": "tools/capture-drawing-interactive.py"
+        },
+        {
+          "after_sha256": "14d227c16a071cd69f6bbb278b3e8c1e9521626d9a7e90de6e3daff2749dced4",
+          "before_sha256": "fb8762e15bc2694cec4b0f9954d22624b3fdf51550a6442f6e3c05b622bfb221",
+          "path": "tools/drawing-session-runner.py"
+        },
+        {
+          "after_sha256": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+          "before_sha256": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+          "path": "tools/drawing_api_session.py"
+        },
+        {
+          "after_sha256": "cca961d325a4a5c45e98fdddf9d28a0c0b696d107f38df051b47e7a30c549d8d",
+          "before_sha256": null,
+          "path": "tools/drawing_x11_delivery.py"
+        },
+        {
+          "after_sha256": "37de1353fda5396e4411e55caa2ea3ba0e69bb1c9d43b6cc4a3109f52bae2ba7",
+          "before_sha256": null,
+          "path": "tools/test-drawing-x11-delivery.py"
+        }
+      ],
+      "id": "draw02-selected-x11-delivery-observation-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:3791e52aa326c16b17063c815da71594f118765dbe5276b09ab3077735fce683",
+        "stale_evidence:057244d0e4673997fa9b4d5fc698e543879aa1946fbe5b5f5237b48d652fb0db",
+        "stale_evidence:0a4cb9976e81e37676cae487e6400801f4dd30da1372e64ec97621767b93be83",
+        "stale_evidence:1d2beda39844262c213e24ff76d0ab475df95ca5f0289c22cf4e270dd52312e4",
+        "stale_evidence:2ff111d1c1678f71e2bd52a52edbd97dc9311121dc2b71f4876c8fc56603452d",
+        "stale_evidence:31fca2c506263dcc94a99e352ee0fa3172443ea0f2bc646071e7c7cd3e7d2c10",
+        "stale_evidence:34dcf47c8556a21125a2db6355b0c9c71f6ee244888efd837f720587ef527873",
+        "stale_evidence:44ebb5a5e456a794d97380b09ed3c714b060e734924cf191683156a3d4a787fc",
+        "stale_evidence:4dd99f01088a12ef4a7f9d7dd3ae54449f152ea711afa4428c2f8470b38fa077",
+        "stale_evidence:66519defcbd091c11781056542b18b9d0cb36b299f6867f3ebdf97b5f44cc6d5",
+        "stale_evidence:6827a50ce429cfaca7cf73fcca6d855d6fc7928fd7d6a431193c29fdcd5b47b0",
+        "stale_evidence:69f04e17cae75ee332526428a125da0f3f4a70be5de69dd4d57521bb2caa29b7",
+        "stale_evidence:6b33e538f9553644535a4e0285165838970068ab6c619c85f1d9339dcd7fbfee",
+        "stale_evidence:7702c2daae0c9024a7fda6379ccbcfdb4e979ef167b61ac5ee9dcd80515d2416",
+        "stale_evidence:80fa191fed9c730c8f8d1fce26ef8349c69955942e06c75da889a13559f9a8dd",
+        "stale_evidence:86e912efd2c2b9da215f8476e06e0a8db5b057972c60beb707e2092cc57ec1d6",
+        "stale_evidence:a5233b1c670ab8aa0fb5335d02b121321acf5f09e9f36282381b551f9b323eb0",
+        "stale_evidence:aef1edd8507469b5d6919f205b841900cc574955942091baf5daaa6ab9d7e7b4",
+        "stale_evidence:d05b536202267e12b022a5bce76e837a485b49ac98b955cf91f903f28eb4ae06",
+        "stale_evidence:d9e057bcd0657a1039830481c68f4aedc3fdb277ebd8ed5494af322971f34eb1",
+        "stale_evidence:e6ae26112a26f7bd4a961177e171309e85158734c22c252b3a905f121a2a5e2c",
+        "validation_gaps:af33dce1b42da3c15007b8eb524e417adf8c6efd42dab42df2c6af2edb0b0254",
+        "validation_gaps:daa661bc1c6f17fffcea7712499b52925d7d00fedb160f1ab452905a3a52aa98",
+        "validation_gaps:e8fff7b11979dd95fc7113c637687744173d55c34b9d5e0d5fd415b9b94ceee1",
+        "validation_gaps:ea352e136cdedbe70365c96456ebd8a83d88bec75a8e010ca6dbf710474a86cb"
+      ],
+      "reason": "Reviewed opt-in64-bit Unix X11 interposition,atomic original resolution,exact forwarding/result/errno preservation,metadata-only bounded file locking outside driver bodies,strict per-process paired journal and explicit partial pending state. Capture stages/hash-checks only a private observer library and preserves parser failures. Real fixture04covers all nine wrapped calls/control pixels. Original01shows selected X11 calls do not account for588API witnesses; dynamic GL and producer/physical causality remain unknown. Retain every negative prediction/exclusion and CPU/display separation,census and exacte14deb2history receipts.",
+      "validation": {
+        "status": "pending",
+        "reason": "Final real Xvfb fixture04passes all nine methods,control errno/results/server pixels and five parser guards. Original01retains446closed Unix calls/two processes and588physical API witnesses,without all-route or source binding. Native prediction01matches106of107selected physical planes; initial black plane differs468103pixels and481witnesses are excluded. Offline CPU analysis matches107source planes/51360000pixels. Reached GL presentation,all lifetimes/semantic120windows,47journey/21operation requirements and earlier changed-source claims remain pending; no status promotion or old hash refresh."
+      }
     }
   ]
 }

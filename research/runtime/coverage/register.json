@@ -20181,7 +20181,8 @@
         "DRAW02.draw02-source-points-original-03-20261012",
         "DRAW02.draw02-vertical-bar-producer-fixture-01-native_integration-20261012",
         "DRAW02.draw02-vertical-bar-original-01-live_observation-20261012",
-        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012"
+        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
+        "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -37729,7 +37730,8 @@
         "DRAW02.draw02-source-points-original-02-20261012",
         "DRAW02.draw02-source-points-original-03-20261012",
         "DRAW02.draw02-vertical-bar-original-01-live_observation-20261012",
-        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012"
+        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
+        "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42102,7 +42104,8 @@
         "DRAW02.draw02-source-points-original-03-20261012",
         "DRAW02.draw02-vertical-bar-producer-fixture-01-native_integration-20261012",
         "DRAW02.draw02-vertical-bar-original-01-live_observation-20261012",
-        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012"
+        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
+        "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42202,7 +42205,9 @@
         "DRAW02.draw02-source-prediction-native-04-20261012",
         "DRAW02.draw02-source-prediction-native-05-20261012",
         "DRAW02.draw02-vertical-bar-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-vertical-bar-cpu-analysis-01-static-20261012"
+        "DRAW02.draw02-vertical-bar-cpu-analysis-01-static-20261012",
+        "DRAW02.draw02-x11-delivery-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42272,7 +42277,8 @@
         "DRAW02.draw02-vertical-bar-original-01-live_observation-20261012",
         "DRAW02.draw02-vertical-bar-reference-04-isolated_original-20261012",
         "DRAW02.draw02-vertical-bar-reference-04-native_integration-20261012",
-        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012"
+        "DRAW02.draw02-vertical-bar-original-02-live_observation-20261012",
+        "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42283,6 +42289,51 @@
       },
       "remaining_gaps": [
         "Original02reaches five generated4x75bars with zero recorder failures; isolated reference04matches3444cases/8512504words and the combined source cohort matches49920000CPU pixels. Full allocation/reuse lifetime, arbitrary source-buffer mutation, current/max arithmetic, original bad inputs and all display/journey behavior remain unproved. Default mode retains53hooks; new56-site ABI and cache guards are scoped fixtures."
+      ]
+    },
+    {
+      "id": "NR.drawing-x11-delivery-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Isolated Wine X11 display-delivery call observation",
+      "scope": "Pending opt-in64-bit Unix ELF interposition of selected Wine X11 image/copy/fill/clear/flush/sync calls. Record argument geometry,local drawable/process/thread identities,monotonic entry/return times,original result and errno; forward once without observer X11 requests or holding recorder locks across original bodies. Metadata-only diagnostic,not all display routes,source ownership,physical presentation or driver equivalence. Dynamic GL/function-pointer dispatch,external processes and unwrapped drawing remain explicit unknowns.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-x11-delivery.md",
+        "research/formats/drawing-x11-delivery-v1.md"
+      ],
+      "implementation": [
+        "runtime/display/x11_delivery.c",
+        "tools/build-drawing-x11-delivery.py",
+        "tools/drawing_x11_delivery.py"
+      ],
+      "tests": [
+        "tests/drawing-x11-delivery-test.c",
+        "tools/test-drawing-x11-delivery.py",
+        "tests/test-drawing-x11-delivery.py"
+      ],
+      "validation_dependencies": [
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-x11-delivery-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-fixture-03-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-fixture-04-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Final fixture04passes all nine wrapped real X11 calls/control errno/results/server pixels and five parser guard methods. Original01records446closed calls on two Unix processes:11XPutImage,413XFlush,2XFillRectangle,19XSync,1XShmPutImage versus588API physical witnesses. Dynamic GL/other unwrapped imports remain unobserved. Time proximity cannot bind source/producer causality or explain the initial black plane; native prediction remains separately recorded."
       ]
     }
   ],
@@ -89137,6 +89188,118 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual private Xvfb selected X11 calls, identical control/observed results,errno and server pixels; strict paired metadata and malformed admissions. No original Wine/game,all routes,driver loss or presented-frame proof.",
+      "record": "research/runtime/draw02-x11-delivery-fixture-01.json",
+      "sha256": "2afa21f3ebb91791234e2cc2d55316b54523d1ac99642cbdce662860dff4e01e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-fixture-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual private Xvfb selected X11 calls, identical control/observed results,errno and server pixels; strict paired metadata and malformed admissions. No original Wine/game,all routes,driver loss or presented-frame proof.",
+      "record": "research/runtime/draw02-x11-delivery-fixture-02.json",
+      "sha256": "36c9660d9ab6cf3d6a3b5ac6c68229802f9307d64ff129fa8a9512d6c0af79fd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-fixture-03-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Retained exact prospective-source refusal before fixture execution,not a driver or original game failure.",
+      "record": "research/runtime/draw02-x11-delivery-fixture-03.json",
+      "sha256": "f0d14049ba2a3b2cf06157e6380a29a71a731c5103d98c2d17e056dc9e2669a8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-fixture-04-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual private Xvfb selected X11 calls, identical control/observed results,errno and server pixels; strict paired metadata and malformed admissions. No original Wine/game,all routes,driver loss or presented-frame proof.",
+      "record": "research/runtime/draw02-x11-delivery-fixture-04.json",
+      "sha256": "45936598ff5216c872f5211bdd994d7d5e3ad800ce1b2a23c330268c6e842674",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded original-active selected X11 metadata,physical/source/API observation; no all-route or presentation-causality claim.",
+      "record": "research/runtime/draw02-x11-delivery-original-01.json",
+      "sha256": "88367a3543fcd6d2c8b5a95b735b07aad060d52b593b1992b68b5454c56f6caf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Source-only native composed-canvas prediction of an explicitly restricted API physical cohort. Every excluded witness remains listed; stable metadata/zero differences do not prove all original writers, immutable storage, complete presented journeys, driver recovery or replacement.",
+      "record": "research/runtime/draw02-x11-delivery-prediction-01.json",
+      "sha256": "5fa95539ca4d18173db5d922db53d533d774a9a3a651dee61fd18f23ff8cddd6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "Offline hash-bound comparison of retained native output and independent original CPU checkpoints at identical source prefixes; physical comparison remains independently negative where recorded. No fresh engine execution, all-writer ownership, actual display presentation, journey or replacement claim.",
+      "record": "research/runtime/draw02-x11-delivery-cpu-analysis-01.json",
+      "sha256": "a2db7488d6a1c811c0c1fe4787d0823cbd40d1dfb2d14e2d9c4702a4220d3990",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99814,7 +99977,9 @@
         "DRAW02.draw02-source-prediction-native-04-20261012",
         "DRAW02.draw02-source-prediction-native-05-20261012",
         "DRAW02.draw02-vertical-bar-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-vertical-bar-cpu-analysis-01-static-20261012"
+        "DRAW02.draw02-vertical-bar-cpu-analysis-01-static-20261012",
+        "DRAW02.draw02-x11-delivery-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-cpu-analysis-01-static-20261012"
       ]
     },
     {
@@ -99835,6 +100000,45 @@
         "DRAW02.draw02-vertical-bar-reference-03-native_integration-20261012",
         "DRAW02.draw02-vertical-bar-reference-04-isolated_original-20261012",
         "DRAW02.draw02-vertical-bar-reference-04-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.x11-delivery-forwarding",
+      "level": "headless",
+      "scope": "Actual private Xvfb selected X11 drawing calls with and without the metadata preload; original return/errno and deterministic server pixels,strict paired journal and malformed admissions. No original game/all routes or display-source binding.",
+      "behaviors": [
+        "NR.drawing-x11-delivery-observation"
+      ],
+      "tests": [
+        "tests/drawing-x11-delivery-test.c",
+        "tools/test-drawing-x11-delivery.py",
+        "tests/test-drawing-x11-delivery.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-x11-delivery-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-fixture-03-native_integration-20261012",
+        "DRAW02.draw02-x11-delivery-fixture-04-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-x11-delivery-quick",
+      "level": "live_observation",
+      "scope": "Pinned original-active private Quick Battle with selected Unix X11 metadata,API physical witnesses and bounded source points. No complete display-route/producer causal binding or coherent presented frames; preserve unmatched/pending Unix events.",
+      "behaviors": [
+        "NR.drawing-x11-delivery-observation",
+        "NR.drawing-interactive-acquisition",
+        "NR.drawing-producer-source-points",
+        "RS.canvas-producer-sequence",
+        "RS.canvas-vertical-bar"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json",
+        "tools/drawing_x11_delivery.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-x11-delivery-original-01-live_observation-20261012"
       ]
     }
   ],
@@ -100209,8 +100413,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-vertical-bar-20261012.json",
-    "sha256": "01d61acf3e9e8144b5a23223896031a2a11fb0bdeb51c7a77cbee4a7a71a02eb"
+    "path": "research/runtime/coverage/source-index-draw02-x11-delivery-20261012.json",
+    "sha256": "9c848422c40aa63d07ac6217747c5b0df8ca0b6d910af34a0b55139931722ca0"
   },
   "claim_bindings_required": true
 }

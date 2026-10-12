@@ -341,3 +341,43 @@ steps3–7 retain their order and all47/21requirements remain open. Reviewed
 1ca9cba..69a9bf4contains40exact committed file receipts and zero missing versions,
 separate from these uncommitted changes. Storage remains bounded at roughly
 828GiBworking/498GiBfree; no artifacts are deleted or historical hashes refreshed.
+
+## Step 2 selected Unix display-route checkpoint (2026-10-12 UTC)
+
+Recovered bar work is committed as`e14deb2`,with staged gate and hook passed.
+New separate native policy`NR.drawing-x11-delivery-observation`records selected
+Unix X11 calls in an opt-in private64-bit ELF preload. Original bodies forward
+once; original result/errno are retained,with no observer X11 calls or recorder
+lock over a driver body. The portable bounded6MiB journal carries local Unix
+process/thread/drawable identities,times and geometry,not XImage/GC/Display
+pointers or original image bytes. It makes no all-route or causal frame claim.
+
+Fresh fixture04passes every wrapped X11 method,including shared-memory and plane
+copies,with identical uninstrumented/instrumented results/errno/64server pixels.
+Five parser guard methods pass. Initial indentation-warning compilation refusal,
+a pre-execution prospective-source refusal,and earlier passing development02are
+retained. A pending-only guard follows the parser's at-least-one-completed-call
+policy; an accidental broad test-data edit was corrected before final04.
+
+Original01completes588API physical witnesses and446closed selected Unix X11 calls
+on two processes:11PutImage,413Flush,2FillRectangle,19Sync and1ShmPutImage.
+Only two image calls have800×600extent,both before the first primary copy.
+Installed Wine11.16ELF imports/DLL strings expose dynamic libGL/glXSwapBuffers as
+an unobserved-route lead. It is not a proved route for every actual presentation.
+The capture's69passive sample ticks/622movement/43health reductions/five melee
+returns do not establish120consecutive advancing windows or semantic selection,
+tooltip,pause and complete journeys. All original manifests verify before/after.
+
+Source-only prediction01matches106of107selected physical witnesses;481remain
+excluded. The initial uniform black plane still differs468103pixels and keeps
+the result negative. Offline CPU analysis01matches all107source planes:
+51360000pixels and zero differences. Source storage and actual display delivery
+remain distinct. No original image/output planes or observed raster results are
+native inputs. Source changes retain earlier exact fingerprints and limitations.
+
+Reassessment: step2next observes reached GL dispatch and initial display state,
+then extends complete lifetime/source acquisition beyond16World returns,all
+routes and semantic outcomes. Steps3–7 remain ordered and pending; all47/21
+requirements remain open. Reviewed69a9bf4..e14deb2contains29exact committed file
+receipts and zero missing versions,independent of this uncommitted increment.
+Storage remains within1280/100GiBpolicy,approximately832GiBworking/494GiBfree.
