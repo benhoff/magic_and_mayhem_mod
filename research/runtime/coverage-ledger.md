@@ -7273,3 +7273,43 @@ executed API coverage remain pending.
 The initial code-address classification for the import table was corrected to a
 data relationship before this fresh prospective run. The earlier successful
 public result retains its original claim fingerprint and is historical.
+
+## Native movie/file-sound output retention (2026-10-12)
+
+NativePlayback now follows default-output topology through an owned native seam,
+defers/coalesces notifications, pauses the decoder while an endpoint is absent,
+and rescans every500 ms. It retains the player/source/position/loop/volume and
+caller pause intent; recovery rebinds the device without seeking or replaying the
+source. Explicit device selection leaves recovery ownership with the caller.
+Cancellation/destruction stop retries; decoder errors remain terminal.
+
+Fresh native-media-output-recovery-headless-synthetic-20261012.json records actual Qt
+movie/file-sound decoder/output tests at muted gain with injected topology:
+initial absence without advancement, rescan without notification, active loss,
+frozen decoder position, retained caller pause, explicit ownership and cancel.
+Three complete44100-frame PCM outputs and all20 movie RGBA match exact fixture
+hashes. The raw manifest-tokenizer failure and earlier scope remain retained.
+Fresh native-media-output-recovery-public-pass-20261012.json completes both
+1777/1004-frame native intros with2476804/1393283 decoded PCM frames,12 native
+voice plays/116 ACK, native WAV/CD/menu/render/campaign and normal Quit.
+DSOUND remains disabled by default; errors/unsupported/fallback are0, all
+source/input/original checks and owned Wine cleanup pass. The healthy endpoint
+has no losses/recoveries; this is composition evidence, not physical recovery. Physical unplug,
+distinct nonnull default-device changes, driver faults without topology, audible tail/latency and original equivalence
+remain separate. Initial no-device voice admission still fails strictly.
+Exact d94bd66f history reviews26 transitions without receipt gaps. Native
+manager/config/cache/events, long playlist and broader gameplay remain pending.
+
+Wider casting/combat remains unvalidated. The software attempt failed at native
+menu lease retirement with about1.66FPS; the isolated NVIDIA attempt sustained
+about20–72 nativeFPS but failed to produce the requested original Zombie.
+Both reports retain stable sources/original manifests and owned Wine cleanup,
+and are preserved under native-audio-casting-combat-{software,hardware}-failure-20261012.json.
+Their stopped voice channels show ACKs and0 adapter failures/fallbacks/unsupported
+calls; these partial observations do not validate casting/combat or diagnose its
+input failure. No successful execution evidence is registered from either run.
+
+The scenario level was corrected from evidence kind native_integration to the
+coverage schema level headless before this fresh declaration/execution. The
+earlier successful synthetic record retains its original claim fingerprint;
+no historical hash is rewritten to match the correction.

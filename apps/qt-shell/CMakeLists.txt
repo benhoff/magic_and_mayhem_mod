@@ -331,7 +331,7 @@ if(BUILD_TESTING)
 endif()
 
 # Menu music orchestration is independent of the effects manager and widgets.
-add_library(mnm-native-playback STATIC native_playback.cpp)
+add_library(mnm-native-playback STATIC native_playback.cpp playback_audio_devices.cpp)
 target_include_directories(mnm-native-playback PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(mnm-native-playback PUBLIC Qt6::Multimedia)
 target_compile_options(mnm-native-playback PRIVATE -Wall -Wextra -Werror -pedantic)

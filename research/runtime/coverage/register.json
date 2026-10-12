@@ -42695,7 +42695,8 @@
         "HOST.movie-controls.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42887,7 +42888,8 @@
         "HOST.movie-controls.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42963,7 +42965,8 @@
         "HOST.movie-controls.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -43039,7 +43042,8 @@
         "HOST.movie-controls.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44148,7 +44152,8 @@
         "HOST.movie-controls.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45066,7 +45071,8 @@
         "HOST.movie-controls.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46369,7 +46375,8 @@
         "HOST.native-media-startup-probe.synthetic-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46408,7 +46415,8 @@
       "evidence": [
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46461,6 +46469,47 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.wine-import-census.data-synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-media-output-recovery",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native movie and file-sound default output retention",
+      "scope": "NativePlayback-owned default output only: pause active decoder during unavailable output, keep decoder/source/current position/loops/volume and caller pause intent, defer/coalesce topology changes, retry unavailable output, rebind and resume admitted playback without seek/source replay. Explicitly selected menu-music outputs retain caller ownership. Bounded synthetic media and eventual live composition remain separate from physical audible timing and driver fault equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-media-output-recovery.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/playback_audio_devices.hpp",
+        "apps/qt-shell/playback_audio_devices.cpp"
+      ],
+      "tests": [
+        "tests/native-playback-recovery-test.cpp",
+        "tools/test-native-playback-recovery.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "tests/native-playback-recovery/CMakeLists.txt",
+        "tests/native-movie-frames/CMakeLists.txt",
+        "protocols/include/mnm/media_v1.h",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-media-output-recovery.synthetic-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012",
+        "HOST.native-media-output-recovery.headless-synthetic-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -94587,6 +94636,179 @@
           "equals": 10
         }
       ]
+    },
+    {
+      "id": "HOST.native-media-output-recovery.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Final prospective source/scope binding; real Qt finite movie/file-sound decode with injected initial absence, timer rescan, active loss, coalesced topology, retained caller pause, explicit endpoint ownership and cancellation. Three complete44100-frame PCM outputs and all20 movie RGBA match fixture byte hashes. Muted local output; physical unplug/driver/tail/listening excluded.",
+      "record": "research/runtime/native-media-output-recovery-synthetic-20261012.json",
+      "sha256": "ee48b150b716114f82c2c8e45f2e5febfd6a1db6f0fc9cafd74eb483c79d7203",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/checks/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/checks/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/checks/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/checks/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-media-output-recovery.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Current default native recovery-capable movie/file-sound composition through full1777/1004-frame intros, decoded2476804/1393283 PCM frames,12 native voice plays/116ACK, WAV/CD/native menus/render/campaign and normal Quit with healthy output. Recovery/loss counts0; no physical fault inference.",
+      "record": "research/runtime/native-media-output-recovery-public-pass-20261012.json",
+      "sha256": "80c71ea2c88c4e74282e913c6957e3ae6f0c6cd16454284c30fc00385ff6f848",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_launch_policy/native_media_startup_probe",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_dsound_disable_requested",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/1/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/1/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/1/waiting_for_audio_output",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/1/caller_paused",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/2/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/2/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/2/waiting_for_audio_output",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/2/caller_paused",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-media-output-recovery.headless-synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Final prospective source/scope binding; real Qt finite movie/file-sound decode with injected initial absence, timer rescan, active loss, coalesced topology, retained caller pause, explicit endpoint ownership and cancellation. Three complete44100-frame PCM outputs and all20 movie RGBA match fixture byte hashes. Muted local output; physical unplug/driver/tail/listening excluded.",
+      "record": "research/runtime/native-media-output-recovery-headless-synthetic-20261012.json",
+      "sha256": "69629cfe794ef8e55753cd5b1fc352cd4085ba2897a3f1fa62660893ae1d5eaf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/checks/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/checks/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/checks/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/checks/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105157,7 +105379,8 @@
         "HOST.cd-fade.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105196,7 +105419,8 @@
         "HOST.cd-fade.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105236,7 +105460,8 @@
         "HOST.cd-fade.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105255,7 +105480,8 @@
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105339,7 +105565,8 @@
         "HOST.cd-fade.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105390,7 +105617,8 @@
         "HOST.cd-fade.public-pass-20261012",
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105540,7 +105768,8 @@
       "evidence": [
         "HOST.media-startup-default.public-pass-20261012",
         "HOST.wine-import-census.public-pass-20261012",
-        "HOST.wine-import-census.data-public-pass-20261012"
+        "HOST.wine-import-census.data-public-pass-20261012",
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     },
     {
@@ -105573,6 +105802,36 @@
       "evidence": [
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012"
+      ]
+    },
+    {
+      "id": "native-media-output-recovery-synthetic-20261012",
+      "level": "headless",
+      "scope": "Injected endpoint topology around actual Qt decoded finite media: initial absence, active loss, retry/default switch, caller paused recovery, no source replay, exact PCM/frame continuity and cancellation; physical endpoint/listening excluded.",
+      "behaviors": [
+        "HOST.native-media-output-recovery"
+      ],
+      "tests": [
+        "tests/native-playback-recovery-test.cpp",
+        "tools/test-native-playback-recovery.py"
+      ],
+      "evidence": [
+        "HOST.native-media-output-recovery.synthetic-20261012",
+        "HOST.native-media-output-recovery.headless-synthetic-20261012"
+      ]
+    },
+    {
+      "id": "native-media-output-recovery-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Current default native recovery-capable movie/file-sound composition through full intros/campaign/normal Quit with healthy output. Device loss/physical recovery remains a separate scenario.",
+      "behaviors": [
+        "HOST.native-media-output-recovery"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-media-output-recovery.public-pass-20261012"
       ]
     }
   ],
@@ -105947,8 +106206,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-wine-import-census-commit-v2-20261012.json",
-    "sha256": "9a18e7a8aecea28fe9eda4178c75442bdc517c7f67d500854080872d9e6152e7"
+    "path": "research/runtime/coverage/source-index-media-output-recovery-commit-v2-20261012.json",
+    "sha256": "0bc32c2108d3c4f9cd1b6c97e47e13a5247de778463897df4bd52240aaab45be"
   },
   "claim_bindings_required": true
 }
