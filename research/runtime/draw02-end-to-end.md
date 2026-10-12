@@ -1126,3 +1126,14 @@ indirect aliases. Missing function boundaries and the initial inspector refusal
 remain explicit. No new game execution, semantic input success or status
 promotion follows. Next observe candidate identities across controlled pointer
 motion and clicks. All 47 requirements/21 operations and steps 3–7 remain open.
+
+DRAW-02 step 2 timing-label correction: world-tick-loop research identifies
+6dbe95/6dbe99 as pacing interval/companion. The previous semantic sampler and
+reports called these camera fields. Preserve all historical reports/hashes;
+current decoder and source names now call them pacing fields. Strict legacy
+label normalization rejects duplicate labels and changes no raw words. Current
+reanalysis of the retained campaign journal still observes Mini 3045 ms,
+Preferences 2212 ms and subsequent World counter advancement. These observations
+do not prove actual camera stability. Five decoder/normalization methods and
+three pause-analysis methods pass. Actual camera, persistent selection, tooltip
+and complete pause equivalence remain open; no status promotion.

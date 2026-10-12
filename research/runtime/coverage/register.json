@@ -44284,7 +44284,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original menu/world state sampling for drawing journeys",
-      "scope": "Prospective read-only original menu-thread samples of actual top-screen identity/stack, world mode/counters and selected global ANI controller scalars at bounded intervals. Validate readiness/owner/pointer ranges; unknown fields remain invalid. No input success\u2192semantic outcome inference, gameplay memory writes, timer/pause equivalence or allanimation state claim.",
+      "scope": "Prospective read-only original menu-thread samples of actual top-screen identity/stack, world mode/counters and selected global ANI controller scalars at bounded intervals. Validate readiness/owner/pointer ranges; unknown fields remain invalid. No input success\u2192semantic outcome inference, gameplay memory writes, timer/pause equivalence or allanimation state claim. The two scalars at6dbe95/6dbe99 are pacing interval/companion, not camera state; corrected interpretation does not assert camera pause.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -44311,7 +44311,9 @@
         "DRAW02.draw02-semantic-state-fixture-negative-01-20261012",
         "DRAW02.draw02-semantic-state-fixture-negative-02-20261012",
         "DRAW02.draw02-semantic-state-fixture-negative-03-20261012",
-        "DRAW02.draw02-semantic-state-fixture-negative-04-20261012"
+        "DRAW02.draw02-semantic-state-fixture-negative-04-20261012",
+        "DRAW02.draw02-campaign-pause-timing-correction-01-20261012",
+        "DRAW02.draw02-semantic-state-timing-fixture-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44322,7 +44324,8 @@
       },
       "remaining_gaps": [
         "Campaign Mini/Preferences lifecycle exists but original pause/counter/animation equivalence unverified. Selection/tooltip semantic outcomes remain independently pending.",
-        "Original campaign bounded Mini/Preferences selected scalar pause and resumed counter advancement observed. GlobalANI fields are selected controller scalars, not every creature/effect/animation/timer; full pause equivalence false. Selection/tooltip, source-owned campaign menu composition, native parity/allphysical changes/routes/full47/21remain pending. Fixture failures preserved and address-conflict cause unassigned."
+        "Original campaign bounded Mini/Preferences selected scalar pause and resumed counter advancement observed. GlobalANI fields are selected controller scalars, not every creature/effect/animation/timer; full pause equivalence false. Selection/tooltip, source-owned campaign menu composition, native parity/allphysical changes/routes/full47/21remain pending. Fixture failures preserved and address-conflict cause unassigned.",
+        "Historical camera labels refer to pacing globals; corrected raw-journal reanalysis proves their selected timing stability only. Actual camera fields and all camera pause/lifecycle behavior remain independently unverified."
       ],
       "validation_dependencies": [
         "runtime/menu/observer.c",
@@ -95221,6 +95224,39 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-campaign-pause-timing-correction-01-20261012",
+      "kind": "static",
+      "scope": "Fresh retained-raw-journal reanalysis with corrected pacing interpretation; no camera stability or new original execution.",
+      "record": "research/runtime/draw02-campaign-pause-timing-correction-01.json",
+      "sha256": "94739e746b22603436ff25cefbc6a3bfa1c4cc4f33fa4790f00dec772ff7e400",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_label_correction/camera_stability_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-semantic-state-timing-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 owned-address unchanged-scalar/cadence/journal fixture with corrected timing labels; no original camera or pause execution.",
+      "record": "research/runtime/draw02-semantic-state-timing-fixture-01.json",
+      "sha256": "3b476a2e109854b92612a0f6fd709983a9e1cc17c3fb39b0e6e007d67c73fc53",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107363,8 +107399,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-hud-input-20261012.json",
-    "sha256": "70d8edadbc11da0eccbf85dd8f90acc86b57a391c7e61e0325a088a87f9e9fdc"
+    "path": "research/runtime/coverage/source-index-draw02-timing-correction-20261012.json",
+    "sha256": "da2601d8964465273701cb290ced8f5ca1d646d726ae087ba7e2ce4c24f13fe7"
   },
   "claim_bindings_required": true
 }

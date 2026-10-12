@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 from drawing_api_session import BUILD,sha
-from drawing_semantic_state import decode,menu_interval
+from drawing_semantic_state import decode,menu_interval,normalize_legacy_labels
 ROOT=Path(__file__).resolve().parents[1]
 
 
@@ -31,9 +31,9 @@ def main():
     if r.get('success') is not True or r.get('source_sha256')!=BUILD or r.get('normal_original_quit_verified') is not True or not r['staging'].get('campaign_pause'):
         raise ValueError('Complete original campaign reference required')
     data=(Path(r['experiment'])/'capture/semantic-state.bin').read_bytes();observed=decode(data)
-    if observed!=r['semantic_state_observation']:raise ValueError('Retained semantic journal differs')
+    if observed!=normalize_legacy_labels(r['semantic_state_observation']):raise ValueError('Retained semantic journal differs')
     result=assess(observed,r['menu_actions']);names=['tools/analyze-drawing-campaign-pause.py','tools/drawing_semantic_state.py']
-    a.report.write_text(json.dumps(dict(schema=1,success=True,sources={n:sha((ROOT/n).read_bytes()) for n in names},reference=dict(path=str(a.reference),sha256=sha(raw)),journal_sha256=sha(data),analysis=result,original_game_executed=False,scope='Current offline original Mini/Preferences bounded selected-state pause/resume analysis, not allanimation/timer/gameplay/native/presentation equivalence.'),indent=2)+'\n');print(json.dumps(dict(success=True,mini_ms=result['mini_dwells'][0]['duration_ms'],preferences_ms=result['preferences_dwell']['duration_ms'],resume=True)))
+    a.report.write_text(json.dumps(dict(schema=1,success=True,sources={n:sha((ROOT/n).read_bytes()) for n in names},reference=dict(path=str(a.reference),sha256=sha(raw)),journal_sha256=sha(data),analysis=result,original_game_executed=False,legacy_label_correction={'prior':'camera','current':'pacing_fields','addresses':[0x6dbe95,0x6dbe99],'raw_words_unchanged':True,'camera_stability_proved':False},scope='Current offline original Mini/Preferences bounded selected-state pause/resume analysis, not allanimation/timer/gameplay/native/presentation equivalence.'),indent=2)+'\n');print(json.dumps(dict(success=True,mini_ms=result['mini_dwells'][0]['duration_ms'],preferences_ms=result['preferences_dwell']['duration_ms'],resume=True)))
 
 
 if __name__=='__main__':main()

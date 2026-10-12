@@ -11,7 +11,7 @@ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 def fixture():
     samples=[]
     for i,(screen,counter) in enumerate([(17,40)]*3+[(10,40)]*3+[(2,41),(2,42)]+[(17,42)]*3,1):
-        samples.append(dict(ordinal=i,tick=i*500,top_screen=screen,validity=63,world_counter=counter,accepted_sequence=counter,mode=0,camera=[1,2],effect_counter=3,ani_fields=[4]*24))
+        samples.append(dict(ordinal=i,tick=i*500,top_screen=screen,validity=63,world_counter=counter,accepted_sequence=counter,mode=0,pacing_fields=[1,2],effect_counter=3,ani_fields=[4]*24))
     actions=[dict(screen=s,action=a,status=1) for s,a in [(3,22),(18,23),(18,25),(17,14),(10,20),(17,15),(6,26),(3,3)]]
     return dict(samples=samples),actions
 

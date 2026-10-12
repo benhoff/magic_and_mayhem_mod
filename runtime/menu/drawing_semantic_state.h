@@ -3,7 +3,7 @@
 #define MNM_STATE_TOP_SCREEN 0x6f34e0
 #define MNM_STATE_WORLD 0x6cbb78
 #define MNM_STATE_COUNTER 0x6c4830
-#define MNM_STATE_CAMERA 0x6dbe95
+#define MNM_STATE_PACING 0x6dbe95
 #define MNM_STATE_EFFECT 0x6e1f00
 #define MNM_STATE_ANI 0x6deffc
 #endif
@@ -23,7 +23,7 @@ static void semantic_state_sample(void){
   if(top&&readable((void*)top,12)){r[8]|=2;r[10]=get((void*)(top+4));r[11]=get((void*)(top+8));}
  }
  if(readable((void*)MNM_STATE_COUNTER,4)&&readable((void*)MNM_STATE_WORLD,0xfd66)&&get((void*)MNM_STATE_WORLD)==0x5c5dd8){r[8]|=4;r[12]=get((void*)MNM_STATE_COUNTER);r[13]=get((void*)(MNM_STATE_WORLD+0xfd62));r[14]=*(u8*)(MNM_STATE_WORLD+0xfd5a);}
- if(readable((void*)MNM_STATE_CAMERA,8)){r[8]|=8;r[15]=get((void*)MNM_STATE_CAMERA);r[16]=get((void*)(MNM_STATE_CAMERA+4));}
+ if(readable((void*)MNM_STATE_PACING,8)){r[8]|=8;r[15]=get((void*)MNM_STATE_PACING);r[16]=get((void*)(MNM_STATE_PACING+4));}
  if(readable((void*)MNM_STATE_EFFECT,4)){r[8]|=16;r[17]=get((void*)MNM_STATE_EFFECT);}
  /* Selected fields in eight48byte global ANI controllers, no retained pointers. */
  if(readable((void*)MNM_STATE_ANI,8*48)){r[8]|=32;for(u32 i=0;i<8;++i){u32 p=MNM_STATE_ANI+i*48;r[18+i*3]=get((void*)(p+8));r[19+i*3]=get((void*)(p+12));r[20+i*3]=get((void*)(p+16));}}

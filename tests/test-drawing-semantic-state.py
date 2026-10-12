@@ -3,7 +3,7 @@ import struct
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from drawing_semantic_state import decode,menu_interval
+from drawing_semantic_state import decode,menu_interval,normalize_legacy_labels
 
 
 def fixture():
@@ -19,6 +19,15 @@ class SemanticState(unittest.TestCase):
         r=decode(fixture());intervals=menu_interval(r,17)
         self.assertEqual(len(intervals),1);self.assertTrue(all(intervals[0]['stable'].values()))
         self.assertFalse(r['pause_equivalence']);self.assertFalse(intervals[0]['allanimation_pause_proved'])
+
+    def test_legacy_camera_label_is_only_timing_not_camera_proof(self):
+        current=decode(fixture());legacy=decode(fixture())
+        for sample in legacy['samples']:sample['camera']=sample.pop('pacing_fields')
+        self.assertEqual(normalize_legacy_labels(legacy),current)
+        self.assertIn('camera',legacy['samples'][0])
+        legacy['samples'][0]['pacing_fields']=[100,100]
+        with self.assertRaises(ValueError):normalize_legacy_labels(legacy)
+
 
     def test_changed_counter_is_visible(self):
         raw=fixture();struct.pack_into('<I',raw,64+192+12*4,41)

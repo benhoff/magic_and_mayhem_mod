@@ -522423,6 +522423,141 @@
         "reason": "Manifest-checked exact-entry static inspection passes; missing function boundaries, indirect routes and original semantic hit/selection/tooltip observation remain pending. No engine execution or status promotion is asserted.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "234e73d320855ce8372b80bc3eccbe070e4acdc90ec5a02c1b3ec44646682089",
+          "before_sha256": "31856ca28f3c7737315d806fc88e02dc7952491bf3a66899214c59794016d663",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "964fad0ae2b1772aa55bc91b33a82db3387cf3af275fc2354209db359f007de2",
+          "before_sha256": "d2545042d60f87e04133c46b98f4665f0a569dddb015cf6a8700293b4176cb45",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "84c066cbf40e849408f526587c6017160cf1b99f1652b12da23771db84819c24",
+          "before_sha256": "2a160aae160134b7ad4a2a3b06ebff3d1360b8b90b66a66318947bf990aabd3a",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "fabe5eb066b19f4f5026f1e5ed73ac0ee84e970b7f62d527bad6b426b6eb1d6b",
+          "before_sha256": "803826b77035110e450c25c1deb6c1cc1a7e65e289953c01757b923b38e09898",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "d0158f7561fffccc4cf6b84c0399e2b976364dbba5bcc1716821172734eaeed8",
+          "before_sha256": "769c0b84664fb6837709d66318a9a88fd43505e9e99c96ab04b3b8f83a36bc82",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "39284af1900d0468aa2f9c1d9a84e2a6f7d0adae8ba6378f89f8432557692552",
+          "before_sha256": "14c738749c07dea1260dd68a2676de92febf01192ba0f0d5dc44106a247fbb51",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "838a2fd6e2d1b8380a01082a0eb81bebae6ae501f115771e59229d677863ede3",
+          "before_sha256": "be16e17564aea62330eb7beb11806991f5335db9da9831f0ddfe1401f70a7894",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "55002071cc373bb4188f41a8db9d9c1a82ff24d71946a7e65f8154448cf2f78e",
+          "before_sha256": "689aa8db2944d48c023d9e443c836211d10514dc0ce403113f41f2629ca93343",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "0e772632b91ef348ceed90c6e4348689ede8c98a5b1abc4343b431f6ff8babb7",
+          "before_sha256": "37138c94e6abc922fac7343f299b199a07d95e498ae656863d3df95a9ef54be7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "05f59375cec6abd76f5c932f1d42b9ac7495a3c8ce45a34fc1ebb08584b9bfd2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-timing-correction-start-20261012.json"
+        },
+        {
+          "after_sha256": "38cf6c4ab2ce9acf2abe61fe8606d68a5bfad9780c9f5e9cb7f23d03afd784b1",
+          "before_sha256": "99fbdcebabcdca16f40e76718f57594aa8b1ecdaafe3264f33767866d954091a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "da2601d8964465273701cb290ced8f5ca1d646d726ae087ba7e2ce4c24f13fe7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-timing-correction-20261012.json"
+        },
+        {
+          "after_sha256": "7497b4d820536096a620b1eebea1607562136aa9f6dc0395d23c3aa52e1bfd27",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-timing-correction-20261012.md"
+        },
+        {
+          "after_sha256": "94739e746b22603436ff25cefbc6a3bfa1c4cc4f33fa4790f00dec772ff7e400",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-campaign-pause-timing-correction-01.json"
+        },
+        {
+          "after_sha256": "7c18bcb182c923c985423bdb2fb629afc6a1f144abedb658cda1ae561daba47c",
+          "before_sha256": "0b1f7425eb53f7e5992778f38f7a16156bd37419beacef0e1a907366af015f9f",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "3b476a2e109854b92612a0f6fd709983a9e1cc17c3fb39b0e6e007d67c73fc53",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-semantic-state-timing-fixture-01.json"
+        },
+        {
+          "after_sha256": "355e2b24175f77e153a1662177ce554100743cadae091cf517e06e41b2a3f2bd",
+          "before_sha256": "33677afb030c8da68407b25c833e7e25e87d2686af01f1b3566582d5523d910a",
+          "path": "runtime/menu/drawing_semantic_state.h"
+        },
+        {
+          "after_sha256": "63d3094adab674b82f9f449a97e23367ff316ffad534a2d771df428cfe60aa26",
+          "before_sha256": "4fa92df06f1afba2cb804f2825d92918fcd2d66d3ffab34cf3e1ebd27a835e20",
+          "path": "tests/drawing-semantic-state-test.c"
+        },
+        {
+          "after_sha256": "019929fd0f7100cc73c41ed2256bfa691619cc170c4fc10a022e9e752c02d7d2",
+          "before_sha256": "d24091e747a91f75ad11c752d112ed74d2d701e74f8af0a1c69fc7ef61c75c8b",
+          "path": "tests/test-drawing-campaign-pause.py"
+        },
+        {
+          "after_sha256": "491917d635ab2fe67719aba5af95115e3c2688076d22a4dedcbd26c5f6a85cc4",
+          "before_sha256": "3d50c29939fcd52f5b040c12f306e1d20f0b6e499b4fe3fbc6e70632632b360a",
+          "path": "tests/test-drawing-semantic-state.py"
+        },
+        {
+          "after_sha256": "6ce336c1258c5240736cb11c32092e75a42fa98984bc8180db985814f4bea4f2",
+          "before_sha256": "eedf8fb709880e2b8f301fa59193047ed9d20670d92198dffda663bee896eec7",
+          "path": "tools/analyze-drawing-campaign-pause.py"
+        },
+        {
+          "after_sha256": "6ecec7ba8472622cb40aaa0dc3385d7c4d6afa44f44acb3ae83ddb9d060bb134",
+          "before_sha256": "1f9fd224475344f020fe9cd5a8c4539cd7d6753ae0d35af072ea4e9f4c3067a6",
+          "path": "tools/drawing_semantic_state.py"
+        }
+      ],
+      "id": "draw02-correct-pacing-field-interpretation-20261012",
+      "pending_gaps": [
+        "stale_evidence:08d50330a37fc830ee2087522a99422b2496afba9d232b669f158c9d945be317",
+        "stale_evidence:2600384eddba5fa38034a21f3a94afad4c0a446c7c5aec0909b58793e1375b99",
+        "stale_evidence:6d27023cf29ca8fe911f2cb090480cf266b137b00b3d97851fab606bb4801221",
+        "stale_evidence:a414ea8b24103fa60fdca583d4ab101ba2617efca2b81213c5d1c4e82f1473d8",
+        "stale_evidence:ad95609bd7bb1525ff6f21f769b9e39f7e459c4429adf95ccf76bf17785a8f03",
+        "stale_evidence:c1a03071adc9370c09c65cfd30c25b6580ac1d4fdcb4b224307c56d58c346856",
+        "stale_evidence:d8f7231a17160715ec6835cb4a58090a8c5c7ee815f96be8bad5dbc898110891",
+        "stale_evidence:df3066b6f3f8e6470254690f713f131b05dc9ff1ddf2588cd9ae76738d25d051",
+        "stale_evidence:e5dfa0c151159f40e5f870bddbb58fef9d174bff4a8fa6c74c21349446f0cecc",
+        "stale_evidence:ed701fbbe8d2ae6c890c9c3ccd376ae1826cef08b9c10862cc90b8ec506d721f"
+      ],
+      "reason": "Correct historical camera labels to pacing fields using existing world-tick-loop original-address evidence. Preserve reports and raw words, reject ambiguous label normalization, rerun retained-journal pause analysis and actual PE32 owned-memory sampling fixture. Exact prior-commit receipts reviewed.",
+      "validation": {
+        "status": "pending",
+        "reason": "Five decoder/normalization methods, three pause methods and current PE32 read-only fixture pass. Corrected offline journal analysis retains selected scalar pause/resume; actual original camera behavior and complete pause/native equivalence remain pending. No status promotion.",
+        "evidence": []
+      }
     }
   ]
 }
