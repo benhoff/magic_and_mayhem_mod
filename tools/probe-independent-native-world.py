@@ -17,6 +17,13 @@ def main():
   if not all(r[k] for k in ['sources_unchanged','private_wine_stopped','original_manifest_verified_after']):raise ValueError('Independent source/integrity/cleanup failed')
   if not 19.5<=w['engine_fps']<=21:raise ValueError('Original source cadence did not remain near20Hz')
   if w['native_extra_world_frames']!=w['native_extra_presented_frames']:raise ValueError('Extra native World and presented frame counts disagree')
+  flow=json.loads((paths[0].parent/'flow.json').read_text());rates=flow['gameplay_rates'];visible=[]
+  for cycle in sorted({sample['cycle'] for sample in rates}):
+   samples=[sample for sample in rates if sample['cycle']==cycle];seconds=sum(sample['seconds'] for sample in samples)
+   paint_fps=sum(sample['painted_frames'] for sample in samples)/seconds;worst=min(sample['paint_fps'] for sample in samples)
+   visible.append(dict(cycle=cycle,seconds=seconds,paint_fps=paint_fps,worst_window_paint_fps=worst))
+  r['visible_paint_windows']=visible
+  if not visible or any(window['seconds']<58 or window['paint_fps']<a.target_fps or window['worst_window_paint_fps']<a.target_fps/2 for window in visible):raise ValueError('Visible native paint cadence missed target; submitted frames are insufficient')
   if not int(w['native_extra_world_frames']) or w['native_render_fps']<a.target_fps:raise ValueError('Actual native render cadence missed target; no60FPS claim')
   r['success']=True
  except (OSError,AssertionError,KeyError,ValueError,subprocess.SubprocessError) as e:r['error']=str(e)
