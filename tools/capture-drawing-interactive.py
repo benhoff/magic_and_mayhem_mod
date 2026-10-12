@@ -195,7 +195,7 @@ def main():
         from drawing_wine_submission import decode as decode_submissions
         try:
             calls={r[29]:r for r in struct.iter_unpack('<32I',(capture/'session.bin').read_bytes()[64:-128])}
-            report['wine_submission_observation']=decode_submissions((capture/'wine-submission.bin').read_bytes(),calls)
+            report['wine_submission_observation']=decode_submissions((capture/'wine-submission.bin').read_bytes(),calls,(capture/'wine-lifetime.bin').read_bytes())
             from drawing_wine_lifetime import decode as decode_lifetimes
             report['wine_lifetime_observation']=decode_lifetimes((capture/'wine-lifetime.bin').read_bytes())
         except Exception as error:

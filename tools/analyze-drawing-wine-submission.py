@@ -21,8 +21,9 @@ def main():
         raise ValueError('Admitted original-active reference required')
     capture=Path(reference['experiment'])/'capture'
     calls={r[29]:r for r in struct.iter_unpack('<32I',(capture/'session.bin').read_bytes()[64:-128])}
-    observed=decode((capture/'wine-submission.bin').read_bytes(),calls)
-    if observed!=reference['wine_submission_observation']:raise ValueError('Submission journal/reference changed')
+    raw=(capture/'wine-submission.bin').read_bytes()
+    observed=decode(raw,calls,(capture/'wine-lifetime.bin').read_bytes() if raw[:8]==b'MNMWIN02' else None)
+    if {k:v for k,v in observed.items() if k!='wire_version'}!={k:v for k,v in reference['wine_submission_observation'].items() if k!='wire_version'}:raise ValueError('Submission journal/reference changed')
     points={f['entry']:f for f in reference['producer_observation']['frames']}
     associations=[]
     for submission in observed['calls']:

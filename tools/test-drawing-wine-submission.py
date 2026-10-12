@@ -24,7 +24,7 @@ def main():
     claims = json.loads(a.claims.read_text())
     sources = dict(claims['sources'])
     for name in ('tools/test-drawing-wine-submission.py', 'tests/drawing-wine-submission-test.c',
-                 'runtime/drawing/wine_submission.h', 'runtime/drawing/session.c'):
+                 'runtime/drawing/wine_submission.h', 'runtime/drawing/wine_lifetime.h', 'runtime/drawing/session.c'):
         sources[name] = sha((ROOT/name).read_bytes())
     if any(sha((ROOT/n).read_bytes()) != h for n, h in sources.items()):
         raise ValueError('Prospective source changed')
@@ -57,7 +57,7 @@ def main():
         raw = (capture/'wine-submission.bin').read_bytes()
         header = struct.unpack_from('<16I', raw)
         rows = list(struct.iter_unpack('<48I', raw[64:]))
-        if raw[:8] != b'MNMWIN01' or header[2:8] != (1,192,0x40209ca7,131072,32,2048) or any(header[8:]) or len(rows) != 19:
+        if raw[:8] != b'MNMWIN02' or header[2:8] != (2,192,0x40209ca7,131072,32,2048) or any(header[8:]) or len(rows) != 19:
             raise ValueError('Fixture journal envelope/count')
         if [r[0] for r in rows] != list(range(1,20)) or rows[-1][1:4] != (4,1,9):
             raise ValueError('Fixture journal sequence/terminal')
@@ -69,8 +69,12 @@ def main():
                 raise ValueError('Fixture callback/result forwarding')
             if entry[5:7] != ((42,2) if i < 8 else (0,0)) or returned[5:7] != entry[5:7]:
                 raise ValueError('Nested/unbound enclosing API identity')
-            if entry[15] != 3 or entry[16:24] != (0xfffffffe,3,8,9,1,2,11,12) or any(entry[27:]) or any(returned[27:]):
+            if entry[15] != 3 or entry[16:24] != (0xfffffffe,3,8,9,1,2,11,12) or any(entry[30:]) or any(returned[30:]):
                 raise ValueError('Owned rectangles/reserved fields')
+            if entry[27:30] != ((4,2,10) if method==1 else (3,0,10)) or returned[27:30]!=entry[27:30]:raise ValueError('V2generation metadata changed')
+        from drawing_wine_submission import decode
+        observed=decode(raw,lifetime=(capture/'wine-lifetime.bin').read_bytes())
+        if len(observed['calls'])!=9:raise ValueError('Strict V2fixture admission')
         if any(sha((ROOT/n).read_bytes()) != h for n,h in sources.items()):
             raise ValueError('Fixture sources changed during execution')
         report = dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],

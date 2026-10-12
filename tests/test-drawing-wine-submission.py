@@ -16,6 +16,20 @@ def wire():
 
 
 class Submission(unittest.TestCase):
+    def test_v2_exact_lifetime_prefix_and_generation(self):
+        h=[0]*16;h[:2]=struct.unpack('<2I',b'MNMWLF01');h[2:7]=[1,96,0x40209ca7,131072,2048]
+        create=[0]*24;create[:5]=[1,1,1,1,7];created=list(create);created[:3]=[2,2,1];created[10:12]=[1,1]
+        terminal=[0]*24;terminal[:5]=[3,4,1,1,7];terminal[11]=1
+        lifetime=struct.pack('<16I',*h)+b''.join(struct.pack('<24I',*r) for r in (create,created,terminal))
+        raw=bytearray(wire());raw[:8]=b'MNMWIN02';struct.pack_into('<I',raw,8,2)
+        for offset in (64,256):
+            struct.pack_into('<3I',raw,offset+27*4,1,0,2)
+        self.assertEqual(decode(raw,lifetime=lifetime)['calls'][0]['first_generation'],1)
+        with self.assertRaises(ValueError):decode(raw)
+        for generation,prefix in ((2,2),(1,1),(1,99)):
+            bad=bytearray(raw)
+            for offset in (64,256):struct.pack_into('<3I',bad,offset+27*4,generation,0,prefix)
+            with self.subTest(generation=generation,prefix=prefix),self.assertRaises(ValueError):decode(bad,lifetime=lifetime)
     def test_paired_arguments_and_unbound_scope(self):
         x=decode(wire());self.assertEqual(x['calls'][0]['api_entry'],42);self.assertFalse(x['source_submission_identity_bound']);self.assertFalse(x['egl_temporal_assignment_performed'])
     def test_shared_allocator_may_include_non_submission_objects(self):

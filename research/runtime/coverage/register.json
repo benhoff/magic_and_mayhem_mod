@@ -42639,7 +42639,8 @@
         "DRAW02.draw02-wine-submission-original-02-live_observation-20261012",
         "DRAW02.draw02-wine-submission-original-03-live_observation-20261012",
         "DRAW02.draw02-wine-lifetime-original-01-live_observation-20261012",
-        "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012"
+        "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012",
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42695,7 +42696,8 @@
         "DRAW02.draw02-wine-submission-fixture-03-native_integration-20261012",
         "DRAW02.draw02-wine-submission-original-03-live_observation-20261012",
         "DRAW02.draw02-wine-lifetime-original-01-live_observation-20261012",
-        "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012"
+        "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012",
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42743,7 +42745,8 @@
         "DRAW02.draw02-wine-lifetime-original-01-live_observation-20261012",
         "DRAW02.draw02-wine-lifetime-count-diagnosis-01-static-20261012",
         "DRAW02.draw02-wine-lifetime-parser-checks-01-static-20261012",
-        "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012"
+        "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012",
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42756,6 +42759,49 @@
         "Pending exact installed import pins/ABI fixtures,creation/failure/release/reuse/unknown guards and actual original observation. InternalWineunhookedlifetime/asyncEGL/storage ownership remain separate.",
         "Original01closes82generations/71retirements/11active/0unknownreleases,but submission admission fails shared allocator count assumption:62allocated identities/45used inblits. Pending corrected bound guard and fresh acquisition; failed report retained.",
         "Original02admits82generations/11remainingobjects/0unknownreleases underselectedimports;exactsubmissiongenerationpoint/internalWinepaths/asyncEGL/storageownership andsemanticjourneys remainpending."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-submission-generations",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Observed lifetime generation at Wine submission entry",
+      "scope": "Pending Wine submissionV2records first/second object generation and exact lifetime journal prefix underone recorder scope. Retain0unknown and paired entryfields at return. Strict validation replays lifecycle rows up to recorded prefix,not TickCount matching. No immutable byte ownership,internalWineallroutes orasyncEGL assignment.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-submission-generations.md",
+        "research/formats/drawing-wine-submission-v2.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_submission.h",
+        "tools/drawing_wine_submission.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "tests": [
+        "tests/test-drawing-wine-submission.py",
+        "tests/drawing-wine-submission-test.c",
+        "tools/test-drawing-wine-submission.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_lifetime.h",
+        "tools/drawing_wine_lifetime.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-generation-parser-checks-01-static-20261012",
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending version2guards,actualPE32reusegenerationfixture andoriginalacquisition. Generation known does not establish source storage immutability orasyncEGLownership.",
+        "Original01admits1534submissions/1197knownboth/337unknownfirstallopaqueobject14/0unknownsources,337API/336EGLwitnesses,32returns189466records. Pending unknownbufferorigin/internal lifetime/immutablebytes/asyncEGLassignment/allroutes/semanticjourneys."
       ]
     }
   ],
@@ -90393,6 +90439,50 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32V2entrygeneration/addressreuse/lifetimeprefix and9cdecl/reentryguards;notoriginalstorage/EGLownership.",
+      "record": "research/runtime/draw02-wine-generation-fixture-01.json",
+      "sha256": "37b6cbf90f9378b732081d82d8792199d26ce7f08a95d80d2b95ed87c68824ad",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-generation-parser-checks-01-static-20261012",
+      "kind": "static",
+      "scope": "BoundedV1/V2generation/lifetime-prefix parser guards; actualPE32fixture separate,no original ownership/temporal assignment.",
+      "record": "research/runtime/draw02-wine-generation-parser-checks-01.json",
+      "sha256": "aa67344f038f8b78f388c206963d9535bcbb75b781ee1130da1cfc86c78fd3fa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-generation-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Closed original-activeV2generationprefix admission,notbyteownership/asyncEGLassignment.",
+      "record": "research/runtime/draw02-wine-generation-original-01.json",
+      "sha256": "1233d03e3455d572b3b969918efe1abb5cc541c222b19f717d4e6b8a14fbdafb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -101407,6 +101497,41 @@
         "DRAW02.draw02-wine-lifetime-count-diagnosis-01-static-20261012",
         "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-submission-generation-fixture",
+      "level": "headless",
+      "scope": "ActualPE32V2generationmetadata before/after recorded release/addressreuse,paired forwarding and exactlifetimeprefix admission.",
+      "behaviors": [
+        "NR.drawing-wine-submission-generations"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-submission.py",
+        "tests/drawing-wine-submission-test.c",
+        "tests/test-drawing-wine-submission.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-generation-parser-checks-01-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-wine-generation-quick",
+      "level": "live_observation",
+      "scope": "Pinned original-active32return diagnostic source/lifetime/submissionV2andAPI/EGLwitnesses. Exactobservedgenerationpoint,notimmutableownership/asyncEGLassignment.",
+      "behaviors": [
+        "NR.drawing-wine-submission-generations",
+        "NR.drawing-wine-object-lifetimes",
+        "NR.drawing-wine-submission-observation",
+        "NR.producer-trace32-acquisition"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -101780,8 +101905,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-wine-lifetimes-20261012.json",
-    "sha256": "6f7a95a40637ee2ab730e6dafb89eaff71ac81867e39fe3ada2247f3aa8cbb5d"
+    "path": "research/runtime/coverage/source-index-draw02-wine-generation-20261012.json",
+    "sha256": "96d766c67306ec69c73d39b721a55ece6e54f250261141ef74c1aa01435c8493"
   },
   "claim_bindings_required": true
 }

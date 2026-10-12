@@ -36,6 +36,7 @@ static void wine_submission_entry(u32* r,u32 method,void* first,void* second,con
  EnterCriticalSection(journal_lock);r[1]=1;r[2]=++wine_submission_calls;r[3]=method;r[4]=GetCurrentThreadId();r[7]=GetTickCount();
  u32 slot=wine_submission_slot(),depth=wine_submission_parents[slot].depth;r[5]=depth?wine_submission_parents[slot].entry[depth-1]:0;r[6]=depth;
  r[10]=wine_submission_identity(first,method==1?1:3);r[11]=wine_submission_identity(second,1);
+ r[27]=wine_lifetime_find(first,method==1?1:3);r[28]=wine_lifetime_find(second,1);r[29]=wine_lifetime_records;
  wine_submission_rect(r,16,src,1);wine_submission_rect(r,20,dst,2);wine_submission_emit(r);LeaveCriticalSection(journal_lock);
 }
 static void wine_submission_return(u32* r,u32 result,u32 error){
@@ -59,7 +60,7 @@ static int wine_submission_open(void){
  char flag[2];u32 n=GetEnvironmentVariableA("MNM_DRAW_WINE_SUBMISSION",flag,2);if(!n)return 1;
  if(n!=1||flag[0]!='1'||!physical_enabled)return 0;
  char name[600];path(name,"wine-submission.bin");wine_submission_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_submission_file==(HANDLE)-1)return 0;
- u32 h[16]={0};copy(h,"MNMWIN01",8);h[2]=1;h[3]=192;h[4]=0x40209ca7;h[5]=131072;h[6]=32;h[7]=2048;
+ u32 h[16]={0};copy(h,"MNMWIN02",8);h[2]=2;h[3]=192;h[4]=0x40209ca7;h[5]=131072;h[6]=32;h[7]=2048;
  if(!write(wine_submission_file,h,64)||!wine_lifetime_open())return 0;wine_submission_enabled=1;return 1;
 }
 static int wine_submission_install(void* ddraw){

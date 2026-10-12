@@ -19,6 +19,11 @@ static u32 __attribute__((cdecl)) fake_present(void* swapchain,const void* sr,co
 }
 void start(void){
  require(initialize(),70);wine_submission_original[0]=(void*)&fake_blt;wine_submission_original[1]=(void*)&fake_present;
+ void* objects[3]={(void*)2,(void*)3,(void*)9};
+ for(u32 i=0;i<3;++i){u32 record[24]={0};wine_lifetime_entry(record,i==2?3:1,0);wine_lifetime_return(record,0,0,objects+i);}
+ u32 retired[24]={0};wine_lifetime_entry(retired,2,(void*)2);wine_lifetime_return(retired,0,0,0);
+ u32 reused[24]={0};wine_lifetime_entry(reused,1,0);wine_lifetime_return(reused,0,0,objects);
+
  struct Context parent={0};parent.observed=1;parent.r[1]=1;parent.r[29]=41;wine_submission_parent(&parent,1);
  struct Context nested;copy(&nested,&parent,sizeof(nested));nested.r[29]=42;wine_submission_parent(&nested,1);
  const u32 faults[]={0,0x80004005,0x887601c2,0x887601ae};
