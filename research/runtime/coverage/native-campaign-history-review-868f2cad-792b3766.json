@@ -1,0 +1,2320 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new validation claim.",
+  "range": "868f2cad..792b3766",
+  "transitions": [
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "1d649e4386f6895bcde3893deaca88227cc22376a14cace4fbc016e996c9087c",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/README.md",
+      "before_sha256": null,
+      "after_sha256": "46dda964a59a49edb52161e405b2e8ababdd2b1398dbb4fb45586fddff4bbd16",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/cli.cpp",
+      "before_sha256": null,
+      "after_sha256": "b3cc39523d8f407095e5e8cf0a92032e8df46f89c874c8b3f71b70319580888c",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "b94f2bd0a3c59318368ff4797e1aea18dcdabac271da7841e361d5cf6130633f",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "5b7e96efbfa0d1d6b02414a02a051240225bf0cfa0d821d2fcd148f33dc30936",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "ca337431213a6537c72577c6a5049bc57876168346765cc844b04ca2bdefaf39",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/profile.cpp",
+      "before_sha256": null,
+      "after_sha256": "0b16ed9fa8e62f74c4d50f4c11d90a57866c8cc9b72ee5b53bfb7f9b6d712aa5",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/profile.hpp",
+      "before_sha256": null,
+      "after_sha256": "e757725550fa04a11083d3e87610282bb9fb59aaa96bd3aa599d52099e74fc9f",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/window.cpp",
+      "before_sha256": null,
+      "after_sha256": "6da62e4a0396e816f20b2beaa75b057179a00f6684f7d1f5853d1cb9b65dc008",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/creature-lab/window.hpp",
+      "before_sha256": null,
+      "after_sha256": "9b30ab05eb7afb76c3433bd519269c366da0a8f8e51e3762cceb95d62e207752",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "eb568d210a7eed8b054564b7d6d2f144fb6d3baa3818f100b6ee0dec16cd5001",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/README.md",
+      "before_sha256": null,
+      "after_sha256": "771ff7b3e1e359622bbb9d1e6c9c1ba50c37f8d28aa180047f034676958e8a60",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/cli.cpp",
+      "before_sha256": null,
+      "after_sha256": "0be69bb024863b4d4fcd0e84e0f7530e5907b6703755cde24ede9f47a131aebd",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "95d04f28e020c178a2c59f89145472fcf4eb32fcd8c9cd00b74a53c82d71c062",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "b6e598caa8f44dd9deb59ecb03612f582cc1a08640d8b94634eb92bc3e1eaad7",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "1c672cd7baeac426885c1912cd2e946b711beb3a3d0aa805b312bf4d75e6b1f1",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/profile.cpp",
+      "before_sha256": null,
+      "after_sha256": "d72e5825da31a034cbf3175a148f013d13be2014b478c05da9f5163c2d453ad3",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/profile.hpp",
+      "before_sha256": null,
+      "after_sha256": "15eee19aa40edd0393a13a88fcab236c43edc7edc7b46cd715b3a485f45f3376",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/window.cpp",
+      "before_sha256": null,
+      "after_sha256": "9f0fc050c6e6583d4a807761fbfeb7a1f7386a022686205c5f4f43892f2e1c81",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/melee-lab/window.hpp",
+      "before_sha256": null,
+      "after_sha256": "9972d09367d41f529f479c63f63d330b5b82d0a0d1dcc9c80892208aaa47b181",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "1e9676137993ece60ed5055fc9a307b820dfbc8a44e017f988fda8b7380875e4",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/README.md",
+      "before_sha256": null,
+      "after_sha256": "74c75f48732a33c560675fa780d883a4a02dde5c0ba9f41e9ae0fd48ffcfbd66",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/arena.cpp",
+      "before_sha256": null,
+      "after_sha256": "09e47eb5a45ff798e0990ef6e5194f4a3729f41a77de492e09215946a17f4591",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/arena.hpp",
+      "before_sha256": null,
+      "after_sha256": "f4fee6f00690744bfac6eb3d36ebe196bd531c76e21f52fa82eaa3da6351bb13",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/cli.cpp",
+      "before_sha256": null,
+      "after_sha256": "cb0858a15e4bb6e94009d389bf15127c402fbb487fd532976a2fb19436c3c50a",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "2e9864cf4b681ca43e0540c0de11411dfe23866810f1c8cadcdee7cf5ac1d6d6",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "fe15db23e80c419f408e01b7a1bb228f03353ea2ed8a66104fb9b9b182a67e26",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/health_rules.cpp",
+      "before_sha256": null,
+      "after_sha256": "5298672a7bc36dac396cfa45f017fee527c51af0846dd62028931f05d27fca25",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/health_rules.hpp",
+      "before_sha256": null,
+      "after_sha256": "5691d0fcef51d8ccb3e46845b12d8317801ce23d1aadc47303f3383be9bec252",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "c4fe60af774e963a829e61fb2b0fab3489d3acee77d35e234ff28f522c1a7057",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/trace.cpp",
+      "before_sha256": null,
+      "after_sha256": "ff95a6b3edb48e478a17afb3de275744b3d135b39cce6ea358c1dad874f18c5b",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/trace.hpp",
+      "before_sha256": null,
+      "after_sha256": "25601b41e0122eb079d59b98ae1827f09240de202430d06a3a25cf8cecebbd51",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/view.hpp",
+      "before_sha256": null,
+      "after_sha256": "8833a0ee59467bb8347cec3cac7468d6113c389353d69faad20d29607a1d45e7",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/window.cpp",
+      "before_sha256": null,
+      "after_sha256": "6ddd12b74c4c6adda1649edec39d8b6ea690971f6a2069ee00e085c4b01d4cbc",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "apps/skirmish/window.hpp",
+      "before_sha256": null,
+      "after_sha256": "f4bbb2cc22f3e4e514470c3af3536d6b052d18a09ea85de8eb6ef85768f396ee",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "docs/architecture.md",
+      "before_sha256": "32de96b927267d177c61736d8c0cea78eaf16cfcffc0fbdaecda9049575ac247",
+      "after_sha256": "a5e48bbba71ec43e63b9cf1fe8b63ca91eddf58f8d21fec990de8febd408ffcb",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "d283b2a044cfe172ab872c72efd7ddc0831c7d0315cd2f37937d36c1a1251b70",
+      "after_sha256": "b81aeb0d7560a04d80956ac5681ff1e43176cb54c5edf46516375bdfbd7810cd",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/combat.cpp",
+      "before_sha256": "a587561a03bcf9b530db983b9d55ff12dcdf9a042f4f511df58a415433658965",
+      "after_sha256": "9d72f6cdfb7444620bb3a020a673ca08fc286b14c6a2ae5a5ead97ca6db9a8c5",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/combat.hpp",
+      "before_sha256": "b79858ade42e58c10a0975054b8e0c5812d5ecf566061d5ecf260cae532564ae",
+      "after_sha256": "ba4b04e90a9a2f9070fc8a0339436b4b4c9413d360c667ff834d086dc8a90dee",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/creature_encounter.cpp",
+      "before_sha256": null,
+      "after_sha256": "79143956584304620374fec04b8153d83dfbd4e0d7fcf1ad0c618c0bc47501ba",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/creature_encounter.hpp",
+      "before_sha256": null,
+      "after_sha256": "838e028f4bb2c767685e10ff0f6aae6cbf25eecd2d141ac47dde352d9d11eae0",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/health_rules.cpp",
+      "before_sha256": null,
+      "after_sha256": "3799dab0d63238583ffa9223caa2f8aeb79ba5af189e8dcf2b69ebe25f2b3b12",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/health_rules.hpp",
+      "before_sha256": null,
+      "after_sha256": "8f13dc356188a914adea0632c1b7c5a9c5559d97749f8c250402663bf487d1d4",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/melee_exchange.cpp",
+      "before_sha256": null,
+      "after_sha256": "4e4b272e0352994aed7a93aafe4bea569df55aaa9807c3a4e2f305d64b8fb1d9",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/melee_exchange.hpp",
+      "before_sha256": null,
+      "after_sha256": "3a9e6781f2471ee969ea48e004a212a5d0b57c9a67b40b86f833fe0040388978",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/skirmish.cpp",
+      "before_sha256": null,
+      "after_sha256": "35a23758a06237fe735d8ac7ac80d2168002c6daa1da58b718e58606bc4f6748",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "game/simulation/skirmish.hpp",
+      "before_sha256": null,
+      "after_sha256": "ac80214484383815a0e3f4d8d137afe9a0573e71cb6396d060d09d2e33f5a753",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "6554e5ff8e209318b7093eab0281e79f7a0d35a596e0b1f191c1d9ebcddb6d56",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/ai.cpp",
+      "before_sha256": null,
+      "after_sha256": "011a6b6bbb851a69ec13bab9c936a2d6497b66b5d07608e0f09d2988a19552a2",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/ai.hpp",
+      "before_sha256": null,
+      "after_sha256": "c935eeb0d637d7c25d172a29defcfcaa9bf0b77e49acb7c1a3973f6c64a15fb4",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/autonomy.cpp",
+      "before_sha256": null,
+      "after_sha256": "df2e2c1c87501456fcbe1152232b6935518226da2170903a69e92b6ba2dd165c",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/autonomy.hpp",
+      "before_sha256": null,
+      "after_sha256": "ff7165b923082895039a76acd5778997c45c5ef03100ab376bd2f44ef327e4e7",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/autonomy_tables.hpp",
+      "before_sha256": null,
+      "after_sha256": "45eccff0f457161df7ae9b64524aa1865e75c445472733410a73e13e10e9e0f1",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/control.cpp",
+      "before_sha256": null,
+      "after_sha256": "f06b0c486e8aacf5cc35fb3e61a89bbed448d5a00a72a02098a8b458a1ca47ed",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/control.hpp",
+      "before_sha256": null,
+      "after_sha256": "6eec7999f863732d15ff27f3f1429f71823f7f141a2b0d729a31815aeff59dc5",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/health.cpp",
+      "before_sha256": null,
+      "after_sha256": "432fc66e11946f15cb9724e28f005fb050732760737a7d9c5619db156caaa3a4",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/health.hpp",
+      "before_sha256": null,
+      "after_sha256": "7e91e0a0bd60170cc1c6c70f4efde5e2b448a46b6d72463eb6e27f666c56f7d0",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/melee.cpp",
+      "before_sha256": null,
+      "after_sha256": "0afc31da331b76ab9cd40e77b2c1e9476aa2dae0161a8ba3e364ebf06a4afaae",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/combat/melee.hpp",
+      "before_sha256": null,
+      "after_sha256": "be581608ce9ab1fdcb392424b191174a802f124fb355e7947a6c2b9d940769ca",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/creature-ai/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "f3c9690706b645113022b2ae7dfefffcf2f2e94a97c5e9313a1b62506a560ba7",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "reconstruction/creature-ai/README.md",
+      "before_sha256": null,
+      "after_sha256": "219b482dd9bd3595089edd082b5b4f70107afd86273f4511975728a293a02ead",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/formats/native-combat-subsystem.md",
+      "before_sha256": "d90f645b5a83bc18324511211ecf4697884f228aec394123ed92dd07bf57efd2",
+      "after_sha256": "b3489918207658a1953c5514b1e36dfe510e6a8fdc111532b81275bea2f69aaf",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/formats/native-creature-encounter.md",
+      "before_sha256": null,
+      "after_sha256": "974a80792b873041bf5252b6a1ec4f93832813386925fa9448b3d52312b4ff2f",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/formats/native-melee-exchange.md",
+      "before_sha256": null,
+      "after_sha256": "bb9022c11404eb1cb934c634f93a5086a0a0a2f3873a84ec51986992fcc2314e",
+      "exact_receipts": [
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/formats/native-skirmish-subsystem.md",
+      "before_sha256": null,
+      "after_sha256": "1f898043ae9a05b1008f3386db76fd2f6837a34c2757b778e9c2fc634ee77134",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "17684d10c20e688cf70c9266a19b943e51aa14473f5d9280b41fadad8862cb5a",
+      "after_sha256": "63f4a20ab986fae1fd48fdfe6783f7856ba72b7375f8b14df94ec5ee3e917b01",
+      "exact_receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/ai-checkpoint-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5e4d30a712063f77475c94bfd95a133f3511492691befacafc800a77b1c01a09",
+      "exact_receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/creature-control-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0ab69d5f8249b1722c2d088b952a040af596f40f078c67e62b140a49d9448946",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/creature-control-history-resolution-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2d3b38e395142327a02c30d893c086378b8763b03aacfcff19ce8a61394cbd55",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/native-skirmish-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca42720e84e155a64b88a45c1e9b1d0d7e2faaa4d319edc5ff7915c7324e92a4",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/ordinary-health-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5dbe71cc2beabfd6aa7b84fd600c0f9215ea4275c8a954fdce72ea9eb1a852fb",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/ordinary-health-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "490b35400f2a54d8526694153c172867b907d31861d88abe785c13ce73dc2861",
+      "exact_receipts": [
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/ordinary-melee-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e9f2a428fd3ba2fdfed976fb335961ce7ca5b25e019015fc52834bef469fd627",
+      "exact_receipts": [
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "ec0841b868060241ba90b2ca2d652f210ea4203dae72e9d7c59052bd9e8e5012",
+      "after_sha256": "0e5509a9a0001642f056025d87db68ecaa5b5260b038a412005b5b6f7bbeb334",
+      "exact_receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-creature-autonomy-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "42431de2c814108a76bdb97c027ca781238301449d777cc02395d3db73cc81a1",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-creature-autonomy-validated-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1ddd28e7e4b9b817f24080f598d7e3d1e7ce9d82b7a5826c731f6edc0b8b24ea",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-creature-control-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e41e984a546067b75eb4e1bfd9c6d70a4960d08bcd4955484daf119482a2d2c6",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-native-skirmish-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "96964cb2406bcb00c4fe479ff9b18fdc9bfa3661e73172c083b3b5d75240a043",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-ordinary-health-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f50ec9dacf1d2148e8e57b675f2f17d33ef6ee5f02223e10913de39739285160",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-ordinary-health-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "50f3203806f760ef44cee376792a2aa1ba6940fa8eb87bb9e219460abb204cff",
+      "exact_receipts": [
+        "ns23-final-workspace-metadata-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-ordinary-melee-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "43b02db72fde30e55a6b0ae7b0d3f2de7422a35f35650d57ef66446b5eefc52d",
+      "exact_receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-ordinary-melee-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "6b8aefb9f398134c195084cd9430b1897ef87bd5244c87efff836851c60a6a75",
+      "exact_receipts": [
+        "ns24-workspace-owned-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/source-index-simulation-checkpoint-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a3a88c30595f88b2aa207f1322bc0f56198bb97f6b7ea8ddc3049dcbee99c677",
+      "exact_receipts": [
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-autonomy-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "96abe441940ae0c6774de56ebdb571ca0d14735706723f4c7c46882edcaf2c76",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-autonomy-dispatch-pending-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "bfe46bd8068f9b4c5b5c8b7f96316a35aec4eb7c8562c14903cfc6ed5616cf1b",
+      "exact_receipts": [
+        "ns26-autonomous-dispatch-map-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-autonomy-pending-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a339bd0469d761cab05d381846698e81ffe56668794e6277f954d04622840c7e",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-autonomy-validated-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "c61f3906ba15120dd06c59d6b75a90076e75ff0700e1b56f71e58a93e43734f7",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-autonomy-validated-v2-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "22b5f81d054521e2a7cca9455fb83ed7647820b66f5c3ee44dc2f72bfb30926e",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-autonomy-validated-v3-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a53993e069d8b7de9da13df09bed0531a7e08dc0316e16c55111e555e2c225bc",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-control-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "a3ca6bfabe95a99c34d44c271d6428c72f1ad38cfe47dd782f414ce07ec630c0",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-control-final-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "bf818026fe48481af0191c316aee7c96d293e05d88633e3533e01ea8fef7f1f0",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-creature-control-regressions-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f2247a7a49fb7e6126c61c957af64c6fe037f0679e1180e234c91270414cd99c",
+      "exact_receipts": [
+        "ns25-final-generated-summary-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-native-skirmish-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "907f4d3cfafd2a5f5d09d2ed24deac1f3c4784841ea02ae17b76c345bdc7e6aa",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-ordinary-health-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f69b599cb92c08e95eeee6e8fc12ef1892433b5eb431711157764b51e12e511e",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/coverage/summary-ordinary-melee-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "846295273f449574a520a6fc1aa94017e908b6513719a2bd64be82a87a82c9f1",
+      "exact_receipts": [
+        "ns24-owned-summary-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-autonomy-initial-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "deac38166c2ccfb15a88a96864e33b47130fd0333474bfb4ad8b609bd02c104c",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-autonomy-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca2e9de4c76eacbb656113e57f4e4a4d9bc3458a44b7162f26dc2025660aeac5",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-autonomy.md",
+      "before_sha256": null,
+      "after_sha256": "8cc44fd580e65055e223de4652320b20b395fbef2fbad452867d8f8a18024a6f",
+      "exact_receipts": [
+        "ns26-original-autonomy-validated-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-arena-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "bb85674f93071fcd695f571268256d000cb891f1b8fca9a99ec8146628c761dd",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-health-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e5c786afd3b00e906f32a50112b12fc300797b78f73cb6f1a40c79021a0364f9",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-lab-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "728278de87282dfedb8b32c81287dce50514c8d9119e7641b1fd4b2bb7c67ae0",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-melee-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "cfc7b5c2ebbcd6c15c3aee1529e2a303cf632d7e3f4325eeebbecfba44b47ab5",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-native-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "c98b3b738394107556316b37128f4be974089a1e3b6a7b10b9220db396826ae9",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4334e87d6cdad63761d1c238df7a0f05b3986d9bdd814c236094096418605d17",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-original-v2-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a92f9779b0de486e72272efdcd55c011221c4972df7808410597c56bc9a897ca",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "083bc8910845b1997e1a0d33c1600e254487a6bef61797398db38313520bc3a4",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control-window-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f47fb16dace6ad523c54bdabedb1608ca6784cd38ce898df6baf084b27ea5412",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/creature-control.md",
+      "before_sha256": null,
+      "after_sha256": "d689ff61b83e89c015c886641c2d16f71a9fc4fe5efd7ca9822f236ea2c6bfb4",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/native-combat-regression-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "185ec3aa09a79db73f32bd6fc96034ecc403a514e2789338e88afd195ae23d83",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/native-combat-regression-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d71f457d169237709658ef84ca542f5178df5770db09e36379feba7723eb43fc",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/native-skirmish-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "60bb9e40274e6d704f670844ad6739ab5585e330b11cbcef4000ed6e28561e75",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/native-skirmish-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "667704c70ed8729b73b57d6951c06ef101393bc402a147fc8b7305b644a34ee0",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/native-skirmish-window-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "83350340cb9d2e5738b6ada4acc79d4adffd0d34372b6ad43a1fc3eb73d4d682",
+      "exact_receipts": [
+        "ns22-native-skirmish-accounting-20261012",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/native-skirmish.md",
+      "before_sha256": null,
+      "after_sha256": "5ac59484b2e0d164a12adc5f096421d817592edb2447d7b5d5e1302d5de665da",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health-arena-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d8b0b04e310d352a30f756b969b2e85c2a84108737e481ca1548723514f23b72",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health-arena-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9e6a056755068780f21741cda7f2dfc4e7a4c66d6c6ff15a5e92f6eb5e55ca11",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health-combat-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f0f830835f536092c1ef408a9ef1226361caa4c7071f09ade234e86e40a3882e",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health-combat-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "36b685f5b93b7acdc5f769b870fce928ac06527fa3ee98e5a9a01bf14a25382f",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca3e7abb82759418ad70810fd037a78b3586d1b985c641189669809e862be2e1",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health-window-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "af2d7b4030243f263954ba446c9d8d339fcb49da94497890b73cbca23fb04285",
+      "exact_receipts": [
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-health.md",
+      "before_sha256": null,
+      "after_sha256": "fc4a3637eb69eae14e1be3970d9dc4e0ecee92bd664db1e5606eff3771f41028",
+      "exact_receipts": [
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee-arena-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0c8666abc78275e4e4f9eb6992ed0dc32b4a97f8f83e2dc080bcea4c2536bc63",
+      "exact_receipts": [
+        "ns24-skirmish-regression-execution-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee-health-followup-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "939f398dcf5c325b0b55cc9d16f1b257bfd0d1ee33fe14875ba98f485c056dd9",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee-native-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "212d4c867d181bd688ce6aae481261e9bfbe2367b377c46169139c3bf4570ce7",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8bdc1d62a7491a266b9805f384e9542947b60cf5900b5cd1be04ccee54d06bcc",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a512442c4369c50f7345c00fabbe2b7d2be5156ecf907c5a22b9466e4b3dc626",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee-window-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2fc0dd4ebb6885ca5d0862c9305a6687678b4ce2cd227fbfd2a3a04295e11b60",
+      "exact_receipts": [
+        "ns24-skirmish-regression-execution-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "research/runtime/ordinary-melee.md",
+      "before_sha256": null,
+      "after_sha256": "e280167b3d7737aeb1b6baaad7622a429f0fea538150108ef80efd4fa3888613",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/creature-autonomy-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "821ca1fe62eaf3c5f34ca166462c4441b079d2213d3932c522f15036dbb6b566",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/creature-control-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "97490be95a44957056990615b7b53114a3fd3c4312ba3bcf7719f8c504fc0252",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/creature-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "1492f9b6bdaaa4e0c6136a762a889616d302b744558a6a21e937c40d4a0635b4",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/creature-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "1dacd7afea6aef47931a1908a1e4bf8c5e6468f12f59e2ba1ecf302182752c13",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/melee-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "1cd3f53bae7a7642df244ddb3d18b3fca61c51ba787d54036eda86576d22650a",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/melee-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "bafaf2f49adc9bc0c8d2cbbca413c77ce77e3d25dc3cd5dee7f4cee1d7dade41",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/native-creature-encounter-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5bb56ce68d1e3a085e3df59c685c35e1d4969b6b1b7d0acd9f5006a1e50e1906",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/native-health-rules-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "bb59023376646bcf112db98c0503c00876bfdcaf7d3d38ccff60397e727e6cc9",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/native-melee-exchange-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "627812715a7a144ea5df9c0a53c4798920f7d5e75d0e2d21471c2e794323ea0a",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/ordinary-health-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "18498de63dcf2f5ad5cd489488c4cfd3bf5318d49a1b69412041e3f70d1e9619",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/ordinary-melee-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "20a963c3eafc7a2e871f2efa9ed45a7a1da115939666bd3c7f49cf116eab9289",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/skirmish-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ffb6f7aaa03cceeb3259c6f861732129c08898d8a2b1df5e33c4f485c63a8f13",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/skirmish-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "a918fbcb04832b8d3fa11a7c8d7fb4424d91c9c49d6fae6cf22c7e2395cad2a2",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/skirmish-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "dc4b6eba5605d805a60c99a21f7339a47839f02aa00c9850c6e98bc42211f96b",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/test-creature-encounter.py",
+      "before_sha256": null,
+      "after_sha256": "ced76c7647e0420c3be2b6627b4c2e4733572fcce98e391a0c87d5d040396285",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/test-melee-exchange.py",
+      "before_sha256": null,
+      "after_sha256": "ecbf8083beab75b6ef571f4f9c24b89fdbc333fd7814bd1cdcf7809e03385a44",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/test-skirmish-window.py",
+      "before_sha256": null,
+      "after_sha256": "38544bcf272d91bd1e807c73528e7ef40cb05de6129a97e20a87cf48fbd1727d",
+      "exact_receipts": [
+        "ns22-native-skirmish-execution-20261012",
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tests/test-skirmish.py",
+      "before_sha256": null,
+      "after_sha256": "43f776909789113e7ab3a23af2db9aa327a281a89ecbe611360d2bfa0fc49f6c",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/export-creature-autonomy.py",
+      "before_sha256": null,
+      "after_sha256": "d3f54491e3723ca69352c5d1592ba97beb51aba86436a8a65a2269291f522749",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/export-creature-control.py",
+      "before_sha256": null,
+      "after_sha256": "9faffe02336e1093e065065513f803e1efa34b5ba72060335df7ac9070f4564b",
+      "exact_receipts": [
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/export-health-contract.py",
+      "before_sha256": null,
+      "after_sha256": "daec1ee822dc252f5dda68ce22960d8d572e1b612340ea935f659c3b0c699c54",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/test-creature-autonomy.py",
+      "before_sha256": null,
+      "after_sha256": "71e27519ab6944284f9b4a7ada02a4d7659564d7d47ccbd61d950814635aeba6",
+      "exact_receipts": [
+        "ns26-original-autonomy-pending-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/test-creature-control.py",
+      "before_sha256": null,
+      "after_sha256": "de3ee55189cd354ffc0ed504cbb6f7d4c581341c3e8fbf6de45d977f644a5833",
+      "exact_receipts": [
+        "ns25-workspace-final-execution-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/test-ordinary-health.py",
+      "before_sha256": null,
+      "after_sha256": "57748413d3e73ad6d06560f0545c31a8dbd49311f4abb6094949acf732803ee2",
+      "exact_receipts": [
+        "ns23-ordinary-health-execution-20261012",
+        "ns23-owned-projection-execution-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+      "path": "tools/test-ordinary-melee.py",
+      "before_sha256": null,
+      "after_sha256": "b4a699f20b021e44e33564c5de398eb2b2d2b58947cfde66308c83fb8af234e2",
+      "exact_receipts": [
+        "ns24-melee-owned-execution-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-execution-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "b81aeb0d7560a04d80956ac5681ff1e43176cb54c5edf46516375bdfbd7810cd",
+      "after_sha256": "e1cd61eb98d78f1b5b57b3c3b9cb1a4cd00b27a65b88a4189f7f62e0f5ce5236",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "game/simulation/creature_rules_session.cpp",
+      "before_sha256": null,
+      "after_sha256": "aa57f8c683a540b77bf466d877cbd92fccd5c89bc012a4835a6cbb08dd5d1de3",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "game/simulation/creature_rules_session.hpp",
+      "before_sha256": null,
+      "after_sha256": "d1b53243d7922661b7c559caeef9e11792b9b3876222a7fa3e9d5ab6c4e1fc32",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/action_callbacks.cpp",
+      "before_sha256": null,
+      "after_sha256": "395b7d2e205b35bf4166b067c1d54512660fa6f414fee1e019d403ea80119aee",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/action_callbacks.hpp",
+      "before_sha256": null,
+      "after_sha256": "856f2e19d2a07db6e37cc990fba3dd77b86683c84d7c624d4fc917fe3a81f87e",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/action_execution.cpp",
+      "before_sha256": null,
+      "after_sha256": "79071bca8c9eb2ca802801b435560016ba7e121a5b6eb888ff07451ebf11e9ba",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/behavior_execution.cpp",
+      "before_sha256": null,
+      "after_sha256": "04cbd1d1bba76c88e215bed0c431ef9b8d64731701a163f7995d951fa56a80e2",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/death_behavior.cpp",
+      "before_sha256": null,
+      "after_sha256": "fd34b18035261816373628bbf745ae75f14bff98ac72cb58b3dacb1c4e6cee5b",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/death_behavior.hpp",
+      "before_sha256": null,
+      "after_sha256": "36b045230c644e6c86244d7411311e5a10e4dc8b626d4ae15f3c073de438d2a2",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/execution.cpp",
+      "before_sha256": null,
+      "after_sha256": "5b76210bf36d2dcc89d5bca80db12473ff72060c6ee667ad11996418d5e2ab19",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/execution.hpp",
+      "before_sha256": null,
+      "after_sha256": "1be46efbcd9a1877c0a46388daa6bf3125573a858b396c8922971dabd5ff1e20",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/execution/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "80164a250f3da2dfea8860f77d6615ad7e80bc5f6ba45c04d608be3ee15d1346",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/full_motion_action.cpp",
+      "before_sha256": null,
+      "after_sha256": "6c166e89628151c38f710a4637b68eec7e0b1c4a0fae66fab31f74014938ff59",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/full_motion_action.hpp",
+      "before_sha256": null,
+      "after_sha256": "8ed77abb621c24f7aee8409c21142feb958fb6752be3d4a101e287cb57b59afe",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/maintenance.cpp",
+      "before_sha256": null,
+      "after_sha256": "8cfc0f031c18f9450d1eda5179398637790d7f40c0e0375f01bc78bfcb425b99",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/maintenance.hpp",
+      "before_sha256": null,
+      "after_sha256": "cf2a676ad73b7d467e1caeef88295adf7a2cac2211d8009e1ebe99760a9cb879",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/movement_behavior.cpp",
+      "before_sha256": null,
+      "after_sha256": "845b836c203a7b1b0d4afabfcace616b1866e0d86c93c9500a7983572bc3e906",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/movement_behavior.hpp",
+      "before_sha256": null,
+      "after_sha256": "ab2e29c0b84eb1698f3f4d8fed973118c672aa4339838befc1de1ffe0c3e7c21",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/orders.cpp",
+      "before_sha256": null,
+      "after_sha256": "ade3186bf19e4d6870a68b752e8aa775a492f6c3f0a62cf83da2869712f2988d",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/periodic.cpp",
+      "before_sha256": null,
+      "after_sha256": "2701854984220f014274e4eba3447a941f17b9d1b0cdb63f03b5e382d7954bc5",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/ranged_execution.cpp",
+      "before_sha256": null,
+      "after_sha256": "e15d4ad01453a1eaf65faa6539bad9fcd7864cd45b00fff7a60af23d80fac496",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/route_execution.cpp",
+      "before_sha256": null,
+      "after_sha256": "d7abf386f810b51338a27053d93dda3550f39b9985e73a2602383b091fb0d161",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "reconstruction/creature-ai/strategy.cpp",
+      "before_sha256": null,
+      "after_sha256": "a31d94bc0fd833da715f1f7712c119bebec1d96d0a31adbbdd68394de86afcf7",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/ai-checkpoint-creature-native-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b1abe2bcca7525ee5dd74709a69e527ff9ad31e450530bd23ef242f7c2e70671",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/ai-checkpoint-melee-native-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "db016e3e2ae8fdc3e56843b16efc6d3852b4ac3fe6a914a8ece34b6827aeaa70",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/ai-checkpoint-skirmish-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "32664f407d0b4915f78f7aa26402546d0c60ba548cede0307b7de04df4096d58",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/ai-checkpoint-skirmish-window-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a689ae531a5340ee3732f5a620b48086ea817ce8752a5dda65ba90a5768fada6",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "63f4a20ab986fae1fd48fdfe6783f7856ba72b7375f8b14df94ec5ee3e917b01",
+      "after_sha256": "846d0b513d17a96e2fac894d6ddeccf55db4cfc9d95a26347e4c174526bcc0fd",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0e5509a9a0001642f056025d87db68ecaa5b5260b038a412005b5b6f7bbeb334",
+      "after_sha256": "575d319279c4cd34b37245fc8d68f81705ecc3b462c858f720da291cbb36d370",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/coverage/simulation-checkpoint-committed-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e871e21bbd76d58d05ea995df6b59f917debea60e57c67fee6f142bbabcd5d55",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/coverage/source-index-ai-checkpoint-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "39a13d324ba218ebe7c4df344934bdbc3696870db4d09cdf65ef3fd48347c1b2",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/coverage/source-index-ai-execution-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "39a13d324ba218ebe7c4df344934bdbc3696870db4d09cdf65ef3fd48347c1b2",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/coverage/summary-ai-execution-checkpoint-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "4fb9ebc7de58a772529abfb43035f242d22f2af57f2694d3f90cf3b1f0d209e0",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/creature-execution-behaviors-checkpoint-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "79daf56614709e6b93f6629ad964a8d4edea3a4f66285154cb0bc2da090f4e43",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/creature-execution-behaviors-development-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1355503332d2681d8c9e900b176297508769afb04ee79fb999268da3913c3240",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/creature-execution-callbacks-development-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b1c37183e900288700ce9c353ac6e5741ac23f55694598bc09877e3899130c30",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/creature-execution-lifecycle-development-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d6c137d467d718aee369b8fb8bb7475ad0a89a08ab8a5c1b7a9ae0260b9f886b",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/creature-execution-static-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ab19dcb61c28855712cc02cbce199f7cb5a02987fad116c2ec694d537b437b92",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "research/runtime/creature-execution.md",
+      "before_sha256": null,
+      "after_sha256": "616a5b02dd9f082a3d14b6e7fe80d4e2275952b172eff4f720c5a31e43fa653f",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-actions-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "28a3f920b4c053bd6374d48842204537108605866113882e1db2adc64a6572b2",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-behaviors-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1aefeb97fa2d6bf4bf84754fb99ada4a3ec9383e2e5b77deefce8a48ad4b2bad",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-callbacks-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "987399da8a4c50d3332cbc910104f2b38a9828bb4bcc667956402780709f8d9d",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-lifecycle-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "06ae402f703bcbbb24d16e0444128988c20de08ecedb9cd49d3a3a0fa0efbe1f",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-orders-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "d914b641b9de786e733288af8c779a38911bb5b6b4242241c9dc36fd8929c190",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-strategy-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3125b75121e8875de6d0b70d10b8a647171a21b881b081e905b31286ca6bb6bf",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/creature-execution-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "96d1f44c91f8fe16b51547df46906b3699ba732f21b6b82fa29e6217f8c1dbf9",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tests/native-creature-rules-session-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "2f2e6aaab1038b55d383e6c9b745015d0ffd46f27ca1683b0628c3120b2f11a8",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tools/export-creature-execution.py",
+      "before_sha256": null,
+      "after_sha256": "53b5c59a055879233ec8df49bbdca1406ca0636de5cb30ba40e25108d41778aa",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    },
+    {
+      "commit": "792b3766f7cf7898d0ecf89c5a410548167b9276",
+      "path": "tools/test-creature-execution.py",
+      "before_sha256": null,
+      "after_sha256": "c04dec5f3589e01e44c10b8451c9b27748d33ce39d8d1156872ae84eaf117fe2",
+      "exact_receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

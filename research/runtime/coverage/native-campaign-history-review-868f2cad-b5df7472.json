@@ -1,0 +1,398 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new validation claim.",
+  "range": "868f2cad..b5df7472",
+  "transitions": [
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "52a5bd317d9798c4fb9f8d17c429b4f0722f4f704e06a795720554598d56fe2e",
+      "after_sha256": "eb88e12f3365d97df96976a1dc3879677c0f5e86127e571a35dca57f4e8dcd25",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "7693e2011dd2401be17f307fd1e53bfd78261005882b7a780bd2d9f59ac11247",
+      "after_sha256": "6d03809295845522729da1a0177c6a4b26f0bcb01012df38facb07b9fa5dff92",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "17684d10c20e688cf70c9266a19b943e51aa14473f5d9280b41fadad8862cb5a",
+      "after_sha256": "fb2d1fc265878f0c1515c903cd54ce86c44fb736dd152b5329c73399fe0bb7a7",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "ec0841b868060241ba90b2ca2d652f210ea4203dae72e9d7c59052bd9e8e5012",
+      "after_sha256": "ca14b9201935fb57ce9547e4bd90b2bf3b2cb48dd48a7f2e2c467daec233f87d",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "research/runtime/coverage/source-index-native-draw-cost-measurement-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "88f69cba772929ecda38cd9289876afe646cd26204a2966f2189297443981733",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "research/runtime/coverage/summary-native-draw-cost-measurement-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "aa1ecc3229f6fec0eefcd7edec2930d230b4c20821f5e67af8a73aaa4a52e1fe",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "research/runtime/native-draw-cost-baseline-titan-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3a63f62f0961fc1bd2997da6df8bd572b26c0b889de0206518846c2c092afcf1",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "research/runtime/native-draw-cost-profiling.md",
+      "before_sha256": null,
+      "after_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "tests/render-gpu-timing-test.cpp",
+      "before_sha256": "26ab345a79f2da6371ea385b08251132fea3a43099606c738cdf3b8d63b27efc",
+      "after_sha256": "d79355575347c634fdea33c5baf9f5ae79d5f895a6336508e8846c264c9e97f5",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "tools/native-render-profile/resident_profile.cpp",
+      "before_sha256": "8818c2af55a94f9aa55bec98fc2464c8fcd8e78e36a4f865f5bf38913a3880bc",
+      "after_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "4e05e2c3a7847c9abecdaef14914ba3b37269985",
+      "path": "tools/profile-native-draw-costs.py",
+      "before_sha256": null,
+      "after_sha256": "9931e71ff39c492b323e28c6f69adb2e2d7161e3b0323d375e6d36d0d8646076",
+      "exact_receipts": [
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-draw-cost-measurement-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "apps/qt-shell/resident_world_session.cpp",
+      "before_sha256": "df7ac713f11ce9ea2735e1ac59584bcd6fd05f8176209f0b7c4fde70de194c1f",
+      "after_sha256": "fac6d8b0d98f6576b00a99cb212334483f48dcc61072c0f23db053b16d925171",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "bba4fb32fa08ff9f77e8333ac6cc0477c1b5c38287f2f774ecea74b6add61301",
+      "after_sha256": "33c59b22d7684a2bc6d0b305ab155310796fbe7d4f302f3ede177f9eee03037c",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "renderer/scenes/CMakeLists.txt",
+      "before_sha256": "e6330a5e14d6aaa56816780a93e230601c9b1fea36f98f8dc1f8408ecc7d4dac",
+      "after_sha256": "e4c4f385d0ce952162c671086dab1aa45ab9096c375fdc3fdd2305fccdae9394",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": "93dc98dee27dd3dd942cb800c9b57fcc2e0875d3a489cfc4083d13e7b06d7195",
+      "after_sha256": "3f35d68d024b6bcf4bea883d8b34629624c5d4771eb0461799bebb63e5684482",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "renderer/scenes/scene_renderer.hpp",
+      "before_sha256": "9ef8befcedb2b9ee90a8090d9b09f6ab42937e1afbfef194c908af4a932e4b5d",
+      "after_sha256": "da899b16e29fa17802c92643f4162abf783330bafd0fc5d1e3bea6536ad35146",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "fb2d1fc265878f0c1515c903cd54ce86c44fb736dd152b5329c73399fe0bb7a7",
+      "after_sha256": "4c21b9123395c06028d8c4578ff0a4f4a99db669f217db053f7a0d2c0b27c20a",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "ca14b9201935fb57ce9547e4bd90b2bf3b2cb48dd48a7f2e2c467daec233f87d",
+      "after_sha256": "f70e5eb926d0168e206d198b4fdefff7a64852026d1e978c082f8e1fbfecbf90",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/coverage/source-index-native-colour-cache-headless-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ad1e0c25c0f70d5827ba1b2f9e6c63b1b1b7854e0e0731cff63c2913e17ac4f9",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/coverage/summary-native-colour-cache-headless-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "d13e16341d11e83cbce7e555e50bf3af4704878c17a4c3c3c0393734bbaa041a",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/native-colour-cache-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5aa36ad018289dfa5b4346fb29738d318a13f92902243816a7d93cc1fa481cfc",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/native-colour-cache-paired-titan-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d04c42cdf4a5c2f9361e31886917fc8066630bc2f54a6a053a27bef8d53d8b9c",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "research/runtime/native-colour-rectangle-cache.md",
+      "before_sha256": null,
+      "after_sha256": "f918f881cdf83a33f112786209186782c67e9f1d4cd57b105cf7932ae0c82d51",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "tests/colour-rectangle-cache-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "943d6303c704d7f739692c3dc383764189fbc93eac035724237c1b7ce8f75843",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "tools/profile-native-draw-costs.py",
+      "before_sha256": "9931e71ff39c492b323e28c6f69adb2e2d7161e3b0323d375e6d36d0d8646076",
+      "after_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9ab8471a6bcbfee2db737e908373a1d851adf618",
+      "path": "tools/test-native-colour-cache.py",
+      "before_sha256": null,
+      "after_sha256": "a3bcb87e624b9088fe9574aa9b89c60d3b2ca66d1b8139c6d6fb881d106de1e4",
+      "exact_receipts": [
+        "native-colour-cache-headless-20261012-accounting",
+        "native-colour-cache-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "e51c84f717cd8634feac5ba328b124fc4e4a502a1ce12f8cf5b9fbed61c20f69",
+      "after_sha256": "22e93804a09d61d28f859fa5437ff1460f479d667463058728d635fe0aac22ea",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "eb88e12f3365d97df96976a1dc3879677c0f5e86127e571a35dca57f4e8dcd25",
+      "after_sha256": "2002b434e57d472db18115e251eee034125eede184cc8466f4f7de3abc9a6858",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "6d03809295845522729da1a0177c6a4b26f0bcb01012df38facb07b9fa5dff92",
+      "after_sha256": "dcbd27afcfa5c446a96052270f5b3c4c06290faea77a1f646645ab956a274fea",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": "3f35d68d024b6bcf4bea883d8b34629624c5d4771eb0461799bebb63e5684482",
+      "after_sha256": "27175e324a28d5f9d623be381307ff0c945f83862683f8be9abcde6540d19d18",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "4c21b9123395c06028d8c4578ff0a4f4a99db669f217db053f7a0d2c0b27c20a",
+      "after_sha256": "771ac7a93fb6d1fdbfee11c31fc70f8cedec9f0fe2e90f1fbd4fe421e4ba45ee",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "f70e5eb926d0168e206d198b4fdefff7a64852026d1e978c082f8e1fbfecbf90",
+      "after_sha256": "e346e743de0a318d3ccea9e54a112a4699bbac5a53448a34c66427a6ced619b3",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/coverage/source-index-masked-displacement-headless-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "699ff84df8ea5524869e5b17af9ecd852e76de4b175c8fbdfc117d2cd0d781b4",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/coverage/summary-masked-displacement-headless-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "296166f26d335ebdf14d8bfc8269e09bcafd27fa71ba895eceea9c16eaff0013",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/masked-displacement-controls-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d11f7a2b86688028bd9c00eaf1f1e614787cc1bc7a346bda5401acefa081d281",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/native-colour-cache-full-displacement-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "abd5191f36ba2053805ff8f25e60d18cd00a0037ab3989b21dc7ac0974a714e1",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "research/runtime/native-masked-displacement-admission.md",
+      "before_sha256": null,
+      "after_sha256": "55b77127ee979d7857953eb833910170d48f3254507e8a7eaf196afff999310c",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "tests/masked-displacement-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "e7904e3bebb3ce17c3016cb0b2942ff7e355f4a14571136a1c4e05e6bd733809",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    },
+    {
+      "commit": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "tools/test-masked-displacement.py",
+      "before_sha256": null,
+      "after_sha256": "cc54918c69cd672493699f6325631c09128e73c27dd235737e2eabbe41d0d484",
+      "exact_receipts": [
+        "masked-displacement-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-execution"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
