@@ -8,6 +8,8 @@
 #include <QRandomGenerator>
 #include <stdexcept>
 #include <algorithm>
+#include <cstdio>
+#include <chrono>
 using namespace mnm::legacy;
 namespace {
 QString create(const QString& path){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true);return path;}
@@ -36,12 +38,19 @@ void ResidentWorldSession::collectGpuTimings(){
         row["gpu_timeline_ms"]=timing.timelineMs;stageSamples_[int(timing.sequence-1)]=row;
     }
 }
-ResidentWorldSession::~ResidentWorldSession(){channel_.cancel();}
+ResidentWorldSession::~ResidentWorldSession(){channel_.cancel();if(reportWork_.valid())reportWork_.wait();}
 void ResidentWorldSession::abort(const QString& error){error_=error;channel_.cancel();}
 void ResidentWorldSession::poll(bool acceptedNormalQuit){
+    QElapsedTimer phaseClock;phaseClock.start();
+    const bool phaseLog=qEnvironmentVariableIsSet("MNM_RESIDENT_POLL_TIMING");
+    const auto mark=[&](const char* stage){
+        const double ms=double(phaseClock.nsecsElapsed())/1000000.;phaseClock.restart();
+        if(phaseLog&&ms>=50.&&phaseLogRows_++<256)std::fprintf(stderr,"RESIDENT_PHASE stage=%s ms=%.3f completed=%llu pending=%d\n",stage,ms,static_cast<unsigned long long>(completed_),bool(pending_));
+    };
     try {
         if(!error_.isEmpty())throw std::runtime_error(error_.toStdString());
-        collectGpuTimings();
+        serviceReport();mark("report-worker");
+        collectGpuTimings();mark("gpu-timing-poll");
         if(normalQuitRetired_)return;
         if(channel_.cancelled()){
             if(acceptedNormalQuit && !pending_ && completed_==imports_ && completed_==returns_){
@@ -55,6 +64,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
             if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
             world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true);
         }
+        mark("initialization");
         if(pending_){
             if(pending_->deadline.elapsed()>120000)throw std::runtime_error("Resident World import/return deadline");
             if(!pending_->returned){std::array<std::uint8_t,192> actual{};
@@ -82,9 +92,11 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
                     previousStart_=ticks[0];previousReturn_=ticks[3];
                 }
             }
-            if(pending_->returned && pending_->imported){completed_=pending_->block.generation;channel_.release(completed_);pending_.reset();if(completed_%64==0)saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));}
+            mark("return-verification");
+            if(pending_->returned && pending_->imported){completed_=pending_->block.generation;channel_.release(completed_);pending_.reset();if(completed_%64==0)queueReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));}
         }
-        if(!pending_){WorldContinuousChannel::Block block;QElapsedTimer acquire;if(stageProfile_)acquire.start();if(channel_.poll(block)){
+        mark("release-and-report");
+        if(!pending_){WorldContinuousChannel::Block block;QElapsedTimer acquire;if(stageProfile_)acquire.start();const bool available=channel_.poll(block);mark("source-acquire");if(available){
             const auto acquireMs=stageProfile_?double(acquire.nsecsElapsed())/1000000.:0.;
             const bool sampled=stageProfile_ && block.generation<=8192;
             const double sampleStart=double(profileClock_.nsecsElapsed())/1000000.;
@@ -93,13 +105,16 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
                 capture_->enqueue(block.generation,block.source,block.request);
                 captureIo=double(timing.nsecsElapsed())/1000000.;timing.restart();
             }
-            auto stream=decodeCanvasProducers(block.source,false);
+            mark("capture-enqueue");
+            auto stream=decodeCanvasProducers(block.source,false);mark("decode");
             const auto decode=double(timing.nsecsElapsed())/1000000.;decodeMs_+=decode;timing.restart();
             auto handoff=prepareRollingHandoff(stream,0,block.request,1,0,WorldBatchSourcePolicy::ownedV5,false);
+            mark("handoff");
             const auto handoffTime=double(timing.nsecsElapsed())/1000000.;handoffMs_+=handoffTime;timing.restart();
             mnm::render::GpuFrame frame;
             if(sampled){if(!renderer_->profileBatch(block.generation,[&]{frame=world_->consumeResident(block.generation,handoff.stream);}))++gpuDropped_;}
             else frame=world_->consumeResident(block.generation,handoff.stream);
+            mark("native-consume");
             const auto native=double(timing.nsecsElapsed())/1000000.;nativeMs_+=native;maxNativeMs_=std::max(maxNativeMs_,native);
             prepareMs_+=world_->profile().prepareMs;submitMs_+=world_->profile().submitMs;producerMs_+=world_->producerWorkMs();++profiled_;
             if(sampled)stageSamples_.append(QJsonObject{{"generation",QString::number(block.generation)},
@@ -113,7 +128,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
             Pending pending{std::move(block),std::move(handoff),std::move(frame),false,false,{}};pending.deadline.start();pending_=std::move(pending);
             std::vector<std::uint8_t> ack(MNM_CONT_ACK_BYTES);
             mnm_ack_encode(ack.data(),pending_->block.request.data(),unsigned(pending_->block.generation),unsigned(pending_->block.generation>>32),unsigned(channel_.nonce()),unsigned(channel_.nonce()>>32));
-            channel_.reply(pending_->block.generation,ack);
+            channel_.reply(pending_->block.generation,ack);mark("reply");
         }}
     }catch(const std::exception& e){error_=e.what();channel_.cancel();throw;}
 }
@@ -142,4 +157,28 @@ QJsonObject ResidentWorldSession::report() const {
         {"scope","Opt-in bounded host timings and asynchronous renderer-context GPU timestamps. GPU timeline includes CPU submission gaps, excludes public UI import/paint/scanout. Existing original ticks are uint32 millisecond intervals; pacing and screen-copy fields describe the preceding interval. Non-pacing residual is unclassified original work, not simulation CPU time. Capture I/O and instrumentation affect live cadence."}};
     return result;
 }
-void ResidentWorldSession::saveReport(const QString& path) const {QSaveFile file(path);if(!file.open(QIODevice::WriteOnly) || file.write(QJsonDocument(report()).toJson())<0 || !file.commit())throw std::runtime_error("Resident World report publication");}
+namespace {
+void publishReport(const QString& path,const QByteArray& bytes){
+    QSaveFile file(path);
+    if(!file.open(QIODevice::WriteOnly)||file.write(bytes)!=bytes.size()||!file.commit())throw std::runtime_error("Resident World report publication");
+}
+}
+void ResidentWorldSession::launchReport(ReportSnapshot snapshot){
+    reportWork_=std::async(std::launch::async,[snapshot=std::move(snapshot)]{publishReport(snapshot.path,snapshot.bytes);});
+}
+void ResidentWorldSession::serviceReport(){
+    if(!reportWork_.valid()||reportWork_.wait_for(std::chrono::seconds(0))!=std::future_status::ready)return;
+    reportWork_.get();
+    if(latestReport_){auto snapshot=std::move(*latestReport_);latestReport_.reset();launchReport(std::move(snapshot));}
+}
+void ResidentWorldSession::queueReport(const QString& path){
+    auto bytes=QJsonDocument(report()).toJson(QJsonDocument::Compact);
+    if(bytes.size()>32*1024*1024)throw std::runtime_error("Resident report snapshot budget");
+    serviceReport();
+    if(reportWork_.valid())latestReport_=ReportSnapshot{path,std::move(bytes)};
+    else launchReport({path,std::move(bytes)});
+}
+void ResidentWorldSession::saveReport(const QString& path){
+    if(reportWork_.valid())reportWork_.get();
+    latestReport_.reset();publishReport(path,QJsonDocument(report()).toJson());
+}

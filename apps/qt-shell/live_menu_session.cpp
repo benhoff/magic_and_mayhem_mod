@@ -126,6 +126,7 @@ void LiveMenuSession::saveAcceptedPreferences(){
     const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
     if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
 }
+void LiveMenuSession::renderingProgress(){if(active_&&bridge_)bridge_->heartbeat();}
 void LiveMenuSession::poll(){
     if(!active_||!bridge_)return;
     bridge_->heartbeat();MenuBridge::State next;
