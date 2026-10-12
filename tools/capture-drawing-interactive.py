@@ -19,7 +19,7 @@ def main():
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/menu').glob('*') if x.suffix in ('.h','.c','.S')]
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('menu_v*.h')]
     if a.producer_samples:
-        names += ['tools/build-scene-observer.py','tools/drawing_producer_points.py','tools/inspect-canvas-producers.py']
+        names += ['reconstruction/rendering/vertical_bar.h','tools/build-scene-observer.py','tools/drawing_producer_points.py','tools/inspect-canvas-producers.py']
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/scene').glob('*.[chS]')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('*producer*.h')]
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('world_*.h')]

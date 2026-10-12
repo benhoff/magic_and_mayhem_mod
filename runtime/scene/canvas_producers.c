@@ -4,12 +4,13 @@
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include "../../protocols/include/mnm/world_continuous_v3.h"
-#define HOOKS 53
+#define HOOKS 56
 #define MAX_SURFACES 128
 #define MAX_FRAMES 128
 #define E(n) extern void producer_enter_##n(void)
 E(0);E(1);E(2);E(3);E(4);E(5);E(6);E(7);E(8);E(9);E(10);E(11);E(12);E(13);E(14);E(15);E(16);E(17);E(18);E(19);E(20);E(21);E(22);E(23);E(24);E(25);E(26);E(27);E(28);E(29);E(30);E(31);E(32);E(33);E(34);E(35);E(36);E(37);E(38);E(39);E(40);E(41);E(42);E(43);E(44);E(45);E(46);E(47);E(48);E(49);E(50);E(51);
 extern void producer_enter_52(void);
+E(53);E(54);E(55);
 extern void producer_leave(void);
 u32 producer_trampolines[HOOKS];
 /* pop is the original RET immediate, independent of compiler calling labels. */
@@ -66,10 +67,13 @@ static struct Hook {u32 address,length,pop;u8 bytes[10];void(*entry)(void);i32 r
  {0x552b50,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_49,-1},
  {0x552f20,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_50,-1},
  {0x5532f0,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_51,-1},
- {0x547d80,8,8,{0x83,0xec,0x24,0xa1,0x88,0x1f,0x6e,0},producer_enter_52,-1}
+ {0x547d80,8,8,{0x83,0xec,0x24,0xa1,0x88,0x1f,0x6e,0},producer_enter_52,-1},
+ {0x58f890,6,0,{0x83,0xec,8,0x53,0x8b,0xd9},producer_enter_53,-1},
+ {0x58f9c0,5,8,{0xa1,0x2c,0x48,0x6c,0},producer_enter_54,-1},
+ {0x58f750,5,8,{0x53,0x8b,0x5c,0x24,0x0c},producer_enter_55,-1}
 };
 static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[MAX_SURFACES];
-static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner;u8* record;} frames[MAX_FRAMES];
+static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6];u8* record;} frames[MAX_FRAMES];
 static HANDLE file;
 static u8* continuous_map;
 
@@ -201,6 +205,7 @@ static void checkpoint(struct Surface* s,u32 reason){
 }
 static struct Surface* map_destination(u32 p){u32 base=get((void*)(p+0xdf));for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object&&surfaces[i].pixels==base)return surfaces+i;return 0;}
 static int point(u8* out,u32* count,struct Surface* dst,i32 x,i32 y,u32 colour){if(*count>=16384)return 0;long long offset=(long long)y*dst->stride+x;if(offset<0||offset>=(long long)dst->stride*dst->height||(u32)offset%dst->stride>=dst->width)return 0;u8* p=out+96+(*count)++*12;put(p,(u32)offset%dst->stride);put(p+4,(u32)offset/dst->stride);put(p+8,colour&0xffff);return 1;}
+#include "vertical_bar_trace.h"
 static i32 wrap(i32 x,u32 size){i32 n=x%(i32)size;return n<0?n+(i32)size:n;}
 static u8* map_points(const struct Frame* f){
  u32 p=f->ecx,tag=f->tag;if(!readable(p,0x6208)){fail(32,tag);return 0;}struct Surface* dst=map_destination(p);u32 w=get((void*)0x6c5494),h=get((void*)0x6c5498);if(!dst||!w||w>256||!h||h>256||get((void*)(p+0xc5))||get((void*)0x6e1f88)){fail(33,tag);return 0;}
@@ -367,7 +372,8 @@ static void frame_enter(u32* registers,u32 tag){
  u32* args=registers+9;struct Frame f={0};f.tag=tag;f.caller=args[0];f.ecx=registers[6];f.edx=registers[5];f.sp=(u32)args+4+(tag==100?0:hooks[tag].pop);for(u32 i=0;i<6;++i)f.args[i]=args[i+1];
  f.owner=producer_trace_mode?GetCurrentThreadId():0;u32* nesting=producer_trace_depth(f.owner);
  if(tag==7&&f.caller==0x46ba01)continuous_mark_screen(1);
- if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!*nesting)f.record=request(&f);if(f.primitive)++*nesting;}
+ if(producer_trace_mode&&(tag==53||tag==55))bar_source_enter(&f);
+ if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!*nesting)f.record=tag==54?bar_draw_request(&f):request(&f);if(f.primitive)++*nesting;}
  for(u32 i=0;i<MAX_FRAMES;++i)if(__sync_bool_compare_and_swap(&frames[i].sp,0,0xffffffffu)){u32 sp=f.sp;f.sp=0xffffffffu;frames[i]=f;__atomic_store_n(&frames[i].sp,sp,__ATOMIC_RELEASE);args[0]=(u32)producer_leave;return;}
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
@@ -386,6 +392,7 @@ static void producer_source_region_end(void){
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
+ if(tag>=53&&!producer_trace_mode){SetLastError(error);return 0;}
  if(tag==52 && !producer_trace_mode && !(continuous_public_bind && batch_guard_open)){SetLastError(error);return 0;}
  PRODUCER_TRACE_SCOPE;
  if(enabled&&!stopped){
@@ -441,6 +448,7 @@ void producer_leave_observe(u32* registers){
   if(producer_trace_mode&&f.owner!=GetCurrentThreadId())ExitProcess(98);
   u32* nesting=producer_trace_depth(f.owner);if(f.primitive&&*nesting)--*nesting;
   if(!stopped){
+   if(producer_trace_mode&&(f.tag==53||f.tag==55))bar_source_return(&f);
    if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
    else if(f.tag==1){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}}
    else if(f.tag==2){struct Surface* s=object(f.ecx);if(s){s->pixels=registers[7];s->stride=get((void*)(f.ecx+24))/2;checkpoint(s,3);}}
@@ -505,9 +513,9 @@ int canvas_producers_install(void){
  if(continuous_public_bind)minimap_owned=1;
  if(limit>16&&(!batch_enabled||(minimap_owned&&!continuous_public_bind)||raster_first!=1||raster_last!=limit))return 0;
  n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 0;
- for(u32 i=0;i<HOOKS;++i){struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);if(i==9)put(t+5,0x58b660-(u32)t-9);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[i]=(u32)t;}
+ for(u32 i=0;i<HOOKS;++i){if(i>=53&&!producer_trace_mode)continue;struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);if(i==9)put(t+5,0x58b660-(u32)t-9);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[i]=(u32)t;}
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}
  u32 header[16]={0};copy(header,limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;header[6]=limit;if(!continuous_map&&!write(file,header,64))return 0;bytes=64;
- for(u32 j=0;j<HOOKS;++j){struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
+ for(u32 j=0;j<HOOKS;++j){if(j>=53&&!producer_trace_mode)continue;struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
  if(!publication_install())return 0;enabled=1;return 1;
 }

@@ -296,3 +296,48 @@ all display routes and semantic actions. Steps3–7 remain ordered and pending;
 all47journey subrequirements and21operation requirements stay open. Reviewed
 38979ff..1ca9cbacontains21matching committed file-version receipts and zero gaps;
 this historical accounting asserts no retrospective gate or new validation.
+
+## Step 2 recovered bar and display boundary checkpoint (2026-10-12 UTC)
+
+Paired source-point work is committed as`69a9bf4`,with staged gate and hook passed.
+`RS.canvas-vertical-bar` is seeded before changing this recovered contract,with
+build/address links at58f750/58f890/58f9c0/533a00. The bounded reconstruction has
+black border/empty rows,descending clamped colour for occupied rows,and known
+constant31resize initialization. It retains parameters from completed generation;
+changing scalar fill alone does not regenerate the retained bitmap. Current/max
+arithmetic,bad original shapes,arbitrary buffer mutation and all object reuse
+remain pending. Original generated bitmap/destination words are never native inputs.
+
+Isolated original-byte reference04passes3444cases/8512504words in RGB565/555 and
+preserves surrounding storage. Reference01was stopped by the sandbox syscall
+filter; an escalated isolated32-bit execution succeeds. Earlier declarations,
+including initial register classification mistakes,remain historical rather than
+rewritten. Fresh final classification/source bindings precede reference04.
+Producer fixture01passes56compatible entries/53default hooks,ABI/error/float,
+retained cache,clipping,pending and changed-storage guards. Three extra hooks are
+opt-in only. The local256-slot cache is a native observation limit,not an original
+engine limit or a complete source-lifetime guarantee.
+
+Original bar capture01exits before game startup because no graphical display was
+inherited. Capture02runs in explicit isolated Xvfb and completes594physical
+witnesses/46763producer records,five generated4×75bar draws and zero failures.
+All original manifests verify before/after,with unchanged original sections.
+Its67passive sample ticks are still outside the120advancing-window requirement;
+selection,tooltip,pause and full semantic journey flags remain false.
+
+Source-only prediction01executes successfully and matches103of104selected full
+physical planes.490witnesses remain excluded. All300-pixel strip differences are
+gone,but initial physical ordinal1still differs468103pixels and remains negative.
+Offline CPU analysis01matches *all104*identical source-prefix checkpoints:
+49920000pixels and zero CPU differences. The first original source checkpoint103
+is byte-identical to native frame1while its physical witness is uniformly black.
+This separates the remaining display-delivery boundary from reconstructed CPU
+content without assuming its cause or discarding the first witness.
+
+Reassessment: step2 next instruments actual display delivery and its initial
+visibility/async state,then extends owned acquisition beyond16World returns and
+all routes/semantic outcomes. No complete-frame/journey/parity gate is promoted;
+steps3–7 retain their order and all47/21requirements remain open. Reviewed
+1ca9cba..69a9bf4contains40exact committed file receipts and zero missing versions,
+separate from these uncommitted changes. Storage remains bounded at roughly
+828GiBworking/498GiBfree; no artifacts are deleted or historical hashes refreshed.
