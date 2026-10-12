@@ -6981,3 +6981,29 @@ CMake/runtime-source results remain historical where stale; no hash refresh or
 original equivalence/replacement promotion is implied. The preceding3ba667d
 commit's16 parent/current file transitions have exact receipts, with0 gaps, in
 coverage/native-music-service-history-20261012.json.
+
+### Native CD music in full native media/gameplay (2026-10-12)
+
+HOST.native-menu-music now has scoped opt-in live observation: verified prepared
+CD assets/TOC, owned worker before Wine, guarded MCI/zero-mixer/volume routing,
+native music PCM alongside complete Intro0/Intro1 video/soundtracks, default
+voices/native WAV loading, campaign and normal Quit. Features15 are installed;
+unsupported-CD, legacy-other-MCI, failed native requests and voice fallback
+counters are0. Original playlist/control scheduling remains active. Source
+MusicVolume0 correctly stays muted; enabled playback uses a separate volume15
+fixture clone. Native media/music output is requested and available, with stable
+source/input fingerprints, original manifests and private Wine cleanup.
+
+STOP0 is confirmed at0x48214d/0x482155 and supported alongside WAIT2. The
+synthetic PE fixture exposed provisional ACK publication during synchronous
+service callbacks; final-result publication and bounded PE notification/control
+serialization fix it. Fresh47-command/16-replacement host and actual PE fixtures
+pass. Initial live music-only evidence and prior failed/muted/STOP0/racing runs
+remain separate; no historical hash is refreshed. The preceding1374245 commit
+has22 exact parent/current receipt transitions and0 gaps.
+
+Default media/music selection, stale-host status and stable-snapshot admission,
+original playlist/window end notifications, fades/advanced controls, output
+consumption timing, live device faults, full manager integration, longer scenarios
+and actual Wine API retirement remain pending. Native-policy live observation
+does not assert original-driver equivalence or whole-library replacement.

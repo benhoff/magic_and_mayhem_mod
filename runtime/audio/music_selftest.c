@@ -38,7 +38,7 @@ void start(void){
     while(!(notifications=AudioMusicNotifyForTest(&kind,&notifiedDevice))){expect(GetTickCount()-started<5000,209);Sleep(5);}
     expect(notifications==1&&kind==1&&notifiedDevice==device,210);
     expect(!call(device,0x806,13,play),211);expect(!call(device,0x809,2,0),212);expect(!call(device,0x855,2,0),213);
-    expect(!call(device,0x808,2,0),214);expect(AudioMusicNotifyForTest(&kind,&notifiedDevice)==2&&kind==4,215);
+    expect(!call(device,0x808,0,0),214);expect(AudioMusicNotifyForTest(&kind,&notifiedDevice)==2&&kind==4,215);
     play[1]=3;play[2]=4;expect(!call(device,0x806,5,play),216); /* last track, no TO */
     expect(!call(device,0x808,2,0),217);
     status[2]=0xdead;expect(call(device,0x814,0x102,status)==274,218);

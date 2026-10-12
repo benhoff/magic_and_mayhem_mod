@@ -8,6 +8,8 @@
 
 void addMediaOptions(QCommandLineParser& p){
     p.addOption({"native-media","Opt in to Qt movie and supported file-sound playback."});
+    p.addOption({"native-music","Use native prepared CD tracks in a live native menu session."});
+    p.addOption({"music-assets","Prepared native CD catalog directory.","directory"});
     p.addOption({"media","Preview an AVI movie or WAV sound without the game.","file"});
     p.addOption({"media-test","Decode media without audio output; write measured frames and PCM."});
     p.addOption({"media-probe","Stop a decoder test after its first video frame and audio buffer."});

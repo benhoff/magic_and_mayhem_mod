@@ -14,8 +14,11 @@ public:
     bool nativeCommandsEnabled=false;
     bool nativeVoicesEnabled=false;
     bool nativeMediaEnabled=false;
+    bool nativeMusicEnabled=false;
+    QString musicAssetsRoot;
     std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativeMedia;
+    std::function<bool(const QString&)> prepareNativeMusic;
     std::function<bool(const QString&)> prepareNativePresentation;
     bool campaignPreferencesEnabled=true;
     bool campaignDefeatEnabled=true;

@@ -23,7 +23,7 @@ unsigned phase(MusicPhase value){
 struct MusicBroker::State {
     QFile file;uchar* map=nullptr;QTimer timer;MusicService service;QString error;
     quint32 last=0,status=0,value=0,plays=0,requests=0,failures=0,playRequest=0,eventId=0,eventKind=0,eventSequence=0;
-    quint64 eventGeneration=0;bool audible;
+    quint64 eventGeneration=0;bool audible,dispatching=false;
     explicit State(bool output):service(makeQtMusicOutput(output)),audible(output){
         timer.setInterval(MNM_MUSIC_V1_HEARTBEAT_MS);QObject::connect(&timer,&QTimer::timeout,&service,[this]{poll();});
         service.changed=[this](const auto& state){
@@ -50,7 +50,7 @@ struct MusicBroker::State {
     }
     void stop(){timer.stop();if(map)put(map,MNM_MUSIC_V1_READY_OFFSET,0);service.changed={};service.close();}
     void publish(){
-        if(!map)return;
+        if(!map||dispatching)return;
         const auto snapshot=service.snapshot();const auto report=service.outputReport();
         const auto sequence=load(map,MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET);put(map,MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET,sequence+1);
         put(map,MNM_MUSIC_V1_RESPONSE_ID_OFFSET,last);put(map,MNM_MUSIC_V1_RESPONSE_STATUS_OFFSET,status);put(map,MNM_MUSIC_V1_RESPONSE_VALUE_OFFSET,value);
@@ -79,7 +79,8 @@ struct MusicBroker::State {
         last=id;++requests;status=MNM_MUSIC_V1_STATUS_INVALID;value=0;
         if(id==load(map,MNM_MUSIC_V1_CANCELLED_REQUEST_ID_OFFSET)){publish();return;}
         if(flags&~(MNM_MUSIC_V1_FLAG_LOOP|MNM_MUSIC_V1_FLAG_PAUSED)){++failures;publish();return;}
-        bool accepted=false;
+        bool accepted=false;dispatching=true;
+        try{
         switch(operation){
         case MNM_MUSIC_V1_OPERATION_PING:case MNM_MUSIC_V1_OPERATION_OPEN:case MNM_MUSIC_V1_OPERATION_STATUS:
             accepted=!track&&!from&&!to&&!flags;value=1;break;
@@ -97,7 +98,9 @@ struct MusicBroker::State {
         case MNM_MUSIC_V1_OPERATION_SEEK:accepted=!track&&!to&&!flags&&service.seek(qint64(from)*1000/75);break;
         default:break;
         }
-        status=accepted?MNM_MUSIC_V1_STATUS_OK:MNM_MUSIC_V1_STATUS_INVALID;if(!accepted)++failures;publish();
+        }catch(const std::exception& problem){error=QString::fromUtf8(problem.what());service.stop();status=MNM_MUSIC_V1_STATUS_FAILED;}
+        if(status!=MNM_MUSIC_V1_STATUS_FAILED)status=accepted?MNM_MUSIC_V1_STATUS_OK:MNM_MUSIC_V1_STATUS_INVALID;
+        dispatching=false;if(!accepted)++failures;publish();
     }
     QJsonObject activity()const{
         const auto snapshot=service.snapshot();return {{"requests",int(requests)},{"plays",int(plays)},{"failed_requests",int(failures)},

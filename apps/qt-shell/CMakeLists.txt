@@ -17,7 +17,7 @@ target_link_libraries(mnm-main-menu PUBLIC Qt6::Widgets PRIVATE mnm-assets mnm-b
 target_compile_options(mnm-main-menu PRIVATE -Wall -Wextra -Werror -pedantic)
 option(MNM_EXPERIMENTAL_MINI_MENUS "Enable unvalidated Mini Menu integration for dedicated validation builds" OFF)
 add_executable(mnm-qt-shell main.cpp resident_world_session.cpp resident_profile_capture.cpp live_campaign_defeat_controller.cpp live_campaign_defeat_test.cpp live_campaign_preferences_test.cpp live_region_entry_controller.cpp live_region_entry_test.cpp live_region_enter_test.cpp live_campaign_mini_test.cpp live_campaign_quit_test.cpp live_preferences_menu_controller.cpp live_result_menu_controller.cpp live_mini_menu_controller.cpp live_spell_menu_controller.cpp live_battle_menu_controller.cpp live_menu_test.cpp live_preferences_menu_test.cpp live_preferences_restore_test.cpp live_preferences_display_test.cpp live_battle_menu_test.cpp menu_bridge.cpp engine_preferences_store.cpp live_menu_session.cpp window_host.cpp gl_viewport.cpp frame_stream.cpp input_forwarder.cpp input_state.cpp media_broker.cpp media_cli.cpp)
-target_link_libraries(mnm-qt-shell PRIVATE Qt6::Widgets Qt6::OpenGLWidgets Qt6::OpenGL Qt6::Multimedia PkgConfig::XCB mnm-renderer mnm-world-rolling mnm-main-menu mnm-audio-bridge)
+target_link_libraries(mnm-qt-shell PRIVATE Qt6::Widgets Qt6::OpenGLWidgets Qt6::OpenGL Qt6::Multimedia PkgConfig::XCB mnm-renderer mnm-world-rolling mnm-main-menu mnm-audio-bridge mnm-music-bridge)
 target_compile_options(mnm-qt-shell PRIVATE -Wall -Wextra -Werror -pedantic)
 if(MNM_EXPERIMENTAL_MINI_MENUS)
     target_compile_definitions(mnm-qt-shell PRIVATE MNM_MENU_MINI_EXPERIMENTAL=1)

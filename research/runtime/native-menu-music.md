@@ -89,3 +89,46 @@ immutable-input experiment was required.
 The original evidence above records the initial integration milestone. Current
 output recovery and its additional fixture are recorded in
 [Native menu music output recovery](menu-music-recovery.md).
+
+## Native CD music in live menu sessions (2026-10-12)
+
+The native music worker and selected PE CD adapter have separate headless
+fixtures. Live staging/admission and original playlist scheduling are being
+integrated under HOST.native-menu-music. Prepared track assets and their TOC
+remain session owned and hash checked. Native music starts before Wine; inherited
+music paths cannot enable a new session. Original CD initialization uses the
+guarded zero-mixer policy, while its playlist/control callbacks remain active.
+
+Live PCM, original playlist notification delivery, music preferences and normal
+Quit retirement are pending. No original driver/timing or whole Wine-library
+retirement claim follows from the synthetic fixtures.
+
+The current opt-in command adds `--native-music` to a native menu/command
+session. `--music-assets` may select a prepared catalog under working/. The
+default prepared catalog is working/assets/native-cd-audio-20261012. Staging
+verifies and copies its manifest/track hashes and TOC; the worker validates exact
+PCM headers before admission. Inherited music paths, redirected/stale channels,
+changed DLL/catalog/TOC and unready workers refuse. Seven admission fixtures
+pass. MusicVolume0 remains muted; an isolated volume15 source clone was used
+for playback validation, leaving the user's original working preferences intact.
+
+[native-menu-music-media-public-pass-20261012.json](native-menu-music-media-public-pass-20261012.json)
+records complete Intro0/Intro1 playback, native music/voices/WAV loading, campaign
+and normal Quit with stable inputs/sources and owned Wine cleanup. All CD hook
+features are installed, no unsupported CD or legacy-other MCI calls occur, and
+no native audio request/fallback fails. Output is requested and available; actual
+human listening is not claimed. The original playlist scheduler remains active;
+its end-of-track window delivery and full scheduling equivalence remain pending.
+
+The earlier music-only live pass is preserved separately. The complete run
+includes the dispatch fix: synchronous service notifications cannot publish an
+unfinished command ACK. A47-command independent peer test, including16 repeated
+replacements, and the actual PE fixture pass the final code. Bounded local
+serialization also avoids rejecting controls during notification polling.
+
+Remaining boundaries include default music/media selection, stable-snapshot
+admission retries, stale-host status retirement, live device recovery, consumed
+output timing, arbitrary COM/MCI controls, fades, broader/long-run scenarios,
+original manager replacement and traced Wine API retirement. Earlier failed
+pre-launch compiler declarations, muted-volume and STOP0 failures, and the
+intermittent unfinished-ACK PE fixture are retained under working/tests.

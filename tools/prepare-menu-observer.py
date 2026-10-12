@@ -13,9 +13,10 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False,native_music=False,music_assets=None):
     if native_voices and not (native_render and actions):raise ValueError('Native voices require native menus and command presentation')
     if native_media and not (native_render and actions):raise ValueError('Native media requires native menus and command presentation')
+    if native_music and not (native_voices and native_render and actions):raise ValueError('Native music requires native voice/menu/render staging')
     if resident_world and not (native_render and native_draw and actions):raise ValueError("Resident World requires native menus, commands and owned drawing")
     if native_draw and not (native_render and actions):raise ValueError('Native graphics requires native menus and command presentation')
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
@@ -86,7 +87,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         encoder=preferences.load('preferences_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
         stored=module('preferences_store','tools/menu_preferences_store.py').stage(game,preferences_store,encoder,decoder)
         if stored['warning']:print('Preferences store ignored: '+stored['warning'],flush=True)
-    edits=preferences.disable_cd_music(game)+(preferences.patch_staged_preferences(game,'VIDEO',{'PlayFMV':'TRUE','PlayFMVOut':'TRUE'}) if native_media else preferences.skip_movies(game))
+    edits=(preferences.patch_staged_preferences(game,'SOUND',{'CDMusicEnabled':'TRUE'}) if native_music else preferences.disable_cd_music(game))+(preferences.patch_staged_preferences(game,'VIDEO',{'PlayFMV':'TRUE','PlayFMVOut':'TRUE'}) if native_media else preferences.skip_movies(game))
     native_cadence=None
     if native_render:
         encoder=preferences.load('native_cfg_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
@@ -110,6 +111,11 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
                     native_audio_factory=native_voices,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
     metadata.update(native_media=native_media,media_channel=str(root/'native-media.bin') if native_media else None)
+    if native_music:
+        from native_music_launch import stage as stage_music
+        music_source=(music_assets or REPO/'working/assets/native-cd-audio-20261012').resolve()
+        if not music_source.is_relative_to(REPO/'working'):raise ValueError('Prepared music source must be under working/')
+        metadata.update(stage_music(root,music_source))
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
         immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx','.wav','.ini','.avi')}
@@ -128,9 +134,11 @@ if __name__=='__main__':
     parser.add_argument('--native-draw',action='store_true',help='Use owned native graphics services with real DirectDraw disabled')
     parser.add_argument('--native-voices',action='store_true',help='Stage native DirectSound voices for the native menu/render session')
     parser.add_argument('--native-media',action='store_true',help='Route movies/file sounds through the session-owned native broker')
+    parser.add_argument('--native-music',action='store_true',help='Stage prepared CD tracks for the owned native music broker')
+    parser.add_argument('--music-assets',type=Path,help='Prepared CD catalog under working/')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; default working/game-nocd')
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media,args.native_music,args.music_assets)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

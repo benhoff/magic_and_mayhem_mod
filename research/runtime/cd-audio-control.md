@@ -63,3 +63,9 @@ the reconstruction build. Five CD extraction fixtures pass. The shared audio
 CMake change leaves prior live-audio evidence historical where its source
 fingerprints include that file; no old hash is refreshed. Fresh live routing
 validation belongs to the upcoming native music integration milestone.
+
+Live native music revealed two refused shutdown calls. The retained static export
+confirms `0x48214d` pushes flags0 before MCI_STOP0x808 at `0x48214f`
+and the `0x5c52dc` call at `0x482155`. The native adapter must accept STOP0
+as well as WAIT2. This is a confirmed argument finding; full stop/fade/mixer
+function equivalence remains unvalidated.

@@ -73,6 +73,12 @@ def main():
             looping=request(wire.OPERATION_PLAY,track=2,flags=wire.FLAG_LOOP)
             put(wire.CANCELLED_REQUEST_ID_OFFSET,looping)
             wait(lambda:word(wire.EVENT_ID_OFFSET)==looping and word(wire.EVENT_KIND_OFFSET)==wire.EVENT_CANCELLED and word(wire.CURRENT_TRACK_OFFSET)==0,process)
+            # Service callbacks during each dispatch must never ACK an unfinished
+            # command. Repeated replacement exposes synchronous player startup.
+            for repeat in range(16):
+                request(wire.OPERATION_VOLUME,from_frame=1000+repeat)
+                request(wire.OPERATION_PLAY,track=2+repeat%2)
+            request(wire.OPERATION_STOP)
             request(wire.OPERATION_CLOSE)
             process.wait(timeout=15);observed=json.loads(native.read_text())
             if process.returncode or observed.get('ready_after_stop') is not False:raise ValueError('Music worker retirement')
