@@ -31,3 +31,9 @@ listening, original timing, arbitrary MCI/CD endpoints, complete protocol abuse
 branches and whole WinMM/library retirement remain separate milestones. Failed
 freestanding fixture compilation and the earlier wrapper-only result are retained
 under working/tests/native-mci-cd; their hashes have not been refreshed.
+
+Live shutdown confirmed STOP uses flags0 at0x48214d/0x482155; the wrapper now
+accepts STOP0 and STOP WAIT2. Other simple controls keep their selected WAIT2
+contract. Renewed PE execution covers both forms. The worker now publishes only
+final dispatch ACKs; local controls wait within a bounded timeout for notification
+polling to release ownership. See native-mci-cd-dispatch-20261012.json.

@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "reviewed_range": "3ba667d647771f67cab5f5bdc1b4158077d90bad..13742456eefac607a8865d266bd707be6c88cc1f",
+  "scope": "Committed parent/current exact receipt audit for the native music-wire milestone, separate from pending CD work and concurrent skirmish. Fresh native CD assets and original CD control links and prospective execution scope were reviewed in the scoped/staged gate; no retrospective past-gate or new scientific validation inference.",
+  "files": [
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "audio/CMakeLists.txt",
+      "before_sha256": "627d1d61a3ce20793443c6b8063c439c057386de3976c38895c108d6cfed83e8",
+      "after_sha256": "f9e664809ba066bf04e42511b125ee1bbc78579ad19bc427672d225c9112b33a",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "audio/music_bridge.cpp",
+      "before_sha256": null,
+      "after_sha256": "f64205dcc9fbb7fac1825e6a878a4d4578675fa796af6ac03cf92d116a7e6688",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "audio/music_bridge.hpp",
+      "before_sha256": null,
+      "after_sha256": "7cb792998b839ee22cf5719be42b7efaffd103674aa8fe9425e1b0fbdae85332",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "audio/music_server_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "ef8d9a22034b31b43daf45691e5956bb74b31e422caa7303b8c3d29e6ce56b56",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "protocols/include/mnm/music_v1.h",
+      "before_sha256": null,
+      "after_sha256": "7baae76ab0cd0c5d4708b16ff5db7c414396e16489f9547631382591f7c2ae2f",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "protocols/python/mnm_protocols/music_v1.py",
+      "before_sha256": null,
+      "after_sha256": "88afc9c1c0f0be559bf12fb5bab6993488365282de43db0b110b8ee175503e51",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "protocols/schemas/music-v1.json",
+      "before_sha256": null,
+      "after_sha256": "999bd2f8c04074c51999aa8a2533b8b1597eac1bfeb177d49ce2f0822e454a29",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/formats/native-music-channel.md",
+      "before_sha256": null,
+      "after_sha256": "604c7267574c9a7030184d38b9e2b34aaad997215cf89a1cd2e63a3e385a86cb",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "7f851a8b2d212f5519be763474581bb7d4ebbb3c0365b85a645bb65ea00bbbfb",
+      "after_sha256": "412b2d54dfdbac297e3e0b436c5e89f838328942c7ca5ffc05f141ab07a63d43",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/coverage/native-music-service-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "eb0b23f05fe9f31a336ed199b97b9a71775c6515bec7129045a110fc3f92bad2",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7c456d77eb009af9782e2bad48e36e01c6874f574f21f9e97671560055d4673d",
+      "after_sha256": "b3e501f6f83d6afff1b2e1122a7625783bab238c4369368eb863c74555c13d08",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/coverage/source-index-native-music-wire-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fc3ea7179fed9ed6019d43b8c8502d979f341ed8e229214f531606786e44565b",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/coverage/summary-native-music-wire-commit-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f9ad6a8f48ed4fc17388055949566ee88901cfd326b1d7d04ec968835aca1bfc",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/native-mci-cd-adapter.md",
+      "before_sha256": null,
+      "after_sha256": "6990094881546d5755dfa4991e87dd27f7243f31ba0d9f3bd5f108d54999d6f9",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/native-mci-cd-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e33ea5435dfec935e5157ab1cc91cd69ae1c4f6a8077805c9d06df57519362fe",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "research/runtime/native-music-transport-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3e1fad75abd02dec5372beb7f89d7d596a33e44fa94a6c92053720a53af2acd7",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "runtime/audio/bridge.c",
+      "before_sha256": "b41d72bdd9107871e354d8537b5bebd72df357cf9060b742e59c348e955dea41",
+      "after_sha256": "d9700f9a3f1b1bc76c7ab546b872acbcb97d43900dccdbcd30a6b0793a6f6c93",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "runtime/audio/music.h",
+      "before_sha256": null,
+      "after_sha256": "b20825fdde5d27c3afbf583ba086f124945ea5c789722f240d152cbb410a5d84",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "runtime/audio/music_selftest.c",
+      "before_sha256": null,
+      "after_sha256": "be3006cf75f360a30a806860ef83ca3310ac51ca28458b8b3359b04778868417",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "tools/build-audio-bridge.py",
+      "before_sha256": "f220b50f817bdf23250890423653b522cad7db5e5db162a8206a9f26ce75b920",
+      "after_sha256": "1acf1ed03f3cab7488c30e7bc1bfd2640db13bb1ea4f5cd0db65f57d88e1c7a8",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "tools/test-native-mci-cd.py",
+      "before_sha256": null,
+      "after_sha256": "00a994d9f1304e0b6101299a8673685db91ead8dccc3ba77fce27dbb97a09f81",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "13742456eefac607a8865d266bd707be6c88cc1f",
+      "path": "tools/test-native-music-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "4423a94bb35fbf140ff5996a640d9ff55c457078145789ce83942d391938efbc",
+      "receipt_chain": [
+        "native-music-wire-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

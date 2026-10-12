@@ -4,6 +4,7 @@
 #include <QSettings>
 #include "audio_cli.hpp"
 #include "voice_bridge.hpp"
+#include "music_bridge.hpp"
 #include "window_host.hpp"
 #include "main_menu_widget.hpp"
 #include "menu_preview.hpp"
@@ -73,7 +74,7 @@ class Shell final:public QMainWindow {
 public:
     CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,(!residentWorldError_.isEmpty()?residentWorldError_:commands_?commands_->error():QString()),commands_&&commands_->result()?QString::fromStdString(commands_->result()->driver.renderer):QString(),commands_&&commands_->result()?commands_->result()->stats.presentationPixels:0};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
-    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
+    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={},bool nativeMusic=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
         viewport_=new QWidget(this);layout_=new QVBoxLayout(viewport_);
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
@@ -114,6 +115,13 @@ public:
             liveMenus_->nativeCommandsEnabled=nativeCommands_;
             liveMenus_->nativeVoicesEnabled=nativeVoices_;
             liveMenus_->nativeMediaEnabled=nativeMedia_;
+            liveMenus_->nativeMusicEnabled=nativeMusic;
+            liveMenus_->prepareNativeMusic=[this](const QString& path){
+                music_=std::make_unique<mnm::audio::MusicBroker>(this);
+                const bool created=music_->create(path,QFileInfo(path).dir().filePath("native-music"));
+                if(!created)log_->appendPlainText(music_->lastError());
+                return created;
+            };
             liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path,QFileInfo(path).dir().filePath("game/Sounds"));};
             liveMenus_->prepareNativeMedia=[this](const QString& path){
                 media_=std::make_unique<MediaBroker>(*gl_,QFileInfo(path).dir().filePath("game"));
@@ -405,6 +413,12 @@ private:
             if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())
                 log_->appendPlainText("Cannot save native audio session evidence.");
         }
+        if(music_&&liveMenus_&&!liveMenus_->evidenceDirectory().isEmpty()){
+            auto report=music_->activity();music_->stop();report["ready_after_stop"]=music_->activity().value("ready");
+            QFile evidence(QDir(liveMenus_->evidenceDirectory()).filePath("native-music-report.json"));const auto bytes=QJsonDocument(report).toJson();
+            if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native music session evidence.");
+        }
+        music_.reset();
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
         residentWorld_.reset();
@@ -426,7 +440,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -748,12 +762,14 @@ int main(int argc,char** argv){
     const bool captureDiagnostic=parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("capture-locks") || parser.isSet("no-readback");
     const bool nativeCommands=parser.isSet("native-commands") || (renderer=="opengl" && !parser.isSet("embedding-test") && !parser.isSet("frame-readback") && !captureDiagnostic);
     const bool nativeVoices=!parser.isSet("legacy-audio")&&(nativeCommands||parser.isSet("native-voices"));
+    if(parser.isSet("native-music")&&(!parser.isSet("live-menus")||!nativeCommands||!nativeVoices))parser.showHelp(2);
     if(parser.isSet("resident-world")){
         if(!parser.isSet("live-menus") || !nativeCommands || qEnvironmentVariable("MNM_RENDER_CONTINUOUS")=="0" || qEnvironmentVariable("MNM_NATIVE_DRAW")=="0")parser.showHelp(2);
         qputenv("MNM_PUBLIC_RESIDENT_WORLD","1");
     }
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation,parser.isSet("native-music"));shell.showPresentation();
+    if(parser.isSet("music-assets")&&shell.liveMenuSession())shell.liveMenuSession()->musicAssetsRoot=QDir(parser.value("music-assets")).absolutePath();
     if(parser.isSet("live-menu-test")){
         if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));

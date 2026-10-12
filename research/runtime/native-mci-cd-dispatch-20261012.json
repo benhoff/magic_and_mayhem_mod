@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "audio/CMakeLists.txt": "f9e664809ba066bf04e42511b125ee1bbc78579ad19bc427672d225c9112b33a",
+    "audio/music_bridge.cpp": "2b2a156d25afba1faff2d88d66a162beebf02006e0c14d4a2eee709cd682abfb",
+    "audio/music_bridge.hpp": "7cb792998b839ee22cf5719be42b7efaffd103674aa8fe9425e1b0fbdae85332",
+    "audio/music_catalog.cpp": "afd5d27b210e1e3b8c69b60026c5b250c6b80d69829d74e8f2c4fdc08350cbb6",
+    "audio/music_catalog.hpp": "93796bd8fdba9eaccc94584afcc4805f9af2bfb5918a1f08abc7828b3f470a81",
+    "audio/music_output.cpp": "68ee5896d9c98fb757b7469a19acd9e05ffd2ee1054bd6925c2c4dbe555993e9",
+    "audio/music_server_main.cpp": "ef8d9a22034b31b43daf45691e5956bb74b31e422caa7303b8c3d29e6ce56b56",
+    "audio/music_service.cpp": "f4883635ccb6c9c8c73ed806b6ccf8e070d1663243531c2e1809caaf039dd556",
+    "audio/music_service.hpp": "c59ec7b57e8d0d3244c9f627d971a54b34c912613bc33529015abf58d9488945",
+    "protocols/include/mnm/music_v1.h": "7baae76ab0cd0c5d4708b16ff5db7c414396e16489f9547631382591f7c2ae2f",
+    "protocols/python/mnm_protocols/music_v1.py": "88afc9c1c0f0be559bf12fb5bab6993488365282de43db0b110b8ee175503e51",
+    "protocols/schemas/music-v1.json": "999bd2f8c04074c51999aa8a2533b8b1597eac1bfeb177d49ce2f0822e454a29",
+    "runtime/audio/bridge.c": "d9700f9a3f1b1bc76c7ab546b872acbcb97d43900dccdbcd30a6b0793a6f6c93",
+    "runtime/audio/music.h": "283e70696e8889d183c63bda3413ceeee0cd0472f2aa300fabd181c2cb24f648",
+    "runtime/audio/music_selftest.c": "42c97d4862d71ceeb3c8b49f97b04592269eec6d9367922388126452ff6e199f",
+    "runtime/audio/protocol.h": "fa754efb5cd4efe375ee48be7948f6a53e5a97b8859f7a66f75188dbcc2d581f",
+    "runtime/audio/selftest.c": "8ea66a03da7271a9080ef89dddd960449a53dfb97c5fe08d72fa49f5194fd357",
+    "runtime/audio/wave_loading.h": "a41fc39afe4d732c75feb5195775e5d3cb63f361b7e3e5cd73f846ca13294f37",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/build-audio-bridge.py": "1acf1ed03f3cab7488c30e7bc1bfd2640db13bb1ea4f5cd0db65f57d88e1c7a8",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/test-native-mci-cd.py": "00a994d9f1304e0b6101299a8673685db91ead8dccc3ba77fce27dbb97a09f81",
+    "tools/test-native-music-service.py": "e2c53d8772701ec4976937c087b90db927fe5da7e38814a7fe6b250726ca57e5"
+  },
+  "claims": [
+    {
+      "behavior": "HOST.native-mci-cd-adapter",
+      "contract_sha256": "ac22338584aab7f37c7087a193c41c5d6394f4da277761b06b8fee24899ffc14",
+      "scenarios": {
+        "native-mci-cd-synthetic-20261012": "ebd825afbbc51a41d5b9e3ad2803f920c9601b6b3646fedc4a39c90d545e4f15"
+      }
+    }
+  ],
+  "scope": "Actual PE32 selected CD/MCI wrapper with native host and synthetic TOC/PCM; exported callback/LastError/notification fixture only, no original game/live hook/window/driver equivalence.",
+  "fixture_returncode": 0,
+  "native": {
+    "audible_output_requested": false,
+    "error": "",
+    "failed_requests": 0,
+    "legacy_other_mci_calls": 1,
+    "losses": 0,
+    "output": {
+      "accepted": false,
+      "audible_output_requested": false,
+      "audio_bytes": 0,
+      "audio_device_available": true,
+      "audio_frames": 0,
+      "completed": false,
+      "error": "",
+      "file": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-mci-cd/run-2f1b5nk_/catalog/Track03.wav",
+      "pcm_s16le_stereo_44100_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "volume": 30583
+    },
+    "plays": 3,
+    "producer_features": 15,
+    "ready": true,
+    "ready_after_stop": false,
+    "recoveries": 0,
+    "requests": 10,
+    "success": true,
+    "unsupported_cd_calls": 1
+  },
+  "inputs": {
+    "catalog/Track03.wav": "2f924ea263a9bc134b4506c5c01d402f5f34aa81924072f2d1504b6ba09f6c86",
+    "catalog/manifest.json": "ebe83902982e416a21d35e7e5bce4cb216e20def1c83b9437258e402ab098e75",
+    "catalog/Track02.wav": "2f924ea263a9bc134b4506c5c01d402f5f34aa81924072f2d1504b6ba09f6c86"
+  },
+  "inputs_stable": true,
+  "sources_stable": true
+}

@@ -135,3 +135,13 @@ live menu/music/media integration, output-consumption timing and observed COM
 controls, physical device recovery, and original/live/long-session comparisons
 are pending. Trace executed original audio API paths before claiming retirement.
 The requested final scope is not achieved by enabling native playback alone.
+
+## Native CD music live integration
+
+The native catalog/service, versioned music worker and guarded CD/MCI adapter
+now compose with native movie startup, native voices and WAV loading in a full
+public menu/campaign/normal-Quit journey. See native-menu-music.md and
+native-menu-music-media-public-pass-20261012.json. The original playlist/control
+scheduler remains active. Music defaults, device/consumed-timing recovery, full
+manager integration, broader controls and traced API retirement are still pending;
+this live observation does not close those separate milestones.

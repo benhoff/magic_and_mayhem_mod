@@ -18,8 +18,15 @@ sectors, indexed by track number. All reserved bytes remain zero.
 Requests and response snapshots use independent odd/even publication sequences.
 Single producer/host owners retain matching IDs; no retry may duplicate an
 accepted command. Startup admits a fresh session file and withdraws readiness
-at stop. Commands have bounded host acceptance and stale-heartbeat deadlines.
+at stop. Commands have bounded host acceptance. The stale-heartbeat constant is reserved
+for producer status retirement; requests currently bound failures by readiness
+and a1000ms response timeout. Cached status freshness still needs that guard.
 Completion has a separate event sequence/ID so asynchronous playlist messages do
 not overwrite command ACKs. Endpoint/cancellation/device-loss semantics and
 compatibility routing are implementation work in progress, with no validation
 or retirement claim from schema presence.
+
+Host dispatch now defers response publication until the final command result.
+Synchronous service change callbacks can update internal event/state while a
+request executes, but cannot expose its ID with a provisional error status.
+A47-command/16-replacement independent-peer regression and the PE fixture pass.
