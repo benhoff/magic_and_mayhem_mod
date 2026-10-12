@@ -8382,3 +8382,29 @@ immutable read-only static export and explicit pending implementation/comparison
 Their shared search budgets, region continuation and displacement state are the
 next original scope. Authorized private90GiB reserve policy is used; no cleanup
 is performed by this workstream.
+
+## NS31 — Whole actor route request and displacement (2026-10-12)
+
+Whole5128a0 request and51a600 displacement projections pass24576 and8192
+prospectively bound original32/native64/sanitized64 cases respectively. Five
+request and four displacement refusals are separate native policies. All twelve
+native CTests pass. Fresh immutable records are `original-creature-request-20261012.json`
+and `original-creature-displacement-20261012.json`. Original body bytes, every actor
+byte, shared continuation/budgets/scratch, read-only regions and ordered lower
+service effects are checked. Query/descriptor ABIs and row48/49 field aliases
+are tested within supplied-service domains; real lower acceptance of aliased
+region IDs is excluded. Earlier failures and development runs remain retained.
+
+Request preserves regional/candidate/short-leg/call-order decisions, coarse versus
+ordinary search,70/210 request budgets and shared continuation,131-word actor
+transfer, marker/truncation and69c clear. Displacement preserves blocker/reach/
+reciprocal goal/random wait, lower update return versus active flag, post-reset
+destination and submission. No gameplay balance threshold is changed.
+
+The two recovered contracts have scoped implementation and recorded comparison,
+with integration/replacementnone. Lower region/search/geometry/displacement/ANI
+ownership, installed constructors, remaining action/aim/cast contracts and native
+World/session/portable continuation composition remain in the original objective.
+Committed range9d2ad1d5..2976cdd6 has33 source/link and103 behavior transitions
+with exact parent/current receipts and no unresolved gaps. Private authorized
+90GiB reserve policy is used; no cleanup is performed by this workstream.
