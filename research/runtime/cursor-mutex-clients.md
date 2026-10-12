@@ -47,3 +47,10 @@ and 286 complete timer nested wait/release chains in one normal-Quit run.
 See `draw02-cursor-mutex-order-analysis-01.json`; all raw Wait values are zero
 and Release values one in this run. This is bounded observed order, without
 proving all ownership, aliases or safe added capture locking.
+
+The longer source/mutex run reproduces the negative queue28/lease124foreign
+cursor caller while the latest timer inner Wait on ID2 returns zero at the same
+tick. `draw02-cursor-refusal-mutex-analysis-02.json` binds the retained cursor
+record and refusal. No later matching release or completion marker is retained;
+two IDs remain live. The API terminal row and missing completion marker are
+separate facts. This does not prove source overlap, ownership or safe locking.

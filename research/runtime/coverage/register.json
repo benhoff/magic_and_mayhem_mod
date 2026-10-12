@@ -44923,7 +44923,8 @@
         "tools/inspect-drawing-cursor-mutexes.py",
         "tools/test-drawing-cursor-waits.py",
         "tests/drawing-cursor-wait-reference.cpp",
-        "tools/analyze-drawing-cursor-mutex-order.py"
+        "tools/analyze-drawing-cursor-mutex-order.py",
+        "tools/analyze-drawing-cursor-refusal.py"
       ],
       "validation_dependencies": [
         "tools/inspect-drawing-canvas-storage.py",
@@ -44935,7 +44936,10 @@
         "DRAW02.draw02-cursor-waits-original-01-20261012",
         "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012",
         "DRAW02.draw02-cursor-mutex-source-order-analysis-01-20261012",
-        "DRAW02.draw02-cursor-source-interval-analysis-01-20261012"
+        "DRAW02.draw02-cursor-source-interval-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-whole120-original-01-20261012",
+        "DRAW02.draw02-cursor-refusal-analysis-negative-01-20261012",
+        "DRAW02.draw02-cursor-refusal-mutex-analysis-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44946,7 +44950,8 @@
       },
       "remaining_gaps": [
         "4e9df6disposal lacks whole discovered function and remains a bounded static window. Original642c58/6e1ec0handle lifetime, aliases, real wait/abandoned/failure ownership, nested-wait execution and complete lock ordering unproved. No new capture synchronization or source ownership/native parity claim.",
-        "Adding offline order-analysis test linkage changes the prospective cursor contract; the prior240celloriginal gate evidence remains historical. New offline order evidence does not assert fresh execution of that gate or all runtime ownership."
+        "Adding offline order-analysis test linkage changes the prospective cursor contract; the prior240celloriginal gate evidence remains historical. New offline order evidence does not assert fresh execution of that gate or all runtime ownership.",
+        "Longer source/mutexdiagnostic reproducesqueue28lease124foreigncursor4a4b01while source61copyactive. LatesttimernestedWaitreturns0atrefusaltick; missingAPIcompletionmarker/liveIDs prevent normalclosure. Physicalalias/ownership andsafesynchronizationunproved; newnegativeanalysislinkchangescontract, old240cellgatefingerprinthistorical."
       ]
     },
     {
@@ -45007,7 +45012,8 @@
       "evidence": [
         "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
         "DRAW02.draw02-cursor-mutex-original-01-20261012",
-        "DRAW02.draw02-cursor-mutex-source-original-01-20261012"
+        "DRAW02.draw02-cursor-mutex-source-original-01-20261012",
+        "DRAW02.draw02-cursor-mutex-whole120-original-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -96622,6 +96628,48 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-whole120-original-01-20261012",
+      "kind": "static",
+      "scope": "Retained negative original120-update attempt exitsduringinputs atqueue28lease124source61foreigncursor4a4b01. APIterminalrowexistsbutcompletionmarkerabsent; no admittedcapture/normalQuit/fullparity.",
+      "record": "research/runtime/draw02-cursor-mutex-whole120-original-01.json",
+      "sha256": "accdeccde0b7ec3280c2a42ed3262836f4d24bbbe0ab9e05a7cc5652dbe847d8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-refusal-analysis-negative-01-20261012",
+      "kind": "static",
+      "scope": "Preserved initialofflineanalyzerrefusal ofassumption missingcompletionmarkeralsoimpliesabsentterminalrow; actualrowretainedseparately.",
+      "record": "research/runtime/draw02-cursor-refusal-analysis-negative-01.json",
+      "sha256": "5cacc701c95f08d60419f1d5577ba8be8e45eb7c72f783dd1fa0a89d19141e2e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-refusal-mutex-analysis-02-20261012",
+      "kind": "static",
+      "scope": "Currentimmutablenegativeanalysis3193pairedmutexcalls2liveIDs,latesttimerinnerWaitmutex2returns0atqueue28lease124refusaltickwith exactcursorAPIrecordpoint,0latermatchingrelease; APIterminalrowpresentcompletionmarkerabsent. Noatomicownership/sourceoverlap/racerepair/addedlocking/fullparity.",
+      "record": "research/runtime/draw02-cursor-refusal-mutex-analysis-02.json",
+      "sha256": "d8591a1ac82e1514aaa642d23d348ee9b63c6a7badb5c77f2f43ce5c65ba82cf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108764,8 +108812,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-source-intervals-20261012.json",
-    "sha256": "93e06adc556f2cdface77e71f60b215f88a363338842354df4ca7549f6b4a817"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-refusal-20261012.json",
+    "sha256": "baeca839a96d2e590ec6ece805bc8537b7ad20e6811030241263c385f245727c"
   },
   "claim_bindings_required": true
 }

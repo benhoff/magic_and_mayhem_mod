@@ -1435,3 +1435,33 @@ Joint source/mutex work is committed as `1e046f2d`; its staged gate and hook
 pass. Reviewed `4b66daac..1e046f2d` range has 12 exact file receipts and zero
 missing versions. Step 2 continues with the documented source lifetime/routes
 and semantic boundaries; all 47 journey/21 operation and steps 3–7 remain open.
+
+
+## Step 2 same-run cursor/source refusal reproduction (2026-10-12 UTC)
+
+Verified archive provenance is committed as `28c385eb`; its staged gate and
+hook pass. Reviewed `1e046f2d..28c385eb` range has four exact receipts and zero
+missing versions. All approved archive payloads and both catalogs are verified;
+60.59 GiB released, original manifest unchanged, and historical source hashes
+remain intact. No archive state grants new engine coverage.
+
+The next 120-update diagnostic retains the intermittent failure at queue 28,
+lease 124: source canvas 61 copy on thread 392 coincides with foreign tag32
+copy caller `4a4b01` on timer thread 432, canvas 5 with recorded source/destination
+words 1/5. Strict admission remains rejected. The declared twelve-GiB reservation
+passes the unchanged guard; failed run output measures 3.53 GiB.
+
+Its flushed mutex envelope contains 3,193 paired calls and two still-live IDs.
+The latest timer inner Wait on ID2 returns zero at the refusal tick, with timeout
+`ffffffff`, exact cursor record3610/entry3611 `(440,310)` and one pending API
+entry. No later matching release is retained. These are same-run observed
+identities, not proof of physical source overlap, kernel ownership or safe
+additional locking. A final API terminal row exists, but `session.done` is
+missing after diagnostic termination; no normal-Quit or complete reference claim.
+The initial analyzer incorrectly equated missing marker with absent terminal
+row and refused; preserve that result and use corrected analysis02.
+
+Next test a precise bounded synchronization policy in isolation, including
+original recursive ownership, timeout/failure and competing-thread ordering,
+before any live capture change. Preserve original raster and all refusal paths.
+Step2 continues; all47journey/21operation and steps3–7 remain open.
