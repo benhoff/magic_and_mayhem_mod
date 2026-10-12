@@ -72,6 +72,9 @@ struct RenderStats {
     // Submitted GL operations, separate from logical copies/presentations.
     std::uint64_t drawCalls=0,drawInstances=0,textureUploadCalls=0,textureUploadBytes=0;
     std::uint64_t programChanges=0,framebufferAttachments=0;
+    std::uint64_t paletteTextureUploadCalls=0,paletteTextureUploadBytes=0;
+    std::uint64_t paletteCacheHits=0,paletteCacheMisses=0,paletteCacheEvictions=0;
+    std::size_t paletteCacheRows=0;
     std::uint64_t presentationPixels=0;
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
     std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;

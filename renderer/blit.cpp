@@ -240,6 +240,29 @@ struct GlBlitter::Impl {
     std::optional<std::uint32_t> copyKey;std::uint32_t instanceKeyMask=UINT32_MAX;
     std::vector<std::array<GLuint,256>> instancePalettes;
     bool copyIndexed=false;
+    const bool paletteCacheEnabled=qEnvironmentVariableIntValue("MNM_PALETTE_ROW_CACHE_BASELINE")!=1;
+    struct PaletteHash {std::size_t operator()(const std::array<GLuint,256>& words) const noexcept {std::size_t h=1469598103934665603ull;for(auto word:words){h^=word;h*=1099511628211ull;}return h;}};
+    struct PaletteRow {unsigned row;std::uint64_t age;};
+    std::unordered_map<std::array<GLuint,256>,PaletteRow,PaletteHash> paletteRows;
+    std::uint64_t paletteAge=0;
+    unsigned paletteRow(const std::array<GLuint,256>& words){
+        if(paletteAge==std::numeric_limits<std::uint64_t>::max())throw std::overflow_error("Palette cache age exhausted");
+        const auto found=paletteRows.find(words);
+        if(found!=paletteRows.end()){found->second.age=++paletteAge;++counters.paletteCacheHits;return found->second.row;}
+        unsigned row=unsigned(paletteRows.size());
+        if(paletteRows.size()==1024){
+            // Queued instances may still sample the row selected for reuse.
+            flushCopies();const auto old=std::min_element(paletteRows.begin(),paletteRows.end(),[](const auto& a,const auto& b){return a.second.age<b.second.age;});
+            row=old->second.row;paletteRows.erase(old);++counters.paletteCacheEvictions;
+        }
+        gl.glActiveTexture(GL_TEXTURE2);
+        if(!paletteBank)paletteBank=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,256,1024,nullptr);
+        gl.glBindTexture(GL_TEXTURE_2D,paletteBank);
+        gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,GLint(row),256,1,GL_RED_INTEGER,GL_UNSIGNED_INT,words.data());
+        check(true);paletteRows.emplace(words,PaletteRow{row,++paletteAge});
+        uploadBytes(sizeof(words));++counters.paletteTextureUploadCalls;counters.paletteTextureUploadBytes+=sizeof(words);++counters.paletteUpdates;++counters.paletteCacheMisses;
+        return row;
+    }
     struct PresentationUniforms {GLint indexed,rgb565,masks,lowBits,maxima;} presentationUniforms{};
     struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod,indexed,palette,additive,oldOrigin,stride;} compositeUniforms{};
     std::optional<std::array<std::uint16_t,256>> copyPalette,compositePalette;
@@ -424,10 +447,13 @@ struct GlBlitter::Impl {
         gl.glActiveTexture(GL_TEXTURE1);gl.glBindTexture(GL_TEXTURE_2D,copyMask?copyMask:copySource);
         gl.glActiveTexture(GL_TEXTURE2);
         if(copyIndexed){
-            if(!paletteBank)paletteBank=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,256,64,nullptr);
-            gl.glBindTexture(GL_TEXTURE_2D,paletteBank);
-            gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,256,GLsizei(instancePalettes.size()),GL_RED_INTEGER,GL_UNSIGNED_INT,instancePalettes.data());
-            uploadBytes(std::uint64_t(256)*instancePalettes.size()*sizeof(GLuint));++counters.paletteUpdates;
+            if(!paletteCacheEnabled){
+                if(!paletteBank)paletteBank=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,256,64,nullptr);
+                gl.glBindTexture(GL_TEXTURE_2D,paletteBank);
+                gl.glTexSubImage2D(GL_TEXTURE_2D,0,0,0,256,GLsizei(instancePalettes.size()),GL_RED_INTEGER,GL_UNSIGNED_INT,instancePalettes.data());
+                const auto paletteBytes=std::uint64_t(256)*instancePalettes.size()*sizeof(GLuint);
+                uploadBytes(paletteBytes);++counters.paletteTextureUploadCalls;counters.paletteTextureUploadBytes+=paletteBytes;++counters.paletteUpdates;
+            }else gl.glBindTexture(GL_TEXTURE_2D,paletteBank);
         }else gl.glBindTexture(GL_TEXTURE_2D,copySource);
         useProgram(copying->programId());gl.glUniform1i(instanceUniforms.indexed,copyIndexed);
         gl.glUniform1i(instanceUniforms.hasMask,copyMask!=0);gl.glUniform1i(instanceUniforms.hasKey,copyKey.has_value());
@@ -451,9 +477,11 @@ struct GlBlitter::Impl {
             if(!instances.empty()&&(copyDestination!=&dst||copySource!=sourceTexture||copyMask!=maskTexture||copyKey!=key||instanceKeyMask!=keyMask||copyIndexed!=(palette!=nullptr)||instances.size()==512))flushCopies();
             std::array<GLuint,256> colours{};unsigned row=0;
             if(palette){std::copy(palette->begin(),palette->end(),colours.begin());
-                auto found=std::find(instancePalettes.begin(),instancePalettes.end(),colours);
-                if(found==instancePalettes.end()&&instancePalettes.size()==64){flushCopies();found=instancePalettes.end();}
-                if(found==instancePalettes.end()){row=unsigned(instancePalettes.size());instancePalettes.push_back(colours);}else row=unsigned(found-instancePalettes.begin());
+                if(paletteCacheEnabled)row=paletteRow(colours);
+                else {auto found=std::find(instancePalettes.begin(),instancePalettes.end(),colours);
+                    if(found==instancePalettes.end()&&instancePalettes.size()==64){flushCopies();found=instancePalettes.end();}
+                    if(found==instancePalettes.end()){row=unsigned(instancePalettes.size());instancePalettes.push_back(colours);}else row=unsigned(found-instancePalettes.begin());}
+
             }
             if(instances.empty()){copyDestination=&dst;copySource=sourceTexture;copyMask=maskTexture;copyKey=key;instanceKeyMask=keyMask;copyIndexed=palette!=nullptr;}
             instances.push_back({{x,y,r.right-r.left,r.bottom-r.top},{r.left,r.top},GLint(row)});++counters.copies;return;
@@ -588,7 +616,7 @@ void GlBlitter::batch(const std::function<void()>& operations){
     try {operations();}catch(...){--p.batchDepth;if(!p.batchDepth)p.flushCopies();throw;}
     --p.batchDepth;if(!p.batchDepth)p.flushCopies();p.check();
 }
-RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();for(const auto& entry:impl_->surfaces)result.coverageProofBytes+=entry.second.coverage.capacity();return result;}
+RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();result.paletteCacheRows=impl_->paletteRows.size();for(const auto& entry:impl_->surfaces)result.coverageProofBytes+=entry.second.coverage.capacity();return result;}
 bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>& operations){
     auto& p=*impl_;p.thread();
     if(!sequence || !operations || p.profiling ||

@@ -8332,3 +8332,27 @@ unwind/inlining gaps prevent treating overall sample percentages as normal
 rendering cost. No live gameplay, repaired pixels, original replacement or
 60FPS promotion. Bounded source-cache pressure and public sharing/UI/export
 remain next measurements.
+
+
+## Native palette-row transfer reuse — 2026-10-12
+
+The512slot colour-source experiment is retained but discarded: median189
+palette-bank uploads remain. Exact transfer-category counters identify those
+uploads separately from colour cache hits/misses. Native colour capacity stays64.
+The bounded native palette-row cache instead owns1024exact256word keys and a
+private256x1024R32UI bank. Row eviction flushes queued readers before replacement.
+
+`NR.native-palette-row-cache.paired-public-20261012` passes2423ordered public
+TITAN Worlds and4846native redraws for old/current consumers; every primary
+and prepared hash agrees. Timestamp/throughput final hashes, original/source/
+input checks, ordinary-readback refusal and query/surface/display retirement
+pass. Six independent32word scalar checks include warm reuse,1200-row pressure,
+241evictions, mutable owned keys, coverage and refusal/last-frame preservation.
+
+Timestamp-disabled warm public redraw mean5.17535→3.92946ms (24.1%less),
+median189→0uploads and271draw calls unchanged. The earlier intermittent public
+pixel failure remains unresolved and is not declared repaired. Full live flow,
+engine19FPS and native/visible60FPS still require separate current execution.
+Two disk-guard stops and two fixture preflights remain negative records; original
+manifest verification after the guard stop is retained. No gameplay/clock/
+source-order/native drawing policy is removed or original equivalence promoted.
