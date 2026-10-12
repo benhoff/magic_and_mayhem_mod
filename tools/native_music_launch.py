@@ -73,7 +73,7 @@ def authorize(root,metadata,environment):
     environment['MNM_MUSIC_CHANNEL']='Z:'+str(path).replace('/','\\')
 
 def validate_activity(report):
-    if report.get('producer_features')!=31 or report.get('unsupported_cd_calls')!=0 or report.get('failed_requests')!=0 or report.get('error')!='':raise ValueError('Native CD hooks/requests failed or unsupported')
+    if report.get('producer_features')!=63 or report.get('unsupported_cd_calls')!=0 or report.get('failed_requests')!=0 or report.get('error')!='':raise ValueError('Native CD hooks/requests failed or unsupported')
     if report.get('plays',0)<1 or report.get('requests',0)<1 or report.get('ready_after_stop') is not False or report.get('audible_output_requested') is not True:raise ValueError('Native music activity/retirement missing')
     output=report.get('output',{})
     if output.get('audio_frames',0)<1 or output.get('audio_device_available') is not True or output.get('error'):raise ValueError('Native music PCM/output missing')

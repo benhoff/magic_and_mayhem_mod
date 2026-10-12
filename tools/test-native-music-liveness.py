@@ -54,7 +54,7 @@ def main():
             wait(lambda:words()[20]!=after[20],server,3);report['heartbeat_resumed']=True
             server.wait(timeout=45)
         native=json.loads((out/'native.json').read_text());report.update(native=native,inputs=inputs,inputs_stable=all(sha(out/path)==digest for path,digest in inputs.items()),sources_stable=all(sha(ROOT/path)==digest for path,digest in sources.items()))
-        if native['producer_features']!=31 or native['unsupported_cd_calls'] or native['legacy_other_mci_calls'] or native['failed_requests'] or native['ready_after_stop'] is not False or not report['inputs_stable'] or not report['sources_stable']:raise ValueError('Watchdog fixture native census/retirement/source guards')
+        if native['producer_features']!=63 or native['unsupported_cd_calls'] or native['legacy_other_mci_calls'] or native['failed_requests'] or native['ready_after_stop'] is not False or not report['inputs_stable'] or not report['sources_stable']:raise ValueError('Watchdog fixture native census/retirement/source guards')
         report['success']=True
     except Exception as error:report['error']=str(error);raise
     finally:

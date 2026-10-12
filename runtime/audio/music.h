@@ -161,6 +161,15 @@ static i32 __fastcall music_get_volume(void* object,void* unused,i32* value){
     __atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);
 done:SetLastError(error);return result;
 }
+static void __attribute__((used,noinline)) music_fade_supply(void* object,u32* raw){
+    i32 level=0;
+    if(!music_get_volume(object,0,&level))*raw=(u32)level*4369u;
+}
+/* Replace only the original MOV eax,magic at4820d8. Keep the caller's raw
+   stack slot, division, descending levels, polling, STOP and restore path. */
+static void __attribute__((naked)) music_fade_converter(void){
+    __asm__ __volatile__("pushfl\n pushal\n leal 56(%esp),%eax\n pushl %eax\n pushl %edi\n call _music_fade_supply\n addl $8,%esp\n popal\n popfl\n movl $0x78007801,%eax\n ret\n");
+}
 static int music_init(void){
     char path[512];u32 length=GetEnvironmentVariableA("MNM_MUSIC_CHANNEL",path,sizeof(path));if(!length)return 1;if(length>=sizeof(path))return 0;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return 0;
@@ -174,27 +183,31 @@ static int music_init(void){
 }
 static int music_install(u32 base){
     if(!music_words)return 1;
-    static const u8 mixer[6]={0xff,0x15,0xf8,0x52,0x5c,0},volume[6]={0x53,0x8b,0xd9,0x55,0x33,0xed},query[7]={0x51,0x8b,0x81,0x2c,3,0,0};
+    static const u8 mixer[6]={0xff,0x15,0xf8,0x52,0x5c,0},volume[6]={0x53,0x8b,0xd9,0x55,0x33,0xed},query[7]={0x51,0x8b,0x81,0x2c,3,0,0},fade[5]={0xb8,1,0x78,0,0x78};
     u8* mixer_call=(u8*)(base+0x8157b);u8* entry=(u8*)(base+0x82190);void** iat=(void**)(base+0x1c52dc);
     u8* query_entry=(u8*)(base+0x818b0);
+    u8* fade_entry=(u8*)(base+0x820d8);
     void* winmm=GetModuleHandleA("winmm.dll");music_original_mci=winmm?(MusicMci)GetProcAddress(winmm,"mciSendCommandA"):0;
-    if(!music_original_mci || !audio_memory_readable(iat,4,0) || *iat!=(void*)music_original_mci || !audio_memory_readable(mixer_call,6,0) || !same(mixer_call,mixer,6) || !audio_memory_readable(entry,6,0) || !same(entry,volume,6) || !audio_memory_readable(query_entry,7,0) || !same(query_entry,query,7))return 0;
+    if(!music_original_mci || !audio_memory_readable(iat,4,0) || *iat!=(void*)music_original_mci || !audio_memory_readable(mixer_call,6,0) || !same(mixer_call,mixer,6) || !audio_memory_readable(entry,6,0) || !same(entry,volume,6) || !audio_memory_readable(query_entry,7,0) || !same(query_entry,query,7) || !audio_memory_readable(fade_entry,5,0) || !same(fade_entry,fade,5))return 0;
     u8* trampoline=VirtualAlloc(0,11,0x3000,4);if(!trampoline)return 0;copy(trampoline,entry,6);trampoline[6]=0xe9;u32 back=(u32)(entry+6)-(u32)(trampoline+11);copy(trampoline+7,&back,4);
-    u32 old_iat,old_mixer,old_volume,old_query,ignored;
+    u32 old_iat,old_mixer,old_volume,old_query,old_fade,ignored;
     if(!VirtualProtect(trampoline,11,0x20,&ignored) || !FlushInstructionCache(GetCurrentProcess(),trampoline,11))return 0;
     if(!VirtualProtect(iat,4,4,&old_iat))return 0;
     if(!VirtualProtect(mixer_call,6,0x40,&old_mixer)){VirtualProtect(iat,4,old_iat,&ignored);return 0;}
     if(!VirtualProtect(entry,6,0x40,&old_volume)){VirtualProtect(iat,4,old_iat,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);return 0;}
     if(!VirtualProtect(query_entry,7,0x40,&old_query)){VirtualProtect(iat,4,old_iat,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);VirtualProtect(entry,6,old_volume,&ignored);return 0;}
+    if(!VirtualProtect(fade_entry,5,0x40,&old_fade)){VirtualProtect(query_entry,7,old_query,&ignored);VirtualProtect(entry,6,old_volume,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);VirtualProtect(iat,4,old_iat,&ignored);return 0;}
     music_original_volume=(MusicVolume)trampoline;
     u32 offset=(u32)&music_zero_mixers-(u32)(mixer_call+5);mixer_call[0]=0xe8;copy(mixer_call+1,&offset,4);mixer_call[5]=0x90;
     offset=(u32)&music_volume-(u32)(entry+5);entry[0]=0xe9;copy(entry+1,&offset,4);entry[5]=0x90;
     offset=(u32)&music_get_volume-(u32)(query_entry+5);query_entry[0]=0xe9;copy(query_entry+1,&offset,4);query_entry[5]=query_entry[6]=0x90;
+    offset=(u32)&music_fade_converter-(u32)(fade_entry+5);fade_entry[0]=0xe8;copy(fade_entry+1,&offset,4);
     __atomic_store_n(iat,(void*)&music_mci,__ATOMIC_RELEASE);
     FlushInstructionCache(GetCurrentProcess(),entry,6);FlushInstructionCache(GetCurrentProcess(),mixer_call,6);FlushInstructionCache(GetCurrentProcess(),query_entry,7);
-    /* Query and mixer share a page; restore in reverse acquisition order. */
-    VirtualProtect(query_entry,7,old_query,&ignored);VirtualProtect(entry,6,old_volume,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);VirtualProtect(iat,4,old_iat,&ignored);
-    __atomic_or_fetch(music_words+MNM_MUSIC_V1_PRODUCER_FEATURES_OFFSET/4,MNM_MUSIC_V1_FEATURE_MCI|MNM_MUSIC_V1_FEATURE_ZERO_MIXERS|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME_QUERY,__ATOMIC_RELEASE);
+    FlushInstructionCache(GetCurrentProcess(),fade_entry,5);
+    /* Query/mixer and fade/volume share pages; unwind acquisition in reverse. */
+    VirtualProtect(fade_entry,5,old_fade,&ignored);VirtualProtect(query_entry,7,old_query,&ignored);VirtualProtect(entry,6,old_volume,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);VirtualProtect(iat,4,old_iat,&ignored);
+    __atomic_or_fetch(music_words+MNM_MUSIC_V1_PRODUCER_FEATURES_OFFSET/4,MNM_MUSIC_V1_FEATURE_MCI|MNM_MUSIC_V1_FEATURE_ZERO_MIXERS|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME_QUERY|MNM_MUSIC_V1_FEATURE_FADE_GAIN,__ATOMIC_RELEASE);
     HANDLE worker=CreateThread(0,0,(void*)&music_notify_worker,0,0,0);if(worker)CloseHandle(worker);else return 0;
     return 1;
 }

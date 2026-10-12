@@ -7143,3 +7143,47 @@ native-voice-v5-public-pass-20261012.json. The earlier330s run reached gameplay,
 resume and Quit-No but expired before normal Quit; it remains a failed bounded
 run, and the passing retry uses the supported600s deadline. No physical/device
 loss in original gameplay or complete original timing equivalence is inferred.
+
+
+## Original CD stop/fade caller and native gain supply (2026-10-12)
+
+AU.cd_stop_controls compares unchanged0x482010..0x482186 against its native
+caller model across62208 authored receiver/scripted MCI/mixer/volume/positive
+nonwrapping clock cases.93568 events and65691648 full receiver/guard bytes match;
+original caller instructions and immutable source hashes remain unchanged.
+Successful mode OPEN/STOP/NOT_READY gates retain paused state; other/failed mode
+queries proceed. Fade reads first mixer raw0..65535, descends level/4369 with
+(1000/initialLevel)/2 clock delays, waits even on a failed volume step, then
+stops descent on that failure. Query failure skips descent and restores default15.
+STOP0/restore errors are ignored; proceeding path clears paused and returns0.
+Mixer/volume/clock callees are scripted boundaries: actual nested setter behavior,
+clock wrap, driver timing/physical waveform and playlist remain separate.
+
+HOST.native-cd-fade-gain guards the five-byte converter MOV at4820d8 and supplies
+native level*4369 into its original local while preserving registers/flags,
+LastError and magic EAX. Original conversion/steps/polling/stop/restoration remain
+in the caller; no desktop mixer is used. PE native7/inactive0 original-stack and
+conversion cases, drift-before-mutation and reverse shared RX-page restoration
+pass. Music feature32 gives full selected mask63 without changing wire1 layout.
+Fresh frozen-ready-host notification/retirement/no-revival regression passes.
+Earlier reports, absent-claims invocation failure and draft isolated-comparison
+scenario attempt remain retained; only fresh correctly bound evidence supports
+current claims. See native-cd-stop-controls-original-20261012.json,
+native-cd-fade-gain-synthetic-20261012.json and
+native-cd-fade-watchdog-synthetic-20261012.json.
+
+Physical fade/original callee recursion/clock wrap and whole playlist delivery
+remain pending. Broad media controls/Quartz startup, native manager/config/event
+integration, initial missing-output policy, physical/default-event/listening/long
+cases and complete executed Wine API census remain separate. The priorfab47f52
+commit's30 exact parent/current versions have zero missing receipts.
+
+Current run-kqtdfe4p passes default native voice/WAV/factory/CD music, native
+menu/campaign and normal Quit, with feature63 and zero unsupported/fallback/failed
+voice or music requests. Source/input/original/cleanup checks pass. See
+HOST.cd-fade.public-pass-20261012 and native-cd-fade-public-pass-20261012.json.
+The first run was refused before launch for undeclared linked stop-model files;
+fresh dependencies and declarations resolved it. Intros are skipped. This is
+installation/composition observation; no fade-call counter or physical waveform
+was captured, so meaningful fade branch execution is not inferred.67 regressions
+pass. Historical earlier evidence hashes are preserved with pending freshness.
