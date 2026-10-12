@@ -8408,3 +8408,28 @@ World/session/portable continuation composition remain in the original objective
 Committed range9d2ad1d5..2976cdd6 has33 source/link and103 behavior transitions
 with exact parent/current receipts and no unresolved gaps. Private authorized
 90GiB reserve policy is used; no cleanup is performed by this workstream.
+
+## NS32 — Whole special finishing, ascent and descent callbacks (2026-10-12)
+
+Whole521790/5217e0/521dd0 projections pass24576 prospectively bound
+original32/native64/sanitized64 cases and five separate native refusals. Thirteen
+native CTests pass. Every actor/peer byte, ordered lower-service effects and
+original body bytes are checked. Non-square grids/eight layers, all28 types,
+class-specific random/region probes, signed rollover, finishing after removal,
+reserved occupancy, corpse/live descent, temporary104 restoration/removal,
+forced movement-kind3/selector1 landing ABI, response and fall/type15 damage
+are included. Development failures and hashes remain preserved.
+
+AI.special-flight-actions records scoped implementation and original comparison;
+NP.special-flight-admission records five native refusals with caller-staged
+rollback. Integration/replacement staynone. Actual lower World/geometry/region/
+ANI/health/stun ownership, installed constructors, remaining aiming/cast and
+native World/session/portable continuation composition remain in the objective.
+Undiscovered ascent/descent bodies have explicit pinned recovered-range links;
+the inventory's unknown ranges are retained.
+
+Committed NS31 range2976cdd6..b6cc497b reviews36 source/link and105 behavior
+transitions; the incoming Qt opt-in commitb6cc497b..6458a16f reviews four source/
+link and33 behavior transitions, including evidence/scenario links. Both retain
+exact receipts with no unresolved gaps and assert no retrospective execution.
+Builds use the private authorized90GiB reserve policy; no cleanup is performed.
