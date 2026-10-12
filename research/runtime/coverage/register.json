@@ -43978,6 +43978,45 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.character-actions",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original Character draft edits and OK/Cancel commit",
+      "scope": "Original callback0x4b5470, six rows/actions25..36 with opening/max/budget guards and supplied cached prices, OK0 commits selected wizard stats/experience, Cancel1 restores draft, ignored actions2..24/37/UINT_MAX. Two wizard identities; original selection/fade/price-UI refresh privately stubbed. No recovered pricing schedule, full ABI, live control admission, disk persistence or native integration.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4936816,
+          "scope": "Complete original callback in private PE32 mapping with three dependency stubs; bounded draft/commit matrix."
+        }
+      ],
+      "documents": [
+        "research/runtime/character-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/character-menu-contract-reference.cpp",
+        "tools/test-character-menu-contract.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI48.character-actions-original",
+        "UI48.character-controls-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -91279,6 +91318,63 @@
         }
       ],
       "claims_pointer": "/execution_claims"
+    },
+    {
+      "id": "UI48.character-actions-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/character-actions-original-20261012.json",
+      "sha256": "300b75dcdc187972f6c65eae519b4f1628612cdde060103b21817da1e620abf5",
+      "scope": "329 unchanged-original Character callback cases with selected-wizard/fade/price-UI refresh privately stubbed; no price equivalence, full ABI, disk persistence, live admission or native integration.",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/edit_cases",
+          "equals": 288
+        },
+        {
+          "pointer": "/accept_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/cancel_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/invalid_cases",
+          "equals": 25
+        },
+        {
+          "pointer": "/original_callback_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI48.character-controls-static",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/character-controls-static-20261012.json",
+      "sha256": "59c17b6431574494d22e01b298c9d2a20683dc89ba84dc1782c76a3dadbefbc3",
+      "scope": "Read-only Character initializer,drawing,tutorial-update/input/control processing and vtable-prefix export. Static only; no action/price execution or live integration.",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102433,8 +102529,8 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "dc2d3c04cbdc4b462ee01cf465a61f11a001401bdcbfbbb34c7418ee0bbd7438",
-      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration."
+      "sha256": "e5d05cd12c2c25959c16363cfbf1218b7ee19a324dfa975b0e70dace9a189e55",
+      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character."
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
@@ -102518,8 +102614,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-selection-bound-20261012.json",
-    "sha256": "5cfab7f750a957ad29f6ee157969d58c6c8382605828b85624d9a02b1e285884"
+    "path": "research/runtime/coverage/source-index-campaign-character-20261012.json",
+    "sha256": "27c562da9d8ae49fd53d5ffd6cce56ab32f09b74edfeba18e29579039909e430"
   },
   "claim_bindings_required": true
 }

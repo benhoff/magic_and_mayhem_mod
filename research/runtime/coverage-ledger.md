@@ -1,5 +1,24 @@
 # Engine modernization coverage ledger
 
+## Campaign Character draft/commit recovery — 2026-10-12
+
+`CP.character-actions` has [329 private original callback cases](character-actions-original-20261012.json):
+288 six-row edits,10 OK,6 Cancel and25 ignored actions. Two selected wizard
+identities,opening/max/budget bounds,draft-only edits,commit/rollback and
+negative/above-opening experience pass. Callback bytes remain unchanged in the
+private complete PE32 mapping; expected dependency bytes, prospective contract,
+complete sources and both immutable-original manifests pass. Wizard selection,
+fade and price/UI refresh are privately stubbed with supplied7/11cached prices.
+[Contract and remaining pricing/live boundary](character-menu-engine-contract.md).
+
+Only recovered understanding advances. Original pricing/rounding/refund schedule,
+native Character commands,disk persistence and genuine progressed caller/return
+validation remain pending; no first-region controls are unlocked. Static
+initializer/input/control exports retain separate provenance. The
+[6da291d6..83a42743 history review](coverage/character-menu-history-20261012.json)
+covers17 exact file versions with zero missing receipts, without retrospective
+execution or gate claims.
+
 ## Campaign menu focus: settled Realm selection — 2026-10-12
 
 `CP.realm-region-selection` now has a separate Qt-independent reconstruction
