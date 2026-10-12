@@ -7532,3 +7532,28 @@ upload relation,complete COM/texture/lifetime/caller/action routes anddiagnostic
 cadencecontrols. Step2andall47/21requirements remainopen;steps3–7stayordered.
 Reviewed69ab6490..f04d3bc5has37matchedreceipts/0gaps. Storageapproximately1031GiB
 working295GiBfree;no cleanupperformed.
+
+## Step 2 selected public Wine resource mapping (2026-10-12 UTC)
+
+Separate pinned publictexture/resourcegetter,map andunmap loaded-IAT observation
+forwards originalcdecl onceoutsidejournal locks,preserving pointer/HRESULT/
+LastError/512byteFP state. Resource/dataIDs use an independent2048entry table;
+pitches/optionalboxstatus/mapintervals are metadata only. Failedunmap retains
+its interval,successfulunmap closes,unknown/open states remain explicit. Seven
+PE32forwards andresource/Quithelper guards pass; privateobject/GPU/bufferbytes
+are never read. Upstream public declarations are ABI leads,notinstalled proof.
+
+Original01combinedwithsourceleases exits early duringshutdown,with anactivelease
+and incomplete terminals;cause remainsunassigned. Original02metadata-only closes
+1257maps buthostQuitACKwait races exit;failedreports/raw/manifesthashes retained.
+Quit handling now separatelyrecords ACK andrequires actualexit0aftertheexact
+request,withoutinventingACK;tests coverACK,exitbeforeACK,refusal/failure/timeout.
+Original03historicalsuccess retains1openmap. Finaloriginal04passes5229calls:
+2647getters1291maps1291unmaps0open/unknown,allmaps knowntexturegeneration;
+1186row1600/slice960000.365API364EGLandshortwhole16boundary remainseparate.
+
+Reassessment: validate actualCPUsource/mapbuffer identity andupload lifetime,
+pointerreuse/wholeCOM/resource/textureownership next;resolve sourcelease shutdown
+coupling separately. Allroute/caller/action/cadence/full47/21gaps remainopen,
+step2ongoingsteps3–7ordered. Reviewedf04d3bc5..a8ac7fdfhas14matchedreceipts/0gaps.
+Storageapproximately1048GiBworking279GiBfree;no cleanupperformed.

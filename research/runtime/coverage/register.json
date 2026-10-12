@@ -43537,6 +43537,62 @@
         "Four synthetic cohort/refusal methods pass. Finalprediction02checksrawpacket/worker/submissionjournalhashes plusprotectedpair/context;149native/source/postEGLphysicalframesmatch0diff. Covers54distinctqueueboundaries through116;655contexts excluded645withoutacceptedlease9inactive/unstable1missingwitness.",
         "Textureupload/sourcebuffer relation/allunknownwriters,source/texture/COMwholelifetimes,remainingupdates/routes/actions,diagnosticcadencecontrols/scanout andfull47/21acceptance remainopen. ExistingAPIcompetingwritercohort/exclusions preserved;no broadstatuspromotion."
       ]
+    },
+    {
+      "id": "NR.drawing-wine-resource-mapping",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned Wine texture/resource map association observation",
+      "scope": "Separateopt-in pinned installedWine11.16DirectDraw imports for publictexture_get_resource/map/unmap,once-onlycdecl forwarding withHRESULT/pointer/LastError/FP preservation. Associateprocess-local opaque resource/textureIDs andknowntexturegeneration,recordmapdescriptorpitches/dataidentity asportablelocalID;no private object layouts or GPU reads. Closedmapinterval/pointer-to-originalCPUsource relationship andactualuploads remain separate validation.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-resource-mapping.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_resource_mapping.h",
+        "tools/drawing_wine_resource_mapping.py",
+        "tools/inspect-drawing-wine-resource-imports.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-resource-map-test.c",
+        "tools/test-drawing-wine-resource-map.py",
+        "tests/test-drawing-wine-resource-map.py",
+        "tools/capture-drawing-interactive.py",
+        "tests/test-drawing-quit-completion.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "tools/inspect-drawing-wine-imports.py",
+        "tools/build-drawing-session.py",
+        "tools/drawing_quit_completion.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-resource-imports-01-static-20261012",
+        "DRAW02.draw02-wine-resource-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-fixture-03-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-original-01-static-20261012",
+        "DRAW02.draw02-wine-resource-refusal-analysis-01-static-20261012",
+        "DRAW02.draw02-wine-resource-original-02-static-20261012",
+        "DRAW02.draw02-wine-resource-refusal-analysis-02-static-20261012",
+        "DRAW02.draw02-wine-resource-original-03-live_observation-20261012",
+        "DRAW02.draw02-wine-resource-quit-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-original-04-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SevenPE32forward/error/512BFP/nullfailedmap/unreadablebox/interval controls andresource/Quithelper tests pass. Finaloriginal04observes5229calls2647getters1291map/unmapclosed0unknown/allmapsknowntexturegen;365API364EGLnormalexit0ACKnotobservedexplicit. Original01combinedleaseearlyshutdownand02QuitACKrace retainednegative;03historicalsuccessful1openinterval.",
+        "CPUsource/mapbuffer exactidentity/bytes andupload ownership,resourcepointerreuse/newgeneration/wholetexture/COMlifetimes,unobservedroutes/callers/actions/cadencecontrols/full47/21acceptance remainopen. Sourcelease shutdowncoupling01unresolvedseparately. Metadataobserverneverreadsprivateobjectlayouts/GPU/mapbufferbytes."
+      ]
     }
   ],
   "evidence": [
@@ -92621,6 +92677,202 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-imports-01-static-20261012",
+      "kind": "static",
+      "scope": "PinnedinstalledPE32threepublicimports/exports/hash/bounds;ABIleadnotruntimeownership.",
+      "record": "research/runtime/draw02-wine-resource-imports-01.json",
+      "sha256": "800f6e456b12775d75ee9e275d9082e1c2383c3091798114a960cc141f0a3971",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Initialsixforward resourcegetter/map/unmap/LastError/intervalcontrols;beforeFP/unreadablebox refinements.",
+      "record": "research/runtime/draw02-wine-resource-fixture-01.json",
+      "sha256": "ce61fc051eed3ade6380939ebc4cd76b4b0931d0c58f521c708a82c41e12946b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-fixture-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Sixforwards withoriginal512BFPreturnstate+interval/LastError;beforeunreadablebox refinement.",
+      "record": "research/runtime/draw02-wine-resource-fixture-02.json",
+      "sha256": "3d57eba7b326ad39c385e6611993b7298af27daa1a773a038e7ed7be01443a83",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-fixture-03-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "FinalsevenPE32cdeclforwards/results/512BFP/LastError/descriptor/failednullmap/unreadableboxoriginalrefusal/unmapinterval controls;nooriginalstorageownership.",
+      "record": "research/runtime/draw02-wine-resource-fixture-03.json",
+      "sha256": "c0db0ef4c6cb1258ed5dab7c9f8a69babff20ee32ad2765ea4c6dce0cf571b62",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-original-01-static-20261012",
+      "kind": "static",
+      "scope": "Retained original01earlyexit/incompletejournals withsourceleasediagnostics;noresourceactivationclosure.",
+      "record": "research/runtime/draw02-wine-resource-original-01.json",
+      "sha256": "1307d44fb907c6df2197890228be4bb2176056f9d1f8678ca3603ad22994c533",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-refusal-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "Negative01exactartifactreview,noassignedcause orownership;metadata-onlyretryseparate.",
+      "record": "research/runtime/draw02-wine-resource-refusal-analysis-01.json",
+      "sha256": "73dd9821873f7e6c2215354675ec2dc39f60960a6e24e8b94da465cf21442b79",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-original-02-static-20261012",
+      "kind": "static",
+      "scope": "Retainedmetadata-onlyoriginal02QuitACKwaitrace;resourcejournalclosed,wholecapturereportfailed.",
+      "record": "research/runtime/draw02-wine-resource-original-02.json",
+      "sha256": "185981ed459732f9cb487d938ace830ed1a07dce1a7e8994270509348dffcfa8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-refusal-analysis-02-static-20261012",
+      "kind": "static",
+      "scope": "Retainednegative02resource1257closedmaps0unknownanalysis;no sourceuploadclaim.",
+      "record": "research/runtime/draw02-wine-resource-refusal-analysis-02.json",
+      "sha256": "ab051927abb55593b57de3ea9d8e28ac3088a20666bd7d3760a2350d937b2d82",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-original-03-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Original03publicmapmetadata5087calls1256maps1255unmaps1open0unknown,allmapsknowntexturegen;normalexit0ACKnotseen. BeforeQuithelperextraction;noCPUuploadownership.",
+      "record": "research/runtime/draw02-wine-resource-original-03.json",
+      "sha256": "baf06e71b34cd219fee69e75f51795bacec5b4e22be112a807a2ea793daeca0c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-quit-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Currentresourcejournal/helperQuitACK/exitbeforeACK/error/timeout controls only;PE32FPseparatehistoricalfixture03.",
+      "record": "research/runtime/draw02-wine-resource-quit-fixture-01.json",
+      "sha256": "ca3799208d6e54351f4583b992e08ead46fc6795e4c8cd7a7f9fbac853ceaf90",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-resource-original-04-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Finalsourceoriginal publicresource5229calls2647getter1291map1291unmap0open0unknown;allmapassocsknowntexturegen,1186full1600row/960000slice;normalexit0ACKunobservedexplicit. NoCPUbuffer/upload/private/GPUownership.",
+      "record": "research/runtime/draw02-wine-resource-original-04.json",
+      "sha256": "9dbde236ea7a1da8649ad1692eaead5cc4994e85ba4ae013610fc7ef53c2a051",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_resource_map_observation/open_map_intervals",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -104128,6 +104380,41 @@
         "DRAW02.draw02-held-egl-prediction-01-native_integration-20261012",
         "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-resource-map-fixture",
+      "level": "headless",
+      "scope": "PE32publicresourcecdeclforward/error/descriptor/mapintervalguards;nooriginalstorageownership.",
+      "behaviors": [
+        "NR.drawing-wine-resource-mapping"
+      ],
+      "tests": [
+        "tests/drawing-wine-resource-map-test.c",
+        "tools/test-drawing-wine-resource-map.py",
+        "tests/test-drawing-wine-resource-map.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-resource-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-fixture-03-native_integration-20261012",
+        "DRAW02.draw02-wine-resource-quit-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.wine-resource-map-original",
+      "level": "live_observation",
+      "scope": "Boundedoriginalpublicresourcegetter/map/unmapmetadataassociation;noCPUupload/GPU/private-layoutclaim.",
+      "behaviors": [
+        "NR.drawing-wine-resource-mapping"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-resource-original-03-live_observation-20261012",
+        "DRAW02.draw02-wine-resource-original-04-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -104501,8 +104788,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-held-egl-hashes-20261012.json",
-    "sha256": "7057954e1e0580e4b41d3453de27b9eb3746ccf1bb504bc59ce0313fb04800f7"
+    "path": "research/runtime/coverage/source-index-draw02-resource-map-quit-20261012.json",
+    "sha256": "5c6118ebce84e0a0299d41e72880a1e34e3944e0145864da78dc16aecaaccce7"
   },
   "claim_bindings_required": true
 }

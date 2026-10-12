@@ -39,6 +39,8 @@ if metadata.get('producer_update_binding'):os.environ['MNM_DRAW_UPDATE_BINDING']
 else:os.environ.pop('MNM_DRAW_UPDATE_BINDING',None)
 if metadata.get('whole_updates'):os.environ['MNM_DRAW_WHOLE_UPDATES']='1'
 else:os.environ.pop('MNM_DRAW_WHOLE_UPDATES',None)
+if metadata.get('wine_resource_map'):os.environ['MNM_DRAW_WINE_RESOURCE_MAP']='1'
+else:os.environ.pop('MNM_DRAW_WINE_RESOURCE_MAP',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')

@@ -880,3 +880,13 @@ prediction02pass149source/native/post-EGLframes0diff.54distinctqueues through116
 are covered;655contexts remainexcluded. Nativeinputs contain no original planes.
 Reassessment: complete unleased/update/lifetime/texture-upload/caller/action/
 route/cadence evidence next;no full47/21acceptance orstep2completion claim.
+
+## Step 2 public texture/resource map observation reassessment (2026-10-12 UTC)
+
+Finalpublicmapobserver forwards preserve originalcdecl result/error/FP state;
+sevenPE32calls anddecoder/Quithelper controls pass. Original04records1291closed
+maps withknown textureassociations,0unknown/openintervals andnormalexit0,ACK
+unobservedexplicit. Earlier combinedleaseexit andQuitACKrace reports stayfailed;
+metadata-onlysuccess doesnotresolvelease shutdown coupling. No mapbuffer/private/
+GPUbytes are read. Reassessment: exact CPUbuffer/mapbuffer/upload lifetime,
+resource/COMreuse/callers/routes/actions/cadence remainopenbeforestep2completion.
