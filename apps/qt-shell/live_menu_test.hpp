@@ -30,3 +30,5 @@ void installLiveStorageMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,cons
 void installLiveMultiplayerTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveMultiplayerSessionsTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveHostLobbyTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

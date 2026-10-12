@@ -604,6 +604,20 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI45 prepares an opt-in V17 one-local-player host lobby view/Cancel.
+Original host/guest full versus primary receiver identities and16-byte callback
+layout are recovered;7 private original Cancel/adapter cases/35 guard rejections
+and two host wire/widget checks pass. [Contract](multiplayer-lobby-engine-contract.md).
+The6GiB live reservation was refused at102.5306GiB free by the required100GiB
+floor. The host view remains disabled by default; no live integration, peer,
+guest, chat/rules/map/start/gameplay or replacement status is promoted. The exact
+planned live scenario is preserved separately before any future run; refusing
+preflight is storage provenance, not execution evidence. Shared older menu
+proofs retain their exact source hashes/current-source limitations. History
+`1f7032ba..acab86fa` reviews27 committed file versions with no missing receipts,
+without asserting a retrospective gate pass or validation.
+
+
 2026-10-12 UI44 connects native multiplayer session selection21 above normal
 Join16. V16 retains original500ms enumeration, bounded displayed-name rows,
 original deferred Join and Cancel's Quick destination. Original TCP Join reaches

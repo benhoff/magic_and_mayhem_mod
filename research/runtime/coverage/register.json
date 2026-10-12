@@ -43657,6 +43657,178 @@
         "apps/qt-shell/multiplayer_setup_widget.cpp",
         "apps/qt-shell/multiplayer_setup_widget.hpp"
       ]
+    },
+    {
+      "id": "MP.multiplayer-lobby-controls",
+      "subsystem": "multiplayer",
+      "kind": "recovered",
+      "title": "Original host and guest lobby controllers",
+      "scope": "Pinned host/guest constructor identities, full versus primary receiver distinction, sixteen-byte callback method/adjustor/full receiver, original Cancel primary fade/Quick return and original service disconnect. Static host rules/chat/member layout discovery; private original callback execution only. Native live view, peer/guest/chat/rules/map/start/network behavior pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4950608,
+          "scope": "Constructor identity only; original networking/lobby work not validated."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4948944,
+          "scope": "Constructor identity only; original networking/lobby work not validated."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4940592,
+          "scope": "Constructor identity only; original networking/lobby work not validated."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056092,
+          "relation": "data",
+          "scope": "Host primary menu vtable only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4946928,
+          "scope": "Original full-object Cancel and service disconnect only.",
+          "recovered_range": "multiplayer-lobby-cancel"
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-lobby-engine-contract.md"
+      ],
+      "implementation": [
+        "tools/export-multiplayer-menu.py"
+      ],
+      "tests": [
+        "tests/multiplayer-lobby-contract.c",
+        "tools/test-multiplayer-lobby-contract.py"
+      ],
+      "evidence": [
+        "UI45.original-lobby-fixture"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.host-lobby-view-ownership",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "host-lobby-view-ownership",
+      "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4950608,
+          "scope": "Host constructor identity; other lobby contracts remain original."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056092,
+          "relation": "data",
+          "scope": "Host primary menu vtable only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4946928,
+          "scope": "Full-object original Cancel to primary fade/Quick return/disconnect only.",
+          "recovered_range": "multiplayer-lobby-cancel"
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-lobby-engine-contract.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v17.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/multiplayer-lobby-contract.c",
+        "tools/test-multiplayer-lobby-contract.py",
+        "tools/test-live-host-lobby.py"
+      ],
+      "evidence": [
+        "UI45.original-lobby-fixture"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "research/runtime/coverage/planned-host-lobby-scenario-20261012.json"
+      ]
+    },
+    {
+      "id": "HOST.native-host-lobby-view",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "native-host-lobby-view",
+      "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4950608,
+          "scope": "Host constructor identity; other lobby contracts remain original."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056092,
+          "relation": "data",
+          "scope": "Host primary menu vtable only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4946928,
+          "scope": "Full-object original Cancel to primary fade/Quick return/disconnect only.",
+          "recovered_range": "multiplayer-lobby-cancel"
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-lobby-engine-contract.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_host_lobby_controller.hpp",
+        "apps/qt-shell/live_host_lobby_controller.cpp",
+        "apps/qt-shell/multiplayer_lobby_widget.hpp",
+        "apps/qt-shell/multiplayer_lobby_widget.cpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "apps/qt-shell/live_host_lobby_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/test-live-host-lobby.py",
+        "tests/menu-host-lobby-bridge-test.cpp"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "research/runtime/coverage/planned-host-lobby-scenario-20261012.json"
+      ]
     }
   ],
   "evidence": [
@@ -90611,6 +90783,34 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI45.original-lobby-fixture",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Original full-object Cancel callback/primary fade/Quick return/interface disconnect and ABI; private one-player host projection and guards. Fade/disconnect stubbed; networking not executed.",
+      "record": "research/runtime/multiplayer-lobby-contract-20261012.json",
+      "sha256": "918d783d6097fa2ace368782809cf28d42d0b6b2a4c7cc82131d9fe59e3cd137",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/guard_rejections",
+          "equals": 35
+        },
+        {
+          "pointer": "/networking_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -101699,6 +101899,15 @@
       "document": "research/runtime/multiplayer-session-menu-contract.md",
       "evidence": "UI44.original-session-fixture",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "multiplayer-lobby-cancel",
+      "build": "nocd-40209ca7",
+      "start": 4946928,
+      "end": 4946975,
+      "document": "research/runtime/multiplayer-lobby-engine-contract.md",
+      "evidence": "UI45.original-lobby-fixture",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -101809,8 +102018,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-multiplayer-sessions-20261012.json",
-    "sha256": "8632fb83062e9dcc3a96b704bce3405c77ca193eb7db355e6e0984fff54d872e"
+    "path": "research/runtime/coverage/source-index-host-lobby-pending-20261012.json",
+    "sha256": "254d1b43734986dc5acdd176dce1bcfc8ed122b972a1de95ab9c9c74789967ce"
   },
   "claim_bindings_required": true
 }
