@@ -252,3 +252,34 @@ WinMM calls, other COM paths, full manager/config/cache/event migration, initial
 missing-device/physical recovery, long playlist/waveform/listening and a complete
 executed Wine API census remain pending. Exact76c88ab0 history reviews21
 transitions with zero receipt gaps, without renewing historical validation.
+
+## Observed original import call census (2026-10-12)
+
+The optional pinned PE32 observer installs after existing native adapters and
+forwards all190 original import slots with saved flags, atomic low/overflow
+counters and unchanged registers/arguments/stack/targets. Target pointers remain
+private; version1 MNMAPI01 stores RVAs, labels, classifications and counters.
+Staging checks original hash/catalog and runtime guards/readability/protection
+before mutation. Final decoding requires stopped private process and exact
+original metadata/reserved/header/classification checks. See wine-import-census.md.
+
+The fresh synthetic PE checks pass stdcall/cdecl/fastcall, arithmetic flags,
+ECX/EDX/LastError, overflow and10000 repeats, plus ten malformed/active decoder
+refusals (wine-import-census-data-synthetic-20261012.json). Five shared protocol checks
+pass. Current full native default voice/WAV/factory/media/CD/render/menu/campaign
+and normal Quit pass with all190 counters installed and DSOUND disabled.
+wine-import-census-data-public-pass-20261012.json records 89
+distinct exercised direct Windows/Wine import targets, 13756840
+calls, 8 exercised native shim imports and
+1 legacy codec import. Counts are read after owned
+Wine shutdown. This is a defined import boundary, not a full Wine API count:
+dynamic, COM/vtables, shim forwarding/cached pointers, transitive and prefix
+activity remain excluded. Audio adapter unsupported/fallback/errors remain zero.
+Exact0144cb6c history reviews28 transitions without receipt gaps; no historical
+validation is refreshed. Native manager/config/cache/events, initial no-device
+policy, media/physical recovery, long playlist/waveform/listening and broader
+executed API coverage remain pending.
+
+The initial code-address classification for the import table was corrected to a
+data relationship before this fresh prospective run. The earlier successful
+public result retains its original claim fingerprint and is historical.

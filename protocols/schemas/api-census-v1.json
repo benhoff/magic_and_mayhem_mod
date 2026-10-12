@@ -1,0 +1,109 @@
+{
+  "name": "api_census",
+  "version": 1,
+  "magic": "MNMAPI01",
+  "size": 48704,
+  "header_size": 64,
+  "byte_order": "little",
+  "declared_size_kind": "size",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "state",
+      "offset": 16,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "installed",
+      "offset": 20,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "refusal",
+      "offset": 24,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "row_count",
+      "offset": 28,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "row_stride",
+      "offset": 32,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved_header",
+      "offset": 36,
+      "size": 28,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "rows",
+      "offset": 64,
+      "size": 48640,
+      "owner": "producer",
+      "type": "bytes"
+    }
+  ],
+  "constants": {
+    "row_count": 190,
+    "row_stride": 256,
+    "row_iat_rva": 0,
+    "row_target_kind": 4,
+    "row_count_low": 8,
+    "row_count_high": 12,
+    "row_target_module": 16,
+    "row_target_module_size": 64,
+    "row_import_module": 80,
+    "row_import_module_size": 32,
+    "row_symbol": 112,
+    "row_symbol_size": 128
+  },
+  "enums": {
+    "state": {
+      "dormant": 0,
+      "active": 1,
+      "detached": 2,
+      "refused": 3
+    },
+    "target_kind": {
+      "unknown": 0,
+      "wine": 1,
+      "native_shim": 2,
+      "legacy_codec": 3
+    }
+  }
+}

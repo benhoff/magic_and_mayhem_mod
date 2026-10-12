@@ -30,7 +30,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
-    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','MnmApiCensus.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Copy hash mismatch')
@@ -80,6 +80,19 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         patched=module('scene_production_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmSceneProduction.dll','SceneProductionAnchor',b'.mnprod')
         shutil.copy2(production_dll,game/production_dll.name)
         production_metadata=dict(scene_production_mode=production,scene_production_sha256=hashlib.sha256(production_dll.read_bytes()).hexdigest())
+    census_metadata={}
+    census=os.environ.get('MNM_WINE_IMPORT_CENSUS')
+    if census is not None:
+        if census!='1':raise ValueError('Import census requires explicit diagnostic1')
+        from wine_import_census import catalog
+        expected=module('census_import_export','tools/export-wine-imports.py').entries(data)
+        if [(entry['rva'],entry['module'],entry['symbol']) for entry in expected]!=catalog():raise ValueError('Original import catalog drift')
+        census_dll=module('census_build','tools/build-api-census.py').build(root/'api-census-build')
+        # Install after all other imported adapters, so their guarded IAT
+        # installation sees original targets and the observer counts final ones.
+        patched=module('census_import_stage','tools/prepare-shadow-experiment.py').add_import(patched,'MnmApiCensus.dll','ApiCensusAnchor',b'.mnapi')
+        shutil.copy2(census_dll,game/census_dll.name);shutil.copy2(census_dll.parent/'manifest.json',root/'api-census-build.json')
+        census_metadata=dict(wine_import_census=True,wine_import_census_file=str(root/'wine-import-census.bin'),wine_import_census_dll_sha256=hashlib.sha256(census_dll.read_bytes()).hexdigest())
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None
@@ -105,7 +118,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
-    metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
+    metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata);metadata.update(census_metadata)
     metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     native_wave_loading=native_voices,
                     native_audio_factory=native_voices,
