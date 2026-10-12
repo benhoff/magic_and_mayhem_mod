@@ -44,7 +44,7 @@ private:
     mnm::render::GpuFrame rendered_,readyFrame_;
     std::mutex mutex_;
     std::condition_variable wake_;
-    bool started_=false,stop_=false,producerExited_=false,requestStop_=false;
+    bool frameChanged_=false,started_=false,stop_=false,producerExited_=false,requestStop_=false;
     bool normalQuit_=false,drawAllowed_=false,paused_=false;
-    std::uint64_t exports_=0,skipped_=0,highWater_=0,turns_=0;
+    std::uint64_t exports_=0,skipped_=0,highWater_=0,turns_=0,exportAllocations_=0;
 };

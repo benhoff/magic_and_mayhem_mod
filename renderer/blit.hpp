@@ -57,7 +57,7 @@ public:
     bool unique() const {return data_ && data_.use_count()==1;}
     // Immutable presentation copy. Keep a lease on the render owner until all
     // consumer leases return; final destruction must occur on that owner.
-    GpuFrame snapshot() const;
+    GpuFrame snapshot(GpuFrame reusable={}) const;
     unsigned textureForCurrentContext() const;
     void samplingComplete() const;
 private:
@@ -68,7 +68,7 @@ private:
 };
 struct RenderStats {
     std::uint64_t uploads=0,copies=0,paletteUpdates=0,nativeReadbacks=0,presentations=0;
-    std::uint64_t rgbaReadbacks=0,gpuPresentations=0;
+    std::uint64_t rgbaReadbacks=0,gpuPresentations=0,gpuPresentationAllocations=0;
     std::uint64_t presentationPixels=0;
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
     std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;

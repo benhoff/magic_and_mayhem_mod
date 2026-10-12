@@ -175,3 +175,111 @@ The final header contract clarification has a fresh rerun under
 `HOST.native-render-owner.current-controls-20261012` (same successful 151-frame
 thread controls and 109 default GPU comparisons). The earlier source-bound result
 is retained unchanged rather than updating its hashes.
+
+
+## Render-owner live negatives and persistent output buffers — 2026-10-12
+
+The first TITAN dedicated-owner run, retained as
+`HOST.native-render-owner.copy-timeout-negative-20261012`, completes 345 balanced
+source/native/imports then fails the original ordered-call history deadline.
+The saved diagnostic
+[native-render-owner-copy-timeout-diagnosis-20261012.json](native-render-owner-copy-timeout-diagnosis-20261012.json)
+records phase3 inside the saved original `BltFast` function-pointer call span,
+with owner/waiter ages 434ms against 50ms; native status getter is zero. This
+confirms the marker span, not original-operation CPU duration versus scheduler
+preemption, nor host-worker causality. No deadline or conservative GAP refusal
+is changed. Private cleanup, source stability and immutable originals passed.
+
+An unchanged-code repeat completes the entire functional journey: summon,
+Fireball, melee/party lethal, movement/retreat validation, refused spells,
+portrait stress, native menus/resume and original normal Quit. All 4,626
+source/native/imports balance; source/output high-water two, outstanding zero,
+readbacks/pixel replies/fallback zero, retirement clean. Yet the campaign
+performance gate fails: actual World 27.1119FPS, source 19.2517Hz, visible
+paints 34.4950/47.9480FPS with worst windows 0/4.5331FPS. The flow is functionally
+successful; the campaign/wrapper remain failed, with no 60FPS or deadline fix
+claim. This distinction is explicit in the new derived immutable record
+`HOST.native-render-owner.functional-performance-negative-20261012`; its
+raw wrapper and child reports remain unchanged.
+
+That implementation created one new output texture per export (9,178 exports
+in the repeat). The bounded render-owner pool now retains two output textures
+and reuses one only when its owner reference is unique: no GUI/queued lease may
+still sample it. Before writing, the producer orders the previous sampling
+fence and retires old fences; then it copies freshly rendered native output and
+issues a new production fence. This reduces allocation churn without assuming
+that allocation caused the recorded stalls, changing source admission, or
+substituting a cached World image. Stable dimensions/format are the current
+validated pool domain; context/format/dimension changes remain pending.
+
+Fresh `HOST.native-render-owner.buffer-reuse-controls-20261012` includes 171
+ordered static RGB565 presentations, 20 separately published alternating-color
+frames, exactly two output allocations, 23 diagnostic pixel checks, held-frame
+immutability, slow GUI pressure, malformed refusal and joined teardown. Native
+readbacks remain zero and all 109 default GPU comparisons pass again. Current
+pooled live validation and performance remain pending until the third journey
+finishes. Earlier results retain their pre-pool fingerprints/scope.
+
+Committed range 8a184eef..6de9bbc0 was reviewed separately: 24 exact file receipt
+chains, zero unresolved, in
+`working/tests/native-render-owner-checkpoint-history-20261012.json`. Journal
+self-updates are excluded; this is committed-history accounting, not a new
+execution or retrospective gate assertion.
+
+
+## Preserve producer GPU presentation caching — 2026-10-12
+
+The pooled live run completes its functional journey at 4,702 balanced Worlds
+and normal Quit. Its 9,520 exports use exactly two output texture allocations.
+It still fails paint-window performance; actual World is 28.0440FPS and source
+19.6139Hz. `HOST.native-render-owner.pooled-performance-negative-20261012`
+preserves the whole failure and separate functional completion. Reducing export
+allocation does not establish a stall fix or sustained 60FPS.
+
+Review found the worker discarded its mutable producer GPU lease after every
+export. `GlBlitter` retains presentation textures weakly, so that handoff
+unnecessarily recreated producer presentation storage and reset incremental
+presentation damage. The latest mutable lease now stays entirely on its render
+owner until replaced or teardown; a separate new-frame flag controls exports.
+Only immutable snapshots enter the GUI. No cached-frame repaint is counted as
+a new World draw; extra World/HUD rendering still executes its native passes.
+A new allocation counter records producer presentation storage independently
+from the two exported buffers.
+
+Fresh `HOST.native-render-owner.producer-cache-controls-20261012` passes the
+171-presentation/23-pixel/slow-GUI/refusal/join fixture with exactly one mutable
+producer presentation allocation and two immutable output allocations, plus
+109 existing GPU comparisons. Current cache-preserving live/performance proof
+is pending until the final predeclared TITAN journey completes. Old results
+remain immutable with their original source and scope fingerprints.
+
+
+### Final dedicated-owner/cache proof (2026-10-12)
+
+Fresh `HOST.native-render-owner.cached-functional-performance-negative-20261012`
+passes the complete TITAN native campaign and its 19FPS smoke floor: successful
+casting/Fireball/melee/party lethal, movement/retreat/refusals, portrait stress,
+native menu return/resume and normal Quit. All 4,707 owned sources, native
+completions, original returns and imports balance; outstanding zero, source
+credits/output leases high-water two, ordinary readbacks/pixel replies/fallback
+zero, original verification/source stability/private Wine cleanup pass.
+9,734 immutable exports require exactly two output allocations. Producer
+presentation allocations (4,459 across changing original/recipe identities)
+are counted separately; the static control reuses one producer allocation.
+
+Performance remains failed. Actual World drawing is 27.2142FPS; visible paints
+35.8486/48.8832FPS over 176.827/61.964 seconds, with worst windows 10.9389/20FPS.
+Those windows pass the smoke's 19FPS average/half-floor checks, but fail the
+59FPS benchmark. Source19.0883Hz also fails the stricter diagnostic19.5Hz
+threshold; the wrapper retains that first failure and is not made successful
+by deriving the visible-paint windows. No simulation pacing or original
+ordering deadline was changed. No 60FPS, interpolation, original equivalence,
+physical scanout, full replacement or drawing-history GAP-fix claim.
+
+The owned V5 GUI now presents immutable completed frames and handles input/menus;
+native World preparation/drawing and command/UI compilation have one dedicated
+render owner. Remaining throughput cost is on that native path and GPU submission/
+sampling, with original source delivery still separately measured. Context/
+format/dimension changes and unexecuted failure branches remain explicit pending
+boundaries. Current controls and this journey support partial implementation
+and live observation; prior negatives retain their source/scope hashes.

@@ -535,11 +535,19 @@ void GpuFrame::samplingComplete() const{
     if(!data_->consumed)throw std::runtime_error("Cannot fence GPU sampling");
     g->glFlush();
 }
-GpuFrame GpuFrame::snapshot() const{
+GpuFrame GpuFrame::snapshot(GpuFrame reusable) const{
     if(!data_)throw std::runtime_error("Empty GPU snapshot");
     auto& p=*data_->owner;p.thread();Current current(p.context,p.surface);auto& g=p.gl;
-    auto frozen=std::make_shared<Data>();frozen->owner=data_->owner;frozen->dimensions=data_->dimensions;frozen->format=data_->format;frozen->immutable=true;
-    g.glActiveTexture(GL_TEXTURE0);frozen->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,size().width(),size().height(),nullptr);
+    if(reusable.valid() && (!reusable.unique() || !reusable.data_->immutable || reusable.data_->owner!=data_->owner || reusable.size()!=size() || reusable.data_->format.bits!=data_->format.bits || reusable.data_->format.masks!=data_->format.masks))
+        throw std::runtime_error("GPU snapshot buffer is leased or incompatible");
+    auto frozen=std::move(reusable.data_);
+    if(!frozen){
+        frozen=std::make_shared<Data>();frozen->owner=data_->owner;frozen->dimensions=data_->dimensions;frozen->format=data_->format;frozen->immutable=true;
+        g.glActiveTexture(GL_TEXTURE0);frozen->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,size().width(),size().height(),nullptr);
+    }
+    if(frozen->consumed){g.glWaitSync(frozen->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frozen->consumed);frozen->consumed=nullptr;}
+    if(frozen->produced){g.glDeleteSync(frozen->produced);frozen->produced=nullptr;}
+    frozen->consumer=nullptr;
     // Copy within the producing context, after all native drawing. No readback.
     g.glBindFramebuffer(GL_FRAMEBUFFER,p.fbo);g.glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,data_->texture,0);
     p.attached=data_->texture;g.glBindTexture(GL_TEXTURE_2D,frozen->texture);
@@ -948,7 +956,7 @@ GpuFrame GlBlitter::presentGpu(SurfaceId id){
         frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};frame->format=s.format;
         g.glActiveTexture(GL_TEXTURE0);
         frame->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);
-        s.gpu=frame;
+        s.gpu=frame;++p.counters.gpuPresentationAllocations;
         s.gpuDamage=Rect{0,0,s.width,s.height};
     }
     if(frame->consumed){g.glWaitSync(frame->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frame->consumed);frame->consumed=nullptr;}

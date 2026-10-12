@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scope": "Read-only diagnosis of retained negative live execution; ownership phase identifies a code span, not scheduler/operation cause.",
+  "negative_evidence": "HOST.native-render-owner.copy-timeout-negative-20261012",
+  "log_path": "working/experiments/menu-observer/run-zz7zk7sn/lock-capture/lifecycle.log",
+  "log_sha256": "cf7ed79f6dc723614f982cee015001c47b314af26ecbd97cc9c6baabd6b9dbe6",
+  "trace": "copy_order_timeout 002cb840 00000198 000001e0 000001b2 000001b2 00000101 00000101 00000003 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+  "waiter_ms": 434,
+  "holder_ms": 434,
+  "holder_site": 257,
+  "waiter_site": 257,
+  "holder_phase": 3,
+  "native_status_stage": 0,
+  "ordering_budget_ms": 50,
+  "confirmed_location": "bridge.c blt_fast phase3: immediately before invoking original Surface2 BltFast through saved function pointer; phase4 is after return.",
+  "confidence": "high_within_recorded_marker_scope",
+  "unknown": [
+    "Original-call operation duration versus owner/waiter preemption",
+    "Cause of original-call span stall",
+    "Whether host worker/driver contention contributed"
+  ],
+  "sources": {
+    "runtime/render/bridge.c": "44ea78287afc585691e5805ca5158a2a23602870133fda328d0eaf3d0fe26acb",
+    "runtime/render/copy_order.h": "84242fd54a621508a839d9a1a8aed3039f8e95e188bcc55c77f6273a72d5debf",
+    "runtime/native-draw/factory.c": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079"
+  }
+}

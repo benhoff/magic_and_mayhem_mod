@@ -7,8 +7,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 648 |
-| evidence | 1368 |
-| scenarios | 407 |
+| evidence | 1374 |
+| scenarios | 408 |
 | functions | 6675 |
 | registered recovered ranges | 29 |
 | incomplete dispatch tables | 22 |
@@ -26,9 +26,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 178 |
 | behaviors without comparison | 543 |
 | behaviors without tests | 1 |
-| stale evidence | 1156 |
+| stale evidence | 1161 |
 | behavior anchors outside discovered functions | 50 |
-| validation gaps | 830 |
+| validation gaps | 826 |
 | retired execution claims | 860 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -41,14 +41,14 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | understanding | partial: 308; scoped: 305; unknown: 35 |
 | implementation | none: 178; partial: 217; scoped: 253 |
 | comparison | none: 543; recorded: 105 |
-| integration | headless: 133; live_equivalence: 13; live_observation: 72; none: 366; preview: 64 |
+| integration | headless: 132; live_equivalence: 13; live_observation: 73; none: 366; preview: 64 |
 | replacement | none: 642; scoped_live: 6 |
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 178; pending: 452; current: 18 |
+| implementation | none: 178; pending: 449; current: 21 |
 | comparison | none: 543; pending: 99; current: 6 |
-| integration | none: 366; pending: 273; current: 9 |
+| integration | none: 366; pending: 272; current: 10 |
 | replacement | none: 642; pending: 6; current: 0 |
 
 ## Animation checklist
@@ -682,7 +682,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | HOST.campaign-progress-publication | Publish campaign progress without waiting on GUI filesystem work | native policy | partial | partial | none | live_observation | none | stale |
 | HOST.independent-native-world-loop | Render owned native World and HUD independently of engine production | native policy | partial | partial | none | live_observation | none | stale |
 | HOST.native-campaign-party-lethal-oracle | Recognize same-party Fireball lethal after verified melee engagement | native policy | partial | partial | none | headless | none | current_fingerprints |
-| HOST.native-render-owner | Dedicated native render owner and bounded immutable presentation leases | native policy | partial | partial | none | headless | none | stale |
+| HOST.native-render-owner | Dedicated native render owner and bounded immutable presentation leases | native policy | partial | partial | none | live_observation | none | stale |
 
 ## Spell Dispatch checklist
 
@@ -2006,7 +2006,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NR.native-prepared-command-frame.compiled-controls-20261012**: `renderer/blit.cpp`, `renderer/blit.hpp`
 - **NR.native-prepared-world-replay.current-controls-20261012**: `renderer/blit.cpp`, `renderer/blit.hpp`
 - **HOST.independent-native-world-loop.functional-performance-negative-20261012**: `apps/qt-shell/live_command_renderer.cpp`, `apps/qt-shell/live_command_renderer.hpp`, `apps/qt-shell/live_command_session.cpp`, `apps/qt-shell/live_command_session.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`
-- **HOST.native-render-owner.controls-20261012**: `renderer/blit.hpp`
+- **HOST.native-render-owner.controls-20261012**: `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-render-owner.current-controls-20261012**: `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-render-owner.copy-timeout-negative-20261012**: `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-render-owner.functional-performance-negative-20261012**: `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-render-owner.buffer-reuse-controls-20261012**: `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `tests/native-render-worker-test.cpp`
+- **HOST.native-render-owner.pooled-performance-negative-20261012**: `apps/qt-shell/native_render_worker.cpp`, `apps/qt-shell/native_render_worker.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `tests/native-render-worker-test.cpp`
 
 ## Checklist gaps
 

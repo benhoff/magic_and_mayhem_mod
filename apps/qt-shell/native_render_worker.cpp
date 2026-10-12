@@ -8,7 +8,7 @@
 #include <vector>
 NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const QString& game,const QString& reportPath):viewport_(v),reportPath_(reportPath){
     NativeRenderTarget target{[this]{return share_!=nullptr;},[this]{return share_;},
-        [this](auto frame){rendered_=std::move(frame);},[]{return QString();},&surface_};
+        [this](auto frame){rendered_=std::move(frame);frameChanged_=rendered_.valid();},[]{return QString();},&surface_};
     world_=std::make_unique<ResidentWorldSession>(target,path,game,true);
     commands_=std::make_unique<LiveCommandSession>(target);
     commands_->residentWorld=[this](auto g,auto n){return world_->import(g,n);};
@@ -61,7 +61,9 @@ void NativeRenderWorker::run(){
         if(const auto* result=commands_->result()){next.hasResult=true;next.result=*result;}
         next.report=world_->report();
         next.report["native_render_owner"]="dedicated-thread";
+        next.report["presentation_source_allocations"]=QString::number(next.hasResult?next.result.stats.gpuPresentationAllocations:0);
         next.report["presentation_exports"]=QString::number(exports_);
+        next.report["presentation_export_allocations"]=QString::number(exportAllocations_);
         next.report["presentation_exports_skipped"]=QString::number(skipped_);
         next.report["presentation_lease_high_water"]=int(highWater_);
         next.report["render_owner_turns"]=QString::number(turns_);
@@ -83,7 +85,6 @@ void NativeRenderWorker::run(){
                 updateStatus();save();break;
             }
             if(request)commands_->requestStop();
-            leases.erase(std::remove_if(leases.begin(),leases.end(),[](const auto& f){return f.unique();}),leases.end());
             if(!pause)world_->poll(quit);
             if(!pause && !commands_->ended()){
                 const auto before=commands_->result()?commands_->result()->presents:0;
@@ -97,13 +98,18 @@ void NativeRenderWorker::run(){
                         world_->noteIndependentPresentation(clock.nsecsElapsed()/1000000.0);
                     }}
                 }
-                if(rendered_.valid()){
+                if(frameChanged_ && rendered_.valid()){
                     // Bounded immutable output leases. Display coalescing never
                     // discards/reorders engine source updates or command imports.
-                    if(leases.size()<2){auto frozen=rendered_.snapshot();leases.push_back(frozen);highWater_=std::max(highWater_,std::uint64_t(leases.size()));++exports_;
+                    auto available=std::find_if(leases.begin(),leases.end(),[&](const auto& f){return f.unique() && f.size()==rendered_.size();});
+                    if(available!=leases.end() || leases.size()<2){
+                        mnm::render::GpuFrame frozen;
+                        if(available!=leases.end()){frozen=rendered_.snapshot(std::move(*available));*available=frozen;}
+                        else{frozen=rendered_.snapshot();leases.push_back(frozen);++exportAllocations_;}
+                        highWater_=std::max(highWater_,std::uint64_t(leases.size()));++exports_;
                         std::lock_guard<std::mutex> lock(mutex_);readyFrame_=std::move(frozen);
                     }else ++skipped_;
-                    rendered_={};
+                    frameChanged_=false;
                 }
             }
             ++turns_;updateStatus();
