@@ -32,12 +32,13 @@ def main():
         if len(paths)!=1:raise ValueError('Missing unique production campaign report')
         game=json.loads(paths[0].read_text());report.update(campaign_report=str(paths[0]),campaign_report_sha256=sha(paths[0]),
             campaign_success=game['success'],campaign_exit_code=exit_code,experiment=game['experiment'])
-        trace=Path(game['experiment'])/'scene-production.bin';report['trace_sha256']=sha(trace);report['production']=summarize(trace)
         report['sources_unchanged']=all(sha(ROOT/p)==h for p,h in report['sources'].items())
         report['private_wine_stopped']=game.get('private_wine_stopped') is True
         report['original_manifest_verified_after']=game.get('original_manifest_verified_after') is True
         report['hardware_driver']=game.get('hardware_driver');report['resident_world']=game.get('resident_world')
         report['gameplay_checks']={k:game.get(k) for k in ('casting_verified','combat_verified','movement_verified','normal_quit_verified')}
+        report['campaign_error']=game.get('error')
+        trace=Path(game['experiment'])/'scene-production.bin';report['trace_sha256']=sha(trace);report['trace_bytes']=trace.stat().st_size;report['production']=summarize(trace)
         if not all(report[k] for k in ('sources_unchanged','private_wine_stopped','original_manifest_verified_after')):raise ValueError('Production integrity/cleanup failed')
         if exit_code or not game['success']:raise ValueError('Campaign failed; preserve production diagnostic separately')
         if args.candidate!='observe' and not report['production']['protected_state_invariance']:raise ValueError('Repeated producer changed protected state or refused; not an invariance pass')

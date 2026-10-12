@@ -32,6 +32,7 @@ extern void production_history(void);
 extern void production_repeat_full(u32,void*),production_repeat_slice(u32,void*);
 struct SceneFrame {u32 sp,caller,object,selected,queues,histories,skipped;};
 static struct SceneFrame frames[8];
+static void finish(void);
 static int owned(void){
  u32 tid=GetCurrentThreadId();__sync_bool_compare_and_swap(&owner,0,tid);
  if(tid==__atomic_load_n(&owner,__ATOMIC_ACQUIRE))return 1;
@@ -104,12 +105,12 @@ void production_after(u32* r,void* fx){
  u32 error=GetLastError(),sp=(u32)r+40;
  for(u32 i=0;i<8;++i)if(frames[i].sp==sp){
   struct SceneFrame f=frames[i];frames[i].sp=0;r[9]=f.caller;
-  if(!f.selected){SetLastError(error);return;}
+  if(!f.selected||!enabled||count==CASE_MAX){SetLastError(error);return;}
   u32* row=rows[count];row[0]=count+1;row[1]=mode;row[2]=get(0x6c4830);row[3]=get(0x6cbb78+0xfd62);
   row[4]=f.object;row[5]=primary_calls;row[6]=queue_calls;row[18]=get(0x6c4830);row[20]=get(0x6cbb78+0xfd62);
   u32 history_base=history_forward;row[34]=history_base-f.histories;
   unsigned long long begin=0,end=0;
-  if(foreign||(mode&&!state_capture(&before,f.object))){row[7]=2;++refused;}
+  if(foreign||(mode&&(get(f.object+0x231)||get(f.object+0x22d)!=get(f.object+0x229)||!state_capture(&before,f.object)))){row[7]=2;++refused;}
   else{
    row[8]=before.bytes;
    if(mode){
@@ -131,16 +132,21 @@ void production_after(u32* r,void* fx){
   scene_capture=0;
   if(scene_bad||(mode&&(!primary_scene_bytes||!extra_scene_bytes))){row[7]=2;++refused;}
   if(mode&&row[16]!=1){row[7]=2;++refused;}
-  ++count;SetLastError(error);return;
+  if(mode&&row[32]){row[7]=2;++refused;}
+  ++count;
+  if(count==CASE_MAX||(mode&&(failed||refused)))finish();
+  SetLastError(error);return;
  }
  ++refused;SetLastError(error);
 }
 static int guards(void){
- static const u8 entry[5]={0x53,0x55,0x56,0x8b,0xf1},start[5]={0x8b,0x46,0x25,0x8b,0xce},end[8]={0x33,0xdb,0x8b,0x96,0x29,0x02,0,0};
+ static const u8 entry[5]={0x53,0x55,0x56,0x8b,0xf1},start[5]={0x8b,0x46,0x25,0x8b,0xce};
+ static const u8 cleanup[20]={0x33,0xdb,0x8b,0x96,0x29,0x02,0,0,0x89,0x9e,0x31,0x02,0,0,0x89,0x96,0x2d,0x02,0,0};
+ static const u8 end[7]={0xa0,0x0c,0x14,0x5e,0,0x84,0xc0};
  static const u8 q1[5]={0xe8,0xf0,0x2d,0,0},q2[5]={0xe8,0x47,0x2d,0,0};
  static const u8 history[5]={0xe8,0x6c,0x55,0x02,0};
  return (u32)GetModuleHandleA(0)==0x400000&&readable(0x4fd280,0x500)&&readable(0x4fa4ef,5)&&
-   same((void*)0x4fd280,entry,5)&&same((void*)0x4fd315,start,5)&&same((void*)0x4fd5ad,end,8)&&
+   same((void*)0x4fd280,entry,5)&&same((void*)0x4fd315,start,5)&&same((void*)0x4fd5ad,cleanup,20)&&same((void*)0x4fd5c1,end,7)&&
    same((void*)0x4fd4ab,q1,5)&&same((void*)0x4fd554,q2,5)&&same((void*)0x4fa4ef,history,5);
 }
 static int patch(u32 at,u32 target,u32 n,u8 opcode){
@@ -155,7 +161,7 @@ static int install(u32 candidate){
  copy(t,(void*)0x4fd280,5);t[5]=0xe9;put(t+6,0x4fd285-(u32)t-10);
  if(!FlushInstructionCache(GetCurrentProcess(),t,10)||!QueryPerformanceFrequency(frequency))return 0;
  production_trampoline=(u32)t;mode=candidate;
- if(!patch(0x4fd280,(u32)production_enter,5,0xe9)||!patch(0x4fd5ad,(u32)production_draw_end,8,0xe9)||
+ if(!patch(0x4fd280,(u32)production_enter,5,0xe9)||!patch(0x4fd5c1,(u32)production_draw_end,7,0xe9)||
     !patch(0x4fd4ab,(u32)production_queue,5,0xe8)||!patch(0x4fd554,(u32)production_queue,5,0xe8)||
     !patch(0x4fa4ef,(u32)production_history,5,0xe8))return 0;
  enabled=1;return 1;
@@ -165,7 +171,7 @@ static int save_state(u32 tag,const struct SceneState* s){
  u32 h[4]={tag,s->count,s->bytes,0};return write(h,sizeof(h))&&write(s->regions,s->count*sizeof(*s->regions))&&write(s->data,s->bytes);
 }
 static void finish(void){
- if(!file)return;enabled=0;u32 h[16]={0};copy(h,"MNMSPR01",8);h[2]=2;h[3]=ROW_WORDS*4;h[4]=count;h[5]=mode;h[6]=failed;h[7]=refused;h[8]=foreign;h[9]=owner;h[10]=frequency[0];h[11]=frequency[1];h[12]=diff_count;h[13]=queue_calls;h[14]=primary_calls;h[15]=2*have_first+2*have_bad;
+ if(!file)return;enabled=0;u32 h[16]={0};copy(h,"MNMSPR01",8);h[2]=3;h[3]=ROW_WORDS*4;h[4]=count;h[5]=mode;h[6]=failed;h[7]=refused;h[8]=foreign;h[9]=owner;h[10]=frequency[0];h[11]=frequency[1];h[12]=diff_count;h[13]=queue_calls;h[14]=primary_calls;h[15]=2*have_first+2*have_bad;
  if(write(h,sizeof(h))&&write(rows,count*sizeof(*rows))&&write(diffs,diff_count*sizeof(*diffs))){
   if(have_first){save_state(1,&first_before);save_state(2,&first_after);}
   if(have_bad){save_state(3,&bad_before);save_state(4,&bad_after);}

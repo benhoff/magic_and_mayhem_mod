@@ -5,18 +5,18 @@ import struct
 
 REGIONS={1:'module-data-unclassified',2:'renderer-unclassified',10:'world-counter',11:'mode-sequence',
          12:'pacing-target',13:'pacing-baseline',14:'global-ANI',15:'scheduler',16:'RNG',
-         17:'gameplay-object',18:'map-context',20:'creature-pool',21:'effect-pool',22:'third-pool'}
+         17:'gameplay-object',18:'map-context',19:'scene-queue-header',20:'creature-pool',21:'effect-pool',22:'third-pool'}
 STATE_MAX=8*1024*1024
 FIXED={1:(0x5d8000,0x123b39),2:(0x689930,0x240),10:(0x6c4830,4),
        11:(0x6cbb78+0xfd5a,12),12:(0x6dbe95,8),13:(0x6e8100,4),
        14:(0x6deffc,384),15:(0x6df188,0x3c),16:(0x6e1ac8,1008),
-       17:(0x6cbb78,0x1031b),18:(0x6c5490,0x66d2)}
+       17:(0x6cbb78,0x1031b),18:(0x6c5490,0x66d2),19:(0x689930+0x229,16)}
 POOLS={20:(0x6def58,0xe4b,256),21:(0x689498,0x22e,2048),22:(0x6b1248,0x7e,4096)}
 
 def decode(path):
     if not 64<=path.stat().st_size<=64*1024*1024:raise ValueError('Scene production size limit')
     data=path.read_bytes();h=struct.unpack_from('<16I',data)
-    if data[:8]!=b'MNMSPR01' or h[2] not in (1,2) or h[3]!=160 or not 1<=h[4]<=16 or h[5]>(2 if h[2]==1 else 3) or h[12]>4096 or h[15] not in (0,2,4):raise ValueError('Scene production header')
+    if data[:8]!=b'MNMSPR01' or h[2] not in (1,2,3) or h[3]!=160 or not 1<=h[4]<=16 or h[5]>(2 if h[2]==1 else 3) or h[12]>4096 or h[15] not in (0,2,4):raise ValueError('Scene production header')
     frequency=h[10]|h[11]<<32
     if not frequency or not h[9]:raise ValueError('Scene production clock/owner')
     at=64;end=at+h[4]*160+h[12]*32
@@ -42,7 +42,8 @@ def decode(path):
                 expected_manager,stride,maximum=POOLS[kind]
                 if manager!=expected_manager or capacity>maximum or size!=capacity*stride or (not capacity and (base or bound)) or (capacity and not base):raise ValueError('Scene pool region contract')
             seen.add(kind);offset+=size
-        if offset!=n or seen!=set(REGIONS):raise ValueError('Scene state payload or incomplete protected regions')
+        expected=set(REGIONS)-({19} if h[2]<3 else set())
+        if offset!=n or seen!=expected:raise ValueError('Scene state payload or incomplete protected regions')
         states.append(dict(tag=tag,regions=regions,payload=payload,sha256=hashlib.sha256(payload).hexdigest()))
     if at!=len(data):raise ValueError('Scene production trailing bytes')
     if any(r[7]<2 for r in rows) and not states:raise ValueError('Scene production retained state missing')
@@ -63,7 +64,7 @@ def decode(path):
             if failed is None:raise ValueError('Scene retained failure missing')
             targets.append(failed)
         for counts,r in zip(retained,targets):
-            protected=[counts[REGIONS[k]] for k in REGIONS if k>=10]
+            protected=[counts[REGIONS[k]] for k in REGIONS if k>=10 and REGIONS[k] in counts]
             if (sum(x>0 for x in protected),sum(protected),counts[REGIONS[1]],counts[REGIONS[2]])!=(r[10],r[11],r[12],r[13]):raise ValueError('Scene independent retained bytes contradict runtime counts')
     return h,rows,diffs,retained
 

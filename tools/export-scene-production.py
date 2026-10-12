@@ -21,7 +21,7 @@ RANGES={
     'scene_history_call':(0x4fa4db,0x4fa4f4),
 }
 ANCHORS={0x4fd280:'5355568bf1',0x4fd315:'8b46258bce',
-         0x4fd5ad:'33db8b9629020000',0x4fd352:'e8f9fbffff',
+         0x4fd5ad:'33db8b9629020000899e3102000089962d020000',0x4fd5c1:'a00c145e0084c0',0x4fd352:'e8f9fbffff',
          0x4fd554:'e8472d0000',0x4fa4ef:'e86c550200'}
 
 def export():

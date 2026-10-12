@@ -1,5 +1,10 @@
 # Repeated original scene production experiment
 
+Current candidate:004fd315..004fd5c1 includes original queue cleanup and applies
+extra-only position-history suppression. Final33 PE32/52 byte-guard controls and17
+decoder refusals pass. Corrected TITAN state/scene equality and normal Quit are
+pending; earlier failures remain historical evidence, not safe defaults.
+
 Pinned No-CD hash40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168.
 
 The previous engine-cadence experiment found that full gameplay updates couple
@@ -37,7 +42,7 @@ final fixture seeds x87/SSE/MXCSR and tests stack restoration per invocation.
 
 Live admission starts after512 primary calls, samples every128, caps at16 repeats,
 requires the ordinary caller/object/mode and owning thread, and stops at the first
-protected difference or refusal. No state rollback is performed. The file flushes
+protected difference or refusal. No state rollback is performed. The initial file flushed
 only at detach. Snapshots and independently copied36-byte scene records allow
 offline exact comparison; scene equality is distinct from protected-state equality.
 Both original candidates fail exact creature invariance on TITAN. Full production
@@ -70,6 +75,42 @@ compatibility. A live pass requires at least8 cases with protected equality,
 identical scene rows, positive matching primary/skip counts and zero extra forwards.
 Final-source30 PE32 mutation/guard/forwarding controls and17 decoder refusals
 pass, including negative history-count/scene-equality gates andversion1 compatibility.
-Actual TITAN mode3 execution is pending. This experiment does not change the50ms simulation or activate a
+The initial TITAN mode3 journeys failed; see the corrected boundary below. This experiment does not change the50ms simulation or activate a
 default rendering schedule; full nested/map/visibility/timer/pixel safety remains
 outside its scope.
+
+
+The first frozen-history journey fails player Fireball enemy-damage verification
+after summon/movement;1792 balanced Worlds run at19.97688FPS. An unchanged retry
+verifies ranged damage/combat input events, then Wine faults reading/executing
+address0 and World delivery stops; lethal verification fails. Both source/original
+and private cleanup checks pass; neither reaches normal Quit, so the initial
+detach-only production trace remains empty. Preserve these negatives. Crash
+attribution is unknown; do not infer state invariance from an empty trace.
+
+Confirmed slice defect: its old exit004fd5ad precedes original cleanup. Retained
+renderer bytes show count+231 and writepointer+22d remain populated. Original
+004fd5ad..004fd5c1 zeroes+231 and sets+22d from base+229; subsequent production
+relies on that state. The corrected exit004fd5c1 includes those instructions,
+replays its7 normal bytes (MOV AL,[005e140c]; TEST AL,AL) and resumes004fd5c8.
+`RS.scene-queue-retirement` records this partial original contract. This fixes the
+leaked queue postcondition; a causal link to the page fault is not yet established.
+
+Wireversion3 adds the complete16-byte queue header as protected kind19. Extra
+admission requires the primary queue count0 and writepointer==base; before/after
+header bytes stay exact, with no restoring of a saved state. The guarded original
+cleanup executes normally. Final33 authored PE32 controls pass all three modes,
+52 single-byte guard mutations, queue postconditions and preexisting leaked-queue
+refusal before an extra.17 malformed decoder cases, negative history/scene count
+gates andversion1/2 compatibility pass. Full renderer/driver/allocator and nested
+map/visibility/helper semantics remain partial; none of these are original helper
+execution comparisons.
+
+The probe now flushes once at the first repeat failure or16case bound, then
+disables probing; fewer admitted cases flush at detach. No per-frame write is
+introduced, but this checkpoint timing is instrumented. Trace totals cover the
+probe window, while the separate campaign retains the full journey. Failed
+campaigns still fail even when a checkpoint proves protected equality. The wrapper
+records campaign/source/original/cleanup outcomes before attempting to decode a
+possibly missing trace. Corrected live state+scene+queue and normal Quit proof
+remain pending; simulation pacing and default launch remain unchanged.

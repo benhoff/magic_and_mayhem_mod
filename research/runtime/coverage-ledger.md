@@ -6645,3 +6645,24 @@ is pending. No default activation,
 simulation pacing change, complete nested/map/visibility/timer/pixel safety or60FPS.
 Exact6cdf7a4..0986a18 committed history review:23 files,zero missing receipts;
 no retrospective gate or behavior validation claim.
+
+
+## Scene queue cleanup correction and abort diagnostics (2026-10-12 UTC)
+
+Initial frozen-history runs fail Fireball verification and then, on unchanged
+retry, fault at address0 after ranged/combat input events. Native delivery stops;
+normal Quit is not reached and detach-only state traces are empty. Source/original
+and owned cleanup pass; both failures are retained and never counted as invariance.
+
+The old slice demonstrably exits before original queue count/writepointer cleanup.
+`RS.scene-queue-retirement` records partial004fd5ad..004fd5c1 postconditions; the
+corrected native slice executes these original stores before its004fd5c1 exit.
+Wireversion3 protects the complete16-byte header and refuses malformed post-primary
+queues before any extra. No saved game state is restored. Final33 PE32 controls,
+52 guard-byte refusals, queue ownership/postconditions and17 decoder failures pass,
+includingversion1/2 compatibility. The diagnostic checkpoints once at first
+failure/16cases, then stops probing; full journey timing/integration is separate.
+Actual corrected TITAN state/scene/queue equality and successful combat/normal Quit
+are pending. Original allocator/nested map/visibility/driver/pixel and independent
+60FPS/default safety remain unproved. Exact0986a18..961ea3b committed-history
+review:25 files,zero missing receipts; no retrospective gate or execution claim.
