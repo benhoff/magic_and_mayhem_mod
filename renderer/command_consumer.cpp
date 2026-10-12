@@ -147,6 +147,8 @@ struct CommandConsumer::Impl {
     std::unique_ptr<NativeFrameRecipe> recipe;
     std::chrono::steady_clock::time_point importedAt{};
     bool awaitingFirstWorldSeal=false;
+    GpuFrame importedFrame;
+    std::uint64_t lastInheritedSourcePresented=0;
     template<class F> void measure(unsigned phase,F&& work){
         if(!options.prepareResidentFrames){work();return;}
         const auto start=std::chrono::steady_clock::now();work();
@@ -160,7 +162,7 @@ struct CommandConsumer::Impl {
         output.driver=renderer.driver();refresh();
     }
     void refresh(){output.stats=renderer.stats();output.liveSurfaces=handles.size();output.livePixels=admission.pixels;output.livePalettes=admission.palettes.size();}
-    void cleanup(){recipe.reset();for(const auto& pair:handles)renderer.destroy(pair.second);handles.clear();bits.clear();admission.discardSurfaces();refresh();}
+    void cleanup(){importedFrame={};recipe.reset();for(const auto& pair:handles)renderer.destroy(pair.second);handles.clear();bits.clear();admission.discardSurfaces();refresh();}
     void active(){renderer.stats();require(state==CommandConsumerState::Active,"Command consumer is closed");require(!executing,"Recursive command execution is unsupported");}
     void execute(const SurfaceCommand& c){
         const auto& w=c.words;admission.accept(c);
@@ -217,9 +219,16 @@ struct CommandConsumer::Impl {
             if(options.prepareResidentFrames){
                 if(awaitingFirstWorldSeal)++output.supersededBeforeSeal;
                 importedAt=std::chrono::steady_clock::now();awaitingFirstWorldSeal=true;
-                measure(1,[&]{recipe.reset();recipe=std::make_unique<NativeFrameRecipe>(renderer,w[0],admission.worldGeneration,handles);});
+                measure(1,[&]{
+                    if(options.reuseSealedUi && recipe && recipe->restart(w[0],admission.worldGeneration,handles))++output.inheritedUiImports;
+                    else{recipe.reset();recipe=std::make_unique<NativeFrameRecipe>(renderer,w[0],admission.worldGeneration,handles);}
+                });
             }
-            measure(3,[&]{renderer.importGpu565(handles.at(w[0]),options.residentWorld(admission.worldGeneration,admission.worldNonce));});
+            measure(3,[&]{
+                auto frame=options.residentWorld(admission.worldGeneration,admission.worldNonce);
+                renderer.importGpu565(handles.at(w[0]),frame);
+                if(options.reuseSealedUi)importedFrame=std::move(frame);
+            });
             ++output.residentWorldImports;break;
         default:throw std::runtime_error("Unsupported replay command");
         }
@@ -235,7 +244,13 @@ std::uint64_t CommandConsumer::preparedGeneration() const{return impl_->recipe &
 std::uint64_t CommandConsumer::sealedGeneration() const{return impl_->recipe && impl_->recipe->sealedReady() && impl_->recipe->hasWorldOutput()?impl_->recipe->generation():0;}
 CommandDisplayState CommandConsumer::displayState() const{
     const auto& p=impl_->recipe;
-    return p?CommandDisplayState{p->generation(),p->sealedReady(),p->hasWorldOutput(),p->ready()}:CommandDisplayState{};
+    return p?CommandDisplayState{p->generation(),p->sealedReady(),p->hasWorldOutput(),p->ready(),p->sealedSourceGeneration()}:CommandDisplayState{};
+}
+bool CommandConsumer::presentImportedSealed(){
+    auto& p=*impl_;p.active();
+    if(!p.options.reuseSealedUi || !sealedGeneration() || !p.importedFrame.valid() || p.lastInheritedSourcePresented==p.recipe->generation() ||
+       p.recipe->sealedSourceGeneration()==p.recipe->generation())return false;
+    presentSealed(p.importedFrame,p.recipe->generation());p.lastInheritedSourcePresented=p.recipe->generation();++p.output.inheritedSourcePresentations;return true;
 }
 void CommandConsumer::presentSealed(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(generation && generation==sealedGeneration(),"Sealed UI/World generation mismatch");

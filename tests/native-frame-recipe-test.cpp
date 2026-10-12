@@ -41,6 +41,41 @@ int main(int argc,char** argv)try{
   require(recipe.generation()==7,"Extra native frame changed generation");
   g.update(world,0,0,{8,8,std::vector<std::uint32_t>(64,0xffff)});auto changed=std::vector<std::uint32_t>(64,0xffff);for(auto at:{53,54,61,62})changed[at]=31;changed[0]=0xf800;g.importGpu565(output,recipe.render(g.presentGpu(world)));require(g.read(output).pixels==changed,"Prepared composition did not use supplied native World");
  }
+ // First-seal carry-forward samples new World pixels and keeps only the last
+ // complete native UI. Pending changes cannot leak across source generations.
+ {
+  NativeFrameRecipe recipe(g,1,100,handles);
+  require(!recipe.restart(1,101,handles),"Unsealed first generation inherited UI");
+  recipe.record(copy(1,2,8,8),handles);g.copy(world,front,{0,0,8,8},0,0);
+  SurfaceCommand ui;ui.operation=2;ui.words={2,2,2};ui.image={1,1,{0xf800}};
+  recipe.record(ui,handles);g.update(front,2,2,ui.image);recipe.seal(2,handles);
+  for(unsigned i=0;i<40;++i){
+   const auto generation=101+i;require(recipe.restart(1,generation,handles),"Compatible source refused sealed UI");
+   require(!recipe.ready()&&recipe.sealedSourceGeneration()==100&&recipe.generation()==generation,"Inherited UI promoted incomplete current frame");
+   rejected([&]{recipe.render(g.presentGpu(world));});
+   const unsigned colour=i%2?31:0x7e0;g.update(world,0,0,{8,8,std::vector<std::uint32_t>(64,colour)});
+   ui.words[1]=3;ui.words[2]=3;ui.image.pixels[0]=0xffff;recipe.record(ui,handles);g.update(front,3,3,ui.image);
+   const auto reads=g.stats().nativeReadbacks,rgba=g.stats().rgbaReadbacks;
+   g.importGpu565(output,recipe.renderSealed(g.presentGpu(world)));
+   require(g.stats().nativeReadbacks==reads&&g.stats().rgbaReadbacks==rgba,"Generation carry-forward read back pixels");
+   auto expected=std::vector<std::uint32_t>(64,colour);expected[18]=0xf800;
+   require(g.read(output).pixels==expected,"Generation carry-forward used stale World or partial UI");
+   require(recipe.surfaces()<=5,"Carried generations accumulated coordinate storage");
+  }
+  require(!recipe.restart(1,142,handles),"Skipped source generation accepted");
+  auto replaced=handles;replaced[1]=front;require(!recipe.restart(1,141,replaced),"Changed native World identity inherited UI");
+  replaced=handles;replaced.erase(2);require(!recipe.restart(1,141,replaced),"Released front identity inherited UI");
+  replaced=handles;replaced[2]=output;require(!recipe.restart(1,141,replaced),"Changed front identity inherited UI");
+  require(!recipe.restart(2,141,handles),"Changed World handle inherited UI");
+  require(recipe.generation()==140&&recipe.sealedSourceGeneration()==100,"Failed compatibility check changed frame identity");
+  recipe.record(copy(1,2,8,8),handles);g.copy(world,front,{0,0,8,8},0,0);recipe.seal(2,handles);
+  require(recipe.ready()&&recipe.sealedSourceGeneration()==140,"New current seal failed to replace inherited UI");
+  auto expected=std::vector<std::uint32_t>(64,31);g.importGpu565(output,recipe.render(g.presentGpu(world)));require(g.read(output).pixels==expected,"New seal retained old HUD ownership");
+  // A completed static-only front replaces the old World map and cannot be
+  // inherited by the next generation, so menus do not revive gameplay behind them.
+  handles.emplace(9,output);recipe.seal(9,handles);
+  require(!recipe.hasWorldOutput()&&!recipe.restart(1,141,handles),"Static-only seal carried stale World coordinates");handles.erase(9);
+ }
  // Equal-color UI is still UI. Coordinate ownership must not infer coverage
  // by comparing the composed screenshot with the old World pixels.
  {
@@ -140,5 +175,5 @@ int main(int argc,char** argv)try{
  {NativeFrameRecipe recipe(g,1,12,handles);recipe.record(copy(1,2,8,8),handles);g.copy(world,front,{0,0,8,8},0,0);recipe.seal(2,handles);g.importGpu565(output,recipe.render(g.presentGpu(world)));require(g.stats().surfaces<=64&&g.stats().pixels<=16777216,"Prepared/source residency exceeded renderer cap");}
  for(auto id:sourceResidency)g.destroy(id);
  for(auto id:{world,front,output})g.destroy(id);
- require(g.stats().surfaces==0,"Prepared native UI leaked surfaces");std::cout<<"{\"world_hud_repeats\":30,\"source_mutation_release\":true,\"partial_frame_refusal\":true,\"sealed_ui_during_partial_transaction\":true,\"continuous_partial_ui_gpu_frames\":40,\"unsealed_first_frame_refused\":true,\"same_update_hud_changes\":true,\"fresh_world_used\":true,\"ordinary_readbacks\":0,\"static_uploads_folded\":100,\"versioned_masked_reads\":true,\"swap_repeats\":10,\"indexed_palette_owned\":true,\"compiled_glyph_versions\":200,\"masked_scratch_repeats\":100,\"unknown_coverage_preserved\":true,\"paired_scratch_bound\":true,\"shared_budget_coexistence\":true,\"fullscreen_mutable_versions\":40,\"single_assembly_pass\":true,\"translated_self_copy\":true,\"equal_color_ui_ownership\":true,\"clipped_world_mapping\":true,\"teardown_surfaces\":0}\n";return 0;
+ require(g.stats().surfaces==0,"Prepared native UI leaked surfaces");std::cout<<"{\"cross_generation_native_world_frames\":40,\"inherited_ui_identity_refusals\":true,\"static_seal_retires_world_map\":true,\"world_hud_repeats\":30,\"source_mutation_release\":true,\"partial_frame_refusal\":true,\"sealed_ui_during_partial_transaction\":true,\"continuous_partial_ui_gpu_frames\":40,\"unsealed_first_frame_refused\":true,\"same_update_hud_changes\":true,\"fresh_world_used\":true,\"ordinary_readbacks\":0,\"static_uploads_folded\":100,\"versioned_masked_reads\":true,\"swap_repeats\":10,\"indexed_palette_owned\":true,\"compiled_glyph_versions\":200,\"masked_scratch_repeats\":100,\"unknown_coverage_preserved\":true,\"paired_scratch_bound\":true,\"shared_budget_coexistence\":true,\"fullscreen_mutable_versions\":40,\"single_assembly_pass\":true,\"translated_self_copy\":true,\"equal_color_ui_ownership\":true,\"clipped_world_mapping\":true,\"teardown_surfaces\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

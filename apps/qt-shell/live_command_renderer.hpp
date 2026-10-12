@@ -18,7 +18,7 @@ public:
     std::function<void()> framePresented;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
-    bool prepareResidentFrames=false;
+    bool prepareResidentFrames=false,reuseSealedUi=false;
     bool waitingForWorld() const{return waitingWorld_;}
     std::uint64_t preparedGeneration() const;
     std::uint64_t sealedGeneration() const;

@@ -26,12 +26,13 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 // and composes the latest lease after this bounded poll yields.
                 target_.present(std::move(frame));
                 if(framePresented)framePresented();
-            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames});
+            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi});
         }
         // Retain the finite byte budget and the32 ordinary-command budget.
         // A split UPDATE of <=16,384 pixels costs one eighth of an ordinary
         // command, allowing at most256 small uploads in a streaming GUI poll.
         // Copies, CREATE, larger updates and all v1 commands retain full cost.
+        const auto importsBefore=consumer_->result().residentWorldImports;
         unsigned work=0;quint32 remaining=budget;waitingWorld_=false;
         while(work<256){
             if(cursor_==pending_.size()){
@@ -58,6 +59,10 @@ bool LiveCommandRenderer::poll(quint32 budget){
             if(cursor_==pending_.size()){pending_.clear();cursor_=0;}
             else break; // The next command exceeds this poll's remaining work.
         }
+        // Publish the newly imported native World through the last compatible
+        // sealed UI after leaving all command GL batches. No duplicate draw.
+        if(consumer_->state()==mnm::render::CommandConsumerState::Active && consumer_->result().residentWorldImports!=importsBefore)
+            consumer_->presentImportedSealed();
         // Diagnostic callbacks may paint explicitly. Normal execution never
         // waits for a display repaint in the command reader.
         if(!target_.error().isEmpty())throw std::runtime_error(target_.error().toStdString());
