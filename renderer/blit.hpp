@@ -64,7 +64,7 @@ struct RenderStats {
     std::uint64_t rgbaReadbacks=0,gpuPresentations=0;
     std::uint64_t presentationPixels=0;
     std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
-    std::uint64_t copyBatches=0,maxCopyBatch=0;
+    std::uint64_t copyBatches=0,maxCopyBatch=0,nativeSnapshotCopies=0;
     std::size_t surfaces=0,pixels=0;
 };
 
@@ -97,6 +97,9 @@ public:
     // Allocate undefined native storage without a CPU fill/upload. Sampling and
     // presentation remain forbidden until the written region is defined.
     SurfaceId allocate(int width,int height,PixelFormat format);
+    // Exact native storage/knowledge/clipper/palette clone; never reads pixels.
+    SurfaceId cloneSurface(SurfaceId source);
+    void restoreSurface(SurfaceId source,SurfaceId destination);
     // Upload contiguous full-width rows without copying the owned CPU plane.
     void updateRows(SurfaceId surface,const Image& plane,int first,int rows);
     void updateRegionRows(SurfaceId surface,int x,int y,const Image& plane,int first,int rows);

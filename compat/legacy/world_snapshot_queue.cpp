@@ -13,7 +13,7 @@ CanvasProducer closing(const std::array<std::uint8_t,192>& bytes,unsigned offset
  return c;
 }
 }
-WorldSnapshotQueue::WorldSnapshotQueue(WorldContinuousChannel& channel):channel_(channel){
+WorldSnapshotQueue::WorldSnapshotQueue(WorldContinuousChannel& channel,bool retainWire):channel_(channel),retainWire_(retainWire){
  if(!channel.snapshot())throw std::invalid_argument("Snapshot queue requires explicit V5 owned delivery");
  owner_=std::thread([this]{capture();});
 }
@@ -73,8 +73,12 @@ void WorldSnapshotQueue::capture(){
    verifyRollingHandoffReturn(snapshot.handoff,closing(actual,0),closing(actual,96),true);
    snapshot.ticks=channel_.ticks(block.generation);
    channel_.release(block.generation);
+   if(retainWire_){snapshot.wireSource=std::move(block.source);snapshot.wireRequest=std::move(block.request);}
    {
-    std::lock_guard<std::mutex> lock(mutex_);++state_.returned;state_.bytes+=snapshot.sourceBytes;ready_.push_back(std::move(snapshot));
+    std::lock_guard<std::mutex> lock(mutex_);++state_.returned;
+    if(snapshot.generation==64)state_.firstTick=snapshot.ticks[0];
+    if(snapshot.generation>=64)state_.lastTick=snapshot.ticks[3];
+    state_.bytes+=snapshot.sourceBytes;ready_.push_back(std::move(snapshot));
    }
    // Block bytes can now be destroyed: queued payloads and descriptors own all
    // source storage; mapped slots may immediately be reused by the producer.

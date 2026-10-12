@@ -373,6 +373,7 @@ def main():
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
+    parser.add_argument('--independent-world',action='store_true',help='Use explicit owned V5 delivery and independent native World/HUD drawing')
     parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
@@ -384,6 +385,7 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
@@ -495,6 +497,7 @@ def main():
         probe_env = dict(env, QT_QPA_PLATFORM='offscreen')
         command = [str(binary), '--repo', str(ROOT), '--live-menus', '--native-commands', '--smoke-test']
         if args.resident_world:command.append('--resident-world')
+        if args.independent_world:command.append('--independent-world')
         with (out / 'mode-probe.log').open('w') as log:
             probe = subprocess.run(command, cwd=ROOT, env=probe_env, stdout=log,
                                    stderr=subprocess.STDOUT, timeout=20)
@@ -560,6 +563,7 @@ def main():
                        '--live-menu-test', str(out / 'flow.json')]
             report['launch_command'] = command
             if args.resident_world:command.append('--resident-world')
+            if args.independent_world:command.append('--independent-world')
             with (out / 'shell.log').open('w') as log:
                 shell = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
                                          stderr=subprocess.STDOUT, start_new_session=True)

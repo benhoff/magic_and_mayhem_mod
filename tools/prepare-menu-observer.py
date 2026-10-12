@@ -52,7 +52,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         patched=module('public_world_scene_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmScene.dll','SceneAnchor',b'.mnworld')
         shutil.copy2(scene,game/'MnmScene.dll');shutil.copy2(scene.parent/'manifest.json',root/'scene-bridge-build.json')
         (root/'resident-world').mkdir()
-        resident_metadata=dict(resident_world=True,resident_scene_sha256=hashlib.sha256(scene.read_bytes()).hexdigest())
+        resident_metadata=dict(resident_world=True,owned_world_snapshot=os.environ.get('MNM_WORLD_SNAPSHOT')=='1',resident_scene_sha256=hashlib.sha256(scene.read_bytes()).hexdigest())
     cadence_metadata={}
     cadence=os.environ.get('MNM_ENGINE_CADENCE_TRACE')
     if cadence is not None:

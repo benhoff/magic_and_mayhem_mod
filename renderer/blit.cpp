@@ -573,6 +573,32 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
     }catch(...){p.release(s);throw;}
     p.counters.pixels+=count;return id;
 }
+SurfaceId GlBlitter::cloneSurface(SurfaceId source){
+    auto& p=*impl_;p.thread();const auto& src=p.get(source);
+    const auto width=src.width,height=src.height;const auto format=src.format;
+    const auto copy=allocate(width,height,format);
+    try{restoreSurface(source,copy);}catch(...){destroy(copy);throw;}
+    return copy;
+}
+void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
+    auto& p=*impl_;p.thread();p.flushCopies();const auto& src=p.get(source);auto& dst=p.get(destination);
+    if(source==destination || src.width!=dst.width || src.height!=dst.height ||
+       src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)
+        throw std::runtime_error("Native snapshot extent/format/identity mismatch");
+    // Unknown words remain unknown. A snapshot is not a read or a declaration
+    // of new pixel knowledge, unlike an ordinary checked blit.
+    auto knowledge=src.validity;auto clipper=src.clipper;
+    Current current(p.context,&p.surface);auto& g=p.gl;
+    const auto copy=[&](GLuint from,GLuint to,int width,int height){
+        if(p.copyImage)p.copyImage(from,GL_TEXTURE_2D,0,0,0,0,to,GL_TEXTURE_2D,0,0,0,0,width,height,1);
+        else{p.attach(from,width,height);g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,to);g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,width,height);}
+    };
+    copy(src.native,dst.native,src.width,src.height);
+    if(src.palette)copy(src.palette,dst.palette,256,1);
+    p.check();dst.validity=std::move(knowledge);dst.clipper=std::move(clipper);
+    dst.paletteColors=src.paletteColors;dst.paletteKnown=src.paletteKnown;
+    p.damage(dst,{0,0,dst.width,dst.height});++p.counters.nativeSnapshotCopies;
+}
 void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
     auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(id);
     if(plane.width!=s.width||plane.height!=s.height)throw std::runtime_error("Invalid upload plane extent");
