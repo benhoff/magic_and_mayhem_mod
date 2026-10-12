@@ -31,18 +31,19 @@ bool PcmQueue::pump(QIODevice& output,qint64 capacity){
         if(!frames)return true;
         pending_.resize(qsizetype(frames*4));offset_=0;
         std::vector<std::int16_t> samples;
-        if(device_.mixStereo(frames,samples)!=Error::ok){clear();return false;}
+        const auto error=timeline_?timeline_->render(frames,samples):device_.mixStereo(frames,samples);
+        if(error!=Error::ok){clear();return false;}
         // QAudioFormat Int16 uses native byte order, matching these host integers.
         std::memcpy(pending_.data(),samples.data(),std::size_t(pending_.size()));offset_=0;
     }
     const auto wanted=std::min<qint64>(capacity,pendingBytes());
     const auto written=output.write(pending_.constData()+offset_,wanted);
     if(written<0 || written>wanted)return false;
-    offset_+=written;
+    offset_+=written;acceptedBytes_+=std::uint64_t(written);
     if(!pendingBytes())clear();
     return true;
 }
-QtOutput::QtOutput(Device& device,QObject* parent):QObject(parent),device_(device),queue_(device){
+QtOutput::QtOutput(Device& device,QObject* parent):QObject(parent),device_(device),timeline_(device),queue_(device,&timeline_){
     timer_.setInterval(5);timer_.setTimerType(Qt::PreciseTimer);
     connect(&timer_,&QTimer::timeout,this,[this]{pump();});
 }
@@ -66,13 +67,21 @@ bool QtOutput::start(const QAudioDevice& device){
 void QtOutput::stop(){
     if(QThread::currentThread()!=thread())throw std::logic_error("Audio output used from another thread");
     timer_.stop();writer_=nullptr;
+    refreshClock();
     // reset() discards queued audio; stop() may drain/block on some backends.
     if(sink_)sink_->reset();
-    sink_.reset();queue_.clear();
+    sink_.reset();queue_.reset();timeline_.discard();
+}
+void QtOutput::refreshClock(){
+    if(!sink_)return;
+    const auto micros=std::uint64_t(std::max<qint64>(0,sink_->processedUSecs()));
+    const auto frames=(micros/1000000)*device_.outputRate()+(micros%1000000)*device_.outputRate()/1000000;
+    timeline_.consume(std::min(frames,queue_.acceptedFrames()));
 }
 void QtOutput::fail(const QString& message){stop();error_=message;if(failed)failed(message);}
 void QtOutput::pump(){
     if(!sink_ || !writer_)return;
+    refreshClock();
     // Old Qt reports starvation as an error in IdleState; newer Qt only uses
     // IdleState. Keep feeding in either case. StoppedState cannot accept data.
     if(sink_->state()==QtAudio::StoppedState){fail("QAudioSink stopped; backend error "+QString::number(int(sink_->error())));return;}

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "audio/CMakeLists.txt": "31ac76bca9290a1ecfc1c90053cf7a6c4dec21b23a9c7c41efc3e6091a50cba9",
+    "audio/buffers.cpp": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76",
+    "audio/buffers.hpp": "df82a5f2ce447c30228b45c82bdaf4e54de39de9ef15386520a7cf836bda75c1",
+    "audio/mixer.cpp": "1f7cc8295adb0d7a8688d8a09f2f5bfa99964bcd4a0efb6a59c8d3cbd105e972",
+    "audio/output_timeline.cpp": "d4313f8a82b04b0c6ed0d26ed0bb28f7a49ea18880a8ac792dbf9fbfd7ea5ef3",
+    "audio/output_timeline.hpp": "c6774eaaff2b942f25575953a03878df197607dbf895be9c5c7a3046fac8a56f",
+    "audio/qt_output.cpp": "a4e1360e0f59904580952a2d9d09410520a42b4f2ee16a62c36f7ac8a22d1251",
+    "audio/qt_output.hpp": "20b8df199a97ed7d407f51a56a36fb3f82b0364ef121c931d7b96aaf4edb6fed",
+    "audio/voice_bridge.cpp": "daf21d51e1861b6a27f2f0c5018f0f5a8554162d0ffefd466d908897dbcb875d",
+    "audio/voice_bridge.hpp": "5aa24eb87457b97c4d46dc5c97c499146ae96c6c2acdb351e2b31eae97068f9b",
+    "audio/voices.cpp": "d590421fd9af1fb276f1d63a46a39f15f6d6153805ecb267e54b9e01d779fe8c",
+    "audio/wave_loader.cpp": "354d29bb4fa60bcff1d21f496b1c26284dd18689aec236e6278c445f89be16dc",
+    "audio/wave_loader.hpp": "3b69d3ea67fb0f35cd131ec1c81ff68ceb1d7fefcf1243c9703ada205672b172",
+    "audio/wave_source.cpp": "5e4dab64c9bdf400e0706f4918df4d07e8023485900f932715936a9a286526af",
+    "audio/wave_source.hpp": "cd6930c87909576bd19ce0f3372e45d0e984d4a0a2ffa528c1386ef448f6505f",
+    "runtime/audio/protocol.h": "3d4cb7c90b1484de437173f5c11f666dc320e58dadc8e7f87ce17a9645e6dc88",
+    "tests/audio-output-timeline-test.cpp": "1dc541b0c5ae8d50efb305c119c9f31f2cd30185970850255f3d9ffae82626a4",
+    "tools/test-native-audio-output-timing.py": "16a221783aea7c939e2c29d79e7ce014794a11b81948771c7b868a095716cb10"
+  },
+  "claims": [
+    {
+      "behavior": "NA.output_timing",
+      "contract_sha256": "56d621489ad7643218929048719689bcf0894fb1c26bf28c853c56cb373cfd42",
+      "scenarios": {
+        "native-audio-output-timing-synthetic-20261012": "cd9e726904e2578a193528c1c1fc5ecce67cf348204fd22e9157686864276263"
+      }
+    }
+  ],
+  "scope": "Independent fake consumed-frame oracle and silent current Qt backend completion/restart. No original-driver, physical speaker, physical loss, live game timing or audible equivalence.",
+  "inputs": {
+    "input-spec.json": "c87bdcf8b4e3e76c91f8a3e949cc1fe25a1fb286054f551d425751133a29099d"
+  },
+  "inputs_stable": true,
+  "sources_stable": true,
+  "executable_sha256": "346ca5695d4b26272e54cbfad04cfb83d444198447a61f0efc184c4f12902486",
+  "independent_oracle_cases": 360,
+  "backend_completion_and_restart": true
+}

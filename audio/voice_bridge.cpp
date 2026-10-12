@@ -35,18 +35,18 @@ BridgeReply VoiceCommands::execute(const std::uint32_t* w,const QByteArray& payl
     }
     case MNM_AUDIO_DUPLICATE:error=device_.duplicate(id,created);break;
     case MNM_AUDIO_RELEASE:error=device_.release(id);break;
-    case MNM_AUDIO_PLAY:error=device_.play(id,w[7]);break;
-    case MNM_AUDIO_STOP:error=device_.stop(id);break;
-    case MNM_AUDIO_RESET:if(w[7])return {0x80004001,0};error=device_.resetPosition(id);break;
-    case MNM_AUDIO_SEEK:error=device_.setPosition(id,w[7]);break;
+    case MNM_AUDIO_PLAY:error=timeline_?timeline_->play(id,w[7]):device_.play(id,w[7]);break;
+    case MNM_AUDIO_STOP:error=timeline_?timeline_->stop(id):device_.stop(id);break;
+    case MNM_AUDIO_RESET:if(w[7])return {0x80004001,0};error=timeline_?timeline_->seek(id,0):device_.resetPosition(id);break;
+    case MNM_AUDIO_SEEK:error=timeline_?timeline_->seek(id,w[7]):device_.setPosition(id,w[7]);break;
     case MNM_AUDIO_FREQUENCY:error=device_.setFrequency(id,w[7]);break;
     case MNM_AUDIO_GET_FREQUENCY:{const auto frequency=device_.frequency(id);return frequency?BridgeReply{0,*frequency}:BridgeReply{0x80070057,0};}
-    case MNM_AUDIO_CURSOR:{const auto cursor=device_.generatedCursor(id);return cursor?BridgeReply{0,std::uint32_t(*cursor)}:BridgeReply{0x80070057,0};}
+    case MNM_AUDIO_CURSOR:{const auto cursor=timeline_?timeline_->cursor(id):device_.generatedCursor(id);return cursor?BridgeReply{0,std::uint32_t(*cursor)}:BridgeReply{0x80070057,0};}
     case MNM_AUDIO_VOLUME:case MNM_AUDIO_PAN:{
         const auto value=w[7]<=std::uint32_t(std::numeric_limits<std::int32_t>::max())?std::int32_t(w[7]):std::int32_t(std::int64_t(w[7])-4294967296ll);
         error=w[5]==MNM_AUDIO_VOLUME?device_.setVolume(id,value):device_.setPan(id,value);break;
     }
-    case MNM_AUDIO_STATUS:{const auto voice=device_.voice(id);return voice?BridgeReply{0,voice->status()}:BridgeReply{0x80070057,0};}
+    case MNM_AUDIO_STATUS:{const auto voice=timeline_?timeline_->voice(id):device_.voice(id);return voice?BridgeReply{0,voice->status()}:BridgeReply{0x80070057,0};}
     case MNM_AUDIO_UPLOAD:{
         if(w[8]!=std::uint32_t(payload.size()) || !w[8] || w[8]>MNM_AUDIO_PAYLOAD)return {0x80070057,0};
         WriteLock lock;error=device_.lock(id,w[7],w[8],0,lock);
@@ -56,6 +56,11 @@ BridgeReply VoiceCommands::execute(const std::uint32_t* w,const QByteArray& payl
         error=device_.unlock(lock,lock.first.size,lock.second.size);break;
     }
     default:return {0x80004001,0};
+    }
+    if(timeline_ && error==Error::ok)switch(w[5]){
+        case MNM_AUDIO_CREATE:case MNM_AUDIO_DUPLICATE:timeline_->changed(created);break;
+        case MNM_AUDIO_RELEASE:timeline_->changed(id);break;
+        default:break;
     }
     return {status(error),error==Error::ok?std::uint32_t(created):0};
 }
@@ -77,7 +82,6 @@ struct VoiceBroker::State:QObject {
         if(audible)format=selectOutputFormat(outputDevice);
         if(audible&&!format.isValid()){error_="No supported native voice output device";return false;}
         device_=std::make_unique<Device>(MNM_AUDIO_PAYLOAD,128,audible?std::uint32_t(format.sampleRate()):48000);
-        commands_=std::make_unique<VoiceCommands>(*device_);
         if(audible){
             output_=std::make_unique<QtOutput>(*device_);
             if(!output_->start(outputDevice)){error_=output_->lastError();return false;}
@@ -87,6 +91,7 @@ struct VoiceBroker::State:QObject {
                 timer_.stop();if(failed)failed(error);
             };
         }
+        commands_=std::make_unique<VoiceCommands>(*device_,output_?&output_->timeline():nullptr);
         file_.setFileName(path);
         if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(MNM_AUDIO_SIZE)){
             error_="Cannot create native voice channel";return false;
@@ -127,6 +132,7 @@ struct VoiceBroker::State:QObject {
     std::function<void(const QString&)> failed;
     void poll(){
         if(!map_)return;
+        if(output_)output_->refreshClock();
         auto* words=reinterpret_cast<quint32*>(map_);
         __atomic_add_fetch(words+19,1u,__ATOMIC_RELEASE);
         const auto request=qFromLittleEndian(__atomic_load_n(words+4,__ATOMIC_ACQUIRE));

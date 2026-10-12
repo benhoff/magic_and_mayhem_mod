@@ -81,6 +81,7 @@ public:
     std::size_t count() const{return buffers_.size();}
     static constexpr std::uint32_t capabilities=0x0f; // Native PCM policy: mono/stereo, 8/16-bit.
 private:
+    friend class OutputTimeline;
     struct Storage;
     struct Buffer {bool primary;std::uint32_t flags;std::optional<PcmFormat> format;std::shared_ptr<Storage> storage;VoiceInfo voice{};std::uint32_t phase=0;};
     static void advanceVoice(Buffer&,std::uint64_t frames,AdvanceResult&);
