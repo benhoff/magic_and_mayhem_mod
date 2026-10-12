@@ -90,7 +90,7 @@ int main(int argc,char** argv){
             check(QByteArray(reinterpret_cast<char*>(map+128),8)==pcm,"native WAV transfers exact PCM");
         }else check(words[18]==0&&words[24]==0,"failed wave does not publish old result metadata");
     };
-    check(qFromLittleEndian(words[31])==(MNM_AUDIO_CAP_NATIVE_WAVE|MNM_AUDIO_CAP_EXTENDED_CONTROLS),"native capabilities published before ready");
+    check(qFromLittleEndian(words[31])==(MNM_AUDIO_CAP_NATIVE_WAVE|MNM_AUDIO_CAP_EXTENDED_CONTROLS|MNM_AUDIO_CAP_OUTPUT_RECOVERY),"native capabilities published before ready");
     waveRequest("FIXTURE.wav",true);waveRequest("'fixture'.wav",true);
     waveRequest("missing.wav",false);waveRequest("../fixture.wav",false);waveRequest("bad.wav",false);
     waveRequest(QByteArray("fixture.wav\0",12),false);

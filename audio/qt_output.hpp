@@ -34,13 +34,13 @@ class QtOutput : public QObject {
 public:
     explicit QtOutput(Device&,QObject* parent=nullptr);
     ~QtOutput() override;
-    bool start(const QAudioDevice& device);
-    void stop();
-    bool running() const{return bool(sink_);}
+    virtual bool start(const QAudioDevice& device);
+    virtual void stop();
+    virtual bool running() const{return bool(sink_);}
     qint64 processedUSecs() const{return sink_?sink_->processedUSecs():0;}
     void refreshClock();
     OutputTimeline& timeline(){return timeline_;}
-    QString lastError() const{return error_;}
+    virtual QString lastError() const{return error_;}
     std::function<void(const QString&)> failed;
 private:
     void pump();void fail(const QString&);

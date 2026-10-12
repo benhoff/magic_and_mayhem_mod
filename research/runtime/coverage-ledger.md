@@ -7095,3 +7095,51 @@ at startup in run-2q5hp9_3 is retained as an unresolved intermittent integration
 limitation; its cause is not attributed to the audio clock. See
 HOST.output-timing.public-pass-20261012. The final current-code64-test suite
 passes with backend access; earlier source versions retain their recorded hashes.
+
+
+## Native voice output recovery and version5 (2026-10-12)
+
+NA.voice_output_recovery separates admitted output availability from native host
+liveness. Output loss retains static PCM/duplicate identities and consumed voice
+positions/phase plus gain/pan/pitch, retries compatible current output every500ms
+and observes device-list changes. Logical playing/looping status adds buffer-lost;
+new Play returnsDSERR_BUFFERLOST without mutating state. Native storage, stop/reset,
+preferences and release remain usable. Restore validates secondary identity and
+succeeds only when output is available. Stopped/frozen hosts remain permanently
+retired; shutdown cannot revive them. Initial admission remains strict.
+
+MNMAUD01 version5 keeps the128-byte header and adds operation22 Restore,
+capability4 recovery and8 audible consumed clock. Headless masks6/7 and audible
+masks14/15 reject older hosts at fresh startup. Host channel readiness remains
+alive during recoverable output loss; separate health and generated/consumed
+frame diagnostics are saved by the application. Native services remain free
+of widgets and build-specific reconstruction.
+
+Fake loss/retry/rescan/timed recovery, consumed phase/identity/preferences,
+buffer-lost/Restore/stale-ID/shutdown and9 admission cases pass. Controlled silent
+actual Qt endpoint loss and automatic recovery pass with system default unchanged.
+All66 audio/assets CTests and actual44 request/ACK primary/secondary PE Restore
+fixture pass; no Wine DirectSound playback or original game executes in this
+fixture. See NA.voice_output_recovery.wire-backend-20261012. The earlier65-test
+run is retained with its original sources/scope. Fresh dedicated version5 native
+WAV comparison matches362 cases and12002990PCM bytes, with original manifests
+and source/input checks. See HOST.voice-recovery.wave-v5-installed-20261012.
+
+Physical disappearance/platform default-event and speaker proof remain pending.
+Compatible fixed output clocks are required; strict initial missing-device
+admission, queued sound latency and refused outage events are explicit policies.
+Movie control/fallback ownership, Quartz startup, original fades/full playlist
+notifications, manager/config/cache/event integration, broad/long scenarios and
+executed Wine API census remain separate. The priorbe25853e commit has22 exact
+parent/current transitions and zero missing receipts; no historical source hashes
+or original-driver comparison statuses are refreshed.
+
+Full default native version5 run-izylh59t passes both intro video/soundtracks,
+voices/native WAV/factory, CD music, native menu/campaign and normal Quit.
+Backend availability and nonzero consumed frames are confirmed; voice and music
+unsupported/fallback/failed requests are0. Source/input/original checks and owned
+private Wine cleanup pass. See HOST.voice-recovery.public-v5-pass-20261012 and
+native-voice-v5-public-pass-20261012.json. The earlier330s run reached gameplay,
+resume and Quit-No but expired before normal Quit; it remains a failed bounded
+run, and the passing retry uses the supported600s deadline. No physical/device
+loss in original gameplay or complete original timing equivalence is inferred.

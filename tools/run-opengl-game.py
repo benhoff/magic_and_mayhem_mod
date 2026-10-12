@@ -178,6 +178,7 @@ def main():
     metadata['voice_channel']=str(voice_path) if voice_path else None
     metadata['native_audio_factory']=bool(voice_path)
     metadata['native_extended_controls']=bool(voice_path)
+    metadata['native_output_recovery']=bool(voice_path)
     metadata['audio_dll_sha256']=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None
     metadata['media_channel']=str(media_path) if media_path else None
     metadata['render_control']=str(control_path) if control_path else None

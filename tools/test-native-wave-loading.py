@@ -19,6 +19,7 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sounds-root',type=Path,default=ROOT/'working/game-nocd/Sounds')
+    parser.add_argument('--build',type=Path,default=ROOT/'working/build/native-wave-loading')
     args=parser.parse_args();sounds=args.sounds_root.resolve()
     if not sounds.is_relative_to(ROOT/'working') or not sounds.is_dir():parser.error('Use a Sounds directory under working/')
     parent=ROOT/'working/tests/native-wave-loading';parent.mkdir(parents=True,exist_ok=True)
@@ -38,7 +39,8 @@ def main():
         inputs={str(p):sha(p) for p in sounds.iterdir() if p.is_file() and p.suffix.lower()=='.wav'}
         if not inputs:raise ValueError('No installed WAV inputs')
         report['inputs']=inputs
-        build=ROOT/'working/build/audio-output'
+        build=args.build.resolve()
+        if not build.is_relative_to(ROOT/'working'):raise ValueError('Use an isolated build directory under working/')
         run('configure',['cmake','-S',str(ROOT/'audio'),'-B',str(build)])
         run('build',['cmake','--build',str(build),'--target','mnm-audio-server','audio-voice-bridge-test','--parallel','4'])
         binary=build/'mnm-audio-server';report['binary_sha256']=sha(binary)
@@ -55,7 +57,7 @@ def main():
             while struct.unpack_from('<I',mapping,80)[0]!=1:
                 if server.poll() is not None or time.monotonic()>deadline:raise RuntimeError('Native wave broker not ready')
                 time.sleep(.001)
-            if mapping[:8]!=b'MNMAUD01' or struct.unpack_from('<II',mapping,8)!=(4,SIZE) or struct.unpack_from('<I',mapping,124)[0]!=3:
+            if mapping[:8]!=b'MNMAUD01' or struct.unpack_from('<II',mapping,8)!=(5,SIZE) or struct.unpack_from('<I',mapping,124)[0]!=7:
                 raise RuntimeError('Invalid native wave channel')
             sequence=0;total=0
             def load(name):

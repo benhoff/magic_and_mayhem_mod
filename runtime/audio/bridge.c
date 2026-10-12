@@ -133,7 +133,7 @@ static i32 WIN set_format(struct Object* o,const u8* f){if(o->kind!=2)return uns
 static i32 WIN set_volume(struct Object* o,i32 volume){if(volume< -10000 || volume>0)return INVALID;i32 status=request(o->kind==2?MNM_AUDIO_PRIMARY_VOLUME:MNM_AUDIO_VOLUME,o->id,(u32)volume,0,0,0,0,0);if(!status)o->volume=volume;return status;}
 static i32 WIN set_pan(struct Object* o,i32 pan){if(pan< -10000 || pan>10000)return INVALID;i32 status=o->kind==2?unsupported():request(MNM_AUDIO_PAN,o->id,(u32)pan,0,0,0,0,0);if(!status)o->pan=pan;return status;}
 static i32 WIN frequency(struct Object* o,u32 value){if(o->kind!=3)return unsupported();return request(MNM_AUDIO_FREQUENCY,o->id,value,0,0,0,0,0);}
-static i32 WIN restore(struct Object* o){(void)o;return 0;}
+static i32 WIN restore(struct Object* o){return request(MNM_AUDIO_RESTORE,o->kind==3?o->id:0,0,0,0,0,0,0);}
 static void tables(void){
     device_table[0]=query;device_table[1]=addref;device_table[2]=release;device_table[3]=create_buffer;device_table[4]=caps;device_table[5]=duplicate;
     device_table[6]=cooperate;device_table[7]=compact;device_table[8]=get_speakers;device_table[9]=set_speakers;device_table[10]=initialize;

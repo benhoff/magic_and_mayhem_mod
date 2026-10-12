@@ -2499,7 +2499,9 @@
       },
       "validation_dependencies": [
         "audio/output_timeline.cpp",
-        "audio/output_timeline.hpp"
+        "audio/output_timeline.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp"
       ]
     },
     {
@@ -2533,7 +2535,11 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp"
+      ]
     },
     {
       "id": "NA.wave",
@@ -42671,7 +42677,9 @@
         "tools/test-native-clock.py",
         "tools/test-native-pacer.py",
         "audio/output_timeline.cpp",
-        "audio/output_timeline.hpp"
+        "audio/output_timeline.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp"
       ],
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
@@ -42679,7 +42687,8 @@
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.output-timing.public-pass-20261012"
+        "HOST.output-timing.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42864,7 +42873,9 @@
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.wave-v4-installed-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.output-timing.public-pass-20261012"
+        "HOST.output-timing.public-pass-20261012",
+        "HOST.voice-recovery.wave-v5-installed-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42890,7 +42901,9 @@
         "audio/mixer.cpp",
         "audio/voices.cpp",
         "audio/output_timeline.cpp",
-        "audio/output_timeline.hpp"
+        "audio/output_timeline.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp"
       ]
     },
     {
@@ -42932,7 +42945,8 @@
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.output-timing.public-pass-20261012"
+        "HOST.output-timing.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42962,7 +42976,9 @@
         "assets/path_resolver.cpp",
         "assets/path_resolver.hpp",
         "audio/output_timeline.cpp",
-        "audio/output_timeline.hpp"
+        "audio/output_timeline.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp"
       ]
     },
     {
@@ -43001,7 +43017,8 @@
         "tests/live-render-channel-test.cpp"
       ],
       "evidence": [
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44104,7 +44121,8 @@
       "evidence": [
         "HOST.native-menu-music.initial-pass-20261012",
         "HOST.native-menu-music.media-public-pass-20261012",
-        "HOST.native-audio-defaults.public-pass-20261012"
+        "HOST.native-audio-defaults.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45015,7 +45033,8 @@
         "tools/test-native-pacer.py"
       ],
       "evidence": [
-        "HOST.native-audio-defaults.public-pass-20261012"
+        "HOST.native-audio-defaults.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45839,12 +45858,13 @@
       "id": "HOST.extended-voice-wire",
       "subsystem": "audio_contracts",
       "kind": "native_policy",
-      "title": "Version4 static voice controls through native host and PE32 buffer methods",
-      "scope": "MNMAUD01 version4 advertises extended controls before readiness; guarded native PE static GetFrequency/SetFrequency, aligned byte position and generated play/write cursor dispatch to native Device. Failure preserves output pointers/state; unsupported primary/streaming scopes remain explicit. Native play/write cursor equality is a static-memory policy, not original or physically consumed driver cursor equivalence. Audible host queries now use the bounded backend-consumed clock; headless fixtures retain generated cursors. Current consumed timing validation is registered separately.",
+      "title": "Static voice controls through version5 native output transport",
+      "scope": "MNMAUD01 version5 retains the prior static frequency/source clock, aligned byte seek and static cursor operations and adds truthful output Restore. Capabilities advertise native WAV, controls, recovery and audible consumed clock before readiness. Guarded PE methods preserve output pointers/state on failure; native audible cursor uses backend-consumed progress, while headless fixtures retain generated cursor. Static write cursor equals play cursor. Primary/streaming rings and original/physical driver equivalence remain separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-audio-controls.md"
+        "research/runtime/native-audio-controls.md",
+        "research/runtime/native-voice-output-recovery.md"
       ],
       "implementation": [
         "runtime/audio/protocol.h",
@@ -45901,7 +45921,9 @@
         "tools/build-shadow-bridge.py",
         "tools/test-native-music-service.py",
         "audio/output_timeline.cpp",
-        "audio/output_timeline.hpp"
+        "audio/output_timeline.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp"
       ],
       "evidence": [
         "HOST.extended-voice-wire.synthetic-20261012"
@@ -45958,6 +45980,92 @@
         "NA.output_timing.synthetic-20261012",
         "NA.output_timing.bound-20261012",
         "NA.output_timing.queued-seek-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NA.voice_output_recovery",
+      "subsystem": "native_audio",
+      "kind": "native_policy",
+      "title": "Native voice output loss/default-device recovery and Restore",
+      "scope": "Admitted native voice output may disappear while the host channel remains live. Preserve native PCM/duplicate identities, gain/pan/pitch and consumed positions/phase, retry compatible current output every500ms and on device-list/default selection changes. Unavailable status adds buffer-lost to logical playing/looping bits; new Play returnsDSERR_BUFFERLOST without mutation; storage and stop/reset/release remain usable. Version5 Restore validates secondary identity and succeeds only on available/recovered output; primary Restore uses the owned endpoint. Timed-out/stopped hosts stay permanently retired. Strict initial admission, fixed output clock and already queued PCM latency remain; no physical speaker/original driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-voice-output-recovery.md"
+      ],
+      "implementation": [
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/qt_output.hpp",
+        "runtime/audio/protocol.h",
+        "runtime/audio/bridge.c",
+        "tools/native_audio_launch.py"
+      ],
+      "tests": [
+        "tests/audio-voice-recovery-test.cpp",
+        "tests/test-native-audio-launch.py",
+        "runtime/audio/selftest.c",
+        "tools/test-audio-bridge.py",
+        "tests/audio-voice-output-backend-test.cpp"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "audio/CMakeLists.txt",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_server_main.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/voice_server_main.cpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "protocols/schemas/music-v1.json",
+        "runtime/audio/bridge.c",
+        "runtime/audio/music.h",
+        "runtime/audio/music_fault_selftest.c",
+        "runtime/audio/music_liveness.h",
+        "runtime/audio/music_selftest.c",
+        "runtime/audio/protocol.h",
+        "runtime/audio/selftest.c",
+        "runtime/audio/wave_loading.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-audio-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/test-native-music-service.py"
+      ],
+      "evidence": [
+        "NA.voice_output_recovery.wire-initial-20261012",
+        "NA.voice_output_recovery.wire-backend-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -93281,6 +93389,138 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NA.voice_output_recovery.wire-initial-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-voice-recovery-wire-initial-20261012.json",
+      "sha256": "5297a831320e1925baa680716aa98b9d58d9117559380acf4f7486a4e436858f",
+      "scope": "Fake endpoint loss/retry/rescan/timed recovery and version5 fresh admission with65 CTests and real PE primary/secondary Restore; no physical or actual Qt endpoint loss.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NA.voice_output_recovery.wire-backend-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-voice-recovery-wire-backend-20261012.json",
+      "sha256": "e1f2a0f32a1c7082f87f124d04ebd9842f66d0b49186726ef0277fc2f7375fa7",
+      "scope": "Fake output loss/retry/rescan/timer recovery and controlled silent actual Qt endpoint loss/automatic recovery, version5 admission,66 CTests and actual PE primary/secondary Restore. System default unchanged; no physical disappearance/platform default-event or original driver equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.voice-recovery.wave-v5-installed-20261012",
+      "kind": "native_integration",
+      "scope": "Dedicated version5 headless native WAV transport/build and independent installed PCM corpus, with strict manifest/source/input checks; no original engine, physical recovery or driver timing equivalence.",
+      "record": "research/runtime/native-wave-v5-installed-20261012.json",
+      "sha256": "0f40d9b33a703a3a9dcdbe3b41bd2d884d6ab9c0f64c61d8116d912ec20aa723",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.voice-recovery.public-v5-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Version5 default native voices/WAV/factory with consumed backend health, both intro movies/soundtracks, CD music, native menu/campaign and normal Quit; no actual gameplay output loss, physical recovery or complete Wine retirement claim. A prior330s full run timed out in Quit-No and remains retained.",
+      "record": "research/runtime/native-voice-v5-public-pass-20261012.json",
+      "sha256": "918d8082f4f3e370d317e21dfeb7a416c922aad0ec6bdc5335272ed42278dc88",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -103846,7 +104086,8 @@
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.output-timing.public-pass-20261012"
+        "HOST.output-timing.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ]
     },
     {
@@ -103880,7 +104121,8 @@
         "HOST.native-wave-loading.public-pass-20261012",
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.output-timing.public-pass-20261012"
+        "HOST.output-timing.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ]
     },
     {
@@ -103896,7 +104138,8 @@
       ],
       "evidence": [
         "HOST.native-wave-loading.installed-pass-20261012",
-        "HOST.voice-controls.wave-v4-installed-20261012"
+        "HOST.voice-controls.wave-v4-installed-20261012",
+        "HOST.voice-recovery.wave-v5-installed-20261012"
       ]
     },
     {
@@ -103914,7 +104157,8 @@
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
-        "HOST.output-timing.public-pass-20261012"
+        "HOST.output-timing.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ]
     },
     {
@@ -103929,7 +104173,8 @@
         "tools/native_media_launch.py"
       ],
       "evidence": [
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ]
     },
     {
@@ -104008,7 +104253,8 @@
         "HOST.native-menu-music.initial-pass-20261012",
         "HOST.native-menu-music.media-public-pass-20261012",
         "HOST.native-audio-defaults.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ]
     },
     {
@@ -104054,7 +104300,8 @@
       ],
       "evidence": [
         "HOST.native-audio-defaults.public-pass-20261012",
-        "HOST.voice-controls.public-v4-pass-20261012"
+        "HOST.voice-controls.public-v4-pass-20261012",
+        "HOST.voice-recovery.public-v5-pass-20261012"
       ]
     },
     {
@@ -104121,6 +104368,25 @@
         "NA.output_timing.queued-seek-20261012"
       ],
       "level": "headless"
+    },
+    {
+      "id": "native-voice-output-recovery-synthetic-20261012",
+      "level": "headless",
+      "scope": "Fake endpoint lost/retry/default rescan/timed recovery, consumed phase, sample identity/preferences, lost status/Play/Restore, stale IDs/strict initial admission/shutdown, version5 metadata and actual PE primary/secondary Restore dispatch; no physical output/default change or original driver equivalence. Controlled silent actual Qt endpoint loss via owned selector and automatic restart, with system default unchanged; no physical disappearance or platform default-event claim.",
+      "behaviors": [
+        "NA.voice_output_recovery"
+      ],
+      "tests": [
+        "tests/audio-voice-recovery-test.cpp",
+        "tests/test-native-audio-launch.py",
+        "runtime/audio/selftest.c",
+        "tools/test-audio-bridge.py",
+        "tests/audio-voice-output-backend-test.cpp"
+      ],
+      "evidence": [
+        "NA.voice_output_recovery.wire-initial-20261012",
+        "NA.voice_output_recovery.wire-backend-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -104494,8 +104760,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-output-timing-commit-20261012.json",
-    "sha256": "3caee402d74fefa60c73e2bf6ddde706a0d196f6ccf2bd00c3741ad4a45df029"
+    "path": "research/runtime/coverage/source-index-native-voice-recovery-commit-20261012.json",
+    "sha256": "273caef7a9e6f2f9adfce33239140ccfaddce9dbe3456a75221568a4c9247578"
   },
   "claim_bindings_required": true
 }
