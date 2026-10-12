@@ -7988,3 +7988,52 @@ contract. Fixture04passes32pairs/35forwards; original03normalQuitretains9pairs,
 rawcountandmode0→1; mask2preserves. Earlierfixture03/original02remainhistorical
 forcontractsupport. This metadata correction doesnot refresh any oldhash or
 assert unexecuted current validation; fullselection/tooltip/lifetimes/47/21open.
+
+
+## Step 2 independent actor-latch continuity (2026-10-12 UTC)
+
+The isolated `draw02-step2-selection-20261012` continuation starts at `6afb42c3`
+and preserves the concurrent cursor-mutex worktree. The exact committed-history
+review of `76264a6a..6afb42c3` finds zero missing file receipts; metadata is reviewed
+separately without asserting a retrospective gate pass.
+
+The read-only whole-pool recorder samples active slot-validated raw +68/+70
+independently of hover, and joins exact Region callback phases and completed
+original cursor prefixes. Two equal collections and an atomic first-thread
+admission are diagnostic guards, not allocations/generations or atomic snapshots.
+Five decoder, four immutable-binding, six Region decoder, four control-exclusion
+and five input-point methods pass. Actual PE32 owned-page matrix and integrated
+32-pair/35-forward callback matrices pass; enabled recording preserves raw return,
+LastError, full512FXstate and all checked owned bytes except the mock original
+health writes. Compile/link harness refusals are retained separately.
+
+First original attempt uses640x480installation preferences and refuses input
+client discovery before any injected action; forced teardown leaves scalar buffers
+unflushed and cannot count as an admitted reference. Fresh800x600inputs preserve
+established DRAW02settings byte-for-byte. Early positive original/analysis/visual
+records remain immutable and historical after the owner-admission refinement.
+An unsupported file-backed pool data anchor is removed from the prospective
+register while runtime address documentation/setter/resetter code links remain.
+No binary inventory boundaries or old evidence hashes are changed. Corrected
+declarations precede the final execution, not retrospective claim attachment.
+
+Final `draw02-actor-latch-region-fixture-04.json` passes the enabled callback
+fixture. `draw02-actor-latches-original-04.json` completes normal original Quit,
+retains693latch samples/15Regionpairs/19994APIrecords/4310inputcalls and zero full
+primary planes. Fresh `draw02-actor-latches-analysis-03.json` joins all693samples,
+635timely points, and callback2wizard-slot0raw68/count0→1. It observes540subsequent
+same-slot/type/owner/active/flag samples and490timelyhover-away witnesses before
+the first observed invalid/pool/flag/identity boundary. This establishes bounded
+sampled raw latch persistence for this actor, with earlier visual bracket
+corroboration; uninterrupted state, actor generations and full selection/tooltip
+semantics remain open. Original-consuming preparation/captures verify2927files
+before/after; no original files, balance rules or native gameplay are changed.
+
+Source/frame ownership is still open: cursor journal/frame prefixes are metadata
+links, not exact actor-source or physical frame parity. Global/alternate/GDI/movie
+routes, modal/guidance producers, general source and handle lifetimes, hardware/
+scanout, and excluded source-chain cohorts remain explicit gaps. Step2is not
+complete; all47journey/21operation gates and steps3–7remain open. New source census
+and exact pending review acknowledge broader observer consumers' historical
+evidence staleness; bounded new execution does not refresh their old hashes.
+See `draw02-step2-selection.md` for procedure and boundaries.

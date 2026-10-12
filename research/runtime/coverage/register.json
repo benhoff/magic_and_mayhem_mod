@@ -5462,6 +5462,9 @@
       },
       "original_candidates": [
         "0x4a75c0"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -5514,6 +5517,9 @@
       },
       "original_candidates": [
         "0x4ad6f0"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -5565,6 +5571,9 @@
       },
       "original_candidates": [
         "0x576830"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -5609,7 +5618,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "BR.mini",
@@ -5644,6 +5656,9 @@
       },
       "original_candidates": [
         "0x4b2100"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -9236,7 +9251,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "PR.audio-preview-cancel",
@@ -9296,7 +9314,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "PR.apply",
@@ -9356,7 +9377,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "PR.control-admission",
@@ -9404,7 +9428,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "PR.other-callers",
@@ -9484,7 +9511,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NP.preferences-draft",
@@ -11145,7 +11175,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "CP.region-entry-actions",
@@ -11233,7 +11266,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "CP.region-entry-bridge",
@@ -11299,7 +11335,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NP.region-entry-fresh-policy",
@@ -11364,7 +11403,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NP.multi-movement",
@@ -11633,7 +11675,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "CP.campaign-world-handoff-observation",
@@ -11702,7 +11747,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NR.incremental-command-consumer",
@@ -11982,7 +12030,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "CP.campaign-mini-lifecycle",
@@ -12050,6 +12101,9 @@
       },
       "original_candidates": [
         "0x46c070"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -12103,7 +12157,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NR.real-game-command-shadow",
@@ -12571,7 +12628,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "CP.campaign-mini-quit-lifecycle",
@@ -12635,6 +12695,9 @@
       "original_candidates": [
         "0x46a150",
         "0x4757c0"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -12689,7 +12752,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "TL.effect-motion-initializer",
@@ -12842,6 +12908,9 @@
         "0x473d70",
         "0x474940",
         "0x474b50"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -12896,7 +12965,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NR.owned-session-dc",
@@ -13208,7 +13280,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NP.campaign-preferences-policy",
@@ -13258,7 +13333,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "AS.effect-animation-catalog",
@@ -13362,7 +13440,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "runtime/menu/drawing_actor_latches.h"
+      ]
     },
     {
       "id": "NP.scene-spawning",
@@ -14205,7 +14286,8 @@
         "protocols/include/mnm/menu_v10.h",
         "protocols/include/mnm/menu_v11.h",
         "protocols/include/mnm/menu_v12.h",
-        "research/runtime/drawing-callers-movie-sites-20261010.json"
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -20739,7 +20821,8 @@
         "runtime/menu/result_selftest.h",
         "runtime/menu/results.h",
         "runtime/menu/spell_selftest.h",
-        "runtime/menu/spells.h"
+        "runtime/menu/spells.h",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.world-kind-diagnostic.synthetic-20261008",
@@ -22046,7 +22129,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.world-startup-launcher.normal-20261008",
@@ -22479,7 +22563,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Pinned800x600 RGB565 first16 Quick Battle map2/zero-items automatic startup completion; manual native-window close before queue1 as an independent live cancellation scenario. General manual menu journeys and original-window cancellation unvalidated.",
       "evidence": [
@@ -22697,7 +22782,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Pinned800x600 RGB565 first16 Quick Battle map2/zero-items automatic startup completion; manual native-window close before queue1 as an independent live cancellation scenario. General manual menu journeys and original-window cancellation unvalidated.",
       "evidence": [
@@ -22920,7 +23006,8 @@
         "tools/test-world-raster-queue.py",
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Synthetic cold/warm upload reuse, changed/restored resource revision rejection, failed-revision retry, owned-colour/ambiguous embedded palette and GL context restoration; frozen owned-source first16 map2/zero-items startup replay baseline versus optimized with all checkpoints compared; separate guarded public first16 live completion and precise-original intermediate/AX comparison. Timing is Debug software-OpenGL diagnostic native consumer, excludes original simulation and pre-entry work.",
       "evidence": [
@@ -23267,7 +23354,8 @@
         "tools/inventory-binary.py",
         "tools/prepare-scene-observer.py",
         "tools/run-game.sh",
-        "tools/scene-game-runner.py"
+        "tools/scene-game-runner.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Bounded first16 original-active World startup prefix with all available producer checkpoints; four-view/two-format synthetic owned adapter and malformed wire/result/selected-entry refusals, V1/V2 budget separation and distinct stored-orientation/outline-entry fixtures. Only actually observed camera/rotation/fog/flash changes count as live validation; source generation and replacement excluded.",
       "evidence": [
@@ -23476,7 +23564,8 @@
         "tools/scene-game-runner.py",
         "tools/test-canvas-producers.py",
         "tools/test-minimap-live.py",
-        "tools/test-native-canvas-producers.py"
+        "tools/test-native-canvas-producers.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Completed World-return records schedule input after rendering, with private focus/pointer centering; first16 map2/zero-items original-active World calls; actual orientations0..3 and at least two source centers required, complete source-only replay checkpoints equal. Strict malformed/empty fixture flag and missing owned opt-in refuse before mutation. No original camera memory writes.",
       "evidence": [
@@ -23815,7 +23904,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Public launcher paced motion and independent unpaced first16 startup; complete CPU/GPU delivery and external original checkpoint equality, version-bound header ingestion and source/compiled dependency provenance. Diagnostic timings only; no replacement.",
       "evidence": [
@@ -24168,7 +24258,8 @@
         "tools/original-manifest.sh",
         "tools/prepare-shadow-experiment.py",
         "tools/profile-render-stream.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -24406,7 +24497,8 @@
         "tools/original-manifest.sh",
         "tools/prepare-shadow-experiment.py",
         "tools/profile-render-stream.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -24545,7 +24637,8 @@
         "tools/prepare-shadow-experiment.py",
         "tools/run-opengl-game.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -24747,7 +24840,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -24979,7 +25073,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -25182,7 +25277,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -25391,7 +25487,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -25592,7 +25689,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -25812,7 +25910,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -26027,7 +26126,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-clock.py"
+        "tools/test-native-clock.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -26103,7 +26203,8 @@
         "tools/run-opengl-game.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "tools/test-native-pacer.py"
+        "tools/test-native-pacer.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -26214,7 +26315,8 @@
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
         "tools/test-native-clock.py",
-        "tools/test-native-pacer.py"
+        "tools/test-native-pacer.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -26432,7 +26534,8 @@
         "tools/test-native-campaign.py",
         "tools/test-native-clock.py",
         "tools/campaign_crowded.py",
-        "tests/campaign-crowded-test.py"
+        "tests/campaign-crowded-test.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -26674,7 +26777,8 @@
         "tools/test-world-raster-queue.py",
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -27165,7 +27269,8 @@
         "tools/test-world-raster-queue.py",
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.world-throughput.budget-negative-20261010",
@@ -27580,7 +27685,8 @@
         "tools/test-world-raster-queue.py",
         "tools/test-world-resource-reuse.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Pinned saved owned V3 World32 corpus with no oracle pixel inputs; retained GlBlitter across finite session resets and seeded mixed native operations. Default20 sessions/40 rounds, median50ms/p95100ms/max250ms warm native work and32MiB growth. Software Mesa default8 workers; GL3.3 fallback separately selectable. CPU/GPU World final parity plus saved checkpoint assertions; original code and live producer are not executed.",
       "evidence": [
@@ -28720,7 +28826,8 @@
         "tools/prepare-shadow-experiment.py",
         "tools/scene-game-runner.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.font-glyph-live-shadow.live-20261010",
@@ -29992,7 +30099,8 @@
         "tools/run-game.sh",
         "tools/test-glyph-backend-state.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "RS.glyph-live-route.host-20261010",
@@ -30227,7 +30335,8 @@
         "tools/run-game.sh",
         "tools/test-glyph-backend-state.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.glyph-live-admission.host-20261010",
@@ -30335,7 +30444,8 @@
         "protocols/include/mnm/menu_v6.h",
         "protocols/include/mnm/menu_v7.h",
         "protocols/include/mnm/menu_v8.h",
-        "protocols/include/mnm/menu_v9.h"
+        "protocols/include/mnm/menu_v9.h",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "RS.fade-live-pixels.original-20261010",
@@ -31229,7 +31339,8 @@
         "tools/scene-game-runner.py",
         "tools/test-glyph-backend-state.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.glyph-default-launch.host-20261010"
@@ -32552,7 +32663,8 @@
         "runtime/menu/observer.c",
         "runtime/menu/drawing_action.h",
         "tools/build-menu-observer.py",
-        "tools/inspect-drawing-source-buffer.py"
+        "tools/inspect-drawing-source-buffer.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Finite original-active map2/zero-item startup, observed opaque Blt/BltFast primary publications through a requested prefix of1..16 World returns, including the V2 action-phase trace; only positive-pitch RGB565. Readback loss is diagnostic refusal, not current equivalence. Synthetic parser failures do not establish original engine failure/ABI branches."
     },
@@ -32996,7 +33108,8 @@
         "tests/minimap-live-input.cpp",
         "tests/minimap-live-input/CMakeLists.txt",
         "apps/qt-shell/window_host.cpp",
-        "apps/qt-shell/window_host.hpp"
+        "apps/qt-shell/window_host.hpp",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -33613,7 +33726,8 @@
         "renderer/gpu_canvas_mirror.cpp",
         "renderer/gpu_canvas_mirror.hpp",
         "runtime/scene/drawing_publication.h",
-        "runtime/scene/drawing_publication.S"
+        "runtime/scene/drawing_publication.S",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Guarded finite original World32 source producer connected through a native broker and independently mapped ordered rolling consumer. Exact original request identity/extent/entry/source hash/AX validation before publication, anticipated native closure independently verified against actual original checkpoint/return after writeback; retained CPU/GPU history and resources, all completed checkpoint assertions, zero teardown surfaces. Native cold500ms/warm median60ms and request-to-reply warm median120ms excluding measured diagnostic assertions. Separate actual consumer/private-Wine producer death after at least one native World completion with a later original request outstanding; terminal refusal/private cleanup and fresh-session recovery. No unbounded original admission, uncaptured gameplay, original intermediate equivalence or hardware/desktop pacing claim.",
       "evidence": [
@@ -34105,7 +34219,8 @@
         "tools/test-world-producer-handoff.py",
         "tools/test-world-raster-queue.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Independent exact-original validation of a successful guarded rolling32-queue live capture. Each actual original entry and low16AX executes over owned native-only reconstructed entry state; every native CPU intermediate and final GPU canvas is compared, and the live rolling replies must match the native replay finals. Original lifetime/destination guard and live return acknowledgement are separately captured; post-writeback original canvases are not sole original equivalence evidence. Scoped observed canonical sources/callers, no unbounded gameplay/replacement, unsupported branches or timing/physics equivalence.",
       "evidence": [
@@ -34364,7 +34479,8 @@
         "tools/test-native-world-rolling-live.py",
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV4 binds the full canonical96-byte header to the exact owned-payload FNV; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
       "evidence": [
@@ -34694,7 +34810,8 @@
         "tools/test-native-world-rolling-live.py",
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV4 binds the full canonical96-byte header to the exact owned-payload FNV; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
       "evidence": [
@@ -34948,7 +35065,8 @@
         "tools/test-native-world-rolling-live.py",
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Normal actual original-to-native continuous4096-queue delivery without CPU reference raster composition or diagnostic files/mirror uploads. Retain owned source/header/descriptor/entry/AX/destination guards andmandatory finalGPU readback/original writeback andactual return. Source/transport/nativeGPU/Qtpaint costs measured separately; bounded1024 timing rows,source/cache/storage/memory caps,zero dropped queues/image fallback/teardown surfaces. Guarded actual WinMM uptime precision policy retains original wait target/preferences andLastError; no fabricated/scaled clock or full timer/physics equivalence assertion. Prospective warm fullWorld median50ms,p9575ms,max150ms,cold delivery500ms,steady original/Qtpaint19FPS,retained growth32MiB limits. Performance failure mustfail withcorrect pixels; impossible0.001ms negative control. Separate4096 verification run andrefusal/death/recovery cases; headless hardware/physical scanout/input cadence anduncaptured gameplay remain outside scope.",
       "evidence": [
@@ -35463,7 +35581,8 @@
         "tools/world_refusal.py",
         "tools/prepare-native-draw.py",
         "runtime/scene/drawing_publication.h",
-        "runtime/scene/drawing_publication.S"
+        "runtime/scene/drawing_publication.S",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
@@ -35792,7 +35911,8 @@
         "tools/world_channel.py",
         "tools/world_refusal.py",
         "runtime/scene/drawing_publication.h",
-        "runtime/scene/drawing_publication.S"
+        "runtime/scene/drawing_publication.S",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.world-gpu-ack-delivery.live-4096-20261010",
@@ -36663,7 +36783,8 @@
         "protocols/schemas/render_control-v1.json",
         "protocols/schemas/render_commands-v2.json",
         "protocols/schemas/render_stream-v2.json",
-        "runtime/menu/drawing_action.h"
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
@@ -37453,7 +37574,8 @@
         "protocols/schemas/render_commands-v1.json",
         "protocols/schemas/render_control-v1.json",
         "protocols/schemas/render_commands-v2.json",
-        "protocols/schemas/render_stream-v2.json"
+        "protocols/schemas/render_stream-v2.json",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
@@ -37861,7 +37983,8 @@
         "tools/build-scene-observer.py",
         "tools/inspect-canvas-producers.py",
         "runtime/scene/vertical_bar_trace.h",
-        "reconstruction/rendering/vertical_bar.h"
+        "reconstruction/rendering/vertical_bar.h",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
       "remaining_gaps": [
@@ -38443,7 +38566,8 @@
         "runtime/scene/canvas_producers.c",
         "research/runtime/drawing-inventory.json",
         "research/runtime/coverage/binary-nocd.json",
-        "tools/drawing_census_bindings.py"
+        "tools/drawing_census_bindings.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "DRAW.census.journal-guards-20261010",
@@ -38574,7 +38698,8 @@
         "tools/drawing_api_resources.py",
         "tests/test-drawing-api-resources.py",
         "tools/drawing_api_sites.py",
-        "tools/export-drawing-api-sites.py"
+        "tools/export-drawing-api-sites.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -39160,7 +39285,8 @@
         "tools/drawing_api_resources.py",
         "tests/test-drawing-api-resources.py",
         "tools/drawing_api_sites.py",
-        "tools/export-drawing-api-sites.py"
+        "tools/export-drawing-api-sites.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "DRAW.api-menu.observation-20261011",
@@ -40152,7 +40278,8 @@
         "tools/capture-drawing-census-game.py",
         "tests/canvas-startup-call.S",
         "tools/build-menu-observer.py",
-        "protocols/include/mnm/drawing_census_v1.h"
+        "protocols/include/mnm/drawing_census_v1.h",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "TOOL.drawing-core-bindings.guards-20261011",
@@ -41137,7 +41264,8 @@
         "tools/run-game.sh",
         "tools/scene-game-runner.py",
         "tools/test-drawing-presented-session.py",
-        "tools/test-native-drawing-session-runner.py"
+        "tools/test-native-drawing-session-runner.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.drawing-fenced-acquisition.original-20261011",
@@ -41797,7 +41925,8 @@
         "tools/prepare-menu-observer.py",
         "tools/menu-game-runner.py",
         "tools/prepare-shadow-experiment.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "status": {
         "understanding": "scoped",
@@ -41914,7 +42043,8 @@
         "tools/build-menu-observer.py",
         "tools/prepare-menu-observer.py",
         "tools/menu-game-runner.py",
-        "tools/prepare-shadow-experiment.py"
+        "tools/prepare-shadow-experiment.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "NR.scene-production-repetition.fixture-abi-negative-20261011",
@@ -43332,7 +43462,8 @@
         "tools/prepare-shadow-experiment.py",
         "protocols/include/mnm/menu_v1.h",
         "runtime/menu/channel.h",
-        "tools/drawing_api_session.py"
+        "tools/drawing_api_session.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "DRAW02.draw02-engine-windows-fixture-01-native_integration-20261012",
@@ -44339,7 +44470,8 @@
         "runtime/shadow/win32_min.h",
         "tools/build-menu-observer.py",
         "tools/drawing-session-runner.py",
-        "tools/drawing_diagnostic_cadence.py"
+        "tools/drawing_diagnostic_cadence.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -44462,7 +44594,8 @@
         "runtime/menu/channel.h",
         "runtime/shadow/win32_min.h",
         "tools/build-menu-observer.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -44598,7 +44731,8 @@
         "runtime/menu/observer.c",
         "tools/drawing-session-runner.py",
         "tools/build-menu-observer.py",
-        "tools/drawing_api_session.py"
+        "tools/drawing_api_session.py",
+        "runtime/menu/drawing_actor_latches.h"
       ]
     },
     {
@@ -44791,14 +44925,17 @@
         "tests/drawing-region-input-test.c",
         "tools/drawing_region_input.py",
         "tests/test-drawing-region-input.py",
-        "tools/capture-drawing-interactive.py"
+        "tools/capture-drawing-interactive.py",
+        "tests/drawing-actor-latch-region-test.c",
+        "tools/test-drawing-actor-latch-region.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
         "tools/build-menu-observer.py",
         "tools/drawing_diagnostic_cadence.py",
         "research/runtime/coverage/binary-nocd.json",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "runtime/menu/drawing_actor_latches.h"
       ],
       "evidence": [
         "DRAW02.draw02-region-input-fixture-negative-01-20261012",
@@ -44808,7 +44945,15 @@
         "DRAW02.draw02-region-input-fixture-03-20261012",
         "DRAW02.draw02-region-input-original-02-20261012",
         "DRAW02.draw02-region-input-fixture-04-20261012",
-        "DRAW02.draw02-region-input-original-03-20261012"
+        "DRAW02.draw02-region-input-original-03-20261012",
+        "DRAW02.draw02-actor-latches-original-01-20261012",
+        "DRAW02.draw02-actor-latches-original-02-20261012",
+        "DRAW02.draw02-actor-latch-region-link-negative-01-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-02-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
+        "DRAW02.draw02-actor-latches-original-03-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
+        "DRAW02.draw02-actor-latches-original-04-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44872,6 +45017,113 @@
       },
       "remaining_gaps": [
         "Static flag/count writes and later raw callback observation do not establish all persistent selection/highlight semantics, actor allocations/generations or lifetime. Regioncallback4fdad0/4ff13abranch lacks whole discovered function; existing unknown ranges retained. Full callback/control routes and presentation/native parity remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-actor-latch-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Read-only actor latch pool independent of hover",
+      "scope": "Opt-in bounded same-owner periodic and exact Region callback entry/return whole-pool active-slot raw68/raw70 bitmaps; two equal collections and numeric pool-shape checks; raw count/mode and completed original cursor point. No atomic pool, allocation/generation, complete selection/tooltip or source/physical/native parity claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5272528,
+          "scope": "Previously reviewed raw68/raw70 setter; whole caller and presentation effects excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5272816,
+          "scope": "Previously reviewed resetter; lifecycle ownership excluded."
+        }
+      ],
+      "documents": [
+        "research/formats/drawing-actor-latches.md",
+        "research/runtime/actor-control-latches.md",
+        "research/runtime/draw02-step2-selection.md"
+      ],
+      "implementation": [
+        "runtime/menu/drawing_actor_latches.h",
+        "tools/drawing_actor_latches.py"
+      ],
+      "tests": [
+        "tests/drawing-actor-latches-test.c",
+        "tools/test-drawing-actor-latches.py",
+        "tests/test-drawing-actor-latches.py",
+        "tests/drawing-actor-latch-region-test.c",
+        "tools/test-drawing-actor-latch-region.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/drawing_input_point.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-actor-latches-fixture-build-negative-01-20261012",
+        "DRAW02.draw02-actor-latches-fixture-link-negative-02-20261012",
+        "DRAW02.draw02-actor-latches-fixture-03-20261012",
+        "DRAW02.draw02-actor-latches-original-01-20261012",
+        "DRAW02.draw02-actor-latches-original-02-20261012",
+        "DRAW02.draw02-actor-latch-region-link-negative-01-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-02-20261012",
+        "DRAW02.draw02-actor-latches-fixture-04-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
+        "DRAW02.draw02-actor-latches-original-03-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
+        "DRAW02.draw02-actor-latches-original-04-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Observed pool IDs are numeric base changes only. Two equal collections do not exclude concurrent ABA/writes. Complete actor lifetime, selection/tooltip semantics and source/physical/native parity remain pending.",
+        "The numeric runtime pool address6def58 lies outside the file-backed inventory sections and is documented as a runtime observation, not a file-backed data anchor. Initial prospective records with that unsupported anchor remain historical; corrected contract requires fresh declarations. No binary inventory or historical hash is changed."
+      ]
+    },
+    {
+      "id": "NR.drawing-actor-latch-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact callback/cursor joins for sampled hover-independent latches",
+      "scope": "Fresh immutable-journal reanalysis joins whole-pool latch snapshots to exact Region phases and completed same-owner original cursor prefixes. Observe a bounded zero-to-one raw68 callback change and later samples with the same active slot/type/owner/flag while hover moves elsewhere; stop at observed pool/identity/flag changes or invalid pool samples. No continuous unsampled state, generations, complete selection/tooltip or source/physical/native parity.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-actor-latches.md",
+        "research/runtime/actor-control-latches.md"
+      ],
+      "implementation": [
+        "tools/analyze-drawing-actor-latches.py"
+      ],
+      "tests": [
+        "tests/test-drawing-actor-latch-binding.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_actor_latches.py",
+        "tools/drawing_region_input.py",
+        "tools/drawing_input_point.py",
+        "tools/drawing_hud_input_binding.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-actor-latches-analysis-01-20261012",
+        "DRAW02.draw02-actor-latches-analysis-02-20261012",
+        "DRAW02.draw02-actor-latches-visual-02-20261012",
+        "DRAW02.draw02-actor-latches-analysis-03-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Same numeric slot/type/owner and sampled raw latch does not establish allocation generations or uninterrupted persistence. Complete selection/tooltip, resource/source lifetimes and physical/native frame parity remain pending."
       ]
     }
   ],
@@ -96257,6 +96509,311 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-fixture-build-negative-01-20261012",
+      "kind": "native_integration",
+      "scope": "Retained fixture build refusal only; no observation or validation promotion.",
+      "record": "research/runtime/draw02-actor-latches-fixture-build-negative-01.json",
+      "sha256": "5ae8ad24d50d29a53c597183ea5a4f50dae3fe8f2358b737acc8c70047e51547",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-fixture-link-negative-02-20261012",
+      "kind": "native_integration",
+      "scope": "Retained freestanding fixture link refusal only; no validation promotion.",
+      "record": "research/runtime/draw02-actor-latches-fixture-link-negative-02.json",
+      "sha256": "391611d627d40f590d806a9ea257e966895cdacae0c3345fc4940677afafee08",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 whole-pool read-only latch sampler on owned pages: independent current-hit change, raw68/raw70 changes, invalid active slot, capacity and overflow refusals, periodic cadence, disabled/capacity/foreign-owner guards and unchanged source bytes. No original-game execution, selection semantics, allocation/generation or physical/native parity proof.",
+      "record": "research/runtime/draw02-actor-latches-fixture-03.json",
+      "sha256": "a943e2f56070fcdb3f4be7da4ff2d1aa7e0246751dedf9371b5ff35d74bc80b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active bounded campaign capture with independent actor latch/Region/cursor metadata; no complete selection, source lifetime or frame/native equivalence.",
+      "record": "research/runtime/draw02-actor-latches-original-01.json",
+      "sha256": "1924acf76e6595d564c848150e5f2197acbc3d11ed0f7a5349cde0e71643a41c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active bounded campaign capture with independent actor latch/Region/cursor metadata; no complete selection, source lifetime or frame/native equivalence.",
+      "record": "research/runtime/draw02-actor-latches-original-02.json",
+      "sha256": "d56738021f4df2733c1f2334bf1ca08e015f7dd88ca40f4649ee3716f0f6d758",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh offline exact callback/cursor joins and bounded sampled hover-independent raw latch persistence over an immutable original run. No continuous unsampled state, allocation/generation, full selection/tooltip, source/physical/native parity or new original execution claim.",
+      "record": "research/runtime/draw02-actor-latches-analysis-01.json",
+      "sha256": "ca0528679dc72306ba4876cf017a4728467a2bd3b4ceced04e8c5215b526f79f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latch-region-link-negative-01-20261012",
+      "kind": "native_integration",
+      "scope": "Retained integrated fixture harness link refusal only; no validation promotion.",
+      "record": "research/runtime/draw02-actor-latch-region-link-negative-01.json",
+      "sha256": "818f2519c96606eb289af736f38f98c52d768f64d4ba43e7985307b31e11c153",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latch-region-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 wrapper with enabled whole-pool latch recorder and decoder:32paired owned callback cells plus disabled/capacity/real foreign-thread forwards, exact thiscall receiver/eventmask/40byte by-value arguments, raw return/LastError/full512FXstate, one synthetic original callback per request, read-only observer apart from deliberately mocked original health writes; installer slot/prologue refusals. Synthetic original body at owned pinned addresses; no game execution/selection/tooltip/source ownership or pixel equivalence.",
+      "record": "research/runtime/draw02-actor-latch-region-fixture-02.json",
+      "sha256": "6596b05c6d9e1f94ebe9f04ba5385e1d40398c07bf8f940faaed941165399c42",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 whole-pool read-only latch sampler on owned pages: independent current-hit change, raw68/raw70 changes, invalid active slot, capacity and overflow refusals, periodic cadence, disabled/capacity/foreign-owner guards and unchanged source bytes. No original-game execution, selection semantics, allocation/generation or physical/native parity proof.",
+      "record": "research/runtime/draw02-actor-latches-fixture-04.json",
+      "sha256": "e0fcbfeab8c3a6383393bd211d754fe9faf717605ce3696e3c548bbe761cac7c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 wrapper with enabled whole-pool latch recorder and decoder:32paired owned callback cells plus disabled/capacity/real foreign-thread forwards, exact thiscall receiver/eventmask/40byte by-value arguments, raw return/LastError/full512FXstate, one synthetic original callback per request, read-only observer apart from deliberately mocked original health writes; installer slot/prologue refusals. Synthetic original body at owned pinned addresses; no game execution/selection/tooltip/source ownership or pixel equivalence.",
+      "record": "research/runtime/draw02-actor-latch-region-fixture-03.json",
+      "sha256": "c05f54b52ca20f27a607adffbe48881d574e8d1cc16eabc40a8648b8a9590ab3",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-original-03-20261012",
+      "kind": "live_observation",
+      "scope": "Bounded original-active campaign Region/latch/cursor metadata and normal Quit; no complete selection, lifetimes or physical/native parity.",
+      "record": "research/runtime/draw02-actor-latches-original-03.json",
+      "sha256": "3887af434e7d674e8c46fc3386e8d52af30746d6a515f3a64966505364cf56c0",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-analysis-02-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh offline exact callback/cursor joins and bounded sampled hover-independent raw latch persistence over an immutable original run. No continuous unsampled state, allocation/generation, full selection/tooltip, source/physical/native parity or new original execution claim.",
+      "record": "research/runtime/draw02-actor-latches-analysis-02.json",
+      "sha256": "ab5e35cf5b09fe28895f7fc59d9e9adc2ad078bce8b01840b128f8ce62969c53",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-visual-02-20261012",
+      "kind": "static",
+      "scope": "Static visual corroboration of retained original screen images only; no new game execution, exact frame/source identity or native parity.",
+      "record": "research/runtime/draw02-actor-latches-visual-02.json",
+      "sha256": "8e083fd2e8688a409f1718cb5906336868c1f9d20b197a9b63a3600fbaf2bc7a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 wrapper with enabled whole-pool latch recorder and decoder:32paired owned callback cells plus disabled/capacity/real foreign-thread forwards, exact thiscall receiver/eventmask/40byte by-value arguments, raw return/LastError/full512FXstate, one synthetic original callback per request, read-only observer apart from deliberately mocked original health writes; installer slot/prologue refusals. Synthetic original body at owned pinned addresses; no game execution/selection/tooltip/source ownership or pixel equivalence.",
+      "record": "research/runtime/draw02-actor-latch-region-fixture-04.json",
+      "sha256": "3b5bc769b3105e4cc06d182a81f0b0b40303b1081cde214f078e3249d6800da7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_callback_forwards",
+          "equals": 35
+        },
+        {
+          "pointer": "/full_fx_state_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/result_last_error_arguments_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/observer_does_not_change_owned_source",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-original-04-20261012",
+      "kind": "live_observation",
+      "scope": "Corrected-contract original-active bounded campaign Region/latch/cursor observations with normal Quit; no complete selection or source/physical/native parity.",
+      "record": "research/runtime/draw02-actor-latches-original-04.json",
+      "sha256": "22923cea21ffb6e75c3653775aff1a7f4a87eed1748d584f74002998dc4751d6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_parity_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_journey_coverage",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-actor-latches-analysis-03-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh offline exact callback/cursor joins and bounded sampled hover-independent raw latch persistence over an immutable original run. No continuous unsampled state, allocation/generation, full selection/tooltip, source/physical/native parity or new original execution claim.",
+      "record": "research/runtime/draw02-actor-latches-analysis-03.json",
+      "sha256": "eadbb1f9f98222592347862411109fc0a16883d710a89bb2579dc90d3c9e62b1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/bounded_hover_independent_latch_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/complete_selection_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/analysis/source_frame_parity_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108026,6 +108583,84 @@
       "evidence": [
         "DRAW02.storage-transitions-original-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.actor-latches-owned-pages",
+      "level": "headless",
+      "scope": "Actual PE32 sampler over owned pool pages: hover-independent flags, active slot/shape/range refusals, bounded cadence and read-only source; no original game or persistent selection proof.",
+      "behaviors": [
+        "NR.drawing-actor-latch-observation"
+      ],
+      "tests": [
+        "tests/drawing-actor-latches-test.c",
+        "tools/test-drawing-actor-latches.py",
+        "tests/test-drawing-actor-latches.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-actor-latches-fixture-build-negative-01-20261012",
+        "DRAW02.draw02-actor-latches-fixture-link-negative-02-20261012",
+        "DRAW02.draw02-actor-latches-fixture-03-20261012",
+        "DRAW02.draw02-actor-latches-fixture-04-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.actor-latches-original-callbacks",
+      "level": "live_observation",
+      "scope": "Bounded original-active campaign Region entry/return latch pool and same-owner menu samples with completed original cursor-prefix binding. Persistent raw latch across pointer motion is separate from complete selection/tooltip, generations or physical/native frame parity.",
+      "behaviors": [
+        "NR.drawing-actor-latch-observation"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "runtime/menu/drawing_region_input.h",
+        "tools/drawing_region_input.py",
+        "tests/fixtures/drawing-journeys/hud-hit-camera-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-actor-latches-original-01-20261012",
+        "DRAW02.draw02-actor-latches-original-02-20261012",
+        "DRAW02.draw02-actor-latches-original-03-20261012",
+        "DRAW02.draw02-actor-latches-original-04-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.actor-latch-metadata-analysis",
+      "level": "headless",
+      "scope": "Immutable original Region/latch/API journal joins and bounded observed hover-away persistence; no new game execution, generation ownership or whole presentation equivalence.",
+      "behaviors": [
+        "NR.drawing-actor-latch-binding"
+      ],
+      "tests": [
+        "tools/analyze-drawing-actor-latches.py",
+        "tests/test-drawing-actor-latch-binding.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-actor-latches-analysis-01-20261012",
+        "DRAW02.draw02-actor-latches-analysis-02-20261012",
+        "DRAW02.draw02-actor-latches-analysis-03-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.actor-latches-region-forwarding",
+      "level": "headless",
+      "scope": "Actual PE32 Region wrapper with enabled whole-pool observer over owned pages: 32 callback pairs and disabled/capacity/real foreign-thread forwards preserve result, error and full FX state and all sampled bytes except deliberate mock health writes.",
+      "behaviors": [
+        "NR.drawing-actor-latch-observation",
+        "NR.drawing-region-mouse-observation"
+      ],
+      "tests": [
+        "tests/drawing-actor-latch-region-test.c",
+        "tools/test-drawing-actor-latch-region.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-actor-latch-region-link-negative-01-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-02-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-03-20261012",
+        "DRAW02.draw02-actor-latch-region-fixture-04-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -108399,8 +109034,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-region-input-20261012.json",
-    "sha256": "33cce82a1f8a7ffc37f07849b71cf40e77f5dc6ef1cb9488eba48ceac417b973"
+    "path": "research/runtime/coverage/source-index-draw02-actor-latches-20261012.json",
+    "sha256": "f8c5178c020d65e9c84729d3dc74020498af6b7863114713bc370f5ac9781b7a"
   },
   "claim_bindings_required": true
 }

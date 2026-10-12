@@ -66,11 +66,18 @@ static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mo
    u32* begin=region_input_rows[at];u32* end=region_input_rows[at+1];
    begin[0]=at+1;end[0]=at+2;begin[1]=end[1]=region_input_calls;begin[2]=1;end[2]=2;
    region_input_snapshot(begin,object,mask,mouse,0,error);
+#ifdef MNM_REGION_LATCH_OBSERVATION
+   latch_sample(1,begin[1],begin[3]);
+#endif
   }
  }
  region_input_fp_restore(fp);SetLastError(error);
  u32 result=region_input_original(object,mask,mouse);error=GetLastError();region_input_fp_save(fp);
- if(at!=0xffffffff){region_input_snapshot(region_input_rows[at+1],object,mask,mouse,result,error);--region_input_pending;}
+ if(at!=0xffffffff){region_input_snapshot(region_input_rows[at+1],object,mask,mouse,result,error);
+#ifdef MNM_REGION_LATCH_OBSERVATION
+  latch_sample(2,region_input_rows[at+1][1],region_input_rows[at+1][3]);
+#endif
+  --region_input_pending;}
  region_input_fp_restore(fp);SetLastError(error);return result;
 }
 static int region_input_open(void){
