@@ -14,6 +14,8 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_MULTIPLAYER_SESSIONS")){installLiveMultiplayerSessionsTest(app,window,session,path);return;}
+    session.sessionMenusEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_MULTIPLAYER")){installLiveMultiplayerTest(app,window,session,path);return;}
     session.multiplayerMenusEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_GRIMOIRE")){installLiveGrimoireTest(app,window,session,path);return;}

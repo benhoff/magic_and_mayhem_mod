@@ -21,6 +21,8 @@
 #include "live_region_entry_controller.hpp"
 #include "live_grimoire_controller.hpp"
 #include "live_multiplayer_controller.hpp"
+#include "live_session_selection_controller.hpp"
+#include "../../protocols/include/mnm/menu_v16.h"
 #include "../../protocols/include/mnm/menu_v15.h"
 #include "../../protocols/include/mnm/menu_v14.h"
 #include "../../protocols/include/mnm/menu_v7.h"
@@ -93,6 +95,7 @@ public:
             menuStack_->addWidget(liveSetup_);menuStack_->addWidget(liveMap_);
             liveSpells_=new SpellboxWidget(menuStack_);liveSpells_->setObjectName("liveSpellSelection");menuStack_->addWidget(liveSpells_);
             liveMenus_=std::make_unique<LiveMenuSession>(repo_,this);
+            liveSessions_=new MultiplayerGameSelectionWidget(menuStack_);menuStack_->addWidget(liveSessions_);sessionMenus_=std::make_unique<LiveSessionSelectionController>(*liveMenus_,*liveSessions_);
             liveCreate_=new MultiplayerSetupWidget(MultiplayerSetupWidget::Mode::Create,menuStack_);liveJoin_=new MultiplayerSetupWidget(MultiplayerSetupWidget::Mode::Join,menuStack_);menuStack_->addWidget(liveCreate_);menuStack_->addWidget(liveJoin_);
             multiplayerMenus_=std::make_unique<LiveMultiplayerController>(*liveMenus_,*liveCreate_,*liveJoin_);
             liveLoad_=new LoadGameWidget(menuStack_);liveSave_=new SaveGameWidget(menuStack_);menuStack_->addWidget(liveLoad_);menuStack_->addWidget(liveSave_);
@@ -140,19 +143,20 @@ public:
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
-                    if(!liveCreate_->loadAssets(root,&error)||!liveJoin_->loadAssets(root,&error)||!liveGrimoire_->loadAssets(root,&error)||!liveLoad_->loadAssets(root,&error)||!liveSave_->loadAssets(root,&error)||!liveDefeat_->loadAssets(root,BattleResultWidget::Outcome::Defeat,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
+                    if(!liveSessions_->loadAssets(root,&error)||!liveCreate_->loadAssets(root,&error)||!liveJoin_->loadAssets(root,&error)||!liveGrimoire_->loadAssets(root,&error)||!liveLoad_->loadAssets(root,&error)||!liveSave_->loadAssets(root,&error)||!liveDefeat_->loadAssets(root,BattleResultWidget::Outcome::Defeat,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
                     if(liveMini_&&!liveMini_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
                     for(int i=0;i<6;++i)if(i!=0&&i!=1&&i!=2&&i!=3&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
                     liveMain_->findChild<QPushButton*>("mainMenuAction1")->setEnabled(liveMenus_->storageMenusEnabled&&liveMenus_->campaignPreferencesEnabled);
                     for(int i=0;i<2;++i)liveQuick_->findChild<QPushButton*>(QString("quickBattleAction%1").arg(i))->setEnabled(liveMenus_->multiplayerMenusEnabled&&liveMenus_->grimoireMenusEnabled);
                     menuAssetsLoaded_=true;
                 }
-                QString error;if(!multiplayerMenus_->present(state,&error)||!grimoireMenus_->present(state,&error)||!storageMenus_->present(state,&error)||!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
-                QWidget* screen=state.screen==15?static_cast<QWidget*>(liveCreate_):state.screen==16?static_cast<QWidget*>(liveJoin_):state.screen==MNM_MENU_GRIMOIRE_SCREEN?static_cast<QWidget*>(liveGrimoire_):state.screen==MNM_MENU_LOAD_SCREEN?static_cast<QWidget*>(liveLoad_):state.screen==13?static_cast<QWidget*>(liveSave_):state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
+                QString error;if(!sessionMenus_->present(state,&error)||!multiplayerMenus_->present(state,&error)||!grimoireMenus_->present(state,&error)||!storageMenus_->present(state,&error)||!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
+                QWidget* screen=state.screen==21?static_cast<QWidget*>(liveSessions_):state.screen==15?static_cast<QWidget*>(liveCreate_):state.screen==16?static_cast<QWidget*>(liveJoin_):state.screen==MNM_MENU_GRIMOIRE_SCREEN?static_cast<QWidget*>(liveGrimoire_):state.screen==MNM_MENU_LOAD_SCREEN?static_cast<QWidget*>(liveLoad_):state.screen==13?static_cast<QWidget*>(liveSave_):state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
                 if(input_)input_->suspend(screen!=viewport_);
                 fallback_->setEnabled(true);const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
                 liveSpells_->setEnabled(state.ready&&state.screen==7);liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
                 liveLoad_->setEnabled(state.ready&&state.screen==MNM_MENU_LOAD_SCREEN);liveSave_->setEnabled(state.ready&&state.screen==13);
+                liveSessions_->setEnabled(state.ready&&state.screen==21);
                 liveCreate_->setEnabled(state.ready&&state.screen==15);liveJoin_->setEnabled(state.ready&&state.screen==16);
                 liveGrimoire_->setEnabled(state.ready&&state.screen==MNM_MENU_GRIMOIRE_SCREEN);
                 liveRegion_->setEnabled(state.ready&&state.screen==18);
@@ -160,7 +164,7 @@ public:
                 liveDefeat_->setEnabled(state.ready&&state.screen==MNM_MENU_DEFEAT_SCREEN);
                 liveResults_->setEnabled(state.ready&&state.screen==MNM_MENU_RESULT_SCREEN);
                 if(liveMini_)liveMini_->setEnabled(state.ready&&state.screen==MNM_MENU_MINI_SCREEN);
-                if(gainedReady){if(state.screen==15)liveCreate_->focusFirstField();else if(state.screen==16)liveJoin_->focusFirstField();else if(state.screen==MNM_MENU_GRIMOIRE_SCREEN)liveGrimoire_->focusFirstControl();else if(state.screen==MNM_MENU_LOAD_SCREEN)liveLoad_->focusSelection();else if(state.screen==13)liveSave_->focusSelection();else if(state.screen==MNM_MENU_DEFEAT_SCREEN)liveDefeat_->focusContinue();else if(state.screen==18)liveRegion_->focusFirstControl();else if(state.screen==10)livePreferences_->focusFirstControl();else if(state.screen==MNM_MENU_RESULT_SCREEN)liveResults_->focusFirstAction();else if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
+                if(gainedReady){if(state.screen==21)liveSessions_->focusSelection();else if(state.screen==15)liveCreate_->focusFirstField();else if(state.screen==16)liveJoin_->focusFirstField();else if(state.screen==MNM_MENU_GRIMOIRE_SCREEN)liveGrimoire_->focusFirstControl();else if(state.screen==MNM_MENU_LOAD_SCREEN)liveLoad_->focusSelection();else if(state.screen==13)liveSave_->focusSelection();else if(state.screen==MNM_MENU_DEFEAT_SCREEN)liveDefeat_->focusContinue();else if(state.screen==18)liveRegion_->focusFirstControl();else if(state.screen==10)livePreferences_->focusFirstControl();else if(state.screen==MNM_MENU_RESULT_SCREEN)liveResults_->focusFirstAction();else if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
                 statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
@@ -417,6 +421,7 @@ private:
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
     SinglePlayerBattleWidget* liveSetup_=nullptr;MapSelectionWidget* liveMap_=nullptr;
+    MultiplayerGameSelectionWidget* liveSessions_=nullptr;std::unique_ptr<LiveSessionSelectionController> sessionMenus_;
     MultiplayerSetupWidget* liveCreate_=nullptr;MultiplayerSetupWidget* liveJoin_=nullptr;std::unique_ptr<LiveMultiplayerController> multiplayerMenus_;
     GrimoireWidget* liveGrimoire_=nullptr;std::unique_ptr<LiveGrimoireController> grimoireMenus_;
     RegionEntryWidget* liveRegion_=nullptr;std::unique_ptr<LiveRegionEntryController> regionMenus_;
