@@ -531535,6 +531535,725 @@
         "reason": "Only NP.host-lobby-view-ownership, HOST.native-host-lobby-view, HOST.original-directplay-dx6-launch and NP.directplay-prefix-installation-guards have fresh scoped validation. Peer/guest admission, chat/rules/map/start/player editing, gameplay, wider lobby/service semantics, interrupted installation recovery, concurrent initialization and other Wine/platform/path compatibility remain unvalidated. Existing menu/renderer/campaign/audio proofs and failed intermediate sources remain historical/unbound or stale where shared dependencies changed; none is refreshed or asserted equivalent. Recovered original lobby statuses remain independent. All53 new gaps, including missing comparisons and historical source staleness, are explicitly pending.",
         "status": "pending"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "476680c0f20dec72b1b62086765f6044d0e4a2e931d8920f7513e909d674d3e9",
+          "before_sha256": null,
+          "id": "CP.realm-region-selection"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3747f5f576ad4242d39637dcf4a0a1ac3ac9b4a2a31442629583cc97f2382b8e",
+          "before_sha256": null,
+          "path": "reconstruction/campaign/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "d72651297ea9a9a520d68f617c86cff91752c53a8bfe2f16f64b71b35046dbd4",
+          "before_sha256": null,
+          "path": "reconstruction/campaign/realm_selection.cpp"
+        },
+        {
+          "after_sha256": "e4de5a58a80a5634504ad85c9692620a6317390341852ac38479722503de8fbd",
+          "before_sha256": null,
+          "path": "reconstruction/campaign/realm_selection.hpp"
+        },
+        {
+          "after_sha256": "dc2d3c04cbdc4b462ee01cf465a61f11a001401bdcbfbbb34c7418ee0bbd7438",
+          "before_sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2",
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "3c9e70bdc32850c5a749a5040b01e5c7c93c7da3261382f38069356a58c92e45",
+          "before_sha256": "e585dd3c0c26287d90f5488b69d578bc53e931624f2cdc1a34bc1e4e362b8287",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ebac3eff2bc80f9eafb09f8508a90ca4c2b478b6975d6c00223e2357b7239450",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/campaign-menu-focus-history-20261012.json"
+        },
+        {
+          "after_sha256": "c257388fe8b745a585240c188e18f5561a73b79742aef30e271413eac4500cf6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-realm-selection-20261012.json"
+        },
+        {
+          "after_sha256": "8b17c4ddc3a44a7bd57f515c1b934cde6459188c4e544a799280411952805a5a",
+          "before_sha256": "2a065f8ba8966d335da9848c5ff17b2d610fe134f38230a3c43b8ba87934909d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "54e0c93e8a1e0fd2297b06250a33e638abe703170f14959963b15b448bd754c3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-campaign-selection-20261012.json"
+        },
+        {
+          "after_sha256": "5cfab7f750a957ad29f6ee157969d58c6c8382605828b85624d9a02b1e285884",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-campaign-selection-bound-20261012.json"
+        },
+        {
+          "after_sha256": "45db2176daa791dadb452b287b11c3ec1f69707793695fefa356a8ae513cc22c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-campaign-selection-20261012.md"
+        },
+        {
+          "after_sha256": "c59b25d80b0c4b56248ba44c07b339eca78375e9f868f6916d9e1aeb9ec35281",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-campaign-selection-bound-20261012.md"
+        },
+        {
+          "after_sha256": "1288a2c128925a3de236ce939ef80575641e94dabddc604982d9e78d92450060",
+          "before_sha256": null,
+          "path": "research/runtime/realm-selection-bound-original-20261012.json"
+        },
+        {
+          "after_sha256": "c93021577d6e19b7ca95a9edec4d560cb9a0586870adfbb25615d55ad955824d",
+          "before_sha256": null,
+          "path": "research/runtime/realm-selection-contract.md"
+        },
+        {
+          "after_sha256": "c8190037fd573dd49ae40045e9d888764905e7effc2b60e3786c8ffce6ce64d8",
+          "before_sha256": null,
+          "path": "research/runtime/realm-selection-original-20261012.json"
+        },
+        {
+          "after_sha256": "22e0cec85440a544f85c95f390ce5619813b972ce72851286e1717db2730dd93",
+          "before_sha256": null,
+          "path": "tests/realm-selection-contract-reference.cpp"
+        },
+        {
+          "after_sha256": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+          "before_sha256": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+          "path": "tests/sprite-binary-reference.cpp"
+        },
+        {
+          "after_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "before_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "path": "tools/coverage_claims.py"
+        },
+        {
+          "after_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+          "before_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+          "path": "tools/export-menu-support.py"
+        },
+        {
+          "after_sha256": "f9f8e8390c5d6f266b8784d45224c1f720fc974d7cc5c06afddbdf9b77f9850d",
+          "before_sha256": null,
+          "path": "tools/test-realm-selection-contract.py"
+        }
+      ],
+      "id": "campaign-realm-selection-original-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed the Qt-independent state0 selection reconstruction against unchanged original tick/occupancy execution, including actual source-closure declarations and all matrix/adjacency/canvas bounds. Original resources/movement/audio/render/push work remains privately stubbed; no live map command or unlock is enabled.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI47.realm-selection-bound-original"
+        ],
+        "reason": "Fresh prospective-contract/source-bound private execution passes15360 selection comparisons,54 adjacency bounds,14 coordinate bounds; complete original tick/counter bytes and both original manifests remain unchanged."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+          "before_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+          "id": "AS.resource-preparation"
+        },
+        {
+          "after_sha256": "476680c0f20dec72b1b62086765f6044d0e4a2e931d8920f7513e909d674d3e9",
+          "before_sha256": null,
+          "id": "CP.realm-region-selection"
+        },
+        {
+          "after_sha256": "15373d8a86b8989e518990bf982d610562df9727582d879caa7cd34c0210507e",
+          "before_sha256": "15373d8a86b8989e518990bf982d610562df9727582d879caa7cd34c0210507e",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "202a1a2389f027075f41e81e88b05ea9c3d3dce24a067ae7efd8fd5e36aa6838",
+          "before_sha256": "202a1a2389f027075f41e81e88b05ea9c3d3dce24a067ae7efd8fd5e36aa6838",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "0a833631fd64a23d3edc2bb5c23a7e5d7f5a384da73ff4e9249ea7700dfd8f46",
+          "before_sha256": "0a833631fd64a23d3edc2bb5c23a7e5d7f5a384da73ff4e9249ea7700dfd8f46",
+          "id": "DRAW.queue-client-state"
+        },
+        {
+          "after_sha256": "ece0e365ab5d849d3110c82c1f73e6cb548af518a64b28d7d54fdd436cef4095",
+          "before_sha256": "ece0e365ab5d849d3110c82c1f73e6cb548af518a64b28d7d54fdd436cef4095",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "912b9c0cd33f5e028115b031b79f2186fa433d59ec9b4f9b029df403223925de",
+          "before_sha256": "912b9c0cd33f5e028115b031b79f2186fa433d59ec9b4f9b029df403223925de",
+          "id": "DRAW.queue-render-postlude"
+        },
+        {
+          "after_sha256": "f076a2275afe6145da389613563fc11043ee7a56e94bd2c27b97f4f203338927",
+          "before_sha256": "f076a2275afe6145da389613563fc11043ee7a56e94bd2c27b97f4f203338927",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "14f375f8b42c10a84923400d52df8c016889e63bc51ab33ad5926ac91a2f767a",
+          "before_sha256": "14f375f8b42c10a84923400d52df8c016889e63bc51ab33ad5926ac91a2f767a",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "af60e17afb1cd6b0c9cee72715c282f223f9b6e20f9bbb0370e557f34cb878c9",
+          "before_sha256": "af60e17afb1cd6b0c9cee72715c282f223f9b6e20f9bbb0370e557f34cb878c9",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "1bcb5c45fcbb184dc1f4331f0575cbda83be18d41599e069304366b35df51863",
+          "before_sha256": "1bcb5c45fcbb184dc1f4331f0575cbda83be18d41599e069304366b35df51863",
+          "id": "HOST.native-menu-audio"
+        },
+        {
+          "after_sha256": "817da20160077a7c65b0d1fb08a6eeb0fb86410a87c78705d230186152db4edc",
+          "before_sha256": "592eb8c926519365093367bcd94ef2371890b58e22b151073e9db81bb9af4bc0",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "fbf255f0eb07fdd3dcf5be1107bef81182721baadaa619f7699f00fe48122339",
+          "before_sha256": "fbf255f0eb07fdd3dcf5be1107bef81182721baadaa619f7699f00fe48122339",
+          "id": "NR.canvas-image-production"
+        },
+        {
+          "after_sha256": "94c77a8cea36c60e68014f2b2704d7bf2de1f583ab36094ab03fd8efb8289d46",
+          "before_sha256": "94c77a8cea36c60e68014f2b2704d7bf2de1f583ab36094ab03fd8efb8289d46",
+          "id": "NR.canvas-producer-replay"
+        },
+        {
+          "after_sha256": "f645cdcaf28e1b830b19c52cc70ef8db6ad5e0ab83390dbb2d7460c75c82949f",
+          "before_sha256": "f645cdcaf28e1b830b19c52cc70ef8db6ad5e0ab83390dbb2d7460c75c82949f",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "0bda0ab9610dece2d9f7b52f1d31d175d31df9482a89edbabfaf7aa7d5a68ddd",
+          "before_sha256": "0bda0ab9610dece2d9f7b52f1d31d175d31df9482a89edbabfaf7aa7d5a68ddd",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "712fac31b910f4bded01e3e788795be8416815e3cac2d203f289da4117f2cdf6",
+          "before_sha256": "712fac31b910f4bded01e3e788795be8416815e3cac2d203f289da4117f2cdf6",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "50fe894a3feb676ead93193767a604fdb65343d9690593f18a023ce66e66be26",
+          "before_sha256": "50fe894a3feb676ead93193767a604fdb65343d9690593f18a023ce66e66be26",
+          "id": "NR.font-byte-producer"
+        },
+        {
+          "after_sha256": "f9f2674b01476bdbb7dae22a2f44e8abe770023c81ced4b2c8a1706d77d4b5f2",
+          "before_sha256": "f9f2674b01476bdbb7dae22a2f44e8abe770023c81ced4b2c8a1706d77d4b5f2",
+          "id": "NR.font-glyph-admission"
+        },
+        {
+          "after_sha256": "74142f06ae001cb291ef6462cda7ae392dd844bd426ac957e318713bc4664cfb",
+          "before_sha256": "74142f06ae001cb291ef6462cda7ae392dd844bd426ac957e318713bc4664cfb",
+          "id": "NR.font-glyph-live-shadow"
+        },
+        {
+          "after_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+          "before_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+          "id": "NR.glyph-backend-admission"
+        },
+        {
+          "after_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+          "before_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+          "id": "NR.glyph-backend-state-admission"
+        },
+        {
+          "after_sha256": "37bfa5ae413532d943c5c20e114dfdc1dd96454ba10ab28daa1c5a0bca893652",
+          "before_sha256": "37bfa5ae413532d943c5c20e114dfdc1dd96454ba10ab28daa1c5a0bca893652",
+          "id": "NR.glyph-default-launch"
+        },
+        {
+          "after_sha256": "23faae636f5cbf5b83f5085ac0f95df3c0b50232593e9830ecf1becb5a55fdd6",
+          "before_sha256": "23faae636f5cbf5b83f5085ac0f95df3c0b50232593e9830ecf1becb5a55fdd6",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "9f89e73b42d8a910555150f9ef065c67787b09a40af44a2684af7dc7193971a0",
+          "before_sha256": "9f89e73b42d8a910555150f9ef065c67787b09a40af44a2684af7dc7193971a0",
+          "id": "NR.minimap-input-fixture"
+        },
+        {
+          "after_sha256": "b5a212a3beff76ab06dcbc3ba7f6c9a1ebc52f0501bbc260c56ddad52785e3db",
+          "before_sha256": "b5a212a3beff76ab06dcbc3ba7f6c9a1ebc52f0501bbc260c56ddad52785e3db",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "8b15a01768af07f6de544b9dd689f885df1c67558c2a3831ee24c195f2b8a667",
+          "before_sha256": "8b15a01768af07f6de544b9dd689f885df1c67558c2a3831ee24c195f2b8a667",
+          "id": "NR.minimap-owned-observation"
+        },
+        {
+          "after_sha256": "f3e96ab8e233306e6baa09645edb0528ac705a60903fdf09a48823f80100e006",
+          "before_sha256": "f3e96ab8e233306e6baa09645edb0528ac705a60903fdf09a48823f80100e006",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "ecff1745dcd3e9709a6fd63db7e1584c8cf22990f317afe4eb7c13afb9d102bf",
+          "before_sha256": "ecff1745dcd3e9709a6fd63db7e1584c8cf22990f317afe4eb7c13afb9d102bf",
+          "id": "NR.panel-atomic-admission"
+        },
+        {
+          "after_sha256": "f3478a1ec73bc6f0dc3e9f8bc3f6d456a0eae4b0260e9b4f908fdf8d422ecb17",
+          "before_sha256": "f3478a1ec73bc6f0dc3e9f8bc3f6d456a0eae4b0260e9b4f908fdf8d422ecb17",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "77bb78c2d3407e833283cc07db3a8e499938e947e01be5336670e3b3105f5aca",
+          "before_sha256": "77bb78c2d3407e833283cc07db3a8e499938e947e01be5336670e3b3105f5aca",
+          "id": "NR.scene-production-repetition"
+        },
+        {
+          "after_sha256": "97e7be882a62bffc69b3598e8c17567eb19484aac9a526fa58eac85f916fc230",
+          "before_sha256": "97e7be882a62bffc69b3598e8c17567eb19484aac9a526fa58eac85f916fc230",
+          "id": "NR.sprite-atlas"
+        },
+        {
+          "after_sha256": "2a5e9c1b5cebb5ad82dbc0bee0f51de806965219c80a513d69a664207e0e6304",
+          "before_sha256": "2a5e9c1b5cebb5ad82dbc0bee0f51de806965219c80a513d69a664207e0e6304",
+          "id": "NR.sprites"
+        },
+        {
+          "after_sha256": "ae4f3ae9078db798cb5fe6f6bb037d46a948ca7eec06c74ddc1164757e22e35a",
+          "before_sha256": "ae4f3ae9078db798cb5fe6f6bb037d46a948ca7eec06c74ddc1164757e22e35a",
+          "id": "NR.upload-preparation"
+        },
+        {
+          "after_sha256": "eb52f8a1d7d164635ad5242384165c42f53c96762900ba88c42e301e9d8c8707",
+          "before_sha256": "eb52f8a1d7d164635ad5242384165c42f53c96762900ba88c42e301e9d8c8707",
+          "id": "NR.world-admission"
+        },
+        {
+          "after_sha256": "84ed7a2e722b2df1fb1398703112194c8d95566d9e7cf7828f27802a401ee86a",
+          "before_sha256": "84ed7a2e722b2df1fb1398703112194c8d95566d9e7cf7828f27802a401ee86a",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "9ea9d8480d813a2171ee31ddb04cf0dc1aedc6a2a4f2a71a5d10efe33b54b9b1",
+          "before_sha256": "9ea9d8480d813a2171ee31ddb04cf0dc1aedc6a2a4f2a71a5d10efe33b54b9b1",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "badb3282c7a2b44b8584dc259443952a2d5335baadec5efe5969918a8e9b058a",
+          "before_sha256": "badb3282c7a2b44b8584dc259443952a2d5335baadec5efe5969918a8e9b058a",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "ff75a79a495031565530a4bfcd38751f8ba5778d369dbceb853cca7745e96595",
+          "before_sha256": "ff75a79a495031565530a4bfcd38751f8ba5778d369dbceb853cca7745e96595",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "725fb025b9ce18f354058be7e2753e9022f5201690459296384e09baecd4e268",
+          "before_sha256": "725fb025b9ce18f354058be7e2753e9022f5201690459296384e09baecd4e268",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "6c5c9d40e4f7227e0f6b2565a18a3a8ac7185ca8664fc4ebaf4c2d3b4e6533f4",
+          "before_sha256": "6c5c9d40e4f7227e0f6b2565a18a3a8ac7185ca8664fc4ebaf4c2d3b4e6533f4",
+          "id": "NR.world-cpu-composition-reuse"
+        },
+        {
+          "after_sha256": "68ba066ab6d14592fd89c80fd0e2e57fabb267dd9debcc2768bf0f27d867ab03",
+          "before_sha256": "68ba066ab6d14592fd89c80fd0e2e57fabb267dd9debcc2768bf0f27d867ab03",
+          "id": "NR.world-frame-identity-cache"
+        },
+        {
+          "after_sha256": "4439369076b9c59a1fc2dbd15a7c13536c551a2f8fb6930376794f806af641b0",
+          "before_sha256": "4439369076b9c59a1fc2dbd15a7c13536c551a2f8fb6930376794f806af641b0",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "fad382e1d54f17d41014efe78f1d325420b215907944d9c69e74d1499cb48c05",
+          "before_sha256": "fad382e1d54f17d41014efe78f1d325420b215907944d9c69e74d1499cb48c05",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "3916c4283a71d09bf6baeab48292f055ecbd3cc8a0a3d0067790dcd7483a28f2",
+          "before_sha256": "3916c4283a71d09bf6baeab48292f055ecbd3cc8a0a3d0067790dcd7483a28f2",
+          "id": "NR.world-live-history"
+        },
+        {
+          "after_sha256": "ff1cb844cd6a0fbf0cf3a461e00eb870c4479bcbcf00c8abe57e2b6958da5bc7",
+          "before_sha256": "ff1cb844cd6a0fbf0cf3a461e00eb870c4479bcbcf00c8abe57e2b6958da5bc7",
+          "id": "NR.world-preparation"
+        },
+        {
+          "after_sha256": "ee6daf78ac73e5708d7fd2bb02a41f01dc8b1d55468133ee8967dba854324447",
+          "before_sha256": "ee6daf78ac73e5708d7fd2bb02a41f01dc8b1d55468133ee8967dba854324447",
+          "id": "NR.world-prepared-admission"
+        },
+        {
+          "after_sha256": "be711f7e3ef61926928be16142891fd07b00bfb101f2bdde5b76052b8841c105",
+          "before_sha256": "be711f7e3ef61926928be16142891fd07b00bfb101f2bdde5b76052b8841c105",
+          "id": "NR.world-producer-handoff"
+        },
+        {
+          "after_sha256": "308705271a3a8768fc49cac2727659b72d80d97d6f54043b66c41e54c20319c4",
+          "before_sha256": "308705271a3a8768fc49cac2727659b72d80d97d6f54043b66c41e54c20319c4",
+          "id": "NR.world-raster-batch-transport"
+        },
+        {
+          "after_sha256": "a469e9b54029b31f4f494d7f119569ed53901bb01ba8233ea7bfa72299ac0e0f",
+          "before_sha256": "a469e9b54029b31f4f494d7f119569ed53901bb01ba8233ea7bfa72299ac0e0f",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "9b83f01731db8e82ca0d8d74940bcab91714e44191b31be3a011ed35c866ed37",
+          "before_sha256": "9b83f01731db8e82ca0d8d74940bcab91714e44191b31be3a011ed35c866ed37",
+          "id": "NR.world-rolling-delivery"
+        },
+        {
+          "after_sha256": "3244734b093356064218c52d0d44dae328c9e2794949caf151ae09d8fbe03435",
+          "before_sha256": "3244734b093356064218c52d0d44dae328c9e2794949caf151ae09d8fbe03435",
+          "id": "NR.world-rolling-hardware"
+        },
+        {
+          "after_sha256": "602bd8b286b65f40e39b61c592045363790ebdb34f81ef9dac5486bab3b13d3f",
+          "before_sha256": "602bd8b286b65f40e39b61c592045363790ebdb34f81ef9dac5486bab3b13d3f",
+          "id": "NR.world-rolling-live-handoff"
+        },
+        {
+          "after_sha256": "7e5eefd669f0ebb7e176aaa9a2f0182cb9bcffd00e65d4eacb895b1bae48a8a7",
+          "before_sha256": "7e5eefd669f0ebb7e176aaa9a2f0182cb9bcffd00e65d4eacb895b1bae48a8a7",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "6fe286c325bd63070f3a312240d3e486c1c780f2c9f4ac34bced20b4f378fe43",
+          "before_sha256": "6fe286c325bd63070f3a312240d3e486c1c780f2c9f4ac34bced20b4f378fe43",
+          "id": "NR.world-startup-sequence"
+        },
+        {
+          "after_sha256": "831bf09d52651b89384d0334465e19f3975b7985fbf1a9a00d377d206285a2ae",
+          "before_sha256": "831bf09d52651b89384d0334465e19f3975b7985fbf1a9a00d377d206285a2ae",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "95923845323edbca365786da93e09f3f8d7cbbe1263dbf848ccb8357c43cb749",
+          "before_sha256": "95923845323edbca365786da93e09f3f8d7cbbe1263dbf848ccb8357c43cb749",
+          "id": "RS.canvas-fade-span"
+        },
+        {
+          "after_sha256": "32346f3b2cab857d22b9aa459cc0d9ef7edbc15d0a5d8ad86945f344dec97f56",
+          "before_sha256": "32346f3b2cab857d22b9aa459cc0d9ef7edbc15d0a5d8ad86945f344dec97f56",
+          "id": "RS.displacement-linear-stride"
+        },
+        {
+          "after_sha256": "0648757878c9cd0402b9b35dd9c8c8749998cf458730e0afff0bf290e08e7931",
+          "before_sha256": "0648757878c9cd0402b9b35dd9c8c8749998cf458730e0afff0bf290e08e7931",
+          "id": "RS.fade-live-pixels"
+        },
+        {
+          "after_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+          "before_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+          "id": "RS.fade-loop-state"
+        },
+        {
+          "after_sha256": "ebb4c5f04b22ec1aa8fcb90f02f473dc7fbfa1189dec6bb1fb0e748b4838b37a",
+          "before_sha256": "ebb4c5f04b22ec1aa8fcb90f02f473dc7fbfa1189dec6bb1fb0e748b4838b37a",
+          "id": "RS.font-byte-consumer"
+        },
+        {
+          "after_sha256": "06c05d3f989adcb2b803f6d7ec0e23fe170a6a6e2332e5ddafce56a0c43230d6",
+          "before_sha256": "06c05d3f989adcb2b803f6d7ec0e23fe170a6a6e2332e5ddafce56a0c43230d6",
+          "id": "RS.font-glyph-raster"
+        },
+        {
+          "after_sha256": "ff75ce50115f5f669a5bb00474a63d857af64c82dd534f808a91557445f6b3b3",
+          "before_sha256": "ff75ce50115f5f669a5bb00474a63d857af64c82dd534f808a91557445f6b3b3",
+          "id": "RS.font-line-layout"
+        },
+        {
+          "after_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+          "before_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+          "id": "RS.glyph-backend"
+        },
+        {
+          "after_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+          "before_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+          "id": "RS.glyph-backend-state"
+        },
+        {
+          "after_sha256": "660ab0f0c5bc23f8cef2ca082fea23d3b109c9c88b35862b7bd7a998bf3c2b41",
+          "before_sha256": "660ab0f0c5bc23f8cef2ca082fea23d3b109c9c88b35862b7bd7a998bf3c2b41",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+          "before_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+          "id": "RS.minimap-camera-corners"
+        },
+        {
+          "after_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+          "before_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+          "id": "RS.minimap-cell-marker"
+        },
+        {
+          "after_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+          "before_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+          "id": "RS.minimap-creature-markers"
+        },
+        {
+          "after_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+          "before_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+          "id": "RS.minimap-terrain-raster"
+        },
+        {
+          "after_sha256": "3ee1deb188ae8ed5690d6538d114515dd8e1464cffff293fae9496e46e400ddd",
+          "before_sha256": "3ee1deb188ae8ed5690d6538d114515dd8e1464cffff293fae9496e46e400ddd",
+          "id": "RS.panel-pixel-domain"
+        },
+        {
+          "after_sha256": "f7f1c97fe11ce309d8c69fed88829f7da578b2a91ee2e237200928cac961d439",
+          "before_sha256": "f7f1c97fe11ce309d8c69fed88829f7da578b2a91ee2e237200928cac961d439",
+          "id": "RS.shadow-linear-stride"
+        },
+        {
+          "after_sha256": "48e8fa0777eee21b3b43936ad1ab56ed1bf1acbb6c9249c2157174804ff97a3d",
+          "before_sha256": "48e8fa0777eee21b3b43936ad1ab56ed1bf1acbb6c9249c2157174804ff97a3d",
+          "id": "RS.world-composition"
+        },
+        {
+          "after_sha256": "27916f9d80341caf7b285b194dd9d63cd9492c9a8cce7ffa3a1d250223583030",
+          "before_sha256": "27916f9d80341caf7b285b194dd9d63cd9492c9a8cce7ffa3a1d250223583030",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "2b5b301745e42e92b2b9fe9575cef3e825ab334c0577968d15801f733733a716",
+          "before_sha256": "2b5b301745e42e92b2b9fe9575cef3e825ab334c0577968d15801f733733a716",
+          "id": "RS.world-frame"
+        },
+        {
+          "after_sha256": "89a6d4d2303254ce9002accde1d3a0125e35d16457c42f59abbf4a7ce30f06bd",
+          "before_sha256": "89a6d4d2303254ce9002accde1d3a0125e35d16457c42f59abbf4a7ce30f06bd",
+          "id": "RS.world-kind8-additive"
+        },
+        {
+          "after_sha256": "c3eaa216549c42aecb64a0b98d8489e94c1bc4ce2d5e1f6408d3c784e61557c9",
+          "before_sha256": "c3eaa216549c42aecb64a0b98d8489e94c1bc4ce2d5e1f6408d3c784e61557c9",
+          "id": "RS.world-kind8-colour"
+        },
+        {
+          "after_sha256": "e3625c6b6c4a985c1fb523543999fa047c019002f7b3712d3704745d8b09929f",
+          "before_sha256": "e3625c6b6c4a985c1fb523543999fa047c019002f7b3712d3704745d8b09929f",
+          "id": "RS.world-kind8-noop"
+        },
+        {
+          "after_sha256": "1526e7ebd41638c10597211bdd588aa55dcd384fff93ce362ead14a5cbb41ee5",
+          "before_sha256": "1526e7ebd41638c10597211bdd588aa55dcd384fff93ce362ead14a5cbb41ee5",
+          "id": "RS.world-producer-bypass"
+        },
+        {
+          "after_sha256": "112e742457a53c369c27cc42df65ec280a00ba2464876eb4ac03306d9b094b69",
+          "before_sha256": "112e742457a53c369c27cc42df65ec280a00ba2464876eb4ac03306d9b094b69",
+          "id": "RS.world-raster-batch-return"
+        },
+        {
+          "after_sha256": "056ce5d9874bf373e8d10d8974381fe8c85da17d6c34fb5cb98608d61109c006",
+          "before_sha256": "056ce5d9874bf373e8d10d8974381fe8c85da17d6c34fb5cb98608d61109c006",
+          "id": "RS.world-raster-queue-replacement"
+        },
+        {
+          "after_sha256": "a4681147863037053d468b65d345e4944151bbd9affc86158cafdb3a3dcd643c",
+          "before_sha256": "a4681147863037053d468b65d345e4944151bbd9affc86158cafdb3a3dcd643c",
+          "id": "RS.world-rolling-handoff-equivalence"
+        },
+        {
+          "after_sha256": "07f6d30e94e3d6a1d8a4f1378f4a1ed058511a7f435896fa32c7f45d6b5c2bdd",
+          "before_sha256": "b23457286ec2b3a2a45d95f0881782102a200d3c3584eb87eaac1c0ea70f519b",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "655f6d95c6a277b9711ef2b8abf91c48b733f0df15d1f8cee9d0b78bfd86efa7",
+          "before_sha256": "655f6d95c6a277b9711ef2b8abf91c48b733f0df15d1f8cee9d0b78bfd86efa7",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "db9097d22bd897d6e9c2c7e9aef4a2a255821a8e99c5d5fe86d2f31374e6406d",
+          "before_sha256": "db9097d22bd897d6e9c2c7e9aef4a2a255821a8e99c5d5fe86d2f31374e6406d",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "737f9b70f0c26ff16e49c09fac65f48d7635f5e00be4be49510be3a5ea892755",
+          "before_sha256": "737f9b70f0c26ff16e49c09fac65f48d7635f5e00be4be49510be3a5ea892755",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "bd72be1cd207766ee8c23c14ae716910223803e238aff9b0467d6b001c5d6d81",
+          "before_sha256": "bd72be1cd207766ee8c23c14ae716910223803e238aff9b0467d6b001c5d6d81",
+          "id": "TOOL.drawing-cpu-observer"
+        },
+        {
+          "after_sha256": "1bfd97d0f5fa11fa1400d90a4f7670254ca71ea990be26c9cfacb352368f4875",
+          "before_sha256": "1bfd97d0f5fa11fa1400d90a4f7670254ca71ea990be26c9cfacb352368f4875",
+          "id": "TOOL.drawing-cpu-sites"
+        },
+        {
+          "after_sha256": "c86726ae722da918758abf5d1ff38b62c3892470edca80972f23bce3f9b0d6ae",
+          "before_sha256": "c86726ae722da918758abf5d1ff38b62c3892470edca80972f23bce3f9b0d6ae",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "f0107bfedbb97303e186bad8b0b9d3f84582a8da442a87b37ba7d8035e2b8917",
+          "before_sha256": "f0107bfedbb97303e186bad8b0b9d3f84582a8da442a87b37ba7d8035e2b8917",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "fcb8ae3ddc2502963079b4f792b2defa98d849e150252620f9665c775b318c58",
+          "before_sha256": "fcb8ae3ddc2502963079b4f792b2defa98d849e150252620f9665c775b318c58",
+          "id": "TOOL.drawing-journeys"
+        },
+        {
+          "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "id": "TOOL.drawing-movie-reference"
+        },
+        {
+          "after_sha256": "2bb11aad649eb53216d4f6c2e222bf0bf9902067d1aab6263c6d51dbb791334a",
+          "before_sha256": "2bb11aad649eb53216d4f6c2e222bf0bf9902067d1aab6263c6d51dbb791334a",
+          "id": "TOOL.drawing-terminal-crosswalk"
+        },
+        {
+          "after_sha256": "596e7feb2a9c4009ad43dd3f7a2eff78c85611bf25eca1fda300db539976429e",
+          "before_sha256": "596e7feb2a9c4009ad43dd3f7a2eff78c85611bf25eca1fda300db539976429e",
+          "id": "TOOL.drawing-terminal-edges"
+        },
+        {
+          "after_sha256": "b66035a765b5485c37243b01d0c9d06679265992921ea718788192788a82b36b",
+          "before_sha256": "b66035a765b5485c37243b01d0c9d06679265992921ea718788192788a82b36b",
+          "id": "TOOL.drawing-terminal-observer"
+        },
+        {
+          "after_sha256": "acae615d9f2d2cf98b8595383bd6e243e18e12b7658e809cafc4218a595df8d4",
+          "before_sha256": "acae615d9f2d2cf98b8595383bd6e243e18e12b7658e809cafc4218a595df8d4",
+          "id": "TOOL.rendering-coverage"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3747f5f576ad4242d39637dcf4a0a1ac3ac9b4a2a31442629583cc97f2382b8e",
+          "before_sha256": null,
+          "path": "reconstruction/campaign/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "d72651297ea9a9a520d68f617c86cff91752c53a8bfe2f16f64b71b35046dbd4",
+          "before_sha256": null,
+          "path": "reconstruction/campaign/realm_selection.cpp"
+        },
+        {
+          "after_sha256": "e4de5a58a80a5634504ad85c9692620a6317390341852ac38479722503de8fbd",
+          "before_sha256": null,
+          "path": "reconstruction/campaign/realm_selection.hpp"
+        },
+        {
+          "after_sha256": "dc2d3c04cbdc4b462ee01cf465a61f11a001401bdcbfbbb34c7418ee0bbd7438",
+          "before_sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2",
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "3c9e70bdc32850c5a749a5040b01e5c7c93c7da3261382f38069356a58c92e45",
+          "before_sha256": "e585dd3c0c26287d90f5488b69d578bc53e931624f2cdc1a34bc1e4e362b8287",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ebac3eff2bc80f9eafb09f8508a90ca4c2b478b6975d6c00223e2357b7239450",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/campaign-menu-focus-history-20261012.json"
+        },
+        {
+          "after_sha256": "c257388fe8b745a585240c188e18f5561a73b79742aef30e271413eac4500cf6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/planned-realm-selection-20261012.json"
+        },
+        {
+          "after_sha256": "8b17c4ddc3a44a7bd57f515c1b934cde6459188c4e544a799280411952805a5a",
+          "before_sha256": "2a065f8ba8966d335da9848c5ff17b2d610fe134f38230a3c43b8ba87934909d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "54e0c93e8a1e0fd2297b06250a33e638abe703170f14959963b15b448bd754c3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-campaign-selection-20261012.json"
+        },
+        {
+          "after_sha256": "5cfab7f750a957ad29f6ee157969d58c6c8382605828b85624d9a02b1e285884",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-campaign-selection-bound-20261012.json"
+        },
+        {
+          "after_sha256": "45db2176daa791dadb452b287b11c3ec1f69707793695fefa356a8ae513cc22c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-campaign-selection-20261012.md"
+        },
+        {
+          "after_sha256": "c59b25d80b0c4b56248ba44c07b339eca78375e9f868f6916d9e1aeb9ec35281",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-campaign-selection-bound-20261012.md"
+        },
+        {
+          "after_sha256": "1288a2c128925a3de236ce939ef80575641e94dabddc604982d9e78d92450060",
+          "before_sha256": null,
+          "path": "research/runtime/realm-selection-bound-original-20261012.json"
+        },
+        {
+          "after_sha256": "c93021577d6e19b7ca95a9edec4d560cb9a0586870adfbb25615d55ad955824d",
+          "before_sha256": null,
+          "path": "research/runtime/realm-selection-contract.md"
+        },
+        {
+          "after_sha256": "c8190037fd573dd49ae40045e9d888764905e7effc2b60e3786c8ffce6ce64d8",
+          "before_sha256": null,
+          "path": "research/runtime/realm-selection-original-20261012.json"
+        },
+        {
+          "after_sha256": "22e0cec85440a544f85c95f390ce5619813b972ce72851286e1717db2730dd93",
+          "before_sha256": null,
+          "path": "tests/realm-selection-contract-reference.cpp"
+        },
+        {
+          "after_sha256": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+          "before_sha256": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+          "path": "tests/sprite-binary-reference.cpp"
+        },
+        {
+          "after_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "before_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "path": "tools/coverage_claims.py"
+        },
+        {
+          "after_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+          "before_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+          "path": "tools/export-menu-support.py"
+        },
+        {
+          "after_sha256": "f9f8e8390c5d6f266b8784d45224c1f720fc974d7cc5c06afddbdf9b77f9850d",
+          "before_sha256": null,
+          "path": "tools/test-realm-selection-contract.py"
+        }
+      ],
+      "id": "campaign-menu-focus-index-and-boundaries-20261012",
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:54038559834332e206a764352288af8cadb102933287f41ed0b449cbac4e7d72",
+        "behaviors_without_scenarios:bc77d0de4f3effd14761b5d0ba1c74ab1e36474dfe81951017229a1d5aa9849f",
+        "stale_evidence:764e6774596be10c79ee22b16b803fa6ca8da58571a1d6c4769efd9de0c16e04"
+      ],
+      "reason": "Reviewed all affected source, census, focused-register reconciliation, immutable reports, campaign roadmap and 27-version committed-history chains. Ledger/source-index changes affect shared documentation fingerprints; existing claims retain exact historical scopes. New unassigned entry anchor, absent live scenario and stale unbound precursor are explicit pending boundaries.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Only CP.realm-region-selection receives a fresh isolated-original comparison. Native Realm lifecycle/actions, campaign Character pricing/persistence, Portmanteau/research, later Grimoire and unrelated shared-document behaviors keep historical validation; no live or replacement promotion is asserted."
+      }
     }
   ],
   "schema": 1

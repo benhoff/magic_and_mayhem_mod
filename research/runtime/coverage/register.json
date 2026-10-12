@@ -43929,6 +43929,55 @@
       "validation_dependencies": [
         "research/runtime/coverage/planned-directplay-prefix-guards-20261012.json"
       ]
+    },
+    {
+      "id": "CP.realm-region-selection",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Settled Realm region selection admission and release latch",
+      "scope": "Resolved region0/3, normal/alternate ownership and owned-adjacency admission, original press/release latch, tutorial/auxiliary blocking, destination/Region Entry/capacity refusal; 15360 isolated original comparisons,54 adjacency bounds,14 canvas bounds. Resource/movement/drawing/audio/push dependencies privately stubbed; no live readiness, complete input ABI, map initialization, progression or Qt dispatch.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Settled state0 region selection in the complete private original tick, bounded matrix; entry anchor is not whole-function recovery.",
+          "recovered_range": "campaign-entry-5517a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5564048,
+          "scope": "Original eligible-occupant counter retained for alternate-mode capacity cases"
+        }
+      ],
+      "documents": [
+        "research/runtime/realm-selection-contract.md"
+      ],
+      "implementation": [
+        "reconstruction/campaign/realm_selection.cpp",
+        "reconstruction/campaign/realm_selection.hpp",
+        "reconstruction/campaign/CMakeLists.txt"
+      ],
+      "tests": [
+        "tools/test-realm-selection-contract.py",
+        "tests/realm-selection-contract-reference.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI47.realm-selection-original",
+        "UI47.realm-selection-bound-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -91157,6 +91206,79 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI47.realm-selection-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Resolved region0/3, normal/alternate ownership and owned-adjacency admission, original press/release latch, tutorial/auxiliary blocking, destination/Region Entry/capacity refusal; 15360 isolated original comparisons,54 adjacency bounds,14 canvas bounds. Resource/movement/drawing/audio/push dependencies privately stubbed; no live readiness, complete input ABI, map initialization, progression or Qt dispatch.",
+      "record": "research/runtime/realm-selection-original-20261012.json",
+      "sha256": "c8190037fd573dd49ae40045e9d888764905e7effc2b60e3786c8ffce6ce64d8",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 15360
+        },
+        {
+          "pointer": "/adjacency_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/coordinate_cases",
+          "equals": 14
+        },
+        {
+          "pointer": "/original_tick_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_occupancy_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI47.realm-selection-bound-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Resolved region0/3, normal/alternate ownership and owned-adjacency admission, original press/release latch, tutorial/auxiliary blocking, destination/Region Entry/capacity refusal; 15360 isolated original comparisons,54 adjacency bounds,14 canvas bounds. Resource/movement/drawing/audio/push dependencies privately stubbed; no live readiness, complete input ABI, map initialization, progression or Qt dispatch.",
+      "record": "research/runtime/realm-selection-bound-original-20261012.json",
+      "sha256": "1288a2c128925a3de236ce939ef80575641e94dabddc604982d9e78d92450060",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 15360
+        },
+        {
+          "pointer": "/adjacency_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/coordinate_cases",
+          "equals": 14
+        },
+        {
+          "pointer": "/original_tick_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_occupancy_unchanged",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/execution_claims"
     }
   ],
   "classifications": [],
@@ -102311,8 +102433,8 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2",
-      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
+      "sha256": "dc2d3c04cbdc4b462ee01cf465a61f11a001401bdcbfbbb34c7418ee0bbd7438",
+      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration."
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
@@ -102396,8 +102518,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-host-lobby-live-20261012.json",
-    "sha256": "018c5446ba74674df1f27d8dcbff29e3c8f1e875dca190790dfcfe13f70ed559"
+    "path": "research/runtime/coverage/source-index-campaign-selection-bound-20261012.json",
+    "sha256": "5cfab7f750a957ad29f6ee157969d58c6c8382605828b85624d9a02b1e285884"
   },
   "claim_bindings_required": true
 }

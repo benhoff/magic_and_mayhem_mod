@@ -1,5 +1,27 @@
 # Engine modernization coverage ledger
 
+## Campaign menu focus: settled Realm selection — 2026-10-12
+
+`CP.realm-region-selection` now has a separate Qt-independent reconstruction
+and [scope-bound isolated-original comparison](realm-selection-bound-original-20261012.json):
+15,360 state0 selection combinations,54 owned-adjacency/count boundaries and14
+low/high-resolution canvas bounds. Complete original tick/occupancy-counter
+bytes remain unchanged in the private mapping; dependency bytes are checked
+before private stubbing, source hashes stay stable and both original manifests
+pass. Native policy is not substituted for the recovered ownership, capacity,
+release-latch or auxiliary/tutorial branches. See [contract and campaign work
+order](realm-selection-contract.md).
+
+Scoped understanding/implementation/comparison advance independently. Live
+Realm readiness/commands, campaign Character pricing/persistence, Portmanteau/
+research identities and broader Grimoire callers remain pending. Fresh New
+Game still enters Forest of Pain before Realm resource initialization and
+Cancel returns Main; no progression, control unlock or gameplay balance changes
+are made. Earlier sandbox/fixture failures retain unique working paths.
+[History review](coverage/campaign-menu-focus-history-20261012.json) covers
+799688cc..6da291d6:27 exact file receipt chains,zero missing receipts; no
+retrospective execution or gate pass is inferred.
+
 ## Other pixel producers: byte text and live glyph shadow — 2026-10-10
 
 `RS.font-byte-consumer` now has isolated-original proof for contour-based byte
