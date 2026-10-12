@@ -34,6 +34,12 @@ def fixture(closed=False):
 
 
 class RetainedMap(unittest.TestCase):
+    def test_v2_retained_point_has_exact_query_identity(self):
+        q,*rest=fixture();q=bytearray(q);struct.pack_into('<I',q,64+25*4,2);struct.pack_into('<I',q,64+39*4,7)
+        self.assertEqual(decode(q,*rest)['matched'],1)
+        struct.pack_into('<I',q,64+39*4,0)
+        with self.assertRaises(ValueError):decode(q,*rest)
+
     def test_open_and_closed_are_points_without_ownership(self):
         for closed in (False,True):
             r=decode(*fixture(closed));self.assertEqual(r['matched'],1)

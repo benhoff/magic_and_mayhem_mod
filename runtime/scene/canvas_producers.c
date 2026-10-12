@@ -74,7 +74,7 @@ static struct Hook {u32 address,length,pop;u8 bytes[10];void(*entry)(void);i32 r
  {0x58f750,5,8,{0x53,0x8b,0x5c,0x24,0x0c},producer_enter_55,-1}
 };
 static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[MAX_SURFACES];
-static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6],storage_call;u8* record;} frames[MAX_FRAMES];
+static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch,owner,bar[6],storage_call,storage_canvas;u8* record;} frames[MAX_FRAMES];
 static HANDLE file;
 static u8* continuous_map;
 
@@ -398,6 +398,7 @@ static void producer_source_region_end(void){
 
 #include "drawing_publication.h"
 #include "drawing_source_point.h"
+#define MNM_STORAGE_QUERY_RECORD(point,route,surface) storage_transition_query(point,route,surface)
 #include "drawing_storage_point.h"
 #include "drawing_update_points.h"
 #include "whole_update_capture.h"

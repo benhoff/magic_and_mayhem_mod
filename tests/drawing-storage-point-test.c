@@ -8,6 +8,9 @@ static struct Surface{u32 object,id,pixels,width,height,stride,dirty,sampled;} s
 static struct{u32 sp,tag,ecx;} frames[2];
 static void copy(void* out,const void* in,u32 n){u8* a=out;const u8* b=in;while(n--)*a++=*b++;}
 static int bypass_writable(u32 p,u32 n){u32 m[7];return p&&p+n>=p&&VirtualQuery((void*)p,m,28)==28&&m[4]==0x1000&&(m[5]&0xcc)&&!(m[5]&0x101)&&p+n<=m[0]+m[3];}
+static u32 query_enabled=1,query_serial;
+static u32 query_provider(u32* m,u32 route,struct Surface* s){if(m[1]!=2||route<1||route>2||((m[2]&16)!=0)!=(s!=0))ExitProcess(160);return query_enabled?++query_serial:0;}
+#define MNM_STORAGE_QUERY_RECORD(m,route,s) query_provider(m,route,s)
 #include "../runtime/scene/drawing_storage_point.h"
 static void require(int value,u32 code){if(!value)ExitProcess(code);}
 void start(void){
@@ -38,5 +41,10 @@ void start(void){
  }
  frames[0].ecx=1;frames[0].tag=7;require(SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64)&&out[2]==19,156);
  frames[0].sp=0;frames[0].tag=1;require(SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64)&&out[2]==19,157);
+ require(SceneDrawingStoragePointV2((void*)0x1234,8,24,out,64)&&out[1]==2&&out[15]==1&&out[2]==19,161);
+ require(SceneDrawingClientStoragePointV2((void*)0x1234,8,out,64)&&out[1]==2&&out[15]==2&&out[2]==83,162);
+ require(SceneDrawingStoragePointV2((void*)0x5678,8,24,out,64)&&out[15]==3&&out[2]==3,163);
+ query_enabled=0;out[0]=0xfeed;SetLastError(0xbeef);require(!SceneDrawingStoragePointV2((void*)0x1234,8,24,out,64)&&out[0]==0xfeed&&GetLastError()==0xbeef,164);
+ stopped=1;require(SceneDrawingStoragePointV2((void*)0x1234,8,24,out,64)&&out[1]==2&&!out[15]&&out[2]==7,165);stopped=0;
  producer_trace_mode=0;require(!SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64),144);ExitProcess(0);
 }

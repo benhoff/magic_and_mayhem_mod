@@ -3,7 +3,7 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from drawing_storage_transitions import decode,bind_producer
+from drawing_storage_transitions import decode,bind_producer,bind_queries
 
 
 def fixture():
@@ -15,7 +15,40 @@ def fixture():
     return bytearray(struct.pack('<16I',*h)+b''.join(struct.pack('<24I',*r) for r in [a,b,t]))
 
 
+def query_fixture():
+    raw=fixture();struct.pack_into('<I',raw,8,3)
+    m=[64,2,19,10,0,0,7,800,600,800,0,0,0,0,18,1]
+    q=[3,3,1,1,1,1,1,0]+m
+    t=list(struct.unpack_from('<24I',raw,256));t[0]=4;t[10]=1
+    return raw[:256]+struct.pack('<24I24I',*q,*t)
+
+
 class StorageTransitions(unittest.TestCase):
+    def test_external_query_identity_is_exact_and_omissions_are_visible(self):
+        r=decode(query_fixture());m=r['queries'][0]['metadata']
+        points=dict(points=[dict(metadata=m)])
+        self.assertEqual(bind_queries(r,points,{}, {})['known_epoch_queries'],1)
+        self.assertEqual(bind_queries(r,{}, {}, {})['unlinked_query_ids'],[1])
+        wrong=m.copy();wrong[6]=8
+        with self.assertRaises(ValueError):bind_queries(r,dict(points=[dict(metadata=wrong)]),{}, {})
+
+    def test_query_binds_exact_observed_epoch(self):
+        r=decode(query_fixture());self.assertEqual(r['query_epochs_known'],1)
+        self.assertEqual(r['queries'][0]['epoch'],1)
+        self.assertFalse(r['queries'][0]['allocation_ownership_proved'])
+
+    def test_query_cannot_invent_epoch_identity_or_live_state(self):
+        for word,value in [(2,2),(3,3),(4,2),(5,2),(6,2),(7,1),(9,1),(10,23),(14,8),(23,2)]:
+            raw=bytearray(query_fixture());struct.pack_into('<I',raw,256+word*4,value)
+            with self.subTest(word=word),self.assertRaises(ValueError):decode(raw)
+
+    def test_changed_address_retains_unknown_epoch(self):
+        raw=bytearray(query_fixture())
+        for word,value in [(4,0),(5,4),(6,3)]:struct.pack_into('<I',raw,256+word*4,value)
+        struct.pack_into('<I',raw,352+8*4,4)
+        r=decode(raw);self.assertEqual(r['query_epochs_known'],0)
+        self.assertEqual(r['queries'][0]['status'],3)
+
     def test_explicit_relocated_caller_requires_version_and_exact_lock_site(self):
         raw=fixture();struct.pack_into('<I',raw,8,2)
         for at in (64,160):

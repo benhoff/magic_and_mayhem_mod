@@ -1,5 +1,6 @@
 """Public map-to-recorder cache points; no bytes or ownership inference."""
 import struct
+from drawing_storage_point import point_header
 from drawing_api_session import sha
 
 
@@ -25,10 +26,7 @@ def decode(data, resource_observation):
                 raise ValueError('Failed export has metadata')
         else:
             flags = m[2]
-            if m[:2] != (64, 1) or flags & ~191 or not flags & 1 or m[14] != r[5] or m[15]:
-                raise ValueError('Map storage metadata header')
-            if sum(bool(flags & f) for f in (8, 16, 32, 128)) > 1:
-                raise ValueError('Conflicting storage association')
+            point_header(m,r[5])
             if flags & 16:
                 if flags & 4 or not flags & 2 or m[5] or not m[6] or not 0 < m[7] <= 2048 or not 0 < m[8] <= 2048 or not m[7] <= m[9] <= 4096:
                     raise ValueError('Invalid live storage association')

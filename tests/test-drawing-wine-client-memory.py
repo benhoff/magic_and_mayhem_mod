@@ -22,6 +22,12 @@ def fixture():
 
 
 class ClientBinding(unittest.TestCase):
+    def test_v2_query_ordinal_is_required_when_live(self):
+        m=(64,2,83,7,0,0,8,800,600,800,4,4,0,0,18,7)
+        self.assertTrue(point(m,18,1600)['known'])
+        with self.assertRaises(ValueError):point(m[:-1]+(0,),18,1600)
+        with self.assertRaises(ValueError):point(m[:-1]+(131072,),18,1600)
+
     def test_known_pitch_only_source(self):
         x=decode(*fixture());self.assertEqual(x['known_source_points'],1)
         self.assertFalse(x['source_upload_identity_proved'])

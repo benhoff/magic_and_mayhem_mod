@@ -43554,7 +43554,8 @@
         "DRAW02.held-refusal-native-02-native-20261012",
         "DRAW02.source-pending-native-01-native-20261012",
         "DRAW02.storage-pending-native-20261012",
-        "DRAW02.storage-caller-native-20261012"
+        "DRAW02.storage-caller-native-20261012",
+        "DRAW02.storage-query-native-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43678,13 +43679,16 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-map-storage-point.md",
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/formats/drawing-storage-transitions.md"
       ],
       "implementation": [
         "runtime/scene/drawing_storage_point.h",
         "protocols/include/mnm/drawing_storage_point_v1.h",
         "runtime/drawing/wine_map_storage_point.h",
-        "tools/drawing_wine_map_storage_point.py"
+        "tools/drawing_wine_map_storage_point.py",
+        "runtime/drawing/storage_point_exports.h",
+        "tools/drawing_storage_point.py"
       ],
       "tests": [
         "tests/drawing-storage-point-test.c",
@@ -43702,7 +43706,10 @@
         "tools/build-scene-observer.py",
         "tools/build-drawing-session.py",
         "tools/capture-drawing-interactive.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "protocols/include/mnm/drawing_storage_point_v2.h",
+        "runtime/scene/drawing_storage_transitions.h",
+        "runtime/scene/drawing_storage_caller.h"
       ],
       "evidence": [
         "DRAW02.map-storage-export-fixture-01-native-20261012",
@@ -43711,7 +43718,15 @@
         "DRAW02.map-storage-original-01-live-20261012",
         "DRAW02.storage-pending-fixture-20261012",
         "DRAW02.storage-pending-parser-20261012",
-        "DRAW02.storage-pending-original-20261012"
+        "DRAW02.storage-pending-original-20261012",
+        "DRAW02.draw02-storage-query-export-fixture-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-02-20261012",
+        "DRAW02.draw02-storage-query-original-01-20261012",
+        "DRAW02.draw02-storage-query-original-02-20261012",
+        "DRAW02.draw02-storage-query-binding-01-20261012",
+        "DRAW02.draw02-storage-query-parser-01-20261012",
+        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-negative-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43723,7 +43738,8 @@
       "remaining_gaps": [
         "PE32 cache-only export and 12-forward observer fixtures plus four decoder methods pass. Original01 records 1242 successful maps: 795 known canvas points across six canvases, 14 unknown and 433 stopped. 760 known points are full 800x600 stride800. One resource map remains open at observation close. 118 held pairs/222 source commands, 333 API/332 EGL witnesses and actual normal Quit exit0 remain separate observations.",
         "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned.",
-        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime."
+        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
       ]
     },
     {
@@ -43736,14 +43752,17 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-client-memory-binding.md",
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/formats/drawing-storage-transitions.md"
       ],
       "implementation": [
         "runtime/drawing/wine_client_memory.h",
         "tools/drawing_wine_client_memory.py",
         "runtime/scene/drawing_storage_point.h",
         "protocols/include/mnm/drawing_storage_point_v1.h",
-        "tools/inspect-drawing-wine-client-memory.py"
+        "tools/inspect-drawing-wine-client-memory.py",
+        "runtime/drawing/storage_point_exports.h",
+        "tools/drawing_storage_point.py"
       ],
       "tests": [
         "tests/drawing-wine-client-memory-test.c",
@@ -43761,7 +43780,10 @@
         "tools/build-scene-observer.py",
         "tools/build-drawing-session.py",
         "tools/capture-drawing-interactive.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "protocols/include/mnm/drawing_storage_point_v2.h",
+        "runtime/scene/drawing_storage_transitions.h",
+        "runtime/scene/drawing_storage_caller.h"
       ],
       "evidence": [
         "DRAW02.client-memory-imports-01-static-20261012",
@@ -43775,7 +43797,15 @@
         "DRAW02.client-memory-build-manifest-01-static-20261012",
         "DRAW02.storage-pending-fixture-20261012",
         "DRAW02.storage-pending-parser-20261012",
-        "DRAW02.storage-pending-original-20261012"
+        "DRAW02.storage-pending-original-20261012",
+        "DRAW02.draw02-storage-query-export-fixture-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-02-20261012",
+        "DRAW02.draw02-storage-query-original-01-20261012",
+        "DRAW02.draw02-storage-query-original-02-20261012",
+        "DRAW02.draw02-storage-query-binding-01-20261012",
+        "DRAW02.draw02-storage-query-parser-01-20261012",
+        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-negative-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43787,7 +43817,8 @@
       "remaining_gaps": [
         "Pinned descriptor-update import/export and PE32 cache-only export/forwarding/lifetime/generation controls plus five decoder methods pass. Original01 records52setters1595queries:145known UI sources,342unbound493unknown615stopped. 118heldpairs223sourcecommands329API328EGLnormalQuit0 remain separate. Compile, FP-comparison and harness failures retained; no original execution for those negatives.",
         "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged.",
-        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime."
+        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
       ]
     },
     {
@@ -43800,11 +43831,14 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-retained-map-source.md",
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/formats/drawing-storage-transitions.md"
       ],
       "implementation": [
         "runtime/drawing/wine_retained_map_source.h",
-        "tools/drawing_wine_retained_map_source.py"
+        "tools/drawing_wine_retained_map_source.py",
+        "runtime/drawing/storage_point_exports.h",
+        "tools/drawing_storage_point.py"
       ],
       "tests": [
         "tests/drawing-wine-retained-map-source-test.c",
@@ -43821,7 +43855,10 @@
         "runtime/scene/drawing_storage_point.h",
         "tools/build-drawing-session.py",
         "tools/capture-drawing-interactive.py",
-        "tools/drawing-session-runner.py"
+        "tools/drawing-session-runner.py",
+        "protocols/include/mnm/drawing_storage_point_v2.h",
+        "runtime/scene/drawing_storage_transitions.h",
+        "runtime/scene/drawing_storage_caller.h"
       ],
       "evidence": [
         "DRAW02.retained-map-fixture-01-native-20261012",
@@ -43832,7 +43869,15 @@
         "DRAW02.retained-map-fault-check-01-static-20261012",
         "DRAW02.storage-pending-fixture-20261012",
         "DRAW02.storage-pending-parser-20261012",
-        "DRAW02.storage-pending-original-20261012"
+        "DRAW02.storage-pending-original-20261012",
+        "DRAW02.draw02-storage-query-export-fixture-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-02-20261012",
+        "DRAW02.draw02-storage-query-original-01-20261012",
+        "DRAW02.draw02-storage-query-original-02-20261012",
+        "DRAW02.draw02-storage-query-binding-01-20261012",
+        "DRAW02.draw02-storage-query-parser-01-20261012",
+        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-negative-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43844,7 +43889,8 @@
       "remaining_gaps": [
         "PE32 28 original forwards/10 queries and four decoder methods pass. Original01 negative records64 partial address matches, then phase2 source-byte getter refuses two pending producer frames after one command completed; extra frame identity/overlap remains unknown. Metadata-only original02 closes1675queries:340known/1027unbound308stopped, all340known afterobservedunmap,336API335EGLnormalQuit0; resource intervals allclose.",
         "Known points include fullframe canvas2/7/8/9/10/13 andUI12/14/15/22/53/54. Last observed map address at submission is not post-unmap allocation ownership or actualupload/sourceversion/writer/alias/reuse/wholeCOM/resource/texture/storage lifetime. Combined protected source copying still needs a sound pending-frame diagnosis/admission contract. Other routes/actions/cadencecontrols/current nativeparity/full DRAW-02 47/21 acceptance remain pending.",
-        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime."
+        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
       ]
     },
     {
@@ -43856,7 +43902,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-source-pending-frame-refusal.md"
+        "research/runtime/draw02-source-pending-frame-refusal.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [
         "runtime/scene/source_pending_refusal.h",
@@ -43882,7 +43929,8 @@
         "DRAW02.source-pending-compile-refusal-01-static-20261012",
         "DRAW02.source-pending-link-refusal-01-static-20261012",
         "DRAW02.source-pending-original-01-live-20261012",
-        "DRAW02.source-pending-original-02-live-20261012"
+        "DRAW02.source-pending-original-02-live-20261012",
+        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43893,7 +43941,8 @@
       },
       "remaining_gaps": [
         "Two exact refusal PE32 cases and three decoder methods pass; corrected existing byte export and readonly protection/write-fault fixtures pass. Two original combined runs close normally without emitting refusal files; intermittent earlier extra frame identity/overlap remains unreproduced and unassigned. No source-copy admission was loosened.",
-        "Numeric canvas/record equality is not alias/overlap proof. Whole source/COM/resource/texture/storage lifetime and all writers/uploads/versions, unknown/stopped routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
+        "Numeric canvas/record equality is not alias/overlap proof. Whole source/COM/resource/texture/storage lifetime and all writers/uploads/versions, unknown/stopped routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending.",
+        "A fresh version3 run identifies foreign tag32owned copy source1/destination5 during source9lease17owner tag7copy; whether backing overlaps remains unknown. Guard unchanged; successful retry does not prove race resolved."
       ]
     },
     {
@@ -43949,23 +43998,28 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Observed original wrapper storage transition journal",
-      "scope": "Prospective opt-in pointer-free create/release/Lock entry-return journal, logical wrapper and address identities, every observed Lock return including skipped checkpoints. Numerical address identities are local observations, not allocation ownership. Record null/unreadable/cache-unknown states and in-progress closure explicitly.",
+      "scope": "Opt-in pointer-free create/release/Lock entry-return journal and V2query ordinals at exact observed Lock-return epochs under one recorder scope. Numerical wrapper/cache/address identities, missing/changed/pending/stopped states and open/budget failures remain explicit. No real allocation/COM alias/allcall ownership, uploads or complete lifetime claim.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-canvas-storage-generations.md"
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/formats/drawing-storage-transitions.md"
       ],
       "implementation": [
         "runtime/scene/drawing_storage_transitions.h",
         "tools/drawing_storage_transitions.py",
-        "runtime/scene/drawing_storage_caller.h"
+        "runtime/scene/drawing_storage_caller.h",
+        "protocols/include/mnm/drawing_storage_point_v2.h",
+        "runtime/scene/drawing_storage_point.h"
       ],
       "tests": [
         "tests/drawing-storage-transitions-test.c",
         "tools/test-drawing-storage-transitions.py",
         "tests/test-drawing-storage-transitions.py",
         "tools/capture-drawing-interactive.py",
-        "tools/analyze-drawing-storage-transitions.py"
+        "tools/analyze-drawing-storage-transitions.py",
+        "tests/drawing-storage-point-test.c",
+        "tools/test-drawing-storage-point.py"
       ],
       "evidence": [
         "DRAW02.storage-transitions-fixture-20261012",
@@ -43973,7 +44027,15 @@
         "DRAW02.storage-transitions-binding-20261012",
         "DRAW02.storage-caller-fixture-20261012",
         "DRAW02.storage-caller-original-20261012",
-        "DRAW02.storage-caller-binding-20261012"
+        "DRAW02.storage-caller-binding-20261012",
+        "DRAW02.draw02-storage-query-export-fixture-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-02-20261012",
+        "DRAW02.draw02-storage-query-original-01-20261012",
+        "DRAW02.draw02-storage-query-original-02-20261012",
+        "DRAW02.draw02-storage-query-binding-01-20261012",
+        "DRAW02.draw02-storage-query-parser-01-20261012",
+        "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
+        "DRAW02.draw02-storage-query-fixture-negative-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43986,7 +44048,9 @@
         "Existing producer checkpoint skips clean/unsampled Lock returns. Complete transition observation therefore needs an independent journal; no generation inference from absent checkpoints. Real COM/aliases/ownership/driver/unobserved calls remain pending.",
         "Original01 closes884invocations, but18caller rows unknown. Binding01 finds numerical address15 on canvases7/8/9/13; alias versus physical allocation reuse cannot be inferred. Fresh offline parser extension retains historical original/fixture source declarations, not a new engine validation. Native parity for this journal source increment is pending.",
         "Prospective caller normalization: only exact return at relocated hook9 prologue call may map to pinned58d329. Preserve original continuation pointer and explicit mapping flag; neighboring/unknown calls remain unknown. Original01 unknown18rows are historical until fresh execution.",
-        "Version2 original01 resolves its18relocated caller rows to exact58d329 with0unknown; historical version1unknowns retained. This does not establish all unhooked/indirect calls, real allocation/alias lifetimes, caller effects or epoch-to-submission binding. Prefix binding shows numerical addresses shared across observed logical canvases; no ownership inference."
+        "Version2 original01 resolves its18relocated caller rows to exact58d329 with0unknown; historical version1unknowns retained. This does not establish all unhooked/indirect calls, real allocation/alias lifetimes, caller effects or epoch-to-submission binding. Prefix binding shows numerical addresses shared across observed logical canvases; no ownership inference.",
+        "Prospective explicit V2 storage-query ordinal into version3 transition journal, with latest observed Lock-return epoch under the same recorder scope. Missing/mismatched epochs and stopped/unknown/pending points remain unknown; allocation/alias ownership is not implied.",
+        "Version3 original02 closes1869queries482known epochs1387unknown; all exact external IDs/metadata bind with0unlinked. Combined01 fails at source9lease17foreign tag32copy1to5; strict source-copy guard retained and byte overlap unproved. Source-only replay02 passes104eligible frames225excluded. Real allocation/aliases/allwriters/uploads/everyroute/action/full47/21 remain pending."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -43994,7 +44058,13 @@
         "tools/build-scene-observer.py",
         "tools/drawing-session-runner.py",
         "tools/drawing_diagnostic_cadence.py",
-        "tools/inspect-canvas-producers.py"
+        "tools/inspect-canvas-producers.py",
+        "runtime/drawing/storage_point_exports.h",
+        "tools/drawing_storage_point.py",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_client_memory.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "tools/build-drawing-session.py"
       ]
     }
   ],
@@ -94253,6 +94323,144 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-export-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 V1cache guards/V2exact-query exports, missing active journal and stopped output controls; query provider is synthetic.",
+      "record": "research/runtime/draw02-storage-query-export-fixture-01.json",
+      "sha256": "8284f4a09c2a20b752d246cd9f2d4eea248d3acecb1913ae2c46288abc89984c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 seven mock lifecycle invocations/four Lock epochs and four exact query states [missing,matching,changed,unknown]. Current offline extension remains separately fingerprinted.",
+      "record": "research/runtime/draw02-storage-query-fixture-02.json",
+      "sha256": "7d6fb226926347e223abb439da5e38b7e6909ee7c29b3e110e3a9fbbfe60d237",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-original-01-20261012",
+      "kind": "static",
+      "scope": "Preserved negative original setup acquisition: strict source copy refuses concurrent foreign tag32frame. Closed partial70invocations111queries are not a journey/normal-Quit completion.",
+      "record": "research/runtime/draw02-storage-query-original-01.json",
+      "sha256": "bfbf4b858345bac8ea5bfad0677e96587b5367357b7c79006df6818cfb4c6712",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Normal original Quit closes884invocations809Lockepochs1869queries482known epochs with strict copy guard unchanged;118heldpairs222commands329API328EGL. No allocation/alias/allroute/full journey proof.",
+      "record": "research/runtime/draw02-storage-query-original-02.json",
+      "sha256": "d8f5aa5d6912fd9f44b8512afd22a0bc0124508cdf213c431590f794b679dc53",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-binding-01-20261012",
+      "kind": "static",
+      "scope": "Current retained-source reanalysis binds2169known1468unknown cache points and all1869external query identities,482known1387unknown epochs0unlinked; numerical reuse across canvases remains nonownership.",
+      "record": "research/runtime/draw02-storage-query-binding-01.json",
+      "sha256": "fffabc26ad0e5662a12ded5b7911cddcb4a6f905a35e6cc17cbbc861c4a8526c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-parser-01-20261012",
+      "kind": "static",
+      "scope": "36current decoder/control methods: exact query/epoch/cross-stream/header/version, missing/changed/pending/stopped/contradictory states and control exclusions.",
+      "record": "research/runtime/draw02-storage-query-parser-01.json",
+      "sha256": "c2b0bcbf78a3a445923a6100dad1a531a13d5fcd76bb0f1534a102d338be2208",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
+      "kind": "static",
+      "scope": "Preserved negative lease17 source9 protected-copy snapshot identifies owner tag7source9/destination2 plus foreign tag32source1/destination5. No byte overlap/disjoint backing or copy admission inference.",
+      "record": "research/runtime/draw02-storage-query-pending-diagnosis-01.json",
+      "sha256": "ef076a808629e0b43d8d8e7b137614ae78281c0f8269fca2799d22a9f41ee570",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-fixture-negative-01-20261012",
+      "kind": "static",
+      "scope": "Retained synthetic client query with missing pitch-only extent flag64 correctly refused by decoder; fixture corrected without changing admission.",
+      "record": "research/runtime/draw02-storage-query-fixture-negative-analysis-01.json",
+      "sha256": "15818e9560591b3965ef113ef7c8f0f24106d84a90bd2911c3e1d95138b1880e",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/decoder_refused",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW02.storage-query-native-20261012",
+      "kind": "native_integration",
+      "scope": "104current eligible protected-source/APIcommand/worker/EGLphysical frames match source-only native replay0differences225excluded; no whole lifetime/journey.",
+      "record": "research/runtime/draw02-storage-query-native-01.json",
+      "sha256": "776da2be2b0ce73fac69022dadf079ff958530f8ed101dbf58fe565774c33a5e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106395,8 +106603,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-storage-caller-20261012.json",
-    "sha256": "a6894d64ca40f74cb2876b42c822be9d476b4a667ddbf6412226038c3e4be36e"
+    "path": "research/runtime/coverage/source-index-draw02-storage-query-20261012.json",
+    "sha256": "cc9e2b82492da03274569c7f3fc366dc53777e1b44cd8384a1e67e27d917ec90"
   },
   "claim_bindings_required": true
 }

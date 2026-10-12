@@ -14,7 +14,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
-    for name in ('tools/test-drawing-storage-point.py','tests/drawing-storage-point-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_point.h','protocols/include/mnm/drawing_storage_point_v1.h','runtime/shadow/win32_min.h'):sources[name]=sha((ROOT/name).read_bytes())
+    for name in ('tools/test-drawing-storage-point.py','tests/drawing-storage-point-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_point.h','protocols/include/mnm/drawing_storage_point_v1.h','protocols/include/mnm/drawing_storage_point_v2.h','runtime/shadow/win32_min.h'):sources[name]=sha((ROOT/name).read_bytes())
     if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Prospective sources changed')
     parent=ROOT/'working/tests/drawing-storage-point';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     imports=dict(ExitProcess=4,GetEnvironmentVariableA=12,GetLastError=0,SetLastError=4,InitializeCriticalSection=4,EnterCriticalSection=4,LeaveCriticalSection=4,GetCurrentThreadId=0,CreateThread=24,WaitForSingleObject=8,Sleep=4,CloseHandle=4,VirtualQuery=12,VirtualAlloc=16,VirtualProtect=16)

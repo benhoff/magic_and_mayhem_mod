@@ -1,5 +1,6 @@
 """Exact public client binding and submitted cache points; never byte ownership."""
 import struct
+from drawing_storage_point import point_header
 from drawing_api_session import sha
 
 
@@ -7,10 +8,7 @@ def point(m, thread, pitch):
     if not any(m):
         return dict(known=False, metadata=list(m), canvas=0)
     flags=m[2]
-    if m[:2]!=(64,1) or flags & ~255 or not flags & 1 or m[14]!=thread or m[15]:
-        raise ValueError('Client point header/thread')
-    if sum(bool(flags & x) for x in (8,16,32,128))>1:
-        raise ValueError('Client point conflicting association')
+    point_header(m,thread,client=True)
     if flags & 16:
         if not flags & 64 or not flags & 2 or flags & 4 or m[5] or not m[6] or not 0<m[7]<=2048 or not 0<m[8]<=2048 or not m[7]<=m[9]<=4096 or pitch!=m[9]*2:
             raise ValueError('Client point pitch/live/cache mismatch')

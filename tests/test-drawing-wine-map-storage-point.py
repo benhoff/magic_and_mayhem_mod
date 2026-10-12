@@ -18,6 +18,14 @@ def fixture():
 
 
 class StoragePoint(unittest.TestCase):
+    def test_v2_query_identity_and_stopped_without_query(self):
+        raw,calls=fixture();struct.pack_into('<I',raw,100,2);struct.pack_into('<I',raw,156,7)
+        self.assertEqual(decode(raw,calls)['matched'],1)
+        struct.pack_into('<I',raw,156,0)
+        with self.assertRaises(ValueError):decode(raw,calls)
+        struct.pack_into('<I',raw,104,7);struct.pack_into('<6I',raw,120,0,0,0,0,0,0)
+        self.assertEqual(decode(raw,calls)['unknown'],1)
+
     def test_exact_live_point_is_bounded(self):
         raw,calls=fixture(); r=decode(raw,calls)
         self.assertEqual(r['matched'],1)

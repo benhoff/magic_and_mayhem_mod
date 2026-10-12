@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import subprocess
 from drawing_api_session import BUILD,sha
-from drawing_storage_transitions import decode,bind_producer
+from drawing_storage_transitions import decode,bind_producer,bind_queries
 ROOT=Path(__file__).resolve().parents[1]
 
 
@@ -27,9 +27,11 @@ def main():
         _,records=module.decode(producer,complete=True);observed=decode(transition)
         if not observed['closed']:raise ValueError('Unclosed observed transitions')
         binding=bind_producer(observed,records)
+        query_binding=bind_queries(observed,reference.get('wine_map_storage_observation',{}),reference.get('wine_client_memory_observation',{}),reference.get('wine_retained_map_source_observation',{}))
         guards=subprocess.run(['python3',str(ROOT/'tests/test-drawing-storage-transitions.py')],capture_output=True,text=True,check=True)
-        names=['tools/analyze-drawing-storage-transitions.py','tools/drawing_storage_transitions.py','tools/inspect-canvas-producers.py','tests/test-drawing-storage-transitions.py']
+        names=['tools/analyze-drawing-storage-transitions.py','tools/drawing_storage_transitions.py','tools/drawing_storage_point.py','tools/inspect-canvas-producers.py','tests/test-drawing-storage-transitions.py']
         report=dict(schema=1,success=True,sources={n:sha((ROOT/n).read_bytes()) for n in names},reference=dict(path=str(a.reference),sha256=sha(raw)),transition_journal_sha256=sha(transition),producer_journal_sha256=sha(producer),binding=binding,decoder_guards=guards.stderr,unknown_callers=sum(not e['caller_rva'] for e in observed['events']),original_game_executed=False,storage_ownership_proved=False,scope='Offline binding of observed cache generations to exact retained producer prefixes; source/transition artifacts match the original report. Every observed Lock return gets an epoch, including checkpoints skipped by source sampling. No all-call/alias/allocation ownership or full journey claim.')
+        report['query_binding']=query_binding
         a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(binding))
     finally:subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
 

@@ -2,7 +2,7 @@
 static u32 producer_trace_mode=1,sequence,queue,failures;
 static u32 producer_trampolines[10];
 static char directory[220];
-struct Frame{u32 tag,owner,caller,ecx,storage_call;};
+struct Frame{u32 tag,owner,caller,ecx,storage_call,storage_canvas;};
 static struct Surface{u32 object,id,pixels,width,height,stride;} surface;
 static struct Surface* object(u32 p){return p&&p==surface.object?&surface:0;}
 static u32 get(const void* p){return *(const u32*)p;}
@@ -22,7 +22,7 @@ void start(void){
  require(!storage_caller_rva(9,0,&mapped)&&!mapped,208);
  require(!storage_caller_rva(0,0xfffffff7,&mapped)&&!mapped,209);
  require(storage_caller_rva(0x58d329,0x900000,&mapped)==0x18d329&&!mapped,210);
- struct Frame f={0,18,0x4bdd10,(u32)wrapper,0};
+ struct Frame f={0,18,0x4bdd10,(u32)wrapper,0,0};
  storage_transition_record(&f,1,0);surface=(struct Surface){(u32)wrapper,7,0,800,600,800};++sequence;storage_transition_record(&f,2,0x12345678);
  f.tag=2;f.caller=0x900009;storage_transition_record(&f,1,0);surface.pixels=0x1234;storage_transition_record(&f,2,0x1234);
  /* Same address on another returned Lock gets a distinct observed epoch. */
@@ -30,6 +30,13 @@ void start(void){
  storage_transition_record(&f,1,0);surface.pixels=0;storage_transition_record(&f,2,0);
  f.tag=1;storage_transition_record(&f,1,0);surface.object=0;wrapper[1]=wrapper[2]=0;storage_transition_record(&f,2,0xffffffff);
  f.tag=0;storage_transition_record(&f,1,0);surface=(struct Surface){(u32)wrapper,8,0x1234,800,600,800};storage_transition_record(&f,2,0x87654321);
- require(storage_transition_calls==6&&storage_transition_returns==6&&storage_transition_epoch==3&&storage_transition_address_count==3,203);
+ u32 point[16]={64,2,19,sequence,0,0,8,800,600,800,0,0,0,0,18,0};
+ /* New canvas generation must not inherit the retired wrapper's epoch. */
+ require(storage_transition_query(point,1,&surface)==1&&point[15]==1,211);
+ f.tag=2;f.caller=0x900009;storage_transition_record(&f,1,0);storage_transition_record(&f,2,0x1234);
+ require(storage_transition_query(point,1,&surface)==2&&point[15]==2,212);
+ point[2]=83;surface.pixels=0x4567;require(storage_transition_query(point,2,&surface)==3,213);
+ point[2]=131;point[6]=point[7]=point[8]=point[9]=0;require(storage_transition_query(point,1,0)==4,214);
+ require(storage_transition_calls==7&&storage_transition_returns==7&&storage_transition_epoch==4&&storage_transition_address_count==4,203);
  storage_transitions_close();require(!storage_transition_file,204);ExitProcess(0);
 }

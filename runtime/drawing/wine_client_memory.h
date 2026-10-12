@@ -1,3 +1,4 @@
+#include "storage_point_exports.h"
 /* Public client-memory setter plus exact submitted source point; no byte reads. */
 typedef u32(WIN* ClientStoragePoint)(void*,u32,u32*,u32);
 static ClientStoragePoint wine_client_getter;
@@ -9,7 +10,7 @@ static struct {void* texture;void* memory;u32 generation,subresource,pitch,data,
 static u32 wine_client_data_id(void* pointer){if(!pointer)return 0;for(u32 i=0;i<2048;++i)if(wine_client_data[i].pointer==pointer)return wine_client_data[i].id;for(u32 i=0;i<2048;++i)if(!wine_client_data[i].pointer){wine_client_data[i].pointer=pointer;wine_client_data[i].id=++wine_client_ids;return wine_client_data[i].id;}ExitProcess(99);return 0;}
 static void wine_client_emit(u32* r){r[0]=++wine_client_records;if(wine_client_records>131072||!write(wine_client_file,r,192))ExitProcess(99);}
 static void wine_client_point(void* memory,u32 pitch,u32* out){
- if(!wine_client_getter){void* scene=GetModuleHandleA("MnmScene.dll");wine_client_getter=scene?(ClientStoragePoint)GetProcAddress(scene,"SceneDrawingClientStoragePointV1"):0;if(!wine_client_getter)ExitProcess(99);}
+ if(!wine_client_getter){void* scene=GetModuleHandleA("MnmScene.dll");wine_client_getter=scene?(ClientStoragePoint)GetProcAddress(scene,storage_point_export_name(1)):0;if(!wine_client_getter)ExitProcess(99);}
  if(!wine_client_getter(memory,pitch,out,64))memset(out,0,64);
 }
 static u32 __attribute__((cdecl)) wine_client_update(void* texture,u32 subresource,void* memory,u32 pitch){

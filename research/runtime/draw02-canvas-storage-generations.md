@@ -134,3 +134,37 @@ Fresh prefix binding passes1687known81unknown points; version1 reports retain
 historical unknowns. Next bind observed storage epochs at exact source queries;
 all unhooked paths/real allocation/aliases/writers/uploads/routes/actions/full47/21
 and later-step closure remain pending.
+
+## Version 3 query-to-epoch binding
+
+Version2 point exports retain the64byte envelope and publish an explicit query
+ordinal in word15. Legacy exports remain version1with zero reserved word15.
+The opt-in observer chooses V2 only for storage-transition capture. The version3
+transition journal records each query under the same producer scope, classifying
+matching observed epoch, absent epoch, changed address or unknown point. A known
+cache point need not have an owned or known allocation epoch. Create/release
+retire earlier observed epoch state; numerical address reuse does not preserve it.
+
+See `../../research/formats/drawing-storage-transitions.md` for the wire layout.
+PE32 V2 export controls and corrected seven-invocation/four-epoch recorder fixture
+pass. One synthetic client query initially omitted its required pitch-only extent
+flag; the strict decoder refusal and raw artifact are retained. Current decoder
+controls require exact external query ID/metadata and retain unlinked IDs.
+
+Combined original01 is negative during setup: source9 lease17copy rejects a
+foreign tag32source1/destination5frame alongside its owner tag7source9/destination2.
+The extra frame is identified; byte overlap/disjoint backing remains unproved.
+Its70closed transitions111queries and refusal files remain partial evidence.
+Copy admission is unchanged. A fresh bounded retry is separate execution.
+
+DRAW-02 step2 explicit storage-query increment: V2exports retain V1behavior
+and publish exact query ordinals into a version3epoch journal. Controlled PE32
+export/epoch states and36current decoder/control methods pass. A synthetic
+client extent-flag error and original setup source9lease17foreign tag32copy1to5
+refusal are preserved; no admission loosening or race-resolution claim.
+Original02normal Quit closes884invocations809epochs1869queries482known.
+Fresh reanalysis binds every1869external query ID/metadata with0unlinked,
+482known1387unknown epochs and2169known1468unknown producer-prefix cache points.
+118heldpairs222commands329API328EGL remain separate. Native replay matches104
+eligible frames0diff225excluded. Next extend exact epoch/version/ownership
+accounting and other routes/actions; all47/21and steps3–7 remain open.

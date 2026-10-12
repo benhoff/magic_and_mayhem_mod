@@ -1,3 +1,4 @@
+#include "storage_point_exports.h"
 /* Exact map interval linkage; the descriptor address never enters the wire. */
 typedef u32(WIN* StoragePoint)(void*,u32,u32,u32*,u32);
 static StoragePoint wine_map_storage_getter;
@@ -11,7 +12,7 @@ static int wine_map_storage_open(void){
 }
 static void wine_map_storage_capture(const u32* map,const u32* descriptor){
  if(!wine_map_storage_enabled)return;
- if(!wine_map_storage_getter){void* scene=GetModuleHandleA("MnmScene.dll");wine_map_storage_getter=scene?(StoragePoint)GetProcAddress(scene,"SceneDrawingStoragePointV1"):0;if(!wine_map_storage_getter)ExitProcess(99);}
+ if(!wine_map_storage_getter){void* scene=GetModuleHandleA("MnmScene.dll");wine_map_storage_getter=scene?(StoragePoint)GetProcAddress(scene,storage_point_export_name(0)):0;if(!wine_map_storage_getter)ExitProcess(99);}
  u32 r[24]={0};r[1]=2;r[2]=map[2];r[3]=map[10];r[4]=map[27];r[5]=GetCurrentThreadId();r[6]=GetTickCount();
  /* Original-driver return and export run outside journal_lock. */
  r[7]=wine_map_storage_getter((void*)descriptor[2],map[24],map[25],r+8,64);

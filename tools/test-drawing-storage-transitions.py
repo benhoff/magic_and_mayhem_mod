@@ -14,7 +14,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_text());sources=dict(claims['sources'])
-    for name in ('tools/test-drawing-storage-transitions.py','tests/drawing-storage-transitions-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_transitions.h','runtime/scene/drawing_storage_caller.h','tools/drawing_storage_transitions.py','tests/test-drawing-storage-transitions.py','runtime/shadow/win32_min.h'):sources[name]=sha((ROOT/name).read_bytes())
+    for name in ('tools/test-drawing-storage-transitions.py','tests/drawing-storage-transitions-test.c','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_storage_transitions.h','runtime/scene/drawing_storage_caller.h','tools/drawing_storage_transitions.py','tools/drawing_storage_point.py','tests/test-drawing-storage-transitions.py','runtime/shadow/win32_min.h'):sources[name]=sha((ROOT/name).read_bytes())
     if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Prospective sources changed')
     parent=ROOT/'working/tests/drawing-storage-transitions';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     imports=dict(ExitProcess=4,GetEnvironmentVariableA=12,GetLastError=0,SetLastError=4,InitializeCriticalSection=4,EnterCriticalSection=4,LeaveCriticalSection=4,GetCurrentThreadId=0,CreateThread=24,WaitForSingleObject=8,Sleep=4,CloseHandle=4,VirtualQuery=12,VirtualAlloc=16,VirtualProtect=16,CreateFileA=28,WriteFile=20)
@@ -33,7 +33,7 @@ def main():
         if process.returncode:raise ValueError('Sourcebyteexportfixture exit:'+str(process.returncode))
         from drawing_storage_transitions import decode
         observation=decode((capture/'canvas-storage-transitions-0000.bin').read_bytes())
-        if not observation['closed'] or observation['calls']!=6 or observation['observed_lock_return_epochs']!=3:raise ValueError('Fixture transition journal differs')
+        if not observation['closed'] or observation['calls']!=7 or observation['observed_lock_return_epochs']!=4 or [q['status'] for q in observation['queries']]!=[2,1,3,0]:raise ValueError('Fixture transition journal differs')
         subprocess.run(['python3',str(ROOT/'tests/test-drawing-storage-transitions.py')],check=True)
         results=[dict(case='observed-transition-state-and-reuse',actual_exit=0,observation=observation)]
         if any(sha((ROOT/name).read_bytes())!=digest for name,digest in sources.items()):raise ValueError('Fixture sources changed during execution')

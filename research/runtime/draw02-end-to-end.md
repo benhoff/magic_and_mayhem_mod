@@ -1015,3 +1015,15 @@ and later-step closure remain pending.
 Fresh version2 source-only replay passes104eligible protected-source/worker/EGL
 frames with zero differing pixels;229contexts remain excluded. This does not
 close all storage lifetimes or full DRAW-02.
+
+DRAW-02 step2 explicit storage-query increment: V2exports retain V1behavior
+and publish exact query ordinals into a version3epoch journal. Controlled PE32
+export/epoch states and36current decoder/control methods pass. A synthetic
+client extent-flag error and original setup source9lease17foreign tag32copy1to5
+refusal are preserved; no admission loosening or race-resolution claim.
+Original02normal Quit closes884invocations809epochs1869queries482known.
+Fresh reanalysis binds every1869external query ID/metadata with0unlinked,
+482known1387unknown epochs and2169known1468unknown producer-prefix cache points.
+118heldpairs222commands329API328EGL remain separate. Native replay matches104
+eligible frames0diff225excluded. Next extend exact epoch/version/ownership
+accounting and other routes/actions; all47/21and steps3–7 remain open.

@@ -19,7 +19,7 @@ static void wine_retained_source(const u32* submission,void* texture){
  if(matches==1){memory=wine_retained_maps[at].memory;r[8]=wine_retained_maps[at].resource_id;r[9]=wine_retained_maps[at].call;r[10]=wine_retained_maps[at].interval;r[11]=wine_retained_maps[at].data;r[12]=wine_retained_maps[at].row;r[13]=wine_retained_maps[at].slice;r[14]=wine_retained_maps[at].open;}else{at=2048;if(matches>1)r[15]=3;}r[22]=matches;
  LeaveCriticalSection(journal_lock);
  if(at!=2048){
-  if(!wine_map_storage_getter){void* scene=GetModuleHandleA("MnmScene.dll");wine_map_storage_getter=scene?(StoragePoint)GetProcAddress(scene,"SceneDrawingStoragePointV1"):0;if(!wine_map_storage_getter)ExitProcess(99);}
+  if(!wine_map_storage_getter){void* scene=GetModuleHandleA("MnmScene.dll");wine_map_storage_getter=scene?(StoragePoint)GetProcAddress(scene,storage_point_export_name(0)):0;if(!wine_map_storage_getter)ExitProcess(99);}
   r[15]=wine_map_storage_getter(memory,r[12],r[13],r+24,64);if(!r[15])memset(r+24,0,64);
  }
  EnterCriticalSection(journal_lock);r[17]=wine_resource_records;r[19]=wine_lifetime_records;r[21]=GetTickCount();
