@@ -205,6 +205,7 @@ def main():
     env.pop('MNM_WORD_DIRECTORY',None)
     if word_mode:env['MNM_WORD_DIRECTORY']='Z:'+metadata['word_directory'].replace('/','\\')
     env.pop('MNM_AUDIO_CHANNEL',None)
+    env.pop('MNM_MUSIC_CHANNEL',None)
     if voice_path:env['MNM_AUDIO_CHANNEL']='Z:'+str(voice_path).replace('/','\\')
     if voice_path and env.get('MNM_NATIVE_DISABLE_DSOUND')=='1':
         overrides=env.get('WINEDLLOVERRIDES','')

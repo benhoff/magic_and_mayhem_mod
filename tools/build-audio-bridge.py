@@ -36,6 +36,8 @@ def build(selftest=False):
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'audio.lib')],check=True)
         subprocess.run(flags+['-c',str(source/'selftest.c'),'-o',str(root/'selftest.obj')],check=True)
         subprocess.run(flags+['-c',str(source/'music_selftest.c'),'-o',str(root/'music-selftest.obj')],check=True)
+        subprocess.run(flags+['-c',str(source/'music_fault_selftest.c'),'-o',str(root/'music-fault-selftest.obj')],check=True)
+        subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root/"music-fault-selftest.exe"}',str(root/'music-fault-selftest.obj'),str(root/'audio.lib'),str(root/'kernel32.lib')],check=True)
         subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root/"music-selftest.exe"}',str(root/'music-selftest.obj'),str(root/'audio.lib'),str(root/'kernel32.lib')],check=True)
         subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root/"selftest.exe"}',str(root/'selftest.obj'),str(root/'audio.lib'),str(root/'kernel32.lib')],check=True)
     return dll

@@ -8,6 +8,8 @@ import struct
 import sys
 import tempfile
 import unittest
+import threading
+import time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 import native_music_launch as launch
@@ -49,5 +51,13 @@ class Admission(unittest.TestCase):
         with self.assertRaises(ValueError):launch.authorize(self.root,self.metadata,{})
     def test_staging_refuses_existing(self):
         with self.assertRaises(ValueError):launch.stage(self.root,self.root/'native-music')
+    def test_transient_snapshot(self):
+        with self.channel.open('r+b') as source:source.seek(wire.RESPONSE_SEQUENCE_OFFSET);source.write(struct.pack('<I',3))
+        def settle():
+            time.sleep(.025)
+            with self.channel.open('r+b') as source:source.seek(wire.RESPONSE_SEQUENCE_OFFSET);source.write(struct.pack('<I',4))
+        peer=threading.Thread(target=settle);peer.start()
+        try:launch.authorize(self.root,self.metadata,{})
+        finally:peer.join(timeout=1)
 
 if __name__=='__main__':unittest.main()

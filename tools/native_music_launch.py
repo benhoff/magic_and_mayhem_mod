@@ -5,11 +5,24 @@ from pathlib import Path
 import struct
 import subprocess
 import sys
+import time
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'protocols/python'))
 from mnm_protocols import music_v1 as wire
 
 def sha(path):
     with path.open('rb') as source:return hashlib.file_digest(source,'sha256').hexdigest()
+
+def startup_snapshot(path):
+    deadline=time.monotonic()+.25
+    while True:
+        data=path.read_bytes()
+        if len(data)!=wire.SIZE or not wire.valid_header(data,wire.SIZE):raise ValueError('Invalid native music channel')
+        sequence=struct.unpack_from('<I',data,wire.RESPONSE_SEQUENCE_OFFSET)[0]
+        with path.open('rb') as source:
+            source.seek(wire.RESPONSE_SEQUENCE_OFFSET);after=source.read(4)
+        if not(sequence&1) and after==struct.pack('<I',sequence):return data
+        if time.monotonic()>=deadline:raise ValueError('Native music startup snapshot did not settle')
+        time.sleep(.001)
 
 def catalog_inputs(root):
     if root.is_symlink() or (root/'manifest.json').is_symlink():raise ValueError('Redirected native music catalog')
@@ -48,8 +61,7 @@ def authorize(root,metadata,environment):
     if inputs!=metadata.get('music_inputs') or [list(x) for x in toc]!=metadata.get('music_toc'):raise ValueError('Staged native music catalog drift')
     path=root/'native-music.bin'
     if metadata.get('music_channel')!=str(path) or path.is_symlink():raise ValueError('Redirected native music channel')
-    data=path.read_bytes()
-    if len(data)!=wire.SIZE or not wire.valid_header(data,wire.SIZE):raise ValueError('Invalid native music channel')
+    data=startup_snapshot(path)
     def word(offset):return struct.unpack_from('<I',data,offset)[0]
     if word(wire.READY_OFFSET)!=1 or not word(wire.HEARTBEAT_OFFSET):raise ValueError('Native music worker is not ready')
     # Only the fresh consumer may have published sequence, phase, volume and TOC.
@@ -61,7 +73,7 @@ def authorize(root,metadata,environment):
     environment['MNM_MUSIC_CHANNEL']='Z:'+str(path).replace('/','\\')
 
 def validate_activity(report):
-    if report.get('producer_features')!=15 or report.get('unsupported_cd_calls')!=0 or report.get('failed_requests')!=0 or report.get('error')!='':raise ValueError('Native CD hooks/requests failed or unsupported')
+    if report.get('producer_features')!=31 or report.get('unsupported_cd_calls')!=0 or report.get('failed_requests')!=0 or report.get('error')!='':raise ValueError('Native CD hooks/requests failed or unsupported')
     if report.get('plays',0)<1 or report.get('requests',0)<1 or report.get('ready_after_stop') is not False or report.get('audible_output_requested') is not True:raise ValueError('Native music activity/retirement missing')
     output=report.get('output',{})
     if output.get('audio_frames',0)<1 or output.get('audio_device_available') is not True or output.get('error'):raise ValueError('Native music PCM/output missing')

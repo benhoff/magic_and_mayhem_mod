@@ -13,7 +13,7 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False,native_music=False,music_assets=None):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False,native_music=False,music_assets=None,skip_movies=False):
     if native_voices and not (native_render and actions):raise ValueError('Native voices require native menus and command presentation')
     if native_media and not (native_render and actions):raise ValueError('Native media requires native menus and command presentation')
     if native_music and not (native_voices and native_render and actions):raise ValueError('Native music requires native voice/menu/render staging')
@@ -87,7 +87,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         encoder=preferences.load('preferences_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
         stored=module('preferences_store','tools/menu_preferences_store.py').stage(game,preferences_store,encoder,decoder)
         if stored['warning']:print('Preferences store ignored: '+stored['warning'],flush=True)
-    edits=(preferences.patch_staged_preferences(game,'SOUND',{'CDMusicEnabled':'TRUE'}) if native_music else preferences.disable_cd_music(game))+(preferences.patch_staged_preferences(game,'VIDEO',{'PlayFMV':'TRUE','PlayFMVOut':'TRUE'}) if native_media else preferences.skip_movies(game))
+    edits=(preferences.patch_staged_preferences(game,'SOUND',{'CDMusicEnabled':'TRUE'}) if native_music else preferences.disable_cd_music(game))+(preferences.patch_staged_preferences(game,'VIDEO',{'PlayFMV':'TRUE','PlayFMVOut':'TRUE'}) if native_media and not skip_movies else preferences.skip_movies(game))
     native_cadence=None
     if native_render:
         encoder=preferences.load('native_cfg_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
@@ -136,9 +136,10 @@ if __name__=='__main__':
     parser.add_argument('--native-media',action='store_true',help='Route movies/file sounds through the session-owned native broker')
     parser.add_argument('--native-music',action='store_true',help='Stage prepared CD tracks for the owned native music broker')
     parser.add_argument('--music-assets',type=Path,help='Prepared CD catalog under working/')
+    parser.add_argument('--skip-movies',action='store_true',help='Disable staged intro playback while retaining native file sounds')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; default working/game-nocd')
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media,args.native_music,args.music_assets)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media,args.native_music,args.music_assets,args.skip_movies)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

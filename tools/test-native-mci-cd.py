@@ -46,7 +46,7 @@ def main():
             if result.returncode:raise ValueError('PE32 native CD fixture failed: '+str(result.returncode))
             server.wait(timeout=30)
         native=json.loads((out/'native.json').read_text());report.update(native=native,inputs=inputs,inputs_stable=all(sha(out/path)==digest for path,digest in inputs.items()),sources_stable=all(sha(ROOT/path)==digest for path,digest in sources.items()))
-        if native['ready_after_stop'] is not False or native['producer_features']!=15 or native['unsupported_cd_calls']!=1 or native['legacy_other_mci_calls']!=1 or not report['inputs_stable'] or not report['sources_stable']:
+        if native['ready_after_stop'] is not False or native['producer_features']!=31 or native['unsupported_cd_calls']!=1 or native['legacy_other_mci_calls']!=1 or not report['inputs_stable'] or not report['sources_stable']:
             raise ValueError('Native CD fixture census/retirement/source guards')
         report['success']=True
     except Exception as error:report['error']=str(error);raise

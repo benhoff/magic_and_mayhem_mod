@@ -15,14 +15,25 @@ static void install_fixture(void){
     void** iat=(void**)(image+0x1c52dc);*iat=original;
     u8* mixer=image+0x8157b;static const u8 mixerBytes[7]={0xff,0x15,0xf8,0x52,0x5c,0,0xc3};
     u8* volume=image+0x82190;static const u8 volumeBytes[13]={0x53,0x8b,0xd9,0x55,0x33,0xed,0x5d,0x5b,0x33,0xc0,0xc2,4,0};
+    u8* query=image+0x818b0;static const u8 queryBytes[7]={0x51,0x8b,0x81,0x2c,3,0,0};
     for(u32 i=0;i<7;++i)mixer[i]=mixerBytes[i];for(u32 i=0;i<13;++i)volume[i]=volumeBytes[i];
+    for(u32 i=0;i<7;++i)query[i]=queryBytes[i];
     *iat=0;expect(!AudioMusicInstallForTest((u32)image)&&mixer[0]==0xff&&volume[0]==0x53,226);*iat=original;
     mixer[5]=1;expect(!AudioMusicInstallForTest((u32)image)&&*iat==original&&volume[0]==0x53,227);mixer[5]=0;
     volume[5]=0;expect(!AudioMusicInstallForTest((u32)image)&&*iat==original&&mixer[0]==0xff,228);volume[5]=0xed;
+    query[6]=1;expect(!AudioMusicInstallForTest((u32)image)&&*iat==original&&mixer[0]==0xff&&volume[0]==0x53,232);query[6]=0;
+    u32 old,info[7];expect(VirtualProtect(image,0x200000,0x20,&old),233);
     expect(AudioMusicInstallForTest((u32)image)&&*iat!=original&&mixer[0]==0xe8&&volume[0]==0xe9,229);
+    expect(VirtualQuery(mixer,info,sizeof(info))&&info[5]==0x20,234);
+    expect(VirtualQuery(query,info,sizeof(info))&&info[5]==0x20,235);
     expect(((u32 (WIN *)(void))mixer)()==0,230);
     static u32 object[0x330/4];object[0x32c/4]=1;
     expect(((i32 (__thiscall *)(void*,i32))volume)(object,7)==0,231);
+    object[0x328/4]=1;i32 level=-1;SetLastError(0x77);
+    expect(((i32 (__thiscall *)(void*,i32*))query)(object,&level)==0&&level==7&&GetLastError()==0x77,236);
+    object[0x328/4]=0;level=-1;expect(((i32 (__thiscall *)(void*,i32*))query)(object,&level)==0&&level==0,237);
+    object[0x328/4]=1;object[0x32c/4]=0;level=-1;expect(((i32 (__thiscall *)(void*,i32*))query)(object,&level)==0&&level==0,238);
+    object[0x32c/4]=1;expect(((i32 (__thiscall *)(void*,i32*))query)(object,0)==-6,239);
 }
 void start(void){
     install_fixture();

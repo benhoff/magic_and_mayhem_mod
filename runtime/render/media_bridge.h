@@ -81,8 +81,7 @@ static i32 WIN media_sound(const char* path,void* module,u32 flags){
         return legacy;
     }
     if(result>0){
-        SetLastError(error);media_original_sound(0,0,0); // Retire any legacy async file sound.
-        __atomic_store_n(&media_legacy_sound,0,__ATOMIC_RELAXED);
+        if(__atomic_exchange_n(&media_legacy_sound,0,__ATOMIC_RELAXED)){SetLastError(error);media_original_sound(0,0,0);}
         __atomic_store_n(&media_native_sound,path && (flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC),__ATOMIC_RELAXED);
     }
     SetLastError(error);return result>0;
@@ -116,11 +115,14 @@ static i32 __fastcall media_test_movie(const char* path,void* surface,void* wind
     (void)path;if(surface!=(void*)0x1234 || window!=(void*)0x5678 || x!=11 || y!=22 || control!=0 || GetLastError()!=0x77)ExitProcess(310);
     SetLastError(0x88);return 17;
 }
+static u32 media_test_sound_calls,media_test_sound_stops;
 static i32 WIN media_test_sound(const char* path,void* module,u32 flags){
-    (void)module;(void)flags;if(GetLastError()!=0x77)ExitProcess(311);if(!path)return 1;SetLastError(0x88);return 23;
+    (void)module;(void)flags;if(GetLastError()!=0x77)ExitProcess(311);++media_test_sound_calls;
+    if(!path){++media_test_sound_stops;return 1;}SetLastError(0x88);return 23;
 }
 __declspec(dllexport) i32 WIN RenderMediaForTest(u32 operation,const char* path,u32 flags){
     media_original_movie=&media_test_movie;media_original_sound=&media_test_sound;
+    if(operation==5)return (i32)(media_test_sound_calls|(media_test_sound_stops<<16));
     if(operation==4){
         static const u8 fixture[14]={0x51,0x8d,0x44,0x24,0,0x59,0xb8,23,0,0,0,0xc2,16,0};
         u8* code=VirtualAlloc(0,sizeof(fixture),0x3000,0x40);if(!code)return 0;copy(code,fixture,sizeof(fixture));

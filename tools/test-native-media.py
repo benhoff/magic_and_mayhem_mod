@@ -11,6 +11,7 @@ import subprocess
 import tempfile
 import time
 import wave
+import argparse
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -29,6 +30,9 @@ def load(name, path):
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path);args=parser.parse_args()
+    declaration=json.loads(args.claims.read_text()) if args.claims else None
+    if declaration and any(hashlib.sha256((REPO/path).read_bytes()).hexdigest()!=digest for path,digest in declaration['sources'].items()):raise ValueError('Native media source declaration drift')
     parent = REPO / 'working/tests/native-media'
     parent.mkdir(parents=True, exist_ok=True)
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
@@ -49,9 +53,10 @@ def main():
     movie = assets / 'FMV/Test.avi'
     subprocess.run(['ffmpeg', '-v', 'error', '-f', 'rawvideo', '-pixel_format', 'rgb24', '-video_size', '64x48', '-framerate', '10', '-i', str(raw), '-i', str(sound), '-c:v', 'ffv1', '-pix_fmt', 'bgr0', '-c:a', 'pcm_s16le', str(movie)], check=True)
     shutil.copy2(movie, assets / 'FMV/Skip.avi')
+    input_hashes={str(path.relative_to(root)):hashlib.sha256(path.read_bytes()).hexdigest() for path in assets.rglob('*') if path.is_file()}
     build = REPO / 'working/build/qt-shell'
     subprocess.run(['cmake', '-S', str(REPO / 'apps/qt-shell'), '-B', str(build)], check=True)
-    subprocess.run(['cmake', '--build', str(build), '--parallel', '4'], check=True)
+    subprocess.run(['cmake', '--build', str(build), '--target', 'mnm-qt-shell', '--parallel', '4'], check=True)
     shell = build / 'mnm-qt-shell'
     env = {key: value for key, value in os.environ.items() if not key.startswith('MNM_')}
     env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1', QT_MEDIA_BACKEND='ffmpeg')
@@ -82,6 +87,9 @@ def main():
         file.truncate(frame_protocol.SIZE)
     channel = root / 'media.bin'
     history = root / 'broker.json'
+    env.update(WINEPREFIX=str(root/'wineprefix'),WINEDEBUG='-all')
+    with (root/'wineboot.log').open('x') as wineboot:
+        subprocess.run(['wineboot','-u'],env=env,stdout=wineboot,stderr=subprocess.STDOUT,check=True,timeout=60)
     with (root / 'broker.log').open('w') as log:
         server = subprocess.Popen(['xvfb-run', '-a', str(shell), '--media-server-test', str(channel), '--assets', str(assets), '--media-count', '8', '--media-report', str(history)], env=env, stdout=log, stderr=log)
         try:
@@ -90,7 +98,7 @@ def main():
                 if server.poll() is not None or time.monotonic()>deadline:
                     raise RuntimeError('Media server failed to create its channel')
                 time.sleep(0.02)
-            env.update(WINEPREFIX=str(REPO / 'working/tests/render-wine'), WINEDEBUG='-all', MNM_MEDIA_SELFTEST='1',
+            env.update(WINEPREFIX=str(root / 'wineprefix'), WINEDEBUG='-all', MNM_MEDIA_SELFTEST='1',
                        MNM_RENDER_MEDIA='Z:'+str(channel).replace('/', '\\'), MNM_RENDER_STREAM='Z:'+str(stream).replace('/', '\\'))
             with (root / 'wine.log').open('w') as wine_log:
                 subprocess.run(['wine', str(root / 'selftest.exe')], cwd=root, env=env, stdout=wine_log, stderr=wine_log, check=True, timeout=30)
@@ -99,6 +107,7 @@ def main():
             if server.poll() is None:
                 server.terminate()
                 server.wait(timeout=5)
+            subprocess.run(['wineserver','-k'],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=False,timeout=10)
     records = json.loads(history.read_text())
     assert [(r['operation'], r['status']) for r in records] == [(1, 3), (1, 4), (2, 4), (2, 7), (2, 4), (3, 3), (1, 6), (1, 6)], records
     assert records[0]['first_frame_rgba_sha256'] == hashlib.sha256(rgba).hexdigest(), records[0]
@@ -109,6 +118,11 @@ def main():
                          'async_sound', 'loop_stop', 'nostop_busy', 'path_traversal_rejected', 'unsupported_sound_fallback',
                          'native_to_legacy_sound_replacement', 'stale_host_fallback', 'last_error', 'fastcall_trampoline', 'prologue_guard'],
               'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest()}
+    if declaration:
+        report.update(schema=1,success=True,claims=declaration['claims'],sources=declaration['sources'],
+                      sources_stable=all(hashlib.sha256((REPO/path).read_bytes()).hexdigest()==digest for path,digest in declaration['sources'].items()),
+                      inputs=input_hashes,inputs_stable=all(hashlib.sha256((root/path).read_bytes()).hexdigest()==digest for path,digest in input_hashes.items()))
+        if not report['sources_stable'] or not report['inputs_stable']:raise ValueError('Native media final source/input drift')
     (root / 'report.json').write_text(json.dumps(report, indent=2)+'\n')
     print(f'Native media checks passed: {root / "report.json"}')
 

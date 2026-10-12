@@ -132,3 +132,11 @@ output timing, arbitrary COM/MCI controls, fades, broader/long-run scenarios,
 original manager replacement and traced Wine API retirement. Earlier failed
 pre-launch compiler declarations, muted-volume and STOP0 failures, and the
 intermittent unfinished-ACK PE fixture are retained under working/tests.
+
+Native music/media are now defaults for the validated live native menu/command
+route. `--native-music` remains an alias; `--no-native-music` disables the CD
+route and `--legacy-media` selects the legacy media policy. `--skip-movies`
+retains native file sounds while suppressing staged intros. The current31-feature
+producer includes gain query and heartbeat retirement. See native-audio-defaults.md
+and native-audio-defaults-public-pass-20261012.json for fresh full default proof.
+Earlier opt-in/15-feature results retain their historical scope and hashes.

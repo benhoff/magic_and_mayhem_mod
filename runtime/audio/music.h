@@ -1,4 +1,5 @@
 #include "../../protocols/include/mnm/music_v1.h"
+#include "music_liveness.h"
 /* Selected CD compatibility. Process callbacks/objects stay in this PE. */
 API void* WIN GetProcAddress(void*,const char*);
 API HANDLE WIN CreateThread(void*,u32,void*,void*,u32,u32*);
@@ -8,6 +9,7 @@ typedef i32 (__thiscall *MusicVolume)(void*,i32);
 static u32* music_words;static volatile u32 music_busy,music_dead;
 static u32 music_next,music_opened,music_notify_id,music_notify_window,music_event_seen;
 static MusicMci music_original_mci;static MusicPost music_post;static MusicVolume music_original_volume;
+static struct MnmMusicWatchdog music_watchdog;
 #define MUSIC_DEVICE 0x7321u
 static int music_readable(const void* pointer,u32 bytes,int write){
     u32 start=(u32)pointer;if(!start || bytes>0xffffffffu-start)return 0;
@@ -29,6 +31,14 @@ static int music_acquire(void){
         Sleep(1);
     }return 1;
 }
+static int music_live(void){
+    if(!music_words || music_dead)return 0;
+    if(!same(music_words,MNM_MUSIC_V1_MAGIC,8) || music_words[2]!=MNM_MUSIC_V1_VERSION || music_words[3]!=MNM_MUSIC_V1_SIZE ||
+       !mnm_music_alive(&music_watchdog,GetTickCount(),__atomic_load_n(music_words+MNM_MUSIC_V1_HEARTBEAT_OFFSET/4,__ATOMIC_ACQUIRE),
+           __atomic_load_n(music_words+MNM_MUSIC_V1_READY_OFFSET/4,__ATOMIC_ACQUIRE),MNM_MUSIC_V1_STALE_HOST_MS)){
+        music_dead=1;return 0;
+    }return 1;
+}
 static void music_notify(void){
     if(!music_words || !music_notify_id)return;
     u32 sequence=__atomic_load_n(music_words+MNM_MUSIC_V1_EVENT_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE);if((sequence&1) || sequence==music_event_seen)return;
@@ -40,13 +50,19 @@ static void music_notify(void){
 }
 static u32 WIN music_notify_worker(void* unused){
     (void)unused;
-    while(music_words && __atomic_load_n(music_words+MNM_MUSIC_V1_READY_OFFSET/4,__ATOMIC_ACQUIRE)){
-        if(!__atomic_exchange_n(&music_busy,1,__ATOMIC_ACQUIRE)){music_notify();__atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);}
+    while(music_words){
+        if(!__atomic_exchange_n(&music_busy,1,__ATOMIC_ACQUIRE)){
+            if(!music_live()){
+                if(music_notify_id && music_notify_window && music_post)music_post((void*)music_notify_window,0x3b9,8,MUSIC_DEVICE);
+                music_notify_id=music_notify_window=0;__atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);return 0;
+            }
+            music_notify();__atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);
+        }
         Sleep(MNM_MUSIC_V1_HEARTBEAT_MS);
     }return 0;
 }
 static u32 music_request(u32 operation,u32 track,u32 from,u32 flags,u32* request){
-    if(!music_words || music_dead || !__atomic_load_n(music_words+MNM_MUSIC_V1_READY_OFFSET/4,__ATOMIC_ACQUIRE))return 276;
+    if(!music_live())return 276;
     u32 id=++music_next;if(!id){music_dead=1;return 276;}
     u32 sequence=__atomic_load_n(music_words+MNM_MUSIC_V1_REQUEST_SEQUENCE_OFFSET/4,__ATOMIC_RELAXED);
     __atomic_store_n(music_words+MNM_MUSIC_V1_REQUEST_SEQUENCE_OFFSET/4,sequence+1,__ATOMIC_SEQ_CST);
@@ -58,7 +74,7 @@ static u32 music_request(u32 operation,u32 track,u32 from,u32 flags,u32* request
         if(!(response&1) && music_words[MNM_MUSIC_V1_RESPONSE_ID_OFFSET/4]==id){u32 status=music_words[MNM_MUSIC_V1_RESPONSE_STATUS_OFFSET/4];
             __atomic_thread_fence(__ATOMIC_ACQUIRE);if(response==__atomic_load_n(music_words+MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE)){
                 if(!status && request)*request=id;return status?status==MNM_MUSIC_V1_STATUS_INVALID?282u:276u:0u;}}
-        if(!__atomic_load_n(music_words+MNM_MUSIC_V1_READY_OFFSET/4,__ATOMIC_ACQUIRE) || GetTickCount()-start>MNM_MUSIC_V1_REQUEST_TIMEOUT_MS){
+        if(!music_live() || GetTickCount()-start>MNM_MUSIC_V1_REQUEST_TIMEOUT_MS){
             __atomic_store_n(music_words+MNM_MUSIC_V1_CANCELLED_REQUEST_ID_OFFSET/4,id,__ATOMIC_RELEASE);music_dead=1;return 276;}
         Sleep(1);
     }
@@ -67,7 +83,7 @@ static u32 music_msf(u32 frames){return ((frames/4500)&255u)|(((frames/75)%60)<<
 static u32 music_status(u32 flags,u32* parameters){
     if((flags&~0x312u) || !(flags&0x100) || !music_readable(parameters,16,1))return music_unsupported();
     u32 phase,position,current,sequence,started=GetTickCount();
-    for(;;){if(GetTickCount()-started>MNM_MUSIC_V1_REQUEST_TIMEOUT_MS || !music_words[MNM_MUSIC_V1_READY_OFFSET/4])return 276;
+    for(;;){if(GetTickCount()-started>MNM_MUSIC_V1_REQUEST_TIMEOUT_MS || !music_live())return 276;
         sequence=__atomic_load_n(music_words+MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE);if(sequence&1){Sleep(1);continue;}
         phase=music_words[MNM_MUSIC_V1_PHASE_OFFSET/4];position=music_words[MNM_MUSIC_V1_POSITION_CD_FRAMES_OFFSET/4];current=music_words[MNM_MUSIC_V1_CURRENT_TRACK_OFFSET/4];
         __atomic_thread_fence(__ATOMIC_ACQUIRE);if(sequence==__atomic_load_n(music_words+MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE))break;}
@@ -99,6 +115,7 @@ static u32 WIN music_mci(u32 device,u32 message,u32 flags,u32* parameters){
     if(!music_acquire()){SetLastError(error);return 276;}
     music_notify();
     if(message!=0x803 && !music_opened){result=257;goto done;}
+    if(!music_live()){result=276;goto done;}
     if(message==0x803){result=music_request(MNM_MUSIC_V1_OPERATION_OPEN,0,0,0,0);if(!result){music_opened=1;parameters[1]=MUSIC_DEVICE;__atomic_or_fetch(music_words+MNM_MUSIC_V1_PRODUCER_FEATURES_OFFSET/4,MNM_MUSIC_V1_FEATURE_NATIVE_SELECTED,__ATOMIC_RELEASE);}goto done;}
     if(message==0x814){result=music_status(flags,parameters);goto done;}
     if(message==0x80d){result=(flags==0x402 && music_readable(parameters,12,0) && parameters[1]==10)?0:music_unsupported();goto done;}
@@ -128,35 +145,56 @@ static i32 __fastcall music_volume(void* object,void* unused,i32 level){
     if(!music_acquire())return -6;
     u32 status=music_request(MNM_MUSIC_V1_OPERATION_VOLUME,0,volume,0,0);__atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);return status?-6:result;
 }
-static void music_init(void){
-    char path[512];u32 length=GetEnvironmentVariableA("MNM_MUSIC_CHANNEL",path,sizeof(path));if(!length || length>=sizeof(path))return;
-    HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
-    if(GetFileSize(file,0)!=MNM_MUSIC_V1_SIZE){CloseHandle(file);return;}
-    HANDLE mapping=CreateFileMappingA(file,0,4,0,MNM_MUSIC_V1_SIZE,0);CloseHandle(file);if(!mapping)return;
+static i32 __fastcall music_get_volume(void* object,void* unused,i32* value){
+    (void)unused;u32 error=GetLastError();i32 result=-6;
+    if(!music_readable(value,4,1) || !music_readable((u8*)object+0x328,8,0))goto done;
+    if(!*(u32*)((u8*)object+0x32c) || !*(u32*)((u8*)object+0x328)){*value=0;result=0;goto done;}
+    if(!music_acquire())goto done;
+    u32 start=GetTickCount();
+    while(music_live() && GetTickCount()-start<MNM_MUSIC_V1_REQUEST_TIMEOUT_MS){
+        u32 sequence=__atomic_load_n(music_words+MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE);
+        if(sequence&1){Sleep(1);continue;}
+        u32 volume=music_words[MNM_MUSIC_V1_VOLUME_OFFSET/4];__atomic_thread_fence(__ATOMIC_ACQUIRE);
+        if(sequence!=__atomic_load_n(music_words+MNM_MUSIC_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE))continue;
+        if(volume<=65535){*value=(i32)(volume/4369);result=0;}break;
+    }
+    __atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);
+done:SetLastError(error);return result;
+}
+static int music_init(void){
+    char path[512];u32 length=GetEnvironmentVariableA("MNM_MUSIC_CHANNEL",path,sizeof(path));if(!length)return 1;if(length>=sizeof(path))return 0;
+    HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return 0;
+    if(GetFileSize(file,0)!=MNM_MUSIC_V1_SIZE){CloseHandle(file);return 0;}
+    HANDLE mapping=CreateFileMappingA(file,0,4,0,MNM_MUSIC_V1_SIZE,0);CloseHandle(file);if(!mapping)return 0;
     u32* words=MapViewOfFile(mapping,2,0,0,MNM_MUSIC_V1_SIZE);CloseHandle(mapping);
-    if(!words || !same(words,MNM_MUSIC_V1_MAGIC,8) || words[2]!=MNM_MUSIC_V1_VERSION || words[3]!=MNM_MUSIC_V1_SIZE)return;
+    if(!words || !same(words,MNM_MUSIC_V1_MAGIC,8) || words[2]!=MNM_MUSIC_V1_VERSION || words[3]!=MNM_MUSIC_V1_SIZE)return 0;
     music_words=words;
     void* user=GetModuleHandleA("user32.dll");music_post=user?(MusicPost)GetProcAddress(user,"PostMessageA"):0;
+    return music_live();
 }
 static int music_install(u32 base){
     if(!music_words)return 1;
-    static const u8 mixer[6]={0xff,0x15,0xf8,0x52,0x5c,0},volume[6]={0x53,0x8b,0xd9,0x55,0x33,0xed};
+    static const u8 mixer[6]={0xff,0x15,0xf8,0x52,0x5c,0},volume[6]={0x53,0x8b,0xd9,0x55,0x33,0xed},query[7]={0x51,0x8b,0x81,0x2c,3,0,0};
     u8* mixer_call=(u8*)(base+0x8157b);u8* entry=(u8*)(base+0x82190);void** iat=(void**)(base+0x1c52dc);
+    u8* query_entry=(u8*)(base+0x818b0);
     void* winmm=GetModuleHandleA("winmm.dll");music_original_mci=winmm?(MusicMci)GetProcAddress(winmm,"mciSendCommandA"):0;
-    if(!music_original_mci || !music_readable(iat,4,0) || *iat!=(void*)music_original_mci || !music_readable(mixer_call,6,0) || !same(mixer_call,mixer,6) || !music_readable(entry,6,0) || !same(entry,volume,6))return 0;
+    if(!music_original_mci || !music_readable(iat,4,0) || *iat!=(void*)music_original_mci || !music_readable(mixer_call,6,0) || !same(mixer_call,mixer,6) || !music_readable(entry,6,0) || !same(entry,volume,6) || !music_readable(query_entry,7,0) || !same(query_entry,query,7))return 0;
     u8* trampoline=VirtualAlloc(0,11,0x3000,4);if(!trampoline)return 0;copy(trampoline,entry,6);trampoline[6]=0xe9;u32 back=(u32)(entry+6)-(u32)(trampoline+11);copy(trampoline+7,&back,4);
-    u32 old_iat,old_mixer,old_volume,ignored;
+    u32 old_iat,old_mixer,old_volume,old_query,ignored;
     if(!VirtualProtect(trampoline,11,0x20,&ignored) || !FlushInstructionCache(GetCurrentProcess(),trampoline,11))return 0;
     if(!VirtualProtect(iat,4,4,&old_iat))return 0;
     if(!VirtualProtect(mixer_call,6,0x40,&old_mixer)){VirtualProtect(iat,4,old_iat,&ignored);return 0;}
     if(!VirtualProtect(entry,6,0x40,&old_volume)){VirtualProtect(iat,4,old_iat,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);return 0;}
+    if(!VirtualProtect(query_entry,7,0x40,&old_query)){VirtualProtect(iat,4,old_iat,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);VirtualProtect(entry,6,old_volume,&ignored);return 0;}
     music_original_volume=(MusicVolume)trampoline;
     u32 offset=(u32)&music_zero_mixers-(u32)(mixer_call+5);mixer_call[0]=0xe8;copy(mixer_call+1,&offset,4);mixer_call[5]=0x90;
     offset=(u32)&music_volume-(u32)(entry+5);entry[0]=0xe9;copy(entry+1,&offset,4);entry[5]=0x90;
+    offset=(u32)&music_get_volume-(u32)(query_entry+5);query_entry[0]=0xe9;copy(query_entry+1,&offset,4);query_entry[5]=query_entry[6]=0x90;
     __atomic_store_n(iat,(void*)&music_mci,__ATOMIC_RELEASE);
-    FlushInstructionCache(GetCurrentProcess(),entry,6);FlushInstructionCache(GetCurrentProcess(),mixer_call,6);
-    VirtualProtect(iat,4,old_iat,&ignored);VirtualProtect(entry,6,old_volume,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);
-    __atomic_or_fetch(music_words+MNM_MUSIC_V1_PRODUCER_FEATURES_OFFSET/4,MNM_MUSIC_V1_FEATURE_MCI|MNM_MUSIC_V1_FEATURE_ZERO_MIXERS|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME,__ATOMIC_RELEASE);
+    FlushInstructionCache(GetCurrentProcess(),entry,6);FlushInstructionCache(GetCurrentProcess(),mixer_call,6);FlushInstructionCache(GetCurrentProcess(),query_entry,7);
+    /* Query and mixer share a page; restore in reverse acquisition order. */
+    VirtualProtect(query_entry,7,old_query,&ignored);VirtualProtect(entry,6,old_volume,&ignored);VirtualProtect(mixer_call,6,old_mixer,&ignored);VirtualProtect(iat,4,old_iat,&ignored);
+    __atomic_or_fetch(music_words+MNM_MUSIC_V1_PRODUCER_FEATURES_OFFSET/4,MNM_MUSIC_V1_FEATURE_MCI|MNM_MUSIC_V1_FEATURE_ZERO_MIXERS|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME|MNM_MUSIC_V1_FEATURE_MUSIC_VOLUME_QUERY,__ATOMIC_RELEASE);
     HANDLE worker=CreateThread(0,0,(void*)&music_notify_worker,0,0,0);if(worker)CloseHandle(worker);else return 0;
     return 1;
 }
@@ -168,10 +206,14 @@ static int WIN music_test_post(void* window,u32 message,u32 kind,u32 device){
     music_test_kind=kind;music_test_device=device;__atomic_add_fetch(&music_test_notifications,1,__ATOMIC_RELEASE);return 1;
 }
 __declspec(dllexport) u32 WIN AudioMusicForTest(u32 device,u32 message,u32 flags,u32* parameters){
-    music_original_mci=&music_test_legacy;music_post=&music_test_post;return music_mci(device,message,flags,parameters);
+    u32 error=GetLastError();if(!music_acquire()){SetLastError(error);return 276;}
+    music_original_mci=&music_test_legacy;music_post=&music_test_post;__atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);
+    SetLastError(error);return music_mci(device,message,flags,parameters);
 }
 __declspec(dllexport) u32 WIN AudioMusicNotifyForTest(u32* kind,u32* device){
-    music_notify();if(kind)*kind=music_test_kind;if(device)*device=music_test_device;return __atomic_load_n(&music_test_notifications,__ATOMIC_ACQUIRE);
+    if(!music_acquire())return 0;
+    music_notify();if(kind)*kind=music_test_kind;if(device)*device=music_test_device;u32 count=__atomic_load_n(&music_test_notifications,__ATOMIC_ACQUIRE);
+    __atomic_store_n(&music_busy,0,__ATOMIC_RELEASE);return count;
 }
 __declspec(dllexport) u32 WIN AudioMusicInstallForTest(u32 base){return music_install(base);}
 #endif

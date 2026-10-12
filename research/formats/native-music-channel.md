@@ -19,8 +19,9 @@ Requests and response snapshots use independent odd/even publication sequences.
 Single producer/host owners retain matching IDs; no retry may duplicate an
 accepted command. Startup admits a fresh session file and withdraws readiness
 at stop. Commands have bounded host acceptance. The stale-heartbeat constant is reserved
-for producer status retirement; requests currently bound failures by readiness
-and a1000ms response timeout. Cached status freshness still needs that guard.
+for producer status retirement; requests have a1000ms response timeout.
+The producer now permanently retires unready/frozen status ownership with the
+5000ms monotonic heartbeat watch, including failure notification on host loss.
 Completion has a separate event sequence/ID so asynchronous playlist messages do
 not overwrite command ACKs. Endpoint/cancellation/device-loss semantics and
 compatibility routing are implementation work in progress, with no validation
@@ -30,3 +31,7 @@ Host dispatch now defers response publication until the final command result.
 Synchronous service change callbacks can update internal event/state while a
 request executes, but cannot expose its ID with a provisional error status.
 A47-command/16-replacement independent-peer regression and the PE fixture pass.
+
+Feature bit16 records the guarded native gain query. Bits1/2/4/8/16 together
+are31 when MCI routing, zero mixers, gain setter, native selection and getter
+are installed. Startup uses a bounded coherent response-sequence snapshot.

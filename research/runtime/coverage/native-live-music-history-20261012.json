@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "reviewed_range": "13742456eefac607a8865d266bd707be6c88cc1f..c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+  "scope": "Committed parent/current exact receipt audit for the native live-music milestone, separate from pending CD work and concurrent skirmish. Fresh native CD assets and original CD control links and prospective execution scope were reviewed in the scoped/staged gate; no retrospective past-gate or new scientific validation inference.",
+  "files": [
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "69fea116ec3d52e89675663ab40f617467d77c842fed733069491fdb5e162b5d",
+      "after_sha256": "27db9a256ca4788724bf16b00811b87691e0db56276d56118f559f1a5aa0a005",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "f866211161d827a63337d0c13f49d971c291227f11a81721c14816d2df06f47e",
+      "after_sha256": "fa92f08d0ce845ae994a50a3fe7df3e95d3f22021750bcd727c7e26ec794a05d",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "eb82bc370f351523cef66e5f78b657ba8de9e7b1a24a06eb88ed573b1d09233a",
+      "after_sha256": "726e629174904b0f687efd18a108d0417da866bc5cad305ab93926f25ebfa029",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "b425ecad6f4b6350973a09de4ffeeafebf33243c3a525f2963066c54305aaaf9",
+      "after_sha256": "aefca6c12262d6daf1f080a639f7e19098eb3e3d144c70974564483f44f43e57",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "apps/qt-shell/media_cli.cpp",
+      "before_sha256": "36bc110a59c06fdc403883a92a343ad207fc3585cecf0a78506a804bb0ff1cd0",
+      "after_sha256": "5e1024f056da7b31a310cfde52fb908a99cb8b44cc02877e0f60c81030172e4e",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "audio/music_bridge.cpp",
+      "before_sha256": "f64205dcc9fbb7fac1825e6a878a4d4578675fa796af6ac03cf92d116a7e6688",
+      "after_sha256": "2b2a156d25afba1faff2d88d66a162beebf02006e0c14d4a2eee709cd682abfb",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/formats/native-music-channel.md",
+      "before_sha256": "604c7267574c9a7030184d38b9e2b34aaad997215cf89a1cd2e63a3e385a86cb",
+      "after_sha256": "4c9a3da41abe88fecb04b0d3abc2de7a62d3e41221737763f6e8932ae3433893",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/cd-audio-control.md",
+      "before_sha256": "5157d515366fed0f19f759ed5e0b8959ae745aa20d03e2a2b1be795bd19c959d",
+      "after_sha256": "f768d8f7e3730beef01e2cf78a7687dd99d484e3917c94a1aa3ce597937a10be",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "412b2d54dfdbac297e3e0b436c5e89f838328942c7ca5ffc05f141ab07a63d43",
+      "after_sha256": "a88e2825e2f9e1f7c36bc3bb2b6d87cf52f943a7bf48ef4146dc64a7bd28da79",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/coverage/native-music-wire-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3910b24575d4345cd229d4bb1d444dc6173397614ca2bc1f5ec9e3b440a41371",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "b3e501f6f83d6afff1b2e1122a7625783bab238c4369368eb863c74555c13d08",
+      "after_sha256": "1b2a76abf891fd822b75206f9db630698afc29ae3933a8ae7a49756cd4f2b2f1",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/coverage/source-index-native-live-music-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8faba617344c3fc50a2c32310730018f55c553200d722b415e869ef08754852e",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/coverage/summary-native-live-music-commit-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "2f5290403147f066b3025cbc706e3c8367f5848f75a7867110f743025e95b2b9",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "ec241e646ca2bffb96c5805331530884f9835bace93642c0492341d902867463",
+      "after_sha256": "ac21aba69a95f0282b93ad05d8b5d2e42cd20954af592047e3be7c386ad6ffb4",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-mci-cd-adapter.md",
+      "before_sha256": "6990094881546d5755dfa4991e87dd27f7243f31ba0d9f3bd5f108d54999d6f9",
+      "after_sha256": "1c82030dbebf46505cee1d2feda6cd7c920fde15878b055c34be2f2c6690039d",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-mci-cd-dispatch-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4e613b98fd15473ce15b040415482e7dbcd51a8ce3cc81b7e1f082b6ee519eb3",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-menu-music-initial-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ef09b7225bf456dad1e56c2623058f2a98fd565b66eb39489c9b588c3e8cbd95",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-menu-music-media-public-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "6072c797d74edda303470b1f1809e0d1b099f591acf1cf9734dba86c25111e66",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-menu-music.md",
+      "before_sha256": "b0bcdd71b5f4e34f5f35319a2143eef368063325c5d95e439736b6b3ab383195",
+      "after_sha256": "12ea3c78b8812e5ed0c498ba2f3bc421cf153ab7662399e60e49003a08e43324",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "research/runtime/native-music-transport-dispatch-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7596b3b3f62fc2ed47fb5ff1aa500624a28e5ff47e4495e4df9351f985b7607b",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "runtime/audio/music.h",
+      "before_sha256": "b20825fdde5d27c3afbf583ba086f124945ea5c789722f240d152cbb410a5d84",
+      "after_sha256": "283e70696e8889d183c63bda3413ceeee0cd0472f2aa300fabd181c2cb24f648",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "runtime/audio/music_selftest.c",
+      "before_sha256": "be3006cf75f360a30a806860ef83ca3310ac51ca28458b8b3359b04778868417",
+      "after_sha256": "42c97d4862d71ceeb3c8b49f97b04592269eec6d9367922388126452ff6e199f",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tests/test-native-music-launch.py",
+      "before_sha256": null,
+      "after_sha256": "969bcc9440f97c61060007a9994c1794cdba52812f1fe6f0952119c27db0bcef",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "62b6c128c13647ff3acc33f978ca6b506681f959033f0199233151478a5b96d2",
+      "after_sha256": "34df9cc498cca601802d152e1979d53fcd0f4cd4f8b958fb17a1d6bb41e0ff39",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tools/native_music_launch.py",
+      "before_sha256": null,
+      "after_sha256": "a2813b6355b266cc7514ecca679b34ce3f4cb38a3ce03066782066b83f93437f",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "4e02fb664736b13803cb66288978c8296db7131a122c4ccc73381ce438529574",
+      "after_sha256": "58a292b7f951dc43460253f53da93145b9c0c43b71c7de192ded9a6c91fcdf8d",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "25a2b9a0d276b1bd796608c8d34e99089ac2da38c90665cef99fa3252396d6ad",
+      "after_sha256": "ef3caca4c16b0f4faf730a4e2ac55645464c305b0b2227069da91421e902f34d",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "92797aa41e53e758f9fcc95cf4f39043ae0c5782b6fc79214307cf9cc68261d9",
+      "after_sha256": "3d135c11ba55bbd22774737de8cf8855fc096e35d566da35bd9bf15c28db2b68",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c3a4932f5618e0a1030d729ac17b31bcd7680bad",
+      "path": "tools/test-native-music-bridge.py",
+      "before_sha256": "4423a94bb35fbf140ff5996a640d9ff55c457078145789ce83942d391938efbc",
+      "after_sha256": "fbec8b6f892672f63e0925fae065f35bfe219a095bdc51fda5632537b89ebde6",
+      "receipt_chain": [
+        "native-live-music-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

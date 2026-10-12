@@ -10,10 +10,14 @@ static void test_media(void){
     media_check(1,"FMV/Test.avi",0,1,0x77);
     media_check(1,"FMV/Skip.avi",0,0,0x77);
     media_check(2,"Sounds/Test.wav",0x20009,1,0x77);
-    media_check(2,"in-memory",4,23,0x88);
+    media_check(5,0,0,0,0x77);
+    media_check(2,"in-memory",5,23,0x88);
+    media_check(5,0,0,1,0x77);
     media_check(2,"Sounds/Test.wav",0x20009,1,0x77);
+    media_check(5,0,0,65538,0x77); /* one async legacy stop; no duplicate stop */
     media_check(2,"Sounds/Test.wav",0x20011,0,0x77);
     media_check(3,0,0,1,0x77);
+    media_check(5,0,0,65538,0x77);
     media_check(1,"FMV/Missing.avi",0,17,0x88);
     media_check(1,"../FMV/Test.avi",0,17,0x88);
     media_check(2,"in-memory",4,23,0x88);

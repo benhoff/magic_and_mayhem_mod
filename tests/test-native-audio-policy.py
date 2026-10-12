@@ -29,7 +29,20 @@ def main():
         result = subprocess.run([str(args.binary.resolve()), '--repo', str(ROOT), '--smoke-test', *flags],
                                 env=env, capture_output=True, text=True, timeout=20)
         assert result.returncode == 2, (flags, result.stdout, result.stderr)
-    print(f'Public audio selection: {len(cases)} admissions and 2 refusals; no game or audio device')
+    routes=[(['--live-menus','--native-commands'],'native','native'),
+            (['--live-menus','--native-commands','--legacy-media'],'legacy','native'),
+            (['--live-menus','--native-commands','--no-native-music'],'native','disabled'),
+            (['--live-menus','--native-commands','--skip-movies'],'native','native'),
+            (['--live-menus','--native-commands','--legacy-audio'],'native','disabled'),
+            (['--frame-readback'],'legacy','disabled')]
+    for flags,media,music in routes:
+        result=subprocess.run([str(args.binary.resolve()),'--repo',str(ROOT),'--smoke-test',*flags],env=env,capture_output=True,text=True,timeout=20)
+        assert result.returncode==0,(flags,result.stdout,result.stderr)
+        assert f'Native media policy: {media}' in result.stdout and f'Native music policy: {music}' in result.stdout,(flags,result.stdout)
+    for flags in [['--native-media','--legacy-media'],['--native-music','--no-native-music'],['--music-assets','unused']]:
+        result=subprocess.run([str(args.binary.resolve()),'--repo',str(ROOT),'--smoke-test',*flags],env=env,capture_output=True,text=True,timeout=20)
+        assert result.returncode==2,(flags,result.stdout,result.stderr)
+    print(f'Public audio selection: {len(cases)} voice admissions/2 refusals; {len(routes)} media/music admissions/3 refusals; no game or audio device')
 
 
 if __name__ == '__main__':main()
