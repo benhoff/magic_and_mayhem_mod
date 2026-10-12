@@ -3,13 +3,16 @@
 namespace mnm::reconstruction::combat {
 struct MotionActionState {
   int accumulator = 0, duration = 1, progress = 0, travelX = 0, travelY = 0,
-      heightDelta = 0, heightStep = 0, heightOrigin = 0;
+      heightDelta = 0, heightStep = 0, heightOrigin = 0, step = 0, deltaX = 0,
+      deltaY = 0;
   unsigned direction = 0, sampleCursor = 0, initialCursor = 0;
   std::array<int, 48> samples{};
   int initialResidualX = 0, initialResidualY = 0;
-  bool vertical = false, displacementPause = false, auxiliarySprite = false;
+  bool vertical = false, displacementPause = false, visualSprite = false;
 };
 struct MotionActionServices {
+  // Visual facing aggregates the original conditional overlay/sprite updates;
+  // footstep includes current/below terrain cue selection before emission.
   std::function<int(AutonomousCreature &, bool)> poll;
   std::function<void(AutonomousCreature &)> rewind, completeSegment,
       runBehavior, reset, updateOrders, visualFacing;

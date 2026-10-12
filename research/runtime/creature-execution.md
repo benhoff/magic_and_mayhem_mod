@@ -116,3 +116,55 @@ literals gained excess precision in the i386 build; constants now use the exact
 original binary values expressed as hexadecimal long-double literals. This
 finding is high-confidence for the isolated fixture. Original live startup FPU
 control and cross-architecture numerical equivalence remain separate boundaries.
+
+## Full motion action (NS28)
+
+`5104b0..510e3a` now has a complete control-flow projection in
+`full_motion_action.*`. High-confidence instruction findings within this body:
+
+- `b43` stores each sample increment; `b4f/b53` store its signed XY deltas.
+  Vertical movement clears both deltas. A direction above seven retains their
+  previous values; it does not clear them. All accumulator/product/displacement
+  arithmetic wraps as signed32 before truncating division and height clamping.
+- Type12/mode2-or3 forces a32 increment and one iteration after positive quotient
+  admission. Each iteration reloads the sample and class/mode predicates.
+- Forward/reverse sample cursor updates, flying/non-form bypass, event1/2 rewind,
+  terrain footstep selection, and type4/12/15 event6 effects precede completion.
+- Completion checks the actor again after512460. Reverse behavior14 flips facing,
+  conditionally binds overlay/sprite/auxiliary presentation, resolves pending2/3,
+  missing targets, pending5 and pending8, and releases engagement as appropriate.
+- Ordinary pending8 releases the route effect and every kind2 queued effect in
+  list order. Response, displacement pause,22-byte movement-query construction,
+  legality refusal, type27 reset and behavior16 admission preserve their order.
+
+The development corpus has57344 paired cases, including8192 extreme signed32
+cases and11466 out-of-range direction inputs. Main and alternate engagement
+release, missing reverse targets, every visual path, both effect kinds, terrain
+cues, queued-effect release and movement failure are checked as nonempty branches.
+Six native-only refusal cases cover zero/overflowing division, excessive substeps,
+invalid sample cursors, an endless supplied event stream and invalid world size.
+They are intentional admission policy, separate from original behavior. Refusal
+is handled transactionally by a caller's staged state; this primitive does not
+promise in-place rollback.
+
+The original fixture executes the entire motion body, selected unchanged50a930
+resolver arms and unchanged coordinate constructors. It compares ordered service
+calls, every actor byte, queued nodes, guarded sample storage and read-only
+terrain/visual tables, and verifies motion/resolver text is unchanged. Lower
+segment/behavior/action/response/ANI/visual/sound/effect/stun/queue/geometry services
+are supplied with explicit ABI assertions. This is headless projection evidence;
+real ANI timing, full512460, world geometry/ownership and application integration
+remain separate. Current actor grid positions are valid16x16x4 coordinates; raw
+invalid pointers/division and broader coordinate-constructor domains are excluded.
+
+A prospective final declaration and fresh original/native/sanitized run are
+required before promoting this new scope. Earlier motion slices and development
+reports remain immutable; none is silently upgraded to this full projection.
+
+The prospective finalv2 run in `original-motion-action-v2-20261012.json` passes
+57344 paired cases and six native-only refusals with native64, original32 and
+ASan/UBSan/LSan64 agreement. Distinct widths1..2/heights1..4 and movement kinds0..7
+verify the legality-query field ordering. All eight native executor CTests pass.
+`AI.motion-action` now records this scoped comparison; `NP.motion-admission`
+records the separate native policy. Native application integration staysnone.
+The first scoped result and all development runs remain historical.

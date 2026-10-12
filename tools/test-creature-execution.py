@@ -24,12 +24,15 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--claims', type=Path)
-    p.add_argument('--suite', choices=['control', 'actions', 'orders', 'strategy', 'behaviors', 'lifecycle', 'callbacks'], default='control')
+    p.add_argument('--suite', choices=['control', 'actions', 'orders', 'strategy', 'behaviors', 'lifecycle', 'callbacks', 'motion'], default='control')
     args = p.parse_args()
     args.output = args.output.resolve()
     if args.output.exists():
         p.error('Refusing existing evidence output')
-    if args.suite == 'callbacks':
+    if args.suite == 'motion':
+        ranges = [(0x5104b0,0x510e3a)]
+        endpoints = [0x464ec0,0x464d70,0x512460,0x50aa30,0x50ab30,0x50db60,0x517580,0x50d060,0x4943f0,0x5120c0,0x4f4900,0x464ca0,0x464cb0,0x494a50,0x464e20,0x570e80,0x571310]
+    elif args.suite == 'callbacks':
         ranges = [(0x50f090,0x50f329),(0x50f360,0x50f3ae),(0x50e7a0,0x50eb24),(0x5170e0,0x517427),(0x50eba0,0x50ec71),(0x50f590,0x50f7bb)]
         endpoints = [0x464ec0,0x516220,0x5164f0,0x50aa30,0x464d70,0x50c0d0,0x50ec80,0x49d310,0x571310,0x5705e0,0x570a90,0x570480,0x5708e0,0x570bd0,0x514860,0x50eb60,0x54e200,0x485b10,0x50d060,0x520c70,0x54dce0,0x54dcb0,0x4943f0,0x5120c0,0x50ab30,0x50db60]
     elif args.suite == 'lifecycle':
@@ -100,6 +103,7 @@ def main():
             'orders': ['orders'], 'strategy': ['strategy'], 'behaviors': ['behavior_execution'],
             'lifecycle': ['maintenance', 'movement_behavior', 'death_behavior'],
             'callbacks': ['action_callbacks'],
+            'motion': ['full_motion_action'],
         }
         sources = [f'tests/creature-execution{ "-"+args.suite if args.suite != "control" else ""}-test.cpp',
                    'reconstruction/creature-ai/execution.cpp', 'reconstruction/creature-ai/route_execution.cpp',

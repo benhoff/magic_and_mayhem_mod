@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "scope": "Resolution of the immutable incoming-history review; retrospective exact pairs only.",
+  "review": "research/runtime/coverage/original-motion-incoming-history-20261012.json",
+  "review_sha256": "abc420c77b76033f1c32812b88f82cf1e6e808c2e23ab5dab4e5ec84252c70cf",
+  "reviewed_range": {
+    "base": "8a2f48f3693f88ad9b69699bcdfc3238049fa176",
+    "head": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931"
+  },
+  "retrospective_receipt": "original-motion-incoming-merge-retrospective-20261012",
+  "resolved_pairs": [
+    {
+      "commit": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "parent": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "path": "docs/architecture.md",
+      "before_sha256": "32de96b927267d177c61736d8c0cea78eaf16cfcffc0fbdaecda9049575ac247",
+      "after_sha256": "e5e37eb87ef7cf40e03afd07bb68ac957d77430b49aa532fc0fe8cbbe57dee4b",
+      "receipts": []
+    },
+    {
+      "commit": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "parent": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "id": "GP.commander",
+      "before_sha256": "3baa50e8a272dcdc2bc0ddaba3f0d35671f30a1c4f59ca7f69ee252575ea302d",
+      "after_sha256": "95d41e9072a48c2d6f7fefe9737900c21cdf0902147a699e6c7fbe96e3ca9ada",
+      "receipts": []
+    },
+    {
+      "commit": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "parent": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "id": "GP.mana",
+      "before_sha256": "bab154d3a83103036fd0e5bd528222342238966713a7a32cb231dee366943729",
+      "after_sha256": "5dd5073501a50c53c2061abdde3ea55f916c5c74db0e4f8e278ab9eb18bed09f",
+      "receipts": []
+    },
+    {
+      "commit": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "parent": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "id": "GP.veterancy",
+      "before_sha256": "7514aa7c91e88fa05015af84dc512723e6c26b72aaf4464ee87e1f27049b6c37",
+      "after_sha256": "b4609b808669ca10ad507c98a96753da67cfbb7910099250f45e7f3ed849f1e6",
+      "receipts": []
+    },
+    {
+      "commit": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "parent": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "6cef92d0c45872fd4ba757556050a98587759750c2152a623a88caeb1650e5ce",
+      "after_sha256": "c3497e976308f373dfcda2061403580bd7c2488c98648cf927c091c373c2c417",
+      "receipts": []
+    },
+    {
+      "commit": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "parent": "b5df7472f3ff94f0d35dc384de724770bd443cbb",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "2440d0b17b920f1141e540e1d47db97bec5848f615a109677830496d1409b810",
+      "after_sha256": "7dd579da3915e8cc709ba049fef905cdc3a3b8969ffe67b5b4950224c2491d26",
+      "receipts": []
+    }
+  ],
+  "unresolved_gaps": []
+}

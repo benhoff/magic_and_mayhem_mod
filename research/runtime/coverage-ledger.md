@@ -8309,3 +8309,29 @@ attribution is next; no pending-import/UI-blocking explanation is established
 for the successful final run. Both parent histories and all negative results
 remain retained. The storage reservation was reviewed after4GiBrefusal: previous
 full run1.44GiB,2GiBreservation used,100GiBfree minimum unchanged.
+
+## NS28 — Whole motion action control-flow projection (2026-10-12)
+
+The original5104b0 body now has a scoped native control-flow projection with
+57344 prospectively bound original32/native64/sanitized64 cases. The fixture
+checks every actor byte, ordered lower-service effects, queued effect ownership,
+read-only sample/terrain/visual storage and unchanged motion/resolver text.
+It includes8192 arithmetic-extreme cases, widths1..2/heights1..4, movement kinds0..7,
+all direction branches, reverse/missing/pending targets, both engagement releases,
+visual/cue/effect paths, completion removal and movement failure. Eight native
+executor CTests pass. Six native-only admission refusals are recorded separately
+asNP.motion-admission; the primitive requires caller-staged rollback.
+
+The fresh v2 immutable result is `original-motion-action-v2-20261012.json`;
+older reports and hashes stay preserved. AI.motion-action implementation and
+comparison are scoped; integration/replacement remainnone. Full segment512460,
+initialization510e80, real ANI/world geometry/ownership and all-species/native
+application composition remain pending. This milestone does not complete the
+full original AI objective. The next recovery step is segment completion.
+
+Incoming committed-history review from8a2f48f3 through0280403c covers six commits,
+338 file and531 behavior transitions, including both merge parents. Six missing
+architecture/linked-contract pairs are accounted retrospectively in the separate
+resolution report. This asserts neither a historical gate pass nor new validation.
+Bounded builds use the authorized private90GiB storage policy and preserve all
+2927 original files; no cleanup was performed by this workstream.
