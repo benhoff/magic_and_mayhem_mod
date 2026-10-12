@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "entries": [
+    4929792,
+    4930272,
+    4932576,
+    4990672,
+    4994592,
+    4995648
+  ],
+  "anchors": {
+    "0x4b3900": "53568bf133db895e08885e0c895e0dc6",
+    "0x4b3ae0": "568bf18b460885c07524b910000000c7",
+    "0x4b43e0": "64a1000000006aff680f0d5c00506489",
+    "0x4c26d0": "6aff64a10000000068e4185c0050b834",
+    "0x4c3620": "6aff6871195c0064a100000000506489",
+    "0x4c3a40": "64a1000000006aff683a1a5c00506489"
+  },
+  "command": [
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/toolchain/ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_/support/analyzeHeadless",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/decompiled/nocd-nn0_667n/project",
+    "MagicMayhem",
+    "-process",
+    "Chaos.exe",
+    "-readOnly",
+    "-noanalysis",
+    "-scriptPath",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/tools/ghidra",
+    "-postScript",
+    "ExportPersistenceProgression.java",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/decompiled/grimoire-controls-lnth2ma6/c",
+    "4b3900",
+    "4b3ae0",
+    "4b43e0",
+    "4c26d0",
+    "4c3620",
+    "4c3a40",
+    "-max-cpu",
+    "2"
+  ],
+  "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+  "tables": {
+    "0x5c66b4": [
+      "0x4b3ae0",
+      "0x4b3b10",
+      "0x4b3b40",
+      "0x4b3b30",
+      "0x5595d0",
+      "0x4b59e0",
+      "0x4b6040",
+      "0x4b3b50",
+      "0x4b40c0",
+      "0x4b43e0",
+      "0x4b4f60",
+      "0x4b53e0",
+      "0x4bc850",
+      "0x4bcac0"
+    ]
+  },
+  "texts": {
+    "0x5e0da0": "STEPS_COSTS",
+    "0x5c6b44": "Interface\\Grimoire\\Grimoire.cfg"
+  },
+  "installed_inputs": {
+    "Interface/RegionEntry/screen (Region Entry).cfg": "4eabc2e3aabf6cd508df3f20872505668ef768f26702f4046cb77aaf00419659",
+    "Interface/CharacterScreen/screen (Character Screen).cfg": "c3b479b7a888afcd9089626f1552004eb4e6e29fb4063c84205031bbd8283f27",
+    "Interface/Grimoire/Grimoire.cfg": "b426bfe2c881f09fac20e5709723e2371eb691d6688f14481a92f28acda34907",
+    "Interface/Grimoire/Grimoiretooltip.cfg": "386d527cf81cdd7783c74b49c7a6117a4dbec092585a7dd3efc42a92dcd43510"
+  },
+  "sources": {
+    "tools/export-grimoire-menu.py": "0cd5d4ef625b1a849d1e5edae6ebec77a79c4ae356b6134f5e641cf271f6bc8f",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/audit-file-apis.py": "c516ca9e40c3f68685501fb20d3348808d813a78e87207a9ea95fc18b6b8aa8e",
+    "tools/decompile-game.py": "6200c741f514398f4256e2255cdf05041859c99eeb4f3a9430c4c09a33d221d9",
+    "tools/ghidra/ExportPersistenceProgression.java": "c11ace07ee8e512656dc50fd7fb56a461b57ce4dee63348ac7c304c9845f24f5"
+  },
+  "artifacts": {
+    "original.asm": "25733004af7ed9654cbbb009d28c9a474e85cbce7c4dad1b7a3192700263c683",
+    "references.json": "7425d273d31e0d363aa3cc63215fe3dfe326947c8a0fb5107f1def635d2e1afe",
+    "c/004b3900.refs": "e79266061b4040d9068b9a65004f45ef894e526cc85e5a3487b6e20b821f4094",
+    "c/004b43e0.refs": "7bfd3951aaa83a3257b6e81c957d1c17171e6d778671aa566685bc8d46f4f3c8",
+    "c/004b43e0.c": "755dfdf8267768cb9ef2dad1d4375e2d364500eb9ae22e6057aa01733baeb2fc",
+    "c/004c3a40.refs": "1e91eeb6210823cf06e70e79265e9a58b13f77472904405ed23ce01f7da32257",
+    "c/004b3ae0.refs": "e7d273f40db205e59a0ddfeb547d4d7fe84c4d501620b2a860f14dc4d12a3bcf",
+    "c/004c26d0.refs": "1cc4afe2b6a6e77dddb2d1dc4649664f5b0a45dad447127c333d5effdef57a4b",
+    "c/004c3a40.c": "b143f9d243072539ff7cb386677b05c084b9ca1a0633c4ecbd6a7244def1341d",
+    "c/004b3ae0.c": "e0993f64cc66138a0527d0881fd65ee38b0304635fbd445d9bcb097f4626f965",
+    "c/004b3900.c": "35751d865ec6c8063ba4f58a3020b9025917a85c0fc1082e63891e705ea3d810",
+    "c/004c26d0.c": "495a87e4cbac45e6c0354829b68ffc41bd500bdb7cc37f9d2ff389d032ae35a6",
+    "c/004c3620.refs": "446c111fa4479fd3ec1e8ee73fe522c85a1713877fe52dcee3eb7bcd6ba3da02",
+    "c/004c3620.c": "be29dba41c5d058a0728bf85087d2effb1bad85b99eeecc9ad32a5a182cd71b6",
+    "inputs/3.cfg": "386d527cf81cdd7783c74b49c7a6117a4dbec092585a7dd3efc42a92dcd43510",
+    "inputs/1.cfg": "c3b479b7a888afcd9089626f1552004eb4e6e29fb4063c84205031bbd8283f27",
+    "inputs/0.cfg": "4eabc2e3aabf6cd508df3f20872505668ef768f26702f4046cb77aaf00419659",
+    "inputs/2.cfg": "b426bfe2c881f09fac20e5709723e2371eb691d6688f14481a92f28acda34907"
+  }
+}

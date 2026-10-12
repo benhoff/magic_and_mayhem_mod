@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "cases": 32,
+  "real_game_launched": false,
+  "page_and_render_helpers_stubbed": true,
+  "calling_convention_verified": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "range": [
+    5011392,
+    5011590
+  ],
+  "anchors": {
+    "0x4c77c0": "53568bf133db57395e3e7505395e3a74"
+  },
+  "scope": "Original callback animation-surface swaps and reset, Close3999 fade/return, Previous1999/Next2999 helper dispatch, packed chapter/section division by124 including out-of-range input; page/navigation/render/fade helpers stubbed. No live book admission, page data, knowledge/stats, drawing equivalence or caller return.",
+  "sources": {
+    "tools/test-grimoire-menu-contract.py": "72ec3883e2e718dec3ab9dbd1a7ce21130b7673a076466049ad20d3ce9176b50",
+    "tests/grimoire-menu-contract.c": "44b1d04f379725f572aa815077cf73ab5d481de4abe1c1e1fa19b44f0720a0db",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c"
+  }
+}

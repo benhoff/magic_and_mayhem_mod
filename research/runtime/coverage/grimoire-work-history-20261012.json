@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "reviewed_range": "596d6a4a3dc94a4d699d60b6f39632112625f0eb..b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+  "scope": "Committed exact file versions only; no retrospective gate pass, semantic promotion or new execution evidence.",
+  "files": [
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "c3b6701e5b262c734c0c7c606206d15ecd4ad1636ddbcae86a3b8521f2608414",
+      "after_sha256": "be2ba537e7c21c65011c29bdc58ec8f6cabe5d66209afb5b5c53d058005c7c3e",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "apps/qt-shell/campaign_smoke_test.hpp",
+      "before_sha256": "fa5896b60dc82ca9d4d53b074b5d6ddc555108e29d8aa0f62209ec0a13a8672c",
+      "after_sha256": "ef7b62982b2d97e7765ae866da271aa56b256b32999e3015b2c8bafd39877d45",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "apps/qt-shell/campaign_storage_boundary_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1005b3bf0385a732a1d75e271efc3ac126a821a710f2a3dcc8f145de45001f79",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "apps/qt-shell/campaign_storage_test.cpp",
+      "before_sha256": "77906f08ffc6b2bdea040d5d6574d7c3c6ca2a56dd4364c72a49d2e52de54256",
+      "after_sha256": "cce480d4a0a20c4c9a3de6c6416fd38287410c609866d7e690480ad31eca9f82",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/formats/menu-migration-inventory.md",
+      "before_sha256": "b72ca090094348b4402f454f9c7d3da1bbc324ad94ef8d09ef92b71e186cf4d4",
+      "after_sha256": "fba030b0258405b2f254571c23626d4a62a1a7faecca24030e6a9d99c6e21c13",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/campaign-save-load-live.md",
+      "before_sha256": "54410716e91eacdb19e70ddc187f01d55c61cd23d758f49184be148d8095d8e0",
+      "after_sha256": "0ad845dd4e17d1a4e71e2f7f5e25c0b482ffe6518f53cbc73d9bb945e2f3d43b",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a060a644d4a1ed366f2f434babd5cc221c5519f75098a3046edc63caba952757",
+      "after_sha256": "1b4af462d1970870424ec8ac0282aa6ee325ad0390838de0d668458ea583f7fd",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "87033386d571c5cbad8a9cac967bfd7ecafce726bcd6d8a0e966c39432238e2a",
+      "after_sha256": "8a66b94bb2ee5b46e3f7f090057f84f60efda71836bd9a9eddcbb5e16102d8f2",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/coverage/storage-confirmation-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7c5a524c5968f5eb9b0cab1a6aa3e20081c1320da415f089332ee95e8177198d",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/coverage/summary-storage-confirmations-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "197bfb5532489c4e449f260909b7b26e66b141038d867ec2c90fbaf1004fc053",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/save-load-confirmation-contract-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ad20921d36c4fea4d74fcd59611f2296fe5e0f3cf333a93dc2cae51095d94af4",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/save-load-menu-engine-contract.md",
+      "before_sha256": "d8618f13b7887fbb8435b0e3e8486b4c620293ca2a1412224726c874e03d6a59",
+      "after_sha256": "cef37fea0211533aa68ef4ff4826ff104e665d978f3cf9c719f160f48508bdf4",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/storage-confirmations-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9cb858e1954fdcc4939030e0c32c38ed2d4e135ea7eb473182a5ba3bd920d6d3",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/storage-confirmations-live.md",
+      "before_sha256": null,
+      "after_sha256": "7d7fa12617815e62941ddb613355d82bf3378afc10974bde52bbc2b12c225194",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/storage-fresh-admission-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2eb0dd2f4fedff4ee5f10e5c836313c0f235103ce80627b188cbcfd9bcb15819",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "research/runtime/storage-overwrite-admission-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "dbbf7e1e083d155088165a9b4530647ab583c543dac4926cc49908713495c59f",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "runtime/menu/storage.h",
+      "before_sha256": "76b5747013970fa0bdd74aff5cd7703cf2ebda72d686e83a2646d6248d4aa6d6",
+      "after_sha256": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "tests/save-load-menu-contract.c",
+      "before_sha256": "03b9a8fee0a832825c623b1b7044208446b3fd2e2876f96a9e39a014c1a92f81",
+      "after_sha256": "fa14f114a7ec592b73cae0efb752703f9ca95602d7f9dbb735398d9daf9624a3",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "tests/storage-menu-bridge-reference.c",
+      "before_sha256": "caed4eb9e8f575de9aa56a9a3c22b0e7918537328b04e297a6639ccb1dcb75ee",
+      "after_sha256": "f8f20e612333a6a570e9ee8683ff78e00d06cb9359b709a99154506da2b307db",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "tools/menu-storage-input.py",
+      "before_sha256": "344e3f41ff8c9586416754e7d1961997ba93bfc8ceee6da4ceecda28c8bcc19b",
+      "after_sha256": "f1039d30d5902c072458468eb11ec34595038e11f2b6eef31702fc7de49ec541",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "tools/test-live-storage-confirmations.py",
+      "before_sha256": null,
+      "after_sha256": "1a945f1fe7a06e5483ab9b41ddf2f01d09a436edeb6807d2f126a09d4d676b99",
+      "receipt_chain": [
+        "storage-confirmations-fresh-live-20261012",
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    },
+    {
+      "commit": "b49bc431e6bb152ebab0f6d27ba154118ff889e4",
+      "parent": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "path": "tools/test-save-load-menu-contract.py",
+      "before_sha256": "c737df8c5b936e676e3412cda31c21dd307507e5062854bebd44d35c400f982d",
+      "after_sha256": "8fad6824d067484521bc2a977da5241baf856672ab64cbcea3bea3d5cdeb5635",
+      "receipt_chain": [
+        "storage-confirmations-recovered-policy-and-historical-gaps-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

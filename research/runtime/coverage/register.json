@@ -11043,7 +11043,7 @@
       "subsystem": "campaign",
       "kind": "recovered",
       "title": "Realm auxiliary callback flags",
-      "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+      "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only Static labels corrected: index2 Character6c5148, index3 Grimoire6e0088; historical observation field names retain original raw wire positions.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -11054,7 +11054,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/grimoire-engine-contract.md"
       ],
       "implementation": [],
       "tests": [
@@ -11062,7 +11063,8 @@
         "tools/test-campaign-menu-contract.py"
       ],
       "evidence": [
-        "UI26.original"
+        "UI26.original",
+        "UI40.identities-static"
       ],
       "status": {
         "understanding": "scoped",
@@ -43028,6 +43030,101 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.grimoire-menu-controls",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original Grimoire control, book state and caller-return discovery",
+      "scope": "Static original Grimoire receiver 0x6e0088/vtable0x5c6b70, custom packed base fields, Region Entry action2 and Realm auxiliary action3. Earlier candidate 0x6c5148 is Character Screen20/vtable0x5c66b4. Original book page/level/availability mapping, navigation/close execution and live returns remain pending; offline pagination and placeholder fields are native policies. Original callback 0x4c77c0: animation cancellation, close3999, previous1999/next2999 and packed chapter/section dispatch; 32 bounded private cases with helper stubs; live catalog/page-state/returns pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4928544,
+          "scope": "Region Entry action2 requests the Grimoire receiver. Action4 instead requests Character Screen; native book control/return coverage remains pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4994592,
+          "scope": "Static Grimoire constructor/final vtable/custom packed members only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5011392,
+          "scope": "Original Grimoire action dispatch with page/fade/render helpers privately stubbed; 32 bounded combinations and calling-convention checks."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056816,
+          "relation": "data",
+          "scope": "Nine reviewed Grimoire vtable prefix slots; following words are adjacent data, not a complete dispatch claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-engine-contract.md",
+        "research/runtime/grimoire-qt.md"
+      ],
+      "implementation": [
+        "tools/export-grimoire-menu.py"
+      ],
+      "tests": [
+        "tools/test-grimoire-menu-contract.py",
+        "tests/grimoire-menu-contract.c",
+        "runtime/menu/contract_selftest.S"
+      ],
+      "evidence": [
+        "UI40.identities-static",
+        "UI40.dispatch-static",
+        "UI40.dispatch-original",
+        "UI40.lifecycle-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.character-menu-controls",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original Character Screen identity and auxiliary ingress discovery",
+      "scope": "Static Character receiver6c5148/constructor4b3900/vtable5c66b4/ID20 and CharacterScreen resource consumer4b43e0; Region Entry action4 and Realm auxiliary action2 destination naming corrected. Upgrade/stat/cost behavior, original controls, native projection and live return remain pending. Initialization candidate4b43e0 remains an unassigned discovery body; the vtable link covers only static destination identity.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4929792,
+          "scope": "Static constructor/final vtable/ID20 assignment only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055604,
+          "relation": "data",
+          "scope": "Static final Character vtable: initialization candidate0x4b43e0 references CharacterScreen resources. Its body is outside pinned discovered functions and remains unassigned; not initialization/upgrade coverage."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-engine-contract.md",
+        "research/runtime/character-screen-qt.md"
+      ],
+      "implementation": [
+        "tools/export-grimoire-menu.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "UI40.identities-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -89510,6 +89607,94 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI40.identities-static",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "scope": "Static pinned constructors/resource consumers and installed config corroborate Grimoire6e0088 versus Character6c5148; no live ownership or full page/state validation.",
+      "record": "research/runtime/grimoire-character-identities-static-20261012.json",
+      "sha256": "9e2db3a38444b1788583e65b903f0c9fa21f5c9818d46a944ce87b5ce90a3226",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI40.dispatch-static",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "scope": "Static Grimoire nine-slot prefix, parsed book/page helpers and callback references; adjacent table data is not claimed.",
+      "record": "research/runtime/grimoire-dispatch-static-20261012.json",
+      "sha256": "d09d76dbc122c6cc11cc6328c50eebb8973d66f90aa1b84c982faec9f9edf6ab",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI40.dispatch-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "32 original Grimoire callback combinations with fade/page/navigation helpers stubbed and ABI verified; no live book admission, page data, dynamic values or caller return.",
+      "record": "research/runtime/grimoire-dispatch-original-20261012.json",
+      "sha256": "af87f5f56d0b01e1cb9869f5b275e62ad856d6ee4f341aeaa5a9af02662eb8eb",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI40.lifecycle-static",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "scope": "Static custom Grimoire tick/fade/pop, Escape return, entry/reset and page helpers; rendering/resource/native integration and full caller lifecycle remain unexecuted.",
+      "record": "research/runtime/grimoire-lifecycle-static-20261012.json",
+      "sha256": "4e307048733c59968d423d8b1b1d1ccf516763f9a129492e0da7a6c40738a1e0",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100522,8 +100707,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-storage-confirmations-20261012.json",
-    "sha256": "397f77d501095eeed07298454cc0180b8ee1bb485681d9c7f9be6023bd9c7725"
+    "path": "research/runtime/coverage/source-index-grimoire-contract-20261012.json",
+    "sha256": "bb576c6726956682d22463e164ce4a75a86acb243127c2accf08710672eea8ca"
   },
   "claim_bindings_required": true
 }
