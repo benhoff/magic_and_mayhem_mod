@@ -45075,7 +45075,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Isolated nonblocking cursor-source mutex diagnostic gate",
-      "scope": "Caller-pinned distinct live handles, outer/inner zero-timeout acquisition, reverse release of exactly acquired recursion levels, abandoned acquisition refusal with unwind, failed-release ownership retained and reacquisition refusal. Isolated header and real Wine kernel mutex fixture; not installed in original capture.",
+      "scope": "Caller-pinned distinct live handles, outer/inner zero-timeout acquisition, reverse release of exactly acquired recursion levels, abandoned acquisition refusal with unwind, failed-release ownership retained and reacquisition refusal. Isolated header and real Wine kernel mutex fixture; not installed in original capture. Actual Wine DuplicateHandle fixture also checks same-object recursive ownership, invalid source refusal and lifetime after synchronized source closure; no original identity/lifetime adapter.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45094,7 +45094,8 @@
         "tools/coverage_claims.py"
       ],
       "evidence": [
-        "DRAW02.cursor-source-gate-fixture-01-20261012"
+        "DRAW02.cursor-source-gate-fixture-01-20261012",
+        "DRAW02.cursor-source-gate-fixture-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45104,7 +45105,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh isolated fixture proves only caller-owned real Wine mutex cases and scripted faults; actual original handle identity/lifetime including concurrent close/use, source aliases/overlap, caller-state preservation and live diagnostic integration unimplemented. No recovered behavior, complete reference, native parity or game synchronization repair claim."
+        "Fresh duplicate fixture passes only owned Wine object alias/lifetime cases; first fixture remains historical after test/runner/scope changes. Actual original handle identity/lifetime including concurrent close/use, caller-state preservation and live diagnostic integration unimplemented. Private duplicates intentionally extend object lifetime; no recovered behavior, complete reference, native parity or game synchronization repair claim."
       ]
     }
   ],
@@ -96730,6 +96731,29 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-source-gate-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 Wine duplicate same-object recursive ownership, invalid-source refusal and synchronized original handle closure while duplicate owned by competing thread;64scriptedcells/9scenario groups, no original execution/live adapter.",
+      "record": "research/runtime/draw02-cursor-source-gate-fixture-02.json",
+      "sha256": "0da1ad34e1a09289049e9882c16960058b8314f43d6e0c87e505c88ae35513db",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_capture_integrated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108872,8 +108896,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-source-gate-20261012.json",
-    "sha256": "3c72e03d464572799bf28af261570763a2fe75cd2a801ea77d854cc42c0def2c"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-duplicates-20261012.json",
+    "sha256": "5034a09d2c69701662dc7416aac12d56e98dc177aaaa82e55102ab75b3c7cbcc"
   },
   "claim_bindings_required": true
 }

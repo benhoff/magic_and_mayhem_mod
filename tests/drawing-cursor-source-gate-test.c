@@ -6,6 +6,7 @@ API HANDLE WIN CreateEventA(void*,u32,u32,const char*);
 API u32 WIN SetEvent(HANDLE);
 API HANDLE WIN CreateThread(void*,u32,u32(WIN*)(void*),void*,u32,u32*);
 API u32 WIN GetExitCodeThread(HANDLE,u32*);
+API u32 WIN DuplicateHandle(HANDLE,HANDLE,HANDLE,HANDLE*,u32,u32,u32);
 #include "../runtime/drawing/cursor_source_gate.h"
 static HANDLE outer,inner,ready,stop;
 static u32 selected;
@@ -70,5 +71,27 @@ void start(void){
  require_gate(!mnm_cursor_gate_acquire(&gate,outer,inner,0,&gate_release)&&gate.failure==1,227);
  require_gate(!mnm_cursor_gate_acquire(&gate,outer,inner,&gate_wait,0)&&gate.failure==1,228);
  require_gate(!mnm_cursor_gate_acquire(&gate,(void*)0x12345678,inner,&gate_wait,&gate_release)&&gate.failure==4&&!gate.acquired,229);
+ // Failed duplication must not alter either original handle's ownership.
+ HANDLE invalid_copy=0;HANDLE process=GetCurrentProcess();
+ require_gate(!DuplicateHandle(process,(HANDLE)0x12345678,process,&invalid_copy,0,0,2),239);
+ require_gate(probe_handle(outer)==0&&probe_handle(inner)==0,253);
+ // Duplicate handles must refer to the same mutex and retain its lifetime.
+ HANDLE outer_copy=0,inner_copy=0;
+ require_gate(DuplicateHandle(process,outer,process,&outer_copy,0,0,2)&&DuplicateHandle(process,inner,process,&inner_copy,0,0,2),240);
+ require_gate(outer_copy!=outer&&inner_copy!=inner,241);
+ require_gate(WaitForSingleObject(outer,0)==0&&WaitForSingleObject(inner,0)==0,242);
+ require_gate(mnm_cursor_gate_acquire(&gate,outer_copy,inner_copy,&gate_wait,&gate_release)&&mnm_cursor_gate_release(&gate,&gate_release),243);
+ require_gate(probe_handle(outer_copy)==0x102&&probe_handle(inner_copy)==0x102,244);
+ require_gate(ReleaseMutex(inner)&&ReleaseMutex(outer),245);
+ // A duplicate already owned by another thread survives source closure.
+ HANDLE saved_outer=outer,saved_inner=inner;outer=outer_copy;inner=inner_copy;selected=1;
+ HANDLE lifetime_owner=CreateThread(0,0,&owner_thread,0,0,0);
+ require_gate(lifetime_owner&&WaitForSingleObject(ready,10000)==0,249);
+ require_gate(CloseHandle(saved_outer)&&CloseHandle(saved_inner),246);
+ require_gate(!mnm_cursor_gate_acquire(&gate,outer,inner,&gate_wait,&gate_release)&&gate.failure==3&&!gate.acquired,250);
+ require_gate(probe_handle(outer)==0&&probe_handle(inner)==0x102,251);
+ require_gate(SetEvent(stop)&&WaitForSingleObject(lifetime_owner,10000)==0&&CloseHandle(lifetime_owner),252);
+ require_gate(mnm_cursor_gate_acquire(&gate,outer,inner,&gate_wait,&gate_release)&&mnm_cursor_gate_release(&gate,&gate_release),247);
+ require_gate(probe_handle(outer)==0&&probe_handle(inner)==0,248);
  require_gate(CloseHandle(outer)&&CloseHandle(inner)&&CloseHandle(ready)&&CloseHandle(stop),226);ExitProcess(0);
 }

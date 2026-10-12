@@ -8157,3 +8157,21 @@ cannot become a complete reference from this synthetic policy test. All47
 requirements/21operation contracts and steps3–7 retain their existing scope.
 The reviewed committed range28c385eb..28022dba has11exact receipts, zero gaps
 and no retrospective execution or gate claim.
+
+## DRAW-02 duplicate mutex fixture checkpoint (2026-10-12 UTC)
+
+Isolated gate committed230295f8 passed staged accounting and its required hook.
+`draw02-cursor-source-gate-fixture-02.json` passes64scripted cells and9real Wine
+scenario groups including same-object recursive ownership through private
+duplicates, invalid source duplication refusal and usable duplicates after
+synchronized source closure while another thread owns the inner duplicate.
+The completed isolated prefix was reused; no new installation copy or original
+game/artifact use occurred. Actual extra test output remains bounded.
+
+Reassessment: step2 still needs constructor/global identity tracking, retirement
+versus active diagnostic leases, exact error/full512FX preservation and callback/
+worker lock-order controls before any live capture gate. Duplicates extend object
+lifetime by intentional native policy. Previous fixture01 stays immutable and
+historical after the extended test/runner/scope; fixture02 binds current source.
+No complete source/frame/reference/parity or all47/21closure claim. The reviewed
+28022dba..230295f8range has12exact receipts and zero missing intermediate versions.

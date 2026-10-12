@@ -40,3 +40,28 @@ seven groups of real Wine kernel mutex scenarios in an isolated PE32 process.
 Confidence is high for that bounded fixture, provisional for any game application.
 Passing owned fixture behavior does not establish safe live source capture, concurrent handle lifetime,
 complete references, pixel parity, game semantics or original suppression.
+
+## Duplicate-handle lifetime fixture increment
+
+Before applying to original capture, an isolated PE32 fixture additionally tests
+DuplicateHandle SAME_ACCESS2 with no inheritance and no CLOSE_SOURCE flag. An
+invalid source must refuse without changing either real mutex's ownership. Two
+private duplicates must have different handle values and share the original
+mutex objects: recursion acquired/released through duplicates must preserve the
+caller's earlier levels acquired through originals.
+
+A synchronized worker owns the inner duplicate before both original handles
+close. The main thread must still observe inner contention, unwind its outer
+acquisition, and obtain both duplicates only after the worker releases. Competitor
+probes test both mutexes independently. All private handles are closed afterward.
+This is owned-fixture lifetime evidence, not concurrent original constructor/
+close/use coordination or complete source ownership. Duplicate object references
+intentionally extend lifetime and remain a native diagnostic policy.
+
+Microsoft's [DuplicateHandle documentation](https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-duplicatehandle)
+identifies the same underlying object and documents reference-count retention
+until both handles close. No original call is patched or game executed here.
+
+`draw02-cursor-source-gate-fixture-02.json` passes all64scripted cells and nine
+real scenario groups with current source/contract hashes. Fixture01 remains
+historical after the extended test/runner/scope; no old hashes were refreshed.
