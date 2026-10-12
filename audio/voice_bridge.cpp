@@ -1,4 +1,5 @@
 #include "voice_bridge.hpp"
+#include "wave_source.hpp"
 #include <QMediaDevices>
 #include <QtEndian>
 #include <cstring>
@@ -62,7 +63,12 @@ struct VoiceBroker::State:QObject {
         connect(&timer_,&QTimer::timeout,this,[this]{poll();});
     }
     ~State() override{stop();}
-    bool create(const QString& path,bool audible,const QAudioDevice& outputDevice){
+    bool create(const QString& path,bool audible,const QAudioDevice& outputDevice,const QString& soundsRoot){
+        if(!soundsRoot.isEmpty()){
+            auto assets=mnm::assets::AssetStore::create(soundsRoot.toStdString());
+            if(const auto* error=std::get_if<mnm::assets::Error>(&assets)){error_=QString::fromStdString(error->detail);return false;}
+            waveSource_=std::make_unique<WaveSource>(std::get<mnm::assets::AssetStore>(std::move(assets)),true);
+        }
         QAudioFormat format;
         if(audible)format=selectOutputFormat(outputDevice);
         if(audible&&!format.isValid()){error_="No supported native voice output device";return false;}
@@ -86,6 +92,7 @@ struct VoiceBroker::State:QObject {
         std::memset(map_,0,128);std::memcpy(map_,"MNMAUD01",8);
         auto* words=reinterpret_cast<quint32*>(map_);
         words[2]=qToLittleEndian(MNM_AUDIO_VERSION);words[3]=qToLittleEndian(MNM_AUDIO_SIZE);
+        words[31]=qToLittleEndian(waveSource_?MNM_AUDIO_CAP_NATIVE_WAVE:0u);
         __atomic_store_n(words+20,qToLittleEndian(1u),__ATOMIC_RELEASE);
         activity_.audible=audible;timer_.start();return true;
     }
@@ -97,16 +104,18 @@ struct VoiceBroker::State:QObject {
             result.nativeSelections=qFromLittleEndian(__atomic_load_n(words+21,__ATOMIC_ACQUIRE));
             result.fallbacks=qFromLittleEndian(__atomic_load_n(words+22,__ATOMIC_ACQUIRE));
             result.adapterFailures=qFromLittleEndian(__atomic_load_n(words+23,__ATOMIC_ACQUIRE));
+            result.waveHookInstalled=(qFromLittleEndian(__atomic_load_n(words+31,__ATOMIC_ACQUIRE))&MNM_AUDIO_WAVE_INSTALLED)!=0;
         }
         return result;
     }
     void stop(){
         timer_.stop();
         if(map_){__atomic_store_n(reinterpret_cast<quint32*>(map_)+20,0u,__ATOMIC_RELEASE);file_.unmap(map_);map_=nullptr;}
-        file_.close();output_.reset();commands_.reset();device_.reset();
+        file_.close();output_.reset();commands_.reset();device_.reset();waveSource_.reset();
     }
     QFile file_;uchar* map_=nullptr;std::unique_ptr<Device> device_;
     std::unique_ptr<VoiceCommands> commands_;std::unique_ptr<QtOutput> output_;
+    std::unique_ptr<WaveSource> waveSource_;
     QTimer timer_;std::uint32_t last_=0;QString error_;VoiceActivity activity_;
     std::function<void(const QString&)> failed;
     void poll(){
@@ -117,12 +126,26 @@ struct VoiceBroker::State:QObject {
         if(!request || request==last_)return;
         std::uint32_t input[16];for(unsigned i=0;i<16;++i)input[i]=qFromLittleEndian(words[i]);
         BridgeReply reply{0x80070057,0};
+        for(unsigned i=24;i<31;++i)words[i]=0;
         try{
-            if(input[8]<=MNM_AUDIO_PAYLOAD){
+            if(input[5]==MNM_AUDIO_LOAD_WAVE){
+                if(!waveSource_)reply={0x80004001,0};
+                else if(input[8]>0&&input[8]<=259&&input[6]==0&&input[7]==0&&input[15]==0){
+                    const std::string leaf(reinterpret_cast<const char*>(map_+128),input[8]);
+                    auto loaded=waveSource_->load(leaf);const auto& f=loaded.pcm.format;
+                    const std::uint32_t metadata[]={std::uint32_t(loaded.pcm.samples.size()),f.rate,f.bytesPerSecond,
+                        std::uint32_t(f.tag)|(std::uint32_t(f.channels)<<16),
+                        std::uint32_t(f.alignment)|(std::uint32_t(f.bits)<<16),loaded.durationMs,f.extra};
+                    std::memcpy(map_+128,loaded.pcm.samples.data(),loaded.pcm.samples.size());
+                    for(unsigned i=0;i<7;++i)words[24+i]=qToLittleEndian(metadata[i]);
+                    reply={0,metadata[0]};++activity_.waveLoads;activity_.waveBytes+=metadata[0];
+                }
+            }else if(input[8]<=MNM_AUDIO_PAYLOAD){
                 const auto payload=input[5]==MNM_AUDIO_UPLOAD?QByteArray(reinterpret_cast<const char*>(map_+128),int(input[8])):QByteArray{};
                 reply=commands_->execute(input,payload);
             }
-        }catch(const std::exception&){reply={0x8007000e,0};}
+        }catch(const std::bad_alloc&){reply={0x8007000e,0};}
+        catch(const std::exception&){reply={0x80004005,0};}
         ++activity_.requests;
         if(reply.status)++activity_.failures;
         else switch(input[5]){
@@ -138,7 +161,7 @@ struct VoiceBroker::State:QObject {
 };
 VoiceBroker::VoiceBroker(QObject* parent):QObject(parent){workerThread_.setObjectName("native-audio");}
 VoiceBroker::~VoiceBroker(){stop();}
-bool VoiceBroker::create(const QString& path,bool audible){
+bool VoiceBroker::create(const QString& path,bool audible,const QString& soundsRoot){
     stop();error_.clear();lastActivity_={};
     const auto outputDevice=audible?QMediaDevices::defaultAudioOutput():QAudioDevice{};
     worker_=new QObject;worker_->moveToThread(&workerThread_);
@@ -154,7 +177,7 @@ bool VoiceBroker::create(const QString& path,bool audible){
                     error_=message;if(failed)failed(message);
                 },Qt::QueuedConnection);
             };
-            created=state_->create(path,audible,outputDevice);error=state_->error_;
+            created=state_->create(path,audible,outputDevice,soundsRoot);error=state_->error_;
         }catch(const std::exception& exception){error=QString::fromUtf8(exception.what());}
     },Qt::BlockingQueuedConnection);
     if(!created){stop();error_=error;return false;}

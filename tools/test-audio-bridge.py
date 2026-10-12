@@ -29,11 +29,16 @@ def main():
     dll=module.build(True)
     shutil.copy2(dll,root/dll.name);shutil.copy2(dll.parent/'selftest.exe',root/'selftest.exe')
     channel=root/'voices.bin'
+    import wave,struct
+    with wave.open(str(root/'fixture.wav'),'wb') as fixture:
+        fixture.setnchannels(1);fixture.setsampwidth(2);fixture.setframerate(48000)
+        fixture.writeframes(struct.pack('<4h',-32768,-1,1000,32767))
     env={key:value for key,value in os.environ.items() if not key.startswith('MNM_')}
     env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
+               MNM_AUDIO_WAVE_TEST='1',
                MNM_AUDIO_CHANNEL='Z:'+str(channel).replace('/','\\'))
     with (root/'server.log').open('w') as log:
-        server=subprocess.Popen([str(build/'mnm-audio-server'),'--channel',str(channel),'--silent','--seconds','15'],stdout=log,stderr=log)
+        server=subprocess.Popen([str(build/'mnm-audio-server'),'--channel',str(channel),'--silent','--sounds-root',str(root),'--seconds','15'],stdout=log,stderr=log)
         try:
             deadline=time.monotonic()+5
             while True:
@@ -66,7 +71,7 @@ def main():
             'fallback_attempts':int.from_bytes(header[88:92],'little'),
             'checks':['native_pcm_and_controls','COM_method_slots_stdcall','primary_metadata','primary_volume_roundtrip','primary_format_validation',
                       'primary_stop_preserves_secondary_playback','manager_gate_failure_order_matrices',
-                      'secondary_lock_unlock','duplicate_source_retirement','independent_status',
+                      'secondary_lock_unlock','duplicate_source_retirement','independent_status','native_wave_abi_exact_pcm','native_wave_small_destination_and_traversal_refusal',
                       'invalid_unlock_and_flags','unsupported_pitch_and_seek','reference_lifetime',
                       'stale_host_timeout_and_permanent_retirement']}
     assert report['last_request']==report['last_ack'] and report['last_ack']>10,report

@@ -105,10 +105,11 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
     metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
+                    native_wave_loading=native_voices,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
-        immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
+        immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx','.wav','.ini')}
         (root/'input-fingerprints.json').write_text(json.dumps(immutable_inputs,indent=2)+'\n')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Source executable changed')

@@ -27,7 +27,7 @@ def main():
             out.write(frame_protocol.initial_header());out.truncate(frame_protocol.SIZE)
         channel=root/'voices.bin'
         with channel.open('wb') as out:
-            out.write(b'MNMAUD01'+struct.pack('<II',2,128+16*1024*1024));out.truncate(128+16*1024*1024)
+            out.write(b'MNMAUD01'+struct.pack('<II',3,128+16*1024*1024));out.truncate(128+16*1024*1024)
         result=subprocess.run(['python3',str(REPO/'tools/run-opengl-game.py'),'--stream',str(stream),'--voice-channel',str(channel),'--stage-only'],text=True,capture_output=True,timeout=60)
         (root/'stage.log').write_text(result.stdout+result.stderr);result.check_returncode()
         line=next(line for line in result.stdout.splitlines() if line.startswith('Render experiment: '))

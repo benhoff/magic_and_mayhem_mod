@@ -5,6 +5,7 @@
 #include <QThread>
 #include <QtEndian>
 #include <atomic>
+#include <cstring>
 #include <iostream>
 #include <stdexcept>
 using namespace mnm::audio;
@@ -29,7 +30,11 @@ int main(int argc,char** argv){
     check(run(999).status,"unknown operation rejected");
     w[10]=65537;check(run(MNM_AUDIO_CREATE).status && !d.count(),"format narrowing rejected");
     QTemporaryDir directory;const auto path=directory.filePath("voices.bin");VoiceBroker broker;
-    check(broker.create(path,false),"silent broker creation");QFile file(path);check(file.open(QIODevice::ReadWrite),"open channel");
+    QFile wave(directory.filePath("fixture.wav"));check(wave.open(QIODevice::WriteOnly),"create native WAV fixture");
+    const auto header=QByteArray::fromHex("524946462c00000057415645666d7420100000000100010080bb000000770100020010006461746108000000");
+    check(wave.write(header+pcm)==header.size()+pcm.size(),"write exact source bytes");wave.close();
+    QFile malformed(directory.filePath("bad.wav"));check(malformed.open(QIODevice::WriteOnly),"create bad input");malformed.write("RIFF");malformed.close();
+    check(broker.create(path,false,directory.path()),"silent broker creation");QFile file(path);check(file.open(QIODevice::ReadWrite),"open channel");
     auto* map=file.map(0,MNM_AUDIO_SIZE);check(map,"map channel");auto* words=reinterpret_cast<quint32*>(map);
     check(qFromLittleEndian(words[20])==1,"broker ready");
     words[5]=qToLittleEndian(999u);__atomic_store_n(words+4,qToLittleEndian(1u),__ATOMIC_RELEASE);
@@ -63,10 +68,33 @@ int main(int argc,char** argv){
     check(responded.load(),"peer acknowledged during owner/GUI stall within original deadline");
     const auto activity=broker.activity();
     check(activity.requests==6&&activity.failures==1&&activity.creates==1&&activity.uploads==1&&activity.uploadedBytes==8&&activity.plays==1&&activity.releases==1&&activity.ready&&!activity.audible,"activity reflects successful operations separately from refusal");
+    auto waveRequest=[&](const QByteArray& name,bool success){
+        for(unsigned i=5;i<16;++i)words[i]=0;
+        words[5]=qToLittleEndian(unsigned(MNM_AUDIO_LOAD_WAVE));words[8]=qToLittleEndian(unsigned(name.size()));
+        std::memcpy(map+128,name.constData(),std::size_t(name.size()));
+        __atomic_store_n(words+4,qToLittleEndian(++serial),__ATOMIC_RELEASE);
+        QElapsedTimer deadline;deadline.start();
+        while(acknowledgement()!=serial&&deadline.elapsed()<1000)QThread::msleep(1);
+        check(acknowledgement()==serial,"native WAV response within original producer deadline");
+        check((qFromLittleEndian(words[17])==0)==success,"native WAV outcome");
+        if(success){
+            check(qFromLittleEndian(words[18])==8&&qFromLittleEndian(words[24])==8&&qFromLittleEndian(words[25])==48000&&
+                  qFromLittleEndian(words[26])==96000&&qFromLittleEndian(words[27])==0x10001&&
+                  qFromLittleEndian(words[28])==0x100002&&qFromLittleEndian(words[29])==0&&words[30]==0,
+                  "native WAV exact format/size/recovered duration metadata");
+            check(QByteArray(reinterpret_cast<char*>(map+128),8)==pcm,"native WAV transfers exact PCM");
+        }else check(words[18]==0&&words[24]==0,"failed wave does not publish old result metadata");
+    };
+    check(qFromLittleEndian(words[31])==MNM_AUDIO_CAP_NATIVE_WAVE,"native wave capability published before ready");
+    waveRequest("FIXTURE.wav",true);waveRequest("'fixture'.wav",true);
+    waveRequest("missing.wav",false);waveRequest("../fixture.wav",false);waveRequest("bad.wav",false);
+    waveRequest(QByteArray("fixture.wav\0",12),false);
+    check(broker.activity().waveLoads==2&&broker.activity().waveBytes==16&&broker.activity().failures==5,
+          "native wave successes and refusals counted independently");
     broker.stop();check(!words[20]&&!broker.activity().ready,"stop withdraws readiness");broker.stop();
     check(broker.create(directory.filePath("next.bin"),false),"worker restart with new channel");
-    __atomic_store_n(words+4,qToLittleEndian(stalledSerial+1),__ATOMIC_RELEASE);
-    QThread::msleep(20);check(acknowledgement()==stalledSerial,"retired channel never serviced by restarted worker");
+    const auto retiredSerial=serial;__atomic_store_n(words+4,qToLittleEndian(retiredSerial+1),__ATOMIC_RELEASE);
+    QThread::msleep(20);check(acknowledgement()==retiredSerial,"retired channel never serviced by restarted worker");
     check(broker.activity().requests==0&&broker.activity().ready,"new channel has fresh request namespace");broker.stop();
     file.unmap(map);file.close();
     check(!broker.create(path,false),"existing channel never overwritten");

@@ -113,7 +113,7 @@ public:
             });
             liveMenus_->nativeCommandsEnabled=nativeCommands_;
             liveMenus_->nativeVoicesEnabled=nativeVoices_;
-            liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path);};
+            liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path,QFileInfo(path).dir().filePath("game/Sounds"));};
             liveMenus_->prepareNativePresentation=[this](const QString& directory){
                 QStringList arguments;
                 return createNativePresentation(directory+"/render-frame.bin",directory+"/render-input.bin",directory+"/render-commands.bin",true,arguments);
@@ -268,10 +268,10 @@ protected:
         detach();event->accept();
     }
 private:
-    bool createNativeVoices(const QString& path){
+    bool createNativeVoices(const QString& path,const QString& soundsRoot={}){
         voices_=std::make_unique<mnm::audio::VoiceBroker>();
         voices_->failed=[this](const QString& error){log_->appendPlainText("Native voice output failed: "+error);};
-        if(voices_->create(path))return true;
+        if(voices_->create(path,true,soundsRoot.isEmpty()?QDir(repo_).filePath("working/game-nocd/Sounds"):soundsRoot))return true;
         const auto error=voices_->lastError();voices_.reset();
         log_->appendPlainText("Native voice output could not start: "+error);
         statusBar()->showMessage(error);return false;
@@ -377,6 +377,8 @@ private:
             const QJsonObject report{{"requests",qint64(activity.requests)},{"creates",qint64(activity.creates)},
                 {"uploads",qint64(activity.uploads)},{"uploaded_bytes",qint64(activity.uploadedBytes)},
                 {"plays",qint64(activity.plays)},{"releases",qint64(activity.releases)},
+                {"wave_loads",qint64(activity.waveLoads)},{"wave_bytes",qint64(activity.waveBytes)},
+                {"wave_hook_installed",activity.waveHookInstalled},
                 {"failed_requests",qint64(activity.failures)},{"native_selections",int(activity.nativeSelections)},
                 {"fallbacks",int(activity.fallbacks)},{"adapter_failures",int(activity.adapterFailures)},
                 {"audible_output",activity.audible},{"ready_before_stop",activity.ready},

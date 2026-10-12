@@ -1,5 +1,10 @@
 # Native DirectSound voice bridge
 
+Current public native audio uses version 3 and native static-WAV input alongside
+the owned audio worker. See [end-to-end stages and current evidence](native-audio-end-to-end.md).
+The version-2 and optional-selection descriptions below retain their historical
+milestone scope; they are not current default-selection or loader claims.
+
 Reviewed 2026-10-04. This optional adapter routes selected game-facing audio
 contracts into the native Device mixer and Qt output. Offline COM/PCM tests and
 disposable import staging pass. No live game session, speaker audibility or

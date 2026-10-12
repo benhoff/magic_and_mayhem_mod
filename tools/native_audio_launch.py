@@ -3,6 +3,7 @@ import hashlib
 import struct
 
 SIZE = 128 + 16 * 1024 * 1024
+VERSION = 3
 
 
 def authorize(root, metadata, environment):
@@ -24,14 +25,17 @@ def authorize(root, metadata, environment):
     with path.open('rb') as source:
         header = source.read(128)
     words = struct.unpack('<32I', header)
-    if header[:8] != b'MNMAUD01' or words[2:4] != (2, SIZE) or words[20] != 1:
+    if header[:8] != b'MNMAUD01' or words[2:4] != (VERSION, SIZE) or words[20] != 1:
         raise ValueError('Native voice broker is not ready')
-    if any(words[4:19]) or any(words[21:]):
+    wave_enabled = metadata.get('native_wave_loading', False)
+    if type(wave_enabled) is not bool or words[31] != int(wave_enabled):
+        raise ValueError('Native WAV policy differs from the staged session')
+    if any(words[4:19]) or any(words[21:31]):
         raise ValueError('Refusing stale native voice channel')
     environment['MNM_AUDIO_CHANNEL'] = 'Z:' + str(path).replace('/', '\\')
 
 
-def validate_activity(report):
+def validate_activity(report, native_wave=False):
     for name in ('requests', 'creates', 'uploads', 'uploaded_bytes', 'plays', 'releases', 'native_selections'):
         if type(report.get(name)) is not int or report[name] < 1:
             raise ValueError('Missing native audio activity: ' + name)
@@ -40,6 +44,9 @@ def validate_activity(report):
             raise ValueError('Native audio failed or fell back: ' + name)
     if report.get('audible_output') is not True or report.get('ready_before_stop') is not True or report.get('ready_after_stop') is not False or report.get('error') != '':
         raise ValueError('Native audio output/retirement was not confirmed')
+    if native_wave and (report.get('wave_hook_installed') is not True or
+                        any(type(report.get(k)) is not int or report[k]<1 for k in ('wave_loads','wave_bytes'))):
+        raise ValueError('Native WAV loading was not exercised')
     return report
 
 
@@ -49,10 +56,12 @@ def validate_retirement(path, report):
     with path.open('rb') as source:
         header = source.read(128)
     words = struct.unpack('<32I', header)
-    if header[:8] != b'MNMAUD01' or words[2:4] != (2, SIZE) or words[20] != 0 or not words[4] or words[4] != words[16]:
+    if header[:8] != b'MNMAUD01' or words[2:4] != (VERSION, SIZE) or words[20] != 0 or not words[4] or words[4] != words[16]:
         raise ValueError('Native voice channel was not acknowledged and retired')
     expected = (report['native_selections'], report['fallbacks'], report['adapter_failures'])
     if words[21:24] != expected:
         raise ValueError('Native audio report differs from the final channel')
+    if bool(words[31]&0x10000) != report.get('wave_hook_installed',False):
+        raise ValueError('Native WAV installation differs from the final channel')
     return dict(request=words[4], acknowledgement=words[16], ready=words[20],
                 native_selections=words[21], fallbacks=words[22], adapter_failures=words[23])
