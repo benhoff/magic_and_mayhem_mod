@@ -116,6 +116,7 @@ public:
             liveMenus_->nativeVoicesEnabled=nativeVoices_;
             liveMenus_->nativeMediaEnabled=nativeMedia_;
             liveMenus_->nativeMusicEnabled=nativeMusic;
+            liveMenus_->skipMoviesEnabled=skipMovies_;
             liveMenus_->prepareNativeMusic=[this](const QString& path){
                 music_=std::make_unique<mnm::audio::MusicBroker>(this);
                 const bool created=music_->create(path,QFileInfo(path).dir().filePath("native-music"));
@@ -463,7 +464,10 @@ int main(int argc,char** argv){
                     "  --audio-report FILE   Save catalog/startup JSON\n"
                     "  --audio-map ID        Map classifications/preload (default 1)\n"
                     "  --audio-sound ID      Select a sound or group in the preview\n"
-                    "  --native-media        Opt in to Qt movies and supported file sounds\n"
+                    "  --native-media        Native movies/file sounds (default with live native menus)\n"
+                    "  --legacy-media        Use original movies/file sounds\n"
+                    "  --native-music        Native CD music (default with live native menus/voices)\n"
+                    "  --no-native-music     Disable native CD music for this session\n"
                     "  --native-voices       Native DirectSound voices (default with native commands)\n"
                     "  --legacy-audio        Keep original DirectSound voices\n"
                     "  --main-menu           Preview the native main menu without launching a game\n"
@@ -601,7 +605,7 @@ int main(int argc,char** argv){
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
-    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
+    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
     if(menuPreview){
         MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
@@ -762,13 +766,18 @@ int main(int argc,char** argv){
     const bool captureDiagnostic=parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("capture-locks") || parser.isSet("no-readback");
     const bool nativeCommands=parser.isSet("native-commands") || (renderer=="opengl" && !parser.isSet("embedding-test") && !parser.isSet("frame-readback") && !captureDiagnostic);
     const bool nativeVoices=!parser.isSet("legacy-audio")&&(nativeCommands||parser.isSet("native-voices"));
+    if((parser.isSet("native-media")&&parser.isSet("legacy-media")) || (parser.isSet("native-music")&&parser.isSet("no-native-music")))parser.showHelp(2);
+    const bool nativeSession=parser.isSet("live-menus")&&nativeCommands;
+    const bool nativeMedia=!parser.isSet("legacy-media")&&(parser.isSet("native-media")||nativeSession);
+    const bool nativeMusic=!parser.isSet("no-native-music")&&(parser.isSet("native-music")||(nativeSession&&nativeVoices));
+    if(parser.isSet("music-assets")&&!nativeMusic)parser.showHelp(2);
     if(parser.isSet("native-music")&&(!parser.isSet("live-menus")||!nativeCommands||!nativeVoices))parser.showHelp(2);
     if(parser.isSet("resident-world")){
         if(!parser.isSet("live-menus") || !nativeCommands || qEnvironmentVariable("MNM_RENDER_CONTINUOUS")=="0" || qEnvironmentVariable("MNM_NATIVE_DRAW")=="0")parser.showHelp(2);
         qputenv("MNM_PUBLIC_RESIDENT_WORLD","1");
     }
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation,parser.isSet("native-music"));shell.showPresentation();
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,nativeMedia,nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation,nativeMusic);shell.showPresentation();
     if(parser.isSet("music-assets")&&shell.liveMenuSession())shell.liveMenuSession()->musicAssetsRoot=QDir(parser.value("music-assets")).absolutePath();
     if(parser.isSet("live-menu-test")){
         if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
@@ -776,6 +785,8 @@ int main(int argc,char** argv){
     }
     if(parser.isSet("smoke-test")){
         std::printf("Native audio policy: %s\n",nativeVoices?"native":"legacy");
+        std::printf("Native media policy: %s\n",nativeMedia?"native":"legacy");
+        std::printf("Native music policy: %s\n",nativeMusic?"native":"disabled");
         QTimer::singleShot(100,&app,&QCoreApplication::quit);
     }
     if(parser.isSet("embedding-test")){

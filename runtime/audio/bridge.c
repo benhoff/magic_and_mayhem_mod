@@ -157,7 +157,7 @@ __declspec(dllexport) i32 WIN AudioWaveForTest(const char* path,void* pcm,u32 ca
 }
 #include "music.h"
 int WIN DllMain(void* instance,u32 reason,void* reserved){
-    (void)instance;(void)reserved;if(reason!=1)return 1;tables();music_init();
+    (void)instance;(void)reserved;if(reason!=1)return 1;tables();if(!music_init())return 0;
 #ifndef MNM_AUDIO_SELFTEST
     if(music_words && (u32)GetModuleHandleA(0)==0x400000 && !music_install(0x400000))return 0;
 #endif

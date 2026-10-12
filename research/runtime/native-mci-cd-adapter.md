@@ -37,3 +37,10 @@ accepts STOP0 and STOP WAIT2. Other simple controls keep their selected WAIT2
 contract. Renewed PE execution covers both forms. The worker now publishes only
 final dispatch ACKs; local controls wait within a bounded timeout for notification
 polling to release ownership. See native-mci-cd-dispatch-20261012.json.
+
+The current producer also applies the monotonic heartbeat guard to status,
+requests and notification polling. A configured bad/unready music mapping fails
+DLL initialization. Frozen-host status and failure notification/permanent
+retirement pass the PE fixture. Native gain query adds the guarded0x4818b0
+entry and feature bit16; all selected features now total31. Earlier15-feature
+results retain their historical hashes and scope.

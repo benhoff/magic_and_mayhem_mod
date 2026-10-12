@@ -15,6 +15,7 @@ public:
     bool nativeVoicesEnabled=false;
     bool nativeMediaEnabled=false;
     bool nativeMusicEnabled=false;
+    bool skipMoviesEnabled=false;
     QString musicAssetsRoot;
     std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativeMedia;

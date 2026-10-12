@@ -384,6 +384,10 @@ def main():
     parser.add_argument('--native-factory',action='store_true',help='Require native factory, disabled Wine dsound and zero unsupported local COM calls')
     parser.add_argument('--native-media',action='store_true',help='Enable native movies/file sounds alongside live menus')
     parser.add_argument('--native-music',action='store_true',help='Require native CD hooks, music PCM and normal Quit retirement')
+    parser.add_argument('--default-media',action='store_true',help='Verify native movie routing without an explicit shell media flag')
+    parser.add_argument('--default-music',action='store_true',help='Verify native CD routing without an explicit shell music flag')
+    parser.add_argument('--legacy-media',action='store_true',help='Opt out of native movie/file-sound routing')
+    parser.add_argument('--no-native-music',action='store_true',help='Opt out of the native CD route')
     parser.add_argument('--disable-wine-dsound',action='store_true',help='Diagnostic: disable transitive Wine DirectSound module; known movie-stack dependency')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
@@ -395,6 +399,10 @@ def main():
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     explicit_native_audio=args.native_voices
+    explicit_native_media=args.native_media;explicit_native_music=args.native_music
+    args.native_media |= args.default_media;args.native_music |= args.default_music
+    if args.legacy_media and args.native_media:parser.error('Legacy and native media routes conflict')
+    if args.no_native_music and args.native_music:parser.error('Native music admission and opt-out conflict')
     if args.legacy_audio and (args.native_voices or args.default_audio or args.native_loading or args.native_factory):parser.error('Legacy and native audio are separate routes')
     args.native_voices |= args.default_audio or args.native_loading or args.native_factory or args.native_music
     if args.native_music and (args.legacy_audio or not args.normal_quit):parser.error('Native music requires native audio and normal Quit')
@@ -435,6 +443,8 @@ def main():
               'native_audio_factory_required':args.native_factory,
               'native_media_required':args.native_media,
               'native_music_required':args.native_music,
+              'native_media_default_required':args.default_media,
+              'native_music_default_required':args.default_music,
               'wine_dsound_disable_requested':args.disable_wine_dsound,
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
@@ -449,6 +459,7 @@ def main():
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
         if args.native_media:declaration_command.extend(['--behavior','HOST.native-menu-media','--scenario','native-menu-media-campaign-20261012'])
         if args.native_music:declaration_command.extend(['--behavior','HOST.native-menu-music','--scenario','native-menu-music-campaign-20261012'])
+        if args.default_music or args.default_media:declaration_command.extend(['--behavior','HOST.native-audio-defaults','--scenario','native-audio-defaults-campaign-20261012'])
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
@@ -468,6 +479,8 @@ def main():
         audio_sources=['tools/native_audio_launch.py','tools/prepare-native-audio.py','tools/prepare-native-draw.py','tools/prepare-shadow-experiment.py','tools/build-audio-bridge.py','tools/build-shadow-bridge.py','runtime/shadow/win32_min.h']
         audio_sources += [p.relative_to(ROOT).as_posix() for p in (ROOT/'runtime/audio').iterdir() if p.is_file()]
         report['sources'].update({p:sha(ROOT/p) for p in audio_sources})
+    music_sources=['audio/music_bridge.cpp','audio/music_bridge.hpp','audio/music_catalog.cpp','audio/music_catalog.hpp','audio/music_service.cpp','audio/music_service.hpp','audio/music_output.cpp','protocols/include/mnm/music_v1.h','protocols/python/mnm_protocols/music_v1.py','protocols/schemas/music-v1.json','tools/native_music_launch.py','reconstruction/audio/cd_track_controls.cpp','reconstruction/audio/cd_track_controls.hpp']
+    report['sources'].update({p:sha(ROOT/p) for p in music_sources})
     if args.native_draw:
         native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
         report['sources'].update({p:sha(ROOT/p) for p in native_sources})
@@ -519,6 +532,10 @@ def main():
                            stdout=log, stderr=subprocess.STDOUT, check=True, timeout=600)
         binary = ROOT / 'working/build/qt-shell/mnm-qt-shell'
         report['shell_sha256'] = sha(binary)
+        if args.default_music or args.default_media:
+            with (out/'audio-policy.log').open('x') as policy_log:
+                subprocess.run(['python3',str(ROOT/'tests/test-native-audio-policy.py'),'--binary',str(binary)],cwd=ROOT,env=env,stdout=policy_log,stderr=subprocess.STDOUT,check=True,timeout=120)
+            report['audio_policy_checked']=True
         if args.native_draw:
             closure=linked_compiler_sources(ROOT/'working/build/qt-shell',ROOT)
             report['compiled_sources']={p:sha(ROOT/p) for p in sorted(closure)}
@@ -533,8 +550,10 @@ def main():
         probe_env = dict(env, QT_QPA_PLATFORM='offscreen')
         command = [str(binary), '--repo', str(ROOT), '--live-menus', '--native-commands', '--smoke-test']
         if explicit_native_audio:command.append('--native-voices')
-        if args.native_media:command.append('--native-media')
-        if args.native_music:command.append('--native-music')
+        if explicit_native_media:command.append('--native-media')
+        if explicit_native_music:command.append('--native-music')
+        if args.legacy_media:command.append('--legacy-media')
+        if args.no_native_music:command.append('--no-native-music')
         if args.legacy_audio:command.append('--legacy-audio')
         if args.resident_world:command.append('--resident-world')
         with (out / 'mode-probe.log').open('w') as log:
@@ -601,8 +620,10 @@ def main():
             command = [str(ROOT / 'tools/run-qt-shell.sh'), '--live-menus', '--native-commands',
                        '--live-menu-test', str(out / 'flow.json')]
             if explicit_native_audio:command.append('--native-voices')
-            if args.native_media:command.append('--native-media')
-            if args.native_music:command.append('--native-music')
+            if explicit_native_media:command.append('--native-media')
+            if explicit_native_music:command.append('--native-music')
+            if args.legacy_media:command.append('--legacy-media')
+            if args.no_native_music:command.append('--no-native-music')
             if args.legacy_audio:command.append('--legacy-audio')
             report['launch_command'] = command
             if args.resident_world:command.append('--resident-world')

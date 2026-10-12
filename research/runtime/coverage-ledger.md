@@ -7007,3 +7007,30 @@ original playlist/window end notifications, fades/advanced controls, output
 consumption timing, live device faults, full manager integration, longer scenarios
 and actual Wine API retirement remain pending. Native-policy live observation
 does not assert original-driver equivalence or whole-library replacement.
+
+### Native music/media defaults, fresh status and volume query (2026-10-12)
+
+HOST.native-audio-defaults has scoped live observation: full native intro0/1
+video/soundtracks, CD music, default voices/native WAV loads, campaign and normal
+Quit pass without explicit native-media/native-music flags. Features31 include
+guarded gain query; unsupported-CD/legacy-other-MCI/voice unsupported/fallback/
+failed request counters are0. Prepared inputs/sources, CLI policy checks, original
+manifests and owned Wine cleanup pass. Opt-outs and movie skipping retain their
+independent policies; source MusicVolume0 remains muted.
+
+Headless HOST.native-music-watchdog validates actual PE status/failure
+notification/permanent retirement against a SIGSTOP/SIGCONT host whose ready1
+remains published, plus unsigned clock/counter rollover. HOST.native-cd-volume-query
+validates native7/inactive0/uninitialized0/LastError/pointer/prologue and RX-page
+restoration. HOST.native-file-sound-retirement validates zero Wine sound calls on
+first native success and exactly one known legacy async stop, with no redundant
+or inactive stop. Eight admission checks,16 CLI admissions/five refusals and
+three focused Qt lease/audio/preferences CTests pass. Cold-prefix media lease
+failure and earlier source/hashes remain retained. The priorc3a4932 commit has29
+exact parent/current transitions and0 missing receipts.
+
+Original timing/physical listening/device faults, consumed voice status/cursors,
+advanced controls/fades/full playlist windows, native manager/config integration,
+wider/long scenarios and traced complete Wine API retirement remain pending.
+Source-only changes retain historical statuses where stale; current native
+headless/live policy proof does not imply original-driver equivalence/replacement.

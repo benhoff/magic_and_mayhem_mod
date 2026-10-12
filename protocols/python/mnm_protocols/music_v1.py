@@ -121,6 +121,7 @@ FEATURE_MCI = 1
 FEATURE_ZERO_MIXERS = 2
 FEATURE_MUSIC_VOLUME = 4
 FEATURE_NATIVE_SELECTED = 8
+FEATURE_MUSIC_VOLUME_QUERY = 16
 
 def initial_header():
     """Return zeroed header bytes for an exclusively owned new file."""

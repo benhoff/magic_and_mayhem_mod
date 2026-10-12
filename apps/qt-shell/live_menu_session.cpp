@@ -64,6 +64,7 @@ bool LiveMenuSession::start(){
     if(nativeCommandsEnabled&&env.value("MNM_PUBLIC_RESIDENT_WORLD")=="1")arguments.append("--resident-world");
     if(nativeVoicesEnabled)arguments.append("--native-voices");
     if(nativeMediaEnabled)arguments.append("--native-media");
+    if(skipMoviesEnabled)arguments.append("--skip-movies");
     if(nativeMusicEnabled)arguments.append({"--native-music","--music-assets",musicAssetsRoot.isEmpty()?QDir(repo_).filePath("working/assets/native-cd-audio-20261012"):musicAssetsRoot});
     if(!env.value("MNM_MENU_GAME_SOURCE").isEmpty())arguments.append({"--source-game",env.value("MNM_MENU_GAME_SOURCE")});
     process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),arguments);return true;

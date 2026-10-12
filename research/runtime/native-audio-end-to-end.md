@@ -145,3 +145,13 @@ native-menu-music-media-public-pass-20261012.json. The original playlist/control
 scheduler remains active. Music defaults, device/consumed-timing recovery, full
 manager integration, broader controls and traced API retirement are still pending;
 this live observation does not close those separate milestones.
+
+## Default movie/music routes and failure controls
+
+Native movies/file sounds and native CD music now default in live native
+menu/command sessions. Both intros and soundtracks, CD PCM, voices/native WAV
+loading, campaign and normal Quit pass without explicit media/music flags.
+Independent opt-outs/skip policy, coherent startup admission, actual frozen-host
+PE retirement/no revival and guarded native gain query are tested. Successful
+native file sounds no longer call Wine merely to stop an inactive legacy channel.
+See native-audio-defaults.md and its fresh records for scope and remaining work.

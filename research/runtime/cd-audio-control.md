@@ -69,3 +69,11 @@ confirms `0x48214d` pushes flags0 before MCI_STOP0x808 at `0x48214f`
 and the `0x5c52dc` call at `0x482155`. The native adapter must accept STOP0
 as well as WAIT2. This is a confirmed argument finding; full stop/fade/mixer
 function equivalence remains unvalidated.
+
+The retained0x4818b0..0x481920 assembly shows initialized+32c/active+328
+gates and mixerCount+340. Zero mixers leave the queried level0, even when the
+native worker has nonzero gain. A guarded native getter uses a7-byte prologue
+(`51 8b 81 2c 03 00 00`), thiscall ret4/output pointer and the same local gates,
+then reads its own fresh coherent music-volume snapshot. This is per-output
+native policy, not original desktop-mixer equivalence. See native-audio-defaults.md
+for the actual PE getter and shared-page protection checks.
