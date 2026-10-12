@@ -7664,3 +7664,13 @@ Fresh source-only replay matches105eligible protected-source/worker/EGLphysical
 frames with zero differing pixels;232contexts remain excluded. This validates
 the admitted cohort after the storage-point transition guard, not whole lifetime
 or all routes/actions/full DRAW-02 closure.
+
+DRAW-02 step2 storage transition journal: six-invocation PE32 fixture and
+standard observer build pass. Original01 closes884observed invocations:
+60creates15releases809Lock returns119numerical address identities,18unknown
+caller rows. Fresh offline binding validates1687known81unknown cache points at
+exact producer prefixes, versus668source lock checkpoints. Numerical address15
+appears on canvases7/8/9/13; shared backing versus allocation reuse remains
+unassigned. No actual ownership/allcall/nativeparity/full47/21closure follows.
+Next resolve caller identities and bind observed storage epochs to submissions,
+while retaining all other routes/actions and later steps as pending.

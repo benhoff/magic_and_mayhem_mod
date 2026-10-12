@@ -72,3 +72,41 @@ Fresh source-only replay matches105eligible protected-source/worker/EGLphysical
 frames with zero differing pixels;232contexts remain excluded. This validates
 the admitted cohort after the storage-point transition guard, not whole lifetime
 or all routes/actions/full DRAW-02 closure.
+
+## Independent transition journal
+
+Producer checkpoints skip clean or already sampled Lock returns. The new
+opt-in `MNM_DRAW_STORAGE_TRANSITIONS=1` recorder therefore observes all hooked
+create/release/Lock entries and returns within its bounded source interval,
+independent of pixel sampling. It reads wrapper fields and cached scalar state,
+never source pixels or private driver layouts. This adds diagnostic work.
+
+`canvas-storage-transitions-0000.bin` uses MNMCST02/version1, a64byte header
+and96byte rows,131072rows including the terminal, and512local address identities.
+Rows identify invocation, phase, original caller RVA when known, thread, source
+prefix/queue/failures, cache canvas/address/extent, readable wrapper interface
+addresses/extent and observed Lock-return epoch/address. Process pointers stay
+inside the observer; zero caller RVA is explicitly unknown. Every returned Lock,
+including null or numerically reused pointers, advances its observed epoch.
+Address IDs only represent numerical equality during this process. They cannot
+prove allocation generations, exclusive ownership or post-unmap lifetime.
+Create/release EAX is unspecified and not exported. Terminal counters retain
+open invocations, failures, address count and epochs; capture refuses open calls.
+Budget/write/identity failures remain explicit rather than silently truncating.
+
+Six decoder methods validate ordering, null returns, unmatched/changed identity,
+open closure, non-Lock raw results and missing/budget/address gaps. The PE32
+fixture records six synthetic invocations, three returned Lock epochs, one
+reused address across locks, a null result and a new cache canvas at a reused
+wrapper/storage address. It does not execute the original hook ABI or real COM.
+The standard observer builds; original correlation remains a separate run.
+
+DRAW-02 step2 storage transition journal: six-invocation PE32 fixture and
+standard observer build pass. Original01 closes884observed invocations:
+60creates15releases809Lock returns119numerical address identities,18unknown
+caller rows. Fresh offline binding validates1687known81unknown cache points at
+exact producer prefixes, versus668source lock checkpoints. Numerical address15
+appears on canvases7/8/9/13; shared backing versus allocation reuse remains
+unassigned. No actual ownership/allcall/nativeparity/full47/21closure follows.
+Next resolve caller identities and bind observed storage epochs to submissions,
+while retaining all other routes/actions and later steps as pending.

@@ -43942,6 +43942,53 @@
         "Four mode/timing guard methods and two original counter-only controls pass normal Quit. Same schedule/settings/input/counter binary comparisons show diagnostic median queued intervals3.571/3.504 times firstcontrol,3.399/3.349 times second over62/58queued updates. Control repeat first120queued medians differ3.76%,p950.67%. This distinguishes expensive diagnostics from the counter-only condition; neither zero-overhead gameplay nor identical work/equivalence is proved.",
         "Control still observes counters/menu/input, randomized original workloads and diagnostic interval lengths differ. Unobtrusive delivery/FPS, source ownership/all writers/uploads/whole lifetimes, all routes/semantic actions/full DRAW-02 47/21 acceptance remain open. Native parity not performed for this cadence-control change."
       ]
+    },
+    {
+      "id": "NR.drawing-canvas-storage-transitions",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Observed original wrapper storage transition journal",
+      "scope": "Prospective opt-in pointer-free create/release/Lock entry-return journal, logical wrapper and address identities, every observed Lock return including skipped checkpoints. Numerical address identities are local observations, not allocation ownership. Record null/unreadable/cache-unknown states and in-progress closure explicitly.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-canvas-storage-generations.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_storage_transitions.h",
+        "tools/drawing_storage_transitions.py"
+      ],
+      "tests": [
+        "tests/drawing-storage-transitions-test.c",
+        "tools/test-drawing-storage-transitions.py",
+        "tests/test-drawing-storage-transitions.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/analyze-drawing-storage-transitions.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-transitions-fixture-20261012",
+        "DRAW02.storage-transitions-original-20261012",
+        "DRAW02.storage-transitions-binding-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Existing producer checkpoint skips clean/unsampled Lock returns. Complete transition observation therefore needs an independent journal; no generation inference from absent checkpoints. Real COM/aliases/ownership/driver/unobserved calls remain pending.",
+        "Original01 closes884invocations, but18caller rows unknown. Binding01 finds numerical address15 on canvases7/8/9/13; alias versus physical allocation reuse cannot be inferred. Fresh offline parser extension retains historical original/fixture source declarations, not a new engine validation. Native parity for this journal source increment is pending."
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/inspect-canvas-producers.py"
+      ]
     }
   ],
   "evidence": [
@@ -94092,6 +94139,50 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.storage-transitions-fixture-20261012",
+      "kind": "native_integration",
+      "scope": "Six actual PE32 diagnostic recorder invocations/three Lock epochs with synthetic wrapper/cache reuse and null return; no original hook ABI.",
+      "record": "research/runtime/draw02-storage-transition-fixture-01.json",
+      "sha256": "52ab7452d457300f2eb69b2b21b6352afb2b9ddfd1e0a2a55ee12da11a3e99d6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.storage-transitions-original-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active normal Quit:884closed observed create/release/Lock invocations,60creates15releases809Lockreturns119address identities;18unknown caller rows remain. No allocation/alias/all-call ownership or native parity.",
+      "record": "research/runtime/draw02-storage-transition-original-01.json",
+      "sha256": "395360467a783c1f6a57d9d0d84166b7d0cd5ebe146c6a85bdbe47941789e8e5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.storage-transitions-binding-20261012",
+      "kind": "static",
+      "scope": "Exact retained producer prefixes bind1687known81unknown cache points;809observed Lock returns versus668source checkpoints;one numerical address spans four canvas generations. Current offline decoder tests pass; original report fingerprints preserved.",
+      "record": "research/runtime/draw02-storage-transition-binding-01.json",
+      "sha256": "a803091a056a221d362c68acff05f4331ea82d16e7ea321864f1e9f8139e7aeb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105847,6 +105938,20 @@
         "DRAW02.cadence-control-comparison-02-native_integration-20261012",
         "DRAW02.cadence-control-repeat-01-native_integration-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.storage-transitions-original",
+      "level": "live_observation",
+      "scope": "Bounded original-active journal of observed wrapper transitions only; unknown callers and real allocation ownership remain pending.",
+      "behaviors": [
+        "NR.drawing-canvas-storage-transitions"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.storage-transitions-original-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -106220,8 +106325,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-storage-pending-20261012.json",
-    "sha256": "d9dffe8697dcdd3afc780f37ec5e6a796d4aab6d09ff154c0beba4f325740d5e"
+    "path": "research/runtime/coverage/source-index-draw02-storage-transitions-20261012.json",
+    "sha256": "8beb7df2799b45f36af1c28a1bd1c9bef2de9ccc08b5edca253dd3ceaf6997b4"
   },
   "claim_bindings_required": true
 }
