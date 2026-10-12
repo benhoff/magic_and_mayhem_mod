@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "reviewed_range": "071e66ad3bc1f5c906f3060425cd66a529b9a922..3ba667d647771f67cab5f5bdc1b4158077d90bad",
+  "scope": "Committed parent/current exact receipt audit for the native music-service milestone, separate from pending CD work and concurrent skirmish. Fresh native CD assets and original CD control links and prospective execution scope were reviewed in the scoped/staged gate; no retrospective past-gate or new scientific validation inference.",
+  "files": [
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "audio/CMakeLists.txt",
+      "before_sha256": "ccebe6861275cbdacf10c6952a382dbc94fac514eec75e4818bec6ca95e010a3",
+      "after_sha256": "627d1d61a3ce20793443c6b8063c439c057386de3976c38895c108d6cfed83e8",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "audio/music_catalog.cpp",
+      "before_sha256": null,
+      "after_sha256": "afd5d27b210e1e3b8c69b60026c5b250c6b80d69829d74e8f2c4fdc08350cbb6",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "audio/music_catalog.hpp",
+      "before_sha256": null,
+      "after_sha256": "93796bd8fdba9eaccc94584afcc4805f9af2bfb5918a1f08abc7828b3f470a81",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "audio/music_output.cpp",
+      "before_sha256": null,
+      "after_sha256": "68ee5896d9c98fb757b7469a19acd9e05ffd2ee1054bd6925c2c4dbe555993e9",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "audio/music_service.cpp",
+      "before_sha256": null,
+      "after_sha256": "f4883635ccb6c9c8c73ed806b6ccf8e070d1663243531c2e1809caaf039dd556",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "audio/music_service.hpp",
+      "before_sha256": null,
+      "after_sha256": "c59ec7b57e8d0d3244c9f627d971a54b34c912613bc33529015abf58d9488945",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "be7486b0cd3b766617fc978a3674f35a02248f28c8564daad59d47c715096e0f",
+      "after_sha256": "7f851a8b2d212f5519be763474581bb7d4ebbb3c0365b85a645bb65ea00bbbfb",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/coverage/native-cd-foundations-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a1419a3e6921d13b588397bfc4485e4fab468a492bbe7ced86b6cd3275106cef",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2bdee22e7f875f336696bceeecf12630a4cf83c16b689d8712ba6338eb558c3e",
+      "after_sha256": "7c456d77eb009af9782e2bad48e36e01c6874f574f21f9e97671560055d4673d",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/coverage/source-index-native-music-service-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fbe386bae03521bd3af09a87f37410855dcb0036dc36b25276dad47d77d75f37",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/coverage/summary-native-music-service-commit-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "7c2c102574217e8cff5aa6e1e00609f6b9082907561e3acf5e60fdb61c127438",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/native-cd-controls-music-build-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0c8814bd9158a3d3159f07cbba117716095d077059d6c437acd3c7cfee966ff0",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/native-cd-music-service.md",
+      "before_sha256": null,
+      "after_sha256": "aba2ba589e1125ab005f657003a3c9d945fc1ef95f6b03c955fcb20eb99261de",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "research/runtime/native-music-service-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d1cef240a7ee5ea2ce553207012c7a77684909e105316eee3e8eefd0d7c43245",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "tests/music-service-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "75cf26d247c9113aa50eb46ba394e12ef0705f8403cf5baa08984859621763ed",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "3ba667d647771f67cab5f5bdc1b4158077d90bad",
+      "path": "tools/test-native-music-service.py",
+      "before_sha256": null,
+      "after_sha256": "e2c53d8772701ec4976937c087b90db927fe5da7e38814a7fe6b250726ca57e5",
+      "receipt_chain": [
+        "native-music-service-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

@@ -1,0 +1,331 @@
+{
+  "name": "music",
+  "version": 1,
+  "magic": "MNMMUS01",
+  "size": 1024,
+  "header_size": 160,
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "request_sequence",
+      "offset": 16,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "request_id",
+      "offset": 20,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "operation",
+      "offset": 24,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "track",
+      "offset": 28,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "from_frame",
+      "offset": 32,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "to_frame",
+      "offset": 36,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "flags",
+      "offset": 40,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "cancelled_request_id",
+      "offset": 44,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "producer_features",
+      "offset": 48,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "unsupported_cd_calls",
+      "offset": 52,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "legacy_other_mci_calls",
+      "offset": 56,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved_request",
+      "offset": 60,
+      "size": 4,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "response_sequence",
+      "offset": 64,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "response_id",
+      "offset": 68,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "response_status",
+      "offset": 72,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "response_value",
+      "offset": 76,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "heartbeat",
+      "offset": 80,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "ready",
+      "offset": 84,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "phase",
+      "offset": 88,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "current_track",
+      "offset": 92,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "position_cd_frames",
+      "offset": 96,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "volume",
+      "offset": 100,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "event_id",
+      "offset": 104,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "event_kind",
+      "offset": 108,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "event_sequence",
+      "offset": 112,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "failed_requests",
+      "offset": 116,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "recoveries",
+      "offset": 120,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "losses",
+      "offset": 124,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "track_count",
+      "offset": 128,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "leadout_sector",
+      "offset": 132,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "requests",
+      "offset": 136,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "plays",
+      "offset": 140,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "decoded_frames_low",
+      "offset": 144,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "decoded_frames_high",
+      "offset": 148,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved_status",
+      "offset": 152,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "toc",
+      "offset": 160,
+      "size": 792,
+      "owner": "consumer",
+      "type": "u32le_array"
+    },
+    {
+      "name": "reserved_tail",
+      "offset": 952,
+      "size": 72,
+      "owner": "creator",
+      "type": "bytes"
+    }
+  ],
+  "constants": {
+    "max_tracks": 99,
+    "toc_words_per_track": 2,
+    "heartbeat_ms": 25,
+    "request_timeout_ms": 1000,
+    "stale_host_ms": 5000,
+    "operation_ping": 0,
+    "operation_open": 1,
+    "operation_close": 2,
+    "operation_play": 3,
+    "operation_stop": 4,
+    "operation_pause": 5,
+    "operation_resume": 6,
+    "operation_volume": 7,
+    "operation_seek": 8,
+    "operation_status": 9,
+    "status_ok": 0,
+    "status_invalid": 1,
+    "status_failed": 2,
+    "status_not_ready": 3,
+    "flag_loop": 1,
+    "flag_paused": 2,
+    "phase_closed": 0,
+    "phase_stopped": 1,
+    "phase_loading": 2,
+    "phase_playing": 3,
+    "phase_paused": 4,
+    "phase_completed": 5,
+    "phase_unavailable": 6,
+    "phase_failed": 7,
+    "event_none": 0,
+    "event_complete": 1,
+    "event_failure": 2,
+    "event_cancelled": 3,
+    "feature_mci": 1,
+    "feature_zero_mixers": 2,
+    "feature_music_volume": 4,
+    "feature_native_selected": 8
+  },
+  "declared_size_kind": "size",
+  "enums": {}
+}

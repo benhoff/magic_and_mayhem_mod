@@ -155,8 +155,12 @@ __declspec(dllexport) i32 WIN AudioWaveForTest(const char* path,void* pcm,u32 ca
         result=wave_read(instance,&pcm,capacity);
     wave_close(instance);return result==(u32)bytes?(i32)bytes:FAILED;
 }
+#include "music.h"
 int WIN DllMain(void* instance,u32 reason,void* reserved){
-    (void)instance;(void)reserved;if(reason!=1)return 1;tables();
+    (void)instance;(void)reserved;if(reason!=1)return 1;tables();music_init();
+#ifndef MNM_AUDIO_SELFTEST
+    if(music_words && (u32)GetModuleHandleA(0)==0x400000 && !music_install(0x400000))return 0;
+#endif
     char path[512];u32 size=GetEnvironmentVariableA("MNM_AUDIO_CHANNEL",path,sizeof(path));if(!size || size>=sizeof(path))return 1;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return 1;
     if(GetFileSize(file,0)!=MNM_AUDIO_SIZE){CloseHandle(file);return 1;}
