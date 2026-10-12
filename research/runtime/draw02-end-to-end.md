@@ -1600,3 +1600,25 @@ worker callback/lock-order and bounded original cadence/source controls remain
 necessary before live capture synchronization. Owned foreign-thread close does
 not establish full original lifetime or source aliases/parity. All47/21and
 steps3–7retain scope. Reviewed626631b9..7d6ae833has12exact receipts, zero gaps.
+
+## DRAW-02 pinned separate module checkpoint (2026-10-12 UTC)
+
+Foreign-thread boundary committedc7c92d6awith both coverage gates passed.
+New native policy `NR.drawing-cursor-source-gate-module` is a separate opt-in
+PE32 implementation with exact constructor/close/import/base pins, original
+Create/Close forwarding, reserved private duplicate publication, retirement and
+versioned128byte scalar begin/end token outputs. Added kernel calls occur outside
+lifetime locks; output guards preserve caller error/full512FX. No original
+capture integration or replacement. Observation-only module remains unchanged.
+
+Owned relocated fixture01negativeexit205preserved: initial-owner parameter
+shadowed fixture page-base macros. Corrected parameter and fresh claims precede
+fixture02pass: altered-pin refusal, actual Create/duplicate/Close, active-token
+retirement/drain, wrong owner/stale token/invalid output, raw waits/releases and
+full512FX/error. Production addresses unchanged; no original game/artifact use.
+
+Reassessment: step2 remains open. Durable module lifecycle/gate journal, complete
+fault/orphan/shutdown disposition, installer failure matrix and exact original
+forwarding fixture, capture import/frontend integration and bounded real original
+worker/cadence/source controls remain necessary before live synchronization.
+All47/21and steps3–7remain open. Reviewed7d6ae833..c7c92d6ahas10exact receipts,0gaps.
