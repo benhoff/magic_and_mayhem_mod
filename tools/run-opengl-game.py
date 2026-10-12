@@ -79,6 +79,7 @@ def main():
     parser.add_argument('--no-readback',action='store_true',help='Diagnostic: log game calls without extra surface locks or Qt frames')
     parser.add_argument('--skip-movies',action='store_true',help='Disable movie playback only in the disposable staged preferences')
     parser.add_argument('--prefix',type=Path,help='Owned private Wine prefix under working/; default remains this worktree prefix')
+    parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; default working/game-nocd')
     args=parser.parse_args();args.capture_draws |= args.capture_history
     selection=os.environ.get('MNM_NATIVE_DRAW','1')
     if selection not in ('0','1'):raise ValueError('Invalid native graphics selection')
@@ -123,7 +124,9 @@ def main():
         if not voice_path.is_relative_to(REPO/'working'):raise ValueError('Voice channel must be under working/')
         with voice_path.open('rb') as file:
             if voice_path.stat().st_size!=128+16*1024*1024 or file.read(16)!=b'MNMAUD01'+(3).to_bytes(4,'little')+(128+16*1024*1024).to_bytes(4,'little'):raise ValueError('Invalid voice channel')
-    stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=(REPO/'working/game-nocd').resolve();data=(source/'Chaos.exe').read_bytes()
+    stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=(args.source_game or REPO/'working/game-nocd').resolve()
+    if not source.is_relative_to(REPO/'working') or not source.is_dir():raise ValueError('Native source game must be under working/')
+    data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=stage.HASH:raise ValueError('Unsupported game hash')
     dll=load('render_build','tools/build-render-bridge.py').build()
     parent=REPO/'working/experiments/opengl-render';parent.mkdir(parents=True,exist_ok=True)
@@ -156,7 +159,7 @@ def main():
     audio_dll=None
     if voice_path:
         audio_dll=load('audio_build','tools/build-audio-bridge.py').build()
-        patched=stage.add_import(patched,dll='MnmAudio.dll',symbol_name='AudioAnchor',section_name=b'.mnmaud')
+        patched=load('audio_native_import','tools/prepare-native-audio.py').redirect(data,patched)
         shutil.copy2(audio_dll,game/audio_dll.name)
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
@@ -173,6 +176,7 @@ def main():
         inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
         (root/'input-fingerprints.json').write_text(json.dumps(inputs,indent=2)+'\n')
     metadata['voice_channel']=str(voice_path) if voice_path else None
+    metadata['native_audio_factory']=bool(voice_path)
     metadata['audio_dll_sha256']=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None
     metadata['media_channel']=str(media_path) if media_path else None
     metadata['render_control']=str(control_path) if control_path else None
@@ -202,6 +206,9 @@ def main():
     if word_mode:env['MNM_WORD_DIRECTORY']='Z:'+metadata['word_directory'].replace('/','\\')
     env.pop('MNM_AUDIO_CHANNEL',None)
     if voice_path:env['MNM_AUDIO_CHANNEL']='Z:'+str(voice_path).replace('/','\\')
+    if voice_path and env.get('MNM_NATIVE_DISABLE_DSOUND')=='1':
+        overrides=env.get('WINEDLLOVERRIDES','')
+        env['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'dsound='
     env.pop('MNM_RENDER_MEDIA',None)
     if media_path:env['MNM_RENDER_MEDIA']='Z:'+str(media_path).replace('/','\\')
     env.pop('MNM_RENDER_INPUT',None)

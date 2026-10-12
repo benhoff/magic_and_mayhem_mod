@@ -42670,7 +42670,8 @@
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
         "HOST.native-menu-audio.default-worker-public-pass-20261012",
-        "HOST.native-wave-loading.public-pass-20261012"
+        "HOST.native-wave-loading.public-pass-20261012",
+        "HOST.native-audio-factory-media.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42851,7 +42852,8 @@
       ],
       "evidence": [
         "HOST.native-wave-loading.installed-pass-20261012",
-        "HOST.native-wave-loading.public-pass-20261012"
+        "HOST.native-wave-loading.public-pass-20261012",
+        "HOST.native-audio-factory-media.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42876,6 +42878,131 @@
         "audio/qt_output.hpp",
         "audio/mixer.cpp",
         "audio/voices.cpp"
+      ]
+    },
+    {
+      "id": "HOST.native-audio-factory",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native-only DirectSound factory and local call census",
+      "scope": "Pinned No-CD DSOUND ordinal1 descriptor/lookup/thunk guards and game import-name redirection to MnmAudio.dll DirectSoundCreate exported at ordinal1, preserving original IAT/thunk locations. PE admission detects its native factory and cannot preselect Wine playback through that game factory. Saturating local unsupported-COM counter exposes methods that never submit host requests; native-only game factory and local census are independently checked at retirement. Legacy-audio omits native staging. Wine DirectSound module disable is a separate explicit diagnostic: retained failures show a transitive Wine Quartz startup dependency, including with native media integration; no whole-library retirement claim. Excludes all DirectSound methods, WinMM/profile/CD/media retirement and audible/timing equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5862758,
+          "scope": "DirectSoundCreate thunk/import binding only, not the surrounding function or all callers."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-audio-end-to-end.md"
+      ],
+      "implementation": [
+        "tools/prepare-native-audio.py",
+        "tools/build-audio-bridge.py",
+        "tools/prepare-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "tools/native_audio_launch.py",
+        "runtime/audio/bridge.c",
+        "runtime/audio/protocol.h",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tools/test-audio-staging.py",
+        "tools/test-audio-bridge.py",
+        "tests/test-native-audio-launch.py",
+        "tools/test-native-campaign.py",
+        "runtime/audio/selftest.c"
+      ],
+      "evidence": [
+        "HOST.native-audio-factory-media.public-pass-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/prepare-native-draw.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/build-shadow-bridge.py",
+        "runtime/shadow/win32_min.h",
+        "audio/CMakeLists.txt",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/voices.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp"
+      ]
+    },
+    {
+      "id": "HOST.native-menu-media",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native movies and file sounds in live menu sessions",
+      "scope": "Session-owned native movie/file-sound broker staged and authorized alongside live native menu/render/voice channels, scrubbing inherited media paths and preparing all brokers before Wine entry. Native movie display suspends game input/frame polling and records decoder/output/cancel history at normal finish. Original control-byte/unsupported/preacceptance fallback behavior remains in the existing bounded media adapter; full library dependency retirement and audio/video timing equivalence excluded. Native movies suspend both menu-request and initial-render-frame leases; remaining startup budget resumes after complete/cancel. Continue draining bounded native rendering commands throughout movies while retaining only the latest complete game GPU frame for resume, avoiding producer ACK starvation and preserving movie presentation.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-audio-end-to-end.md",
+        "research/runtime/qt-native-media.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "tools/native_media_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "runtime/render/media_bridge.h",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp"
+      ],
+      "tests": [
+        "tests/menu-native-audio-test.cpp",
+        "tools/test-native-campaign.py",
+        "tools/test-native-media.py",
+        "tests/test-native-media-launch.py",
+        "tests/command-media-lease-test.cpp",
+        "tests/live-render-channel-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-audio-factory-media.public-pass-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "runtime/render/bridge.c",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "tools/build-render-bridge.py",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/run-menu-observer.py",
+        "renderer/CMakeLists.txt"
       ]
     }
   ],
@@ -89075,6 +89202,173 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-audio-factory-media.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Default native voices, guarded native WAV loads and native-only game DirectSound factory during full native startup Intro0/Intro1, campaign and normal Quit. Seven loads/uploads349862bytes,12plays,116request/ACK,zero local unsupported COM,failed requests,adapter errors or fallback;3870087movie soundtrack PCM frames,2781displayed video frames. Native output requested/available, stable compiler/source/media/config inputs and owned Wine cleanup. No human listening/original timing/full manager/WinMM/transitive library retirement claim.",
+      "record": "research/runtime/native-audio-factory-media-public-pass-20261012.json",
+      "sha256": "3c416c337ccddbe8bf127a046516348504c020cfcef9db58b7126c0afd7880bd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_default_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_wave_loading_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_factory_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_media_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/adapter_failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/audible_output",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/creates",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_audio/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/native_factory_only",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/native_selections",
+          "equals": 1
+        },
+        {
+          "pointer": "/native_audio/plays",
+          "equals": 12
+        },
+        {
+          "pointer": "/native_audio/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/native_audio/ready_before_stop",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/releases",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_audio/requests",
+          "equals": 116
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/uploaded_bytes",
+          "equals": 349862
+        },
+        {
+          "pointer": "/native_audio/uploads",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_audio/wave_bytes",
+          "equals": 349862
+        },
+        {
+          "pointer": "/native_audio/wave_hook_installed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/wave_loads",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_media/0/accepted",
+          "equals": true
+        },
+        {
+          "pointer": "/native_media/0/status",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_media/0/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/native_media/0/audio_device_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_media/0/audible_output_requested",
+          "equals": true
+        },
+        {
+          "pointer": "/native_media/1/accepted",
+          "equals": true
+        },
+        {
+          "pointer": "/native_media/1/status",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_media/1/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/native_media/1/audio_device_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_media/1/audible_output_requested",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99636,7 +99930,8 @@
       "evidence": [
         "HOST.native-menu-audio.public-pass-20261011",
         "HOST.native-menu-audio.default-worker-public-pass-20261012",
-        "HOST.native-wave-loading.public-pass-20261012"
+        "HOST.native-wave-loading.public-pass-20261012",
+        "HOST.native-audio-factory-media.public-pass-20261012"
       ]
     },
     {
@@ -99667,7 +99962,8 @@
         "tools/native_audio_launch.py"
       ],
       "evidence": [
-        "HOST.native-wave-loading.public-pass-20261012"
+        "HOST.native-wave-loading.public-pass-20261012",
+        "HOST.native-audio-factory-media.public-pass-20261012"
       ]
     },
     {
@@ -99683,6 +99979,37 @@
       ],
       "evidence": [
         "HOST.native-wave-loading.installed-pass-20261012"
+      ]
+    },
+    {
+      "id": "native-audio-factory-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Default-audio native-menu campaign with native-only game DirectSound factory, zero unsupported local COM calls, successful PCM activity and normal Quit/channel retirement with fresh compiler/source/input/original/private-Wine guards. Transitive Wine DirectSound module dependency remains; module-disable failures and all-audio API/timing equivalence are excluded.",
+      "behaviors": [
+        "HOST.native-audio-factory"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/native_audio_launch.py",
+        "tools/prepare-native-audio.py"
+      ],
+      "evidence": [
+        "HOST.native-audio-factory-media.public-pass-20261012"
+      ]
+    },
+    {
+      "id": "native-menu-media-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Native menu/render/voice session with native media channel, enabled startup movies, native decoder completion or cancellation history and subsequent campaign/normal Quit. Require stable source/compiler/media inputs and owned Wine cleanup; original timing/fidelity and all decoder/control/fallback branches excluded.",
+      "behaviors": [
+        "HOST.native-menu-media"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/native_media_launch.py"
+      ],
+      "evidence": [
+        "HOST.native-audio-factory-media.public-pass-20261012"
       ]
     }
   ],
@@ -100057,8 +100384,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-wave-loading-commit-20261012.json",
-    "sha256": "c04599753e36bc0fd0c3a9f724d310e3a108eaf607ac8f249d36241a3e8dca84"
+    "path": "research/runtime/coverage/source-index-native-factory-media-commit-20261012.json",
+    "sha256": "a7de3c702576fc340a2f1dd4fb76a28985216cd1b78e34b2929076402b74f9ee"
   },
   "claim_bindings_required": true
 }

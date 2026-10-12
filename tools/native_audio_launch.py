@@ -33,9 +33,15 @@ def authorize(root, metadata, environment):
     if any(words[4:19]) or any(words[21:31]):
         raise ValueError('Refusing stale native voice channel')
     environment['MNM_AUDIO_CHANNEL'] = 'Z:' + str(path).replace('/', '\\')
+    factory = metadata.get('native_audio_factory', False)
+    if type(factory) is not bool:
+        raise ValueError('Invalid native audio factory policy')
+    if factory and environment.get('MNM_NATIVE_DISABLE_DSOUND')=='1':
+        overrides=environment.get('WINEDLLOVERRIDES','')
+        environment['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'dsound='
 
 
-def validate_activity(report, native_wave=False):
+def validate_activity(report, native_wave=False, native_factory=False):
     for name in ('requests', 'creates', 'uploads', 'uploaded_bytes', 'plays', 'releases', 'native_selections'):
         if type(report.get(name)) is not int or report[name] < 1:
             raise ValueError('Missing native audio activity: ' + name)
@@ -47,6 +53,8 @@ def validate_activity(report, native_wave=False):
     if native_wave and (report.get('wave_hook_installed') is not True or
                         any(type(report.get(k)) is not int or report[k]<1 for k in ('wave_loads','wave_bytes'))):
         raise ValueError('Native WAV loading was not exercised')
+    if native_factory and (report.get('native_factory_only') is not True or report.get('unsupported_calls')!=0):
+        raise ValueError('Native factory or supported local COM calls were not confirmed')
     return report
 
 
@@ -63,5 +71,7 @@ def validate_retirement(path, report):
         raise ValueError('Native audio report differs from the final channel')
     if bool(words[31]&0x10000) != report.get('wave_hook_installed',False):
         raise ValueError('Native WAV installation differs from the final channel')
+    if bool(words[31]&0x40000) != report.get('native_factory_only',False) or words[31]>>24 != report.get('unsupported_calls',0):
+        raise ValueError('Native factory/local-call census differs from the final channel')
     return dict(request=words[4], acknowledgement=words[16], ready=words[20],
                 native_selections=words[21], fallbacks=words[22], adapter_failures=words[23])

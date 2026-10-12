@@ -10,7 +10,15 @@ void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();view
 void LiveCommandRenderer::abort(){
     channel_.cancel();if(decoder_)decoder_->abort();pending_.clear();cursor_=0;
     if(consumer_ && consumer_->state()==mnm::render::CommandConsumerState::Active)consumer_->abort();
-    closed_=true;
+    deferredPresentation_={};closed_=true;
+}
+void LiveCommandRenderer::setPresentationSuspended(bool suspended){
+    if(presentationSuspended_==suspended)return;
+    presentationSuspended_=suspended;
+    if(!suspended && deferredPresentation_.valid()){
+        viewport_.setGpuFrame(std::move(deferredPresentation_));deferredPresentation_={};
+        if(framePresented)framePresented();
+    }
 }
 bool LiveCommandRenderer::poll(quint32 budget){
     if(closed_)return false;
@@ -20,6 +28,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
         if(!consumer_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
+                if(presentationSuspended_){deferredPresentation_=std::move(frame);return;}
                 // setGpuFrame queues an update. Qt coalesces historical frames
                 // and composes the latest lease after this bounded poll yields.
                 viewport_.setGpuFrame(std::move(frame));
