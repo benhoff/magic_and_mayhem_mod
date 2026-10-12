@@ -6,6 +6,13 @@ fourteen drawing journeys of the pinned No-CD build. This extends the bounded
 native scene implementation, continuous delivery and live suppression retain
 their separate milestones.
 
+The ordered [end-to-end execution record](draw02-end-to-end.md) and prospective
+`tests/fixtures/drawing-journeys/acceptance.json` specify actions, observations,
+owned inputs and dependencies for every existing requirement. Validate this plan
+with `tools/check-drawing-acceptance.py --report <new-path>`. Its static inventory
+never contributes acquisition or native parity; the original execution and
+comparison gates below remain unchanged.
+
 `tests/fixtures/drawing-journeys/suite.json` freezes explicit journey acceptance
 requirements and the operation/failure denominator. `tools/drawing_journeys.py`
 separates original-reference coverage from native parity and refuses to close a

@@ -31785,20 +31785,25 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-full-session.md",
-        "research/formats/drawing-journey-suite.md"
+        "research/formats/drawing-journey-suite.md",
+        "research/runtime/draw02-end-to-end.md"
       ],
       "implementation": [
         "tools/drawing_journeys.py",
         "tools/check-drawing-journeys.py",
         "tools/drawing_session.py",
         "tools/retain-drawing-session.py",
-        "tools/drawing_publication_corpus.py"
+        "tools/drawing_publication_corpus.py",
+        "tools/drawing_acceptance.py",
+        "tools/check-drawing-acceptance.py"
       ],
       "tests": [
         "tests/test-drawing-journeys.py",
         "tests/test-drawing-session.py",
         "tests/fixtures/drawing-journeys/suite.json",
-        "tests/test-drawing-publication-corpus.py"
+        "tests/test-drawing-publication-corpus.py",
+        "tests/test-drawing-acceptance.py",
+        "tests/fixtures/drawing-journeys/acceptance.json"
       ],
       "validation_dependencies": [
         "research/formats/drawing-journey-suite.md",
@@ -31835,7 +31840,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Prospective acceptance matrix specifies all47 journey requirements/21operations but grants no execution coverage. Complete presented-session acquisition, semantic outcomes, native caller effects/movies and general producers remain pending; historical suite evidence is stale for these linked planning-source changes. No understanding/implementation/comparison/integration/replacement promotion."
+      ]
     },
     {
       "id": "NR.drawing-sequence",
@@ -98602,8 +98610,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-production-prepared-20261012.json",
-    "sha256": "edb84e5d7f1cc1f85cfc09dee98856dfa8324ded2af6e81219a03e104fba2d32"
+    "path": "research/runtime/coverage/source-index-draw02-acceptance-20261011.json",
+    "sha256": "621594c58e0419c718dcd8775e240088a1004b5a52a54cc88848aadc8f386e70"
   },
   "claim_bindings_required": true
 }

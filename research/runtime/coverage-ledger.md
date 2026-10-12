@@ -6720,3 +6720,17 @@ Simulation target50ms is unchanged. Earlier gameplay/crash/scene/performance
 failures and source hashes are preserved, with causality still partial.
 Exactbd177b6..38cba10 history review:17 files,zero receipt gaps; no retrospective
 validation or gate assertion. See[experiment](scene-production-repetition.md).
+
+
+## DRAW-02 ordered end-to-end work: acceptance matrix
+
+The isolated draw02-end-to-end-20261011 branch begins from82f9bff, excluding
+uncommitted main audio/combat edits. Prospective acceptance actions, independent
+observations, source-owned inputs and dependencies now cover all47 requirements
+in14journeys and21operations. Strict static inventory cannot contribute coverage;
+missing requirements, malformed plans and embedded success/evidence labels refuse.
+Original-reference/native-parity statuses remain unchanged. Step2 presented-frame
+acquisition is next; semantic action results, alternate publication, native effects,
+movies and general producer replay remain open. Historical hashes remain unchanged
+and linked planning changes leave older suite evidence stale. See
+[ordered execution and reassessment](draw02-end-to-end.md).
