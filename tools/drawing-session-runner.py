@@ -8,6 +8,7 @@ for name,digest in metadata['binaries'].items():
 for name in ('MNM_DRAW02_PUBLICATION','MNM_RENDER_COMMAND_CHANNEL','MNM_RENDER_INPUT','MNM_SCENE_DIR','MNM_WORD_SPRITES'):os.environ.pop(name,None)
 if metadata.get('producer_samples'):
     os.environ.update(MNM_DRAW02_PRODUCER_BIND='1',MNM_CANVAS_PRODUCERS='1',MNM_MINIMAP_OWNED='1',MNM_SCENE_SAMPLES=str(metadata['producer_samples']),MNM_SCENE_DIR='Z:'+str(root/'capture').replace('/','\\'))
+    if metadata['producer_samples']==32:os.environ['MNM_CANVAS_ORACLE_MIB']='3072'
 else:os.environ.pop('MNM_DRAW02_PRODUCER_BIND',None)
 if metadata['api_observer_enabled']:os.environ['MNM_DRAW_SESSION_DIRECTORY']='Z:'+str(root/'capture').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SESSION_DIRECTORY',None)

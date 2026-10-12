@@ -19,6 +19,16 @@ def load_producers(raw):
     spec=importlib.util.spec_from_file_location('producer_inspector',ROOT/'tools/inspect-canvas-producers.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     return module.decode(raw)[1]
 
+def wire_prefix(raw,last):
+    # V3 decode expands owned references; canonical record size is not wire size.
+    at=64
+    for _ in range(last):
+        if at+96>len(raw):raise ValueError('Incomplete native source prefix')
+        size=struct.unpack_from('<I',raw,at)[0]
+        if size<96 or at+size>len(raw):raise ValueError('Invalid native source wire record')
+        at+=size
+    return raw[:at]
+
 
 def candidates(observation,api,records):
     state={0:(False,0)};active=False;completed=0
@@ -61,7 +71,7 @@ def main():
         result=subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],capture_output=True,text=True,timeout=120)
         (run/(label+'.log')).write_text(result.stdout+result.stderr);result.check_returncode()
     verify('original-before')
-    last=selected[-1]['boundary']['sequence'];size=64+sum(r[0] for r,_ in records[:last]);prefix=raster_inputs(raw[:size]);(inputs/'producers.bin').write_bytes(prefix)
+    last=selected[-1]['boundary']['sequence'];prefix=raster_inputs(wire_prefix(raw,last));(inputs/'producers.bin').write_bytes(prefix)
     asset_hashes={};game=(Path(reference['experiment'])/'game').resolve()
     for r,payload in records[:last]:
         if r[2] not in (7,20):continue

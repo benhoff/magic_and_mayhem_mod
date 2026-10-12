@@ -106,7 +106,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
   const bool ownedMinimap = !std::memcmp(b.data(), "MNMPRO02", 8);
   const bool extendedWorld = !std::memcmp(b.data(), MNM_PRODUCER_V3_MAGIC, 8);
   if (word(b, 8) != (extendedWorld ? 3u : ownedMinimap ? 2u : 1u) || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
-      (extendedWorld ? word(b,20) != MNM_PRODUCER_V3_MAX_RECORDS : (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144)))) || word(b, 24) < 1 ||
+      (extendedWorld ? (word(b,20) != MNM_PRODUCER_V3_MAX_RECORDS && word(b,20) != MNM_PRODUCER_V3_TRACE_MAX_RECORDS) : (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144)))) || word(b, 24) < 1 ||
       (extendedWorld ? word(b,24) != MNM_PRODUCER_V3_QUEUES : word(b,24) > 16))
     throw std::invalid_argument("Unsupported producer envelope");
   if (result.version && result.version != word(b, 8)) throw std::invalid_argument("Producer append changed wire version");

@@ -553,3 +553,34 @@ Steps3–7 remain in order and pending;all47/21requirements stay open. Reviewed
 0415818..449929ehas16exact committed receipts and zero missing versions,with no
 past-gate/fresh-execution claim. Storage is around866GiBworking/460GiBfree,within
 1280/100policy;no historical outputs or fingerprints are deleted/refreshed.
+
+## Step 2 closed 32-return acquisition checkpoint (2026-10-12 UTC)
+
+`draw02-trace32-original-03.json` closes all 32 World returns with 171,339
+records and 81,091,310 wire bytes. The producer completion marker, original
+sections, pinned sources and original-manifest checks pass. Separate peers retain
+491 API and 490 post-EGL physical witnesses (235,200,000 EGL pixels).
+
+The first attempt failed the independent scene-observer mode gate before Main.
+The second retained 25 returns before the 131,072-record ceiling truncated queue
+26. Both failures and the exact cap diagnosis remain registered. Recorder-only
+V3 now declares a finite 262,144-record header; replacement defaults retain
+131,072. Both decoders admit only these budgets, retaining 128 MiB and 32 queues.
+V3 wire-prefix slicing now follows recorded lengths rather than expanded owned
+source payloads. Four Python envelope methods, five source-prediction methods,
+24 native owned-adapter cases/39 refusal cases and drawing-scene regression pass.
+
+`draw02-trace32-prediction-01.json` replays source parameters and independently
+pinned encoded assets. It exits successfully and matches 108 of 109 selected API
+planes exactly; the retained initial-black witness differs by 468,103 pixels.
+All 382 excluded API witnesses remain explicit. Original pixels and observed
+raster returns are comparison-only. This is restricted prediction, not temporal
+source ownership or full parity.
+
+Reassessment: step 2 still needs actual submission/source ownership, full
+lifetimes, alternate routes and independently observed semantic outcomes. The
+57 passive snapshot ticks do not satisfy 120 advancing windows. Steps 3–7 remain
+ordered and pending; all 47 journey and 21 operation requirements remain open.
+Committed-history review449929e..4c4762a finds23matching exact receipts and no
+missing versions. Historical reports/hashes are preserved. Storage remains about
+879 GiB working/447 GiB free, within the 1280/100 policy.

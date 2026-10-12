@@ -18,7 +18,7 @@ def decode(raw, complete=True):
     h=struct.unpack_from('<16I',raw)
     owned=raw[:8]==b'MNMPRO02'
     extended=raw[:8]==b'MNMPRO03'
-    if h[2:5]!=((3 if extended else 2 if owned else 1),64,0x40209ca7) or h[5] not in ((131072,) if extended else (32768,65536,131072,262144) if owned else (32768,65536)) or (h[6]!=32 if extended else not 1<=h[6]<=16) or any(h[7:]):
+    if h[2:5]!=((3 if extended else 2 if owned else 1),64,0x40209ca7) or h[5] not in ((131072,262144) if extended else (32768,65536,131072,262144) if owned else (32768,65536)) or (h[6]!=32 if extended else not 1<=h[6]<=16) or any(h[7:]):
         raise ValueError('Unsupported producer header')
     at=64;records=[];entered=returned=0;owned_sources={};owned_bytes=0
     while at<len(raw):

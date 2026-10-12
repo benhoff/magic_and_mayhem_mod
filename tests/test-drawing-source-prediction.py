@@ -4,6 +4,7 @@ import copy
 import importlib.util
 from pathlib import Path
 import sys
+import struct
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 spec=importlib.util.spec_from_file_location('prediction',Path(__file__).resolve().parents[1]/'tools/compare-drawing-source-points.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
@@ -35,4 +36,10 @@ class Prediction(unittest.TestCase):
         observation,api,records=fixture();second=copy.deepcopy(observation['frames'][0]);second.update(ordinal=2,entry=2);observation['frames'].append(second);api[2]=api[1]
         selected,excluded=m.candidates(observation,api,records);self.assertEqual(len(selected),1);self.assertEqual(excluded[0],dict(ordinal=2,entry=2,reason='repeated-or-reordered-prefix'))
 
+    def test_wire_prefix_uses_recorded_size_not_expanded_payload(self):
+        header=bytes(64);definition=[0]*24;definition[0]=136;reference=[0]*24;reference[0]=96;later=[0]*24;later[0]=96
+        raw=header+struct.pack('<24I',*definition)+bytes(40)+struct.pack('<24I',*reference)+struct.pack('<24I',*later)
+        self.assertEqual(len(m.wire_prefix(raw,2)),64+136+96)
+        self.assertEqual(m.wire_prefix(raw,2),raw[:64+136+96])
+        with self.assertRaises(ValueError):m.wire_prefix(raw[:-1],3)
 if __name__=='__main__':unittest.main()

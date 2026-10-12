@@ -41,6 +41,9 @@ int main() try {
  auto c=packet(0,false,0);c.fields[1]=1;for(unsigned k=0;k<24;++k){wire.resize(64+96);put(wire,64+k*4,c.fields[k]);}wire.insert(wire.end(),c.payload.begin(),c.payload.end());check(legacy::decodeCanvasProducers(wire,false).operations.size()==1);
  legacy::CanvasProducerStream incremental{};legacy::appendCanvasProducers(incremental,wire);auto changedVersion=std::vector<std::uint8_t>(wire.begin(),wire.begin()+64);std::copy_n("MNMPRO01",8,changedVersion.begin());put(changedVersion,8,1);refuses([&]{legacy::appendCanvasProducers(incremental,changedVersion);});++refusals;
  auto larger=wire;for(unsigned budget:{131072u,262144u}){put(larger,20,budget);check(legacy::decodeCanvasProducers(larger,false).operations.size()==1);}auto headerOnly=std::vector<std::uint8_t>(larger.begin(),larger.begin()+64);std::copy_n("MNMPRO01",8,headerOnly.begin());put(headerOnly,8,1);refuses([&]{legacy::decodeCanvasProducers(headerOnly,false);});++refusals;
+ auto extended=wire;std::copy_n("MNMPRO03",8,extended.begin());put(extended,8,3);put(extended,24,32);
+ for(unsigned budget:{131072u,262144u}){put(extended,20,budget);check(legacy::decodeCanvasProducers(extended,false).operations.size()==1);}
+ for(unsigned budget:{131071u,262145u,524288u}){put(extended,20,budget);refuses([&]{legacy::decodeCanvasProducers(extended,false);});++refusals;}
  auto invalidOutline=wire;put(invalidOutline,64+17*4,4);put(invalidOutline,160,2);refuses([&]{legacy::decodeCanvasProducers(invalidOutline,false);});++refusals;
  auto old=wire;std::copy_n("MNMPRO01",8,old.begin());put(old,8,1);refuses([&]{legacy::decodeCanvasProducers(old,false);});++refusals;
  for(unsigned off:{64u+17u*4u,64u+18u*4u,160u,160u+9u*4u,160u+10u*4u,160u+17u*4u}){auto bad=wire;put(bad,off,0xffffffff);refuses([&]{legacy::decodeCanvasProducers(bad,false);});++refusals;}
