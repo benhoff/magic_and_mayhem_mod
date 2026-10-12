@@ -1465,3 +1465,23 @@ Next test a precise bounded synchronization policy in isolation, including
 original recursive ownership, timeout/failure and competing-thread ordering,
 before any live capture change. Preserve original raster and all refusal paths.
 Step2 continues; all47journey/21operation and steps3–7 remain open.
+
+## DRAW-02 isolated cursor-source gate checkpoint (2026-10-12 UTC)
+
+Negative refusal evidence is committed as28022dba. The new native diagnostic
+policy `NR.drawing-cursor-source-gate` remains isolated: both waits use timeout0,
+abandoned acquisitions refuse after releasing newly granted recursion levels,
+reverse releases retain outstanding bits on failure and forbid reacquisition.
+`draw02-cursor-source-gate-fixture-01.json` passes64scripted raw wait/release cells
+and real Wine PE32 uncontended, recursive, competing outer/inner, abandoned
+outer/inner and invalid-input scenarios. Competitors independently probe both
+mutexes; release faults remain explicit. No original artifacts/game execution
+were used, and no live capture code installs this header.
+
+Reassessment: step2 remains open. Pinning actual handle identities and their
+lifetime, excluding concurrent close/use, preserving caller state and proving
+placement before journal/producer locks must precede live use. The failed120run
+cannot become a complete reference from this synthetic policy test. All47
+requirements/21operation contracts and steps3–7 retain their existing scope.
+The reviewed committed range28c385eb..28022dba has11exact receipts, zero gaps
+and no retrospective execution or gate claim.

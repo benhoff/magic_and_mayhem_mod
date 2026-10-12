@@ -45069,6 +45069,43 @@
         "Sampled prefix query occurs before row publication; completed record order differs from entered call order. Refused/inactive points remain explicit. Ownership, handles/aliases, concurrent close/use, source protection and complete original/native equivalence pending.",
         "Adding source-interval analyzer linkage changes contractfingerprint; prior exactprefixanalysis remains historical. Conservative sourcecall correlation doesnot proveatomicoriginalcriticalregions, sourceoverlap or repairedrace."
       ]
+    },
+    {
+      "id": "NR.drawing-cursor-source-gate",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Isolated nonblocking cursor-source mutex diagnostic gate",
+      "scope": "Caller-pinned distinct live handles, outer/inner zero-timeout acquisition, reverse release of exactly acquired recursion levels, abandoned acquisition refusal with unwind, failed-release ownership retained and reacquisition refusal. Isolated header and real Wine kernel mutex fixture; not installed in original capture.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-source-gate.md"
+      ],
+      "implementation": [
+        "runtime/drawing/cursor_source_gate.h"
+      ],
+      "tests": [
+        "tests/drawing-cursor-source-gate-test.c",
+        "tools/test-drawing-cursor-source-gate.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/drawing_api_session.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-source-gate-fixture-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh isolated fixture proves only caller-owned real Wine mutex cases and scripted faults; actual original handle identity/lifetime including concurrent close/use, source aliases/overlap, caller-state preservation and live diagnostic integration unimplemented. No recovered behavior, complete reference, native parity or game synchronization repair claim."
+      ]
     }
   ],
   "evidence": [
@@ -96670,6 +96707,29 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-source-gate-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 real Wine kernel mutex ownership, recursive extra levels, competing owners, abandonment and64scripted failure cells; not original-game comparison or live capture integration.",
+      "record": "research/runtime/draw02-cursor-source-gate-fixture-01.json",
+      "sha256": "2ef527a2d42fc92d319f5102a1e0c5c2e1153399c587e871eb5c8ce60f664aca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_capture_integrated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108812,8 +108872,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-refusal-20261012.json",
-    "sha256": "baeca839a96d2e590ec6ece805bc8537b7ad20e6811030241263c385f245727c"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-source-gate-20261012.json",
+    "sha256": "3c72e03d464572799bf28af261570763a2fe75cd2a801ea77d854cc42c0def2c"
   },
   "claim_bindings_required": true
 }
