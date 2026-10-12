@@ -30,6 +30,7 @@ static struct Table* table(void* object){void** vt=*(void***)object;for(u32 i=0;
 static u32 identity(void* object){if(!object)return 0;for(u32 i=0;i<1024;++i)if(identities[i].object==object)return identities[i].id;for(u32 i=0;i<1024;++i)if(!identities[i].object){identities[i].object=object;return identities[i].id=++next_identity;}++gaps;return 0;}
 static void emit(u32* r){if(!journal)return;r[0]=++records;if(records>262144||!write(journal,r,128)){++drops;enabled=0;}}
 static void wine_submission_close(u32);
+static u32 wine_blit_worker_pending;
 static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);producer_points_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
 static void install(void*,u32);
 /* Observer APIs preserve the application's result LastError and x87/SSE state. */
@@ -115,7 +116,7 @@ static u32 end(struct Context* c,void* object,u32 result){
  }
  c->r[30]=planes;emit(c->r);
  LeaveCriticalSection(journal_lock);physical_fence(c);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
- char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending)finish(2);}
+ char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending)finish(2);}
  LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;
 }
 static u32 WIN surface_0(void* o,u32 a0,u32 a1){u32 a[6]={a0,a1};struct Context c=begin(o,0,a,2,(u32)__builtin_return_address(0),1);u32 r=((u32(WIN*)(void*,u32,u32))table(o)->original[0])(o,a0,a1);return end(&c,o,r);}

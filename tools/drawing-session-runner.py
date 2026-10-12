@@ -19,6 +19,8 @@ if pin:=metadata.get('wine_submission'):
 else:os.environ.pop('MNM_DRAW_WINE_SUBMISSION',None)
 if metadata.get('wine_texture_entry'):os.environ['MNM_DRAW_WINE_TEXTURE_ENTRY']='1'
 else:os.environ.pop('MNM_DRAW_WINE_TEXTURE_ENTRY',None)
+if metadata.get('wine_blit_worker'):os.environ['MNM_DRAW_WINE_BLIT_WORKER']='1'
+else:os.environ.pop('MNM_DRAW_WINE_BLIT_WORKER',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')

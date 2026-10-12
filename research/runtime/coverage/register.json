@@ -42794,7 +42794,8 @@
         "DRAW02.draw02-wine-generation-parser-checks-01-static-20261012",
         "DRAW02.draw02-wine-generation-original-01-live_observation-20261012",
         "DRAW02.draw02-wine-buffer-original-01-live_observation-20261012",
-        "DRAW02.draw02-wine-texture-entry-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-texture-entry-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42879,7 +42880,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-wine-texture-entry-fixture-01-native_integration-20261012",
-        "DRAW02.draw02-wine-texture-entry-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-texture-entry-original-01-live_observation-20261012",
+        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42891,6 +42893,51 @@
       "remaining_gaps": [
         "Pending exactsignature/relocation/range/ABItrampolinefixturesandactualinternalfrontbuffercreation. Broadunobservedpath/ownership/EGLassignment remainpending.",
         "Original01admits1630submissionswith0unknownfirst/sourcegenerations,377frontgetterreturnswith0unknowntextures,closed32returns. Internalentryscope coversselectedcreate/decrefexecutions,notallWinealiases/otherstoragewrites/sourceimmutability/asyncEGLassignment/semanticjourneys."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-blit-command-discovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned Wine blit command emission/worker dispatch discovery",
+      "scope": "Pending staticmappingofinstalledWine11.16contextblt\u2192internalemitRVA1dfeb0,opcode42commandanddispatchhandler. Preserve unassignedlayouts/indirectflow until exact pinned disassembly/source links reviewed. No semanticcmdcoverage/sourceimmutability/workerEGLidentityclaim. Next bounded opt-in table42workerwrapper records raw100bytecommand scalar fields with opaque resource IDs/known texturegenerations and originalthread entry/return; worker association with submission/source/EGL remainsunassigned.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-blit-command.md",
+        "research/formats/drawing-wine-blit-worker-v1.md"
+      ],
+      "implementation": [
+        "tools/inspect-drawing-wine-blit-command.py",
+        "runtime/drawing/wine_blit_worker.h",
+        "tools/drawing_wine_blit_worker.py"
+      ],
+      "tests": [
+        "tests/test-drawing-wine-blit-command.py",
+        "tests/drawing-wine-blit-worker-test.c",
+        "tools/test-drawing-wine-blit-worker.py",
+        "tests/test-drawing-wine-blit-worker.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "tools/inspect-drawing-wine-imports.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-blit-worker-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-blit-command-inventory-01-static-20261012",
+        "DRAW02.draw02-wine-blit-worker-parser-checks-01-static-20261012",
+        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending pinnedemit/handlerinstructionsandtablemapping,ABIfixtures/actualworkertrace/sourceownership. Unknownindirectflow/otheropcodes/routes retained.",
+        "Original01admits1511opcode42workercalls/1threads/0unknowndestination/0unknownsourcegenerations;sourcequeueidentity/EGLassignment/immutablebytes remainpending."
       ]
     }
   ],
@@ -90646,6 +90693,64 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-worker-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic opcode42workerforward/scalar/generation/reentry/error/FP/pending fixture;nooriginalqueue/source/EGLidentity orownership.",
+      "record": "research/runtime/draw02-wine-blit-worker-fixture-01.json",
+      "sha256": "4201c05ecd74d953bbd18e8338d1e4afc155a39180ac571b337471e1a563bcca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-command-inventory-01-static-20261012",
+      "kind": "static",
+      "scope": "Exact selected installedWine11.16PE32instruction/table inventory. Onlyopcode42entrymapped;otherhandlers/layouts/indirectroutes remainunknown. Noexecution/semantic equivalence or source/EGLownership.",
+      "record": "research/runtime/draw02-wine-blit-command-inventory-01.json",
+      "sha256": "7ef5a16e1a10d9d172c86e193b6b181aeb6586c86f03947ca3419297307a9b95",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-worker-parser-checks-01-static-20261012",
+      "kind": "static",
+      "scope": "Boundedselectedopcode42/staticpin/parserguards,nosource/EGLidentity.",
+      "record": "research/runtime/draw02-wine-blit-worker-parser-checks-01.json",
+      "sha256": "58e49e8bfcd525daec23011c409105bb15f0227205e6bb62071a93dfa2f64684",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Closedactualopcode42worker,lifetimes/metadata,notqueue/EGLidentity.",
+      "record": "research/runtime/draw02-wine-blit-worker-original-01.json",
+      "sha256": "a4b16e8b385a033e0f373aadad4806a7c70cc5159b9d669ac1c592fb921e25e6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -101761,6 +101866,41 @@
       "evidence": [
         "DRAW02.draw02-wine-texture-entry-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-blit-worker-fixture",
+      "level": "headless",
+      "scope": "ActualPE32opcode42workerforward/ownedscalar/generation/reentry/error/FP/pendingclosurefixture; nooriginalsourcequeue/EGLidentity.",
+      "behaviors": [
+        "NR.drawing-wine-blit-command-discovery"
+      ],
+      "tests": [
+        "tests/drawing-wine-blit-worker-test.c",
+        "tools/test-drawing-wine-blit-worker.py",
+        "tests/test-drawing-wine-blit-command.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-blit-worker-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-wine-blit-command-inventory-01-static-20261012",
+        "DRAW02.draw02-wine-blit-worker-parser-checks-01-static-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-wine-blit-worker-quick",
+      "level": "live_observation",
+      "scope": "Pinnedoriginalactiveopcode42worker/lifetime/V2submission/getter/32return/API/EGLdiagnosticcapture;queue/source/EGLassignmentunproved.",
+      "behaviors": [
+        "NR.drawing-wine-blit-command-discovery",
+        "NR.drawing-wine-texture-entry-observation",
+        "NR.drawing-wine-submission-generations"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-wine-blit-worker-original-01-live_observation-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -102134,8 +102274,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-wine-texture-entry-20261012.json",
-    "sha256": "960b29183baa50949289dea2b1ead8b871fe5d9b6e0431112b7079d275b86142"
+    "path": "research/runtime/coverage/source-index-draw02-wine-worker-20261012.json",
+    "sha256": "65cbad9f597b38b7d2c1183b453b65893619bc3aeab8d22f9e9f6af3ba10da41"
   },
   "claim_bindings_required": true
 }
