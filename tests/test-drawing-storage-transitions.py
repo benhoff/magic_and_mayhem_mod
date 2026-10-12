@@ -16,6 +16,23 @@ def fixture():
 
 
 class StorageTransitions(unittest.TestCase):
+    def test_explicit_relocated_caller_requires_version_and_exact_lock_site(self):
+        raw=fixture();struct.pack_into('<I',raw,8,2)
+        for at in (64,160):
+            struct.pack_into('<I',raw,at+5*4,0x18d329)
+            struct.pack_into('<I',raw,at+22*4,1)
+        r=decode(raw);self.assertTrue(all(e['caller_relocated'] for e in r['events']))
+        struct.pack_into('<I',raw,8,1)
+        with self.assertRaises(ValueError):decode(raw)
+        struct.pack_into('<I',raw,8,2);struct.pack_into('<I',raw,64+5*4,0x18d328)
+        with self.assertRaises(ValueError):decode(raw)
+
+    def test_caller_mapping_cannot_change_between_phases(self):
+        raw=fixture();struct.pack_into('<I',raw,8,2)
+        for at in (64,160):struct.pack_into('<I',raw,at+5*4,0x18d329)
+        struct.pack_into('<I',raw,64+22*4,1)
+        with self.assertRaises(ValueError):decode(raw)
+
     def test_cross_stream_generation_prefix_and_return_address(self):
         create=[0]*24;create[1:4]=[1,1,7];create[5:7]=[800,600]
         records=[(tuple(create),b'')]

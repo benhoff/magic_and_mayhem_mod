@@ -1,5 +1,6 @@
 #include "../runtime/shadow/win32_min.h"
 static u32 producer_trace_mode=1,sequence,queue,failures;
+static u32 producer_trampolines[10];
 static char directory[220];
 struct Frame{u32 tag,owner,caller,ecx,storage_call;};
 static struct Surface{u32 object,id,pixels,width,height,stride;} surface;
@@ -14,9 +15,16 @@ static void require(int value,u32 code){if(!value)ExitProcess(code);}
 void start(void){
  require(GetEnvironmentVariableA("MNM_SCENE_DIR",directory,220)>0,201);require(storage_transitions_open(),202);
  u32 wrapper[7]={0};wrapper[1]=0xdead;wrapper[2]=0xbeef;wrapper[4]=800;wrapper[5]=600;wrapper[6]=1600;
+ u32 mapped=99;producer_trampolines[9]=0x900000;
+ require(storage_caller_rva(0x900009,0x900000,&mapped)==0x18d329&&mapped==1,205);
+ require(!storage_caller_rva(0x900008,0x900000,&mapped)&&!mapped,206);
+ require(!storage_caller_rva(0x90000a,0x900000,&mapped)&&!mapped,207);
+ require(!storage_caller_rva(9,0,&mapped)&&!mapped,208);
+ require(!storage_caller_rva(0,0xfffffff7,&mapped)&&!mapped,209);
+ require(storage_caller_rva(0x58d329,0x900000,&mapped)==0x18d329&&!mapped,210);
  struct Frame f={0,18,0x4bdd10,(u32)wrapper,0};
  storage_transition_record(&f,1,0);surface=(struct Surface){(u32)wrapper,7,0,800,600,800};++sequence;storage_transition_record(&f,2,0x12345678);
- f.tag=2;storage_transition_record(&f,1,0);surface.pixels=0x1234;storage_transition_record(&f,2,0x1234);
+ f.tag=2;f.caller=0x900009;storage_transition_record(&f,1,0);surface.pixels=0x1234;storage_transition_record(&f,2,0x1234);
  /* Same address on another returned Lock gets a distinct observed epoch. */
  storage_transition_record(&f,1,0);storage_transition_record(&f,2,0x1234);
  storage_transition_record(&f,1,0);surface.pixels=0;storage_transition_record(&f,2,0);

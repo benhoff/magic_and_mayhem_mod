@@ -43553,7 +43553,8 @@
         "DRAW02.held-refusal-native-01-negative-20261012",
         "DRAW02.held-refusal-native-02-native-20261012",
         "DRAW02.source-pending-native-01-native-20261012",
-        "DRAW02.storage-pending-native-20261012"
+        "DRAW02.storage-pending-native-20261012",
+        "DRAW02.storage-caller-native-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43956,7 +43957,8 @@
       ],
       "implementation": [
         "runtime/scene/drawing_storage_transitions.h",
-        "tools/drawing_storage_transitions.py"
+        "tools/drawing_storage_transitions.py",
+        "runtime/scene/drawing_storage_caller.h"
       ],
       "tests": [
         "tests/drawing-storage-transitions-test.c",
@@ -43968,7 +43970,10 @@
       "evidence": [
         "DRAW02.storage-transitions-fixture-20261012",
         "DRAW02.storage-transitions-original-20261012",
-        "DRAW02.storage-transitions-binding-20261012"
+        "DRAW02.storage-transitions-binding-20261012",
+        "DRAW02.storage-caller-fixture-20261012",
+        "DRAW02.storage-caller-original-20261012",
+        "DRAW02.storage-caller-binding-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43979,7 +43984,9 @@
       },
       "remaining_gaps": [
         "Existing producer checkpoint skips clean/unsampled Lock returns. Complete transition observation therefore needs an independent journal; no generation inference from absent checkpoints. Real COM/aliases/ownership/driver/unobserved calls remain pending.",
-        "Original01 closes884invocations, but18caller rows unknown. Binding01 finds numerical address15 on canvases7/8/9/13; alias versus physical allocation reuse cannot be inferred. Fresh offline parser extension retains historical original/fixture source declarations, not a new engine validation. Native parity for this journal source increment is pending."
+        "Original01 closes884invocations, but18caller rows unknown. Binding01 finds numerical address15 on canvases7/8/9/13; alias versus physical allocation reuse cannot be inferred. Fresh offline parser extension retains historical original/fixture source declarations, not a new engine validation. Native parity for this journal source increment is pending.",
+        "Prospective caller normalization: only exact return at relocated hook9 prologue call may map to pinned58d329. Preserve original continuation pointer and explicit mapping flag; neighboring/unknown calls remain unknown. Original01 unknown18rows are historical until fresh execution.",
+        "Version2 original01 resolves its18relocated caller rows to exact58d329 with0unknown; historical version1unknowns retained. This does not establish all unhooked/indirect calls, real allocation/alias lifetimes, caller effects or epoch-to-submission binding. Prefix binding shows numerical addresses shared across observed logical canvases; no ownership inference."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -94183,6 +94190,69 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.storage-caller-fixture-20261012",
+      "kind": "native_integration",
+      "scope": "Exact relocated return/neighbor/null/overflow/image caller PE32 helper controls, six paired synthetic transitions and nine versioned decoder guards.",
+      "record": "research/runtime/draw02-storage-caller-fixture-01.json",
+      "sha256": "c15f828cac615f9219d9f0e3ae071105aa3c83c46d8c87ef3ca1d52b32d49fce",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.storage-caller-original-20261012",
+      "kind": "live_observation",
+      "scope": "Current version2 original run closes884invocations809Lockreturns with18explicit relocated caller rows0unknown;118heldpairs222commands333API332EGL. No all-call/allocation lifetime claim.",
+      "record": "research/runtime/draw02-storage-caller-original-01.json",
+      "sha256": "e4314736a48cb01b143243757176b41bb7306ea90cdef238f7b635fe79467aca",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.storage-caller-binding-20261012",
+      "kind": "static",
+      "scope": "Current decoder cross-binds1687known81unknown retained transition points to original producer prefixes; preserve address equality/ownership distinction and historical reports.",
+      "record": "research/runtime/draw02-storage-caller-binding-01.json",
+      "sha256": "921c57952731c7ac92f9e819c226aa42a65b140da5cc42a87eab3abb834d6a4b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-caller-native-20261012",
+      "kind": "native_integration",
+      "scope": "104current eligible exact protected-source/APIcommand/worker/EGLphysical frames match source-only native replay with0differences229contexts excluded; no full lifetime/journey.",
+      "record": "research/runtime/draw02-storage-caller-native-01.json",
+      "sha256": "82bc6a86b1c0398ffd9d4949f704a5d9e2f1d7a6f0564d1c3e9af407f98f844b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106325,8 +106395,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-storage-transitions-20261012.json",
-    "sha256": "8beb7df2799b45f36af1c28a1bd1c9bef2de9ccc08b5edca253dd3ceaf6997b4"
+    "path": "research/runtime/coverage/source-index-draw02-storage-caller-20261012.json",
+    "sha256": "a6894d64ca40f74cb2876b42c822be9d476b4a667ddbf6412226038c3e4be36e"
   },
   "claim_bindings_required": true
 }

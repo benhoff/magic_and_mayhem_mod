@@ -7,13 +7,14 @@ def decode(data):
     if len(data)<160 or (len(data)-64)%96 or len(data)>64+131072*96:
         raise ValueError('Storage transition envelope')
     h=struct.unpack_from('<16I',data)
-    if data[:8]!=b'MNMCST02' or h[2:7]!=(1,96,0x40209ca7,131072,512) or any(h[7:]):
+    if data[:8]!=b'MNMCST02' or h[2] not in (1,2) or h[3:7]!=(96,0x40209ca7,131072,512) or any(h[7:]):
         raise ValueError('Storage transition header')
     rows=list(struct.iter_unpack('<24I',data[64:]));pending={};calls=returns=epochs=0
     events=[];last_prefix=0;addresses=set()
     for ordinal,r in enumerate(rows[:-1],1):
-        if r[0]!=ordinal or r[1] not in (1,2) or r[3]>2 or not r[4] or r[5]>=0x1c0000 or r[6]<last_prefix or r[14]&~3 or any(r[22:]):
+        if r[0]!=ordinal or r[1] not in (1,2) or r[3]>2 or not r[4] or r[5]>=0x1c0000 or r[6]<last_prefix or r[14]&~3 or r[23] or r[22] not in (0,1) or (h[2]==1 and r[22]):
             raise ValueError('Storage transition identity/order')
+        if r[22] and (r[3]!=2 or r[5]!=0x18d329):raise ValueError('Invalid relocated caller mapping')
         last_prefix=r[6]
         if not r[14]&2 and any(r[9:14]) or not r[14]&1 and any(r[15:20]):
             raise ValueError('Absent cache/wrapper contains fields')
@@ -27,7 +28,7 @@ def decode(data):
             pending[r[2]]=r
         else:
             before=pending.pop(r[2],None)
-            if before is None or r[3:6]!=before[3:6]:
+            if before is None or r[3:6]!=before[3:6] or r[22]!=before[22]:
                 raise ValueError('Storage transition unmatched return')
             returns+=1
             if r[3]==2:
@@ -35,7 +36,7 @@ def decode(data):
                 if r[20]!=epochs:raise ValueError('Missing observed Lock return epoch')
             elif any(r[20:22]):raise ValueError('Non-Lock result/epoch')
         events.append(dict(ordinal=r[0],phase=r[1],call=r[2],tag=r[3],thread=r[4],caller_rva=r[5],
-                           producer_prefix=r[6],queue=r[7],failures=r[8],canvas=r[9],
+                           caller_relocated=bool(r[22]),producer_prefix=r[6],queue=r[7],failures=r[8],canvas=r[9],
                            cached_address=r[10],extent=list(r[11:14]),wrapper_readable=bool(r[14]&1),
                            cache_known=bool(r[14]&2),interface_addresses=list(r[15:17]),
                            wrapper_extent=list(r[17:20]),lock_return_epoch=r[20],returned_address=r[21]))

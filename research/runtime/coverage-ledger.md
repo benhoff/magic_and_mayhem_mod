@@ -7674,3 +7674,16 @@ appears on canvases7/8/9/13; shared backing versus allocation reuse remains
 unassigned. No actual ownership/allcall/nativeparity/full47/21closure follows.
 Next resolve caller identities and bind observed storage epochs to submissions,
 while retaining all other routes/actions and later steps as pending.
+
+DRAW-02 step2 exact caller increment: PE32 exact/neighbor/null/overflow
+controls and9decoder methods pass. Current version2 original01 closes884
+invocations809Lockreturns with18explicitly relocated rows at58d329 and0unknown
+callers;118protected pairs222commands333API332EGL remain bounded observations.
+Fresh prefix binding passes1687known81unknown points; version1 reports retain
+historical unknowns. Next bind observed storage epochs at exact source queries;
+all unhooked paths/real allocation/aliases/writers/uploads/routes/actions/full47/21
+and later-step closure remain pending.
+
+Fresh version2 source-only replay passes104eligible protected-source/worker/EGL
+frames with zero differing pixels;229contexts remain excluded. This does not
+close all storage lifetimes or full DRAW-02.

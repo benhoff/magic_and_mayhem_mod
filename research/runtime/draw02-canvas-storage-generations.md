@@ -110,3 +110,27 @@ appears on canvases7/8/9/13; shared backing versus allocation reuse remains
 unassigned. No actual ownership/allcall/nativeparity/full47/21closure follows.
 Next resolve caller identities and bind observed storage epochs to submissions,
 while retaining all other routes/actions and later steps as pending.
+
+## Version 2 relocated caller identity
+
+The pinned hook9 prologue copies `0x58d320..0x58d329`, including the
+`CALL 0x58b660` at `0x58d324`. Its observed return address is the installed
+trampoline plus9. Version2 maps only that exact address, on Lock events, to
+original caller RVA`0x18d329`, marking row word22=1. Other caller addresses
+retain normal image-range classification or explicit unknown0. The actual
+return continuation pointer is never changed. Neighboring offsets, null
+trampoline and arithmetic overflow do not match. Entry/return must retain the
+same mapping flag; version1 requires zero and preserves original01unknowns.
+
+The PE32 fixture verifies exact/neighboring/null/overflow/image callers using
+the same helper, emits six paired invocations with three Lock epochs, and all
+nine decoder controls pass. Fresh original correlation is a separate result.
+
+DRAW-02 step2 exact caller increment: PE32 exact/neighbor/null/overflow
+controls and9decoder methods pass. Current version2 original01 closes884
+invocations809Lockreturns with18explicitly relocated rows at58d329 and0unknown
+callers;118protected pairs222commands333API332EGL remain bounded observations.
+Fresh prefix binding passes1687known81unknown points; version1 reports retain
+historical unknowns. Next bind observed storage epochs at exact source queries;
+all unhooked paths/real allocation/aliases/writers/uploads/routes/actions/full47/21
+and later-step closure remain pending.

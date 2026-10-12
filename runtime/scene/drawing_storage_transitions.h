@@ -1,4 +1,5 @@
 /* Diagnostic identities are observations within one process, never ownership. */
+#include "drawing_storage_caller.h"
 static HANDLE storage_transition_file;
 static u32 storage_transition_records,storage_transition_calls,storage_transition_returns;
 static u32 storage_transition_addresses[512],storage_transition_address_count;
@@ -15,7 +16,7 @@ static int storage_transitions_open(void){
  char name[260];path(name,"canvas-storage-transitions-",0,".bin");
  storage_transition_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);
  if(storage_transition_file==(HANDLE)-1){storage_transition_file=0;return 0;}
- u32 h[16]={0};copy(h,"MNMCST02",8);h[2]=1;h[3]=96;h[4]=0x40209ca7;h[5]=131072;h[6]=512;
+ u32 h[16]={0};copy(h,"MNMCST02",8);h[2]=2;h[3]=96;h[4]=0x40209ca7;h[5]=131072;h[6]=512;
  return write(storage_transition_file,h,64);
 }
 static void storage_transition_record(struct Frame* f,u32 phase,u32 result){
@@ -24,7 +25,7 @@ static void storage_transition_record(struct Frame* f,u32 phase,u32 result){
  else if(!f->storage_call)return;
  if(storage_transition_records>=131071)ExitProcess(99);
  u32 r[24]={0};r[0]=++storage_transition_records;r[1]=phase;r[2]=f->storage_call;r[3]=f->tag;r[4]=f->owner;
- r[5]=f->caller>=0x400000&&f->caller<0x5c0000?f->caller-0x400000:0;
+ r[5]=storage_caller_rva(f->caller,f->tag==2?producer_trampolines[9]:0,r+22);
  r[6]=sequence;r[7]=queue;r[8]=failures;
  struct Surface* s=object(f->ecx);if(s){r[9]=s->id;r[10]=storage_address_id(s->pixels);r[11]=s->width;r[12]=s->height;r[13]=s->stride;r[14]|=2;}
  if(readable(f->ecx,28)){r[14]|=1;r[15]=storage_address_id(get((void*)(f->ecx+4)));r[16]=storage_address_id(get((void*)(f->ecx+8)));r[17]=get((void*)(f->ecx+16));r[18]=get((void*)(f->ecx+20));r[19]=get((void*)(f->ecx+24));}
