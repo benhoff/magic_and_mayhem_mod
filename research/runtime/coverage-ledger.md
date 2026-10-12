@@ -7630,3 +7630,14 @@ with zero differing pixels;223exclusions remain explicit. This is bounded
 comparison evidence, not all-source lifetime, cadence or full journey closure.
 Next complete bounded diagnostic cadence controls while leaving the intermittent
 pending-frame identity open and keeping source-copy admission unchanged.
+
+DRAW-02 step2 cadence-control reassessment: four mode/timing guards and two
+counter/menu/input-only original controls pass with normal Quit and no drawing/
+source/Wine/display observer. Shared declared schedule/settings/input/counter
+binaries are verified against diagnostic references. Diagnostic median queued
+update intervals are about3.35–3.57times controls over62/58updates; control
+repeat first120queued medians differ3.76%andp950.67%. These recordings are
+expensive diagnostics. Identical gameplay work, zero overhead, unobtrusive
+delivery/FPS and semantic/native/frame equivalence remain unproved. Continue
+whole-source lifetime/version and route/action accounting in step2; all47/21
+and later-step closure remains open.

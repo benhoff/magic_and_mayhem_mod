@@ -43858,6 +43858,54 @@
         "Two exact refusal PE32 cases and three decoder methods pass; corrected existing byte export and readonly protection/write-fault fixtures pass. Two original combined runs close normally without emitting refusal files; intermittent earlier extra frame identity/overlap remains unreproduced and unassigned. No source-copy admission was loosened.",
         "Numeric canvas/record equality is not alias/overlap proof. Whole source/COM/resource/texture/storage lifetime and all writers/uploads/versions, unknown/stopped routes and semantic actions, diagnostic cadence controls and full DRAW-02 47/21 acceptance remain pending."
       ]
+    },
+    {
+      "id": "NR.drawing-diagnostic-cadence-control",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original update cadence controls for drawing diagnostics",
+      "scope": "Explicit original-active cadence control with drawing/source/Wine/display capture disabled and identical declared input schedule/settings. Retain accepted original update identities and QPC timing, compare bounded queued World update intervals to retained diagnostic runs. Counter/menu/input observation still exists; timing comparison is an instrumentation measurement, not identical gameplay work, semantic equivalence, 60FPS or unobtrusive capture proof.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-diagnostic-cadence-control.md"
+      ],
+      "implementation": [
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/compare-drawing-diagnostic-cadence.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "tests": [
+        "tests/test-drawing-diagnostic-cadence.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing-session-runner.py",
+        "runtime/engine-cadence/observer.c",
+        "tools/build-engine-cadence.py",
+        "tools/drawing_engine_windows.py",
+        "tools/engine_cadence.py",
+        "tools/drawing_quit_completion.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.cadence-control-fixture-01-native-20261012",
+        "DRAW02.cadence-control-original-01-live_observation-20261012",
+        "DRAW02.cadence-control-comparison-01-native_integration-20261012",
+        "DRAW02.cadence-control-original-02-live_observation-20261012",
+        "DRAW02.cadence-control-comparison-02-native_integration-20261012",
+        "DRAW02.cadence-control-repeat-01-native_integration-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Four mode/timing guard methods and two original counter-only controls pass normal Quit. Same schedule/settings/input/counter binary comparisons show diagnostic median queued intervals3.571/3.504 times firstcontrol,3.399/3.349 times second over62/58queued updates. Control repeat first120queued medians differ3.76%,p950.67%. This distinguishes expensive diagnostics from the counter-only condition; neither zero-overhead gameplay nor identical work/equivalence is proved.",
+        "Control still observes counters/menu/input, randomized original workloads and diagnostic interval lengths differ. Unobtrusive delivery/FPS, source ownership/all writers/uploads/whole lifetimes, all routes/semantic actions/full DRAW-02 47/21 acceptance remain open. Native parity not performed for this cadence-control change."
+      ]
     }
   ],
   "evidence": [
@@ -93787,6 +93835,120 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.cadence-control-fixture-01-native-20261012",
+      "kind": "native_integration",
+      "scope": "Four explicit minimal-control and bounded queued timing guard methods; no original timing/equivalence proof.",
+      "record": "research/runtime/draw02-cadence-control-fixture-01.json",
+      "sha256": "d10509c284cea568685c92c90113fc5995060013aa25ddff964b3420cc31d75d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cadence-control-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Counter/menu/input-only original control:268advancing updates218queued, no drawing/source/Wine/display capture, normal Quit0.",
+      "record": "research/runtime/draw02-cadence-control-original-01.json",
+      "sha256": "64544b178aa96f18bb55be3d05b94ab1a39e9aa1ad632b64f25d2faa09e9211f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cadence-control-comparison-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Same declared schedule/settings/input/counter binary;62/58queued-update diagnostic median intervals3.571/3.504times control. Workload/equivalence/unobtrusive claims remain false.",
+      "record": "research/runtime/draw02-cadence-control-comparison-01.json",
+      "sha256": "7d7dea5024b80a434fbde9cd92673b3b16dbbe35118cd343a2425bd660014e1a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cadence-control-original-02-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Second counter/menu/input-only original control, normal Quit0; drawing/source/Wine/display observers absent.",
+      "record": "research/runtime/draw02-cadence-control-original-02.json",
+      "sha256": "00f766b40b01918a414e7fd9b697cfaac3882435bcd82c6bdfe893e190d509d9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cadence-control-comparison-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Second control versus same62/58diagnostic queued intervals gives median ratios3.399/3.349, with identical workload/unobtrusive proof false.",
+      "record": "research/runtime/draw02-cadence-control-comparison-02.json",
+      "sha256": "9f7020b60ad05af5acc51cdea3bbf69c5ac65ce0974ef57d44ea98fc5ca3c730",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cadence-control-repeat-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "First120queued updates between counter-only controls:median ratio1.037588,p95ratio1.006652. Descriptive variability, not zero overhead/equivalence.",
+      "record": "research/runtime/draw02-cadence-control-repeat-01.json",
+      "sha256": "78800a5b78e952b59709912815fb824052d86519cb6da4b03935c0cc7c207ad4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105496,6 +105658,51 @@
         "DRAW02.source-pending-original-01-live-20261012",
         "DRAW02.source-pending-original-02-live-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.diagnostic-cadence-fixture",
+      "level": "headless",
+      "scope": "Bounded counter-only control and queued update timing distribution; no gameplay equivalence or native delivery credit.",
+      "behaviors": [
+        "NR.drawing-diagnostic-cadence-control"
+      ],
+      "tests": [
+        "tests/test-drawing-diagnostic-cadence.py"
+      ],
+      "evidence": [
+        "DRAW02.cadence-control-fixture-01-native-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.diagnostic-cadence-original",
+      "level": "live_observation",
+      "scope": "Bounded counter-only control and queued update timing distribution; no gameplay equivalence or native delivery credit.",
+      "behaviors": [
+        "NR.drawing-diagnostic-cadence-control"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.cadence-control-original-01-live_observation-20261012",
+        "DRAW02.cadence-control-original-02-live_observation-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.diagnostic-cadence-comparison",
+      "level": "headless",
+      "scope": "Bounded counter-only control and queued update timing distribution; no gameplay equivalence or native delivery credit.",
+      "behaviors": [
+        "NR.drawing-diagnostic-cadence-control"
+      ],
+      "tests": [
+        "tools/compare-drawing-diagnostic-cadence.py"
+      ],
+      "evidence": [
+        "DRAW02.cadence-control-comparison-01-native_integration-20261012",
+        "DRAW02.cadence-control-comparison-02-native_integration-20261012",
+        "DRAW02.cadence-control-repeat-01-native_integration-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -105869,8 +106076,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-pending-20261012.json",
-    "sha256": "700df2576b77f006a0fd62afb8ad3e504dd3140ee4ae7e551d7f0014e08ff933"
+    "path": "research/runtime/coverage/source-index-draw02-cadence-control-20261012.json",
+    "sha256": "88c203d832801a08e179d4fff90d6109b86f3b3a0950df8d413b899d29fbc602"
   },
   "claim_bindings_required": true
 }
