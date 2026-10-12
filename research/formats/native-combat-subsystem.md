@@ -42,3 +42,35 @@ Continuation uses countdowns rather than host time or pointers. No reservation
 cache is stored: existing occupancy and fine-edge claims derive from native
 movement state. Attack animation, damage RNG, original creature configuration,
 death animation and original-save import/export are outside this format.
+
+## Explicit control extension (NS22)
+
+`MNMCOM02` retains the v1 header and 48-byte fighter prefix, then appends
+five DWORDs to each fighter: control (automatic/hold/move/attack = 0..3),
+destination-present flag and XYZ. Records are 68 bytes. After the fighters,
+a DWORD count precedes up to 64 36-byte pending orders: kind
+(move/stop/attack = 0..2), subject identity, target-present flag/identity and XYZ.
+Absent fields are zero. Full-generation stale/dead orders are refused during
+admission; positions and encoding are checked before publication. Move suppresses
+attacks until arrival, then automatic acquisition resumes; Stop holds; Attack
+retains its requested target and becomes Hold when that target is lost.
+
+The encoder emits the exact v1 layout for automatic-only states with no queued
+controls. Both versions decode. The outer world format is unchanged. Projectile
+impact reuses atomic clamped damage/death cleanup; this is an explicit native
+policy, not original damage equivalence.
+
+## Immutable health backend binding (NS23)
+
+`MNMCOM03` uses the v2 control records and pending order layout. It adds a
+nonzero little-endian QWORD health-rules identity after range/count, before the
+fighters: header24, fighter68, pending count4 plus36 bytes per order. Zero is
+reserved for legacy fixture rules, represented by v1/v2. Unknown identities are
+refused by the app resolver; a session restores only its matching backend.
+The stateless No-CD ordinary numerical adapter identity is
+`0x4e53323348454131` (`NS23HEA1`). It is a versioned contract identifier, not a
+host pointer, executable address or source hash. Provenance remains in execution
+reports. New arena sessions select that backend; old v1/v2 arena saves keep the
+legacy authored calculator. No old save is silently migrated. The outer native
+world and skirmish campaign blobs are unchanged. Health, motion and queued work
+remain owned and serializable; no callback or C++ object layout crosses the wire.

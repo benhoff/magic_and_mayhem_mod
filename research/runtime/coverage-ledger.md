@@ -1,5 +1,148 @@
 # Engine modernization coverage ledger
 
+## NS26 — original autonomous decision producers and behavior handlers
+
+Native reconstruction now includes the original controller, target-admission,
+world-object selection, inventory recovery, hazard/escape, immediate defense,
+spell70 (`0x46`) threat-region avoidance and nine autonomous behavior substates.
+`AI.world-object-selection`, `AI.local-navigation`, `AI.immediate-defense`,
+`AI.autonomy-controller` and `AI.autonomous-behaviors` record the separate scopes.
+See [original autonomy](creature-autonomy.md). Geometry and consequence execution
+remain typed services. Original route continuation, periodic pre-decision/follow
+work, queued orders, strategic/scenario AI, action/effect ownership, native lab
+integration and live replacement remain pending. This is not full original AI.
+
+Current source validation passes30,720 isolated original cases across27 bodies,
+ASan/UBSan/LSan and identical native64/reference32/sanitized64 outcome digests.
+The standalone native library builds successfully. The five registered contracts
+now record scoped implementation/comparison and headless integration with
+explicit world-service boundaries; full original AI and live replacement remain
+pending. Initial fingerprints are retained. The user-approved bounded90GiB run
+added13.4MiB and verified the default100GiB policy unchanged.
+The prior NS25 application and historical evidence remain unchanged.
+
+## NS25 — native ordinary creature AI, reach and stun
+
+The next simulation milestone composes installed-profile ordinary targeting,
+footprint reach, relative facing, melee and stun with an autonomous four-creature
+native encounter and Qt controls. The recovered controllers and selectors have
+an isolated pinned-PE comparison with supplied collision, movement, animation,
+transition and admission endpoints. Empty queue/effect ownership is an explicit
+comparison boundary. Native pathfinding/occupancy, selected directional sequences,
+knockback relocation, decision cadence and stalemate termination remain native
+policies. They are not full original encounter equivalence.
+
+`AI.creature-control`, `CB.melee-reach`, `CB.creature-stun`,
+`NP.creature-encounter` and `NP.creature-window` register the individual boundaries.
+See [creature control](creature-control.md), the
+[native wire format](../formats/native-creature-encounter.md) and
+[lab instructions](../../apps/creature-lab/README.md).
+
+Current NS25 evidence passes97,516 isolated control cases,6,397 tick-boundary
+checkpoint clones and36 fresh-process resumes in both normal and sanitized
+runs, plus the normal Qt control/timer/checkpoint preview. Seed1 finishes at
+tick812; native stalemates are also exercised. Actual picker clicks and Qt
+sanitizers remain pending.
+
+Full AI is **not complete**: original spell/interaction/hazard producers,
+complete admission and action-selector bodies, hostile spell46 scanning,
+special species, effect ownership and shared scheduling remain pending.
+Live original replacement, campaign parity, commander orders, veterancy and
+mana balance changes are not promoted by this milestone. Validation records
+are retained under new NS25 evidence IDs; historical NS21–NS24 fingerprints
+remain immutable when shared build dependencies change.
+
+
+## NS24 — Original ordinary melee exchange and native lab
+
+Recovered no-evasion/no-charge type17 melee arithmetic, exact damage/conditional
+stun/cooldown draw ordering, selected main-action events and installed Crocodile
+ANI24..31 forward timing. Isolated unchanged original bodies match8,448 numerical
+cases,4,368 action/exchange cases,18,432 animation ticks and262,144 RNG words.
+The composed animation → melee → defended health → ordinary lethal projection
+includes complete object-write and callback/RNG guards, with supplied helper
+returns explicitly bounded. A missing Ghidra action-body inventory link remains
+an explicit recovered-range exception. Ordinary health follow-up matches8,622
+cases/36,895 events with nullable contribution lookups and correct detach slot.
+
+The separate native Crocodile lab loads original CFG/ANI assets through native
+readers, drives actual animation hit events, persists all250 RNG words/cursors
+and complete animation/profile state, and resumes without Wine/original binary
+or installation.49 fresh-process continuations in each normal/sanitized run (98 total),
+ASan/UBSan/LeakSanitizer, and681 one-tick checkpoint
+roundtrips preserve the full outcome. Seed1 hits first at14 and ends at681 with
+34 HP in the survivor;9 semantic corruption refusals and bad/throwing adapter
+rollback pass. Actual Qt Play/Pause/Step/timer, failed-load preservation and
+headless/window checkpoint equality pass; actual picker interaction is pending.
+See [ordinary melee](ordinary-melee.md) and [the lab](../../apps/melee-lab/README.md).
+
+Original full-fight equivalence, evasion/charge/special creatures, stun effects,
+reach/footprint/facing selection, original ready/behavior reentrancy, live tick
+ordering and live replacement remain pending. Native stationary placement,
+recovery/rearm, slot-ordered death cancellation and presentation cadence are
+intentional lab policies. Authored skirmish balance and original campaign remain
+separate. Historical NS23 fingerprints are preserved; new results get NS24 IDs.
+Current-source authored skirmish regression also passes32 process resumes/18
+refusals and5 window/headless resumes with actual save/load pickers, timer,
+pause/failure preservation and final canvas equality.
+
+## NS23 — original ordinary health and native arena backend — 2026-10-12 UTC
+
+[Ordinary health research](ordinary-health.md) now has source-bound isolated-original
+proof for class1/type17 maximum, defended/direct damage, signed healing/refusals,
+selected ordinary lethal cleanup fields and ordered callback arguments:8,614
+cases/36,803 events match unchanged No-CD code, with guarded object/text inputs,
+original manifests before/after and native ASan/UBSan. Five original bodies run
+on Linux/i386;18 lower helper endpoints have explicit supplied returns/argument
+projections. Full helper effects, cached contributions/nonempty world cleanup,
+leader/illusion/explosion/scenario death, melee RNG/timing and live bypass remain
+pending. `CB.ordinary-health` and `CB.defended-damage` own that limited recovered
+scope; the broader `GP.combat` remains partial/static.
+
+`NP.ordinary-health-adapter` supplies the stateless numerical backend through an
+app-owned adapter; native simulation has no build-specific or Qt dependency.
+New native arena saves bind its immutable identity in combat-v3; v1/v2 keep
+legacy fixture rules. Healing is a capped engine API with dead/stale refusal,
+not a new spell. Native cleanup/occupancy and authored AI/spells/mana/profile
+rules retain independent ownership; original wizard death is not asserted.
+Forty-two headless regression tests and eight focused ASan/UBSan CTests pass.
+Each normal/sanitized run passes32 skirmish continuations/18 refusals, including
+wrong/unknown health bindings and bad/throwing backend rollback. Five real-window
+saves restore pending orders, casting, movement, flight and melee windup to the
+same headless state and final canvas. V1 automatic melee separately retains32
+coarse/fine continuations,7 hits/1 death and15 refusals per build. Qt sanitizing
+and original gameplay/renderer equivalence remain excluded.
+
+The exact history review122f5c8..0144cb6c covers354 file and789 behavior transitions.
+Thirteen missing intermediate `NR.movie-enabled-startup` dependency receipts were
+appended retrospectively, with original evidence/scenarios/status untouched;
+no retrospective gate pass or movie revalidation is asserted. Prior NS21/NS22
+and original reports remain preserved; only declared NS23 scopes gain fresh proof.
+
+## NS22 — entirely native authored skirmish — 2026-10-12 UTC
+
+The [native skirmish](native-skirmish.md) now runs without Wine, original game
+binaries or assets: a sealed arena, two stationary wizards, one Sentinel,
+summon/Arc Bolt, mana regeneration, rival AI, move/stop/attack, damage/death,
+victory/defeat/draw and complete native checkpoint continuation. Rules and vector
+visuals are explicit native fixtures. `NP.combat-orders`,
+`NP.skirmish-simulation` and `NP.skirmish-window` own the separate policy scopes.
+Original `GP.combat`, `GP.commander`, `GP.mana`, veterancy, installed campaign and
+live simulation replacement remain outstanding; the hybrid campaign still uses Wine.
+
+Declared-source Debug checks pass 32 fresh-process headless continuations and16
+wire/CLI refusals. Forty normal CTests pass. The production window's actual mouse,
+buttons, dialogs and timer journey matches headless replay; five mid-action saves
+resume in fresh windows/headless processes to identical final snapshots and
+canvases. Real timer victory31/defeat29, pause and rejected-load rollback pass.
+New automatic-melee evidence preserves the v1 encounter's seven-hit/one-death,
+32 coarse/fine continuation and15-refusal scope after adding v2 control state.
+Historical evidence hashes stay unchanged; shared build/source edits do not
+renew unrelated original comparisons. ASan/UBSan with leak detection passes six focused CTests,32 skirmish and32
+automatic-melee fresh-process continuations; Qt/window sanitizing remains excluded.
+The committed-history review82f9bff..122f5c8 finds61 exact file and536 affected
+behavior transitions with no missing receipts; it asserts no retrospective gate pass.
+
 ## Other pixel producers: byte text and live glyph shadow — 2026-10-10
 
 `RS.font-byte-consumer` now has isolated-original proof for contour-based byte
@@ -8018,3 +8161,16 @@ defaults are enabled; intros are skipped for this rendering probe. Full movie
 with World, audiovisual/original equivalence, source-rate attribution, sustained
 60 FPS and broader shared-source validation remain pending. The owned V5 route
 remains opt-in and does not promote a complete native gameplay engine.
+
+
+## Incremental simulation/AI checkpoint (2026-10-12)
+
+The native simulation, health, melee, creature-control and autonomy milestones
+NS22–NS26 are committed together with their immutable bounded evidence and exact
+coverage receipts. Complete original AI and campaign integration remain pending.
+Committed-history review after7235e7f6 through868f2cad covers19 commits and both
+merge parents:1085 file and2001 behavior transitions. One appended retrospective
+receipt accounts for77 missing file and166 behavior pairs; no past gate pass or
+renewed validation is asserted. See
+`coverage/ai-checkpoint-incoming-history-20261012.json`. Subsequent AI recovery
+will use smaller milestone commits with explicit validation boundaries.
