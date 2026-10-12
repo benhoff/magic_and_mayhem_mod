@@ -42,3 +42,13 @@ Enabled production begin/end fixture02passes5rows/rawfailure/error/token binding
 with source/worker callbacks disabled. Buildnegative01unresolved fixturememcpy
 retained before standalone byteimplementation/newclaims. Actual protected source/
 worker/physical and original runtime remain pending; no source ownership proof.
+
+Prospective controlled source/worker fixture executes actual production lease/
+held capture machinery with mocked source protection/getter, equal snapshots
+and explicit packet worker command/return. Gate End requires restored mock
+state and drained worker lease. No actual VirtualProtect/Wine worker proof.
+
+Controlled fixture01passes production source/worker lease/held machinery: two
+equal960000byte snapshots, command100/worker200entry-return, restored mock
+protection and drained worker state before gate End, refused point noEnd.
+Protection callback mocked; actual VirtualProtect/Wine worker/physical pending.

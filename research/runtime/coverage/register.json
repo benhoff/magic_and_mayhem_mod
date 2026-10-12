@@ -45324,7 +45324,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded drawing API cursor gate and source lease binding",
-      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate. Owned include-production-session fixture executes enabled begin/end with controlled numeric gate callbacks, accepted/refused API entries and raw failure/error; source/worker callbacks disabled in this bounded path.",
+      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate. Owned include-production-session fixture executes enabled begin/end with controlled numeric gate callbacks, accepted/refused API entries and raw failure/error; source/worker callbacks disabled in this bounded path. Controlled production source/worker lease schedule uses mocked protection/getter and explicit worker command/return; equal held snapshots and restored/drained state required before gate End. Actual VirtualProtect/Wine worker independent.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45342,7 +45342,9 @@
         "tools/test-drawing-api-session.py",
         "runtime/drawing/selftest.c",
         "tests/drawing-source-gate-session-test.c",
-        "tools/test-drawing-source-gate-session.py"
+        "tools/test-drawing-source-gate-session.py",
+        "tests/drawing-source-gate-protected-test.c",
+        "tools/test-drawing-source-gate-protected.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
@@ -45388,7 +45390,8 @@
         "DRAW02.draw02-source-cursor-gate-production-build-01-20261012",
         "DRAW02.source-gate-legacy-regression-01-20261012",
         "DRAW02.draw02-source-gate-session-build-negative-01-20261012",
-        "DRAW02.draw02-source-gate-session-fixture-02-20261012"
+        "DRAW02.draw02-source-gate-session-fixture-02-20261012",
+        "DRAW02.source-gate-protected-fixture-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45398,7 +45401,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh enabled begin/end fixture02passes5rows/sourceworkersdisabled; buildnegative01preserved; disabled regression remains historical after test/scope extension. Protected source/worker/physical/early-return branches, optional frontend/import and actual original controls/trial remain pending. No full enabled source ownership/reference/parity claim."
+        "Fresh controlled production source/worker schedule fixture01passes; Actual VirtualProtect/Wine worker/physical/early-return/concurrency and frontend/import/original control capture remain pending. Earlier fixtures historical after extended tests/scope; no actual sourceownership/full reference/native parity claim."
       ]
     }
   ],
@@ -97497,6 +97500,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.source-gate-protected-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Actual production source/worker lease/held snapshot code with mocked protection/getter and explicit command/return; twoequal960000bytes, restored/drained beforegateEnd. No actual VirtualProtect/Wineworker/game parity.",
+      "record": "research/runtime/draw02-source-gate-protected-fixture-01.json",
+      "sha256": "a3de657c7d08c0bfc6f2ad3fa92b11beecfb3e7abfa137afd4babc45c79fb481",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/protection_callback_mocked",
+          "equals": true
+        },
+        {
+          "pointer": "/held_snapshots",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109639,8 +109669,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-gate-session-20261012.json",
-    "sha256": "b2b268de5eb48821529fc5f817a1019abe9be51c9a858ac2acef39e7bb6d5db7"
+    "path": "research/runtime/coverage/source-index-draw02-source-gate-protected-20261012.json",
+    "sha256": "be9b31975e509dbeff9e04da09409b4f70d04131b480fca8f4c390044053ac13"
   },
   "claim_bindings_required": true
 }

@@ -1732,3 +1732,19 @@ fixture and frontend/scripted imports/partial module snapshot, then bounded
 original32source/cadence controls needed. Full lifetime/normalshutdown/reference/
 native parity independent. All47/21and steps3–7retain scope. Reviewed
 2fcd7878..46be1034has9exactreceipts,0gaps.
+
+## DRAW-02 controlled source/worker ordering checkpoint (2026-10-12 UTC)
+
+Enabled begin/end committed620b61bfwith staged/hook checks passed. Fresh
+controlled fixture01executes production source/worker lease and held-snapshot
+code with mocked source protection/getter and command100/worker200schedule.
+Twoequal960000byte snapshots retained; gate End asserts mock restoration and
+worker lease drainage complete, refused point does not callEnd. Five exact
+API/token/sourcebinding rows/terminal pass. Actual OS page protection, real
+Wine workers/physical ACK and originalgame remain unexecuted by this fixture.
+
+Reassessment: step2stillopen. Add frontend/scripted imports, partial module
+snapshot and strict token/API/source joins, early-return/refusal/concurrency
+controls, then bounded original32source/worker/cadence trial with manifests.
+No source alias/unobtrusive/fullreference/nativeparity proof from controlled
+ordering. All47/21and steps3–7retain scope. Reviewed46be1034..620b61bfhas11receipts,0gaps.
