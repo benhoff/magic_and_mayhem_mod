@@ -6979,3 +6979,16 @@ shutdown. Physical device failure/stale notification paths,long stress,audible
 comparison,full driver/COM/WinMM/loader retirement and broad timing equivalence
 remain gaps. Only the new default/worker host scope is refreshed;previous results
 and broader historical statuses/hashes remain separate.
+
+2026-10-12 UI45.host-create-failure records the subsequently authorized bounded
+live host attempt under a temporary90GiB reserve. Native Main/Quick/Create and
+the original Create OK callback execute, but original TCP creation displays
+**Could not create game session** before entering the host lobby; the180-second
+deadline expires. [Failure record](host-lobby-create-failure-20261012.json).
+The installed Wine TCP provider's unsupported-host diagnostic and upstream
+create branch are consistent with this failure; HRESULT/module tracing remains
+unconfirmed. No successful host scenario or integration/replacement status is
+registered. Host ownership remains opt-in/disabled by default. No originals,
+permanent storage policy, networking implementation or retained evidence were
+modified. History`acab86fa..d7f73255` reviews30 exact committed file versions
+with no missing receipts, without asserting retrospective gate/validation.

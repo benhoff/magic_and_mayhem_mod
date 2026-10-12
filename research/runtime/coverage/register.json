@@ -43695,7 +43695,8 @@
         }
       ],
       "documents": [
-        "research/runtime/multiplayer-lobby-engine-contract.md"
+        "research/runtime/multiplayer-lobby-engine-contract.md",
+        "research/runtime/host-lobby-create-failure-20261012.json"
       ],
       "implementation": [
         "tools/export-multiplayer-menu.py"
@@ -43705,7 +43706,8 @@
         "tools/test-multiplayer-lobby-contract.py"
       ],
       "evidence": [
-        "UI45.original-lobby-fixture"
+        "UI45.original-lobby-fixture",
+        "UI45.host-create-failure"
       ],
       "status": {
         "understanding": "partial",
@@ -43742,7 +43744,8 @@
         }
       ],
       "documents": [
-        "research/runtime/multiplayer-lobby-engine-contract.md"
+        "research/runtime/multiplayer-lobby-engine-contract.md",
+        "research/runtime/host-lobby-create-failure-20261012.json"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v17.h",
@@ -43757,7 +43760,8 @@
         "tools/test-live-host-lobby.py"
       ],
       "evidence": [
-        "UI45.original-lobby-fixture"
+        "UI45.original-lobby-fixture",
+        "UI45.host-create-failure"
       ],
       "status": {
         "understanding": "partial",
@@ -43797,7 +43801,8 @@
         }
       ],
       "documents": [
-        "research/runtime/multiplayer-lobby-engine-contract.md"
+        "research/runtime/multiplayer-lobby-engine-contract.md",
+        "research/runtime/host-lobby-create-failure-20261012.json"
       ],
       "implementation": [
         "apps/qt-shell/menu_bridge.hpp",
@@ -43818,7 +43823,9 @@
         "tools/test-live-host-lobby.py",
         "tests/menu-host-lobby-bridge-test.cpp"
       ],
-      "evidence": [],
+      "evidence": [
+        "UI45.host-create-failure"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
@@ -90811,6 +90818,34 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI45.host-create-failure",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Diagnostic failed TCP Create attempt only. No host lobby was entered; no native host ownership, Cancel, original networking equivalence or live replacement validated.",
+      "record": "research/runtime/host-lobby-create-failure-20261012.json",
+      "sha256": "557a457b1cc2d98b587ce8647ab334fc467f5f413376513c3393e115156ef32d",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/observed/host_lobby_entered",
+          "equals": false
+        },
+        {
+          "pointer": "/observed/create_error_dialog",
+          "equals": "Could not create game session"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102018,7 +102053,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-host-lobby-pending-20261012.json",
+    "path": "research/runtime/coverage/source-index-host-lobby-failure-20261012.json",
     "sha256": "254d1b43734986dc5acdd176dce1bcfc8ed122b972a1de95ab9c9c74789967ce"
   },
   "claim_bindings_required": true
