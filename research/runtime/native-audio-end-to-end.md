@@ -399,3 +399,10 @@ comparison:392,778 cases and439,560 clock/COM events, with full ring/slot/object
 guards and sanitizer checks. See [scheduler comparison](audio-scheduler-original-cases.md).
 Live scheduler and sound-selection/cache/event decisions still execute in the
 original game; this milestone establishes a bounded comparison before migration.
+
+The pool now routes its selected whole-file size read to native read-only storage.
+All356 installed WAV sizes and actual PE cdecl/field guards pass. A controlled
+existing-sound preload makes the original caller execute one successful native
+query during a complete live native game/normal Quit. This covers the selected
+metadata boundary; original selection/cache/scheduler/event rules remain active.
+See [file-size evidence](native-audio-file-sizes.md).

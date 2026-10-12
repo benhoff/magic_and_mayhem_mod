@@ -119,7 +119,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata);metadata.update(census_metadata)
-    metadata.update(native_voices=native_voices,native_initial_silence=native_voices,native_audio_profiles=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
+    metadata.update(native_voices=native_voices,native_initial_silence=native_voices,native_audio_profiles=native_voices,native_audio_file_sizes=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     native_wave_loading=native_voices,
                     native_audio_factory=native_voices,
                     native_extended_controls=native_voices,

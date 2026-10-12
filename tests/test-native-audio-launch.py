@@ -76,6 +76,18 @@ class AudioLaunchTest(unittest.TestCase):
         self.words[31]=110;self.write_channel()
         with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_profiles':True},{})
 
+    def test_file_sizes_require_exact_staging_and_native_wave_root(self):
+        self.words[31]=79;self.write_channel()
+        metadata={**self.metadata,'native_audio_file_sizes':True,'native_wave_loading':True}
+        authorize(self.root,metadata,{})
+        for value in [False,1,'yes']:
+            with self.assertRaises(ValueError):authorize(self.root,{**metadata,'native_audio_file_sizes':value},{})
+        with self.assertRaises(ValueError):authorize(self.root,{**metadata,'native_wave_loading':False},{})
+        self.words[31]=15;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,metadata,{})
+        self.words[31]=207;self.write_channel()
+        with self.assertRaises(ValueError):authorize(self.root,metadata,{})
+
     def test_guarded_native_media_retires_directsound_by_default(self):
         metadata={**self.metadata,'native_audio_factory':True,'native_media':True,'native_media_startup_probe':True}
         env={'WINEDLLOVERRIDES':'ddraw=;dsound=n,b'}
