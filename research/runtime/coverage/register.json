@@ -46874,6 +46874,63 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-voice-output-waveforms",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Actual native software endpoint gain pan pitch and clipping waveforms",
+      "scope": "Native VoiceBroker v5 control requests through actual QtOutput and owned PipeWire/Pulse monitor. Nonzero periodic stereo source windows independently check unity, voice/master attenuation, hard pan,36000Hz frequency conversion and second-voice clipping to one S16 unit, with native WAV bytes, request ACKs, releases/ready retirement and empty graph/owned daemon cleanup. Unknown capture-start phase is allowed; physical speakers, latency/tail, original DirectSound and general hardware/resampler equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-voice-output-waveforms.md"
+      ],
+      "implementation": [
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/mixer.cpp",
+        "audio/buffers.cpp",
+        "audio/voices.cpp"
+      ],
+      "tests": [
+        "tools/test-native-voice-waveforms.py",
+        "tests/native-voice-waveforms/CMakeLists.txt",
+        "tests/native-voice-backend-test.cpp"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/resources/CMakeLists.txt",
+        "audio/CMakeLists.txt",
+        "audio/buffers.hpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "runtime/audio/protocol.h",
+        "tools/private_audio_backend.py"
+      ],
+      "evidence": [
+        "HOST.native-voice-output-waveforms.endpoint-20261012",
+        "HOST.native-voice-output-waveforms.focused-endpoint-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -95595,6 +95652,140 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-voice-output-waveforms.endpoint-20261012",
+      "kind": "native_integration",
+      "scope": "Actual native VoiceBroker v5 commands -> Qt output -> private software monitor: nonzero stereo, voice/master gain, hard pan,36000Hz pitch and overlapping clipping. Seven2048-frame windows match independently generated expected periods exactly;40ACK, exact512 WAV bytes, release/ready retirement and graph/process cleanup. Physical/original equivalence excluded.",
+      "record": "research/runtime/native-voice-output-waveforms-endpoint-20261012.json",
+      "sha256": "7df67d033d52f936e8d41afd7881c7ec537b138aa937e429754c0efc26740709",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/1/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/2/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/3/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/4/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/5/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/6/max_sample_error",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-voice-output-waveforms.focused-endpoint-20261012",
+      "kind": "native_integration",
+      "scope": "Actual native VoiceBroker v5 commands -> Qt output -> private software monitor: nonzero stereo, voice/master gain, hard pan,36000Hz pitch and overlapping clipping. Seven2048-frame windows match independently generated expected periods exactly;40ACK, exact512 WAV bytes, release/ready retirement and graph/process cleanup. Physical/original equivalence excluded. Reviewed exact actual compiler/CMake closure excludes unused music code.",
+      "record": "research/runtime/native-voice-output-waveforms-focused-endpoint-20261012.json",
+      "sha256": "4e8c68be03f8c9d4263f710c880e64061000b1d39060a704bddbf4fe98af5e61",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/ready_after_stop",
+          "equals": false
+        },
+        {
+          "pointer": "/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/1/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/2/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/3/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/4/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/5/max_sample_error",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/6/max_sample_error",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106705,6 +106896,23 @@
       "evidence": [
         "HOST.native-audio-initial-silence.empty-public-20261012"
       ]
+    },
+    {
+      "id": "native-voice-output-waveforms-20261012",
+      "level": "headless",
+      "scope": "Native VoiceBroker v5 control requests through actual QtOutput and owned PipeWire/Pulse monitor. Nonzero periodic stereo source windows independently check unity, voice/master attenuation, hard pan,36000Hz frequency conversion and second-voice clipping to one S16 unit, with native WAV bytes, request ACKs, releases/ready retirement and empty graph/owned daemon cleanup. Unknown capture-start phase is allowed; physical speakers, latency/tail, original DirectSound and general hardware/resampler equivalence excluded.",
+      "behaviors": [
+        "HOST.native-voice-output-waveforms"
+      ],
+      "tests": [
+        "tools/test-native-voice-waveforms.py",
+        "tests/native-voice-waveforms/CMakeLists.txt",
+        "tests/native-voice-backend-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-voice-output-waveforms.endpoint-20261012",
+        "HOST.native-voice-output-waveforms.focused-endpoint-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -107078,8 +107286,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-empty-output-commit-v1-20261012.json",
-    "sha256": "a7099c9182681a44af6ac5876ad156ff1c663d53d50a3923ca198e993e322275"
+    "path": "research/runtime/coverage/source-index-native-waveforms-commit-v1-20261012.json",
+    "sha256": "035484e7edfc7d32862b8a05b09ff002ed288be1a8c8ec0ede390ac43df72127"
   },
   "claim_bindings_required": true
 }
