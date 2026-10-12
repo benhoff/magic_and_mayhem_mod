@@ -12,10 +12,22 @@ bool LiveCommandSession::fresh(const QString& path,quint32 session){
 }
 bool LiveCommandSession::create(const QString& path,quint32 session,quint32 version,int initialFrameTimeoutMs){
     initialFrameTimeoutMs_=initialFrameTimeoutMs;
+    mediaActive_=false;mediaStartedAt_=mediaPausedMs_=0;
     path_=path;session_=session;version_=version;deadline_.start();
     if(!fresh(path,session))return false;
     if(version==2 && !control_.create(path+".control",session))return fail(control_.error());
     return true;
+}
+void LiveCommandSession::setMediaActive(bool active){
+    if(mediaActive_==active || !deadline_.isValid())return;
+    if(active)mediaStartedAt_=deadline_.elapsed();
+    else mediaPausedMs_+=deadline_.elapsed()-mediaStartedAt_;
+    mediaActive_=active;
+    if(renderer_)renderer_->setPresentationSuspended(active);
+}
+qint64 LiveCommandSession::waitingElapsed() const{
+    const auto elapsed=deadline_.elapsed();
+    return elapsed-mediaPausedMs_-(mediaActive_?elapsed-mediaStartedAt_:0);
 }
 void LiveCommandSession::abort(){control_.cancel();if(renderer_)renderer_->abort();viewport_.setGpuFrame({});}
 bool LiveCommandSession::fail(const QString& message){error_=message;abort();change(State::Fallback);return false;}
@@ -56,14 +68,15 @@ bool LiveCommandSession::poll(){
     if(state_==State::Recovering){
         const int status=control_.poll();if(status<0)return fail(control_.error());
         if(!status)return true;
-        deadline_.restart();change(State::WaitingFrame);
+        deadline_.restart();mediaPausedMs_=0;change(State::WaitingFrame);
     }
     if(!renderer_->poll()){
         if(state_==State::WaitingFrame && retries_)return fail(renderer_->error());
         return recover();
     }
     if(renderer_->ended()){control_.cancel();change(State::Ended);return true;}
-    if(version_==2 && state_==State::WaitingFrame && deadline_.elapsed()>=(retries_?MNM_RENDER_CONTROL_V1_FRAME_TIMEOUT_MS:initialFrameTimeoutMs_)){
+    if(mediaActive_)return true;
+    if(version_==2 && state_==State::WaitingFrame && waitingElapsed()>=(retries_?MNM_RENDER_CONTROL_V1_FRAME_TIMEOUT_MS:initialFrameTimeoutMs_)){
         if(retries_)return fail("Recovered producer did not publish a complete frame");
         return recover();
     }

@@ -381,6 +381,9 @@ def main():
     parser.add_argument('--native-voices',action='store_true',help='Require native voice selection, successful upload/play and output retirement')
     parser.add_argument('--default-audio',action='store_true',help='Verify default native audio without an explicit shell audio flag; requires normal Quit')
     parser.add_argument('--native-loading',action='store_true',help='Require guarded native WAV loading in the default audio route')
+    parser.add_argument('--native-factory',action='store_true',help='Require native factory, disabled Wine dsound and zero unsupported local COM calls')
+    parser.add_argument('--native-media',action='store_true',help='Enable native movies/file sounds alongside live menus')
+    parser.add_argument('--disable-wine-dsound',action='store_true',help='Diagnostic: disable transitive Wine DirectSound module; known movie-stack dependency')
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
@@ -391,8 +394,9 @@ def main():
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     explicit_native_audio=args.native_voices
-    if args.legacy_audio and (args.native_voices or args.default_audio or args.native_loading):parser.error('Legacy and native audio are separate routes')
-    args.native_voices |= args.default_audio or args.native_loading
+    if args.legacy_audio and (args.native_voices or args.default_audio or args.native_loading or args.native_factory):parser.error('Legacy and native audio are separate routes')
+    args.native_voices |= args.default_audio or args.native_loading or args.native_factory
+    if args.disable_wine_dsound and not args.native_factory:parser.error('Module-disable diagnostic requires native factory verification')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
@@ -426,6 +430,9 @@ def main():
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'native_wave_loading_required':args.native_loading,
+              'native_audio_factory_required':args.native_factory,
+              'native_media_required':args.native_media,
+              'wine_dsound_disable_requested':args.disable_wine_dsound,
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
@@ -436,6 +443,8 @@ def main():
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
+        if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
+        if args.native_media:declaration_command.extend(['--behavior','HOST.native-menu-media','--scenario','native-menu-media-campaign-20261012'])
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
@@ -449,8 +458,9 @@ def main():
         report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
         if args.native_voices and not any(c['behavior']=='HOST.native-menu-audio' for c in declaration['claims']):raise ValueError('Native audio requires its prospective behavior declaration')
         if args.native_loading and not any(c['behavior']=='HOST.native-wave-loading' for c in declaration['claims']):raise ValueError('Native loading requires its prospective behavior declaration')
+        if args.native_factory and not any(c['behavior']=='HOST.native-audio-factory' for c in declaration['claims']):raise ValueError('Native factory requires its prospective behavior declaration')
     if not args.legacy_audio:
-        audio_sources=['tools/native_audio_launch.py','tools/build-audio-bridge.py','tools/build-shadow-bridge.py','runtime/shadow/win32_min.h']
+        audio_sources=['tools/native_audio_launch.py','tools/prepare-native-audio.py','tools/prepare-native-draw.py','tools/prepare-shadow-experiment.py','tools/build-audio-bridge.py','tools/build-shadow-bridge.py','runtime/shadow/win32_min.h']
         audio_sources += [p.relative_to(ROOT).as_posix() for p in (ROOT/'runtime/audio').iterdir() if p.is_file()]
         report['sources'].update({p:sha(ROOT/p) for p in audio_sources})
     if args.native_draw:
@@ -489,6 +499,8 @@ def main():
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'
+    env.pop('MNM_NATIVE_DISABLE_DSOUND',None)
+    if args.disable_wine_dsound:env['MNM_NATIVE_DISABLE_DSOUND']='1'
     if args.profile_resident:env.update(MNM_RESIDENT_STAGE_PROFILE='1',MNM_RENDER_PACER_OBSERVE='1')
     if args.capture_resident:env['MNM_RESIDENT_PROFILE_CAPTURE']=str(out/'resident-source.bin')
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
@@ -516,6 +528,7 @@ def main():
         probe_env = dict(env, QT_QPA_PLATFORM='offscreen')
         command = [str(binary), '--repo', str(ROOT), '--live-menus', '--native-commands', '--smoke-test']
         if explicit_native_audio:command.append('--native-voices')
+        if args.native_media:command.append('--native-media')
         if args.legacy_audio:command.append('--legacy-audio')
         if args.resident_world:command.append('--resident-world')
         with (out / 'mode-probe.log').open('w') as log:
@@ -582,6 +595,7 @@ def main():
             command = [str(ROOT / 'tools/run-qt-shell.sh'), '--live-menus', '--native-commands',
                        '--live-menu-test', str(out / 'flow.json')]
             if explicit_native_audio:command.append('--native-voices')
+            if args.native_media:command.append('--native-media')
             if args.legacy_audio:command.append('--legacy-audio')
             report['launch_command'] = command
             if args.resident_world:command.append('--resident-world')
@@ -641,14 +655,24 @@ def main():
                 scene=json.loads((roots[0]/'scene-bridge-build.json').read_text())
                 report['scene_bridge_build']=scene
             if args.native_voices:
-                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()),native_wave=args.native_loading)
+                report['native_audio']=validate_audio_activity(json.loads((roots[0]/'native-audio-report.json').read_text()),native_wave=args.native_loading,native_factory=args.native_factory)
                 report['native_audio_channel']=validate_audio_retirement(roots[0]/'native-voices.bin',report['native_audio'])
                 audio_build=json.loads((roots[0]/'audio-bridge-build.json').read_text())
                 manifest=json.loads((roots[0]/'manifest.json').read_text())
                 if not manifest.get('native_voices') or sha(roots[0]/'game/MnmAudio.dll')!=manifest['audio_dll_sha256'] or audio_build['sha256']!=manifest['audio_dll_sha256']:raise ValueError('Native audio staging/build fingerprint mismatch')
+                if args.native_factory and not manifest.get('native_audio_factory'):raise ValueError('Native factory was not staged')
                 for name,digest in audio_build['compiled_sources'].items():
                     if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native audio compiler source: '+name)
                 report['native_audio_compiled_sources']=audio_build['compiled_sources']
+            if args.native_media:
+                media=json.loads((roots[0]/'native-media-report.json').read_text())
+                movies=[entry for entry in media if entry.get('operation')==1]
+                if not movies or any(entry.get('status') not in (3,4) or not entry.get('accepted') or entry.get('error') or
+                                     entry.get('video_frames',0)<1 or entry.get('audio_frames',0)<1 or
+                                     entry.get('audible_output_requested') is not True or entry.get('audio_device_available') is not True for entry in movies):
+                    raise ValueError('Native movie decoding/output/completion history missing or failed')
+                if any(entry.get('status') in (5,6) for entry in media):raise ValueError('Native media rejected or failed a submitted request')
+                report['native_media']=media
             if args.native_draw:
                 report['native_draw']=validate_native_draw(roots[0])
                 native_build=json.loads((roots[0]/'native-draw-build.json').read_text())

@@ -35,6 +35,7 @@ def main():
         fixture.writeframes(struct.pack('<4h',-32768,-1,1000,32767))
     env={key:value for key,value in os.environ.items() if not key.startswith('MNM_')}
     env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
+               WINEDLLOVERRIDES='dsound=disabled',
                MNM_AUDIO_WAVE_TEST='1',
                MNM_AUDIO_CHANNEL='Z:'+str(channel).replace('/','\\'))
     with (root/'server.log').open('w') as log:
@@ -69,6 +70,7 @@ def main():
             'last_ack':int.from_bytes(header[64:68],'little'),
             'native_devices_selected':int.from_bytes(header[84:88],'little'),
             'fallback_attempts':int.from_bytes(header[88:92],'little'),
+            'unsupported_local_calls':int.from_bytes(header[124:128],'little')>>24,
             'checks':['native_pcm_and_controls','COM_method_slots_stdcall','primary_metadata','primary_volume_roundtrip','primary_format_validation',
                       'primary_stop_preserves_secondary_playback','manager_gate_failure_order_matrices',
                       'secondary_lock_unlock','duplicate_source_retirement','independent_status','native_wave_abi_exact_pcm','native_wave_small_destination_and_traversal_refusal',
@@ -76,6 +78,7 @@ def main():
                       'stale_host_timeout_and_permanent_retirement']}
     assert report['last_request']==report['last_ack'] and report['last_ack']>10,report
     assert report['native_devices_selected']==1 and report['fallback_attempts']==0,report
+    assert report['unsupported_local_calls']>=3,report
     (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     print(f'Voice bridge checks passed: {root/"report.json"}')
 

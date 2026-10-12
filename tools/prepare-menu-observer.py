@@ -13,8 +13,9 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False):
     if native_voices and not (native_render and actions):raise ValueError('Native voices require native menus and command presentation')
+    if native_media and not (native_render and actions):raise ValueError('Native media requires native menus and command presentation')
     if resident_world and not (native_render and native_draw and actions):raise ValueError("Resident World requires native menus, commands and owned drawing")
     if native_draw and not (native_render and actions):raise ValueError('Native graphics requires native menus and command presentation')
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
@@ -50,7 +51,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     audio_dll=None
     if native_voices:
         audio_dll=module('menu_audio_build','tools/build-audio-bridge.py').build()
-        patched=module('menu_audio_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmAudio.dll','AudioAnchor',b'.mnmaud')
+        patched=module('menu_audio_import','tools/prepare-native-audio.py').redirect(data,patched)
         shutil.copy2(audio_dll,game/'MnmAudio.dll')
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
@@ -85,7 +86,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         encoder=preferences.load('preferences_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
         stored=module('preferences_store','tools/menu_preferences_store.py').stage(game,preferences_store,encoder,decoder)
         if stored['warning']:print('Preferences store ignored: '+stored['warning'],flush=True)
-    edits=preferences.disable_cd_music(game)+preferences.skip_movies(game)
+    edits=preferences.disable_cd_music(game)+(preferences.patch_staged_preferences(game,'VIDEO',{'PlayFMV':'TRUE','PlayFMVOut':'TRUE'}) if native_media else preferences.skip_movies(game))
     native_cadence=None
     if native_render:
         encoder=preferences.load('native_cfg_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
@@ -106,10 +107,12 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
     metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     native_wave_loading=native_voices,
+                    native_audio_factory=native_voices,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
+    metadata.update(native_media=native_media,media_channel=str(root/'native-media.bin') if native_media else None)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
-        immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx','.wav','.ini')}
+        immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx','.wav','.ini','.avi')}
         (root/'input-fingerprints.json').write_text(json.dumps(immutable_inputs,indent=2)+'\n')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Source executable changed')
@@ -124,9 +127,10 @@ if __name__=='__main__':
     parser.add_argument('--resident-world',action='store_true',help='Bind resident GPU World completion to the public command stream')
     parser.add_argument('--native-draw',action='store_true',help='Use owned native graphics services with real DirectDraw disabled')
     parser.add_argument('--native-voices',action='store_true',help='Stage native DirectSound voices for the native menu/render session')
+    parser.add_argument('--native-media',action='store_true',help='Route movies/file sounds through the session-owned native broker')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; default working/game-nocd')
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

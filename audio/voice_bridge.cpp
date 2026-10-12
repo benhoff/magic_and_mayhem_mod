@@ -105,6 +105,9 @@ struct VoiceBroker::State:QObject {
             result.fallbacks=qFromLittleEndian(__atomic_load_n(words+22,__ATOMIC_ACQUIRE));
             result.adapterFailures=qFromLittleEndian(__atomic_load_n(words+23,__ATOMIC_ACQUIRE));
             result.waveHookInstalled=(qFromLittleEndian(__atomic_load_n(words+31,__ATOMIC_ACQUIRE))&MNM_AUDIO_WAVE_INSTALLED)!=0;
+            const auto capabilities=qFromLittleEndian(__atomic_load_n(words+31,__ATOMIC_ACQUIRE));
+            result.nativeFactoryOnly=(capabilities&MNM_AUDIO_FACTORY_NATIVE_ONLY)!=0;
+            result.unsupportedCalls=capabilities>>24;
         }
         return result;
     }

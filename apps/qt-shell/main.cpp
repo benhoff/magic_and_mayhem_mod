@@ -113,7 +113,18 @@ public:
             });
             liveMenus_->nativeCommandsEnabled=nativeCommands_;
             liveMenus_->nativeVoicesEnabled=nativeVoices_;
+            liveMenus_->nativeMediaEnabled=nativeMedia_;
             liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path,QFileInfo(path).dir().filePath("game/Sounds"));};
+            liveMenus_->prepareNativeMedia=[this](const QString& path){
+                media_=std::make_unique<MediaBroker>(*gl_,QFileInfo(path).dir().filePath("game"));
+                media_->frame=[this](QImage frame){menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
+                media_->movieChanged=[this](bool playing){input_->suspend(playing || (commands_&&commands_->state()!=LiveCommandSession::State::Active));
+                    if(liveMenus_)liveMenus_->setMediaActive(playing);
+                    if(commands_)commands_->setMediaActive(playing);
+                    if(playing){menuStack_->setCurrentWidget(viewport_);statusBar()->showMessage("Playing movie. Press Escape to skip.");}
+                    else if(liveMenus_&&liveMenus_->running())statusBar()->showMessage("Movie finished; resuming native session.");};
+                return media_->create(path);
+            };
             liveMenus_->prepareNativePresentation=[this](const QString& directory){
                 QStringList arguments;
                 return createNativePresentation(directory+"/render-frame.bin",directory+"/render-input.bin",directory+"/render-commands.bin",true,arguments);
@@ -182,7 +193,7 @@ public:
         inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{if(input_)input_->heartbeat();});
         frames_.setInterval(16);commandDrain_.setSingleShot(true);commandDrain_.setInterval(0);
         const auto pollFrame=[this]{
-            if(!stream_ || (media_ && media_->movieActive()))return;
+            if(!stream_ || ((media_ && media_->movieActive())&&!commands_))return;
             if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             if(commands_){
                 QElapsedTimer workClock;workClock.start();
@@ -372,6 +383,11 @@ private:
         if(elapsed_.elapsed()>(liveMenus_?120000:30000)){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        if(media_&&liveMenus_){
+            media_->stop();QFile evidence(QDir(liveMenus_->evidenceDirectory()).filePath("native-media-report.json"));
+            const auto bytes=QJsonDocument(media_->history()).toJson();
+            if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native media session evidence.");
+        }
         if(voices_&&liveMenus_){
             const auto activity=voices_->activity();voices_->stop();
             const QJsonObject report{{"requests",qint64(activity.requests)},{"creates",qint64(activity.creates)},
@@ -379,6 +395,7 @@ private:
                 {"plays",qint64(activity.plays)},{"releases",qint64(activity.releases)},
                 {"wave_loads",qint64(activity.waveLoads)},{"wave_bytes",qint64(activity.waveBytes)},
                 {"wave_hook_installed",activity.waveHookInstalled},
+                {"native_factory_only",activity.nativeFactoryOnly},{"unsupported_calls",int(activity.unsupportedCalls)},
                 {"failed_requests",qint64(activity.failures)},{"native_selections",int(activity.nativeSelections)},
                 {"fallbacks",int(activity.fallbacks)},{"adapter_failures",int(activity.adapterFailures)},
                 {"audible_output",activity.audible},{"ready_before_stop",activity.ready},
@@ -570,7 +587,7 @@ int main(int argc,char** argv){
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
-    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
+    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
     if(menuPreview){
         MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");

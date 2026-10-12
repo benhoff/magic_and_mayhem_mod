@@ -11,6 +11,8 @@ public:
     // Discard any backlog and attach through a strict complete owned checkpoint.
     bool attachCheckpoint();
     bool poll();
+    // A native movie owns presentation while the producer waits for it.
+    void setMediaActive(bool active);
     bool requestStop();
     bool finishProducer();
     void abort();
@@ -24,6 +26,8 @@ public:
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<void(State)> stateChanged;
 private:
+    friend struct LiveCommandSessionTestAccess;
+    qint64 waitingElapsed() const;
     bool fresh(const QString& path,quint32 session);
     bool fail(const QString& message);
     bool recover(bool checkpoint=false);
@@ -32,5 +36,7 @@ private:
     QString path_,error_;quint32 session_=0,version_=0;unsigned retries_=0;
     int initialFrameTimeoutMs_=10000;
     bool stopAcknowledged_=false;
+    bool mediaActive_=false;
+    qint64 mediaStartedAt_=0,mediaPausedMs_=0;
     State state_=State::WaitingFrame;QElapsedTimer deadline_;
 };

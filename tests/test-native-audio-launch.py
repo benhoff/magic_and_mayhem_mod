@@ -49,6 +49,12 @@ class AudioLaunchTest(unittest.TestCase):
         self.words[31]=0x10001;self.write_channel()
         with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_wave_loading':True},{})
 
+    def test_native_factory_disables_wine_directsound(self):
+        env={'WINEDLLOVERRIDES':'example=n','MNM_NATIVE_DISABLE_DSOUND':'1'}
+        authorize(self.root,{**self.metadata,'native_audio_factory':True,'native_media':True},env)
+        self.assertEqual(env['WINEDLLOVERRIDES'],'example=n;dsound=')
+        with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_factory':1},{})
+
     def test_header_failures(self):
         for word, value in [(2, 1), (3, 1), (20, 0)] + [(i, 1) for i in list(range(4, 19)) + list(range(21, 32))]:
             with self.subTest(word=word):

@@ -6863,3 +6863,31 @@ replacement remain none: original configuration/cache/manager/positional and
 scheduling work still runs; movie/music/file-sound integration, device recovery,
 full listening/timing/stress comparison and traced whole-audio API retirement
 remain pending. See `native-audio-end-to-end.md`.
+
+## Native game audio factory and live-menu media —2026-10-12
+
+`HOST.native-audio-factory` redirects the pinned game DirectSound ordinal import
+to the native adapter, verifies the original binding/bytes and independently
+reports native-factory selection plus local unsupported-COM calls.
+`HOST.native-menu-media` adds session-owned native movies/file sounds to live
+native menus. Movies pause startup menu/render budgets; rendering commands
+continue to drain with movie presentation preserved and latest-game-frame
+resume. CLI/media staging scrubs inherited channels and retains AVI inputs.
+
+[Fresh factory/media campaign](native-audio-factory-media-public-pass-20261012.json)
+passes full Intro0/Intro1, campaign/resume and normal Quit:3,870,087 native decoded
+soundtrack PCM frames,2,781 movie video frames;7WAV loads/uploads349,862bytes,
+12plays,116request/ACK,1native selection,0fallbacks/failed requests/adapter
+errors/local unsupported COM. Source/compiler/media/config checks, immutable
+manifests, readiness withdrawal and private Wine cleanup pass. Two focused Qt
+lease/lifecycle tests,13 Python admissions and the synthetic over64MiB GPU movie-drain
+regression pass. These are scoped implementations and live observations;
+original comparison and live-replacement statuses remain independent.
+
+Five retained failures distinguish Quartz's transitive Wine DirectSound startup
+dependency, menu startup lease, rendering frame budget and producer ACK
+starvation. Module-disable remains an explicit diagnostic and failed runs count
+as failures. Native voices default in native menu/command sessions; native media
+remains explicit while music and broader fallback retirement progress. Complete
+catalog/manager/CD routing, consumption timing, device recovery, physical
+listening and long/original comparisons remain pending.

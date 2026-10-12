@@ -13,6 +13,7 @@ public:
     bool poll(quint32 budget=MNM_RENDER_COMMANDS_V1_POLL_BYTES);
     bool finishProducer();
     void abort();
+    void setPresentationSuspended(bool suspended);
     std::function<void()> framePresented;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     bool ended() const{return ended_;}
@@ -28,4 +29,6 @@ private:
     std::unique_ptr<mnm::render::CommandConsumer> consumer_;
     std::vector<mnm::render::SurfaceCommand> pending_;std::size_t cursor_=0;
     QString error_;
+    bool presentationSuspended_=false;
+    mnm::render::GpuFrame deferredPresentation_;
 };

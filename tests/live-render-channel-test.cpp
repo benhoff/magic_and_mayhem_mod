@@ -77,10 +77,11 @@ void coalesced(GlViewport& viewport){
     check(!live.result()->liveSurfaces && !live.result()->stats.nativeReadbacks && !live.result()->stats.rgbaReadbacks && !viewport.imageUploads(),"Burst ownership/readback regression");
     coalescedPresents=shown;coalescedPaints=paints;coalescedPolls=polls;
 }
-unsigned sustained(GlViewport& viewport){
+unsigned sustained(GlViewport& viewport,bool movie=false){
     QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("sustained");
     check(live.create(path,222,2),"sustained create");Writer mapped(path);mnm_ring_writer writer{};
     check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"sustained claim");
+    if(movie){QImage overlay(2,2,QImage::Format_RGBA8888);overlay.fill(Qt::cyan);viewport.setFrame(overlay);live.setPresentationSuspended(true);}
     quint64 total=0;unsigned full=0,seq=0,shown=0;QRgb expected=qRgb(255,0,0);
     live.framePresented=[&]{auto image=viewport.grabFramebuffer();for(int y=0;y<64;++y)for(int x=0;x<64;++x)check(image.pixel(x,y)==expected,"sustained independent framebuffer");++shown;};
     const auto send=[&](const QByteArray& bytes){
@@ -98,13 +99,15 @@ unsigned sustained(GlViewport& viewport){
         expected=qRgb((color>>16)&255,(color>>8)&255,color&255);
         for(qsizetype i=0;i<pixels.size();i+=4)qToLittleEndian(color,pixels.data()+i);
         QByteArray update;record(update,++seq,2,{1,0,0,512,512},pixels);send(update);
-        if(frame%20==0 || frame==70){QByteArray present;record(present,++seq,6,{1});send(present);}
+        if(frame%20==0 || frame==70){QByteArray present;record(present,++seq,6,{1});send(present);
+            if(movie){check(!shown&&viewport.frameSize()==QSize(2,2),"command drain overwrote native movie");const auto image=viewport.grabFramebuffer();check(image.pixel(32,32)==qRgb(0,255,255),"movie pixels changed during command drain");}}
     }
     for(unsigned i=0;i<5000;++i){QByteArray update;record(update,++seq,2,{1,0,0,1,1},pixels.first(4));send(update);}
     QByteArray end;record(end,++seq,7,{1});record(end,++seq,8,{});send(end);
     check(mnm_ring_end(&writer) && live.finishProducer(),"sustained END");
-    check(total>quint64(mnm::render::maxCommandBytes) && seq>4096 && full && shown==4,"sustained exceeds old limits");
-    check(live.result()->liveSurfaces==0 && live.result()->stats.nativeReadbacks==0 && live.result()->stats.rgbaReadbacks==0 && viewport.imageUploads()==0,"sustained cleanup and counters");
+    if(movie){check(!shown,"game presentations escaped movie suspension");live.setPresentationSuspended(false);check(shown==1,"movie resume must present latest complete game frame once");live.setPresentationSuspended(false);check(shown==1,"movie resume must be idempotent");}
+    check(total>quint64(mnm::render::maxCommandBytes) && seq>4096 && full && shown==(movie?1u:4u),"sustained exceeds old limits");
+    check(live.result()->liveSurfaces==0 && live.result()->stats.nativeReadbacks==0 && live.result()->stats.rgbaReadbacks==0 && viewport.imageUploads()==(movie?1u:0u),"sustained cleanup and counters");
     sustainedBytes=total;sustainedCommands=seq;sustainedRetries=full;
     // Streaming lifetime identity remains bounded: IDs must increase, not reuse.
     {mnm::render::CommandDecoder decoder(mnm::render::CommandStreamMode::Streaming);QByteArray b=header;record(b,1,1,{2,1,1,16,0xf800,0x7e0,0x1f},QByteArray::fromHex("00f8"));record(b,2,7,{2});record(b,3,1,{1,1,1,16,0xf800,0x7e0,0x1f},QByteArray::fromHex("00f8"));bool refused=false;try{decoder.append(b);}catch(...){refused=true;}check(refused,"streaming monotonic identity");}
@@ -229,7 +232,9 @@ int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);QApplication app(argc,argv);
     try {
         GlViewport viewport;viewport.setMinimumSize(1,1);viewport.resize(64,64);viewport.show();app.processEvents();check(viewport.ready(),"viewport ready");
-        if(argc==1){coalesced(viewport);auto frames=synthetic(viewport)+sustained(viewport);std::printf("{\"success\":true,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u,\"burst_presents\":%u,\"burst_paints\":%u,\"burst_polls\":%u,\"input_between_polls\":true}\n",frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries,coalescedPresents,coalescedPaints,coalescedPolls);return 0;}
+        if(argc==1){
+            {GlViewport movie;movie.setMinimumSize(1,1);movie.resize(64,64);movie.show();app.processEvents();check(movie.ready(),"movie viewport ready");sustained(movie,true);}
+            coalesced(viewport);auto frames=synthetic(viewport)+sustained(viewport);std::printf("{\"success\":true,\"movie_command_drain\":true,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u,\"burst_presents\":%u,\"burst_paints\":%u,\"burst_polls\":%u,\"input_between_polls\":true}\n",frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries,coalescedPresents,coalescedPaints,coalescedPolls);return 0;}
         check(argc==4,"live args: channel active-marker report");viewport.resize(800,600);app.processEvents();LiveCommandRenderer live(viewport);check(live.open(QString::fromLocal8Bit(argv[1])),"open live channel");QJsonArray frames;bool beforeExit=false;QElapsedTimer elapsed;elapsed.start();QTimer timer;
         live.framePresented=[&]{
             QFile marker(QString::fromLocal8Bit(argv[2]));if(marker.open(QIODevice::ReadOnly)){

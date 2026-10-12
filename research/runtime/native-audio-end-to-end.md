@@ -73,6 +73,61 @@ that failed run remains at `working/tests/native-wave-loading/run-vd2s7vs2`.
 The current oracle locates the unique installed spelling independently of the
 native resolver. Neither failed run is counted as a pass.
 
+## Native game factory and live movies
+
+The game import descriptor for `DSOUND.dll` ordinal1 is now redirected to
+`MnmAudio.dll`, which exports `DirectSoundCreate` at ordinal1. The patch script
+requires the pinned executable hash and exact descriptor, ordinal lookup and
+original thunk bytes; it retains the game's original IAT/thunk addresses.
+The PE adapter publishes an independently checked native-factory flag. Local
+unsupported COM calls have a saturating counter, including calls that never
+reach the host request queue. This is a game-factory boundary, not a complete
+absence proof for all audio APIs.
+
+Wine Quartz still imports Wine DirectSound transitively. Disabling that module
+is an explicit `MNM_NATIVE_DISABLE_DSOUND=1` diagnostic, never a default launch
+policy. [The initial module-disable run](native-audio-factory-disabled-movie-dependency-failure-20261012.json)
+and [the media-enabled retry](native-audio-factory-media-dependency-failure-20261012.json)
+fail during Quartz startup, before useful media commands. Both retain cleanup,
+source and immutable-input checks. These failures do not establish retirement.
+
+Live menus admit `--native-media` with the native command renderer. The session
+prepares and owns the media channel before Wine launches; staging enables
+startup movies, scrubs inherited channels and fingerprints AVI inputs. Qt movie
+frames use the viewport, release/suspend forwarded game input and record video,
+soundtrack, decoder and completion history at session finish. Unsupported movie
+control bytes and preacceptance errors retain the existing bounded fallback.
+Native file sounds still retain supported/unsupported WinMM transition policy;
+this milestone does not retire every WinMM call.
+
+Full startup playback exposed three distinct integration boundaries. The
+[first run](native-menu-media-startup-lease-failure-20261012.json) exhausted the
+menu startup lease; the [second](native-menu-media-render-frame-lease-failure-20261012.json)
+exhausted the initial rendering frame budget; the
+[third](native-menu-media-command-drain-failure-20261012.json) exposed producer
+ACK starvation while movie display paused command reads. Native movies now
+pause both startup budgets while bounded native command reads continue. Game
+GPU presentations are held during the movie and only the latest complete frame
+resumes afterward. Two focused lease/lifecycle checks and a synthetic stream
+larger than the command queue pass; the latter checks unchanged movie pixels,
+zero escaped game presentations and a single idempotent latest-frame resume.
+[Fresh public campaign evidence](native-audio-factory-media-public-pass-20261012.json)
+passes both complete startup movies, campaign entry/resume and normal Quit.
+The two movies deliver 3,870,087 captured PCM soundtrack frames and 2,781
+presented video frames with no decoder errors, native output requested and
+an available audio device. The game uses its native-only factory, all eight
+WAV helper redirects, seven loads/uploads totalling349,862 bytes,12 plays and
+116 request/ACK pairs. Local unsupported-COM, submitted-failure, adapter-error
+and fallback counters are zero. Readiness is withdrawn, private Wine stops and
+all source/compiler/media/config/original-input checks pass. This validates a
+bounded live journey; human listening, original timing/waveforms, every movie
+control/fallback branch and the complete audio manager remain separate.
+Nine audio and four media admission checks, two Qt lease/lifecycle checks and
+the GPU command-drain regression pass. Native factory staging and synthetic
+PE32 COM/WAV/stopped-host fixtures also pass; their raw results remain under
+`working/tests/audio-staging/run-046lwoul` and
+`working/tests/audio-bridge/run-nkni0yrl`.
+
 ## Remaining stages
 
 Native configuration/catalog and manager integration, positional event routing,

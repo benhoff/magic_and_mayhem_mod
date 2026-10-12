@@ -11,7 +11,8 @@ struct VoiceActivity {
     quint64 requests=0,creates=0,uploads=0,uploadedBytes=0,plays=0,releases=0,failures=0;
     quint64 waveLoads=0,waveBytes=0;
     quint32 nativeSelections=0,fallbacks=0,adapterFailures=0;
-    bool ready=false,audible=false,waveHookInstalled=false;
+    quint32 unsupportedCalls=0;
+    bool ready=false,audible=false,waveHookInstalled=false,nativeFactoryOnly=false;
 };
 class VoiceCommands {
 public:

@@ -6,6 +6,16 @@ calls with Qt Multimedia. Movies reach the existing OpenGL viewport through
 DirectSound effects, voice buffers, Windows window/message APIs and remaining
 DirectDraw calls continue through Wine. This is not a complete audio port.
 
+The current live menu route also admits
+`./tools/run-qt-shell.sh --live-menus --native-commands --native-media`.
+Native voices are enabled by the native menu/command default. Media remains
+explicit while the end-to-end music and broader fallback work is in progress.
+Session staging creates the owned broker before Wine and fingerprints movie
+inputs. Movies suspend menu/render startup budgets and game presentation, while
+native rendering commands continue to drain to avoid producer ACK starvation.
+See [current audio work and retained failures](native-audio-end-to-end.md).
+The original chunk and synthetic milestones below remain historical scope.
+
 ## Static findings
 
 Pinned working no-CD `Chaos.exe` SHA-256:

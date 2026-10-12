@@ -12,6 +12,11 @@ typedef i32 (WIN *Create)(void*,void**,void*);static Create legacy;
 #define INVALID ((i32)0x80070057)
 #define UNSUPPORTED ((i32)0x80004001)
 #define FAILED ((i32)0x80004005)
+static i32 unsupported(void){
+    if(channel){u32 old=__atomic_load_n(channel+31,__ATOMIC_RELAXED);
+        while((old>>24)!=255u && !__atomic_compare_exchange_n(channel+31,&old,old+0x1000000u,0,__ATOMIC_RELAXED,__ATOMIC_RELAXED)){}
+    }return UNSUPPORTED;
+}
 struct NativeWave {u8* pcm;u32 bytes,duration;u8 format[18];};
 static i32 request_wave(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result,struct NativeWave* wave){
     if(!channel || dead || !__atomic_load_n(channel+20,__ATOMIC_ACQUIRE))return FAILED;
@@ -60,7 +65,7 @@ static i32 WIN query(struct Object* o,const u8* guid,void** out){
     static const u8 sound[16]={0x83,0xfa,0x9a,0x27,0x81,0x49,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
     static const u8 buffer[16]={0x85,0xfa,0x9a,0x27,0x81,0x49,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
     if(!out || !guid)return INVALID;*out=0;
-    if(!same(guid,unknown,16) && !same(guid,o->kind==1?sound:buffer,16))return (i32)0x80004002;
+    if(!same(guid,unknown,16) && !same(guid,o->kind==1?sound:buffer,16)){unsupported();return (i32)0x80004002;}
     __atomic_add_fetch(&o->refs,1,__ATOMIC_RELAXED);*out=o;return 0;
 }
 static u32 WIN addref(struct Object* o){return __atomic_add_fetch(&o->refs,1,__ATOMIC_RELAXED);}
@@ -76,11 +81,11 @@ static i32 WIN create_buffer(struct Object* device,u32* desc,void** out,void* ou
     (void)device;if(!out)return INVALID;*out=0;
     if(!desc || desc[0]!=20 || desc[3] || outer)return INVALID;
     u32 primary=desc[1]==0x81;if(primary && (desc[2] || desc[4]))return INVALID;
-    if(!primary && (!desc[4] || desc[1]!=0xea))return UNSUPPORTED;
+    if(!primary && (!desc[4] || desc[1]!=0xea))return unsupported();
     struct Object* o=object(primary?2:3);if(!o)return (i32)0x8007000e;
     o->flags=desc[1];o->bytes=desc[2];
     i32 status=0;
-    if(!primary){copy(o->format,(void*)desc[4],18);if(o->format[16] || o->format[17])status=UNSUPPORTED;
+    if(!primary){copy(o->format,(void*)desc[4],18);if(o->format[16] || o->format[17])status=unsupported();
         else status=request(MNM_AUDIO_CREATE,0,0,o->bytes,o->format,o->flags,0,&o->id);}
     if(status){release(o);return status;}*out=o;return 0;
 }
@@ -92,20 +97,20 @@ static i32 WIN duplicate(struct Object* device,struct Object* source,void** out)
     i32 status=request(MNM_AUDIO_DUPLICATE,source->id,0,0,0,0,0,&o->id);
     if(status){release(o);return status;}*out=o;return 0;
 }
-static i32 WIN cooperate(struct Object* o,void* window,u32 level){(void)o;return window && level==2?0:UNSUPPORTED;}
+static i32 WIN cooperate(struct Object* o,void* window,u32 level){(void)o;return window && level==2?0:unsupported();}
 static i32 WIN compact(struct Object* o){(void)o;return 0;}
 static i32 WIN get_speakers(struct Object* o,u32* value){(void)o;if(!value)return INVALID;*value=4;return 0;}
-static i32 WIN set_speakers(struct Object* o,u32 value){(void)o;(void)value;return UNSUPPORTED;}
-static i32 WIN initialize(struct Object* o,void* guid){(void)o;(void)guid;return UNSUPPORTED;}
-static i32 WIN position(struct Object* o,u32* read,u32* write){(void)o;(void)read;(void)write;return UNSUPPORTED;}
+static i32 WIN set_speakers(struct Object* o,u32 value){(void)o;(void)value;return unsupported();}
+static i32 WIN initialize(struct Object* o,void* guid){(void)o;(void)guid;return unsupported();}
+static i32 WIN position(struct Object* o,u32* read,u32* write){(void)o;(void)read;(void)write;return unsupported();}
 static i32 WIN get_format(struct Object* o,void* format,u32 size,u32* written){if(written)*written=18;if(!format)return written?0:INVALID;if(size<18)return INVALID;copy(format,o->format,18);return 0;}
 static i32 WIN get_volume(struct Object* o,i32* out){if(!out)return INVALID;if(o->kind==2)return request(MNM_AUDIO_PRIMARY_GET_VOLUME,0,0,0,0,0,0,(u32*)out);*out=o->volume;return 0;}
 static i32 WIN get_pan(struct Object* o,i32* out){if(!out)return INVALID;*out=o->pan;return 0;}
 static i32 WIN get_frequency(struct Object* o,u32* out){if(!out)return INVALID;copy(out,o->format+4,4);return 0;}
 static i32 WIN get_status(struct Object* o,u32* out){if(!out)return INVALID;if(o->kind==2)return request(MNM_AUDIO_PRIMARY_STATUS,0,0,0,0,0,0,out);return request(MNM_AUDIO_STATUS,o->id,0,0,0,0,0,out);}
-static i32 WIN buffer_init(struct Object* o,void* device,void* desc){(void)o;(void)device;(void)desc;return UNSUPPORTED;}
+static i32 WIN buffer_init(struct Object* o,void* device,void* desc){(void)o;(void)device;(void)desc;return unsupported();}
 static i32 WIN lock(struct Object* o,u32 offset,u32 length,void** a,u32* na,void** b,u32* nb,u32 flags){
-    if(o->kind!=3 || offset || flags)return UNSUPPORTED;
+    if(o->kind!=3 || offset || flags)return unsupported();
     if(!a || !na || !length || length>o->bytes || o->staging || (!!b!=!!nb))return INVALID;
     o->staging=HeapAlloc(GetProcessHeap(),8,length);if(!o->staging)return (i32)0x8007000e;
     o->locked=length;*a=o->staging;*na=length;if(b){*b=0;*nb=0;}return 0;
@@ -115,13 +120,13 @@ static i32 WIN unlock(struct Object* o,void* a,u32 na,void* b,u32 nb){
     i32 status=na?request(MNM_AUDIO_UPLOAD,o->id,0,na,0,0,a,0):0;
     HeapFree(GetProcessHeap(),0,o->staging);o->staging=0;o->locked=0;return status;
 }
-static i32 WIN play(struct Object* o,u32 a,u32 b,u32 flags){if(a || b || flags>1)return UNSUPPORTED;if(o->kind==2)return request(MNM_AUDIO_PRIMARY_PLAY,0,flags,0,0,0,0,0);return request(MNM_AUDIO_PLAY,o->id,flags,0,0,0,0,0);}
+static i32 WIN play(struct Object* o,u32 a,u32 b,u32 flags){if(a || b || flags>1)return unsupported();if(o->kind==2)return request(MNM_AUDIO_PRIMARY_PLAY,0,flags,0,0,0,0,0);return request(MNM_AUDIO_PLAY,o->id,flags,0,0,0,0,0);}
 static i32 WIN stop(struct Object* o){if(o->kind==2)return request(MNM_AUDIO_PRIMARY_STOP,0,0,0,0,0,0,0);return request(MNM_AUDIO_STOP,o->id,0,0,0,0,0,0);}
-static i32 WIN reset(struct Object* o,u32 pos){if(pos || o->kind!=3)return UNSUPPORTED;return request(MNM_AUDIO_RESET,o->id,0,0,0,0,0,0);}
-static i32 WIN set_format(struct Object* o,const u8* f){if(o->kind!=2)return UNSUPPORTED;if(!f)return INVALID;if(f[16] || f[17])return UNSUPPORTED;i32 status=request(MNM_AUDIO_PRIMARY_FORMAT,0,0,0,f,0,0,0);if(!status)copy(o->format,f,18);return status;}
+static i32 WIN reset(struct Object* o,u32 pos){if(pos || o->kind!=3)return unsupported();return request(MNM_AUDIO_RESET,o->id,0,0,0,0,0,0);}
+static i32 WIN set_format(struct Object* o,const u8* f){if(o->kind!=2)return unsupported();if(!f)return INVALID;if(f[16] || f[17])return unsupported();i32 status=request(MNM_AUDIO_PRIMARY_FORMAT,0,0,0,f,0,0,0);if(!status)copy(o->format,f,18);return status;}
 static i32 WIN set_volume(struct Object* o,i32 volume){if(volume< -10000 || volume>0)return INVALID;i32 status=request(o->kind==2?MNM_AUDIO_PRIMARY_VOLUME:MNM_AUDIO_VOLUME,o->id,(u32)volume,0,0,0,0,0);if(!status)o->volume=volume;return status;}
-static i32 WIN set_pan(struct Object* o,i32 pan){if(pan< -10000 || pan>10000)return INVALID;i32 status=o->kind==2?UNSUPPORTED:request(MNM_AUDIO_PAN,o->id,(u32)pan,0,0,0,0,0);if(!status)o->pan=pan;return status;}
-static i32 WIN frequency(struct Object* o,u32 value){(void)o;(void)value;return UNSUPPORTED;}
+static i32 WIN set_pan(struct Object* o,i32 pan){if(pan< -10000 || pan>10000)return INVALID;i32 status=o->kind==2?unsupported():request(MNM_AUDIO_PAN,o->id,(u32)pan,0,0,0,0,0);if(!status)o->pan=pan;return status;}
+static i32 WIN frequency(struct Object* o,u32 value){(void)o;(void)value;return unsupported();}
 static i32 WIN restore(struct Object* o){(void)o;return 0;}
 static void tables(void){
     device_table[0]=query;device_table[1]=addref;device_table[2]=release;device_table[3]=create_buffer;device_table[4]=caps;device_table[5]=duplicate;
@@ -141,6 +146,7 @@ static i32 WIN create_sound(void* guid,void** out,void* outer){
     return *out?0:(i32)0x8007000e;
 }
 __declspec(dllexport) void AudioAnchor(void){}
+i32 WIN NativeDirectSoundCreate(void* guid,void** out,void* outer){return create_sound(guid,out,outer);}
 __declspec(dllexport) i32 WIN AudioCreateForTest(void** out){tables();return create_sound(0,out,0);}
 __declspec(dllexport) i32 WIN AudioWaveForTest(const char* path,void* pcm,u32 capacity,u8* format,u32* duration){
     u32 instance[8]={0};if(!wave_open(instance,path))return FAILED;
@@ -163,7 +169,10 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(base!=0x400000 || !same((void*)(base+0x197566),thunk,6))return 1;
     void** iat=(void**)(base+0x1c501c);
     if(!VirtualProtect(iat,4,4,&protection))return 1;
-    legacy=(Create)*iat;__atomic_store_n(iat,(void*)&create_sound,__ATOMIC_RELEASE);VirtualProtect(iat,4,protection,&ignored);
+    if(*iat==(void*)&NativeDirectSoundCreate){
+        legacy=0;__atomic_or_fetch(channel+31,MNM_AUDIO_FACTORY_NATIVE_ONLY,__ATOMIC_RELEASE);
+    }else legacy=(Create)*iat;
+    __atomic_store_n(iat,(void*)&create_sound,__ATOMIC_RELEASE);VirtualProtect(iat,4,protection,&ignored);
     if(channel[31]&MNM_AUDIO_CAP_NATIVE_WAVE){
         if(wave_install(base))__atomic_or_fetch(channel+31,MNM_AUDIO_WAVE_INSTALLED,__ATOMIC_RELEASE);
         else{__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);__atomic_store_n(&dead,1,__ATOMIC_RELEASE);}
