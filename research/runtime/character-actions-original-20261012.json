@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "edit_cases": 288,
+  "accept_cases": 10,
+  "cancel_cases": 6,
+  "invalid_cases": 25,
+  "original_callback_unchanged": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "real_game_launched": false,
+  "live_validated": false,
+  "scope": "Original Character callback0x4b5470:288 six-row +/- action cases,10 OK cases including negative and greater-than-opening experience,6 Cancel cases,25 ignored actions. Two wizard identities,baseline/max/budget bounds,draft-only edits,selected wizard stat/experience commit or rollback. Original callback unchanged; wizard selection,fade and price/UI refresh privately stubbed. No price formula/refund schedule equivalence,live control admission,persistence on disk,full ABI or native integration.",
+  "anchors": {
+    "0x4b5470": "56578bf1e867b40d008d0cc08d14888b"
+  },
+  "sources": {
+    "tools/test-character-menu-contract.py": "e382ee975ce32d94ed994e91e7511c68e3494a455ce552230db07aa541f346e8",
+    "tests/character-menu-contract-reference.cpp": "14fe6f80f52f22d44a2bac4df74a5676e8198662dde36f6163484ce97dadadb8",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd"
+  },
+  "artifacts": {
+    "prospective-claims.json": "a663a54d63eb37b8bdc7018d37ef23245ca32e96be0367b003bef3f027dd34a3",
+    "character_menu_fixture_bytes.h": "81fee6235bb2c1d54b7c2c93c9b9a43033e5067c96a425e1cbc55752c688dbde",
+    "original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference": "b543b8bac89377bd1b2ad2688b7d887f959620114a6fc4fe5deec624e93d3cfe",
+    "reference.log": "ac167ff08802d01ea9bd7a4f159f5735b6be02415e77a9d154d752612b420696"
+  },
+  "execution_claims": [
+    {
+      "behavior": "CP.character-actions",
+      "contract_sha256": "718798761aa69d9f5f60fb6883bb66b57b64dc1f12a813a5bc08929fe27b5edb",
+      "scenarios": {}
+    }
+  ]
+}

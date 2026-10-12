@@ -126,4 +126,11 @@ Original-manifest verification surrounds original-derived artifact use.
 Original pricing/indexing/refund rules, campaign snapshots, portrait progression mapping,
 character persistence and the engine command adapter remain outstanding.
 
+The [2026-10-12 original action investigation](character-menu-engine-contract.md)
+now executes bounded six-row edits and OK/Cancel commit/rollback with price/UI
+refresh privately stubbed. It recovers draft/control/wizard fields and action
+indices, without validating original price calculation, this preview's supplied
+cost schedules or a live native editor. Existing preview evidence retains its
+historical hashes.
+
 Original SPR controls and talisman art now have [integration evidence](menu-sprite-integration.md).
