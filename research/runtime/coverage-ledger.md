@@ -8163,14 +8163,58 @@ with World, audiovisual/original equivalence, source-rate attribution, sustained
 remains opt-in and does not promote a complete native gameplay engine.
 
 
-## Incremental simulation/AI checkpoint (2026-10-12)
+## NS27 — Original creature execution recovery in progress (2026-10-12)
 
-The native simulation, health, melee, creature-control and autonomy milestones
-NS22–NS26 are committed together with their immutable bounded evidence and exact
-coverage receipts. Complete original AI and campaign integration remain pending.
-Committed-history review after7235e7f6 through868f2cad covers19 commits and both
-merge parents:1085 file and2001 behavior transitions. One appended retrospective
-receipt accounts for77 missing file and166 behavior pairs; no past gate pass or
-renewed validation is asserted. See
-`coverage/ai-checkpoint-incoming-history-20261012.json`. Subsequent AI recovery
-will use smaller milestone commits with explicit validation boundaries.
+The user authorized completing the remaining original AI and storage as needed.
+New typed ports cover scheduling/route continuation, transitions/actions, queued
+orders/follow/reference repair, valuation/terrain relocation, strategic roaming,
+thirteen behavior handlers, maintenance/movement/death and six animation
+callbacks. Seven development suites total180224 paired unchanged original32 /
+native64 / sanitized64 cases. The independent native CMake library and all seven
+CTest suites pass. These development results have no prospective scope claims;
+final current-source comparisons and exact accounting are still pending. Raw
+positive and negative runs are retained under
+`working/tests/original-ai-execution-20261012/`.
+
+`game/simulation/creature_rules_session.*` adds a native transactional rule
+boundary, real-generation command admission and portable continuation ownership.
+Its independent development test passes rollback/refusal and80-tick resumed
+execution. This validates that boundary with supplied test rules; recovered AI
+application integration remains pending. The new full5104b0 motion-action port
+is syntax-checked only. Original lower route/displacement, enabled-display effect
+ownership, scoring/upkeep/contribution chains, special/flight/interaction/cast
+callbacks, installed all-species state construction and simulation adapters still
+need recovery/composition/validation. No complete AI, campaign, original full-world
+equivalence or live replacement status is asserted.
+
+Bounded runs use the user-authorized private90GiB reserve policy; the normal
+100GiB repository policy stays unchanged. No cleanup was performed by this
+workstream. Manifest checks preserve all2927 original files. See
+[the recovery notes](creature-execution.md) for findings and corrected hypotheses.
+
+### Incremental commit checkpoint (2026-10-12)
+
+The simulation/AI work through NS26 had accumulated without milestone commits.
+This checkpoint preserves those bounded milestones and the explicitly unfinished
+NS27 ports. Fresh prospective declarations and reruns cover skirmish, melee and
+creature applications with the current shared game build file: contract checks,
+real Qt windows, refusals and fresh-process checkpoint continuation pass. New
+immutable reports are `ai-checkpoint-*.json`; earlier hashes remain unchanged.
+The new behavior-handler development rerun passes 53248 original/native/sanitized
+cases with a stable compiler closure; it supports pinned range discovery but has
+no prospective execution claims. Full motion remains syntax-checked only.
+
+Committed-history review covers all19 incoming commits after7235e7f6 through
+868f2cad, including both merge parents:1085 file and2001 behavior transitions.
+One retrospective receipt records77 missing exact file and166 behavior pairs
+from the merged parent transition. The durable report is
+`coverage/ai-checkpoint-incoming-history-20261012.json`. This closes intermediate
+hash accounting only; it asserts neither a historical gate pass nor new engine
+validation. Future authorized work will use smaller milestone commits, with
+source, evidence or pending limits, census and exact reviews together.
+
+Completed milestones NS22–NS26 are now committed as8a2f48f3 with both actual
+staged accounting and the installed pre-commit hook passing. The follow-up
+committed-history report `coverage/simulation-checkpoint-committed-history-20261012.json`
+checks153 parent/current file pairs and the400 staged behavior transitions,
+with no unresolved receipt gaps. NS27 remains an explicitly partial checkpoint.

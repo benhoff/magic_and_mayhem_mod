@@ -42985,7 +42985,8 @@
         "NS23.arena-normal",
         "NS23.arena-sanitized",
         "NS24.arena-regression",
-        "NS25.arena-regression"
+        "NS25.arena-regression",
+        "NS27.checkpoint-skirmish-normal"
       ],
       "status": {
         "understanding": "scoped",
@@ -43186,7 +43187,8 @@
         "NS23.arena-normal",
         "NS23.arena-sanitized",
         "NS24.arena-regression",
-        "NS25.arena-regression"
+        "NS25.arena-regression",
+        "NS27.checkpoint-skirmish-normal"
       ],
       "status": {
         "understanding": "scoped",
@@ -43383,7 +43385,8 @@
         "NS22.skirmish-window",
         "NS23.window",
         "NS24.window-regression",
-        "NS25.arena-window-regression"
+        "NS25.arena-window-regression",
+        "NS27.checkpoint-skirmish-window"
       ],
       "status": {
         "understanding": "scoped",
@@ -47330,7 +47333,8 @@
         "NS23.arena-normal",
         "NS23.arena-sanitized",
         "NS24.arena-regression",
-        "NS25.arena-regression"
+        "NS25.arena-regression",
+        "NS27.checkpoint-skirmish-normal"
       ],
       "status": {
         "understanding": "scoped",
@@ -48136,7 +48140,8 @@
       "evidence": [
         "NS24.exchange-normal",
         "NS24.exchange-sanitized",
-        "NS25.lab-regression"
+        "NS25.lab-regression",
+        "NS27.checkpoint-melee-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -48231,7 +48236,8 @@
       ],
       "evidence": [
         "NS24.window",
-        "NS25.lab-window-regression"
+        "NS25.lab-window-regression",
+        "NS27.checkpoint-melee-window"
       ],
       "status": {
         "understanding": "scoped",
@@ -48979,7 +48985,8 @@
       ],
       "evidence": [
         "NS25.encounter-normal",
-        "NS25.encounter-sanitized"
+        "NS25.encounter-sanitized",
+        "NS27.checkpoint-creature-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -49098,7 +49105,8 @@
         "tests/test-creature-encounter.py"
       ],
       "evidence": [
-        "NS25.window"
+        "NS25.window",
+        "NS27.checkpoint-creature-window"
       ],
       "status": {
         "understanding": "scoped",
@@ -49590,6 +49598,372 @@
       }
     },
     {
+      "id": "AI.execution-scheduler",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature route budget and periodic scheduling",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5416832,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.route-continuation",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original resumable route continuation and failures",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5348064,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/route_execution.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.periodic-maintenance",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original terrain relocation and creature valuation",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5384912,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5391600,
+          "scope": "5244f0 recomputes creature combat valuation; prior export label periodic_follow_work is not a confirmed meaning."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/periodic.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-actions-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.queued-orders",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original queued command delivery and ownership",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5389280,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5391280,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317152,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/orders.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-orders-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.execution-transition",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original behavior/action transition and dispatch",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286448,
+          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286704,
+          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286192,
+          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5299040,
+          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5298768,
+          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/action_execution.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-test.cpp",
+        "tests/creature-execution-actions-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.ranged-aiming",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original ranged aiming and admission",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5288640,
+          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266672,
+          "scope": "Class-dependent ranged tactic resolver; current-source comparison pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ranged_execution.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-actions-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.strategic-policy",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original scenario and strategic AI caller recovery",
+      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5387376,
+          "scope": "Nearest hostile attack/retreat and region roaming. Scenario ownership and lower world services are explicit boundaries; complete wizard/scenario policy remains pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5388384,
+          "scope": "Nearest hostile attack/retreat and region roaming. Scenario ownership and lower world services are explicit boundaries; complete wizard/scenario policy remains pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/strategy.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-strategy-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.native-composition",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native composition of recovered creature execution",
+      "scope": "Recovery in progress; no new execution equivalence, complete simulation, strategic policy or live replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "HOST.native-audio-file-sizes",
       "subsystem": "native_audio",
       "kind": "native_policy",
@@ -49646,6 +50020,465 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.follow-execution",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original follow reference execution",
+      "scope": "Native recovery in progress; comparison, complete world execution and live replacement pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5322832,
+          "scope": "Static entry identified; exact recovery and comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5391456,
+          "scope": "Static entry identified; exact recovery and comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5278464,
+          "scope": "Follow/main/alternate reference repair after removal; fresh final comparison pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/orders.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-orders-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.creature-maintenance",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature timers and action callback update",
+      "scope": "Instruction-derived per-frame maintenance and ranged readiness. Animation/health/owner resources/effect actions remain explicit services. Current-source comparison and native world composition pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5283408,
+          "scope": "Instruction-derived per-frame maintenance and ranged readiness. Animation/health/owner resources/effect actions remain explicit services. Current-source comparison and native world composition pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286096,
+          "scope": "Instruction-derived per-frame maintenance and ranged readiness. Animation/health/owner resources/effect actions remain explicit services. Current-source comparison and native world composition pending.",
+          "recovered_range": "creature-execution-50a8d0"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/maintenance.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-lifecycle-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.lifecycle-development-original",
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.route-displacement",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original route displacement and interruption",
+      "scope": "Instruction-derived movement completion, route retries and landing update. Motion action5104b0, original route request5128a0/displacement51a600 and world consequences remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5308432,
+          "scope": "Instruction-derived movement completion, route retries and landing update. Motion action5104b0, original route request5128a0/displacement51a600 and world consequences remain pending.",
+          "recovered_range": "creature-execution-510010"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-lifecycle-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.lifecycle-development-original",
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.animation-action-events",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original ranged and ready animation action events",
+      "scope": "Native recovery in progress; comparison, complete world execution and live replacement pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5301872,
+          "scope": "Static entry identified; exact recovery and comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5302000,
+          "scope": "Static entry identified; exact recovery and comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5306304,
+          "scope": "Static entry identified; exact recovery and comparison pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/action_execution.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-actions-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.behavior-handlers",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original idle, targeted, coordinate and immediate attack handlers",
+      "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5287088,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5287840,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-50afa0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5288128,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5295312,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-50ccd0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5298288,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5298416,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-50d8f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5358128,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5298240,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-50d840"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5298272,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-50d860"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5298256,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-50d850"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5379920,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-521750"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5379952,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-521770"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5379968,
+          "scope": "Thirteen unchanged original idle/target/coordinate/immediate/ranged/displacement/special handler projections. Geometry, selectors, animation, form changes and consequences supplied through typed services; final source-bound comparisons and integration pending.",
+          "recovered_range": "creature-execution-521780"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-behaviors-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.behaviors-checkpoint-original",
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "AI.corpse-lifecycle",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original death admission and corpse lifetime",
+      "scope": "Death-animation/class gates, Black Dog explosion, special removal, upkeep release, corpse reservation, lifetime and stage update; original score/list/health/effect/occupancy services remain explicit. Native implementation and comparisons in progress.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5297536,
+          "scope": "Death-animation/class gates, Black Dog explosion, special removal, upkeep release, corpse reservation, lifetime and stage update; original score/list/health/effect/occupancy services remain explicit. Native implementation and comparisons in progress.",
+          "recovered_range": "creature-execution-50d580"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-lifecycle-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.lifecycle-development-original",
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp"
+      ]
+    },
+    {
+      "id": "AI.action-callbacks",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original idle, corpse, melee and interaction callbacks",
+      "scope": "Idle, corpse, normal/alternate melee, interaction and full stun callback event/state projections, with typed geometry/health/effect/ANI services. Final bound comparisons, remaining special/motion actions and application integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5304464,
+          "scope": "Instruction-derived animation event dispatch and melee/overlay damage admission. Spatial interaction, stun, flight/motion, special callbacks and full ownership/composition remain pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305184,
+          "scope": "Instruction-derived animation event dispatch and melee/overlay damage admission. Spatial interaction, stun, flight/motion, special callbacks and full ownership/composition remain pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5302176,
+          "scope": "Instruction-derived animation event dispatch and melee/overlay damage admission. Spatial interaction, stun, flight/motion, special callbacks and full ownership/composition remain pending.",
+          "recovered_range": "combat-main-melee-action-50e7a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5337312,
+          "scope": "Instruction-derived animation event dispatch and melee/overlay damage admission. Spatial interaction, stun, flight/motion, special callbacks and full ownership/composition remain pending.",
+          "recovered_range": "creature-execution-5170e0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5303200,
+          "scope": "Instruction-derived animation event dispatch and melee/overlay damage admission. Spatial interaction, stun, flight/motion, special callbacks and full ownership/composition remain pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305744,
+          "scope": "Full stun event/queued-effect/absorption continuation; typed lower services.",
+          "recovered_range": "creature-stun-action-50f590"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_callbacks.cpp"
+      ],
+      "tests": [
+        "tests/creature-execution-callbacks-test.cpp",
+        "tools/test-creature-execution.py"
+      ],
+      "evidence": [
+        "NS27.callbacks-development-original",
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp"
+      ]
+    },
+    {
+      "id": "NP.creature-rule-session",
+      "subsystem": "native-simulation",
+      "kind": "native_policy",
+      "title": "Native transactional creature rule sessions",
+      "scope": "Native generation-checked semantic commands and staged rule ticks with owned portable continuation. Rules supplied by independent application adapters; recovered AI composition and complete original world equivalence are separate milestones.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/creature_rules_session.cpp"
+      ],
+      "tests": [
+        "tests/native-creature-rules-session-test.cpp"
+      ],
+      "validation_dependencies": [
+        "game/simulation/world.hpp",
+        "game/simulation/world.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/CMakeLists.txt"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     },
@@ -50685,6 +51518,45 @@
       "remaining_gaps": [
         "Current carry-forward worker/recipe controls and unchanged-source full TITAN rerun support partial native policy/live observation:4616 balanced imports,first-seal blocking0,source19.8068Hz,World44.2446FPS,paints52.7221/54.1183.60FPSfails. First full attempt failed existing conservative copy-order/history timeout; recurrence/cause remain unresolved and rerun success does not eliminate that reliability boundary. GPU execution attribution/native World/driver cost,physical scanout/full original comparison/interpolation/unexecuted failures remain pending. UI carry-forward is intentional native presentation policy."
       ]
+    },
+    {
+      "id": "AI.motion-action",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original complete motion action event and completion control flow",
+      "scope": "Instruction-derived5104b0 port: numeric substeps, reverse/sample/event processing, pending orders/effect release, displacement/response and movement failure. Visual/occupancy/segment/ANI/world callbacks are typed services; current comparison and full native application composition pending. Bounded iteration/event admission is separate from recovered baseline.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5309616,
+          "scope": "Full control-flow projection with declared callbacks; new implementation is unvalidated.",
+          "recovered_range": "motion-action"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp"
+      ],
+      "tests": [],
+      "validation_dependencies": [
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp"
+      ],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -103193,6 +104065,258 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS27.lifecycle-development-original",
+      "kind": "isolated_original",
+      "scope": "Historical development comparison for pinned body/range discovery only. No prospective claims; final current-source validation and full native composition pending.",
+      "record": "research/runtime/creature-execution-lifecycle-development-20261012.json",
+      "sha256": "d6c137d467d718aee369b8fb8bb7475ad0a89a08ab8a5c1b7a9ae0260b9f886b",
+      "sources_pointer": "/build_inputs_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS27.behaviors-checkpoint-original",
+      "kind": "isolated_original",
+      "scope": "Source-stable checkpoint development comparison of thirteen unchanged original handlers. Pinned range discovery and fixture outcomes only; no prospective claims, full world composition or application integration.",
+      "record": "research/runtime/creature-execution-behaviors-checkpoint-20261012.json",
+      "sha256": "79daf56614709e6b93f6629ad964a8d4edea3a4f66285154cb0bc2da090f4e43",
+      "sources_pointer": "/build_inputs_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS27.callbacks-development-original",
+      "kind": "isolated_original",
+      "scope": "Historical development comparison for pinned body/range discovery only. No prospective claims; final current-source validation and full native composition pending.",
+      "record": "research/runtime/creature-execution-callbacks-development-20261012.json",
+      "sha256": "b1c37183e900288700ce9c353ac6e5741ac23f55694598bc09877e3899130c30",
+      "sources_pointer": "/build_inputs_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS27.execution-static",
+      "kind": "static",
+      "scope": "Static read-only exports and exact method anchors, not execution equivalence. Tables identify dispatch targets without asserting complete semantics.",
+      "record": "research/runtime/creature-execution-static-20261012.json",
+      "sha256": "ab19dcb61c28855712cc02cbce199f7cb5a02987fad116c2ec694d537b437b92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS27.checkpoint-creature-native",
+      "kind": "native_integration",
+      "scope": "Autonomous native four-creature policy, headless continuations and production Qt controls; original full encounter equivalence excluded.",
+      "record": "research/runtime/ai-checkpoint-creature-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 36
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "b1abe2bcca7525ee5dd74709a69e527ff9ad31e450530bd23ef242f7c2e70671"
+    },
+    {
+      "id": "NS27.checkpoint-creature-window",
+      "kind": "native_integration",
+      "scope": "Autonomous native four-creature policy, headless continuations and production Qt controls; original full encounter equivalence excluded.",
+      "record": "research/runtime/ai-checkpoint-creature-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 36
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "b1abe2bcca7525ee5dd74709a69e527ff9ad31e450530bd23ef242f7c2e70671"
+    },
+    {
+      "id": "NS27.checkpoint-melee-native",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Stationary native original-profile melee policy, deterministic checkpoints, strict refusals and adapter rollback.",
+      "record": "research/runtime/ai-checkpoint-melee-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "db016e3e2ae8fdc3e56843b16efc6d3852b4ac3fe6a914a8ece34b6827aeaa70"
+    },
+    {
+      "id": "NS27.checkpoint-melee-window",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Production native window Play/Pause/Step, timer, checkpoint service/load failure, screenshot and headless final equality; actual file pickers not exercised.",
+      "record": "research/runtime/ai-checkpoint-melee-native-20261012.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_continuations",
+          "equals": 49
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        }
+      ],
+      "sha256": "db016e3e2ae8fdc3e56843b16efc6d3852b4ac3fe6a914a8ece34b6827aeaa70"
+    },
+    {
+      "id": "NS27.checkpoint-skirmish-normal",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Current-source original-health adapter and authored skirmish/orders continuation regression;32 fresh processes/18 refusals. No original skirmish equivalence.",
+      "record": "research/runtime/ai-checkpoint-skirmish-normal-20261012.json",
+      "sha256": "32664f407d0b4915f78f7aa26402546d0c60ba548cede0307b7de04df4096d58",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/health_contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        }
+      ]
+    },
+    {
+      "id": "NS27.checkpoint-skirmish-window",
+      "kind": "native_integration",
+      "scope": "Fresh scoped regression after shared NS25 build additions; Current-source authored skirmish production window timer/victory/defeat, actual save/load dialogs, pause/failure preservation and five fresh-window/headless checkpoint/canvas continuations.",
+      "record": "research/runtime/ai-checkpoint-skirmish-window-20261012.json",
+      "sha256": "a689ae531a5340ee3732f5a620b48086ea817ce8752a5dda65ba90a5768fada6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_save_load_dialogs",
+          "equals": true
+        },
+        {
+          "pointer": "/window_continuations",
+          "equals": 5
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -115592,6 +116716,123 @@
       "document": "research/runtime/creature-control.md",
       "evidence": "NS25.control-original",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50a8d0",
+      "build": "nocd-40209ca7",
+      "start": 5286096,
+      "end": 5286188,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.lifecycle-development-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-510010",
+      "build": "nocd-40209ca7",
+      "start": 5308432,
+      "end": 5309568,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.lifecycle-development-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50d580",
+      "build": "nocd-40209ca7",
+      "start": 5297536,
+      "end": 5298199,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.lifecycle-development-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50afa0",
+      "build": "nocd-40209ca7",
+      "start": 5287840,
+      "end": 5288113,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50ccd0",
+      "build": "nocd-40209ca7",
+      "start": 5295312,
+      "end": 5295540,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50d8f0",
+      "build": "nocd-40209ca7",
+      "start": 5298416,
+      "end": 5298659,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50d840",
+      "build": "nocd-40209ca7",
+      "start": 5298240,
+      "end": 5298254,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50d850",
+      "build": "nocd-40209ca7",
+      "start": 5298256,
+      "end": 5298270,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-50d860",
+      "build": "nocd-40209ca7",
+      "start": 5298272,
+      "end": 5298286,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-521750",
+      "build": "nocd-40209ca7",
+      "start": 5379920,
+      "end": 5379942,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-521770",
+      "build": "nocd-40209ca7",
+      "start": 5379952,
+      "end": 5379960,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-521780",
+      "build": "nocd-40209ca7",
+      "start": 5379968,
+      "end": 5379976,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.behaviors-checkpoint-original",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-execution-5170e0",
+      "build": "nocd-40209ca7",
+      "start": 5337312,
+      "end": 5338151,
+      "document": "research/runtime/creature-execution.md",
+      "evidence": "NS27.callbacks-development-original",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -115702,8 +116943,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-simulation-checkpoint-20261012.json",
-    "sha256": "a3a88c30595f88b2aa207f1322bc0f56198bb97f6b7ea8ddc3049dcbee99c677"
+    "path": "research/runtime/coverage/source-index-ai-execution-commit-20261012.json",
+    "sha256": "39a13d324ba218ebe7c4df344934bdbc3696870db4d09cdf65ef3fd48347c1b2"
   },
   "claim_bindings_required": true
 }
