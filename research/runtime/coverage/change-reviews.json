@@ -555053,6 +555053,707 @@
         ],
         "reason": "Fresh final-scope run-3sv6spye passes497 PE/nativeworker-vsWine queries8,144,836 identicalbytes, LastError native policy,7 prewrite refusals/reinstall refusal, source/input/original/private cleanup. Current fullnative run-z_ynmcxp validates7 installed profile hooks,76 string/4section/1integer reads,194ACK,12voiceplays, nativeWAV/CD/media and normalQuit with zero audio failed/unsupported/fallback. Sources/inputs/original/private cleanup and DirectSound retirement pass. Current explicit originalIAT census88distinct direct Wine targets outof190; cached/dynamic/COM/shim forwarding/transitive/prefix activity excluded. No high-level manager/original waveform/general API equivalence."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+          "before_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+          "id": "AS.resource-preparation"
+        },
+        {
+          "after_sha256": "3c91c040a5f2ef9f6931656e873838714393532fe73fa4f7eaccd65d69a93c55",
+          "before_sha256": "642c12fbf1b46250524c99c5c5752d29df294094ae9fc0b2eedfa946f160c3e1",
+          "id": "AU.cd_music"
+        },
+        {
+          "after_sha256": "0b063599d8598999027ec2f6b0575b112da76af1f9c7d4e9b48995b162aaada1",
+          "before_sha256": "0b063599d8598999027ec2f6b0575b112da76af1f9c7d4e9b48995b162aaada1",
+          "id": "AU.cd_stop_controls"
+        },
+        {
+          "after_sha256": "eb1fe5c2a3478166577c93628a46e7483ca21665b14735f8753014df7953e983",
+          "before_sha256": "eb1fe5c2a3478166577c93628a46e7483ca21665b14735f8753014df7953e983",
+          "id": "AU.dsound_setup"
+        },
+        {
+          "after_sha256": "d6e521f623ed28555cced1c58bd7d497147a69f952598175b905d55cf3cee7ab",
+          "before_sha256": "d6e521f623ed28555cced1c58bd7d497147a69f952598175b905d55cf3cee7ab",
+          "id": "AU.media_startup_probe"
+        },
+        {
+          "after_sha256": "4aa9cc535b65acd4aff77267273ba1bfd89f243f7970ca958fa4669d95bc1ad5",
+          "before_sha256": "4aa9cc535b65acd4aff77267273ba1bfd89f243f7970ca958fa4669d95bc1ad5",
+          "id": "AU.primary"
+        },
+        {
+          "after_sha256": "3247eb51477685d05a7ac0eb9619c6f989bd8bfca9281f7707636ee6b9886524",
+          "before_sha256": null,
+          "id": "AU.scheduler-original-cases"
+        },
+        {
+          "after_sha256": "f989dd92b9ae370e0d2c116faf542b5b39ea96f2b5cd0fc4c30077439ed30b7d",
+          "before_sha256": "f989dd92b9ae370e0d2c116faf542b5b39ea96f2b5cd0fc4c30077439ed30b7d",
+          "id": "AU.voice_contract"
+        },
+        {
+          "after_sha256": "e0ebc0cb9789cf14691f988ba9f62eab4ecc2210ba6700049985ba2f7265fbce",
+          "before_sha256": "e0ebc0cb9789cf14691f988ba9f62eab4ecc2210ba6700049985ba2f7265fbce",
+          "id": "AU.voice_lifetime"
+        },
+        {
+          "after_sha256": "26eaf588a72a54c466b5e73e20ef9e2f7776989299734a2c8a38aee46bfe623e",
+          "before_sha256": "5cb5779b7c168967f5c2bb4697f1d60fbac995326321206080cf19c5b6f96f83",
+          "id": "AU.voice_scheduler"
+        },
+        {
+          "after_sha256": "64af36c7684872c5534aa2be53791dd407cdc282ff18eb9b64285f061e1b15db",
+          "before_sha256": "64af36c7684872c5534aa2be53791dd407cdc282ff18eb9b64285f061e1b15db",
+          "id": "HOST.extended-voice-wire"
+        },
+        {
+          "after_sha256": "2d94d3bf47ef5fef3eacb70fb4302123627f1b25e6a8a119c50d4db55c1e0170",
+          "before_sha256": "2d94d3bf47ef5fef3eacb70fb4302123627f1b25e6a8a119c50d4db55c1e0170",
+          "id": "HOST.native-audio-defaults"
+        },
+        {
+          "after_sha256": "8af1217e7fb47afc42164ee23b04caeffb5ee3a8aa09dbe0cf1fd5bdc3cab002",
+          "before_sha256": "bcd760d06a8593ea2286aa5e7f30d3e28ab27700893f697bfeeb3e4ad6b2023f",
+          "id": "HOST.native-audio-factory"
+        },
+        {
+          "after_sha256": "6fa27312e90604065aaa658d9ddad5d094d1e5d94cb71e9cd7fcb743643d7865",
+          "before_sha256": "95472c6527c87b8af59f6dad6b147700e74979129d4dd2a1de8e5aaaa0fda1fc",
+          "id": "HOST.native-audio-initial-silence"
+        },
+        {
+          "after_sha256": "1e83872ea156fc4dd12b7b9d26e7b25361ff7bfae83d5e34d9763c6c5be7dee2",
+          "before_sha256": "128f61e9d1e031702e7d8ea7cb533f29a704a6465be12481c2a4385e51badd21",
+          "id": "HOST.native-audio-profile-reads"
+        },
+        {
+          "after_sha256": "f1a1c0075977e60efeb462e41fc71d309ca4e0dad1e6f032ba025380459ae118",
+          "before_sha256": "f1a1c0075977e60efeb462e41fc71d309ca4e0dad1e6f032ba025380459ae118",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "9a0034552b8ec671f72d95eeac52c495f8c92898aa75cda3d8da1d9608e37e2e",
+          "before_sha256": "9a0034552b8ec671f72d95eeac52c495f8c92898aa75cda3d8da1d9608e37e2e",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "81d7c5d858d7f7b42fc59372833ef454ddeed954062c7735a65996a2d95e284e",
+          "before_sha256": "81d7c5d858d7f7b42fc59372833ef454ddeed954062c7735a65996a2d95e284e",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "2c1ed8da73e3804b495ca51ab2b9efc76cd084585c447f18b997fc44a9c926de",
+          "before_sha256": "2c1ed8da73e3804b495ca51ab2b9efc76cd084585c447f18b997fc44a9c926de",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "c88432c1867b9c0fce6327b20648deae83a29b70ba0ca71ee747fb4cabe2bc09",
+          "before_sha256": "c88432c1867b9c0fce6327b20648deae83a29b70ba0ca71ee747fb4cabe2bc09",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "da149f45053c6783e92a9c9b766516768a1282352b7b5e25cc14d1e19facc2d9",
+          "before_sha256": "da149f45053c6783e92a9c9b766516768a1282352b7b5e25cc14d1e19facc2d9",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "6f0f11f0ef5c27369b3894e3d57b8229f4d11976a222ee10699cca348e452f3a",
+          "before_sha256": "6f0f11f0ef5c27369b3894e3d57b8229f4d11976a222ee10699cca348e452f3a",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "663d325cf2c6034ff7d124ee87dd3b2b90076f4de7e3e99f0dc2392d85cfa7bd",
+          "before_sha256": "663d325cf2c6034ff7d124ee87dd3b2b90076f4de7e3e99f0dc2392d85cfa7bd",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "717dc89446ba8a3a45363d91ebd3c228419e6682c5e6c9c99283d74054c436d4",
+          "before_sha256": "717dc89446ba8a3a45363d91ebd3c228419e6682c5e6c9c99283d74054c436d4",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "a30112015198c9db19dee67140850dfa50fd07aab29822696fa3cae2b023644a",
+          "before_sha256": "f9ad59576cdb9245b01d74b9b4af2d1b18398a31fbbe9bac167a30faeb12e824",
+          "id": "HOST.native-dsound-module-policy"
+        },
+        {
+          "after_sha256": "1a1574ff9af0dd911ad366cfa1858710153853aa469e8b23afd13dbc93cbe2c9",
+          "before_sha256": "1a1574ff9af0dd911ad366cfa1858710153853aa469e8b23afd13dbc93cbe2c9",
+          "id": "HOST.native-file-sound-retirement"
+        },
+        {
+          "after_sha256": "2449b8db0f8a43bf1296e50d7b882f88a4ab3caee1a8e9b835e01050e0d1447e",
+          "before_sha256": "2449b8db0f8a43bf1296e50d7b882f88a4ab3caee1a8e9b835e01050e0d1447e",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "7078e5b0eba1c42b7b8e2d406be086bca6f547239e14ec32eeb802cf03d90b99",
+          "before_sha256": "7078e5b0eba1c42b7b8e2d406be086bca6f547239e14ec32eeb802cf03d90b99",
+          "id": "HOST.native-menu-audio"
+        },
+        {
+          "after_sha256": "73ef6450493ba3b6ff948d6f37cc00872b0580da5333f8ba0e5ef527e4e2e72d",
+          "before_sha256": "929de1074488ef344b261db352ec22dfa1b812c09de2eb5a78cf8a340fc7ec3e",
+          "id": "HOST.native-menu-media"
+        },
+        {
+          "after_sha256": "78619797bb5889d375ea16dd91bf5e4eb1b6a0360bc850ac5ed2baf086e4e382",
+          "before_sha256": "78619797bb5889d375ea16dd91bf5e4eb1b6a0360bc850ac5ed2baf086e4e382",
+          "id": "HOST.native-menu-music"
+        },
+        {
+          "after_sha256": "78a493ff9c75f8ccb4b700a5f9df3106811deb59baa9f51f2dbaf8989bc49ae1",
+          "before_sha256": "78a493ff9c75f8ccb4b700a5f9df3106811deb59baa9f51f2dbaf8989bc49ae1",
+          "id": "HOST.native-music-backend-recovery"
+        },
+        {
+          "after_sha256": "741f055fe9d68b5899e618127182ff689d8fe958373ade20cbd193022796cdea",
+          "before_sha256": "741f055fe9d68b5899e618127182ff689d8fe958373ade20cbd193022796cdea",
+          "id": "HOST.native-voice-backend-recovery"
+        },
+        {
+          "after_sha256": "abbde00c9eefd2ff463512e8f786ca91f439e1f63b366f206d4db949b236f6d4",
+          "before_sha256": "abbde00c9eefd2ff463512e8f786ca91f439e1f63b366f206d4db949b236f6d4",
+          "id": "HOST.native-voice-output-waveforms"
+        },
+        {
+          "after_sha256": "4c6a45b5c243bcc88a9c68e68d50f5ff8e914a85c6e5ac919f9919946ce3edfa",
+          "before_sha256": "a387ac3df444b7396212600482c06f9cdd3a5db5f7c788d453e040bac4dc62d5",
+          "id": "HOST.native-wave-loading"
+        },
+        {
+          "after_sha256": "39b834e81725a8033b27515bdfbdca4bc0539f26d2559705e397861d2c8fea50",
+          "before_sha256": "d213407bb29ee3e5139808ed303dd204e3369e53024512607c5f77c28675d167",
+          "id": "HOST.wine-import-census"
+        },
+        {
+          "after_sha256": "bdaf0411d59f9da05617c013d7e1f4b62cc6e3fa55553f28bb33c6205844cae3",
+          "before_sha256": "bdaf0411d59f9da05617c013d7e1f4b62cc6e3fa55553f28bb33c6205844cae3",
+          "id": "NA.buffers"
+        },
+        {
+          "after_sha256": "bbdd9d034e6ea1affbd7a8796c2d91ede9c79d40220c01410d1437284f175bc7",
+          "before_sha256": "bbdd9d034e6ea1affbd7a8796c2d91ede9c79d40220c01410d1437284f175bc7",
+          "id": "NA.extended_voice_controls"
+        },
+        {
+          "after_sha256": "240ac28d9d0df05bca1b83caaef576fa29779f490362bf7a0289b4140e89ee43",
+          "before_sha256": "240ac28d9d0df05bca1b83caaef576fa29779f490362bf7a0289b4140e89ee43",
+          "id": "NA.mixer"
+        },
+        {
+          "after_sha256": "6a8e1450219dd51f534b174b50cf8dccb4b57ac7b32b76f0d04da29bd57d95dc",
+          "before_sha256": "6a8e1450219dd51f534b174b50cf8dccb4b57ac7b32b76f0d04da29bd57d95dc",
+          "id": "NA.output_timing"
+        },
+        {
+          "after_sha256": "054d5c2358feb29e8714d220529abb037484de639fc6924c9df0e6566a011e92",
+          "before_sha256": "054d5c2358feb29e8714d220529abb037484de639fc6924c9df0e6566a011e92",
+          "id": "NA.voice_output_recovery"
+        },
+        {
+          "after_sha256": "deb204edd1b139ed6b6b62201c4a5b5bb539778eb4735805b2a6acf957c9d34a",
+          "before_sha256": "deb204edd1b139ed6b6b62201c4a5b5bb539778eb4735805b2a6acf957c9d34a",
+          "id": "NA.voices"
+        },
+        {
+          "after_sha256": "343e6b8a5761ff7d51776345f74c34b045c190b71a12e9b9ef5deecdfe94716b",
+          "before_sha256": "343e6b8a5761ff7d51776345f74c34b045c190b71a12e9b9ef5deecdfe94716b",
+          "id": "NA.wave"
+        },
+        {
+          "after_sha256": "f841524387c4124de69cb7fdb1b7070082a08baf88898daa71f8a8480bc82bcf",
+          "before_sha256": "446dd9e6f715ab2530ec0e930042504e1c1529b64e689b74a45f5f48ae3ffa4c",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "4701d1da11a3692a72dbcb70c365c97a384c0c3c72ee5faaa1a2dc6134d9167b",
+          "before_sha256": "0bca486b31d8c7084d43686d85f35a79c5e25126ce8dbe1aeb027ef0af094b72",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "b1616bb9fb6eab12ddf53464cbcfe2b40855b6846e012e0ef366a1ac7a16d4c6",
+          "before_sha256": "d79e098a79d747c46286d606e3e151b2065b23748686c6d20ed99db8037408e5",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "bd91c05e0abd27c878677b2619348357a063e4f36e6359925d9bbdb98a5723ab",
+          "before_sha256": "bd91c05e0abd27c878677b2619348357a063e4f36e6359925d9bbdb98a5723ab",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "8a25b61582c99ce8b780a1be1bb04175f98f311492297825f6f6bf7b3de15b7a",
+          "before_sha256": "8a25b61582c99ce8b780a1be1bb04175f98f311492297825f6f6bf7b3de15b7a",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "8acff2c8dd95a7f4cbfee9277f189093954442ae9f29eead82b4ca342cb70d5c",
+          "before_sha256": "8acff2c8dd95a7f4cbfee9277f189093954442ae9f29eead82b4ca342cb70d5c",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "13838075def4306468e2ec8f90c67bce76694bd17953f03866dcf107192551d3",
+          "before_sha256": "13838075def4306468e2ec8f90c67bce76694bd17953f03866dcf107192551d3",
+          "id": "NR.drawing-fenced-acquisition"
+        },
+        {
+          "after_sha256": "d24e321e13abd48dc69f565920db9daeac25eb03ad060c5d184017a05ce796ac",
+          "before_sha256": "d24e321e13abd48dc69f565920db9daeac25eb03ad060c5d184017a05ce796ac",
+          "id": "NR.engine-cadence-observation"
+        },
+        {
+          "after_sha256": "3f8ddc968e9493563ddec3ebf4e42ff22bc6b7677f55e32697407356e5d579f2",
+          "before_sha256": "3f8ddc968e9493563ddec3ebf4e42ff22bc6b7677f55e32697407356e5d579f2",
+          "id": "NR.font-glyph-live-shadow"
+        },
+        {
+          "after_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+          "before_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+          "id": "NR.glyph-backend-admission"
+        },
+        {
+          "after_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+          "before_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+          "id": "NR.glyph-backend-state-admission"
+        },
+        {
+          "after_sha256": "08b35f23f021fd2495374862e869f9f9c78005d5b66041ad7660bae06a056dbb",
+          "before_sha256": "08b35f23f021fd2495374862e869f9f9c78005d5b66041ad7660bae06a056dbb",
+          "id": "NR.glyph-default-launch"
+        },
+        {
+          "after_sha256": "296d2d117819e744f013da21b68c580c5347405bc58fdb46a9aedaa188de14f9",
+          "before_sha256": "296d2d117819e744f013da21b68c580c5347405bc58fdb46a9aedaa188de14f9",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "047016766e2c6f1e23e81a68401681535b457acdab7b6f64e5d5ac8d04460cff",
+          "before_sha256": "047016766e2c6f1e23e81a68401681535b457acdab7b6f64e5d5ac8d04460cff",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "8fcbdbc7ff45616c011f7a51707c6e7e93faab48c5cff912c247502b809cc9b8",
+          "before_sha256": "8fcbdbc7ff45616c011f7a51707c6e7e93faab48c5cff912c247502b809cc9b8",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "4404ea5271f0741136f34be4c08d649caa035c633cabc64fe91c2b53e2e50edb",
+          "before_sha256": "4404ea5271f0741136f34be4c08d649caa035c633cabc64fe91c2b53e2e50edb",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "743ac1e71b6e6d13b3fd2dc82107e1406622898567783710ccc37abf33b5e73e",
+          "before_sha256": "743ac1e71b6e6d13b3fd2dc82107e1406622898567783710ccc37abf33b5e73e",
+          "id": "NR.other-producer-checkpoints"
+        },
+        {
+          "after_sha256": "2c97b6af09054a19fcc139ac270deba13aa18d5fc9f78adcb39f4e44af6ccce7",
+          "before_sha256": "2c97b6af09054a19fcc139ac270deba13aa18d5fc9f78adcb39f4e44af6ccce7",
+          "id": "NR.other-writer-atomic-admission"
+        },
+        {
+          "after_sha256": "3afb5f17296fa007b778b30e29a1dda8e53580081bb94eb8a65c0c22435d2f66",
+          "before_sha256": "608f25e64b7f3fdd200cf12bb011ea8f2e0c5dbcb5f5eeeeaf515a850a9b6367",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "ecff1745dcd3e9709a6fd63db7e1584c8cf22990f317afe4eb7c13afb9d102bf",
+          "before_sha256": "ecff1745dcd3e9709a6fd63db7e1584c8cf22990f317afe4eb7c13afb9d102bf",
+          "id": "NR.panel-atomic-admission"
+        },
+        {
+          "after_sha256": "744abd225344de2311dfc35da3705474c82f3c6bdc7657b9bd6517b723841d0c",
+          "before_sha256": "744abd225344de2311dfc35da3705474c82f3c6bdc7657b9bd6517b723841d0c",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "36deb01db8455509add6aa921471a79dc16f4792a9d7da364e2fc08c5b8fa62e",
+          "before_sha256": "36deb01db8455509add6aa921471a79dc16f4792a9d7da364e2fc08c5b8fa62e",
+          "id": "NR.scene-production-repetition"
+        },
+        {
+          "after_sha256": "97e7be882a62bffc69b3598e8c17567eb19484aac9a526fa58eac85f916fc230",
+          "before_sha256": "97e7be882a62bffc69b3598e8c17567eb19484aac9a526fa58eac85f916fc230",
+          "id": "NR.sprite-atlas"
+        },
+        {
+          "after_sha256": "ae4f3ae9078db798cb5fe6f6bb037d46a948ca7eec06c74ddc1164757e22e35a",
+          "before_sha256": "ae4f3ae9078db798cb5fe6f6bb037d46a948ca7eec06c74ddc1164757e22e35a",
+          "id": "NR.upload-preparation"
+        },
+        {
+          "after_sha256": "228b0acf2ee046c12eeb8d9f455b536d12c5d4cef6e1f5477f677acef2ce8c2f",
+          "before_sha256": "228b0acf2ee046c12eeb8d9f455b536d12c5d4cef6e1f5477f677acef2ce8c2f",
+          "id": "NR.word-clipped-takeover-admission"
+        },
+        {
+          "after_sha256": "4a157964e14f16064118af9cde3368bcc42bf7b100b93f3c4ae9cbe9669378d2",
+          "before_sha256": "4a157964e14f16064118af9cde3368bcc42bf7b100b93f3c4ae9cbe9669378d2",
+          "id": "NR.word-clipping-plane-bounds"
+        },
+        {
+          "after_sha256": "2897d787fe563f76d1fa0a0c656061ec2cdccc0601bb5c300eaa14133894a425",
+          "before_sha256": "2897d787fe563f76d1fa0a0c656061ec2cdccc0601bb5c300eaa14133894a425",
+          "id": "NR.word-cpu-clipping-admission"
+        },
+        {
+          "after_sha256": "bac0f37fcbcf78d114eb614f3117c160ea850e3a78624bcac04320cf4ec6a764",
+          "before_sha256": "bac0f37fcbcf78d114eb614f3117c160ea850e3a78624bcac04320cf4ec6a764",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "80ae6ce1a5d12a609bc8bf7956f29e4f0738d1547d87bdd3bfc7066955746e17",
+          "before_sha256": "80ae6ce1a5d12a609bc8bf7956f29e4f0738d1547d87bdd3bfc7066955746e17",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "7d6e1955d1f98282d6d7f4f3551f98bd3183b0ebf6be4ed1cd7641472dc900c2",
+          "before_sha256": "7d6e1955d1f98282d6d7f4f3551f98bd3183b0ebf6be4ed1cd7641472dc900c2",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "fbcdbd64c723f51610a930b986c51c33288abe7ca7271970b3cb53e79cad1b97",
+          "before_sha256": "fbcdbd64c723f51610a930b986c51c33288abe7ca7271970b3cb53e79cad1b97",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "e0fb496633e69ba1b43e8823148f94a742490cffb4945175cf09c5d6168ec372",
+          "before_sha256": "e0fb496633e69ba1b43e8823148f94a742490cffb4945175cf09c5d6168ec372",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "6c5c9d40e4f7227e0f6b2565a18a3a8ac7185ca8664fc4ebaf4c2d3b4e6533f4",
+          "before_sha256": "6c5c9d40e4f7227e0f6b2565a18a3a8ac7185ca8664fc4ebaf4c2d3b4e6533f4",
+          "id": "NR.world-cpu-composition-reuse"
+        },
+        {
+          "after_sha256": "68ba066ab6d14592fd89c80fd0e2e57fabb267dd9debcc2768bf0f27d867ab03",
+          "before_sha256": "68ba066ab6d14592fd89c80fd0e2e57fabb267dd9debcc2768bf0f27d867ab03",
+          "id": "NR.world-frame-identity-cache"
+        },
+        {
+          "after_sha256": "919daa7a879a0107daf225a86f3a4fa9979db44b85bd26a65bdc9c8172ba0cad",
+          "before_sha256": "919daa7a879a0107daf225a86f3a4fa9979db44b85bd26a65bdc9c8172ba0cad",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "87bbea0258cf48009b269ad7265c495b2d72b4fee44c044acd38403cb4281de0",
+          "before_sha256": "87bbea0258cf48009b269ad7265c495b2d72b4fee44c044acd38403cb4281de0",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "3916c4283a71d09bf6baeab48292f055ecbd3cc8a0a3d0067790dcd7483a28f2",
+          "before_sha256": "3916c4283a71d09bf6baeab48292f055ecbd3cc8a0a3d0067790dcd7483a28f2",
+          "id": "NR.world-live-history"
+        },
+        {
+          "after_sha256": "ff1cb844cd6a0fbf0cf3a461e00eb870c4479bcbcf00c8abe57e2b6958da5bc7",
+          "before_sha256": "ff1cb844cd6a0fbf0cf3a461e00eb870c4479bcbcf00c8abe57e2b6958da5bc7",
+          "id": "NR.world-preparation"
+        },
+        {
+          "after_sha256": "ee6daf78ac73e5708d7fd2bb02a41f01dc8b1d55468133ee8967dba854324447",
+          "before_sha256": "ee6daf78ac73e5708d7fd2bb02a41f01dc8b1d55468133ee8967dba854324447",
+          "id": "NR.world-prepared-admission"
+        },
+        {
+          "after_sha256": "7bd8b13c14ed64e5e623fb9c99285342547af29bd514cd5988ee7a9e11aa7a7b",
+          "before_sha256": "7bd8b13c14ed64e5e623fb9c99285342547af29bd514cd5988ee7a9e11aa7a7b",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "9b83f01731db8e82ca0d8d74940bcab91714e44191b31be3a011ed35c866ed37",
+          "before_sha256": "9b83f01731db8e82ca0d8d74940bcab91714e44191b31be3a011ed35c866ed37",
+          "id": "NR.world-rolling-delivery"
+        },
+        {
+          "after_sha256": "3244734b093356064218c52d0d44dae328c9e2794949caf151ae09d8fbe03435",
+          "before_sha256": "3244734b093356064218c52d0d44dae328c9e2794949caf151ae09d8fbe03435",
+          "id": "NR.world-rolling-hardware"
+        },
+        {
+          "after_sha256": "104337eaebf58a6c0fc3c51503f66630c3bac00f5d50eb7490dab0e8f5347d89",
+          "before_sha256": "104337eaebf58a6c0fc3c51503f66630c3bac00f5d50eb7490dab0e8f5347d89",
+          "id": "NR.world-rolling-live-handoff"
+        },
+        {
+          "after_sha256": "c24a2d35da017099914938f20e4f4226879983ef5f9416e62fb517140bd7f0af",
+          "before_sha256": "c24a2d35da017099914938f20e4f4226879983ef5f9416e62fb517140bd7f0af",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "37295249bb0ea6c1709c02ef8e1cd1956831aabb36664c473587f1c94dcfd5a4",
+          "before_sha256": "37295249bb0ea6c1709c02ef8e1cd1956831aabb36664c473587f1c94dcfd5a4",
+          "id": "RS.fade-live-pixels"
+        },
+        {
+          "after_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+          "before_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+          "id": "RS.fade-loop-state"
+        },
+        {
+          "after_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+          "before_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+          "id": "RS.glyph-backend"
+        },
+        {
+          "after_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+          "before_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+          "id": "RS.glyph-backend-state"
+        },
+        {
+          "after_sha256": "355edc3f2e52fa1ea946905d44aa43446681ec3c57feb3c260bfea1880554b66",
+          "before_sha256": "355edc3f2e52fa1ea946905d44aa43446681ec3c57feb3c260bfea1880554b66",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+          "before_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+          "id": "RS.minimap-camera-corners"
+        },
+        {
+          "after_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+          "before_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+          "id": "RS.minimap-cell-marker"
+        },
+        {
+          "after_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+          "before_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+          "id": "RS.minimap-creature-markers"
+        },
+        {
+          "after_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+          "before_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+          "id": "RS.minimap-terrain-raster"
+        },
+        {
+          "after_sha256": "3ee1deb188ae8ed5690d6538d114515dd8e1464cffff293fae9496e46e400ddd",
+          "before_sha256": "3ee1deb188ae8ed5690d6538d114515dd8e1464cffff293fae9496e46e400ddd",
+          "id": "RS.panel-pixel-domain"
+        },
+        {
+          "after_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+          "before_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+          "id": "RS.word-backend-state"
+        },
+        {
+          "after_sha256": "1fea99b042bed9c89e9b08b57cfc68ec1477a8b308a33f760eed783495d5236b",
+          "before_sha256": "1fea99b042bed9c89e9b08b57cfc68ec1477a8b308a33f760eed783495d5236b",
+          "id": "RS.word-clip-aux-shadow"
+        },
+        {
+          "after_sha256": "e402987f411705b62e8957e2a6121b0612c94c46de5c494ed2f8c0c4d03655e9",
+          "before_sha256": "e402987f411705b62e8957e2a6121b0612c94c46de5c494ed2f8c0c4d03655e9",
+          "id": "RS.word-clip-shadow"
+        },
+        {
+          "after_sha256": "28c3a7a6b20646aaacf8de72fa1a8f346e2215eb3a3b72036421a6b1d8050bb6",
+          "before_sha256": "28c3a7a6b20646aaacf8de72fa1a8f346e2215eb3a3b72036421a6b1d8050bb6",
+          "id": "RS.word-clip-takeover"
+        },
+        {
+          "after_sha256": "e916c9cbcd8a05a96b6b2aa78e8dffa14882d08574947a04516d96e67d5084ef",
+          "before_sha256": "e916c9cbcd8a05a96b6b2aa78e8dffa14882d08574947a04516d96e67d5084ef",
+          "id": "RS.word-cpu-clipping"
+        },
+        {
+          "after_sha256": "7c11ee5d498cdddcb48124d08d2233cb1576419676178acf0c264d7f7ae43522",
+          "before_sha256": "7c11ee5d498cdddcb48124d08d2233cb1576419676178acf0c264d7f7ae43522",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "89a6d4d2303254ce9002accde1d3a0125e35d16457c42f59abbf4a7ce30f06bd",
+          "before_sha256": "89a6d4d2303254ce9002accde1d3a0125e35d16457c42f59abbf4a7ce30f06bd",
+          "id": "RS.world-kind8-additive"
+        },
+        {
+          "after_sha256": "c3eaa216549c42aecb64a0b98d8489e94c1bc4ce2d5e1f6408d3c784e61557c9",
+          "before_sha256": "c3eaa216549c42aecb64a0b98d8489e94c1bc4ce2d5e1f6408d3c784e61557c9",
+          "id": "RS.world-kind8-colour"
+        },
+        {
+          "after_sha256": "e3625c6b6c4a985c1fb523543999fa047c019002f7b3712d3704745d8b09929f",
+          "before_sha256": "e3625c6b6c4a985c1fb523543999fa047c019002f7b3712d3704745d8b09929f",
+          "id": "RS.world-kind8-noop"
+        },
+        {
+          "after_sha256": "7eed2fa5e096d8e85d224c9a752bff9265dd0bde7ca16db0d0b5682691f187c1",
+          "before_sha256": "7eed2fa5e096d8e85d224c9a752bff9265dd0bde7ca16db0d0b5682691f187c1",
+          "id": "RS.world-rolling-handoff-equivalence"
+        },
+        {
+          "after_sha256": "e2cfcc454db64ce492bf225bcb3d260a721d5f86552e70047101a55020dbbf63",
+          "before_sha256": "d1c562e44f019ad37047b05dbf847d266ab128525021eaddb399526739b10321",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "737f9b70f0c26ff16e49c09fac65f48d7635f5e00be4be49510be3a5ea892755",
+          "before_sha256": "737f9b70f0c26ff16e49c09fac65f48d7635f5e00be4be49510be3a5ea892755",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "f0107bfedbb97303e186bad8b0b9d3f84582a8da442a87b37ba7d8035e2b8917",
+          "before_sha256": "f0107bfedbb97303e186bad8b0b9d3f84582a8da442a87b37ba7d8035e2b8917",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "fcb8ae3ddc2502963079b4f792b2defa98d849e150252620f9665c775b318c58",
+          "before_sha256": "fcb8ae3ddc2502963079b4f792b2defa98d849e150252620f9665c775b318c58",
+          "id": "TOOL.drawing-journeys"
+        },
+        {
+          "after_sha256": "acae615d9f2d2cf98b8595383bd6e243e18e12b7658e809cafc4218a595df8d4",
+          "before_sha256": "acae615d9f2d2cf98b8595383bd6e243e18e12b7658e809cafc4218a595df8d4",
+          "id": "TOOL.rendering-coverage"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "df82a5f2ce447c30228b45c82bdaf4e54de39de9ef15386520a7cf836bda75c1",
+          "before_sha256": "df82a5f2ce447c30228b45c82bdaf4e54de39de9ef15386520a7cf836bda75c1",
+          "path": "audio/buffers.hpp"
+        },
+        {
+          "after_sha256": "c241e5dd8d4545e7fc38033853c64fa1786c0b9f8ab5bbdd2b3c46f6cf95d87b",
+          "before_sha256": "184ff2671c82c4f1559af7f39bf1ca712c38bb80cb54ab13f8555c7776bda60a",
+          "path": "protocols/CONTRACTS.md"
+        },
+        {
+          "after_sha256": "be04e2a4d3f28380b4b00d8aed2d74b0ac6c8e3712575d766eacacb9f85c436e",
+          "before_sha256": "be04e2a4d3f28380b4b00d8aed2d74b0ac6c8e3712575d766eacacb9f85c436e",
+          "path": "reconstruction/audio/dsound_setup.hpp"
+        },
+        {
+          "after_sha256": "0c15733aa36aa4e52cf6afb40efb2157072d998cef6aea898c9ad12ba690d7f7",
+          "before_sha256": "0c15733aa36aa4e52cf6afb40efb2157072d998cef6aea898c9ad12ba690d7f7",
+          "path": "reconstruction/audio/voice_contract.cpp"
+        },
+        {
+          "after_sha256": "6131dbd0d37ca01067871535005b711c7a799f9a1d76d426062f9380ec712972",
+          "before_sha256": "6131dbd0d37ca01067871535005b711c7a799f9a1d76d426062f9380ec712972",
+          "path": "reconstruction/audio/voice_contract.hpp"
+        },
+        {
+          "after_sha256": "734eae681516248ad8d0e86de2ec02c73fe064f2f89f6a67798b3f67eab5ae00",
+          "before_sha256": "734eae681516248ad8d0e86de2ec02c73fe064f2f89f6a67798b3f67eab5ae00",
+          "path": "reconstruction/audio/voice_lifetime.cpp"
+        },
+        {
+          "after_sha256": "7d7f45e6a46da1a53aa2e484b925bc76fba7c9ab22adfe4233121313532b5cf0",
+          "before_sha256": "7d7f45e6a46da1a53aa2e484b925bc76fba7c9ab22adfe4233121313532b5cf0",
+          "path": "reconstruction/audio/voice_lifetime.hpp"
+        },
+        {
+          "after_sha256": "8731f183ef6d2a0d00b035c08e0d7d81b33463f864d7b8dcb3ec87b2b78b58ab",
+          "before_sha256": "8731f183ef6d2a0d00b035c08e0d7d81b33463f864d7b8dcb3ec87b2b78b58ab",
+          "path": "reconstruction/audio/voice_scheduler.cpp"
+        },
+        {
+          "after_sha256": "65d564eada76461db115054f7efa6b2d7c57d3ca0d84d56a358a00cebdd89e88",
+          "before_sha256": "65d564eada76461db115054f7efa6b2d7c57d3ca0d84d56a358a00cebdd89e88",
+          "path": "reconstruction/audio/voice_scheduler.hpp"
+        },
+        {
+          "after_sha256": "37fbff7bb62f9bdebe97460916a30731b0ace3aafc957f11cc0cddce4e086cc7",
+          "before_sha256": null,
+          "path": "research/runtime/audio-scheduler-original-cases.md"
+        },
+        {
+          "after_sha256": "e0446cc0cac5542e7fa4d2c04bca8425fb2eee88d29c82176a73807ff09a0f4c",
+          "before_sha256": null,
+          "path": "research/runtime/audio-scheduler-original-pass-20261012.json"
+        },
+        {
+          "after_sha256": "15c46ef7041a9ccbedd1a8819c86b6bc4a58a1659995723e40b16f82a357b055",
+          "before_sha256": "11a0b08d5d1a143ead1144711fa69c697e00b769760ddd1385e950118ca6c7fb",
+          "path": "research/runtime/audio-voice-scheduler.md"
+        },
+        {
+          "after_sha256": "e234ee30d317146972f41ba4ba124c2a7308d815c444597171f7e61845bca087",
+          "before_sha256": "d78f646516e92d3a31d3682b9c46cb186bfbf2743e5c0c142802058a8773517e",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "96283fb78e501fa35b7052f7e2e8b852433c2a270c008028e8a37b994b840fda",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-profile-history-20261012.json"
+        },
+        {
+          "after_sha256": "38dd697b247a9947913b65863c58380d383a0ebbe1c59580ba359458c8a0bdc1",
+          "before_sha256": "103c42df1461cfaaa0f9707b5cb572c337515b177ea75e9287d8cf06dd94c5e2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "1ae7a9b206ab02d23c719365429c098f3b81540843eeef8f4a95cb54a22a5594",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-audio-scheduler-commit-20261012.json"
+        },
+        {
+          "after_sha256": "e2b2d97422dfdd306fd443b6de1f29c9e56832ff1411e90a2f8871cf6847b975",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-audio-scheduler-commit-20261012.md"
+        },
+        {
+          "after_sha256": "49b321cda44407c3c6147eb48d30899439364de6d1abf3485ca34b777719d79c",
+          "before_sha256": "9c9236f1aa0d0b81293eb6703f231fde4ae263ea5f5940f05eb1837d9d3657dd",
+          "path": "research/runtime/native-audio-end-to-end.md"
+        },
+        {
+          "after_sha256": "143c6b1782c8f1263333acba060f2ec2f9abded2b0b7066098b813be9a6fc5cc",
+          "before_sha256": null,
+          "path": "tests/audio-scheduler-reference.cpp"
+        },
+        {
+          "after_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "before_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "path": "tools/coverage_claims.py"
+        },
+        {
+          "after_sha256": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "before_sha256": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "path": "tools/original-manifest.sh"
+        },
+        {
+          "after_sha256": "25c2b36244dd48b2e1def9630f73736851b64e6941a42e681155e96deaf9e0df",
+          "before_sha256": null,
+          "path": "tools/test-audio-scheduler-original.py"
+        }
+      ],
+      "id": "audio-scheduler-scoped-accounting-20261012",
+      "pending_gaps": [
+        "behaviors_without_scenarios:f23e93236e6fdd3bcb98080d63c2c7bdcb8a28019f4db7678643e50b25026352"
+      ],
+      "reason": "Reviewed authored original/native scheduler comparison on two-to-four-record selection/eviction/retirement/clear and two-to-five-record assignment/reorder. Unchanged pinned PE bodies execute on Linux/i386 with only supplied clock/COM vtable boundaries; host tokens normalize original links without crossing a live wire. Native model selected record, all link/record/output/guard bytes and clock/COM event order match392778 cases; sanitizer passes. Preserved callback-lifetime compiler failure; final static callback lifetime explicitly retired between calls. Profile v5 optionalcap32/op23/24/25/copy ownership documented without changing protocol bytes. Reviewed newly linked sources/index snapshot; concurrent gameplay work excluded. Exact55a61527 parent/current history28 file transitions has zero receipt gaps.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "General engine/live claims retain their historical fingerprints. Documentation/index/source-link changes do not renew original driver, tick implementation, unsafe ring/null lookup/allocation faults, live cadence, arbitrary profile semantics or full manager/cache/event migration. New comparison has no live scenario and intentionally no integration/replacement claim. Helper inventory candidates remain mapping debt. Broader historical AU.voice_scheduler status remains partial; selected new evidence is separate. Profile protocol documentation is static review of current implementation, not new execution of other linked protocols."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3247eb51477685d05a7ac0eb9619c6f989bd8bfca9281f7707636ee6b9886524",
+          "before_sha256": null,
+          "id": "AU.scheduler-original-cases"
+        }
+      ],
+      "files": [],
+      "id": "audio-scheduler-original-execution-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed authored original/native scheduler comparison on two-to-four-record selection/eviction/retirement/clear and two-to-five-record assignment/reorder. Unchanged pinned PE bodies execute on Linux/i386 with only supplied clock/COM vtable boundaries; host tokens normalize original links without crossing a live wire. Native model selected record, all link/record/output/guard bytes and clock/COM event order match392778 cases; sanitizer passes. Preserved callback-lifetime compiler failure; final static callback lifetime explicitly retired between calls. Profile v5 optionalcap32/op23/24/25/copy ownership documented without changing protocol bytes. Reviewed newly linked sources/index snapshot; concurrent gameplay work excluded. Exact55a61527 parent/current history28 file transitions has zero receipt gaps.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "AU.scheduler-original-cases.original-20261012"
+        ],
+        "reason": "Fresh frozen-source original/native/sanitizer run working/tests/audio-scheduler-original-20261012-second/report.json passes392778 cases,439560 events and480760272 full object/link/output guard bytes; six original body byte ranges unchanged. Operation counts213120/44544/44544/38250/44544/7776 match all three builds, compiled local source closure complete, input/source stable and immutable manifest before/after. This supports only authored scoped model understanding/implementation/comparison, not actual DirectSound/tick semantics or live scheduler replacement."
+      }
     }
   ]
 }

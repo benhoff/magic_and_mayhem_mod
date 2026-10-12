@@ -7426,3 +7426,20 @@ Wine imports, excluding cached/dynamic/COM/forwarded/transitive/prefix activity.
 Original manager decisions and generic profile callers remain active; malformed/
 duplicate/encoding/integer and immutable snapshot policies are separately native.
 Evidence/failure fingerprints retained; exact7235e7f6 history15 transitions0 gaps.
+
+## Original audio scheduler matrix (2026-10-12)
+
+`AU.scheduler-original-cases` records392,778 original/native cases against six
+unchanged pinned scheduler bodies,439,560 scripted clock/COM events and
+480,760,272 checked object/link/slot/guard bytes. Native sanitizer execution,
+input/source stability and immutable manifests pass. Selected identity, free/
+expired/loop gates, old-volume ordering, assignment/unsigned wrap, optional slots,
+null buffers and status/Stop/reset faults are checked. No original driver/tick
+implementation, unsafe pointer/ring/missing lookup fault, live cadence or full
+manager/cache/event replacement is inferred. Helper mapping candidates remain
+explicit; broad historical AU scheduler status is unchanged.
+
+Profile operation23/24/25, capability32 and response-copy ownership are now
+documented in protocols/CONTRACTS.md. This documentation does not change the
+wire or claim new validation of other protocols. The earlier i386 fixture
+compiler failure remains retained; fresh original evidence is separate.

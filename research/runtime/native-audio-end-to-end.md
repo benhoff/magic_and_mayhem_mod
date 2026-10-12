@@ -393,3 +393,9 @@ byte for byte; current native game/normal Quit validates76 string,4 section and
 1 integer read with no audio errors. The manager's selection/cache/scheduler/event
 logic remains in the original executable pending independent migration.
 See [native configuration evidence](native-audio-profile-reads.md).
+
+The selected scheduler algorithms now have independent original execution
+comparison:392,778 cases and439,560 clock/COM events, with full ring/slot/object
+guards and sanitizer checks. See [scheduler comparison](audio-scheduler-original-cases.md).
+Live scheduler and sound-selection/cache/event decisions still execute in the
+original game; this milestone establishes a bounded comparison before migration.

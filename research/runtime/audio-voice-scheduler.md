@@ -96,3 +96,10 @@ AddressSanitizer, UndefinedBehaviorSanitizer and LeakSanitizer as
 `working/build/audio-output/audio-scheduler-sanitize`, outside sandbox tracing.
 These tests use synthetic samples and no audio device, Wine or game assets.
 No x86 runtime bridge code changed.
+
+## Original execution comparison (2026-10-12)
+
+The [separate bounded original comparison](audio-scheduler-original-cases.md)
+now passes392,778 authored cases against six unchanged pinned scheduler bodies,
+including complete ring/output/guard bytes and scripted clock/COM order. This
+does not validate live cadence, original drivers or full manager replacement.
