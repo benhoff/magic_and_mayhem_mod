@@ -497991,6 +497991,122 @@
           "NR.drawing-interactive-acquisition.call-intervals-original-20261012"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1b5fa9c448385e31b4053a26672798fe8cd114441ee7f003105ad74cdca963bb",
+          "before_sha256": "ac1ac9e39a6f1493f6626f9635065140279d467d7fe64964e9dd7e0cb7a9faa3",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "04ba42b29aae2569b137bd71f12b9b1495c5ef083cf3e3acde9b27661f73bf54",
+          "before_sha256": "ccd86d920666ea6f627421564ad313cd6f38851afa91aa9d4b6183b694c96844",
+          "id": "NR.drawing-interactive-acquisition"
+        },
+        {
+          "after_sha256": "add285e4af7aa7b915bfecf292a777ab296f1bf644d2339f5c901f1163fcda4b",
+          "before_sha256": "70ad829b1b08c3f4dc0a94496c4fdf75c0250ccae475319b6ba93f7aa5eb42e5",
+          "id": "NR.drawing-session-api"
+        },
+        {
+          "after_sha256": "56688316fde2bd346a59fd6663faba417020004e48f4b29459437227316f5e90",
+          "before_sha256": "f352f0b3c4ad2db998fb5f4318061af430b8bf3bfccd7131ff358f903a18c3af",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "023abc364a10bb18d2c2852cfd3fdc87f875364003a4a39e8f0d9678c20ff3f5",
+          "before_sha256": "f0620278505023163adaddd5aaccb9f2150f831e1b872fffd9c8b4ebea0efc44",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f3839ebe3cd189028aa2ef92a0f61e46d0196d9d6f4703ffb545cd4a9bf2fe57",
+          "before_sha256": "d6fb040ec0997c5e9ff48e2d429215a07b01464d7534606ed7ea0b03faeb343e",
+          "path": "research/formats/drawing-call-intervals-v1.md"
+        },
+        {
+          "after_sha256": "0ad5780607bb1defa05f34b3d4a094ecd9aca48226b14de5479b64666fb47f6f",
+          "before_sha256": "d2a4102773b5127c99983aeace17de14f1b96c2acfdeae882a4ce06c7633d1c6",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "45d32c2fcf64d727190b95a176d17c72b52e92091ecd76567b9d9c3900ebe7cf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-query-start-20261012.json"
+        },
+        {
+          "after_sha256": "31f02fd638fdef613f9c652715857cdf0905f7193b68c275fa08bf062c2e9eee",
+          "before_sha256": "860bdefc601fb8a9ef6d394de5813dbda3769fb3c45c103019e11147b52313e1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "0bec1bb68bc2af71ccf95667bd65e283565fac0e75d4e0b904772e77eb6d8ea4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-query-lifetimes-20261012.json"
+        },
+        {
+          "after_sha256": "f593c952545db810f1237a44cf42ae9743da1008316ac9386f6bc4c7179b1264",
+          "before_sha256": "5106936db757e8750ce511ffe73d6d79056b1869fb9dae254f7acfce413fd208",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "3d5b7d46f60a2cf8e3e413256a199daa90d5a6b1af2409a0a57fa5c8b23f7856",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-query-lifetimes-analysis-01.json"
+        },
+        {
+          "after_sha256": "660b437ea2b44254a07ce2465160f0abf9b88f49e3dd6e84716d479b31b0af4f",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-query-lifetimes-forwarding-01.json"
+        },
+        {
+          "after_sha256": "44878f1a050a1349e5c16521397ac49aebf7673288cf7a61ddfb48cd360339f4",
+          "before_sha256": "ae148cf8522031cf287e15383b5f3fd1bbc6aef27ad708a6b347b56dd4eace1d",
+          "path": "tests/test-drawing-call-intervals.py"
+        },
+        {
+          "after_sha256": "2880c5f154ae314dd9308078d88dabe8901fda1d443d92ee3b60f9b01f01a563",
+          "before_sha256": null,
+          "path": "tests/test-drawing-surface-lifetimes.py"
+        },
+        {
+          "after_sha256": "34157ffc98647f584a38b49c5a42b32b5617cc0fe1095a6c57d61100c4e1de05",
+          "before_sha256": null,
+          "path": "tools/analyze-drawing-lifetimes.py"
+        },
+        {
+          "after_sha256": "0f423f7aa07aaafe37d394b48d298957ce7ba10aae51ec3bda4a2585333a67c9",
+          "before_sha256": "ba2f40fed60c8d7943bfbd115a3f9657bacf280e1696727f85bc09a97bdc03b2",
+          "path": "tools/drawing_call_intervals.py"
+        },
+        {
+          "after_sha256": "f2a4c447090efc66d876a6ee656644917cb1f335d7e46d3b73ea116a5b4967b5",
+          "before_sha256": null,
+          "path": "tools/drawing_surface_lifetimes.py"
+        }
+      ],
+      "id": "draw02-temporal-query-lifetimes-increment-20261012",
+      "pending_gaps": [
+        "stale_evidence:4aad9927de16f567b24b607a0b4977d1210070f3eb25da5fa887d21bae1e176d",
+        "stale_evidence:6b89050326e1962b03648543bcbe9b414d73448d542fd76e6109d8248dc375f7",
+        "stale_evidence:8f08188efc254fa674e3c13b506e42a28ca098dbf4b2c297c2fd606a9b162673",
+        "stale_evidence:99c024554d3b79dd5192fd9774f30c3c49d0bf6b0eca7ea77e6fd0356f7e7911",
+        "stale_evidence:ce5f3b1209bc7c9f11c29df0520b51176d1533439a17ebeda0aa616f2ec37b4b",
+        "stale_evidence:e77901c53398e897a7f037b6eb2dd7907a3d4b5de7c7e41b269fa04d6c176c7a",
+        "validation_gaps:daa661bc1c6f17fffcea7712499b52925d7d00fedb160f1ab452905a3a52aa98",
+        "validation_gaps:e8fff7b11979dd95fc7113c637687744173d55c34b9d5e0d5fd415b9b94ceee1"
+      ],
+      "reason": "Reviewed event-ordered successful QueryInterface links and CPU/DC lease migration. Failed queries, attached surfaces, generation reuse and future links cannot manufacture earlier ownership; duplicate/ambiguous/failed/missing release and retirement with open leases stay explicit. Source/destination witness exposure is separate from global leases. Reviewed strict consecutive entry IDs and journal-return-before-completion admission, eight interval/ten lifetime guards, unchanged-runtime32callback/eight-thread physical fixture and pinned original585witness offline analysis. All18committed1122a20..ab99f46file versions match exact receipts; source census includes three new analyzer/guard files. Historical raw/API/local-generation reports and source hashes remain immutable.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh eighteen Python guards and PE32 forwarding/eight competing-thread physical fixture pass; offline temporal analysis pairs2155leases across70observed queries with zero gaps/remaining,224global lease windows and zero known source/destination lease windows. The analyzer consumes exact prior original journals and does not reexecute original code or compare native pixels. Producer ownership, all backing aliases/raw writes, coherent physical writer selection/global routes, semantic actions, actual driver recovery and all47/21closure requirements remain pending. Eight new historical source/scope gap keys are explicitly retained; no old hashes or broad engine validation are refreshed.",
+        "evidence": [
+          "NR.drawing-session-api.query-lifetimes-native-20261012",
+          "NR.drawing-session-api.query-lifetimes-forwarding-native-20261012"
+        ]
+      }
     }
   ]
 }

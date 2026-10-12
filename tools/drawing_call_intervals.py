@@ -30,6 +30,7 @@ def decode_intervals(data, journal):
     leases, lease_gaps = {}, []
     lease_events = []
     max_pending = 0
+    returned_records, returned_prefix = set(), 0
     for ordinal, r in enumerate(rows[:-1], 1):
         if r[0] != ordinal or r[1] not in (1, 2, 3) or r[14] or r[15] or r[2] not in calls:
             raise ValueError('Invalid call interval identity')
@@ -37,7 +38,7 @@ def decode_intervals(data, journal):
         if r[3:6] != call[1:4] or r[7:9] != (call[6], call[5]):
             raise ValueError('Call interval differs from API identity')
         if r[1] == 1:
-            if r[2] in entered or any(r[10:13]):
+            if r[2] != len(entered)+1 or r[2] in entered or any(r[10:13]):
                 raise ValueError('Duplicate/invalid call entry')
             if call[1] == 1 and call[2] in (5, 7, 11) and r[6] != call[4]:
                 raise ValueError('Call source generation changed')
@@ -51,6 +52,8 @@ def decode_intervals(data, journal):
                 if 'returned' in entry or r[11] or r[12]:
                     raise ValueError('Duplicate/invalid call return')
                 entry['returned'] = ordinal
+                returned_records.add(call[0])
+                while returned_prefix+1 in returned_records: returned_prefix += 1
                 if call[1] == 1 and not call[8] & 0x80000000:
                     kind = {17: 'dc', 25: 'cpu', 26: 'dc', 32: 'cpu'}.get(call[2])
                     if kind:
@@ -64,7 +67,7 @@ def decode_intervals(data, journal):
                             lease_gaps.append(dict(event=ordinal, reason='unobserved-acquire', object=key[0], kind=kind))
                         lease_events.append(dict(event=ordinal, object=key[0], kind=kind, open=call[2] in (17, 25), entry=r[2]))
             else:
-                if 'returned' not in entry or r[11:13] != (call[12], call[0]):
+                if 'returned' not in entry or r[11:13] != (call[12], call[0]) or returned_prefix < call[0]:
                     raise ValueError('Completion lacks return or exact journal/frame binding')
                 entry['completed'] = ordinal
                 completed[r[2]] = entry

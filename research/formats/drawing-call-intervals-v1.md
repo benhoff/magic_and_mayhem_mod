@@ -48,3 +48,27 @@ lease bookkeeping from asserting source immutability or complete lifetimes.
 Confidence: high within the guarded wire/observer scope after the recorded tests;
 original producer ownership, every presentation route, physical scanout ordering
 and all47journey/21operation closure requirements remain unproved.
+
+## Temporal query-bound lifetime analysis
+
+`drawing_surface_lifetimes.py` groups local generations only when the original
+returns success from an observed QueryInterface. Failed queries, attachment
+acquisition and pointer/generation reuse cannot create an alias link. Links take
+effect at the return observation; a later query never repairs an earlier unmatched
+release. Existing leases migrate with the group. Two leases merged together,
+duplicate acquires, failed/missing releases and zero-refcount Release while a
+lease remains open stay explicit and cannot establish source ownership.
+
+The read-only `analyze-drawing-lifetimes.py` validates a registered original report's
+hash/provenance and its retained journal/interval hashes, then executes the
+ordering/lifetime guards and analysis without reading any original pixel plane.
+Reports retain the original evidence identity independently from current analyzer
+sources/claims. This is offline execution, not original reexecution or fresh
+engine/native pixel comparison.
+
+Per witness, global lease exposure includes leases released before shutdown.
+Known source/destination exposure uses the query groups available in event order.
+Lists are bounded with explicit count/completeness flags. Zero known exposure does
+not prove all shared backing aliases, raw CPU writes or immutable producers.
+Admission additionally requires consecutive entry IDs and refuses an observer
+completion when an earlier main-journal call lacks its return observation.

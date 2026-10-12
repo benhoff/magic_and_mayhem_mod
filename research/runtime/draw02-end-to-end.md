@@ -178,3 +178,32 @@ existing order and acceptance requirements, with no reference/parity gate
 promotions. Reviewed committed range82f9bff..1122a20 has42exact file receipts and
 zero missing intermediate versions; the retained report makes no retrospective
 gate or new validation claim.
+
+## Step 2 query-bound lifetime checkpoint (2026-10-12 UTC)
+
+Call-order work is committed as`ab99f46`; its staged gate and commit hook pass.
+The next increment leaves that local-generation diagnostic and original raw
+artifacts unchanged. New temporal query grouping uses successful original
+QueryInterface returns only; failed queries/attached surfaces/generation reuse and
+future queries cannot supply missing earlier ownership. Ambiguous merges, failed
+release, duplicate/unobserved acquire and retirement with a lease remain gaps.
+Witnesses retain both global leases and leases on known source/destination aliases.
+
+Eight interval and ten lifetime guard methods pass. Admission now rejects
+impossible entry order and completion before preceding main-journal return points.
+`draw02-query-lifetimes-forwarding-01.json` passes the fresh32original callback/
+eight competing-thread/eight physical-fence fixture after this strengthening.
+`draw02-query-lifetimes-analysis-01.json` is an independently source/claim-bound
+*offline* reanalysis of the exact pinned585witness journal, not new original work.
+Its70successful query links pair2155CPU/DC leases with zero gaps or remaining
+leases.224witnesses overlap global leases; zero overlap leases on their known
+source/destination query groups. These observed interface aliases explain the
+previous4279local-generation mismatches without asserting an original defect.
+
+Reassessment: step2 next needs producer bindings and primary-writer causality,
+then alternate/GDI/movie route and semantic action coverage. Closing CPU/DC leases
+by known queries does not freeze source bytes, resolve all backing aliases or
+make the344conservative competing-mutator windows complete presented frames.
+Steps3–7 remain in order and pending; all47journey/21operation requirements stay
+open. Source-only analyzer changes retain older original execution hashes and
+explicitly do not assert current-source original validation.

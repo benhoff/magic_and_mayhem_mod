@@ -6770,3 +6770,15 @@ owned presented frames. QueryInterface alias/lifetime grouping and persistent
 CPU/DC lease accounting remain pending; local-interface gaps are not original
 engine lifetime failures. No complete14journey/21operation, native parity, global
 route, driver recovery or live replacement claim is promoted.
+
+### DRAW02 query-bound lifetime analysis (2026-10-12)
+
+Read-only temporal analysis of the pinned original585witness journal joins only
+successful observed QueryInterface returns. All2155CPU/DC leases pair across70
+query links with zero gaps/remaining;224physical witness windows overlap global
+leases and zero overlap leases on known source/destination aliases. The original
+local-interface diagnostic is preserved. Eight order/ten lifetime guards and the
+fresh PE32 eight-competing-thread forwarding fixture pass. This is offline
+analysis and synthetic native validation, not new original execution, shared
+backing alias completeness, raw CPU write/source ownership, physical frame
+causality, native pixels or any complete journey/operation gate.

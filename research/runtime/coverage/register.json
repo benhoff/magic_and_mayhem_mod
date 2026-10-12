@@ -37600,7 +37600,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Original-active common DirectDraw/input API session observer and strict admission",
-      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission. Additive mode3 observes primary API physical witnesses with no diagnostic Lock/Unlock; exact original API journal request/ACK and full stable X11 planes remain reference-only. Other threads continue, source inputs are not yet bound, alternate/GDI/movie/global routes and semantic outcomes remain open. Mode3 frame byte budgets are prospectively configured1..3072MiB with the1024frame cap retained; other modes keep their original fixed1GiB header. Budget exhaustion and successful-primary-without-plane admission refuse. Additive physical-mode call-interval journal records observer entry, original return observation and observer completion/physical ACK for every admitted API/input/action call. Exact journal identities, result, pending ownership and closed terminal are required. Conservative competing mutators and CPU/DC acquire/release leases are exposed without claiming source ownership, alias resolution or driver/scanout ordering.",
+      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission. Additive mode3 observes primary API physical witnesses with no diagnostic Lock/Unlock; exact original API journal request/ACK and full stable X11 planes remain reference-only. Other threads continue, source inputs are not yet bound, alternate/GDI/movie/global routes and semantic outcomes remain open. Mode3 frame byte budgets are prospectively configured1..3072MiB with the1024frame cap retained; other modes keep their original fixed1GiB header. Budget exhaustion and successful-primary-without-plane admission refuse. Additive physical-mode call-interval journal records observer entry, original return observation and observer completion/physical ACK for every admitted API/input/action call. Exact journal identities, result, pending ownership and closed terminal are required. Conservative competing mutators and CPU/DC acquire/release leases are exposed without claiming source ownership, alias resolution or driver/scanout ordering. A read-only temporal analyzer joins interface generations only after a successful observed QueryInterface return, never on attached-surface acquisition or failed queries. CPU/DC leases migrate through known aliases; failed/missing releases, duplicate acquisitions, ambiguous merges and retirement with an open lease remain explicit. Witnesses retain global and source/destination lease exposure; unknown backing aliases/raw CPU writes/producer ownership remain unproved. Interval entry IDs must advance exactly, and completion cannot precede return observations for preceding main-journal records.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -37618,7 +37618,9 @@
         "runtime/drawing/physical_fence.h",
         "tools/drawing_api_physical.py",
         "runtime/drawing/call_intervals.h",
-        "tools/drawing_call_intervals.py"
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_surface_lifetimes.py",
+        "tools/analyze-drawing-lifetimes.py"
       ],
       "tests": [
         "runtime/drawing/selftest.c",
@@ -37626,7 +37628,8 @@
         "tools/test-drawing-api-session.py",
         "tests/test-drawing-api-physical.py",
         "tests/drawing-api-physical-peer.py",
-        "tests/test-drawing-call-intervals.py"
+        "tests/test-drawing-call-intervals.py",
+        "tests/test-drawing-surface-lifetimes.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -37650,7 +37653,9 @@
         "NR.drawing-session-api.physical-development-legacy-02-20261012",
         "NR.drawing-session-api.call-intervals-native-20261012",
         "NR.drawing-session-api.call-intervals-legacy-native-20261012",
-        "NR.drawing-session-api.call-intervals-source-change-refusal-20261012"
+        "NR.drawing-session-api.call-intervals-source-change-refusal-20261012",
+        "NR.drawing-session-api.query-lifetimes-native-20261012",
+        "NR.drawing-session-api.query-lifetimes-forwarding-native-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -37662,7 +37667,8 @@
       "validation_domain": "Synthetic PE32 stdcall callback result/error/x87, eight complete readback planes and eight second-thread reentrant readbacks; original-active strict live API observation is recorded separately. No global presentation or complete semantic journey.",
       "remaining_gaps": [
         "New physical API mode is a bounded reference-only increment. Synthetic ACK tests do not acquire original frames; actual X11 witnesses, source input bindings, all presentation/GDI/movie routes, semantic input/lifetime and full journey admission remain pending. Historical forwarding/original capture hashes are preserved and shared changes require new comparisons.",
-        "Shared producer depth/surface state requires concurrency-safe ownership before source binding; call intervals do not make API physical witnesses complete presented frames."
+        "Shared producer depth/surface state requires concurrency-safe ownership before source binding; call intervals do not make API physical witnesses complete presented frames.",
+        "Temporal QueryInterface grouping explains local-interface mismatches in the pinned585witness capture; this offline reanalysis does not rerun original code or establish immutable producers, physical causality or all backing aliases."
       ]
     },
     {
@@ -88162,6 +88168,80 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session-api.query-lifetimes-native-20261012",
+      "kind": "native_integration",
+      "scope": "Offline guarded temporal analysis of the pinned585physical-witness original capture:70successful query links pair2155CPU/DC leases with zero gaps/remaining;224global lease windows and zero known source/destination lease windows. No original reexecution, producer/raw-write/backing-alias or physical equivalence.",
+      "record": "research/runtime/draw02-query-lifetimes-analysis-01.json",
+      "sha256": "3d5b7d46f60a2cf8e3e413256a199daa90d5a6b1af2409a0a57fa5c8b23f7856",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/analysis/lease_gaps",
+          "equals": []
+        },
+        {
+          "pointer": "/analysis/remaining_leases",
+          "equals": []
+        },
+        {
+          "pointer": "/analysis/frames_with_open_leases",
+          "equals": 224
+        },
+        {
+          "pointer": "/analysis/frames_with_source_or_destination_leases",
+          "equals": 0
+        },
+        {
+          "pointer": "/analysis/producer_inputs_owned",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.query-lifetimes-forwarding-native-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh unchanged-runtime PE32 forwarding/eight competing-thread physical fences after interval sequence/journal-order admission strengthening; no original game or driver equivalence.",
+      "record": "research/runtime/draw02-query-lifetimes-forwarding-01.json",
+      "sha256": "660b437ea2b44254a07ce2465160f0abf9b88f49e3dd6e84716d479b31b0af4f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/competing_thread_calls",
+          "equals": 8
+        },
+        {
+          "pointer": "/call_intervals/frames_with_other_thread_mutations",
+          "equals": 8
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98723,7 +98803,8 @@
       ],
       "evidence": [
         "NR.drawing-session-api.physical-fence-native-20261012",
-        "NR.drawing-session-api.call-intervals-native-20261012"
+        "NR.drawing-session-api.call-intervals-native-20261012",
+        "NR.drawing-session-api.query-lifetimes-forwarding-native-20261012"
       ]
     },
     {
@@ -98740,6 +98821,22 @@
       "evidence": [
         "NR.drawing-interactive-acquisition.physical-api-original-20261012",
         "NR.drawing-interactive-acquisition.call-intervals-original-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.query-bound-lifetimes",
+      "level": "headless",
+      "scope": "Offline temporal successful QueryInterface/CPU/DC lease analysis of a pinned original-active physical API capture, with strict interval/order guards. No original reexecution, whole-frame/native pixel comparison, backing-storage completeness or producer ownership.",
+      "behaviors": [
+        "NR.drawing-session-api"
+      ],
+      "tests": [
+        "tests/test-drawing-call-intervals.py",
+        "tests/test-drawing-surface-lifetimes.py",
+        "tools/analyze-drawing-lifetimes.py"
+      ],
+      "evidence": [
+        "NR.drawing-session-api.query-lifetimes-native-20261012"
       ]
     }
   ],
@@ -99114,8 +99211,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-call-intervals-20261012.json",
-    "sha256": "561997e3fe8b0f5398d1cc53a2140efe20a8082c980ea97cef2074da3e84fa17"
+    "path": "research/runtime/coverage/source-index-draw02-query-lifetimes-20261012.json",
+    "sha256": "0bec1bb68bc2af71ccf95667bd65e283565fac0e75d4e0b904772e77eb6d8ea4"
   },
   "claim_bindings_required": true
 }

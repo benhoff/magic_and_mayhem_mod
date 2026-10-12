@@ -50,6 +50,9 @@ class IntervalTest(unittest.TestCase):
     def test_missing_duplicate_or_reordered_points_refuse(self):
         for timeline in (((1,1),(1,3),(2,1),(2,2),(2,3)),((1,1),(1,2),(1,2),(1,3),(2,1),(2,2),(2,3)),((1,1),(1,2),(1,3),(2,1))):
             with self.assertRaises(ValueError):decode_intervals(*fixture(timeline))
+    def test_impossible_entry_order_and_journal_completion_before_prior_return_refuse(self):
+        for timeline in (((2,1),(2,2),(2,3),(1,1),(1,2),(1,3)),((1,1),(2,1),(2,2),(2,3),(1,2),(1,3))):
+            with self.assertRaises(ValueError):decode_intervals(*fixture(timeline))
     def test_cpu_lease_is_visible_until_unlock_and_failed_unlock_keeps_it(self):
         # First entry remains the physical Blt; following entries own CPU leases.
         timeline=tuple((i,p) for i in (1,2,3) for p in (1,2,3))
