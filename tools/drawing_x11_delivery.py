@@ -2,15 +2,16 @@
 import struct
 from collections import Counter
 from drawing_api_session import sha
-METHODS={1:'XPutImage',2:'XShmPutImage',3:'XCopyArea',4:'XCopyPlane',5:'XFillRectangle',6:'XFillRectangles',7:'XClearArea',8:'XFlush',9:'XSync'}
+METHODS={1:'XPutImage',2:'XShmPutImage',3:'XCopyArea',4:'XCopyPlane',5:'XFillRectangle',6:'XFillRectangles',7:'XClearArea',8:'XFlush',9:'XSync',10:'glXSwapBuffers'}
 def decode_delivery(raw,complete=True):
  if len(raw)<64 or (len(raw)-64)%96 or len(raw)>64+65536*96:raise ValueError('Incomplete X11 envelope')
  h=struct.unpack_from('<16I',raw)
- if raw[:8]!=b'MNMX1101' or h[2:5]!=(1,96,65536) or any(h[5:]):raise ValueError('Unsupported X11 header')
+ if raw[:8]!=b'MNMX1101' or (h[2] not in (1,2) or h[3:5]!=(96,65536)) or any(h[5:]):raise ValueError('Unsupported X11 header')
  rows=list(struct.iter_unpack('<24I',raw[64:]));calls={};entries=Counter();results=[]
  for r in rows:
   phase,identity,method,pid,tid=r[:5]
-  if phase not in (1,2) or not identity or method not in METHODS or not pid or not tid or any(r[17:]):raise ValueError('Invalid X11 record identity/reserved fields')
+  if phase not in (1,2) or not identity or method not in METHODS or method==10 and h[2]!=2 or not pid or not tid or any(r[17:]):raise ValueError('Invalid X11 record identity/reserved fields')
+  if method==10 and (not 1<=r[10]<=16 or any(r[11:17]) or r[7]):raise ValueError('Invalid GLX alias/void result metadata')
   key=(pid,identity);time=r[5]|r[6]<<32
   if phase==1:
    if key in calls or r[7]:raise ValueError('Duplicate X11 entry or premature result')

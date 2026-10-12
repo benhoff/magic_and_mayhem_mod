@@ -18,7 +18,7 @@ def main():
     names=['tools/capture-drawing-interactive.py','tools/drawing-session-runner.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/build-drawing-session.py','tools/build-drawing-session-input.py','tools/build-menu-observer.py','tools/build-shadow-bridge.py','tools/prepare-shadow-experiment.py','tools/prepare-scene-observer.py','tools/run-game.sh','tools/run-opengl-game.py','tools/campaign_gameplay.py','runtime/drawing/session.c','runtime/drawing/source_points.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','tools/drawing_api_physical.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','runtime/shadow/win32_min.h','tests/drawing-session-input.cpp','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/menu').glob('*') if x.suffix in ('.h','.c','.S')]
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('menu_v*.h')]
-    if a.x11_delivery_library:names += ['runtime/display/x11_delivery.c','tools/build-drawing-x11-delivery.py','tools/drawing_x11_delivery.py']
+    if a.x11_delivery_library:names += ['runtime/display/x11_delivery.c','tools/build-drawing-x11-delivery.py','tools/drawing_x11_delivery.py','tools/drawing_process_snapshot.py']
     if a.producer_samples:
         names += ['reconstruction/rendering/vertical_bar.h','tools/build-scene-observer.py','tools/drawing_producer_points.py','tools/inspect-canvas-producers.py']
         names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/scene').glob('*.[chS]')]
@@ -92,8 +92,13 @@ def main():
             with (run/'physical-peer.log').open('x') as log:physical_peer=subprocess.Popen([str(a.physical_peer.resolve()),str(capture),str(run/'physical-report.json'),'--api','--transient-mib',str(a.physical_transient_mib)],env=env,stdout=log,stderr=subprocess.STDOUT)
         with (run/'game.log').open('x') as log:
             process=subprocess.Popen([str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],'--runner',str(ROOT/'tools/drawing-session-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+            wait(3)
+            if x11_library:
+                from drawing_process_snapshot import snapshot_processes
+                (run/'process-main.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
             send(3,1);send(22,4);s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))+[struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)];rules[2]=3
             send(14,6,rules=rules);send(25,9,2);send(14,7,rules=rules);send(7,12,slots=wait(7)[2])
+            if x11_library:(run/'process-world.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
             with (run/'input.log').open('x') as ilog:input_process=subprocess.Popen([str(input_binary),str(capture),str(a.schedule.resolve()),str(run/'input.json')],env=env,stdout=ilog,stderr=subprocess.STDOUT)
             deadline=time.monotonic()+120
             while input_process.poll() is None and time.monotonic()<deadline:
@@ -165,6 +170,7 @@ def main():
         try:
             if sha(Path(x11_library['path']).read_bytes())!=x11_library['sha256']:raise ValueError('Unix observer binary changed')
             report['x11_delivery_observation']=decode_delivery((capture/'x11-delivery.bin').read_bytes(),complete=False)
+            report['private_process_snapshots']=[dict(stage=stage,sha256=sha((run/f'process-{stage}.json').read_bytes()),record=json.loads((run/f'process-{stage}.json').read_text())) for stage in ('main','world')]
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
     a.report.parent.mkdir(parents=True,exist_ok=True)

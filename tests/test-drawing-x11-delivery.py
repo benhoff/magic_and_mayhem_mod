@@ -27,4 +27,13 @@ class Delivery(unittest.TestCase):
    with self.assertRaises(ValueError):decode_delivery(header()+item+row(2))
   with self.assertRaises(ValueError):decode_delivery(header()+row()+row(2,time=9))
   with self.assertRaises(ValueError):decode_delivery(header()+row(identity=2)+row(2,identity=2))
+ def test_glx_version_and_alias(self):
+  h=bytearray(header());struct.pack_into('<I',h,8,2)
+  entry=bytearray(row());returned=bytearray(row(2,time=11))
+  for item in (entry,returned):struct.pack_into('<I',item,8,10);struct.pack_into('<I',item,40,1)
+  self.assertEqual(decode_delivery(bytes(h)+entry+returned)['methods'],{'glXSwapBuffers':1})
+  with self.assertRaises(ValueError):decode_delivery(header()+entry+returned)
+  for at,value in ((40,0),(40,17),(44,1),(28,1)):
+   broken=bytearray(returned);struct.pack_into('<I',broken,at,value)
+   with self.assertRaises(ValueError):decode_delivery(bytes(h)+entry+broken)
 if __name__=='__main__':unittest.main()
