@@ -291,7 +291,7 @@ private:
     bool createNativeVoices(const QString& path,const QString& soundsRoot={}){
         voices_=std::make_unique<mnm::audio::VoiceBroker>();
         voices_->failed=[this](const QString& error){log_->appendPlainText("Native voice output failed: "+error);};
-        if(voices_->create(path,true,soundsRoot.isEmpty()?QDir(repo_).filePath("working/game-nocd/Sounds"):soundsRoot,true))return true;
+        if(voices_->create(path,true,soundsRoot.isEmpty()?QDir(repo_).filePath("working/game-nocd/Sounds"):soundsRoot,true,true))return true;
         const auto error=voices_->lastError();voices_.reset();
         log_->appendPlainText("Native voice output could not start: "+error);
         statusBar()->showMessage(error);return false;
@@ -406,6 +406,7 @@ private:
                 {"wave_hook_installed",activity.waveHookInstalled},
                 {"profile_strings",qint64(activity.profileStrings)},{"profile_sections",qint64(activity.profileSections)},
                 {"profile_integers",qint64(activity.profileIntegers)},{"profile_hook_installed",activity.profileHookInstalled},
+                {"file_size_queries",qint64(activity.fileSizeQueries)},{"file_size_hook_installed",activity.fileSizeHookInstalled},
                 {"native_factory_only",activity.nativeFactoryOnly},{"unsupported_calls",int(activity.unsupportedCalls)},
                 {"failed_requests",qint64(activity.failures)},{"native_selections",int(activity.nativeSelections)},
                 {"fallbacks",int(activity.fallbacks)},{"adapter_failures",int(activity.adapterFailures)},

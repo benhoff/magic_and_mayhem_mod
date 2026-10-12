@@ -7443,3 +7443,31 @@ Profile operation23/24/25, capability32 and response-copy ownership are now
 documented in protocols/CONTRACTS.md. This documentation does not change the
 wire or claim new validation of other protocols. The earlier i386 fixture
 compiler failure remains retained; fresh original evidence is separate.
+
+## Selected native audio file-size read (2026-10-12)
+
+`HOST.native-audio-file-sizes` replaces only pinned call0x56ed0f after checking
+both call bytes and consumed-field load0x56ed1b. Native read-only whole WAV
+file size writes output+0x14 only on success; no full CRT stat/errno semantics
+are claimed. Optional MNMAUD01v5 cap64/op26/producer bit0x100000 retain layout
+and explicit staged admission. Installed356 WAV sizes, four quoted aliases,
+zero/malformed metadata, refusal/field/LastError/cdecl/guard cases pass365
+requests with363 successes and two expected host failures.67 CTests+13 launch
+checks pass. Controlled audio-residency input makes the original pool caller
+send1 actual native size query, with8 WAV loads/368902PCM bytes,12 plays/201ACK,
+zero audio failures/fallback/unsupported and full native movies/CD/game/normal
+Quit/source/input/original/private cleanup. Live returned size/budget is not
+directly logged. Original general stat, manager/cache/scheduler/events, unsafe
+allocation/races and physical/original audio equivalence remain pending.
+The unchanged permanent sections are empty; default-input composition is
+validated separately from this controlled branch coverage. All failed setups
+and earlier evidence hashes remain preserved. Exact7fac7ef8 history reviews12
+file transitions with zero receipt gaps, without renewing historical validation.
+
+Fresh unchanged-audio-configuration composition passes197ACK,12 voice plays,
+7 WAV loads349862PCM bytes,76/4/1 native profiles, full native movies/CD/game
+and normal Quit with no audio errors/source/input/original/private cleanup
+failures. File-size hook installed and0 queries expected from empty permanent
+sections; the separate controlled run supplies actual caller coverage. Both
+fresh bounded original-IAT censuses still record88 distinct direct Wine targets
+out of190; cached/dynamic/COM/forwarded/transitive/prefix activity is excluded.

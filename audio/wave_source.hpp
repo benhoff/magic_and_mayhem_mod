@@ -14,7 +14,10 @@ public:
     explicit WaveSource(mnm::assets::AssetStore assets,bool dequoteMissingLeaf=false)
         :assets_(std::move(assets)),dequoteMissingLeaf_(dequoteMissingLeaf){}
     SourceWave load(std::string_view leaf) const;
+    // Whole file bytes for the selected audio pool budget; does not decode PCM.
+    std::uint32_t fileBytes(std::string_view leaf) const;
 private:
+    std::unique_ptr<mnm::assets::AssetFile> open(std::string_view leaf) const;
     mnm::assets::AssetStore assets_;
     bool dequoteMissingLeaf_;
 };

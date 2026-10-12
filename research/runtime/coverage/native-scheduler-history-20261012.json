@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "reviewed_range": "55a61527..7fac7ef88d2032b6888266783d7e3a10e049ca43",
+  "scope": "Exact parent/current receipts for six original scheduler-body comparisons, authored matrix, sanitizer, source closure and scope accounting, plus existing profile-wire documentation. No live scheduler replacement, original driver/tick or unsafe-domain equivalence inferred.",
+  "files": [
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "184ff2671c82c4f1559af7f39bf1ca712c38bb80cb54ab13f8555c7776bda60a",
+      "after_sha256": "c241e5dd8d4545e7fc38033853c64fa1786c0b9f8ab5bbdd2b3c46f6cf95d87b",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/audio-scheduler-original-cases.md",
+      "before_sha256": null,
+      "after_sha256": "37fbff7bb62f9bdebe97460916a30731b0ace3aafc957f11cc0cddce4e086cc7",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/audio-scheduler-original-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e0446cc0cac5542e7fa4d2c04bca8425fb2eee88d29c82176a73807ff09a0f4c",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/audio-voice-scheduler.md",
+      "before_sha256": "11a0b08d5d1a143ead1144711fa69c697e00b769760ddd1385e950118ca6c7fb",
+      "after_sha256": "15c46ef7041a9ccbedd1a8819c86b6bc4a58a1659995723e40b16f82a357b055",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d78f646516e92d3a31d3682b9c46cb186bfbf2743e5c0c142802058a8773517e",
+      "after_sha256": "e234ee30d317146972f41ba4ba124c2a7308d815c444597171f7e61845bca087",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/coverage/native-profile-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "96283fb78e501fa35b7052f7e2e8b852433c2a270c008028e8a37b994b840fda",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "103c42df1461cfaaa0f9707b5cb572c337515b177ea75e9287d8cf06dd94c5e2",
+      "after_sha256": "38dd697b247a9947913b65863c58380d383a0ebbe1c59580ba359458c8a0bdc1",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/coverage/source-index-audio-scheduler-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1ae7a9b206ab02d23c719365429c098f3b81540843eeef8f4a95cb54a22a5594",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/coverage/summary-audio-scheduler-commit-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "e2b2d97422dfdd306fd443b6de1f29c9e56832ff1411e90a2f8871cf6847b975",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "9c9236f1aa0d0b81293eb6703f231fde4ae263ea5f5940f05eb1837d9d3657dd",
+      "after_sha256": "49b321cda44407c3c6147eb48d30899439364de6d1abf3485ca34b777719d79c",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "tests/audio-scheduler-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "143c6b1782c8f1263333acba060f2ec2f9abded2b0b7066098b813be9a6fc5cc",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "7fac7ef88d2032b6888266783d7e3a10e049ca43",
+      "path": "tools/test-audio-scheduler-original.py",
+      "before_sha256": null,
+      "after_sha256": "25c2b36244dd48b2e1def9630f73736851b64e6941a42e681155e96deaf9e0df",
+      "receipt_chain": [
+        "audio-scheduler-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
