@@ -9,6 +9,33 @@ from drawing_diagnostic_cadence import compare
 ROOT=Path(__file__).resolve().parents[1]
 
 
+def executed_schedule(report,root=ROOT):
+    """Bind the successful input runner's actual actions to one declared file."""
+    observed=report.get('input_schedule',{})
+    if observed.get('success') is not True or observed.get('error') or not observed.get('actions'):
+        raise ValueError('Successful executed input schedule required')
+    metadata={'ordinal','start_ms','end_ms','journal_bytes_before_image','journal_bytes_after_image',
+              'presentation_file','synchronized_original_frame'}
+    actions=[];previous=0
+    for ordinal,row in enumerate(observed['actions'],1):
+        start,end=row.get('start_ms'),row.get('end_ms')
+        if type(row.get('ordinal')) is not int or row['ordinal']!=ordinal or type(start) is not int or type(end) is not int or start<previous or end<start:
+            raise ValueError('Executed input action order/timing')
+        actions.append({k:v for k,v in row.items() if k not in metadata});previous=end
+    encode=lambda value:json.dumps(value,sort_keys=True,separators=(',',':'))
+    matches=[]
+    for name,digest in report['sources'].items():
+        path=Path(name)
+        if not name.startswith('tests/fixtures/drawing-journeys/') or not path.name.endswith('-schedule.json'):
+            continue
+        if path.is_absolute() or '..' in path.parts:raise ValueError('Unsafe declared input schedule')
+        raw=(root/path).read_bytes()
+        if sha(raw)!=digest:raise ValueError('Declared input schedule changed')
+        if encode(json.loads(raw).get('actions'))==encode(actions):matches.append(dict(path=name,sha256=digest))
+    if len(matches)!=1:raise ValueError('Executed input schedule missing/ambiguous in declared sources')
+    return matches[0]
+
+
 def read(path):
     raw=path.read_bytes();r=json.loads(raw)
     if not r.get('success') or r.get('source_sha256')!=BUILD or not r.get('original_drawing_active') or not r.get('original_manifest_verified_before_after') or not r.get('normal_original_quit_verified'):
@@ -16,10 +43,8 @@ def read(path):
     trace=Path(r['experiment'])/'capture/engine-cadence.bin';observed=analyze(trace)
     if observed!=r['engine_update_observation']:
         raise ValueError('Recorded counter trace changed')
-    schedule='tests/fixtures/drawing-journeys/wine-submission-schedule.json'
-    if schedule not in r['sources']:
-        raise ValueError('Declared shared input schedule missing')
-    return r,dict(path=str(path),sha256=sha(raw),trace_sha256=sha(trace.read_bytes()),schedule_sha256=r['sources'][schedule])
+    schedule=executed_schedule(r)
+    return r,dict(path=str(path),sha256=sha(raw),trace_sha256=sha(trace.read_bytes()),schedule_sha256=schedule['sha256'],schedule_path=schedule['path'])
 
 
 def main():

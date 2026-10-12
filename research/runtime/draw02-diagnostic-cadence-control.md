@@ -27,3 +27,29 @@ diagnostics, not evidence of unobtrusive gameplay or60FPS.
 
 Step2 continues with whole-source lifetime/version and route/action accounting.
 All47journey requirements/21operations remain open; no status promotion.
+
+
+The pending-copy continuation corrects comparison input provenance: each successful
+input runner action row must match exactly one hash-matched declared schedule,
+including ordinal/timing order and every action parameter. A fixed short schedule
+name in a source declaration cannot establish the executed inputs. Eight offline
+methods pass in `draw02-pending-policy-cadence-fixture-01.json`; previous reports
+and their fingerprints remain immutable. New original control/comparison evidence
+is required for the corrected comparator. Timing remains an instrumentation
+measurement, with randomized workload and unobtrusive behavior unproved.
+
+
+Fresh counter-only control01 now passes after an unchanged3GiB reservation finds
+104.155GiB free. Normal original Quit, current source fingerprints and manifest
+checks pass. Corrected comparison01 independently verifies actual long interactive
+schedule/actions, settings, input/counter binary and both raw cadence traces.
+It compares the first 120 queued updates: diagnostic/control median 7.6751x and
+p95 16.2093x. This distinguishes costly diagnostics from counter-only observation;
+randomized workload and uninstrumented gameplay remain unproved. No acquisition,
+journey/native-parity, source ownership or replacement milestone is promoted.
+
+Current main free space is102.64GiB after the control, below the3GiB exact-review
+and5GiB staged/hook reservations. The still-local remainder of the five previously
+reviewed older completed runs is9248files/7.642GiB. Cold backup verification is
+being prepared with no local deletion; previous cleanup approval does not extend
+to this remainder. Current original02/control01 raw references remain hot.

@@ -66,3 +66,12 @@ including real foreign-thread aliased write refusal and exact point/export joins
 The current original120-update retry is blocked by the unchanged100GiB floor;
 original execution, complete routes and frame/caller/lifetime closure remain
 pending. No DRAW-02 or step2 completion is asserted.
+
+
+Original retry02 now passes with106strict tag32/39 admissions,231paired protected
+source snapshots,447completed worker commands and120advancing producer queues,
+followed by normal Quit. Source hashes and original manifests/sections match.
+This validates the bounded diagnostic policy on the encountered copies; the
+reported ownership, hardware completion, complete presentation interval and full
+journey flags remain false. Fresh controls and whole frame/action/caller/lifetime
+and route accounting remain pending. The raw accepted run remains local.

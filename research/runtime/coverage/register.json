@@ -43522,7 +43522,8 @@
         "DRAW02.source-pending-lease-regression-01-native_integration-20261012",
         "DRAW02.pending-policy-lease-fixture-01-20261012",
         "DRAW02.pending-policy-original-refusal-01-20261012",
-        "DRAW02.pending-policy-lease-fixture-02-20261012"
+        "DRAW02.pending-policy-lease-fixture-02-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43574,7 +43575,8 @@
         "DRAW02.draw02-source-worker-lease-cpu-analysis-01-static-20261012",
         "DRAW02.draw02-source-worker-lease-egl-context-01-static-20261012",
         "DRAW02.draw02-source-worker-lease-crosslinks-02-static-20261012",
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43632,7 +43634,8 @@
         "DRAW02.draw02-producer-update-held-analysis-01-static-20261012",
         "DRAW02.pending-policy-held-fixture-01-20261012",
         "DRAW02.pending-policy-original-refusal-01-20261012",
-        "DRAW02.pending-policy-held-fixture-02-20261012"
+        "DRAW02.pending-policy-held-fixture-02-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43873,7 +43876,8 @@
         "DRAW02.draw02-whole120-interval-analysis-01-static-20261012",
         "DRAW02.draw02-whole120-reader-fixture-01-native_integration-20261012",
         "DRAW02.draw02-whole120-held-analysis-01-static-20261012",
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44341,7 +44345,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original update cadence controls for drawing diagnostics",
-      "scope": "Explicit original-active cadence control with drawing/source/Wine/display capture disabled and identical declared input schedule/settings. Retain accepted original update identities and QPC timing, compare bounded queued World update intervals to retained diagnostic runs. Counter/menu/input observation still exists; timing comparison is an instrumentation measurement, not identical gameplay work, semantic equivalence, 60FPS or unobtrusive capture proof.",
+      "scope": "Explicit original-active cadence control with drawing/source/Wine/display capture disabled and identical declared input schedule/settings. Retain accepted original update identities and QPC timing, compare bounded queued World update intervals to retained diagnostic runs. Counter/menu/input observation still exists; timing comparison is an instrumentation measurement, not identical gameplay work, semantic equivalence, 60FPS or unobtrusive capture proof. Bind the successful input runner action records, their ordinal/timing order and every declared action parameter to exactly one hash-matched schedule file; unrelated declared schedules cannot establish equal executed inputs.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -44372,7 +44376,10 @@
         "DRAW02.cadence-control-comparison-02-native_integration-20261012",
         "DRAW02.cadence-control-repeat-01-native_integration-20261012",
         "DRAW02.current-cadence-control-20261012",
-        "DRAW02.current-cadence-comparison-20261012"
+        "DRAW02.current-cadence-comparison-20261012",
+        "DRAW02.pending-policy-cadence-fixture-01-20261012",
+        "DRAW02.pending-policy-cadence-control-01-20261012",
+        "DRAW02.pending-policy-cadence-comparison-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44384,7 +44391,9 @@
       "remaining_gaps": [
         "Four mode/timing guard methods and two original counter-only controls pass normal Quit. Same schedule/settings/input/counter binary comparisons show diagnostic median queued intervals3.571/3.504 times firstcontrol,3.399/3.349 times second over62/58queued updates. Control repeat first120queued medians differ3.76%,p950.67%. This distinguishes expensive diagnostics from the counter-only condition; neither zero-overhead gameplay nor identical work/equivalence is proved.",
         "Control still observes counters/menu/input, randomized original workloads and diagnostic interval lengths differ. Unobtrusive delivery/FPS, source ownership/all writers/uploads/whole lifetimes, all routes/semantic actions/full DRAW-02 47/21 acceptance remain open. Native parity not performed for this cadence-control change.",
-        "Current short47queued median3.8414x/control and whole120median7.4675x. Shared declared inputs/settings do not prove identical workload or exclusive instrumentation cost. Expensive diagnostics, no unobtrusive timing/FPS claim; source/frame/journey/semantic completion independent."
+        "Current short47queued median3.8414x/control and whole120median7.4675x. Shared declared inputs/settings do not prove identical workload or exclusive instrumentation cost. Expensive diagnostics, no unobtrusive timing/FPS claim; source/frame/journey/semantic completion independent.",
+        "Eight offline guards pass after correcting fixed-name schedule lookup to exact executed actions. Historical cadence reports and hashes remain retained; current corrected-comparator/control execution is pending. Unchanged randomized workload, output routes, frame/action/caller/lifetime and unobtrusive gameplay boundaries remain open.",
+        "Corrected original counter-only control01 and comparison01 pass exact actual interactive action schedule/settings/input/counter binary and journal identities. First 120 queued updates: diagnostic/control median 7.6751x, p95 16.2093x. This establishes costly diagnostics relative to the counter-only condition; identical workload, uninstrumented gameplay, all presentation/source/action/caller/lifetime/routes and full47/21 remain unproved."
       ]
     },
     {
@@ -45199,7 +45208,8 @@
         "DRAW02.draw02-actor-latches-original-03-20261012",
         "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
         "DRAW02.draw02-actor-latches-original-04-20261012",
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45318,7 +45328,8 @@
         "DRAW02.draw02-actor-latches-original-03-20261012",
         "DRAW02.draw02-actor-latch-region-fixture-04-20261012",
         "DRAW02.draw02-actor-latches-original-04-20261012",
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45507,7 +45518,8 @@
         "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
         "DRAW02.draw02-cursor-mutex-original-01-20261012",
         "DRAW02.draw02-cursor-mutex-source-original-01-20261012",
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45614,7 +45626,8 @@
         "DRAW02.pending-policy-held-fixture-01-20261012",
         "DRAW02.pending-policy-original-refusal-01-20261012",
         "DRAW02.pending-policy-policy-fixture-02-20261012",
-        "DRAW02.pending-policy-held-fixture-02-20261012"
+        "DRAW02.pending-policy-held-fixture-02-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45624,7 +45637,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Owned PE32 admission/refusal/foreign-aliased-write and exact protection restore execution pending. Actual original diagnostic acquisition, independent lease/worker/held-snapshot joins, all source/COM/resource/storage lifetime/routes and unobtrusive cadence remain pending without status promotion."
+        "Corrected-contract owned suites02 pass16 pending guards, default refusal, protected-page/identity/restore checks and a real foreign aliased-write fault. Original02 passes strict106 V2 overlap admissions joined to231 protected snapshot pairs/447 completed worker commands and120 advancing producer queues. Numeric IDs do not prove disjoint backing or complete source/COM/resource lifetime, all writers/output routes, hardware completion, unobtrusive cadence, semantic outcomes or complete presentation acquisition. No comparison/integration/replacement status promotion."
       ]
     }
   ],
@@ -97699,6 +97712,126 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.pending-policy-cadence-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Eight offline minimal-control, queued timing and exact executed schedule admission/refusal guards. No original execution, frame/semantic equivalence, identical workload or unobtrusive proof.",
+      "record": "research/runtime/draw02-pending-policy-cadence-fixture-01.json",
+      "sha256": "cfee9ba35cfca5e6f3c60bfa139b7b8cd4bac2c3080e8d08ee6418a272e76f62",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_run",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active diagnostic120 producer queues bound to advancing engine windows, 231 paired protected source snapshots,447 completed exact worker commands,106 strict V2 tag32/39 overlap admissions,790 API and789 EGL physical witnesses, normal original Quit. Original raster active. Selected full-size CPU source/observed routes only; no complete presentation interval, source/all-alias ownership, semantic outcomes, hardware completion, unobtrusive gameplay or native parity claim.",
+      "record": "research/runtime/draw02-pending-policy-original-02.json",
+      "sha256": "d72b9facc825ae2fa9c6492313e0cfde23262c532e203d5752442c0a5e145b8e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_update_observation/bound_advancing_queues",
+          "equals": 120
+        },
+        {
+          "pointer": "/source_held_snapshot_observation/stable_snapshot_pairs",
+          "equals": 231
+        },
+        {
+          "pointer": "/api_source_worker_lease_observation/completed_commands",
+          "equals": 447
+        },
+        {
+          "pointer": "/complete_journey_coverage",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-cadence-control-01-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active counter/menu/input-only control with normal original Quit and the same actual long interactive schedule as diagnostic original02; no drawing/source/Wine/display capture.",
+      "record": "research/runtime/draw02-pending-policy-cadence-control-01.json",
+      "sha256": "dc55f3f0484665bed887a1724822b1f345855219ff8ba467c6d35d12de67b983",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cadence_control",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.pending-policy-cadence-comparison-01-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh strict executed-schedule/settings/input/counter-binary and raw trace comparison of current counter-only control and current pending-copy diagnostic; bounded queued-update timing only, not identical random workload, unobtrusive gameplay or complete acquisition.",
+      "record": "research/runtime/draw02-pending-policy-cadence-comparison-01.json",
+      "sha256": "1342bf0dc79910b78eac47e307270f9d49d46113924ac1f1383c1ff684402e9e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/unobtrusive_capture_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_presented_journey",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109196,7 +109329,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-whole120-original-02-live_observation-20261012",
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ]
     },
     {
@@ -109432,7 +109566,8 @@
         "tests/test-drawing-diagnostic-cadence.py"
       ],
       "evidence": [
-        "DRAW02.cadence-control-fixture-01-native-20261012"
+        "DRAW02.cadence-control-fixture-01-native-20261012",
+        "DRAW02.pending-policy-cadence-fixture-01-20261012"
       ]
     },
     {
@@ -109447,7 +109582,8 @@
       ],
       "evidence": [
         "DRAW02.cadence-control-original-01-live_observation-20261012",
-        "DRAW02.cadence-control-original-02-live_observation-20261012"
+        "DRAW02.cadence-control-original-02-live_observation-20261012",
+        "DRAW02.pending-policy-cadence-control-01-20261012"
       ]
     },
     {
@@ -109463,7 +109599,8 @@
       "evidence": [
         "DRAW02.cadence-control-comparison-01-native_integration-20261012",
         "DRAW02.cadence-control-comparison-02-native_integration-20261012",
-        "DRAW02.cadence-control-repeat-01-native_integration-20261012"
+        "DRAW02.cadence-control-repeat-01-native_integration-20261012",
+        "DRAW02.pending-policy-cadence-comparison-01-20261012"
       ]
     },
     {
@@ -109589,7 +109726,8 @@
         "tools/capture-drawing-interactive.py"
       ],
       "evidence": [
-        "DRAW02.pending-policy-original-refusal-01-20261012"
+        "DRAW02.pending-policy-original-refusal-01-20261012",
+        "DRAW02.pending-policy-original-02-20261012"
       ]
     }
   ],
@@ -109964,8 +110102,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-pending-copy-20261012.json",
-    "sha256": "747020f50f095702dc644bdc5b91a5399118301ce38950878c13eb272e30cde2"
+    "path": "research/runtime/coverage/source-index-draw02-pending-control-20261012.json",
+    "sha256": "1b439ae0d9f96621b90ccdc19147f712c5308feabc72db11d25c701ee02f5110"
   },
   "claim_bindings_required": true
 }

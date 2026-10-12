@@ -8196,3 +8196,124 @@ It is unapproved. Only that verified subset may be proposed for local cleanup;
 remaining copies, current templates/references, source/report/pin files stay hot.
 Original retry, exact Git review/staged checks and the merge commit still await
 storage headroom; audit and owned suites pass without a milestone promotion.
+
+
+## Approved cold-storage cleanup and continuation (2026-10-12 UTC)
+
+The user explicitly approves the exact independently verified subset with `yes`.
+The main checkout records that authorization separately in
+`working/retention/draw02-step2-verified-cleanup-authorization-20261012.json`;
+the historical proposal remains unchanged. Renewed source/cold-object verification
+and both durable receipts precede each local removal. The completed prune removes
+12,952 selected regular payloads and releases11,146,723,328bytes (10.381GiB), with
+no other cleanup. Independent reconciliation confirms both durable `pruned`
+catalog rows agree for every selected path and the cold objects remain available.
+See main `working/retention/draw02-step2-verified-subset-prune-20261012.json` and
+`draw02-step2-pruned-subset-verification-20261012.json`. These are storage records,
+not new engine evidence. Tracked sources/reports, pins, active/latest runs, current
+prefix template and latest passed joint reference remain hot. Archived engine
+inputs require explicit restore before use.
+
+The isolated merge/pending-copy increment is committed as `bc0354f5` after the
+working and staged coverage checks and required commit hook pass with zero errors.
+Its exact review retains310new accounting gaps,162affected behaviors and the
+historical fingerprints. No milestone is promoted. The corrected original120
+capture starts only after the unchanged9GiB guard passes at111.220GiB free.
+
+Cadence comparison previously looked up the fixed short schedule name among
+source declarations; that could mistake an unrelated declared file for the actual
+executed inputs. It now binds the successful input runner's ordered action rows,
+all declared parameters and timing order to exactly one hash-matched schedule.
+Missing/changed/ambiguous schedules and extra/changed parameters refuse. Eight
+offline methods pass under a new exact declaration and evidence ID. Prior results
+and hashes are retained; corrected original control/comparison remain pending.
+This correction establishes input provenance, not semantic outcomes, equal random
+workload, uninstrumented gameplay or complete presentation acquisition.
+
+
+Original retry02 passes under the corrected V2 diagnostic policy, with the original
+raster active and unchanged original sections/manifests verified before and after.
+Normal original Quit retains120 advancing producer queues,565023source records,
+2162source oracles,231stable protected snapshot pairs,447completed worker commands,
+106exact pending-copy admissions,790API physical and789EGL physical witnesses.
+The engine journal retains131consecutive advancing complete update windows.
+All admission files independently join their held source/lease/thread/prefix/queue
+identities. There is no source pending refusal or protection/write fault in this
+accepted run. Raw artifacts stay in `working/experiments/drawing-api-session/
+run-2rc22k2n`; evidence is `draw02-pending-policy-original-02.json`.
+
+This closes the corrected policy's bounded original retry, not step2: producer
+analysis explicitly retains `all_presentations_in_update_interval_retained=false`,
+held storage ownership/hardware completion remain false, and picking/selection/
+pause/tooltip outcomes are not inferred from injected actions. Whole source,
+frame/action/caller/lifetime, all encountered routes and fresh control/comparison
+still need closure. Full47/21 and steps3–7 remain open.
+
+After the capture, main free space is approximately101.24GiB. The next private
+control and Git snapshot/staged checks need reservations above that headroom;
+the100GiB minimum remains unchanged. Current accepted raw evidence, templates,
+latest references and sources are preserved. Further reviewed backups can prepare
+additional cleanup; the previous approval covers only its exact removed subset.
+
+
+Fresh counter-only control01 now passes after an unchanged3GiB reservation finds
+104.155GiB free. Normal original Quit, current source fingerprints and manifest
+checks pass. Corrected comparison01 independently verifies actual long interactive
+schedule/actions, settings, input/counter binary and both raw cadence traces.
+It compares the first 120 queued updates: diagnostic/control median 7.6751x and
+p95 16.2093x. This distinguishes costly diagnostics from counter-only observation;
+randomized workload and uninstrumented gameplay remain unproved. No acquisition,
+journey/native-parity, source ownership or replacement milestone is promoted.
+
+Current main free space is102.64GiB after the control, below the3GiB exact-review
+and5GiB staged/hook reservations. The still-local remainder of the five previously
+reviewed older completed runs is9248files/7.642GiB. Cold backup verification is
+being prepared with no local deletion; previous cleanup approval does not extend
+to this remainder. Current original02/control01 raw references remain hot.
+
+
+Other writers reduce main free space to99.47GiB during the additional backup.
+The unchanged monitor stops the launched backup before all9248remainder files
+complete; no local file is removed. Both durable catalogs are independently
+reconciled and completed warm/cold objects reverified before a new exact subset
+can be proposed. Uncompleted copies, current accepted references and all source/
+report/pin/template files stay local. The3GiB Git draft preflight also refuses at
+102.633GiB earlier; exact current review/staged checks and the continuation commit
+remain pending headroom. Discovery audit02 passes with zero errors, retaining the
+three historical warnings. This storage limitation does not close step2.
+
+
+Independent revalidation after the second guard stop verifies7429completed warm/
+cold copies, both durable catalogs and3363unique decompressed/compressed objects:
+5.541GiB, all still local. Main proposal
+`working/retention/draw02-step2-remaining-verified-cleanup-proposal-20261012.json`
+has SHA256 `89d697dcb37b0e7c303c894d63e1d5842a7926220e1d76c85c6dbdc222a4e1ba`.
+The concrete review `draw02-step2-remaining-cleanup-review-20261012.json` names the
+full still-local9248file/7.642GiB remainder of the previously reviewed five runs.
+1819files/2.101GiB still need backup verification. Proposed conditional approval
+would allow the verified subset to free headroom, then guarded backup/independent
+verification before removing the remaining exact manifest files. Nothing further
+is approved or pruned. This does not extend to any current run/template/pin/source/
+report or other run. Original02/control01 evidence remains hot and step2 open;
+exact current review/staged checks and the continuation commit await headroom.
+
+
+The user explicitly approves the whole reviewed9248-file/7.642GiB remainder with
+`approve all`. Main `draw02-step2-remaining-cleanup-authorization-20261012.json`
+binds the full manifest SHA256 `00dacd56fd2db038989bdc1c0f41a5f290e0763fede7fafca6e353e9b2953314`.
+This approval persists only for that exact manifest. The independently verified
+7429-file subset is reverified and pruned first; guarded backups then complete all
+1819remaining files, and independent warm/raw/compressed verification plus both
+durable receipts precede their renewed verification and pruning. Both phases pass
+independent final catalog reconciliation. No new permission is required for the
+second phase of the same approved scope.
+
+Main `working/retention/draw02-step2-approved-remainder-completion-20261012.json`
+records9248removals/8205090816releasedbytes. Together with the previous approved
+12952-file subset, all22200selected payloads from the five reviewed older runs
+release19351814144bytes (18.023GiB). Current original02/control01 evidence, current
+prefix template/latest joint reference, tracked sources/reports and pins remain
+hot. Only storage provenance changes; old engine evidence hashes are preserved.
+Archived engine inputs require restore before use. Step2 still needs complete
+frame/action/caller/lifetime and encountered-route acquisition; no47/21 or later
+step is promoted by cleanup, bounded120queue capture or cadence comparison.
