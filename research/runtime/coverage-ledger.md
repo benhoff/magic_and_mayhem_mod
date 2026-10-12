@@ -604,6 +604,19 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI44 connects native multiplayer session selection21 above normal
+Join16. V16 retains original500ms enumeration, bounded displayed-name rows,
+original deferred Join and Cancel's Quick destination. Original TCP Join reaches
+the native empty session list twice; Cancel/window-close and normal Quit pass
+with nine ready states/eleven original callback ACKs.15 private original callback
+and adapter cases/35 rejection checks and three targeted Qt checks pass.
+[Contract](multiplayer-session-menu-contract.md). No remote peer was selected or
+joined; populated peer discovery/join, host/guest lobby and gameplay remain
+pending. Shared V15 form sources retain their older exact evidence hashes and
+current-source limitations. The `ed4d70ed..1f7032ba` history report reviews30
+committed file versions with no missing receipts; no retrospective gate claim.
+
+
 2026-10-12 UI43 connects native Create15 and Join16 forms from Quick Battle.
 V15 projects the original names/default provider and availability; guarded
 printable ASCII game63/user15 submissions call original edit/radio setters and

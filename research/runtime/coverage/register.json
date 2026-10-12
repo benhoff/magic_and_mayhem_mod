@@ -43493,6 +43493,170 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "MP.session-selection-controls",
+      "subsystem": "multiplayer",
+      "kind": "recovered",
+      "title": "Original multiplayer discovered-session refresh and action contracts",
+      "scope": "Original selector ID21, controls, original callback OK/deferred byte and Cancel Quick destination, list-name refresh every500ms, name-based original network join and Join lobby6c477c destination. Static recovery/private callback execution only; actual enumeration/peer joins/lobby/gameplay remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4914016,
+          "scope": "Session selector constructor only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055380,
+          "relation": "data",
+          "scope": "Session selector vtable only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4917760,
+          "recovered_range": "multiplayer-session-callback",
+          "scope": "Original deferred Join0 and Cancel1 Quick destination; networking retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-session-menu-contract.md"
+      ],
+      "implementation": [
+        "tools/export-multiplayer-menu.py"
+      ],
+      "tests": [
+        "tests/multiplayer-session-contract.c",
+        "tools/test-multiplayer-session-contract.py"
+      ],
+      "evidence": [
+        "UI44.original-session-fixture"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.multiplayer-session-ownership",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "multiplayer-session-ownership",
+      "scope": "V16 normal Main/Quick/Join/session-selector stack only; bounded original session-name rows and selection, original refresh/enumeration retained, guarded Join/Cancel callbacks and viewport networking/lobby handoff. Native row identifiers are presentation ordinals, not recovered GUIDs. Bounded TCP empty-list admission/Cancel/window-close and original networking handoff; populated peer join/lobby/gameplay and replacement unsupported.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4914016,
+          "scope": "Selector construction; callbacks/refresh retained in original."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055380,
+          "relation": "data",
+          "scope": "Selector identity only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4917760,
+          "recovered_range": "multiplayer-session-callback",
+          "scope": "Original deferred Join0 and Cancel1 Quick destination; networking retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-session-menu-contract.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v16.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/multiplayer-session-contract.c",
+        "tools/test-multiplayer-session-contract.py",
+        "tools/test-live-multiplayer-sessions.py"
+      ],
+      "evidence": [
+        "UI44.original-session-fixture",
+        "UI44.sessions-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-multiplayer-sessions",
+      "subsystem": "multiplayer",
+      "kind": "native_policy",
+      "title": "native-multiplayer-sessions",
+      "scope": "V16 normal Main/Quick/Join/session-selector stack only; bounded original session-name rows and selection, original refresh/enumeration retained, guarded Join/Cancel callbacks and viewport networking/lobby handoff. Native row identifiers are presentation ordinals, not recovered GUIDs. Bounded TCP empty-list admission/Cancel/window-close and original networking handoff; populated peer join/lobby/gameplay and replacement unsupported.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4914016,
+          "scope": "Selector construction; callbacks/refresh retained in original."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055380,
+          "relation": "data",
+          "scope": "Selector identity only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4917760,
+          "recovered_range": "multiplayer-session-callback",
+          "scope": "Original deferred Join0 and Cancel1 Quick destination; networking retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/multiplayer-session-menu-contract.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_session_selection_controller.hpp",
+        "apps/qt-shell/live_session_selection_controller.cpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "apps/qt-shell/live_multiplayer_sessions_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/test-live-multiplayer-sessions.py",
+        "tests/menu-session-bridge-test.cpp"
+      ],
+      "evidence": [
+        "UI44.sessions-live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/multiplayer_game_selection_widget.cpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.hpp",
+        "apps/qt-shell/live_multiplayer_controller.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp"
+      ]
     }
   ],
   "evidence": [
@@ -90378,6 +90542,75 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI44.original-session-fixture",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Original session callback OK deferred byte/Cancel Quick destination/unknown no-op and ABI; native bounded row/identity/availability/transition guards. Selection setter/fade stubbed, networking not run.",
+      "record": "research/runtime/multiplayer-session-contract-20261012.json",
+      "sha256": "22fed635e5d48817e8da78647f94bca9a5ea79f0a9732682cec76195c627f3bc",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 15
+        },
+        {
+          "pointer": "/guard_rejections",
+          "equals": 35
+        },
+        {
+          "pointer": "/networking_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI44.sessions-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Original TCP Join submission and empty discovery list twice; native selector Cancel and window-close original Quick/Main Quit. Original graphics/audio/networking/enumeration/lifecycle retained; no peer join or lobby/gameplay proof.",
+      "record": "research/runtime/multiplayer-sessions-live-20261012.json",
+      "sha256": "40929f9b3ef013572cc76bd2c2ec9a77d7b3cf81d547982181cf2a7f21b6dc9f",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/handoffs",
+          "equals": 2
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_session_selection",
+          "equals": true
+        },
+        {
+          "pointer": "/peer_join",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -93699,6 +93932,38 @@
         },
         {
           "value": "unknown-action-noop-networking-not-enumerated",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "multiplayer-session-actions",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4917760,
+        "recovered_range": "multiplayer-session-callback",
+        "scope": "Deferred Join0/Quick Cancel1 only."
+      },
+      "document": "research/runtime/multiplayer-session-menu-contract.md",
+      "scope": "Button callback only; original enumeration/network/lobby branches are not completely classified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "MP.session-selection-controls",
+            "NP.multiplayer-session-ownership"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "MP.session-selection-controls",
+            "NP.multiplayer-session-ownership"
+          ]
+        },
+        {
+          "value": "unmapped-network-flow-and-unknown-noop",
           "behaviors": []
         }
       ]
@@ -101119,6 +101384,22 @@
         "tools/test-live-multiplayer.py",
         "apps/qt-shell/live_multiplayer_test.cpp"
       ]
+    },
+    {
+      "id": "UI.multiplayer-sessions-native",
+      "scope": "V16 normal Main/Quick/Join/session-selector stack only; bounded original session-name rows and selection, original refresh/enumeration retained, guarded Join/Cancel callbacks and viewport networking/lobby handoff. Native row identifiers are presentation ordinals, not recovered GUIDs. Bounded TCP empty-list admission/Cancel/window-close and original networking handoff; populated peer join/lobby/gameplay and replacement unsupported.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.multiplayer-session-ownership",
+        "HOST.native-multiplayer-sessions"
+      ],
+      "evidence": [
+        "UI44.sessions-live"
+      ],
+      "tests": [
+        "tools/test-live-multiplayer-sessions.py",
+        "apps/qt-shell/live_multiplayer_sessions_test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -101409,6 +101690,15 @@
       "document": "research/runtime/multiplayer-menu-engine-contract.md",
       "evidence": "UI43.original-form-fixture",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "multiplayer-session-callback",
+      "build": "nocd-40209ca7",
+      "start": 4917760,
+      "end": 4917803,
+      "document": "research/runtime/multiplayer-session-menu-contract.md",
+      "evidence": "UI44.original-session-fixture",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -101519,8 +101809,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-multiplayer-forms-20261012.json",
-    "sha256": "b31e3cca0e6c5dadb8667bdbd2e925191a41ac3b682e63d7e60614db8a0616fe"
+    "path": "research/runtime/coverage/source-index-multiplayer-sessions-20261012.json",
+    "sha256": "8632fb83062e9dcc3a96b704bce3405c77ca193eb7db355e6e0984fff54d872e"
   },
   "claim_bindings_required": true
 }

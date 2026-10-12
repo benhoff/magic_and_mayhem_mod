@@ -528973,6 +528973,886 @@
         ],
         "reason": "New live evidence validates only the bounded Create/Join form scope under separately recorded receipts. Static constructor/provider/network destination recovery and private callbacks do not establish live networking/error recovery, session selection/lobby or gameplay. Existing101 shared links keep independent historical validation statuses; changed shared-source evidence remains stale/unbound where applicable.14 targeted Qt checks cover wire/lifecycle/widget regression but do not renew every original comparison, renderer/audio or replacement milestone. Every new gap is explicitly retained."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b8a7ac74348b2a99897bfd74ff2dd9c0a8d5b83e6855f476d85f8da2dbeb1e1e",
+          "before_sha256": null,
+          "id": "HOST.native-multiplayer-sessions"
+        },
+        {
+          "after_sha256": "d807b4d53401f7f130ae2617a3b5f2b40196de2d4954ff469d8b6796a6cf04c3",
+          "before_sha256": null,
+          "id": "NP.multiplayer-session-ownership"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d766f947336bb4d74d295bca584a427d5b04b5092c3db1825e3abe136777d31e",
+          "before_sha256": "f9b31a0f8c08232adf4df9765fe65c490383034989070f01835071fe7b8f439e",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "fc490109e28988caf79462a8188bdb9af50b45d34ed6670fc71ee2306e47a02a",
+          "before_sha256": "6828e0f76556bd7bc9cd5325a2ac451cd91b3be4e27b971c27f50352eebc9b77",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "c21ad2c1f4f14f4d6654e063a0c0d787d4eac0627d7073923784f222095fded1",
+          "before_sha256": "459dc88689396eb355ef823407ad02bbb771f8d558aeb52965c0e6ed4125ac4d",
+          "path": "apps/qt-shell/live_menu_session.hpp"
+        },
+        {
+          "after_sha256": "7a1b2c5d726dec8aaf8c1ddf87e676a17a742d46033da7fbebf928bf123ea2be",
+          "before_sha256": "8e3cf9c38280e6f89347c793b9b11993db73d1689cf7a5c1ce2b828b349f7808",
+          "path": "apps/qt-shell/live_menu_test.cpp"
+        },
+        {
+          "after_sha256": "27eba21047b1a4bda72d65ea0b907d758d269a38a4cc50439f7b95d1bb10a043",
+          "before_sha256": "557a527d4e5fd24ab70d78e41f6b014b962d0bd85879dc585991a7cd2299b438",
+          "path": "apps/qt-shell/live_menu_test.hpp"
+        },
+        {
+          "after_sha256": "2fcceb6d2a0be55c7a7b9fabe255c35acdc009903f42438873bbfb8d413e7a65",
+          "before_sha256": "2fcceb6d2a0be55c7a7b9fabe255c35acdc009903f42438873bbfb8d413e7a65",
+          "path": "apps/qt-shell/live_multiplayer_controller.cpp"
+        },
+        {
+          "after_sha256": "cf2b8dca9d241fda9e762f9151d5218f6c6480b3757431e32f94f67c6cc265a4",
+          "before_sha256": null,
+          "path": "apps/qt-shell/live_multiplayer_sessions_test.cpp"
+        },
+        {
+          "after_sha256": "39a742f3b4c0a6b6c4ea4a088fcb493889255628141ca539f440f262c6bd8e8a",
+          "before_sha256": null,
+          "path": "apps/qt-shell/live_session_selection_controller.cpp"
+        },
+        {
+          "after_sha256": "bb249f6c330a99c4a1655efcf930ed75a1f820cb6402a46e2071a58820606b61",
+          "before_sha256": null,
+          "path": "apps/qt-shell/live_session_selection_controller.hpp"
+        },
+        {
+          "after_sha256": "3c3d8c7e0f6da970b398444f6cfd5d98e7cbbb20e2684f5358c0c114c2f8a8c8",
+          "before_sha256": "e0a6343401c6645861c09628e5cdf7a0d1510c27a77416a8f916028a68cdb803",
+          "path": "apps/qt-shell/main.cpp"
+        },
+        {
+          "after_sha256": "3fa30fad209d7cdea6812eff9f96dc2f7dad1bca0a368c85b598492c1dad49aa",
+          "before_sha256": "2d72a72b180d15167d13e6a6eb2420461fde83b8ac645808f8ef0a91fb223494",
+          "path": "apps/qt-shell/menu_bridge.cpp"
+        },
+        {
+          "after_sha256": "67cf354d0e9bf196b64cc2216d8778bd2043379c78bb9d117a658ed908cfd64c",
+          "before_sha256": "ff9ce94fc4e6eab7ba4bc62abdaa150cca927278e35d42a2b8925cf8f143645e",
+          "path": "apps/qt-shell/menu_bridge.hpp"
+        },
+        {
+          "after_sha256": "984ff2e4f48a7df15adecb327f1671de2e1592b7faa032187a101952522d2766",
+          "before_sha256": "984ff2e4f48a7df15adecb327f1671de2e1592b7faa032187a101952522d2766",
+          "path": "apps/qt-shell/multiplayer_game_selection_widget.cpp"
+        },
+        {
+          "after_sha256": "5646c379928c8071ac8782daeeda2fe6e870cef8922266c61d731c7857be0b54",
+          "before_sha256": "5646c379928c8071ac8782daeeda2fe6e870cef8922266c61d731c7857be0b54",
+          "path": "apps/qt-shell/multiplayer_game_selection_widget.hpp"
+        },
+        {
+          "after_sha256": "ee57fd426196868395dd7baf2fc4e5ffb89eab753ddeae3361bbb89c98b99b01",
+          "before_sha256": "ee57fd426196868395dd7baf2fc4e5ffb89eab753ddeae3361bbb89c98b99b01",
+          "path": "apps/qt-shell/multiplayer_setup_widget.cpp"
+        },
+        {
+          "after_sha256": "40de68cbce6a9a532b4138c9f6160dee048f24b242dc6dd35c03fe308c0dad9b",
+          "before_sha256": "40de68cbce6a9a532b4138c9f6160dee048f24b242dc6dd35c03fe308c0dad9b",
+          "path": "apps/qt-shell/multiplayer_setup_widget.hpp"
+        },
+        {
+          "after_sha256": "1ab47b771eda03a625dde951d5aae62604fcbe416ba2f3db304cd09fbec0c74a",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/menu_v16.h"
+        },
+        {
+          "after_sha256": "d8480d0c5bf6c9359e7358e71c529e4f5f3a02a1b48a0bdfc9f303f8a07c35aa",
+          "before_sha256": "4ea7ae3320520cec05af529ccc1aac68f1528e5958a3155c0813c875444cd55e",
+          "path": "runtime/menu/channel.h"
+        },
+        {
+          "after_sha256": "9be52ba3d9d5ace848d90cd70f9776c852eb8b5cd2df26db6bfa76d8ede9a314",
+          "before_sha256": "9435d34c7b85db3dd39022f041300c4438f422494e9f0d70290dafacef7089f6",
+          "path": "runtime/menu/observer.c"
+        },
+        {
+          "after_sha256": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+          "before_sha256": null,
+          "path": "runtime/menu/sessions.h"
+        },
+        {
+          "after_sha256": "3cf9e7adfe51f0542a968e39da76678fcf958cf60a9f3b20131646c3491785cb",
+          "before_sha256": null,
+          "path": "tests/menu-session-bridge-test.cpp"
+        },
+        {
+          "after_sha256": "6ab10301d91a69c35a0bc76c79eabacd474b042ce53e97d5fd429f59ee857b2d",
+          "before_sha256": null,
+          "path": "tests/multiplayer-session-contract.c"
+        },
+        {
+          "after_sha256": "b72d1bbe73617b52a1bd04af5b6b7c1236310e8e87dc943a979534fdf0b578ec",
+          "before_sha256": "1709b07c18674d82b0261fd9f7f9c4690e66c2441ee7c499d6b87e1f40592cbb",
+          "path": "tools/run-menu-observer.py"
+        },
+        {
+          "after_sha256": "fca7ef8505f5db7042189b9cd58fcc312f44163286329d9b1304654dec4e9158",
+          "before_sha256": null,
+          "path": "tools/test-live-multiplayer-sessions.py"
+        },
+        {
+          "after_sha256": "3f21402f108b8a0f2e7f72c28136d2272017442f1ecf16a75bd08f9d77ad6c0b",
+          "before_sha256": null,
+          "path": "tools/test-multiplayer-session-contract.py"
+        }
+      ],
+      "id": "multiplayer-empty-sessions-live-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed V16 exact normal Main/Quick/Join/selector identities, original500ms enumeration, bounded names/selection, full prevalidation before original setters, deferred original Join and Quick Cancel, native ordinal presentation and original viewport networking/lobby handoff.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI44.sessions-live"
+        ],
+        "reason": "Prospective/final source and behavior/scenario fingerprints match: original TCP Join reaches native empty selector twice, nine ready states/eleven original ACKs and two viewport networking handoffs, Cancel/window-close unwind and normal original Quit. Private original callback/adapter15 cases/35 guards and three Qt checks pass. Peer discovery/join, host/guest lobby and gameplay are explicitly outside validation."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "51efbf236c5b6f0dd837c165bacef77fedba1c9818311fe95f6e5562fc4b7771",
+          "before_sha256": "16cc36360d1b81b47b50afea4d6d9b428f3f8c859d03859c23e4c3b098087892",
+          "id": "BR.battle"
+        },
+        {
+          "after_sha256": "edd15841012afaae6cfaed3a478387b745fcd36835658d83d10f41819914c501",
+          "before_sha256": "1f45c725b51755c824f4cd283aa4ba27d5a8f96150f12c7a3b20cc5e0fa31279",
+          "id": "BR.main"
+        },
+        {
+          "after_sha256": "bfb7b766734705680a72b3682fba17a2a3b5fb5c880be4a215b62d17813a298e",
+          "before_sha256": "c7739f939a4454272b32328d01122dbc7cecd98856cfc87b0e4194d83be60156",
+          "id": "BR.mini"
+        },
+        {
+          "after_sha256": "56326f95721712dd138a9d97c2ba6c27f19f5145000aaa32a11c146e5ac90cf7",
+          "before_sha256": "597706caedfa0c135debd818918dcb4bb12993e01edddc4c4a0da533e5db994a",
+          "id": "BR.result"
+        },
+        {
+          "after_sha256": "6d04efc36b65b0161942ad2327b5824c109bb7f1879e180ab021f6e503b55193",
+          "before_sha256": "0b27bb831dfecbbe9dac87b58f378610869506148efaf35c90c71b161f0ae8a9",
+          "id": "BR.spell"
+        },
+        {
+          "after_sha256": "4a6f0a7be1c8dbf9d787658891f48b747ccaf209e5882d66b2f90b362405379d",
+          "before_sha256": "36646f1dad61d14f9b395f0164659193fed705f92a00c423ab88cf1fe91aad2b",
+          "id": "CP.campaign-defeat-report"
+        },
+        {
+          "after_sha256": "8df1440995c0a17b3e37de8e9d0316a54fd7a030b9e80a5c94d068acecb9adbb",
+          "before_sha256": "8e231df3d12c5e5a3ea3b37eb7e2414387681b5fbbb28058a8829d7741178813",
+          "id": "CP.campaign-mini-cancel"
+        },
+        {
+          "after_sha256": "c315ec26badd904d4f73ff5320a804ca041e2c943ce4240cd6c0c2f085c7e078",
+          "before_sha256": "02707fbb392f4b683261ef8a0dda3f8f13f27f7c3a034bbcd4b52c71931653a7",
+          "id": "CP.campaign-mini-lifecycle"
+        },
+        {
+          "after_sha256": "7b0dcddf0f50e98dd74db3d1abf473abdf551e9b086b7da71c446daf2ad28369",
+          "before_sha256": "e85906f0f79d02d1335ad4f4a73dd0422a6fada24ce6f2e6a76369348ab2d966",
+          "id": "CP.campaign-mini-preferences"
+        },
+        {
+          "after_sha256": "45cf94e9cf56065b006dc2c4d01e83b52a7886e740675ffd283cbe40a0b0d40a",
+          "before_sha256": "23c7667892c0efe81014b2f8569319514d2e343d71af7a3827a67a83b035b668",
+          "id": "CP.campaign-mini-quit"
+        },
+        {
+          "after_sha256": "cc07a3216cfacb9050a03f8cb26fb6f85fff5aa2a7c72bcbd01553b4d4ef8437",
+          "before_sha256": "34e03d638bb1803cc0f1b5b15b69e169eb3833bc0547406f9a0d1bcd366587a9",
+          "id": "CP.campaign-mini-quit-lifecycle"
+        },
+        {
+          "after_sha256": "842a0d638dbd9f611c0702cd9a965da467a4aa9df9100c87c78c182b1753e57e",
+          "before_sha256": "bb9704cd1224e5e6ab0c4ee9986bee3bb930a29e5343b4a9de09c41d1ada7677",
+          "id": "CP.campaign-preferences-lifecycle"
+        },
+        {
+          "after_sha256": "4709d1701de35dc868a923273c4f4d1caf1eae3d9f2207eed1c38d54ee039b0f",
+          "before_sha256": "672301a9fdc00bd547c66a7cba91ff45ee7b406a95542e50c21f8b685e5a057b",
+          "id": "CP.campaign-world-handoff-observation"
+        },
+        {
+          "after_sha256": "51cc4d8d008bbab1c5757d3fd1479d7d9cd718e53560b349115c97f1f5539e03",
+          "before_sha256": "8f53d0673e023acb9186c7c9aaec275fb42e546f886c26190df78e659d927221",
+          "id": "CP.grimoire-observation"
+        },
+        {
+          "after_sha256": "de0b5232489c72cb52b9ae5d19dfe57f92e2d8ca4a43c1fd0b5f50254c565297",
+          "before_sha256": "9a5bff98a7eec66acf72028052497e1b5b19f9f723f131ee552cdf693e9d123e",
+          "id": "CP.realm-observation"
+        },
+        {
+          "after_sha256": "80f5ffc6763a59d31bda6359d2d8027108a0dd22cf6995cb82f15630c4b28dea",
+          "before_sha256": "2bbdc9224600a2bdfad56973fc0e2e6f4616db2e10cc4f26ec7d998989f7c00a",
+          "id": "CP.region-entry-bridge"
+        },
+        {
+          "after_sha256": "d01592a2270931e4216b637eabcef3058ec4998a3bd073f66ce5794e0dab0d04",
+          "before_sha256": "c59cf6718b39c725b3dc2557cac6caf7438e10d16e2938fa65fb4b5174758e8b",
+          "id": "CP.region-entry-enter"
+        },
+        {
+          "after_sha256": "7a17338208682cca86bec1cd78658137ffc73ccaf5cdcd50de6132e0937757c6",
+          "before_sha256": "0426b09d0def6fc2d026455159e9f95eb3efc5a7c61d2a83a36a1a56ea5c2b2a",
+          "id": "CP.region-entry-observation"
+        },
+        {
+          "after_sha256": "3ba51134c2012825e0cf96243871055ff4229b858aaab0a8aff9c671d7c31e3c",
+          "before_sha256": "c827ab80f6e616ffc0298fb98095cf1b732ff53687c3264e06d86e5c22b5b6ea",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "d182ae12c4fd2b0c09f0ea7ec81e2dcac2fc58a10cda29cfb5441c6e11c84b99",
+          "before_sha256": "8fd913cf1c9ac3b2dc716c0973e7ad7528d8ef166bed2edabc8e399f4a49381e",
+          "id": "HOST.command-input-fallback"
+        },
+        {
+          "after_sha256": "711dd92012c0cd4b750dedfe47487472d490e41a024cd2d76b4ee63660d6f8b9",
+          "before_sha256": "79213cdece7287de083a07fffe97467aa1c5c900a1c1aef89cc5c336f018d932",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "0879f20f147845ae3d5f704cec0bf382b2f5fde89b3a6843481232b83b2380f9",
+          "before_sha256": "de499566bc4661737e8a081fc34d9c7378f9ebb1174829da35251a392f76ab8e",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "1c61ba29dc9ef0654b305deb261088e0e74d939fde429137c3dacdbe9aa321f9",
+          "before_sha256": "618ccd3f371f2d3187ac9671a2d666ece244d448b7586522456ff8a574454da3",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "f3913413ba495474b823cb81ee6564a741fb0b1b7dabd8bfc9426121553abacd",
+          "before_sha256": "1ad32b67c155e3b9967a06a977a0038aee11dd617796cab1f445b5615e178bbe",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "9458ee9e286c376f6b428bd1d97b754d9fdf8a79094bb9c8ec9402cb6a9d9cc0",
+          "before_sha256": "8dc9bc05a6e19c269cbf1eb5ad2713f64cecf3e1b7f341e787fd8a56675653ef",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "b4b7b2813dee9aecd492d13a25812748b8692986f3c551343ae25e487440686e",
+          "before_sha256": "5f2e9dbddd1bfa34baeae527efd45799050ca2f1f9ac9d0780aad257b192ac6c",
+          "id": "HOST.native-campaign-save-load"
+        },
+        {
+          "after_sha256": "92d38323952df3962aba17eb508b10155099c400c9bcee82b8f7190f23a93f7e",
+          "before_sha256": "6f9d756767f3fcff76905db410de5e52e6568c8fcab9178d6b8b2aa80cb13bd8",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "ebac44d58d4cef6af67d4ab1104d4f3b0ca82f625fbdac1d2ad7aa3cb3f3efd9",
+          "before_sha256": "aebf1eabba62a8824571f12e4e219af16095eee2d4752b127b8ea8b3dd4163f5",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "ebf0bd94c7cadca5052c2967accddf3433923d4f819e0682a421af50ed592506",
+          "before_sha256": "006eb2b9be9cdbdc284b4954a2760f2923f04fb48faff47f6cd9a5e3c6ca343d",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "18444f5fe9e805c4017571129d5634439fe7a2520e0a6eaecea7150074265777",
+          "before_sha256": "ee6ff0608c81189bb12bffbc7c04131d839f9cbcc8df0d841edc05f8a29ab75d",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "8ed38307be559eab326f1b55f0ac39e94aa9b3b3b0d3520ac4f7bb069129c44c",
+          "before_sha256": "b063b00b2943cedc4bbf8b2818d7a7a8e3d4d180aa49ec3bb427afddc33d2daf",
+          "id": "HOST.native-command-responsiveness"
+        },
+        {
+          "after_sha256": "c982add690e218b331a0d1de145e757073d7fc5237879a6f76028f11033d7c27",
+          "before_sha256": "4f78b89e1eb1154545ac8cf0084c66134fa35d302fcf8316f3e2a4d0ca269d44",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "10b72c1c24ed1fbea85b24ed456bcad8f194773cc7f130bd2a2258f3a42a7c24",
+          "before_sha256": "6e51181436999d269032618c1fc47116c3b5c0e6728059f865a1454c445e9b7b",
+          "id": "HOST.native-grimoire-introduction"
+        },
+        {
+          "after_sha256": "95e26085dc0a4240e585d114811a0153d3500981632e114d08f7a83e080e3191",
+          "before_sha256": "4618543971e75ff1ca83fa4cb960630811528ca81a333ee5b31a077f42951363",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "0e328f2ac1f5b05049b06557e154a3839c2a4733121f645b92a885cf7004a916",
+          "before_sha256": "a1e67083c891e2bbf95cf69427f8d8d413d856f00be42a8544d33880cc4742fa",
+          "id": "HOST.native-menu-audio"
+        },
+        {
+          "after_sha256": "ccdc8234569b9370e3460a3f003816be4aa21d9b6dcd40deb03904b79402128a",
+          "before_sha256": "33ece28d9867394fdd2f109490082637b9c35d979b41f947cdeeda34f5298f05",
+          "id": "HOST.native-multiplayer-setup"
+        },
+        {
+          "after_sha256": "f446fdceab3556bbe9a6b512e3fd11a04ce0037751903152757a55878f363966",
+          "before_sha256": "b2b9db01c8da343d46afac14f0a6adbbfa418892f026cf80fbf23aff008fe60d",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "5ead081640b660e0048b3f2c15a55570452a08afcdfcfdaeaf4f7146a633a3a5",
+          "before_sha256": "7b20c15d236a4ce4092430f48535464e6473f803e7d767274ebbd147a3e1f1d9",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "a48919f82ede62780437b1b8e815753a2dc9fb49b83f14a8a66780d3a62dafb1",
+          "before_sha256": "2255b6a6f297b2a9a43703e15c00a14b36455150e6878284e3111711bc2c9ccd",
+          "id": "HOST.native-render-draw-cadence"
+        },
+        {
+          "after_sha256": "f860239ae505723c284f748966d3ca9f6f2e57d4f58d85ff1255a885171f39a3",
+          "before_sha256": "bbd6e51c94ea615d4b944b3e99188eafb33ce1ec5a7856c5a603d6dec3941b57",
+          "id": "HOST.native-storage-confirmations"
+        },
+        {
+          "after_sha256": "6a9898d37ac46e5aa2ca46613a1fd6ebe947f9424e883b4443f845c8934c823c",
+          "before_sha256": "7e5ac946cffac972202ab1ec9442fd3bcb38bbffa12a7502939cd7a453ca329d",
+          "id": "HOST.presentation"
+        },
+        {
+          "after_sha256": "746e765366ea80968b838d820890a72cd3cae2c4c767876cd437e67966ecd948",
+          "before_sha256": "dee16989efdd4eeefdb7569bcfa036163bf015edbf2b202e4661e6695b91ac67",
+          "id": "HOST.session"
+        },
+        {
+          "after_sha256": "87e8d86184c25911d93a5a21d0e97cd83d401a5a04d6b56f6aa6a4b063281914",
+          "before_sha256": null,
+          "id": "MP.session-selection-controls"
+        },
+        {
+          "after_sha256": "ce6d10012fdc3301c602f572134a5720aca326b336311cad06a75d2c4e4e2135",
+          "before_sha256": "ce6d10012fdc3301c602f572134a5720aca326b336311cad06a75d2c4e4e2135",
+          "id": "MP.setup-menu-controls"
+        },
+        {
+          "after_sha256": "6bc8520e84ac43956e37c817473682dfd932be6f6560f67a0308accdbe8a82bf",
+          "before_sha256": "3db3afe1962c0a58c502f2f4da86e83d9bc3fed9adaa6ecbc0ddf2bd96f53747",
+          "id": "NP.campaign-defeat-policy"
+        },
+        {
+          "after_sha256": "8201818ade23b5ee66436625ce90605ae20504a0ee77b29a5a32b2e7542a0326",
+          "before_sha256": "6672304092b633cf0f604b2b9ab4aa8f1b2aced6ea45314d5b7f92c39697d878",
+          "id": "NP.campaign-mini-cancel-policy"
+        },
+        {
+          "after_sha256": "619d560bde8ab1a81a27e26ff10e8978b364554e02b6b5158e24ce4d01c442f2",
+          "before_sha256": "bdc7d1bd4d5b8bfd0d9b4f3c1009eb58037cdeb4d0b693d2e5087b61103c2afd",
+          "id": "NP.campaign-mini-quit-policy"
+        },
+        {
+          "after_sha256": "7b01d766c31bf73dab0334c99839265e521bcb4866997abbe1dae30647ed193c",
+          "before_sha256": "ec712a70b7485ef60e71b3b8274cd927f2902c9b7281576f1c21038310cdc847",
+          "id": "NP.campaign-preferences-policy"
+        },
+        {
+          "after_sha256": "4e8150c5182be8769a813ea2306f51ca59837eef4f799d0f219e5603e5d890a2",
+          "before_sha256": "b2749cffd96cd59b838701825d8801d038c6cc0522950a7982c3e2257d1f7071",
+          "id": "NP.grimoire-introduction-ownership"
+        },
+        {
+          "after_sha256": "c7d1dc4c0e6af43c2901175e9426ad8ac15936b57651cc304f294b620b5e7a2b",
+          "before_sha256": "a698b7b7d2c9719b4ed76a824de4543c2fe64c1ab012fdb6de44e88efdbe2cf8",
+          "id": "NP.multiplayer-setup-ownership"
+        },
+        {
+          "after_sha256": "aa5c829875ef57035c0c93d7430429f1bb11f7835d1c0bdb654752d7966fc95c",
+          "before_sha256": "13bd5abe784673f61050eeeb0066fe608f41d6e0803dea78aaaa8a27a6a8dc9a",
+          "id": "NP.preferences-draft"
+        },
+        {
+          "after_sha256": "d0587f4379dc923e0710c4112c9da3a46f990a2155aa3ef85ac35400c562bd53",
+          "before_sha256": "2d01a08602cd7f897a79d314d3787e8d8b56398806be3edc4ef8ab3ca9f4d242",
+          "id": "NP.preferences-persistence"
+        },
+        {
+          "after_sha256": "67fb70d0d7c99873695473240971073286d92859e2ced2b5226e8594770e0e26",
+          "before_sha256": "8419dabeee1921d9f083963f654d3bbaab9a033952ba86c95a33815b86148dbf",
+          "id": "NP.region-entry-fresh-policy"
+        },
+        {
+          "after_sha256": "2f1b585c88288406392c8d044620c90ad4394b65fd3329d8438ff97cecf6e692",
+          "before_sha256": "e43d239389661372976d7d50545d6e1e6ae321bf08549afe515eb096d86c790d",
+          "id": "NP.storage-menu-ownership"
+        },
+        {
+          "after_sha256": "5aaa88228514788507ec29aaa69a1bc8dc5aeaad8064c94ecf8096bae998e150",
+          "before_sha256": "20aa8e9eda468b2b509fbf5e3a6ea200e1888fe49886cb49d0d58c40fade0da5",
+          "id": "NR.application-shutdown"
+        },
+        {
+          "after_sha256": "80c8809c0b979764f81a4e0ee6e6256a2d3f1675dbbeff7a7fd24b1f35dbf6d1",
+          "before_sha256": "d7cb9b2c15e8f4cf48157effbfedbf2a64740c3a7f6065c3b10915d0aad3287c",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "921882876e22660e82bc871a8318c5235f476161793c95b9c735828dca26c9fb",
+          "before_sha256": "1ac306ec767ae30269fee02fb9de645edbb1bba027d9fbba21d5b8996d627e06",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "d182d68c44696f9314a2bf4276e79a7faf998e5a04c1d30b3561aea5457af813",
+          "before_sha256": "dea54c4954288ffebda3900d6560f9bd2ba9ed70e3ad806576678af4e971b0d9",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "cd12a192cd2212315cc9570c2c8080d9d936b7eb503ab19552b29b9dc2374c8b",
+          "before_sha256": "7d3384b5fed7ac975137f898d195bb0d1c384752fceed7e21b3716612529b581",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "83bf5057de2d1769766bff1cf220ec5f7fd21fd31085a714cbb2db45dd6f0b94",
+          "before_sha256": "f56f2cfdcac4631cd0f7b087c6f130ffb3fa2088464bf40bfd2e2ca12d465b0e",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "0ea1a2bbb6f4a73027c5ab802292a6302e5656f397f8c124a738432964438699",
+          "before_sha256": "bda36971953db38b1a7866e161f4b4faf49257f2fd0e3d7d568efd02a4379875",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "2befab0c9a57075c7b60ddccac9cd5e6a2c975ccd6fde28f87c82572c17e8aca",
+          "before_sha256": "4120cf0109745745ffd05e815293185a97b2795e114add0f853cbf1d36ed4b18",
+          "id": "NR.drawing-actions"
+        },
+        {
+          "after_sha256": "afba3989646664ee21d4fc97ec0b71d5a08b9e64f2424a61241f379c31baa040",
+          "before_sha256": "f1a7d6f43929ecf8b6ffb7936a866a6d533a397d70eca250c20e27330dba35e3",
+          "id": "NR.drawing-fenced-acquisition"
+        },
+        {
+          "after_sha256": "09ae5e0e8621f71e5a96bb9c112bebd177faa7cc1495fc8efdd1b020b7235a3e",
+          "before_sha256": "77152498432a2689f8b89be5e71e1a65f5df338b93420ca4713925be4d95e8cd",
+          "id": "NR.drawing-interactive-acquisition"
+        },
+        {
+          "after_sha256": "0089f9b4ffc5aa133cc44da0eb687ee32041b6587bb58428f8247b63e706bcc3",
+          "before_sha256": "8d50d6c2e93e44319ac7e9f20f1d36c3295a69ce6066ec1dcd48ef17ce5f8025",
+          "id": "NR.font-glyph-live-shadow"
+        },
+        {
+          "after_sha256": "a5d171ff4b8906b4ae18edad205b7a977914d7b066f4d0e6e53faa151d9a9189",
+          "before_sha256": "ca5606b9ff44551d506d1e61a0f4be3694a32264ef11ac938e7b2126ce05550a",
+          "id": "NR.glyph-default-launch"
+        },
+        {
+          "after_sha256": "4914e18d082a264ee2fc510349ec8d95da7a33c23e89639787cfeaf363d0647a",
+          "before_sha256": "e9ce50f5b95e60132f36392997fcde2078d0240e58e65d9166ddf6343fc41141",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "a1af54c806f8f8ca4765b511da1f62f0eaf253a8be228f06ccfde059180605a9",
+          "before_sha256": "54c692124dba959220cf967ebe574ba910872f5624fdff0cf1fdd870947ea264",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "817e1bb5c1d17bdf73f28678011b8c0f7f100e2f63934a554cf51864eae08a46",
+          "before_sha256": "85792f5b3479bda86640de39ecb70d3fc49f94df30417cb91ce40b0f5b190d70",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "9760cb9b560a0c9a93f357f0c2884bdf7b2a9019eb6f406a704521eb6f300f01",
+          "before_sha256": "2080a85e9f4cffa55473764797e84cc166cc3f06e39083b25268941e5b077d42",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "50549ca3ba602878061b3e6f8a9c25d6e633803374deda18ec23316fff52168b",
+          "before_sha256": "90d3fe23d6fd6c8472c3aed89e6cc7b560ea78d4fc098fec6d344abe663ab80b",
+          "id": "NR.movie-frame-production"
+        },
+        {
+          "after_sha256": "8d6782859f8d0529438b116a9427d5e3cc8b7788d66c8ae39c813be4a74d19ce",
+          "before_sha256": "40d668571cf0b0ade9b45520f434d03d34ef6ae09341c5786b9f22e26501a39c",
+          "id": "NR.observer-lock-avoidance"
+        },
+        {
+          "after_sha256": "de675b7fad2560087446514295f6c51c3492802246e4abb405b71aac8f924cea",
+          "before_sha256": "d9eb9525dc70aac752ba0e6e51247bd552d22954b1de5b40363de647b42a9f60",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "1dad08aa82c95bfe270f05ecf60914061b34d54fe014836a396ae506a14c048f",
+          "before_sha256": "8eda5a755513c7bec192ca0b97661239491c74ad22c992a04a9243e1d9ac1669",
+          "id": "NR.presentation-damage"
+        },
+        {
+          "after_sha256": "612812d100a4f9ae6b05e7f01ced71d4d3cb7d5437973694bf00cf17d5919cd6",
+          "before_sha256": "ac968e128b594ac8d4ac28b02d6f13c93441e1fcb50952530f6970263e63b352",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "32ef4eb501638f89940aafdf566c47be8cc8030a48a07745550a78c0d6a043e9",
+          "before_sha256": "62ba7e7a9eac973f9767dcafa4f9ecbc17c0505eb9dd1c0454b4f011a0176ba0",
+          "id": "NR.resident-normal-shutdown"
+        },
+        {
+          "after_sha256": "3f8690d1cacffee8990195efc6e7be4b7ee6f49de6fcd86abb4b6b05664052d6",
+          "before_sha256": "2fd39d7b8795ccee7e875fc86cf71168e2798e1e42ae138281e2eaba39029000",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "1dd5e35f4a1cec49548ce6391d01f088e848bc7690ea3950328b7ca100551fec",
+          "before_sha256": "048b0b9b4ace050d8f821ed8480371a8c9701d4168cabec9d22fe5bee14d696f",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "9ad489dd0f3883c2fe4ca13948a1b5f3b0baf6b67c7ab68cf0d64fc3474cc433",
+          "before_sha256": "3e6a4cc1d40d04c20fd0d6a62f18efce7162efa1894e1b608fa4c0787a070d00",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "5bba4f1eb25c0a8b076c166394b0915435ff169c81e78116979ad3d8919da76b",
+          "before_sha256": "afbeac6ab155cbc041be46eb7ee472002ed24f31668a4ef1e498b74e0aa29f5e",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "f6d9d7da40106976e8875bdd4a47361092dfe7af0bdc4740e052b672d4967ab2",
+          "before_sha256": "739eaf958743def3fb4a2a1f53d3be0777184997f25ee9377a1a14f5598fd39b",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "e44f5360a515ae0bd767a57e2b833a7189833b022b225352311db37a3483b527",
+          "before_sha256": "8b3888049183f3edc945d025ef4eb1b08b4f576b0ef88a50fb057a91aa9b1c4f",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "9e1cdd76626139c2bf98f2af3bd2775655f754c6cc8a949804aced3302143cb3",
+          "before_sha256": "6f41b7a31eed5cabdf054911d26851ac18dafbda11d6bca28a61c215a757c03f",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "7dd91a43eb1df77c7072bdc690192f6093fc3f566d6a0691742197b146518145",
+          "before_sha256": "bb43d8964f927cd0fb5d9ba1116e38c75905b796de62b10bf8feee0d95e2c66b",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "bab7678b9252e925f3eeafcd539c2de9915f68b979a3a8e94d0e2724c44f6955",
+          "before_sha256": "6b8562abc9a4f136e40cde3f104ca995d1b624023c4c357918d5bebf80ae6cd2",
+          "id": "NR.world-kind-diagnostic"
+        },
+        {
+          "after_sha256": "23020ddcd0ec4088c1c22c930073362cc1ee163fe77e8b8ec2fe1594eb005055",
+          "before_sha256": "539beddd30caf8a874acaaa0e17b53cbcf4213d22540a459533b2c6207d118fb",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "ba9a2eb8c651d6dd89a661b1b9cbdec9aea6414307dd9ad3e9619af0b0e7e5e5",
+          "before_sha256": "bcd698e2c228a22357279a8c37f0123561188cab447b8ac6858421a46b734cf1",
+          "id": "NR.world-rolling-live-handoff"
+        },
+        {
+          "after_sha256": "e053dc7234a18b7f86c2c757c38d1e2a3c0555f56ff7237bcd4f45178961c349",
+          "before_sha256": "754733cfc6ac60b728fe4b67dc6049641901f61fab7ac52953d2fda0106861c8",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "c7600a997a67483e057a43ad9b73826efde1b8d7fa00fdc8696bd95370ba8680",
+          "before_sha256": "a392468eb4fc89857bcd1b6075bcc362d5ea9faa83db179aedf41eeefc1d0624",
+          "id": "PR.apply"
+        },
+        {
+          "after_sha256": "637c3bf84e2950b81104564dfc2e0bfba01e9ac2f33f54763845fe6767d4ba3c",
+          "before_sha256": "89de08d90d5b8f9030847aeb523c2721343673af598ca3f5108e98d63e263494",
+          "id": "PR.audio-preview-cancel"
+        },
+        {
+          "after_sha256": "dd1af0fad559225c9cb54d0c539b06ec1159a5312cba8499e8e4c88c0fcecdde",
+          "before_sha256": "7e80389861176ba864235d6df10dfbc74c132a74581a98576c6cbcc39a364479",
+          "id": "PR.control-admission"
+        },
+        {
+          "after_sha256": "8b5e9ce83d4b562d3185d54efe62cb51eefe78ef3889874fbd15e585100b0979",
+          "before_sha256": "b2155e0a3e024382869889393ea4d5f6e7b1fc1084252daad866964d07f278a3",
+          "id": "PR.display-rebuild"
+        },
+        {
+          "after_sha256": "2384ef9d5df21ac7f87464bd347f37daab1f40830c8cfb695f9c3b5f8bd52566",
+          "before_sha256": "3609345fdba60cf63ab91395c02f626ad7c8c1b8ce78c0a90eb92ce9c9ead940",
+          "id": "PR.main-entry"
+        },
+        {
+          "after_sha256": "dd4d008ffde1d718d99b67237ceb11cfbcbc33f2d8127bee1d855a1a1acda22f",
+          "before_sha256": "b7c9610bdfeb51a34abf54fc9c781716657a025ac611dea79c88b9d8aad58400",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "9ac4435c87cc774f1b425441a01fe5d43c7049394e544e0b3d79313d7436ee65",
+          "before_sha256": "d5a274e4e133b1ad918f0fbd2f95851ad13df6111ee9a4364f17c22bfc84c96e",
+          "id": "RS.drawing-publication"
+        },
+        {
+          "after_sha256": "e5265194f70ad4d571f10befe7d07ab696c1c2a5c67493c1538d1aa53088859b",
+          "before_sha256": "a43de04c62bb45aa33d05527dd824b0d08c5a426f90e2ac130ebbe2942f31356",
+          "id": "RS.fade-live-pixels"
+        },
+        {
+          "after_sha256": "a0d247e91352e179075c54eef3399ca19fb3e3880997c95adbbbb0d676d65378",
+          "before_sha256": "efb8a8aa41659b96a9b056ad9cee09d8f5b3d7ca4c247c8ff366cfad1383962e",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "ba734b846f73e1eee36887505483590d472b548448a542f8581f5bb8c28c195a",
+          "before_sha256": "15b07a33eb07e1bf4205d1aa0bfbec3cb778d79198cefe439d4127b24c8de068",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "882ecdb53fc354e4e489d1efe89ceb88131b07089757d8e5829a5fb1226c29bd",
+          "before_sha256": "f635443aacfa8f8119e11b06cd819cb5780830b38cf3554d412ee8888e084f18",
+          "id": "RS.world-rolling-handoff-equivalence"
+        },
+        {
+          "after_sha256": "36ec49968ecb4e132bc1a5fad6a4c9e06726dee8c38a0c84a585478f85ed79e8",
+          "before_sha256": "815493f520490af384827232a621dfd4f883cd8708b360d9da8a6d463796a7ac",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "448d0418ad40bcf85672fcc24f773e3dde63c9c00c0c3e52cefa92925fe29809",
+          "before_sha256": "3c114875013cbc7c466e3c46da70c5dd46d5a3c20da69d32ba15afead64e3461",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "8e3e89ba2949990c008c9630221268418f69b4c45c2eab8fac6a59d75b4c5e12",
+          "before_sha256": "8e3e89ba2949990c008c9630221268418f69b4c45c2eab8fac6a59d75b4c5e12",
+          "id": "UI.multiplayer_game_selection"
+        },
+        {
+          "after_sha256": "79a21ae7549f480c55425e05b67efaf63184c78500cf8951f03febe0e4e396d7",
+          "before_sha256": "79a21ae7549f480c55425e05b67efaf63184c78500cf8951f03febe0e4e396d7",
+          "id": "UI.multiplayer_setup"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d766f947336bb4d74d295bca584a427d5b04b5092c3db1825e3abe136777d31e",
+          "before_sha256": "f9b31a0f8c08232adf4df9765fe65c490383034989070f01835071fe7b8f439e",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "fc490109e28988caf79462a8188bdb9af50b45d34ed6670fc71ee2306e47a02a",
+          "before_sha256": "6828e0f76556bd7bc9cd5325a2ac451cd91b3be4e27b971c27f50352eebc9b77",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "c21ad2c1f4f14f4d6654e063a0c0d787d4eac0627d7073923784f222095fded1",
+          "before_sha256": "459dc88689396eb355ef823407ad02bbb771f8d558aeb52965c0e6ed4125ac4d",
+          "path": "apps/qt-shell/live_menu_session.hpp"
+        },
+        {
+          "after_sha256": "7a1b2c5d726dec8aaf8c1ddf87e676a17a742d46033da7fbebf928bf123ea2be",
+          "before_sha256": "8e3cf9c38280e6f89347c793b9b11993db73d1689cf7a5c1ce2b828b349f7808",
+          "path": "apps/qt-shell/live_menu_test.cpp"
+        },
+        {
+          "after_sha256": "27eba21047b1a4bda72d65ea0b907d758d269a38a4cc50439f7b95d1bb10a043",
+          "before_sha256": "557a527d4e5fd24ab70d78e41f6b014b962d0bd85879dc585991a7cd2299b438",
+          "path": "apps/qt-shell/live_menu_test.hpp"
+        },
+        {
+          "after_sha256": "2fcceb6d2a0be55c7a7b9fabe255c35acdc009903f42438873bbfb8d413e7a65",
+          "before_sha256": "2fcceb6d2a0be55c7a7b9fabe255c35acdc009903f42438873bbfb8d413e7a65",
+          "path": "apps/qt-shell/live_multiplayer_controller.cpp"
+        },
+        {
+          "after_sha256": "cf2b8dca9d241fda9e762f9151d5218f6c6480b3757431e32f94f67c6cc265a4",
+          "before_sha256": null,
+          "path": "apps/qt-shell/live_multiplayer_sessions_test.cpp"
+        },
+        {
+          "after_sha256": "39a742f3b4c0a6b6c4ea4a088fcb493889255628141ca539f440f262c6bd8e8a",
+          "before_sha256": null,
+          "path": "apps/qt-shell/live_session_selection_controller.cpp"
+        },
+        {
+          "after_sha256": "bb249f6c330a99c4a1655efcf930ed75a1f820cb6402a46e2071a58820606b61",
+          "before_sha256": null,
+          "path": "apps/qt-shell/live_session_selection_controller.hpp"
+        },
+        {
+          "after_sha256": "3c3d8c7e0f6da970b398444f6cfd5d98e7cbbb20e2684f5358c0c114c2f8a8c8",
+          "before_sha256": "e0a6343401c6645861c09628e5cdf7a0d1510c27a77416a8f916028a68cdb803",
+          "path": "apps/qt-shell/main.cpp"
+        },
+        {
+          "after_sha256": "3fa30fad209d7cdea6812eff9f96dc2f7dad1bca0a368c85b598492c1dad49aa",
+          "before_sha256": "2d72a72b180d15167d13e6a6eb2420461fde83b8ac645808f8ef0a91fb223494",
+          "path": "apps/qt-shell/menu_bridge.cpp"
+        },
+        {
+          "after_sha256": "67cf354d0e9bf196b64cc2216d8778bd2043379c78bb9d117a658ed908cfd64c",
+          "before_sha256": "ff9ce94fc4e6eab7ba4bc62abdaa150cca927278e35d42a2b8925cf8f143645e",
+          "path": "apps/qt-shell/menu_bridge.hpp"
+        },
+        {
+          "after_sha256": "984ff2e4f48a7df15adecb327f1671de2e1592b7faa032187a101952522d2766",
+          "before_sha256": "984ff2e4f48a7df15adecb327f1671de2e1592b7faa032187a101952522d2766",
+          "path": "apps/qt-shell/multiplayer_game_selection_widget.cpp"
+        },
+        {
+          "after_sha256": "5646c379928c8071ac8782daeeda2fe6e870cef8922266c61d731c7857be0b54",
+          "before_sha256": "5646c379928c8071ac8782daeeda2fe6e870cef8922266c61d731c7857be0b54",
+          "path": "apps/qt-shell/multiplayer_game_selection_widget.hpp"
+        },
+        {
+          "after_sha256": "ee57fd426196868395dd7baf2fc4e5ffb89eab753ddeae3361bbb89c98b99b01",
+          "before_sha256": "ee57fd426196868395dd7baf2fc4e5ffb89eab753ddeae3361bbb89c98b99b01",
+          "path": "apps/qt-shell/multiplayer_setup_widget.cpp"
+        },
+        {
+          "after_sha256": "40de68cbce6a9a532b4138c9f6160dee048f24b242dc6dd35c03fe308c0dad9b",
+          "before_sha256": "40de68cbce6a9a532b4138c9f6160dee048f24b242dc6dd35c03fe308c0dad9b",
+          "path": "apps/qt-shell/multiplayer_setup_widget.hpp"
+        },
+        {
+          "after_sha256": "1ab47b771eda03a625dde951d5aae62604fcbe416ba2f3db304cd09fbec0c74a",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/menu_v16.h"
+        },
+        {
+          "after_sha256": "b5f65db5b3ad3efc501d7b6e17e8a0ec80711b8673ca7b235841b7bebface535",
+          "before_sha256": "0638be410fddff38bce388a99da3c25cc71bec720a3ed4209ffbc9e6c299f72f",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8f71c1479a4b310ddde504e26bacbd6b3edaaceba8cc6aa4efe06fa9fa81d0ea",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/multiplayer-session-history-20261012.json"
+        },
+        {
+          "after_sha256": "6220de3452832bd53e12d7d6fa006716da28c3eaeb1cdcdc297e8218af7dcef5",
+          "before_sha256": "60603ba1593a196c7f1af7e8ce1cd57b4da4ea819ef7e4b64b86add057f8e70a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8632fb83062e9dcc3a96b704bce3405c77ca193eb7db355e6e0984fff54d872e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-multiplayer-sessions-20261012.json"
+        },
+        {
+          "after_sha256": "9fd34c6d19a84c3b030e0eb0afdf4b818a492b735912305630a17b250aa80a2d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-multiplayer-sessions-20261012.md"
+        },
+        {
+          "after_sha256": "22fed635e5d48817e8da78647f94bca9a5ea79f0a9732682cec76195c627f3bc",
+          "before_sha256": null,
+          "path": "research/runtime/multiplayer-session-contract-20261012.json"
+        },
+        {
+          "after_sha256": "c7aa7bdf60821567b7b1565277736d7ba45b21edbea210eb23976d7818fefd2b",
+          "before_sha256": null,
+          "path": "research/runtime/multiplayer-session-menu-contract.md"
+        },
+        {
+          "after_sha256": "40929f9b3ef013572cc76bd2c2ec9a77d7b3cf81d547982181cf2a7f21b6dc9f",
+          "before_sha256": null,
+          "path": "research/runtime/multiplayer-sessions-live-20261012.json"
+        },
+        {
+          "after_sha256": "d8480d0c5bf6c9359e7358e71c529e4f5f3a02a1b48a0bdfc9f303f8a07c35aa",
+          "before_sha256": "4ea7ae3320520cec05af529ccc1aac68f1528e5958a3155c0813c875444cd55e",
+          "path": "runtime/menu/channel.h"
+        },
+        {
+          "after_sha256": "9be52ba3d9d5ace848d90cd70f9776c852eb8b5cd2df26db6bfa76d8ede9a314",
+          "before_sha256": "9435d34c7b85db3dd39022f041300c4438f422494e9f0d70290dafacef7089f6",
+          "path": "runtime/menu/observer.c"
+        },
+        {
+          "after_sha256": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+          "before_sha256": null,
+          "path": "runtime/menu/sessions.h"
+        },
+        {
+          "after_sha256": "3cf9e7adfe51f0542a968e39da76678fcf958cf60a9f3b20131646c3491785cb",
+          "before_sha256": null,
+          "path": "tests/menu-session-bridge-test.cpp"
+        },
+        {
+          "after_sha256": "6ab10301d91a69c35a0bc76c79eabacd474b042ce53e97d5fd429f59ee857b2d",
+          "before_sha256": null,
+          "path": "tests/multiplayer-session-contract.c"
+        },
+        {
+          "after_sha256": "26c80426eb9b20649586256f69232afa5bd4786307c1d65d90db86b294ac99b7",
+          "before_sha256": "26c80426eb9b20649586256f69232afa5bd4786307c1d65d90db86b294ac99b7",
+          "path": "tools/export-multiplayer-menu.py"
+        },
+        {
+          "after_sha256": "b72d1bbe73617b52a1bd04af5b6b7c1236310e8e87dc943a979534fdf0b578ec",
+          "before_sha256": "1709b07c18674d82b0261fd9f7f9c4690e66c2441ee7c499d6b87e1f40592cbb",
+          "path": "tools/run-menu-observer.py"
+        },
+        {
+          "after_sha256": "fca7ef8505f5db7042189b9cd58fcc312f44163286329d9b1304654dec4e9158",
+          "before_sha256": null,
+          "path": "tools/test-live-multiplayer-sessions.py"
+        },
+        {
+          "after_sha256": "3f21402f108b8a0f2e7f72c28136d2272017442f1ecf16a75bd08f9d77ad6c0b",
+          "before_sha256": null,
+          "path": "tools/test-multiplayer-session-contract.py"
+        }
+      ],
+      "id": "multiplayer-sessions-accounting-and-historical-limits-20261012",
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:0afa2b934fd0ba70f6d2bfcb5d60a5775ec4dac21f78bcbc6a83537117f9bcdf",
+        "behavior_anchors_outside_discovered_functions:53f8452f4e8385ab1e09e523257cb0115003ae8a639973aa47aeeee89540a876",
+        "behavior_anchors_outside_discovered_functions:b8f0885277f275302e1acbf6eb8e62f482eca2fd2e84be4f311d2cd889e85009",
+        "behavior_anchors_outside_discovered_functions:d43d319595cf6c1a43da6f50b3d872febb4933e6ceb2ba96a2f9ed45ffc3c41c",
+        "behaviors_without_comparison:359cc0a5bce4610bc44c317b7e0bb8d1efcc8fd6762371a04f873d78bf03c1bf",
+        "behaviors_without_comparison:ba74d3209ceba056d4787ca7ed1bce0b4b59e521f0ff64cec6bacd7850b65e5d",
+        "behaviors_without_comparison:f5de1aea7030e2f5c97bd182c678544224f6b74ddb0e734bb16b07a924bb0056",
+        "behaviors_without_implementation:359cc0a5bce4610bc44c317b7e0bb8d1efcc8fd6762371a04f873d78bf03c1bf",
+        "behaviors_without_scenarios:359cc0a5bce4610bc44c317b7e0bb8d1efcc8fd6762371a04f873d78bf03c1bf",
+        "stale_evidence:07178cdf7c8823b9708bba42dd71b0d347d9354db55938124902107b9404691b",
+        "stale_evidence:271905fca4ea31fbf68f85552bc338543bef36448cab24ff74bf194168a92444",
+        "stale_evidence:29c17fa337fa65fe7419df4785d3b602c7c8a7080fb11c3665f2d51babbae5f6",
+        "stale_evidence:2b678c128de49546a8e3bd11e9323c50d1e57eb9262fa246358c4f6b14cea636",
+        "stale_evidence:5eea4c1b3842491a88b7988b580d7e895ca8192c87fca77d193f1b06911ce1c4",
+        "stale_evidence:77fa4387e4e7b4833fe9b70a81f24a20adf275e3dea7cca485b0dee04352fa1b",
+        "stale_evidence:7ba2eab2386a3c1610eb1d367fe4bb77f0a32faca9094bb29ffc9451562ab3a2",
+        "stale_evidence:878aa72f9e1d323865bb39578424ca50ec5a892ea547b2436286c7981853cecd",
+        "stale_evidence:ac3d1f4b0cd0b4715a4c2559fde83c99d12fdbed81b6d43796eb89e688c65fef",
+        "stale_evidence:c9e69a47ac1626d9088b9f34981927994e160683b6b5d288edd13b3ad55b7bc2",
+        "stale_evidence:cc6eea77ee53988d20026d6d86dea875acf1c3582111de2f3a3e958b9c302710",
+        "stale_evidence:e13aa5082a4d3e933a913522f43e1974eb3b0aebaaa7a846b2a2ad8eede760cf",
+        "stale_evidence:ebe4aa660a8e5419c4a545b73a5604b7a81d517400271078999d8f3790df3523",
+        "unmapped_dispatch_entries:bed8477a38fac20e38cb01a57aa5f0a8e78f03e3b77cd9c42d69446fdd810565",
+        "validation_gaps:34b66fc536fe94377516345dc10029832b4b564100dcde92f4a247bac1c31fcf",
+        "validation_gaps:8754491af699068e1fcc5d0763044face92ecffb65025203e65a5a76a2b09368",
+        "validation_gaps:c716d4a4b90dc98469ab2b53e5acb47368620c188083f556546ca14823c6061b",
+        "validation_gaps:ebcb260abcf431a5e0c7419cd2586e2d3fa095fb4351259ee73c7e4490a80387"
+      ],
+      "reason": "Reviewed all34 changed source/research/evidence/register/census files and105 affected behavior links; seeded session-selector recovery, preserved original network-name lookup and unknown peer/lobby branches, and linked explicit callback range to pinned private execution anchors. Retained old evidence fingerprints. Committed-history report ed4d70ed..1f7032ba finds30 exact file versions and no missing receipts; no retrospective gate claim.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "UI44.original-session-fixture"
+        ],
+        "reason": "New live proof is bounded to empty TCP session selection under separate native ownership receipts. Populated name rows and mutation guards have private fixture evidence, not live peer equivalence; original name-based lookup may be ambiguous. Host/guest lobby, gameplay, network failures and automatic lobby launch remain unsupported. Changed shared V15/earlier sources retain independent historical statuses and source/scenario limitations; new TCP handoff observations do not renew every older comparison, other menu path, renderer/audio or replacement claim. All27 new gap identities remain explicit."
+      }
     }
   ]
 }
