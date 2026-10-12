@@ -13,12 +13,17 @@ def main():
     backend=PrivateAudioBackend(out);report=dict(schema=1,success=False)
     try:
         with backend:
+            environment=dict(backend.environment)
+            # An empty private XDG cache can trigger Wine's optional installer
+            # dialogs before the game starts. This fixture needs neither CLR nor HTML.
+            environment['WINEDLLOVERRIDES']=environment.get('WINEDLLOVERRIDES','')+';mscoree=;mshtml='
+            report['optional_wine_installers_disabled']=True
             command=['python3',str(ROOT/'tools/test-native-campaign.py'),'--default-audio','--native-loading','--native-factory',
                      '--default-media','--default-music','--normal-quit','--initial-silent-start',
                      '--source-game',str(ROOT/'working/experiments/native-music-input/run-fliws_ct/game'),'--timeout','600']
             if args.hardware:command.append('--hardware')
             with (out/'campaign.log').open('x') as log:
-                subprocess.run(command,cwd=ROOT,env=backend.environment,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=720)
+                subprocess.run(command,cwd=ROOT,env=environment,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=720)
             lines=(out/'campaign.log').read_text().splitlines();paths=[Path(line.removeprefix('Report: ')) for line in lines if line.startswith('Report: ')]
             if len(paths)!=1 or not paths[0].resolve().is_relative_to(ROOT/'working/tests/native-campaign'):
                 raise ValueError('Private campaign result path missing/redirected')

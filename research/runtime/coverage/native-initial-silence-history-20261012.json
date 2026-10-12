@@ -1,0 +1,323 @@
+{
+  "schema": 1,
+  "reviewed_range": "c8426f6c..e514c8d54868aa5613147a336435400bce4afb07",
+  "scope": "Exact e514c8d5 parent/current receipts for native initial discard-clock policy, media/music retained renderer and provider lifecycle, capability admission, exact four endpoint tests and healthy full campaign. Pending historical/original/physical and initially absent whole-game claims remain independent. Separate from subsequent complete empty-output game validation",
+  "files": [
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "f0d6801758fff5b32d58ac62d1dcaa62abf6017197c60ff922eb9ff664d4c98f",
+      "after_sha256": "042b4af0c7b87b05d00d0edfd460a20cdd51977bf2ef59fba74bdbd162f4ee72",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/media_broker.cpp",
+      "before_sha256": "95afef53be41e447a9ded2404ed2f837af2294a675a44c9e203f0e26b447ba16",
+      "after_sha256": "59f1fd5ec885b148018b7c5dadab8aa97ab46c88e2822a3087fb440d743457e7",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/native_playback.cpp",
+      "before_sha256": "6666017ae06308d8a579eaf5940930b09f9b7254d9b98c821832c32dcfec23b5",
+      "after_sha256": "900abd275c625fd3f552805b0bbc33f48ed3df11e1a1bb204ada8b3cbc6f0cd3",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "apps/qt-shell/native_playback.hpp",
+      "before_sha256": "2db277a8183e4292b93a17891bfd3bffcf152d51007743d54b0d1d72b92c6995",
+      "after_sha256": "8bcaf11d29fe0fdecc7e5f11eff0e2ed65ff1d0fecbe967cb2544d742dd93e06",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/music_bridge.cpp",
+      "before_sha256": "2b2a156d25afba1faff2d88d66a162beebf02006e0c14d4a2eee709cd682abfb",
+      "after_sha256": "0cbd9ef7c331e552977241e3e5d054c41dbf61871b3620720f5c0ef8bcf4cd9e",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/music_output.cpp",
+      "before_sha256": "68ee5896d9c98fb757b7469a19acd9e05ffd2ee1054bd6925c2c4dbe555993e9",
+      "after_sha256": "f801091822a9ff2c9b2e497bfaf9e8d0ef3d87a191c5bf3f9fc31ae13c1c34fa",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/qt_output.cpp",
+      "before_sha256": "a4e1360e0f59904580952a2d9d09410520a42b4f2ee16a62c36f7ac8a22d1251",
+      "after_sha256": "312bbe99fa0382463d7312e4749f7e26f447ac4515697b074d30dc6b4d94d46d",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/qt_output.hpp",
+      "before_sha256": "f340f0ba4bae3478bdc808062058b867ffc88cf926fdf5313ff03923e5132b8b",
+      "after_sha256": "5b97195e8eb864141c81f58c9bdf7db9275dd71f75335505db5b58f9867acf3d",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_bridge.cpp",
+      "before_sha256": "b8a839f0a325db51eefeb891aa620be884a7423f498a8bbeeaba0c8d645953cd",
+      "after_sha256": "ab215221d8b6e904014e2a594d89057ea8c9916a409bbe951eea249477e6b8df",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_bridge.hpp",
+      "before_sha256": "cfb09e13c9115270123920b322b3a9ac92194854c10520f70273efdc9d2ae921",
+      "after_sha256": "7a194d08792a87187f54e6291a27296e1ba4c4919303bbc02dd7c77d0b734a40",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_output.cpp",
+      "before_sha256": "9e9c09013b5da5be7ac9b29605da36926ed664a0f0eb42e2505b0905664b58c8",
+      "after_sha256": "aa2785068d46a1a11b1ed6b2548bd9756af98ab66f0c58dfcc18112ab22b391d",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "audio/voice_output.hpp",
+      "before_sha256": "3e36672f12832adfbeecdf8755f4de215e4f00f7938365fc70a099a63d1dcca8",
+      "after_sha256": "ef72ed00b3a99a1df7d82f64acfb95cfaa1495810bff99f3fdbf1dbb37bb68f7",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "55ccebbc93f0559d01f7cdd82a9c0b4801d8bc408d379ce7943b6df84c8005fe",
+      "after_sha256": "184ff2671c82c4f1559af7f39bf1ca712c38bb80cb54ab13f8555c7776bda60a",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a9c2a45fff72bebfaa508f41e952ff0986cf4625a69b92d24a5773385a2684e9",
+      "after_sha256": "2e2d24d84211f54f2355f84dfe49563be5ec6594e636ae38b2a0c0b2ea6a00d1",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/native-voice-backend-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "050f3363580dbb081a2f2666c74f752c5cc5c5f6ab4c02306d810c3861301c74",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "98f3550748418b9234b7cb7d936abaf4018167c1937c946892b7e79345eb4c3b",
+      "after_sha256": "1f8fa87a1b97e9bf49efe089246436aada58b1a973049c90525f9f2b1450ecf2",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/source-index-native-initial-silence-commit-v2-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "75997169d557772fe5bd4fcde7f146eab73a9afb311c07f207c4e0e1017a0c1d",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/coverage/summary-native-initial-silence-commit-v2-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "4dac42fa1d510766ca8a747d62daac687480572e9d4e93d041c60754cc197aae",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "42ce7582659ba3c1c4ea98b97c2d53f9e58b9bd353c9f63a1097143897284aa2",
+      "after_sha256": "674f030011b5ad69872c9646fc81e33afe64d86ae919a3c02968c02ecb4701ce",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-initial-silence-endpoints-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "761190a28df181b86a714e440592925a4c8c2d4b2d91b2590a2378c8750ef1cb",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-initial-silence-healthy-public-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "40ced5def410de78032538e6098baf7e4333c38b057551c9de8dc8ede4cb0156",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "research/runtime/native-audio-initial-silence.md",
+      "before_sha256": null,
+      "after_sha256": "f7981a49d7500ad9599cc1e57a6d8e0bfd565b36fb74b00dfadd0529ac388e00",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "runtime/audio/protocol.h",
+      "before_sha256": "4a31cc554d0d7daf64a8eb6e5e23c73cc41a32b1bf99347706afb188ae1eabda",
+      "after_sha256": "0b100fb882c2012e83630be3be0cde5413f911deddbad8d90ab55f4c0831cb4f",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-initial-music-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "9bc52dc29414272a8940488fb27cc90200b53fa63ee62608406395b13b84bdc7",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-initial-silence/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "339fde94a938bfb01c88f61ec4365d3f7915a53a21f68891f9cc0299ea3fde71",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-media-backend-test.cpp",
+      "before_sha256": "4843860b281814fa5b11078eb3255b7479a76ed0ea1f48f76a111dff3f08f8c4",
+      "after_sha256": "93769c246ca2631c0b6f976725f58a0456406754eb30a932f6b7ae999c95e1be",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/native-voice-backend-test.cpp",
+      "before_sha256": "ea43710925e95320c5a781e87bddf7858cf70a28d002ed8519a0b18f35e5825a",
+      "after_sha256": "ff49de69b49f6d0633cd28995e871a6f23d78438dff6f638ac5ed0da04d8110f",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tests/test-native-audio-launch.py",
+      "before_sha256": "554d2121a11da21b507febc16941203417ab2b3e599aab64eb4aef26c5350cc4",
+      "after_sha256": "a59e385783f61ddf98ceae06def685a100ebdeedbd26dd08bdf8010614aa080a",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/native_audio_launch.py",
+      "before_sha256": "8de3edc0c8a6830511d956ecfa96d611d6557ec4bdad0138ce8f16ed2cc78d5f",
+      "after_sha256": "5217499afaa34fcc34c6da4cddaa967be2fbdd1028de6ad416248a8a658aa657",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/native_music_launch.py",
+      "before_sha256": "0e8d42bf3c2b975476ba9841517975456cef979c2c64f29855711449f32f2782",
+      "after_sha256": "a263acad932b90d70cc2a8d01d082c8237f991f315dad00b27a84bbd1b0d4dcf",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "0cc26f339657190861806ed6d5d72c021cbd722ca8a49a904fbc516c87e6b24a",
+      "after_sha256": "540c43916a71439bcfcb453d45f18452ae483cf01113b1e0ecbe0de357e14489",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/private_audio_backend.py",
+      "before_sha256": "13079dc563428004efb28e273fae53569c0f9d53433a075cfefb053243234421",
+      "after_sha256": "e083bd8a20570f609de6744d76cb3fa6ef07e1f37bfcf55c2ebd1657d3358515",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "70ddebe8e6a356ffa287c3d472335973eef818bdfd81ea99bf4ed98f624fd134",
+      "after_sha256": "f3dd6ebb7eae1a1e865b08a54bdc5b980a24ab159c823e7158a5938c964a3429",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/test-native-initial-silence.py",
+      "before_sha256": null,
+      "after_sha256": "62fa278e3f9620bf67ab6e62e723bb861865268f671f9f8971803436bae4590d",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e514c8d54868aa5613147a336435400bce4afb07",
+      "path": "tools/test-native-silent-campaign.py",
+      "before_sha256": null,
+      "after_sha256": "70bfdae150f3e8ce34782d8c408e6474d2625ec5f4f823820a63de782c0a691d",
+      "receipt_chain": [
+        "native-initial-silence-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
