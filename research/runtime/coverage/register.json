@@ -44933,7 +44933,9 @@
       "evidence": [
         "DRAW02.draw02-cursor-mutexes-static-01-20261012",
         "DRAW02.draw02-cursor-waits-original-01-20261012",
-        "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012"
+        "DRAW02.draw02-cursor-mutex-order-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-order-analysis-01-20261012",
+        "DRAW02.draw02-cursor-source-interval-analysis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45004,7 +45006,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-cursor-mutex-fixture-01-20261012",
-        "DRAW02.draw02-cursor-mutex-original-01-20261012"
+        "DRAW02.draw02-cursor-mutex-original-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-original-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45034,7 +45037,8 @@
       ],
       "tests": [
         "tests/test-drawing-cursor-mutex-binding.py",
-        "tools/analyze-drawing-cursor-mutex.py"
+        "tools/analyze-drawing-cursor-mutex.py",
+        "tools/analyze-drawing-cursor-source-intervals.py"
       ],
       "validation_dependencies": [
         "tools/drawing_cursor_mutex.py",
@@ -45043,7 +45047,10 @@
         "protocols/include/mnm/drawing_input_point_v1.h"
       ],
       "evidence": [
-        "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012"
+        "DRAW02.draw02-cursor-mutex-binding-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-binding-analysis-01-20261012",
+        "DRAW02.draw02-cursor-mutex-source-binding-analysis-02-20261012",
+        "DRAW02.draw02-cursor-source-interval-analysis-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45053,7 +45060,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Sampled prefix query occurs before row publication; completed record order differs from entered call order. Refused/inactive points remain explicit. Ownership, handles/aliases, concurrent close/use, source protection and complete original/native equivalence pending."
+        "Sampled prefix query occurs before row publication; completed record order differs from entered call order. Refused/inactive points remain explicit. Ownership, handles/aliases, concurrent close/use, source protection and complete original/native equivalence pending.",
+        "Adding source-interval analyzer linkage changes contractfingerprint; prior exactprefixanalysis remains historical. Conservative sourcecall correlation doesnot proveatomicoriginalcriticalregions, sourceoverlap or repairedrace."
       ]
     }
   ],
@@ -96541,6 +96549,79 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active32queueprotectedsource/physicalnormalQuit diagnostic:184302producerrecords1318oracles,362API361EGLwitnesses,5156mutexpairs,128stableheldpairs242commands. No pendingrefusal inthisrun; intermittentrace/sourceownership/fullparity notfixed.",
+      "record": "research/runtime/draw02-cursor-mutex-source-original-01.json",
+      "sha256": "6cdbec37ffef7b39e43f1d4b18ad0645be29ace645e4f99ec181cfff7ba05289",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-binding-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Historical prior-contract offline5156calls10312exactpoints0inactive0refusal; sourceintervaltestlinkchangescontract, new02reanalysisregisteredseparately.",
+      "record": "research/runtime/draw02-cursor-mutex-source-binding-analysis-01.json",
+      "sha256": "1f76764881ae05c3855979a58bb65582bdd8fe3df9fd495d2399c9b32a705126",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-binding-analysis-02-20261012",
+      "kind": "native_integration",
+      "scope": "Current declaration-bound immutable5156calls10312exactAPI/cursorpoints0inactive0refusal; no atomiccallframe/ownership/sourceprotection/newgameclaim.",
+      "record": "research/runtime/draw02-cursor-mutex-source-binding-analysis-02.json",
+      "sha256": "ef8e080ac0f353a551d19c2ff04db5a1d85703ff0d205c64baeeff904b504879",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-cursor-mutex-source-order-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Immutable100completeobservedtimerouterwait/innerwait/innerrelease/outerreleasechains0gapsinprotectedsourcecapture; noownership/alias/fullorder/safesynchronizationclaim.",
+      "record": "research/runtime/draw02-cursor-mutex-source-order-analysis-01.json",
+      "sha256": "8fc44f920843a7de74c2d27fa7fe16a5682496443342a340df04b8623d7983b5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-source-interval-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Conservative100same-threadinnerWaitReturn\u2192ReleaseEntrypointprefixintervalscontain198surfacecallsfrom58c488,0exclusions. Sampledpointsnotatomicoriginalcriticalregions; no sourceoverlap/ownership/racerepair ornativeparity.",
+      "record": "research/runtime/draw02-cursor-source-interval-analysis-01.json",
+      "sha256": "3b3c265b18972fb11fe784e496c8fffd8754b99d2ea05efef406425f8868a511",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108683,8 +108764,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-mutex-observer-20261012.json",
-    "sha256": "049dd687b676380028d14b04d9ed009e87bd70ccbdaa3d919ca66fee111a984b"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-source-intervals-20261012.json",
+    "sha256": "93e06adc556f2cdface77e71f60b215f88a363338842354df4ca7549f6b4a817"
   },
   "claim_bindings_required": true
 }

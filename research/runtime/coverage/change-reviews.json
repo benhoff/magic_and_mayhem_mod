@@ -527292,6 +527292,183 @@
         ],
         "reason": "Fresh actualPE32fixture20single forwards passesexactargs/result/error/512FXwithclobberingpointquery and handle reuse/failedclose/unknowns. OriginalnormalQuit6849pairs13698points; allprefixesbind72inactive0refusals,286completeobservedtimerchains. Five decoder/threebinding/control/inputguards pass. Real ownership, aliases/concurrent close/use, abandoned behavior, atomic frame/source boundaries and safe added locking remain pending; historical Region/cursor claims remain historical without hash refresh or complete stage promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4ba0806a7de67b09d4f0c3f81d60eb811c103e41aeb150552a01403a73037f7e",
+          "before_sha256": "1339079d7996dc279f8cf12d2702b54a46fe7d9128ed27e61f63150322d3c4c9",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "9342c08e9403810d73d9276b9c374038645ea4976bd6e1dbc6fec46fc3316feb",
+          "before_sha256": "55ae5c812d2c0c617dee17f8166513352217961b05a77408077c2e33d4c83ca4",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "c47ed351622fdf61c6e1efdef1ac57791b8e680e3631e61298ddb98c2cd01abc",
+          "before_sha256": "13608d1391bb6f7be4db8f731ec569e1dcb0ce827040be938c843db80a644763",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "16ecd130642fce65cb7412ab1e210c49df42be0e0573f108c9f12b84974aab61",
+          "before_sha256": "b16a23b26eb6c99e550d8fb4a3a1d5e3bc157b2ffba6728d01fc3b391a0576dd",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "0564d50c57ebee453fa44da89b675f729b2d4fdbcc0ee94ef1c6b2aaaadefbbb",
+          "before_sha256": "bd8a773ad80adea33d335ec25ffca0c424d4bd69a77f04f49d507e322b6fcd18",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "a1c2174613ce74dca932db93b1633ca7a3cf0f05d2f3bae855c16591c8ebe7d2",
+          "before_sha256": "07fc73d280288b2f9ba40f5295cce574a61462f67395eecc8ec8febb8214c727",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "dda27123689e1ed13486eb0b9875c90c639c040b3063baff3c981b3893678f06",
+          "before_sha256": "ccc3c21a577b57f337e01b37fb7aee78e9a9ca242a3b4856002593c732d60cb4",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "8b540d0461979f0aca3835384392ce19ebc3dfb01129edb47590b5acc0965946",
+          "before_sha256": "782d197d5680a0057187437949646ca48bcd08bac69446cfb02d1cd424519e4a",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "96eac60acc49de22718306fde919b6fc77b3b1ddf80e3783a2f671e14870d0ea",
+          "before_sha256": "306f27bc290b8f820d91369d8ca00ccb4b5eeaed4c16eec46cb2a456f68c8d1f",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "08362d5fb16db2e68a94630a53c4fb064b26223a48a756444ad54cf28ca9b1bb",
+          "before_sha256": "823bcd70c68a0206f3c5af5930358346c985472a70aa1f873bef86cde03ce922",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "bae6594e17dad106e7f9bc998af1050786a418c8df48a8451606061bfc4182a1",
+          "before_sha256": "d728c870f5d8712d0328f2763d8594e94a3881a5760a2aa87760b0b7977db5ae",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "887b266f6077f6a66f43d4af493a75ae3adee11a4924e8db1a84724346bae746",
+          "before_sha256": "83679843e4032830f7d00078b1c6e20e34a27b2ec2526e2d00c42f1e35c9b951",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "d28415131e1b256a56c6f1406d2f35836d690d62b9f0257664d9b9a12285f7f9",
+          "before_sha256": "ca4effaf7aee64c7e80abb4b16233220955e0acbc460cf28461d257175403e1f",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "8838b633b6d9e1208c8d0d8525d327541ee2a787394414c521c44633b911e457",
+          "before_sha256": "e7b9aaf6d0956aa497cacf7395527e76900ba21a6c879f61d0dd5bce754f4433",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "fa2ad85c29520d2d020171d6f159c144317429947678b9043380b761bc7107bb",
+          "before_sha256": "28634a51dc1c0554b5c98f9d1ac1e5fd95643985420226ce006f9f253fc8c2de",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "9bd5677fad31bf0c5d76658ffe036e1adb1ede1d266b2c0542e3ba0e3b28c2bc",
+          "before_sha256": "0f04c086b148581980186501908bf717082f1966b28a8430e46c7cfbe261afd4",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "0d28dbebaa414cbd1b40af8369bd59509fc833774ed41532df1a66917eca2c00",
+          "before_sha256": "54c838c0a9378d74685acfae86da1da114f2ba6afa7a058a585e378f3e0e9ee9",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "11d64930509b15a9113b301731a8ee0526637a56a9bb68e283d58f67937a80fc",
+          "before_sha256": "9e8a3822b73a69acb7b038a3be83645d71f62c5d6c0e3198a87a7bb06b4b280d",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "30e07e9ca2c0b76e014b131a6629f752574f9762cdd6c586d21d7a7a54236cda",
+          "before_sha256": "17027ac5c30b49388720fe29ec43abc736990089c6d7d5cd152452fcd138f760",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "518c47acee8dc3ad4aeec2fcf27b76f36ddbd7a32caa709114fa9261f13373ba",
+          "before_sha256": "c34d9573d9c05a0c387b180828047020a8ef90889743f1e3c057b139c9bd2b09",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "2a54c08c11b9ae03930bb1eefe171513a85f0ec62fa26036c2b6deb224d04b9c",
+          "before_sha256": "03ed0fa2271e22fcbe84c474b8af61907f8ff2127a992214629344c5c91287ef",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "888cefb60008b9d849631d3ce847437f06d86483305eadd3bcd0ad9c50ebefeb",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-cursor-source-intervals-start-20261012.json"
+        },
+        {
+          "after_sha256": "50485036a6eb9842b9fbd4f3325d69164ebe3e5bac25f07e362f02e958759c3c",
+          "before_sha256": "3190947cfd8c8c9f30fefef2f742ba215a8b989a4649e5fa458a499a00afc8f5",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "93e06adc556f2cdface77e71f60b215f88a363338842354df4ca7549f6b4a817",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-cursor-source-intervals-20261012.json"
+        },
+        {
+          "after_sha256": "cd669461ff2f502ca0f18afc4885ccd06bf73e07a6fba15a195a91dc81d43447",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-cursor-source-intervals-20261012.md"
+        },
+        {
+          "after_sha256": "1f76764881ae05c3855979a58bb65582bdd8fe3df9fd495d2399c9b32a705126",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-mutex-source-binding-analysis-01.json"
+        },
+        {
+          "after_sha256": "ef8e080ac0f353a551d19c2ff04db5a1d85703ff0d205c64baeeff904b504879",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-mutex-source-binding-analysis-02.json"
+        },
+        {
+          "after_sha256": "8fc44f920843a7de74c2d27fa7fe16a5682496443342a340df04b8623d7983b5",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-mutex-source-order-analysis-01.json"
+        },
+        {
+          "after_sha256": "6cdbec37ffef7b39e43f1d4b18ad0645be29ace645e4f99ec181cfff7ba05289",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-mutex-source-original-01.json"
+        },
+        {
+          "after_sha256": "3b3c265b18972fb11fe784e496c8fffd8754b99d2ea05efef406425f8868a511",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-source-interval-analysis-01.json"
+        },
+        {
+          "after_sha256": "ed0bd48bd35d278c632f903396aaeea5e2ce34f3782ebf3f47255f751876fb8f",
+          "before_sha256": "2b64160f2bf186b369df01c315620e4ec221910adad28f9542a857ca3110660b",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "760115620719787f5a1baf528cf1b4fb1f2cc3371c11f7955efe5a86ce29eea5",
+          "before_sha256": null,
+          "path": "tools/analyze-drawing-cursor-source-intervals.py"
+        }
+      ],
+      "id": "draw02-protected-source-cursor-mutex-joint-diagnostic-20261012",
+      "pending_gaps": [],
+      "reason": "Review fresh32queueoriginalprotectedsource/physical/mutex diagnostic, conservative198same-threadsurfacecallcorrelation in100sampledinnerwait/releaseprefixintervals, exactcurrentprefixandcallerorderreanalyses, changedanalysiscontracthistoricalboundary, sourcecensus and25committed exact receipts. Keepintermittentrace, allocation/aliases andsynchronization unproved.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "DRAW02.draw02-cursor-mutex-source-original-01-20261012",
+          "DRAW02.draw02-cursor-mutex-source-binding-analysis-02-20261012"
+        ],
+        "reason": "Fresh normal originalQuit32queues362API361EGLwitnesses5156mutexpairs128stableheldpairs242commands; currentimmutable10312pointsbind0inactive0refused and100nestedchains0gaps. No pendingrefusaloccurs, which doesnotfixintermittentrace. Sampledqueryboundsnotatomiccriticalregions; sourceoverlap/ownership, addedlocking/hardware/fullnativeparity pending. Prioranalysis/sourcefingerprints remainhistorical without hashrefresh."
+      }
     }
   ]
 }

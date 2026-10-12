@@ -1379,3 +1379,36 @@ off and asserts no fresh Region or pixel equivalence. Historical hashes remain
 unchanged. Next compare mutex intervals with exact source-copy/lease callers,
 then validate any proposed bounded synchronization in isolation before live use.
 Step 2 remains ongoing; all 47 journey/21 operation and steps 3–7 remain open.
+
+
+## Step 2 protected-source/mutex joint diagnostic (2026-10-12 UTC)
+
+Mutex observation is committed as `4b66daac`; staged gate and hook pass.
+Reviewed `ba828b8d..4b66daac` range has 25 exact receipts and zero missing
+versions. The next original-active run keeps all source admission strict and
+adds no mutex acquisition or synchronization. Its eight-GiB reservation passes
+the unchanged guard; completed run size is 4.08 GiB. Broader storage changes
+cannot be attributed to this task-owned run.
+
+Normal original Quit retains 32 producer queues, 184,302 records, 1,318 oracles,
+362 API physical witnesses, 361 EGL witnesses and 5,156 mutex-call pairs. The
+existing protected-source diagnostic retains 128 stable held snapshot pairs and
+242 completed worker commands. No pending source refusal occurs in this run;
+that does not repair the intermittent foreign cursor-copy race or prove source
+allocation/alias ownership, hardware completion or whole native parity.
+
+Current immutable reanalysis binds all 10,312 API/cursor point samples with zero
+inactive/query-refused points. Exact caller-order analysis retains 100 complete
+timer nested wait/release chains with zero gaps. Conservative same-thread API
+entry-prefix intervals sampled after inner Wait return and before Release entry
+contain 198 surface calls from `58c488`, with zero exclusions. The point query
+precedes row publication, so this is not an atomic original critical-region
+proof. Native source synchronization remains unchanged and unproved.
+
+Adding the source-interval analyzer to the binding contract leaves analysis01
+historical; analysis02 is rerun against the new declaration, preserving all
+prior hashes. These are offline results, without new engine execution. Next
+retain a bounded failure reproduction with mutex/source identities or prove
+precise acquisition/release boundaries before testing any added diagnostic lock.
+All 47 journey/21 operation requirements and steps 3–7 remain open; step 2
+continues with source lifetime/routes and semantic completeness boundaries.
