@@ -8356,3 +8356,27 @@ engine19FPS and native/visible60FPS still require separate current execution.
 Two disk-guard stops and two fixture preflights remain negative records; original
 manifest verification after the guard stop is retained. No gameplay/clock/
 source-order/native drawing policy is removed or original equivalence promoted.
+
+
+## Native palette rows — full public observation, 2026-10-12
+
+`NR.native-palette-row-cache.full-performance-negative-20261012` passes
+casting, player Zombie lethal combat, spell refusals/ranged damage, portrait
+recenter/retreat, native menus/resume and ordinary Quit.4603completions/imports/
+verified returns balance, source outstanding0, all ordinary World/native/RGBA
+readbacks/pixel replies0; original/source/private cleanup pass. Engine19.2932FPS
+passes the19floor. NativeWorld49.3965FPS fails60; visible cycles64.6508/59.0043
+paintFPS are not distinct simulation updates. Paired captured-input gains
+remain valid; this different live journey does not supply a causal old/newFPS
+comparison. Live extraWorld CPU4.55772ms and source submit3.43316ms are lower
+observations than the prior7.07750/6.89511ms but full native frame rate remains
+below target. Source polling12.3749ms, active commands2.64219ms, extraWorld+UI
+5.44399ms and immutable export0.16424ms localize remaining work; timings include
+driver waits. No original UI roundtrip or GPU busy-time attribution is inferred.
+
+The first current journey fails its Zombie melee deadline; the second observes
+melee but loses the wizard before lethal completion. Both reports preserve
+original/source checks and empty renderer errors. The unchanged third retry
+passes; neither earlier failure is overwritten. Historical intermittent
+public checkpoint pixels remain an open gap. No gameplay values, source order,
+clock, native drawing or original renderer replacement status changes.
