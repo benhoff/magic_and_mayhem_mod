@@ -28,12 +28,16 @@ def decode(data):
 
 def analyze(directory):
     result=decode((directory/'producer-update-points-0000.bin').read_bytes());frequency,rows=decode_cadence(directory/'engine-cadence.bin');cadence={r[0]:r for r in rows};windows=analyze_windows(directory/'engine-cadence.bin');window_by_sequence={w['sequence']:w for w in windows['windows']}
-    spec=importlib.util.spec_from_file_location('producer_updates_corpus',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);_,records=m.decode((directory/'canvas-producers.bin').read_bytes());entries={r[14]:r for r,_ in records if r[2]==11};returns={r[14]:r for r,_ in records if r[2]==12}
+    spec=importlib.util.spec_from_file_location('producer_updates_corpus',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);producer_header,records=m.decode((directory/'canvas-producers.bin').read_bytes());entries={r[14]:r for r,_ in records if r[2]==11};returns={r[14]:r for r,_ in records if r[2]==12}
     for q in result['queues']:
         r=cadence.get(q['cadence_record']);w=window_by_sequence.get(q['accepted_sequence']);entry,returned=entries.get(q['queue']),returns.get(q['queue'])
         if not r or r[1]!=8 or r[2]!=q['thread'] or r[5]!=q['world_counter'] or r[6]!=q['accepted_sequence'] or r[10]!=q['mode'] or r[13]!=(0x4fd4b0 if q['caller_id']==1 else 0x4fd559) or r[3]|r[4]<<32!=q['qpc'] or frequency!=q['frequency']:raise ValueError('Producer/cadence exact queue identity')
         if not entry or not returned or not q['producer_before']<entry[1]<returned[1]<=q['producer_after'] or entry[3]!=q['canvas_before'] or returned[3]!=q['canvas_after']:raise ValueError('Producer record boundary changed')
         q['complete_update_window']=w is not None;q['advancing_update_window']=bool(w and w['advancing']);q['update_queue_record_matches']=bool(w and any(x['record']==q['cadence_record'] for x in w['queues']))
         if w and not q['update_queue_record_matches']:raise ValueError('Producer queue absent from complete update')
+    if producer_header[2]==4:
+        end=records[-1][0];boundary=cadence.get(end[19]);last=result['queues'][-1]
+        if not boundary or boundary[1]!=2 or boundary[2]!=end[21] or boundary[5]!=end[16] or boundary[6]!=end[17] or boundary[10]!=end[20] or end[15]!=last['accepted_sequence'] or end[16]!=last['world_counter'] or end[19]<=last['cadence_record']:raise ValueError('Whole update boundary cadence identity')
+        result['whole_update_source_boundary']=dict(last_sequence=end[15],next_sequence=end[17],cadence_record=end[19],counter_before=end[16],verified=True)
     result.update(cadence_trace_crosschecked=True,producer_trace_crosschecked=True,bound_advancing_queues=sum(q['advancing_update_window'] for q in result['queues']))
     return result

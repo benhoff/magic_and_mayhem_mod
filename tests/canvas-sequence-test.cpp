@@ -249,7 +249,7 @@ int main() {
     auto extended=legacy::decodeCanvasProducers(wire,false);expect(extended.version==3 && extended.queues==32);
     put(24,33);refuses([&]{legacy::decodeCanvasProducers(wire,false);});
     put(24,16);refuses([&]{legacy::decodeCanvasProducers(wire,false);});
-    put(24,32);put(20,262144);refuses([&]{legacy::decodeCanvasProducers(wire,false);});put(20,131072);
+    put(24,32);put(20,262144);expect(legacy::decodeCanvasProducers(wire,false).queues==32);put(20,131072);
     wire.resize(64+32*192,0);
     for(unsigned q=0;q<32;++q)for(unsigned i=0;i<2;++i){unsigned at=64+q*192+i*96;put(at,96);put(at+4,q*2+i+1);put(at+8,i?12:11);put(at+56,q+1);}
     extended=legacy::decodeCanvasProducers(wire);expect(extended.operations.size()==64 && extended.queues==32);

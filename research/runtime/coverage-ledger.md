@@ -7443,3 +7443,33 @@ and all 47/21 requirements remain open; steps 3–7 stay ordered. Reviewed
 1488d6a4..da55ccd7 has 12 matching receipts and zero gaps. Historical hashes
 are retained; no whole subsystem promotion. Storage is approximately 991 GiB
 working / 335 GiB free; no cleanup performed.
+
+## Step 2 whole-update source closure prototype (2026-10-12 UTC)
+
+Recorder-only V4 keeps post-queue composition through the following accepted
+update, with explicit end27 and finite1Mrecord/512MiB bounds. Original01/02
+refuse closure with a foreign tag39copy active ataccepted17; raw sources,
+diagnostics and original manifest logs remain retained. A five-second wait
+outside the source mutex permits foreign frame retirement; same-owner frames,
+timeout and revalidation failures refuse. Thirteen PE32 cases pass, including
+foreign retirement under the same mutex. Native/Python1,16,120queue postlude
+fixtures and legacy minimap/canvas regressions pass. Initial test coordinate/
+oldV3budget expectation mistakes and a harness linker refusal occurred before
+current passing proofs and remain documented.
+
+Original05 closes sixteen exact source queue/update intervals through next
+accepted17/counter16, matching cadence event679. It retains87542records,
+37653258wirebytes and1137CPUoracles with0sourcefailures. Normal original Quit
+passes, with307API306EGLphysical witnesses,120held source pairs and54complete
+advancing windows overall. Fresh native source-only prediction matches106selected
+physical witnesses0diff,201excluded. Source pixels stay external to native input.
+
+Reassessment: enable explicit Whole120 admission and bounded waiting for its
+completion before leaving World; verify its real source/window span before
+claiming any120gate. Current source boundary is short and does not establish all
+physical route/source/action/frame/lifetime outcomes or unobtrusive cadence.
+Step2/all47/21stayopen andsteps3–7stayordered. Reviewedda55ccd7..59841d8ehas25
+matchedreceipts/0gaps. Storageapproximately1007GiBworking319GiBfree;no cleanup.
+
+The same fresh V4 native cohort also matches212held source planes and101760000
+pixels with zero differences. This remains a selected external oracle comparison.

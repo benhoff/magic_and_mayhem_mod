@@ -7,24 +7,28 @@ import json
 from pathlib import Path
 import struct
 
-NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'font',9:'raster',10:'checkpoint',11:'queue_entry',12:'queue_return',13:'failure',14:'rgb_add',15:'bevel',16:'halo',17:'wash',18:'pcx',19:'dib',20:'bmp',21:'fade',22:'minimap',23:'points',24:'minimap_owned_overlay',25:'owned_payload_source',26:'colour_rectangle'}
+NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'font',9:'raster',10:'checkpoint',11:'queue_entry',12:'queue_return',13:'failure',14:'rgb_add',15:'bevel',16:'halo',17:'wash',18:'pcx',19:'dib',20:'bmp',21:'fade',22:'minimap',23:'points',24:'minimap_owned_overlay',25:'owned_payload_source',26:'colour_rectangle',27:'update_end'}
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def decode(raw, complete=True):
-    if len(raw)<64 or raw[:8] not in (b'MNMPRO01',b'MNMPRO02',b'MNMPRO03') or len(raw)>(512 if raw[:8]==b'MNMPRO02' else 128)*1024*1024:
+    if len(raw)<64 or raw[:8] not in (b'MNMPRO01',b'MNMPRO02',b'MNMPRO03',b'MNMPRO04') or len(raw)>(512 if raw[:8] in (b'MNMPRO02',b'MNMPRO04') else 128)*1024*1024:
         raise ValueError('Invalid producer stream envelope')
     h=struct.unpack_from('<16I',raw)
     owned=raw[:8]==b'MNMPRO02'
-    extended=raw[:8]==b'MNMPRO03'
-    if h[2:5]!=((3 if extended else 2 if owned else 1),64,0x40209ca7) or h[5] not in ((131072,262144) if extended else (32768,65536,131072,262144) if owned else (32768,65536)) or (h[6]!=32 if extended else not 1<=h[6]<=16) or any(h[7:]):
+    whole=raw[:8]==b'MNMPRO04'
+    extended=raw[:8] in (b'MNMPRO03',b'MNMPRO04')
+    if whole:
+        if h[2:9]!=(4,64,0x40209ca7,1048576,h[6],1,536870912) or not 1<=h[6]<=120 or any(h[9:]):raise ValueError('Unsupported whole-update producer header')
+    elif h[2:5]!=((3 if extended else 2 if owned else 1),64,0x40209ca7) or h[5] not in ((131072,262144) if extended else (32768,65536,131072,262144) if owned else (32768,65536)) or (h[6]!=32 if extended else not 1<=h[6]<=16) or any(h[7:]):
         raise ValueError('Unsupported producer header')
-    at=64;records=[];entered=returned=0;owned_sources={};owned_bytes=0
+    at=64;records=[];entered=returned=ended=0;owned_sources={};owned_bytes=0
     while at<len(raw):
+        if ended:raise ValueError('Producer data after update closure')
         if len(records)>=h[5] or len(raw)-at<96:raise ValueError('Truncated/over-budget producer record')
         r=struct.unpack_from('<24I',raw,at)
-        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or r[23]:
+        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or (r[2]==27 and not whole) or r[23]:
             raise ValueError('Invalid producer record bounds/sequence/operation')
         payload=raw[at+96:at+r[0]]
         wire_size=r[0]
@@ -65,8 +69,11 @@ def decode(raw, complete=True):
         if r[2]==12:
             if entered!=returned+1 or r[14]!=entered:raise ValueError('Noncontiguous producer queue return')
             returned+=1
+        if r[2]==27:
+            if entered!=returned or returned!=h[6] or r[14]!=h[6] or r[17]!=(r[15]+1)&0xffffffff or not r[19] or r[20]>255 or not r[21] or r[22]!=3 or payload or any(r[3:14]) or r[18]:raise ValueError('Invalid whole-update closure')
+            ended=1
         records.append((r,payload));at+=wire_size
-    if complete and (entered!=h[6] or returned!=h[6] or not records or records[-1][0][2]!=12):
+    if complete and (entered!=h[6] or returned!=h[6] or not records or records[-1][0][2]!=(27 if whole else 12) or whole and not ended):
         raise ValueError('Incomplete producer/World prefix')
     return h,records
 

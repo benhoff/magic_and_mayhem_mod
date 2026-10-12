@@ -3,6 +3,7 @@
 #include "glyph_live.h"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
+#include "../../protocols/include/mnm/canvas_producers_v4.h"
 #include "../../protocols/include/mnm/world_continuous_v3.h"
 #define HOOKS 56
 #define MAX_SURFACES 128
@@ -93,7 +94,9 @@ static HANDLE producer_record_heap;
 static HANDLE producer_heap(void){return producer_record_heap?producer_record_heap:GetProcessHeap();}
 static char directory[220];
 static u32 enabled,stopped,sequence,bytes,next_id,oracle,oracle_bytes,queue,limit,depth,failures;
-static u32 minimap_owned,minimap_pace;
+static u32 minimap_owned,minimap_pace,whole_update_capture;
+static int extended_stream(void){return whole_update_capture||limit>16;}
+static u32 producer_byte_budget(void){return whole_update_capture?MNM_PRODUCER_V4_MAX_BYTES:limit>16?MNM_PRODUCER_MAX_BYTES:minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES;}
 static u32 oracle_byte_limit=1024u*1024u*1024u;
 /* Diagnostic storage policy, not an original engine limit. Stay within u32. */
 static int oracle_configure(const char* number,u32 n){
@@ -111,6 +114,8 @@ static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
 static u32 continuous_region_queries;
 API u32 WIN GetCurrentThreadId(void);
 #include "producer_trace_guard.h"
+static u32 producer_record_budget(void){return whole_update_capture?MNM_PRODUCER_V4_MAX_RECORDS:limit>16?(producer_trace_mode?MNM_PRODUCER_V3_TRACE_MAX_RECORDS:MNM_PRODUCER_V3_MAX_RECORDS):minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;}
+
 static u32 producer_uncached_region_query(u32 p,u32* m){if(continuous_map)++continuous_region_queries;return VirtualQuery((void*)p,m,28);}
 #define MNM_WORLD_REGION_QUERY(p,m) producer_uncached_region_query(p,m)
 #include "world_source_regions.h"
@@ -134,7 +139,7 @@ static u8* journal_buffer;static u32 journal_used,journal_failed;
 static int journal_flush(void){if(continuous_map)return !journal_failed;if(!journal_used)return !journal_failed;if(!file||!write(file,journal_buffer,journal_used)){journal_failed=1;stopped=1;return 0;}journal_used=0;return 1;}
 static int journal_write(const void* data,u32 n){
  if(continuous_map)return continuous_write(data,n);
- if(limit<=16)return write(file,data,n);
+ if(!extended_stream())return write(file,data,n);
  if(journal_failed)return 0;
  if(!journal_buffer){journal_buffer=HeapAlloc(producer_heap(),0,65536);if(!journal_buffer){journal_failed=1;return 0;}}
  const u8* p=data;while(n){u32 count=65536-journal_used;if(count>n)count=n;copy(journal_buffer+journal_used,p,count);journal_used+=count;p+=count;n-=count;if(journal_used==65536&&!journal_flush())return 0;}return 1;
@@ -143,7 +148,7 @@ int canvas_producers_continuous(void){return continuous_map!=0;}
 static void publication_close(void);
 static void drawing_update_points_close(void);
 void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
-static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=(limit>16?(producer_trace_mode?MNM_PRODUCER_V3_TRACE_MAX_RECORDS:MNM_PRODUCER_V3_MAX_RECORDS):minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(limit>16?MNM_PRODUCER_MAX_BYTES:minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(limit>16?MNM_PRODUCER_MAX_BYTES:minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
+static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=producer_record_budget()||bytes>producer_byte_budget()-96||n>producer_byte_budget()-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
 static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V3_SOURCES];
@@ -151,7 +156,7 @@ static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;
 static u32 source_packet_count,source_packet_bytes;
 static u32 continuous_source_heads[1024];
 static void emit_unlocked(u32* r,const void* payload,u32 n){
- if(limit<=16||(r[2]!=8&&r[2]!=9)||!n){emit_raw(r,payload,n);return;}
+ if(!extended_stream()||(r[2]!=8&&r[2]!=9)||!n){emit_raw(r,payload,n);return;}
  const u8* data=payload;u32 hash=2166136261u;u32 original_frame=continuous_map?get((u8*)r+96+n):0;
  if(!continuous_map)for(u32 i=0;i<n;++i)hash=(hash^data[i])*16777619u;
  struct SourcePacket* source=0;
@@ -391,6 +396,7 @@ static void producer_source_region_end(void){
 #include "drawing_publication.h"
 #include "drawing_source_point.h"
 #include "drawing_update_points.h"
+#include "whole_update_capture.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
@@ -454,7 +460,7 @@ void producer_leave_observe(u32* registers){
    if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
    else if(f.tag==1){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}}
    else if(f.tag==2){struct Surface* s=object(f.ecx);if(s){s->pixels=registers[7];s->stride=get((void*)(f.ecx+24))/2;checkpoint(s,3);}}
-   else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=continuous_map&&continuous_resident?2:1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}drawing_update_point(2,f.ecx,f.caller);if(!continuous_map)raster_world_open=0;if(continuous_map){if(!continuous_return()){continuous_cancel();ExitProcess(95);}}else if(queue>=limit&&!publication_enabled){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
+   else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=continuous_map&&continuous_resident?2:1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}drawing_update_point(2,f.ecx,f.caller);if(!continuous_map)raster_world_open=0;if(continuous_map){if(!continuous_return()){continuous_cancel();ExitProcess(95);}}else if(queue>=limit&&!publication_enabled&&!whole_update_capture){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
    if(f.record){u32* r=(u32*)f.record;r[21]=registers[7];
     if(minimap_owned&&f.tag==45)r[19]=get((void*)(f.ecx+0xff));
     if(minimap_owned&&f.tag==47){struct Surface* d=map_destination(f.ecx);if(!d||registers[7]<d->pixels||(registers[7]-d->pixels)%2){fail(35,f.tag);}else r[21]=(registers[7]-d->pixels)/2;}
@@ -477,7 +483,7 @@ void producer_leave_observe(u32* registers){
  ExitProcess(94);
 }
 int canvas_producers_install(void){
- if(!producer_trace_configure())return 0;
+ if(!producer_trace_configure()||!whole_update_configure())return 0;
  int glyph=glyph_live_configure();if(glyph<0)return 0;
  if(glyph){
   if(producer_trace_mode)return 0;
@@ -498,13 +504,13 @@ int canvas_producers_install(void){
 #ifndef MNM_SCENE_SELFTEST
  if((u32)GetModuleHandleA(0)!=0x400000)return 0;
 #endif
- SetLastError(0);u32 owned_n=GetEnvironmentVariableA("MNM_MINIMAP_OWNED",flag,2);if((owned_n&&(owned_n!=1||flag[0]!='1'))||(!owned_n&&GetLastError()!=203))return 0;minimap_owned=owned_n!=0;
+ SetLastError(0);u32 owned_n=GetEnvironmentVariableA("MNM_MINIMAP_OWNED",flag,2);if((owned_n&&(owned_n!=1||flag[0]!='1'))||(!owned_n&&GetLastError()!=203))return 0;minimap_owned=owned_n!=0;if(whole_update_capture&&!minimap_owned)return 0;
  SetLastError(0);u32 pace_n=GetEnvironmentVariableA("MNM_MINIMAP_INPUT_FIXTURE",flag,2);if((pace_n&&(pace_n!=1||flag[0]!='1'||!minimap_owned))||(!pace_n&&GetLastError()!=203))return 0;minimap_pace=pace_n!=0;
  oracle_byte_limit=1024u*1024u*1024u;
  SetLastError(0);u32 budget_n=GetEnvironmentVariableA("MNM_CANVAS_ORACLE_MIB",number,sizeof(number));
  if(budget_n){if(budget_n>=sizeof(number)||!oracle_configure(number,budget_n))return 0;}
  else if(GetLastError()!=203)return 0; /* ERROR_ENVVAR_NOT_FOUND; empty refuses. */
- limit=1;u32 n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);if(n){if(n>=sizeof(number))return 0;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 0;limit=limit*10+number[i]-'0';}if(!limit||(limit>16&&limit!=MNM_PRODUCER_V3_QUEUES))return 0;}
+ limit=1;u32 n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);if(n){if(n>=sizeof(number))return 0;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 0;limit=limit*10+number[i]-'0';}if(!limit||(whole_update_capture?limit>MNM_PRODUCER_V4_MAX_QUEUES:limit>16&&limit!=MNM_PRODUCER_V3_QUEUES))return 0;}
  if(!bypass_init(limit)||!raster_init(limit)||(bypass_limit&&raster_first))return 0;
  if(!batch_init()||!continuous_init())return 0;
  if(producer_trace_mode){
@@ -514,13 +520,13 @@ int canvas_producers_install(void){
  }
  if(continuous_public_bind)minimap_owned=1;
  if(limit>16){
-  if(producer_trace_mode){if(limit!=MNM_PRODUCER_V3_QUEUES||!minimap_owned)return 0;}
+  if(producer_trace_mode){if((!whole_update_capture&&limit!=MNM_PRODUCER_V3_QUEUES)||!minimap_owned)return 0;}
   else if(!batch_enabled||(minimap_owned&&!continuous_public_bind)||raster_first!=1||raster_last!=limit)return 0;
  }
  n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||!drawing_update_points_open())return 0;
  for(u32 i=0;i<HOOKS;++i){if(i>=53&&!producer_trace_mode)continue;struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);if(i==9)put(t+5,0x58b660-(u32)t-9);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[i]=(u32)t;}
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}
- u32 header[16]={0};copy(header,limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=limit>16?(producer_trace_mode?MNM_PRODUCER_V3_TRACE_MAX_RECORDS:MNM_PRODUCER_V3_MAX_RECORDS):minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;header[6]=limit;if(!continuous_map&&!write(file,header,64))return 0;bytes=64;
+ u32 header[16]={0};copy(header,whole_update_capture?MNM_PRODUCER_V4_MAGIC:limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=whole_update_capture?4:limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=producer_record_budget();header[6]=limit;if(whole_update_capture){header[7]=MNM_PRODUCER_V4_WHOLE_UPDATE;header[8]=MNM_PRODUCER_V4_MAX_BYTES;}if(!continuous_map&&!write(file,header,64))return 0;bytes=64;
  for(u32 j=0;j<HOOKS;++j){if(j>=53&&!producer_trace_mode)continue;struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
  if(!publication_install())return 0;enabled=1;return 1;
 }

@@ -821,3 +821,29 @@ Step 2 stays open and steps 3–7 remain ordered; no 47/21 closure is promoted.
 The fresh exact-binding native cohort matches 102 physical witnesses and 204
 held-source planes with zero differences; 230 physical witnesses remain excluded.
 This restricted parity supports the stated source prefix, not complete journeys.
+
+## Step 2 whole-update source boundary prototype (2026-10-12 UTC)
+
+A separate V4 recorder policy keeps late composition after the requested final
+World queue return and closes at the following accepted-update marker. Original
+short runs01/02 refused because a foreign thread’s tag39 copy was still active at
+accepted17. Their partial source intervals, exact diagnostic and original manifest
+logs are retained. A bounded five-second wait outside the source mutex allows
+foreign frames to retire; same-owner frames, timeout and changed identity refuse.
+Thirteen PE32 controls pass, including retirement under the same mutex and timeout.
+Native/Python closure/postlude fixtures and legacy regressions pass. A fixture
+coordinate mistake and old V3budget test expectation were corrected before proof;
+a harness linker failure occurred before execution and is retained.
+
+Original05 now closes16whole source queues through accepted17/counter16, with
+87,542 records,37,653,258wirebytes,1,137CPUoracles and0sourcefailures. The end marker
+matches exact independent cadence event679. Normal original Quit succeeds;
+307API/306EGLwitnesses and120held sourcepairs are retained. This interval is still
+shorter than120advancingupdates and doesnot establish every presentation route,
+lifetime,semantic outcome or unobtrusive cadence. Native parity follows separately.
+
+Whole-update prototype native prediction now matches106selected physical
+witnesses(201excluded) and212held-sourceplanes/101760000pixels with zero
+differences. Reassessment: extend explicit Whole120 admission and bounded
+completion waiting next; source/action/frame/lifetime/route/cadence/semantic
+requirements remain open. No full DRAW02 or replacement promotion.

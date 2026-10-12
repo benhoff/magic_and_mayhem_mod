@@ -42245,7 +42245,8 @@
         "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012",
         "DRAW02.draw02-source-worker-lease-prediction-01-native_integration-20261012",
         "DRAW02.draw02-source-held-prediction-01-native_integration-20261012",
-        "DRAW02.draw02-producer-update-prediction-01-native_integration-20261012"
+        "DRAW02.draw02-producer-update-prediction-01-native_integration-20261012",
+        "DRAW02.draw02-whole-update-prediction-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43356,6 +43357,71 @@
       "remaining_gaps": [
         "PE32getter two caller IDs/twelve guards/LastError and producer point order/four failures pass; six decoder guards refuse. Original01 exact cadence event/producer queue boundaries bind all16sourcequeues to advancing updates1\u201316, with same return point; overall69completewindows. No count-only binding.",
         "Source prefix closes at sixteen World queue returns; complete UI composition, source/action/physical frame ownership through whole120advancing windows, larger bounded decoders, lifetime/alternate-route policy and diagnostic cadence controls remain pending. Full47/21acceptance remains open."
+      ]
+    },
+    {
+      "id": "NR.drawing-whole-update-source-capture",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded source capture through whole accepted-update boundary",
+      "scope": "Separate recorder-only opt-in V4 source stream retains post-queue composition until next accepted-update marker after requested final source queue. Exact prior queue point/counter/sequence/owner and no pending primitive frames required; refuse mismatch or budget. New metadata closure opcode has no raster effect. Preserve legacy stream formats/replacement policies and keep physical/action/lifetime ownership separate from complete source boundary. Prototype short16-return fixture/capture before120expansion.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-whole-update-source.md",
+        "research/formats/canvas-producers-v4.md"
+      ],
+      "implementation": [
+        "runtime/engine-cadence/update_boundary.h",
+        "runtime/scene/whole_update_capture.h",
+        "protocols/include/mnm/canvas_producers_v4.h",
+        "runtime/scene/canvas_producers.c",
+        "compat/legacy/canvas_producers.cpp",
+        "tools/inspect-canvas-producers.py"
+      ],
+      "tests": [
+        "tests/drawing-whole-update-boundary-test.c",
+        "tools/test-drawing-whole-update-boundary.py",
+        "tests/test-canvas-producers-v4.py",
+        "tests/canvas-producers-v4-test.cpp",
+        "tools/capture-drawing-interactive.py",
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "validation_dependencies": [
+        "runtime/engine-cadence/observer.c",
+        "runtime/engine-cadence/queue_point.h",
+        "runtime/scene/drawing_update_points.h",
+        "runtime/scene/producer_trace_guard.h",
+        "compat/legacy/canvas_producers.hpp",
+        "tools/build-engine-cadence.py",
+        "tools/build-scene-observer.py",
+        "tools/drawing_producer_updates.py",
+        "tools/drawing_engine_windows.py",
+        "compat/legacy/canvas-producers/CMakeLists.txt"
+      ],
+      "evidence": [
+        "DRAW02.draw02-whole-update-boundary-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-whole-update-decoder-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-whole-update-original-01-static-20261012",
+        "DRAW02.draw02-whole-update-refusal-analysis-01-static-20261012",
+        "DRAW02.draw02-whole-update-original-02-static-20261012",
+        "DRAW02.draw02-whole-update-refusal-analysis-02-static-20261012",
+        "DRAW02.draw02-whole-update-boundary-fixture-02-static-20261012",
+        "DRAW02.draw02-whole-update-boundary-fixture-05-native_integration-20261012",
+        "DRAW02.draw02-whole-update-decoder-fixture-02-native_integration-20261012",
+        "DRAW02.draw02-whole-update-original-05-live_observation-20261012",
+        "DRAW02.draw02-whole-update-held-analysis-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original01/02refuse foreigntag39copyatnextaccepted17;exactdiagnostic retained. Fresh13casefixturevalidates5sforeignwaitoutsideproducerlock/sameowner/timeoutplusidentity/failures. Original05closes16whole sourcequeues/updateswithpostlude,end27exactnextaccepted17,87542records/37653258bytes/0failures.",
+        "Native/PythonV4postlude1,16,120queuefixtures andlegacyregressionspass. Fresh106selected physical witnesses and212held-sourceplanesmatchnativeexactly;actual120windowcapture/decoder gates,completephysical source/action/frame/lifetimeownership,alternate/mode/cadencecontrolsandfull47/21acceptance remain open. No broad status promotion."
       ]
     }
   ],
@@ -91945,6 +92011,230 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-boundary-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 closure/callback11cases withowned emit/checkpoint/close stand-ins; no original update/source ownership.",
+      "record": "research/runtime/draw02-whole-update-boundary-fixture-01.json",
+      "sha256": "5b8f652d2fd7860faee2936a962cbf0b539962b301137db2553a03b22ccc218c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-decoder-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "V4native/Python whole closure/postlude1,16,120queues plus legacy minimap/canvas regressions; no original full-update validation.",
+      "record": "research/runtime/draw02-whole-update-decoder-fixture-01.json",
+      "sha256": "1963d58d398fc8865e566bd75c8037c79e645c113cd13eb227902d1fd5cc14d1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-original-01-static-20261012",
+      "kind": "static",
+      "scope": "Retained original short whole-update01 refusal after16returns/postlude; no completed whole-update source interval.",
+      "record": "research/runtime/draw02-whole-update-original-01.json",
+      "sha256": "369fc554060eeb47407a4333dfe6649b266d38e8504ea7d72361f7babcbdc33b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-refusal-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "Negative01 retained artifact/manifest-log hash review; source closure failed, branch unspecified before diagnostic retry.",
+      "record": "research/runtime/draw02-whole-update-refusal-analysis-01.json",
+      "sha256": "f82d8e407e2a701e0407b5812bd700deffea2e488c11a1a5e5a2b440c886f76b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-original-02-static-20261012",
+      "kind": "static",
+      "scope": "Retained whole-update original02 refusal:foreigntag39copy active ataccepted17;no closure.",
+      "record": "research/runtime/draw02-whole-update-original-02.json",
+      "sha256": "57ca994d62b85d66f5c8f64ff15825927b2becce4e80c994eeafe3638e46f920",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-refusal-analysis-02-static-20261012",
+      "kind": "static",
+      "scope": "Exact original02foreign-frame diagnosis/manifesthashes;notcurrent-code whole-update proof.",
+      "record": "research/runtime/draw02-whole-update-refusal-analysis-02.json",
+      "sha256": "3aa62dfc40c265fd4c6aeee0c914bba3506248f5accf4b60da207ba3f5f1d0bf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-boundary-fixture-02-static-20261012",
+      "kind": "static",
+      "scope": "PE32diagnostic refusal version02eleven cases pass beforebounded foreign-framewait;historical scoped proof only.",
+      "record": "research/runtime/draw02-whole-update-boundary-fixture-02.json",
+      "sha256": "04d44863a569e2bdcffd80944a84f198917a894d08b479b81b8539775dafd3f8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-boundary-fixture-05-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "PE32thirteen-case closure/foreignframewait/sameowner/timeout/identity/failure controls pass;owned stand-ins,notoriginalclosure.",
+      "record": "research/runtime/draw02-whole-update-boundary-fixture-05.json",
+      "sha256": "96a18ac4d85f27870b7ca861ae4ad7295adf7fc84f427344fdd27a3ebf4f4b71",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-decoder-fixture-02-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh V4native/Python postlude/closure1,16,120queues andlegacyminimap/canvasregressions;nooriginal interval proof.",
+      "record": "research/runtime/draw02-whole-update-decoder-fixture-02.json",
+      "sha256": "71fbaec44b81d3cc3a7e03f5dc766dfe5b90abb2b66b16e81f98d280052d3e9f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-original-05-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Short original V4whole source interval:16exactqueues/updates,postlude throughnextaccepted17/lastcounter16;87542records37653258bytes1137oracles0sourcefailures.307API306EGL120heldpairs;54completeadvancingwindowsoverall. No120fullsource/presentation or all semantic claim.",
+      "record": "research/runtime/draw02-whole-update-original-05.json",
+      "sha256": "da65058a62350360d278326266a6d85aa8901b1b62367b0aaa30b75ec170e356",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_update_observation/whole_update_source_boundary/verified",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "V4shortwhole-update source-only native106selected physicalwitnesses0diff/201excluded;no full120window or presentation/lifetime equivalence.",
+      "record": "research/runtime/draw02-whole-update-prediction-01.json",
+      "sha256": "750fb03e1afb6aeeb39f821d2ce959e303015fbb3c61cd004761aea21f370638",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-whole-update-held-analysis-01-static-20261012",
+      "kind": "static",
+      "scope": "External held-source212selectedplanes/101760000pixels0diffagainstindependentnativeV4prefix;notfull120windowparity.",
+      "record": "research/runtime/draw02-whole-update-held-analysis-01.json",
+      "sha256": "3e08f5068673981544afbad332c6937a765948411aa61c3f3319ce83c6bce0a9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -103775,8 +104065,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-producer-binding-20261012.json",
-    "sha256": "388a766f4e27fb60526c3c79ba7a6f0f60121102e42029b8027b4b8318398f8b"
+    "path": "research/runtime/coverage/source-index-draw02-whole-update-wait-20261012.json",
+    "sha256": "cd6a8ebd6ba5ba42dafcf8e6115e5a52a5d06872bf28db77412c7e328858a4b6"
   },
   "claim_bindings_required": true
 }
