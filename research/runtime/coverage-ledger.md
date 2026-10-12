@@ -8335,3 +8335,25 @@ architecture/linked-contract pairs are accounted retrospectively in the separate
 resolution report. This asserts neither a historical gate pass nor new validation.
 Bounded builds use the authorized private90GiB storage policy and preserve all
 2927 original files; no cleanup was performed by this workstream.
+
+## NS29 — Whole segment completion and position snap (2026-10-12)
+
+Whole512460/5070e0 control-flow projections pass16384 prospectively bound
+original32/native64/sanitized64 cases. Every actor byte, ordered lower-service
+effects, contribution-owner counters, read-only terrain/catalog/region storage
+and original body bytes are checked. Landing/type15 damage/overlay teardown,
+terminal-parent and duplicate credits, all three callbacks before the active
+gate, route/end/region lookahead and legality, expiry, width2 height selection
+and ordinary snap are exercised. Eight separate native refusals and all nine
+native CTests pass. Fresh evidence is original-creature-segments-20261012.json.
+
+AI.segment-completion and AI.position-snap are scoped implementations with
+recorded original comparison; integration/replacement staynone. Lower health,
+score, ANI, environment and geometry services remain supplied. Native admission
+is separately recorded as NP.segment-admission with caller-staged rollback.
+Numeric credit roles do not establish veterancy gameplay. Full initialization,
+route requests, remaining actions and original World/all-species/native session
+composition remain within the authorized objective. Segment initialization is
+next. The committed range0280403c..fe6eb53c has15 file and97 behavior transitions
+with no missing exact receipts; its separate history report is retained.
+Builds use the authorized private90GiB reserve policy; no cleanup was performed.

@@ -52339,6 +52339,192 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "AI.segment-completion",
+      "subsystem": "creature-segments",
+      "kind": "recovered",
+      "title": "Whole route-point consumption, landing and continuation",
+      "scope": "Whole512460 control-flow projection within valid owned route/actor/contribution/region domains: landing/overlay/damage, snap, terminal-parent and duplicate-owner credits, all three callbacks, cursor/end/region/lookahead/legality and expiry. Lower actual health/score/ANI/environment/geometry services are ABI-checked supplied functions; installed construction and full native world/session integration are excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317728,
+          "scope": "Whole512460 control-flow projection within valid owned route/actor/contribution/region domains: landing/overlay/damage, snap, terminal-parent and duplicate-owner credits, all three callbacks, cursor/end/region/lookahead/legality and expiry. Lower actual health/score/ANI/environment/geometry services are ABI-checked supplied functions; installed construction and full native world/session integration are excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segment_completion.cpp"
+      ],
+      "tests": [
+        "tests/creature-segment-test.cpp",
+        "tools/test-creature-segment.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS29.segments-original",
+        "NS29.segments-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Whole512460 and5070e0 body projections with typed ABI-checked lower services",
+          "Valid16x16x4 terrain origins,16 inline route rows,28 definition widths1/2,50 region references and3 region records",
+          "Landing type15/non15 and overlay teardown, terminal contribution ancestry/duplicate owners/wrapped counters, callback removal, region lookahead+2/legality and expiry",
+          "Eight separately classified native admission refusals"
+        ],
+        "excluded": [
+          "Original full lower health/score/ANI/geometry/environment ownership",
+          "Installed constructor/profile/all-species/native session integration",
+          "Invalid raw pointers/cycles/indices and original nonfinite scoring ratios",
+          "Live replacement"
+        ]
+      }
+    },
+    {
+      "id": "AI.position-snap",
+      "subsystem": "creature-segments",
+      "kind": "recovered",
+      "title": "Original discrete and fine coordinate snap",
+      "scope": "Whole5070e0 grid/fine XYZ projection with wrapped signed32 arithmetic, global definition-width2 branch and ordinary terrain metadata height. Large-footprint4f3260 height is a supplied ABI-checked service. Valid owned terrain/types only; installed construction and real world geometry/native session integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5271776,
+          "scope": "Whole5070e0 grid/fine XYZ projection with wrapped signed32 arithmetic, global definition-width2 branch and ordinary terrain metadata height. Large-footprint4f3260 height is a supplied ABI-checked service. Valid owned terrain/types only; installed construction and real world geometry/native session integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segment_completion.cpp"
+      ],
+      "tests": [
+        "tests/creature-segment-test.cpp",
+        "tools/test-creature-segment.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS29.segments-original",
+        "NS29.segments-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Whole512460 and5070e0 body projections with typed ABI-checked lower services",
+          "Valid16x16x4 terrain origins,16 inline route rows,28 definition widths1/2,50 region references and3 region records",
+          "Landing type15/non15 and overlay teardown, terminal contribution ancestry/duplicate owners/wrapped counters, callback removal, region lookahead+2/legality and expiry",
+          "Eight separately classified native admission refusals"
+        ],
+        "excluded": [
+          "Original full lower health/score/ANI/geometry/environment ownership",
+          "Installed constructor/profile/all-species/native session integration",
+          "Invalid raw pointers/cycles/indices and original nonfinite scoring ratios",
+          "Live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.segment-admission",
+      "subsystem": "creature-segments",
+      "kind": "native_policy",
+      "title": "Owned segment route, contribution and region admission",
+      "scope": "Refuse invalid16-point route count/cursor, contribution roots/owners/cycles,50-entry region cursor and zero scoring divisor. Native safety policy, separate from original faults/loops/nonfinite arithmetic; caller-staged rollback required.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-execution.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/segment_completion.cpp"
+      ],
+      "tests": [
+        "tests/creature-segment-test.cpp",
+        "tools/test-creature-segment.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segments/CMakeLists.txt",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS29.segments-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -105496,6 +105682,110 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS29.segments-original",
+      "kind": "isolated_original",
+      "scope": "16384 prospectively source/scope-bound whole512460/5070e0 projections against unchanged pinned original with native64 and ASan/UBSan/LSan64 agreement. Supplied lower ABI services and valid owned route/terrain/contribution/region inputs; full world ownership and native session/live integration excluded.",
+      "record": "research/runtime/original-creature-segments-20261012.json",
+      "sha256": "2fe88754d65ade222c1270780f3881f0db71913229f6ad0a0a3e384f56cbbded",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS29.segments-native",
+      "kind": "native_integration",
+      "scope": "Native64 and sanitized64 segment/snap conformance and eight native admission refusals, prospectively bound to sources and contracts. Headless service fixture; no original unsafe-input equivalence or full World/session integration.",
+      "record": "research/runtime/original-creature-segments-20261012.json",
+      "sha256": "2fe88754d65ade222c1270780f3881f0db71913229f6ad0a0a3e384f56cbbded",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -118239,8 +118529,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-motion-v2-20261012.json",
-    "sha256": "ac002128fa43adc7defab6a5c26574914715566dc96e0613d476abb5047308d0"
+    "path": "research/runtime/coverage/source-index-original-segments-20261012.json",
+    "sha256": "52e3279ebfd95cd086100416feae44bc1770bd21fbf21a3f0f0ea29491f8de60"
   },
   "claim_bindings_required": true
 }
