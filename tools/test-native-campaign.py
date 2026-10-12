@@ -466,6 +466,7 @@ def main():
         if args.native_media:declaration_command.extend(['--behavior','HOST.native-media-output-recovery','--scenario','native-media-output-recovery-campaign-20261012'])
         if args.native_factory and args.native_media:declaration_command.extend(['--behavior','HOST.native-dsound-module-policy'])
         if args.native_voices and args.native_media:declaration_command.extend(['--behavior','HOST.native-audio-initial-silence','--scenario','native-audio-initial-silence-campaign-20261012' if args.initial_silent_start else 'native-audio-initial-silence-healthy-campaign-20261012'])
+        if args.native_voices:declaration_command.extend(['--behavior','HOST.native-audio-profile-reads','--scenario','native-audio-profile-campaign-20261012'])
         if args.wine_import_census:declaration_command.extend(['--behavior','HOST.wine-import-census','--scenario','wine-import-census-campaign-20261012'])
         if args.native_music:declaration_command.extend(['--behavior','HOST.native-menu-music','--scenario','native-menu-music-campaign-20261012'])
         if args.default_music or args.default_media:declaration_command.extend(['--behavior','HOST.native-audio-defaults','--scenario','native-audio-defaults-campaign-20261012'])
@@ -702,6 +703,8 @@ def main():
                 audio_build=json.loads((roots[0]/'audio-bridge-build.json').read_text())
                 manifest=json.loads((roots[0]/'manifest.json').read_text())
                 if not manifest.get('native_voices') or sha(roots[0]/'game/MnmAudio.dll')!=manifest['audio_dll_sha256'] or audio_build['sha256']!=manifest['audio_dll_sha256']:raise ValueError('Native audio staging/build fingerprint mismatch')
+                if manifest.get('native_audio_profiles') is not True or report['native_audio'].get('profile_hook_installed') is not True or any(report['native_audio'].get(key,0)<1 for key in ['profile_strings','profile_sections','profile_integers']):
+                    raise ValueError('Native audio profile hooks/queries were not confirmed')
                 if args.native_factory and not manifest.get('native_audio_factory'):raise ValueError('Native factory was not staged')
                 for name,digest in audio_build['compiled_sources'].items():
                     if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native audio compiler source: '+name)

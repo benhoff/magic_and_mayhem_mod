@@ -11,6 +11,7 @@ struct BridgeReply {std::uint32_t status=0,value=0;};
 struct VoiceActivity {
     quint64 requests=0,creates=0,uploads=0,uploadedBytes=0,plays=0,releases=0,failures=0;
     quint64 waveLoads=0,waveBytes=0;
+    quint64 profileStrings=0,profileSections=0,profileIntegers=0;
     quint32 nativeSelections=0,fallbacks=0,adapterFailures=0;
     quint32 unsupportedCalls=0;
     quint64 outputLosses=0,outputRecoveries=0,outputAttempts=0;
@@ -18,6 +19,7 @@ struct VoiceActivity {
     bool outputAvailable=false;
     bool outputSilent=false,initialSilence=false;
     bool ready=false,audible=false,waveHookInstalled=false,nativeFactoryOnly=false;
+    bool profileHookInstalled=false;
 };
 class VoiceCommands {
 public:
@@ -34,7 +36,7 @@ public:
     // together on an owned worker; failure callbacks return to the owner.
     explicit VoiceBroker(QObject* parent=nullptr);
     ~VoiceBroker() override;
-    bool create(const QString& path,bool audible=true,const QString& soundsRoot={});
+    bool create(const QString& path,bool audible=true,const QString& soundsRoot={},bool nativeProfiles=false);
     void stop();
     QString lastError() const;
     VoiceActivity activity() const;

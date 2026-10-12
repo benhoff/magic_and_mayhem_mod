@@ -386,3 +386,10 @@ source re-admission. Current recovery keeps1200ms seek, track/loop/gain/pause
 and resumes correctly; a fresh healthy full native game passes normal Quit.
 See [waveform evidence](native-voice-output-waveforms.md) and
 [music recovery evidence](native-music-backend-recovery.md).
+
+The live audio manager now reads its configuration through native storage at
+seven guarded call/import-load sites.497 original/native profile queries match
+byte for byte; current native game/normal Quit validates76 string,4 section and
+1 integer read with no audio errors. The manager's selection/cache/scheduler/event
+logic remains in the original executable pending independent migration.
+See [native configuration evidence](native-audio-profile-reads.md).

@@ -19,7 +19,8 @@ static i32 unsupported(void){
     }return UNSUPPORTED;
 }
 struct NativeWave {u8* pcm;u32 bytes,duration;u8 format[18];};
-static i32 request_wave(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result,struct NativeWave* wave){
+struct NativeProfileReply {void* bytes;u32 capacity;};
+static i32 request_wave(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result,struct NativeWave* wave,struct NativeProfileReply* profile){
     if(!channel || dead || !__atomic_load_n(channel+20,__ATOMIC_ACQUIRE))return FAILED;
     if(__atomic_exchange_n(&busy,1,__ATOMIC_ACQUIRE))return (i32)0x887800aa;
     i32 status=FAILED;
@@ -38,6 +39,18 @@ static i32 request_wave(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 
         Sleep(1);
     }
     status=(i32)channel[17];if(!status && result)*result=channel[18];
+    if(!status && profile){
+        u32 count=channel[24];
+        if((op!=MNM_AUDIO_PROFILE_STRING && op!=MNM_AUDIO_PROFILE_SECTION) || !count || count>profile->capacity || count>16384){
+            __atomic_store_n(&dead,1,__ATOMIC_RELEASE);status=FAILED;goto done;
+        }
+        const u8* bytes=(const u8*)channel+128;u32 returned=channel[18];
+        if(bytes[count-1] || (op==MNM_AUDIO_PROFILE_STRING && (returned>=profile->capacity || count!=returned+1)) ||
+           (op==MNM_AUDIO_PROFILE_SECTION && (count<2 || bytes[count-2] || returned>profile->capacity-2))){
+            __atomic_store_n(&dead,1,__ATOMIC_RELEASE);status=FAILED;goto done;
+        }
+        copy(profile->bytes,(u8*)channel+128,count);
+    }
     if(!status && wave){
         u32 bytes=channel[18];
         if(op!=MNM_AUDIO_LOAD_WAVE || !bytes || bytes>MNM_AUDIO_PAYLOAD || channel[24]!=bytes || channel[30]){
@@ -55,7 +68,7 @@ done:if(status)__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);
     __atomic_store_n(&busy,0,__ATOMIC_RELEASE);return status;
 }
 static i32 request(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 flags,const void* data,u32* result){
-    return request_wave(op,id,value,length,format,flags,data,result,0);
+    return request_wave(op,id,value,length,format,flags,data,result,0,0);
 }
 #include "wave_loading.h"
 struct Object {void** table;volatile u32 refs;u32 kind,id,bytes,flags,playing;u8 format[18];i32 volume,pan;u8* staging;u32 locked;};
@@ -162,6 +175,7 @@ __declspec(dllexport) i32 WIN AudioWaveForTest(const char* path,void* pcm,u32 ca
     wave_close(instance);return result==(u32)bytes?(i32)bytes:FAILED;
 }
 #include "music.h"
+#include "profile_reads.h"
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;if(reason!=1)return 1;tables();if(!music_init())return 0;
 #ifndef MNM_AUDIO_SELFTEST
@@ -185,6 +199,10 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     __atomic_store_n(iat,(void*)&create_sound,__ATOMIC_RELEASE);VirtualProtect(iat,4,protection,&ignored);
     if(channel[31]&MNM_AUDIO_CAP_NATIVE_WAVE){
         if(wave_install(base))__atomic_or_fetch(channel+31,MNM_AUDIO_WAVE_INSTALLED,__ATOMIC_RELEASE);
+        else{__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);__atomic_store_n(&dead,1,__ATOMIC_RELEASE);}
+    }
+    if(channel[31]&MNM_AUDIO_CAP_PROFILE_READS){
+        if(profile_install(base))__atomic_or_fetch(channel+31,MNM_AUDIO_PROFILE_INSTALLED,__ATOMIC_RELEASE);
         else{__atomic_add_fetch(channel+23,1,__ATOMIC_RELAXED);__atomic_store_n(&dead,1,__ATOMIC_RELEASE);}
     }
 #endif
