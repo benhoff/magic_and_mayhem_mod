@@ -7389,3 +7389,29 @@ toward 120 contiguous windows. Cadence controls and full semantic journeys stay
 open; step 2 and all 47/21 requirements remain open, steps 3–7 stay ordered.
 Reviewed 256070dd..5047e22e has 26 matching exact receipts and zero gaps. Storage
 is approximately 981 GiB working / 345 GiB free; no cleanup performed.
+
+## Step 2 actual advancing-update identities (2026-10-12 UTC)
+
+An opt-in adds the existing pinned memory-only engine cadence observer to
+original-active drawing acquisition, then uses original Main Quit after API/EGL
+journal closure to flush its records on normal detach. Original sections,
+clock, game speed, simulation and drawing bodies remain active. The decoder
+checks selected call pairs, queue callers and counter values, retains complete
+accepted-update windows and excludes the last window without a following
+boundary. Advancement uses an observed exact counter increment; the mode byte
+is retained without inferring pause policy. Sequence and counter continuity
+both constrain contiguous runs. Six synthetic guards pass, including 120
+complete windows, wrap, non-advancing breaks, sequence gaps and malformed data.
+
+Original01 closes 68 consecutive advancing windows, each with one selected
+World queue; final sequence 69 is excluded. Normal original Quit and input
+integrity pass. There are 332 API / 331 post-EGL physical witnesses and 118
+protected snapshot pairs. The source recorder remains bounded to 16 returns;
+queue counts do not bind those sources to updates or close the 120-window gate.
+
+Reassessment: bind the exact cadence queue identity into the producer entry,
+then expand bounded source acquisition toward 120 windows with decoder fixtures.
+Step 2 and all 47/21 requirements remain open; steps 3–7 remain ordered. Reviewed
+5047e22e..1488d6a4 has 21 matching receipts and zero gaps. Historical validation
+remains separate; this increment does not claim new native pixel parity.
+Storage is approximately 985 GiB working / 342 GiB free; no cleanup performed.

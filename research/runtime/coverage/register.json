@@ -43254,6 +43254,54 @@
         "Four PE32 protected-copy cases and five decoder guards pass. Original01 closes119snapshot pairs/238planes, identical through224checkedcommands, no observed protected write.104selected native physical witnesses and208held-source planes match exactly. Shared allocation/alias policy, whole source/storage lifetime and other routes remain pending.",
         "120consecutive advancing original update identities with contiguous owned producer/presentation capture, diagnostic cadence controls, full semantic journeys, asynchronous hardware/scanout and all47/21acceptance requirements remain open. No status promotion."
       ]
+    },
+    {
+      "id": "NR.drawing-engine-update-windows",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original drawing acquisition with actual counter-advancing update windows",
+      "scope": "Separate opt-in existing pinned memory-only cadence observer added to original-active DRAW02 capture. Normal original Quit after bounded API/EGL acquisition closes its trace. Strict paired-call and accepted-sequence window decoding retains advancing/non-advancing identities, queue caller/count, longest contiguous counter+sequence run and incomplete final exclusion. Does not bind producer source queues to updates merely by count or establish complete120window presentation ownership.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-engine-update-windows.md"
+      ],
+      "implementation": [
+        "tools/drawing_engine_windows.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py"
+      ],
+      "tests": [
+        "tests/test-drawing-engine-windows.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/engine-cadence/observer.c",
+        "runtime/engine-cadence/entry.S",
+        "tools/build-engine-cadence.py",
+        "tools/engine_cadence.py",
+        "runtime/scene/observer.c",
+        "runtime/scene/canvas_producers.c",
+        "tools/prepare-shadow-experiment.py",
+        "protocols/include/mnm/menu_v1.h",
+        "runtime/menu/channel.h",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-engine-windows-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-engine-windows-original-01-live_observation-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Six synthetic guards pass. Original01 normal Quit closes68complete consecutive counter+sequence advancing windows, excluded final sequence69, each with one selected World queue. Source prefix remains16returns; exact producer/update binding and120contiguousowned/presented windows remain pending.",
+        "Nonadvancing/pause/mode/alternate-route branch evidence in this capture, source/action identity, all presentation retention, cadence controls, whole source/storage lifetime and full47/21semanticacceptance remain open. No broader status promotion."
+      ]
     }
   ],
   "evidence": [
@@ -91671,6 +91719,70 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-engine-windows-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Six synthetic update-window decoder tests, including120complete windows and final exclusion; no original source/presentation identity binding.",
+      "record": "research/runtime/draw02-engine-windows-fixture-01.json",
+      "sha256": "6ff2c2bdc31e0cf5a06ed1982eed74ce8cff69ee09a014acd6614a3d9b9bc99d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_run",
+          "equals": 6
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-engine-windows-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Original focused16-source-return capture with pinned cadence:68complete consecutive counter+sequence advancing windows, one excluded final window, normal original Quit.332API331post-EGL witnesses; no exact producer/update or whole120window source ownership claim.",
+      "record": "research/runtime/draw02-engine-windows-original-01.json",
+      "sha256": "b13e52d26ff9e260840b02af8626abeb142b1970e5e94fed6c9f8560ed971faf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_update_observation/longest_contiguous_advancing_run",
+          "equals": 68
+        },
+        {
+          "pointer": "/engine_update_observation/producer_update_identity_bound",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -103068,6 +103180,35 @@
       "evidence": [
         "DRAW02.draw02-source-held-original-01-live_observation-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.engine-update-windows-original",
+      "level": "live_observation",
+      "scope": "Original stock Quick Battle drawing acquisition plus independently recorded advancing update identities and normal Quit; focused source prefix remains separate.",
+      "behaviors": [
+        "NR.drawing-engine-update-windows"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-engine-windows-original-01-live_observation-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.engine-update-windows-fixture",
+      "level": "headless",
+      "scope": "Synthetic actual-window decoder guards and120completewindow count; no original source/presentation binding.",
+      "behaviors": [
+        "NR.drawing-engine-update-windows"
+      ],
+      "tests": [
+        "tests/test-drawing-engine-windows.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-engine-windows-fixture-01-native_integration-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -103441,8 +103582,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-held-snapshot-20261012.json",
-    "sha256": "8b3da710426c879c27019144699becb86ecc734b70ab0e3256f40b1f79226f6f"
+    "path": "research/runtime/coverage/source-index-draw02-engine-windows-20261012.json",
+    "sha256": "737ae62015407e1430b5198d12534013e55dea96aac12b92a3262546d5e784f5"
   },
   "claim_bindings_required": true
 }
