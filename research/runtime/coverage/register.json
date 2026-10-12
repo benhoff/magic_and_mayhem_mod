@@ -44757,6 +44757,122 @@
       "remaining_gaps": [
         "4fdad0and4bdd50anchors lack discovered whole-function inventory; bounded windows retain unassigned ranges. Persistent state, complete callback semantics, source/lifetime and native parity remain open."
       ]
+    },
+    {
+      "id": "NR.drawing-region-mouse-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original Region mouse callback entry/return observer",
+      "scope": "Opt-in pinned Region virtual-slot0observer: one original thiscall eventmask/40byte by-value record forward, exact result/LastError/512FXstate, bounded owner-thread paired phase records and read-only slot-validated hit/camera/scalars, V2correctedtype/owner/activity offsets and raw actor+68/+70/count fields; strictV1normalization preserves older raw bytes. No persistent selection/tooltip meaning, allocation generations, complete control routes or presentation/source/native parity.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "relation": "data",
+          "scope": "Exact Region virtual slot0data pin to4fdad0; callback function boundary remains unassigned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4870144,
+          "scope": "Inventory-bounded original by-value40byte record/event0x40virtual-slot0client; no complete event semantics."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/formats/drawing-region-input.md"
+      ],
+      "implementation": [
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/observer.c"
+      ],
+      "tests": [
+        "tools/test-drawing-region-input.py",
+        "tests/drawing-region-input-test.c",
+        "tools/drawing_region_input.py",
+        "tests/test-drawing-region-input.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-region-input-fixture-negative-01-20261012",
+        "DRAW02.draw02-region-input-fixture-02-20261012",
+        "DRAW02.draw02-region-input-original-01-20261012",
+        "DRAW02.draw02-region-input-label-correction-01-20261012",
+        "DRAW02.draw02-region-input-fixture-03-20261012",
+        "DRAW02.draw02-region-input-original-02-20261012",
+        "DRAW02.draw02-region-input-fixture-04-20261012",
+        "DRAW02.draw02-region-input-original-03-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual callback meaning, input-to-state causality, queue/control/thread lifetimes, persistent selection/tooltip and full source/physical/native parity pending. Numeric pool IDs are address-change counters, not allocation/generation proof. Callback4fdad0has bounded static discovery only and unknown inventory ranges remain intact.",
+        "Initial V1actorlabels incorrect; current strict decoder normalizes without changingraw/reporthashes and V2writercorrects offsets. Initial fixed-address fixtureallocation exits202; conflictunassigned. V1results stayhistorical. V2currentlyretains14callbackpairs but complete selection/tooltip and actor lifetime remain pending.",
+        "Initial prospective declaration used unsupportednativekindlabel; correctnative_policycategory changes contractfingerprint. PriorV2execution retained as historical; fresh corrected-contractfixture/original executions recorded separately."
+      ]
+    },
+    {
+      "id": "DRAW.actor-control-latch-fields",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original actor control latch and count fields",
+      "scope": "Pinned static5073d0/5074f0actor field68/70setter/resetter branches and raw6e984ccount/6903e8mode updates, plus bounded missing-function4ff13aRegionzero-mode click branch and exact control-event dispatcher4a5070. Complete selection semantics, lifetime, indirect flows and native equivalence remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5272528,
+          "scope": "Exact inventory-bounded field/control clients; static scope only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5272816,
+          "scope": "Exact inventory-bounded field/control clients; static scope only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4870256,
+          "scope": "Exact inventory-bounded field/control clients; static scope only."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/actor-control-latches.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-drawing-selection-clients.py"
+      ],
+      "validation_dependencies": [
+        "tools/inspect-drawing-canvas-storage.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-selection-clients-static-01-20261012",
+        "DRAW02.draw02-selection-bracket-visual-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Static flag/count writes and later raw callback observation do not establish all persistent selection/highlight semantics, actor allocations/generations or lifetime. Regioncallback4fdad0/4ff13abranch lacks whole discovered function; existing unknown ranges retained. Full callback/control routes and presentation/native parity remain open."
+      ]
     }
   ],
   "evidence": [
@@ -95995,6 +96111,152 @@
       "claims_pointer": "/claims",
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-region-input-fixture-negative-01-20261012",
+      "kind": "static",
+      "scope": "Retained original fixed-page allocation refusal before callback installation; no successful observer validation.",
+      "record": "research/runtime/draw02-region-input-fixture-negative-01.json",
+      "sha256": "907d248ee58cfc3fd55fc3cc63705ac9b39a905117101388d882b5269cebe360",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-region-input-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Historical V1PE32wrapper32paired/35forwards verifies ABI/FP/error/read-only/budget/foreign controls; actor labels used mistaken offset order and must not supply current field semantics.",
+      "record": "research/runtime/draw02-region-input-fixture-02.json",
+      "sha256": "0eda6c90c8fbe78b16d70e2b421665de2e5830b04343b6194e247b570c80fea3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-region-input-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Historical original-active V1capture normalQuit15callback pairs. Raw actor fields were mislabeled; preserve bytes/hashes, use separately registered normalization; no current-source/full selection equivalence.",
+      "record": "research/runtime/draw02-region-input-original-01.json",
+      "sha256": "1b69c1f65fdcb2d1206021ba2181dc1d4ead88382c6c10955a53f9812deb8ab4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-region-input-label-correction-01-20261012",
+      "kind": "static",
+      "scope": "Immutable current V1raw reanalysis normalizes type+a8/owner+174/activity+4 names, preserving old reports/raw bytes; no new game execution.",
+      "record": "research/runtime/draw02-region-input-label-correction-01.json",
+      "sha256": "f7900bf364ae5478e89f544fc66854d06b31d56a92cfe06c0944e25e4963e837",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-region-input-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Current V2PE32wrapper32paired/35forwards verifies corrected type/owner/activity, exact receiver/mask40byteargs/result/LastError/512FXstate, read-only source except synthetic originalhealthwrite, disabled/capacity/actualforeign-thread forwards and installer slot/prologue guards.",
+      "record": "research/runtime/draw02-region-input-fixture-03.json",
+      "sha256": "6e8878f6ed293c462914d7f530c591e39c5feacfcb1aaecfb7da3deec4a2b0cf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-region-input-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh original-active V2metadata campaign/guidance/Mini/Preferences/resume/normalQuit14callbackpairs with correctedactorfields/raw68/70/count. Click400265mask1setsvalidatedwizard68zero\u2192one,count0\u21921,mode0\u21921; releasepreserves. No persistent generations/fullselection/tooltip/source/physical/nativeparity.",
+      "record": "research/runtime/draw02-region-input-original-02.json",
+      "sha256": "ae04f26ed1dde417825aa184cf390ef15ca481c9a3c28e45e87bdf3427ee3a4d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-selection-clients-static-01-20261012",
+      "kind": "static",
+      "scope": "Exact static dispatcher/actor68/70setter/resetter/count/mode and bounded missing-function Regionzero-modeclickbranch; unknown ranges preserved.",
+      "record": "research/runtime/draw02-selection-clients-static-01.json",
+      "sha256": "dd4e54f3f3714758231ad89a8bd398a3c4caba7106b2f5065e02699005169d11",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-region-input-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh correctednative_policycontract V2PE32fixture32pairs35forwards: exact callbackABI/result/error/512FX/read-only/budget/foreign/disabled/pins and corrected actor offsets; no originalgame/pixels/fullsemanticproof.",
+      "record": "research/runtime/draw02-region-input-fixture-04.json",
+      "sha256": "05d4f04bb4f36e2e8253b79853c26af1b3cd35e8550c7c55f8d4b0d03de409b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-region-input-original-03-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh correctednative_policycontract originalV2normalQuit9pairs2873inputcalls0planes; actualmask1(400265)validatedwizard68/count/mode0\u21921andmask2preserves. Narrowcallbackstateproof only, not generations/fullselection/tooltip/source/physical/nativeparity.",
+      "record": "research/runtime/draw02-region-input-original-03.json",
+      "sha256": "d3bf0ebf2fd7e39aa69724f9f181117629b88c7f17629cf35c97de1a2d512224",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-selection-bracket-visual-01-20261012",
+      "kind": "static",
+      "scope": "Manual retained image3/4visual bracket persistence after pointer moves away; unbound physical/frame/source/native parity remain open.",
+      "record": "research/runtime/draw02-selection-bracket-visual-01.json",
+      "sha256": "570e0c86c3d5d9afb5b3a125a9d82dec0f8a677a89c2daafb3d88388a42aef59",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108137,8 +108399,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-mouse-ring-20261012.json",
-    "sha256": "236234a2648e9a54240d2426f111f06b4f90826fd6ff37e28c6d3d31a357e275"
+    "path": "research/runtime/coverage/source-index-draw02-region-input-20261012.json",
+    "sha256": "33cce82a1f8a7ffc37f07849b71cf40e77f5dc6ef1cb9488eba48ceac417b973"
   },
   "claim_bindings_required": true
 }

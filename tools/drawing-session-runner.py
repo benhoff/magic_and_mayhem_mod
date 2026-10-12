@@ -35,6 +35,7 @@ if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHO
 else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
 if metadata.get('hud_input_point'):os.environ.update(MNM_DRAW_INPUT_POINT='1',MNM_DRAW_HUD_INPUT_POINT='1')
 if metadata.get('hud_state'):os.environ['MNM_DRAW_HUD_STATE_FILE']='Z:'+str(root/'capture/hud-state.bin').replace('/','\\')
+if metadata.get('region_input'):os.environ['MNM_DRAW_REGION_INPUT_FILE']='Z:'+str(root/'capture/region-input.bin').replace('/','\\')
 if metadata.get('semantic_state'):os.environ['MNM_DRAW_SEMANTIC_STATE_FILE']='Z:'+str(root/'capture/semantic-state.bin').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SEMANTIC_STATE_FILE',None)
 if metadata.get('engine_cadence'):os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(root/'capture/engine-cadence.bin').replace('/','\\')

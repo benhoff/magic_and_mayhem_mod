@@ -7941,3 +7941,50 @@ Unknown ranges remain intact; no selection/tooltip/native parity promotion.
 Next trace the control event dispatcher and bounded Region callback effects,
 then observe actual action/state causality. Step2is ongoing; all47journey/21operation
 requirements and steps3–7remain open.
+
+
+## Step 2 Region mouse callback checkpoint (2026-10-12 UTC)
+
+Original mouse ring work is committed as`76264a6a`; staged gate/hook pass.
+Reviewed902dfbff..76264a6arange has14exact file receipts and0missing versions.
+The opt-in Region virtual-slot observer now forwards one original thiscall
+mask/40byte by-value record, preserves raw return/LastError/full512FXstate,
+and buffers bounded paired phases on its numeric owner thread. Foreign owner,
+capacity, pending/return/phase/nesting/argument and reserved-data gaps refuse
+complete decoding. No lock spans the original callback; no input poll is added.
+Six decoder methods, four cadence exclusion guards and five input-point methods
+pass. Current actualPE32V2fixture retains32pairs/35forwards, including disabled,
+capacity and actualforeign-thread cases, unchanged observer source apart from
+mocked originalhealth writes, and exact installer slot/prologue refusals.
+
+Initial fixture exits202when fixed4f0000allocation refuses before installation;
+conflictunassigned. Retain it. The owned-page V1retry passes forwarding, but
+review catches wrong type/owner/activity offset labels in the new observer.
+Historical fixture02/original01reports and raw bytes remain unchanged; separate
+currentV1normalization reads type+a8/owner+174/activity+4. V2writes correctorder
+and rawvalidated68/70/count. OriginalV1normalQuit15pairs are historical; fresh
+V2original02normalQuitretains14pairs/4434inputcalls/0physicalplanes.
+
+At originalV2callback2, mask1and mouse(400,265), the currentvalidatedpool1slot0
+(type0,owner0,active1) has field68zero→one, raw6e984ccount0→1 and6903e8mode0→1
+between entry/return. Callback3mask2release preserves those values. These are
+actual bounded delivered-callback state changes, not cursor-painter correlation.
+No persistent actor generation, fullselection/tooltip or source/physical/native
+parity claim follows. Guidance/Mini/Preferences/resume/Quit remains bounded.
+
+Exact static5073d0/5074f0setter/resetter and4a5070dispatcher instructions
+explain rawfield/count writes and by-value event assembly; bounded4ff13aclick
+branch lacks a whole inventory function, and existing unknownranges remain.
+Next observe latched actors independently of the currenthit across pointer motion
+and bind callback/source/frame identities; retain route/source/actor lifetime
+gaps. Step2ongoing, all47journey/21operation and steps3–7remain open.
+
+
+Region coverage category correction: the first prospective declaration used
+unsupportednativekind. Correct it tonative_policyand preserve previousclaim
+fingerprints; fixture04and original03are fresh executions against the corrected
+contract. Fixture04passes32pairs/35forwards; original03normalQuitretains9pairs,
+2873inputcalls and0planes. Mask1at400265againchangesvalidatedwizardfield68,
+rawcountandmode0→1; mask2preserves. Earlierfixture03/original02remainhistorical
+forcontractsupport. This metadata correction doesnot refresh any oldhash or
+assert unexecuted current validation; fullselection/tooltip/lifetimes/47/21open.
