@@ -4,8 +4,8 @@
 LiveCommandSession::~LiveCommandSession(){abort();}
 void LiveCommandSession::change(State state){state_=state;if(stateChanged)stateChanged(state);}
 bool LiveCommandSession::fresh(const QString& path,quint32 session){
-    renderer_=std::make_unique<LiveCommandRenderer>(viewport_);
-    renderer_->residentWorld=residentWorld;
+    renderer_=std::make_unique<LiveCommandRenderer>(target_);
+    renderer_->residentWorld=residentWorld;renderer_->residentReady=residentReady;renderer_->prepareResidentFrames=prepareResidentFrames;renderer_->reuseSealedUi=reuseSealedUi;
     renderer_->framePresented=[this]{if(state_==State::WaitingFrame)change(State::Active);if(state_!=State::Stopping && framePresented)framePresented();};
     if(!renderer_->create(path,session,version_))return fail(renderer_->error());
     return true;
@@ -29,7 +29,7 @@ qint64 LiveCommandSession::waitingElapsed() const{
     const auto elapsed=deadline_.elapsed();
     return elapsed-mediaPausedMs_-(mediaActive_?elapsed-mediaStartedAt_:0);
 }
-void LiveCommandSession::abort(){control_.cancel();if(renderer_)renderer_->abort();viewport_.setGpuFrame({});}
+void LiveCommandSession::abort(){control_.cancel();if(renderer_)renderer_->abort();target_.present({});}
 bool LiveCommandSession::fail(const QString& message){error_=message;abort();change(State::Fallback);return false;}
 bool LiveCommandSession::attachCheckpoint(){
     if(state_!=State::WaitingFrame && state_!=State::Active)return false;
@@ -41,7 +41,7 @@ bool LiveCommandSession::recover(bool checkpoint){
         const auto cause=renderer_?renderer_->error():QString();
         return fail("Rendering recovery unavailable or exhausted"+(cause.isEmpty()?QString():": "+cause));
     }
-    renderer_->abort();renderer_.reset();viewport_.setGpuFrame({});
+    renderer_->abort();renderer_.reset();target_.present({});
     ++retries_;++session_;const auto next=path_+QString(".retry-%1").arg(retries_);
     change(State::Recovering);
     if(!fresh(next,session_))return false;

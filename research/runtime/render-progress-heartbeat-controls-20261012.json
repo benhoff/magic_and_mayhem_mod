@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "HOST.menu-render-progress-heartbeat",
+      "contract_sha256": "3c37808f251c4ecb4a32ee950bb1b3eb677d0bdf988d2bce6f32dfbd7c5f9cad",
+      "scenarios": {
+        "HOST.menu-render-progress-heartbeat.fixture": "5128d7caea59bec878da45fc06d11e1b88b93de2ffb40f765fa93cd69c2a3ac3"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "76fe42988dc6e9db0bc3675c07a5634db52aab67efecc321f991c29f2b913370",
+    "apps/qt-shell/live_menu_session.cpp": "0ae2fb39b68dbd33e780e1dcb13f94e2ba265f27bf67f839a87615ff7868da1c",
+    "apps/qt-shell/live_menu_session.hpp": "b48ae1361cc7dbf00cfd31f76ea61019f6f8e35f037ec7ea7e4771cf416cb975",
+    "apps/qt-shell/main.cpp": "92f8217ac4267c5c02a7ad6978fc895e4334bd7f7cfa80f2f71b72ca507758ee",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "apps/qt-shell/menu_bridge.hpp": "0d62887e455c33a261be71f9d7f98c1a70104f1a6a7d347f479f54a37f7b380b",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "tests/menu-resident-quit-test.cpp": "6747b2c8e6acacaeb12caac6aadadfc84a72d1f179eb552ba1be2bb8629bd247",
+    "tools/test-native-campaign.py": "d3a35cbc43c721cc167291d9817e1e8e51febd71c992962b5ed71d37e8d17cb9",
+    "tools/test-render-progress-heartbeat.py": "281d9a36afa063748cfcef29a81337f709280816226fed193271f30995e80799"
+  },
+  "scope": "Source-bound mapped-menu progress and retirement controls.",
+  "controls": {
+    "ack_cases": 5,
+    "retired_cases": 3,
+    "refusals": 8,
+    "idempotent": true
+  },
+  "binary_sha256": "1b473afd3a9ba977cae28d7c120e21ea0fba975a545306a634ba34b3d5792cdd",
+  "sources_unchanged": true
+}

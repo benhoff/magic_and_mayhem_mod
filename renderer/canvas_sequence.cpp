@@ -56,22 +56,51 @@ std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
     throw std::invalid_argument("Invalid captured minimap stride");
   // Two independent owned backgrounds identify every written word, including
   // writes equal to either sentinel. No destination oracle enters replay.
-  MinimapPlane a{s.image.width, s.image.height, stride,
-      std::vector<std::uint16_t>(std::size_t(stride) * s.image.height, 0x1357)};
-  auto b = a; std::fill(b.words.begin(), b.words.end(), 0xeca8);
+  MinimapPlane a{s.image.width, s.image.height, stride, {}};
+  MinimapPlane b{s.image.width, s.image.height, stride, {}};
   std::vector<std::size_t> firstWrites, secondWrites;
-  if (tracedServices) { a.writeCandidates = &firstWrites; b.writeCandidates = &secondWrites; }
+  if (tracedServices) {
+    a.words.swap(minimapWords_[0]); b.words.swap(minimapWords_[1]);
+    firstWrites.swap(minimapCandidates_[0]); secondWrites.swap(minimapCandidates_[1]);
+    a.writeCandidates = &firstWrites; b.writeCandidates = &secondWrites;
+  }
+  // Detached local buffers preserve independent storage even if a callback
+  // reenters. Generic callbacks always receive freshly allocated backgrounds.
+  struct Recycle {
+    bool active;
+    std::array<std::vector<std::uint16_t>, 2>& words;
+    std::array<std::vector<std::size_t>, 2>& candidates;
+    MinimapPlane& a; MinimapPlane& b;
+    std::vector<std::size_t>& first; std::vector<std::size_t>& second;
+    ~Recycle() {
+      if (!active) return;
+      // Also restore admitted writes when a callback/validation throws. Never
+      // dereference a malformed receipt while unwinding a rejected operation.
+      for (const auto at : first) if (at < a.words.size()) a.words[at] = 0x1357;
+      for (const auto at : second) if (at < b.words.size()) b.words[at] = 0xeca8;
+      a.words.swap(words[0]); b.words.swap(words[1]);
+      first.clear(); second.clear();
+      first.swap(candidates[0]); second.swap(candidates[1]);
+    }
+  } recycle{tracedServices, minimapWords_, minimapCandidates_, a, b, firstWrites, secondWrites};
+  const auto count = std::size_t(stride) * s.image.height;
+  a.words.resize(count, 0x1357); b.words.resize(count, 0xeca8);
   const auto result = draw(a); if (draw(b) != result)
     throw std::logic_error("Minimap result depends on diagnostic background");
   if (tracedServices) {
     // Both fresh sentinels remain distinct at every untouched word. Only the
     // union of the recovered services' committed writes can compare equal.
     // Generic callbacks keep the full scan because their writes are untraced.
-    firstWrites.insert(firstWrites.end(), secondWrites.begin(), secondWrites.end());
-    std::sort(firstWrites.begin(), firstWrites.end());
-    firstWrites.erase(std::unique(firstWrites.begin(), firstWrites.end()), firstWrites.end());
-    if (!firstWrites.empty() && firstWrites.back() >= a.words.size())
+    // Validate both lists before canvas mutation. Repeated final equal-word
+    // assignments are idempotent; ordering/deduplication need no sort. Known
+    // services usually return identical receipts for the two backgrounds.
+    const auto outside = [count](std::size_t at) { return at >= count; };
+    if (a.words.size() != count || b.words.size() != count ||
+        std::any_of(firstWrites.begin(), firstWrites.end(), outside) ||
+        std::any_of(secondWrites.begin(), secondWrites.end(), outside))
       throw std::invalid_argument("Minimap candidate outside owned storage");
+    if (firstWrites != secondWrites)
+      firstWrites.insert(firstWrites.end(), secondWrites.begin(), secondWrites.end());
     for (const auto from : firstWrites) {
       const auto y = from / std::size_t(stride), x = from % std::size_t(stride);
       if (x >= std::size_t(s.image.width)) continue;

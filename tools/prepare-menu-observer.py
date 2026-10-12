@@ -63,7 +63,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         patched=module('public_world_scene_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmScene.dll','SceneAnchor',b'.mnworld')
         shutil.copy2(scene,game/'MnmScene.dll');shutil.copy2(scene.parent/'manifest.json',root/'scene-bridge-build.json')
         (root/'resident-world').mkdir()
-        resident_metadata=dict(resident_world=True,resident_scene_sha256=hashlib.sha256(scene.read_bytes()).hexdigest())
+        resident_metadata=dict(resident_world=True,owned_world_snapshot=os.environ.get('MNM_WORLD_SNAPSHOT')=='1',resident_scene_sha256=hashlib.sha256(scene.read_bytes()).hexdigest())
     cadence_metadata={}
     cadence=os.environ.get('MNM_ENGINE_CADENCE_TRACE')
     if cadence is not None:
@@ -75,7 +75,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     production_metadata={}
     production=os.environ.get('MNM_SCENE_PRODUCTION_PROBE')
     if production is not None:
-        if production not in ('0','1','2','3','4') or not resident_world or cadence is not None:raise ValueError('Scene production requires isolated resident diagnostic staging')
+        if production not in ('0','1','2','3','4','5') or not resident_world or cadence is not None:raise ValueError('Scene production requires isolated resident diagnostic staging')
         production_dll=module('scene_production_build','tools/build-scene-production.py').build(root/'scene-production-build')
         patched=module('scene_production_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmSceneProduction.dll','SceneProductionAnchor',b'.mnprod')
         shutil.copy2(production_dll,game/production_dll.name)

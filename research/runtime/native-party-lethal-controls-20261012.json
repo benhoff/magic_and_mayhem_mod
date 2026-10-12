@@ -1,0 +1,51 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "HOST.native-campaign-party-lethal-oracle",
+      "contract_sha256": "0068e11af271807b0e95178ef565ad32356b812891f1c20870f54d0945e25c63",
+      "scenarios": {
+        "HOST.native-campaign-party-lethal-oracle.fixture": "b582476c1593501e0e98052e2830c376c4a00835e9b82802f880b54c78c8c257"
+      }
+    }
+  ],
+  "sources": {
+    "tests/campaign-spell-test.py": "1099f0b6ffd131a24936853dbfd13468bb2787f33985515446c6bb14fe03a315",
+    "tests/test-native-campaign.py": "bc98d8258bdf561bf765ed9c580106d5be814ec378ec6450eb3a7b181470ad29",
+    "tools/campaign-combat-input.py": "a2635b4e2824b9cfa3e8476d57a48173fe2450ccc453d4940a1cd72f2ba760c6",
+    "tools/campaign_gameplay.py": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+    "tools/campaign_spell.py": "c41cf00c19a110b587b6dcc6087e517000e091a8f7ca7fcd38c2f26717b7616a",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/test-native-campaign.py": "4086be75684eb9dcd23899c9d0515dca96b31ed2c7510a011f9466b6e5e1e121",
+    "tools/test-native-party-lethal.py": "8f7422c2f344daff205f0ee825f0a726295fe4ec71a287fd53242e1fa596b6ec"
+  },
+  "scope": "Source-bound same-party lethal oracle controls, never retrospective gameplay success.",
+  "controls_passed": true,
+  "historical_diagnosis": {
+    "gameplay": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/experiments/menu-observer/run-ucokwheb/gameplay-events.bin",
+    "gameplay_sha256": "fd441014a8d8117da243659f7cbeed065ce69570f51a23b00b740bbd70c1bc8a",
+    "spell": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/experiments/menu-observer/run-ucokwheb/spell-events.bin",
+    "spell_sha256": "b50171918d6d715d9b759b140b358bb09ea515dc260071fdbb3cd2a6dcf9da22",
+    "lethal_event": [
+      91,
+      3,
+      400,
+      223362798,
+      2,
+      10,
+      2,
+      11,
+      0,
+      1,
+      20,
+      0,
+      71,
+      4779300,
+      0,
+      0
+    ],
+    "scope": "Historical trace proves the scoped enemy effect; original failed gameplay/Quit result remains negative."
+  },
+  "sources_unchanged": true
+}

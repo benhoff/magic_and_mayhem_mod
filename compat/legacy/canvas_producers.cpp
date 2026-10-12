@@ -375,7 +375,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     // composition. V1 retains its historical orientation-zero contract.
     if (r[19] == 0xfffffffeu) {
       render::MinimapPlane history{};
-      if (r[17]) { const auto image = canvases_.read(r[4]); history = {image.width, image.height, image.width, {}}; for (auto p : image.pixels) history.words.push_back(std::uint16_t(p)); }
+      if (r[17]) { const auto image = canvases_.read(r[4]); history = {image.width, image.height, image.width, {}}; history.words.reserve(image.pixels.size()); for (auto p : image.pixels) history.words.push_back(std::uint16_t(p)); }
       render::MinimapTerrain terrain{int(r[14]), int(r[15]), signedWord(r[10]), signedWord(r[11]), signedWord(r[8]), signedWord(r[9]), r[16], colours, hidden};
       canvases_.minimap(id, int(r[7]), [&](render::MinimapPlane &plane) { render::drawMinimapTerrain(plane, terrain, r[17] ? &history : nullptr); return 0; }, true);
     } else if (r[16]) throw std::invalid_argument("Minimap invalidation result missing");

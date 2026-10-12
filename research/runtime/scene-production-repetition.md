@@ -186,3 +186,32 @@ queue leak, scene mismatch and18.55584FPS failures remain preserved; the passing
 prepared-phase run does not establish universal crash or missing-row causality.
 Exactbd177b6..38cba10 committed-history review:17 files,zero missing receipts;
 no retrospective gate or execution assertion.
+
+
+The next bounded measurement uses wireversion5: original queue-call return PCs
+remain intact, and guarded five-byte MOV instructions at004fd4b0/004fd559
+record each consumer completion before replaying the original MOV and resuming.
+QPC consumer wall intervals are nested inside the extra total. The remainder
+is scene building and surrounding original work; the consumer includes original
+queue traversal plus native capture/delivery/waiting. Neither is exclusive CPU
+time. Source-stable controls and TITAN measurements are pending. No draw schedule
+or simulation pacing changes in this measurement.
+
+
+The source-stable timing controls pass44actual PE32 cases and20decoder refusals,
+including62anchor mutations, resumed MOV/ABI and one extra consumer count.
+A single owned Xvfb/persistent Wine server replaces per-case startup; private
+shutdown verifies. Earlier sandbox socket/quota and initial missing-prefix
+startup failures remain retained under working/tests, without hook/game claims.
+
+The TITAN timing run produces16 exact protected-state/scene repeats. Consumer
+wall time averages28.67579ms of30.55809ms total;1.88230ms remains for scene
+building and surrounding work. Native preparation/delivery is the main measured
+cost, rather than original scene rebuilding. All consumer count fields equal1.
+The independent full campaign FAILS19FPS at18.68812FPS; completed input/flow
+and producer retirement do not assert formal gameplay checks skipped after the
+performance failure. Source stability, originals and private cleanup pass.
+This is cost-attribution evidence and a performance negative, not an FPS gain.
+Post-success admission-refusal timing initialization remains a diagnostic boundary
+for the next source change. Historical successful16-case observations retain
+their original hashes; current faster scheduling/native preparation is pending.

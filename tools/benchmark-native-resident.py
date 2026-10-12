@@ -21,7 +21,7 @@ def main():
     parent=ROOT/'working/tests/resident-offline-profile';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.resident-stage-profiling',
-                    '--scenario','NR.resident-stage-profiling.offline','--output',str(out/'prospective-claims.json')],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
+                    '--behavior','NR.minimap-write-candidates','--scenario','NR.resident-stage-profiling.offline','--output',str(out/'prospective-claims.json')],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     declaration=json.loads((out/'prospective-claims.json').read_text());sources=declaration['sources']
     env={k:v for k,v in os.environ.items() if k not in ('DISPLAY','WAYLAND_DISPLAY','LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER')}
     env.update(QT_QPA_PLATFORM='mnm-headless-egl',MNM_PROFILE_EGL_VENDOR='NVIDIA',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/10_nvidia.json')

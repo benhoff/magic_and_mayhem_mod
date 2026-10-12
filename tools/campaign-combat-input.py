@@ -11,7 +11,7 @@ import subprocess
 import time
 
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
-from campaign_spell import read_spell_rows, player_fireball_damage
+from campaign_spell import read_spell_rows, player_fireball_damage, player_engaged_fireball_lethal
 
 
 def main():
@@ -221,13 +221,31 @@ def main():
         # Retain a finite observation window without changing AI/health or the
         # same-engaged-enemy player-party lethal and living-wizard requirements.
         finish_deadline=time.monotonic()+120
+        finishing_casts=0
         while True:
             rows=read_rows(trace);hits=damage_rows(rows,owner,extra_slots,cast_before)
             lethal=player_lethal_rows(rows,owner,wizard['slot'],hits)
-            if lethal and time.monotonic()-start>=args.seconds:
-                result['combat'].update(lethal_hit=list(lethal[0]),hit_count=len(hits));break
+            spell_lethal=player_engaged_fireball_lethal(read_spell_rows(args.experiment/'spell-events.bin'),rows,owner,wizard['slot'],hits)
+            if (lethal or spell_lethal) and time.monotonic()-start>=args.seconds:
+                result['combat'].update(hit_count=len(hits))
+                if lethal:result['combat']['lethal_hit']=list(lethal[0])
+                if spell_lethal:result['combat']['lethal_fireball_hit']=list(spell_lethal[0])
+                break
             if state()[wizard['slot']]['health']<=0:raise RuntimeError('Player wizard died before required combat completion')
             if time.monotonic()>finish_deadline:raise RuntimeError('No player party lethal health depletion before combat deadline')
+            actor=state()[wizard['slot']]
+            if args.spell_cases and actor['health']<=120 and actor['mana']>0 and finishing_casts<2:
+                # Exercise another ordinary ranged cast to support the same
+                # melee-engaged enemy. Waiting motionless can kill the wizard
+                # before the required party lethal; no game state is patched.
+                living=state();targets=[living[h[8]] for h in hits if h[8] in living and living[h[8]]['active'] and living[h[8]]['health']>0]
+                if targets:
+                    enemy=targets[-1];center();actor=state()[wizard['slot']];enemy=state()[enemy['slot']]
+                    tx,ty,tz=enemy['x']-actor['x'],enemy['y']-actor['y'],enemy['z']-actor['z']
+                    point=(max(90,min(650,400+32*(tx-ty))),max(100,min(430,300+16*(tx+ty-tz)-22)))
+                    begin=read_rows(trace)[-1][0];mana=actor['mana'];click(477,575);time.sleep(.25);click(*point,3);time.sleep(1);finishing_casts+=1
+                    record('combat-finishing-fireball',before_sequence=begin,wizard=actor,enemy=enemy,logical_point=list(point),mana_before=mana,mana_after=state()[wizard['slot']]['mana'])
+                    continue
             if args.portrait_stress_seconds:
                 center();record('combat-portrait-recenter');time.sleep(1);continue
             # Continue observing the fight without repeatedly reselecting and
@@ -251,11 +269,14 @@ def main():
             for attempt in range(12):
                 actor=state()[wizard['slot']];dx=retreat_x-actor['x'];dy=retreat_y-actor['y']
                 if math.hypot(dx,dy)<3:break
-                if len(calibration)==2:
-                    ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
-                    u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det;sx=asx*u+bsx*v;sy=asy*u+bsy*v
-                    scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
-                else:sx,sy=-140,50
+                # Short movement probes measure path progress, not the camera
+                # transform: obstacles and incomplete travel skew that basis.
+                # Use the same isometric XY/height projection as the ordinary
+                # ranged/summon targets, retaining exact waypoint admission.
+                dz=wizard['z']-actor['z']
+                sx,sy=32*(dx-dy),16*(dx+dy-dz)
+                scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
+                record('retreat-ground-projection',wizard=actor,target=[retreat_x,retreat_y,wizard['z']],screen_delta=[sx,sy])
                 center();click(400+sx,280+sy,3);time.sleep(3)
                 record('post-combat-retreat',attempt=attempt+1,wizard=state()[wizard['slot']])
             actor=state()[wizard['slot']]

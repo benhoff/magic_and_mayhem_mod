@@ -14,8 +14,9 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True)
-    parser.add_argument('--candidate',choices=('observe','full','slice','frozen-history','prepared-scene'),required=True);args=parser.parse_args()
+    parser.add_argument('--candidate',choices=('observe','full','slice','frozen-history','prepared-scene','budgeted-scene'),required=True);args=parser.parse_args()
     declaration=json.loads(args.claims.read_text())
+    if args.candidate=='budgeted-scene' and not any(c['behavior']=='NR.scene-draw-budget' for c in declaration['claims']):raise ValueError('Budgeted drawing requires its prospective policy declaration')
     if any(sha(ROOT/p)!=h for p,h in declaration['sources'].items()):raise ValueError('Changed prospective production sources')
     parent=ROOT/'working/tests/scene-production';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print('Scene production evidence: '+str(out),flush=True)
@@ -44,6 +45,10 @@ def main():
         if args.candidate!='observe' and not report['production']['protected_state_invariance']:raise ValueError('Repeated producer changed protected state or refused; not an invariance pass')
         if args.candidate!='observe' and not report['production']['scene_record_equality']:raise ValueError('Extra producer changed ordered scene records; not a scene equality pass')
         if args.candidate=='observe' and len(report['production']['cases'])<8:raise ValueError('Insufficient natural producer observations')
+        if args.candidate=='budgeted-scene':
+            schedule=report['production']['schedule']
+            if not schedule or not schedule['higher_render_cadence']:raise ValueError('No sustained higher World cadence with preserved advancing simulation rate')
+            if game['resident_world']['engine_fps']<20.5:raise ValueError('Full journey World FPS did not exceed20.5; not an FPS improvement pass')
         report['success']=True
     except (OSError,KeyError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)
     finally:

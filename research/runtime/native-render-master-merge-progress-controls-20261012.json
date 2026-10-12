@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "HOST.menu-render-progress-heartbeat",
+      "contract_sha256": "3c37808f251c4ecb4a32ee950bb1b3eb677d0bdf988d2bce6f32dfbd7c5f9cad",
+      "scenarios": {
+        "HOST.menu-render-progress-heartbeat.fixture": "5128d7caea59bec878da45fc06d11e1b88b93de2ffb40f765fa93cd69c2a3ac3"
+      }
+    },
+    {
+      "behavior": "HOST.resident-report-publication",
+      "contract_sha256": "fafb6c419772b2a5263326a54478d1e072599f82a5b703a7a79627813bfd95b4",
+      "scenarios": {
+        "HOST.resident-report-publication.fixture": "c08d5082f563d514460953720567113e14137c0ebc0d01e038b90f1d609318c7"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "0930b881c58031d90556f4210516fda698ed02d8db4dc5fce32c4bfe810992bb",
+    "apps/qt-shell/live_menu_session.cpp": "82069eca4817fac3250139cb155e69e13bc06caaff8b85b19edb84f008fe1a29",
+    "apps/qt-shell/live_menu_session.hpp": "8773183dbd3e96f974160087599fb0b996c342c6b683c026cb34591de1ac4f90",
+    "apps/qt-shell/main.cpp": "62e0b0bfece9d67deb5ccd08ff2a3894f905a4b5acc3caeaf6e0c555b564d7c3",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "apps/qt-shell/menu_bridge.hpp": "0d62887e455c33a261be71f9d7f98c1a70104f1a6a7d347f479f54a37f7b380b",
+    "apps/qt-shell/resident_profile_capture.cpp": "eb143860154be30acf33b1fe5836def3c8f0a5fc9bdff0ea787a2468c8425d15",
+    "apps/qt-shell/resident_profile_capture.hpp": "b8bdfed9dc0d115e95ea7a17d6a141072fcdc545ceea1e1fe79a85d2f13fc5d2",
+    "apps/qt-shell/resident_world_session.cpp": "df7ac713f11ce9ea2735e1ac59584bcd6fd05f8176209f0b7c4fde70de194c1f",
+    "apps/qt-shell/resident_world_session.hpp": "2544da2e7b3560e6ffc50a545880348653455cc80d1eae9eedfc398e107c3d4b",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "tests/menu-resident-quit-test.cpp": "dd3925659dc2e1510ceb5ea37a4ec3f9a386a0d2b1982c83dd9a49ca66430b92",
+    "tools/test-native-campaign.py": "58e9c0761ede7bf011a1b9032dc097bbf053fb66ed18dda36e13b8634eaec72d",
+    "tools/test-render-progress-heartbeat.py": "f1eb5d9bf44d3ea9233035ae364908380f3fb5e027bdf7018bd32cf48888cb69"
+  },
+  "scope": "Source-bound mapped-menu progress and retirement controls.",
+  "controls": {
+    "report_coalescing": true,
+    "report_final_current": true,
+    "report_error_propagation": true,
+    "ack_cases": 5,
+    "retired_cases": 3,
+    "refusals": 9,
+    "idempotent": true
+  },
+  "binary_sha256": "e54a5bcb583a3f4f27735b424021caa7c182d8c5e688ba709d239761bb313c58",
+  "sources_unchanged": true
+}

@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "scope": "Source-bound native HUD composition recipe controls, no original/live claim.",
+  "claims": [
+    {
+      "behavior": "HOST.native-display-deadlines",
+      "contract_sha256": "41605efbb16d5606c494583738e9ae88c1de4aac5adaf5e4ba78d9e9aefa6f78",
+      "scenarios": {
+        "HOST.native-display-deadlines.fixture": "65744b1d9877793a0b0b27a782b85c63621e8c9ab603f7c05c8b1cfab89ffeca"
+      }
+    },
+    {
+      "behavior": "NR.native-prepared-command-frame",
+      "contract_sha256": "fc880061476d44b7ea222c6508cc82dc3fc2ab44ea22daade9155e6f0949579d",
+      "scenarios": {
+        "NR.native-prepared-command-frame.fixture": "1e0f28190d8b50a1a5367a9930b8d2bdf83d0feea19ae9c3221fb91250cfb28d"
+      }
+    },
+    {
+      "behavior": "NR.masked-update-scratch-reuse",
+      "contract_sha256": "1d63e5d19aa45a1863d9a9146cf35a424efa3da1d8840563f3c03e493274ebfe",
+      "scenarios": {
+        "NR.masked-update-scratch-reuse.fixture": "053e9e9d42e0728105cb5ef4c29d448c808309b43f2acedd15ec2fffa895b8a5"
+      }
+    },
+    {
+      "behavior": "NR.resident-prepared-shared-budget",
+      "contract_sha256": "793e2cb9b2592eeb23a84a0fbbc4beab9f26f671ce530081f4c6202f415da49b",
+      "scenarios": {
+        "NR.resident-prepared-shared-budget.fixture": "5a45f77e8ade486c79d486a517f59485d0aad2a9d719937a8cd91222c03d5fa4"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "0930b881c58031d90556f4210516fda698ed02d8db4dc5fce32c4bfe810992bb",
+    "apps/qt-shell/command_channel.cpp": "6973bca9fc624b62906b034dcc60c8f160614c98e2ebeccf54410beb11bf12f7",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/gl_viewport.cpp": "3e4a7242904ba22d86a36a1469d7f9c9f46fd4fae8ba682c07978bff14a847c4",
+    "apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+    "apps/qt-shell/live_command_renderer.cpp": "5b096e1c8bf94fff2641aef1014e34f0f1f238a26afd61596467b1de2a3a1eda",
+    "apps/qt-shell/live_command_renderer.hpp": "9c90fca89f1f8adcabb24184aded53d7bf9c3de3fd66c4de333d2f815bbd3bba",
+    "apps/qt-shell/live_command_session.cpp": "b6744f3b6003563691b235c69a3777758d961eab44c9171c2adff4775f631fff",
+    "apps/qt-shell/live_command_session.hpp": "44aba0f246d59e6cb85f0458ccdb8577e67123df825b989b64cab1ac35f1d6a2",
+    "apps/qt-shell/main.cpp": "62e0b0bfece9d67deb5ccd08ff2a3894f905a4b5acc3caeaf6e0c555b564d7c3",
+    "apps/qt-shell/native_render_target.hpp": "1d74a2a97734f2f6882348fc5cefac79a688854e108bc1100a7fdf2162a43c20",
+    "apps/qt-shell/native_render_worker.cpp": "b0705e019ac4605e0dc7197f549d0d305c72266cc82b4064226f17260039861b",
+    "apps/qt-shell/native_render_worker.hpp": "33e3a5bc08a64fe7e8a18dfa8848fb2379e9409344fcc5ccf6c229e2396d5625",
+    "apps/qt-shell/render_control.cpp": "4eae2c56fbeb93d84264b22622d1a3789bb138acb030914a7a0cf560eedc2eb8",
+    "apps/qt-shell/render_control.hpp": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+    "apps/qt-shell/render_deadline_probe.hpp": "87c66a6981190ad9315dd9d45cd6cd6204b8736929dbaa0ec407f48054257468",
+    "apps/qt-shell/resident_profile_capture.cpp": "eb143860154be30acf33b1fe5836def3c8f0a5fc9bdff0ea787a2468c8425d15",
+    "apps/qt-shell/resident_profile_capture.hpp": "b8bdfed9dc0d115e95ea7a17d6a141072fcdc545ceea1e1fe79a85d2f13fc5d2",
+    "apps/qt-shell/resident_world_session.cpp": "df7ac713f11ce9ea2735e1ac59584bcd6fd05f8176209f0b7c4fde70de194c1f",
+    "apps/qt-shell/resident_world_session.hpp": "2544da2e7b3560e6ffc50a545880348653455cc80d1eae9eedfc398e107c3d4b",
+    "compat/legacy/world_continuous.cpp": "e4bc1580e9620ef9918752475174dd1711c89cb62ad0e604d36948fa56b088a6",
+    "compat/legacy/world_continuous.hpp": "4ee5d5c4286c02184b265ea548d121ecdd418c2c216a23b393c644a70f2f7e0f",
+    "compat/legacy/world_snapshot_queue.cpp": "1ba49838173fe143800e6df8b973ba1b6cab5bd4d4217f1e479c2a4acbb2023e",
+    "compat/legacy/world_snapshot_queue.hpp": "ba2ac9da0ad7725540958e2f5fde3ca3603dd01f48726b007ee959ea0fb6e5e2",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "protocols/include/mnm/resident_frame_budget.h": "cb15b9f73dc9414cb190e46811810663e5e300a720ad92c4d2dedc8d75754d0d",
+    "protocols/include/mnm/world_continuous_v5.h": "1d75c3d4ef51fa94fe83c851781aee353425940bfbaea9c20c87bfb68b03ceaa",
+    "renderer/CMakeLists.txt": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+    "renderer/blit.cpp": "52a5bd317d9798c4fb9f8d17c429b4f0722f4f704e06a795720554598d56fe2e",
+    "renderer/blit.hpp": "7693e2011dd2401be17f307fd1e53bfd78261005882b7a780bd2d9f59ac11247",
+    "renderer/command_consumer.cpp": "cc0edb879b69ec7d3a1ed36ba6fd6b1c259c3dd47fe69779a9dee4ede0e91eef",
+    "renderer/command_state.hpp": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+    "renderer/commands.cpp": "55fe9b498537ab01f9d91ad9e5acd8208abc2556392cb955bdb54ce68d52b815",
+    "renderer/commands.hpp": "2566133c6309b90e14f2855ea9301b3e8f7f2c51cc2f5359731da23c0c76953f",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/native_frame_recipe.cpp": "bbfcac3d70ce49caebbab75c0974e3866adc38ee48ba720d79c88da921a057ca",
+    "renderer/native_frame_recipe.hpp": "d3a6ee09d6ac2ef6e773f2b58384b7234a56318676d35efec6fb9b46f4bc12ee",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "runtime/render/bridge.c": "44ea78287afc585691e5805ca5158a2a23602870133fda328d0eaf3d0fe26acb",
+    "runtime/render/lock_lifecycle.h": "ea410387714f4e3c06e54176f5f218ce5c4b4cc6a3befbeac7a7c3c7ce4e2d84",
+    "runtime/render/owned_session.h": "5a28124e883baa8b1cb6025fb0e96045447cc7d780fee47d53e9e6b30c3b8d65",
+    "tests/native-frame-recipe-test.cpp": "5f36d41615ba2d0f364c8d5eddcbab253903c3ea8c3b7e6f4d657f8a6c3f3af5",
+    "tests/native-render-worker-test.cpp": "995ab7c56d24087f68d595a22d85805a495136df30ae9ba7b5f0a9ea724ef4a6",
+    "tools/build-render-bridge.py": "dea919101db686d200c543bb5c381d0983d941c13d0e5fa2efa6143ec8571321",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/probe-independent-native-world.py": "af65910c5661c9d850d7de8fad54d134970431daaa6c25b8b4f833eefc2cfa6d",
+    "tools/probe-native-display-deadlines.py": "d2833e0688b11f3349d50690a503c4ae80320178535b5ef747c2b854b4920974",
+    "tools/test-native-frame-recipe.py": "f0b057ce51a8f0508c51d5840d3f60dd7e20a7b0abcf71c54b3bcd5c2b55b90f",
+    "tools/test-native-render-worker.py": "5ddef7270061302d1d78266551e55d1d99fc5e97fe4b5f9e656a605f88eace68"
+  },
+  "controls": {
+    "cross_generation_native_world_frames": 40,
+    "inherited_ui_identity_refusals": true,
+    "static_seal_retires_world_map": true,
+    "world_hud_repeats": 30,
+    "source_mutation_release": true,
+    "partial_frame_refusal": true,
+    "sealed_ui_during_partial_transaction": true,
+    "continuous_partial_ui_gpu_frames": 40,
+    "unsealed_first_frame_refused": true,
+    "same_update_hud_changes": true,
+    "fresh_world_used": true,
+    "ordinary_readbacks": 0,
+    "static_uploads_folded": 100,
+    "versioned_masked_reads": true,
+    "swap_repeats": 10,
+    "indexed_palette_owned": true,
+    "compiled_glyph_versions": 200,
+    "masked_scratch_repeats": 100,
+    "unknown_coverage_preserved": true,
+    "paired_scratch_bound": true,
+    "shared_budget_coexistence": true,
+    "fullscreen_mutable_versions": 40,
+    "single_assembly_pass": true,
+    "translated_self_copy": true,
+    "equal_color_ui_ownership": true,
+    "clipped_world_mapping": true,
+    "teardown_surfaces": 0
+  },
+  "sources_unchanged": true
+}

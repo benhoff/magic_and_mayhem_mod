@@ -19,7 +19,7 @@ import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_movement import validate_movement_probes
 from campaign_crowded import validate_crowded
-from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
+from campaign_spell import player_engaged_fireball_lethal, read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
 from native_audio_launch import validate_activity as validate_audio_activity, validate_retirement as validate_audio_retirement
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -153,12 +153,15 @@ def validate_casting_combat(experiment, inputs, capture_root):
     if not hits:
         raise ValueError('No observed original player Zombie versus enemy melee damage')
     lethal=player_lethal_rows(rows,owner,wizards[0]['slot'],hits)
-    if not lethal:raise ValueError('No observed player party lethal enemy health depletion')
+    spell_rows=read_spell_rows(experiment/'spell-events.bin',complete=True)
+    spell_lethal=player_engaged_fireball_lethal(spell_rows,rows,owner,wizards[0]['slot'],hits)
+    if not lethal and not spell_lethal:raise ValueError('No observed player party lethal enemy health depletion')
     return dict(casting_verified=True,combat_verified=True,summoned_slot=slot,player_owner=owner,
                 movement=validate_movement_probes(rows,inputs),
-                spells=validate_spell_observation(read_spell_rows(experiment/'spell-events.bin',complete=True),rows,inputs),
+                spells=validate_spell_observation(spell_rows,rows,inputs),
                 spell_trace_sha256=sha(experiment/'spell-events.bin'),
-                enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]),
+                enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]) if lethal else None,
+                lethal_fireball_events=len(spell_lethal),first_lethal_fireball=list(spell_lethal[0]) if spell_lethal else None,
                 combat_source_slots=sorted({r[4] for r in hits}),melee_damage_events=len(hits),first_melee_damage=list(hits[0]),trace_sha256=sha(experiment/'gameplay-events.bin'))
 
 
@@ -364,7 +367,7 @@ def main():
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
     parser.add_argument('--disable-precise-clock',action='store_true',help='Diagnostic control: retain original coarse GetTickCount uptime')
     parser.add_argument('--trace-engine-cadence',action='store_true',help='Memory-only original simulation/animation/World cadence trace; flush at normal process exit')
-    parser.add_argument('--scene-production-probe',choices=('observe','full','slice','frozen-history','prepared-scene'),help='Bounded original scene production audit; prepared-scene repeats after original queue cleanup before creature/camera post-work')
+    parser.add_argument('--scene-production-probe',choices=('observe','full','slice','frozen-history','prepared-scene','budgeted-scene'),help='Bounded original scene production audit; prepared-scene repeats after original queue cleanup before creature/camera post-work')
     pacer=parser.add_mutually_exclusive_group()
     pacer.add_argument('--enable-pacer-yield',dest='pacer_yield',action='store_true',help='Experimental opt-in cooperative Sleep0 wait; has no demonstrated portrait performance benefit')
     pacer.add_argument('--disable-pacer-yield',dest='pacer_yield',action='store_false')
@@ -374,6 +377,7 @@ def main():
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
+    parser.add_argument('--independent-world',action='store_true',help='Use explicit owned V5 delivery and independent native World/HUD drawing')
     parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
     parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
     parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
@@ -410,6 +414,7 @@ def main():
     args.native_voices |= args.default_audio or args.native_loading or args.native_factory or args.native_music
     if args.native_music and (args.legacy_audio or not args.normal_quit):parser.error('Native music requires native audio and normal Quit')
     if args.disable_wine_dsound and not args.native_factory:parser.error('Module-disable diagnostic requires native factory verification')
+    if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
@@ -474,6 +479,9 @@ def main():
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
         if args.scene_production_probe:declaration_command.extend(['--behavior','NR.scene-production-repetition','--scenario','NR.scene-production-repetition.live'])
+        if args.scene_production_probe=='budgeted-scene':declaration_command.extend(['--behavior','NR.scene-draw-budget','--scenario','NR.scene-draw-budget.live'])
+        if args.scene_production_probe=='budgeted-scene':declaration_command.extend(['--behavior','HOST.menu-render-progress-heartbeat','--scenario','HOST.menu-render-progress-heartbeat.live'])
+        if args.scene_production_probe=='budgeted-scene':declaration_command.extend(['--behavior','HOST.resident-report-publication','--scenario','HOST.resident-report-publication.live'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
@@ -518,7 +526,7 @@ def main():
         env['MNM_ENGINE_CADENCE_TRACE']='1'
     if args.scene_production_probe:
         if not args.resident_world or not args.normal_quit or args.trace_engine_cadence:raise ValueError('Scene production requires isolated resident World and normal Quit')
-        env['MNM_SCENE_PRODUCTION_PROBE']=str(('observe','full','slice','frozen-history','prepared-scene').index(args.scene_production_probe))
+        env['MNM_SCENE_PRODUCTION_PROBE']=str(('observe','full','slice','frozen-history','prepared-scene','budgeted-scene').index(args.scene_production_probe))
     if args.source_game:
         source_game=args.source_game.resolve()
         if not source_game.is_relative_to(ROOT/'working') or not source_game.is_dir():raise ValueError('Campaign source game must be under working/')
@@ -568,6 +576,7 @@ def main():
         if args.skip_movies:command.append('--skip-movies')
         if args.legacy_audio:command.append('--legacy-audio')
         if args.resident_world:command.append('--resident-world')
+        if args.independent_world:command.append('--independent-world')
         with (out / 'mode-probe.log').open('w') as log:
             probe = subprocess.run(command, cwd=ROOT, env=probe_env, stdout=log,
                                    stderr=subprocess.STDOUT, timeout=20)
@@ -640,6 +649,7 @@ def main():
             if args.legacy_audio:command.append('--legacy-audio')
             report['launch_command'] = command
             if args.resident_world:command.append('--resident-world')
+            if args.independent_world:command.append('--independent-world')
             with (out / 'shell.log').open('w') as log:
                 shell = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
                                          stderr=subprocess.STDOUT, start_new_session=True)

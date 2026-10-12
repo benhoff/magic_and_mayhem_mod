@@ -1,0 +1,56 @@
+{
+  "success": true,
+  "scope": "Source-bound native GPU baseline and prepared World replay controls.",
+  "claims": [
+    {
+      "behavior": "NR.native-prepared-world-replay",
+      "contract_sha256": "b1dc75f31abb6345e72228fe173a797283fcfce273d70c310388b84587919cca",
+      "scenarios": {
+        "NR.native-prepared-world-replay.fixture": "d51e0737c728073149b083a6fb478f7e84ab101cedc0f0ed4a570afa37db1a68"
+      }
+    }
+  ],
+  "sources": {
+    "compat/legacy/canvas_producers.cpp": "d55cddc042a63d5af9da5584f03c9d4bbb274dfb1905134cf36fa49bcc64b746",
+    "compat/legacy/canvas_world.cpp": "bba4fb32fa08ff9f77e8333ac6cc0477c1b5c38287f2f774ecea74b6add61301",
+    "compat/legacy/canvas_world.hpp": "dc00af8e558485c4227cb2f7aee31630341bf725d79e1b5084f13704c568a760",
+    "compat/legacy/world-rolling/CMakeLists.txt": "e51c84f717cd8634feac5ba328b124fc4e4a502a1ce12f8cf5b9fbed61c20f69",
+    "compat/legacy/world_preparation.cpp": "750368410014ef233219a701e74ba6f3b836a2ddbb4113df3446c3d3322c912e",
+    "compat/legacy/world_resources.cpp": "169a1f8c4550c6f46fe5c8c61cdaaba1f583763a6137ede00549bd1682dcc9a5",
+    "compat/legacy/world_rolling_handoff.cpp": "eef77854c606da97032966622c03da07834cf984b14be58cc62adcd8a363972a",
+    "compat/legacy/world_rolling_session.cpp": "58341434a9414097b9ae0ecbeeb258225c796b7dea05dd21645a13dee4eb79ad",
+    "compat/legacy/world_rolling_session.hpp": "ac6757a39e3300737c515aefe5bb34f8a2c53a3d23c1fdd93a7c96e48ff4cbfb",
+    "renderer/blit.cpp": "7652e74a0479f10a98f1bba77c69308bed24e63fe1c21bec258525ccc873b8bb",
+    "renderer/blit.hpp": "679dbb4f5590db56eb4cf610e4a3845c15bd97929ad730850ffff17cb4dc9a42",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/resources/resource_cache.cpp": "8ad7edd786c7fe6d3a0a64bc2c2e2d1ce0563f631256235e9b23ff7df4469d1b",
+    "renderer/scenes/scene_renderer.cpp": "93dc98dee27dd3dd942cb800c9b57fcc2e0875d3a489cfc4083d13e7b06d7195",
+    "renderer/scenes/scene_renderer.hpp": "9ef8befcedb2b9ee90a8090d9b09f6ab42937e1afbfef194c908af4a932e4b5d",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "tests/native-prepared-world-test.cpp": "7d22ee2458d1e327e8a00dc8bcf43138029a87905da8cfdd876ed7c0fe1efea6",
+    "tests/resource-fixtures.hpp": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-native-prepared-world.py": "87275f6242689812dbe268b9c8a7b46c8e099330d75bb43761193d83e2d062f4"
+  },
+  "inputs": {
+    "source": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/world-owned-snapshots/run-d5jy7cxs/source.bin",
+    "source_sha256": "f3ec2e4525696811b5412cce8f3302cad260235b85942d8b87db7bac254d4378",
+    "request": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/world-owned-snapshots/run-d5jy7cxs/request.bin",
+    "request_sha256": "310976726f7c2b69331ed9448b945bb6a1c75e260682680265916e17d9505456",
+    "assets": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/experiments/menu-observer/run-zg7i_g8n/game"
+  },
+  "controls": {
+    "baseline_controls": 9,
+    "destination_dependent_repeats": 40,
+    "source_updates": 2,
+    "actual_source_repeats": 4,
+    "producer_history_unchanged": true,
+    "ordinary_readbacks": 0,
+    "teardown_surfaces": 0
+  },
+  "original_manifest_verified_after": true,
+  "sources_unchanged": true
+}

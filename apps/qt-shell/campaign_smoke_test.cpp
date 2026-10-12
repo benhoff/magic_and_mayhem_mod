@@ -18,6 +18,7 @@
 #include <QScreen>
 #include <memory>
 #include <future>
+#include <stdexcept>
 #include <QElapsedTimer>
 #include <QOpenGLWidget>
 #include <cstdio>
@@ -32,7 +33,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool normalQuit=qEnvironmentVariableIntValue("MNM_CAMPAIGN_NORMAL_QUIT")==1;
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
-    struct Run {QString renderer;std::future<void> captureJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {QString renderer;std::future<void> captureJob,diagnosticJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit](bool success,const QString& reason){
         if(run->done)return;
@@ -142,9 +143,19 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->done)return;
         const auto p=probe();
         if(!run->diagnosticClock.isValid() || run->diagnosticClock.elapsed()>=1000){
-            run->diagnosticClock.start();QSaveFile diagnostic(path+".progress.json");
-            if(diagnostic.open(QIODevice::WriteOnly)){
-                diagnostic.write(QJsonDocument(QJsonObject{{"stage",run->stage},{"active",p.active},{"frames",qint64(p.frames)},{"paints",qint64(p.paints)},{"stress_running",run->stressRunning},{"stress_done",run->stressDone},{"error",p.error}}).toJson());diagnostic.commit();
+            run->diagnosticClock.start();
+            const bool ready=!run->diagnosticJob.valid() || run->diagnosticJob.wait_for(std::chrono::seconds(0))==std::future_status::ready;
+            if(ready){
+                try{if(run->diagnosticJob.valid())run->diagnosticJob.get();}
+                catch(const std::exception& e){finish(false,QString::fromUtf8(e.what()));return;}
+                const auto bytes=QJsonDocument(QJsonObject{{"stage",run->stage},{"active",p.active},{"frames",qint64(p.frames)},{"paints",qint64(p.paints)},{"stress_running",run->stressRunning},{"stress_done",run->stressDone},{"error",p.error}}).toJson();
+                // Progress is diagnostic: keep one immutable owned write and
+                // skip intermediates while busy. Every FPS sample stays intact.
+                run->diagnosticJob=std::async(std::launch::async,[path,bytes]{
+                    QSaveFile diagnostic(path+".progress.json");
+                    if(!diagnostic.open(QIODevice::WriteOnly)||diagnostic.write(bytes)!=bytes.size()||!diagnostic.commit())
+                        throw std::runtime_error("Campaign progress publication failed");
+                });
             }
         }
         if(p.active&&!p.renderer.isEmpty())run->renderer=p.renderer;

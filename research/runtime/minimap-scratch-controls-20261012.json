@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.minimap-write-candidates",
+      "contract_sha256": "729ee3b2c3b5bcaed60bab48f05d2e3cb0f21ab6a2101006bad8aec686970f7c",
+      "scenarios": {
+        "NR.minimap-write-candidates.scratch-fixture": "259edcd9ac616d407254e00fe6e57b8ecaf86feecfa1335086abad2510c1834c"
+      }
+    }
+  ],
+  "sources": {
+    "compat/legacy/canvas-producers/CMakeLists.txt": "bae9d18a55354f36297a09ffc2c9a0f2f1394eb92dd045decb477382247f0fcd",
+    "compat/legacy/canvas_producers.cpp": "d55cddc042a63d5af9da5584f03c9d4bbb274dfb1905134cf36fa49bcc64b746",
+    "renderer/canvas_sequence.cpp": "b0b6967651f4370d86563d4cd66463512ab51bf04d77ae6e055dda6aa4704b73",
+    "renderer/canvas_sequence.hpp": "9faefa33f3c57676908249d0cff09790b2f7781ff937b3f275f6759422fdcb5e",
+    "renderer/minimap/minimap.cpp": "055f1295f3369640025870c22b16fb6fc66dd154cba3d1191e843e2dece1ad77",
+    "renderer/minimap/minimap.hpp": "ec54df24f6bca1dc2000450890d4908b2db346eec696f662343ec2560cdb9b1c",
+    "renderer/minimap/overlays.cpp": "8ac9f1b8ac7bbc12826a80bffe4e57af700b1b162773bbbd8523366a15ada98c",
+    "tests/minimap-candidates-test.cpp": "7b0c9145d9a8468e3e8b40e0f02aec2fed77af492e67e29a35aaa9d01108c5a1",
+    "tests/minimap-producer-test.cpp": "95f3d3d8219d98b3b0953cf7d7d50b6150364e5072e248f8304295f23f979671",
+    "tools/benchmark-native-resident.py": "3e138272ca80cc72388e021ae2b8d6ee1b05a8bda1131e614848f9a439088c64",
+    "tools/test-minimap-scratch.py": "e4d5d17ba56a05a26131096ded60c77ffe1f5933bcf39bbbed3315479a322b10",
+    "tools/test-public-resident-fixtures.py": "3998effedfe514403ad5016f15959c1b0a2ba91a8976e234c74c202ff0014b21"
+  },
+  "scope": "Compare recycled minimap preparation with independent fresh backgrounds.",
+  "commands": [
+    [
+      "cmake",
+      "--build",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/build/qt-shell",
+      "--target",
+      "minimap-candidates-test",
+      "minimap-producer-test",
+      "--parallel",
+      "4"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/build/qt-shell/world-rolling/canvas-producers/minimap-candidates-test"
+    ],
+    [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/build/qt-shell/world-rolling/canvas-producers/minimap-producer-test"
+    ]
+  ],
+  "binaries": {
+    "minimap-candidates-test": "edad3ceb26e5359c29b3ed4d15e632f9325934bf4e9084eaa49a6e433fd1021c",
+    "minimap-producer-test": "ae0d907381cdd83d910e3fabb5d6b44082a23a47dfe33c4dcf1298757869031c"
+  },
+  "candidate_controls": {
+    "cases": 16,
+    "compared_words": 7680000,
+    "unique_service_words": 19396,
+    "recycled_cases": 40,
+    "throw_recovery": true,
+    "atomic_and_undefined_refusals": 5,
+    "generic_callback_preserved": true,
+    "sentinel_equal_writes": true
+  },
+  "producer_controls": "24 owned four-view adapter cases, 36 result/undefined/wire refusals passed",
+  "sources_unchanged": true,
+  "raw_record": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/minimap-scratch/run-39z1dxxy/report.json",
+  "raw_record_sha256": "565532932d0b44f9cb7e85b5934682d34f79db02aae09db05091844afcd59a6f"
+}
