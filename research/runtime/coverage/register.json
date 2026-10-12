@@ -42241,7 +42241,8 @@
         "DRAW02.draw02-timed-egl-prediction-01-native_integration-20261012",
         "DRAW02.draw02-egl-post-return-api-prediction-01-native_integration-20261012",
         "DRAW02.trace32-regression-01-20261012",
-        "DRAW02.trace32-prediction-01-native-integration-20261012"
+        "DRAW02.trace32-prediction-01-native-integration-20261012",
+        "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42640,7 +42641,10 @@
         "DRAW02.draw02-wine-submission-original-03-live_observation-20261012",
         "DRAW02.draw02-wine-lifetime-original-01-live_observation-20261012",
         "DRAW02.draw02-wine-lifetime-original-02-live_observation-20261012",
-        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012"
+        "DRAW02.draw02-wine-generation-original-01-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43026,7 +43030,10 @@
         "DRAW02.draw02-wine-worker-context-fixture-01-native_integration-20261012",
         "DRAW02.draw02-worker-context-parser-checks-01-static-20261012",
         "DRAW02.draw02-egl-worker-context-original-01-live_observation-20261012",
-        "DRAW02.draw02-egl-worker-context-links-01-static-20261012"
+        "DRAW02.draw02-egl-worker-context-links-01-static-20261012",
+        "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43038,6 +43045,63 @@
       "remaining_gaps": [
         "Pending64bytewireseqlock/atomicownership/exactcontext/closedmappingguards,ABIfixtures/actualEGLsnapshots andthreadrelation. Intervaloverlapdoesnotproveownedsource/asyncallroutes/scanout.",
         "Original01admits458EGLpairedsnapshots/331stableactive/0missingunstable;offline331exactworker/command/submissionlinks/330physicalwitnesses,127unassigned. Winthread432/Unix765577associationisnotthread-equivalence;byteownership/scanout/allroutes/semanticjourneysremainpending."
+      ]
+    },
+    {
+      "id": "NR.drawing-api-source-byte-witness",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original CPU source witness at observed submission boundary",
+      "scope": "Pending boundedopt-inread-onlySceneexportcopiesknowncanvasRGB565sourceatAPIentry/returnwithpairedmetadataandextent/versionchecks. Originalsourcebytesareexternalcomparisonoraclesonly,nativeinputremainsownedproducerparameters/pinnedassets. Retainpendingprimitive/mutation/unknown/changedmetadata/copiedbytesfailures;readcopydoesnotproveimmutableownership.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-api-source-byte-witness.md",
+        "research/formats/drawing-api-source-bytes-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_source_bytes.h",
+        "runtime/drawing/source_byte_witness.h",
+        "tools/drawing_source_byte_witness.py",
+        "tools/analyze-drawing-api-source-bytes.py"
+      ],
+      "tests": [
+        "tests/test-drawing-source-byte-witness.py",
+        "tests/drawing-source-byte-export-test.c",
+        "tools/test-drawing-source-byte-export.py",
+        "tests/drawing-source-byte-recorder-test.c",
+        "tools/test-drawing-source-byte-recorder.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/drawing_source_point.h",
+        "runtime/drawing/source_points.h",
+        "tools/compare-drawing-source-points.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
+        "DRAW02.draw02-source-byte-recorder-fixture-01-native_integration-20261012",
+        "DRAW02.draw02-source-byte-fixture-refusals-01-static-20261012",
+        "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
+        "DRAW02.draw02-source-byte-export-fixture-05-native_integration-20261012",
+        "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-cap-diagnosis-01-static-20261012",
+        "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending boundedcopyABI/version/extent/activeprimitiveguards andactualoriginalCPUatAPIentry/return vsindependentnativeprefix. Bytesnapshotnotimmutableownership/allwriters; sourceprojection/asyncEGL/fullroutes semanticrequirementsremainopen.",
+        "Original01closes1570refusedpoints/0planesbecausecalleroutertransferframeswereallrefused;pendingnarrowexacttag7caller/sourceframeadmissionfixture05/freshoriginal02. Zero-plane resultretained.",
+        "Original02hitsunchanged128MiBproducerbytecapinsidequeue32(31returns,176416records/134217096bytes),retains266CPUplanes/1234refusals butoverallsourceprefixunadmitted. Next focused16returnintervaldoesnotreducefull32/120windowdenominators.",
+        "Focusedoriginal03admits241CPUplanes/1347refusalsand16return54903recordprefix/336API335EGLwitnesses. NativeexactprefixCPUcomparisonpending;31of32bytecapfailureoriginal02retained. No immutableownership/full32/120window/allroute/semanticclaims.",
+        "Focusedoriginal03nativeprediction01matches106selectedphysical/230excluded;externalCPU01matches212entryreturnplanes/101760000pixels0diffatidenticalsourceprefix/canvas. Sampledcopydoesnotfreezeoriginalstorage;allwriter/ownership/full32/120windows/allroutes/semanticsremainpending."
       ]
     }
   ],
@@ -90983,6 +91047,157 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic read-onlypaddedcanvasexport/ABI/LastError/refusalguards; nooriginalCPUownership orEGLassignment.",
+      "record": "research/runtime/draw02-source-byte-export-fixture-04.json",
+      "sha256": "a8ab9574b0bd6b2525b95b3b589e6b18d3c131a6337f6672329386fd5b4d50de",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-byte-recorder-fixture-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32synthetic APIentry/returnexternalsourceoracle/journal/refusal/file/pixelchecks;nooriginalbyteownership/EGLassignment.",
+      "record": "research/runtime/draw02-source-byte-recorder-fixture-01.json",
+      "sha256": "9ad154ae3ecc04a7c3d018b9b87566c22efd6b7c3d732e4a9c57625ebfebec0e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-source-byte-fixture-refusals-01-static-20261012",
+      "kind": "static",
+      "scope": "Retainedpreexecution/source-stabilityfixtureattempts,notvalidatedoriginalbehavior.",
+      "record": "research/runtime/draw02-source-byte-fixture-refusals-01.json",
+      "sha256": "4787390ebb1d7ddab447f196643d9db37fcce4f4f51984330b5586117a6b2d64",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "Closedoriginalactivezero-planeCPUwitnessattempt/1570explicitrefusals,pendingoutertransferframeguardreview;notownership.",
+      "record": "research/runtime/draw02-api-source-byte-original-01.json",
+      "sha256": "0148af45be56b70bb45214cdd0bae8cc7cb12b4b43caf64955d4ce159eb0549f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/api_source_byte_observation/admitted_planes",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-byte-export-fixture-05-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "ActualPE32narrowcaller/source/tag7outertransferframeadmissionwithotherpending/primitive/capacity/stoppedguards.",
+      "record": "research/runtime/draw02-source-byte-export-fixture-05.json",
+      "sha256": "7366fdebd1f4bdaa33876aefaeaddb8fbf5fecf56fd3cab347a06ba98f835a06",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "FocusedCPUAPIsourcewitness orretainedcaprefusal,nocomplete32/ownershipclaim.",
+      "record": "research/runtime/draw02-api-source-byte-original-02.json",
+      "sha256": "5b262b48e6575ff1d0d5954071097d2ac9bc16118bda34f8199019203a423ca9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-api-source-byte-cap-diagnosis-01-static-20261012",
+      "kind": "static",
+      "scope": "Offlineexactretainedproducerbytecapfailure/sourcewitnessdiagnosis,noadmittedoriginalprefix/ownership.",
+      "record": "research/runtime/draw02-api-source-byte-cap-diagnosis-01.json",
+      "sha256": "8e193777bd88649d9de7b907c7541165421e2e60a1579318bcbd1d3bd71079f8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
+      "kind": "live_observation",
+      "scope": "FocusedCPUAPIsourcewitness orretainedcaprefusal,nocomplete32/ownershipclaim.",
+      "record": "research/runtime/draw02-api-source-byte-original-03.json",
+      "sha256": "f32b149a133d3f11366edf0f800f3b8c402548a31fcdd8fb9ff09a535d63a878",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012",
+      "kind": "native_integration",
+      "scope": "Independentsource-onlynative106selectedphysicalwitnesses0diff/230excluded,focused16return/no fullownership.",
+      "record": "research/runtime/draw02-api-source-byte-prediction-01.json",
+      "sha256": "10fb2413876fbfab3e318f6a00660c172e3f9aaa1a9220ccbd56cc2b392aa2b5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012",
+      "kind": "static",
+      "scope": "Offlineexactsourceprefix/canvas originalAPIentry/returnCPUoracle comparison toindependentnative output;originalplanes nevernativeinput. Refusals/differentprefixes retained;zero differences not immutableownership/allwriters/EGLscanout orfulljourney.",
+      "record": "research/runtime/draw02-api-source-byte-native-cpu-01.json",
+      "sha256": "50dc0ec88bddbf870c1ddd9afc0a110280367c2b87839dfe584ae9d5f73c6326",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -101667,7 +101882,8 @@
         "DRAW02.draw02-egl-delivery-prediction-01-native-integration-20261012",
         "DRAW02.draw02-timed-egl-prediction-01-native_integration-20261012",
         "DRAW02.draw02-egl-post-return-api-prediction-01-native_integration-20261012",
-        "DRAW02.trace32-prediction-01-native-integration-20261012"
+        "DRAW02.trace32-prediction-01-native-integration-20261012",
+        "DRAW02.draw02-api-source-byte-prediction-01-native_integration-20261012"
       ]
     },
     {
@@ -102218,6 +102434,59 @@
         "DRAW02.draw02-egl-worker-context-original-01-live_observation-20261012",
         "DRAW02.draw02-egl-worker-context-links-01-static-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.source-byte-export-fixture",
+      "level": "headless",
+      "scope": "ActualPE32read-onlypaddedcanvascopy/outputcapacity/unknown/pendingprimitive/stopped/exportABIguards,nooriginalbyteownership.",
+      "behaviors": [
+        "NR.drawing-api-source-byte-witness"
+      ],
+      "tests": [
+        "tests/drawing-source-byte-export-test.c",
+        "tools/test-drawing-source-byte-export.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-byte-export-fixture-04-native_integration-20261012",
+        "DRAW02.draw02-source-byte-fixture-refusals-01-static-20261012",
+        "DRAW02.draw02-source-byte-export-fixture-05-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-byte-recorder-fixture",
+      "level": "headless",
+      "scope": "ActualPE32APIexternaloraclefile/journalentryreturn/refusal/count/filenamefixture,syntheticgetteronly.",
+      "behaviors": [
+        "NR.drawing-api-source-byte-witness"
+      ],
+      "tests": [
+        "tests/drawing-source-byte-recorder-test.c",
+        "tools/test-drawing-source-byte-recorder.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-source-byte-recorder-fixture-01-native_integration-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.original-api-source-bytes-quick",
+      "level": "live_observation",
+      "scope": "PinnedoriginalactivefullopaqueAPIentry/returnCPUsourceexternaloracleswithpairedmetadata/explicitrefusals and32return/fullworkerEGLdiagnosticcapture. Noimmutableownership/nativeoriginalpixelsinputs. Focused16returncopycomparisonnextafter32returnbytecaprefusal;full32/120windowacceptanceunchanged.",
+      "behaviors": [
+        "NR.drawing-api-source-byte-witness",
+        "NR.drawing-wine-egl-worker-context",
+        "NR.producer-trace32-acquisition"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.draw02-api-source-byte-original-01-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-original-02-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-cap-diagnosis-01-static-20261012",
+        "DRAW02.draw02-api-source-byte-original-03-live_observation-20261012",
+        "DRAW02.draw02-api-source-byte-native-cpu-01-static-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -102591,8 +102860,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-worker-context-20261012.json",
-    "sha256": "25b83b185190ca83b826ca660096c4fbaddfdc2c260579d8c6e0cb9512870338"
+    "path": "research/runtime/coverage/source-index-draw02-source-bytes-20261012.json",
+    "sha256": "63132b5516a830a6f175483f41a72bb4bca892389741b38192e8a899c94426ab"
   },
   "claim_bindings_required": true
 }

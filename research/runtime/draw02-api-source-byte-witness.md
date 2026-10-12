@@ -1,0 +1,37 @@
+# CPU source witness at observed submission
+
+A separately enabledread-onlyexportcopies a knownoriginal canvas source at API
+entry/returnwith portable source-pointmetadataandstrictsize/version/extentguards.
+Theseoriginalbytesremaincomparison-only. Native replay uses producerparameters
+andpinnedencodedassets,neverrecordedCPUplanes ororiginalrasterreturns.
+
+A copiedsnapshot doesnotfreeze originalbytes. Pendingprimitive/competingwriter/
+changedmetadata/unknowncanvas statesmustremainexplicit. The bounded question is
+whether native reconstruction matches the actualsubmittedCPUsource atthispoint,
+notonlya nearbyproducercheckpoint orlaterphysicalimage. Ownership/allwriter
+andasyncEGL/fullroute/semanticcoverage remainseparate.
+
+## Step 2 actual API CPU source-witness checkpoint (2026-10-12 UTC)
+
+Read-onlySceneexportstrictlychecksoutput/capacity/knownlivecanvas/primitive/
+frame/extentguardsandbefore/aftermetadata. Narrowadmission permitsone recognized
+caller-ownedtag7transferframe,neverotherpendingframesoractiveprimitive. ActualPE
+exportfixtures04/05passpaddedcopy/refusals/LastError;recorderfixture01passes2full
+sourceplanes/2refusals/exactfilenamepixels. Preexecution/missinghelper/source-drift
+attemptsremainretained. Original01zero1570refusals/0planeskeepsoldouterframeguard.
+Original02retains266planes/1234refusalsbutfails128MiBproducerbytecapinqueue32,
+31returns/176416records/134217096bytes. No capraised orfull32requirement waived.
+
+Focused16returnoriginal03admits241CPUplanes/1347refusals,54903producerrecords,
+336API/335EGLwitnesses. Independentnativeprediction01usesonlyproducerparameters/
+pinnedencodedassetsandmatchesall106selectedphysicalwitnesses,230excluded.
+ExternalCPUanalysis01matches212APIentry/returnplanes/101760000pixels0diffat
+identicalproducersequence/canvas. AlloriginalCPUraster/outputplanes stayexternal.
+This validates sampledsourceprefix reconstruction;itdoesnotfreezebytesorprove
+allwriter/sourceownership. Refusals and shortened boundaries remain explicit.
+
+Reassessment:step2nextneedsimmutable sourceversions/delivery/allroutes/semantic
+120advancingwindows,withseparatecontrols for diagnosticcadence. Steps3–7remain
+ordered/pending;all47/21requirementsremainopen. Reviewedb6d3429d..c20dde96has30
+matchedreceipts/0gaps.Storagearound962GiBworking/364GiBfree;historicalhashes
+retained/nocleanup.

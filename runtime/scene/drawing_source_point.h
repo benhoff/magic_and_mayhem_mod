@@ -28,3 +28,5 @@ u32 WIN SceneDrawingSourcePairV1(void* destination,void* source,u32* out,u32 siz
  u32 okay=SceneDrawingSourcePointV1(destination,out,64)&&SceneDrawingSourcePointV1(source,out+16,64);
  SetLastError(error);return okay;
 }
+
+#include "drawing_source_bytes.h"
