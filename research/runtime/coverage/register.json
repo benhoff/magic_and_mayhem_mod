@@ -37918,7 +37918,8 @@
         "NR.public-resident-world.engine-cadence-campaign-20261011",
         "NR.public-resident-world.scene-production-full-campaign-20261011",
         "NR.public-resident-world.scene-production-slice-campaign-20261011",
-        "NR.public-resident-world.scene-production-prepared-campaign-20261012"
+        "NR.public-resident-world.scene-production-prepared-campaign-20261012",
+        "NR.public-resident-world.budget-progress-campaign-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -38145,7 +38146,8 @@
         "NR.minimap-write-candidates.master-final-campaign-20261011",
         "NR.minimap-write-candidates.master-final-fixtures-20261011",
         "NR.minimap-write-candidates.scratch-controls-20261012",
-        "NR.minimap-write-candidates.scratch-titan-replay-20261012"
+        "NR.minimap-write-candidates.scratch-titan-replay-20261012",
+        "NR.public-resident-world.budget-progress-campaign-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -38200,7 +38202,8 @@
         "NR.resident-normal-shutdown.resident-campaign-complete-20261011",
         "NR.resident-normal-shutdown.master-integration-fixtures-20261011",
         "NR.resident-normal-shutdown.master-final-campaign-20261011",
-        "NR.resident-normal-shutdown.master-final-fixtures-20261011"
+        "NR.resident-normal-shutdown.master-final-fixtures-20261011",
+        "NR.public-resident-world.budget-progress-campaign-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -41786,7 +41789,8 @@
         "NR.scene-production-repetition.timing-controls-20261012",
         "NR.scene-production-repetition.timing-performance-negative-20261012",
         "NR.scene-draw-budget.controls-20261012",
-        "NR.scene-draw-budget.adaptive-controls-20261012"
+        "NR.scene-draw-budget.adaptive-controls-20261012",
+        "NR.scene-draw-budget.final-controls-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -42137,7 +42141,7 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -42147,10 +42151,13 @@
         "NR.scene-draw-budget.first-live-negative-20261012",
         "NR.scene-draw-budget.adaptive-controls-20261012",
         "NR.scene-draw-budget.adaptive-live-negative-20261012",
-        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+        "NR.scene-draw-budget.report-worker-live-negative-20261012",
+        "NR.scene-draw-budget.projection-live-negative-20261012",
+        "NR.scene-draw-budget.progress-worker-live-negative-20261012",
+        "NR.scene-draw-budget.final-controls-20261012"
       ],
       "remaining_gaps": [
-        "Controls pass and the report-worker60s live window gains23.548WorldFPS with19.859Hz simulation and exact238extra state/scene checks. Sustained25/60FPS, full journey/movement/normal Quit and default activation remain pending; failed third retreat cannot promote full integration. Native repeat drawing does not interpolate motion."
+        "Final full native19FPS/half-rate gameplay and unchanged19.866Hz advancing simulation pass;296extra draws preserve exact protected states/scenes.24.530WorldFPS/20.423aggregate miss25/20.5experiment gates,4prediction misses remain; uniform60FPS, interpolation, default activation, unclassified module/map/nested/pause/network behavior remain pending."
       ]
     },
     {
@@ -42182,19 +42189,22 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
         "HOST.menu-render-progress-heartbeat.controls-20261012",
         "NR.scene-draw-budget.adaptive-live-negative-20261012",
         "HOST.resident-report-publication.controls-20261012",
-        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+        "NR.scene-draw-budget.report-worker-live-negative-20261012",
+        "NR.scene-draw-budget.projection-live-negative-20261012",
+        "NR.public-resident-world.budget-progress-campaign-20261012",
+        "HOST.resident-report-publication.final-controls-20261012"
       ],
       "remaining_gaps": [
-        "GUI progress must preserve requests and retirement; long single-poll stalls still expire the unchanged lease. Fresh native lifecycle and live gameplay validation pending."
+        "Full current TITAN campaign and mapped request/retirement controls pass; a single GUI freeze beyond unchanged2000ms lease still expires. No background keepalive or frozen-session resurrection guarantee."
       ]
     },
     {
@@ -42224,17 +42234,57 @@
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
         "HOST.resident-report-publication.controls-20261012",
-        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+        "NR.scene-draw-budget.report-worker-live-negative-20261012",
+        "NR.scene-draw-budget.projection-live-negative-20261012",
+        "NR.public-resident-world.budget-progress-campaign-20261012",
+        "HOST.resident-report-publication.final-controls-20261012"
       ],
       "remaining_gaps": [
-        "Blocked-writer/coalescing/final-current/error controls pass; third live phase log has no release/report checkpoint stalls but fails post-combat retreat. Full current final report/normal Quit/lifetime and higher full-journey FPS remain pending; no durable-storage/driver60FPS guarantee."
+        "Coalescing/current final/error controls and full current TITAN shutdown pass; final/error synchronous IO remains outside gameplay, durable-storage latency and GPU/driver60FPS guarantees remain pending."
+      ]
+    },
+    {
+      "id": "HOST.campaign-progress-publication",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Publish campaign progress without waiting on GUI filesystem work",
+      "scope": "Opt-in campaign smoke progress JSON snapshots once per second. One value-only asynchronous QSaveFile writer; skip intermediate diagnostics while a write is in flight, retain current final flow report and all rate samples/FPS thresholds. GUI never waits for an in-flight periodic write; ready errors fail the test, owned job lifetime drains at teardown. No background menu heartbeat, widget/channel/renderer access or gameplay/pacing changes. Full source-bound live proof pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/scene-draw-budget.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_smoke_test.cpp"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/campaign-combat-input.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.campaign-progress-publication.live-20261012"
+      ],
+      "remaining_gaps": [
+        "Full current TITAN19FPS/half-rate native campaign passes with bounded async diagnostics and preserved samples. Mid-write final failure, storage-latency attribution and uniform60FPS remain outside this live observation."
       ]
     }
   ],
@@ -88313,6 +88363,216 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.scene-draw-budget.projection-live-negative-20261012",
+      "kind": "live_observation",
+      "scope": "All gameplay/spell/movement/portrait/normal-Quit checks pass with4894balanced Worlds/zero readbacks. Overall campaign remains negative: early short-window paint rate fails unchanged19FPS/half-rate gate.60.006s window24.48089WorldFPS and19.78183Hz simulation preserve298extra states/scenes but miss25FPS. Source/original/cleanup verified; no full performance promotion.",
+      "record": "research/runtime/scene-draw-budget-projection-live-negative-20261012.json",
+      "sha256": "9712a5c4cfffb092aafe6e1f1da6869023797d83d07603769c264a1a9d96b699",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay_checks/normal_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.progress-worker-live-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Cadence target remains NEGATIVE:60007ms window24.53047WorldFPS misses25; aggregate20.42298 misses20.5.296extras preserve every protected state/ordered scene, advancing simulation19.86622Hz,p9554ms/max142ms,4deadline misses. The separate full19FPS/half-rate campaign succeeds with5042balanced Worlds and all casting/combat/refusals/movement/portrait/menu/normal Quit checks. No uniform60FPS/default/simulation interpolation claim.",
+      "record": "research/runtime/scene-draw-budget-progress-worker-live-negative-20261012.json",
+      "sha256": "8e5fbe75ff178c3d3724ca5a808002edba74cf44e5535318c0701a8d00011d98",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.campaign-progress-publication.live-20261012",
+      "kind": "live_observation",
+      "scope": "Component-scoped success: full native campaign19FPS/half-rate windows and all gameplay/normal Quit pass with asynchronous bounded diagnostic publication,5042balanced final resident reports and no delivery readback. Outer25FPS budget experiment remains negative in the same immutable report; this validates GUI publication continuity, not25/60FPS.",
+      "record": "research/runtime/scene-draw-budget-progress-worker-live-negative-20261012.json",
+      "sha256": "8e5fbe75ff178c3d3724ca5a808002edba74cf44e5535318c0701a8d00011d98",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay_checks/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/pending",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.budget-progress-campaign-20261012",
+      "kind": "live_observation",
+      "scope": "Final-source private TITAN/Zink native menus/resident World full19FPS and half-rate sampled-window campaign passes5042balanced Worlds at20.42298deliveredWorldFPS. Summon/Fireball/melee/player-party lethal,spell refusals,independent movement,portraits,Mini resume/Quit-No/normal Quit verified; metadata-only80-byte ACK,zero readbacks/pixel replies/fallback/pending. Budgeted repeats supply no motion interpolation; separate25/20.5FPS scheduling thresholds remain negative.",
+      "record": "research/runtime/scene-draw-budget-native-campaign-20261012.json",
+      "sha256": "6d235d229ef23de25736d6b0ca4e500aceb5240da49a6f10c1ed88aa53dcb646",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/world_pixel_reply_bytes",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.final-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Final shared source-bound60PE32 guarded call/admission/registers/flags/FP/error/stack,18additional pacing guard and budget/overrun/clock/histogram cases plus28decoder controls pass. Authored stand-ins with two extras/history suppression, not original engine or live/default60FPS equivalence.",
+      "record": "research/runtime/scene-draw-budget-final-controls-20261012.json",
+      "sha256": "1969cdf5bda0f1bd3477ee07ef1239cba18fa9152ea2fb58dae01f8b5ce499c8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.resident-report-publication.final-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Final-source independently blocked worker tests prove responsive queueing/latest snapshot coalescing/current final and periodic publication/ready error propagation; mapped GUI keepalive preserves requests and retired/inactive refusal. Synthetic lifecycle proof, not original gameplay/IO latency/60FPS.",
+      "record": "research/runtime/resident-report-worker-final-controls-20261012.json",
+      "sha256": "4ce3d4e2e3c8336509aca5899ed7f1e6658a1f5a41ac2c15cf9d07cdf310e13e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/report_coalescing",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/report_final_current",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/report_error_propagation",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -97489,7 +97749,8 @@
         "HOST.native-campaign-dialogue-readiness.master-final-campaign-20261011",
         "NR.public-resident-world.profile-gap-negative-20261011",
         "NR.public-resident-world.repaired-ordinary-titan-20261011",
-        "NR.public-resident-world.engine-cadence-campaign-20261011"
+        "NR.public-resident-world.engine-cadence-campaign-20261011",
+        "NR.public-resident-world.budget-progress-campaign-20261012"
       ]
     },
     {
@@ -98840,7 +99101,8 @@
         "NR.scene-production-repetition.prepared-controls-20261012",
         "NR.scene-production-repetition.timing-controls-20261012",
         "NR.scene-draw-budget.controls-20261012",
-        "NR.scene-draw-budget.adaptive-controls-20261012"
+        "NR.scene-draw-budget.adaptive-controls-20261012",
+        "NR.scene-draw-budget.final-controls-20261012"
       ]
     },
     {
@@ -98895,7 +99157,8 @@
       ],
       "evidence": [
         "NR.scene-draw-budget.controls-20261012",
-        "NR.scene-draw-budget.adaptive-controls-20261012"
+        "NR.scene-draw-budget.adaptive-controls-20261012",
+        "NR.scene-draw-budget.final-controls-20261012"
       ]
     },
     {
@@ -98912,7 +99175,9 @@
       "evidence": [
         "NR.scene-draw-budget.first-live-negative-20261012",
         "NR.scene-draw-budget.adaptive-live-negative-20261012",
-        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+        "NR.scene-draw-budget.report-worker-live-negative-20261012",
+        "NR.scene-draw-budget.projection-live-negative-20261012",
+        "NR.scene-draw-budget.progress-worker-live-negative-20261012"
       ]
     },
     {
@@ -98928,7 +99193,8 @@
       ],
       "evidence": [
         "HOST.menu-render-progress-heartbeat.controls-20261012",
-        "HOST.resident-report-publication.controls-20261012"
+        "HOST.resident-report-publication.controls-20261012",
+        "HOST.resident-report-publication.final-controls-20261012"
       ]
     },
     {
@@ -98944,7 +99210,9 @@
       ],
       "evidence": [
         "NR.scene-draw-budget.adaptive-live-negative-20261012",
-        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+        "NR.scene-draw-budget.report-worker-live-negative-20261012",
+        "NR.scene-draw-budget.projection-live-negative-20261012",
+        "NR.public-resident-world.budget-progress-campaign-20261012"
       ]
     },
     {
@@ -98959,7 +99227,8 @@
         "tools/test-render-progress-heartbeat.py"
       ],
       "evidence": [
-        "HOST.resident-report-publication.controls-20261012"
+        "HOST.resident-report-publication.controls-20261012",
+        "HOST.resident-report-publication.final-controls-20261012"
       ]
     },
     {
@@ -98974,7 +99243,24 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+        "NR.scene-draw-budget.report-worker-live-negative-20261012",
+        "NR.scene-draw-budget.projection-live-negative-20261012",
+        "NR.public-resident-world.budget-progress-campaign-20261012"
+      ]
+    },
+    {
+      "id": "HOST.campaign-progress-publication.live",
+      "level": "live_observation",
+      "scope": "Private TITAN budgeted-render native campaign retains every sampled rate window, complete casting/combat/spell/movement/portraits/menu/normal Quit and19FPS/half-rate short-window gates, with final current flow/resident report and source/original/private cleanup. Failures remain negative; no diagnostic sample filtering or uniform60FPS claim.",
+      "behaviors": [
+        "HOST.campaign-progress-publication"
+      ],
+      "tests": [
+        "tools/probe-scene-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.campaign-progress-publication.live-20261012"
       ]
     }
   ],
@@ -99349,8 +99635,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-draw-budget-worker-milestone-20261012.json",
-    "sha256": "2ae090f17ae1aa14631ab8af2e9beaaad2645be52b2e4d14c64b9233da73a495"
+    "path": "research/runtime/coverage/source-index-scene-draw-budget-completion-20261012.json",
+    "sha256": "69b29446829b3846b71c7eaf5283859aecafeaa8c7d5cd94a96af1c266859f3f"
   },
   "claim_bindings_required": true
 }

@@ -251,11 +251,14 @@ def main():
             for attempt in range(12):
                 actor=state()[wizard['slot']];dx=retreat_x-actor['x'];dy=retreat_y-actor['y']
                 if math.hypot(dx,dy)<3:break
-                if len(calibration)==2:
-                    ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
-                    u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det;sx=asx*u+bsx*v;sy=asy*u+bsy*v
-                    scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
-                else:sx,sy=-140,50
+                # Short movement probes measure path progress, not the camera
+                # transform: obstacles and incomplete travel skew that basis.
+                # Use the same isometric XY/height projection as the ordinary
+                # ranged/summon targets, retaining exact waypoint admission.
+                dz=wizard['z']-actor['z']
+                sx,sy=32*(dx-dy),16*(dx+dy-dz)
+                scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
+                record('retreat-ground-projection',wizard=actor,target=[retreat_x,retreat_y,wizard['z']],screen_delta=[sx,sy])
                 center();click(400+sx,280+sy,3);time.sleep(3)
                 record('post-combat-retreat',attempt=attempt+1,wizard=state()[wizard['slot']])
             actor=state()[wizard['slot']]
