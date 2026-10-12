@@ -45107,6 +45107,41 @@
       "remaining_gaps": [
         "Fresh duplicate fixture passes only owned Wine object alias/lifetime cases; first fixture remains historical after test/runner/scope changes. Actual original handle identity/lifetime including concurrent close/use, caller-state preservation and live diagnostic integration unimplemented. Private duplicates intentionally extend object lifetime; no recovered behavior, complete reference, native parity or game synchronization repair claim."
       ]
+    },
+    {
+      "id": "NR.drawing-cursor-mutex-lifetime",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Isolated duplicate-handle cursor mutex diagnostic lifetime registry",
+      "scope": "Caller-serialized pure state model for one original mutex identity/private duplicate: reserve numeric identity leases, retire to block new leases, defer private close until all leases return, claim one close attempt, retain duplicate after close failure and reject stale identities after reuse. No OS calls, synchronization or live capture installation. Host-thread fixture uses an explicit caller mutex for8x1000attempts crossed with retirement; the model itself remains unsynchronized.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-mutex-lifetime.md"
+      ],
+      "implementation": [
+        "runtime/cursor-mutex/diagnostic_lifetime.h"
+      ],
+      "tests": [
+        "tests/test-drawing-cursor-mutex-lifetime.cpp",
+        "tools/test-drawing-cursor-mutex-lifetime.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-mutex-lifetime-fixture-01-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh owned transition/thread fixture passes; caller serialization, actual original constructor/global identity pins, per-thread opaque lease tokens, OS duplicate/close handling, full512FX/error forwarding and live controls/integration remain unimplemented. No source alias/parity or safe live repair."
+      ]
     }
   ],
   "evidence": [
@@ -96754,6 +96789,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.cursor-mutex-lifetime-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Pure state0..32lease retirement/close-fault/reuse/overflow and8x1000caller-serialized host-thread attempts, no actual game/OSmutexhandles/live adapter.",
+      "record": "research/runtime/draw02-cursor-mutex-lifetime-fixture-01.json",
+      "sha256": "282034e50b532ed94b6db6e601b248495dad3b780f2415a733c50fc869598428",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/os_mutex_handle_calls",
+          "equals": false
+        },
+        {
+          "pointer": "/live_capture_integrated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -108896,8 +108958,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-duplicates-20261012.json",
-    "sha256": "5034a09d2c69701662dc7416aac12d56e98dc177aaaa82e55102ab75b3c7cbcc"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-lifetime-20261012.json",
+    "sha256": "78489905a068b368ed3bdb0f7011e21f31e44ebe0825ee395dc4766090c46c1a"
   },
   "claim_bindings_required": true
 }

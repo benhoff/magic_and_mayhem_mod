@@ -1503,3 +1503,22 @@ lifetime by intentional native policy. Previous fixture01 stays immutable and
 historical after the extended test/runner/scope; fixture02 binds current source.
 No complete source/frame/reference/parity or all47/21closure claim. The reviewed
 28022dba..230295f8range has12exact receipts and zero missing intermediate versions.
+
+## DRAW-02 diagnostic retirement model checkpoint (2026-10-12 UTC)
+
+Duplicate fixture/lifetime evidence committed735b6ff9 with both coverage gates
+passed. The new native policy `NR.drawing-cursor-mutex-lifetime` is isolated:
+caller-serialized publication/reserve/retire/return/close-claim state, retired
+leases cannot admit new reserves, active leases defer closing, failed close
+retains its duplicate and identity for explicit retry. No OS calls or game hooks.
+`draw02-cursor-mutex-lifetime-fixture-01.json` passes0..32lease drainage, wrong/
+stale identities, duplicate close claims, failed close/retry, identity reuse,
+overflow, independent outer/inner state and8host threads×1000attempts across
+retirement under an explicit caller mutex. A guaranteed held lease establishes
+close deferral. The fixture does not claim internally synchronized model safety.
+
+Reassessment: step2 remains open. Actual constructor/global pins, per-thread
+opaque tokens, private handle operations, exact full512FX/error forwarding and
+worker callback/lock-order controls must be integrated and independently tested
+before bounded original acquisition. All47/21and steps3–7 retain their scope.
+Reviewed230295f8..735b6ff9contains10exact receipts and zero missing versions.

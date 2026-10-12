@@ -528688,6 +528688,363 @@
         "evidence": [],
         "reason": "Fresh current-source/contract fixture02 passes64scriptedcells/9real scenario groups; actual original constructor/global tracking, retirement/active leases, state preservation and live diagnostic lock-order/control integration remain open. Fixture01 stays historical; no original comparison, full source/native parity or completion/status promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+          "before_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+          "id": "AS.resource-preparation"
+        },
+        {
+          "after_sha256": "745e5d425b8b6028176d69d6fd57be9d5dcee4da33bc87642f0fdf4bf9c1a8fa",
+          "before_sha256": "458373649dcd6d0e5959216f81c188375d4456b2166b0114d7740166acb9350a",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "24cd270d7ee8f445bff504c51a1c3ec9a79d8b5da101137ccd2e175f22e2a195",
+          "before_sha256": "ce20b3764082b6e4c8d858a94677dc265a2b460fb4bf13761db03ec64f94f6a2",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "a6597a28b2fe232a3d95c35b167131eb8ec29a3c38cb26dc960baf0bfe5cdac8",
+          "before_sha256": "5e960ccd02e6b3c29571bac53ddb71ea74960136ee25a97de7a8a3718b89e000",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "eb83b8bae1678014230a09c0009890adcc6d66e8cf3525bdfc677dbf8cef00aa",
+          "before_sha256": "074f816122fc1755425bbc3652887e19ac3e8aed221b135e46f2d40a5307aabb",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "3058229ab8281f5a763ac18246005ec1c665bc88adb28bfca79cac5cb3d4459a",
+          "before_sha256": "8bafab8a9cab4f8e65568ac99f68006d8d01089b10af6ac690f39e63d200b297",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "b4dfc1919c436bbca855821c6c367f0de7fbdb750479f18f0444d86db660afcf",
+          "before_sha256": "2417dc7f24335f9fbde3cc76d568c96597bc4869195f029ac6eab472f7b779be",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "868891502b4871613deda6be333a798daedefaf22619de27e085dd9b1eebf074",
+          "before_sha256": "345371c9f9d2a5229d5680744b57d5c295a6a2c588c99a9395949ad50bf83d9a",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "e62522a2c21ee8f3c554a8263b288c25063fc6e7e30569430d6e28c9df890509",
+          "before_sha256": "e62522a2c21ee8f3c554a8263b288c25063fc6e7e30569430d6e28c9df890509",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "6df5310628ef8c0daf71c0930a5782183c3501f2773fe8d05f332cf81d8adfc9",
+          "before_sha256": "6df5310628ef8c0daf71c0930a5782183c3501f2773fe8d05f332cf81d8adfc9",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "249c1a3ce75411829c42c71e2f7eb5bdb1389701b86161e81be064540959c143",
+          "before_sha256": "249c1a3ce75411829c42c71e2f7eb5bdb1389701b86161e81be064540959c143",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "f79673ba8c4f336df92c714940dbb15cc658c12a674e4ead7cb15eda2ae8b3dd",
+          "before_sha256": "5940a94391a274cba072f3e9c5287fe9f7f24ff98d305811f657814cf3fd70bc",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "7ce32cb67d28c212f006f66973e2a06c4193efeca8f6f85b0818b2234aa1cb9c",
+          "before_sha256": null,
+          "id": "NR.drawing-cursor-mutex-lifetime"
+        },
+        {
+          "after_sha256": "ac7fd6da86e1dc75aed18f84a56080e36f69e43cb3a756c085bc66958f418cec",
+          "before_sha256": "d6d32a9af12a3ca6704be87ba5f3c7efbe0102a4b0309a88af62fd213bbb5127",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "022ecbc7485ef9f7ad40645b5f5d6b3919c344e8e18584755af74edf4409dc61",
+          "before_sha256": "0b3a2cdae1a647a9cd855878ff8fed22b1eea8f9a5a97c37fc00137fef487c5c",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "e84bc63d795428c682838e0a62f5ed03fe8019b942efa9a0dcc418190c06f2a7",
+          "before_sha256": "e84bc63d795428c682838e0a62f5ed03fe8019b942efa9a0dcc418190c06f2a7",
+          "id": "NR.drawing-cursor-source-gate"
+        },
+        {
+          "after_sha256": "74175e203ff7ada7c3ca67002f7f09e58698831f79e3bd526711c918821c23bc",
+          "before_sha256": "09d049c895869da303dd4a0f43ecb7137e0b6bdc47250776ce3106a0cd84eee9",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "fc6e389ec3d5772989a0ba48c841af7b1c80bcd8ebca8cbc472648f420fa53e2",
+          "before_sha256": "07eb55642f02b4024225c9c6365dee3f35de9f1c55bc4c743068f229a985e4a6",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "95b961c4c8b1325ea6ab5612e03e0ffde66539b032d216fb9581e5da5be283bf",
+          "before_sha256": "f54634696a6287394881a0f36fff93e553c9fac27728f55bdcb3682a337a5082",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "d45e4bef1445d16c044158a74a3cb1d1aecdb5e4b391180548579d52657d198d",
+          "before_sha256": "a4f4562f215c72b4ed92a9548960bdadcbd5f3e77c4082621a53be108e7e17e8",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "6018be22c4c9c0f03e906bb60861221590b33e8a2d66d3982ab3bf22ffe59403",
+          "before_sha256": "88a39617ef287f10ae364a83d662c9ced4ea9f7255990310387f4aa4a96b9aa1",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "f8d0daa6074699658372d07b8ae68393ac31c80cb1e8f81dac7956524e1f4619",
+          "before_sha256": "2d081c47e6cabf6aa518be38a447029090c91b4698f022e68f80fb74517c06d3",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "c6084a14c6b8d61c7ac2b2187801ecc496540f997b20fac37dc35ee48ed6b84d",
+          "before_sha256": "813872dcb0c63f8d9583cf0e2726630a4802afdc3c95cbb8de09a0314f2a059a",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "06d5250347c7d89f63dff7aa12f7e7a0b1b779aaaf576329c1176e173e24d83a",
+          "before_sha256": "06d5250347c7d89f63dff7aa12f7e7a0b1b779aaaf576329c1176e173e24d83a",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "cd9a8f544b3e07e9da7b69bb2cfb89e377697f5b77a7933e191849e88a73c689",
+          "before_sha256": "cd9a8f544b3e07e9da7b69bb2cfb89e377697f5b77a7933e191849e88a73c689",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "12b88158647b5e55d747b2a44cdedf3f865a7874f6675128a08a1de3e7ece2ac",
+          "before_sha256": "db67649b3713317dace3ea4e848822452aee321b98007cd23b91c7a75556cd22",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "2dbdc56c6c8ec99d414a0cbfbb95aade03809bafdbb774ddd1ae3d79d79fbd7b",
+          "before_sha256": "2dbdc56c6c8ec99d414a0cbfbb95aade03809bafdbb774ddd1ae3d79d79fbd7b",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "97e7be882a62bffc69b3598e8c17567eb19484aac9a526fa58eac85f916fc230",
+          "before_sha256": "97e7be882a62bffc69b3598e8c17567eb19484aac9a526fa58eac85f916fc230",
+          "id": "NR.sprite-atlas"
+        },
+        {
+          "after_sha256": "ae4f3ae9078db798cb5fe6f6bb037d46a948ca7eec06c74ddc1164757e22e35a",
+          "before_sha256": "ae4f3ae9078db798cb5fe6f6bb037d46a948ca7eec06c74ddc1164757e22e35a",
+          "id": "NR.upload-preparation"
+        },
+        {
+          "after_sha256": "9a87869724c50aae9de32fa72d6f6d32ba4ebafae596c36cd3ae503f6c3730db",
+          "before_sha256": "9a87869724c50aae9de32fa72d6f6d32ba4ebafae596c36cd3ae503f6c3730db",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "4c3b8aa86fe49b8862900199a565a4934994ab03c60a81c81dfd2d0056fe41cb",
+          "before_sha256": "4c3b8aa86fe49b8862900199a565a4934994ab03c60a81c81dfd2d0056fe41cb",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "defc7d60452e772cb1ca76e3fedc9546c06235cd799cb57999d5bcc01c4cde55",
+          "before_sha256": "defc7d60452e772cb1ca76e3fedc9546c06235cd799cb57999d5bcc01c4cde55",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "a3efcd6d0b0c2fc49ad87bb0095de2abb5f5e3297dfbee0997054e3b3189a6e6",
+          "before_sha256": "a3efcd6d0b0c2fc49ad87bb0095de2abb5f5e3297dfbee0997054e3b3189a6e6",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "ded00b8eed6d2c243f2e90bb1d45afafb2add978e6658a6bc51944231000a691",
+          "before_sha256": "ded00b8eed6d2c243f2e90bb1d45afafb2add978e6658a6bc51944231000a691",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "8e2f081a639a73bdbd9bde8dcb087a1ef9cbf16f25dd5221c9841b21721223cc",
+          "before_sha256": "8e2f081a639a73bdbd9bde8dcb087a1ef9cbf16f25dd5221c9841b21721223cc",
+          "id": "NR.world-cpu-composition-reuse"
+        },
+        {
+          "after_sha256": "2fa3ee8fff3c0e330144c205f195f17e9facc03e9ecd937ee737c3188de2d021",
+          "before_sha256": "2fa3ee8fff3c0e330144c205f195f17e9facc03e9ecd937ee737c3188de2d021",
+          "id": "NR.world-frame-identity-cache"
+        },
+        {
+          "after_sha256": "7d2f90bb23c6ca4cba4a81b59dead80cff3bc0c3395aec1319bc6b07ad7f983b",
+          "before_sha256": "7d2f90bb23c6ca4cba4a81b59dead80cff3bc0c3395aec1319bc6b07ad7f983b",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "f90b129f4efc0cd8c1d4e6781b3f3121cff690baaf1bd164ca9998ff00db8644",
+          "before_sha256": "f90b129f4efc0cd8c1d4e6781b3f3121cff690baaf1bd164ca9998ff00db8644",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "87669fe57a911e8cb62dcdd3134c5cdf267e33d997e434e84d43134e7da5c87b",
+          "before_sha256": "87669fe57a911e8cb62dcdd3134c5cdf267e33d997e434e84d43134e7da5c87b",
+          "id": "NR.world-live-history"
+        },
+        {
+          "after_sha256": "ff1cb844cd6a0fbf0cf3a461e00eb870c4479bcbcf00c8abe57e2b6958da5bc7",
+          "before_sha256": "ff1cb844cd6a0fbf0cf3a461e00eb870c4479bcbcf00c8abe57e2b6958da5bc7",
+          "id": "NR.world-preparation"
+        },
+        {
+          "after_sha256": "8d651eba21163c7179fb0bee7a80664b67f4ae0434a8fdf5036cae9eedec3247",
+          "before_sha256": "8d651eba21163c7179fb0bee7a80664b67f4ae0434a8fdf5036cae9eedec3247",
+          "id": "NR.world-prepared-admission"
+        },
+        {
+          "after_sha256": "0e17724417a830ed9e4b07ee8cce7fb40de403866fb73f00bbb98c2f64d2dc54",
+          "before_sha256": "0e17724417a830ed9e4b07ee8cce7fb40de403866fb73f00bbb98c2f64d2dc54",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "82291349962ec84caf926e93b5b38f146a9d25679d9ccb8fe40fbfb4fa0ded61",
+          "before_sha256": "82291349962ec84caf926e93b5b38f146a9d25679d9ccb8fe40fbfb4fa0ded61",
+          "id": "NR.world-rolling-delivery"
+        },
+        {
+          "after_sha256": "067aba35359a8d8dc9e9b60f27a12e9bad53ddc49bef178709103bec67666eb7",
+          "before_sha256": "067aba35359a8d8dc9e9b60f27a12e9bad53ddc49bef178709103bec67666eb7",
+          "id": "NR.world-rolling-hardware"
+        },
+        {
+          "after_sha256": "92989208d9a3e6ddee9fb41690c7e5664b238634c302e707826e2d8f83298490",
+          "before_sha256": "92989208d9a3e6ddee9fb41690c7e5664b238634c302e707826e2d8f83298490",
+          "id": "NR.world-rolling-live-handoff"
+        },
+        {
+          "after_sha256": "161ec871121539d2f3131af9fe828229e5ea85c9a252d57adb0e652c10110250",
+          "before_sha256": "161ec871121539d2f3131af9fe828229e5ea85c9a252d57adb0e652c10110250",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "aaf3ad66def8dbdff68bb96b0666c2911e19ab61c80b763127072365f46b6fe7",
+          "before_sha256": "aaf3ad66def8dbdff68bb96b0666c2911e19ab61c80b763127072365f46b6fe7",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "d0d8e5e05ec947db44368df69340e83bd3ce68d1d8841c4efe8f6b0434c61f6f",
+          "before_sha256": "d0d8e5e05ec947db44368df69340e83bd3ce68d1d8841c4efe8f6b0434c61f6f",
+          "id": "RS.world-kind8-additive"
+        },
+        {
+          "after_sha256": "3985bef231062c8c9669dd4fecc34e6957c498bb38cdff5f2e7a2dd9848ab9a9",
+          "before_sha256": "3985bef231062c8c9669dd4fecc34e6957c498bb38cdff5f2e7a2dd9848ab9a9",
+          "id": "RS.world-kind8-colour"
+        },
+        {
+          "after_sha256": "52336ecb9b3e2e372be31e7cdf47dc0a8eb2181b0baf9c385dc782b3c96c40f5",
+          "before_sha256": "52336ecb9b3e2e372be31e7cdf47dc0a8eb2181b0baf9c385dc782b3c96c40f5",
+          "id": "RS.world-kind8-noop"
+        },
+        {
+          "after_sha256": "c95a76f2404ec299fb89c27a5a6bb13306d5ad3ffd78a0e987666a5b9e6496ac",
+          "before_sha256": "c95a76f2404ec299fb89c27a5a6bb13306d5ad3ffd78a0e987666a5b9e6496ac",
+          "id": "RS.world-rolling-handoff-equivalence"
+        },
+        {
+          "after_sha256": "9ff3817bc5c3d0e785aee464e3f4cc94f237ac2caffe0997ee23eb22f7f867fb",
+          "before_sha256": "6524dbcdef1fe1fb0832eeea2ae78ded15bd985344ee7b4ec576abef5f2854f3",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "737f9b70f0c26ff16e49c09fac65f48d7635f5e00be4be49510be3a5ea892755",
+          "before_sha256": "737f9b70f0c26ff16e49c09fac65f48d7635f5e00be4be49510be3a5ea892755",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "80e61574582efd46f443cadb3a4a886d6fc06d70141ff77e4d1fa87d1606ed96",
+          "before_sha256": "80e61574582efd46f443cadb3a4a886d6fc06d70141ff77e4d1fa87d1606ed96",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "be9d2163e1e357f43f2254fe10b64673a70352c9106592a26359af1b87020250",
+          "before_sha256": "a26eb7220870adc41d8daabf8443c97244634a969766edd016c16d86fc99190b",
+          "id": "TOOL.drawing-journeys"
+        },
+        {
+          "after_sha256": "acae615d9f2d2cf98b8595383bd6e243e18e12b7658e809cafc4218a595df8d4",
+          "before_sha256": "acae615d9f2d2cf98b8595383bd6e243e18e12b7658e809cafc4218a595df8d4",
+          "id": "TOOL.rendering-coverage"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "715f95eeea405fd00f742f554c32dff93a1c27c53040c1bd6f3ee758dd20ae0f",
+          "before_sha256": "ea9f41cdd8595119821e31593894439e07f99ec7670af328f353dfe327199c9d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fe54e3cadb4f027b14ab66a1d697c1eb19bfa4c2f676691f0242213fe03529df",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-cursor-lifetime-start-20261012.json"
+        },
+        {
+          "after_sha256": "86af5e60017fccb0b73e961c62bd56881f59a7ed78c8742813db3da67e229c9b",
+          "before_sha256": "86dfc37830f95e79b2a24b78fd1ac1cdd4efa3af0ed5548eab9f8a95c878426a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "78489905a068b368ed3bdb0f7011e21f31e44ebe0825ee395dc4766090c46c1a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-cursor-lifetime-20261012.json"
+        },
+        {
+          "after_sha256": "a1eebe23348daef189cb9f76cc65d21bb73f18a9a8bb517b4e29a0668a8a9e85",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-cursor-lifetime-20261012.md"
+        },
+        {
+          "after_sha256": "cf69cdae15e7ad56b043180b6558425a852b62b689c66a1e9c9daab1e78d39d4",
+          "before_sha256": null,
+          "path": "research/runtime/cursor-mutex-lifetime.md"
+        },
+        {
+          "after_sha256": "282034e50b532ed94b6db6e601b248495dad3b780f2415a733c50fc869598428",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-cursor-mutex-lifetime-fixture-01.json"
+        },
+        {
+          "after_sha256": "2a091896a5dce005c00543c4703cad4080a8e65a726c958ae293937c6c8c77b6",
+          "before_sha256": "dc9ae2caeedc71c9c49c686ec0a158ad697f4f655cc5830279eac13a3be121d7",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "594d6b2702b86d83d727cf491946f9be4cce65e8c4373d1b54fa5aea31c6d6b6",
+          "before_sha256": null,
+          "path": "runtime/cursor-mutex/diagnostic_lifetime.h"
+        },
+        {
+          "after_sha256": "3b7632df63d921a314e46e5ed1003f9482add6f140e23f5c91d264efbe6f802d",
+          "before_sha256": null,
+          "path": "tests/test-drawing-cursor-mutex-lifetime.cpp"
+        },
+        {
+          "after_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "before_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+          "path": "tools/coverage_claims.py"
+        },
+        {
+          "after_sha256": "a8f1c6b3c2990c3a17818758e39bfd78149b4a6e5ca302b73c69a75e8b980c74",
+          "before_sha256": null,
+          "path": "tools/test-drawing-cursor-mutex-lifetime.py"
+        }
+      ],
+      "id": "draw02-isolated-cursor-mutex-retirement-model-20261012",
+      "pending_gaps": [
+        "behaviors_without_comparison:ec4f7866186ac9cad555606e8913968937614c8af687c718eea0432e2b9db261",
+        "behaviors_without_scenarios:ec4f7866186ac9cad555606e8913968937614c8af687c718eea0432e2b9db261"
+      ],
+      "reason": "Review pure caller-serialized diagnostic lifetime model: matching identity reserves, retirement blocks admission, exact lease drainage defers close, single close claim, failed close retained and confirmed success permits reuse with new identity. Fresh0..32lease transition matrix, wrong/stale identity/overflow/independent cells plus8x1000host-thread attempts under explicit caller mutex and guaranteed held lease pass. No OS/game handle operations or installed hook. Source census and ten exact preceding committed receipts reviewed.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh current-source/contract owned model fixture passes; original constructor/global pins, actual handle calls/per-thread tokens, exact caller state preservation, callback/worker lock-order and live diagnostic controls are not implemented. No original comparison, safe live gate/full source/native parity or completion promotion."
+      }
     }
   ]
 }
