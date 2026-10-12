@@ -22,7 +22,38 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
     if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
     valid_=true;
 }
-SceneRenderer::~SceneRenderer(){cache_.clear();if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
+SceneRenderer::~SceneRenderer(){cache_.clear();if(colourMask_)renderer_.destroy(colourMask_);if(colourAtlas_)renderer_.destroy(colourAtlas_);if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
+ColourRectangleCacheStats SceneRenderer::colourCacheStats() const {checkThread();auto s=colourStats_;s.entries=std::count_if(colourTiles_.begin(),colourTiles_.end(),[](const auto& t){return !t.image.pixels.empty();});s.pixels=colourAtlas_?2*512*512:0;return s;}
+void SceneRenderer::drawColourRectangle(const Image& image,Rect rect,int x,int y,const SpriteComposite& mode){
+    if(!limits_.cacheColourRectangles){renderer_.colourRect(canvas_,image,rect,x,y,mode);return;}
+    if(colourAge_==std::numeric_limits<std::uint64_t>::max())throw std::overflow_error("Colour cache age exhausted");
+    // Exact owned source pixels form the key; no pointer identity, palette,
+    // destination screenshot or frame-generation inference enters the cache.
+    auto found=std::find_if(colourTiles_.begin(),colourTiles_.end(),[&](const auto& t){return t.image.width==image.width&&t.image.height==image.height&&t.image.pixels==image.pixels;});
+    if(found==colourTiles_.end()){
+        if(!colourAtlas_){
+            auto atlas=renderer_.allocate(512,512,spriteFormat);
+            try{colourMask_=renderer_.create({512,512,std::vector<std::uint32_t>(512*512,1)},{8,{}});}
+            catch(...){renderer_.destroy(atlas);throw;}
+            colourAtlas_=atlas;
+        }
+        found=std::find_if(colourTiles_.begin(),colourTiles_.end(),[](const auto& t){return t.image.pixels.empty();});
+        if(found==colourTiles_.end()){
+            if(colourTiles_.size()<64){colourTiles_.emplace_back();found=colourTiles_.end()-1;}
+            else{found=std::min_element(colourTiles_.begin(),colourTiles_.end(),[](const auto& a,const auto& b){return a.age<b.age;});++colourStats_.evictions;}
+        }
+        const auto slot=std::size_t(found-colourTiles_.begin());
+        // update() flushes pending copies before a slot is overwritten. On an
+        // upload failure its old key must not remain eligible for a cache hit.
+        found->image={};
+        renderer_.update(colourAtlas_,int(slot%8)*64,int(slot/8)*64,image);
+        found->image=image;++colourStats_.uploads;
+    }else ++colourStats_.hits;
+    found->age=++colourAge_;const auto slot=std::size_t(found-colourTiles_.begin());
+    const int left=int(slot%8)*64,top=int(slot/8)*64;
+    rect={rect.left+left,rect.top+top,rect.right+left,rect.bottom+top};
+    renderer_.composite(colourAtlas_,canvas_,rect,x,y,colourMask_,mode);
+}
 void SceneRenderer::checkThread() const{
     if(std::this_thread::get_id()!=thread_)throw std::runtime_error("SceneRenderer used from another thread");
 }
@@ -150,7 +181,7 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
                 const auto& pixels=draw.colourRectangle->pixels;const auto clip=draw.viewport.value_or(viewport_);
                 const auto left=std::max<std::int64_t>(draw.anchorX,clip.left),top=std::max<std::int64_t>(draw.anchorY,clip.top);
                 const auto right=std::min<std::int64_t>(std::int64_t(draw.anchorX)+pixels.width,clip.right),bottom=std::min<std::int64_t>(std::int64_t(draw.anchorY)+pixels.height,clip.bottom);
-                if(left<right&&top<bottom)renderer_.colourRect(canvas_,pixels,{int(left-draw.anchorX),int(top-draw.anchorY),int(right-draw.anchorX),int(bottom-draw.anchorY)},int(left),int(top),draw.composite);
+                if(left<right&&top<bottom)drawColourRectangle(pixels,{int(left-draw.anchorX),int(top-draw.anchorY),int(right-draw.anchorX),int(bottom-draw.anchorY)},int(left),int(top),draw.composite);
             }else if(draw.visible&&draw.additive){
                 const auto& a=*draw.additive;const auto clip=draw.viewport.value_or(viewport_);
                 const auto left=std::max<std::int64_t>(draw.anchorX,clip.left),top=std::max<std::int64_t>(draw.anchorY,clip.top);

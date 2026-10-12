@@ -21,11 +21,13 @@ struct SceneDraw {
 struct SceneLimits {
     std::size_t draws=12320;
     ResourceCacheLimits cache;
+    bool cacheColourRectangles=false; // bounded owned pixel atlas, independent of resource IDs
 };
 struct SceneBatchBudget {
     std::size_t draws=32,uploadBytes=256*1024;
     std::chrono::microseconds time{2000};
 };
+struct ColourRectangleCacheStats {std::uint64_t hits=0,uploads=0,evictions=0;std::size_t entries=0,pixels=0;};
 struct SceneUploadNeed {std::size_t draw=0;ResourceUploadRequest request;};
 struct SceneUploadStats {std::uint64_t bytes=0,ticks=0,maxTickBytes=0;};
 enum class SceneStart { background, retainedCanvas };
@@ -57,6 +59,7 @@ public:
     QImage present();
     GpuFrame presentGpu();
     ResourceCacheStats cacheStats() const;
+    ColourRectangleCacheStats colourCacheStats() const;
     void release(const assets::ResourceId&);
 private:
     std::vector<SceneDraw> pending_;
@@ -75,6 +78,12 @@ private:
     bool valid_=false;
     std::thread::id thread_;
     void checkThread() const;
+    struct ColourTile {Image image;std::uint64_t age=0;};
+    std::vector<ColourTile> colourTiles_;
+    SurfaceId colourAtlas_=0,colourMask_=0;
+    std::uint64_t colourAge_=0;
+    ColourRectangleCacheStats colourStats_;
+    void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&);
     void validate(const SceneDraw&);
     std::optional<ResourceUploadRequest> request(const SceneDraw&);
 };

@@ -1,4 +1,5 @@
 #include "canvas_world.hpp"
+#include <cstdlib>
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <chrono>
 #include <cstring>
@@ -139,7 +140,10 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
   if(preparedReplay_){replayDraws_.clear();baselineCaptured_=false;}
   if(!scene_) {
     residentSurface_=native;
-    render::SceneLimits limits;limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
+    render::SceneLimits limits;
+    const auto baseline=std::getenv("MNM_WORLD_COLOUR_CACHE_BASELINE");
+    limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
+    limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
     scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,
                                                     int(r[5]),int(r[6]),limits);
   }
@@ -159,6 +163,8 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
         "Native producer/World handoff identity or sequence gap");
   if (!scene_) {
     render::SceneLimits limits;
+    const auto baseline=std::getenv("MNM_WORLD_COLOUR_CACHE_BASELINE");
+    limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
     limits.cache.indexedAtlas = true;limits.cache.atlasFrames=512;
     scene_ = std::make_unique<render::SceneRenderer>(renderer_, resources_,
                                                      native, limits);
