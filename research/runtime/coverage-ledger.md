@@ -7641,3 +7641,13 @@ expensive diagnostics. Identical gameplay work, zero overhead, unobtrusive
 delivery/FPS and semantic/native/frame equivalence remain unproved. Continue
 whole-source lifetime/version and route/action accounting in step2; all47/21
 and later-step closure remains open.
+
+DRAW-02 step 2 storage review: the exact-entry pinned static export resolves
+an alignment limitation in the separately retained broad release window.
+Existing 5,184-cell original release-client evidence already covers selected
+scripted ordering/state, including the shared cap; it does not establish real
+COM ownership. Lock can return cached storage after auxiliary Unlock and its
+shared result does not carry the retried Lock result. Next observe explicit
+wrapper/storage transitions and refuse uncertain in-progress cache identity.
+All source lifetime, route/action and 47/21 closure requirements remain open;
+steps 3–7 remain ordered and pending.

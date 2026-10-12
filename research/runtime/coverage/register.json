@@ -18661,7 +18661,8 @@
       ],
       "documents": [
         "research/runtime/native-world-canvas-startup.md",
-        "research/formats/canvas-startup-diagnostics.md"
+        "research/formats/canvas-startup-diagnostics.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [
         "runtime/scene/canvas_startup.c",
@@ -18682,7 +18683,9 @@
         "RS.canvas-startup.forwarding-20261008",
         "RS.canvas-startup.live-bound-20261008",
         "RS.world-startup-queues.integrated-20261008",
-        "RS.startup-sequence.live-20261008"
+        "RS.startup-sequence.live-20261008",
+        "DRAW02.canvas-storage-static-20261012",
+        "DRAW02.canvas-storage-aligned-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -18695,7 +18698,8 @@
         "runtime/shadow/win32_min.h",
         "tools/prepare-scene-observer.py",
         "tools/scene-game-runner.py",
-        "runtime/scene/startup_queue.c"
+        "runtime/scene/startup_queue.c",
+        "tools/inspect-drawing-canvas-storage.py"
       ],
       "validation_domain": "Selected original startup observation through first 800x600 main-surface World queue; no raster equivalence or allocation ownership proof.",
       "historical_status": {
@@ -18705,7 +18709,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code."
+      "validation_notes": "First-commit readiness reconciliation: the separately retained historical_status and immutable evidence describe earlier source/scope versions. Current changed-source comparison, integration and replacement are pending; no fresh stage promotion is published. Partial implementation reflects the reviewed present code.",
+      "remaining_gaps": [
+        "DRAW-02 storage-generation review is prospective: exact successful Lock/conditional Unlock/release ordering and real COM alias/allocation lifetime must remain separate from readable cached storage and scripted recovery."
+      ]
     },
     {
       "id": "RS.canvas-bind-clip",
@@ -40069,7 +40076,8 @@
         "research/runtime/draw01-inventory.md",
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/original-surface-retry.md",
-        "research/runtime/original-surface-sentinel.md"
+        "research/runtime/original-surface-sentinel.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [],
       "tests": [
@@ -40079,10 +40087,13 @@
       "validation_dependencies": [
         "tests/surface-retry-reference.cpp",
         "tools/drawing_census.py",
-        "research/runtime/coverage/binary-nocd.json"
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/inspect-drawing-canvas-storage.py"
       ],
       "evidence": [
-        "DRAW.canvas-lock-recovery.fixture-20261011"
+        "DRAW.canvas-lock-recovery.fixture-20261011",
+        "DRAW02.canvas-storage-static-20261012",
+        "DRAW02.canvas-storage-aligned-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -40090,7 +40101,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "DRAW-02 storage-generation review is prospective: exact successful Lock/conditional Unlock/release ordering and real COM alias/allocation lifetime must remain separate from readable cached storage and scripted recovery."
+      ]
     },
     {
       "id": "TOOL.drawing-core-bindings",
@@ -40368,7 +40382,8 @@
       "kind": "recovered",
       "confidence": "high_within_scope",
       "documents": [
-        "research/runtime/draw01-inventory.md"
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [],
       "tests": [
@@ -40378,12 +40393,15 @@
       "validation_dependencies": [
         "tests/surface-retry-reference.cpp",
         "tools/drawing_census.py",
-        "research/runtime/coverage/binary-nocd.json"
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/inspect-drawing-canvas-storage.py"
       ],
       "evidence": [
         "DRAW.canvas-release.fixture-20261011",
         "DRAW.canvas-release.range-fixture-20261011",
-        "DRAW.terminal-canvas-wrappers.original-range-20261011"
+        "DRAW.terminal-canvas-wrappers.original-range-20261011",
+        "DRAW02.canvas-storage-static-20261012",
+        "DRAW02.canvas-storage-aligned-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -93949,6 +93967,42 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.canvas-storage-static-20261012",
+      "kind": "static",
+      "record": "research/runtime/draw02-canvas-storage-static-01.json",
+      "sha256": "0cbaf87b097a0931aee40dd90e08c422fa34dbea673f14b6e64b925fddf149d1",
+      "sources_pointer": "/sources",
+      "scope": "Broad pinned static export; release starts one byte after entry, so exact release ordering uses the separate entry-aligned report.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.canvas-storage-aligned-20261012",
+      "kind": "static",
+      "record": "research/runtime/draw02-canvas-storage-aligned-01.json",
+      "sha256": "20d411df1306ede7c9e775baacd4e9a2bec564beccf57cb437cdc6ec020c4da9",
+      "sources_pointer": "/sources",
+      "scope": "Pinned exact-entry creation/release/lock disassembly. Static control flow only; no driver/COM/ownership or fresh original execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/entry_alignment_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106076,8 +106130,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cadence-control-20261012.json",
-    "sha256": "88c203d832801a08e179d4fff90d6109b86f3b3a0950df8d413b899d29fbc602"
+    "path": "research/runtime/coverage/source-index-draw02-storage-review-20261012.json",
+    "sha256": "dc6b05bcdb8fce198aaefc255f34e3f67292c1c6d68a161cd46d34fbf36f1b37"
   },
   "claim_bindings_required": true
 }
