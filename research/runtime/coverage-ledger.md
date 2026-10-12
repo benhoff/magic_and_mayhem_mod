@@ -604,6 +604,23 @@ contract do not advance coverage.
 
 ## Native menus and original menu observation
 
+2026-10-12 UI40 starts Grimoire control recovery. Static constructors/resource
+consumers correct earlier reversed names: Grimoire is `0x6e0088`/vtable5c6b70,
+Region action2/Realm auxiliary3; Character is `0x6c5148`/vtable5c66b4/ID20,
+Region action4/Realm auxiliary2. [Contract and evidence](grimoire-engine-contract.md).
+Thirty-two private original callback cases check animation-surface swaps, Close
+3999, Previous1999/Next2999 and packed chapter/section selectors, including
+unbounded original forwarding, with full argument returns and register/stack
+checks. Helpers are stubbed; no original resource/drawing/caller-return or native
+book integration is promoted. The book uses custom return `+0x1e`, transition
+state and tick, so standard menu readiness offsets do not apply. Character's
+initialization candidate stays outside discovered bodies/unassigned; its vtable
+link establishes only static identity. Old wire field names and evidence hashes
+are retained with address-based label corrections. Live open/close, formatted
+dynamic values, catalog availability and native reader ownership remain pending.
+The committed `596d6a4..b49bc43` review has 22 exact versions and zero missing
+receipt chains; it does not infer a retrospective gate or new execution result.
+
 2026-10-12 UI39 validates campaign Save overwrite No/Yes, native Delete No/Yes,
 original/native row refresh, Save/Load Cancel, deleted-row exclusion and normal
 Quit/exit0 on Wine-window embedding. All pre-existing owned saves stay unchanged;
