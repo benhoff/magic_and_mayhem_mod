@@ -44017,6 +44017,84 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "subsystem": "campaign",
+      "documents": [
+        "research/runtime/character-pricing.md"
+      ],
+      "implementation": [
+        "reconstruction/campaign/character_cost.hpp",
+        "reconstruction/campaign/character_cost.cpp",
+        "reconstruction/campaign/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/character-cost-reference.cpp",
+        "tools/test-character-cost.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI49.character-pricing-original"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "CP.character-pricing",
+      "kind": "recovered",
+      "title": "Character positive-domain price calculator",
+      "scope": "Six-row decrement/increment prices from integer value/increment indices and binary32 coefficients, original x87 power and positive int truncation; installed values0..800 plus selected synthetic finite nonnegative coefficients. No live admission, general CRT error/overflow semantics, original failed-input equivalence, full ABI or persistence.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4939024,
+          "scope": "Complete six-row price calculator with original power/truncation helpers; bounded defined domain"
+        }
+      ]
+    },
+    {
+      "subsystem": "campaign",
+      "documents": [
+        "research/runtime/character-pricing.md"
+      ],
+      "implementation": [
+        "reconstruction/campaign/character_cost.hpp",
+        "reconstruction/campaign/character_cost.cpp",
+        "reconstruction/campaign/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/character-cost-reference.cpp",
+        "tools/test-character-cost.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI49.character-pricing-original"
+      ],
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "NP.character-price-admission",
+      "kind": "native_policy",
+      "title": "Native Character cost-domain refusals",
+      "scope": "Intentional native refusal of negative/overlarge value, zero/negative/overlarge increment, nonfinite/negative coefficients, exponent below1 and unrepresentable resulting prices;12 controls. No original failed-input equivalence or live integration.",
+      "original": []
     }
   ],
   "evidence": [
@@ -91375,6 +91453,39 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI49.character-pricing-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/character-pricing-original-20261012.json",
+      "sha256": "0330a636cf901a8d8c6e39aac78d412cf60c84f8a3665e2e14d41ad653622d1c",
+      "scope": "1643 six-row original calculator executions/19716 matching prices,12 separate intentional native refusals; original calculator and math helper bytes unchanged. No live/native menu integration or math error/overflow equivalence.",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/calculator_cases",
+          "equals": 1643
+        },
+        {
+          "pointer": "/price_comparisons",
+          "equals": 19716
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 12
+        },
+        {
+          "pointer": "/calculator_and_math_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102529,8 +102640,8 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "e5d05cd12c2c25959c16363cfbf1218b7ee19a324dfa975b0e70dace9a189e55",
-      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character."
+      "sha256": "11713072ede05d3ee0b6ef2a7aa3fbb3cb89bc80eb60c87a7f416c419c369b94",
+      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character. UI49 compares bounded positive-domain Character pricing; native failed-input policy stays separate, live menus pending."
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
@@ -102614,8 +102725,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-character-20261012.json",
-    "sha256": "27c562da9d8ae49fd53d5ffd6cce56ab32f09b74edfeba18e29579039909e430"
+    "path": "research/runtime/coverage/source-index-character-pricing-20261012.json",
+    "sha256": "e999769ad1ca422e397ee95d0e391c9abf549000a1ddb4742eac501c13f90608"
   },
   "claim_bindings_required": true
 }
