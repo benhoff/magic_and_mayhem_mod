@@ -7,6 +7,8 @@ static void media_check(u32 operation,const char* path,u32 flags,i32 expected,u3
 }
 static void test_media(void){
     media_check(4,0,0,1,0x77);
+    media_check(7,0,0,1,0x77);
+    media_check(6,0,0,1,0x77);
     media_check(1,"FMV/Test.avi",0,1,0x77);
     media_check(1,"FMV/Skip.avi",0,0,0x77);
     media_check(1,"FMV/Test.avi",1,1,0x77);
@@ -23,8 +25,15 @@ static void test_media(void){
     media_check(5,0,0,65538,0x77);
     media_check(1,"FMV/Missing.avi",0,17,0x88);
     media_check(1,"../FMV/Test.avi",0,17,0x88);
+    media_check(8,0,1,1,0x77);
+    media_check(1,"FMV/Missing.avi",0,0,0x77);
+    media_check(8,0,0,1,0x77);
     media_check(2,"in-memory",4,23,0x88);
-    /* Host exits after eleven results: stale lease must fall back. */
+    /* Compatibility keeps its historical movie fallback; installed native
+       ownership refuses a late replay and returns unavailable without COM. */
     media_check(1,"FMV/Test.avi",0,17,0x88);
+    media_check(8,0,1,1,0x77);
+    media_check(6,0,0,0,0x77);
+    media_check(1,"FMV/Test.avi",0,0,0x77);
     ExitProcess(0);
 }

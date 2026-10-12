@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "tests/media-startup-probe-reference.cpp": "b80f9785c024f9aa1adf29f25faf3c2d34828f898ca4e5b24bac3a6308caeead",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-media-startup-probe.py": "a2f3de942a2c869fa4ebb46aaed22276d612c8bc45023a2971a14ef057848458"
+  },
+  "claims": [
+    {
+      "behavior": "AU.media_startup_probe",
+      "contract_sha256": "80a04d35a22c966d881bbcc2f4f23b8a447c9d250ee4ba3b59cf42a278f0d7f5",
+      "scenarios": {}
+    }
+  ],
+  "scope": "Unchanged original0x483f30..483f7b availability caller with49 signed HRESULT combinations and exact scripted CoInitialize/FilterGraph CoCreateInstance/Release/CoUninitialize order. Actual Wine COM/Quartz/codec/device and native policy equivalence excluded.",
+  "original": {
+    "success": true,
+    "cases": 49,
+    "events": 121,
+    "caller_bytes": 75
+  },
+  "input_unchanged": true,
+  "sources_stable": true,
+  "original_control_instructions_unchanged": true,
+  "original_manifest_verified_before_after": true
+}

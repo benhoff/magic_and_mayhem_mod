@@ -112,7 +112,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
                     native_extended_controls=native_voices,
                     native_output_recovery=native_voices,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
-    metadata.update(native_media=native_media,media_channel=str(root/'native-media.bin') if native_media else None)
+    metadata.update(native_media=native_media,native_media_startup_probe=native_media,
+                    media_channel=str(root/'native-media.bin') if native_media else None)
     if native_music:
         from native_music_launch import stage as stage_music
         music_source=(music_assets or REPO/'working/assets/native-cd-audio-20261012').resolve()

@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "reviewed_range": "8358104a..76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+  "scope": "Committed parent/current exact receipt audit for native hidden-video controls, separate from uncommitted startup media probe and concurrent skirmish. Fresh all-frame/PCM and PE controls1/-1/256 with current headless scenario reviewed. Earlier control0 live composition retains its pre-final-test-script hash and pending current freshness; no past-gate or new equivalence inferred.",
+  "files": [
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "9ad1197b20618b14bdfc108a37ec2fee65e53f58c52afc948936cdea9aa80d28",
+      "after_sha256": "f0d6801758fff5b32d58ac62d1dcaa62abf6017197c60ff922eb9ff664d4c98f",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "apps/qt-shell/media_broker.cpp",
+      "before_sha256": "fd2d9c8eadb148ab3519d96a6144947c9312326325614f137d1c1dabbaa8e90a",
+      "after_sha256": "65c05b7643b7a05d779b6fad9ffd62415cb0b8869d7a7f941391bd0886bdaf1d",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "apps/qt-shell/media_broker.hpp",
+      "before_sha256": "4439a835bb327ac3536761d723afdc7a09cf8ceb64b04eb05c9681499fbbd367",
+      "after_sha256": "daa71e789ba39d7a2b68ca48e57cc88459dab5c7f148731c6216bfdbb3855643",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "apps/qt-shell/native_playback.cpp",
+      "before_sha256": "3b06cb66d0bb435ebd64b8015010911cb9586d9fb2c41cbe85f8d41d717fb955",
+      "after_sha256": "d8487c330c9280f5df225204e41ca3e6019dce2257beca0996987566e726982d",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "apps/qt-shell/native_playback.hpp",
+      "before_sha256": "fa864b25515e391cab7c94448254d48878277762d7c5b557c4d84922fa71ec3c",
+      "after_sha256": "ff482a8ff98996acf7bcf7962a8e1c04011db8c1f8a3926617dcde4a6c4193ae",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "protocols/include/mnm/media_v1.h",
+      "before_sha256": "4cfd4858739f7b1ba41ec5f26b7e15ac5a44be4fae4288e692c8c5802da53a23",
+      "after_sha256": "c324fc76595c105d38c02c5ff6e714331e89d636f9ce80fa2ee412d782919cc0",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "protocols/python/mnm_protocols/media_v1.py",
+      "before_sha256": "37d123d240c3a7975a30cb5a024d0a97914a44adbedc30f6e76980d6cea26f9e",
+      "after_sha256": "858b2e7e4dd3def53006978c8db0b257883551ab6977254850b6ed11d1b3c798",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "protocols/schemas/media-v1.json",
+      "before_sha256": "3ac31dd038037bf71ab3a5b0a4093a8242ce6e17eff8235a1608c2912f4eb319",
+      "after_sha256": "df6177c53ef571d4cfc14d6424585df2fbf24e624d1dcaee5022c185a6893670",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "20c6e2052c1af7a8416ad0695e91ca42736700a1506e97880d728bfe6bcac6c6",
+      "after_sha256": "ea703af1168823a6f5b720f6a6c2b9c1aa21f5822d227c4ec11965febf232f25",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/coverage/native-cd-fade-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "cb21c353352fa49df140916e0709c05921956f9af0bdb534c7a499ef07d679f2",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "75d05781a91589cc933749a1b52ebec086a62b6ec4c60b19a25ebe9738dc1411",
+      "after_sha256": "f83dc9b90efc46d35c09ef7a428d7e88a72a2874789b636172c875cac5f9752e",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/coverage/source-index-native-hidden-movie-commit-v2-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e5157ce47962f2e2692fce6dccbe87f4fea361e0267a46fe96edb074f3a920d4",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/coverage/summary-native-hidden-movie-commit-v2-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "11960ec94e841b2b2f4495c700c2e42b7a72e45a08eee72d823821a15885bece",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/native-audio-end-to-end.md",
+      "before_sha256": "e05800c45a131208c61883be41bda508afa980ef786699f0f41c483120fe9d9c",
+      "after_sha256": "f8a85d415c37ac7bdbb8a41fce476e68970d60c5ffafe47fb069b95b13f28d49",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/native-movie-controls-public-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fb0f1a3170b2a1b332ea2fd2229e28f4e0c0b315adcb8c4c1b517c59619c7d70",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/native-movie-hidden-all-frames-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7e9c44e0fd90ee00ab8b2958ed2bf2de73c05e2727d2143faed55d8bd24e52d1",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/native-movie-hidden-video-synthetic-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "36c48be5310e798248f1c67d561f43725226d20abcecfc5bd9d1f2abf61c854f",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "research/runtime/qt-native-media.md",
+      "before_sha256": "7ed13abdebee2513e18a22861c904f28eb566becb9b4433b9e546b752cf124c4",
+      "after_sha256": "be20c423bd3d96d3f12beac8d83f4845ec8e96228718bc8435e36fb717014084",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "runtime/render/media_bridge.h",
+      "before_sha256": "bb9793ca6a8d9d62d8732b5596b366fe6c1569567336d2657e7183fc69f9aa96",
+      "after_sha256": "a160f0b7bdb9c3bc2d4f299f36cc3ed4e8d655f29e2b7ae59d91f09511950af4",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "runtime/render/media_selftest.h",
+      "before_sha256": "4cb9207016c4bf89670cf29db55b3d466135b8801ce1602063a3cc486625e730",
+      "after_sha256": "c7795effbf1172168ae59554755332bbf3680b00d94be2733c42e20b38518276",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    },
+    {
+      "commit": "76c88ab0f70c118ef15ca464dfbae010eb70c02f",
+      "path": "tools/test-native-media.py",
+      "before_sha256": "40e49a3d979b2e3ecea6c10ab309dabcaf2df6d8245c711cb53af20e952e874a",
+      "after_sha256": "fef4efc4b57f357c5874ab40a2f6eb231766143e48bda0b3263e12b858a346de",
+      "receipt_chain": [
+        "native-hidden-movie-scoped-accounting-v2-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

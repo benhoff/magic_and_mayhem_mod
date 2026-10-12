@@ -8,6 +8,7 @@ static MediaMovie media_original_movie;
 static MediaSound media_original_sound;
 static volatile u32 media_busy;
 static u32 media_next;static volatile u32 media_native_sound,media_legacy_sound;
+static u32 media_native_only;
 static void media_init(void){
     char path[512];u32 length=GetEnvironmentVariableA("MNM_RENDER_MEDIA",path,sizeof(path));
     if(!length || length>=sizeof(path))return;
@@ -27,7 +28,7 @@ static i32 media_request(u32 operation,const char* path,u32 flags){
             u8 c=(u8)path[length];if(!c)break;if(c<32 || c>126)goto fallback;++length;}
         if(!length || length==MNM_MEDIA_V1_PATH_SIZE)goto fallback;
     }
-    if(operation!=MNM_MEDIA_V1_OPERATION_STOP_FILE_SOUND && !path)goto fallback;
+    if(operation!=MNM_MEDIA_V1_OPERATION_STOP_FILE_SOUND && operation!=MNM_MEDIA_V1_OPERATION_AVAILABILITY && !path)goto fallback;
     u32 id=++media_next;if(!id)id=++media_next;
     u32 seq=__atomic_load_n(media_words+MNM_MEDIA_V1_REQUEST_SEQUENCE_OFFSET/4,__ATOMIC_RELAXED);
     __atomic_store_n(media_words+MNM_MEDIA_V1_REQUEST_SEQUENCE_OFFSET/4,seq+1,__ATOMIC_SEQ_CST);
@@ -58,11 +59,27 @@ static i32 media_request(u32 operation,const char* path,u32 flags){
 fallback:
     __atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return -1;
 }
+static i32 __attribute__((used,noinline)) media_availability(void){
+    u32 error=GetLastError();i32 result=media_request(MNM_MEDIA_V1_OPERATION_AVAILABILITY,0,0);
+    SetLastError(error);return result>0;
+}
+/* Original availability saves ECX/ESI. Preserve every register and flag except
+   the returned EAX boolean; no COM object or legacy probe is admitted here. */
+static i32 __attribute__((naked)) media_available(void){
+    __asm__ __volatile__("pushfl\n pushal\n call _media_availability\n movl %eax,28(%esp)\n popal\n popfl\n ret\n");
+}
+static int media_startup_matches(u8* call){
+    static const u8 expected[5]={0xe8,0x5a,0xa9,0xf9,0xff};
+    return readable(call,5)&&same(call,expected,5);
+}
+static void media_startup_write(u8* call){
+    u32 offset=(u32)&media_available-(u32)(call+5);call[0]=0xe8;copy(call+1,&offset,4);
+}
 static i32 __fastcall media_movie(const char* path,void* surface,void* window,i32 x,i32 y,i32 control){
     u32 error=GetLastError();
     i32 result=media_request(MNM_MEDIA_V1_OPERATION_MOVIE,path,(u8)control?MNM_MEDIA_V1_MOVIE_FLAG_NO_PRESENT:0);
     SetLastError(error);
-    if(result==-1)return media_original_movie(path,surface,window,x,y,control);
+    if(result==-1 && !media_native_only)return media_original_movie(path,surface,window,x,y,control);
     return result>0;
 }
 static i32 WIN media_sound(const char* path,void* module,u32 flags){
@@ -104,13 +121,22 @@ static void media_install(u32 base){
     if(!media_words)return;
     void* winmm=GetModuleHandleA("winmm.dll");
     media_original_sound=winmm?(MediaSound)GetProcAddress(winmm,"PlaySoundA"):0;
-    void** iat=(void**)(base+0x1c52d8);u32 protection,ignored;
+    void** iat=(void**)(base+0x1c52d8);u8* startup=(u8*)(base+0xe95d1);u32 protection,startup_protection,ignored;
     if(!media_original_sound || !readable(iat,4) || *iat!=(void*)media_original_sound ||
-       !readable((void*)(base+0x69a00),5) || !VirtualProtect(iat,4,4,&protection))return;
-    if(media_patch_movie((u8*)(base+0x69a00)))__atomic_store_n(iat,(void*)&media_sound,__ATOMIC_RELEASE);
+       !readable((void*)(base+0x69a00),5) || !media_startup_matches(startup) || !VirtualProtect(iat,4,4,&protection))return;
+    if(!VirtualProtect(startup,5,0x40,&startup_protection)){VirtualProtect(iat,4,protection,&ignored);return;}
+    if(media_patch_movie((u8*)(base+0x69a00))){
+        media_startup_write(startup);media_native_only=1;
+        __atomic_store_n(iat,(void*)&media_sound,__ATOMIC_RELEASE);
+        FlushInstructionCache(GetCurrentProcess(),startup,5);
+    }
+    VirtualProtect(startup,5,startup_protection,&ignored);
     VirtualProtect(iat,4,protection,&ignored);
 }
 #else
+static i32 __attribute__((naked)) media_startup_abi(void* call __attribute__((unused))){
+    __asm__ __volatile__("pushfl\n pushal\n movl 40(%esp),%eax\n movl $0x11223344,%ecx\n movl $0x55667788,%edx\n movl $0x12345678,%ebx\n movl $0x33445566,%esi\n movl $0x778899aa,%edi\n movl $0x22334455,%ebp\n stc\n call *%eax\n jnc 1f\n cmpl $1,%eax\n jne 1f\n cmpl $0x11223344,%ecx\n jne 1f\n cmpl $0x55667788,%edx\n jne 1f\n cmpl $0x12345678,%ebx\n jne 1f\n cmpl $0x33445566,%esi\n jne 1f\n cmpl $0x778899aa,%edi\n jne 1f\n cmpl $0x22334455,%ebp\n jne 1f\n movl $1,%eax\n jmp 2f\n1: xorl %eax,%eax\n2: movl %eax,28(%esp)\n popal\n popfl\n ret\n");
+}
 static i32 media_test_control;
 static i32 __fastcall media_test_movie(const char* path,void* surface,void* window,i32 x,i32 y,i32 control){
     (void)path;if(surface!=(void*)0x1234 || window!=(void*)0x5678 || x!=11 || y!=22 || control!=media_test_control || GetLastError()!=0x77)ExitProcess(310);
@@ -123,6 +149,16 @@ static i32 WIN media_test_sound(const char* path,void* module,u32 flags){
 }
 __declspec(dllexport) i32 WIN RenderMediaForTest(u32 operation,const char* path,u32 flags){
     media_original_movie=&media_test_movie;media_original_sound=&media_test_sound;
+    if(operation==6)return media_available();
+    if(operation==8){media_native_only=flags;return 1;}
+    if(operation==7){
+        static const u8 fixture[6]={0xe8,0x5a,0xa9,0xf9,0xff,0xc3};
+        u8* code=VirtualAlloc(0,sizeof(fixture),0x3000,0x40);if(!code)return 0;copy(code,fixture,sizeof(fixture));
+        code[1]^=1;if(media_startup_matches(code))return 0;code[1]^=1;
+        if(!media_startup_matches(code))return 0;
+        media_startup_write(code);FlushInstructionCache(GetCurrentProcess(),code,6);
+        return media_startup_abi(code);
+    }
     if(operation==5)return (i32)(media_test_sound_calls|(media_test_sound_stops<<16));
     if(operation==4){
         static const u8 fixture[14]={0x51,0x8d,0x44,0x24,0,0x59,0xb8,23,0,0,0,0xc2,16,0};

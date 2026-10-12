@@ -10,7 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
-from native_audio_launch import SIZE, VERSION, authorize, validate_activity, validate_retirement
+from native_audio_launch import SIZE, VERSION, authorize, directsound_disabled, validate_activity, validate_retirement
 
 
 class AudioLaunchTest(unittest.TestCase):
@@ -55,6 +55,23 @@ class AudioLaunchTest(unittest.TestCase):
         authorize(self.root,{**self.metadata,'native_audio_factory':True,'native_media':True},env)
         self.assertEqual(env['WINEDLLOVERRIDES'],'example=n;dsound=')
         with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_audio_factory':1},{})
+
+    def test_guarded_native_media_retires_directsound_by_default(self):
+        metadata={**self.metadata,'native_audio_factory':True,'native_media':True,'native_media_startup_probe':True}
+        env={'WINEDLLOVERRIDES':'ddraw=;dsound=n,b'}
+        authorize(self.root,metadata,env)
+        self.assertEqual(env['WINEDLLOVERRIDES'],'ddraw=;dsound=n,b;dsound=')
+        self.assertTrue(directsound_disabled(env))
+        for change in [{'native_audio_factory':False},{'native_media_startup_probe':False}]:
+            env={'WINEDLLOVERRIDES':'example=n'}
+            authorize(self.root,{**metadata,**change},env)
+            self.assertEqual(env['WINEDLLOVERRIDES'],'example=n')
+        env={'MNM_NATIVE_DISABLE_DSOUND':'0','WINEDLLOVERRIDES':'dsound=n,b'}
+        authorize(self.root,metadata,env);self.assertFalse(directsound_disabled(env))
+        for change in [{'native_media':False},{'native_media_startup_probe':1}]:
+            with self.assertRaises(ValueError):authorize(self.root,{**metadata,**change},{})
+        self.assertTrue(directsound_disabled({'WINEDLLOVERRIDES':'dsound=n,b; DSOUND , example = '}))
+        self.assertFalse(directsound_disabled({'WINEDLLOVERRIDES':'dsound=;dsound=b'}))
 
     def test_header_failures(self):
         for word, value in [(2, 1), (3, 1), (20, 0)] + [(i, 1) for i in list(range(4, 19)) + list(range(21, 32))]:
