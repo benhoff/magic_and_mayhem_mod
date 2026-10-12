@@ -45267,7 +45267,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Separate pinned original cursor-source diagnostic mutex module",
-      "scope": "Opt-in separate PE32 module pins original NoCD base/IAT/exact two constructor and close anchors; forwards original Create/Close once with exact args/raw result/error/full512FX. Tracks private duplicates at observed constructor returns, retires before original Close, offers versioned scalar token begin/end with stored gate state, raw outcomes and bounded token/owner refusals. Not yet integrated with source capture; native diagnostic synchronization intentionally changes timing/lifetime. Separate bounded scalar lifecycle/gate journal and explicit one-shot diagnostic snapshot, never a complete shutdown/normal capture terminal. Snapshot admission remains partial; late writer and restoration/quiescence limitations explicit. Explicit phase10stored-state drain precedes private cleanup; decoder checks scoped publication/retirement/close/token/drain/end/terminal pairing, still no complete normal shutdown admission.",
+      "scope": "Opt-in separate PE32 module pins original NoCD base/IAT/exact two constructor and close anchors; forwards original Create/Close once with exact args/raw result/error/full512FX. Tracks private duplicates at observed constructor returns, retires before original Close, offers versioned scalar token begin/end with stored gate state, raw outcomes and bounded token/owner refusals. Not yet integrated with source capture; native diagnostic synchronization intentionally changes timing/lifetime. Separate bounded scalar lifecycle/gate journal and explicit one-shot diagnostic snapshot, never a complete shutdown/normal capture terminal. Snapshot admission remains partial; late writer and restoration/quiescence limitations explicit. Explicit phase10stored-state drain precedes private cleanup; decoder checks scoped publication/retirement/close/token/drain/end/terminal pairing, still no complete normal shutdown admission. Owned installer matrix tests each of four byte anchors and mismatched original Create import; synthetic original Create/Close exact argument/raw result/error/full512FX one-forward cases. Production DLL builder explicitly fingerprints dependencies/exports; source capture remains unintegrated.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45294,7 +45294,8 @@
         "runtime/shadow/win32_min.h",
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
         "tools/coverage_claims.py",
-        "tools/drawing_api_session.py"
+        "tools/drawing_api_session.py",
+        "tools/build-cursor-source-gate.py"
       ],
       "evidence": [
         "DRAW02.cursor-module-fixture-01-20261012",
@@ -45303,7 +45304,9 @@
         "DRAW02.draw02-cursor-module-fixture-04-20261012",
         "DRAW02.draw02-cursor-module-fixture-05-20261012",
         "DRAW02.draw02-cursor-module-build-negative-06-20261012",
-        "DRAW02.draw02-cursor-module-fixture-07-20261012"
+        "DRAW02.draw02-cursor-module-fixture-07-20261012",
+        "DRAW02.draw02-cursor-module-fixture-08-20261012",
+        "DRAW02.draw02-cursor-module-production-build-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45313,7 +45316,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh fixture07passes20row scoped drain/pairing0gaps and5malformed-data guards; build06negative retained; earlier snapshots historical after source/decoder/test changes. Quiescent normal shutdown/import restoration, late writer boundary, full original forwarding/installer/fault/orphan matrix and original capture/worker/cadence controls remain open; no complete journal/reference/parity claim."
+        "Fresh fixture08passes4anchors/importmismatch/4forwardcells and production DLL build/export check passes; previous fixture07historical after extended test/scope/builder dependency. Full diagnostic fault/orphan/budget/privatefailure/concurrent module matrix, normal quiescence and real original capture/frontend/source/worker/cadence controls remain open."
       ]
     }
   ],
@@ -97237,6 +97240,44 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-fixture-08-20261012",
+      "kind": "native_integration",
+      "scope": "Owned forwarding/installer fixture or production build/export metadata only as stated in record; no original runtime/live source integration.",
+      "record": "research/runtime/draw02-cursor-module-fixture-08.json",
+      "sha256": "461fcb49941aa6c5a735e3c883875d476bcf5f5bdacd71761dbf294f2f0bee8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-cursor-module-production-build-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned forwarding/installer fixture or production build/export metadata only as stated in record; no original runtime/live source integration.",
+      "record": "research/runtime/draw02-cursor-module-production-build-01.json",
+      "sha256": "0960ac5fa39133c30f42a3b5efdbad8b876709e2b7fe2aec05bbfdc81fe294dc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109379,8 +109420,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-cursor-drain-20261012.json",
-    "sha256": "acab75df01b0fe3c99088ac9d278f68fc57541c64b64f0f13ce105df3d982bdd"
+    "path": "research/runtime/coverage/source-index-draw02-cursor-forward-matrix-20261012.json",
+    "sha256": "bc0d2d7b1232bdcd3f4c4d3fa5465c60f423f0aa77da4352a71c0f823c5b4daf"
   },
   "claim_bindings_required": true
 }

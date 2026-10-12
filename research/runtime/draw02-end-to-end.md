@@ -1659,3 +1659,21 @@ Reassessment: step2 remains open. Quiescent normal shutdown/import restoration,
 late-writer boundary, full forwarding/installer/fault/orphan case matrix and
 actual build/frontend/source/worker/cadence capture controls still necessary.
 All47/21and steps3–7remain open. Reviewed392de8d8..10f0759bhas15exactreceipts,0gaps.
+
+## DRAW-02 production gate build and forwarding matrix checkpoint (2026-10-12 UTC)
+
+Drain accounting committed632741f0with guarded staged retry and required hook
+passed. Fixture08freshly passes all four altered original byte anchor refusals,
+Create import mismatch and four synthetic original Create/Close forward cells,
+exact args/raw result/LastError/full512FX and exactly one original call each.
+The production MnmCursorGate.dll builds with pinned default addresses and named
+scalar anchor/begin/end/shutdown exports; build01metadata/source hashes retained.
+No production DLL runtime/game execution or source capture integrated.
+
+Reassessment: step2 remains open. Add optional scripted import/frontend and
+source gate placement before recorder locks, bounded token/API/source binding,
+explicit partial snapshot provenance and refusal paths; then owned capture-path
+fixtures and bounded32original-active source/worker/cadence controls. Diagnostic
+full fault/orphan/budget/privatefailure matrix and normal quiescence still open;
+no complete reference or parity from successful build/owned fixture. All47/21and
+steps3–7retain scope. Reviewed10f0759b..632741f0has13exact receipts, zero gaps.

@@ -51,3 +51,16 @@ Fresh fixture07passes20rows with explicit drain before private cleanup and
 scoped lifecycle/token/terminal pairing0gaps. Build06negative duplicate memset
 was preserved before correction/new claims. Five decoder malformed-data guards
 pass. Complete admission remains false: normal quiescence and full cases open.
+
+Prospective forward/installer matrix covers all four altered byte anchors and
+Create import mismatch, plus exact synthetic original Create/Close args/results/
+error/full512FX once for null/non-null and0/nonzero raw responses. Production
+DLL builder fingerprints explicit dependencies and scalar exports. No original
+capture or complete shutdown admission follows from a successful build.
+
+Fixture08freshly passes four byte-anchor refusals, original Create import
+mismatch and four exact Create/Close synthetic original-forward cells (null/
+nonnull create,0/nonzero close), exact args/result/error/full512FX and one forward.
+Production build01pins default addresses and exports scalar anchor/begin/end/
+shutdown names; DLL runtime not executed. Complete shutdown/source integration
+remain independent and pending.
