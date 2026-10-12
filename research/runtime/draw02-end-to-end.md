@@ -668,3 +668,20 @@ asynchronousdelivery/sourceownership. Getterorigin alone cannotfreezeorown
 bytes. Fullroutes/lifetimes/semantic120windows remainopen;steps3–7stayordered
 pendingandall47/21requirements remainopen. Reviewed8cad8925..2f46b1b6has18exact
 committedreceipts/0gaps.Storageabout918GiBworking/408GiBfree;nohashrefresh/cleanup.
+
+## Step 2 internal Wine texture-entry checkpoint (2026-10-12 UTC)
+
+Separateopt-inentrymode verifiespinnedWinehash/RVA/exact6byteprologues,uses
+whole-instructiontrampolinesandoriginalcdecllifetimeforwarders,leavestexture
+DirectDrawIATsunpatchedtoavoiddoublerecording. No original/modulefile changes.
+ActualPE32fixture01passes4trampolinecreate/releasecalls,2generations,addressreuse,
+LastErrorandmismatchedsignaturebeforemutationchecks. Original01admits1630
+submissionswith0unknownfirst/sourcegenerations and377frontgetterreturnswith
+0unknowntextures. All32Worldreturnsclose;377API/376EGLwitnessesremainseparate.
+Internalfrontbuffercreationgapinthisselectedcohortisnowobserved,notinvented.
+
+Reassessment:step2stillrequiresimmutable source ownership,actualasyncEGL
+submissionassignment,allroutes/completeinterval lifetimes andsemantic120advancing
+windows. Steps3–7remainordered/pending;all47/21requirementsremainopen.
+Reviewed2f46b1b6..65bdceecreceiptshas21matchedversions/0gaps.Storageabout926GiB
+working/400GiBfree;historicalhashesretainedandnocleanup.

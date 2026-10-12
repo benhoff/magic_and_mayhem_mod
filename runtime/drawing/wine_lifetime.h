@@ -44,7 +44,9 @@ static u32 wine_lifetime_decref(void* object,u32 index,u32 method){
 }
 static u32 __attribute__((cdecl)) wine_lifetime_texture_decref(void* object){return wine_lifetime_decref(object,1,2);}
 static u32 __attribute__((cdecl)) wine_lifetime_swapchain_decref(void* object){return wine_lifetime_decref(object,3,4);}
+#include "wine_texture_entry.h"
 static int wine_lifetime_open(void){
+ if(!wine_texture_entry_mode())return 0;
  char name[600];path(name,"wine-lifetime.bin");wine_lifetime_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(wine_lifetime_file==(HANDLE)-1)return 0;
  u32 h[16]={0};copy(h,"MNMWLF01",8);h[2]=1;h[3]=96;h[4]=0x40209ca7;h[5]=131072;h[6]=2048;return write(wine_lifetime_file,h,64);
 }
@@ -52,7 +54,8 @@ static int wine_lifetime_install(void* ddraw,void* module){
  const u32 iat[4]={0x6d6bc,0x6d6c0,0x6d690,0x6d694},target[4]={0x217480,0x217e10,0x211940,0x211a00};
  const char* names[4]={"wined3d_texture_create","wined3d_texture_decref","wined3d_swapchain_create","wined3d_swapchain_decref"};void* hooks[4]={(void*)&wine_lifetime_texture_create,(void*)&wine_lifetime_texture_decref,(void*)&wine_lifetime_swapchain_create,(void*)&wine_lifetime_swapchain_decref};
  for(u32 i=0;i<4;++i){void* expected=GetProcAddress(module,names[i]);void** slot=(void**)((u32)ddraw+iat[i]);if(expected!=(void*)((u32)module+target[i])||!readable(slot,4)||*slot!=expected)return 0;}
- for(u32 i=0;i<4;++i){void** slot=(void**)((u32)ddraw+iat[i]);u32 old,unused;if(!VirtualProtect(slot,4,4,&old))return 0;wine_lifetime_original[i]=*slot;*slot=hooks[i];if(!VirtualProtect(slot,4,old,&unused))return 0;}return 1;
+ if(wine_texture_entry_enabled&&!wine_texture_entry_patch(module))return 0;
+ for(u32 i=wine_texture_entry_enabled?2:0;i<4;++i){void** slot=(void**)((u32)ddraw+iat[i]);u32 old,unused;if(!VirtualProtect(slot,4,4,&old))return 0;wine_lifetime_original[i]=*slot;*slot=hooks[i];if(!VirtualProtect(slot,4,old,&unused))return 0;}return 1;
 }
 static void wine_lifetime_close(u32 reason){
  if(!wine_lifetime_file)return;u32 r[24]={0};r[1]=4;r[2]=reason;r[3]=wine_lifetime_calls;r[4]=GetCurrentThreadId();r[7]=GetTickCount();r[11]=wine_lifetime_generations;wine_lifetime_emit(r);if(!CloseHandle(wine_lifetime_file))ExitProcess(99);wine_lifetime_file=0;

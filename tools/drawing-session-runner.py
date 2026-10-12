@@ -17,6 +17,8 @@ if pin:=metadata.get('wine_submission'):
         if hashlib.sha256(Path('/usr/lib/wine/i386-windows',name+'.dll').read_bytes()).hexdigest()!=digest:raise ValueError('Installed Wine module changed: '+name)
     os.environ['MNM_DRAW_WINE_SUBMISSION']='1'
 else:os.environ.pop('MNM_DRAW_WINE_SUBMISSION',None)
+if metadata.get('wine_texture_entry'):os.environ['MNM_DRAW_WINE_TEXTURE_ENTRY']='1'
+else:os.environ.pop('MNM_DRAW_WINE_TEXTURE_ENTRY',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(root/'events.bin').replace('/','\\')
 os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')
