@@ -7,6 +7,8 @@
 #include <QDir>
 #include <QtEndian>
 #include <iostream>
+#include <QJsonDocument>
+#include <future>
 #include <stdexcept>
 void check(bool ok){if(!ok)throw std::runtime_error("Resident Quit fixture");}
 template<class F> void refuses(F f){bool caught=false;try{f();}catch(const std::exception&){caught=true;}check(caught);}
@@ -15,6 +17,11 @@ struct LiveMenuSessionTestAccess {
  static void poll(LiveMenuSession& s){s.poll();}
 };
 struct ResidentWorldSessionTestAccess {
+ static void queue(ResidentWorldSession& s,const QString& path){s.queueReport(path);}
+ static void busy(ResidentWorldSession& s,std::shared_ptr<std::promise<void>> gate){s.reportWork_=std::async(std::launch::async,[gate]{gate->get_future().wait();});}
+ static QString latest(ResidentWorldSession& s){return s.latestReport_?QJsonDocument::fromJson(s.latestReport_->bytes).object()["completed"].toString():QString();}
+ static void fail(ResidentWorldSession& s){s.reportWork_=std::async(std::launch::async,[]{throw std::runtime_error("authored report failure");});s.reportWork_.wait();}
+ static void service(ResidentWorldSession& s){s.serviceReport();}
  static void counts(ResidentWorldSession& s,unsigned complete,unsigned imports,unsigned returns,bool pending){s.completed_=complete;s.imports_=imports;s.returns_=returns;if(pending)s.pending_.emplace();}
 };
 int main(int argc,char** argv) try {
@@ -28,8 +35,13 @@ int main(int argc,char** argv) try {
   };
   state(2,0,MNM_MENU_OK,123);LiveMenuSessionTestAccess::poll(session);check(!session.normalQuitAccepted());
   check(session.request(variant==4?MNM_MENU_OPEN_QUICK:MNM_MENU_QUIT));check(!session.normalQuitAccepted());
+  std::array<quint32,3> request{};for(unsigned i=0;i<3;++i)request[i]=qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+3+i)*4);
+  const auto heartbeat=qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4);session.renderingProgress();session.renderingProgress();
+  check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4)==heartbeat+2);
+  for(unsigned i=0;i<3;++i)check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+3+i)*4)==request[i]);
   state(4,variant==1?2:1,variant==2?MNM_MENU_UNAVAILABLE:MNM_MENU_OK,variant==3?124:123);
   check(session.normalQuitAccepted()==(variant==0));check(session.normalQuitAccepted()==(variant==0));++ackCases;
+  session.fallback("synthetic retirement");const auto retired=qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4);session.renderingProgress();check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4)==retired);check(!qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+1)*4));
   peer.unmap(words);
  }
  for(unsigned variant=0;variant<8;++variant){
@@ -50,5 +62,17 @@ int main(int argc,char** argv) try {
   }
   peer.unmap(bytes);
  }
- std::cout<<"{\"ack_cases\":"<<ackCases<<",\"retired_cases\":"<<retired<<",\"refusals\":"<<refusals<<",\"idempotent\":true}"<<std::endl;return 0;
+ {
+  GlViewport viewport;const auto directory=root.filePath("report-worker");check(QDir().mkpath(directory));
+  ResidentWorldSession session(viewport,directory+"/world.bin",directory+"/game");
+  auto gate=std::make_shared<std::promise<void>>();ResidentWorldSessionTestAccess::busy(session,gate);
+  for(unsigned n:{64u,128u,256u}){ResidentWorldSessionTestAccess::counts(session,n,n,n,false);ResidentWorldSessionTestAccess::queue(session,directory+"/periodic.json");}
+  check(ResidentWorldSessionTestAccess::latest(session)=="256"); // did not wait for the blocked writer
+  gate->set_value();session.saveReport(directory+"/final.json");
+  QFile final(directory+"/final.json");check(final.open(QIODevice::ReadOnly));check(QJsonDocument::fromJson(final.readAll()).object()["completed"].toString()=="256");
+  ResidentWorldSessionTestAccess::counts(session,512,512,512,false);ResidentWorldSessionTestAccess::queue(session,directory+"/periodic.json");session.saveReport(directory+"/final-512.json");
+  QFile periodic(directory+"/periodic.json");check(periodic.open(QIODevice::ReadOnly));check(QJsonDocument::fromJson(periodic.readAll()).object()["completed"].toString()=="512");
+  ResidentWorldSessionTestAccess::fail(session);refuses([&]{ResidentWorldSessionTestAccess::service(session);});++refusals;
+ }
+ std::cout<<"{\"report_coalescing\":true,\"report_final_current\":true,\"report_error_propagation\":true,\"ack_cases\":"<<ackCases<<",\"retired_cases\":"<<retired<<",\"refusals\":"<<refusals<<",\"idempotent\":true}"<<std::endl;return 0;
 } catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

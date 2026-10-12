@@ -183,6 +183,7 @@ public:
             if(!stream_ || (media_ && media_->movieActive()))return;
             if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             if(commands_){
+                if(liveMenus_)liveMenus_->renderingProgress();
                 QElapsedTimer workClock;workClock.start();
                 const auto gap=nativePollTick_.isValid()?nativePollTick_.elapsed():0;
                 nativePollTick_.start();
@@ -205,6 +206,7 @@ public:
                         commandDrain_.start();
                     }
                 }
+                if(liveMenus_)liveMenus_->renderingProgress();
                 const double totalMs=workClock.nsecsElapsed()/1000000.0;
                 if(residentWorld_&&nativePollTiming_&&nativePollTimingRows_<256&&(totalMs>=50||gap>=100)){
                     ++nativePollTimingRows_;

@@ -11,6 +11,7 @@ sys.path.insert(0,str(ROOT/'tools'))
 from scene_production import decode,summarize
 
 def fixture(version=4):
+    case_count=32 if version==6 else 8
     # Authored contract values, independent of the decoder's constants.
     fixed=[(1,0x5d8000,0x123b39),(2,0x689930,0x240),(10,0x6c4830,4),
       (11,0x6db8d2,12),(12,0x6dbe95,8),(13,0x6e8100,4),(14,0x6deffc,384),
@@ -20,12 +21,20 @@ def fixture(version=4):
     for kind,base,size in fixed:descriptors.append((kind,base,size,n,0,0,0));n+=size
     for kind,manager in [(20,0x6def58),(21,0x689498),(22,0x6b1248)]:descriptors.append((kind,0,0,n,0,0,manager))
     rows=[]
-    for i in range(8):
-        r=[0]*40;r[0]=i+1;r[1]=4 if version>=4 else 3 if version>=2 else 2;r[5]=512+i*128;r[8]=r[9]=n;r[16]=1;r[17]=2;r[30]=r[31]=1
+    for i in range(case_count):
+        r=[0]*40;r[0]=i+1;r[1]=5 if version==6 else 4 if version>=4 else 3 if version>=2 else 2;r[5]=512+i*128;r[8]=r[9]=n;r[16]=1;r[17]=2;r[30]=r[31]=1
         if version>=2:r[34]=r[35]=1
+        if version==6:
+            r[39]=1
+            if i>=16:r[22]=30;r[23]=10;r[24]=7
         rows.extend(r)
-    h=[0]*16;h[2]=version;h[3]=160;h[4]=8;h[5]=rows[1];h[9]=7;h[10]=10000000;h[13]=16;h[14]=1536;h[15]=2
-    data=bytearray(struct.pack('<16I',*h));data[:8]=b'MNMSPR01';data.extend(struct.pack('<320I',*rows))
+    h=[0]*16;h[2]=version;h[3]=160;h[4]=case_count;h[5]=rows[1];h[9]=7;h[10]=10000000;h[13]=16;h[14]=1536;h[15]=2
+    data=bytearray(struct.pack('<16I',*h));data[:8]=b'MNMSPR01'
+    if version==6:
+        stats=[0]*152;stats[:4]=[1,608,60,50];stats[4:12]=[100000,160000,512,1712,100,1300,100,1300]
+        stats[13]=16;stats[14]=16;stats[18:24]=[1200,60000,1200,50,0,128];stats[24+50]=1200
+        data.extend(struct.pack('<152I',*stats))
+    data.extend(struct.pack('<'+str(case_count*40)+'I',*rows))
     for tag in (1,2):
         data.extend(struct.pack('<4I',tag,len(descriptors),n,0));data.extend(b''.join(struct.pack('<7I',*r) for r in descriptors));data.extend(bytes(n))
     return data,n
@@ -34,7 +43,7 @@ def run(output=None):
     data,n=fixture();state=64+8*160;payload=state+16+15*28;second=payload+n
     def word(source,at,value):
         out=bytearray(source);struct.pack_into('<I',out,at,value);return out
-    controls={'magic':b'BADMAGIC'+data[8:],'version':word(data,8,6),'version3-mode4':word(data,8,3),
+    controls={'magic':b'BADMAGIC'+data[8:],'version':word(data,8,7),'version3-mode4':word(data,8,3),
       'version1-mode3':word(data,8,1),'row-size':word(data,12,164),'case-limit':word(data,16,17),
       'critical-total':word(data,24,1),'zero-owner':word(data,36,0),'zero-clock':word(data,40,0),
       'truncated':data[:-1],'trailing':data+b'x','row-reserved':word(data,64+37*4,1),
@@ -53,6 +62,16 @@ def run(output=None):
         p.write_bytes(modern);assert summarize(p)['cases'][0]['extra_build_and_surround_ms']==0.025
         controls['consumer-over-total']=word(modern,64+37*4,1001)
         controls['consumer-call-count']=word(modern,64+39*4,2)
+        budget,_=fixture(6);p.write_bytes(budget);result=summarize(p)
+        assert result['protected_state_invariance'] and result['schedule']['advancing_simulation_fps']==20 and not result['schedule']['higher_render_cadence']
+        controls['budget-size']=word(budget,64+4,604)
+        controls['budget-target']=word(budget,64+12,49)
+        controls['budget-warm-limit']=word(budget,64+13*4,17)
+        controls['budget-attempt-count']=word(budget,64+14*4,15)
+        controls['budget-histogram-count']=word(budget,64+(24+50)*4,1199)
+        controls['budget-interval-sum']=word(budget,64+19*4,0)
+        controls['budget-before-warm']=word(budget,64+13*4,15)
+        controls['budget-deadline-admission']=word(budget,64+608+16*160+22*4,5)
         for name,bad in controls.items():
             p.write_bytes(bad)
             try:decode(p)
@@ -61,7 +80,7 @@ def run(output=None):
         for field in (35,36):
             p.write_bytes(word(data,64+field*4,0 if field==35 else 1));assert not summarize(p)['protected_state_invariance']
         p.write_bytes(word(data,64+32*4,1));assert not summarize(p)['scene_record_equality']
-    result=dict(success=True,decoder_refusals=len(controls),controls=list(controls),negative_history_counts=2,negative_scene_equality=1,version1_compatibility=True,version2_compatibility=True,version3_compatibility=True,version4_compatibility=True)
+    result=dict(success=True,decoder_refusals=len(controls),controls=list(controls),negative_history_counts=2,negative_scene_equality=1,version1_compatibility=True,version2_compatibility=True,version3_compatibility=True,version4_compatibility=True,version5_compatibility=True,budget_reference=True)
     if output:Path(output).write_text(json.dumps(result,indent=2)+'\n')
     return result
 

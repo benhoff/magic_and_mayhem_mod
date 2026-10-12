@@ -17,6 +17,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True);args=parser.parse_args()
     declaration=json.loads(args.claims.read_text())
     if any(sha(ROOT/p)!=h for p,h in declaration['sources'].items()):raise ValueError('Changed prospective fixture sources')
+    if not {'NR.scene-production-repetition','NR.scene-draw-budget'}<=set(c['behavior'] for c in declaration['claims']):raise ValueError('Fixture declaration must include both repetition and draw-budget policies')
     parent=ROOT/'working/tests/scene-production-controls';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(out/'wineprefix'),WINEDEBUG='-all')
@@ -47,15 +48,15 @@ def main():
         env['DISPLAY']=':'+display
         (out/'wineprefix').mkdir(mode=0o700)
         subprocess.run(['wineserver','-p'],env=env,cwd=out,check=True,timeout=10)
-        for mode in (1,2,3,4):
-            for case in range(11):
-                key=f'{case if case<10 else "A"}{mode}';case_env=dict(env,MNM_PRODUCTION_TEST_CASE=key)
+        for mode in (1,2,3,4,5):
+            for case in range(16 if mode==5 else 11):
+                key=f'{case if case<10 else chr(ord("A")+case-10)}{mode}';case_env=dict(env,MNM_PRODUCTION_TEST_CASE=key)
                 with (out/f'case-{key}.log').open('x') as log:
                     result=subprocess.run(['wine',str(executable)],env=case_env,cwd=out,stdout=log,stderr=subprocess.STDOUT,timeout=120)
                 report['cases'].append(dict(case=case,mode=mode,exit_code=result.returncode))
                 if result.returncode:raise ValueError(f'PE32 production control failed {key}:exit{result.returncode}')
         report.update(binary_sha256=sha(executable),dll_sha256=sha(dll),sources_unchanged=all(sha(ROOT/p)==h for p,h in report['sources'].items()),
-                      checks='44 PE32 full/slice/frozen-history/prepared-scene controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;62 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and post-primary queue leak refuse. Original queue postconditions hold after every extra. Prepared-phase repeat precedes the original once-only post-work, including authored post leak (not an extra admission input). History forwards twice for full/slice and once plus one skip for history policies. Consumer interval entry/exit hooks preserve the original consumer return PCs and both resumed MOV instructions; one extra consumer completion is counted. Authored stand-ins, not original engine execution.')
+                      checks='60 PE32 full/slice/frozen-history/prepared-scene controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;62 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape/unreadable and post-primary queue leak refuse. Original queue postconditions hold after every extra. Prepared-phase repeat precedes the original once-only post-work, including authored post leak (not an extra admission input). History forwards twice for full/slice and once plus one skip for history policies. Mode5 additionally checks18 pacing anchor mutations, nine overflow/deadline arithmetic cases, clock wrap, warmed authored admission with two extra draws/history skips, insufficient-budget/target refusal and actual60ms prediction overrun and exclusion of the first mixed marker-to-entry interval with exact subsequent50ms counter/histogram accounting. The authored warm bypass does not claim16 executed warm rows. Consumer interval entry/exit hooks preserve the original consumer return PCs and both resumed MOV instructions; one extra consumer completion is counted. Authored stand-ins, not original engine execution.')
         if not report['sources_unchanged']:raise ValueError('Fixture sources changed')
         report['success']=True
     except (OSError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)

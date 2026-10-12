@@ -6,6 +6,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <optional>
+#include <future>
 class GlViewport;
 class ResidentProfileCapture;
 // Application service: strictly pairs a completed native World with an ordered
@@ -18,8 +19,15 @@ public:
     void abort(const QString&);
     mnm::render::GpuFrame import(std::uint64_t generation,std::uint64_t nonce);
     QJsonObject report() const;
-    void saveReport(const QString&) const;
+    void saveReport(const QString&);
 private:
+    unsigned phaseLogRows_=0;
+    struct ReportSnapshot {QString path;QByteArray bytes;};
+    std::future<void> reportWork_;
+    std::optional<ReportSnapshot> latestReport_;
+    void serviceReport();
+    void queueReport(const QString&);
+    void launchReport(ReportSnapshot);
     friend struct ResidentWorldSessionTestAccess;
     struct Pending {
         mnm::legacy::WorldContinuousChannel::Block block;

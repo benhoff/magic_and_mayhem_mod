@@ -6752,3 +6752,31 @@ actual World prefix on O2 TITAN EGL preserves terminal hash and improves
 completed throughput72–78to91–98FPS; producer CPU4.0to1.7ms. This is native
 preparation/replay evidence only. Public gameplay, frame scheduling, simulation
 cadence and steady60FPS remain pending; historical claims/hashes are preserved.
+
+
+### Budgeted prepared-scene scheduling (2026-10-12, live pending)
+
+Mode5 keeps original50ms pacing and at mosttwo extra prepared slices per primary
+inside a60s predicted-cost deadline window after16warm observations. Every extra
+retains full protected-state and ordered-scene checks, extra-only history skips
+and first-failure stop without rollback. Bounded wireversion6 separately records
+World cadence, original advancing intervals, prediction misses and exclusions.
+60PE32/28decoder controls pass, including two extras, insufficient budget/target
+refusal, real forecast overrun, first boundary exclusion and exact histogram.
+Higher sustained live World FPS and unchanged advancing simulation rate remain
+pending; no default, interpolation/uniform60FPS or original equivalence claim.
+
+
+Report-worker TITAN trial (2026-10-12) remains NEGATIVE as a full milestone.
+All238extras (16warm+222budgeted) preserve protected bytes/ordered scenes.
+The60047ms window delivers23.54822Worlds/sec with19.85927Hz all-valid advancing
+simulation, median50/p9554/max123ms, one excluded first interval and one deadline
+miss. No release/report checkpoint stalls appear in the bounded phase log.
+The25FPS threshold is unchanged and missed. Whole journey fails post-combat
+retreat to observed[10,71] (last living wizard[14,61]); independent input trace
+records summon,Fireball,melee and player-party lethal observations but formal
+full gameplay/normal Quit checks remain unpassed. Aggregate19.682WorldFPS at
+failure. Sources, original manifest and owned cleanup verify. This result proves
+a bounded rendering gain, not smoother simulation, full success or60FPS.
+See `scene-draw-budget-report-worker-live-negative-20261012.json`; prior failures
+and source fingerprints are retained.

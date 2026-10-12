@@ -41011,7 +41011,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded resident World CPU, GPU and original pacing diagnostics",
-      "scope": "Opt-in resident World source-acquire/decode/handoff/native CPU observations and asynchronous paired renderer-context GPU timestamps with at most64 outstanding pairs and8192 rows. Compressed source-only capture uses a256MiB raw-byte worker queue,8192 Worlds and16GiB raw/stored limits; queue/file failures mark capture incomplete while rendering continues, and drain occurs only on retirement. Exact Qt/zlib corpus normalization precedes benchmark timing. Public original clock owner forwards already-read tick values through guarded stdcall ScenePacerObservationV1(caller,tick) only at original PCs0x4e3f59/0x4e3f97 with LastError preserved and no extra clock/API or host calls; paired preceding pacing/screen intervals are separate from unclassified residual, not simulation CPU. GPU timeline includes CPU submission starvation and excludes public UI composition, Qt presentation and scanout. Ordered ownedV5/resident replay of actual captured gameplay on verified NVIDIA TITAN measures completed render-path throughput, with diagnostic hashes outside timing and zero ordinary World readbacks/pixel replies. CPU sampling is a separate perturbed diagnostic. No60FPS, universal20Hz simulation, original equivalence or pacing policy change claim. Explicit completed-prefix diagnostic replay requires64..8192 contiguous imported/verified-returned Worlds, stable source/owned cleanup/original verification, zero readbacks/drops and written capture. It validates the entire compressed tail, then excludes unverified pending Worlds; failed full campaign/normal Quit is preserved and not inferred.",
+      "scope": "Opt-in resident World source-acquire/decode/handoff/native CPU observations and asynchronous paired renderer-context GPU timestamps with at most64 outstanding pairs and8192 rows. Compressed source-only capture uses a256MiB raw-byte worker queue,8192 Worlds and16GiB raw/stored limits; queue/file failures mark capture incomplete while rendering continues, and drain occurs only on retirement. Exact Qt/zlib corpus normalization precedes benchmark timing. Public original clock owner forwards already-read tick values through guarded stdcall ScenePacerObservationV1(caller,tick) only at original PCs0x4e3f59/0x4e3f97 with LastError preserved and no extra clock/API or host calls; paired preceding pacing/screen intervals are separate from unclassified residual, not simulation CPU. GPU timeline includes CPU submission starvation and excludes public UI composition, Qt presentation and scanout. Ordered ownedV5/resident replay of actual captured gameplay on verified NVIDIA TITAN measures completed render-path throughput, with diagnostic hashes outside timing and zero ordinary World readbacks/pixel replies. CPU sampling is a separate perturbed diagnostic. No60FPS, universal20Hz simulation, original equivalence or pacing policy change claim. Explicit completed-prefix diagnostic replay requires64..8192 contiguous imported/verified-returned Worlds, stable source/owned cleanup/original verification, zero readbacks/drops and written capture. It validates the entire compressed tail, then excludes unverified pending Worlds; failed full campaign/normal Quit is preserved and not inferred. Opt-in resident poll phase outliers cover timing collection, initialization, original-return verification, release/report publication, source acquire, capture enqueue, decode, handoff, native consume and reply; at most256rows, no added readback or image capture.",
       "confidence": "provisional",
       "original": [
         {
@@ -41762,7 +41762,8 @@
         "tools/build-menu-observer.py",
         "tools/prepare-menu-observer.py",
         "tools/menu-game-runner.py",
-        "tools/prepare-shadow-experiment.py"
+        "tools/prepare-shadow-experiment.py",
+        "runtime/scene-production/draw_budget.h"
       ],
       "evidence": [
         "NR.scene-production-repetition.fixture-abi-negative-20261011",
@@ -41783,7 +41784,9 @@
         "NR.scene-production-repetition.prepared-controls-20261012",
         "NR.scene-production-repetition.prepared-titan-20261012",
         "NR.scene-production-repetition.timing-controls-20261012",
-        "NR.scene-production-repetition.timing-performance-negative-20261012"
+        "NR.scene-production-repetition.timing-performance-negative-20261012",
+        "NR.scene-draw-budget.controls-20261012",
+        "NR.scene-draw-budget.adaptive-controls-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -41917,6 +41920,321 @@
       ],
       "remaining_gaps": [
         "Complete target/pointer/predicate/consumer semantics and isolated original comparison unproved. Native prepared-phase repetition is a separate policy experiment; missing-row causality remains a hypothesis."
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Budgeted prepared-scene drawing under unchanged original simulation pacing",
+      "scope": "Opt-in mode5 pinned ordinary prepared draw after original scene consumption/queue cleanup and before original once-only post-work. Keep actual original50ms pacing, counters/global ANI/RNG/scheduler/entity/map/queue bytes unchanged across every extra and original history forwarding once per primary. Sixteen bounded warm observations precede a60-second budget window; at mosttwo extra Worlds per ordinary primary,2416total attempts and4096retained difference receipts. Admit only clock-epoch-consistent owning-thread ordinary active mode0, selected50ms target, valid queue/pool state and a predicted full extra cost plus post-work reserve within remaining original wait deadline. Re-evaluate before each extra; skip insufficient budget, stop on first protected-state/scene/refusal/foreign failure, never restore game state. Measure separate original advancing counter intervals and completed extra World cadence; record prediction misses and excluded transitions, retaining whole-module changes as unclassified. Exact full state/ordered-row comparison on every extra is retained, with bounded byte-copy/unchanged-block acceleration. No changed simulation rate, interpolation, independent animation/input cadence, uniform60FPS/pixels/driver/default/unknown nested/pause/network equivalence or zero OS stalls. Fresh synthetic/live budget and FPS validation pending. Follow-up uses current primary-consumer cost plus observed full-handler overhead rather than a stale total-cost floor. Every valid advancing counter interval is counted even when long; only nonadvancing/mode/first-boundary intervals are excluded. Long stalls are not timing preservation.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231232,
+          "scope": "Original ordinary outer scene caller remains once per original update."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5232065,
+          "scope": "Prepared-phase additional slice before original once-only post-work."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5127744,
+          "scope": "Read-only selected50ms target and original pacing baseline; target/clock/loop are not modified."
+        }
+      ],
+      "documents": [
+        "research/runtime/scene-draw-budget.md",
+        "research/runtime/scene-production-repetition.md"
+      ],
+      "implementation": [
+        "runtime/scene-production/draw_budget.h",
+        "runtime/scene-production/observer.c",
+        "runtime/scene-production/entry.S",
+        "runtime/scene-production/state_audit.h",
+        "tools/build-scene-production.py",
+        "tools/scene_production.py",
+        "tools/probe-scene-production.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/scene-production-reference.c",
+        "tests/scene-production-reference.S",
+        "tools/test-scene-production.py",
+        "tests/test-scene-production-decoder.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h",
+        "runtime/scene-production/draw_budget.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/menu-resident-quit-test.cpp",
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-shell-provenance-test.py",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/render-resident-world-test.cpp",
+        "tests/resident-leaf-abi.S",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-deferred-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/export-menu-support.py",
+        "tools/export-scene-production.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/menu-game-runner.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/profile_native_resident_helpers.py",
+        "tools/test-native-campaign.py",
+        "tools/test-native-world-rolling-hardware.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-resident-leaf-abi.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.scene-draw-budget.controls-20261012",
+        "NR.scene-draw-budget.first-live-negative-20261012",
+        "NR.scene-draw-budget.adaptive-controls-20261012",
+        "NR.scene-draw-budget.adaptive-live-negative-20261012",
+        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Controls pass and the report-worker60s live window gains23.548WorldFPS with19.859Hz simulation and exact238extra state/scene checks. Sustained25/60FPS, full journey/movement/normal Quit and default activation remain pending; failed third retreat cannot promote full integration. Native repeat drawing does not interpolate motion."
+      ]
+    },
+    {
+      "id": "HOST.menu-render-progress-heartbeat",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Renew menu lease when the GUI makes rendering progress",
+      "scope": "GUI-thread native render poll progress renews an active MenuBridge lease before and after bounded render/command work using the existing seqlock writer. Preserve pending request ID/action/generation/arguments, default50ms menu timer,2000ms expiry and inactive/retired withdrawal; no extra semantic actions, background renewal, timeout increase or resurrection of a frozen/retired frontend. Synthetic lifecycle and full live rendering/menu validation pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/scene-draw-budget.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tests/menu-resident-quit-test.cpp",
+        "tools/test-native-campaign.py",
+        "tools/test-render-progress-heartbeat.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "protocols/include/mnm/menu_v1.h"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.menu-render-progress-heartbeat.controls-20261012",
+        "NR.scene-draw-budget.adaptive-live-negative-20261012",
+        "HOST.resident-report-publication.controls-20261012",
+        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "GUI progress must preserve requests and retirement; long single-poll stalls still expire the unchanged lease. Fresh native lifecycle and live gameplay validation pending."
+      ]
+    },
+    {
+      "id": "HOST.resident-report-publication",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded asynchronous periodic resident report publication",
+      "scope": "Resident diagnostics snapshot immutable JSON on the GUI thread and publish periodic checkpoints with one asynchronous file writer and at mostone coalesced latest snapshot,32MiB per snapshot. Worker owns only value path/bytes, no widgets/renderer/game/channel access. GUI never waits for an in-flight periodic write; ready errors propagate. Final/error report drains previous work and publishes current state synchronously after gameplay retirement; destruction waits for owned work. Keep atomic QSaveFile publication, final verified counters/errors and existing report schema. Synthetic queue/final/error/lifetime and live stall/FPS proof pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/scene-draw-budget.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp"
+      ],
+      "tests": [
+        "tests/menu-resident-quit-test.cpp",
+        "tools/test-render-progress-heartbeat.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.resident-report-publication.controls-20261012",
+        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Blocked-writer/coalescing/final-current/error controls pass; third live phase log has no release/report checkpoint stalls but fails post-combat retreat. Full current final report/normal Quit/lifetime and higher full-journey FPS remain pending; no durable-storage/driver60FPS guarantee."
       ]
     }
   ],
@@ -87802,6 +88120,199 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.scene-draw-budget.controls-20261012",
+      "kind": "native_integration",
+      "scope": "60actual PE32 cases,28decoder refusals,62base/18additional pacing anchor mutations, original caller/FP/error/stack/history/queue controls, two authored extras, budget/target skips, actual60ms overrun and exact first-boundary exclusion/subsequent50ms counter histogram. Warm bypass is authored fixture setup, not16executed warm rows. No original game/performance equivalence.",
+      "record": "research/runtime/scene-draw-budget-controls-20261012.json",
+      "sha256": "504e2f5033b53fe06bc8364e595bf1c5c33ca69da0c7ae7f635c3f39ba4c321c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/decoder_controls/decoder_refusals",
+          "equals": 28
+        },
+        {
+          "pointer": "/cases/59/exit_code",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.first-live-negative-20261012",
+      "kind": "live_observation",
+      "scope": "First opt-in budget trial:259extra Worlds preserve protected bytes/ordered scenes,243budgeted in60005ms. Filtered advancing19.76753Hz excludes seven intervals including unclassified long gaps; full-window primary17.63Hz and World21.68153FPS miss25FPS. Full gameplay fails menu adapter retirement after a2358ms GUI gap. No preserved full timing, gameplay pass or25/60FPS claim.",
+      "record": "research/runtime/scene-draw-budget-first-live-negative-20261012.json",
+      "sha256": "3861195c7ad0e5e2eee7dd9ca9951606962f67db65cf132938688fc2bed9d897",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/production/protected_state_invariance",
+          "equals": true
+        },
+        {
+          "pointer": "/production/scene_record_equality",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.menu-render-progress-heartbeat.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Mapped GUI progress preserves pending requests and withdrawn retirement; existing trusted Quit/resident refusal/idempotence retained.",
+      "record": "research/runtime/render-progress-heartbeat-controls-20261012.json",
+      "sha256": "db88c889b1c1027c2c450dc315b1afc39c97e3884fbd0c941751ce073c8209d5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.adaptive-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Adaptive60PE32/28decoder controls including all valid long advancing intervals, first-boundary exclusion, two extras, budget/target skip and actual60ms overrun. No original/live FPS equivalence.",
+      "record": "research/runtime/scene-draw-budget-adaptive-controls-20261012.json",
+      "sha256": "9504d9a4c15fa842aae9550068fcbdf7aa28807d17cfffce437090eef2151093",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.adaptive-live-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Adaptive365extra Worlds preserve state/scene rows but60414ms window22.11408WorldFPS and16.68359Hz all-valid advancing rate fail. Whole journey fails native command INTERRUPTED reason4. Bounded phase log isolates0.30/0.82/1.30s release/report checkpoints; precise operation/final causality remains a hypothesis. No gameplay/performance success.",
+      "record": "research/runtime/scene-draw-budget-adaptive-live-negative-20261012.json",
+      "sha256": "f470116cb0a1c9ac806d11ebeeaa2a01be5c447a24fd7067aea7bd4fde580259",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.resident-report-publication.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Independently blocked file future proves GUI queueing does not wait; latest256 coalesces, final/current report and actual periodic512 publish, ready file error propagates; menu request/retirement/refusal controls retained. No original gameplay, IO latency or60FPS proof.",
+      "record": "research/runtime/resident-report-worker-controls-20261012.json",
+      "sha256": "b1c7d41e8922263b9ebc0e4c8fba0cf2ef8c61c84b1cd4434bc62f2ce5bb9429",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/report_coalescing",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/report_final_current",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/report_error_propagation",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.report-worker-live-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Report-worker trial preserves238extra protected snapshots/ordered scenes;60.047s window23.54822WorldFPS and19.85927Hz all-valid advancing simulation. Misses25FPS gate; whole journey fails exact post-combat retreat waypoint after successful summon/Fireball/melee/lethal observations. No formal full gameplay, normal Quit or final success. No release/report checkpoint stall in bounded phase log; source/original/owned cleanup verified.",
+      "record": "research/runtime/scene-draw-budget-report-worker-live-negative-20261012.json",
+      "sha256": "036df62798cb5b0d2bdfdda0a50acf1675707f205508731c86de8059878ab682",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98327,7 +98838,9 @@
         "NR.scene-production-repetition.history-controls-20261011",
         "NR.scene-production-repetition.queue-cleanup-controls-20261012",
         "NR.scene-production-repetition.prepared-controls-20261012",
-        "NR.scene-production-repetition.timing-controls-20261012"
+        "NR.scene-production-repetition.timing-controls-20261012",
+        "NR.scene-draw-budget.controls-20261012",
+        "NR.scene-draw-budget.adaptive-controls-20261012"
       ]
     },
     {
@@ -98365,6 +98878,103 @@
       ],
       "evidence": [
         "NR.minimap-write-candidates.scratch-controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.fixture",
+      "level": "headless",
+      "scope": "Authored pacing/budget arithmetic and PE32 original caller/FP/error/stack/history/queue ABI, warm admission, two extras, insufficient-budget skip and actual forecast overrun; strict bounded wireversion6/legacy compatibility. No original-game execution or independent original equivalent scheduling.",
+      "behaviors": [
+        "NR.scene-draw-budget"
+      ],
+      "tests": [
+        "tools/test-scene-production.py",
+        "tests/scene-production-reference.c",
+        "tests/scene-production-reference.S",
+        "tests/test-scene-production-decoder.py"
+      ],
+      "evidence": [
+        "NR.scene-draw-budget.controls-20261012",
+        "NR.scene-draw-budget.adaptive-controls-20261012"
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget.live",
+      "level": "live_observation",
+      "scope": "Private TITAN native resident casting/combat/movement/portraits/menu/normal Quit under opt-in60second deadline budget. Require all-extra state/scene equality, balanced metadata-only returns, separate advancing counter rate and higher measured World FPS; record misses/excluded transitions. No uniform60FPS/default/original pixel equivalence.",
+      "behaviors": [
+        "NR.scene-draw-budget"
+      ],
+      "tests": [
+        "tools/probe-scene-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.scene-draw-budget.first-live-negative-20261012",
+        "NR.scene-draw-budget.adaptive-live-negative-20261012",
+        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+      ]
+    },
+    {
+      "id": "HOST.menu-render-progress-heartbeat.fixture",
+      "level": "headless",
+      "scope": "Synthetic mapped-menu lifecycle: active GUI progress advances heartbeat while pending request/action/generation remain unchanged; withdrawn/retired session stays withdrawn. Existing trusted Quit, pending/import/refusal/idempotent resident retirement cases retained. No original process or full GUI stall/performance equivalence.",
+      "behaviors": [
+        "HOST.menu-render-progress-heartbeat"
+      ],
+      "tests": [
+        "tests/menu-resident-quit-test.cpp",
+        "tools/test-render-progress-heartbeat.py"
+      ],
+      "evidence": [
+        "HOST.menu-render-progress-heartbeat.controls-20261012",
+        "HOST.resident-report-publication.controls-20261012"
+      ]
+    },
+    {
+      "id": "HOST.menu-render-progress-heartbeat.live",
+      "level": "live_observation",
+      "scope": "Private TITAN budgeted-render native campaign with full physical casting/combat/movement/portraits/menu/normal Quit, active GUI progress keepalives under unchanged2000ms menu lease, no fallback/readback and preserved shutdown; failures retained. Does not establish survival of a single GUI freeze exceeding lease.",
+      "behaviors": [
+        "HOST.menu-render-progress-heartbeat"
+      ],
+      "tests": [
+        "tools/probe-scene-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.scene-draw-budget.adaptive-live-negative-20261012",
+        "NR.scene-draw-budget.report-worker-live-negative-20261012"
+      ]
+    },
+    {
+      "id": "HOST.resident-report-publication.fixture",
+      "level": "headless",
+      "scope": "An independently blocked file future proves GUI queueing does not wait, three snapshots coalesce to latest256, final publication drains and writes current state, real periodic512 publication completes and ready writer errors propagate; existing mapped menu/retirement controls retained. No original game/driver or filesystem latency guarantee.",
+      "behaviors": [
+        "HOST.resident-report-publication"
+      ],
+      "tests": [
+        "tests/menu-resident-quit-test.cpp",
+        "tools/test-render-progress-heartbeat.py"
+      ],
+      "evidence": [
+        "HOST.resident-report-publication.controls-20261012"
+      ]
+    },
+    {
+      "id": "HOST.resident-report-publication.live",
+      "level": "live_observation",
+      "scope": "Private TITAN budgeted-render native campaign requires completed current final resident report, normal original Quit and balanced World/import/return counts, unchanged source/originals and owned cleanup. Periodic reports use bounded file worker; full FPS/long-stall failures remain negative. No durable-storage latency/driver/uniform60FPS guarantee.",
+      "behaviors": [
+        "HOST.resident-report-publication"
+      ],
+      "tests": [
+        "tools/probe-scene-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.scene-draw-budget.report-worker-live-negative-20261012"
       ]
     }
   ],
@@ -98739,8 +99349,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-minimap-scratch-result-20261012.json",
-    "sha256": "18bee0725521cb48b67658dad41eb9e4afac231748832ce9c3010cd89c054a37"
+    "path": "research/runtime/coverage/source-index-scene-draw-budget-worker-milestone-20261012.json",
+    "sha256": "2ae090f17ae1aa14631ab8af2e9beaaad2645be52b2e4d14c64b9233da73a495"
   },
   "claim_bindings_required": true
 }
