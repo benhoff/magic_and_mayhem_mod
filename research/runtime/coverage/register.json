@@ -52466,14 +52466,17 @@
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
-        "NR.native-palette-row-cache.paired-public-20261012"
+        "NR.native-palette-row-cache.paired-public-20261012",
+        "NR.native-palette-row-cache.full-performance-negative-20261012",
+        "NR.native-palette-row-cache.combat-deadline-negative-20261012",
+        "NR.native-palette-row-cache.wizard-death-negative-20261012"
       ],
       "remaining_gaps": [
-        "Current independent row controls and exact2423World public baseline/native hashes pass. Full public casting/combat/portrait/menu/resume/normalQuit,19FPS floor and60FPS remain pending. Earlier intermittent public prepared-pixel mismatch remains unresolved; this positive repetition does not diagnose/repair it. Original renderer equivalence/replacement, interpolation and wider source consumers remain separate."
+        "Current full nativeTITAN casting/lethal combat/spells/portrait/menu/resume/normalQuit and19.2932FPSfloor pass with4603balanced returns and zero ordinary pixel readbacks/fallback. NativeWorld49.3965FPS fails60; public source/command scheduling and remaining submission work need attribution. Earlier intermittent pixel instability and two current failed gameplay journeys remain unresolved/preserved, not declared repaired. Original renderer equivalence/replacement, interpolation and wider shared-source freshness remain separate."
       ]
     }
   ],
@@ -105560,6 +105563,87 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.full-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Full functional19FPSfloor passes; nativeWorld49.3965FPS fails60FPS. Visible cycle64.6508/59.0043FPS are paints, not distinct simulation updates. Historical intermittent pixel failure remains unresolved. Earlier combat deadline/death results remain failed; no original-equivalence/replacement or interpolation claim.",
+      "record": "research/runtime/native-palette-row-full-performance-negative-20261012.json",
+      "sha256": "917b98504afeaaaa4a305dab9c573cc44c706aa9a25ff51aea8a5e70c414cd29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.combat-deadline-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Fulljourney fails Zombie melee deadline, no renderer error; original/source/private cleanup retained, no functional/FPS claim.",
+      "record": "research/runtime/native-palette-row-combat-deadline-negative-20261012.json",
+      "sha256": "5dc148ca92e8b313be7f1765e8d2c3748923e89d9e76901d535bfddcdfa05ee4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.wizard-death-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Melee damage observed but wizard dies before required lethal completion; no renderer error, original/source/private cleanup retained, no functional/FPS claim.",
+      "record": "research/runtime/native-palette-row-wizard-death-negative-20261012.json",
+      "sha256": "91937f7c2b6fc4f4ce71946d450bc590da1afb2aa35dbe2492f4a8b80ea9fc29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -117828,6 +117912,23 @@
       "evidence": [
         "NR.native-palette-row-cache.paired-public-20261012"
       ]
+    },
+    {
+      "id": "native-palette-row-cache-public-20261012",
+      "scope": "Full public native TITAN casting/lethal combat, spell refusal/damage, portrait/camera, native menus/resume/normalQuit using owned V5World delivery; original/source integrity, balanced returns, zero ordinary readbacks/fallback. Engine19FPS floor and native/visible60FPS evaluated separately; no interpolation/original renderer equivalence or repair of historical intermittent pixel failure.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.native-palette-row-cache"
+      ],
+      "tests": [
+        "tools/probe-native-display-deadlines.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-palette-row-cache.full-performance-negative-20261012",
+        "NR.native-palette-row-cache.combat-deadline-negative-20261012",
+        "NR.native-palette-row-cache.wizard-death-negative-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -118336,7 +118437,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-palette-row-headless-20261012.json",
+    "path": "research/runtime/coverage/source-index-native-palette-row-live-20261012.json",
     "sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9"
   },
   "claim_bindings_required": true
