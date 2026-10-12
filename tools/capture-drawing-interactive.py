@@ -9,12 +9,13 @@ def load(path):
     s=importlib.util.spec_from_file_location(Path(path).stem,ROOT/path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=[*range(1,17),32,120],help='Bind original-active producer metadata through the first1..16or32World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--canvas-storage-transitions',action='store_true',help='Retain every observed wrapper create/release/Lock entry and return');p.add_argument('--whole-updates',action='store_true',help='Retain source postlude through following accepted update');p.add_argument('--producer-update-binding',action='store_true',help='Bind source queue entries/returns to exact observed engine updates');p.add_argument('--engine-cadence',action='store_true',help='Retain actual original update identities, flush on normal original Quit');p.add_argument('--source-held-snapshot',action='store_true',help='Copy external source oracles while diagnostic worker lease holds protection');p.add_argument('--source-worker-lease',action='store_true',help='Retain diagnostic source lease until exact emitted worker returns');p.add_argument('--source-readonly-lease',action='store_true',help='Diagnosticread-onlysourcepagesduringAPIbodyonly');p.add_argument('--source-byte-witness',action='store_true',help='Retain originalCPUsourceoraclesatAPIentry/return');p.add_argument('--wine-worker-context',action='store_true',help='Sample portable activeworkercontextaroundEGLswaps');p.add_argument('--wine-blit-packet',action='store_true',help='Bind selected emitted command objects to worker IDs');p.add_argument('--wine-blit-worker',action='store_true',help='Observe pinned opcode42Wineworker metadata');p.add_argument('--wine-texture-entry',action='store_true',help='Observe pinned internal Wine texture entry lifetimes');p.add_argument('--wine-retained-map-source',action='store_true',help='Query a last observed map address at exact source submission without claiming post-unmap ownership');p.add_argument('--wine-client-memory',action='store_true',help='Observe public client-memory binding and exact submitted source cache point');p.add_argument('--wine-map-storage-point',action='store_true',help='Associate successful public map buffers with known live recorder canvas storage');p.add_argument('--wine-resource-copy',action='store_true',help='Observe pinned public Wine resource-copy transfer boundaries');p.add_argument('--wine-resource-map',action='store_true',help='Observe pinned public Wine resource map/unmap metadata');p.add_argument('--wine-submission',action='store_true',help='Observe pinned Wine11.16DirectDraw submission metadata');p.add_argument('--cadence-control',action='store_true',help='Explicit counter/menu/input-only control; no drawing/source/Wine/display observer');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=[*range(1,17),32,120],help='Bind original-active producer metadata through the first1..16or32World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--campaign-pause',action='store_true',help='Acquire fresh campaign Mini/Preferences/resume route');p.add_argument('--semantic-state',action='store_true',help='Record bounded original menu-thread world/mode/animation scalar state');p.add_argument('--canvas-storage-transitions',action='store_true',help='Retain every observed wrapper create/release/Lock entry and return');p.add_argument('--whole-updates',action='store_true',help='Retain source postlude through following accepted update');p.add_argument('--producer-update-binding',action='store_true',help='Bind source queue entries/returns to exact observed engine updates');p.add_argument('--engine-cadence',action='store_true',help='Retain actual original update identities, flush on normal original Quit');p.add_argument('--source-held-snapshot',action='store_true',help='Copy external source oracles while diagnostic worker lease holds protection');p.add_argument('--source-worker-lease',action='store_true',help='Retain diagnostic source lease until exact emitted worker returns');p.add_argument('--source-readonly-lease',action='store_true',help='Diagnosticread-onlysourcepagesduringAPIbodyonly');p.add_argument('--source-byte-witness',action='store_true',help='Retain originalCPUsourceoraclesatAPIentry/return');p.add_argument('--wine-worker-context',action='store_true',help='Sample portable activeworkercontextaroundEGLswaps');p.add_argument('--wine-blit-packet',action='store_true',help='Bind selected emitted command objects to worker IDs');p.add_argument('--wine-blit-worker',action='store_true',help='Observe pinned opcode42Wineworker metadata');p.add_argument('--wine-texture-entry',action='store_true',help='Observe pinned internal Wine texture entry lifetimes');p.add_argument('--wine-retained-map-source',action='store_true',help='Query a last observed map address at exact source submission without claiming post-unmap ownership');p.add_argument('--wine-client-memory',action='store_true',help='Observe public client-memory binding and exact submitted source cache point');p.add_argument('--wine-map-storage-point',action='store_true',help='Associate successful public map buffers with known live recorder canvas storage');p.add_argument('--wine-resource-copy',action='store_true',help='Observe pinned public Wine resource-copy transfer boundaries');p.add_argument('--wine-resource-map',action='store_true',help='Observe pinned public Wine resource map/unmap metadata');p.add_argument('--wine-submission',action='store_true',help='Observe pinned Wine11.16DirectDraw submission metadata');p.add_argument('--cadence-control',action='store_true',help='Explicit counter/menu/input-only control; no drawing/source/Wine/display observer');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');a=p.parse_args()
     from drawing_diagnostic_cadence import validate_control
     try:validate_control(a)
     except ValueError as error:p.error(str(error))
     if (a.observer_mode=='physical') != (a.physical_peer is not None):p.error('Physical mode requires exactly one physical peer')
     if a.canvas_storage_transitions and not a.producer_samples:p.error('Storage transitions require producer capture')
+    if a.campaign_pause and (not a.semantic_state or a.cadence_control or a.whole_updates):p.error('Campaign pause requires semantic state and a bounded ordinary source interval')
     if a.wine_resource_copy and not a.wine_resource_map:p.error('Resource copy requires resource observation')
     if a.producer_samples and a.observer_mode!='physical':p.error('Producer binding requires physical mode')
     if a.producer_samples==120 and not a.whole_updates:p.error('120source samples require explicit whole-update capture')
@@ -52,6 +53,7 @@ def main():
     if a.producer_update_binding:names += ['runtime/engine-cadence/queue_point.h','protocols/include/mnm/engine_cadence_queue_point_v1.h','runtime/scene/drawing_update_points.h','tools/drawing_producer_updates.py']
     if a.cadence_control:names += ['tools/drawing_diagnostic_cadence.py']
     if a.engine_cadence:names += ['runtime/engine-cadence/observer.c','runtime/engine-cadence/entry.S','tools/build-engine-cadence.py','tools/engine_cadence.py','tools/drawing_engine_windows.py','tools/drawing_quit_completion.py']
+    if a.semantic_state:names += ['runtime/menu/drawing_semantic_state.h','tools/drawing_semantic_state.py']
     if a.wine_resource_copy:names += ['runtime/drawing/wine_resource_copy.h','tools/drawing_wine_resource_copy.py']
     if a.wine_map_storage_point or a.wine_client_memory or a.wine_retained_map_source:names += ['runtime/drawing/storage_point_exports.h','tools/drawing_storage_point.py']
     if a.canvas_storage_transitions:names += ['runtime/scene/drawing_storage_transitions.h','tools/drawing_storage_transitions.py','protocols/include/mnm/drawing_storage_point_v2.h']
@@ -106,7 +108,7 @@ def main():
         binaries=([menu] if a.control else [drawing,menu])+([scene] if scene else [])+([cadence] if cadence else [])
         for binary in binaries:shutil.copy2(binary,game/binary.name)
         settings=load('tools/run-opengl-game.py');preferences=settings.disable_cd_music(game)+settings.skip_movies(game)
-        manifest={'wine_resource_copy':a.wine_resource_copy,'canvas_storage_transitions':a.canvas_storage_transitions,'cadence_control':a.cadence_control,'wine_retained_map_source':a.wine_retained_map_source,'wine_client_memory':a.wine_client_memory,'wine_map_storage_point':a.wine_map_storage_point,'wine_resource_map':a.wine_resource_map,'whole_updates':a.whole_updates,'producer_update_binding':a.producer_update_binding,'engine_cadence':a.engine_cadence,'source_held_snapshot':a.source_held_snapshot,'source_worker_lease':a.source_worker_lease,'source_readonly_lease':a.source_readonly_lease,'source_byte_witness':a.source_byte_witness,'wine_worker_context':a.wine_worker_context,'wine_blit_packet':a.wine_blit_packet,'wine_blit_worker':a.wine_blit_worker,'wine_texture_entry':a.wine_texture_entry,'wine_submission':wine_submission,'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+        manifest={'campaign_pause':a.campaign_pause,'semantic_state':a.semantic_state,'wine_resource_copy':a.wine_resource_copy,'canvas_storage_transitions':a.canvas_storage_transitions,'cadence_control':a.cadence_control,'wine_retained_map_source':a.wine_retained_map_source,'wine_client_memory':a.wine_client_memory,'wine_map_storage_point':a.wine_map_storage_point,'wine_resource_map':a.wine_resource_map,'whole_updates':a.whole_updates,'producer_update_binding':a.producer_update_binding,'engine_cadence':a.engine_cadence,'source_held_snapshot':a.source_held_snapshot,'source_worker_lease':a.source_worker_lease,'source_readonly_lease':a.source_readonly_lease,'source_byte_witness':a.source_byte_witness,'wine_worker_context':a.wine_worker_context,'wine_blit_packet':a.wine_blit_packet,'wine_blit_worker':a.wine_blit_worker,'wine_texture_entry':a.wine_texture_entry,'wine_submission':wine_submission,'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         raw=bytearray(106496);raw[:8]=b'MNMMCM12';struct.pack_into('<II',raw,8,12,len(raw));struct.pack_into('<III',raw,16,2,1,1);(run/'channel.bin').write_bytes(raw)
@@ -147,8 +149,19 @@ def main():
             if x11_library:
                 from drawing_process_snapshot import snapshot_processes
                 (run/'process-main.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
-            send(3,1);send(22,4);s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))+[struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)];rules[2]=3
-            send(14,6,rules=rules);send(25,9,2);send(14,7,rules=rules);send(7,12,slots=wait(7)[2])
+            if a.campaign_pause:
+                send(3,22);wait(18);send(18,23,2);send(18,25)
+                # Handoff is observed independently; World is not a semantic menu lane.
+                deadline=time.monotonic()+60
+                while time.monotonic()<deadline:
+                    current=state()
+                    if current and struct.unpack_from('<I',channel,156)[0]==3:break
+                    if process.poll() is not None:raise ValueError('Campaign exited before World handoff')
+                    refresh();time.sleep(.02)
+                else:raise ValueError('Campaign World handoff timed out')
+            else:
+                send(3,1);send(22,4);s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))+[struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)];rules[2]=3
+                send(14,6,rules=rules);send(25,9,2);send(14,7,rules=rules);send(7,12,slots=wait(7)[2])
             if x11_library:(run/'process-world.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
             with (run/'input.log').open('x') as ilog:input_process=subprocess.Popen([str(input_binary),str(capture),str(a.schedule.resolve()),str(run/'input.json')],env=env,stdout=ilog,stderr=subprocess.STDOUT)
             deadline=time.monotonic()+120
@@ -172,13 +185,22 @@ def main():
                         if auxiliary.returncode:raise ValueError('Physical action failed: '+name)
                     finally:
                         if auxiliary.poll() is None:auxiliary.terminate();auxiliary.wait(timeout=5)
-            # Quick Battle Escape opens the original results screen, not the
-            # admitted campaign Mini. Validate that actual route explicitly.
-            physical_action('results-open',{'kind':'tap','key':'Escape','after_ms':600})
-            wait(26);result_payload=bytes(channel[42100:44708])
-            send(26,16);physical_action('results-continue',{'kind':'wait','after_ms':600})
-            physical_action('results-reopen',{'kind':'tap','key':'Escape','after_ms':600})
-            wait(26);send(26,17);wait(22);send(22,2);returned_main=wait(3)
+            if a.campaign_pause:
+                physical_action('campaign-mini-open',{'kind':'tap','key':'Escape','after_ms':1000});wait(17)
+                physical_action('campaign-mini-dwell',{'kind':'wait','after_ms':1500})
+                send(17,14);wait(10);physical_action('campaign-preferences-dwell',{'kind':'wait','after_ms':1500})
+                send(10,20);physical_action('campaign-resume',{'kind':'wait','after_ms':1500})
+                physical_action('campaign-mini-reopen',{'kind':'tap','key':'Escape','after_ms':600});wait(17);send(17,15)
+                physical_action('campaign-confirm-yes',{'kind':'click','button':1,'x':265,'y':395,'after_ms':600})
+                wait(6);result_payload=bytes(channel[94208:99856]);send(6,26);returned_main=wait(3)
+            else:
+                # Quick Battle Escape opens the original results screen, not the
+                # admitted campaign Mini. Validate that actual route explicitly.
+                physical_action('results-open',{'kind':'tap','key':'Escape','after_ms':600})
+                wait(26);result_payload=bytes(channel[42100:44708])
+                send(26,16);physical_action('results-continue',{'kind':'wait','after_ms':600})
+                physical_action('results-reopen',{'kind':'tap','key':'Escape','after_ms':600})
+                wait(26);send(26,17);wait(22);send(22,2);returned_main=wait(3)
             physical_action('exit-main',{'kind':'wait','after_ms':200})
             if egl_peer:
                 (capture/'egl-physical-close.flag').write_bytes(b'close\n');deadline=time.monotonic()+10
@@ -209,7 +231,7 @@ def main():
             if physical_peer:
                 from drawing_api_physical import analyze as physical_analyze
                 physical_observation=physical_analyze(capture,run/'physical-report.json')
-            effects={'gameplay_records':len(gameplay),'distinct_snapshot_ticks':len({r[3] for r in gameplay if r[1]==1}),'sustained_gameplay_observed':len({r[3] for r in gameplay if r[1]==1})>=20,'active_actors':sum(bool(v['active']) for v in actors.values()),'movement_records':len(movement),'health_reduction_records':len(health_changes),'melee_returns':sum(r[1]==2 for r in gameplay),'semantic_selection_verified':False,'semantic_tooltip_verified':False,'semantic_pause_verified':False,'world_exit_verified':True,'results_continue_status':1,'results_quit_status':1,'returned_main_generation':returned_main[0][0]}
+            effects={'gameplay_records':len(gameplay),'distinct_snapshot_ticks':len({r[3] for r in gameplay if r[1]==1}),'sustained_gameplay_observed':len({r[3] for r in gameplay if r[1]==1})>=20,'active_actors':sum(bool(v['active']) for v in actors.values()),'movement_records':len(movement),'health_reduction_records':len(health_changes),'melee_returns':sum(r[1]==2 for r in gameplay),'semantic_selection_verified':False,'semantic_tooltip_verified':False,'semantic_pause_verified':False,'world_exit_verified':True,'results_continue_status':None if a.campaign_pause else 1,'results_quit_status':None if a.campaign_pause else 1,'returned_main_generation':returned_main[0][0]}
             from drawing_call_intervals import inspect_intervals
             intervals=inspect_intervals(capture) if a.observer_mode=='physical' else None
             producer_observation=None
@@ -297,6 +319,11 @@ def main():
                 report['egl_worker_context_observation']=decode_contexts((capture/'egl-worker-context.bin').read_bytes())
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
+    if a.semantic_state and report.get('success'):
+        try:
+            from drawing_semantic_state import decode as decode_semantic_state
+            report['semantic_state_observation']=decode_semantic_state((capture/'semantic-state.bin').read_bytes())
+        except (ValueError,OSError) as error:report.update(success=False,error='Semantic state decoding failed: '+str(error))
     if a.canvas_storage_transitions and report.get('success'):
         try:
             from drawing_storage_transitions import decode as decode_storage_transitions

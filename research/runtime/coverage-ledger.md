@@ -7769,3 +7769,17 @@ has442.21505ms versus59.2184ms(7.4675x). This is expensive diagnostic capture,
 not identical workload/exclusive-cost/zerooverhead/unobtrusive/FPS proof. Next
 focus on semantic action/presentation-route boundaries while retaining bounded
 source/epoch/chain parity and all47/21later-step requirements as open.
+
+DRAW-02 step2 semantic-state/campaign pause increment: read-only bounded
+menu-thread memory-buffered sampler/standard observer build and PE32 owned
+address/validity/counter/mode/ANI/actual-clock/flush fixture pass. Compile,
+fixed-address reservation and fixed-sleep guard failures remain retained; the
+reservation conflict is unassigned. Four decoder and three pause-analysis
+methods plus control-mode exclusion guards pass.
+Original campaign entry→Mini→Preferences Cancel→World resume→Mini Quit→original
+Yes→defeatOK→Main normal Quit retains218samples255physical witnesses. Selected
+world/accepted counters/mode/camera/effect/globalANI scalars stay unchanged over
+Mini3045ms/Preferences2212ms; World counters then advance59→60→61→62. This is
+bounded selected-state pause/resume evidence, not allanimation/timer equivalence,
+selection/tooltip verification or source-owned native menu/presentation parity.
+Continue action/route/source-lifetime acquisition; all47/21and steps3–7remain open.

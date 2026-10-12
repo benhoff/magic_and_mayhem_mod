@@ -44278,6 +44278,60 @@
         "tools/drawing_storage_point.py",
         "tools/drawing_api_session.py"
       ]
+    },
+    {
+      "id": "NR.drawing-semantic-state-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original menu/world state sampling for drawing journeys",
+      "scope": "Prospective read-only original menu-thread samples of actual top-screen identity/stack, world mode/counters and selected global ANI controller scalars at bounded intervals. Validate readiness/owner/pointer ranges; unknown fields remain invalid. No input success\u2192semantic outcome inference, gameplay memory writes, timer/pause equivalence or allanimation state claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/world-tick-loop.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "runtime/menu/drawing_semantic_state.h",
+        "tools/drawing_semantic_state.py"
+      ],
+      "tests": [
+        "tests/drawing-semantic-state-test.c",
+        "tests/test-drawing-semantic-state.py",
+        "tools/test-drawing-semantic-state.py",
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/campaign-pause-schedule.json",
+        "tools/analyze-drawing-campaign-pause.py",
+        "tests/test-drawing-campaign-pause.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-semantic-state-fixture-05-20261012",
+        "DRAW02.draw02-campaign-pause-original-01-20261012",
+        "DRAW02.draw02-campaign-pause-analysis-01-20261012",
+        "DRAW02.draw02-semantic-state-fixture-negative-01-20261012",
+        "DRAW02.draw02-semantic-state-fixture-negative-02-20261012",
+        "DRAW02.draw02-semantic-state-fixture-negative-03-20261012",
+        "DRAW02.draw02-semantic-state-fixture-negative-04-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Campaign Mini/Preferences lifecycle exists but original pause/counter/animation equivalence unverified. Selection/tooltip semantic outcomes remain independently pending.",
+        "Original campaign bounded Mini/Preferences selected scalar pause and resumed counter advancement observed. GlobalANI fields are selected controller scalars, not every creature/effect/animation/timer; full pause equivalence false. Selection/tooltip, source-owned campaign menu composition, native parity/allphysical changes/routes/full47/21remain pending. Fixture failures preserved and address-conflict cause unassigned."
+      ],
+      "validation_dependencies": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py"
+      ]
     }
   ],
   "evidence": [
@@ -94966,6 +95020,106 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-semantic-state-fixture-05-20261012",
+      "kind": "native_integration",
+      "scope": "Actual PE32 owned-address scalar sampler, validity/counter/mode/selectedANI, unchanged source words, actual bounded clock admission and flush decoding. No original pause.",
+      "record": "research/runtime/draw02-semantic-state-fixture-05.json",
+      "sha256": "478330d0a07aa0bee15e00c223f550317023ce3d832236117ff577dab3d34192",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-campaign-pause-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Original fresh campaign entry/Mini/Preferences/Cancel/resume/Quit/defeatOK/Main normal Quit:218scalar samples255physical witnesses; pause remains selected-state evidence only.",
+      "record": "research/runtime/draw02-campaign-pause-original-01.json",
+      "sha256": "c3d97f582db7aa8b73da4f10c192d866fc0468a1a62346a0491543b6f9cfd5a9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-campaign-pause-analysis-01-20261012",
+      "kind": "static",
+      "scope": "Current guarded retained-state analysis:Mini3045ms/Preferences2212ms selected world/accepted counters/mode/camera/effect/ANI scalars stable, observed counters advance after resume. No allanimation/timer/native equivalence.",
+      "record": "research/runtime/draw02-campaign-pause-analysis-01.json",
+      "sha256": "849a371e4f03f9ec879dfd9f25413a0c8b4db322e9119df2cffe0e672f200a43",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-semantic-state-fixture-negative-01-20261012",
+      "kind": "static",
+      "scope": "Preserved standalone minimal Win32 prototype compile failure, no execution.",
+      "record": "research/runtime/draw02-semantic-state-fixture-negative-01.json",
+      "sha256": "90964ea36f06d0cb9162e83c40722c7aff9b3d63e28cbcc1a64cceb4d3312942",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-semantic-state-fixture-negative-02-20261012",
+      "kind": "static",
+      "scope": "Preserved first fixed-address VirtualAlloc exit201; image overlap was provisional and later rebased refusal leaves exact conflict unassigned.",
+      "record": "research/runtime/draw02-semantic-state-fixture-negative-02.json",
+      "sha256": "4864f3f1388046912a39fbc9436da26ff2b4cc35d537bd0da2e47154b1bd3487",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-semantic-state-fixture-negative-03-20261012",
+      "kind": "static",
+      "scope": "Preserved rebased fixed-address allocation refusal; explicit owned-address fixture replaces fixed reservation without production changes.",
+      "record": "research/runtime/draw02-semantic-state-fixture-negative-03.json",
+      "sha256": "c04af4af61e0c5a8028b647a24eb845083346932813d1b742b3e7f6eac741c94",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-semantic-state-fixture-negative-04-20261012",
+      "kind": "static",
+      "scope": "Preserved fixed-sleep sample-count exit205; actual bounded GetTickCount wait passes, production50msguard unchanged.",
+      "record": "research/runtime/draw02-semantic-state-fixture-negative-04.json",
+      "sha256": "c29583b478678cb165c40b8ac3f861f0ff74ac29ff946a189c025f501b564072",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107108,8 +107262,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-current-cadence-20261012.json",
-    "sha256": "55fe75ff433b60f0f63c6c13a1cdc2f77f219ec083adb756608702a6f9086b6d"
+    "path": "research/runtime/coverage/source-index-draw02-semantic-state-20261012.json",
+    "sha256": "db726456dd3e597475301955ade28b1d4fe2cd89a5324b1f363907b02713c7a0"
   },
   "claim_bindings_required": true
 }

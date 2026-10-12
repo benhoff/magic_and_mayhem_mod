@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scope": "Bounded campaign World settling only; pause/Preferences actions and actual state sampled separately. No selection/tooltip assumption.",
+  "actions": [
+    {
+      "kind": "wait",
+      "after_ms": 2500
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 300,
+      "after_ms": 500
+    }
+  ]
+}

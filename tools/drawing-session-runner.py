@@ -33,6 +33,8 @@ if metadata.get('source_worker_lease'):os.environ['MNM_DRAW_SOURCE_WORKER_LEASE'
 else:os.environ.pop('MNM_DRAW_SOURCE_WORKER_LEASE',None)
 if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHOT']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
+if metadata.get('semantic_state'):os.environ['MNM_DRAW_SEMANTIC_STATE_FILE']='Z:'+str(root/'capture/semantic-state.bin').replace('/','\\')
+else:os.environ.pop('MNM_DRAW_SEMANTIC_STATE_FILE',None)
 if metadata.get('engine_cadence'):os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(root/'capture/engine-cadence.bin').replace('/','\\')
 else:os.environ.pop('MNM_ENGINE_CADENCE_FILE',None)
 if metadata.get('canvas_storage_transitions'):os.environ['MNM_DRAW_STORAGE_TRANSITIONS']='1'
