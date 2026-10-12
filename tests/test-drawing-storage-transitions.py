@@ -23,7 +23,25 @@ def query_fixture():
     return raw[:256]+struct.pack('<24I24I',*q,*t)
 
 
+def candidate_fixture():
+    raw=bytearray(query_fixture());struct.pack_into('<I',raw,8,4)
+    q=list(struct.unpack_from('<24I',raw,256));q[4:7]=[0,0,0];q[10]=3;q[14:20]=[0]*6
+    c=[4,5,1,7,1,31,16,1,800,600,800,1,0x1000,4,0x20000,0x1000,4,0x20000,4,10,0,18,1,0]
+    t=list(struct.unpack_from('<24I',raw,352));t[0]=5;t[8]=4;t[11]=1
+    return raw[:256]+struct.pack('<24I24I24I',*q,*c,*t)
+
+
 class StorageTransitions(unittest.TestCase):
+    def test_candidate_offset_and_public_region_are_observation_only(self):
+        r=decode(candidate_fixture());self.assertEqual(r['candidates'][0]['delta'],16)
+        self.assertFalse(r['candidates'][0]['physical_alias_proved'])
+        self.assertEqual(r['query_epochs_known'],0)
+
+    def test_candidate_wrong_query_epoch_span_region_or_budget_refuses(self):
+        for word,value in [(2,2),(4,17),(5,29),(6,960000),(7,0),(11,513),(19,11),(22,2),(23,1)]:
+            raw=bytearray(candidate_fixture());struct.pack_into('<I',raw,352+word*4,value)
+            with self.subTest(word=word),self.assertRaises(ValueError):decode(raw)
+
     def test_external_query_identity_is_exact_and_omissions_are_visible(self):
         r=decode(query_fixture());m=r['queries'][0]['metadata']
         points=dict(points=[dict(metadata=m)])

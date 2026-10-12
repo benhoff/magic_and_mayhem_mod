@@ -1027,3 +1027,16 @@ Fresh reanalysis binds every1869external query ID/metadata with0unlinked,
 118heldpairs222commands329API328EGL remain separate. Native replay matches104
 eligible frames0diff225excluded. Next extend exact epoch/version/ownership
 accounting and other routes/actions; all47/21and steps3–7 remain open.
+
+DRAW-02 step2 candidate probe: PE32 owned-memory offset/region fixture and15
+decoder controls pass. Original01normal Quit retains884invocations1853queries
+267candidate rows:0numeric span overlap247different20equal allocation bases.
+Relevant source-client pointer differs1048592bytes from cached canvas2 in a
+different allocation; a small offset is excluded within this sample. Actual
+physical alias/transfer remains unassigned. Passed source/query reanalysis checks
+2172known1449unknown cache points. Analyzer pre-execution duplicate-key failure
+is preserved. No protected-source or fresh native comparison for this isolated
+probe; previous104matched frames have0direct submitted epochs. Next observe
+public copy_sub_resource_region boundaries with pinned ABI/forwarding first.
+Allownership/uploads/routes/actions/47requirements21operations remain open;
+steps3–7 remain ordered/pending.

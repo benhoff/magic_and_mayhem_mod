@@ -18,7 +18,7 @@ static int storage_transitions_open(void){
  char name[260];path(name,"canvas-storage-transitions-",0,".bin");
  storage_transition_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);
  if(storage_transition_file==(HANDLE)-1){storage_transition_file=0;return 0;}
- u32 h[16]={0};copy(h,"MNMCST02",8);h[2]=3;h[3]=96;h[4]=0x40209ca7;h[5]=131072;h[6]=512;
+ u32 h[16]={0};copy(h,"MNMCST02",8);h[2]=4;h[3]=96;h[4]=0x40209ca7;h[5]=131072;h[6]=512;
  return write(storage_transition_file,h,64);
 }
 static void storage_transition_record(struct Frame* f,u32 phase,u32 result){
@@ -43,8 +43,9 @@ static void storage_transition_record(struct Frame* f,u32 phase,u32 result){
  }
  if(!write(storage_transition_file,r,96))ExitProcess(99);
 }
+#include "drawing_storage_candidates.h"
 /* Called inside the same recorder scope as the exact exported cache point. */
-static u32 storage_transition_query(u32* point,u32 route,struct Surface* s){
+static u32 storage_transition_query(u32* point,u32 route,struct Surface* s,void* storage,u32 row_pitch){
  if(!storage_transition_file)return 0;if(storage_transition_records>=131071)ExitProcess(99);
  u32 r[24]={0};r[0]=++storage_transition_records;r[1]=3;r[2]=++storage_transition_queries;r[3]=route;
  point[15]=r[2];
@@ -53,12 +54,14 @@ static u32 storage_transition_query(u32* point,u32 route,struct Surface* s){
    if(storage_transition_epochs[i].address==r[5]){r[4]=storage_transition_epochs[i].epoch;r[6]=1;}else r[6]=3;break;
   }}
  }
- copy(r+8,point,64);if(!write(storage_transition_file,r,96))ExitProcess(99);return r[2];
+ copy(r+8,point,64);if(!write(storage_transition_file,r,96))ExitProcess(99);
+ storage_candidates(r[2],point,storage,row_pitch);return r[2];
 }
 static void storage_transitions_close(void){
  if(!storage_transition_file)return;
  u32 r[24]={0};r[0]=++storage_transition_records;r[1]=4;r[2]=storage_transition_calls;r[3]=storage_transition_returns;r[4]=storage_transition_calls-storage_transition_returns;
  r[5]=sequence;r[6]=queue;r[7]=failures;r[8]=storage_transition_address_count;r[9]=storage_transition_epoch;
  r[10]=storage_transition_queries;
+ r[11]=storage_candidate_rows;
  if(!write(storage_transition_file,r,96)||!CloseHandle(storage_transition_file))ExitProcess(99);storage_transition_file=0;
 }

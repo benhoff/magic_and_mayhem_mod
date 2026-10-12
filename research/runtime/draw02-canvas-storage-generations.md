@@ -168,3 +168,37 @@ Fresh reanalysis binds every1869external query ID/metadata with0unlinked,
 118heldpairs222commands329API328EGL remain separate. Native replay matches104
 eligible frames0diff225excluded. Next extend exact epoch/version/ownership
 accounting and other routes/actions; all47/21and steps3–7 remain open.
+
+## Version 4 unknown-address candidates
+
+The104matched native frames in version3original02have zero direct submitted
+map/client epoch links, although their protected CPU snapshots are known.
+`draw02-storage-query-cohort-gap-01.json` retains this distinction. Source/thread
+identity and pixel parity do not establish the submitted buffer address.
+
+Version4adds bounded candidate rows after live unknown queries (flags3only).
+At most16same-pitch live cached canvases are compared. The probe records relative
+address offset/direction, dimensions, current numerical address IDs, observed
+epoch and public VirtualQuery state/protection/type plus allocation-base equality.
+It reads no pixels/private driver layouts and changes no point admission.
+Memory-query failure, stopped/ambiguous/pending points and missing epochs remain
+explicit. Equal allocation bases or overlapping numeric spans do not prove
+physical aliasing, full ownership or an upload path.
+
+The PE32 fixture uses one owned allocation with a16byte offset to verify numeric
+span/region observations. Fifteen decoder controls cover wrong IDs/epoch/region/
+span/budget and retain older wire versions. Original address relationships are
+a separate run; protected-copy diagnostics are disabled for that isolated probe.
+
+DRAW-02 step2 candidate probe: PE32 owned-memory offset/region fixture and15
+decoder controls pass. Original01normal Quit retains884invocations1853queries
+267candidate rows:0numeric span overlap247different20equal allocation bases.
+Relevant source-client pointer differs1048592bytes from cached canvas2 in a
+different allocation; a small offset is excluded within this sample. Actual
+physical alias/transfer remains unassigned. Passed source/query reanalysis checks
+2172known1449unknown cache points. Analyzer pre-execution duplicate-key failure
+is preserved. No protected-source or fresh native comparison for this isolated
+probe; previous104matched frames have0direct submitted epochs. Next observe
+public copy_sub_resource_region boundaries with pinned ABI/forwarding first.
+Allownership/uploads/routes/actions/47requirements21operations remain open;
+steps3–7 remain ordered/pending.

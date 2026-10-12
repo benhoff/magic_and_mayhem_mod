@@ -1,6 +1,6 @@
 #include "../../protocols/include/mnm/drawing_storage_point_v2.h"
 #ifndef MNM_STORAGE_QUERY_RECORD
-#define MNM_STORAGE_QUERY_RECORD(point,route,surface) 0u
+#define MNM_STORAGE_QUERY_RECORD(point,route,surface,storage,pitch) 0u
 #endif
 /* Compare cached addresses only; do not read storage or driver object layouts. */
 static u32 drawing_storage_point(void* storage,u32 row_pitch,u32 slice_pitch,u32 verify_slice,u32* out,u32 size,u32 version){
@@ -22,7 +22,7 @@ static u32 drawing_storage_point(void* storage,u32 row_pitch,u32 slice_pitch,u32
   else if(!match->width||!match->height||match->width>2048||match->height>2048||match->stride<match->width||match->stride>4096||row_pitch!=match->stride*2||(verify_slice&&slice_pitch<row_pitch*match->height))r[2]|=32;
   else{r[2]|=16|(verify_slice?0:64);r[6]=match->id;r[7]=match->width;r[8]=match->height;r[9]=match->stride;r[10]=match->dirty;r[11]=match->sampled;}
  }
- if(version==2){r[15]=MNM_STORAGE_QUERY_RECORD(r,verify_slice?1:2,(r[2]&16)?match:0);if(!r[15]&&enabled&&!stopped){SetLastError(error);return 0;}}
+ if(version==2){r[15]=MNM_STORAGE_QUERY_RECORD(r,verify_slice?1:2,(r[2]&16)?match:0,storage,row_pitch);if(!r[15]&&enabled&&!stopped){SetLastError(error);return 0;}}
  copy(out,r,64);SetLastError(error);return 1;
 }
 

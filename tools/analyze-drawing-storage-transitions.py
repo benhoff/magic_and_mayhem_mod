@@ -32,6 +32,8 @@ def main():
         names=['tools/analyze-drawing-storage-transitions.py','tools/drawing_storage_transitions.py','tools/drawing_storage_point.py','tools/inspect-canvas-producers.py','tests/test-drawing-storage-transitions.py']
         report=dict(schema=1,success=True,sources={n:sha((ROOT/n).read_bytes()) for n in names},reference=dict(path=str(a.reference),sha256=sha(raw)),transition_journal_sha256=sha(transition),producer_journal_sha256=sha(producer),binding=binding,decoder_guards=guards.stderr,unknown_callers=sum(not e['caller_rva'] for e in observed['events']),original_game_executed=False,storage_ownership_proved=False,scope='Offline binding of observed cache generations to exact retained producer prefixes; source/transition artifacts match the original report. Every observed Lock return gets an epoch, including checkpoints skipped by source sampling. No all-call/alias/allocation ownership or full journey claim.')
         report['query_binding']=query_binding
+        candidates=observed.get('candidates',[])
+        report['candidate_observation']=dict(candidate_rows=len(candidates),queries=len({c['query'] for c in candidates}),same_allocation_base=sum(bool(c['flags']&8) for c in candidates),input_inside_canvas=sum(bool(c['flags']&16) for c in candidates),canvas_inside_assumed_input_span=sum(bool(c['flags']&32) for c in candidates),rows=candidates,physical_alias_proved=False)
         a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(binding))
     finally:subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
 

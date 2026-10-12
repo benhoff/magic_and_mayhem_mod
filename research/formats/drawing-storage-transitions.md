@@ -41,3 +41,13 @@ only with explicit storage-transition capture, preserving legacy operation.
 A numerical address can recur across epochs or logical canvas generations.
 The journal does not infer physical allocation reuse versus shared backing,
 real COM refcounts/aliases, all calls/writers, uploads or complete lifetime.
+
+Version4retains96byte rows and permits candidate phase5after its parent query.
+Candidate words: ordinal, phase5, query ID, canvas ID, per-query ordinal1..16,
+flags, offset magnitude/direction, width/height/WORDstride, canvas address ID,
+canvas state/protection/type, input state/protection/type, input address ID,
+producer prefix, queue, thread, observed epoch, reserved0. Flags1same pitch,
+2canvas VirtualQuery succeeded,4input query succeeded,8same allocation base,
+16input inside cached canvas span,32canvas inside input span assumed from the
+candidate extent. Successful VirtualQuery is not a readability/ownership claim.
+The terminal word11counts candidate rows; earlier versions require zero.

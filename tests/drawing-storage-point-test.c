@@ -10,7 +10,7 @@ static void copy(void* out,const void* in,u32 n){u8* a=out;const u8* b=in;while(
 static int bypass_writable(u32 p,u32 n){u32 m[7];return p&&p+n>=p&&VirtualQuery((void*)p,m,28)==28&&m[4]==0x1000&&(m[5]&0xcc)&&!(m[5]&0x101)&&p+n<=m[0]+m[3];}
 static u32 query_enabled=1,query_serial;
 static u32 query_provider(u32* m,u32 route,struct Surface* s){if(m[1]!=2||route<1||route>2||((m[2]&16)!=0)!=(s!=0))ExitProcess(160);return query_enabled?++query_serial:0;}
-#define MNM_STORAGE_QUERY_RECORD(m,route,s) query_provider(m,route,s)
+#define MNM_STORAGE_QUERY_RECORD(m,route,s,storage,pitch) query_provider(m,route,s)
 #include "../runtime/scene/drawing_storage_point.h"
 static void require(int value,u32 code){if(!value)ExitProcess(code);}
 void start(void){

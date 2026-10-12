@@ -398,7 +398,7 @@ static void producer_source_region_end(void){
 
 #include "drawing_publication.h"
 #include "drawing_source_point.h"
-#define MNM_STORAGE_QUERY_RECORD(point,route,surface) storage_transition_query(point,route,surface)
+#define MNM_STORAGE_QUERY_RECORD(point,route,surface,storage,pitch) storage_transition_query(point,route,surface,storage,pitch)
 #include "drawing_storage_point.h"
 #include "drawing_update_points.h"
 #include "whole_update_capture.h"
