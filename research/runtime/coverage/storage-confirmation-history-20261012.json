@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "reviewed_range": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d..596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+  "scope": "Committed exact receipt audit only; no retrospective gate pass or new execution validation.",
+  "files": [
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "2df1357fe408e657f09de1eb54a4cb3b806e792080f0bffe64c51fa9ee6e167c",
+      "after_sha256": "c3b6701e5b262c734c0c7c606206d15ecd4ad1636ddbcae86a3b8521f2608414",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "apps/qt-shell/campaign_smoke_test.cpp",
+      "before_sha256": "f0ebfa2b82889810ba579a92e2380ed1c9ccf21c304e57083a3849c9b2328965",
+      "after_sha256": "7bd54151efaea22b33d8df6f2e7b81821d509e423f7bac8bcb5c7e452670ca09",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "apps/qt-shell/campaign_smoke_test.hpp",
+      "before_sha256": "aa9fa1eb2317ec9d60971e199f1ad63ddbad454c3d054a898f5caaf7919e282b",
+      "after_sha256": "fa5896b60dc82ca9d4d53b074b5d6ddc555108e29d8aa0f62209ec0a13a8672c",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "apps/qt-shell/campaign_storage_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "77906f08ffc6b2bdea040d5d6574d7c3c6ca2a56dd4364c72a49d2e52de54256",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "de0eafc48a3f32f763cbf1c9ad7288d3e186456b099b307df65cdfebcf0d6eb7",
+      "after_sha256": "d8d67e2a82fc1fa8a359e7c2450253b65bc8135727787ba0f6032047773bd71f",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/campaign-restore-embedding-scoped-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2cdc915fb971edcfd0b83e5905dea97c470d35038f3306c6c0ab3df79d022d11",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/campaign-save-load-embedding-scoped-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "64e908b4ed605f352c99fabb17dfe8196905167e317e1592800a57d0745b7119",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/campaign-save-load-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5b715f0b8865c671f14bf369e74a3a21bb9a5627e73c659b80550bdc45c793ba",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/campaign-save-load-live.md",
+      "before_sha256": null,
+      "after_sha256": "54410716e91eacdb19e70ddc187f01d55c61cd23d758f49184be148d8095d8e0",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/campaign-save-restore-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "17cf685719f70fbd547b0ee2233979fd99046709141985f77b9c29298884fc73",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "40f45948bea59c0291ba0863c1a47d0482e33c7f83944e307be9fd6bc6387b62",
+      "after_sha256": "a060a644d4a1ed366f2f434babd5cc221c5519f75098a3046edc63caba952757",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/coverage/campaign-save-load-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "05d790d20ab5350e6c2e2a5828d5db8db7d4cf54c5d1a5e6d1ef0b95197ff82b",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "a8933f045be71f6008ab651ed6cb4d214d557162d2669a457e65b6dc62615e04",
+      "after_sha256": "87033386d571c5cbad8a9cac967bfd7ecafce726bcd6d8a0e966c39432238e2a",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/main-load-persistent-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "c034a231017c9b043fd36d18ec67259609d96418714f4db7fd0b4734d2f9a3fa",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/menu-save-store.md",
+      "before_sha256": "5deeebdbd5c5844b7a1432b3c8e20b299867b4d33b6b1584328758b1d69c3ffb",
+      "after_sha256": "77184c3105b9d8012a5454d1787bf4a9705d80568f6cdd6ce7220d1624bccf75",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/save-load-menu-engine-contract.md",
+      "before_sha256": "986dbfb3ff1b5cb58649362d4e9812b827764ee372f1bb2ae7fff77908ef493d",
+      "after_sha256": "d8618f13b7887fbb8435b0e3e8486b4c620293ca2a1412224726c874e03d6a59",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "research/runtime/storage-menu-mini-parent-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8b408e877675c6aafeae83f7121e1fddb2b9041546c16f16aeb147c00e2dce8e",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": false
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "runtime/menu/storage.h",
+      "before_sha256": "7bc89e743a3810d94cdcf663bf25b014c041c32071cd1793edb6ff948cb67629",
+      "after_sha256": "76b5747013970fa0bdd74aff5cd7703cf2ebda72d686e83a2646d6248d4aa6d6",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tests/menu-storage-bridge-test.cpp",
+      "before_sha256": "d8aa8b35f7b98496c099aa751f6ce623a6380d676c20a734b4eec7a2428a0bdb",
+      "after_sha256": "1cd1e17c4232818c87e97ca124749e2ba1db12e9eea92d91ab591ccba0381a38",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tests/storage-menu-bridge-reference.c",
+      "before_sha256": "bb11836ff3ba83049aa0b2f53dfde8eddd6a6e75d27fcdb6eb4d7e6a5819a2f2",
+      "after_sha256": "caed4eb9e8f575de9aa56a9a3c22b0e7918537328b04e297a6639ccb1dcb75ee",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tools/menu-storage-input.py",
+      "before_sha256": null,
+      "after_sha256": "344e3f41ff8c9586416754e7d1961997ba93bfc8ceee6da4ceecda28c8bcc19b",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "226ccecd02ce180a32fcc67f6aa9918ea4d3b6a039759272f3fef9da723d71f9",
+      "after_sha256": "2c90f549e738c4ffc29946ba43879cea4c5bef9fc5c4c0684821b04ab42b5106",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "5298ca12938d07aa502da94fbdd559a71e13d012e7f74f17698d20505b1d2597",
+      "after_sha256": "7e2c049d16dd2023a4cff7331c82f77084bcfade1457344652e51ac649e1c5bd",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tools/test-live-campaign-storage.py",
+      "before_sha256": null,
+      "after_sha256": "149e8a6f7470c46abe9a8c0bdc6a4a37d90ea5974c0d4066c71d6fe647fb1389",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    },
+    {
+      "commit": "596d6a4a3dc94a4d699d60b6f39632112625f0eb",
+      "parent": "8e18162f0617b7bc8a9145ab8981e3c24c20ff1d",
+      "path": "tools/test-live-menus.py",
+      "before_sha256": "43c3974d4799ea817b441444392b0e90b518591df42a6bdfb7a603c8d3eeca63",
+      "after_sha256": "4be23d8396b4c0150502050e01fc904f65718779ff64e212ca735e77ca94fdff",
+      "receipt_chain": [
+        "campaign-save-load-store-and-hierarchy-accounting-20261012"
+      ],
+      "receipt_required": true
+    }
+  ],
+  "unresolved_gaps": []
+}

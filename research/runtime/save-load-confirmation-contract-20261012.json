@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "cases": 16,
+  "real_game_launched": false,
+  "save_io_stubbed": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "scope": "Original Load pending/Cancel/caller flags, Save Cancel/success/overwrite admission/overwrite modal/Yes/No/invalid confirmation. No closes the modal and retains admission; Yes defers the write. Edit setter and list toggle/reset/get. Serializers, disk-space/deferred-request, fade and modal resource helpers privately stubbed; no actual save I/O, live menu ownership, failure rollback or replacement.",
+  "sources": {
+    "tools/test-save-load-menu-contract.py": "8fad6824d067484521bc2a977da5241baf856672ab64cbcea3bea3d5cdeb5635",
+    "tests/save-load-menu-contract.c": "fa14f114a7ec592b73cae0efb752703f9ca95602d7f9dbb735398d9daf9624a3",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c"
+  },
+  "anchors": {
+    "0x4aa800": "8b4424045683e800",
+    "0x4aa5d0": "6aff681b075c0064",
+    "0x4ab750": "8b44240481ec0001",
+    "0x4abd00": "64a1000000006aff",
+    "0x4abb20": "8b4424045683e800",
+    "0x4cd0e0": "578b7c240885ff8b",
+    "0x4d1060": "51535556578b7c24",
+    "0x4d1df0": "53568b71495785f6"
+  }
+}

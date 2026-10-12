@@ -42812,7 +42812,7 @@
       "subsystem": "campaign",
       "kind": "recovered",
       "title": "Original Save/Load menu control and pending-request contracts",
-      "scope": "Bounded original Load pending/Cancel/caller flags, Save Cancel/success/overwrite admission/modal, list selection and edit setter in a private PE32 fixture. Save/load I/O and modal/fade helpers stubbed; actual persistence, admission, failure/delete branches and live returns pending.",
+      "scope": "Bounded original Load pending/Cancel/caller flags, Save Cancel/success/overwrite admission/modal, list selection and edit setter in a private PE32 fixture. Save/load I/O and modal/fade helpers stubbed; actual persistence, admission, failure/delete branches and live returns pending. Original overwrite confirmation admission retention and Yes/No/invalid branches are included; dependencies remain privately stubbed.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -42824,11 +42824,18 @@
           "build": "nocd-40209ca7",
           "address": 4896880,
           "scope": "Original Save deferred-request callback statically inspected; disk-space and live ownership pending"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4897568,
+          "scope": "Overwrite Yes/No/invalid confirmation: Yes defers existing admission, No closes while retaining admission; bounded private original execution with disk-space/deferred, modal and list helpers stubbed.",
+          "recovered_range": "save-overwrite-confirmation-4abb20"
         }
       ],
       "documents": [
         "research/runtime/save-load-menu-engine-contract.md",
-        "research/runtime/persistence-progression.md"
+        "research/runtime/persistence-progression.md",
+        "research/runtime/storage-confirmations-live.md"
       ],
       "implementation": [
         "tools/export-save-load-menus.py"
@@ -42842,7 +42849,8 @@
         "UI36.static",
         "UI36.original",
         "UI36.original-abi",
-        "UI36.original-abi-screen12"
+        "UI36.original-abi-screen12",
+        "UI39.original-confirmation"
       ],
       "status": {
         "understanding": "partial",
@@ -42857,12 +42865,13 @@
       "subsystem": "campaign",
       "kind": "native_policy",
       "title": "Guarded native Save/Load menu command and ownership projection",
-      "scope": "V13 fixed Main Load and gameplay campaign Save/Load parent shapes, original row IDs and callbacks, ASCII-safe new stems, modal viewport handoff and engine-confirmed native return. Original serializers, overwrite/error dialogs and drawing remain active. Campaign file I/O, persistence across launches, loaded scenarios and full failures remain pending; first live scenario covers Main Load/Cancel only.",
+      "scope": "V13 fixed Main Load and gameplay campaign Save/Load parent shapes, original row IDs and callbacks, ASCII-safe new stems, modal viewport handoff and engine-confirmed native return. Original serializers, overwrite/error dialogs and drawing remain active. Campaign file I/O, persistence across launches, loaded scenarios and full failures remain pending; first live scenario covers Main Load/Cancel only. Each fresh native Save clears retained overwrite admission only after all transaction guards, requiring fresh original confirmation; original Yes continues its pending write unchanged. This is intentional native policy, separate from original No retention.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/save-load-menu-engine-contract.md",
-        "research/runtime/campaign-save-load-live.md"
+        "research/runtime/campaign-save-load-live.md",
+        "research/runtime/storage-confirmations-live.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v13.h",
@@ -42891,13 +42900,17 @@
         "apps/qt-shell/live_storage_menu_test.cpp",
         "tools/test-live-storage-menus.py",
         "apps/qt-shell/live_menu_test.cpp",
-        "apps/qt-shell/live_menu_test.hpp"
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-storage-confirmations.py",
+        "apps/qt-shell/campaign_storage_boundary_test.cpp"
       ],
       "evidence": [
         "UI37.storage-fixture",
         "UI37.main-load-live",
         "UI38.main-load-refresh",
-        "UI38.mini-parent-fixture"
+        "UI38.mini-parent-fixture",
+        "UI39.admission-fixture",
+        "UI39.confirmations-live"
       ],
       "status": {
         "understanding": "partial",
@@ -42969,6 +42982,46 @@
         "UI38.campaign-restore",
         "UI38.save-load-embedding-scoped",
         "UI38.restore-embedding-scoped"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-storage-confirmations",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Live campaign Save overwrite and deletion confirmation boundaries",
+      "scope": "Native Qt campaign Save on Wine-window embedding: unique original save, original overwrite No/Yes, native delete No/Yes, original row refresh, Save/Load Cancel and normal Quit; existing owned store unchanged. Failed writes/loads, crash durability, broader callers and native-command route remain pending. Fresh native Save obtains a new original confirmation after No; clearing retained admission is native policy.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-save-load-live.md",
+        "research/runtime/storage-confirmations-live.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_storage_boundary_test.cpp",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_storage_menu_controller.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "runtime/menu/storage.h",
+        "tools/menu_save_store.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-live-storage-confirmations.py",
+        "tools/menu-storage-input.py"
+      ],
+      "evidence": [
+        "UI39.overwrite-negative",
+        "UI39.confirmations-live"
       ],
       "status": {
         "understanding": "partial",
@@ -89339,6 +89392,124 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI39.original-confirmation",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Original private overwrite confirmation Yes/No/invalid actions, retained admission and deferred request; I/O/modal/list helpers stubbed.",
+      "record": "research/runtime/save-load-confirmation-contract-20261012.json",
+      "sha256": "ad20921d36c4fea4d74fcd59611f2296fe5e0f3cf333a93dc2cae51095d94af4",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/save_io_stubbed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI39.admission-fixture",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Private native adapter resets retained admission only on a new validated Save and preserves original continuation on duplicate polling; I/O stubbed.",
+      "record": "research/runtime/storage-fresh-admission-fixture-20261012.json",
+      "sha256": "2eb0dd2f4fedff4ee5f10e5c836313c0f235103ce80627b188cbcfd9bcb15819",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI39.overwrite-negative",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Negative live original No/second Save attempt: No retained bytes but subsequent Save bypassed another original confirmation. Retained timeout, no completed journey; superseded by intentional fresh native request policy.",
+      "record": "research/runtime/storage-overwrite-admission-negative-20261012.json",
+      "sha256": "dbbf7e1e083d155088165a9b4530647ab583c543dac4926cc49908713495c59f",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/overwrite_no_preserved",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "UI39.confirmations-live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Unique original save: overwrite No/Yes, native delete No/Yes, refreshed original rows, Save/Load Cancel, normal Quit on Wine-window embedding",
+      "record": "research/runtime/storage-confirmations-live-20261012.json",
+      "sha256": "9cb858e1954fdcc4939030e0c32c38ed2d4e135ea7eb473182a5ba3bd920d6d3",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/overwrite_no_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/delete_no_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/delete_rows_refreshed",
+          "equals": true
+        },
+        {
+          "pointer": "/load_excludes_deleted",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_store_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/deleted_save_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_render",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99952,6 +100123,23 @@
         "apps/qt-shell/campaign_storage_test.cpp",
         "tools/menu-storage-input.py"
       ]
+    },
+    {
+      "id": "UI.storage-confirmations",
+      "scope": "Native Qt campaign Save on Wine-window embedding: unique original save, original overwrite No/Yes, native delete No/Yes, original row refresh, Save/Load Cancel and normal Quit; existing owned store unchanged. Failed writes/loads, crash durability, broader callers and native-command route remain pending. Fresh native Save obtains a new original confirmation after No; clearing retained admission is native policy.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-storage-confirmations",
+        "NP.storage-menu-ownership"
+      ],
+      "evidence": [
+        "UI39.confirmations-live"
+      ],
+      "tests": [
+        "tools/test-live-storage-confirmations.py",
+        "tools/menu-storage-input.py",
+        "apps/qt-shell/campaign_storage_boundary_test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100215,6 +100403,15 @@
       "document": "research/runtime/draw01-inventory.md",
       "evidence": "DRAW.terminal-canvas-wrappers.original-range-20261011",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "save-overwrite-confirmation-4abb20",
+      "build": "nocd-40209ca7",
+      "start": 4897568,
+      "end": 4897663,
+      "document": "research/runtime/storage-confirmations-live.md",
+      "evidence": "UI39.original-confirmation",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -100325,8 +100522,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-save-load-20261012.json",
-    "sha256": "86e1d2134eb779fdc0d3bced087159cd07a54c15b21fb8da3dfcde4641357061"
+    "path": "research/runtime/coverage/source-index-storage-confirmations-20261012.json",
+    "sha256": "397f77d501095eeed07298454cc0180b8ee1bb485681d9c7f9be6023bd9c7725"
   },
   "claim_bindings_required": true
 }

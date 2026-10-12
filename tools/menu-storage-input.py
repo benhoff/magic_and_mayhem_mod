@@ -7,12 +7,12 @@ import os
 from pathlib import Path
 import time
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--rect',nargs=4,type=int,required=True);p.add_argument('--mode',choices=['mini','yes'],required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();x0,y0,w,h=a.rect
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--rect',nargs=4,type=int,required=True);p.add_argument('--mode',choices=['mini','yes','no'],required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();x0,y0,w,h=a.rect
     if w<320 or h<240:p.error('Viewport too small')
     x=c.CDLL('libX11.so.6');xt=c.CDLL('libXtst.so.6');x.XOpenDisplay.argtypes=[c.c_char_p];x.XOpenDisplay.restype=c.c_void_p;x.XFlush.argtypes=x.XCloseDisplay.argtypes=[c.c_void_p];x.XKeysymToKeycode.argtypes=[c.c_void_p,c.c_ulong];x.XKeysymToKeycode.restype=c.c_uint
     xt.XTestFakeMotionEvent.argtypes=[c.c_void_p,c.c_int,c.c_int,c.c_int,c.c_ulong];xt.XTestFakeButtonEvent.argtypes=[c.c_void_p,c.c_uint,c.c_int,c.c_ulong];xt.XTestFakeKeyEvent.argtypes=[c.c_void_p,c.c_uint,c.c_int,c.c_ulong];d=x.XOpenDisplay(os.environ['DISPLAY'].encode())
     if not d:raise RuntimeError('No isolated input display')
-    key=0;point=(400,160) if a.mode=='mini' else (265,395)
+    key=0;point=(400,160) if a.mode=='mini' else (265,395) if a.mode=='yes' else (535,395)
     try:
         xt.XTestFakeMotionEvent(d,-1,x0+round(w*point[0]/800),y0+round(h*point[1]/600),0);x.XFlush(d);time.sleep(.1)
         for down in (1,0):xt.XTestFakeButtonEvent(d,1,down,0);x.XFlush(d);time.sleep(.1)

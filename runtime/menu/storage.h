@@ -51,6 +51,7 @@ static u32 storage_dispatch(void* object,u32 action,u32 row,const u8* name){
     static u8 current[MNM_MENU_V13_STORAGE_SIZE];
     if(!storage_snapshot(object,current)||get(current+16)||get(current+20))return MNM_MENU_UNAVAILABLE;
     u8* p=object;int save=get(current)==MNM_MENU_SAVE_SCREEN;u32 index;
+    if(save&&action==MNM_MENU_STORAGE_ACCEPT&&get(p+0x5f)>1)return MNM_MENU_UNAVAILABLE;
     if(action==MNM_MENU_STORAGE_CANCEL)index=1;
     else if(action==MNM_MENU_STORAGE_ACCEPT||action==MNM_MENU_STORAGE_DELETE){
         u8* edit=(u8*)get(p+0x4f);u8* list=(u8*)get(p+(save?0x57:0x5b));
@@ -64,6 +65,10 @@ static u32 storage_dispatch(void* object,u32 action,u32 row,const u8* name){
         if(!readable((void*)get(edit+0x45),256))return MNM_MENU_UNAVAILABLE;
         // All transaction guards precede any original setter.
         if(!save||action==MNM_MENU_STORAGE_DELETE){((ActionFn)0x4d1060)(list,0xffffffffu);((ActionFn)0x4d1060)(list,row-1);}
+        // Original overwrite No closes its modal but retains admission +0x5f.
+        // A fresh native request must obtain approval again. Original Yes
+        // continues the outstanding deferred write without entering this path.
+        if(save&&action==MNM_MENU_STORAGE_ACCEPT)put(p+0x5f,0);
         ((ActionFn)0x4cd0e0)(edit,(u32)text);index=action==MNM_MENU_STORAGE_DELETE?2:0;
     }else return MNM_MENU_UNSUPPORTED;
     record(2,object,index,0);u32 result=((ActionFn)(save?0x4ab750:0x4aa800))(object,index);record(3,object,index,result);

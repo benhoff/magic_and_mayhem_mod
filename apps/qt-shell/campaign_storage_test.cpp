@@ -20,6 +20,7 @@
 #include <memory>
 #include <cstdio>
 void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path,std::function<CampaignPresentationProbe()> probe){
+ if(qEnvironmentVariableIntValue("MNM_CAMPAIGN_STORAGE_BOUNDARIES")==1){installCampaignStorageBoundaryTest(app,window,session,path);return;}
  const bool restart=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STORAGE_RESTART")==1;
  struct Run {int stage=0,attempts=0,input=0;quint32 journalBase=0;bool helper=false,failed=false;quint32 thread=0;quint64 frames=0;QString name,hash,error;QJsonArray states;};auto r=std::make_shared<Run>();r->name=qEnvironmentVariable("MNM_CAMPAIGN_STORAGE_NAME","native-menu-live");
  auto write=[r,path](bool success){QFile f(path);return f.open(QIODevice::WriteOnly)&&f.write(QJsonDocument(QJsonObject{{"success",success},{"stage",r->stage},{"error",r->error},{"states",r->states},{"saved_sha256",r->hash},{"saved_name",r->name},{"scope","Native fresh campaign Save/new file/Load/World presentation/Mini/Quit and original confirmation; full restored state equivalence pending"}}).toJson())>0&&f.flush();};
