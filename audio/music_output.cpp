@@ -60,7 +60,11 @@ public:
             if(generation!=generation_)return;
             error_=error;if(failed)failed(error);
         });
-        player->setSource(QUrl::fromLocalFile(file));player->play();return true;
+        player->setSource(QUrl::fromLocalFile(file));
+        // Metadata loading also occurs while paused. Starting playback here
+        // consumes audio before a paused recovery can apply its retained seek.
+        if(paused)player->pause();else player->play();
+        return true;
     }
     void stop()override{
         ++generation_;
@@ -74,9 +78,12 @@ public:
     bool seek(qint64 milliseconds)override{if(!player_||ended_)return false;pendingSeek_=false;offset_=milliseconds;player_->setPosition(milliseconds);return true;}
     qint64 positionMs()const override{return player_?player_->position():position_;}
     void setVolume(std::uint16_t value)override{level_=value;output_.setVolume(float(value)/65535.0f);}
-    QJsonObject report()const override{return {{"file",file_},{"accepted",accepted_},{"completed",ended_},{"error",error_},
+    QJsonObject report()const override{
+        const auto outputs=QMediaDevices::audioOutputs();
+        const bool present=std::any_of(outputs.begin(),outputs.end(),[this](const auto& device){return device.id()==device_.id();});
+        return {{"file",file_},{"accepted",accepted_},{"completed",ended_},{"error",error_},
         {"audio_frames",qint64(frames_)},{"audio_bytes",qint64(bytes_)},{"pcm_s16le_stereo_44100_sha256",QString::fromLatin1(hash_.result().toHex())},
-        {"audible_output_requested",audible_},{"audio_device_available",!initialSilent_&&!device_.isNull()},
+        {"audible_output_requested",audible_},{"audio_device_available",!initialSilent_&&!device_.isNull()&&present},
         {"initial_silent_output",initialSilent_},{"volume",int(level_)}};}
 private:
     bool audible_,accepted_=false,ended_=false,desiredPaused_=false,pendingSeek_=false;

@@ -42697,7 +42697,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42891,7 +42892,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42969,7 +42971,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -43047,7 +43050,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44158,7 +44162,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45078,7 +45083,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46383,7 +46389,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46424,7 +46431,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46518,7 +46526,8 @@
         "HOST.native-media-output-recovery.synthetic-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
         "HOST.native-media-output-recovery.headless-synthetic-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46865,7 +46874,8 @@
         "HOST.native-audio-initial-silence.endpoints-20261012",
         "HOST.native-audio-initial-silence.healthy-public-20261012",
         "HOST.native-audio-initial-silence.endpoints-final-fixture-20261012",
-        "HOST.native-audio-initial-silence.empty-public-20261012"
+        "HOST.native-audio-initial-silence.empty-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46923,6 +46933,170 @@
       "evidence": [
         "HOST.native-voice-output-waveforms.endpoint-20261012",
         "HOST.native-voice-output-waveforms.focused-endpoint-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-music-backend-recovery",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Actual native music endpoint loss and paused default recovery",
+      "scope": "Actual Qt music output/default topology: real initial endpoint, removal and frozen cursor, caller pause while unavailable, replacement, seek, non-null default switch and retained track/loop/gain/pause, resume and owned graph/process cleanup. Startup MusicBroker teardown/provider lifetime included. Physical/original comparison, arbitrary hardware and uninterrupted decoded stream/tail across re-admission excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-music-backend-recovery.md"
+      ],
+      "implementation": [
+        "audio/music_output.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp"
+      ],
+      "tests": [
+        "tools/test-native-music-backend.py",
+        "tests/native-music-backend-test.cpp",
+        "tests/native-music-backend/CMakeLists.txt"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/playback_audio_devices.cpp",
+        "apps/qt-shell/playback_audio_devices.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "audio/CMakeLists.txt",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_server_main.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/output_main.cpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/upload_main.cpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/voice_server_main.cpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/music_v1.h",
+        "runtime/audio/protocol.h",
+        "tests/native-initial-silence/CMakeLists.txt",
+        "tools/native_audio_launch.py",
+        "tools/native_music_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/private_audio_backend.py"
+      ],
+      "evidence": [
+        "HOST.native-music-backend-recovery.private-endpoints-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -95786,6 +95960,156 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-music-backend-recovery.private-endpoints-20261012",
+      "kind": "native_integration",
+      "scope": "Final-source actual native Qt music startup/provider lifecycle, physical loss/truthful availability/frozen371ms cursor, caller-paused replacement,1200ms seek retained through non-null default switch and subsequent resume1478ms, track2/loop/gain12345 retained and owned graph/process cleanup. Physical/original or uninterrupted decoded stream across re-admission excluded.",
+      "record": "research/runtime/native-music-backend-private-endpoints-20261012.json",
+      "sha256": "6197044b7f8fcc214ee09f814dec9d820f0c4500f25d384b64c0927692d8de30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/closed",
+          "equals": true
+        },
+        {
+          "pointer": "/backend_cleanup/initial_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/final_sinks",
+          "equals": ""
+        },
+        {
+          "pointer": "/backend_cleanup/owned_daemons_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh final native music fix healthy-output complete native game/default composition and normal Quit. Corrected physical membership and paused re-admission source compiled; healthy lifecycle verified, no physical loss/absence inference. Source/input/original/private cleanup and DSOUND-disabled checks pass.",
+      "record": "research/runtime/native-music-backend-healthy-public-20261012.json",
+      "sha256": "121948c629de07e4517804bb77d68ed9caabd2d8a75358dde5f1024d900d2f77",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_launch_policy/native_media_startup_probe",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_dsound_disable_requested",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/1/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/1/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/1/waiting_for_audio_output",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/1/caller_paused",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/2/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/2/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_media/2/waiting_for_audio_output",
+          "equals": false
+        },
+        {
+          "pointer": "/native_media/2/caller_paused",
+          "equals": false
+        },
+        {
+          "pointer": "/native_audio/initial_silence",
+          "equals": false
+        },
+        {
+          "pointer": "/native_audio/output_silent",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -106359,7 +106683,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106400,7 +106725,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106442,7 +106768,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106463,7 +106790,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106549,7 +106877,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106602,7 +106931,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106754,7 +107084,8 @@
         "HOST.wine-import-census.public-pass-20261012",
         "HOST.wine-import-census.data-public-pass-20261012",
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106817,7 +107148,8 @@
       ],
       "evidence": [
         "HOST.native-media-output-recovery.public-pass-20261012",
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106879,7 +107211,8 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "HOST.native-audio-initial-silence.healthy-public-20261012"
+        "HOST.native-audio-initial-silence.healthy-public-20261012",
+        "HOST.native-audio-initial-silence.music-fix-healthy-public-20261012"
       ]
     },
     {
@@ -106912,6 +107245,22 @@
       "evidence": [
         "HOST.native-voice-output-waveforms.endpoint-20261012",
         "HOST.native-voice-output-waveforms.focused-endpoint-20261012"
+      ]
+    },
+    {
+      "id": "native-music-backend-recovery-20261012",
+      "level": "headless",
+      "scope": "Actual Qt music output/default topology: real initial endpoint, removal and frozen cursor, caller pause while unavailable, replacement, seek, non-null default switch and retained track/loop/gain/pause, resume and owned graph/process cleanup. Startup MusicBroker teardown/provider lifetime included. Physical/original comparison, arbitrary hardware and uninterrupted decoded stream/tail across re-admission excluded.",
+      "behaviors": [
+        "HOST.native-music-backend-recovery"
+      ],
+      "tests": [
+        "tools/test-native-music-backend.py",
+        "tests/native-music-backend-test.cpp",
+        "tests/native-music-backend/CMakeLists.txt"
+      ],
+      "evidence": [
+        "HOST.native-music-backend-recovery.private-endpoints-20261012"
       ]
     }
   ],
@@ -107286,8 +107635,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-waveforms-commit-v1-20261012.json",
-    "sha256": "035484e7edfc7d32862b8a05b09ff002ed288be1a8c8ec0ede390ac43df72127"
+    "path": "research/runtime/coverage/source-index-native-music-backend-commit-v1-20261012.json",
+    "sha256": "b4f94b303dccb0a9b7678d36408c874f3192603ce310a9d942c8132f433bf076"
   },
   "claim_bindings_required": true
 }

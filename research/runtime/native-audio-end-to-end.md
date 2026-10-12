@@ -377,3 +377,12 @@ CD music and normal Quit without any physical output. Optional Wine installer
 dialogs in the isolated empty-cache prefix caused the earlier pre-hook stalls;
 the reproducible private fixture suppresses those installers. See the fresh
 [empty-output evidence](native-audio-initial-silence-empty-public-20261012.json).
+
+Actual software-monitor captures now verify native stereo, voice/master gain,
+hard pan, pitch conversion and overlapping clipping with seven exact2048-frame
+windows. Actual music endpoint loss/default replacement exposed and fixed a
+stale physical-availability report and unwanted advancement during paused
+source re-admission. Current recovery keeps1200ms seek, track/loop/gain/pause
+and resumes correctly; a fresh healthy full native game passes normal Quit.
+See [waveform evidence](native-voice-output-waveforms.md) and
+[music recovery evidence](native-music-backend-recovery.md).

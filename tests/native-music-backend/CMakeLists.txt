@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(mnm_native_music_backend LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+add_subdirectory(../../audio audio)
+add_executable(native-music-backend-test ../native-music-backend-test.cpp)
+target_link_libraries(native-music-backend-test PRIVATE mnm-music-bridge)
+target_compile_options(native-music-backend-test PRIVATE -Wall -Wextra -Werror)
