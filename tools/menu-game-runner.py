@@ -108,5 +108,12 @@ if metadata.get('resident_world'):
     os.environ.pop('MNM_GLYPH_BACKEND',None);os.environ.pop('MNM_GLYPH_DIR',None)
 else:
     os.environ.pop('MNM_PUBLIC_RESIDENT_WORLD',None)
+from native_audio_launch import directsound_disabled
+with (root/'native-audio-launch-policy.json').open('x') as policy:
+    json.dump(dict(schema=1,native_audio_factory=metadata.get('native_audio_factory',False),
+                   native_media=metadata.get('native_media',False),
+                   native_media_startup_probe=metadata.get('native_media_startup_probe',False),
+                   wine_directsound_disabled=directsound_disabled(os.environ)),policy,indent=2)
+    policy.write('\n')
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

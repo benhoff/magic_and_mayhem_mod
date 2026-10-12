@@ -42692,7 +42692,8 @@
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.movie-controls.public-pass-20261012"
+        "HOST.movie-controls.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42881,7 +42882,8 @@
         "HOST.voice-recovery.wave-v5-installed-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.movie-controls.public-pass-20261012"
+        "HOST.movie-controls.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42954,7 +42956,8 @@
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.movie-controls.public-pass-20261012"
+        "HOST.movie-controls.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -43027,7 +43030,8 @@
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.movie-controls.public-pass-20261012"
+        "HOST.movie-controls.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -44133,7 +44137,8 @@
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.movie-controls.public-pass-20261012"
+        "HOST.movie-controls.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45048,7 +45053,8 @@
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
         "HOST.cd-fade.public-pass-20261012",
-        "HOST.movie-controls.public-pass-20261012"
+        "HOST.movie-controls.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -46253,13 +46259,146 @@
       ],
       "evidence": [
         "HOST.native-movie-hidden-video.synthetic-20261012",
-        "HOST.native-movie-hidden-video.all-frames-20261012"
+        "HOST.native-movie-hidden-video.all-frames-20261012",
+        "HOST.native-media-startup-probe.synthetic-20261012"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AU.media_startup_probe",
+      "subsystem": "audio_contracts",
+      "kind": "recovered",
+      "title": "Original startup FilterGraph availability caller",
+      "scope": "Pinned0x483f30..483f7b CoInitialize0 negative-HRESULT early false; nonnegative init creates nonaggregated in-process FilterGraph/IGraphBuilder, nonnegative create releases object and returns1, negative create returns0, balanced CoUninitialize for either created branch. Scripted COM callees only; actual COM, codec/device, Wine error behavior and other callers excluded. Native implementation models only the two signed return gates; COM call/resource order is an original instruction observation with a separate scripted event oracle.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4734768,
+          "scope": "Complete75-byte availability caller; selected startup direct call0x4e95d1; COM boundary behavior is scripted."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-media-startup-probe.md"
+      ],
+      "implementation": [
+        "reconstruction/audio/media_startup_probe.hpp"
+      ],
+      "tests": [
+        "tests/media-startup-probe-reference.cpp",
+        "tools/test-media-startup-probe.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/drawing_census.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "AU.media-startup-probe.original-20261012",
+        "AU.media-startup-probe.return-model-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-media-startup-probe",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native broker availability without startup FilterGraph creation",
+      "scope": "Guarded selected direct startup call0x4e95d1 routes availability through owned Qt media broker operation4; matching complete acknowledgement returns1, missing/stale/refused broker returns0 with no legacy probe. Installed native ownership also refuses missing/stale/preacceptance movie replay through the original wrapper. Original movie hook and LastError/register-preserving no-argument availability ABI remain guarded. This selects native pipeline availability, not original COM/codec/driver equivalence or all indirect callers/Wine retirement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5150161,
+          "scope": "Only pinned direct call to original FilterGraph availability0x483f30; no generic CoCreateInstance interception."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-media-startup-probe.md",
+        "research/runtime/native-audio-filtergraph-probe-failure-20261012.json"
+      ],
+      "implementation": [
+        "runtime/render/media_bridge.h",
+        "apps/qt-shell/media_broker.cpp",
+        "protocols/schemas/media-v1.json",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/python/mnm_protocols/media_v1.py"
+      ],
+      "tests": [
+        "runtime/render/media_selftest.h",
+        "tools/test-native-media.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "apps/qt-shell/media_cli.cpp",
+        "apps/qt-shell/media_cli.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "runtime/render/bridge.c",
+        "tools/build-render-bridge.py",
+        "renderer/CMakeLists.txt",
+        "tools/run-menu-observer.py"
+      ],
+      "evidence": [
+        "HOST.native-media-startup-probe.synthetic-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-dsound-module-policy",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Retire Wine DirectSound in admitted native factory/media sessions",
+      "scope": "Fresh owned native voice/factory and native media staging with declared guarded startup probe disable the Wine DSOUND module by default, preserving other overrides. Legacy/no-media/unmarked staging keeps its prior module policy. Explicit MNM_NATIVE_DISABLE_DSOUND0 retains the prior override;1 forces diagnostic disable. Reject malformed probe policy and bind a safe launch receipt of actual override state before Wine. Bounded selected campaign proves startup availability acknowledgement, both movies, voices/WAV/CD/music and normal Quit with DSOUND disabled; unsupported WinMM calls, generic COM, wider/physical scenarios and complete executed Wine API census remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-media-startup-probe.md",
+        "research/runtime/native-audio-end-to-end.md"
+      ],
+      "implementation": [
+        "tools/native_audio_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/test-native-audio-launch.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_media_launch.py",
+        "runtime/render/media_bridge.h",
+        "protocols/include/mnm/media_v1.h"
+      ],
+      "evidence": [
+        "HOST.media-startup-default.public-pass-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -93992,6 +94131,190 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AU.media-startup-probe.original-20261012",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-media-startup-original-20261012.json",
+      "sha256": "286aeb1508edba9fca676e6c37d2315442f11c1b372c1c3bd516d2655499bfb6",
+      "scope": "Unchanged original75-byte startup FilterGraph check with49 signed HRESULT combinations/121 scripted COM events and exact class/interface/outer/context/release identities. Scripted COM only; no native policy, codec/device or Wine equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_control_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 49
+        },
+        {
+          "pointer": "/original/events",
+          "equals": 121
+        },
+        {
+          "pointer": "/original/caller_bytes",
+          "equals": 75
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "HOST.native-media-startup-probe.synthetic-20261012",
+      "kind": "native_integration",
+      "record": "research/runtime/native-media-startup-synthetic-20261012.json",
+      "sha256": "053a4acccb9f7a35598d7a88b3e31d3a81c550acdb039edcf0a69a4194de8ae8",
+      "scope": "Actual PE selected startup call guard and native media availability acknowledgement, full register/carry/stack/LastError preservation, strict native missing/stale movie no-replay, and renewed exactall10RGBA/22050PCM nonzero-controls/file-sound compatibility regressions.14 broker records; synthetic assets/host only.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.media-startup-default.public-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Default native voice/WAV/factory/movie/CD music campaign with selected startup availability ACK and safe actual launch receipt confirming DSOUND disabled without explicit module-disable request. Both intros/campaign/normal Quit; prefix FilterMapper2 attempts can fail outside selected game startup. No physical waveform, live nonzero control or all-Wine API retirement claim.",
+      "record": "research/runtime/native-media-startup-default-public-pass-20261012.json",
+      "sha256": "88ae8f963824102d886ad9a1c3f963069b9377ba7efd364559bf40417a1906e6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_available",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/output_losses",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/output_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio_launch_policy/wine_directsound_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio_launch_policy/native_media_startup_probe",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_dsound_disable_requested",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AU.media-startup-probe.return-model-20261012",
+      "kind": "isolated_original",
+      "record": "research/runtime/native-media-startup-return-model-20261012.json",
+      "sha256": "37f14890455401edfa5564f0c315323204dc76f7ae57eb6ae93661cd5318f225",
+      "scope": "Explicit native two-sign-return-gate model compared with unchanged75-byte original availability caller across49 HRESULT combinations; independent scripted COM event oracle checks121 events. Native model does not implement COM resource order or original callees, codec/device or actual Windows behavior.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_control_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 49
+        },
+        {
+          "pointer": "/original/events",
+          "equals": 121
+        },
+        {
+          "pointer": "/original/caller_bytes",
+          "equals": 75
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -104559,7 +104882,8 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     },
     {
@@ -104595,7 +104919,8 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     },
     {
@@ -104632,7 +104957,8 @@
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.output-timing.public-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     },
     {
@@ -104648,7 +104974,8 @@
       ],
       "evidence": [
         "HOST.native-audio-factory-media.public-pass-20261012",
-        "HOST.voice-recovery.public-v5-pass-20261012"
+        "HOST.voice-recovery.public-v5-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     },
     {
@@ -104729,7 +105056,8 @@
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     },
     {
@@ -104777,7 +105105,8 @@
         "HOST.native-audio-defaults.public-pass-20261012",
         "HOST.voice-controls.public-v4-pass-20261012",
         "HOST.voice-recovery.public-v5-pass-20261012",
-        "HOST.cd-fade.public-pass-20261012"
+        "HOST.cd-fade.public-pass-20261012",
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     },
     {
@@ -104892,7 +105221,40 @@
       ],
       "evidence": [
         "HOST.native-movie-hidden-video.synthetic-20261012",
-        "HOST.native-movie-hidden-video.all-frames-20261012"
+        "HOST.native-movie-hidden-video.all-frames-20261012",
+        "HOST.native-media-startup-probe.synthetic-20261012"
+      ]
+    },
+    {
+      "id": "native-media-startup-probe-synthetic-20261012",
+      "level": "headless",
+      "scope": "PE selected call/prologue guard, native broker availability success, missing/frozen broker false without legacy COM probe, LastError/register/stack preservation; native movies and file-sound regression. Synthetic receiver/codec only.",
+      "behaviors": [
+        "HOST.native-media-startup-probe"
+      ],
+      "tests": [
+        "runtime/render/media_selftest.h",
+        "tools/test-native-media.py"
+      ],
+      "evidence": [
+        "HOST.native-media-startup-probe.synthetic-20261012"
+      ]
+    },
+    {
+      "id": "native-media-startup-probe-campaign-20261012",
+      "level": "live_observation",
+      "scope": "Default native voice/factory/WAV/media/CD/music campaign with recorded startup availability acknowledgement, safe actual launch policy receipt proving DSOUND disabled, both native intros and normal Quit. Stable source/compiler/assets/original manifest and owned cleanup; no all-Wine or unsupported COM/WinMM branch equivalence.",
+      "behaviors": [
+        "HOST.native-media-startup-probe",
+        "HOST.native-dsound-module-policy"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/native_media_launch.py",
+        "tools/native_audio_launch.py"
+      ],
+      "evidence": [
+        "HOST.media-startup-default.public-pass-20261012"
       ]
     }
   ],
@@ -105267,8 +105629,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-hidden-movie-commit-v2-20261012.json",
-    "sha256": "e5157ce47962f2e2692fce6dccbe87f4fea361e0267a46fe96edb074f3a920d4"
+    "path": "research/runtime/coverage/source-index-native-media-probe-commit-v2-20261012.json",
+    "sha256": "79d73f3d1b4354c65c8dee98db9b7eeeb4cab0122515022a4c57917ab5fc2dd1"
   },
   "claim_bindings_required": true
 }

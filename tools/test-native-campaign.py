@@ -458,7 +458,8 @@ def main():
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
-        if args.native_media:declaration_command.extend(['--behavior','HOST.native-menu-media','--scenario','native-menu-media-campaign-20261012'])
+        if args.native_media:declaration_command.extend(['--behavior','HOST.native-menu-media','--scenario','native-menu-media-campaign-20261012','--behavior','HOST.native-media-startup-probe','--scenario','native-media-startup-probe-campaign-20261012'])
+        if args.native_factory and args.native_media:declaration_command.extend(['--behavior','HOST.native-dsound-module-policy'])
         if args.native_music:declaration_command.extend(['--behavior','HOST.native-menu-music','--scenario','native-menu-music-campaign-20261012'])
         if args.default_music or args.default_media:declaration_command.extend(['--behavior','HOST.native-audio-defaults','--scenario','native-audio-defaults-campaign-20261012'])
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
@@ -697,6 +698,13 @@ def main():
                 report['native_audio_compiled_sources']=audio_build['compiled_sources']
             if args.native_media:
                 media=json.loads((roots[0]/'native-media-report.json').read_text())
+                availability=[entry for entry in media if entry.get('operation')==4]
+                if not availability or any(entry.get('status')!=3 or entry.get('native_pipeline_available') is not True for entry in availability):
+                    raise ValueError('Native startup media availability acknowledgement missing')
+                policy=json.loads((roots[0]/'native-audio-launch-policy.json').read_text())
+                if policy.get('native_media_startup_probe') is not True or (args.native_factory and policy.get('wine_directsound_disabled') is not True):
+                    raise ValueError('Native media startup/module policy was not confirmed')
+                report['native_audio_launch_policy']=policy
                 movies=[entry for entry in media if entry.get('operation')==1]
                 if not movies or any(entry.get('status') not in (3,4) or not entry.get('accepted') or entry.get('error') or
                                      entry.get('video_frames',0)<1 or entry.get('audio_frames',0)<1 or

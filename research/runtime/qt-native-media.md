@@ -137,3 +137,36 @@ and normal Quit. It does not establish live use of nonzero controls. Original
 global skip/setup failure/placement details, codec/driver timing and Quartz
 startup dependencies remain distinct. Retrospective8358104a reviews26 exact
 transitions with zero receipt gaps; no historical validation is renewed.
+
+## Native startup availability and Wine DirectSound module retirement (2026-10-12)
+
+The pinned startup check0x483f30 creates a DirectShow FilterGraph/IGraphBuilder
+even when selected movies are native. Its unchanged75-byte caller passes49
+signed HRESULT combinations/121 scripted COM events in
+`native-media-startup-original-20261012.json`; COM/codec implementations remain
+outside that comparison. The guarded selected call0x4e95d1 now asks the native
+media broker for availability, preserving registers/flags/LastError and returning
+unavailable on a missing or frozen host. Installed native movie ownership refuses
+preacceptance legacy replay. Media v1 adds operation4 without layout changes.
+
+`native-media-startup-synthetic-20261012.json` passes14 broker records and PE
+call-byte guard/all-register/carry/stack/LastError tests, strict movie refusal,
+and renewed full10-frame RGBA/22050-frame PCM hidden-control regression. Ten
+audio and four media admission tests pass. Native factory plus marked native
+media staging disables Wine DirectSound by default; legacy/no-media/unmarked
+staging keeps prior overrides, with explicit diagnostic0/1 selection available.
+An owned safe launch receipt records actual module policy without environment
+contents. See `native-media-startup-probe.md` for exact scope and retained failures.
+
+`native-media-startup-default-public-pass-20261012.json` verifies actual default
+DSOUND disable without an explicit module flag, one availability ACK, both
+native intros (1777/1004 presented frames), seven WAV loads/349862 PCM bytes,
+12 voice plays/113 ACKs, seven CD starts/120 music commands, campaign and normal
+Quit. Audio unsupported/fallback/errors are zero; consumed voice frames are
+11023359 versus11024736 generated. Sources/inputs/original manifest/owned
+cleanup pass. Prefix FilterMapper2 registration still logs blocked Quartz
+attempts, separately from the replaced game FilterGraph check. Unsupported
+WinMM calls, other COM paths, full manager/config/cache/event migration, initial
+missing-device/physical recovery, long playlist/waveform/listening and a complete
+executed Wine API census remain pending. Exact76c88ab0 history reviews21
+transitions with zero receipt gaps, without renewing historical validation.

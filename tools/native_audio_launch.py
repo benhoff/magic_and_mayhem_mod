@@ -37,9 +37,22 @@ def authorize(root, metadata, environment):
     factory = metadata.get('native_audio_factory', False)
     if type(factory) is not bool:
         raise ValueError('Invalid native audio factory policy')
-    if factory and environment.get('MNM_NATIVE_DISABLE_DSOUND')=='1':
+    probe=metadata.get('native_media_startup_probe',False)
+    if type(probe) is not bool or (probe and metadata.get('native_media') is not True):
+        raise ValueError('Invalid native media startup probe policy')
+    override=environment.get('MNM_NATIVE_DISABLE_DSOUND')
+    if factory and (override=='1' or (probe and override!='0')):
         overrides=environment.get('WINEDLLOVERRIDES','')
         environment['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'dsound='
+
+
+def directsound_disabled(environment):
+    policy=None
+    for entry in environment.get('WINEDLLOVERRIDES','').split(';'):
+        names,separator,value=entry.partition('=')
+        if separator and 'dsound' in [name.strip().lower() for name in names.split(',')]:
+            policy=value.strip()
+    return policy==''
 
 
 def validate_activity(report, native_wave=False, native_factory=False):
