@@ -19,7 +19,8 @@ CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
     return result;
 }
 }
-ResidentWorldSession::ResidentWorldSession(GlViewport& viewport,const QString& path,const QString& game,bool independent):viewport_(viewport),channel_(create(path,independent)),game_(game),independent_(independent){
+ResidentWorldSession::ResidentWorldSession(GlViewport& viewport,const QString& path,const QString& game,bool independent):ResidentWorldSession(viewportRenderTarget(viewport),path,game,independent){}
+ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QString& path,const QString& game,bool independent):target_(std::move(target)),channel_(create(path,independent)),game_(game),independent_(independent){
     stageProfile_=qEnvironmentVariableIsSet("MNM_RESIDENT_STAGE_PROFILE");profileClock_.start();
     const auto capture=qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE");
     if(!capture.isEmpty()){
@@ -60,9 +61,9 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
             }
             throw std::runtime_error("Resident World producer cancelled");
         }
-        if(!viewport_.ready())return;
+        if(!target_.ready())return;
         if(!world_){
-            renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());auto store=mnm::assets::AssetStore::create(game_.toStdString());
+            renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);auto store=mnm::assets::AssetStore::create(game_.toStdString());
             if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
             world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true);
         }
@@ -151,12 +152,12 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
             }
             throw std::runtime_error("Owned World producer cancelled with outstanding work");
         }
-        if(!viewport_.ready() || ownedPending_)return;
+        if(!target_.ready() || ownedPending_)return;
         const auto now=std::chrono::steady_clock::now();
         if(nextFrame_.time_since_epoch().count() && now<nextFrame_)return;
         OwnedWorldSnapshot source;if(!snapshotQueue_->take(source))return;
         if(!world_){
-            renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());auto store=mnm::assets::AssetStore::create(game_.toStdString());
+            renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);auto store=mnm::assets::AssetStore::create(game_.toStdString());
             if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
             world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true,true);
         }

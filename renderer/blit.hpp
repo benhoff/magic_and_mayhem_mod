@@ -9,6 +9,7 @@
 #include <QImage>
 #include <QSize>
 class QOpenGLContext;
+class QOffscreenSurface;
 
 namespace mnm::render {
 struct Image {
@@ -42,15 +43,21 @@ struct SpriteComposite {
     unsigned rowPeriod=16;
 };
 struct Rgb {std::uint8_t red=0,green=0,blue=0;};
-// GUI-thread lease of the latest GPU presentation. Copies share its texture.
+// Owner-thread lease of mutable GPU presentation. Copies share its texture.
 // It survives source-surface and renderer destruction; subsequent presentations
 // of that surface update existing leases. Consumers bracket draws with these
 // methods in a sharing context, establishing GPU ordering in both directions.
+// snapshot() exports immutable cross-thread pixels under an explicit owner-held
+// lease; the render owner must reclaim the final reference before context teardown.
 class GpuFrame final {
 public:
     GpuFrame()=default;
     QSize size() const;
     bool valid() const {return bool(data_);}
+    bool unique() const {return data_ && data_.use_count()==1;}
+    // Immutable presentation copy. Keep a lease on the render owner until all
+    // consumer leases return; final destruction must occur on that owner.
+    GpuFrame snapshot() const;
     unsigned textureForCurrentContext() const;
     void samplingComplete() const;
 private:
@@ -69,11 +76,13 @@ struct RenderStats {
     std::size_t surfaces=0,pixels=0;
 };
 
-// Qt GUI-thread owner of a dedicated OpenGL 3.3 context. No captured output is
+// Thread-affine owner of a dedicated OpenGL 3.3 context. Worker construction
+// requires a GUI-created external platform surface that outlives this owner.
+// No captured output is
 // supplied to draw(): only source pixels, the old destination and the command.
 class GlBlitter final {
 public:
-    explicit GlBlitter(QOpenGLContext* shareContext=nullptr);
+    explicit GlBlitter(QOpenGLContext* shareContext=nullptr,QOffscreenSurface* externalSurface=nullptr);
     ~GlBlitter();
     GlBlitter(const GlBlitter&)=delete;
     GlBlitter& operator=(const GlBlitter&)=delete;
