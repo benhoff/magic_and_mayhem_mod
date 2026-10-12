@@ -37856,7 +37856,8 @@
         "research/runtime/resident-drawing-history-gap.md",
         "research/runtime/engine-cadence-titan-campaign-20261011.json",
         "research/runtime/scene-production-full-campaign-20261011.json",
-        "research/runtime/scene-production-slice-campaign-20261011.json"
+        "research/runtime/scene-production-slice-campaign-20261011.json",
+        "research/runtime/scene-production-prepared-campaign-20261012.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37916,7 +37917,8 @@
         "NR.public-resident-world.repaired-ordinary-titan-20261011",
         "NR.public-resident-world.engine-cadence-campaign-20261011",
         "NR.public-resident-world.scene-production-full-campaign-20261011",
-        "NR.public-resident-world.scene-production-slice-campaign-20261011"
+        "NR.public-resident-world.scene-production-slice-campaign-20261011",
+        "NR.public-resident-world.scene-production-prepared-campaign-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -41728,7 +41730,8 @@
         "research/runtime/scene-production-queue-cleanup-controls-20261012.json",
         "research/runtime/scene-production-queue-cleanup-static-20261012.json",
         "research/runtime/scene-production-queue-cleanup-performance-negative-20261012.json",
-        "research/runtime/scene-production-prepared-controls-20261012.json"
+        "research/runtime/scene-production-prepared-controls-20261012.json",
+        "research/runtime/scene-production-prepared-titan-20261012.json"
       ],
       "implementation": [
         "tools/export-scene-production.py",
@@ -41771,17 +41774,18 @@
         "NR.scene-production-repetition.queue-cleanup-controls-20261012",
         "NR.scene-production-repetition.queue-cleanup-static-20261012",
         "NR.scene-production-repetition.queue-cleanup-performance-negative-20261012",
-        "NR.scene-production-repetition.prepared-controls-20261012"
+        "NR.scene-production-repetition.prepared-controls-20261012",
+        "NR.scene-production-repetition.prepared-titan-20261012"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "After-return mode3 gives9 exact state/scene repeats, then1154/1150 rows differ at repeat10 despite protected equality; full input/flow/normal retirement complete but19FPS gate fails18.55584. Prepared-phase44 PE32/18 decoder controls pass, preserving original once-only post-work and all protected mutation/queue refusals. Quiet TITAN state/scene/19FPS/normal Quit proof pending. Original helper/copy/consumer/allocator/nested map/visibility/timer/driver/pixel/default/60FPS boundaries remain unproved; earlier crash and missing-row causality unknown."
+        "Quiet prepared-phase TITAN16extra Worlds match all ordered scene rows and13protected regions;40normal history forwards/40extra skips, no extra forwards/refusal/foreign/critical changes.4620balanced World casting/combat/portrait/Mini/normal Quit journey passes19.29201FPS. Extra production/delivery averages28.67015ms;13/16exceed16.67ms, so60FPS remains a failure budget. Full nested/map/visibility/timer/driver/pixel/UI-cursor-clock and arbitrary pause/network/alternate inputs, sustained independently scheduled production, default safety and original helper completeness are unproved. Earlier Fireball/page-fault/18.55584FPS/scene-equality negatives remain historical, with crash/missing-row causality unproved."
       ]
     },
     {
@@ -87559,6 +87563,128 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.scene-production-repetition.prepared-titan-20261012",
+      "kind": "live_observation",
+      "scope": "Quiet private TITAN prepared-phase native experiment:16extra Worlds, exact ordered763..1349 scene rows,40normal history forwards/40extra skips/0extra forwards, all13protected regions unchanged including complete queue header, no critical/refusal/foreign events. Full4620balanced World casting/combat/refusals/movement/portraits/Mini/normal Quit journey passes19.29201FPS and source/original/private cleanup. Bounded in-primary native policy only; no full nested/map/visibility/timer/pixel/driver/default/independent60FPS safety.",
+      "record": "research/runtime/scene-production-prepared-titan-20261012.json",
+      "sha256": "3d300486d52a67dc8da73871b480c81860d06dfb7cc51da50e84057c28b48995",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/production/protected_state_invariance",
+          "equals": true
+        },
+        {
+          "pointer": "/production/scene_record_equality",
+          "equals": true
+        },
+        {
+          "pointer": "/production/extra_worlds",
+          "equals": 16
+        },
+        {
+          "pointer": "/production/critical_failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/production/refusals",
+          "equals": 0
+        },
+        {
+          "pointer": "/production/foreign",
+          "equals": 0
+        },
+        {
+          "pointer": "/production_budget/primary_history_forwards",
+          "equals": 40
+        },
+        {
+          "pointer": "/production_budget/extra_history_skips",
+          "equals": 40
+        },
+        {
+          "pointer": "/production_budget/extra_history_forwards",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.scene-production-prepared-campaign-20261012",
+      "kind": "live_observation",
+      "scope": "Quiet final-source private TITAN native resident prepared-phase journey:4620balanced Worlds at19.29201FPS, actual summon/Fireball/melee/lethal/refusals/movement/five portraits/Mini/normal Quit, no delivery readback or pixel reply and clean retirement.16extra Worlds are bounded diagnostic production; no default scheduler or60FPS/per-input/full original pixel/driver equivalence.",
+      "record": "research/runtime/scene-production-prepared-campaign-20261012.json",
+      "sha256": "d33c3044dab74e671839a058beb320e3f12b78bc1b593fc9414786622f0e47ec",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/world_pixel_reply_bytes",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98100,7 +98226,8 @@
         "NR.scene-production-repetition.slice-negative-20261011",
         "NR.scene-production-repetition.history-fireball-negative-20261011",
         "NR.scene-production-repetition.history-crash-negative-20261011",
-        "NR.scene-production-repetition.queue-cleanup-performance-negative-20261012"
+        "NR.scene-production-repetition.queue-cleanup-performance-negative-20261012",
+        "NR.scene-production-repetition.prepared-titan-20261012"
       ]
     }
   ],

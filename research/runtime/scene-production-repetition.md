@@ -1,10 +1,12 @@
 # Repeated original scene production experiment
 
-Current candidate:mode4 (`prepared-scene`) repeats004fd315..004fd5c1 inside the
-original primary draw, after queue cleanup and before creature/camera post-work.
-It retains original prepared state, suppresses only extra history shifting and
-performs the original post-work once. Final44 PE32/18 decoder controls pass; quiet TITAN
-state/scene/19FPS/normal Quit proof is pending; earlier failures remain negative.
+Current result:the quiet TITAN prepared-scene run passes16 exact extra Worlds,
+all13 protected regions, matching scene records, full casting/combat/menu/normal
+Quit and19.29201FPS across4620 balanced Worlds. Native policy integration is
+`live_observation`; original comparison/default replacement remain unclaimed.
+Extra production/delivery averages28.67015ms and13/16 cases exceed16.67ms, so
+sustainable60FPS remains unproved. Simulation pacing stays50ms. Earlier failures
+remain negative evidence; see the exact scoped result below.
 
 Pinned No-CD hash40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168.
 
@@ -142,3 +144,45 @@ cases plus18 decoder refusals pass with source stability. A quiet TITAN journey
 is pending. The next live run
 will start after accounting checks finish; all simulation pacing/default/60FPS,
 map/nested/visibility/driver/pixel exclusions remain.
+
+
+The final quiet `prepared-titan-20261012` run passes16 extra native Worlds, each
+with identical763..1349 ordered scene rows and unchanged world counter/update
+sequence, pacing, complete global ANI/RNG/scheduler/gameplay/map headers, complete
+creature/effect/third-family pools and scene queue header. No critical/refusal/
+foreign events occur.40 primary history calls forward and40 extra calls skip;
+none forward during extra production. The independently retained first pair
+confirms every protected region exactly; module changes remain recorded and
+unclassified, while renderer bytes also match. All16 comparisons are counted by
+the guarded runtime recorder; it does not retain independent full pairs for every
+case. No source changes or coverage/accounting run concurrently with gameplay.
+The bounded checkpoint is available during active gameplay and probing stops at
+case16, before the full journey ends.
+
+The independent final-source campaign passes4620 balanced/verified native Worlds
+at19.29200542 aggregate engineFPS, actual summon/Fireball/melee/lethal and spell
+refusals, movement, five portrait cycles, Mini resume, Quit-No resume and normal
+Quit. TITAN RTX/Zink is accelerated, with no fallback, delivery/native/RGBA readback,
+pixel reply or pending World;80-byte acknowledgements and clean producer retirement
+remain. Source stability, owned Wine cleanup and immutable originals verify. The
+stable portrait face region differs by at most1 channel value from the independent
+original capture; this is not whole World/driver/pixel equivalence.
+
+QPC extra production plus native delivery spans11.7612..52.9186ms, mean28.67015ms,
+median27.037ms;13/16 exceed the16.67ms budget for60FPS. It excludes snapshot/byte
+comparison/checkpoint work and is an instrumented paired-draw sample, not sustained
+independent scheduling. The full native World path averages22.63860ms, including
+9.40538ms producer and9.04008ms submit stages.19FPS passes;60FPS does not follow
+from the repeat-separation proof. Production/delivery budget and a broader same-
+thread schedule, original cursor/time/nested/pointer/visibility semantics, arbitrary
+pause/network/alternate inputs and default safety remain next milestones. The
+original engine/preparation/helpers are not replaced by native simulation.
+
+Only `NR.scene-production-repetition` integration advances to live observation.
+Understanding/implementation remain partial, comparison/replacement remain none;
+recovered helper/preparation/retirement entries keep their independent partial
+static/no-implementation/no-comparison boundaries. Earlier Fireball, page fault,
+queue leak, scene mismatch and18.55584FPS failures remain preserved; the passing
+prepared-phase run does not establish universal crash or missing-row causality.
+Exactbd177b6..38cba10 committed-history review:17 files,zero missing receipts;
+no retrospective gate or execution assertion.
