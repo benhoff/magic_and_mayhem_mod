@@ -6824,3 +6824,16 @@ pass (`scene-draw-budget-final-controls-20261012.json`,
 validation tests pass. Implementation advances only to partial; GUI heartbeat
 and report policies have scoped live observation, while the budget scheduler
 retains no successful25FPS integration/default/original-equivalence claim.
+
+
+Owned snapshot handoff milestone (2026-10-12): explicitV5/mode2/MNMSACK1
+accepts owned validated scene source before native GPU execution. One capture
+owner verifies unchanged prefix and exact actual return before slot release;
+two outstanding snapshots include taken/native/GUI work until ordered import.
+Mapped held-render/backpressure/overwrite/12failure/cancel/join controls,512legacy
+V4leases and independent PE32 exact80-byte ACK/all80mutation controls pass with
+source/original/private cleanup. Build setup/type failures remain under
+working/tests/world-owned-snapshots. Native policy implementation is partial and
+integration headless; live original NOACCESS/bind/pacing/full gameplay and the
+independent native render/UI recipe are pending. No60FPS or original comparison.
+See `world-owned-snapshot-controls-20261012.json`.

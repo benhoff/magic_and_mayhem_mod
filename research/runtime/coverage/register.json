@@ -42286,6 +42286,70 @@
       "remaining_gaps": [
         "Full current TITAN19FPS/half-rate native campaign passes with bounded async diagnostics and preserved samples. Mid-write final failure, storage-latency attribution and uniform60FPS remain outside this live observation."
       ]
+    },
+    {
+      "id": "NR.world-owned-snapshot-delivery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned World snapshot delivery before GPU execution",
+      "scope": "Opt-in continuous V5 resident snapshot mode2 retains V3/V4 envelopes as separate contracts. Descriptor/nonce/generation-bound80-byte MNMSACK1 acknowledges complete owned source and validated native handoff, not GPU completion. Original NOACCESS destination stays guarded through acceptance; verify unchanged prefix and actual checkpoint/return before slot release. One capture worker owns channel parsing/validation; at mosttwo outstanding snapshots including native/GUI imports, strict FIFO/native failure/cancellation and joined lifetime; worker never accesses widgets, GL, heartbeat or simulation state. Native assets/rendering remain native. Synthetic and live integration are separate.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231232,
+          "scope": "Existing guarded World queue capture; no change to simulation clock or original outer loop."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/world_continuous_v5.h",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "runtime/scene/world_continuous.c",
+        "compat/legacy/world-rolling/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/world-snapshot-queue-test.cpp",
+        "tests/world-snapshot-ack-reference.c",
+        "tools/test-world-owned-snapshots.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "tools/build-scene-observer.py",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "tools/profile_native_resident_helpers.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/original-manifest.sh"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.world-owned-snapshot-delivery.controls-20261012",
+        "NR.world-owned-snapshot-delivery.headless-controls-20261012"
+      ],
+      "remaining_gaps": [
+        "Current source-bound mapped owned-source/ordered-import/backpressure/error/join and independent PE32 ACK controls pass. Runtime V5 producer branch is unexecuted in original engine; original destination NOACCESS, real callback binding, independent native draw/HUD composition and full live pacing/input/Quit/performance remain pending. No interpolation,60FPS/default/original equivalence."
+      ]
     }
   ],
   "evidence": [
@@ -88573,6 +88637,76 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.world-owned-snapshot-delivery.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Authored mapped peer using historical valid owned source: two accepted/returned snapshots with native rendering deliberately held, third waits for imported credit, owned source survives mapped overwrite; FIFO imports,12malformed source/request/return refusals, cancellation/join and V4 mode refusal. Actual PE32 source-bound helper matches independent80-byte expected ACK and rejects all80byte mutations/stale identities/legacy ACKs;512V4controls unchanged. No GPU execution, original NOACCESS/live gameplay or60FPS proof.",
+      "record": "research/runtime/world-owned-snapshot-controls-20261012.json",
+      "sha256": "3d5115b7d4a7a7b9c4fc427661164c692101ef779125dd40d0016af790a8a55b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/queue_controls/backpressure",
+          "equals": true
+        },
+        {
+          "pointer": "/queue_controls/source_overwrite_safe",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-owned-snapshot-delivery.headless-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Authored mapped peer using historical valid owned source: two accepted/returned snapshots with native rendering deliberately held, third waits for imported credit, owned source survives mapped overwrite; FIFO imports,12malformed source/request/return refusals, cancellation/join and V4 mode refusal. Actual PE32 source-bound helper matches independent80-byte expected ACK and rejects all80byte mutations/stale identities/legacy ACKs;512V4controls unchanged. No GPU execution, original NOACCESS/live gameplay or60FPS proof. Fresh declaration binds the correct headless scenario; earlier source-bound result retains its original unbound scenario claim.",
+      "record": "research/runtime/world-owned-snapshot-headless-controls-20261012.json",
+      "sha256": "65d03e3e6f1609ca4764af5ed39d5aa9e341c39dee037cd3c96b3f95aa02ffe0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/queue_controls/backpressure",
+          "equals": true
+        },
+        {
+          "pointer": "/queue_controls/source_overwrite_safe",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -99262,6 +99396,23 @@
       "evidence": [
         "HOST.campaign-progress-publication.live-20261012"
       ]
+    },
+    {
+      "id": "NR.world-owned-snapshot-delivery.fixture",
+      "level": "headless",
+      "scope": "Independently authored PE32 exact ACK bytes/mutations/legacy separation and mapped valid captured inputs with rendering held, two outstanding snapshots, explicit ordered imports, source overwrite ownership, invalid return/cancel/failure/join controls. Authored peer, not original live replacement or FPS.",
+      "behaviors": [
+        "NR.world-owned-snapshot-delivery"
+      ],
+      "tests": [
+        "tests/world-snapshot-queue-test.cpp",
+        "tests/world-snapshot-ack-reference.c",
+        "tools/test-world-owned-snapshots.py"
+      ],
+      "evidence": [
+        "NR.world-owned-snapshot-delivery.controls-20261012",
+        "NR.world-owned-snapshot-delivery.headless-controls-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -99635,8 +99786,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-draw-budget-completion-20261012.json",
-    "sha256": "69b29446829b3846b71c7eaf5283859aecafeaa8c7d5cd94a96af1c266859f3f"
+    "path": "research/runtime/coverage/source-index-world-owned-snapshot-contract-reviewed-20261012.json",
+    "sha256": "7b81eb81ccdeab50e8e7a7bd3e90e0ba7ee25b33c90316f977c582d760add3fb"
   },
   "claim_bindings_required": true
 }
