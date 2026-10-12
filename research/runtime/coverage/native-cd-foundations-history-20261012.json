@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "reviewed_range": "a6176a4ff69357644dac3f2677a738f36cbdf14b..071e66ad3bc1f5c906f3060425cd66a529b9a922",
+  "scope": "Committed parent/current exact receipt audit for the native CD foundations milestone, separate from pending CD work and concurrent skirmish. Fresh native CD assets and original CD control links and prospective execution scope were reviewed in the scoped/staged gate; no retrospective past-gate or new scientific validation inference.",
+  "files": [
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "audio/CMakeLists.txt",
+      "before_sha256": "de774dd69f2ec2ee9376a684c2f68283d6c69472696d2fe32b3677745cb0f613",
+      "after_sha256": "ccebe6861275cbdacf10c6952a382dbc94fac514eec75e4818bec6ca95e010a3",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "reconstruction/audio/cd_track_controls.cpp",
+      "before_sha256": null,
+      "after_sha256": "12b68a06c02b4491fa719a69e76afa52b2ea1909fde72d8fc9964c9cc2b47833",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "reconstruction/audio/cd_track_controls.hpp",
+      "before_sha256": null,
+      "after_sha256": "ccb057869e50aed0ec4fcdd22261459de7d8c3e07ffaeb989360f50e6e9650c0",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/formats/cd-audio-assets.md",
+      "before_sha256": null,
+      "after_sha256": "af5fa244fa05c84af9a976619fb52e89370d8e1a3d33828bff4fc04901d81f9a",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/cd-audio-control.md",
+      "before_sha256": null,
+      "after_sha256": "5157d515366fed0f19f759ed5e0b8959ae745aa20d03e2a2b1be795bd19c959d",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "e7357921fdc901db3feb8d0ccbcb0d221e349b545bd6788cc79e3389452986f9",
+      "after_sha256": "be7486b0cd3b766617fc978a3674f35a02248f28c8564daad59d47c715096e0f",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/coverage/native-factory-media-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f72396a33346c918d999e0983e7fdbcc065eb6073881d13e8ddb365b061febf8",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7a8ee9191b367371f0146f39a7ff79f003ac257a2dee0a7a74a58f0d27f6ec97",
+      "after_sha256": "2bdee22e7f875f336696bceeecf12630a4cf83c16b689d8712ba6338eb558c3e",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/coverage/source-index-native-cd-foundations-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d0cc3c09bbd118047a22f1f2c2b05af23bb36d6c2502369efb1e1bcfe8610274",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/coverage/summary-native-cd-foundations-commit-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "1a22fbe396784015f7786dcf1d4120f6f770d0ef654cd2af42f9dde8b6e7ae5f",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/native-cd-assets-installed-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fa9713b8323d85097154f26672b8547cea393a49b72235a5b72de5931181a14b",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/native-cd-control-static-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3bf18e8fad5328c476185a465fa3a2e5a22a9144898e842f7d96aae3d66b6cb3",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/native-cd-track-controls-original-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2d0c9064528ca2e11cf85b999a74f44835166c40f53c1f6b2ab0435a29bbbbee",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "research/runtime/native-cd-track-controls-sandbox-refusal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e7b7f84d6250f4c131f60479717e6c55b935189505d69ca677feefda76629f6c",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "tests/cd-track-controls-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "eecf08b16e371fcd8bfd30810a95e1c1c1c34bdcd1ebca75a0893f433bcf22a3",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "tests/test-cd-audio.py",
+      "before_sha256": null,
+      "after_sha256": "f543b3787b5511a51999227fb7c869e5461c7fee0e85c3062372ed35292cc94b",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "tools/cd_audio.py",
+      "before_sha256": null,
+      "after_sha256": "a5157b5dee19a100c253652e4c2d76f96f17ec05ed5840bfdb17f106306531a4",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "tools/export-cd-audio.py",
+      "before_sha256": null,
+      "after_sha256": "f1df1e249a80ee18cb40b30d1fef203a56ea1c2383181da191787398725184db",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "tools/extract-cd-audio.py",
+      "before_sha256": null,
+      "after_sha256": "4e0adcafc0c73150d1151cd5c51d2ef155ac6de2d007171a22fc5874d4d40689",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "071e66ad3bc1f5c906f3060425cd66a529b9a922",
+      "path": "tools/test-cd-track-controls.py",
+      "before_sha256": null,
+      "after_sha256": "51b4b47cad2f2e5c78832494d7f486acab3b92fc203129dac476646c7395e890",
+      "receipt_chain": [
+        "native-cd-foundations-scoped-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

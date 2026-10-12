@@ -6933,3 +6933,25 @@ the reconstruction build. Five CD extraction fixtures pass. The shared audio
 CMake change leaves prior live-audio evidence historical where its source
 fingerprints include that file; no old hash is refreshed. Fresh live routing
 validation belongs to the upcoming native music integration milestone.
+
+## Native music catalog, playback and recovery service —2026-10-12
+
+`HOST.native-music-service` implements a widget-free strict prepared-CD catalog
+and owned native Qt audio decoder/output/controller. Read-only streaming WAV
+hash/header/metadata checks, data-track refusal, full-track play, loop, seek,
+pause/resume, per-music volume, deferred lifecycle/completion/fault delivery and
+generation-safe default-output recovery are separate from recovered MCI types.
+Recovery retains current music position/pause/loop/volume and never replays a
+refused new request; end-boundary loss clamps to the last playable millisecond
+as an explicit native continuity policy.
+
+[Fresh synthetic/decoder evidence](native-music-service-synthetic-20261012.json)
+passes14 catalog cases, fake device/lifecycle/cancellation/stale/reentrant cases
+and exact44,100-frame/176,400-byte native Qt PCM against independently authored
+source data. Real silent looping/pause/seek/resume/stop and all62 audio/assets
+CTests pass. Implementation/headless integration are scoped; original driver,
+physical fault/listening and live MCI routing/defaults remain pending.
+[Renewed original CD primitive comparison](native-cd-controls-music-build-original-20261012.json)
+passes6,912 cases against the new build recipe, preserving prior immutable
+results. Other old live-audio fingerprints remain historical after CMake changes;
+no comparison/replacement milestone is inferred from this new native policy.

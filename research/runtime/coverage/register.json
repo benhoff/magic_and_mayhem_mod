@@ -43113,13 +43113,55 @@
         "audio/CMakeLists.txt"
       ],
       "evidence": [
-        "AU.cd-track-controls.original-20261012"
+        "AU.cd-track-controls.original-20261012",
+        "AU.cd-track-controls.music-build-original-20261012"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-music-service",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Owned native CD music catalog and playback service",
+      "scope": "Strict prepared CD WAV catalog with contiguous track/sector/PCM metadata, streaming file hashes and fixed CD PCM headers; QObject-owned native Qt audio-only decoder/output, full-track play/stop/pause/resume/seek/loop/per-music volume and generation-safe completion/failure. Preserve authorized catalog ownership and expose output availability/recovery separately. No widgets, game addresses or recovered MCI types in the native service. CD/WinMM adapter, original playlist/notifications, physical audible/timing equivalence and live routing are separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-cd-music-service.md"
+      ],
+      "implementation": [
+        "audio/music_catalog.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_service.hpp",
+        "audio/music_service.cpp",
+        "audio/music_output.cpp"
+      ],
+      "tests": [
+        "tests/music-service-test.cpp",
+        "tools/test-native-music-service.py"
+      ],
+      "validation_dependencies": [
+        "audio/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "HOST.native-music-service.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -89603,6 +89645,126 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-music-service.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Independent synthetic strict CD catalog refusals, generation-bound fake output lifecycle/device recovery and real silent Qt full PCM decode/loop/pause/seek/stop. No original assets/engine/driver, physical device fault/listening, live MCI or timing equivalence.",
+      "record": "research/runtime/native-music-service-synthetic-20261012.json",
+      "sha256": "d1cef240a7ee5ea2ce553207012c7a77684909e105316eee3e8eefd0d7c43245",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded_matches_source",
+          "equals": true
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/fake_lifecycle",
+          "equals": true
+        },
+        {
+          "pointer": "/native/fake_device_recovery",
+          "equals": true
+        },
+        {
+          "pointer": "/native/stale_callbacks",
+          "equals": true
+        },
+        {
+          "pointer": "/native/cancelled_start",
+          "equals": true
+        },
+        {
+          "pointer": "/native/qt_decode/audio_frames",
+          "equals": 44100
+        },
+        {
+          "pointer": "/native/qt_decode/audio_bytes",
+          "equals": 176400
+        },
+        {
+          "pointer": "/native/qt_decode/audible_output_requested",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AU.cd-track-controls.music-build-original-20261012",
+      "kind": "isolated_original",
+      "scope": "Four whole unchanged original CD control primitives versus native models:6912 authored receiver/scripted-MCI cases, exact returns/argument ordering/state and guard bytes. Gates, track low8/wrapping, status failure/last-track retry, successful retry preserving paused, resume/pause and length-byte independent gates. Original driver, notification/window delivery, SEH initialization/allocation, mixer/fade/catalog/playlist/full callers and live playback excluded. Renewed against the current native music build recipe; historical hashes remain unchanged.",
+      "record": "research/runtime/native-cd-controls-music-build-original-20261012.json",
+      "sha256": "0c8814bd9158a3d3159f07cbba117716095d077059d6c437acd3c7cfee966ff0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_control_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 6912
+        },
+        {
+          "pointer": "/original/calls",
+          "equals": 5184
+        },
+        {
+          "pointer": "/original/retry_success_preserved_pause",
+          "equals": 64
+        },
+        {
+          "pointer": "/original/guard_bytes",
+          "equals": 7299072
+        },
+        {
+          "pointer": "/original_returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_returncode",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -100260,6 +100422,21 @@
       "evidence": [
         "HOST.native-cd-assets.installed-20261012"
       ]
+    },
+    {
+      "id": "native-music-service-synthetic-20261012",
+      "level": "headless",
+      "scope": "Strict synthetic prepared CD catalog with data1/audio2/3, invalid catalog/header/hash/traversal/symlink refusals, fake owner lifecycle/default-output recovery and stale/cancelled callback guards, real silent Qt exact stereo signed16 PCM44100 decode plus loop/pause/seek/stop. No original/live MCI or physical output equivalence.",
+      "behaviors": [
+        "HOST.native-music-service"
+      ],
+      "tests": [
+        "tools/test-native-music-service.py",
+        "tests/music-service-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-music-service.synthetic-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -100633,8 +100810,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-cd-foundations-commit-20261012.json",
-    "sha256": "d0cc3c09bbd118047a22f1f2c2b05af23bb36d6c2502369efb1e1bcfe8610274"
+    "path": "research/runtime/coverage/source-index-native-music-service-commit-20261012.json",
+    "sha256": "fbe386bae03521bd3af09a87f37410855dcb0036dc36b25276dad47d77d75f37"
   },
   "claim_bindings_required": true
 }

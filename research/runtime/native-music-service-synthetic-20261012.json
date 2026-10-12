@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "audio/CMakeLists.txt": "627d1d61a3ce20793443c6b8063c439c057386de3976c38895c108d6cfed83e8",
+    "audio/music_catalog.cpp": "afd5d27b210e1e3b8c69b60026c5b250c6b80d69829d74e8f2c4fdc08350cbb6",
+    "audio/music_catalog.hpp": "93796bd8fdba9eaccc94584afcc4805f9af2bfb5918a1f08abc7828b3f470a81",
+    "audio/music_output.cpp": "68ee5896d9c98fb757b7469a19acd9e05ffd2ee1054bd6925c2c4dbe555993e9",
+    "audio/music_service.cpp": "f4883635ccb6c9c8c73ed806b6ccf8e070d1663243531c2e1809caaf039dd556",
+    "audio/music_service.hpp": "c59ec7b57e8d0d3244c9f627d971a54b34c912613bc33529015abf58d9488945",
+    "tests/music-service-test.cpp": "75cf26d247c9113aa50eb46ba394e12ef0705f8403cf5baa08984859621763ed",
+    "tools/test-native-music-service.py": "e2c53d8772701ec4976937c087b90db927fe5da7e38814a7fe6b250726ca57e5"
+  },
+  "claims": [
+    {
+      "behavior": "HOST.native-music-service",
+      "contract_sha256": "086e8a86feb9b091be5d2f95e93c813e7a8559d2665ecd599f66f0f81fa6f863",
+      "scenarios": {
+        "native-music-service-synthetic-20261012": "d2f681b9edaa1f548ad4c1fb3112885e1d772527e29a347ee420def570926822"
+      }
+    }
+  ],
+  "scope": "Independent synthetic strict CD catalog refusals, generation-bound fake output lifecycle/device recovery and real silent Qt full PCM decode/loop/pause/seek/stop. No original assets/engine/driver, physical device fault/listening, live MCI or timing equivalence.",
+  "catalog_cases": [
+    {
+      "name": "valid",
+      "valid": true,
+      "observed": {
+        "error": "",
+        "valid": true
+      }
+    },
+    {
+      "name": "schema",
+      "valid": false,
+      "observed": {
+        "error": "Invalid music metadata integer",
+        "valid": false
+      }
+    },
+    {
+      "name": "format",
+      "valid": false,
+      "observed": {
+        "error": "Invalid CD PCM metadata",
+        "valid": false
+      }
+    },
+    {
+      "name": "track-number",
+      "valid": false,
+      "observed": {
+        "error": "Noncontiguous or invalid CD track range",
+        "valid": false
+      }
+    },
+    {
+      "name": "span",
+      "valid": false,
+      "observed": {
+        "error": "Noncontiguous or invalid CD track range",
+        "valid": false
+      }
+    },
+    {
+      "name": "pcm-bytes",
+      "valid": false,
+      "observed": {
+        "error": "CD sector/PCM size mismatch",
+        "valid": false
+      }
+    },
+    {
+      "name": "frames",
+      "valid": false,
+      "observed": {
+        "error": "CD sector/PCM size mismatch",
+        "valid": false
+      }
+    },
+    {
+      "name": "path-escape",
+      "valid": false,
+      "observed": {
+        "error": "Redirected CD track filename",
+        "valid": false
+      }
+    },
+    {
+      "name": "hash",
+      "valid": false,
+      "observed": {
+        "error": "Prepared CD WAV hash differs from catalog",
+        "valid": false
+      }
+    },
+    {
+      "name": "no-audio",
+      "valid": false,
+      "observed": {
+        "error": "Invalid CD audio track count",
+        "valid": false
+      }
+    },
+    {
+      "name": "negative",
+      "valid": false,
+      "observed": {
+        "error": "Invalid music metadata integer",
+        "valid": false
+      }
+    },
+    {
+      "name": "wrong-header",
+      "valid": false,
+      "observed": {
+        "error": "Prepared music must be exact stereo signed16 PCM44100",
+        "valid": false
+      }
+    },
+    {
+      "name": "truncated",
+      "valid": false,
+      "observed": {
+        "error": "CD WAV size differs from catalog",
+        "valid": false
+      }
+    },
+    {
+      "name": "symlink-outside",
+      "valid": false,
+      "observed": {
+        "error": "Cannot open prepared music asset",
+        "valid": false
+      }
+    }
+  ],
+  "native": {
+    "cancelled_start": true,
+    "fake_device_recovery": true,
+    "fake_lifecycle": true,
+    "qt_decode": {
+      "accepted": true,
+      "audible_output_requested": false,
+      "audio_bytes": 176400,
+      "audio_device_available": true,
+      "audio_frames": 44100,
+      "completed": true,
+      "error": "",
+      "file": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-music-service/run-_gx9o4u3/catalog/Track02.wav",
+      "pcm_s16le_stereo_44100_sha256": "62aa45324c3e7574980211ed806312ddfd5ce6d8b97d85114fdbe9fcd6cb49f6",
+      "volume": 65535
+    },
+    "stale_callbacks": true,
+    "success": true
+  },
+  "decoded_matches_source": true,
+  "inputs": {
+    "catalog/Track03.wav": "2f924ea263a9bc134b4506c5c01d402f5f34aa81924072f2d1504b6ba09f6c86",
+    "catalog/manifest.json": "ebe83902982e416a21d35e7e5bce4cb216e20def1c83b9437258e402ab098e75",
+    "catalog/Track02.wav": "2f924ea263a9bc134b4506c5c01d402f5f34aa81924072f2d1504b6ba09f6c86"
+  },
+  "inputs_stable": true,
+  "sources_stable": true,
+  "executable_sha256": "7b24cc544b0e1c6ea46ca4220293472e14478bbf35c3ba95fb8d1e05341aeadd"
+}
