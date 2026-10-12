@@ -1,5 +1,21 @@
 # Engine modernization coverage ledger
 
+## Original Character pricing reconstruction — 2026-10-12
+
+`CP.character-pricing` now reconstructs the positive-domain original indexed
+formula, with[19,716 matching original prices](character-pricing-original-20261012.json)
+from1,643 six-row calculator runs. Original calculator,x87 power and integer
+truncation helpers remain unchanged; installed coefficients,bounded synthetic
+fractions/constant powers and full pre-execution sources/claims pass, as do
+both immutable-original manifests. `NP.character-price-admission` separately
+records12 intentional native refusals, without original failed-input equivalence.
+[Formula and boundaries](character-pricing.md). Scoped implementation/comparison
+advance independently of live ownership,menu actions,persistence and replacement.
+Wrong-key/reversed-operand attempts retain unique working logs/declarations.
+The shared campaign build definition changes earlier Realm source fingerprints;
+its historical proof is retained, not refreshed. Exact01c4518a committed file
+receipt review has no missing chains; no retrospective execution/gate is inferred.
+
 ## Campaign Character draft/commit recovery — 2026-10-12
 
 `CP.character-actions` has [329 private original callback cases](character-actions-original-20261012.json):
