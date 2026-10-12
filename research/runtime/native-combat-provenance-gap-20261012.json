@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "scope": "Compiler-closure provenance review before any combat status promotion; the initial successful declarations omitted the transitive assets/path_resolver.hpp header.",
+  "missing_sources": [
+    "assets/path_resolver.hpp"
+  ],
+  "initial_runs": [
+    "working/tests/native-combat/run-final-normal",
+    "working/tests/native-combat/run-final-sanitized"
+  ],
+  "engine_test_failure": false,
+  "limitation": "Prior raw reports remain unchanged and are not registered as current execution support. Updated dependency declarations must precede new execution reports. No code was changed by this review."
+}

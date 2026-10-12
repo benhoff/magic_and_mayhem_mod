@@ -6720,3 +6720,36 @@ Simulation target50ms is unchanged. Earlier gameplay/crash/scene/performance
 failures and source hashes are preserved, with causality still partial.
 Exactbd177b6..38cba10 history review:17 files,zero receipt gaps; no retrospective
 validation or gate assertion. See[experiment](scene-production-repetition.md).
+
+
+## NS21 — bounded native melee encounter (2026-10-12)
+
+`NP.combat-encounter` adds a separate headless `CombatSession` over owned native
+movement: same-profile hostile target acquisition, adjacent-cell pursuit,
+ordinary-tick windup/recovery, fixed clamped damage, slot-ordered lethal
+cancellation and retained cleaned dead identities. Complete native checkpoints
+own targets, health, phase clocks and ongoing movement through the existing
+versioned systems blob. Movement-only advancement refuses nonempty subsystem
+state instead of silently omitting combat.
+
+Normal game regression:38 CTests pass. Focused ASan/UBSan combat/world/movement:
+four CTests pass with leak detection. Final source/scope-bound normal and
+sanitized runs each pass32 fresh-process continuations (25 coarse/seven fine),
+15 CLI/wire/resource refusals and the production timing/hostility/layer/range/tie/
+blocked/limit/rollback/semantic-state controls. Coarse40-tick encounter:seven
+hits,one death,health8/0; slow fine-motion encounter completes within512ticks.
+Compiler closure includes61 project source/header inputs; the complete declaration
+also pins build/test/fixture dependencies. Earlier missing-header declarations,
+fine-motion route-reset failure and raw outputs remain preserved unchanged.
+
+The registered native policy has scoped implementation/headless integration;
+comparison and replacement remain none. `GP.combat` still records incomplete
+original RNG/type/defense/status/animation-event/special-death contracts. This
+is a synthetic console encounter, not installed-world or native-window combat,
+full AI, spells/mana, campaign or live simulation takeover. Shared historical
+movement evidence can remain stale; the new result does not refresh it.
+No originals or installed assets are consumed or modified. Exact committed-history
+review of38cba10..82f9bff covers seven file transitions and has no unresolved
+receipt gaps; uncommitted combat/audio work is accounted separately. See
+[native combat scope/evidence](native-combat-encounter.md) and
+[the runnable harness](../../apps/combat-sandbox/README.md).

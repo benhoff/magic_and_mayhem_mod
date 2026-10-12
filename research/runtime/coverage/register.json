@@ -41909,6 +41909,134 @@
       "remaining_gaps": [
         "Complete target/pointer/predicate/consumer semantics and isolated original comparison unproved. Native prepared-phase repetition is a separate policy experiment; missing-row causality remains a hypothesis."
       ]
+    },
+    {
+      "id": "NP.combat-encounter",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Bounded native melee encounter and attack checkpoint continuation",
+      "scope": "NS21 headless native policy: same-profile bounded one-cell-XY creatures, same-layer owner-inequality hostility, nearest living target with slot ties, adjacent-cell pursuit, ordinary-tick windup/recovery, fixed clamped damage, slot-ordered lethal cancellation and retained cleaned dead entities; complete coarse and fine-motion checkpoint continuation. Original AI, reach/action/animation combat events, RNG/type/defense/status damage, special death branches, spells/mana, installed full worlds, native-window combat and live replacement remain excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-combat-encounter.md",
+        "research/formats/native-combat-subsystem.md",
+        "apps/combat-sandbox/README.md"
+      ],
+      "implementation": [
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "apps/combat-sandbox/main.cpp"
+      ],
+      "tests": [
+        "tests/native-combat-test.cpp",
+        "tests/test-native-combat.py"
+      ],
+      "validation_dependencies": [
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "tools/create-movement-fixture.py"
+      ],
+      "validation_domain": {
+        "inputs": [
+          "synthetic frozen ground map",
+          "two hostile fighters health20/damage6-versus4/windup2/recovery3",
+          "coarse waypoint and recovered fine-motion drivers"
+        ],
+        "branches": [
+          "target acquisition/hostility/range/layer/slot ties",
+          "pursuit and blocked/search-suppressed movement",
+          "windup/recovery timing",
+          "nonlethal/lethal damage and prevention of posthumous retaliation",
+          "cleaned retained identity and occupancy removal",
+          "nonadmitted/alternate ticks",
+          "command/actor limits and whole-encounter rollback",
+          "semantic/wire corruption and changed/missing resource refusal",
+          "fresh-process save/resume during pursuit, windup, recovery and after death"
+        ],
+        "exclusions": [
+          "original combat equivalence",
+          "original diplomacy and visibility",
+          "mixed creature profiles",
+          "native-window combat",
+          "live simulation replacement"
+        ]
+      },
+      "evidence": [
+        "NS21.combat-normal",
+        "NS21.combat-sanitized"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -87685,6 +87813,76 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NS21.combat-normal",
+      "kind": "native_integration",
+      "scope": "NS21 bounded headless native melee encounter, independent subsystem bytes/timing/health oracle and exact coarse/fine attack checkpoints; production contract controls and15 CLI/wire/resource refusals. Normal Debug build. No original combat or live equivalence claim.",
+      "record": "research/runtime/native-combat-normal-20261012.json",
+      "sha256": "4d01d8dda0a65f6b62cefe58509b6d86238987145e1d77c25c37621c247a924f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/hits",
+          "equals": 7
+        },
+        {
+          "pointer": "/deaths",
+          "equals": 1
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "NS21.combat-sanitized",
+      "kind": "native_integration",
+      "scope": "NS21 bounded headless native melee encounter, independent subsystem bytes/timing/health oracle and exact coarse/fine attack checkpoints; production contract controls and15 CLI/wire/resource refusals. ASan/UBSan with leak detection. No original combat or live equivalence claim.",
+      "record": "research/runtime/native-combat-sanitized-20261012.json",
+      "sha256": "492092e08bf8c16e9c148195887fe03a3a7bb146ef310d1ca503fa9bf49b085e",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/contract_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/fresh_process_continuations",
+          "equals": 32
+        },
+        {
+          "pointer": "/hits",
+          "equals": 7
+        },
+        {
+          "pointer": "/deaths",
+          "equals": 1
+        },
+        {
+          "pointer": "/refusals",
+          "equals": 15
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -98229,6 +98427,22 @@
         "NR.scene-production-repetition.queue-cleanup-performance-negative-20261012",
         "NR.scene-production-repetition.prepared-titan-20261012"
       ]
+    },
+    {
+      "id": "world.combat-encounter",
+      "level": "headless",
+      "scope": "Synthetic native two-creature melee from target acquisition and approach through damage/death, independent subsystem bytes and timing/health event oracle, exact coarse/fine fresh-process attack checkpoint continuation; blocked/hostility/limits/malformed/resource/rollback refusals. No original combat comparison, installed-world or window/live integration.",
+      "behaviors": [
+        "NP.combat-encounter"
+      ],
+      "tests": [
+        "tests/native-combat-test.cpp",
+        "tests/test-native-combat.py"
+      ],
+      "evidence": [
+        "NS21.combat-normal",
+        "NS21.combat-sanitized"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -98602,8 +98816,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-production-prepared-20261012.json",
-    "sha256": "edb84e5d7f1cc1f85cfc09dee98856dfa8324ded2af6e81219a03e104fba2d32"
+    "path": "research/runtime/coverage/source-index-native-combat-commit-20261012.json",
+    "sha256": "8296a6b7b181dd3643b408b122fef6af6d9f39f3e0158b6f5c7274f4700b2025"
   },
   "claim_bindings_required": true
 }

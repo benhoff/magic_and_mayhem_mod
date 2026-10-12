@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "all_match": false,
+  "scope": "Retained exploratory fine-motion encounter failure before route-retention correction; not execution support for any current status.",
+  "run": "working/tests/native-combat/run-fine-negative",
+  "trace_sha256": "1c90ef4cb447456dc1ff37dc8dddc3dc0e58cbdc2d13d726f710ae5c648a50f2",
+  "ticks": 512,
+  "positions_final": [
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      5,
+      1,
+      1
+    ]
+  ],
+  "health_final": [
+    20,
+    20
+  ],
+  "approach_events": 682,
+  "hits": 0,
+  "source_provenance_limitation": "Exploratory runner had no prospective scope/source declaration. Retained raw initial checkpoint and trace establish failure observations only; source freshness is not asserted.",
+  "diagnosis": "Code inspection identified destination re-selection against transient peer fine-edge reservations, repeatedly resetting the route before a logical edge completed. Correction retains an admitted route while its endpoint still borders the target; fresh tests required separately."
+}

@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "base": "38cba10bdb8aceb4c718913ff6346a06bf189da7",
+  "head": "82f9bffa9fffe13ef82568008e059eef35f46322",
+  "scope": "Exact committed-history parent/current SHA-256 review before NS21 native combat work. Journal self-reference reviewed structurally; uncommitted changes are excluded. No retrospective gate-pass or fresh engine validation claim.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "cf8c96e9956e5eaa86877fd78ab3c45d93df7021c8e51d35b2df5468ca544e14",
+      "after_sha256": "720162569f26ba3917b09827669ee41851f8cad8c909669fefe1d8a765d20a70",
+      "exact_receipts": [
+        "scene-production-prepared-titan-result-accounting-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "65fe2dcca20895ec026ce10b52d7926e84e41fb3f7862f0fb827618ff1eb648d",
+      "after_sha256": "7b5dd77c06005c38fc498e4a037a28d37024222acb194f5fec6cf9ce122f541e",
+      "exact_receipts": [],
+      "self_reference_boundary": "Append-only receipt journal is reviewed structurally; it cannot fingerprint its own final contents."
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "8cb65b474882611923a5df09d19ff5dbf424bac25c3a446cc3d3cb83fdd18761",
+      "after_sha256": "cbb6d5e8b6d2e6ec310eac1ea58a3119b4558e8a6501aef8b42b12e718cfb22f",
+      "exact_receipts": [
+        "scene-production-prepared-titan-result-accounting-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-scene-production-prepared-titan-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "bfb0b76cb0b1e0fdcff958ae98f9cd3b6561108fe2f990925e55eeea0338c0e8",
+      "exact_receipts": [
+        "scene-production-prepared-titan-result-accounting-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/scene-production-prepared-campaign-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d33c3044dab74e671839a058beb320e3f12b78bc1b593fc9414786622f0e47ec",
+      "exact_receipts": [
+        "scene-production-prepared-titan-result-accounting-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/scene-production-prepared-titan-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3d300486d52a67dc8da73871b480c81860d06dfb7cc51da50e84057c28b48995",
+      "exact_receipts": [
+        "scene-production-prepared-titan-result-accounting-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/scene-production-repetition.md",
+      "before_sha256": "9825e6c2ba6f894c58475364b11933cea2fa47052c24b8278021e5cc63fb4649",
+      "after_sha256": "f3dc475396e659ce3c8206743788179b4e7bfc873081f4ab2c035318d569f5a4",
+      "exact_receipts": [
+        "scene-production-prepared-titan-result-accounting-20261012"
+      ]
+    }
+  ],
+  "affected_behaviors": [
+    "NR.public-resident-world",
+    "NR.scene-production-repetition"
+  ],
+  "retrospective_receipt": null,
+  "unresolved_gaps": []
+}
