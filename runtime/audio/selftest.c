@@ -15,6 +15,7 @@ typedef i32 (WIN *Stop)(void*);
 typedef i32 (WIN *Format)(void*,void*);
 typedef i32 (WIN *Lock)(void*,u32,u32,void**,u32*,void**,u32*,u32);
 typedef i32 (WIN *Unlock)(void*,void*,u32,void*,u32);
+typedef i32 (WIN *Position)(void*,u32*,u32*);
 void start(void){
     char mode[8];
     if(GetEnvironmentVariableA("MNM_AUDIO_STALE_TEST",mode,sizeof(mode))){
@@ -68,10 +69,22 @@ void start(void){
     CHECK(METHOD(buffer,2,Ref)(buffer)==0);
     CHECK(METHOD(child,12,Play)(child,0,0,0)==0);
     CHECK(METHOD(child,9,Read)(child,&value)==0 && value==1);
-    CHECK(METHOD(child,17,Value)(child,44000)<0);
+    CHECK(METHOD(child,17,Value)(child,44000)==0);
+    CHECK(METHOD(child,8,Read)(child,&value)==0&&value==44000);
+    CHECK(METHOD(child,17,Value)(child,99)<0);
+    CHECK(METHOD(child,8,Read)(child,&value)==0&&value==44000);
+    CHECK(METHOD(child,17,Value)(child,0)==0);
+    CHECK(METHOD(child,8,Read)(child,&value)==0&&value==44100);
     CHECK(METHOD(child,13,Value)(child,1)<0);
+    CHECK(METHOD(child,13,Value)(child,2)==0);
+    u32 playCursor=99,writeCursor=99;
+    CHECK(METHOD(child,4,Position)(child,&playCursor,&writeCursor)==0&&playCursor==2&&writeCursor==2);
+    CHECK(METHOD(child,4,Position)(child,0,&writeCursor)==0&&writeCursor==2);
+    CHECK(METHOD(child,4,Position)(child,0,0)<0);
+    CHECK(METHOD(child,4,Position)(child,(u32*)1,&writeCursor)<0&&writeCursor==2);
     CHECK(METHOD(child,18,Stop)(child)==0);
     CHECK(METHOD(child,13,Value)(child,0)==0);
+    CHECK(METHOD(child,4,Position)(child,&playCursor,0)==0&&playCursor==0);
     CHECK(METHOD(child,9,Read)(child,&value)==0 && value==0);
     CHECK(METHOD(child,1,Ref)(child)==2 && METHOD(child,2,Ref)(child)==1);
     CHECK(METHOD(child,2,Ref)(child)==0);

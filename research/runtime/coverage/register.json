@@ -42671,7 +42671,8 @@
         "HOST.native-menu-audio.public-pass-20261011",
         "HOST.native-menu-audio.default-worker-public-pass-20261012",
         "HOST.native-wave-loading.public-pass-20261012",
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42853,7 +42854,9 @@
       "evidence": [
         "HOST.native-wave-loading.installed-pass-20261012",
         "HOST.native-wave-loading.public-pass-20261012",
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-controls.wave-v4-installed-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -42917,7 +42920,8 @@
         "runtime/audio/selftest.c"
       ],
       "evidence": [
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -45774,6 +45778,118 @@
       ],
       "evidence": [
         "HOST.native-file-sound-retirement.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NA.extended_voice_controls",
+      "subsystem": "native_audio",
+      "kind": "native_policy",
+      "title": "Native static voice pitch, seek and cursor controls",
+      "scope": "Secondary native PCM voice frequency0 restores source clock; explicit100..200000Hz changes the resampling step without altering source format or phase. Frame-aligned byte seek, independent duplicate controls and generated-PCM byte cursor; static write cursor equals generated play cursor. Completed cursor wraps0 and seeking a completed voice stops it. Consumed physical cursor/primary ring/streaming writes and original driver equivalence remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-audio-controls.md"
+      ],
+      "implementation": [
+        "audio/buffers.hpp",
+        "audio/voices.cpp",
+        "audio/mixer.cpp"
+      ],
+      "tests": [
+        "tests/audio-controls-test.cpp",
+        "tools/test-native-audio-controls.py"
+      ],
+      "validation_dependencies": [
+        "audio/buffers.cpp",
+        "audio/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NA.extended_voice_controls.synthetic-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.extended-voice-wire",
+      "subsystem": "audio_contracts",
+      "kind": "native_policy",
+      "title": "Version4 static voice controls through native host and PE32 buffer methods",
+      "scope": "MNMAUD01 version4 advertises extended controls before readiness; guarded native PE static GetFrequency/SetFrequency, aligned byte position and generated play/write cursor dispatch to native Device. Failure preserves output pointers/state; unsupported primary/streaming scopes remain explicit. Native play/write cursor equality is a static-memory policy, not original or physically consumed driver cursor equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-audio-controls.md"
+      ],
+      "implementation": [
+        "runtime/audio/protocol.h",
+        "runtime/audio/bridge.c",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "tools/native_audio_launch.py"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "runtime/audio/selftest.c",
+        "tools/test-audio-bridge.py",
+        "tests/test-native-audio-launch.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "audio/CMakeLists.txt",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_server_main.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/voice_server_main.cpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/python/mnm_protocols/music_v1.py",
+        "protocols/schemas/music-v1.json",
+        "runtime/audio/bridge.c",
+        "runtime/audio/music.h",
+        "runtime/audio/music_fault_selftest.c",
+        "runtime/audio/music_liveness.h",
+        "runtime/audio/music_selftest.c",
+        "runtime/audio/protocol.h",
+        "runtime/audio/selftest.c",
+        "runtime/audio/wave_loading.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-audio-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/test-native-music-service.py"
+      ],
+      "evidence": [
+        "HOST.extended-voice-wire.synthetic-20261012"
       ],
       "status": {
         "understanding": "scoped",
@@ -92861,6 +92977,126 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NA.extended_voice_controls.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Native static pitch/seek/generated-cursor ramp, phase continuity, duplicate independence, strict bounds, active/completed lifecycle and primary/released refusal; no original or physical consumed-cursor equivalence.",
+      "record": "research/runtime/native-audio-controls-core-synthetic-20261012.json",
+      "sha256": "552e40e206a2c1f1ca4ce9d812ac3fd23d1b6c3094e554534f0bf329c5600cbe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.extended-voice-wire.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "native dispatcher plus PE32 COM fixture, not live game replacement",
+      "record": "research/runtime/native-voice-controls-wire-synthetic-20261012.json",
+      "sha256": "df1e449d98bc3817cc7f6ac83543923bb2ae3b926254a80a9cf9aaf82faee191",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.voice-controls.wave-v4-installed-20261012",
+      "kind": "native_integration",
+      "scope": "Silent host WAV transport and independent installed PCM comparison; no original engine, Wine or physical output execution.",
+      "record": "research/runtime/native-wave-v4-installed-20261012.json",
+      "sha256": "e703b564ed65908ffae4da2f683bcd250efbe52ab197d4db69d70af7e4009558",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.voice-controls.public-v4-pass-20261012",
+      "kind": "live_observation",
+      "scope": "Version4 native voice/WAV/factory and music campaign/normal Quit with intros skipped. Original game does not exercise every new control; generated cursor and actual consumed timing remain distinct.",
+      "record": "research/runtime/native-voice-v4-public-pass-20261012.json",
+      "sha256": "f676fec4e9aa246c007f120cec039a90d8f796910d1a6d7e67f06b85aa19b348",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/native_audio/failed_requests",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/fallbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_audio/unsupported_calls",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -101775,7 +102011,8 @@
         "NR.directdraw-public-native-menu.default-full-nvidia-20261011",
         "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011",
         "NR.directdraw-public-native-menu.lock-stage-full-nvidia-20261011",
-        "NR.directdraw-public-native-menu.status-file-full-nvidia-20261011"
+        "NR.directdraw-public-native-menu.status-file-full-nvidia-20261011",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ]
     },
     {
@@ -103423,7 +103660,8 @@
         "HOST.native-menu-audio.public-pass-20261011",
         "HOST.native-menu-audio.default-worker-public-pass-20261012",
         "HOST.native-wave-loading.public-pass-20261012",
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ]
     },
     {
@@ -103455,7 +103693,8 @@
       ],
       "evidence": [
         "HOST.native-wave-loading.public-pass-20261012",
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ]
     },
     {
@@ -103470,7 +103709,8 @@
         "tests/audio-voice-bridge-test.cpp"
       ],
       "evidence": [
-        "HOST.native-wave-loading.installed-pass-20261012"
+        "HOST.native-wave-loading.installed-pass-20261012",
+        "HOST.voice-controls.wave-v4-installed-20261012"
       ]
     },
     {
@@ -103486,7 +103726,8 @@
         "tools/prepare-native-audio.py"
       ],
       "evidence": [
-        "HOST.native-audio-factory-media.public-pass-20261012"
+        "HOST.native-audio-factory-media.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ]
     },
     {
@@ -103579,7 +103820,8 @@
       "evidence": [
         "HOST.native-menu-music.initial-pass-20261012",
         "HOST.native-menu-music.media-public-pass-20261012",
-        "HOST.native-audio-defaults.public-pass-20261012"
+        "HOST.native-audio-defaults.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ]
     },
     {
@@ -103624,7 +103866,8 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "HOST.native-audio-defaults.public-pass-20261012"
+        "HOST.native-audio-defaults.public-pass-20261012",
+        "HOST.voice-controls.public-v4-pass-20261012"
       ]
     },
     {
@@ -103640,6 +103883,38 @@
       ],
       "evidence": [
         "HOST.native-file-sound-retirement.synthetic-20261012"
+      ]
+    },
+    {
+      "id": "native-audio-controls-synthetic-20261012",
+      "level": "headless",
+      "scope": "Known mono S16 ramp1000Hz into2000Hz output; retained fractional phase on pitch, bounded/independent seek/duplicate/source clock controls, completed and active looping cursors; no original/physical cursor equivalence.",
+      "behaviors": [
+        "NA.extended_voice_controls"
+      ],
+      "tests": [
+        "tests/audio-controls-test.cpp",
+        "tools/test-native-audio-controls.py"
+      ],
+      "evidence": [
+        "NA.extended_voice_controls.synthetic-20261012"
+      ]
+    },
+    {
+      "id": "native-voice-controls-wire-synthetic-20261012",
+      "level": "headless",
+      "scope": "Actual version4 native worker/PE COM secondary pitch, source-clock restore, aligned seek/play-write generated cursor/pointer guard, independent lifetime/status and stale retirement; silent authored PCM and native WAV source. No original or physical consumed timing.",
+      "behaviors": [
+        "HOST.extended-voice-wire"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "runtime/audio/selftest.c",
+        "tools/test-audio-bridge.py",
+        "tests/test-native-audio-launch.py"
+      ],
+      "evidence": [
+        "HOST.extended-voice-wire.synthetic-20261012"
       ]
     }
   ],
@@ -104014,8 +104289,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-audio-defaults-commit-20261012.json",
-    "sha256": "64f683db62ceaa81310aae4d3e8fd27ccad1f1c34d851874b23d6fa3eec6fb84"
+    "path": "research/runtime/coverage/source-index-native-audio-controls-commit-20261012.json",
+    "sha256": "1f25871f60c1e9d1a31aba3420cd1f57abeb401cc938ec644b121aa2d2e5b617"
   },
   "claim_bindings_required": true
 }

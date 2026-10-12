@@ -7034,3 +7034,25 @@ advanced controls/fades/full playlist windows, native manager/config integration
 wider/long scenarios and traced complete Wine API retirement remain pending.
 Source-only changes retain historical statuses where stale; current native
 headless/live policy proof does not imply original-driver equivalence/replacement.
+
+### Native static pitch/seek/cursors and version4 transport (2026-10-12)
+
+NA.extended_voice_controls and HOST.extended-voice-wire have scoped headless
+proof for source-clock restoration/pitch/retained fractional phase, aligned byte
+seek, independent duplicates, generated static cursors and error/lifetime bounds.
+Version4 advertises capability2 before readiness; with native WAV the mask is3.
+Real PE COM42 request/ACK fixtures pass pitch/source restore, byte2 seek, cursor
+2/optional and invalid pointers, primary/WAV/lifetime/stale behavior. All63
+audio/assets CTests pass. Renewed installed WAV input matches362requests and
+12002990 PCM bytes; live V4 default voice/WAV/factory/music campaign and normal
+Quit passes with intros skipped,0 unsupported live COM/fallback/failed requests.
+
+Core/PE controls are native policies. The live game does not exercise every new
+control; generated cursors/status remain ahead of actual queued consumption and
+static write cursor equality does not emulate a streaming ring. No original
+physical cursor/frequency/seek comparison or broader device recovery is inferred.
+Original manager/config/event replacement, fade/playlist end delivery, long/wider
+scenarios and actual Wine API census/whole library retirement remain pending.
+The prior169c7d6 commit's40 parent/current transitions have exact receipts and0
+gaps. Historical source fingerprints are preserved, with renewed scoped results
+registered separately.

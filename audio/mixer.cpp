@@ -37,7 +37,7 @@ Error Device::mixStereo(std::size_t frames,std::vector<std::int16_t>& output){
             const auto l=sample(b,v.frame,0),r=sample(b,v.frame,1);
             left+=(l+(sample(b,next,0)-l)*fraction)*input.left;
             right+=(r+(sample(b,next,1)-r)*fraction)*input.right;
-            const auto phase=std::uint64_t(b.phase)+b.format->rate;
+            const auto phase=std::uint64_t(b.phase)+(v.frequency?v.frequency:b.format->rate);
             AdvanceResult advanced;advanceVoice(b,phase/outputRate_,advanced);
             b.phase=b.voice.playback==Playback::playing?std::uint32_t(phase%outputRate_):0;
         }

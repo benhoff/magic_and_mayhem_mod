@@ -109,6 +109,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     metadata.update(native_voices=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     native_wave_loading=native_voices,
                     native_audio_factory=native_voices,
+                    native_extended_controls=native_voices,
                     audio_channel=str(root/'native-voices.bin') if native_voices else None)
     metadata.update(native_media=native_media,media_channel=str(root/'native-media.bin') if native_media else None)
     if native_music:

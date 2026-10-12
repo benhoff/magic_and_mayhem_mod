@@ -2,8 +2,9 @@
 /* Little-endian aligned DWORD wire contract, never process pointers. */
 #define MNM_AUDIO_PAYLOAD (16u*1024u*1024u)
 #define MNM_AUDIO_SIZE (128u+MNM_AUDIO_PAYLOAD)
-#define MNM_AUDIO_VERSION 3u
+#define MNM_AUDIO_VERSION 4u
 #define MNM_AUDIO_CAP_NATIVE_WAVE 1u
+#define MNM_AUDIO_CAP_EXTENDED_CONTROLS 2u
 #define MNM_AUDIO_WAVE_INSTALLED 0x10000u
 #define MNM_AUDIO_FACTORY_NATIVE_ONLY 0x40000u
 /* Header[31]: host capabilities in bits0..15; producer installation flags in
@@ -11,7 +12,8 @@
 enum MnmAudioOperation {MNM_AUDIO_PING=0,MNM_AUDIO_CREATE=1,MNM_AUDIO_UPLOAD=2,MNM_AUDIO_DUPLICATE=3,
  MNM_AUDIO_RELEASE=4,MNM_AUDIO_PLAY=5,MNM_AUDIO_STOP=6,MNM_AUDIO_RESET=7,MNM_AUDIO_VOLUME=8,MNM_AUDIO_PAN=9,MNM_AUDIO_STATUS=10,MNM_AUDIO_PRIMARY_VOLUME=11,MNM_AUDIO_PRIMARY_GET_VOLUME=12,
  MNM_AUDIO_PRIMARY_PLAY=13,MNM_AUDIO_PRIMARY_STOP=14,MNM_AUDIO_PRIMARY_STATUS=15,MNM_AUDIO_PRIMARY_FORMAT=16,
- MNM_AUDIO_LOAD_WAVE=17};
+ MNM_AUDIO_LOAD_WAVE=17,MNM_AUDIO_FREQUENCY=18,MNM_AUDIO_GET_FREQUENCY=19,
+ MNM_AUDIO_CURSOR=20,MNM_AUDIO_SEEK=21};
 /* words: magic[0..1], version[2], size[3], request[4] (release publication),
  operation[5], voice[6], value/offset[7], byte count[8], PCM rate/channels/bits/
  alignment/byteRate/tag[9..14], creation flags[15]; response[16] (release),

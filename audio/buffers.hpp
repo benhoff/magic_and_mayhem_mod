@@ -27,6 +27,7 @@ struct VoiceInfo {
     bool looping=false;
     std::uint64_t frame=0,frames=0;
     std::int32_t volume=0,pan=0; // Hundredths of a decibel, not linear gain.
+    std::uint32_t frequency=0; // 0 retains the source clock.
     // DirectSound status bits: playing 0x1, buffer lost 0x2, looping 0x4.
     std::uint32_t status() const{return playback==Playback::playing?(looping?5u:1u):0u;}
 };
@@ -58,6 +59,10 @@ public:
     Error play(BufferId id,std::uint32_t flags=0); // Only 0 or 1 (whole-buffer looping).
     Error stop(BufferId id); // Retain position; reset is a separate operation.
     Error resetPosition(BufferId id);
+    Error setPosition(BufferId id,std::size_t byteOffset);
+    Error setFrequency(BufferId id,std::uint32_t frequency);
+    std::optional<std::uint32_t> frequency(BufferId id) const;
+    std::optional<std::size_t> generatedCursor(BufferId id) const;
     Error setVolume(BufferId id,std::int32_t value); // [-10000,0].
     Error setPan(BufferId id,std::int32_t value); // [-10000,10000].
     Error advanceFrames(BufferId id,std::uint64_t frames,AdvanceResult& result);

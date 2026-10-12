@@ -38,6 +38,10 @@ BridgeReply VoiceCommands::execute(const std::uint32_t* w,const QByteArray& payl
     case MNM_AUDIO_PLAY:error=device_.play(id,w[7]);break;
     case MNM_AUDIO_STOP:error=device_.stop(id);break;
     case MNM_AUDIO_RESET:if(w[7])return {0x80004001,0};error=device_.resetPosition(id);break;
+    case MNM_AUDIO_SEEK:error=device_.setPosition(id,w[7]);break;
+    case MNM_AUDIO_FREQUENCY:error=device_.setFrequency(id,w[7]);break;
+    case MNM_AUDIO_GET_FREQUENCY:{const auto frequency=device_.frequency(id);return frequency?BridgeReply{0,*frequency}:BridgeReply{0x80070057,0};}
+    case MNM_AUDIO_CURSOR:{const auto cursor=device_.generatedCursor(id);return cursor?BridgeReply{0,std::uint32_t(*cursor)}:BridgeReply{0x80070057,0};}
     case MNM_AUDIO_VOLUME:case MNM_AUDIO_PAN:{
         const auto value=w[7]<=std::uint32_t(std::numeric_limits<std::int32_t>::max())?std::int32_t(w[7]):std::int32_t(std::int64_t(w[7])-4294967296ll);
         error=w[5]==MNM_AUDIO_VOLUME?device_.setVolume(id,value):device_.setPan(id,value);break;
@@ -92,7 +96,7 @@ struct VoiceBroker::State:QObject {
         std::memset(map_,0,128);std::memcpy(map_,"MNMAUD01",8);
         auto* words=reinterpret_cast<quint32*>(map_);
         words[2]=qToLittleEndian(MNM_AUDIO_VERSION);words[3]=qToLittleEndian(MNM_AUDIO_SIZE);
-        words[31]=qToLittleEndian(waveSource_?MNM_AUDIO_CAP_NATIVE_WAVE:0u);
+        words[31]=qToLittleEndian(MNM_AUDIO_CAP_EXTENDED_CONTROLS|(waveSource_?MNM_AUDIO_CAP_NATIVE_WAVE:0u));
         __atomic_store_n(words+20,qToLittleEndian(1u),__ATOMIC_RELEASE);
         activity_.audible=audible;timer_.start();return true;
     }

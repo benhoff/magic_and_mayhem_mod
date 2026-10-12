@@ -25,9 +25,10 @@ class AudioLaunchTest(unittest.TestCase):
         self.words = [0] * 32
         self.words[2:4] = [VERSION, SIZE]
         self.words[19:21] = [27, 1]
+        self.words[31]=2
         self.metadata = dict(native_voices=True, native_render=True, origin='menu_action_bridge',
                              audio_dll_sha256=hashlib.sha256(self.dll.read_bytes()).hexdigest(),
-                             audio_channel=str(self.path))
+                             audio_channel=str(self.path),native_extended_controls=True)
         self.write_channel()
 
     def write_channel(self):
@@ -43,10 +44,10 @@ class AudioLaunchTest(unittest.TestCase):
         self.assertNotIn('MNM_AUDIO_CHANNEL', env)
 
     def test_native_wave_capability_is_bound_to_staging(self):
-        self.words[31]=1;self.write_channel()
+        self.words[31]=3;self.write_channel()
         with self.assertRaises(ValueError):authorize(self.root,self.metadata,{})
         authorize(self.root,{**self.metadata,'native_wave_loading':True},{})
-        self.words[31]=0x10001;self.write_channel()
+        self.words[31]=0x10003;self.write_channel()
         with self.assertRaises(ValueError):authorize(self.root,{**self.metadata,'native_wave_loading':True},{})
 
     def test_native_factory_disables_wine_directsound(self):
