@@ -43552,7 +43552,8 @@
         "DRAW02.draw02-held-egl-prediction-02-native_integration-20261012",
         "DRAW02.held-refusal-native-01-negative-20261012",
         "DRAW02.held-refusal-native-02-native-20261012",
-        "DRAW02.source-pending-native-01-native-20261012"
+        "DRAW02.source-pending-native-01-native-20261012",
+        "DRAW02.storage-pending-native-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43675,7 +43676,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-map-storage-point.md"
+        "research/runtime/draw02-wine-map-storage-point.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [
         "runtime/scene/drawing_storage_point.h",
@@ -43705,7 +43707,10 @@
         "DRAW02.map-storage-export-fixture-01-native-20261012",
         "DRAW02.map-storage-observer-fixture-01-native-20261012",
         "DRAW02.map-storage-parser-01-native-20261012",
-        "DRAW02.map-storage-original-01-live-20261012"
+        "DRAW02.map-storage-original-01-live-20261012",
+        "DRAW02.storage-pending-fixture-20261012",
+        "DRAW02.storage-pending-parser-20261012",
+        "DRAW02.storage-pending-original-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43716,7 +43721,8 @@
       },
       "remaining_gaps": [
         "PE32 cache-only export and 12-forward observer fixtures plus four decoder methods pass. Original01 records 1242 successful maps: 795 known canvas points across six canvases, 14 unknown and 433 stopped. 760 known points are full 800x600 stride800. One resource map remains open at observation close. 118 held pairs/222 source commands, 333 API/332 EGL witnesses and actual normal Quit exit0 remain separate observations.",
-        "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned."
+        "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned.",
+        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime."
       ]
     },
     {
@@ -43728,7 +43734,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-client-memory-binding.md"
+        "research/runtime/draw02-wine-client-memory-binding.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [
         "runtime/drawing/wine_client_memory.h",
@@ -43764,7 +43771,10 @@
         "DRAW02.client-memory-fp-refusal-01-static-20261012",
         "DRAW02.client-memory-harness-refusal-01-static-20261012",
         "DRAW02.client-memory-original-01-live-20261012",
-        "DRAW02.client-memory-build-manifest-01-static-20261012"
+        "DRAW02.client-memory-build-manifest-01-static-20261012",
+        "DRAW02.storage-pending-fixture-20261012",
+        "DRAW02.storage-pending-parser-20261012",
+        "DRAW02.storage-pending-original-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43775,7 +43785,8 @@
       },
       "remaining_gaps": [
         "Pinned descriptor-update import/export and PE32 cache-only export/forwarding/lifetime/generation controls plus five decoder methods pass. Original01 records52setters1595queries:145known UI sources,342unbound493unknown615stopped. 118heldpairs223sourcecommands329API328EGLnormalQuit0 remain separate. Compile, FP-comparison and harness failures retained; no original execution for those negatives.",
-        "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged."
+        "Protected source canvas2/7/8/9/10/13 remain unlinked by selected client setter route. Resource map route is seen once for source texture generations21/23/25/32 and27, before cache association is known; a later point may be needed but unmap address retention/ownership cannot be assumed. Source versions/upload/writers/alias/reuse/whole lifetime, other routes/actions and cadence controls/full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this code; historical results remain unchanged.",
+        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime."
       ]
     },
     {
@@ -43787,7 +43798,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-wine-retained-map-source.md"
+        "research/runtime/draw02-wine-retained-map-source.md",
+        "research/runtime/draw02-canvas-storage-generations.md"
       ],
       "implementation": [
         "runtime/drawing/wine_retained_map_source.h",
@@ -43796,7 +43808,9 @@
       "tests": [
         "tests/drawing-wine-retained-map-source-test.c",
         "tools/test-drawing-wine-retained-map-source.py",
-        "tests/test-drawing-wine-retained-map-source.py"
+        "tests/test-drawing-wine-retained-map-source.py",
+        "tests/drawing-storage-point-test.c",
+        "tools/test-drawing-storage-point.py"
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
@@ -43814,7 +43828,10 @@
         "DRAW02.retained-map-original-01-static-20261012",
         "DRAW02.retained-map-refusal-analysis-01-static-20261012",
         "DRAW02.retained-map-original-02-live-20261012",
-        "DRAW02.retained-map-fault-check-01-static-20261012"
+        "DRAW02.retained-map-fault-check-01-static-20261012",
+        "DRAW02.storage-pending-fixture-20261012",
+        "DRAW02.storage-pending-parser-20261012",
+        "DRAW02.storage-pending-original-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -43825,7 +43842,8 @@
       },
       "remaining_gaps": [
         "PE32 28 original forwards/10 queries and four decoder methods pass. Original01 negative records64 partial address matches, then phase2 source-byte getter refuses two pending producer frames after one command completed; extra frame identity/overlap remains unknown. Metadata-only original02 closes1675queries:340known/1027unbound308stopped, all340known afterobservedunmap,336API335EGLnormalQuit0; resource intervals allclose.",
-        "Known points include fullframe canvas2/7/8/9/10/13 andUI12/14/15/22/53/54. Last observed map address at submission is not post-unmap allocation ownership or actualupload/sourceversion/writer/alias/reuse/wholeCOM/resource/texture/storage lifetime. Combined protected source copying still needs a sound pending-frame diagnosis/admission contract. Other routes/actions/cadencecontrols/current nativeparity/full DRAW-02 47/21 acceptance remain pending."
+        "Known points include fullframe canvas2/7/8/9/10/13 andUI12/14/15/22/53/54. Last observed map address at submission is not post-unmap allocation ownership or actualupload/sourceversion/writer/alias/reuse/wholeCOM/resource/texture/storage lifetime. Combined protected source copying still needs a sound pending-frame diagnosis/admission contract. Other routes/actions/cadencecontrols/current nativeparity/full DRAW-02 47/21 acceptance remain pending.",
+        "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime."
       ]
     },
     {
@@ -94003,6 +94021,77 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.storage-pending-fixture-20261012",
+      "kind": "native_integration",
+      "scope": "Cache-only PE32 export: same-wrapper create/release/Lock frames refuse known storage points; unrelated and retired frames do not. Existing output/error/cache guards pass.",
+      "record": "research/runtime/draw02-storage-pending-fixture-01.json",
+      "sha256": "048ec9e891d18e07a4b00d06a82a65245329b518baab58a7665d73607b893388",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.storage-pending-parser-20261012",
+      "kind": "static",
+      "scope": "Sixteen decoder methods retain pending transitions as unknown and reject contradictory matches; no original execution.",
+      "record": "research/runtime/draw02-storage-pending-parser-01.json",
+      "sha256": "84a00aa3cb22a3227219fed3b925307232ff8ed1e3b4f4077180d0164f771320",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.storage-pending-original-20261012",
+      "kind": "live_observation",
+      "scope": "Current guarded original capture completes normal Quit: 795 pending map points, 14 unknown, 491 stopped; 339 last-map source and145client associations. 119protected pairs224commands337API336EGL remain separate; no ownership/fulljourney.",
+      "record": "research/runtime/draw02-storage-pending-original-01.json",
+      "sha256": "6065aec6ea1852bc1feddaabb0d458a57f951ec383f3ae3297eff578847d1f65",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.storage-pending-native-20261012",
+      "kind": "native_integration",
+      "scope": "105eligible exact protected-source/API-command/worker/EGL physical frames match source-only native replay with zero differing pixels;232contexts excluded. No whole lifetime/allroutes/semantic journey claim.",
+      "record": "research/runtime/draw02-storage-pending-native-01.json",
+      "sha256": "029a130375fca6ca4b0c9eb7799cb2eb4416eff9d6733fd4a812e4ee023d5804",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -105591,7 +105680,8 @@
         "tools/test-drawing-storage-point.py"
       ],
       "evidence": [
-        "DRAW02.map-storage-export-fixture-01-native-20261012"
+        "DRAW02.map-storage-export-fixture-01-native-20261012",
+        "DRAW02.storage-pending-fixture-20261012"
       ]
     },
     {
@@ -106130,8 +106220,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-storage-review-20261012.json",
-    "sha256": "dc6b05bcdb8fce198aaefc255f34e3f67292c1c6d68a161cd46d34fbf36f1b37"
+    "path": "research/runtime/coverage/source-index-draw02-storage-pending-20261012.json",
+    "sha256": "d9dffe8697dcdd3afc780f37ec5e6a796d4aab6d09ff154c0beba4f325740d5e"
   },
   "claim_bindings_required": true
 }

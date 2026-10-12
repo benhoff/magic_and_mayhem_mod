@@ -516355,6 +516355,268 @@
         "evidence": [],
         "reason": "Both new reports are static, with original manifest checks and exact executable/prologue pins. No new engine execution, driver/COM allocation or alias lifetime, storage-generation observer, source/native comparison or full DRAW-02 journey/operation validation. Historical execution evidence retains original hashes and statuses; full step2 and steps3\u20137 remain open."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "d2aa39a7b6812eaf02741b3e9de08a95da73d1b1b67e5cdeabf09093a5f2cdca",
+          "before_sha256": "a1758bbc9715d7eaef54a6499b5794c27353b5ed4da11300eafcee6ca231a8aa",
+          "id": "DRAW.canvas-lock-recovery"
+        },
+        {
+          "after_sha256": "0b2b0c7afea922c513e9d7a81d2f4d2cecc570321e2f7dfea7da20ea82588404",
+          "before_sha256": "887289c1ca73b024f50ca68debb329f016d27df6f206705a8e2d2347982cef7e",
+          "id": "DRAW.canvas-release-client"
+        },
+        {
+          "after_sha256": "3b6bd24a055d1482e4228b6664fa8d6710717af7b8f7b1f144d5d71015d213d0",
+          "before_sha256": "2bf5ff551f114142a77827e44dee0351be65f72a767207f20e5ab7d8e97b7386",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "97886aff07aebc80d2aed18083860f66410991eb16e0e9f8d57b522e3c8cdf2d",
+          "before_sha256": "93905f7e66c1c62366cc00807fde7cdcb95ca43ea52d91134fe07148a050b1f9",
+          "id": "NR.drawing-held-source-egl-causality"
+        },
+        {
+          "after_sha256": "1161fdcf9addf870da52c91f2f21efe5b97256771eb3b1157567e900e683494a",
+          "before_sha256": "387aef6c7ecaa5bef23202aaf33ec18d04f553332fe9178d248ad1c873914e26",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "18a693ee9f8db56e1ba8f94a520ef030471615019d4a527c0ebd2e1c6be16032",
+          "before_sha256": "e4c39540d4c4344cd8b6d99577a73638ccf90d76639ab635ec0fa2125c67391a",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "d53562ffb18168845c5fa552f7828f30b24eb756dfb738d5f4e70bc4d291e05a",
+          "before_sha256": "c8ab18897627cfd2c32dba1735c5ce22aae976f6ef9a776a1f10493620838eae",
+          "id": "NR.drawing-wine-client-memory-binding"
+        },
+        {
+          "after_sha256": "a2d6c8794f45634822fa231b8d3931c074b8320f0b851b8e7e65664b4b46f350",
+          "before_sha256": "3dd1281e18edf423ce5e425933d465ac1428018424775864586a76f3f7b0e234",
+          "id": "NR.drawing-wine-map-storage-point"
+        },
+        {
+          "after_sha256": "5c026e998521c0e12acee499d537a87d724a07527e87ae5d62953632171ad5ee",
+          "before_sha256": "7def40d01ee4ab2288df2bd00d2c15164e05d5f9f2b1bc8d0f247f97350421c6",
+          "id": "NR.drawing-wine-retained-map-source"
+        },
+        {
+          "after_sha256": "d83b6a2ee900176e15f65a5340c5226a9377fc364a15fd61d9bc8f3260633c4d",
+          "before_sha256": "2385d87eed6a0f1c323cc733a75b229e8d5662e91db8138b60ca1b51126c9697",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "1d454f79c9c45dafea2673313a6f36444f1f77d24bb7ed9679da6b77d5a2dea3",
+          "before_sha256": "e8dbeebb9fb3794e005ff2d57dc0aacab76942c1b1189e9a99698f73a0e60359",
+          "id": "RS.canvas-create-lock"
+        },
+        {
+          "after_sha256": "195999053c47ac7fec784b74f8a0d5510f51f2b9181aa77a4288a6a55e9a789e",
+          "before_sha256": "7e2e1b22509b562ee026122799d472d61256c45db15263fc9a3346dde5555c1e",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "c6e4bc1e6b50e48f8b94bd37ba9deede7c6db64157cfc736708e9fcc11d74e09",
+          "before_sha256": "4f63cbf2da197741a5f0d277bd51a56914bb1590644b718974b43bce3f393461",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "988091a05df8d736381ef69ed1e8a4c37aaf1b16d10b7206b89f3bf2eb62943c",
+          "before_sha256": "173374f1d056c58773b65ba7116d5477ef4aa8b8cd884933fbc543ace65ceeef",
+          "path": "protocols/include/mnm/drawing_storage_point_v1.h"
+        },
+        {
+          "after_sha256": "fd28c6362e7c853ee506715c145cf9e29e892529ce5430f9514bb83ba886b857",
+          "before_sha256": "512099cf49a8b20726e1cd7e4831de133d2a52a67238b13cd939f036db01ebe4",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "6e927cc60567d97cf1240af4a27097710bc9d265481bb275063d34c9107ec342",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-storage-pending-start-20261012.json"
+        },
+        {
+          "after_sha256": "9e3e6532a87a26bd738f1da2c05eba8c4d07a75a1702806a72da46ba4d92def0",
+          "before_sha256": "532591ec491fe34ed5324b0b7f9dc298fdbceccf5d7a8af46069a7856d1bc737",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "d9dffe8697dcdd3afc780f37ec5e6a796d4aab6d09ff154c0beba4f325740d5e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-storage-pending-20261012.json"
+        },
+        {
+          "after_sha256": "c541304475d38f5e0d9e44dbee43768e98955dcaa7eb0dee0ac8a7de452bb031",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-storage-pending-20261012.md"
+        },
+        {
+          "after_sha256": "922dd17d64f203a79fba533144e19df31a016d2985c7e51a4285c17973086c2b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-storage-pending-final-20261012.md"
+        },
+        {
+          "after_sha256": "dd6a453c624e6ca0551e4e393f09aad700ee119aecfa74508f475cd2bb4b25a3",
+          "before_sha256": "22bd0effeac11ec04813ad3d20d69079068d80d9b014ef8cf4dab500a614e7f0",
+          "path": "research/runtime/draw02-canvas-storage-generations.md"
+        },
+        {
+          "after_sha256": "0d8088b02dceb742c09cb0907458048c78576ba27b40f5cca58141cdc278b631",
+          "before_sha256": "e37954c38ac53e2dae4183d1bf806bf8b32b49227889095097a170ebdffe2ccb",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "048ec9e891d18e07a4b00d06a82a65245329b518baab58a7665d73607b893388",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-pending-fixture-01.json"
+        },
+        {
+          "after_sha256": "029a130375fca6ca4b0c9eb7799cb2eb4416eff9d6733fd4a812e4ee023d5804",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-pending-native-01.json"
+        },
+        {
+          "after_sha256": "6065aec6ea1852bc1feddaabb0d458a57f951ec383f3ae3297eff578847d1f65",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-pending-original-01.json"
+        },
+        {
+          "after_sha256": "84a00aa3cb22a3227219fed3b925307232ff8ed1e3b4f4077180d0164f771320",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-pending-parser-01.json"
+        },
+        {
+          "after_sha256": "8cd1281d04c5a2b02c7a9f58a287a5a0c3cb425f8ca076f92e6a2a0b27bb0978",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-pending-parser-negative-01.json"
+        },
+        {
+          "after_sha256": "1c9bd25f965fd73dde3cbdc4e65ec9af29cc4bc99821e66cb545863ace4dff39",
+          "before_sha256": "d00d2183934be4939520ca65c7a6107501e4e763153f459d8e43a6017f9f41f1",
+          "path": "runtime/scene/drawing_storage_point.h"
+        },
+        {
+          "after_sha256": "9dbffb74c6a5ef714c681e35e1c98a3686375581f36f353ed4ac4595ba497c20",
+          "before_sha256": "aa231378564b0c38b266f937f0e89e4af11d07899507295b43d8b74e037336ca",
+          "path": "tests/drawing-storage-point-test.c"
+        },
+        {
+          "after_sha256": "50c3582cca3f4c46147b0f512e41f1594e039b5bcc7cf7106727240227de6883",
+          "before_sha256": "5c58117810e25a099900721bfc8471005164f806b2a6f59da497c92f81d8b7d3",
+          "path": "tests/test-drawing-wine-client-memory.py"
+        },
+        {
+          "after_sha256": "f7bd09bf7c1829172521454cf1d7fe92b41f1be129677d221fe7a29f9fba3953",
+          "before_sha256": "61c571f362373332f1a875eee8d87ee417aa9222b7edd0f7a92f7898d32e16a4",
+          "path": "tests/test-drawing-wine-map-storage-point.py"
+        },
+        {
+          "after_sha256": "afda2b8f9bf60fcb6607c3ca20b83f4804406b4a032dc6c314bc207f3ea6d0d5",
+          "before_sha256": "2621eef9ca83461a2837784a4bbf6947e8d354a1ef551b56d395ee5d39e5da62",
+          "path": "tests/test-drawing-wine-retained-map-source.py"
+        },
+        {
+          "after_sha256": "6c387192065b02b96b66cab64e1219483647c3419c580904fe5843ddfd5a922a",
+          "before_sha256": "45fac773ea34e4f6a200a66b860ca3ce83d130b3d3785c0780d20b446c7acb8b",
+          "path": "tools/drawing_wine_client_memory.py"
+        },
+        {
+          "after_sha256": "21d8b18afda33e1b0e16898d3e2db487933e44fe46094072a29e4cf6209cb3f8",
+          "before_sha256": "a2ce234ba4a5db6d26806de0a1d024845147e69acfbca74dcff033e5a2548604",
+          "path": "tools/drawing_wine_map_storage_point.py"
+        },
+        {
+          "after_sha256": "6052b4d5beb27c6fba9d227814363eebe273e18b898e5d45a5cbbf1048f9408d",
+          "before_sha256": "7f4ca38675b8559c0531c9b2c57051f359464b1a87ea0814187b60d4ee982dcc",
+          "path": "tools/drawing_wine_retained_map_source.py"
+        },
+        {
+          "after_sha256": "031306423f7c66f6390eff2c2cbf69c87908099183856b3d4e24589d58bc9fdb",
+          "before_sha256": "031306423f7c66f6390eff2c2cbf69c87908099183856b3d4e24589d58bc9fdb",
+          "path": "tools/test-drawing-storage-point.py"
+        }
+      ],
+      "id": "draw02-refuse-storage-points-during-wrapper-transitions-20261012",
+      "pending_gaps": [
+        "stale_evidence:092756a46864d45832434167b312e03adb47d83cb66b48163c3c4253ec907423",
+        "stale_evidence:0dfb352a3925224d991d4e2b9255759e517b774f554ee7aed5772ce6ac03620a",
+        "stale_evidence:104e27807c5d6f85beb9d4434db733b229c9ca0d9f4d5641bb0496d70f70bc08",
+        "stale_evidence:10b14b9075ea2087bb368977da159dcc97778af2de067a51248144bdb11ba90b",
+        "stale_evidence:132127afafa3b3e71f374df6150457fd060b3e020044d03a2e333b2ee6624884",
+        "stale_evidence:1b99ef38052db56deeb487f895d80b8b8b9f1a8f998cbd2b770d37894972e54b",
+        "stale_evidence:1c685f25c2005975555df85296b8658ebe57cc05b48ed43d7baa8fbc9ae0df35",
+        "stale_evidence:257a7975af068cbfc3b4466a332858e6805d65c4e088bf7da7c1bbc9b84b3030",
+        "stale_evidence:2cd932a032263164d286a91041f4e41309b0356a13f05c9c65cb2318a4fe87a3",
+        "stale_evidence:3017570eef1cea416b585b875ae69af92d09b5fc47b7f8f3cfe51b94e001f90f",
+        "stale_evidence:3e8ca62817ac621030c1302f1eab85a2d8dbaf628feacd061444ca7014e6780c",
+        "stale_evidence:40a9507767388682f88be67949b314567ebab3c46b7b2d80c441ed4b751c9d7e",
+        "stale_evidence:4229ac63a026052b7f7e27a7a9137f7975b5f475d0e5185a25deb8f73ee7c7fd",
+        "stale_evidence:4a8d10680bcd232cae4c78ce921b1ab7043e41aca289d5dc1f58c6a4fd6ebe7f",
+        "stale_evidence:524281148dc01ce9f90db3c8fb40d886868b36d7265f1c21fc5f2e8baf72a829",
+        "stale_evidence:52febe7d2fc1a3dcbf4d60149e8bd2ec4baae928401f301a4930725ab7494ee9",
+        "stale_evidence:54535add7fbdc485a03f51ba073f31bea15e78fba8ad4d78015b31be023597f6",
+        "stale_evidence:579d18407a77bb1d7c0778432fbe922e68f0fe039d15a039c1296ae338a672d7",
+        "stale_evidence:5921dc537ab103fc1587b4c49e07404621064674c609a5fa67740fcb94de94d8",
+        "stale_evidence:5d0dfdd8f8fdd13225829b6813c765dfd86262703de3277b4b12174f96086838",
+        "stale_evidence:5e599a5f9cd4ba4b603a66b7c8e795de964f67bf2cbf6f4721f3b5ae0bfb468e",
+        "stale_evidence:60ce93e2d4cc939585fe47d843c45bbf341a938f399c135a825a1403eb792e61",
+        "stale_evidence:61ba7152d448488a0effdc67c92e1a4065b2d7bc878e986d6aa3b100b1503c9b",
+        "stale_evidence:655dfc0cfbdd8810f4f93ea5aa1ea543a9454158746db9f3472fc7bb2cfa24bd",
+        "stale_evidence:65d1610a4e703574eb654a2fe080394263f46692dabd3be4920a84f1760c32e5",
+        "stale_evidence:66871a7efb2c431efa5c6093d57e12f009096e9e02d56a5955debb6540cfae59",
+        "stale_evidence:69867978cd6acacb79d6475a8f0816ad25381ec3b78734eed52c596dc4417e66",
+        "stale_evidence:75a3ec9736dabbf9f3cdc15af0d2d07db4012bb3957f9d90bdf823958e16a717",
+        "stale_evidence:7f112b616328736480e8f42c031d88e6721ff5801565288080174cfaf86aeb4b",
+        "stale_evidence:88573814f238747519107479f600aa92302b3c658c6addb307cbc7d2610747aa",
+        "stale_evidence:936a30e53d1d92e6ad1857bcf89b3d1e29763f3572d7dec1e0472ff4758693cc",
+        "stale_evidence:93f4c4d0f7f4db21286af97e5275a6c01b192831f5087a8529f1f80feed28038",
+        "stale_evidence:94ffb82d4db08ce16e80c942d74dc5db3a2c554012e2c67ed42e6f6c4d1bb381",
+        "stale_evidence:96dcadc5f70b461854df22c2a171c4b58940fdcbd9a0f71fedbb6306761fbf70",
+        "stale_evidence:9bb04d1273f7a122a270cea36ccbe68016bba82edebb07c1e614fa278c6f82dd",
+        "stale_evidence:9de1c63dc47dbe2c649a0833a1d83760d46221a04d5c82f7610306949326ad8b",
+        "stale_evidence:9e144cfab514b320280a5c6e2693bca50f290245e239dfe22cd382051f6f0b46",
+        "stale_evidence:a12e9c880b33c99513e2c8f289c118d39bc9cb7ca6cb6f103264b7a8b590c9d6",
+        "stale_evidence:a25eaf30a46fb0ca81f509fb6ee2f1bf3517ac0789a3e7a2d0efd7d1262d19d0",
+        "stale_evidence:a369a0814a8af22b24c51af5b0be6b76b16bdb67597d46dfbdd885efddc798b0",
+        "stale_evidence:a70594299cd35ae2beb3bb940cda7dbb850b69f03009dfcf239bff1ce146331a",
+        "stale_evidence:a821b55212e8a30e97c5b469741e80a668fa8782772a8cb91dbf21a20c43c620",
+        "stale_evidence:a9cee4982ec4cb7413bc017692b97e3adc81865c8dd322b806d3794d2009161f",
+        "stale_evidence:ac1db7621e454bbf22e78547018ace8fecdf0f9bbe48911097a257db884c7eed",
+        "stale_evidence:aec4c30fa6d8de4ca262803270c4106d91b40fd3cdfcf8d3496cab56872d1193",
+        "stale_evidence:af4fba328bfbfe42f5bc98208b18fe7d7ae00d96668179e87dcf39db9298c046",
+        "stale_evidence:afe0dc94deb554acc3c09bd2967c3bffd57fb202150a9c8275f651d1d8afa54c",
+        "stale_evidence:b08fa887415bb7bdd6d078149e21664bdbf428a24f0263ffcd6a6c0df8e6a4a1",
+        "stale_evidence:b64926f5b2d1377ff499df40635fb53a34722286d8ada7c74185c4c6f2cfd3ab",
+        "stale_evidence:c523fb821fabc20777efccad098a9299911a1bf42be27e106ee83ff6538d9952",
+        "stale_evidence:cad525ec2691987d59b1362959897f78d86dbd310b76ef949052726b4114c69d",
+        "stale_evidence:ccf74d26ff6a05684c81debb376ffca1943c681fd93394c468c02e4fc6ea915e",
+        "stale_evidence:d31bc179c7ec18de36bc1fa74d11e13e7918fc5eda5a9539a54eeab07002fb22",
+        "stale_evidence:d6b46e668be5eb33976d813fb71f5377fb7898ad1cb5a6294d4d5c01796ef334",
+        "stale_evidence:d85944162b45d97e52f36748d4865d083fb0f0c5bdf7f977507bcfebc0cbef42",
+        "stale_evidence:da4e0cda8193af8f7db923dbfdba637dd0e104e6469f90ecb596f16bb29be761",
+        "stale_evidence:da8c06dc705d399e534d5c2f1d69f79dd4263f6c890902ce8af097cea4ab13b7",
+        "stale_evidence:e4012fc9e9713ad8ac5b019490e322b00f1627f4d391591fa3eda507fa72c833",
+        "stale_evidence:e45badbc451afb82fedf714c2956560a9aa07318ecea5c644e34cda38304922f",
+        "stale_evidence:e5417c7deea55516ed9061aaa81f90b2ff87aee674aca5214e8e6fa54621d7c6",
+        "stale_evidence:eea0d86c21a82bc304d4d30167967553055913933c7f6f1c2c3cd05827610bb5",
+        "stale_evidence:f2c0a7945756aeb24bd0dae02de7d94bdee435d8e49d2e1f92d8786f31f84247",
+        "stale_evidence:f3c1d9f6554e21a4cfe9ea1856e2b68d656f58b038b6af6e81e5a5ce0496e762",
+        "stale_evidence:f79a7c811571ca986c4bc3dd8f38217d6035e954c434df3e005fdc8ae51f1c62",
+        "stale_evidence:fadb9ab2e9cb66477b2121bf97b9b26663722f86219ef962ebcfd02bc848e55e",
+        "stale_evidence:fc8910c9143166a0b42452e58939a4ae06cd396acf9058385ecc8eaf5ea0ee9e",
+        "validation_gaps:3f9f42c05a8a5ddc41c5e464c1764b4174d2c1f26700ccac10e91ac4c44079b1"
+      ],
+      "reason": "Reviewed cache-only per-wrapper create/release/Lock frame guard, additive exclusive pending flag128 and all three wire decoders. PE32 same-wrapper/unrelated/retired-frame and existing output/error controls pass;16decoder methods pass after preserving and correcting one tuple/list fixture error. Fresh original normal Quit has795pending map-time points0known,339later last-map145client points119protected pairs224commands337API336EGL. Source-only native prediction matches105eligible frames0diff232excluded. Reviewed prior committed receipt range with no gaps and updated census/evidence/ledger without rewriting historical hashes.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh PE32 and original capture validate bounded transition refusals;105current eligible source/native/worker/EGL comparisons pass. Complete observed wrapper/storage generations, real COM/allocation aliases, post-unmap ownership, uploads/allwriters, all presentation routes/actions/47journey requirements21operations/realdriver/backend closure remain pending. No full subsystem promotion; historical evidence remains separately fingerprinted."
+      }
     }
   ]
 }

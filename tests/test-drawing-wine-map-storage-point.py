@@ -31,11 +31,15 @@ class StoragePoint(unittest.TestCase):
             with self.assertRaises(ValueError):decode(raw,calls)
 
     def test_unknown_and_ambiguous_cache_are_retained(self):
-        for flags in (3,7,11,35):
+        for flags in (3,7,11,35,131):
             raw,calls=fixture();struct.pack_into('<I',raw,104,flags)
             struct.pack_into('<6I',raw,120,0,0,0,0,0,0)
             r=decode(raw,calls);self.assertEqual(r['unknown'],1)
             self.assertEqual(r['points'][0]['canvas'],0)
+
+    def test_pending_transition_cannot_also_match(self):
+        raw,calls=fixture();struct.pack_into('<I',raw,104,147)
+        with self.assertRaises(ValueError):decode(raw,calls)
 
     def test_missing_failed_or_extra_map_point_refuses(self):
         raw,calls=fixture();calls['calls'][0]['result']=0x80000000

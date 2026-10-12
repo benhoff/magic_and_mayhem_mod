@@ -13,7 +13,10 @@ static u32 drawing_storage_point(void* storage,u32 row_pitch,u32 slice_pitch,u32
  }
  if(matches>1)r[2]|=8;
  else if(matches==1){
-  if(!match->width||!match->height||match->width>2048||match->height>2048||match->stride<match->width||match->stride>4096||row_pitch!=match->stride*2||(verify_slice&&slice_pitch<row_pitch*match->height))r[2]|=32;
+  u32 pending=0;
+  for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp && frames[i].tag<=2 && frames[i].ecx==match->object)pending=1;
+  if(pending)r[2]|=MNM_DRAW_STORAGE_POINT_TRANSITION_PENDING;
+  else if(!match->width||!match->height||match->width>2048||match->height>2048||match->stride<match->width||match->stride>4096||row_pitch!=match->stride*2||(verify_slice&&slice_pitch<row_pitch*match->height))r[2]|=32;
   else{r[2]|=16|(verify_slice?0:64);r[6]=match->id;r[7]=match->width;r[8]=match->height;r[9]=match->stride;r[10]=match->dirty;r[11]=match->sampled;}
  }
  copy(out,r,64);SetLastError(error);return 1;

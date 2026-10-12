@@ -5,7 +5,7 @@ static u32 depth,enabled=1,stopped,sequence=7,queue,failures;
 #define MAX_SURFACES 2
 #define MAX_FRAMES 2
 static struct Surface{u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[2];
-static struct{u32 sp;} frames[2];
+static struct{u32 sp,tag,ecx;} frames[2];
 static void copy(void* out,const void* in,u32 n){u8* a=out;const u8* b=in;while(n--)*a++=*b++;}
 static int bypass_writable(u32 p,u32 n){u32 m[7];return p&&p+n>=p&&VirtualQuery((void*)p,m,28)==28&&m[4]==0x1000&&(m[5]&0xcc)&&!(m[5]&0x101)&&p+n<=m[0]+m[3];}
 #include "../runtime/scene/drawing_storage_point.h"
@@ -28,5 +28,15 @@ void start(void){
  require(!SceneDrawingStoragePointV1(0,0,0,0,64)&&!SceneDrawingStoragePointV1(0,0,0,out,63),143);
  require(SceneDrawingClientStoragePointV1((void*)0x1234,8,out,64)&&out[2]==83&&out[6]==77,145);
  require(SceneDrawingClientStoragePointV1((void*)0x1234,6,out,64)&&out[2]==35&&!out[6],146);
+ /* Same-wrapper transitions refuse even with a still-matching cached address. */
+ frames[0].sp=0;*producer_trace_depth(GetCurrentThreadId())=0;
+ for(u32 tag=0;tag<3;++tag){
+  frames[0].sp=1;frames[0].tag=tag;frames[0].ecx=1;
+  SetLastError(0xbeef);require(SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64)&&out[2]==131&&!out[6]&&out[12]==1&&GetLastError()==0xbeef,147+tag);
+  require(SceneDrawingClientStoragePointV1((void*)0x1234,8,out,64)&&out[2]==131&&!out[6],150+tag);
+  frames[0].ecx=2;require(SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64)&&out[2]==19&&out[6]==77,153+tag);
+ }
+ frames[0].ecx=1;frames[0].tag=7;require(SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64)&&out[2]==19,156);
+ frames[0].sp=0;frames[0].tag=1;require(SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64)&&out[2]==19,157);
  producer_trace_mode=0;require(!SceneDrawingStoragePointV1((void*)0x1234,8,24,out,64),144);ExitProcess(0);
 }

@@ -70,7 +70,7 @@ def decode(data, resource_data, submission_data, lifetime_data):
             if any(m):raise ValueError('Unadmitted source has cache point')
         else:
             flags=m[2]
-            if m[:2]!=(64,1) or flags & ~63 or not flags & 1 or m[14]!=r[3] or m[15] or sum(bool(flags & x) for x in (8,16,32))>1:
+            if m[:2]!=(64,1) or flags & ~191 or not flags & 1 or m[14]!=r[3] or m[15] or sum(bool(flags & x) for x in (8,16,32,128))>1:
                 raise ValueError('Retained source cache metadata')
             if flags & 16:
                 if flags & 4 or not flags & 2 or m[5] or not m[6] or not 0<m[7]<=2048 or not 0<m[8]<=2048 or not m[7]<=m[9]<=4096 or r[12]!=m[9]*2 or r[13]<r[12]*m[8]:

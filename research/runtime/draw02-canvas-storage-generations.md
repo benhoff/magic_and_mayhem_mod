@@ -45,3 +45,30 @@ The existing producer cache only changes its pixel address at Lock return and
 retires wrappers at create/release return. A release/create in progress can
 therefore leave a prior cached address visible. Any new query must expose this
 uncertainty or refuse it; pointer equality alone must not admit ownership.
+
+## Pending wrapper transition guard
+
+The additive storage-point flag128 records a matching wrapper with create,
+release or Lock in progress. It is exclusive with known/ambiguous/extent-mismatch
+association flags and carries no canvas metadata. Existing wire version1 and
+historical journals remain readable; current decoders explicitly admit this
+additional unknown state. The export compares addresses only, preserving LastError.
+
+The PE32 fixture passes same-wrapper transitions for all three calls, unrelated
+wrapper and non-lifecycle frames, retired slots and existing output/cache guards.
+Sixteen decoder methods pass. The first new client test supplied a list where
+wire metadata uses tuples; its retained negative report records the fixture error.
+
+Original01 closes normally with337API336EGL witnesses. Map-time points contain
+795pending transitions,14unknown and491stopped, zero known matches. Later source
+submissions retain339known last-map points (all closed maps),1015unbound and
+284stopped; client source queries retain145known and1493unknown. 119protected
+pairs close through224worker commands. These points do not prove post-unmap
+allocation ownership, uploads, complete aliases/writers or unrestricted lifetime.
+This corrects admission of earlier map-time cache matches without rewriting
+historical reports or claiming complete step2/full47/21 acceptance.
+
+Fresh source-only replay matches105eligible protected-source/worker/EGLphysical
+frames with zero differing pixels;232contexts remain excluded. This validates
+the admitted cohort after the storage-point transition guard, not whole lifetime
+or all routes/actions/full DRAW-02 closure.

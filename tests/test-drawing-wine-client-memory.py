@@ -3,7 +3,7 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from drawing_wine_client_memory import decode
+from drawing_wine_client_memory import decode, point
 from drawing_api_session import sha
 
 
@@ -44,6 +44,12 @@ class ClientBinding(unittest.TestCase):
         for word in range(13,48):struct.pack_into('<I',raw,start+word*4,0)
         result=decode(raw,obs,wire)
         self.assertEqual(result['unknown_source_points'],1)
+
+    def test_pending_transition_has_no_canvas_or_extent_credit(self):
+        m=[64,1,131,7,0,0,0,0,0,0,0,0,1,0,18,0]
+        self.assertFalse(point(tuple(m),18,1600)['known'])
+        m[2]=211
+        with self.assertRaises(ValueError):point(tuple(m),18,1600)
 
     def test_missing_point_or_changed_raw_submission(self):
         raw,obs,wire=fixture()

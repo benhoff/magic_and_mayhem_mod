@@ -979,3 +979,16 @@ shared result does not carry the retried Lock result. Next observe explicit
 wrapper/storage transitions and refuse uncertain in-progress cache identity.
 All source lifetime, route/action and 47/21 closure requirements remain open;
 steps 3–7 remain ordered and pending.
+
+DRAW-02 step2 pending-storage increment: PE32 runtime guards and16decoder
+methods pass. Current original normal Quit retains795map-time pending wrapper
+transitions as unknown, zero known map-time matches;339later last-map source
+points145client points remain bounded associations.119protected pairs224commands
+337API336EGL do not establish whole storage lifetime. Preserve prior claims;
+next track observed storage generations and all remaining routes/actions.
+All47/21 closure and steps3–7 remain open.
+
+Fresh source-only replay matches105eligible protected-source/worker/EGLphysical
+frames with zero differing pixels;232contexts remain excluded. This validates
+the admitted cohort after the storage-point transition guard, not whole lifetime
+or all routes/actions/full DRAW-02 closure.

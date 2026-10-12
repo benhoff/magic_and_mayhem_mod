@@ -53,6 +53,13 @@ class RetainedMap(unittest.TestCase):
             q,*rest=fixture();q=bytearray(q);struct.pack_into('<I',q,64+word*4,value)
             with self.subTest(word=word),self.assertRaises(ValueError):decode(q,*rest)
 
+    def test_pending_wrapper_transition_retains_unknown(self):
+        q,*rest=fixture();q=bytearray(q);struct.pack_into('<I',q,64+26*4,131)
+        struct.pack_into('<6I',q,64+30*4,0,0,0,0,0,0)
+        self.assertEqual(decode(q,*rest)['unknown'],1)
+        struct.pack_into('<I',q,64+26*4,147)
+        with self.assertRaises(ValueError):decode(q,*rest)
+
     def test_closure_and_refusal_cannot_admit_metadata(self):
         q,*rest=fixture();q=bytearray(q);struct.pack_into('<I',q,64+15*4,4)
         with self.assertRaises(ValueError):decode(q,*rest)
