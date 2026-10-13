@@ -44,6 +44,11 @@ void start(void){
  surface.pixels=(u32)owned+64;surface.width=8;surface.height=8;surface.stride=8;
  point[2]=3;require(storage_transition_query(point,2,0,owned+80,16)==5,216);
  require(storage_candidate_rows==1,217);
- require(storage_transition_calls==7&&storage_transition_returns==7&&storage_transition_epoch==4&&storage_transition_address_count==6,203);
+ /* Pending query keeps the input ID before the original Lock publishes it. */
+ f.tag=2;storage_transition_record(&f,1,0);point[2]=131;
+ require(storage_transition_query(point,1,0,owned+80,16)==6,218);
+ surface.pixels=(u32)owned+80;storage_transition_record(&f,2,surface.pixels);
+ point[2]=3;require(storage_transition_query(point,1,0,0,16)==7,219);
+ require(storage_transition_calls==8&&storage_transition_returns==8&&storage_transition_epoch==5&&storage_transition_address_count==6,203);
  storage_transitions_close();require(!storage_transition_file,204);ExitProcess(0);
 }

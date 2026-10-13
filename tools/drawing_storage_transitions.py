@@ -8,15 +8,16 @@ def decode(data):
     if len(data)<160 or (len(data)-64)%96 or len(data)>64+131072*96:
         raise ValueError('Storage transition envelope')
     h=struct.unpack_from('<16I',data)
-    if data[:8]!=b'MNMCST02' or h[2] not in (1,2,3,4) or h[3:7]!=(96,0x40209ca7,131072,512) or any(h[7:]):
+    if data[:8]!=b'MNMCST02' or h[2] not in (1,2,3,4,5) or h[3:7]!=(96,0x40209ca7,131072,512) or any(h[7:]):
         raise ValueError('Storage transition header')
     rows=list(struct.iter_unpack('<24I',data[64:]));pending={};calls=returns=epochs=0
     events=[];queries=[];candidates=[];candidate_counts={};last_prefix=0;addresses=set();latest={}
     for ordinal,r in enumerate(rows[:-1],1):
         if r[1]==5:
             q=queries[-1] if queries else None
-            if h[2]!=4 or r[0]!=ordinal or q is None or r[2]!=q['query'] or q['metadata'][2]!=3 or r[3]==0 or r[5]&~63 or not r[5]&1 or r[7]>1 or not 0<r[8]<=2048 or not 0<r[9]<=2048 or not r[8]<=r[10]<=4096 or not 0<r[11]<=512 or not 0<r[18]<=512 or r[23] or r[19:22]!=(q['metadata'][3],q['metadata'][4],q['metadata'][14]):
+            if h[2] not in (4,5) or r[0]!=ordinal or q is None or r[2]!=q['query'] or q['metadata'][2]!=3 or r[3]==0 or r[5]&~63 or not r[5]&1 or r[7]>1 or not 0<r[8]<=2048 or not 0<r[9]<=2048 or not r[8]<=r[10]<=4096 or not 0<r[11]<=512 or not 0<r[18]<=512 or r[23] or r[19:22]!=(q['metadata'][3],q['metadata'][4],q['metadata'][14]):
                 raise ValueError('Storage candidate identity/state')
+            if h[2]==5 and r[18]!=q['input_address']:raise ValueError('Candidate/query input identity changed')
             count=candidate_counts.get(r[2],0)+1;candidate_counts[r[2]]=count
             if r[4]!=count or count>16:raise ValueError('Storage candidate ordinal/budget')
             if r[5]&8 and r[5]&6!=6:raise ValueError('Same allocation without both queries')
@@ -30,18 +31,22 @@ def decode(data):
             continue
         if r[1]==3:
             m=r[8:24]
-            if h[2] not in (3,4) or r[0]!=ordinal or r[2]!=len(queries)+1 or r[3] not in (1,2) or r[6] not in (0,1,2,3) or r[7] or m[1]!=2 or m[15]!=r[2] or not m[14] or m[3]<last_prefix:
+            if h[2] not in (3,4,5) or r[0]!=ordinal or r[2]!=len(queries)+1 or r[3] not in (1,2) or r[6] not in (0,1,2,3) or (r[7] if h[2]<5 else r[7]>512) or m[1]!=2 or m[15]!=r[2] or not m[14] or m[3]<last_prefix:
                 raise ValueError('Storage query identity/version/order')
+            if h[2]==5 and r[7]:addresses.add(r[7])
             point_header(m,m[14],client=r[3]==2);last_prefix=m[3]
             if m[2]&16:
                 if not m[2]&2 or m[2]&4 or m[5] or not m[6] or not 0<m[7]<=2048 or not 0<m[8]<=2048 or not m[7]<=m[9]<=4096 or (r[3]==2 and not m[2]&64) or not 0<r[5]<=512:
                     raise ValueError('Invalid known storage query extent/state')
                 addresses.add(r[5]);previous=latest.get(m[6])
+                if h[2]==5 and r[7]!=r[5]:raise ValueError('Known query input/cache address changed')
                 status=2 if previous is None else 1 if previous[1]==r[5] else 3
                 epoch=previous[0] if status==1 else 0
                 if (r[4],r[6])!=(epoch,status):raise ValueError('Storage query epoch/address mismatch')
             elif any(m[6:12]) or m[2]&64 or any(r[4:7]):raise ValueError('Unknown query contains epoch/canvas')
-            queries.append(dict(ordinal=r[0],query=r[2],route=r[3],epoch=r[4],address=r[5],status=r[6],metadata=list(m),epoch_known=r[6]==1,allocation_ownership_proved=False))
+            query=dict(ordinal=r[0],query=r[2],route=r[3],epoch=r[4],address=r[5],status=r[6],metadata=list(m),epoch_known=r[6]==1,allocation_ownership_proved=False)
+            if h[2]==5:query['input_address']=r[7]
+            queries.append(query)
             continue
         if r[0]!=ordinal or r[1] not in (1,2) or r[3]>2 or not r[4] or r[5]>=0x1c0000 or r[6]<last_prefix or r[14]&~3 or r[23] or r[22] not in (0,1) or (h[2]==1 and r[22]):
             raise ValueError('Storage transition identity/order')
@@ -74,7 +79,7 @@ def decode(data):
                            cache_known=bool(r[14]&2),interface_addresses=list(r[15:17]),
                            wrapper_extent=list(r[17:20]),lock_return_epoch=r[20],returned_address=r[21]))
     t=rows[-1]
-    if t[0]!=len(rows) or t[1]!=4 or t[2:5]!=(calls,returns,len(pending)) or t[5]<last_prefix or t[8]!=len(addresses) or t[9]!=epochs or t[10]!=(len(queries) if h[2]>=3 else 0) or t[11]!=(len(candidates) if h[2]==4 else 0) or any(t[12:]):
+    if t[0]!=len(rows) or t[1]!=4 or t[2:5]!=(calls,returns,len(pending)) or t[5]<last_prefix or t[8]!=len(addresses) or t[9]!=epochs or t[10]!=(len(queries) if h[2]>=3 else 0) or t[11]!=(len(candidates) if h[2]>=4 else 0) or any(t[12:]):
         raise ValueError('Storage transition terminal')
     if addresses!=set(range(1,t[8]+1)):raise ValueError('Address identity sequence gap')
     return dict(schema=1,success=True,journal_sha256=sha(data),calls=calls,returns=returns,

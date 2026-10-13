@@ -6,7 +6,7 @@ allocation ownership. See `../runtime/draw02-canvas-storage-generations.md` for
 execution scope, evidence and unresolved boundaries.
 
 `canvas-storage-transitions-0000.bin` starts with64bytes: magicMNMCST02,
-version1/2/3, row bytes96, build40209ca7, maximum131072rows (terminal included),
+version1/2/3/4/5, row bytes96, build40209ca7, maximum131072rows (terminal included),
 maximum512address identities, then zero words. All fields are little-endian u32.
 
 Lifecycle rows contain24words: ordinal, phase1entry/2return, invocation, hook tag
@@ -51,3 +51,19 @@ producer prefix, queue, thread, observed epoch, reserved0. Flags1same pitch,
 16input inside cached canvas span,32canvas inside input span assumed from the
 candidate extent. Successful VirtualQuery is not a readability/ownership claim.
 The terminal word11counts candidate rows; earlier versions require zero.
+
+
+Version 5 retains the 64-byte header and 96-byte row sizes. Query phase 3
+word 7 is the queried input address ID, in the same process-local namespace
+as cached, interface and observed Lock-return addresses. Zero means a null
+input. Versions 1–4 keep their reserved-zero rule. Known query input and cached
+IDs must agree. Unknown or transition-pending points may retain the input ID
+without inventing a canvas, cache epoch or ownership claim. Candidate input IDs
+must agree with the parent query. Terminal address accounting includes these
+input IDs, and the existing 512-address/131072-row limits remain unchanged.
+
+The collector compares pointer values and records local IDs; it does not read
+map bytes. A later unique same-thread Lock return with the same numerical ID
+provides an interval observation only. Allocation reuse, backing aliases, byte
+ownership, uploads, driver execution order and coherent presentation remain
+separate evidence. Old records and their fingerprints are retained unchanged.

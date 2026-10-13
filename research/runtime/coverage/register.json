@@ -43647,7 +43647,8 @@
         "DRAW02.draw02-resource-postclose-baseline-negative-01-20261013",
         "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
         "DRAW02.draw02-resource-postclose-fixture-01-20261013",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43766,7 +43767,8 @@
         "DRAW02.draw02-storage-query-fixture-negative-01-20261012",
         "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
         "DRAW02.draw02-map-point-postclose-fixture-01-20261013",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44056,7 +44058,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Observed original wrapper storage transition journal",
-      "scope": "Opt-in pointer-free create/release/Lock entry-return journal and V2query ordinals at exact observed Lock-return epochs under one recorder scope. Numerical wrapper/cache/address identities, missing/changed/pending/stopped states and open/budget failures remain explicit. No real allocation/COM alias/allcall ownership, uploads or complete lifetime claim.",
+      "scope": "Opt-in pointer-free create/release/Lock entry-return journal and V2query ordinals at exact observed Lock-return epochs under one recorder scope. Numerical wrapper/cache/address identities, missing/changed/pending/stopped states and open/budget failures remain explicit. No real allocation/COM alias/allcall ownership, uploads or complete lifetime claim. Version5query word7retains the queried input address as a process-local numerical ID even when cache association is unknown/pending; known input/cache IDs must agree. Historical versions1\u20134retain reserved-zero semantics. This is metadata, not pointer/allocation ownership.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -44068,7 +44070,8 @@
         "tools/drawing_storage_transitions.py",
         "runtime/scene/drawing_storage_caller.h",
         "protocols/include/mnm/drawing_storage_point_v2.h",
-        "runtime/scene/drawing_storage_point.h"
+        "runtime/scene/drawing_storage_point.h",
+        "protocols/include/mnm/drawing_storage_transitions_v5.h"
       ],
       "tests": [
         "tests/drawing-storage-transitions-test.c",
@@ -44100,7 +44103,9 @@
         "DRAW02.draw02-whole120-epochs-binding-01-20261012",
         "DRAW02.draw02-whole120-epochs-chain-01-20261012",
         "DRAW02.draw02-copy-storage-original32-04-20261013",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-fixture-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44116,7 +44121,8 @@
         "Version2 original01 resolves its18relocated caller rows to exact58d329 with0unknown; historical version1unknowns retained. This does not establish all unhooked/indirect calls, real allocation/alias lifetimes, caller effects or epoch-to-submission binding. Prefix binding shows numerical addresses shared across observed logical canvases; no ownership inference.",
         "Prospective explicit V2 storage-query ordinal into version3 transition journal, with latest observed Lock-return epoch under the same recorder scope. Missing/mismatched epochs and stopped/unknown/pending points remain unknown; allocation/alias ownership is not implied.",
         "Version3 original02 closes1869queries482known epochs1387unknown; all exact external IDs/metadata bind with0unlinked. Combined01 fails at source9lease17foreign tag32copy1to5; strict source-copy guard retained and byte overlap unproved. Source-only replay02 passes104eligible frames225excluded. Real allocation/aliases/allwriters/uploads/everyroute/action/full47/21 remain pending.",
-        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending."
+        "Current whole120normal Quit binds120queues/1267observed Lockepochs4858queries.139eligible source/native/EGLframes all pass two-stage chain0diff;688contexts remainexcluded. Earlierqueue30foreign tag32source61refusal retained; successful retry not race fix. Whole allocation/aliases/allwriters/unobserved uploads/allroutes/actions/full47/21closure remains pending.",
+        "Owned V5eight-call/five-epoch/seven-query fixture,18decoder and6interval guards pass. Fresh original32has985closed storage calls/910epochs/119local address IDs. Static all910live queries match unique same-thread Lock intervals and exact returned/cache numerical IDs;805external points are inactive. V4all910queries remain unbound legacy inputs. Pointer equality/event order do not prove allocation generations, exclusive byte/backing ownership, source uploads, physical coherence, general replay order or47/21closure."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -44210,7 +44216,8 @@
         "DRAW02.resource-copy-imports-20261012",
         "DRAW02.resource-copy-fixture-20261012",
         "DRAW02.resource-copy-original-20261012",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45602,7 +45609,8 @@
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
         "DRAW02.draw02-copy-order-original32-02-20261013",
         "DRAW02.draw02-copy-storage-original32-04-20261013",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45941,7 +45949,8 @@
         "DRAW02.draw02-copy-order-fixture-02-20261013",
         "DRAW02.draw02-copy-order-original32-02-20261013",
         "DRAW02.draw02-copy-storage-original32-04-20261013",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45981,7 +45990,8 @@
       "evidence": [
         "DRAW02.copy-api-worker-bindings-01-20261013",
         "DRAW02.draw02-copy-storage-bindings-01-20261013",
-        "DRAW02.draw02-resource-postclose-bindings-01-20261013"
+        "DRAW02.draw02-resource-postclose-bindings-01-20261013",
+        "DRAW02.draw02-storage-v5-copy-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46117,7 +46127,8 @@
         "DRAW02.draw02-copy-storage-original32-negative-02-20261013",
         "DRAW02.draw02-copy-storage-original32-negative-03-20261013",
         "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
-        "DRAW02.draw02-resource-postclose-original32-01-20261013"
+        "DRAW02.draw02-resource-postclose-original32-01-20261013",
+        "DRAW02.draw02-storage-v5-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46128,6 +46139,55 @@
       },
       "remaining_gaps": [
         "Four native guards and fresh explicit800x600x24 original32capture pass after the host error-path fix. Prior failures and primary-error masking remain preserved under their original hashes. Same observer binaries in the default-display failed and explicit-size successful narrow profiles; observed800x600x16SetDisplayMode failure0x80004001does not establish all startup/environment causes. Source/physical ownership and all47journey/21operation closure pending."
+      ]
+    },
+    {
+      "id": "NR.drawing-storage-query-lock-return",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Numerical map-query identity within a unique wrapper Lock interval",
+      "scope": "Associate V5non-null map-query input IDs only with a unique active same-thread recorded wrapper Lock and its completed return, requiring stable known logical canvas and exact returned/cache numerical address equality. Retain legacy/no-input/outside/ambiguous/failed/stopped/changed-canvas/different-address queries as explicit unbound observations. Query/return event order and pointer equality do not prove byte ownership, backing aliases, allocation generation, uploads, physical coherence or replay ordering.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-canvas-storage-generations.md",
+        "research/formats/drawing-storage-transitions.md"
+      ],
+      "implementation": [
+        "tools/drawing_storage_query_returns.py",
+        "tools/analyze-drawing-storage-query-returns.py"
+      ],
+      "tests": [
+        "tests/test-drawing-storage-query-returns.py",
+        "tests/drawing-storage-transitions-test.c",
+        "tools/test-drawing-storage-transitions.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_storage_transitions.py",
+        "runtime/scene/drawing_storage_transitions.h",
+        "protocols/include/mnm/drawing_storage_transitions_v5.h",
+        "runtime/scene/drawing_storage_caller.h",
+        "runtime/scene/drawing_storage_candidates.h",
+        "runtime/shadow/win32_min.h",
+        "tools/drawing_storage_point.py",
+        "tools/drawing_api_session.py",
+        "tools/inspect-canvas-producers.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-storage-v5-fixture-01-20261013",
+        "DRAW02.draw02-storage-query-return-guards-01-20261013",
+        "DRAW02.draw02-storage-v4-query-return-legacy-01-20261013",
+        "DRAW02.draw02-storage-v5-query-return-analysis-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned V5eight-call/five-epoch/seven-query fixture,18decoder and6interval guards pass. Fresh original32has985closed storage calls/910epochs/119local address IDs. Static all910live queries match unique same-thread Lock intervals and exact returned/cache numerical IDs;805external points are inactive. V4all910queries remain unbound legacy inputs. Pointer equality/event order do not prove allocation generations, exclusive byte/backing ownership, source uploads, physical coherence, general replay order or47/21closure."
       ]
     }
   ],
@@ -99523,6 +99583,97 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-storage-v5-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE32 V5recorder:eight calls/five epochs/seven queries, exact pending input-ID/later Lock-return equality and null-input preservation. Original ABI/game/allocation ownership not executed.",
+      "record": "research/runtime/draw02-storage-v5-fixture-01.json",
+      "sha256": "69f216ba0d8bd2e86352502e1620f9ff804d3099360b90df00705b9c65f64eae",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-storage-query-return-guards-01-20261013",
+      "kind": "native_integration",
+      "scope": "Six executed native interval/identity guards retain legacy/null/owner/canvas/address/ambiguous/outside/stopped/failure gaps and reject incomplete/inconsistent traces; no original allocation/source ownership.",
+      "record": "research/runtime/draw02-storage-query-return-guards-01.json",
+      "sha256": "06c08b2a803d7b0014367d602a5ae883e178b6769fa0d6ce307a120aeca604f6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-storage-v4-query-return-legacy-01-20261013",
+      "kind": "static",
+      "scope": "Static retained V4analysis preserves all910queries as unbound absent input IDs. Does not infer or retrofit historical identities.",
+      "record": "research/runtime/draw02-storage-v4-query-return-legacy-01.json",
+      "sha256": "5f93d8db8ee572a8dc056dee9be1205e54b68ca2a545b9500041d525d43902bc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-storage-v5-original32-01-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh original32V5collector:915paired copies/985closed storage calls/910observed Lock epochs/119local addresses,1715closed public maps and actual gameexit0. Pending points remain unknown; no byte/allocation/driver upload ownership.",
+      "record": "research/runtime/draw02-storage-v5-original32-01.json",
+      "sha256": "625187a81569890c906cd235b8ddd45af1bafa448731f08a49568b4bc9d12288",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-storage-v5-query-return-analysis-01-20261013",
+      "kind": "static",
+      "scope": "Static all910live V5query inputs uniquely match same-thread original Lock intervals and returned/cache IDs,0unbound; preserve805inactive external maps. Numerical pointer equality/event order only, not source ownership/alias/upload/replay repair.",
+      "record": "research/runtime/draw02-storage-v5-query-return-analysis-01.json",
+      "sha256": "14e4ee1407d61f8cf24163826312b00e2676647d7ec0c028d1720a0cea2df0ce",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-storage-v5-copy-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Static all915copy/API/worker joins,0unbound requests,1146excluded APIcalls and38adjacent return reversals, without replay changes.",
+      "record": "research/runtime/draw02-storage-v5-copy-bindings-01.json",
+      "sha256": "05f024310285790568acca55b47003b1157f0389adf6057ec074fce3a7bd49d9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111684,8 +111835,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-resource-postclose-20261013.json",
-    "sha256": "0969e000119c0e6a2b0319af06aeebd7022b882d57587ac5449750367858eac3"
+    "path": "research/runtime/coverage/source-index-draw02-storage-v5-20261013.json",
+    "sha256": "e88da093957f91678ff2991d6a904b569e876fbccef29c7098202fee2cb815b0"
   },
   "claim_bindings_required": true
 }

@@ -2359,3 +2359,40 @@ versioned pointer-free identity before comparing exact query/Lock-return
 intervals. Do not infer current backing aliases from later pointer equality.
 Earlier120checkpoint/physical failures remain failed. Step2and all47/21remain
 open; steps3–7stayordered/pending.
+
+
+## Step 2 V5 query/Lock-return identities (2026-10-13 UTC)
+
+Resource retirement committed as c83284b6 with staged/normal hook checks.
+Reviewed b7feb37c..c83284b6: 20 exact receipts, zero gaps. V5 retains the
+64-byte header/96-byte rows and adds a local input address ID in query word 7.
+Known query input/cache IDs and candidate IDs must agree; null remains zero.
+Versions 1–4 keep reserved-zero behavior. Pending/unknown points remain pending/
+unknown; no buffer bytes, pointers or inferred allocation identities are sent.
+
+Owned PE32 V5 fixture passes eight calls/five epochs/seven queries, repeated
+addresses, recreation, null input and a pending query's exact later Lock return.
+Eighteen strict decoder and six interval/identity guards pass. Fresh native
+guard execution covers the standalone association model; the earlier collector
+fixture's association claim predates its new CLI link and remains scoped, not
+retrofitted. Static V4 reanalysis preserves all 910 queries as unbound legacy
+inputs, with original manifests verified before/after.
+
+Fresh original V5 passes 32 queues/175147 records/1338 oracles/31963166 bytes,
+915 paired copy requests,985 closed storage calls/910 return epochs/119 local
+address IDs.1715 public map intervals close; original cache points remain
+unknown while pending or stopped. Actual game exit 0 and 2927 original-manifest
+files before/after pass. Independent static analysis joins all 910 live queries
+to unique same-thread Lock intervals and unchanged known canvases, with exact
+input/returned/cache numerical IDs and zero unbound live queries.805 external
+map points remain inactive.845 bindings identify canvas2; the others cover the
+separately observed canvases. All915 copy/API/worker associations match, with
+1146 excluded APIcalls and38 adjacent return reversals preserved.
+
+Reassessment: exact query-to-return identities explain why an in-progress cache
+query must remain conservative until the Lock completes. They do not establish
+exclusive byte/backing/allocation ownership or driver upload order. The earlier
+120 source/physical failures remain failed. Next observe producer prefix bounds
+at actual driver worker execution, keeping ambiguous overlaps separate before
+changing native ordering. Step2 and all47/21 remain open; steps3–7 stay ordered
+and pending.
