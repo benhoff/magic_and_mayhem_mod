@@ -17,6 +17,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--prefix-template', type=Path, required=True)
     p.add_argument('--shared-fixture-prefix',type=Path)
+    p.add_argument('--bounded',action='store_true',help='Exercise generic readable RGB565 geometry and independent attempt/byte quotas')
     p.add_argument('--claims', type=Path, required=True)
     p.add_argument('--report', type=Path, required=True)
     a = p.parse_args()
@@ -50,6 +51,7 @@ def main():
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEPREFIX=str(prefix), WINEDEBUG='-all', MNM_DRAW_SESSION_MODE='physical',
                MNM_DRAW02_PRODUCER_BIND='1', MNM_DRAW_WINE_SUBMISSION='1',MNM_DRAW_WINE_RESOURCE_MAP='1',MNM_DRAW_WINE_TEXTURE_ENTRY='1',MNM_DRAW_WINE_SOURCE_DESCRIPTOR='1',MNM_DRAW_WINE_SOURCE_MAP='1', MNM_DRAW_SESSION_DIRECTORY='Z:'+str(capture).replace('/', '\\'))
+    if a.bounded:env.update(MNM_DRAW_WINE_SOURCE_MAP='2',MNM_DRAW_WINE_SOURCE_MAP_ATTEMPTS='8',MNM_DRAW_WINE_SOURCE_MAP_BYTES='4194304')
     try:
         with (run/'wineboot.log').open('x') as out:
             subprocess.run(['wineboot', '-u'], env=env, stdout=out, stderr=subprocess.STDOUT, check=True, timeout=90)
@@ -58,10 +60,12 @@ def main():
         execution.check_returncode()
         from drawing_wine_source_map import decode
         raw=(capture/'wine-source-map.bin').read_bytes();observed=decode(raw,capture)
-        statuses=[0,2,2,4,5,6,6,6,6,7,0,0,2]+[0]*8+[3,1,1,1,1]
-        if len(observed['samples'])!=26 or observed['retained_payloads']!=11 or observed['map_attempts']!=[16,1] or [r['status'] for r in observed['samples']]!=statuses:raise ValueError('Source map fixture closure')
+        statuses=[0,0,0,0,2,2,0,0,3,0,0,3] if a.bounded else [0,2,2,4,5,6,6,6,6,7,0,0,2]+[0]*8+[3,1,1,1,1]
+        counts=(12,8,8,8,12,[8]) if a.bounded else (27,17,16,11,26,[16,1])
+        blits,maps,unmaps,payload_count,sample_count,attempts=counts
+        if len(observed['samples'])!=sample_count or observed['retained_payloads']!=payload_count or observed['map_attempts']!=attempts or [r['status'] for r in observed['samples']]!=statuses:raise ValueError('Source map fixture closure')
         forwards=(capture/'fixture-forwards.bin').read_bytes()
-        if list(struct.iter_unpack('<I',forwards))!=[(i,) for i in range(1,28)]:raise ValueError('Original forward count')
+        if list(struct.iter_unpack('<I',forwards))!=[(i,) for i in range(1,blits+1)]:raise ValueError('Original forward count')
         for payload in observed['payloads']:
             expected=bytes((x*3+y*5+7)&255 for y in range(payload['height']) for x in range(payload['width']*2))
             if (capture/payload['path']).read_bytes()!=expected:raise ValueError('Owned dense rows differ after unmap mutation')
@@ -80,10 +84,10 @@ def main():
         controls=subprocess.run(['python3',str(ROOT/'tests/test-drawing-wine-source-map.py')],capture_output=True,text=True,check=True)
         if any(sha((ROOT/n).read_bytes()) != h for n,h in sources.items()):
             raise ValueError('Fixture sources changed during execution')
-        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),journal_sha256=sha(raw),original_blits=27,map_attempts=17,unmaps=16,retained_payloads=11,retained_bytes=sum(p['size'] for p in observed['payloads']),default_disabled_queries=0,original_entry_and_return_fp_preserved=True,original_last_error_preserved=True,owned_copies_survive_unmap_mutation=True,fatal_guards=negatives,analysis=observed,original_game_executed=False,scope='Owned PE32 read-only mapping/copy/unmap/original forwarding and default-off/range/format/access/active-map/budget/generation refusals. Failed unmap and reentrant diagnostics abort before forwarding; driver/real source ownership and whole acquisition remain pending.')
+        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),journal_sha256=sha(raw),bounded=a.bounded,original_blits=blits,map_attempts=maps,unmaps=unmaps,retained_payloads=payload_count,retained_bytes=sum(p['size'] for p in observed['payloads']),default_disabled_queries=0,original_entry_and_return_fp_preserved=True,original_last_error_preserved=True,owned_copies_survive_unmap_mutation=True,fatal_guards=negatives,analysis=observed,original_game_executed=False,scope='Owned PE32 read-only RGB565 mapping/copy/unmap/original forwarding, generic GPU/CPU readable geometry with independently exhausted byte/attempt caps when bounded; legacy sampled branch otherwise. Original forwarding and default-off/range/format/access/active-map/budget/generation refusals. Failed unmap and reentrant diagnostics abort before forwarding; driver/real source ownership and whole acquisition remain pending.')
         a.report.parent.mkdir(parents=True,exist_ok=True)
         a.report.write_text(json.dumps(report,indent=2)+'\n')
-        print(json.dumps(dict(success=True,original_blits=27,retained_payloads=11)))
+        print(json.dumps(dict(success=True,original_blits=blits,retained_payloads=payload_count)))
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
         if prefix_lock is not None:prefix_lock.close()

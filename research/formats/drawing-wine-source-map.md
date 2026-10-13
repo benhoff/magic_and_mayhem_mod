@@ -12,3 +12,29 @@ Status0 retains an owned payload;1untrusted/query refusal;2unsupported descripto
 8allocation/storage failure;9unmap failure;10overlapping diagnostic invocation.
 Statuses8/9/10abort. Terminal type4 records stop reason and sample/payload/attempt
 counts. A stopped or incomplete stream cannot pass as completed acquisition.
+
+## MNMWMS02 broader bounded mode
+
+Version2 keeps the sample layout and replaces the fixed two-shape policy. Header
+word6 is the positive attempt cap (at most8192), word7 is1, word11 the positive
+retained-byte cap (at most2147483648), words12/13 the800/600dimension limits and
+words14/15zero. Shape word35 is1 for an eligible RGB565 source and0 otherwise.
+Eligibility requires MAP_R, no multisampling, depth1 and descriptor byte size
+`width*height*2`. GPU residency is not required. Word31 is the global attempt
+number, or attempts already used for a quota refusal. Both attempt and retained
+byte caps apply before calling map. Failed attempts consume the attempt cap.
+Terminal words5/6 retain global attempts and retained bytes. Refusals remain
+rows and cannot be renamed a complete source interval. The runtime accepts
+strict positive decimal lower caps through `MNM_DRAW_WINE_SOURCE_MAP_ATTEMPTS`
+and `MNM_DRAW_WINE_SOURCE_MAP_BYTES`; the interactive runner clears inherited
+values and uses the declared8192/2GiB defaults.
+
+## MNMWMS03 padded source storage
+
+Version3 uses `MNMWMS03`/version3 with the version2 row/header layout and budgets.
+Descriptor size may cover padding: require at least dense byte size and at most
+`height*32768`. The public map's validated row pitch determines readable row
+spans; each retained row still contains exactly `width*2` bytes. The public
+598×36 descriptor size43200 therefore admits43056dense retained bytes. Version2
+continues to require exact dense descriptor size so its historical refusals keep
+their original meaning.

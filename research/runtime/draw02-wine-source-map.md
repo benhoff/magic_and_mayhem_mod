@@ -85,3 +85,70 @@ mismatch and one missing sampled overlay remain identical. Fresh owned fixture05
 passes seven methods with stable final sources. Analysis02–04 retain failed
 adapter attempts; no original inputs or historical result hashes are edited.
 The earlier exploratory01 remains historical under its narrower adapter.
+
+## Broader source acquisition policy
+
+The next diagnostic mode admits every observed readable RGB565 geometry up to
+800×600, including CPU-readable resources. It retains the original two-shape
+mode separately and declares version2 attempt and byte budgets in the raw
+stream. Default limits are8192map attempts and2GiB of source pixels. Unsupported
+or unknown sources, pre-existing observed maps, driver refusal, invalid ranges,
+generation changes and either exhausted budget remain visible. It retains the
+same owned-copy/unmap-before-forward and fatal unresolved-map/overlap boundary.
+This is a bounded diagnostic acquisition policy; all aliases, every physical
+presentation, action semantics and alternate routes still require evidence.
+
+Version2 original01 completes normally with stable sources and unchanged original
+manifests/sections. It retains1600closed mapped buffers/818546144bytes across1696
+source submissions; all96refusals are padded598×36descriptors, not observed
+active-map refusals. Ten source geometries include779full800×600copies and367
+CPU-readable resources. It retains338physical API witnesses and85consecutive
+advancing windows, below the120update acquisition target. The scoped direct-copy
+model revalidates raw map/submission/lifecycle and physical-peer records, binds
+all338witness regions, and finds335matches/90953600pixels with3mismatches retained.
+The first mismatch is the black startup image; two smaller copy regions also
+mismatch. This is original-source/physical agreement, not native-renderer parity.
+
+Version3 addresses the padded descriptor restriction explicitly. Source snapshot
+provenance for the actual version2collector/model is retained under a `.retain`
+pin before editing; historical hashes are unchanged. A longer diagnostic schedule
+adds a10000ms final passive wait to target120advancing updates. Geometry, timing,
+source ownership, physical matching and route completeness remain independent
+execution outcomes.
+
+Padded original02 retains1883closed buffers/952623328bytes with every observed
+submission retained and no refusal,432API/431EGLwitnesses and73advancing windows.
+Raw-bound API comparison finds430matches/89670400pixels and2mismatches. Counter
+control01 shares the actual10000ms-wait schedule/settings/input/counter binaries:
+66common queued updates give combined diagnostic median5.072800×/p959.900736×.
+This measures the whole diagnostic configuration, not isolated map cost or
+identical randomized work. Capturing every source is visibly intrusive.
+
+Original03 extends the final post-Escape wait to30000ms:2148closed sources/
+1106069088bytes,528API/527EGLwitnesses,80advancing windows and normalQuit. All528
+APIcopy regions bind;527match/88868800pixels and1mismatch remains. That extra wait
+mostly records menus and does not sustain the active World interval. Schedule
+versions and both results remain immutable. Original04 moves a30000ms wait before
+gameplay inputs, but fails the actual Results transition after60ms Escape pulses.
+The last retained input screenshot still shows World, not Results. Its3364raw
+source files/1508766816bytes and physical samples remain negative partial evidence;
+forced termination leaves the counter file unclosed. No admitted120window claim.
+
+The next capture declares a600ms held Results Escape, shared by diagnostic and
+control, while preserving the60ms default. Both opening and reopening require
+actual original screen26 before proceeding. Timing comparison rejects differing
+Results key policies. The longer hold is a diagnostic input policy, not assumed
+key delivery or a recovered gameplay change. Current owned fixture05 and bounded
+fixture03 pass before activation; nine cadence policy guards and ten map guards
+pass. Source/frame model fixtures remain eight independent guards.
+
+Original05 with the pre-inputWorld wait and shared600msResults holds completes:
+129consecutive advancing windows,2182closed buffers/1017141856bytes, every observed
+source submission retained,400API/399EGLwitnesses, stable sources/unchanged original
+manifests/sections and normalQuit. Raw-bound copy analysis05 binds all400APIregions:
+398matches/112104000pixels and2mismatches retained. Counter control03/04fail during
+pre-gameWineboot90s; retry uses the intact original05prefix. These startup failures
+are not an engine/control comparison. Exact source/update/worker/alias attribution,
+semantic actions, mismatches and global presentation closure remain pending.
+
+The matching control05retry from original05's intact prefix completes834windows/normalQuit. Strict comparison02 covers120commonqueuedupdates: combined median2.132696×/p9532.359558×. Same executed schedule,600ms Results policy, preferences and input/counter binaries; randomized workload and unobtrusive/global equivalence remain unproved.

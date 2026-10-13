@@ -8424,3 +8424,40 @@ journal metadata reviewed separately. This is a partial acquisition/source-to-
 physical binding milestone. Complete sources, frames/actions, callers/lifetimes,
 startup/alternate routes, every presentation and47/21 closure remain pending.
 The explicit user GiB override remains active; no further cleanup is authorized.
+
+### DRAW-02 readable source mapping and physical regions (2026-10-12 UTC)
+
+The bounded source collector now supports CPU/GPU-readable RGB565 dimensions up
+to800×600, validated mapped row spans and padded descriptor storage. Version1
+sampled and version2exact-size records retain their meaning; version3declares
+8192attempt/2GiB default limits. Each retained buffer is copied into owned memory
+while mapped and unmapped before file retention/original forward. Overlap or
+failed unmap stops capture. Current PE32 sampled fixture05 and bounded fixture03
+pass; ten decoder guards and nine cadence/input-policy guards pass. These are
+partial native diagnostic policies, not native drawing replacement.
+
+Original05 retains2182closed mapped buffers/1017141856bytes, every observed source
+submission,400API/399separateEGLwitnesses and129consecutive advancing accepted
+update windows. Immutable originals/sections remain unchanged; sources stay
+stable and original Results/normalQuit complete with shared600ms heldEscape.
+Reference-only raw-bound copy analysis05 binds400APIregions:398matches/
+112104000pixels and2retained mismatches. Eight independent owned model guards
+pass. Captured original pixels never enter the production native application.
+
+Original01's96padded-source refusals, original02/03's73/80window shortfalls,
+original04'sResults timeout and unclosed counter, and control03/04's pre-game
+wineboot90s timeouts remain separate preserved results. Original01version2source
+snapshots and active reference/prefix runs are pinned. The earlier post-Escape
+waits did not sustain World; a separate immutable schedule now waits before the
+inputs. No historical fingerprint is refreshed. Earlier matched66queued-update
+control comparison measures the combined diagnostic median5.072800×/p959.900736×;
+this configuration is intrusive and does not establish identical randomized work.
+
+Step2 remains incomplete: exact producer/update/worker attribution, atomic
+source/alias ownership, the retained pixel mismatches, semantic action and caller
+outcomes, unknown GDI/movie/alternate presentation routes and every physical
+change still require closure. The129window count and every-observed-source copy
+claim do not establish those boundaries. All47journey/21operation requirements,
+source-owned native replay, later stages and live replacement remain open.
+
+The matching control05retry from original05's intact prefix completes834windows/normalQuit. Strict comparison02 covers120commonqueuedupdates: combined median2.132696×/p9532.359558×. Same executed schedule,600ms Results policy, preferences and input/counter binaries; randomized workload and unobtrusive/global equivalence remain unproved.

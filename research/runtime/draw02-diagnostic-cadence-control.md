@@ -66,3 +66,5 @@ local prefix and actual short schedule/settings/input/counter binaries/raw trace
 It compares120common queued updates at median1.266315×/p952.161535× combined
 diagnostic timing. Both originals exit normally with unchanged manifests.
 Randomized-work, unobtrusive-capture and whole acquisition limitations remain.
+
+The matching control05retry from original05's intact prefix completes834windows/normalQuit. Strict comparison02 covers120commonqueuedupdates: combined median2.132696×/p9532.359558×. Same executed schedule,600ms Results policy, preferences and input/counter binaries; randomized workload and unobtrusive/global equivalence remain unproved.

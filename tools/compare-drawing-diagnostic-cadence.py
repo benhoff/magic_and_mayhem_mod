@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from drawing_api_session import BUILD,sha
 from drawing_engine_windows import analyze
-from drawing_diagnostic_cadence import compare
+from drawing_diagnostic_cadence import compare,results_action
 ROOT=Path(__file__).resolve().parents[1]
 
 
@@ -59,6 +59,7 @@ def main():
     for path in a.diagnostic:
         r,identity=read(path)
         if r.get('cadence_control') or not r['staging']['api_observer_enabled']:raise ValueError('Diagnostic drawing capture required')
+        if results_action(r['staging'].get('results_key_hold_ms',60))!=results_action(s.get('results_key_hold_ms',60)):raise ValueError('Control Results key policy mismatch')
         if identity['schedule_sha256']!=control_id['schedule_sha256'] or r['staging']['preferences']!=s['preferences'] or r['input_binary_sha256']!=control['input_binary_sha256'] or r['staging']['binaries']['MnmEngineCadence.dll']!=s['binaries']['MnmEngineCadence.dll']:
             raise ValueError('Control schedule/settings/counter/input executable mismatch')
         comparisons.append(dict(reference=identity,measurement=compare(control['engine_update_observation'],r['engine_update_observation'])))

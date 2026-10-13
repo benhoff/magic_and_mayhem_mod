@@ -44377,7 +44377,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original update cadence controls for drawing diagnostics",
-      "scope": "Explicit original-active cadence control with drawing/source/Wine/display capture disabled and identical declared input schedule/settings. Retain accepted original update identities and QPC timing, compare bounded queued World update intervals to retained diagnostic runs. Counter/menu/input observation still exists; timing comparison is an instrumentation measurement, not identical gameplay work, semantic equivalence, 60FPS or unobtrusive capture proof. Bind the successful input runner action records, their ordinal/timing order and every declared action parameter to exactly one hash-matched schedule file; unrelated declared schedules cannot establish equal executed inputs.",
+      "scope": "Explicit original-active cadence control with drawing/source/Wine/display capture disabled and identical declared input schedule/settings. Retain accepted original update identities and QPC timing, compare bounded queued World update intervals to retained diagnostic runs. Counter/menu/input observation still exists; timing comparison is an instrumentation measurement, not identical gameplay work, semantic equivalence, 60FPS or unobtrusive capture proof. Bind the successful input runner action records, their ordinal/timing order and every declared action parameter to exactly one hash-matched schedule file; unrelated declared schedules cannot establish equal executed inputs. Controls and diagnostics share an explicit60or600ms Results Escape policy; compare that policy independently of their primary input schedule. Longer holds do not assert delivery or menu outcomes.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -44399,7 +44399,10 @@
         "tools/drawing_engine_windows.py",
         "tools/engine_cadence.py",
         "tools/drawing_quit_completion.py",
-        "tests/fixtures/drawing-journeys/wine-submission-schedule.json"
+        "tests/fixtures/drawing-journeys/wine-submission-schedule.json",
+        "tests/fixtures/drawing-journeys/wine-source-map-bounded-schedule.json",
+        "tests/fixtures/drawing-journeys/wine-source-map-120-schedule.json",
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-schedule.json"
       ],
       "evidence": [
         "DRAW02.cadence-control-fixture-01-native-20261012",
@@ -44416,7 +44419,14 @@
         "DRAW02.source-descriptor-cadence-control-01-20261012",
         "DRAW02.source-descriptor-cadence-comparison-01-20261012",
         "DRAW02.source-map-cadence-control-01-20261012",
-        "DRAW02.source-map-cadence-comparison-01-20261012"
+        "DRAW02.source-map-cadence-comparison-01-20261012",
+        "DRAW02.source-map-bounded-cadence-control-01-20261012",
+        "DRAW02.source-map-bounded-cadence-comparison-01-20261012",
+        "DRAW02.source-map-bounded-cadence-control-02-20261012",
+        "DRAW02.source-map-bounded-control-boot-refusal-03-20261012",
+        "DRAW02.source-map-bounded-control-boot-refusal-04-20261012",
+        "DRAW02.source-map-bounded-cadence-control-05-20261012",
+        "DRAW02.source-map-bounded-cadence-comparison-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44431,7 +44441,8 @@
         "Current short47queued median3.8414x/control and whole120median7.4675x. Shared declared inputs/settings do not prove identical workload or exclusive instrumentation cost. Expensive diagnostics, no unobtrusive timing/FPS claim; source/frame/journey/semantic completion independent.",
         "Eight offline guards pass after correcting fixed-name schedule lookup to exact executed actions. Historical cadence reports and hashes remain retained; current corrected-comparator/control execution is pending. Unchanged randomized workload, output routes, frame/action/caller/lifetime and unobtrusive gameplay boundaries remain open.",
         "Corrected original counter-only control01 and comparison01 pass exact actual interactive action schedule/settings/input/counter binary and journal identities. First 120 queued updates: diagnostic/control median 7.6751x, p95 16.2093x. This establishes costly diagnostics relative to the counter-only condition; identical workload, uninstrumented gameplay, all presentation/source/action/caller/lifetime/routes and full47/21 remain unproved.",
-        "Fresh source-descriptor control01 and comparison01 pass the same short executed input schedule/settings/counter/input binary and raw traces for120common queued updates, with combined diagnostic median1.216344x/p951.900047x. Actual randomized work and capture duration still differ; no unobtrusive gameplay, getter-only timing, source/frame/semantic equivalence or native parity claim. User storage override is separate authorization."
+        "Fresh source-descriptor control01 and comparison01 pass the same short executed input schedule/settings/counter/input binary and raw traces for120common queued updates, with combined diagnostic median1.216344x/p951.900047x. Actual randomized work and capture duration still differ; no unobtrusive gameplay, getter-only timing, source/frame/semantic equivalence or native parity claim. User storage override is separate authorization.",
+        "Control05from the intact current original05prefix completes834windows and normalQuit after control03/04pre-game boot timeouts. Comparison02uses exact shared main schedule/600ms Results policy/settings/input/counter and raw traces for120queued updates. Combined timing does not isolate map work, match randomized workload or establish unobtrusive gameplay; source/worker/frame/action/routes remain pending."
       ]
     },
     {
@@ -45774,7 +45785,10 @@
       "evidence": [
         "DRAW02.wine-source-map-fixture-02-20261012",
         "DRAW02.wine-source-map-boot-refusal-01-20261012",
-        "DRAW02.wine-source-map-original-02-20261012"
+        "DRAW02.wine-source-map-original-02-20261012",
+        "DRAW02.wine-source-map-fixture-03-20261012",
+        "DRAW02.wine-source-map-fixture-04-20261012",
+        "DRAW02.wine-source-map-fixture-05-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45829,6 +45843,112 @@
       },
       "remaining_gaps": [
         "Seven guard methods and current analysis pass their execution checks.13ROI associations/20800pixels match within1channel, while one startup-black physical witness mismatches and one selected restore lacks a sampled overlay. Key31 remains an inferred diagnostic-model parameter. Internal writes, true key getters/overrides, clipped cases, complete source/frame/action/routes and production native parity remain pending."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-source-map-bounded",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded diagnostic mapping across readable RGB565 sources",
+      "scope": "Opt-in diagnostic public READ mapping of each known-live submitted RGB565 subresource with MAP_R access, no multisampling, depth1 and descriptor size covering dense rows within the32768bytepitchbound, dimensions1..800 by1..600. Generic CPU/GPU-readable sources are admitted; default8192attempt/2GiB retention bounds, explicit per-run lower caps and all unsupported/query/active-map/budget/map/range/generation refusals are recorded in MNMWMS03; historical version2 retains its exact dense-size restriction. Copy dense rows into independent memory while mapped, close mapping before retention and original forward, preserve API state, fail closed on failed unmap or overlapping invocation. The legacy two-shape mode remains separately decodable. No global alias/concurrency ownership, every physical/worker presentation/action/route, native parity, unobtrusive gameplay or replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-source-map.md",
+        "research/formats/drawing-wine-source-map.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_map.h",
+        "tools/drawing_wine_source_map.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-source-map-test.c",
+        "tests/test-drawing-wine-source-map.py",
+        "tools/test-drawing-wine-source-map.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_lifetime.py",
+        "tools/drawing_diagnostic_cadence.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-map-bounded-fixture-01-20261012",
+        "DRAW02.wine-source-map-bounded-original-01-20261012",
+        "DRAW02.wine-source-map-bounded-fixture-02-20261012",
+        "DRAW02.wine-source-map-bounded-original-02-20261012",
+        "DRAW02.wine-source-map-bounded-original-03-20261012",
+        "DRAW02.wine-source-map-world-results-refusal-04-20261012",
+        "DRAW02.wine-source-map-bounded-fixture-03-20261012",
+        "DRAW02.wine-source-map-bounded-original-05-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Prospective broader acquisition policy. Owned generic geometry/access/both-cap guards and fresh original activation must precede any execution claim. Raw map-prefix/alias/concurrency binding, callers, semantic actions, all encountered routes and every physical presentation remain pending.",
+        "Owned fixture01 passes12original forwards,8closed mapped copies over CPU/GPU full/HUD/small sizes and independent byte/attempt quota branches; legacy fixture03passes current code. Original activation, raw original-map-prefix/alias/concurrency ownership, caller/actions/routes/every presentation remain pending.",
+        "Version2original01retains1600closed buffers/818546144bytes across1696samples,338physical witnesses and85advancing windows; only96padded598x36sources refused. Reference model binds338regions with335matches/90953600pixels and3retained mismatches. Version3explicitly admits padded descriptor storage while still copying dense mapped rows; fresh fixture/live execution pending. Exact version2source snapshots are pinned before revision.",
+        "Original05closes129consecutive advancing windows and2182owned snapshots/1017141856bytes with every observed submission retained,400API/399EGLwitnesses and normalQuit. Raw reference model binds400regions/398matches/112104000pixels with2mismatches. Exact source-to-engine-window/worker attribution, atomic original buffer/alias ownership, caller/actions, unknown display/movie/GDI routes and allphysicalchanges remain pending. FailedWorld04Results timeout and control03/04pre-game wineboot timeouts remain retained; no missing evidence is waived."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-frame-binding",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Reference source pixels against physical copy regions",
+      "scope": "Reference-only RGB565 source-to-physical RGB comparison for the last observed unkeyed, unscaled Wine blit in each witnessed original API call. Bind submission/API/thread/source generation/subresource/lifecycle and exact payload/frame hashes through raw collector, lifetime, submission and physical-peer revalidation. Retain every physical witness as a compared copy region or an explicit refusal; retain all mismatches, tolerance1for RGB expansion, no alpha comparison. This is measured agreement for observed copy regions, not native-renderer parity, all-global-source ownership, worker causality, unknown routes or every physical change.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-source-map.md"
+      ],
+      "implementation": [
+        "tools/drawing_source_frame_binding.py",
+        "tools/analyze-drawing-source-frame-binding.py"
+      ],
+      "tests": [
+        "tests/test-drawing-source-frame-binding.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_wine_source_map.py",
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_lifetime.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_api_physical.py"
+      ],
+      "evidence": [
+        "DRAW02.source-frame-binding-fixture-01-20261012",
+        "DRAW02.source-frame-binding-analysis-01-20261012",
+        "DRAW02.source-frame-binding-fixture-02-20261012",
+        "DRAW02.source-frame-binding-analysis-02-20261012",
+        "DRAW02.source-frame-binding-analysis-03-20261012",
+        "DRAW02.source-frame-binding-analysis-05-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Prospective scoped physical-copy agreement model. Independent owned guards and raw-bound original analysis must precede claims. Keyed/scaled/clipped/unsupported copies, intervening unobserved writes, physical/driver delivery and native parity remain open."
       ]
     }
   ],
@@ -98460,6 +98580,599 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh current-source owned PE32 regression for legacy sampled mapping:27forwards,17maps,16unmaps,11owned payloads and fatal guards. No original game.",
+      "record": "research/runtime/draw02-wine-source-map-fixture-03.json",
+      "sha256": "172f62d145a5d0af802427b917668ef10a05806a5cc1e7fe557843993f384dd0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 27
+        },
+        {
+          "pointer": "/retained_payloads",
+          "equals": 11
+        },
+        {
+          "pointer": "/owned_copies_survive_unmap_mutation",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 broader mapping:12original forwards,8closed maps/8independent padded-row payloads totaling4016480bytes. GPU/CPU-readable800x600and596x140plus40x40, unsupported geometry/access and separate byte/attempt refusals; failed unmap/reentry children abort before forwarding. No original game.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-fixture-01.json",
+      "sha256": "6b5162cb1540494afd30c62c81247bfbda66d56349f9bed087c211d718a9891a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/bounded",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 12
+        },
+        {
+          "pointer": "/retained_bytes",
+          "equals": 4016480
+        },
+        {
+          "pointer": "/owned_copies_survive_unmap_mutation",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active diagnostic1696source samples:1600closed owned copies/818546144bytes, including779full800x600and367CPU-readable resources.96padded598x36descriptors refused by version2dense-size restriction.338physicalAPIwitnesses/85advancing windows; stable sources/original manifests/sections/normalQuit. No complete source/frame/action/routes.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-01.json",
+      "sha256": "73cc7cb455ca038b3fb9371a1391ae1bbb2043a72093f4eeb284c0d252e5e047",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_map_observation/retained_payloads",
+          "equals": 1600
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Eight independent owned copy-color/crop/RGBtolerance and adversarial identity/later-write/geometry/hash/path/black-mismatch/refusal methods; no original game.",
+      "record": "research/runtime/draw02-source-frame-binding-fixture-01.json",
+      "sha256": "a632666de0d73d69c16fb888a9dae9f6efa5440d802d884e29e3065b0b9d0b52",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Raw-revalidated source/physical copy-region analysis binds338of338APIwitnesses:335matching regions/90953600pixels and3retained mismatches, including startupblack. No native renderer parity, driver causality or whole physical route completeness.",
+      "record": "research/runtime/draw02-source-frame-binding-analysis-01.json",
+      "sha256": "0ce4dee2bf9b003785e950562353c71905270ec0607d538c114b2cde50328d27",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_witnesses",
+          "equals": 338
+        },
+        {
+          "pointer": "/all_witness_copy_regions_bound",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatched_regions",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Current-source legacy regression:27forwards,17maps/16unmaps,11owned copies and fail-closed children after padded-version3branch introduction.",
+      "record": "research/runtime/draw02-wine-source-map-fixture-04.json",
+      "sha256": "93fff19fc27be54d8340bb219eafab3c5284a816697324122f5919b203fc7758",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 27
+        },
+        {
+          "pointer": "/retained_payloads",
+          "equals": 11
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Version3owned12forwards/8closed copies/3892656dense bytes, padded598x36descriptor43200with43056owned bytes, full CPU/GPU800x600and separate byte/attempt refusals, fatal-unmap/reentry children. Ten decoder methods pass.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-fixture-02.json",
+      "sha256": "9e74751b7049db36ee6643a997e578b30c025c20921ced3063100122e8ddcd25",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 12
+        },
+        {
+          "pointer": "/retained_bytes",
+          "equals": 3892656
+        },
+        {
+          "pointer": "/analysis/wire_version",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Padded-version3original retains1883closed source maps/952623328bytes and every observed source submission, zero refusals;432API/431separateEGLwitnesses,73advancingwindows, normalQuit/stable sources/unchanged originals. Observed source retention is distinct from alias/worker/global frame completeness.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-02.json",
+      "sha256": "8a76bf6fe8ffaca7eb8203dfe0e6ba889d551612086f2113a42b3508038f6801",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_map_observation/every_observed_submission_pixels_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_map_observation/retained_payloads",
+          "equals": 1883
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh eight independent model guards with version3raw collector decoder dependencies; no original game.",
+      "record": "research/runtime/draw02-source-frame-binding-fixture-02.json",
+      "sha256": "935da5572cc5d3872988fa9e6ffed6c9038abf513e3504f33ed47907292caa76",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/methods",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-analysis-02-20261012",
+      "kind": "native_integration",
+      "scope": "Raw-revalidated direct source/physical copy regions bind432of432APIwitnesses:430matches/89670400pixels and2retained mismatches. SeparateEGL witnesses remain unbound to source-worker execution; no native-renderer or global presentation equivalence.",
+      "record": "research/runtime/draw02-source-frame-binding-analysis-02.json",
+      "sha256": "512b658b7c52b3d4fd73a7ff376a56a6d90b0d9fbfa6ffe607a1bc912e2f739a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_witnesses",
+          "equals": 432
+        },
+        {
+          "pointer": "/all_witness_copy_regions_bound",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatched_regions",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-cadence-control-01-20261012",
+      "kind": "live_observation",
+      "scope": "Original counter/menu/input-only control for the10000ms passive-wait diagnostic schedule, no source/drawing/display observers. Normal originalQuit; independent workload/complete reference still not implied.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-control-01.json",
+      "sha256": "e43a395d14db7ff0bbd0c66beb762ac60d61818c45c1fcd122428fa0037136ba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cadence_control",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-cadence-comparison-01-20261012",
+      "kind": "native_integration",
+      "scope": "Strict shared-schedule/settings/input/counter/raw-trace comparison for padded+EGL diagnostic:66common queued updates, combined median5.072800x/p959.900736x. No isolated map cost, identical workload or unobtrusive behavior.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-comparison-01.json",
+      "sha256": "3e793e27eed185256a10b60104ee28ba7f3800526ce09bc868c06517a2f816e9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-original-03-20261012",
+      "kind": "live_observation",
+      "scope": "Later post-Escape wait run retains2148closed source samples/1106069088bytes, every observed submission,528API/527EGLwitnesses,80advancingwindows and normalQuit; the post-Escape wait does not fulfill sustained120World windows.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-03.json",
+      "sha256": "a8ba3b2a603e70af410b4820bd3eb382f4ceeaae9735f2b1d31ad0e6af2ef200",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-analysis-03-20261012",
+      "kind": "native_integration",
+      "scope": "Raw-bound528APIcopy regions:527matches/88868800pixels and1retained mismatch. No native renderer or global delivery equivalence.",
+      "record": "research/runtime/draw02-source-frame-binding-analysis-03.json",
+      "sha256": "ac03b0a3c347f446b504adf37154c6898ec9b0c0ade80944963bb809920d01e8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-cadence-control-02-20261012",
+      "kind": "live_observation",
+      "scope": "Counter/menu/input-only original control with30000ms post-Escape wait and normalQuit. No activeWorld120or equivalence claim.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-control-02.json",
+      "sha256": "8df7823ee4148a42a84c6316cedfa771c2ab0ca338c844246e00a776cacd7d8a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-world-results-refusal-04-20261012",
+      "kind": "static",
+      "scope": "Retained negative acquisition:30000ms activeWorld wait followed by original Results timeout after60msEscape.3364raw owned source files are partial; engine counter does not close after forced termination. No admitted engine/reference execution.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-04.json",
+      "sha256": "80a7d5998a4b7623670ccf0cc94f1a3ecbc0d93dec42a1d2628ef9a3bddb5d19",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-fixture-05-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh final-source legacy PE32 sampled-mode regression:27original forwards,17maps/16unmaps,11owned buffers and failed-unmap/reentry guards.",
+      "record": "research/runtime/draw02-wine-source-map-fixture-05.json",
+      "sha256": "5683f395932fdf31368947a1f577f804b7e2a70fb44de6f1fb08445e08769e71",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_copies_survive_unmap_mutation",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh final-source padded/version3PE32 generic mapping:12forwards,8closed maps/3892656bytes and byte/attempt/geometry/access/fatal guards; ten wire methods pass.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-fixture-03.json",
+      "sha256": "2a10af52e83c9e4578a9ac37d9f6d45ed2fbec51220716e7b311fe5cc1a9c568",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_copies_survive_unmap_mutation",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-original-05-20261012",
+      "kind": "live_observation",
+      "scope": "Sustained World diagnostic after shared600ms Results holds:129consecutive advancing complete windows,2182closed owned source copies/1017141856bytes, every observed source retained,400API/399EGLwitnesses. Stable sources/unchanged originals/normalQuit. No worker/global-presentation/alias/native equivalence claim.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-05.json",
+      "sha256": "fb9095b84380ef5c50035640032d86b0422b3a7e7a6e6b3d21e187a2d2b727a7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_map_observation/every_observed_submission_pixels_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_update_observation/longest_contiguous_advancing_run",
+          "equals": 129
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-analysis-05-20261012",
+      "kind": "native_integration",
+      "scope": "Raw-revalidated400APIcopy regions:398matches/112104000pixels,2retained mismatches. Source/physical region agreement only; separateEGL and async worker causality remain pending.",
+      "record": "research/runtime/draw02-source-frame-binding-analysis-05.json",
+      "sha256": "fe218241d63315a568093e4a361c5b9cd81f40e016de1b76153de5a996e2ebae",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_witnesses",
+          "equals": 400
+        },
+        {
+          "pointer": "/matched_regions",
+          "equals": 398
+        },
+        {
+          "pointer": "/all_witness_copy_regions_bound",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatched_regions",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-control-boot-refusal-03-20261012",
+      "kind": "static",
+      "scope": "Counter-only control refuses during pre-game wineboot90s timeout. No original engine/control execution, no admitted cadence comparison.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-control-03.json",
+      "sha256": "02fda87619903f9e3c36f5aaafc46e67f45ccca5edeff5af1f4ffeeebbda1dd6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-control-boot-refusal-04-20261012",
+      "kind": "static",
+      "scope": "Counter-only control refuses during pre-game wineboot90s timeout. No original engine/control execution, no admitted cadence comparison.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-control-04.json",
+      "sha256": "edeb246f0a19d98f17b121f14fa6cac63e00d004b96174576e2637adfc6ab416",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-cadence-control-05-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh successful counter/menu/input-only control shares pre-inputWorld30000ms schedule and600ms Results hold,834complete windows, stable sources/unchanged original/normalQuit. No source/drawing/display instrumentation.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-control-05.json",
+      "sha256": "460a455ffae5d809153f48f3ba8f93ff2455417ce69b364d621870a0e247a9d1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-bounded-cadence-comparison-02-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh strict matching executed schedule/Results key policy/settings/input/counter binaries/raw traces for sustained source+EGL diagnostic.120common queued-update distributions; combined observer cost only, not identical workload/unobtrusive or native-renderer equivalence.",
+      "record": "research/runtime/draw02-source-map-bounded-cadence-comparison-02.json",
+      "sha256": "422f3763c6e1b8bb8bfe2a6c082aa61f8ffb7bd1dbf58efb00046db7c1738c4e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -110213,7 +110926,10 @@
         "DRAW02.cadence-control-original-02-live_observation-20261012",
         "DRAW02.pending-policy-cadence-control-01-20261012",
         "DRAW02.source-descriptor-cadence-control-01-20261012",
-        "DRAW02.source-map-cadence-control-01-20261012"
+        "DRAW02.source-map-cadence-control-01-20261012",
+        "DRAW02.source-map-bounded-cadence-control-01-20261012",
+        "DRAW02.source-map-bounded-cadence-control-02-20261012",
+        "DRAW02.source-map-bounded-cadence-control-05-20261012"
       ]
     },
     {
@@ -110232,7 +110948,9 @@
         "DRAW02.cadence-control-repeat-01-native_integration-20261012",
         "DRAW02.pending-policy-cadence-comparison-01-20261012",
         "DRAW02.source-descriptor-cadence-comparison-01-20261012",
-        "DRAW02.source-map-cadence-comparison-01-20261012"
+        "DRAW02.source-map-cadence-comparison-01-20261012",
+        "DRAW02.source-map-bounded-cadence-comparison-01-20261012",
+        "DRAW02.source-map-bounded-cadence-comparison-02-20261012"
       ]
     },
     {
@@ -110403,7 +111121,10 @@
         "tools/test-drawing-wine-source-map.py"
       ],
       "evidence": [
-        "DRAW02.wine-source-map-fixture-02-20261012"
+        "DRAW02.wine-source-map-fixture-02-20261012",
+        "DRAW02.wine-source-map-fixture-03-20261012",
+        "DRAW02.wine-source-map-fixture-04-20261012",
+        "DRAW02.wine-source-map-fixture-05-20261012"
       ]
     },
     {
@@ -110448,6 +111169,71 @@
       ],
       "evidence": [
         "DRAW02.wine-source-map-original-02-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-owned",
+      "level": "headless",
+      "scope": "Owned PE32 independent mapped patterns for full surfaces, smaller HUD sizes, CPU-readable access, byte and attempt refusals; original forwarding/state and fatal release/overlap guards. No original game.",
+      "behaviors": [
+        "NR.drawing-wine-source-map-bounded"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-source-map.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-map-bounded-fixture-01-20261012",
+        "DRAW02.wine-source-map-bounded-fixture-02-20261012",
+        "DRAW02.wine-source-map-bounded-fixture-03-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-original",
+      "level": "live_observation",
+      "scope": "Original-active bounded diagnostic mapping for all observed eligible RGB565 source geometries, retaining every successful map and every refusal. No all-global/frame/action/route completion.",
+      "behaviors": [
+        "NR.drawing-wine-source-map-bounded"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-map-bounded-original-01-20261012",
+        "DRAW02.wine-source-map-bounded-original-02-20261012",
+        "DRAW02.wine-source-map-bounded-original-03-20261012",
+        "DRAW02.wine-source-map-bounded-original-05-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-owned",
+      "level": "headless",
+      "scope": "Owned independent RGB565/color conversion, exact identity/hash, geometry, later-write and mismatch/refusal guards. No original game.",
+      "behaviors": [
+        "NR.drawing-source-frame-binding"
+      ],
+      "tests": [
+        "tests/test-drawing-source-frame-binding.py"
+      ],
+      "evidence": [
+        "DRAW02.source-frame-binding-fixture-01-20261012",
+        "DRAW02.source-frame-binding-fixture-02-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-analysis",
+      "level": "headless",
+      "scope": "Raw-revalidated original mapped source pixels against physical copy-region witnesses, retaining mismatches and all unsupported witnesses. Reference-only; no native application inputs or causal all-route claim.",
+      "behaviors": [
+        "NR.drawing-source-frame-binding"
+      ],
+      "tests": [
+        "tools/analyze-drawing-source-frame-binding.py"
+      ],
+      "evidence": [
+        "DRAW02.source-frame-binding-analysis-01-20261012",
+        "DRAW02.source-frame-binding-analysis-02-20261012",
+        "DRAW02.source-frame-binding-analysis-03-20261012",
+        "DRAW02.source-frame-binding-analysis-05-20261012"
       ]
     }
   ],
@@ -110822,8 +111608,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-map-20261012-02.json",
-    "sha256": "8f02e10dc7b9a962ef10e713f34ea302432b31aa579af781b2bb6bb68df4916f"
+    "path": "research/runtime/coverage/source-index-draw02-source-map-bounded-20261012-03.json",
+    "sha256": "40295da66774f7d13c98c04f4392938faa54165a1011e1ecf9d5665c53e717aa"
   },
   "claim_bindings_required": true
 }

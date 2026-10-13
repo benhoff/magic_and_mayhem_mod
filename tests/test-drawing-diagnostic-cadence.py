@@ -88,4 +88,13 @@ class ExecutedSchedule(unittest.TestCase):
         with self.assertRaises(ValueError):executed_schedule(self.report,self.root)
 
 
+class ResultsKeyPolicy(unittest.TestCase):
+    def test_duration_is_explicit_and_invalid_policies_refuse(self):
+        from drawing_diagnostic_cadence import results_action
+        self.assertEqual(results_action(60),dict(kind='tap',key='Escape',after_ms=600))
+        self.assertEqual(results_action(600),dict(kind='hold',key='Escape',duration_ms=600,after_ms=600))
+        for bad in (0,59,300,601,True,'600'):
+            with self.assertRaises(ValueError):results_action(bad)
+
+
 if __name__=='__main__':unittest.main()

@@ -1752,3 +1752,40 @@ journal metadata reviewed separately. This is a partial acquisition/source-to-
 physical binding milestone. Complete sources, frames/actions, callers/lifetimes,
 startup/alternate routes, every presentation and47/21 closure remain pending.
 The explicit user GiB override remains active; no further cleanup is authorized.
+
+## Step 2 readable source and physical-copy checkpoint (2026-10-12 UTC)
+
+The broader publicREAD collector admits CPU/GPU-readable RGB565 sources up to
+800×600 and explicitly supports padded source storage. It retains dense owned
+rows while mapped, closes maps before retention/forwarding, records all refusals
+and fails on unresolved unmap/diagnostic overlap. Versioned old policies and
+exact execution fingerprints remain immutable. Current sampled fixture05 and
+bounded fixture03 pass with FP/LastError/original-forward and fatal guards; ten
+wire and nine cadence/key-policy methods pass.
+
+[Original05](draw02-wine-source-map-bounded-original-05.json) closes129consecutive
+advancing windows with all2182observed source submissions copied/1017141856bytes,
+400API/399EGLphysical witnesses, stable sources/unchanged originals and normal
+originalQuit. [Reference analysis05](draw02-source-frame-binding-analysis-05.json)
+revalidates raw API/submission/lifetime/map/physical-peer records and binds every
+APIcopy region:398matches/112104000pixels and2mismatches retained. This is
+original-source/physical agreement, not native-renderer parity or driver causality.
+
+Preserved intermediate results include96padded-source refusals in version2,
+73/80window shortfalls from waits after Escape, and an activeWorld acquisition
+whose60ms Escape pulses did not reachResults; forced termination prevents counter
+closure. The revised run uses a separate pre-input30000msWorld wait and an explicit
+shared600msResults hold, requiring original screen26 at open/reopen. Default60ms
+behavior is unchanged. Counter-only control03/04time out during pre-gameWineboot;
+retry uses the intact original05prefix. Their failed records are not gameplay or
+cadence evidence. Earlier66queued-update comparison quantifies combined observer
+median5.072800×/p959.900736×; capture is diagnostic and intrusive.
+
+Reassessment: step2 is ongoing. Source snapshots need exact engine-window/worker
+attribution and alias/atomicity proof; pixel mismatches, caller/action outcomes,
+unknown presentation routes and all physical changes remain open. Stage3–7 and
+all47/21 gates are not promoted by a successful count, mapped buffer or matching
+copy region. Storage uses the explicit user override; no additional cleanup is
+inferred. Active references and intermediate source provenance remain pinned.
+
+The matching control05retry from original05's intact prefix completes834windows/normalQuit. Strict comparison02 covers120commonqueuedupdates: combined median2.132696×/p9532.359558×. Same executed schedule,600ms Results policy, preferences and input/counter binaries; randomized workload and unobtrusive/global equivalence remain unproved.

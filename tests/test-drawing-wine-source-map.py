@@ -53,5 +53,33 @@ class MappedSources(unittest.TestCase):
     def test_two_dimensional_slice_pitch_is_not_assumed(self):
         p=wire(self.directory);p[1][30]=0;self.assertTrue(decode(encode(p),self.directory)['success'])
 
+    def test_bounded_cpu_geometry_and_configuration(self):
+        p=wire(self.directory);p[0][2:]=[2,256,0x40209ca7,16384,8,1,4,0x80000000,116,4194304,800,600,0,0];p[1][24]=14;p[2][6]=3200
+        raw=bytearray(encode(p));raw[:8]=b'MNMWMS02';r=decode(bytes(raw),self.directory)
+        self.assertEqual(r['wire_version'],2);self.assertEqual(r['map_attempts'],[1]);self.assertTrue(r['every_observed_submission_pixels_retained'])
+        for field,value in [(6,0),(6,8193),(11,0),(11,2147483649),(12,801),(14,1)]:
+            bad=bytearray(raw);struct.pack_into('<I',bad,field*4,value)
+            with self.assertRaises(ValueError):decode(bytes(bad),self.directory)
+        for field,value in [(24,3),(25,801),(26,601),(28,3199),(35,2)]:
+            bad=bytearray(raw);struct.pack_into('<I',bad,64+field*4,value)
+            with self.assertRaises(ValueError):decode(bytes(bad),self.directory)
+        bad=bytearray(raw);struct.pack_into('<I',bad,11*4,3199)
+        with self.assertRaises(ValueError):decode(bytes(bad),self.directory)
+        bad=bytearray(raw);struct.pack_into('<I',bad,64+256+6*4,3199)
+        with self.assertRaises(ValueError):decode(bytes(bad),self.directory)
+
+    def test_version_three_padded_descriptor_storage(self):
+        p=wire(self.directory);p[0][2:]=[3,256,0x40209ca7,16384,8,1,4,0x80000000,116,4194304,800,600,0,0];p[1][28]=3360;p[2][6]=3200
+        raw=bytearray(encode(p));raw[:8]=b'MNMWMS03';self.assertEqual(decode(bytes(raw),self.directory)['retained_bytes'],3200)
+        for size in (3199,40*32768+1):
+            bad=bytearray(raw);struct.pack_into('<I',bad,64+28*4,size)
+            with self.assertRaises(ValueError):decode(bytes(bad),self.directory)
+        raw[:8]=b'MNMWMS02';struct.pack_into('<I',raw,2*4,2)
+        with self.assertRaises(ValueError):decode(bytes(raw),self.directory)
+
+    def test_owned_payload_cannot_be_a_symlink(self):
+        p=wire(self.directory);payload=self.directory/'wine-source-map-000001.565';target=self.directory/'outside.565';payload.rename(target);payload.symlink_to(target)
+        with self.assertRaises(ValueError):decode(encode(p),self.directory)
+
 
 if __name__=='__main__':unittest.main()
