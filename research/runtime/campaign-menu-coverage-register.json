@@ -1467,7 +1467,7 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Guarded experimental Character state and original actions",
-      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending.",
+      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending. Character acknowledgements must match the exact request and engine thread; waiting controls disable, and synthetic Realm/Region caller reopen tests cover all six adjustments, refunds, Cancel rollback and OK baseline retention.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -1494,7 +1494,8 @@
       "tests": [
         "tests/menu-character-bridge-test.cpp",
         "tests/character-adapter-reference.cpp",
-        "tools/test-character-adapter.py"
+        "tools/test-character-adapter.py",
+        "tests/character-wire-fixture.hpp"
       ],
       "validation_dependencies": [
         "tools/export-menu-support.py",
@@ -1518,7 +1519,8 @@
       "evidence": [
         "UI50.character-adapter-private",
         "UI52.character-adapter-launch-regression",
-        "UI51.campaign-progress-preparation"
+        "UI51.campaign-progress-preparation",
+        "UI54.character-fixture-transactions"
       ],
       "status": {
         "understanding": "partial",
@@ -2662,6 +2664,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI54.character-fixture-transactions",
+      "kind": "native_integration",
+      "record": "research/runtime/character-fixture-transactions-20261012.json",
+      "sha256": "7095adf0c23a7de32ec07e7377b5902cab761662e758822e739cc656e89ff223",
+      "scope": "Private original Character getter/price refresh/callbacks and16 guards plus3 Qt tests; Qt synthetic peers cover six-row transactions,Realm/Region callers,Cancel and OK reopen,duplicate/stale/wire/acknowledgement refusals. No actual Realm navigation,real progression,disk persistence or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/guard_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -2886,18 +2915,20 @@
     {
       "id": "character-adapter-private-20261012",
       "level": "headless",
-      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence.",
+      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence. Expanded Qt peer fixtures cover six rows, both parent identities, rollback/commit reopen and wrong/missing acknowledgement refusals; those lifecycle resources are synthetic.",
       "behaviors": [
         "NP.character-menu-dispatch"
       ],
       "evidence": [
         "UI50.character-adapter-private",
-        "UI52.character-adapter-launch-regression"
+        "UI52.character-adapter-launch-regression",
+        "UI54.character-fixture-transactions"
       ],
       "tests": [
         "tests/character-adapter-reference.cpp",
         "tests/menu-character-bridge-test.cpp",
-        "tools/test-character-adapter.py"
+        "tools/test-character-adapter.py",
+        "tests/character-wire-fixture.hpp"
       ]
     },
     {

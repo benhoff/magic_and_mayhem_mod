@@ -44101,7 +44101,7 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Guarded experimental Character state and original actions",
-      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending.",
+      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending. Character acknowledgements must match the exact request and engine thread; waiting controls disable, and synthetic Realm/Region caller reopen tests cover all six adjustments, refunds, Cancel rollback and OK baseline retention.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -44128,7 +44128,8 @@
       "tests": [
         "tests/menu-character-bridge-test.cpp",
         "tests/character-adapter-reference.cpp",
-        "tools/test-character-adapter.py"
+        "tools/test-character-adapter.py",
+        "tests/character-wire-fixture.hpp"
       ],
       "validation_dependencies": [
         "tools/export-menu-support.py",
@@ -44152,7 +44153,8 @@
       "evidence": [
         "UI50.character-adapter-private",
         "UI52.character-adapter-launch-regression",
-        "UI51.campaign-progress-preparation"
+        "UI51.campaign-progress-preparation",
+        "UI54.character-fixture-transactions"
       ],
       "status": {
         "understanding": "partial",
@@ -91793,6 +91795,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI54.character-fixture-transactions",
+      "kind": "native_integration",
+      "record": "research/runtime/character-fixture-transactions-20261012.json",
+      "sha256": "7095adf0c23a7de32ec07e7377b5902cab761662e758822e739cc656e89ff223",
+      "scope": "Private original Character getter/price refresh/callbacks and16 guards plus3 Qt tests; Qt synthetic peers cover six-row transactions,Realm/Region callers,Cancel and OK reopen,duplicate/stale/wire/acknowledgement refusals. No actual Realm navigation,real progression,disk persistence or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/guard_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102618,18 +102647,20 @@
     {
       "id": "character-adapter-private-20261012",
       "level": "headless",
-      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence.",
+      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence. Expanded Qt peer fixtures cover six rows, both parent identities, rollback/commit reopen and wrong/missing acknowledgement refusals; those lifecycle resources are synthetic.",
       "behaviors": [
         "NP.character-menu-dispatch"
       ],
       "evidence": [
         "UI50.character-adapter-private",
-        "UI52.character-adapter-launch-regression"
+        "UI52.character-adapter-launch-regression",
+        "UI54.character-fixture-transactions"
       ],
       "tests": [
         "tests/character-adapter-reference.cpp",
         "tests/menu-character-bridge-test.cpp",
-        "tools/test-character-adapter.py"
+        "tools/test-character-adapter.py",
+        "tests/character-wire-fixture.hpp"
       ]
     },
     {
@@ -102980,7 +103011,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "7cc98e41b2ee472a88b48678dbab5f7b7069500e361719e63736b1046513fe04",
+      "sha256": "e5ac93a10645f79bbed010692a850743cbd72790f038bda99b450df715549196",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character. UI49 compares bounded positive-domain Character pricing; native failed-input policy stays separate, live menus pending. UI50 adds experimental opt-in Character headless integration and original80-record wizard-selection finding; genuine live progression remains pending."
     },
     {
@@ -103065,8 +103096,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-gameplay-preparation-final-20261012.json",
-    "sha256": "a90de4d61d46a1b34d89c17978688e9842ab702ec3a40f5066fb500872358473"
+    "path": "research/runtime/coverage/source-index-character-fixtures-20261012.json",
+    "sha256": "17f47705c189b8ba0768dcb5a5103f259b96dd8a8654c4194365a3cd07e5bc45"
   },
   "claim_bindings_required": true
 }

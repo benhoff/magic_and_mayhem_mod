@@ -37,3 +37,20 @@ Evidence UI50 records the private original getter selecting slot 79 of 80 and
 committing an actual original adjustment to that wizard. The getter at
 `0x5908e0` scans stride `0x93a`, checking active word +0 and secondary word +8;
 its upper byte offset is `0x2e220`. No real 80-wizard campaign is claimed.
+
+## Fixture transaction journeys
+
+The Qt controller disables Character controls while a request waits for its
+acknowledgement. Adjust, OK and Cancel acknowledgements must name the exact
+requested sequence and original engine thread; a different identity retires
+native ownership. An unchanged acknowledgement keeps the request pending.
+
+`tests/character-wire-fixture.hpp` is an explicit synthetic engine peer consumed
+by the production bridge, session and controller. It supplies a flat price of
+11, an in-memory wizard and settled caller identities. The Qt test exercises
+all six buy/refund rows, duplicate clicks, both Realm4 and Region18 callers,
+Cancel/reopen rollback, OK/reopen accepted baselines and malformed/stale wire
+refusals. Those fixture transactions are headless lifecycle evidence only.
+The separate private PE oracle continues to execute actual original pricing,
+getter and callbacks; the fixture does not establish original campaign entry,
+disk save persistence, real Realm navigation or live replacement.

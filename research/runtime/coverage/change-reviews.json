@@ -537235,6 +537235,409 @@
         "evidence": [],
         "reason": "Other shared-launch/menu/render/input contracts were not re-executed; newly stale historical fingerprints remain pending. Original-display/full-hook equivalence, combat pursuit/mission completion, progressed Realm/Character ownership, window-close, pause/persistence, campaign Spellbox and broader Grimoire remain unvalidated. Native observation has no original-equivalence comparison or replacement claim."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fba72e5f71462cb5e919e73cc8024ddcec5093d9012940e70053ab31bc187e11",
+          "before_sha256": "ea70dea78e4d450fa3e7e905bb285aa942fd0752ceceeaa230f17dfa0b3117eb",
+          "id": "NP.character-menu-dispatch"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "8ef93a8ddb1b398af472c1e75dc469ad2dee9fa65d231ec0c30c51798e3c8eef",
+          "before_sha256": "cc18b5e9e394dde43d864ce9e87d4f38a44029b55745c1c46307f2fd4a7939ee",
+          "path": "apps/qt-shell/live_character_controller.cpp"
+        },
+        {
+          "after_sha256": "5b912c969a26415ccb485c95eb3ac2b0d314fdc03a710b9b9e632beb7a1cecfb",
+          "before_sha256": "f6476f7441640c7d8eec33ad8c17f7be0a13955f3cf25918d23a86e06c298ef4",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "e5ac93a10645f79bbed010692a850743cbd72790f038bda99b450df715549196",
+          "before_sha256": "7cc98e41b2ee472a88b48678dbab5f7b7069500e361719e63736b1046513fe04",
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "7095adf0c23a7de32ec07e7377b5902cab761662e758822e739cc656e89ff223",
+          "before_sha256": null,
+          "path": "research/runtime/character-fixture-transactions-20261012.json"
+        },
+        {
+          "after_sha256": "f0709a33a4b092cdd9aa338dc4a7c268dde08817bf11db50e7749ace27f02019",
+          "before_sha256": "20a9054cbcad896fe205700dbbee4a8a70fae4fc279f497726ef7bb239335e16",
+          "path": "research/runtime/character-live-adapter.md"
+        },
+        {
+          "after_sha256": "25bc06a781f8407217923babd115579fb8d3144b8ccc70384f630bc21130befe",
+          "before_sha256": "571d6f83aa3c533f53def881f32a729a12d95a4424cf61ebf3ddecc4e40d68d0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "db361fcbd09258d7a5ef83f5a34b36dbf3b1427adac1d44bd7cf5221ef56617d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/character-fixture-history-20261012.json"
+        },
+        {
+          "after_sha256": "cfe7e5170bd65c705295aeee574e0c9124c98e1581169c8e51462d19c971a43f",
+          "before_sha256": "f0dd387405da7990ab1241676edf90609d951c9bae83a4f6ce6968c2a9cf1eeb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "17f47705c189b8ba0768dcb5a5103f259b96dd8a8654c4194365a3cd07e5bc45",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-character-fixtures-20261012.json"
+        },
+        {
+          "after_sha256": "094135cb4e3d754d129575209db8504031add5341c9989ed2b44a2f52c0835e0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-character-fixtures-20261012.md"
+        },
+        {
+          "after_sha256": "bcd10b636822757ed8677775eca470aaebb398d656ad6ee769fd7249e4fda831",
+          "before_sha256": null,
+          "path": "tests/character-wire-fixture.hpp"
+        },
+        {
+          "after_sha256": "5a09040f2d55f0e61ec53398b9820c3eb7be567fd412ef5fdd4741cf770486b3",
+          "before_sha256": "1a2a3c99e324959335d20bc7d239efe0a09bcc0c1936738ef21f560616e533f1",
+          "path": "tests/menu-character-bridge-test.cpp"
+        }
+      ],
+      "id": "character-fixture-transactions-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed exact Character controller/session/test edits: disable pending controls, require exact request/thread ACK, preserve original parent handoff, exercise six rows and Cancel/OK reopen for both callers with explicit synthetic peers. Reconciled focused/central scope, retained historical evidence, reviewed 18 prior committed versions with exact matching receipts, refreshed census and registered fresh UI54.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Prospectively declared current-source private PE getter/pricing/callbacks and16 admission guards plus3 Qt tests passed; both immutable-original manifest checks passed. Synthetic transactions do not establish actual Realm navigation,progression,disk persistence or live replacement.",
+        "evidence": [
+          "UI54.character-fixture-transactions"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1699527f6eb1a91b461830cb3067b665bc5de262c8ea1ea389aaca72cd7bf747",
+          "before_sha256": "95ef95879fc23d1e60a405de895db741ee64f237d3cf40898f8e91de8e44f8a3",
+          "id": "BR.main"
+        },
+        {
+          "after_sha256": "ca8d0a513ef845ce1db61b8ba8a654b47ce2a8451d5b0acd16c49f5481d85f65",
+          "before_sha256": "35f93c610467b2886bc215478c43a9e679971751373dd8b4fdf93dcfd6fcbed1",
+          "id": "CP.campaign-defeat-report"
+        },
+        {
+          "after_sha256": "78641e3902e16b07121ab708c011f93193ddd4bf6968a5719a0d89d576f35f75",
+          "before_sha256": "3e02c75b316cbd9b5e2a1830a4b61886a25233a33b16001b3dd5121056bfc534",
+          "id": "CP.campaign-mini-cancel"
+        },
+        {
+          "after_sha256": "ed728f8ce3e8a9dc6bee497603e89ba1799390273377f536db74c67b5f394113",
+          "before_sha256": "d358d60a2623e941219f7209d5f646e554e72535bc77498f3a42aa2285e55fc6",
+          "id": "CP.campaign-mini-lifecycle"
+        },
+        {
+          "after_sha256": "94ab42a7605286ff53f8e7e52a4b1ff7490d247bc1732853fd553712e46ec81b",
+          "before_sha256": "4a1d930ec0f88e117126621342906706ba44dc3b88a14b09f44b563a6dba460d",
+          "id": "CP.campaign-mini-preferences"
+        },
+        {
+          "after_sha256": "127553d9a127298417b4df8f73fc5fcd33e796675c8dd1461e92c10d05982254",
+          "before_sha256": "e2446f003392ff5503ee1e8214b42dfd22cb1635999caff0ca6ef88fafe5be67",
+          "id": "CP.campaign-mini-quit"
+        },
+        {
+          "after_sha256": "3c7f6bfb5ba28ff38f0901d3eec08e31d6167ddcc77a7cff09f3a7d1af0eb9b1",
+          "before_sha256": "fafebc2d9e4f82f0fdf822e28865a6d1cebc801168f049513dd4096974d3b1ca",
+          "id": "CP.campaign-mini-quit-lifecycle"
+        },
+        {
+          "after_sha256": "94413383ac86f4fb199168695728a52de048a537615b30ace203fbae5c9e8928",
+          "before_sha256": "974251a98917c6fe9acb1077d09f11b44a53f01b2bc5ce26c4f05a1790538593",
+          "id": "CP.campaign-preferences-lifecycle"
+        },
+        {
+          "after_sha256": "4df9add36c11ce1ac60312b6d9289ea79f3953e60650e4c7383b9b6e6499ecc7",
+          "before_sha256": "b3b9188f1909f2a8ec2995412ddcb269f19c20241229e9dc7bc12cf10ede0035",
+          "id": "CP.campaign-world-handoff-observation"
+        },
+        {
+          "after_sha256": "8027377c065b13385239ac18b152d0450c34e0a54a31c3c7752c725994290518",
+          "before_sha256": "41983337729e8ee35dd707e64b8ab44fad34851ee8435949ed561ecf21988ed1",
+          "id": "CP.character-wizard-selection"
+        },
+        {
+          "after_sha256": "487ccbf13b456cf5e1f67c089f6980903427c56b6aeb97b6fb5ad81aa8c4f08d",
+          "before_sha256": "61c7a72706d90bc5586ea8e5583bd68d9b1af3f78a314c1f722759facfca6990",
+          "id": "CP.region-entry-bridge"
+        },
+        {
+          "after_sha256": "9eca730d4253a24bbc81636de795f902cec649474c4c8c3b6a5d063352606113",
+          "before_sha256": "5b3fbf42025700076ca7348f040f1ca63627cd86ad2a9a36184866ae9dc3e46f",
+          "id": "CP.region-entry-enter"
+        },
+        {
+          "after_sha256": "05fae69a7d523128d6d737b3e24b5e8733f5c42b02eae8412a7ec8a515691293",
+          "before_sha256": "460c9b92766cbd34684f1309fea3cf629bc677925e959feae9f690a10c5387e7",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "19b44824076d8f16b9548d92067ca949cc3120ac4140d68d6d69f9e8148f527b",
+          "before_sha256": "cf927d36e2d5392001bf4a9a8db0d231bf8dd74058e7dcebb885d60f76c77a81",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "85f493bce1451685777197c5d4d60b89b7cb29deb3c83e923244158c63447a37",
+          "before_sha256": "26e264ab2f1704f931ee7e642cfeb16539e51e278f5df251cb49d515e3033d21",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "f5df4fb6bb7b92f06285e2341535f09179de6d6fcd3dceccdde2ea762af02209",
+          "before_sha256": "366187afb9caaed340a4aedd0233b0c3004daf72985428c62411896378512a1c",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "0d719723f4469a8a58cdb03f0bdc66221045bf1409cdd227a4e8cb8d34c4b57d",
+          "before_sha256": "afaf60e4a8fd42777b95cfbec6371d9378504b7c5e5ac4c5d1742265253411d5",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "1605d4aec45ac8b5b64d0f12c015b5b6b96cf44602a88c1d8360d20b454311ee",
+          "before_sha256": "b8e34bacc6c842dad6bcb6d0ee7bb43ad1aa23a5566d4e70b02d99bd9634f9ca",
+          "id": "HOST.native-campaign-save-load"
+        },
+        {
+          "after_sha256": "32c1fffcf8f866969679f58d70dee9ddddca87877283da0ee238baca72205a9e",
+          "before_sha256": "56ee4fe7a9cff7016968e15fba8c7528f36b18a6fde56aa978719bc60c80f837",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "e1d19a9cc1cb866ec2386851e962141d3f05bcc476c41d476f5595bd49e6c6dc",
+          "before_sha256": "97b6030b89e15919796438591e6a0f8010e010e0250415b251340c8a81b9d0ff",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "5b75d8f89ebb32d26a178b97ed7dd537bfa3185c0c316df2de04a6c29368b673",
+          "before_sha256": "b805753b8a10a91ca100a3353be7f183ff052769708d7e2256f8211f61ec41ea",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "b90ad5953f5a07f02c1bf62003c16e22505c348837ddb2a52ced85bd5bfacf3c",
+          "before_sha256": "2d947f61fa62986f3ce3f07352a722b71687e2e37ffa2e118c37365bca96c911",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "a826c28f56cc6191dff249380a57fe1559e794113d8473d230c0b991f2c0b6e2",
+          "before_sha256": "89eef6adbe47441c0036e0abca66656fb7d3318f023c358bf661e644cc0387ba",
+          "id": "HOST.native-grimoire-introduction"
+        },
+        {
+          "after_sha256": "02415a9d79b747360b7c363a8cd702bb83385024ff7a42f62b6c6831f3a919b8",
+          "before_sha256": "11c4792e4eaa8e5600c9de706e6899e1b1a1444432b4fcd0321e4de00781353d",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "e91c5eb722e35a69ec475b856900df4c46de4fc2e9ffd3d09a7e12cbf1d87dd6",
+          "before_sha256": "042c4d71da3af547b2513a1549791c8651b9a11adf0597def54000f9f8bace43",
+          "id": "HOST.native-host-lobby-view"
+        },
+        {
+          "after_sha256": "a591be17642a63ae099879fbc6bf53da607ca11a43c94d0f378bc0514d608c92",
+          "before_sha256": "1309b584f8c83bbb0169f27ae7758765ec3a6f5b4ccebe58d18dddddd650364f",
+          "id": "HOST.native-menu-audio"
+        },
+        {
+          "after_sha256": "12fc2b273b3b3396c43553b6c8f4e70615597c53463f0bf815bb1b46b8d853d7",
+          "before_sha256": "ca8a74157b78eb5378714e12db0b53ad36da7f56fc0d8b84fd3f66674f8a4f97",
+          "id": "HOST.native-multiplayer-sessions"
+        },
+        {
+          "after_sha256": "f3520931e969bcaaadab10d12e1d383ecc6d6fa3a774a8d73be7dccb55ee9664",
+          "before_sha256": "d0f0e9488f255388ee38e33dea00be4ccabfa6ea1857e9cd292bb2502108524f",
+          "id": "HOST.native-multiplayer-setup"
+        },
+        {
+          "after_sha256": "9e79b745776b1793a4f4c3a127ecf4e606b3d0126be47d66d9d85c22824a45e8",
+          "before_sha256": "471412c4ce409425f2c2d65978f66dc3cbf9f8c77e1ddb8a59c34f750199b694",
+          "id": "HOST.native-storage-confirmations"
+        },
+        {
+          "after_sha256": "735b1ec3f8f3bbc7cc1cffbc67ccf3ac4c09b437878bb44e319c12f3825ddd9f",
+          "before_sha256": "b61e95188f0a1b955a2882269bd63cecaccc5ae5166d00d1957d2d8d55ffe0ab",
+          "id": "NP.campaign-defeat-policy"
+        },
+        {
+          "after_sha256": "0a2b00c37ac479693f75bf913a4531a18c04ac91e3c73b07710937dcf8fadfc6",
+          "before_sha256": "b3361f5878ba0bcf3369c04d202da62d8f99e5adca7626d158d6fd4982d56355",
+          "id": "NP.campaign-mini-cancel-policy"
+        },
+        {
+          "after_sha256": "8d6ead79328173228241c85e223f7c6394687a4adcf517cd518192177e522dc6",
+          "before_sha256": "403e99038d91e6786fa81a4169d0bf43c32c064d1c7a263d6a71a95100bb69b8",
+          "id": "NP.campaign-mini-quit-policy"
+        },
+        {
+          "after_sha256": "c7d56c9f005e57fd55ee7d45d65b88341d868fcc7a2977e03569a9723ce18ec9",
+          "before_sha256": "e94cb7aaed272b6352bc280607701e9487a13e690ad6a41e8d6bdf2653f57286",
+          "id": "NP.campaign-preferences-policy"
+        },
+        {
+          "after_sha256": "f3ec7a1b322ae64783a7f43f616399289d00a8ac251ffa5205243aa358eb6e7b",
+          "before_sha256": "b613490b0d7b5b23f094d779d6fcb67fb54cd86cb106998074cd1f645a61fdfd",
+          "id": "NP.preferences-draft"
+        },
+        {
+          "after_sha256": "50a2b805e842bf587aef153f8e80971b5423a8111516bf4bf4a0918eabf283ab",
+          "before_sha256": "2a6921924f3f6eff3c28e9184a3928b0ea62ff507757f9c592c479b2b7d0e4a8",
+          "id": "NP.preferences-persistence"
+        },
+        {
+          "after_sha256": "451b446ce104144af95b232cab5128682590b003951d065ae3eef7aac8a81ca3",
+          "before_sha256": "cbad270e0396586be48251497f00b7e4d0bbaa4d72c21b31f70b2a387d49044f",
+          "id": "NP.region-entry-fresh-policy"
+        },
+        {
+          "after_sha256": "7e3564ec6bc1c079f263dc17c10695059a339a07e5278f669ab3aa2fe039cb35",
+          "before_sha256": "70aeee5994173aacc3466a59cbc5a06368913e7676a65e30ae40129e6e413411",
+          "id": "NP.storage-menu-ownership"
+        },
+        {
+          "after_sha256": "a33dfa0172ca639352a24df88d08f7b7bb2e6681ff4e4fe324d4205307a1430d",
+          "before_sha256": "fd3aa7c1afbe23fdd011f04a01b6cdbe4c4ef80a2e44e96ab261a7ab5fb16407",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "ae7c8cfbd3edc176f16a7dbf03b94b91b8f604f039fba095fef963323d995ade",
+          "before_sha256": "a18a9229afdcca9432c18a06fc23242a5b84d336ebe30962538805bdfc251cc1",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "8d2b02b2ce27c90dd724cfcb150a772aac6c68fbdb5c19bd709c370830dc5e4e",
+          "before_sha256": "46dabed81cf9b0feb4705b68c515c20d78e4bf1b7956ff72c1ad808ff9032b3a",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "e5809ddd9c618952c5c745ef883075f894219a1567f10b673a04069f9c0b19bc",
+          "before_sha256": "d2328b7d102821e577e0fd80a55777d2547acd3818608ab253a48f8826dca154",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "4c2b9f12d096ddcbf60c2c3da92093c81d34a30792f8ce27fb397d8585761cb9",
+          "before_sha256": "0fd5ab48750d7ac9197309d9e37d098dbbe5a5092991ae1a5381c7383490df5e",
+          "id": "NR.resident-normal-shutdown"
+        },
+        {
+          "after_sha256": "150675580bf621a560249b2afd307d35c0ff301ccc3695ab0c8029677fa8465c",
+          "before_sha256": "12ab42b1b2f7c22880fc6a5a87bcf34596916df78c6ed6702483a89df6011a9e",
+          "id": "NR.resident-stage-profiling"
+        },
+        {
+          "after_sha256": "c26d8c2538bdca12b5d903de6e58c30660b51610238959c1de74cedd99f1f8fa",
+          "before_sha256": "31c69ae45b1c06f19e2edc143e2ac402849563b84b9e703c9c5fb8cc33658f67",
+          "id": "PR.apply"
+        },
+        {
+          "after_sha256": "b07447befea2e4b4d6c6812d15412dcde42c0564ce5e89f679ec63ce4f826e9a",
+          "before_sha256": "de6d2b611fa46041d1d66d93befa2c185a81e805f8a8a65e0d2f67cce7de4695",
+          "id": "PR.audio-preview-cancel"
+        },
+        {
+          "after_sha256": "4c2e15f5af67c09ee08a5133dfc31d93afbbafca7e460cdbd0267383664ec77f",
+          "before_sha256": "65ee873daa599f2aaa9c1d4c294ddb0ca10bda7dfe2e204832477bd2e655b3aa",
+          "id": "PR.control-admission"
+        },
+        {
+          "after_sha256": "72e8d55291b054842bbf821318d3c6beb3ada8321130cf9e686ac3fc6f4e6a0c",
+          "before_sha256": "c50f8b7a084879e796562c0fe70c73162e17d9afaeaf846b3a125e0932e882d2",
+          "id": "PR.main-entry"
+        },
+        {
+          "after_sha256": "4f9a0b47b8cc06e6ce0f761900862dc00a68eb57ef895bbe4d32b73e56ae9d73",
+          "before_sha256": "1e551386c91a1484972b0d54927b7f52f3cfc4af1f689367e6d9e9df3ff2dfb1",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "8ef93a8ddb1b398af472c1e75dc469ad2dee9fa65d231ec0c30c51798e3c8eef",
+          "before_sha256": "cc18b5e9e394dde43d864ce9e87d4f38a44029b55745c1c46307f2fd4a7939ee",
+          "path": "apps/qt-shell/live_character_controller.cpp"
+        },
+        {
+          "after_sha256": "5b912c969a26415ccb485c95eb3ac2b0d314fdc03a710b9b9e632beb7a1cecfb",
+          "before_sha256": "f6476f7441640c7d8eec33ad8c17f7be0a13955f3cf25918d23a86e06c298ef4",
+          "path": "apps/qt-shell/live_menu_session.cpp"
+        },
+        {
+          "after_sha256": "e5ac93a10645f79bbed010692a850743cbd72790f038bda99b450df715549196",
+          "before_sha256": "7cc98e41b2ee472a88b48678dbab5f7b7069500e361719e63736b1046513fe04",
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "7095adf0c23a7de32ec07e7377b5902cab761662e758822e739cc656e89ff223",
+          "before_sha256": null,
+          "path": "research/runtime/character-fixture-transactions-20261012.json"
+        },
+        {
+          "after_sha256": "f0709a33a4b092cdd9aa338dc4a7c268dde08817bf11db50e7749ace27f02019",
+          "before_sha256": "20a9054cbcad896fe205700dbbee4a8a70fae4fc279f497726ef7bb239335e16",
+          "path": "research/runtime/character-live-adapter.md"
+        },
+        {
+          "after_sha256": "25bc06a781f8407217923babd115579fb8d3144b8ccc70384f630bc21130befe",
+          "before_sha256": "571d6f83aa3c533f53def881f32a729a12d95a4424cf61ebf3ddecc4e40d68d0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "db361fcbd09258d7a5ef83f5a34b36dbf3b1427adac1d44bd7cf5221ef56617d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/character-fixture-history-20261012.json"
+        },
+        {
+          "after_sha256": "cfe7e5170bd65c705295aeee574e0c9124c98e1581169c8e51462d19c971a43f",
+          "before_sha256": "f0dd387405da7990ab1241676edf90609d951c9bae83a4f6ce6968c2a9cf1eeb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "17f47705c189b8ba0768dcb5a5103f259b96dd8a8654c4194365a3cd07e5bc45",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-character-fixtures-20261012.json"
+        },
+        {
+          "after_sha256": "094135cb4e3d754d129575209db8504031add5341c9989ed2b44a2f52c0835e0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-character-fixtures-20261012.md"
+        },
+        {
+          "after_sha256": "bcd10b636822757ed8677775eca470aaebb398d656ad6ee769fd7249e4fda831",
+          "before_sha256": null,
+          "path": "tests/character-wire-fixture.hpp"
+        },
+        {
+          "after_sha256": "5a09040f2d55f0e61ec53398b9820c3eb7be567fd412ef5fdd4741cf770486b3",
+          "before_sha256": "1a2a3c99e324959335d20bc7d239efe0a09bcc0c1936738ef21f560616e533f1",
+          "path": "tests/menu-character-bridge-test.cpp"
+        }
+      ],
+      "id": "character-fixture-shared-source-boundaries-20261012",
+      "pending_gaps": [
+        "stale_evidence:0deb2859427b694e264172bb5aa61a74a6fd38f4f15bf9a9a9a4e59d0bc28cba",
+        "stale_evidence:42ce3c1ebb774905f2859bedc12a5da562e357f385f740e2d8e436080199cf34",
+        "stale_evidence:5b7efb6601efb88511b8779526c09c6994189bdf8d6613494cf0ba85c072f6ae",
+        "stale_evidence:865a84ec69f1ad1b4edaacf1bdc9371fe63bec54b89140ea6a932f1dbd8060e6",
+        "stale_evidence:936d5f5f9452a081c6c9050682e8c22403461099570dcae7368827072dab2a71",
+        "stale_evidence:c3e9e65f1b212710d80b7fa59e7b601b5fd1bb0e22051caff67351fe2296e4d2",
+        "stale_evidence:dcf7c59b5188e4db71e116ec65ab697a3ad79c688ca3277a2474648572174978"
+      ],
+      "reason": "Reviewed the other affected shared-session/build/research source links and all new staleness findings; exact receipts preserve previous statuses and fingerprints. The behavioral edit is confined to Character acknowledgements and presentation readiness.",
+      "validation": {
+        "status": "pending",
+        "reason": "Other shared-session engine/menu/rendering contracts were not re-executed. Their historical hashes/statuses remain; newly stale evidence and broader live ownership,persistence,pause/window-close/campaign auxiliary gaps are explicit pending limitations.",
+        "evidence": []
+      }
     }
   ],
   "schema": 1
