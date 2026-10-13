@@ -2199,3 +2199,32 @@ commands before changing replay ordering. Preserve ambiguous/unbound requests
 and source/physical lifetime boundaries. The earlier120native40x40failure stays
 failed; no source-only replay correction or validation promotion is asserted.
 Step2and all47/21remain open; steps3–7stayordered/pending.
+
+
+## Step 2 request/API/worker association checkpoint (2026-10-13 UTC)
+
+Request tracing committed as19d1807dwith staged and normal hook checks. Reviewed
+b5b72730..19d1807d:19exact file receipts and0gaps. Static analysis of the exact
+retained original32capture uniquely joins all913requests to913successful
+same-thread BltFast APIcalls and1130completed worker commands. All three API
+phases must remain inside each explicit producer entry/return interval and
+preserve logical surface IDs, geometry, destination extent and opaque/keyed
+flag policy. Multiple matches, missing phases/submissions/commands, shared
+worker IDs and changed command owners refuse. Six meaningful guards pass.
+
+All1075other BltFast APIentries remain listed:1044have stopped known destination
+and source,23have stopped known destination/unknown source,8have stopped unknown
+both. They cannot extend the live source journal. No diagnostic observer or
+original game was rerun for this static association.
+
+Of45adjacent entry pairs with reversed returns,42execute in entry order at the
+worker and3execute in return order. This concrete counterexample forbids fixing
+replay by globally sorting either producer entries or returns. Worker command
+order, CPU drawing and checkpoint visibility need a consistent source replay
+contract; copying the physical result or dropping mismatches cannot supply it.
+
+Reassessment: the API/worker identity boundary is now explicit for this cohort.
+Next assess source-only replay checkpoints against the independently retained
+original planes, then repair only the demonstrated ordering/storage boundary.
+The earlier120native failure remains failed. Step2and all47/21remain open;
+steps3–7stayordered/pending.

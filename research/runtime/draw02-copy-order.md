@@ -37,3 +37,21 @@ COPYsequence against the unchanged producer stream:913matches,0unmatched,
 source-cursor frontend guards pass. These observations establish entry and
 return identities only; API request/worker binding, driver order, CPU/GPU view
 ownership and the safe source-only replay repair remain pending.
+
+
+## Strict API and worker associations
+
+`draw02-copy-api-worker-bindings-01.json` associates all913requests with913
+successful APIcalls and1130completed worker commands. Require same owner,
+geometry, opaque/keyed flags, logical source/destination/extent and all three
+API point prefixes within the explicit request interval. Unique completed
+submission/packet/worker identities remain separate from these source metadata
+checks. All1075additional stopped-source APIentries are retained outside the
+association. Six guards cover missing phases, descriptor/owner/key/interval
+changes, ambiguous/duplicate associations and absent/changed/shared commands.
+
+Forty-two of45adjacent return reversals execute in entry order at the worker;
+three execute in return order (requests692/693,837/838and841/842). Thus neither
+producer entry nor producer return order supplies a general replay ordering
+contract. This is static analysis of the frozen original capture, with no new
+game execution, renderer correction or semantic/physical ownership promotion.

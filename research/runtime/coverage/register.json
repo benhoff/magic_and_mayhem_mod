@@ -45934,6 +45934,44 @@
       "remaining_gaps": [
         "Owned five-case PE32 and original32/913paired requests validate the bounded request journal. Explicit API/worker bindings, original callback/FX preservation for every hook with the new sidecar, driver ordering, source/view ownership, replay repair and complete source/native closure remain pending. No rendering/admission/model changes."
       ]
+    },
+    {
+      "id": "NR.drawing-copy-api-worker-association",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded copy request/API/worker identity association",
+      "scope": "Static strict local request identity association to same-owner successful BltFast calls, identical geometry/key policy, unique logical source/destination and live producer intervals at all three API phases. Require unique successful same-thread submissions and completed nonshared packet/worker IDs. Preserve all unmatched calls and requests, and distinguish producer entry/return order from observed worker execution order. No general replay ordering, source/view/alias/lifetime, native parity or new original execution inferred.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-order.md"
+      ],
+      "implementation": [
+        "tools/drawing_copy_bindings.py",
+        "tools/analyze-drawing-copy-bindings.py"
+      ],
+      "tests": [
+        "tests/test-drawing-copy-bindings.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_copy_order.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_wine_blit_packet.py"
+      ],
+      "evidence": [
+        "DRAW02.copy-api-worker-bindings-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Static913request/1130command associations and six native guards only.1075additional API calls lie outside admitted live-source intervals.42adjacent reversed returns follow entry order at the worker;3follow return order, so neither entry nor return order is a general replay policy. General producer/noncopy/driver operation ordering, source views/aliases, fresh execution-bound replay repair and whole47journey/21operation closure pending."
+      ]
     }
   ],
   "evidence": [
@@ -99038,6 +99076,24 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.copy-api-worker-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Static913unique request/API bindings and1130completed commands;0unbound source requests,1075other APIcalls retained.45adjacent return reversals:42driver orders match entry,3match return. No general replay-order or ownership promotion.",
+      "record": "research/runtime/draw02-copy-api-worker-bindings-01.json",
+      "sha256": "96002f7718df7f28846f67fdae02d6094059fd9e12426c87cdf7888e9c27cdd8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_requests_bound",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111199,8 +111255,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-copy-requests-20261013.json",
-    "sha256": "279ee1bf1ad53bc83033344f45d5a0b25bcc339ac5f966211e3f1a8668f14f8a"
+    "path": "research/runtime/coverage/source-index-draw02-copy-bindings-20261013.json",
+    "sha256": "182931af5037ef3362d5386e1449a8b361585a792dce8282c69648b4d3f14752"
   },
   "claim_bindings_required": true
 }
