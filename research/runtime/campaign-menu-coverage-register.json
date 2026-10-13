@@ -5612,6 +5612,143 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.grimoire-text-pages",
+      "kind": "recovered",
+      "subsystem": "campaign",
+      "title": "Original Grimoire text pages and dynamic field formatting",
+      "scope": "Incremental build-specific discovery of original text-helper reset4c7960,parser/formatter4c9bd0 and page dispatch4c9fd0/4ca0c0. Investigate ~D dynamic values,~NP boundaries,leaf cursor and original next/previous semantics separately from installed catalog and native preview policies. Static discovery only at this stage;full rendering,live admission,research purchases and progression remain unvalidated.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5011808,
+          "scope": "Candidate original Grimoire text-helper branch;bounded static discovery pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5020624,
+          "scope": "Candidate original Grimoire text-helper branch;bounded static discovery pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5021648,
+          "scope": "Candidate original Grimoire text-helper branch;bounded static discovery pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5021888,
+          "scope": "Candidate original Grimoire text-helper branch;bounded static discovery pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-text-pages.md"
+      ],
+      "implementation": [
+        "tools/export-grimoire-menu.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "UI72.grimoire-text-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.grimoire-dynamic-fields",
+      "kind": "recovered",
+      "subsystem": "campaign",
+      "title": "Original Grimoire dynamic bar descriptor construction",
+      "scope": "Bounded well-formed original4c8950 ~D labels,position/size/color-token parsing,known dynamic property dispatch and bar min/max/value fields,low-resolution geometry scaling,zero ranged/flying omission and nonzero ranged getter retry,constructor defaults and final input cursor. Recovered pure C++ descriptor model uses read-only typed source values/backend callbacks. Private original execution retains full parser/constructor bodies;allocator,CRT character/integer conversion and creature-receiver/opponent-index combat-value backends are explicit fixture stubs. Tokenizer reset/markup,full font wrapping/pages/bar rendering/live capture,research mutations and campaign progress excluded.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5015888,
+          "scope": "Private original dynamic descriptor/parser/constructor only;full drawing and gameplay semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5101936,
+          "scope": "Private original dynamic descriptor/parser/constructor only;full drawing and gameplay semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5022432,
+          "scope": "Private original dynamic descriptor/parser/constructor only;full drawing and gameplay semantics excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/grimoire-dynamic-fields.md",
+        "research/formats/grimoire-dynamic-fields.md"
+      ],
+      "implementation": [
+        "reconstruction/grimoire/dynamic_field.hpp"
+      ],
+      "tests": [
+        "tests/grimoire-dynamic-reference.cpp",
+        "tests/grimoire-dynamic-abi.S",
+        "tools/test-grimoire-dynamic.py"
+      ],
+      "evidence": [
+        "UI73.grimoire-dynamic-static",
+        "UI75.grimoire-property-static",
+        "UI74.grimoire-dynamic-comparison"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ]
+    },
+    {
+      "id": "NP.grimoire-dynamic-guards",
+      "kind": "native_policy",
+      "subsystem": "campaign",
+      "title": "Bounded native dynamic descriptor input guards",
+      "scope": "Native guard policy for the recovered read-only descriptor model:4096-byte input budget,no embedded NUL,128-byte labels,bounded unsigned decimal tokens,caller-supplied creature/spell dataset extents,required combat backend and known property/syntax/terminator checks. Unknown properties are refused instead of reproducing the legacy default200/400 bar. Ten native-only refusal cases;no malformed original calls,live menu admission,gameplay changes or renderer proof.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/grimoire-dynamic-fields.md",
+        "research/formats/grimoire-dynamic-fields.md"
+      ],
+      "implementation": [
+        "reconstruction/grimoire/dynamic_field.hpp"
+      ],
+      "tests": [
+        "tests/grimoire-dynamic-reference.cpp",
+        "tests/grimoire-dynamic-abi.S",
+        "tools/test-grimoire-dynamic.py"
+      ],
+      "evidence": [
+        "UI76.grimoire-dynamic-guards"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py",
+        "tools/coverage_claims.py"
+      ]
     }
   ],
   "evidence": [
@@ -7141,6 +7278,108 @@
         {
           "pointer": "/live_validated",
           "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI72.grimoire-text-static",
+      "kind": "static",
+      "record": "research/runtime/grimoire-text-static-20261013.json",
+      "sha256": "15f16a987e3dd6d3dcd53bdb86a730a4eae2c1a5b9299d6642692225dbd3ef1e",
+      "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI73.grimoire-dynamic-static",
+      "kind": "static",
+      "record": "research/runtime/grimoire-dynamic-static-20261013.json",
+      "sha256": "8f4c0f0d05170cd00f795d01f54f321637cac2cb14e4d137fef08e5e97e70cca",
+      "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI75.grimoire-property-static",
+      "kind": "static",
+      "record": "research/runtime/grimoire-property-static-20261013.json",
+      "sha256": "75ab1e79218a6a09ad2ae2ac78d56681ffc798c6b8e48a6c3e9b04bd9d3e1459",
+      "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI74.grimoire-dynamic-comparison",
+      "kind": "isolated_original",
+      "record": "research/runtime/grimoire-dynamic-comparison-20261013.json",
+      "sha256": "e653d4b68c8d0ab8912fdae44fcb1547f65454b9b378cd4bb9651a106199d457",
+      "scope": "Bounded well-formed original4c8950 ~D labels,position/size/color-token parsing,known dynamic property dispatch and bar min/max/value fields,low-resolution geometry scaling,zero ranged/flying omission and nonzero ranged getter retry,constructor defaults and final input cursor. Recovered pure C++ descriptor model uses read-only typed source values/backend callbacks. Private original execution retains full parser/constructor bodies;allocator,CRT character/integer conversion and creature-receiver/opponent-index combat-value backends are explicit fixture stubs. Tokenizer reset/markup,full font wrapping/pages/bar rendering/live capture,research mutations and campaign progress excluded.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI76.grimoire-dynamic-guards",
+      "kind": "native_integration",
+      "record": "research/runtime/grimoire-dynamic-comparison-20261013.json",
+      "sha256": "e653d4b68c8d0ab8912fdae44fcb1547f65454b9b378cd4bb9651a106199d457",
+      "scope": "Native guard policy for the recovered read-only descriptor model:4096-byte input budget,no embedded NUL,128-byte labels,bounded unsigned decimal tokens,caller-supplied creature/spell dataset extents,required combat backend and known property/syntax/terminator checks. Unknown properties are refused instead of reproducing the legacy default200/400 bar. Ten native-only refusal cases;no malformed original calls,live menu admission,gameplay changes or renderer proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
         }
       ]
     }

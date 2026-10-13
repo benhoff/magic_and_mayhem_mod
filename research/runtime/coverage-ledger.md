@@ -7301,3 +7301,25 @@ hashes. See [V22 report validation](campaign-report-quit-v22-live.md).
 correction,with prospective full compiler inputs,one engine thread,normal
 Quit41,retired V22 channel and2927 before/after immutable checks. UI68's historical
 hashes remain unchanged;UI71 supports current catalog integration.
+
+### Original Grimoire dynamic descriptors and text flow (2026-10-13)
+
+UI72/UI73/UI75 retain bounded static discovery of text-helper reset/tokenizer,
+page/region consumption and dynamic bar construction/literal identities. Dynamic
+`~D` is a bar descriptor;`~NP` stops the current original text-region flow and
+Next advances two leaves,so native preview pages do not establish original
+spread layout. Full font wrapping,drawing and live integration remain pending.
+
+`UI74.grimoire-dynamic-comparison` validates the recovered pure C++ descriptor
+model against468 unchanged original parser/constructor cases,18 omissions,
+constructor defaults,legacy unknown-property behavior and original ABI/SEH
+restoration. Allocator/CRT/combat backends are explicit fixture stubs;template
+values/maxima are authored. `UI76.grimoire-dynamic-guards` separately validates
+ten intentional native refusals,including unknown properties rather than the
+legacy default200/400 bar. No dynamic native menu path or V23 wire is enabled.
+
+Native capture/projection,actual loaded campaign table comparison,full pagination,
+research actions and real post-win Realm/Character/Spellbox/persistence remain
+pending. The read-only model performs no gameplay changes;drawing-lock/recovery
+remains a separate unresolved failure. See [dynamic descriptors](grimoire-dynamic-fields.md)
+and [text/page flow](grimoire-text-pages.md) for exact scope and retained runs.
