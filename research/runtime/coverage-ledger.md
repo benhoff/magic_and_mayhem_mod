@@ -9404,3 +9404,21 @@ new source/contract-bound results do not refresh its hashes or promote stages.
 All47journey/21operation closures and steps3–7 remain open. Additional experiments
 remain storage-preflight blocked pending a budget change or explicitly authorized
 cleanup; coverage accounting and the incremental commit can finish independently.
+
+
+## Approved worktree storage extension (2026-10-13)
+
+The user approved the prepared worktree-only1360→1376GiBpatch. The worktree
+policy now retains100GiBfree and automatic archivingoff, explicitly passed to
+the main guard using `--policy <this-checkout>/tools/working-retention.json`.
+Concurrent main policy removal of its fixed cap is preserved; no main files,
+cleanup or archives were changed. Applied hashes/provenance are retained in
+[budget04](draw02-approved-storage-budget-20261013-04.json). Older main-and-worktree
+proposal03was never applied because its main-file preconditions became stale.
+
+The committed correction e1d668e2 has27exact parent/current receipts and0history
+gaps. Its two validated cohorts retain all2403CPU/67Aux and2406independent
+checkpoint identities. Source/frame ownership and all47/21closures remain open;
+step2 stays active. Resume the older failed cohort's compact replay under this
+explicit1376GiBpolicy, preserving its historical two1600pixel failures until
+fresh execution establishes this policy's result.
