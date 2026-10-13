@@ -9,6 +9,7 @@
 #include <QJsonObject>
 LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
     progressedMenusEnabled=qEnvironmentVariable("MNM_EXPERIMENTAL_CAMPAIGN_MENUS")=="1";
+    campaignSpellboxEnabled=progressedMenusEnabled;
     realmMenusEnabled=progressedMenusEnabled||qEnvironmentVariable("MNM_EXPERIMENTAL_CAMPAIGN_REALM")=="1";
     characterMenusEnabled=realmMenusEnabled||qEnvironmentVariable("MNM_EXPERIMENTAL_CAMPAIGN_CHARACTER")=="1";
     preferencesStorePath=QDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)).filePath("engine-preferences.json");
@@ -37,7 +38,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
             if(nativeCommandsEnabled&&(!prepareNativePresentation||!prepareNativePresentation(root_))){fallback("Cannot create native presentation channels.");if(finished)finished();return;}
             if(nativeVoicesEnabled&&(!prepareNativeAudio||!prepareNativeAudio(QDir(root_).filePath("native-voices.bin")))){fallback("Cannot create native voice channel; see the launch log.");if(finished)finished();return;}
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,hostLobbyEnabled&&sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,characterMenusEnabled,realmMenusEnabled,progressedMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,hostLobbyEnabled&&sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,characterMenusEnabled,realmMenusEnabled,progressedMenusEnabled,campaignSpellboxEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix};
@@ -161,7 +162,7 @@ void LiveMenuSession::poll(){
         sequence_=next.sequence;lastState_=clock_.elapsed();
         if(next.status==MNM_MENU_RETIRED){fallback("Menu adapter retired; using original menus.");return;}
         if(pending_&&next.ack!=state_.ack){
-            if(((progressedMenusEnabled&&(state_.screen==18||action_==MNM_MENU_DEFEAT_OK))||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
+            if(((progressedMenusEnabled&&(state_.screen==18||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_SPELL_FINISH))||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
                (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
                 fallback("Menu acknowledgement identity differs; using original menus.");return;
             }
@@ -182,7 +183,11 @@ void LiveMenuSession::poll(){
                 if(battleStarted)battleStarted(next.handoff);
                 return;
             }
-            if(action_==MNM_MENU_SPELL_FINISH){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
+            if(action_==MNM_MENU_SPELL_FINISH){
+                const bool campaign=campaignSpellboxEnabled&&!state_.spells.mode;
+                if(next.handoff!=(campaign?MNM_MENU_HANDOFF_CAMPAIGN_RETURN:2u)){fallback("Original spell selection returned an unknown destination.");return;}
+                inBattle_=true;transition_=false;state_=next;if(campaign){if(originalViewportRequested)originalViewportRequested();}else if(battleStarted)battleStarted(2);return;
+            }
             if(progressedMenusEnabled&&state_.screen==18&&(action_==MNM_MENU_REGION_CHARACTER||action_==MNM_MENU_REGION_SPELLBOX||action_==MNM_MENU_REGION_GRIMOIRE)){
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
@@ -211,7 +216,7 @@ void LiveMenuSession::poll(){
             }
             transition_=action_!=MNM_MENU_PREFERENCES_PREVIEW&&action_!=MNM_MENU_REGION_DIFFICULTY&&action_!=MNM_MENU_CHARACTER_ADJUST;
         }
-        if(!inBattle_&&!pending_&&state_.screen==7&&next.screen==0&&next.handoff==2){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
+        if(!inBattle_&&!pending_&&state_.screen==7&&next.screen==0&&next.handoff==(campaignSpellboxEnabled&&!state_.spells.mode?4u:2u)){inBattle_=true;transition_=false;const bool campaign=campaignSpellboxEnabled&&!state_.spells.mode;state_=next;if(campaign){if(originalViewportRequested)originalViewportRequested();}else if(battleStarted)battleStarted(2);return;}
         if(hostLobbyEnabled&&!inBattle_&&!pending_&&!transition_&&state_.screen==24&&next.screen==0&&next.thread==state_.thread&&next.ack==state_.ack){
             inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
         }
@@ -219,7 +224,7 @@ void LiveMenuSession::poll(){
             inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
         }
         if(inBattle_){
-            if(progressedMenusEnabled&&next.ready&&(next.screen==18||next.screen==MNM_MENU_GRIMOIRE_SCREEN)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
+            if(progressedMenusEnabled&&next.ready&&(next.screen==18||next.screen==MNM_MENU_GRIMOIRE_SCREEN||(campaignSpellboxEnabled&&next.screen==7))&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
             if(realmMenusEnabled&&next.ready&&next.screen==4&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){

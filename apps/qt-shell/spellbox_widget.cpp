@@ -253,9 +253,9 @@ bool SpellboxWidget::eventFilter(QObject* watched,QEvent* event) {
     }
     // The application filter also sees unrelated windows; only handle this screen.
     auto* target=qobject_cast<QWidget*>(watched);if(!target || (target!=this&&!isAncestorOf(target)))return false;
-    if(event->type()==QEvent::KeyPress){auto* key=static_cast<QKeyEvent*>(event);if(key->key()==Qt::Key_Escape){if(!key->isAutoRepeat()){if(carriedItem_>=0)putDown();else cancel();}return true;}if(key->key()==Qt::Key_Return||key->key()==Qt::Key_Enter){if(!key->isAutoRepeat())if(auto* b=qobject_cast<QPushButton*>(watched))b->click();return true;}}
+    if(event->type()==QEvent::KeyPress){auto* key=static_cast<QKeyEvent*>(event);if(key->key()==Qt::Key_Escape){if(!key->isAutoRepeat()){if(carriedItem_>=0)putDown();else if(escapeAccepts_)accept();else cancel();}return true;}if(key->key()==Qt::Key_Return||key->key()==Qt::Key_Enter){if(!key->isAutoRepeat())if(auto* b=qobject_cast<QPushButton*>(watched))b->click();return true;}}
     return QWidget::eventFilter(watched,event);
 }
-void SpellboxWidget::keyPressEvent(QKeyEvent* key){if(key->key()==Qt::Key_Escape){if(!key->isAutoRepeat()){if(carriedItem_>=0)putDown();else cancel();}key->accept();}else QWidget::keyPressEvent(key);}
+void SpellboxWidget::keyPressEvent(QKeyEvent* key){if(key->key()==Qt::Key_Escape){if(!key->isAutoRepeat()){if(carriedItem_>=0)putDown();else if(escapeAccepts_)accept();else cancel();}key->accept();}else QWidget::keyPressEvent(key);}
 void SpellboxWidget::paintEvent(QPaintEvent*){QPainter p(this);p.fillRect(rect(),Qt::black);if(!background_.isNull())p.drawImage(contentRect(),background_);}
 void SpellboxWidget::resizeEvent(QResizeEvent* e){QWidget::resizeEvent(e);arrange();}
