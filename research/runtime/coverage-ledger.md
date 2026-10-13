@@ -8698,3 +8698,15 @@ Seed HOST.native-worker-status-cadence before testing. The16ms reporting policy 
 ## Status-cadence experiment retained, default adoption deferred
 
 Final opt-in HOST.native-worker-status-cadence native controls pass with25full native framebuffer hashes identical to every-turn reporting; cadence/urgent/clock-refusal and lease/pause/teardown controls pass. Historical full traced gameplay balances4498sources at19.3018engine/50.6438nativeFPS,with status wall work3.511s versus19.873s in the baseline (about82%less). Overall asset-fingerprint validation fails; regression env now requires full fingerprints. No causal FPS increase from distinct live journeys is asserted. Subsequent current tests retain startup timeout,drawing-history GAP,covered-displacement bounds refusal and wizard-death failures. Full current successful regression and60FPS remain pending; experimental flag only,unchanged default every-turn reporting. Original/source checks and isolated cleanup pass for all these attempts. No native rendering reduction,clock/gameplay modification,screenshot substitution or relaxed bounds. Historical records retain their original claims/hashes without current status credit.
+
+### Native displacement final-row failure (2026-10-13)
+
+`NR.displacement-finite-edge` records an explicit native finite-storage policy:
+retain destination words for displacement taps beyond the logical canvas,
+while generic renderer admission remains strict. Retained World2354 draw1592
+reproduces one opaque overflow; both pinned original leaves read an authored
+backing guard word in isolation. Fresh14 native controls, two captured480000-word
+atlas/nonatlas comparisons andtwo renderer regressions pass withzero ordinary
+readbacks/leaks. No original equivalence for that tap, current public reliability
+or60FPS claim; drawing-history GAP remains under investigation. Historical
+source fingerprints and failures stay intact.

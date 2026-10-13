@@ -41,6 +41,9 @@ struct SpriteComposite {
     // Nonnegative horizontal displacement, sampling untouched pixels to the right.
     std::array<int,16> rowOffsets{};
     unsigned rowPeriod=16;
+    // Native finite-canvas policy: leave a covered pixel unchanged when its
+    // displacement tap is beyond owned storage. Strict admission is the default.
+    bool retainOutsideDisplacement=false;
 };
 struct Rgb {std::uint8_t red=0,green=0,blue=0;};
 // Owner-thread lease of mutable GPU presentation. Copies share its texture.

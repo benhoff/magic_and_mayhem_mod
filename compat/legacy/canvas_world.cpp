@@ -72,6 +72,10 @@ WorldDraw producerWorldDraw(const CanvasProducer &c) {
   draw.backend = r[15];
   draw.composite.mode = render::CompositeMode(r[14]);
   if (r[14] == 3) {
+    // Original leaves may read past the logical last row. Public native World
+    // storage has no such backing bytes: preserve those destination pixels.
+    // This is an explicit native edge policy, not recovered equivalence.
+    draw.composite.retainOutsideDisplacement = true;
     draw.composite.rowPeriod = r[16];
     if (!r[16] || r[16] > 16)
       throw std::invalid_argument("Native World displacement period");
