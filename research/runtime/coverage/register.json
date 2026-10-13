@@ -43605,7 +43605,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Pinned Wine texture/resource map association observation",
-      "scope": "Separateopt-in pinned installedWine11.16DirectDraw imports for publictexture_get_resource/map/unmap,once-onlycdecl forwarding withHRESULT/pointer/LastError/FP preservation. Associateprocess-local opaque resource/textureIDs andknowntexturegeneration,recordmapdescriptorpitches/dataidentity asportablelocalID;no private object layouts or GPU reads. Closedmapinterval/pointer-to-originalCPUsource relationship andactualuploads remain separate validation.",
+      "scope": "Separateopt-in pinned installedWine11.16DirectDraw imports for publictexture_get_resource/map/unmap,once-onlycdecl forwarding withHRESULT/pointer/LastError/FP preservation. Associateprocess-local opaque resource/textureIDs andknowntexturegeneration,recordmapdescriptorpitches/dataidentity asportablelocalID;no private object layouts or GPU reads. Closedmapinterval/pointer-to-originalCPUsource relationship andactualuploads remain separate validation. Observation retirement atomically disables recording before journal close, rechecks under the private journal lock at both phases, preserves original postclose forwarding, and tracks pending resource callbacks through map queries so ordinary session stop cannot close an active recorder. Forced midcall teardown remains incomplete; no broad IAT/timer quiescence or replacement inferred.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -43629,7 +43629,8 @@
         "runtime/drawing/wine_lifetime.h",
         "tools/inspect-drawing-wine-imports.py",
         "tools/build-drawing-session.py",
-        "tools/drawing_quit_completion.py"
+        "tools/drawing_quit_completion.py",
+        "runtime/drawing/wine_map_storage_point.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-resource-imports-01-static-20261012",
@@ -43642,7 +43643,11 @@
         "DRAW02.draw02-wine-resource-refusal-analysis-02-static-20261012",
         "DRAW02.draw02-wine-resource-original-03-live_observation-20261012",
         "DRAW02.draw02-wine-resource-quit-fixture-01-native_integration-20261012",
-        "DRAW02.draw02-wine-resource-original-04-live_observation-20261012"
+        "DRAW02.draw02-wine-resource-original-04-live_observation-20261012",
+        "DRAW02.draw02-resource-postclose-baseline-negative-01-20261013",
+        "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
+        "DRAW02.draw02-resource-postclose-fixture-01-20261013",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43653,7 +43658,8 @@
       },
       "remaining_gaps": [
         "SevenPE32forward/error/512BFP/nullfailedmap/unreadablebox/interval controls andresource/Quithelper tests pass. Finaloriginal04observes5229calls2647getters1291map/unmapclosed0unknown/allmapsknowntexturegen;365API364EGLnormalexit0ACKnotobservedexplicit. Original01combinedleaseearlyshutdownand02QuitACKrace retainednegative;03historicalsuccessful1openinterval.",
-        "CPUsource/mapbuffer exactidentity/bytes andupload ownership,resourcepointerreuse/newgeneration/wholetexture/COMlifetimes,unobservedroutes/callers/actions/cadencecontrols/full47/21acceptance remainopen. Sourcelease shutdowncoupling01unresolvedseparately. Metadataobserverneverreadsprivateobjectlayouts/GPU/mapbufferbytes."
+        "CPUsource/mapbuffer exactidentity/bytes andupload ownership,resourcepointerreuse/newgeneration/wholetexture/COMlifetimes,unobservedroutes/callers/actions/cadencecontrols/full47/21acceptance remainopen. Sourcelease shutdowncoupling01unresolvedseparately. Metadataobserverneverreadsprivateobjectlayouts/GPU/mapbufferbytes.",
+        "Fresh owned retirement guards and original combined32actualexit0pass; previous owned/originalexit99failures remain retained. Original6973resource calls/1727maps close with0open/unknown unmaps, but all1727map points are unknown:15live unknown,895live transition-pending unknown(flags131),817stopped.985storage calls/910lock-return epochs/119local address IDs do not establish map-buffer/current-cache or allocation ownership. Public copy boundary has0calls; no transfers/async ownership or general replay repair proved. Full IAT/module/timer quiescence and47/21closure remain open."
       ]
     },
     {
@@ -43705,7 +43711,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Public Wine map-buffer association to known original canvas storage",
-      "scope": "Opt-in read-only in-process comparison of successful public map descriptor data/pitches to the live producer recorder canvas cache, under its recorder scope. Export only portable point metadata and link it to the exact map interval, resource and texture generation. Unknown, ambiguous, stopped and extent-mismatched caches remain explicit. No source bytes, private Wine layouts, upload ownership or exclusive storage lifetime claim.",
+      "scope": "Opt-in read-only in-process comparison of successful public map descriptor data/pitches to the live producer recorder canvas cache, under its recorder scope. Export only portable point metadata and link it to the exact map interval, resource and texture generation. Unknown, ambiguous, stopped and extent-mismatched caches remain explicit. No source bytes, private Wine layouts, upload ownership or exclusive storage lifetime claim. Recheck the atomic recorder flag under the journal lock before emitting a completed query; a close during an outside-lock query must not write the retired journal. No complete callback/module quiescence inferred.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -43757,7 +43763,10 @@
         "DRAW02.draw02-storage-query-binding-01-20261012",
         "DRAW02.draw02-storage-query-parser-01-20261012",
         "DRAW02.draw02-storage-query-pending-diagnosis-01-20261012",
-        "DRAW02.draw02-storage-query-fixture-negative-01-20261012"
+        "DRAW02.draw02-storage-query-fixture-negative-01-20261012",
+        "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
+        "DRAW02.draw02-map-point-postclose-fixture-01-20261013",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43770,7 +43779,8 @@
         "PE32 cache-only export and 12-forward observer fixtures plus four decoder methods pass. Original01 records 1242 successful maps: 795 known canvas points across six canvases, 14 unknown and 433 stopped. 760 known points are full 800x600 stride800. One resource map remains open at observation close. 118 held pairs/222 source commands, 333 API/332 EGL witnesses and actual normal Quit exit0 remain separate observations.",
         "Address equality is a live recorder cache point, not allocation generation or exclusive ownership. Upload/source version identity through exact API commands, buffer writes and alias/reuse/whole COM/resource/texture/storage lifetime, unmatched/stopped routes/actions, cadence controls and full DRAW-02 47/21 acceptance remain pending. Native parity not rerun for this source change; historical 104-frame result stays historical. Earlier combined refusal remains unreproduced and unassigned.",
         "Prospective cache guard: create/release/Lock in progress on a matching wrapper must refuse a known storage point. This does not prove allocation ownership or complete observed lifetime.",
-        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion."
+        "Prospective opt-in V2 point query identity is linked to a version3 transition journal under one recorder scope; matching/absent/mismatched epochs remain separately recorded. Historical V1 reports retained; no allocation ownership or current full parity promotion.",
+        "Fresh owned retirement guards and original combined32actualexit0pass; previous owned/originalexit99failures remain retained. Original6973resource calls/1727maps close with0open/unknown unmaps, but all1727map points are unknown:15live unknown,895live transition-pending unknown(flags131),817stopped.985storage calls/910lock-return epochs/119local address IDs do not establish map-buffer/current-cache or allocation ownership. Public copy boundary has0calls; no transfers/async ownership or general replay repair proved. Full IAT/module/timer quiescence and47/21closure remain open."
       ]
     },
     {
@@ -44089,7 +44099,8 @@
         "DRAW02.draw02-whole120-epochs-original-02-20261012",
         "DRAW02.draw02-whole120-epochs-binding-01-20261012",
         "DRAW02.draw02-whole120-epochs-chain-01-20261012",
-        "DRAW02.draw02-copy-storage-original32-04-20261013"
+        "DRAW02.draw02-copy-storage-original32-04-20261013",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44198,7 +44209,8 @@
       "evidence": [
         "DRAW02.resource-copy-imports-20261012",
         "DRAW02.resource-copy-fixture-20261012",
-        "DRAW02.resource-copy-original-20261012"
+        "DRAW02.resource-copy-original-20261012",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45589,7 +45601,8 @@
         "DRAW02.draw02-source-physical-close-original32-01-20261013",
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
         "DRAW02.draw02-copy-order-original32-02-20261013",
-        "DRAW02.draw02-copy-storage-original32-04-20261013"
+        "DRAW02.draw02-copy-storage-original32-04-20261013",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45880,7 +45893,8 @@
       "evidence": [
         "DRAW02.draw02-source-physical-close-copy-order-01-20261013",
         "DRAW02.draw02-copy-order-producer-links-01-20261013",
-        "DRAW02.draw02-copy-storage-producer-links-01-20261013"
+        "DRAW02.draw02-copy-storage-producer-links-01-20261013",
+        "DRAW02.draw02-resource-postclose-producer-links-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45926,7 +45940,8 @@
       "evidence": [
         "DRAW02.draw02-copy-order-fixture-02-20261013",
         "DRAW02.draw02-copy-order-original32-02-20261013",
-        "DRAW02.draw02-copy-storage-original32-04-20261013"
+        "DRAW02.draw02-copy-storage-original32-04-20261013",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45965,7 +45980,8 @@
       ],
       "evidence": [
         "DRAW02.copy-api-worker-bindings-01-20261013",
-        "DRAW02.draw02-copy-storage-bindings-01-20261013"
+        "DRAW02.draw02-copy-storage-bindings-01-20261013",
+        "DRAW02.draw02-resource-postclose-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46099,7 +46115,9 @@
         "DRAW02.draw02-copy-storage-original32-04-20261013",
         "DRAW02.draw02-copy-storage-original32-negative-01-20261013",
         "DRAW02.draw02-copy-storage-original32-negative-02-20261013",
-        "DRAW02.draw02-copy-storage-original32-negative-03-20261013"
+        "DRAW02.draw02-copy-storage-original32-negative-03-20261013",
+        "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
+        "DRAW02.draw02-resource-postclose-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -99394,6 +99412,117 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-resource-postclose-baseline-negative-01-20261013",
+      "kind": "native_integration",
+      "scope": "Owned old-runtime PE32 first postclose getter reproduces observerexit99 after seven recorded callbacks and journal close. Preserve negative/current-old-scope execution, no original game.",
+      "record": "research/runtime/draw02-resource-postclose-baseline-negative-01.json",
+      "sha256": "49e6ba7655ccd665ba800a83320e0a1e431ece50c22d343c0c81da495663515f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 99
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
+      "kind": "live_observation",
+      "scope": "Original combined observer capture reaches source interval but actual original gameexit99after journal retirement; primary failure preserved, valid900request sidecar cannot promote failed acquisition.",
+      "record": "research/runtime/draw02-resource-postclose-original32-negative-01.json",
+      "sha256": "ae137302f84fc004056cc8e194d08627c58154940067e2e5748817e0a16e285f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-resource-postclose-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Actual owned PE32 normal/midcall/pending-stop cases: seven recorded callbacks plus three postclose forwards with result/error/512byteFP intact; active resource callback defers session stop; midcall trace remains incomplete/refused.",
+      "record": "research/runtime/draw02-resource-postclose-fixture-01.json",
+      "sha256": "122d5af762867805562cdc16b95e98469534687048380059a7bbf6d1cc891f23",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-map-point-postclose-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE32 12forward map-point cases and forced outside-lock query close: no closed-handle write or journal growth; missing query trace refused, original result/error/FP intact.",
+      "record": "research/runtime/draw02-map-point-postclose-fixture-01.json",
+      "sha256": "36f92b07d06567fd2e39dc8082fdb47090798496296d5298bd15c8e1166406ca",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-resource-postclose-original32-01-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh combined original32after retirement fix passes913requests/985closed storage calls/6973resource calls/1727closed maps,1727unknown map points,0public copy-boundary calls; actual gameexit0. Source/CPU/driver ownership, replay ordering and whole closure remain unproved.",
+      "record": "research/runtime/draw02-resource-postclose-original32-01.json",
+      "sha256": "275af3f4826fcfef2f7bba5826e78c3b291730b1fdf8849e635d82ce09168bd5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-resource-postclose-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Static all913unique request/API/worker associations,0unbound source requests,1177excluded APIcalls and43adjacent return reversals in fresh combined cohort.",
+      "record": "research/runtime/draw02-resource-postclose-bindings-01.json",
+      "sha256": "2701eb985c7ff9f7fdf009e97816091220396fc53efb93d323b37d651fed4e79",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-resource-postclose-producer-links-01-20261013",
+      "kind": "static",
+      "scope": "Static all913exact producer COPY links,0unmatched and43adjacent entry/return reversals; no new game execution or ordering repair.",
+      "record": "research/runtime/draw02-resource-postclose-producer-links-01.json",
+      "sha256": "7296a67815ed669aeb86cb6fe6ddbfd389c0bb876c33f0385212f94eb3264e01",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111555,8 +111684,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-copy-failure-storage-20261013.json",
-    "sha256": "695b427a32701e3843088b4360ee991faa7cec1ebf19e297f6cf77f0a8dc13bf"
+    "path": "research/runtime/coverage/source-index-draw02-resource-postclose-20261013.json",
+    "sha256": "0969e000119c0e6a2b0319af06aeebd7022b882d57587ac5449750367858eac3"
   },
   "claim_bindings_required": true
 }

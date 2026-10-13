@@ -51,23 +51,39 @@ def main():
     try:
         with (run/'wineboot.log').open('x') as out:
             subprocess.run(['wineboot', '-u'], env=env, stdout=out, stderr=subprocess.STDOUT, check=True, timeout=90)
-        with (run/'fixture.log').open('x') as out:
-            execution = subprocess.run(['wine', str(binary)], env=env, stdout=out, stderr=subprocess.STDOUT, timeout=60)
-        execution.check_returncode()
         from drawing_wine_resource_mapping import decode
-        raw=(capture/'wine-resource-map.bin').read_bytes();observed=decode(raw)
-        if len(observed['calls'])!=7 or observed['open_map_intervals'] or len(observed['unknown_unmaps'])!=1:raise ValueError('Resource mapping fixture closure')
+        cases=[]
+        for name in ('normal','mid-call','pending-stop'):
+            target=capture if name=='normal' else run/name
+            target.mkdir(exist_ok=True)
+            case_env=dict(env,MNM_RESOURCE_FIXTURE_CASE=name,
+                          MNM_DRAW_SESSION_DIRECTORY='Z:'+str(target).replace('/', '\\'))
+            with (target/'fixture.log').open('x') as out:
+                execution = subprocess.run(['wine', str(binary)], env=case_env, stdout=out, stderr=subprocess.STDOUT, timeout=60)
+            execution.check_returncode()
+            case_raw=(target/'wine-resource-map.bin').read_bytes()
+            if name=='mid-call':
+                try:decode(case_raw)
+                except ValueError:observed=dict(incomplete_refused=True)
+                else:raise ValueError('Mid-call close invented a complete callback trace')
+            else:
+                observed=decode(case_raw)
+                if len(observed['calls'])!=(7 if name=='normal' else 1) or observed['open_map_intervals'] or len(observed['unknown_unmaps'])!=(1 if name=='normal' else 0):raise ValueError('Resource mapping fixture closure')
+            cases.append(dict(case=name,exit=execution.returncode,journal_sha256=sha(case_raw),observation=observed))
+        raw=(capture/'wine-resource-map.bin').read_bytes()
         controls=subprocess.run(['python3',str(ROOT/'tests/test-drawing-wine-resource-map.py')],capture_output=True,text=True,check=True)
         if any(sha((ROOT/n).read_bytes()) != h for n,h in sources.items()):
             raise ValueError('Fixture sources changed during execution')
         report = dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],
                       artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),
                       journal_sha256=sha(raw),calls=7,unknown_unmaps=1,open_map_intervals=0,exact_begin_end_identity_verified=True,
+                      cases=cases,postclose_original_forwards=3,postclose_journal_unchanged=True,
+                      pending_resource_callback_defers_session_close=True,midcall_incomplete_journal_refused=True,
                       original_game_executed=False,async_egl_completion_covered=False,
-                      scope='ActualPE32cdeclgetter/map/unmaponce-onlyforward,result/LastError,pitches,original512BFPreturnstate,failedmapnulloutput/unreadableboxoriginalrefusal,failedunmapretainsinterval,successfulcloseandunknownunmap;metadataonly,nooriginalsourceupload ownership.')
+                      scope='ActualPE32cdeclgetter/map/unmaponce-onlyforward,result/LastError,pitches,original512BFPreturnstate,failedmapnulloutput/unreadableboxoriginalrefusal,failedunmapretainsinterval,successfulcloseandunknownunmap; three postclose forwards without journal growth; actual pending resource callback defers session stop; forced midcall close remains strictly incomplete. Metadata only, no original game/sourceupload ownership or full hook quiescence.')
         a.report.parent.mkdir(parents=True,exist_ok=True)
         a.report.write_text(json.dumps(report,indent=2)+'\n')
-        print(json.dumps(dict(success=True,calls=7)))
+        print(json.dumps(dict(success=True,calls=7,cases=len(cases),postclose_forwards=3)))
     finally:
         subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
 

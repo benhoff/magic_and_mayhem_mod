@@ -543596,6 +543596,485 @@
         "status": "pending",
         "reason": "Four executed failure guards, four decoder and eight source-cursor guards pass. Fresh original32retains906requests/972storage calls/897lock-return epochs/118local address IDs,600planes, before/after2927original checks and actualexit0. Static all906COPY/APIbindings and44return reversals preserve1251extra APIentries. Shared host source edits retain broader historical evidence without current equivalence or status promotion. Prior startup failures and masked primary errors remain immutable. Combined resource observer shutdown, source/view/alias/lifetime, driver ordering and47journey/21operation closure remain pending."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "cccefb9ab9a710a783d393b662324d3786ee4f5c129c5337069e8d9c0890c29e",
+          "before_sha256": "42c85ab1eba6282c5be2263419fc08a6ab81a2f9e795d829dd11e3defa31e36e",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "225d96d9ab70155acc3ecf0492b351b89b3714da4c08890d03bb0789fc00a20b",
+          "before_sha256": "34333f73ca1c28a12be73500a3ff86f92d34cc768ba9b23bea7d9c2fb35c0499",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "42e3692799e7141c672087d6a16c1c74e04f3c266bffc106dbfa48ef2c5b003e",
+          "before_sha256": "01573c14baa1f0ac1339e40aa3cffcd245411d6396af69ff5fc8dbed55e59d81",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "73886d1763107c1c60294c59b32fa41ba3ea528f0da9583dcaf974ec5236e71b",
+          "before_sha256": "feac667f66880736015289cb2a9d41c6e022753adc6d325c2705d4a504a08f9a",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "b3d880016c089de6e9e92ebf67eaeea93040f7c17dd6a38904ad702f2b4a11d6",
+          "before_sha256": "922f42405c8304778a91995f33f1514fea2cb17c97104bd55bb00de01564c6fd",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "9ac6fc5414c53e24d501fe00b34640c8e2a8035f330f58893264062f02a349a6",
+          "before_sha256": "13895d4a0be1eb563a541f59d0b45e1a287aacd2832135aa18dddc3cb893e20a",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "15bde2db8ed6e310cb1b5165b4c79814bd6a628edf928cd315489ba9e3980bf5",
+          "before_sha256": "2b8dda9a5e0c969bc8619e901d1b987b2c29f1f291258c0dfdfa7c3cb05d28e5",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "cf836a6d14acfaa48e205b170cb479a9338b287456668c213e47bfbbff5b114c",
+          "before_sha256": "67e27e256ab79590138febf0ec3124a3b8757e55118c60217a772337d874265d",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "04f2009acf7699ccae9e08905f1e1c1725d56aa5a74ad33aace518793bd79c7d",
+          "before_sha256": "9187929f0fec5eeb4a55894234758e39b73e31d0d560da5d014dd49cf1dd93b7",
+          "id": "NR.drawing-canvas-storage-transitions"
+        },
+        {
+          "after_sha256": "e8abb9a0b69beb4f9d5274d3b61f6c9515e9a1e04b4d28f43cd14a9d0ef824a4",
+          "before_sha256": "8938016e25f0555e9a969e449fe9d2b79ab3137bd8d1da54e53e5e3b3575ff27",
+          "id": "NR.drawing-copy-api-worker-association"
+        },
+        {
+          "after_sha256": "22e05f1f43f67cae36380791f09c66bbc41d2a4f0d7ae0b9c89f4c21148b76c4",
+          "before_sha256": "0a672dc7c4b7007ce1187fc29ab54b5616d6cb49f45a65de6b986ae47919ec8a",
+          "id": "NR.drawing-copy-failure-provenance"
+        },
+        {
+          "after_sha256": "19d621cdb1e8649b5d0acad7619b71d2fbadef39e41594b7ef14596ebfbc175e",
+          "before_sha256": "67dfc552b6a6f7516373446c40ea55ad33f7679dc110879ae37aad4e14d44960",
+          "id": "NR.drawing-copy-order-observation"
+        },
+        {
+          "after_sha256": "e6d4ebb19b45a9803b9ef9c2696b53e5caccdd929dc42f038cbc1975e4b18ac4",
+          "before_sha256": "0a16f4686164e5ac981f66c2933b87a31b78c10bc28e2ca6ac7042e6372f825f",
+          "id": "NR.drawing-copy-request-trace"
+        },
+        {
+          "after_sha256": "a2c6bf43e77259b53d6269f96e82a1f665a4c089e6261ecde70d7779d2889fe2",
+          "before_sha256": "0b7b3d54a15e842b2f13f1ac83e780c31f7acc234493dfa376ef284ce2d99b80",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "8c08447970e551b7330dbd946fadc6b9659e7b6094a69a213ed649f1fd67024d",
+          "before_sha256": "8d377e04806d57d5113f9f7deeb76ae86efaed6a866d1f24b53e7532f8cda50b",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "925228e4b2c0cb5cd0104d694ad074cef01c8192ce548e2debd04e90eaf90661",
+          "before_sha256": "c770f47aeafdf97b26743c4ba6c876a2e9b12c27c155666a00960432560b282e",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "e21a17dba0dc23082e9bed718a5a46e5545319562337732418f1a1551a8b5ef8",
+          "before_sha256": "3f65b1e4f3fb089ecf8c8b53c91ea9c3e8127806bdbb66f846a4c3f156cb67c6",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "0de3edf2e70906ff8abe86adbd171653ce77cede442af51002a9f842ca487474",
+          "before_sha256": "ae4165be0a1ab7e5854ff6dc700b58aaf76ee0c9347756446e3f2b6750e416ee",
+          "id": "NR.drawing-interactive-acquisition"
+        },
+        {
+          "after_sha256": "4767f5943b32966d326fb83f3ec9904276595dd952234b459cb554878e030287",
+          "before_sha256": "f76411be7d36326c3ab90203ac2e45197bec355802d31ce0097d4390e28797e6",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "be00fa6b62851af6b6b37c7e7a8407f3045d50eeef20acc029d70406160e3fca",
+          "before_sha256": "b029307785ccf768e51a9db2a394dd6f29b26485bd2d817dca450bcb38bf06dc",
+          "id": "NR.drawing-producer-source-points"
+        },
+        {
+          "after_sha256": "113006de9ebb644229d011a5dc62a1b1c1649409ae000b8d5a2fbefd4372d144",
+          "before_sha256": "750b31c6f4c8211d8b5a2648ce5189f4134b71c91ca6c06a15685c6c8f38d109",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "3b8eead3fc5f735a804bc88c01871baeddab7e95a3abc0252a7015259a64d82e",
+          "before_sha256": "54dd7204531bd77042c53ebbb959cb1354a50c30e6a5663bc24ffcdcb6da06c4",
+          "id": "NR.drawing-quit-dispatch-observation"
+        },
+        {
+          "after_sha256": "02bade96d9ddcea6f65f5db9bff55895f02a7900781de09156d1083b53d2432f",
+          "before_sha256": "f35b4b13ae95b2ad19e73d845689b6c4b4e083e2b56533da43c18c3cf26abb3b",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "7b78d01010e77bfbf0270a80c861d79372f81f6999c5530865978ac5938c03b4",
+          "before_sha256": "fc1ae4e8f14906b178e2570f3d1694e604ba7042586b1c2518ae400caf5eee4c",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "38fbe8cb9ac412f6e473605229c57e637acf66f865b7389c8502c38cda21be79",
+          "before_sha256": "cf9c04a45f127bd3e276039e0581dfd1fe49507d5c1cea8d9ddc6a66bab1defb",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "6d58f6e61f572d0df4a4ea601c866004cff0166c52f208a8b46c83cb5b725e4c",
+          "before_sha256": "e0337b94f595c079466b96a888326c2dac00f3854fdc83e372d4c1f7e9a63553",
+          "id": "NR.drawing-session-api"
+        },
+        {
+          "after_sha256": "97c992ad014c0ba6254c77da43a50a6ff562f7378cc4955c26a13c79a01a6084",
+          "before_sha256": "895b32b48dd0f6ad91981b52eb376e91e1c3af4914291b7ab3efcc74fda57bd6",
+          "id": "NR.drawing-source-cursor-gate-binding"
+        },
+        {
+          "after_sha256": "e6af8b69e8246456d245834b710dd26dd5629c8d5eb645139f83c9f03b869353",
+          "before_sha256": "57decbe7d9cf4872922ecbed2f7cbb6dbd74cc67062b43dea10f41d82617a4c3",
+          "id": "NR.drawing-source-held-refusal"
+        },
+        {
+          "after_sha256": "1a0eecae2b125b99f1d64dacc0a16a228be5d3bfa4c5b6ff7056decb125105e0",
+          "before_sha256": "7a1d77825147bec69362fb9a4e3c456c7010f04463967ec9ad2f988babddd2e8",
+          "id": "NR.drawing-source-held-snapshot"
+        },
+        {
+          "after_sha256": "bec9077085c207a65afe1f88c767d02ba63c648b5a87f2e3a0f583bd2ceb22bc",
+          "before_sha256": "af5b43a7db7248e26f56215741cefbbb19a08ae2cbaad394d39b4655689e9dd4",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "c207aa9e450796e84c2bfa4ebd403934126d049d55c2a9665cc9dcf90f9001ee",
+          "before_sha256": "33e7bf01fa0569d572a278d0149d44623065378599d39c7b96fc379891f06aa7",
+          "id": "NR.drawing-source-worker-lease"
+        },
+        {
+          "after_sha256": "c21dab707bc4860ba6d7a05edc87ab2f0e2b76bc5a1bbd59a5e89f658cb7baa1",
+          "before_sha256": "8f766ab24ef18588baa666934816e1ee9a02e2bf7b59c6a845a0d69cba466ea6",
+          "id": "NR.drawing-wine-client-memory-binding"
+        },
+        {
+          "after_sha256": "76cdf93ca4fc94d6a5f8f2b5dcf10090f3a02c681eb45f79ab16a488b8575bab",
+          "before_sha256": "62da2d30486898356b57a85ef3da2b6ca9a0f597bfef34861155b7173a3ecf9d",
+          "id": "NR.drawing-wine-map-storage-point"
+        },
+        {
+          "after_sha256": "3d64e00d0acbebfa3a13e00dd801c74a78e2132dff85ce0e6819777fc602524f",
+          "before_sha256": "ab81a84db9e25b9c7b68a407edf51f8bc51c73673c6f00746f8dbbb86bc3ded4",
+          "id": "NR.drawing-wine-object-lifetimes"
+        },
+        {
+          "after_sha256": "d2b0e37bd6f61b27932993a4fc6285fad2594d89dd4a86798b97d4ecdb98a295",
+          "before_sha256": "67439be01d3fc450354431751b8323f99e5b976b2462a862587f85c56286b6bc",
+          "id": "NR.drawing-wine-resource-copy"
+        },
+        {
+          "after_sha256": "227bd225a3847daf79ad67c0f0f5998397bf4c51f729073af30e1601b7577c1c",
+          "before_sha256": "5106179b1357b3dd1bb5add1ca379add4fb57dc4cf4fcca393d6a685fb9b3475",
+          "id": "NR.drawing-wine-resource-mapping"
+        },
+        {
+          "after_sha256": "fafc9f296d4e02b7e15f342e6c52480565bf8a9471a04fb45220586ce75834a8",
+          "before_sha256": "2f35f9a5ca622256b719b8a65274ffc88d64e9101ed01ac7d8ff34ba7a197493",
+          "id": "NR.drawing-wine-retained-map-source"
+        },
+        {
+          "after_sha256": "ffc07934c7e9554e9c8b0df38841b68e5085a472c0d01f5a032d583710e308a9",
+          "before_sha256": "2dcbdc7a81da22347b42b85f633cb367c773be6eae005145bbc21a6a083f9ba9",
+          "id": "NR.drawing-wine-submission-observation"
+        },
+        {
+          "after_sha256": "8bd9a443922a45cf411f75f5aba987d528a6eafdac508fda9d69d25946c495aa",
+          "before_sha256": "9c4098e36a25d4a48948652bbc895a0406cd70bf36dbb95a0b79654f327b8464",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "1595fa5bf54dad756a0bb0784f3da8d232a02d581b6bc13d0ef5ec9f47d4e5c6",
+          "before_sha256": "c7f064784eed5295076641c1e55ca1679c42158a277d7c5f8a7897f27ddde8e1",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "d2e9bb739c094798150c3b2b5347d468ad7a7bf97ded7f18ebe1509721fd1b7e",
+          "before_sha256": "b956a898961fe9f24049f3cb98106e1b0ca8be05f519e781976a8492eb55acf8",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "821b2382f18e7cd17283282aa8104ec7c3c5c282f75feae67aa8beb96062d45c",
+          "before_sha256": "1b18388b0e81d59d5bb03260528a2b7e6179839821e23c87f12fb2ba927c682e",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9b70460b54890c51e8c249386c9e8e833e785d69f4e89c3c0b5ddc1dbf756748",
+          "before_sha256": "a188f9d3c94b0f8613d8a4142249d2ee1922430ffe0b841d589c2d3b5166e746",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "0969e000119c0e6a2b0319af06aeebd7022b882d57587ac5449750367858eac3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-resource-postclose-20261013.json"
+        },
+        {
+          "after_sha256": "46dcae52fcb85f2917e2a46ccd3be7458a06f4492f22329addcbcfc605d40523",
+          "before_sha256": "7823c7667533cdbb1b7f8fb8cf2a8aa154d4fe2c0fdf2491319de59d7a566ef8",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "36f92b07d06567fd2e39dc8082fdb47090798496296d5298bd15c8e1166406ca",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-map-point-postclose-fixture-01.json"
+        },
+        {
+          "after_sha256": "49e6ba7655ccd665ba800a83320e0a1e431ece50c22d343c0c81da495663515f",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-resource-postclose-baseline-negative-01.json"
+        },
+        {
+          "after_sha256": "2701eb985c7ff9f7fdf009e97816091220396fc53efb93d323b37d651fed4e79",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-resource-postclose-bindings-01.json"
+        },
+        {
+          "after_sha256": "122d5af762867805562cdc16b95e98469534687048380059a7bbf6d1cc891f23",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-resource-postclose-fixture-01.json"
+        },
+        {
+          "after_sha256": "275af3f4826fcfef2f7bba5826e78c3b291730b1fdf8849e635d82ce09168bd5",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-resource-postclose-original32-01.json"
+        },
+        {
+          "after_sha256": "ae137302f84fc004056cc8e194d08627c58154940067e2e5748817e0a16e285f",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-resource-postclose-original32-negative-01.json"
+        },
+        {
+          "after_sha256": "7296a67815ed669aeb86cb6fe6ddbfd389c0bb876c33f0385212f94eb3264e01",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-resource-postclose-producer-links-01.json"
+        },
+        {
+          "after_sha256": "2ccd289af8c69befe44ba7f4375c443ffae4dc8ad700fe64a8156e6044440f19",
+          "before_sha256": "bd3851e53f3156c8349ff6a8790ea264e1765c32f6c08a030fe6286f34413d63",
+          "path": "research/runtime/draw02-wine-map-storage-point.md"
+        },
+        {
+          "after_sha256": "5c6101e560cb2cb2342a5154c3b1241cc541abf7b684c9421ff1b4ec4fc7ff01",
+          "before_sha256": "2a3a32b02a372fde07737c66a1495ea30fca0511d4e654619e916ad4d5e7a577",
+          "path": "research/runtime/draw02-wine-resource-mapping.md"
+        },
+        {
+          "after_sha256": "ee9f50729741734aa5f9683f19530dcd867ae7a0b4520087844e0915a386d3d2",
+          "before_sha256": "60407dc415aae00412d076c1ab62fd2cdf944521bd65e496695c25a5a70702a4",
+          "path": "runtime/drawing/session.c"
+        },
+        {
+          "after_sha256": "47b20ce29372a54f828befd43955a3f816f45f6ad6cfaf299a849afa5012a087",
+          "before_sha256": "a5f359338d88c23014262245687bb3a10112db971d7a690da4345f82dba96c58",
+          "path": "runtime/drawing/wine_map_storage_point.h"
+        },
+        {
+          "after_sha256": "075faf0a96554993a3eecc5e1e0331a84110b084366892faa161b774fb52d817",
+          "before_sha256": "bf79100a48195541660bf41ba0e23ad4d890c74efb591973bd821b99ec94db1f",
+          "path": "runtime/drawing/wine_resource_mapping.h"
+        },
+        {
+          "after_sha256": "c5ea22b4f2c5f2da6cbe343207da726ce10149a8a679f390ef2b3c09faaee925",
+          "before_sha256": "cd46de866b91ace63b12b81036c18fe2c2a5fd856f7e2d7c05a05b205d9ccbf5",
+          "path": "tests/drawing-wine-map-storage-point-test.c"
+        },
+        {
+          "after_sha256": "b52ea107bdb009248e77bf8c47d43a5da6e3d9cdcb835c8c3874ef3c6d61ae56",
+          "before_sha256": "e01aac062aa85e3ec9feea8084770173df33023c3034f9a8174c73fcd4a3760e",
+          "path": "tests/drawing-wine-resource-map-test.c"
+        },
+        {
+          "after_sha256": "f8ce86289e9214499a152500ccb946aba15e26bfb4b78ec75ecb2eeed3cab0d6",
+          "before_sha256": "dcaab36e977ec189134f069178869ab3df3567652423fa367c7b33fdde91fa67",
+          "path": "tools/test-drawing-wine-map-storage-point.py"
+        },
+        {
+          "after_sha256": "3bd3acbd996e121058ff66c629a07603dc5986ce1c4fa736d93fa69d6cef0998",
+          "before_sha256": "cb4dff9149e53fb21f3b411dfff7a6109f161136371434194944a0c4f42f6874",
+          "path": "tools/test-drawing-wine-resource-map.py"
+        }
+      ],
+      "id": "draw02-resource-recorder-retirement-and-original-retry-20261013",
+      "pending_gaps": [
+        "retired_execution_claims:438d7dfecee5f416095df0035fec3abc6de629e14e0b78244714977f148dbc15",
+        "retired_execution_claims:51c91289a6a6cf4b8d6f509fc76bce7d43a8796e2af6fd12c61d931ad7e9898c",
+        "retired_execution_claims:ae97594577fb825c6353254ffb4ab8d77859146b82fb765dc8837c983fa5a11b",
+        "retired_execution_claims:c29fe49eab2486b98fe2cba88257587554124cfe22245674d5d5914f8a202213",
+        "stale_evidence:031349102dcc711e2c3e8c3559e7b67c719c22e0e8d25b15f59fdf23c40fd302",
+        "stale_evidence:032d454d6945f536df60d2567b4db290509aacab21ed21d398fefaf35dd8e985",
+        "stale_evidence:0673762643a4978225ff511fd46e15215a0c9ef3984fe958b6db2e0eb899e048",
+        "stale_evidence:0c22a813240a0a67be47acbbbd9141714011ab9946b322fa78c24c91f46511d2",
+        "stale_evidence:0c833f5fd4eda8c5fcdea153ae462005197c739558558a30ecbcd8518302d457",
+        "stale_evidence:0eef55e0a6bd3c8f1391a542681119f44bc479fec241beca92b93640ef8deba6",
+        "stale_evidence:0feed79c4b284371083be816ebbe2f1a59256d79838ac74affb13661045ad99e",
+        "stale_evidence:10c7cb514e47c1e550abff13385e9bdaddda78e74fe085062891e6b6e3993cb0",
+        "stale_evidence:12bafcdfc914333937e797c88278430f96db6ddfc40209336fa94e35b85aaa20",
+        "stale_evidence:13ce583b5117574597d9227425486844da99b14e17dae7f926b7942233482a79",
+        "stale_evidence:1701c5b77965a7a5b558b1f96d6e496f221d4fc8c9af17f2e9eaf9bf5892f64c",
+        "stale_evidence:17b58a136673f855c0ccd03d2243567a3b4fe3c36817dde91af122aef2bcd271",
+        "stale_evidence:191c3dd2a3f8f105ec29a7976555006342924b34ce3051893c5630ffbbedba8f",
+        "stale_evidence:1ba8ec6f1e845a38b469104b6cdbedcf9debf1c85562c7bc52b1876625a83ceb",
+        "stale_evidence:1f5b4e08cfe654ff6a938cfa148809db3395408c2164d60472d9df2c25af6338",
+        "stale_evidence:204bcfdfa3aa40f5b22354b0641bb44233f0bdd8eb4b2adc1723002f29d0b0a3",
+        "stale_evidence:22b2b1afb8526666e2d8640ddd79cdceab51511588961b58477cc948071511ab",
+        "stale_evidence:238f8bf711395ab56dbce78aa6f50c5c6355eb9c4f41b07a5a0a2a48b88703f9",
+        "stale_evidence:250abade70cea2a397809d1a108e864b860640b3d2afa6eeda13e93a55175d0e",
+        "stale_evidence:25c3c51eead47475ba2a3f2335d56ecf91823f047d59a087131b71bb5b267046",
+        "stale_evidence:25d82f09f0e6bd4f460cd47dd0b1005b5066f7800c3c1ada326a3d26ee95f591",
+        "stale_evidence:274eae34a470c44219be671d9e7e3a277d1fd5813c06a9a9db63c97a27b118f5",
+        "stale_evidence:27ce690467460e391cd88761401c9fe3d22df6c6e9815865d2f2dcb32b6e3527",
+        "stale_evidence:27fa41924bf29b36b5ad8161f81563487787dc7ec400c7273db939eaea6f32c6",
+        "stale_evidence:28b249ab664cda835f347d3557473d64fa91a97db8f04947f11f752defc24984",
+        "stale_evidence:293cac17f505c85a13c309b580825a30118a63ea1281177359fe7be01996e309",
+        "stale_evidence:2a636285916f5e9f4c4913a4eddd308dbbe97f2b1aa0b0ce9be3e7b4bf677a8f",
+        "stale_evidence:2b602a21c8fa5f0dc6d097c8622e3dbcd20abb1902b4d61553622018f069432e",
+        "stale_evidence:2f8fe247f935390f7af6ec2698eba24f22e4c577c5b9634bb6081e138cc573d9",
+        "stale_evidence:2fc5bdf5fa9d9b1caa6bcfc71fe0eca7b08eb91892254b384daa368d97a2e98d",
+        "stale_evidence:353bde2e726493cf31c9e10d45b6895f2a53c6d4aaff4f7079418e69577b3412",
+        "stale_evidence:38a94a8072d8c070182b800fb256f9d3b132c2c1fd92e2ff496bbc7a9bd0e749",
+        "stale_evidence:3b0673d2d2e4a5261f56bfb1b3b490c04de576907f59969dbfdd2a6f53e8169c",
+        "stale_evidence:3c4ae7a90965fa777f10c49ec2af5e85167c2cff43f757fcae4e9f74b6cb3000",
+        "stale_evidence:3cef374c57daf626cd159fe6ea1fec6f098fedb9acf19eb2e02a5a0bc5cc8fb3",
+        "stale_evidence:3dc218dd9d54bd4b4c97d808bfef49fa0d897a59cd1a7cf36101e6381881206e",
+        "stale_evidence:47dce54c2ccbc2ebc4bb828e7ccb4749b3c2a5101d3e2e50c3123a1c5046415e",
+        "stale_evidence:48101b3de4eab6921379812089a6c18608ffc5157eaa8c673ac087d5123398ff",
+        "stale_evidence:48aeb2a5c7073761cac16e970fc37911e341541cfeb1448dee171d28ea88e386",
+        "stale_evidence:48dcac6b196679c985f77a7631756c17957bb4741f6008e18d43de9de57840b8",
+        "stale_evidence:4a15f4137f795e366ae5fc1704b64671e1ffa7b9131bda1a7c815e405577a03c",
+        "stale_evidence:4b5c2f89beae111be960258cff91fde968bcf9f6ddce6e0e821fe435660c980a",
+        "stale_evidence:4d3e7c9a871a1def6ae37fcbeab7b112416ea2eadd175fcd4e049405325f590a",
+        "stale_evidence:50273162dfe76c7be3e23b9af4394fea0790996acd23b8201a3a239de6a89882",
+        "stale_evidence:53e50653522b1cf2122a09f310eb4f67e9dbc395b2d93303ca8b27625194b143",
+        "stale_evidence:545addec1566f647e557941983bbf352eaa57f898a38a68b4a680b69389f4141",
+        "stale_evidence:55472097e64b3d652a88ae9105641607ba68022a26b263bdfd2687fd0447509a",
+        "stale_evidence:58d8cc73b8d39b25b829d798e9a00319bfbd611db3b1c9b8062be3198382f856",
+        "stale_evidence:58ee6dd8f041ad86cdb3bf1a816600e2f2b3bb4f265792445dc2fbdba90ab9c7",
+        "stale_evidence:5ab8cc7d6aa84bffbd28c7375d7af6a67c8c2b2b0736d6c02ace256cad16b35c",
+        "stale_evidence:5b7ded028ba932586e804095c971e570698affe043d86bfe07bb6041eed2f49e",
+        "stale_evidence:5e5a4ca9c3c32d4590ea0f1fbb4e07ead4b0126e9cf64178ccd1c2f06f9880ae",
+        "stale_evidence:606b9b600e5bddcaa30f9c72016ed9b8a963758f83b2443edbfe0e28b27a8f51",
+        "stale_evidence:60ee76e426b725fa625a218d79ffc9697d24afec74e053578efa07e71188db24",
+        "stale_evidence:6117cc8ff78f0a88875d29e0694d24d008b0b3ddddb79e0472d80fac39824ad0",
+        "stale_evidence:6205afafef479fd9a443636edbf6191b32723819ce4b59a45ff8da214130a2fc",
+        "stale_evidence:65456295f37b29f4b9b89318f0e356325a1c8540514aeb1bab793a62e70b3cd1",
+        "stale_evidence:65720bad2da184cadf7c0bba34c169650afac22f45778c4dd0e328194d604cb1",
+        "stale_evidence:665183f87abb15276a232e6322ebbcfdf958c6791bdf6b216bf28375a36a2c4e",
+        "stale_evidence:667b5b8e2ec6c60dd7461a8ca7e65996a5067ec90c751af2d83d0d5abd1218bd",
+        "stale_evidence:67b5f53ed83474c3f1226aa51a8956e8814169d99557662c411c0cf11a47b0a1",
+        "stale_evidence:67d6ebe95eaf51335ad30ae6df5021dab9f9b32141a0d6df10ad1055ae9f3a63",
+        "stale_evidence:697f34f1de95d239ce9c770a2257e865f5ce60590ed48542f46c029c0c2d9d21",
+        "stale_evidence:69e08af65da676e73edc1bfee11bb23aad0d44f559d92cd801922626b40025da",
+        "stale_evidence:6b750fe18f77dfb7f38ad253a6aeb6267ffb361b7a9a7c4c1a052da960bb9f08",
+        "stale_evidence:6be7d6a940fd0636b700dbeaa89d4a623e1468ed62a8522635f8e223824263c2",
+        "stale_evidence:70e1e97e3dec80bc7896a52e0152edf077c4023c17254b1f3f6260dabf3fef17",
+        "stale_evidence:71e91c985f8fef6ebc3c3ca6bde80252017e13b001826bde001025bd9a268b33",
+        "stale_evidence:75c02afc58bb9b9a345958c87f0cc25655a97868fa58dc1bb6d6cf4b21d7b69b",
+        "stale_evidence:75da5de878366fe743712b71c98669b8e0117f508da2714a487ef14925032742",
+        "stale_evidence:75f7cdbc75611682cf5325a124ea5c43069c7739daec002e886a820daacc3d71",
+        "stale_evidence:786ab5a134a0d03b588aa05d2f4703e56a75fbb9395859a2e54d601bcaee43e2",
+        "stale_evidence:7ac482037b3ade57ebff14ef480d5f917d9b023182364da84419cba7f107c5a4",
+        "stale_evidence:7e26ea1be799d1ff86be8ff5582e728f6e95fffe5c8affc5902c1bb4bb03fa16",
+        "stale_evidence:8251ccc7f99228203c46414abd3c49aa2bbb942e4b3b368c678673df7e92b795",
+        "stale_evidence:82b5c208afffcef9bf8f5a7d154088813ce55a4f28ac90148a55027044242613",
+        "stale_evidence:82be7a358cd6787ad619cffba89e094ac67905cbd994bd4942031e397aa65505",
+        "stale_evidence:863cede2a82ced2aca520580c75e4e120629ccc3a5845eec0d0a55435993132c",
+        "stale_evidence:8712b088dd716448a00df0c000a3387bf476541d79a002191ce274522167ce04",
+        "stale_evidence:889b87483a2311857b04a328fcec046bca57c9dee51d38957c1044ab4d9d1b8b",
+        "stale_evidence:89b541bb6bf5edc870c426e539ddde8a1f69a88df3abd1a42ec501fee7392f7c",
+        "stale_evidence:8c904e8e1d79e1dc6efa04fe6e2ae41338d014c7ff783023bcdafadbfad842f2",
+        "stale_evidence:8e23a4fa848f7988187958dae05c7dadc63a7855ad5dbc0e3649bba1f51beefe",
+        "stale_evidence:8e4d97ad816acceed1c7e28b8c1d3f3d21fd3f31aafac5f6e07d84961d74bbc1",
+        "stale_evidence:8fac02bdcca7ff8d06abf2766ae45c7481afc639a32ec07c8358c588ff7267cb",
+        "stale_evidence:921ef000694ef65b307cb2250afe5e02f1f07ed16a44902c19e102d5ab79c47e",
+        "stale_evidence:9381b80af6cb85d9d184e644db4b53e6148caed7b4df63636074b11a44bde614",
+        "stale_evidence:9558c704974bc713a0ce589e9958824c5aa2d6dfa13177a586de4ab869ba83a4",
+        "stale_evidence:9998b28d989bfe57a0670754b5f4763e3586737244cc7b81a897924e1047b080",
+        "stale_evidence:99c30df6e5e2191b7d8fd672767abf6f5edf3c20976f520e870248163a052c32",
+        "stale_evidence:9a4c37be39ace072e280827fd3a2093ed2061f275a6838973578354c1a120765",
+        "stale_evidence:9b1203f2aeabaeaa525e3efc6ddd5a0c756af7ba174b26bbc1b6cd5fd9ef4518",
+        "stale_evidence:9c1c6ce2869b69c2a89961d76ada62a727b9cef2dc0cec7c80d813e71ae76aeb",
+        "stale_evidence:9cf31801ef91e138ca4f5009be6bb6c7c995911b807f5477fb2d430ff37062ec",
+        "stale_evidence:9dc712ae2369859ebaef72e83f0122a4ef804c80adbb85d2b3a7951fb1e7effb",
+        "stale_evidence:9dd511e1b7ed20dda5d4032fd18da405276e194a6dd27bd6f65c23693574a324",
+        "stale_evidence:9df04163fba0ef75277cb0f1cfb5dfe38be8b70bc7b87aef2d25928a57c3ea39",
+        "stale_evidence:9facee2991c71c36d0eeb2eee83c9b43fe44d6817cdb1095effed30fb2593fdd",
+        "stale_evidence:a14ba8649086ec9ad7dc551f7db32a23ce2e2f771468c13379ac1bd44a576160",
+        "stale_evidence:a1f7f108c6d5a7dfef4b66ae84e43b5e698e5024d0575b992387d1aa5069a47e",
+        "stale_evidence:a4b78be0573668554124d7811980452dc64dca65fbbe3f2e66f61f7570f993b5",
+        "stale_evidence:a4e2435d800dfd079875b70f0f60c9d3babbeb73de5abdeef4dc1e10de428d2c",
+        "stale_evidence:a4e8ade3ea65450db56dd8619613ca32cca60b01969b2e3e84ce7c0261b66ce4",
+        "stale_evidence:a5fe41f9a65695f036bfceb2ba97d652f0e3dc108ad345d4127172ac05e1c0ab",
+        "stale_evidence:a7c411bfe1c56a3ccb2aa2a1b611764b6a3f49d83a3eda56f07b261061e97043",
+        "stale_evidence:a993c3d942f4de1dbd0b8d0d10cba9729f49fac50ce7c2cba08975c50069f22b",
+        "stale_evidence:a9ae19eee029bd08b8e60d2ec59e37fa91939fdce0456d6cd9fea9c22ad37a13",
+        "stale_evidence:a9d831a702d30a9ac364a8ea522b8b1204a7098d2382afbc0f252c90aca6bbe6",
+        "stale_evidence:aaed924e9a78fbcf8bf27686dae01abe315e8972fec9b86a3f424cf8c3fd1989",
+        "stale_evidence:ab5ef1052a139d16e5bf33fb36b589f361a6ec233e5b8b1c37969f2c234a3fff",
+        "stale_evidence:ad44ecb33207e2d8f23583b74e51e36280927d5d6444d78d87651e561801babf",
+        "stale_evidence:ae4ea32029062b40ada5e5f9ce196757e5256b46b849c1d45a9a89763a0ef1d8",
+        "stale_evidence:b18b36810ef3451e4101016bd831f2f7e96c36fdf731cbd73215de05ee521260",
+        "stale_evidence:b4ad177d0414f53727abab16875d710137f2a55435912151d0d38c366719d005",
+        "stale_evidence:b94e087822caacb3f8e6b629916c346addc82855c21c614c4f65c67a8817745f",
+        "stale_evidence:bb8f1f54ef7c25615225d1c085423b3a08a39b8744c23d35687028dbed36dae0",
+        "stale_evidence:bd423bc88841a27242a9bebe82503da025c3c4e5d32fce218d7a4bef175a904f",
+        "stale_evidence:bed0f9943503658c8c2d775ece6258b2cfd86752732429159525010322f3258c",
+        "stale_evidence:c0821ef88fa6de846e447b2fce2a6e325443cb15873fde8c3a5c3973b84fdffb",
+        "stale_evidence:c0e167cf9bbd3238cc71d31200110febba9c1b64fbbf39188bdbb9e5c5b3e091",
+        "stale_evidence:c11a257363800d1bdc8e3b772a5445bd493fd8cf78c13c58e960f4ec8d28fa66",
+        "stale_evidence:c28c4eca868b51c462b4a088e1f1afc7202b3762348434f80892273bf8b6d135",
+        "stale_evidence:c3dd12a0a593a58044c6cee1f527f4f4f7269d2db3f20c300378246c6159fc80",
+        "stale_evidence:c3f53f303f9056d6bce74b365a4e090e6df528eb30519f29bf60c63c823a4962",
+        "stale_evidence:c4d8c5dec3a4df39a4c67d0ec9e1c7526c920b340ebec96cb7068cc00eb7a2c3",
+        "stale_evidence:c51c218fc67d71afd839d11c37f23be140163e6978677d7ad5f481abd4d227bb",
+        "stale_evidence:c674c0f97e8f1b330a21f0e5f275d12bf0aa4e28a5d525f6d4fdf969867f8454",
+        "stale_evidence:d16481a730c367ca68b123e4adad809ec53afafc8e0a27c57e2de668ef24debc",
+        "stale_evidence:d2130d14a2a539698821e33527785a57b0bb8a671950868458c7f13d27529f70",
+        "stale_evidence:d23dd7e5fbef3cd39e4a68db25b879794e8bb565b14492be89c9a8b2acfd15a4",
+        "stale_evidence:d41405caf18842062b0b017ef20257eb82abd9fbb520f2b7eb865bbb15f5ebef",
+        "stale_evidence:d4488e88d4583182318b24afea5f091a52b93c7ff1fc8c6fbe2d62645a904455",
+        "stale_evidence:d4b908a0cbf24b73adbd7f4ff5c0e43d61764cc9356ea28faf1d92b3eeba48ea",
+        "stale_evidence:d573ceccb17107eddde18c643961ff6d81f779e9f84d9eca8aee8e180be5c0ec",
+        "stale_evidence:d76425d6af604638d24fa6c76cfcace16d48a4b076f21101018952c8fbed044c",
+        "stale_evidence:d7aba3c46968841265a7ceb4c8a3b44625418f1987c02bc4d1ef60468bbed64e",
+        "stale_evidence:d9030dcc1a9409ff13177354c16d10b0f109505da3eb67449013f20a6a7d46fd",
+        "stale_evidence:db323483d2a02ea5f4512312fd505edadaf287800a163f34a8378e4644a976b0",
+        "stale_evidence:e0a603759b3179b5dc1759e9c27b9492c74893f0cbe3b471bd393e9156698b9b",
+        "stale_evidence:e0f6082472b8dae95cf2d9cc64545534b9081d304e330b748e48e1cd90e38a5d",
+        "stale_evidence:e44bc9bf69104857fe5a009ac51d3f0280e050e8786081fd7bb515ac88ab4a55",
+        "stale_evidence:e59ed2f0ea41155b9a837dd07cd1037bf7f4c5d4f9a28ca8dd78cde1c8c27861",
+        "stale_evidence:e5dd0a47571b0b6d7b3188b4ac28fbb15e4cde8085538519d4ef987117d0b8df",
+        "stale_evidence:e70554bf00fcdf0a0b7bf9f0a7e6cebc312b90ca3b39776486dee888601c3d15",
+        "stale_evidence:ed3492bb0825bf06ffd6fa7ba56492c9374dacab1ad5af35cb5381d99ed0fe61",
+        "stale_evidence:edcb405995e6bf4e04d1120554e70d9dc9d8df6c6cf3accc711a67ec296dd4d7",
+        "stale_evidence:ee9b17423231fa3126ff594b3090dae31089f4462b023fe1378036980ed0467a",
+        "stale_evidence:f08e298e7093b1ca1968279444ccda275d2fc35fedb834d70b924b785931ca33",
+        "stale_evidence:f38462b2ef85437f92ffde61b05114bb005383a660c82bb01a8bb0b5b0e133f8",
+        "stale_evidence:f79c6b90292a2c3cea3dcb9110f4026749d661f2bd9bdf4e00c28a8408b8b4c2",
+        "stale_evidence:f8887370699f32ad5a2872757b75dc25901155687330dc6918556f6b92de4ece",
+        "stale_evidence:fc670689eb0d993efd690033fda94ddf3d325df8bad56ffd3251e57dc4c56a3e",
+        "stale_evidence:fd1d06c101f569003bd6276cb955a53e9c53ecdae5d34053998c230029f050b2",
+        "stale_evidence:fd566717dbc341a1bdec6cc4c5d2cc0de16d19b117bdea4eeae524de6c24c894",
+        "stale_evidence:fe6d2cd9e55cc3c3a48509708fb03f774589b2e286ff279646119c7a7947eb60",
+        "stale_evidence:ffb2d94dc5c77fab2cf8080632034e89b45b266e2308236ca566bae499f1cce1"
+      ],
+      "reason": "Review confirmed closed-handle observer failure, old-runtime ownedexit99reproducer, atomic resource/point retirement checks and pending-resource session stop boundary. Preserve old original combinedexit99and all traces. Owned callback/FP/query-close guards and fresh combined original32actualexit0provide scoped validation. Reviewedb670a41a..b7feb37cwith14exact receipts/0gaps; code census and focused links reviewed. Metadata-only policy, no full hook quiescence or replay-order repair.",
+      "validation": {
+        "status": "pending",
+        "reason": "Three owned PE32 resource cases pass:seven recorded callbacks/three postclose original forwards with results/LastError/512BFP preserved, active callback defers stop and forced midcall trace refused. Two owned map-point cases preserve12forwards, closed-query journal160bytes and strict missing-query refusal. Three/six portable guards pass. Fresh combined original32records913requests/985closed storage calls/6973resource calls/1727closed maps,0public-copy callbacks and actualexit0, with2927original checks before/after. All1727map points remain unknown;119local addresses/910epochs do not prove ownership. Shared runtime edits retain wider historical evidence without promotion. Full IAT/module/timer quiescence, pending-query address bindings, general ordering repair and47/21closure remain pending."
+      }
     }
   ]
 }
