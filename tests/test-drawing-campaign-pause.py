@@ -34,5 +34,17 @@ class CampaignPause(unittest.TestCase):
         o,a=fixture()
         with self.assertRaises(ValueError):module.assess(o,a[:-1])
 
+    def test_normal_quit_before_ack_requires_exact_observed_exit(self):
+        o,a=fixture();a[-1].update(request=8,status=None,normal_exit=True,argument=0)
+        q=dict(request=8,screen=3,action=3,ack_observed=False,normal_exit=True,exit_code=0)
+        r=module.assess(o,a,q);self.assertFalse(r['quit_ack_observed']);self.assertTrue(r['world_resume_observed'])
+        with self.assertRaises(ValueError):module.assess(o,a)
+        for key,value in [('request',7),('screen',2),('action',4),('ack_observed',True),('normal_exit',False),('exit_code',1)]:
+            old=q[key];q[key]=value
+            with self.assertRaises(ValueError):module.assess(o,a,q)
+            q[key]=old
+        a[-1]['status']=2
+        with self.assertRaises(ValueError):module.assess(o,a,q)
+
 
 if __name__=='__main__':unittest.main()

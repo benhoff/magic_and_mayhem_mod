@@ -217,8 +217,9 @@ def main():
                 else:physical_action('campaign-mini-open',{'kind':'tap','key':'Escape','after_ms':1000});wait(17)
                 physical_action('campaign-mini-dwell',{'kind':'wait','after_ms':1500})
                 send(17,14);wait(10);physical_action('campaign-preferences-dwell',{'kind':'wait','after_ms':1500})
-                send(10,20);physical_action('campaign-resume',{'kind':'wait','after_ms':1500})
-                physical_action('campaign-mini-reopen',{'kind':'tap','key':'Escape','after_ms':600});wait(17);send(17,15)
+                send(10,20);physical_action('campaign-resume',{'kind':'wait','after_ms':4000})
+                physical_action('campaign-mini-reopen',{'kind':'tap','key':'Escape','after_ms':600});wait(17)
+                physical_action('campaign-mini-second-dwell',{'kind':'wait','after_ms':1500});send(17,15)
                 physical_action('campaign-confirm-yes',{'kind':'click','button':1,'x':265,'y':395,'after_ms':600})
                 wait(6);result_payload=bytes(channel[94208:99856]);send(6,26);returned_main=wait(3)
             else:

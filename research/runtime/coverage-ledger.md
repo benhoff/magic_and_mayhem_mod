@@ -8479,3 +8479,47 @@ PE32fixture06/bounded04,11wire,5temporal,9cadence and8frame guards pass.
 Step2remains open for exact producer/worker/alias ownership, caller/action,
 unknown display/movie/GDI routes, the mismatch and every physical change. No
 native replay/parity/replacement or47/21completion is asserted.
+
+
+## Source/worker/full-image acquisition and campaign timing — 2026-10-13
+
+[Source/worker research](draw02-source-worker-egl-binding.md) records exact
+mapped-source/submission/emitted-packet/completed-worker bindings and stable
+active context around each retained EGL call, with original API callers/results.
+[Quick Battle analysis04](draw02-source-worker-egl-analysis-04.json) matches456
+copy regions and456whole800×600source images over217complete advancing updates.
+The retained black startup API witness precedes the matching exact-command
+EGL entry in the same Linux monotonic clock; the original mismatch is preserved.
+
+[Final campaign original03](draw02-source-map-worker-campaign-original-03.json)
+retains1424owned sources/654457216bytes,55complete advancing updates and194API/
+193EGLwitnesses through Mini/Preferences/resume/abort/normalQuit. [Campaign
+analysis04](draw02-source-worker-egl-campaign-analysis-04.json) binds every observed
+source/worker and retained physical witness, matching193copy regions and193
+whole images/92640000RGBpixels. Final Quick Battle and campaign references
+therefore match649whole images/311520000RGBpixels. Whole-image agreement outside
+a partial copy region is visual corroboration, not attribution of those pixels
+to that command. One stable final EGL context per run has no physical witness
+after explicit capture close and remains recorded separately.
+
+[Pause/resume reanalysis04](draw02-source-worker-campaign-pause-analysis-04.json)
+requires actual selected-field stability and advancement:Mini2514ms/3323ms,
+Preferences2625ms,24resumed World samples with advancing counters. Exact normal
+Quit exits0before its acknowledgement can be sampled; the acknowledgement
+remains false. Owned guards reject failed/missing/mismatched normal-exit evidence.
+The earlier unobserved-ack,982msMini and absent-counter-advancement refusals stay
+in immutable negative01–03records. The capture now explicitly waits4000msafter
+Preferences close and1500msat the observed secondMini; thresholds stay intact.
+
+Ten source/worker/whole-image/delivery guards, four pause/resume/outcome guards
+and eight existing source/physical guards pass. Changed capturer and offline
+analyzer sources leave older coupled evidence historical; new records retain
+fresh fingerprints without changing old hashes. Engine stages remain separate,
+with no allpause/camera/native/replacement promotion. History4b772131..72a357b0
+contains24exact reviewed source versions and zero missing receipts.
+
+Step2continues:all original backing aliases/writers and source atomicity,
+semantic input-to-source outcomes, remaining movie/display routes and unobtrusive
+acquisition remain unproved. Existing timing control measures median2.27×/
+p953.20×costfor120common queued updates; this is diagnostic acquisition.
+Steps3–7and full47journey/21operation admission remain outstanding.
