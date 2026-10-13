@@ -37,7 +37,7 @@ void initializeMotionSegment(AutonomousCreature &a, CreatureExecution &e,
     throw std::invalid_argument("owned segment movement mode");
   const unsigned oldDirection = m.direction, oldMode = e.mode10c;
   const int oldVertical = p.vertical;
-  e.previousMove = oldDirection;
+  p.previousDirection = oldDirection;
   m.direction = unsigned(q.remainder[0]);
   p.vertical = q.remainder[1];
   m.vertical = p.vertical != 0;

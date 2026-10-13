@@ -8433,3 +8433,26 @@ transitions; the incoming Qt opt-in commitb6cc497b..6458a16f reviews four source
 link and33 behavior transitions, including evidence/scenario links. Both retain
 exact receipts with no unresolved gaps and assert no retrospective execution.
 Builds use the private authorized90GiB reserve policy; no cleanup is performed.
+
+## NS33 — Separate previous direction and previous motion state (2026-10-12)
+
+The composition review found that setup's614 previous direction and action's16c
+previous-motion flag reused one native member. SegmentInitializationState now
+owns previousDirection; CreatureExecution.previousMove remains16c and its prior
+rate remains170. Setup's fixture packs/checks all three independently, preserving
+the action fields while changing direction. No original field or rule is merged.
+
+Four fresh prospectively bound original32/native64/sanitized64 runs pass81920
+cases:24576setup,24576request,8192displacement and24576special-flight. Their
+native-only refusal counts are10/5/4/5. All thirteen rebuilt native CTests pass.
+New NS33.fields evidence records preserve all prior hashes/status history and
+refresh only the four source-affected scopes; NS28/NS29 do not depend on the
+changed setup header and are not rerun. Integration/replacement remainnone.
+
+This fixes state composition groundwork; installed constructor/profile binding,
+remaining original execution/aim/cast/upkeep, full lower World ownership, native
+CreatureRuleSession composition and portable continuation/application integration
+remain in the authorized objective. The committed NS32 range6458a16f..c9d19a92
+has38 source/link and106 behavior transitions with exact parent/current receipts
+and no unresolved accounting gaps. Private90GiB storage policy remains authorized;
+no cleanup is performed by this workstream.
