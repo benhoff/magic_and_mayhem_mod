@@ -53580,6 +53580,75 @@
         "tests/creature-execution-test.cpp",
         "tests/sprite-binary-reference.cpp"
       ]
+    },
+    {
+      "id": "HOST.launch-original-verification",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Optional full original manifest scan for public Qt launches",
+      "scope": "Public run-qt-shell.sh exports MNM_VERIFY_ORIGINALS=0 by default; explicit 1 restores before/after full original manifest checks in menu staging, menu execution and OpenGL staging/execution. Direct experiment helpers default to verification. Executable, DLL, installation and callback byte admission checks remain mandatory. Synthetic launch orchestration verified; fresh live engine validation remains pending; no equivalence or replacement promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "tools/run-qt-shell.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.startup-preparation",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Cached public launch preparation and optional bulk asset scans",
+      "scope": "Public Qt launcher reuses matching CMake configuration while retaining dependency-driven incremental builds, caches production menu/render/native-draw/audio/scene/word adapters against repository source content, options and toolchain file identities, and verifies cached DLL/manifest bytes. Full installed-asset and repeated Python prepared-music scans are opt-in; standalone helpers retain scans and fresh builds. The native music catalog loader still validates prepared WAV bytes. Executable, callback, adapter, configuration and fresh wire checks remain mandatory. Launch log starts collapsed behind Details with visible preparation/start progress. Synthetic regressions, production DLL cache reuse, Qt build/smoke and pinned offline staging cover this policy; no current live engine or equivalence/replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/public-launch-startup.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "tools/launch_build_cache.py",
+        "tools/launch_asset_checks.py",
+        "tools/run-qt-shell.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "tools/glyph_backend_launch.py",
+        "tools/menu-game-runner.py",
+        "tools/render-game-runner.py",
+        "tools/native_music_launch.py",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tests/test-launch-build-cache.py",
+        "tests/test-qt-launcher-startup.py",
+        "tests/test-native-music-launch.py",
+        "tests/test-native-audio-policy.py"
+      ],
+      "evidence": [
+        "HOST.startup-preparation.support-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -108683,6 +108752,24 @@
           "equals": 24576
         }
       ]
+    },
+    {
+      "id": "HOST.startup-preparation.support-20261012",
+      "kind": "native_integration",
+      "scope": "Bounded startup support tests, Qt shell build/CLI smoke, source/tool-bound production adapter reuse and pinned offline staging; no live engine equivalence or replacement claim.",
+      "record": "research/runtime/public-launch-startup-validation-20261012.json",
+      "sha256": "4d7b727e2d4de0d67698a7aa9764ae36079bec9beb92e5b2bb0623ae70dab724",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stability_verified",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -121564,8 +121651,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-remaining-contracts-20261012.json",
-    "sha256": "0086448ea8730d527a0a2d19f2c1956429f79e052ec26d42d01a7b0f29cc4b81"
+    "path": "research/runtime/coverage/source-index-startup-commit-fae75a9e-20261012.json",
+    "sha256": "fd4c91d0446b1a1531dab6a469626c1287a414e9d435f2a177f91ee009d66c87"
   },
   "claim_bindings_required": true
 }

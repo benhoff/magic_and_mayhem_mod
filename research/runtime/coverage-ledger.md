@@ -8479,3 +8479,38 @@ still supplied;509e50 upkeep admission is deliberately excluded. Lower World,
 ANI/geometry/health/effect/resource/RNG ownership, full wizard/scenario policy,
 installed construction and native session integration remain pending. No live
 replacement or balance change. See [scope details](creature-remaining-contracts-validation.md).
+
+Public Qt launch policy (2026-10-12): `HOST.launch-original-verification` skips
+the full original-media manifest scan by default through
+`MNM_VERIFY_ORIGINALS=0`. Set `MNM_VERIFY_ORIGINALS=1` when launching to restore
+before/after verification. Direct experiment helpers still verify by default;
+experiments consuming original artifacts require the checks. Working executable,
+DLL, installation and callback-byte admission remain in place. Synthetic
+orchestration and syntax checks cover the selection; live engine validation
+remains pending. This changes startup policy, with no engine comparison or
+replacement milestone promotion. Historical evidence retains its recorded hashes
+and may become stale for the shared launcher/UI files.
+
+Public startup preparation (2026-10-12), `HOST.startup-preparation`: the Qt
+launcher reuses matching CMake configuration and verifies cached production
+adapter DLL/manifest pairs. Source content, options or toolchain file identity
+changes invalidate cache entries. Full installed-asset and repeated Python music
+scans are opt-in; native music catalog validation, executable/DLL/callback/config
+and fresh channel admission remain mandatory. Details exposes the initially
+collapsed launch log. Synthetic boundary tests, real adapter reuse and Qt
+build/smoke cover preparation; offline staging uses a preserved pinned input.
+No live comparison or replacement stage is promoted. See
+[policy and retained reports](public-launch-startup.md). Shared source changes
+retain historical evidence and can leave earlier fingerprints stale.
+
+Startup final boundary: concurrent hard-restart edits changed the shared UI
+after its recorded build/smoke result. Retention preflight refused the combined
+rebuild (about100.24GiB free; 0.5GiB reservation would cross the100GiB reserve).
+The existing result remains bound to its earlier hash; current combined UI
+validation and whole-tree accounting are pending. No cleanup or budget override.
+
+Startup UI follow-up: after free space recovered, the guarded combined Qt build
+and fresh CLI/shell smoke checks passed for stable source hashes, retained in
+`public-launch-startup-ui-final-20261012.json`. Earlier storage refusals and
+source versions remain historical. Live engine validation and independent
+whole-tree accounting remain pending; no engine milestone promotion.

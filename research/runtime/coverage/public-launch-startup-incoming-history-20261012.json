@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "scope": "Committed source parent/current SHA-256 review against retained exact receipt chains. Separate from startup changes; no retrospective gate or engine validation claim. Existing actor route and Qt test-build receipts retain their declared validation boundaries.",
+  "base": "2976cdd6d320414a7876539bc650cfbd25b24b16",
+  "head": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+  "files": [
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "reconstruction/creature-ai/actor_displacement.cpp",
+      "before_sha256": null,
+      "after_sha256": "e4ec00ef4c3736cf7c884ac7c799ce46f7e934eeef61ba8c5077b3ae42df4ccc",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "reconstruction/creature-ai/actor_route_request.cpp",
+      "before_sha256": null,
+      "after_sha256": "e40a9967831c565c8658a4e534384c7e9bd6c21f13c6eb32e94aa5dc6a6c00c2",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "reconstruction/creature-ai/actor_route_request.hpp",
+      "before_sha256": null,
+      "after_sha256": "744c284f2ed8eded8ad9b50e59774d00ea2a5174c56194257d1cc2a3ced96fa1",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "reconstruction/creature-ai/actor_routing.hpp",
+      "before_sha256": null,
+      "after_sha256": "85b0b0da05cbdccd7264c97cd9f6d3db23cc95034865460ed329330c4de88131",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "reconstruction/creature-ai/routing/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "7c249d439dabe6b62071efa8535c0d39b36e70afb7983c71ac6aabdfae8165d5",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "9caf59e5b6f200052c90c1aa1709b75e4fdd6b548773b51b27e3c3ef8fa21dd8",
+      "after_sha256": "2208f79b94677d445c8e59966ffe593fcc57f033427075ce802c716b6d424275",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "scope": "Append-only journal, excluded from its own source receipts"
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/coverage/original-routing-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fbe83e321aec05ac4b0bfebbe671277dcc338c03db310360d2c6cb37dfcdb69e",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "1da73c4d251c6241c837981c079c33d395a763f5780658483f09ac8f27f0df2d",
+      "after_sha256": "a125c82a319b39e6a920a0702dd8c52408803f4f87d75435588d1994b1636157",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/coverage/source-index-original-creature-routing-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1d05cab814686b72ad62d76c1c3965802b1252592d6a7baebda68f2fe4ca5844",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/coverage/summary-original-creature-routing-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "9f666db48eaee74acdb6b82e9a107178553117cc26152a24be58bbfffa5ae54f",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/creature-routing.md",
+      "before_sha256": "0f81e84eb2d55460d1b169217661386be96501f30f52dcd16109c9b414f0da71",
+      "after_sha256": "f9e5bc8ea2e945a4397f74a464d6230578d6397f662664d09a60c17fc4c5ba63",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/original-creature-displacement-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1749c5b731ac8394a3a77a14c692ac55476ca71c7fabec9e8a91c06721050c6f",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "research/runtime/original-creature-request-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3b2d1e41450afd503f5e1dfebcd7832208d9a893fd2695d23f067cf68c15584f",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "tests/creature-route-request-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "a50bfe23056cddc9ebd5a6358cd4e467a1d02b1f7a4f483071081b4655a70fe7",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "tests/creature-routing-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "0a790d0170559522c25eac1929ef4f21ae764c89a36c2e0ba697498a6bfd0e32",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b",
+      "path": "tools/test-creature-routing.py",
+      "before_sha256": null,
+      "after_sha256": "bc696cf8dd7119486807d32eba3573f2c5853241bc1fcc353a10cfda18599457",
+      "receipts": [
+        "original-creature-routing-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "22d426e590fdab2957a5c001dc7ac1d84ce3bc75ae19fd65ae0f9a8b3440fee0",
+      "after_sha256": "6f5c1da296ee4bcdc3eac3697a7821440a2ef835731cfbc591dc0dc8b6692215",
+      "receipts": [
+        "qt-shell-tests-opt-in-20261012"
+      ]
+    },
+    {
+      "commit": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "scope": "Append-only journal, excluded from its own source receipts"
+    },
+    {
+      "commit": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "a125c82a319b39e6a920a0702dd8c52408803f4f87d75435588d1994b1636157",
+      "after_sha256": "869e055169eb53054c21c3c362fa39edb7556f4140caa7e2910a97b53dc5dab2",
+      "receipts": [
+        "qt-shell-tests-opt-in-20261012"
+      ]
+    },
+    {
+      "commit": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+      "path": "research/runtime/coverage/source-index-qt-shell-tests-opt-in-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "95fd96a7780f6f0ae5d3f286aa3448f9483af5993db69f18e55f9870960c6595",
+      "receipts": [
+        "qt-shell-tests-opt-in-20261012"
+      ]
+    },
+    {
+      "commit": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+      "path": "tools/run-qt-shell.sh",
+      "before_sha256": "78bd8cfc8a0ea69e73d6072a530b7fa7c08d730ef1de253acdf6c07d3b2fcbbf",
+      "after_sha256": "53290e652a3444c03f8bf05a18b6cb92d97c160a544e9eace711360cb022590f",
+      "receipts": [
+        "qt-shell-tests-opt-in-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
