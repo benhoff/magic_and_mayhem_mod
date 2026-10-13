@@ -7220,3 +7220,17 @@ regressions and builds. Full initialization,teardown/rebuild,live loaded caller
 and save/reload remain pending. Broader Grimoire/research and the mission-end
 renderer failure are separate boundaries. Earlier shared-source evidence stays
 historical; no old hashes or validation claims were refreshed.
+
+### Experimental broader static campaign Grimoire (2026-10-12)
+
+V22 admits original static single pages in eight chapters,with stable original
+section IDs and first active primary wizard knowledge/nullable table/override.
+Loaded three-Realm callers and separate unloaded fresh Celtic first Region
+are bounded independently. `UI64.campaign-grimoire` records162 unchanged
+original knowledge/getter cases,13 private caller/dispatcher cases,11 refusals,
+10 Qt cases,four regressions and builds. Native filtered navigation delegates
+checked original section IDs;original Close and fresh caller retain cleanup.
+Dynamic ~D values,multiple ~NP pages,full original selector/renderer,artwork,
+real caller/persistence and research cost/progression remain pending. Research
+sprite lettering has no established purchase callback;no resources or knowledge
+are granted. Historical shared-source fingerprints remain unchanged.
