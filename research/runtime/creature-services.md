@@ -712,3 +712,58 @@ The earlier1280GiB storage policy refused both static/history preflights at
 storage authorization supplies a private1312GiB cap for NS59 while preserving
 100GiB filesystem free space. The inventory and authorization record remain
 under working/retention. This is storage provenance, not engine validation.
+
+
+## Owned command handlers and callback continuation (NS60)
+
+A new OwnedCreatureCommands context runs whole50fae0 move,50ad10 target and50ca30
+coordinate admission alongside the existing ownership/reset/idle/follow/queue/
+delivery ports. Follow and command movement use the same owned orderMove body.
+Reset, transitions, release and peer consequences share canonical actor/execution
+storage. Command bindings supplied/idle/move/target/coordinate retain the installed
+callback identity separately from a lower callback's later behavior-word edits.
+Repair dispatch follows that identity; native tags do not store host/PE pointers.
+Lower510010/50afa0/50ccd0 behavior bodies, action, movement renewal516fd0,
+orientation5084f0 and queue refresh5120c0 remain explicit supplied boundaries.
+
+The finite comparison has16384 composed first/last move-anchor fixtures and4096
+direct dispatcher fixtures,1..32 canonical actors and0..15 order slots. Composed
+queues exclude type27 reset recursion; direct type27 reset uses empty queues and
+absent follow references. Positive16x16x4 dimensions and32x32x4 map backing with
+16 tile heights bound coordinate aim. Full actor/cast/route/live-order/global/
+map/body/dispatch/retired-ID/padding guards compare24 unchanged declared original
+bodies. Cross-architecture digests additionally cover cast aim/source/target/spell,
+target distance, route changes, action and all logical order payloads. Native
+CMake/CTest and prospectively declared original32/native64/ASan+UBSan+LSan64
+execution are recorded in the final NS60 proof. Append/clear/follow context APIs
+are implemented but their new composed ingress validation remains separately
+pending under AI.owned-command-ingress; this proof does not promote that scope.
+
+Development-v1 supplied wrong helper ABIs:516fd0 is renewal,5084f0 takes fine XY
+orientation arguments, and move refresh calls5120c0 rather than512220. Its private
+original execution fault and debugger output remain retained, with manifest
+verification. Development-v2 then found peer marker68 was left as padding;
+canonical marker68 and animationKind now initialize all actors. Development-v3
+found the synthetic release callback incorrectly treated physical node indices
+as live vector positions after removals. Both native and original callbacks now
+select the next live serial; declared command bodies remain unchanged. The corrected
+development-v4 passes all20480 cases. Final-v1 additionally guards native reentry
+and topology; final-v2 extends the cross-architecture digest and command-binding
+counters. All earlier records/source fingerprints remain retained separately.
+
+Native queue recursion and lower command changes to live serial topology/cursor/
+count refuse before returning to indexed advancement. The operation-local guard
+resets on exception; callers still must roll back staged actor/queue/effect state.
+These tests are native admission policy, not original recursive/malformed-pointer
+comparisons. Unknown callback99 and earlier display/missing-serial refusals remain
+separate. Complete native session publication, end-cursor/installed sentinel
+semantics, all-target cycling, broader profiles and live replacement remain
+pending for subsequent milestones. Lower behavior/action/route/geometry/visual/
+effect/controller ownership also remains explicit.
+
+NS59 32b042d5 incoming history reviews48 file/167 behavior transitions against
+exact receipts and its successful actual staged gate, with no unresolved accounting
+gaps. This is history accounting, not new execution or a retrospective gate pass.
+Refused1312GiB preflights at1342.90GiB/140.45GiB free and the user's authorized
+private1376GiB/100GiB-free guard are retained under working/retention; no cleanup
+or archive was used.

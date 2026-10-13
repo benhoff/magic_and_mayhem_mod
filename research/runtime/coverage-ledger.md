@@ -9040,3 +9040,28 @@ NS58 incoming history reviews45 file/165 behavior transitions against exact
 receipts and the actual successful staged gate, with no accounting gaps and no
 new execution claim. Refused1280GiB preflights and the authorized private1312GiB
 NS59 policy/100GiB free reserve are retained under working/retention.
+
+
+### NS60 — owned move, target and coordinate admission (2026-10-13)
+
+OwnedCreatureCommands closes50fae0/50ad10/50ca30 command handlers into canonical
+ownership/reset/idle/follow/queue/delivery. Shared release/peer/reset consequences
+and supplied/idle/move/target/coordinate logical bindings preserve raw original
+callback identity independently of later behavior-word edits. The finite paired
+corpus has16384 composed and4096 direct cases through24 unchanged declared bodies,
+with complete cast/route/order/actor/map/body/global/retirement guards and full
+cross-architecture command digests. Fresh prospective original32/native64/sanitized64
+and native CMake/CTest evidence is recorded by NS60. Integration/replacement none.
+
+Six native refusals include recursive queue and changed command topology; caller
+rollback remains required. Earlier fixture ABI/padding/live-serial failures are
+retained. Append/clear/follow owned-context ingress is partial with new composed
+validation pending, not covered by this milestone. End-cursor/sentinel/all-target
+cycling and native session publication follow separately. Lower behavior/action/
+route/geometry/visual/effect/controller ownership and installed/live scope remain
+pending. See NS60 in creature-services.md and the bound NS60 proof.
+
+NS59 exact-history review covers48 files/167 behaviors with no accounting gaps;
+no new execution or retrospective gate assertion. Authorized private storage
+headroom is1376GiB with100GiB filesystem reserve after concurrent-output refusal;
+reports are retained under working/retention.
