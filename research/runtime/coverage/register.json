@@ -54784,6 +54784,209 @@
         "Source-bound authored/captured pixel controls and a full TITAN reuse rerun pass casting/combat/spells/portraits/three menu resumes/normal Quit with5230matching captures/World/imports/returns and zero ordinary readbacks. Current-code prepared replay baseline also passes. Repeat World CPU drops4.57529\u21920.59140ms in distinct live journeys; World50.8045FPS and worst gameplay40.909FPS do not establish sustained60FPS. Original pixel/driver/scanout equivalence, interpolation and broad auxiliary input coverage remain excluded/pending. Reuse stays opt-in; default prepared draws preserve drawing stress.",
         "First reuse journey retains genuine copy-order GAP at menu: sampled BltFast phase4 age65ms against50ms budget. Full rerun passes without GAP; exact suboperation/OS attribution and resilience to arbitrary stalls remain unresolved. No guard weakening or causal FPS claim from distinct live inputs."
       ]
+    },
+    {
+      "id": "NR.native-world-owner-costs",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded native World render-owner CPU phase diagnostics",
+      "scope": "Opt-in per-World host CPU wall timings: queue validation, producer apply-or-skip records by opcode, entry/write publication/CPU discard, raster admission, completion, return snapshot, presentation and outer batch total. Nested World binding identity/catalogue/resource/resolve and scene admission/drawing costs retain separate parents. Profile-off adds no new clock reads; source FIFO, original verified returns, wire, raster order/formulas, known-word guards, engine clock and default rendering remain unchanged. Bounded contiguous captured-input profile-off/on native-word comparison on actual TITAN; diagnostic readbacks outside operation timings. No original simulation CPU, GPU busy, scanout, hardware-general latency or60FPS claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owner-costs.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/profile-native-world-owner.py"
+      ],
+      "tests": [
+        "tools/profile-native-world-owner.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_preparation.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/menu-resident-quit-test.cpp",
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-prepared-world-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/native-shell-provenance-test.py",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/render-resident-world-test.cpp",
+        "tests/resident-leaf-abi.S",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-deferred-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/menu-game-runner.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/profile_native_resident_helpers.py",
+        "tools/test-native-campaign.py",
+        "tools/test-native-world-rolling-hardware.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-resident-leaf-abi.py"
+      ],
+      "evidence": [
+        "NR.native-world-owner-costs.controls-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh profile-off/on pixel controls, measured dominant phase and current live performance remain pending. Shared-source historical fingerprints retain their limitations."
+      ]
     }
   ],
   "evidence": [
@@ -111274,6 +111477,41 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.native-world-owner-costs.controls-20261013",
+      "kind": "native_integration",
+      "scope": "Current O2 native captured128World TITAN profile-off/on full-word parity and warm owner cost breakdown; no live FPS proof.",
+      "record": "research/runtime/native-world-owner-costs-controls-20261013.json",
+      "sha256": "52ede3fe7479a032aa64c36478766903e4f5c91fe18bd4e22d7f2b97da6adc5c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_pixel_comparisons",
+          "equals": 128
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -124443,6 +124681,20 @@
         "NR.native-retained-world-image.first-public-negative-20261013",
         "NR.native-retained-world-image.final-public-20261013"
       ]
+    },
+    {
+      "id": "NR.native-world-owner-costs.offline",
+      "level": "headless",
+      "scope": "Bounded64..512 contiguous retained ownedV5 Worlds on private TITAN with current O2 source, source/asset integrity, profile-off/on full native-word hashes and zero ordinary readbacks. Report warm generation64+ nonoverlapping owner phases/opcodes and nested binding/admission costs. Diagnostic checkpoints exclude live FPS/GUI/original simulation proof.",
+      "behaviors": [
+        "NR.native-world-owner-costs"
+      ],
+      "tests": [
+        "tools/profile-native-world-owner.py"
+      ],
+      "evidence": [
+        "NR.native-world-owner-costs.controls-20261013"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -124969,8 +125221,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-retained-world-paired-public-20261013.json",
-    "sha256": "207d43fbf4ab28a2e9fe4f771cddd21669c1a331e87353ab651c1e76046a2d06"
+    "path": "research/runtime/coverage/source-index-native-world-owner-costs-controls-20261013.json",
+    "sha256": "1a70b025afae753f614ecd68673c14f93ecb8d0c6a34acd23ed16b79c38b36ad"
   },
   "claim_bindings_required": true
 }

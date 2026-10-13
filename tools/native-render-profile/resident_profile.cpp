@@ -47,7 +47,8 @@ int main(int argc,char** argv) try {
         const auto ms=[&]{return double(clock.nsecsElapsed())/1000000.;};
         QJsonArray rows;std::uint64_t sequence=0,dropped=0;double completionMs=0;QString digest;
         {
-            legacy::WorldRollingSession session(renderer,store,false,true,extras>0);render::GpuFrame frame;
+            const bool retain=qEnvironmentVariableIntValue("MNM_WORLD_IMAGE_REUSE")==1;
+            legacy::WorldRollingSession session(renderer,store,false,true,extras>0||retain,retain);render::GpuFrame frame;
             const auto collect=[&]{for(const auto& timing:renderer.pollGpuTimings()){
                 if(timing.sequence==8193*4)continue; // end-of-stream completion marker
                 const auto world=timing.sequence/4,phase=timing.sequence%4;
@@ -69,6 +70,10 @@ int main(int argc,char** argv) try {
                 if(timed){if(!renderer.profileBatch(sequence*4,[&]{frame=session.consumeResident(sequence,handoff.stream);}))++dropped;}
                 else frame=session.consumeResident(sequence,handoff.stream);
                 const double consumeEnd=ms();
+                const auto owner=session.ownerCosts();const auto binding=session.profile().binding;
+                QJsonArray opcodeMs,opcodeRecords;
+                if(owner.enabled)for(unsigned op=0;op<owner.producerMs.size();++op){opcodeMs.append(owner.producerMs[op]);opcodeRecords.append(double(owner.producerCalls[op]));}
+                const QJsonObject ownerCosts{{"enabled",owner.enabled},{"total_ms",owner.totalMs},{"validation_ms",owner.validationMs},{"entry_ms",owner.entryMs},{"append_ms",owner.appendMs},{"complete_ms",owner.completeMs},{"return_ms",owner.returnMs},{"present_ms",owner.presentMs},{"producer_opcode_ms",opcodeMs},{"producer_opcode_records",opcodeRecords},{"identities_ms",binding.identitiesMs},{"catalogue_ms",binding.catalogueMs},{"resource_prepare_ms",binding.resourcesMs},{"resolve_ms",binding.resolveMs},{"scene_admission_ms",session.profile().sceneAdmissionMs},{"scene_drawing_ms",session.profile().sceneDrawingMs}};
                 require(frame.valid() && session.completed()==sequence && !session.worldReadbacks() && renderer.stats().nativeReadbacks==before.nativeReadbacks && renderer.stats().rgbaReadbacks==before.rgbaReadbacks,"Resident delivery/readback/completion contract");
                 QJsonObject costs=stats(before,renderer.stats());
                 render::Image primaryImage;QString primaryHash;if(checkpoints){primaryImage=session.diagnosticReadResident(renderer);primaryHash=hash(primaryImage);}
@@ -85,7 +90,7 @@ int main(int argc,char** argv) try {
                         extra["native_words_sha256"]=pixels;}extraRows.append(extra);}
                 rows.append(QJsonObject{{"generation",QString::number(sequence)},{"source_read_ms",ioEnd-ioStart},{"decode_ms",decodeEnd-ioEnd},
                     {"handoff_ms",handoffEnd-decodeEnd},{"native_consume_ms",consumeEnd-handoffEnd},
-                    {"native_cpu_producer_ms",session.producerWorkMs()},{"native_prepare_ms",session.profile().prepareMs},
+                    {"owner_costs",ownerCosts},{"native_cpu_producer_ms",session.producerWorkMs()},{"native_prepare_ms",session.profile().prepareMs},
                     {"native_submit_cpu_ms",session.profile().submitMs},{"world_rasters",int(handoff.batch.header[14])},
                     {"source_bytes",double(sourceSize)},{"uploads",double(renderer.stats().uploads)},
                     {"copies",double(renderer.stats().copies)},{"copy_batches",double(renderer.stats().copyBatches)},{"costs",costs},{"extra_replays",extraRows},{"native_words_sha256",primaryHash}});

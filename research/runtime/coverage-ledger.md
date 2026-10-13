@@ -8794,3 +8794,17 @@ Reuse remains opt-in; prepared drawing stress is available by default. Exact
 phase4 stall/OS attribution, broader auxiliary inputs, interpolation and original
 equivalence remain pending. Committed-history review `b43b0bd1..835d2c0c`
 checks 22 exact transitions with zero missing receipts.
+
+### Native World owner phase costs — 2026-10-13
+
+[Bounded diagnostics](native-world-owner-costs.md) split native validation,
+producer opcodes, entry, append, completion, return snapshot and presentation,
+with nested binding/scene phases. TITAN `run-tljqzhls` passes 128 exact full-frame
+profile-off/on comparisons with stable sources/inputs/original manifests and
+zero ordinary readbacks. The quieter captured prefix averages 7.59 ms versus
+approximately 13 ms in prior busy live journeys; completion, producer replay and
+admission span several costs. These are native host wall times, not original
+simulation CPU or GPU busy time. Native World/UI owner separation is the next
+structural experiment; FIFO, two credits, guards and original pacing stay fixed.
+History review `835d2c0c..13f27e3e` verifies 11 exact transitions with zero missing
+receipts. Native diagnostics gain headless support only; live60FPS is pending.

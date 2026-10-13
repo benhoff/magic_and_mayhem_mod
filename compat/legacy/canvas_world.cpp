@@ -240,6 +240,9 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
     const auto identitiesBefore = bindings_.identityStats();
     auto started = Clock::now();
     const auto draws = bindings_.display(pending_);
+    const auto bindingProfile=bindings_.profile();profile_.binding.enabled=bindingProfile.enabled;
+    profile_.binding.identitiesMs+=bindingProfile.identitiesMs;profile_.binding.catalogueMs+=bindingProfile.catalogueMs;
+    profile_.binding.resourcesMs+=bindingProfile.resourcesMs;profile_.binding.resolveMs+=bindingProfile.resolveMs;
     if(preparedReplay_ && !retainCompletedImage_ && resident_)replayDraws_.insert(replayDraws_.end(),draws.begin(),draws.end());
     const auto bindingsAfter = bindings_.bindingStats();
     const auto identitiesAfter = bindings_.identityStats();
@@ -261,9 +264,13 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
     // context for the whole queue; drawNext's nested batches retain draw order.
     const auto rendererBefore = renderer_.stats();
     renderer_.batch([&] {
+      const auto admission=profile_.binding.enabled?Clock::now():Clock::time_point{};
       scene_->beginFrame(draws, render::SceneStart::retainedCanvas);
+      const auto drawing=profile_.binding.enabled?Clock::now():Clock::time_point{};
+      if(profile_.binding.enabled)profile_.sceneAdmissionMs+=std::chrono::duration<double,std::milli>(drawing-admission).count();
       while (!scene_->drawNext(32)) {
       }
+      if(profile_.binding.enabled)profile_.sceneDrawingMs+=milliseconds(drawing);
     });
     const auto rendererAfter = renderer_.stats();
     profile_.copyBatches +=

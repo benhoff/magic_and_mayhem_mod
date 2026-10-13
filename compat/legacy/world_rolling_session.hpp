@@ -6,6 +6,12 @@
 namespace mnm::legacy {
 class WorldRollingSession final {
 public:
+  struct OwnerCosts {
+    bool enabled=false;
+    double validationMs=0,entryMs=0,appendMs=0,completeMs=0,returnMs=0,presentMs=0,totalMs=0;
+    std::array<double,28> producerMs{};
+    std::array<std::uint64_t,28> producerCalls{};
+  };
   WorldRollingSession(render::GlBlitter &, const assets::AssetStore &,
                       bool verify = true, bool resident = false, bool preparedReplay = false,
                       bool retainCompletedImage = false);
@@ -38,6 +44,7 @@ public:
   double producerWorkMs() const { return producerMs_; }
   double checkpointAssertionMs() const { return assertionMs_; }
   bool failed() const { return failed_; }
+  const OwnerCosts& ownerCosts() const { return ownerCosts_; }
   struct PacketCacheStats {
     std::uint64_t decodes = 0, hits = 0;
     std::size_t bytes = 0, records = 0, sources = 0, sourceBytes = 0;
@@ -57,6 +64,8 @@ private:
   CanvasWorld world_;
   std::uint64_t completed_ = 0;
   bool failed_ = false, verify_ = true, resident_ = false;
+  bool ownerProfile_=false;
+  OwnerCosts ownerCosts_;
   double nativeMs_ = 0, assertionMs_ = 0, producerMs_ = 0;
   std::vector<std::uint8_t> cachedBytes_;
   std::optional<CanvasProducerStream> cached_;

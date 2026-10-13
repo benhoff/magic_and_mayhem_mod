@@ -1,7 +1,13 @@
 #include "world_rolling_session.hpp"
 #include <chrono>
 #include <limits>
+#include <cstdlib>
+#include <cstring>
 namespace mnm::legacy {
+namespace {
+using Clock=std::chrono::steady_clock;
+double elapsed(Clock::time_point start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();}
+}
 WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
                                          const assets::AssetStore &store,
                                          bool verify, bool resident, bool preparedReplay,
@@ -19,6 +25,7 @@ WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
         return std::get<std::vector<std::uint8_t>>(std::move(read));
       }, mirror_.get()),
       world_(renderer, store), verify_(verify), resident_(resident) {
+  const auto profile=std::getenv("MNM_WORLD_OWNER_PROFILE");ownerProfile_=profile&&std::strcmp(profile,"1")==0;
   if(resident && verify)throw std::invalid_argument("Resident and pixel-reference modes are separate");
   if(retainCompletedImage && !preparedReplay)throw std::invalid_argument("Retained World image requires prepared resident presentation");
   if(preparedReplay){if(!resident)throw std::invalid_argument("Prepared World requires resident native history");world_.enablePreparedReplay(retainCompletedImage);}
@@ -58,7 +65,10 @@ WorldRollingSession::consumeOwned(std::uint64_t sequence,
   if (failed_)
     throw std::runtime_error("Terminal rolling session");
   try {
+    ownerCosts_={};ownerCosts_.enabled=ownerProfile_;
+    const auto start=ownerProfile_?Clock::now():Clock::time_point{};
     validateRollingQueue(stream);
+    if(ownerProfile_)ownerCosts_.validationMs=elapsed(start);
     return consumeStream(sequence, stream, {}, {});
   } catch (...) {
     failed_ = true;
@@ -89,12 +99,17 @@ render::Image WorldRollingSession::consumeStream(
       cpuMs += std::chrono::duration<double, std::milli>(
                    std::chrono::steady_clock::now() - start)
                    .count();
+      if(ownerProfile_ && r[2]<ownerCosts_.producerMs.size()){
+        ownerCosts_.producerMs[r[2]]+=elapsed(start);++ownerCosts_.producerCalls[r[2]];
+      }
+      const auto phaseStart=ownerProfile_?Clock::now():Clock::time_point{};
       if (r[2] == 11) {
         canvas = r[3];
         if(resident_) {
           producer_.publishWrites();
           producer_.discardCpuWorld(canvas);
           world_.beginResident(c,mirror_->surface(canvas),sequence);
+          if(ownerProfile_)ownerCosts_.entryMs+=elapsed(phaseStart);
           continue;
         }
         auto history = producer_.read(canvas);
@@ -107,16 +122,20 @@ render::Image WorldRollingSession::consumeStream(
         }
         world_.beginRolling(c, history, sequence);
       } else if (world_.active()) {
-        if (r[2] == 9 || r[2] == 14 || r[2] == 26)
+        if (r[2] == 9 || r[2] == 14 || r[2] == 26){
           world_.append(c);
-        else if (r[2] == 10 && r[3] == canvas && resident_)
+          if(ownerProfile_)ownerCosts_.appendMs+=elapsed(phaseStart);
+        }else if (r[2] == 10 && r[3] == canvas && resident_){
           world_.completeResident();
-        else if (r[2] == 10 && r[3] == canvas)
+          if(ownerProfile_)ownerCosts_.completeMs+=elapsed(phaseStart);
+        }else if (r[2] == 10 && r[3] == canvas)
           producer_.commitNativeWorld(
               canvas, verify_ ? world_.complete(producer_.read(canvas))
                               : world_.completeNormal());
-        else if (r[2] == 12)
+        else if (r[2] == 12){
           world_.end(c);
+          if(ownerProfile_)ownerCosts_.returnMs+=elapsed(phaseStart);
+        }
       }
       if (r[2] == 10 && checkpoint) {
         const auto assertStart = std::chrono::steady_clock::now();
@@ -144,7 +163,12 @@ render::GpuFrame WorldRollingSession::consumeResident(std::uint64_t sequence,
                                                        const CanvasProducerStream &stream) {
   if(!resident_)throw std::logic_error("Session does not own resident canvases");
   render::GpuFrame frame;
-  renderer_.batch([&] { consumeOwned(sequence,stream); frame=presentGpu(); });
+  const auto start=ownerProfile_?Clock::now():Clock::time_point{};
+  renderer_.batch([&] { consumeOwned(sequence,stream);
+    const auto present=ownerProfile_?Clock::now():Clock::time_point{};frame=presentGpu();
+    if(ownerProfile_)ownerCosts_.presentMs=elapsed(present);
+  });
+  if(ownerProfile_)ownerCosts_.totalMs=elapsed(start);
   return frame;
 }
 render::GpuFrame WorldRollingSession::replayPrepared(){
