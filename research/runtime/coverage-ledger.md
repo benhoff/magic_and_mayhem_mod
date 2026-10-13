@@ -8468,3 +8468,14 @@ World/ANI/geometry/health/cast/effect services and installed profiles remain sup
 or excluded; native session integration and live replacement remain none.
 See [scope and evidence](creature-control-actions-validation.md). Earlier unbound
 results and the failed missing-dependency attempt remain historical.
+
+## NS35: remaining creature projections with current comparison
+
+Six prospectively bound suites pass151,552 paired original/native/sanitized cases
+for orders/follow, roaming, behavior handlers, maintenance/movement/death and
+idle/corpse/melee/interaction/stun callbacks. Eight scoped contracts gain current
+comparison; follow requires joint orders/control proof.512220 queue delivery is
+still supplied;509e50 upkeep admission is deliberately excluded. Lower World,
+ANI/geometry/health/effect/resource/RNG ownership, full wizard/scenario policy,
+installed construction and native session integration remain pending. No live
+replacement or balance change. See [scope details](creature-remaining-contracts-validation.md).
