@@ -316,3 +316,45 @@ construction, full controller/group/recipient/World ownership, native session
 and live replacement remain pending. NS47/48 be4199a9 is reviewed against exact
 receipts and actual staged gate:28 file/143 behavior transitions, no accounting
 gaps. Historical review adds no new execution result.
+
+
+## Logical source-controller grouping (NS50)
+
+Whole416590 with12 actual unchanged traversal/root/controller/RNG/coordinate
+helpers passes8,192 prospectively bound original32/native64/ASan+UBSan+LSan64
+cases.5,473 leaf allocations,3,098 group allocations,2,719 blocked inputs and
+1,113 conditional RNG draws are nonempty. Owner/8e5/704/type22/network gates,
+mode3 enumeration/drain/restoration, fresh restored-mode traversal, signed
+threshold/parity draw, minimum normalized squared distance, exclusions, parent/
+recipient transfer and final registration calls match. Complete modelled node/
+actor/owner/recipient/list/scalar/RNG/body guards and ordered events pass.
+The independent native CMake build and CTest pass. Five malformed native domains
+refuse with caller-staged rollback. Immutable record:
+original-source-controller-bound-20261012.json.
+
+Allocation supplies zero-filled successful141-byte nodes; generic vector append
+stays within reserved backing and recipient registration is a supplied service.
+These storage/registration boundaries remain separate from the recovered grouping
+rules. Byte25 is not asserted baseline-equal to the native tag. Coordinate
+temporary construction also overwrites the reused incoming-argument stack slot
+with its final temporary address, entryESP-68. The private invocation thunk
+captures the real entry stack without changing any compared body; the original
+byte is independently reconstructed and guarded. Native configurable tags use
+owned deterministic representation.32 metamorphic native tag changes preserve
+all decisions, graph/roots/RNG and ordered events. Allocator interpretation and
+arbitrary original heap/caller representations remain unvalidated.
+
+Developmentv1 stopped on a fixture mixed-type auto declaration. Developmentv2
+caught byte25's coordinate-stack provenance;v3 passed with explicit representation
+accounting. All failed/source versions remain retained; the final result has
+its own prospective declaration and stable source/compiler closure. Earlier
+static findings about initial argument/traversal-byte reuse remain historical
+and are extended here, not rewritten.
+
+Whole source registration416fe0, complete collection/allocation/recipient
+ownership, installed profile construction, canonical World/session composition
+and live replacement remain pending. Registration has separate general2a,
+wizard5a and other8a pending queues; this is instruction evidence awaiting fresh
+comparison. NS49 421caf78 has18 file/149 behavior transitions reviewed against
+exact receipts and staged gate with no accounting gaps; history review adds no
+new execution or broad integration claim.

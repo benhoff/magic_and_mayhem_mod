@@ -55300,30 +55300,122 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original source controller work",
-      "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending. New static dependency review: temporary-mode3 recursive traversal, minimum normalized squared-distance root grouping, node/vector allocation/linking, recipient transfer/pending registration. The argument stack low byte can be reused as node25 when no qualifying enumeration overwrites it; allocator/representation purpose remains unconfirmed. This is machine input dependence, not a freshly established undefined-latch domain.",
-      "confidence": "provisional",
+      "scope": "Whole416590 logical grouping projection with actual unchanged source traversal/root assignment/terminal/controller predicate,250-word RNG and coordinate/normalized squared-distance helpers: owner/8e5/704/type22/network gates, mode3 enumeration/drain then restored-mode fresh traversal owner count, conditional one parity RNG draw, minimum distance/root selection, zero-filled141-byte leaf/group creation, parent/recipient transfer/excluded-root and registration branches. Finite8192 fixtures, fixed3 canonical actors and2/3 initial acyclic nodes, manager family0/1, owner0..7, positive16x16 dimensions, mode1/3 and stable preallocated append storage. Successful allocation/vector append/recipient registration supplied; byte25 is opaque representation (incoming/traversal/coordinate-stack byte checked separately, native configured tags not baseline-equal). Broader heap/allocator/collection/recipient interpretation, malformed pointers/modes/backing, installed profiles and native World/session/live integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4285840,
-          "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending. New static dependency review: temporary-mode3 recursive traversal, minimum normalized squared-distance root grouping, node/vector allocation/linking, recipient transfer/pending registration. The argument stack low byte can be reused as node25 when no qualifying enumeration overwrites it; allocator/representation purpose remains unconfirmed. This is machine input dependence, not a freshly established undefined-latch domain."
+          "scope": "Whole416590 logical grouping projection with actual unchanged source traversal/root assignment/terminal/controller predicate,250-word RNG and coordinate/normalized squared-distance helpers: owner/8e5/704/type22/network gates, mode3 enumeration/drain then restored-mode fresh traversal owner count, conditional one parity RNG draw, minimum distance/root selection, zero-filled141-byte leaf/group creation, parent/recipient transfer/excluded-root and registration branches. Finite8192 fixtures, fixed3 canonical actors and2/3 initial acyclic nodes, manager family0/1, owner0..7, positive16x16 dimensions, mode1/3 and stable preallocated append storage. Successful allocation/vector append/recipient registration supplied; byte25 is opaque representation (incoming/traversal/coordinate-stack byte checked separately, native configured tags not baseline-equal). Broader heap/allocator/collection/recipient interpretation, malformed pointers/modes/backing, installed profiles and native World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326864,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342192,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367696,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5562880,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4252304,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4253856,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4255408,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4252896,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4254576,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4236976,
+          "scope": "Whole nested helper only as executed inside the finite416590 source-controller projection; not standalone full domain."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_controller.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-controller-test.cpp",
+        "tools/test-creature-source-controller.py"
+      ],
       "evidence": [
         "NS45.ownership-static-v2",
-        "NS49.source-controller-static"
+        "NS49.source-controller-static",
+        "NS50.source-coordinates-static",
+        "NS50.source-controller-original",
+        "NS50.source-controller-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/source-controller/CMakeLists.txt",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole13 unchanged bodies with source grouping/traversal/RNG/root/coordinate decisions and ordered allocation/register events",
+          "Complete modelled graph/actor/owner/recipient/list/scalar/body/RNG state guards on supplied zero-filled allocation/preallocated append domain",
+          "Opaque byte25 machine provenance checked from real entry ESP; native tag changes separately preserve all decisions/graph/RNG"
+        ],
+        "excluded": [
+          "Original allocator/private tag25 baseline equivalence and uninitialized/arbitrary heap/caller representation",
+          "Complete vector storage/recipient registration interpretation and World/session/installed construction",
+          "Malformed owner/family/backing/allocation/restored-mode cases; native caller must stage rollback"
+        ]
       }
     },
     {
@@ -55696,6 +55788,138 @@
       "tests": [],
       "evidence": [
         "NS49.source-controller-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.source-controller-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native source controller domain admission",
+      "scope": "Five native-only neutral owner/family2/mismatched information backing/allocation refusal and mode4 restored-lookup refusals. Primitives can mutate before refusal; caller stages state/events. Original undefined pointer/allocation/mode domains excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_controller.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-controller-test.cpp",
+        "tools/test-creature-source-controller.py"
+      ],
+      "evidence": [
+        "NS50.source-controller-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/source-controller/CMakeLists.txt",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole13 unchanged bodies with source grouping/traversal/RNG/root/coordinate decisions and ordered allocation/register events",
+          "Complete modelled graph/actor/owner/recipient/list/scalar/body/RNG state guards on supplied zero-filled allocation/preallocated append domain",
+          "Opaque byte25 machine provenance checked from real entry ESP; native tag changes separately preserve all decisions/graph/RNG"
+        ],
+        "excluded": [
+          "Original allocator/private tag25 baseline equivalence and uninitialized/arbitrary heap/caller representation",
+          "Complete vector storage/recipient registration interpretation and World/session/installed construction",
+          "Malformed owner/family/backing/allocation/restored-mode cases; native caller must stage rollback"
+        ]
+      }
+    },
+    {
+      "id": "NP.source-controller-storage",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native source controller opaque storage initialization",
+      "scope": "Deterministic configurable initial/coordinate byte25 tags for native owned storage.32 metamorphic native cases change these tags and preserve all grouping/root/RNG/ordered events. Original machine pointer-derived byte25 is checked separately, not asserted native-equal; broader allocator/consumer interpretation pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_controller.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-controller-test.cpp",
+        "tools/test-creature-source-controller.py"
+      ],
+      "evidence": [
+        "NS50.source-controller-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/source-controller/CMakeLists.txt",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole13 unchanged bodies with source grouping/traversal/RNG/root/coordinate decisions and ordered allocation/register events",
+          "Complete modelled graph/actor/owner/recipient/list/scalar/body/RNG state guards on supplied zero-filled allocation/preallocated append domain",
+          "Opaque byte25 machine provenance checked from real entry ESP; native tag changes separately preserve all decisions/graph/RNG"
+        ],
+        "excluded": [
+          "Original allocator/private tag25 baseline equivalence and uninitialized/arbitrary heap/caller representation",
+          "Complete vector storage/recipient registration interpretation and World/session/installed construction",
+          "Malformed owner/family/backing/allocation/restored-mode cases; native caller must stage rollback"
+        ]
+      }
+    },
+    {
+      "id": "TOOL.source-coordinates-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned source coordinate delta export",
+      "scope": "Read-only original source coordinate delta helper export; static bytes only.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-source-coordinates.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS50.source-coordinates-static"
       ],
       "status": {
         "understanding": "scoped",
@@ -113017,6 +113241,198 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS50.source-controller-original",
+      "kind": "isolated_original",
+      "scope": "Whole416590 logical grouping projection with actual unchanged source traversal/root assignment/terminal/controller predicate,250-word RNG and coordinate/normalized squared-distance helpers: owner/8e5/704/type22/network gates, mode3 enumeration/drain then restored-mode fresh traversal owner count, conditional one parity RNG draw, minimum distance/root selection, zero-filled141-byte leaf/group creation, parent/recipient transfer/excluded-root and registration branches. Finite8192 fixtures, fixed3 canonical actors and2/3 initial acyclic nodes, manager family0/1, owner0..7, positive16x16 dimensions, mode1/3 and stable preallocated append storage. Successful allocation/vector append/recipient registration supplied; byte25 is opaque representation (incoming/traversal/coordinate-stack byte checked separately, native configured tags not baseline-equal). Broader heap/allocator/collection/recipient interpretation, malformed pointers/modes/backing, installed profiles and native World/session/live integration excluded.",
+      "record": "research/runtime/original-source-controller-bound-20261012.json",
+      "sha256": "ad8733daa65637582c49aa18cfac43c46597350796d9564a76fa6bface1de832",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 13
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/leaves",
+          "equals": 5473
+        },
+        {
+          "pointer": "/groups",
+          "equals": 3098
+        },
+        {
+          "pointer": "/blocked_cases",
+          "equals": 2719
+        },
+        {
+          "pointer": "/rng_draws",
+          "equals": 1113
+        },
+        {
+          "pointer": "/representation_policy_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/allocator_tag_equivalence",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS50.source-controller-native",
+      "kind": "native_integration",
+      "scope": "Whole416590 logical grouping projection with actual unchanged source traversal/root assignment/terminal/controller predicate,250-word RNG and coordinate/normalized squared-distance helpers: owner/8e5/704/type22/network gates, mode3 enumeration/drain then restored-mode fresh traversal owner count, conditional one parity RNG draw, minimum distance/root selection, zero-filled141-byte leaf/group creation, parent/recipient transfer/excluded-root and registration branches. Finite8192 fixtures, fixed3 canonical actors and2/3 initial acyclic nodes, manager family0/1, owner0..7, positive16x16 dimensions, mode1/3 and stable preallocated append storage. Successful allocation/vector append/recipient registration supplied; byte25 is opaque representation (incoming/traversal/coordinate-stack byte checked separately, native configured tags not baseline-equal). Broader heap/allocator/collection/recipient interpretation, malformed pointers/modes/backing, installed profiles and native World/session/live integration excluded.",
+      "record": "research/runtime/original-source-controller-bound-20261012.json",
+      "sha256": "ad8733daa65637582c49aa18cfac43c46597350796d9564a76fa6bface1de832",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 13
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/leaves",
+          "equals": 5473
+        },
+        {
+          "pointer": "/groups",
+          "equals": 3098
+        },
+        {
+          "pointer": "/blocked_cases",
+          "equals": 2719
+        },
+        {
+          "pointer": "/rng_draws",
+          "equals": 1113
+        },
+        {
+          "pointer": "/representation_policy_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/allocator_tag_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NS50.source-coordinates-static",
+      "kind": "static",
+      "scope": "Pinned normalized signed toroidal delta helpers40e4e0/40eb70 only; no execution equivalence.",
+      "record": "research/runtime/original-source-coordinates-static-v1-20261012.json",
+      "sha256": "e7a2d9004b250a9022dc83f6b8611d9bde16eabcefb09bc8d3361c40b01410c1",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -126590,8 +127006,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-source-graph-20261012.json",
-    "sha256": "405853d84c4dc562193b87f469610ba5461523a52066b3a6493bf68d751ee224"
+    "path": "research/runtime/coverage/source-index-original-source-controller-20261012.json",
+    "sha256": "a551aa63190f2f67e39d5fddead956e52f16f24ad056a3f72ec029843f4e674b"
   },
   "claim_bindings_required": true
 }
