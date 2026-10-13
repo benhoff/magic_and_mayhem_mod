@@ -33,7 +33,7 @@ def main():
         (out/'character_adapter_fixture.h').write_text('static const unsigned char fade_bytes[]={'+','.join(hex(v) for v in data[at:at+8])+'};\n')
         run(['g++','-m32','-fno-pie','-no-pie','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(out),ROOT/'tests/character-adapter-reference.cpp','-o',out/'reference'],'compile-private')
         private=json.loads(run([out/'reference',exe],'private',30).stdout)
-        if not private.get('success') or private['guard_cases']!=16:raise ValueError('Incomplete private adapter guards')
+        if not private.get('success') or private['guard_cases']!=16 or private['campaign_cases']!=6:raise ValueError('Incomplete private adapter guards/callers')
         run(['python3',ROOT/'tools/build-menu-observer.py'],'build-observer')
         run(['cmake','-S',ROOT/'apps/qt-shell','-B',ROOT/'working/build/qt-shell'],'configure')
         run(['cmake','--build',ROOT/'working/build/qt-shell','--target','mnm-qt-shell','menu-character-bridge-test','character-screen-test','menu-host-lobby-bridge-test','-j4'],'build-qt',600)

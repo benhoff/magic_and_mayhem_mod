@@ -61,3 +61,20 @@ This keeps keyboard navigation available after a purchase/refund acknowledgement
 even when the host sees the page already reenabled. Synthetic Qt transactions
 assert focus after all six purchase/refund pairs from both caller identities
 (24 checks); this is a native presentation policy, not original focus recovery.
+
+## Three-realm experimental callers
+
+V20's separate campaign-menu opt-in admits settled original Celtic,Greek and
+Medieval Character callers. V18 retains the Celtic-only boundary. Region1
+is still refused for Celtic,matching its original disabled Character control;
+Greek/Medieval region1 is separately admitted. Snapshot/budget/control/thread
+checks and original getter/pricing/adjustment/OK/Cancel bodies remain unchanged.
+
+[UI61](character-three-realms-20261012.json) executes six private original
+purchase/refund/Cancel cases across both callers and all three realms,alongside
+16 existing guards/slot79/pricing/commit checks and three Qt transaction/focus
+regressions. Declared source fingerprints remain stable and both original
+manifests pass. This extends headless support,not genuine progressed loading,
+caller return,persistence,pause or portrait/art equivalence. Raw current evidence
+is `working/tests/character-adapter/run-sii8rj3k`. Older exact results remain
+historical; no saved progress or stats are authored by these fixtures.

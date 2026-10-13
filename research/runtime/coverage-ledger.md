@@ -7175,3 +7175,22 @@ hashes and statuses after shared-source changes; UI59 now describes its exact
 earlier source version. [28 prior committed versions](coverage/region-campaign-history-20261012.json)
 have exact matching receipts and no retrospective execution/gate assertion.
 Campaign items2–4 remain ongoing.
+
+## Character three-realm experimental admission — 2026-10-12
+
+V20 separately permits original settled Celtic/Greek/Medieval Character callers
+from Realm and Region. Earlier V18 keeps Celtic-only admission; Celtic's original
+first-region Character restriction remains. Existing original getter/price/stat
+callback and authoritative ACK/budget guards are retained.
+[UI61](character-three-realms-20261012.json) passes six private original
+purchase/refund/Cancel caller cases,16 existing private guards/slot79/commit
+checks and three Qt transaction/focus tests on stable declared sources,with
+immutable originals verified before/after. Current headless support is scoped
+to these synthetic resources and callbacks. [Details](character-live-adapter.md).
+
+Genuine progressed campaign/Character return,save/reload persistence,full pause
+and portrait/art fidelity remain pending. No campaign flags or balance values
+are edited. Older evidence hashes/statuses remain retained after shared source
+changes. The previous Region commit has[23 exact receipt versions](coverage/character-three-realms-history-20261012.json)
+and no retrospective execution/gate assertion. Mission-end/native rendering
+and remaining campaign auxiliary menus continue as separate chunks.

@@ -24,6 +24,7 @@ static void record(u32 event,void*,u32,u32){if(event==3)++callbackCount;}
 static void require(bool ok,const char* text){if(!ok){std::cerr<<text<<'\n';std::exit(1);}}
 static void THIS fade(void* object){static_cast<u8*>(object)[0xc]=1;}
 static void reset(){
+    character_campaign_enabled=0;
     std::memset(reinterpret_cast<void*>(0x6c5148),0,0x120);std::memset(reinterpret_cast<void*>(0x659408),0,0x1e25);
     std::memset(reinterpret_cast<void*>(0x65b250),0,80*0x93a);std::memset(reinterpret_cast<void*>(0x6e8000),0,0x1100);
     const auto p=reinterpret_cast<u8*>(0x6c5148);global(0x6c5148,0x5c66b4);global(0x6c514c,20);global(0x6c5150,1);
@@ -78,5 +79,16 @@ int main(int argc,char** argv)try{
         require(character_dispatch(p,MNM_MENU_CHARACTER_OK,0)==MNM_MENU_UNAVAILABLE&&!callbackCount,"invalid state dispatched");++guards;}
     reset();global(0x6f349c,5);global(0x6f34b0,0x6578c0);global(0x6f34b4,0x6c5148);global(0x6578c0,0x5c667c);global(0x6578c4,18);global(0x65793c,4);global(0x65792f,2);
     require(character_snapshot(p,character_payload)&&get(character_payload)==18,"Region caller snapshot");global(0x65792f,1);require(!character_snapshot(p,character_payload),"fresh first-region refusal");++guards;
-    std::cout<<"{\"success\":true,\"guard_cases\":"<<guards<<",\"original_adjust_refund_cancel\":true,\"live_validated\":false}\n";return 0;
+    unsigned campaignCases=0;
+    for(const char* name:{"Celtic","Greek","Medieval"})for(bool region:{false,true}){
+        reset();character_campaign_enabled=1;std::strcpy(reinterpret_cast<char*>(0x659e51),name);
+        if(region){global(0x6f349c,5);global(0x6f34b0,0x6578c0);global(0x6f34b4,0x6c5148);global(0x6578c0,0x5c667c);global(0x6578c4,18);global(0x65793c,4);global(0x65792f,2);}
+        require(character_snapshot(p,character_payload),"three-realm caller admission");
+        require(character_dispatch(p,MNM_MENU_CHARACTER_ADJUST,1)==MNM_MENU_OK&&character_snapshot(p,character_payload)&&get(character_payload+36)==45&&get(character_payload+16)==41,"three-realm original purchase");
+        require(character_dispatch(p,MNM_MENU_CHARACTER_ADJUST,0)==MNM_MENU_OK&&character_snapshot(p,character_payload)&&get(character_payload+36)==40&&get(character_payload+16)==50,"three-realm original refund");
+        if(region){global(0x65792f,1);require(bool(character_snapshot(p,character_payload))==bool(std::strcmp(name,"Celtic")),"original Celtic first-region boundary");global(0x65792f,2);}
+        require(character_dispatch(p,MNM_MENU_CHARACTER_CANCEL,0)==MNM_MENU_OK,"three-realm original Cancel");++campaignCases;
+    }
+    reset();std::strcpy(reinterpret_cast<char*>(0x659e51),"Greek");require(!character_snapshot(p,character_payload),"legacy Celtic scope retained");
+    std::cout<<"{\"success\":true,\"guard_cases\":"<<guards<<",\"campaign_cases\":"<<campaignCases<<",\"original_adjust_refund_cancel\":true,\"live_validated\":false}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
