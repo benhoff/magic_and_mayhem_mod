@@ -7207,3 +7207,16 @@ No actual victory, natural defeat, score/reward comparison, save/reload, install
 artwork comparison or World cleanup has been validated here. The drawing-lock
 timeout/recovery failure remains unresolved and separate. Shared source changes
 leave earlier menu evidence historical; none of its hashes was refreshed.
+
+### Experimental campaign Portmanteau (2026-10-12)
+
+V21 retains Quick Battle mode1 and adds mode0 with exact loaded campaign
+callers,three Realm names,active wizard0..79 and original inventory/control
+guards. A separate context lane distinguishes original campaign return from
+battle start. Native Done/Escape preserve the draft; original callbacks and
+teardown own inventory/spell-list writes. `UI63.campaign-spellbox` records 12
+private original assignment/OK/snapshot cases,11 refusals,12 Qt cases,four
+regressions and builds. Full initialization,teardown/rebuild,live loaded caller
+and save/reload remain pending. Broader Grimoire/research and the mission-end
+renderer failure are separate boundaries. Earlier shared-source evidence stays
+historical; no old hashes or validation claims were refreshed.

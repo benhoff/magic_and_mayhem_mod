@@ -26,6 +26,7 @@ public:
     bool removeItem(const QString& talismanId,QString* error=nullptr);
     QRect contentRect() const;
     void focusFirstControl();
+    void setEscapeAccepts(bool value){escapeAccepts_=value;}
 signals:
     void loadoutAccepted(const SpellboxWidget::Request& request);
     void spellPreviewRequested(const SpellboxWidget::Preview& request);
@@ -36,6 +37,7 @@ protected:
     void paintEvent(QPaintEvent*) override;
     void resizeEvent(QResizeEvent*) override;
 private:
+    bool escapeAccepts_=false;
     friend class SpellboxCell;
     static bool valid(const Inventory&);
     int itemIndex(const QString&) const;

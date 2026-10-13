@@ -1,13 +1,13 @@
 #pragma once
 #include "character-wire-fixture.hpp"
-#include "../protocols/include/mnm/menu_v20.h"
+#include "../protocols/include/mnm/menu_v21.h"
 // Synthetic engine peer only. No game process, progress grants or save writes.
 class CampaignMenuWireFixture final {
 public:
-    CampaignMenuWireFixture(){
+    explicit CampaignMenuWireFixture(bool campaignSpells=false){
         bridge_=std::make_unique<MenuBridge>();
-        check(directory_.isValid()&&bridge_->create(directory_.filePath("campaign.bin"),true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true),"V20 channel");
-        file_.setFileName(directory_.filePath("campaign.bin"));check(file_.open(QIODevice::ReadWrite)&&file_.size()==MNM_MENU_V20_SIZE,"V20 peer");
+        check(directory_.isValid()&&bridge_->create(directory_.filePath("campaign.bin"),true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,campaignSpells),"Campaign channel");
+        file_.setFileName(directory_.filePath("campaign.bin"));check(file_.open(QIODevice::ReadWrite)&&file_.size()==(campaignSpells?MNM_MENU_V21_SIZE:MNM_MENU_V20_SIZE),"Campaign peer");
         bytes_=file_.map(0,file_.size());check(bytes_,"V20 mapping");put(148,MNM_MENU_OK);put(152,9);region();
     }
     ~CampaignMenuWireFixture(){if(bytes_)file_.unmap(bytes_);}
@@ -35,6 +35,14 @@ public:
         std::strcpy(reinterpret_cast<char*>(bytes_+at+16),outcome?"Original victory title":"Original defeat title");
         for(int i=0;i<21;++i)std::strcpy(reinterpret_cast<char*>(bytes_+at+272+i*256),i==19?"":"Original score text");
         publish();
+    }
+    void spells(quint32 parent=4,quint32 owner=79){
+        put(136,7);put(140,1);put(156,0);const int at=MNM_MENU_V3_SPELL;
+        std::memset(bytes_+at,0,MNM_MENU_V3_SPELL_SIZE);put(at,owner);put(at+4,UINT32_MAX);put(at+8,3);
+        for(int a=0;a<3;++a){put(at+MNM_MENU_V3_COUNTS+4*a,2);for(int i=0;i<21;++i)put(at+MNM_MENU_V3_SLOTS+4*(a*21+i),UINT32_MAX);}
+        for(int i=0;i<25;++i)put(at+MNM_MENU_V3_SHELVES+4*i,i<2?quint32(i):UINT32_MAX);
+        for(int i=0;i<2;++i){text(at+MNM_MENU_V3_ITEM_NAMES+i*128,i?"Second":"First");for(int a=0;a<3;++a){put(at+MNM_MENU_V3_RECIPES+4*(i*3+a),i*3+a);text(at+MNM_MENU_V3_SPELL_NAMES+(i*3+a)*128,"Original spell name");}}
+        const int meta=MNM_MENU_V21_SPELL_CONTEXT;std::memset(bytes_+meta,0,MNM_MENU_V21_SPELL_CONTEXT_SIZE);put(meta+4,parent);put(meta+8,parent==4?4:5);put(meta+12,5);publish();
     }
     void acknowledge(){put(144,word(28));put(148,MNM_MENU_OK);publish();}
     MenuBridge& bridge(){return *bridge_;}

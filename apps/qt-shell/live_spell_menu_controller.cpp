@@ -14,7 +14,11 @@ LiveSpellMenuController::LiveSpellMenuController(LiveMenuSession& session,Spellb
 }
 bool LiveSpellMenuController::present(const MenuBridge::State& state,QString* error){
     if(state.screen!=7||!state.ready)return true;
-    const auto& b=state.spells;SpellboxWidget::Inventory model;model.ownerId=QString::number(b.owner);
+    const auto& b=state.spells;
+    if(!b.mode&&!session_.campaignSpellboxEnabled){if(error)*error="Campaign spell selection is unavailable.";return false;}
+    widget_.findChild<QPushButton*>("spellboxOK")->setText(b.mode?"Start battle":"Done");
+    widget_.setEscapeAccepts(!b.mode);
+    SpellboxWidget::Inventory model;model.ownerId=QString::number(b.owner);
     for(int i=0;i<21;++i){if(!(b.offered&(1u<<i)))continue;SpellboxWidget::Item item;item.id=QString::number(i);item.name=b.items[i];item.artworkIndex=i;item.quantity=1;
         for(int a=0;a<3;++a){int at=i*3+a;item.spells[a]={QString::number(b.recipes[at]),b.names[at],b.recipes[at]+2};}
         model.items.append(item);
