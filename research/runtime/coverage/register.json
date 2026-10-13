@@ -44695,7 +44695,8 @@
       ],
       "documents": [
         "research/runtime/world-tick-loop.md",
-        "research/runtime/draw02-end-to-end.md"
+        "research/runtime/draw02-end-to-end.md",
+        "research/runtime/draw02-menu-return-copy.md"
       ],
       "implementation": [],
       "tests": [
@@ -44703,7 +44704,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-cursor-clients-static-negative-01-20261012",
-        "DRAW02.draw02-cursor-clients-static-02-20261012"
+        "DRAW02.draw02-cursor-clients-static-02-20261012",
+        "DRAW02.draw02-cursor-clients-direction-static-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44714,7 +44716,8 @@
       },
       "remaining_gaps": [
         "Cursor descriptor/hotspot/resource lifetime and complete caller state unverified. Retained foreign-copy failure may match exact cursor caller but allocation/alias overlap, source protection, full concurrency and source-owned/native/physical parity remain independent. Actual game input/selection/tooltip receiver unassigned.",
-        "4eaaf0callback absent from discovered-function inventory; exact8byteCALL/RETanchor is bounded only and does not assign a whole function or erase unassigned ranges. Initial refusal preserved."
+        "4eaaf0callback absent from discovered-function inventory; exact8byteCALL/RETanchor is bounded only and does not assign a whole function or erase unassigned ranges. Initial refusal preserved.",
+        "Historical cursor-clients-static-02 reversed source/destination wrapper labels at4a4b01. Original58c360usesECX receiver as source and first argument as destination; corrected future inspection only. Historical report/hash remains unchanged and stale. No allocation/backing ownership or original execution inference."
       ],
       "validation_dependencies": [
         "tools/inspect-drawing-canvas-storage.py",
@@ -46483,6 +46486,64 @@
         "Current ten divergent pairs use full-copy caller0x46ba01 and encounter a COPY into the saved buffer before a direct saved-buffer\u2192full-source COPY. Historical failure uses caller0x5597fd and immediate saved-buffer\u2192canvas2 COPY at208519 before checkpoint208520. Copy-only logical-ID predicate ignores noncopy writes, other destinations and backing aliases; no absence-of-propagation or cause proof.",
         "First01reports retain prospective duplicate-dependency contracts and earlier source versions; contract/source freshness limitations are intentional. Current02results have new prospective declaration after deduplication/tool change. No historical hash refresh or status promotion.",
         "Original source/view/backing ownership, actual execution ordering beyond associated worker bodies, fresh request-bound reproduction of the old failing branch, safe ordering repair, diagnostic controls and all47/21closure remain open."
+      ]
+    },
+    {
+      "id": "DRAW.common-menu-return-copy-path",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Common menu redraw copy caller and bounded static branch context",
+      "scope": "Inspect pinned original bytes around historical full-copy return address0x5597fd and retain exact static redraw branch/call context. Existing common menu tick entry guard links only eight bytes; undiscovered shared-tick body remains an original candidate. Rectangular-copy receiver convention and restore helper use existing inventory bounds. No executed menu branch, byte backing identity or ordering policy follows from static code alone.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "recovered_range": "campaign-mini-entry-5595d0",
+          "scope": "Existing eight-byte shared tick entry guard only; does not cover newly inspected body."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Existing inventory-bounded rectangular copy source receiver and destination argument convention; no whole callback lifetime claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4866944,
+          "scope": "Existing inventory-bounded restore-helper static context only, not executed branch validation."
+        }
+      ],
+      "original_candidates": [
+        "0x5597fd",
+        "0x5597f8"
+      ],
+      "documents": [
+        "research/runtime/draw02-menu-return-copy.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-drawing-return-copy.py"
+      ],
+      "validation_dependencies": [
+        "tools/export-menu-support.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-menu-return-copy-static-01-20261013",
+        "DRAW02.draw02-menu-return-copy-static-02-20261013",
+        "DRAW02.draw02-menu-return-copy-static-03-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Static03confirms redraw call0x5597f8\u219258bf40 returning5597fd followed by4a4380; pop request branch at5596f1returnsbefore this path. Menu drawing requires+[8]nonzero/+[12]zero, with conditional foreground cursor call and temporary642c60zero. Indirect receiver slots and actual branch state remain unresolved.",
+        "The restore helper has guarded cursor/background paths and a direct saved-buffer641fc8\u21926a49e0 rectangular-copy call. Normalframe46b9fcandmenuredraw5597f8both use source receiver6a49e0\u2192destination6a4fe0. These are static wrapper identities, not source/view/backing ownership.",
+        "Common menu body5595d0..55981e remains missing from function inventory; only existing eight-byte entry guard is anchored and later branch addresses remain candidates. No full function-boundary recovery. Earlier static01/02source versions remain stale; oldcopyfailure remains failed.",
+        "Need fresh actual menu-redraw branch/request/worker/source witnesses for1600pixel case, current-source diagnostic controls, full route/lifetime and all47/21closure. No engine-stage promotion."
       ]
     }
   ],
@@ -100593,6 +100654,85 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-menu-return-copy-static-01-20261013",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/draw02-menu-return-copy-static-01.json",
+      "sha256": "c1edfea529596b4f08199e9f029e818b44449b41a500d00ff92e81b41048ab4b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_code_executed",
+          "equals": false
+        }
+      ],
+      "scope": "Historical bounded static caller-window export; earlier tool version retained. No original branch execution, new function boundary, backing ownership or ordering repair."
+    },
+    {
+      "id": "DRAW02.draw02-menu-return-copy-static-02-20261013",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/draw02-menu-return-copy-static-02.json",
+      "sha256": "3ffde08bcd9750e6f2c582e878a9c70e13b7417f98c2f53834af0ad6392adcdd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_code_executed",
+          "equals": false
+        }
+      ],
+      "scope": "Historical bounded static caller-window export; earlier tool version retained. No original branch execution, new function boundary, backing ownership or ordering repair."
+    },
+    {
+      "id": "DRAW02.draw02-menu-return-copy-static-03-20261013",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/draw02-menu-return-copy-static-03.json",
+      "sha256": "7fa657f5f79c7d71bd5dd4abb2367ac84cae43d5b548e4d160e783d55b1d268c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_code_executed",
+          "equals": false
+        }
+      ],
+      "scope": "Current pinned static export: exact menu/frame/save caller bytes and inventory-bounded restore helper/rectangular receiver. No original branch execution, new function boundary, backing ownership or ordering repair."
+    },
+    {
+      "id": "DRAW02.draw02-cursor-clients-direction-static-01-20261013",
+      "kind": "static",
+      "scope": "Fresh pinned static cursor-client inspection corrects receiver/source6a4fe0 and first-argument/destination641fc8 at4a4b01. Old report/hash retained; no engine execution or backing ownership.",
+      "record": "research/runtime/draw02-cursor-clients-direction-static-01.json",
+      "sha256": "ebd4d89465789ab6bd875f54d7c4f0f69c7e868f1a3e87c3bf43a5a261a8a03b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/exact_copy_link/source_wrapper",
+          "equals": 6967264
+        },
+        {
+          "pointer": "/exact_copy_link/destination_wrapper",
+          "equals": 6561736
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -112754,8 +112894,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-held120-values-20261013.json",
-    "sha256": "e33e430c2d35225a6e3d8b7c20101c0b649fb306631113a736f9f933fa58988a"
+    "path": "research/runtime/coverage/source-index-draw02-menu-redraw-20261013.json",
+    "sha256": "72da86218682bb72d3171decc57554ce0fdb2e89d595e2c021de30b5b683d661"
   },
   "claim_bindings_required": true
 }

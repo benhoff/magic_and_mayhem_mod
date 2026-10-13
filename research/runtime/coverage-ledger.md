@@ -9248,3 +9248,21 @@ Recover the distinct caller/control flow and acquire fresh exact request evidenc
 for the failing branch before proposing an ordering policy. Whole-route lifetime,
 diagnostic controls, semantic outcomes and all47/21closures remain open; steps3–7
 have not been completed.
+
+
+## Step2 shared-menu redraw investigation (2026-10-13)
+
+Committed held120/value diagnostics (`1b0bedb8`) passed exact staged accounting
+and the required hook. Its committed history review found17exactreceipts/0gaps.
+Pinned static inspection now distinguishes the older failed full-copy caller
+`0x5597fd` as a shared menu redraw followed by cursor restore, rather than the
+earlier pop-request branch. Existing inventory-bounded restore/copy functions
+are inspected; the shared tick body remains a discovery candidate outside its
+historical eight-byte entry guard. No full-function or live-branch claim follows.
+An earlier cursor inspection reversed source/destination wrapper labels; future
+metadata is corrected while old evidence and hashes remain unchanged.
+
+Reassessment: acquire actual request-bound menu redraw/restoration evidence and
+source state, retaining the old1600pixel failure. Static caller recovery does not
+justify COPY reordering or close ownership, diagnostic controls or presentation.
+Step2 remains active; all47/21closures and steps3–7 remain open.
