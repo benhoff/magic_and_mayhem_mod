@@ -55300,13 +55300,13 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original source controller work",
-      "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending.",
+      "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending. New static dependency review: temporary-mode3 recursive traversal, minimum normalized squared-distance root grouping, node/vector allocation/linking, recipient transfer/pending registration. The argument stack low byte can be reused as node25 when no qualifying enumeration overwrites it; allocator/representation purpose remains unconfirmed. This is machine input dependence, not a freshly established undefined-latch domain.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4285840,
-          "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending."
+          "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending. New static dependency review: temporary-mode3 recursive traversal, minimum normalized squared-distance root grouping, node/vector allocation/linking, recipient transfer/pending registration. The argument stack low byte can be reused as node25 when no qualifying enumeration overwrites it; allocator/representation purpose remains unconfirmed. This is machine input dependence, not a freshly established undefined-latch domain."
         }
       ],
       "documents": [
@@ -55315,7 +55315,8 @@
       "implementation": [],
       "tests": [],
       "evidence": [
-        "NS45.ownership-static-v2"
+        "NS45.ownership-static-v2",
+        "NS49.source-controller-static"
       ],
       "status": {
         "understanding": "partial",
@@ -55454,6 +55455,254 @@
           "Neutral source relation null alias, malformed owner/count/backing and arbitrary adjusted indirect handlers",
           "Native World/session integration and live replacement; caller stages native refusal rollback"
         ]
+      }
+    },
+    {
+      "id": "AI.source-traversal",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original source-tree traversal",
+      "scope": "Whole407920/4079f0 recursive traversal: first nonzero free slot or round-robin fallback, first-child nested cursor setup, mutable per-slot position/nested state, signed activity>=mode leaf yield and exhaustion. No health/active filter; caller can change mode between calls. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Whole407920/4079f0 recursive traversal: first nonzero free slot or round-robin fallback, first-child nested cursor setup, mutable per-slot position/nested state, signed activity>=mode leaf yield and exhaustion. No health/active filter; caller can change mode between calls. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Whole407920/4079f0 recursive traversal: first nonzero free slot or round-robin fallback, first-child nested cursor setup, mutable per-slot position/nested state, signed activity>=mode leaf yield and exhaustion. No health/active filter; caller can change mode between calls. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_graph.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-graph-test.cpp",
+        "tools/test-creature-source-graph.py"
+      ],
+      "evidence": [
+        "NS49.source-controller-static",
+        "NS49.source-graph-original",
+        "NS49.source-graph-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/source-graph/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.source-root-assignment",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature source-root assignment",
+      "scope": "Whole514810: owner record+4 nonzero blocks a nonnull source-root assignment, otherwise selected678/67c field receives caller token including null. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326864,
+          "scope": "Whole514810: owner record+4 nonzero blocks a nonnull source-root assignment, otherwise selected678/67c field receives caller token including null. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_graph.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-graph-test.cpp",
+        "tools/test-creature-source-graph.py"
+      ],
+      "evidence": [
+        "NS49.source-controller-static",
+        "NS49.source-graph-original",
+        "NS49.source-graph-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/source-graph/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.source-root-terminal",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original terminal creature source root",
+      "scope": "Whole5183f0: optional selected678/67c root follows39 parents to terminal node, preserving all backing fields. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342192,
+          "scope": "Whole5183f0: optional selected678/67c root follows39 parents to terminal node, preserving all backing fields. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_graph.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-graph-test.cpp",
+        "tools/test-creature-source-graph.py"
+      ],
+      "evidence": [
+        "NS49.source-controller-static",
+        "NS49.source-graph-original",
+        "NS49.source-graph-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/source-graph/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.controller-absent",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original absent owner-controller predicate",
+      "scope": "Whole51e790: owner record+C equalffffffff returns1, every other word0; nonnull0..7 owner table. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367696,
+          "scope": "Whole51e790: owner record+C equalffffffff returns1, every other word0; nonnull0..7 owner table. Whole unchanged original bodies with zero helper redirects, complete141-byte node/child-vector/actor/owner/body guards and pointer-to-logical-ID return comparison. Finite8192 fixtures per operation, four fixed acyclic nodes/two canonical actors,8 mutable slots with0..7 rotation, signed activity/mode boundary seeds, owner0..7/family0..1. Arbitrary malformed pointers/cycles/slots/backing, all-source controller/group/recipient/allocation ownership, installed construction and native World/session/live integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_graph.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-graph-test.cpp",
+        "tools/test-creature-source-graph.py"
+      ],
+      "evidence": [
+        "NS49.source-controller-static",
+        "NS49.source-graph-original",
+        "NS49.source-graph-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/source-graph/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "NP.source-graph-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native source graph traversal admission",
+      "scope": "Five native-only invalid rotation, child cycle, parent cycle, neutral assignment-owner and family2 refusals. Primitives may mutate before refusal; caller must stage state/events for rollback. Original malformed pointers and neutral owner null aliases excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_graph.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-graph-test.cpp",
+        "tools/test-creature-source-graph.py"
+      ],
+      "evidence": [
+        "NS49.source-graph-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/source-graph/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TOOL.source-controller-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned source controller dependency export",
+      "scope": "Read-only export of bounded original source traversal/root/controller/coordinate/vector/recipient bodies. Static byte evidence only.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-source-controller.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS49.source-controller-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
       }
     }
   ],
@@ -112600,6 +112849,174 @@
           "equals": 68284
         }
       ]
+    },
+    {
+      "id": "NS49.source-graph-original",
+      "kind": "isolated_original",
+      "scope": "Whole407920/4079f0/514810/5183f0/51e790 with zero redirects;32,768 prospective original32/native64/sanitized64 cases and complete node/child/actor/owner/body guards. Finite acyclic fixed-backing/owner/family/slot domain; complete controller/group/allocation/recipient/installed/World ownership excluded.",
+      "record": "research/runtime/original-source-graph-bound-20261012.json",
+      "sha256": "287f3b1a9c02c7614a7b9e962f844138eb622e77226c017a37d36652d4931ef4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/helper_redirects",
+          "equals": 0
+        },
+        {
+          "pointer": "/actors_returned",
+          "equals": 7387
+        },
+        {
+          "pointer": "/rotations",
+          "equals": 1639
+        },
+        {
+          "pointer": "/controllers_absent",
+          "equals": 2731
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS49.source-graph-native",
+      "kind": "native_integration",
+      "scope": "Whole407920/4079f0/514810/5183f0/51e790 with zero redirects;32,768 prospective original32/native64/sanitized64 cases and complete node/child/actor/owner/body guards. Finite acyclic fixed-backing/owner/family/slot domain; complete controller/group/allocation/recipient/installed/World ownership excluded.",
+      "record": "research/runtime/original-source-graph-bound-20261012.json",
+      "sha256": "287f3b1a9c02c7614a7b9e962f844138eb622e77226c017a37d36652d4931ef4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/helper_redirects",
+          "equals": 0
+        },
+        {
+          "pointer": "/actors_returned",
+          "equals": 7387
+        },
+        {
+          "pointer": "/rotations",
+          "equals": 1639
+        },
+        {
+          "pointer": "/controllers_absent",
+          "equals": 2731
+        }
+      ]
+    },
+    {
+      "id": "NS49.source-controller-static",
+      "kind": "static",
+      "scope": "Pinned source traversal/root/controller/coordinate/vector/recipient helper bodies only; no execution or semantic completeness.",
+      "record": "research/runtime/original-source-controller-static-v1-20261012.json",
+      "sha256": "b5fcdabd50fe82260444d7e724a68e32d4179dd4c24882d7a6ea6852f01861a9",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -126173,8 +126590,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-owner-count-targets-20261012.json",
-    "sha256": "a70c9a1db810915aa8cb087bdcd5e446f29c5948af9f9ca38ef2924be8f89148"
+    "path": "research/runtime/coverage/source-index-original-source-graph-20261012.json",
+    "sha256": "405853d84c4dc562193b87f469610ba5461523a52066b3a6493bf68d751ee224"
   },
   "claim_bindings_required": true
 }

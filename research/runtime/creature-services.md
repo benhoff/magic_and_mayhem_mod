@@ -281,3 +281,38 @@ Both immutable records preserve fresh source/compiler/declaration closure and
 original-manifest before/after verification. Incoming NS45/46 ad348ede is reviewed
 against its exact receipts and actual staged gate:25 file/141 behavior transitions
 with no accounting gaps. This history review adds no new execution evidence.
+
+
+## Source graph traversal and roots (NS49)
+
+Whole407920/4079f0/514810/5183f0/51e790 pass32,768 prospectively bound
+original32/native64/ASan+UBSan+LSan64 cases with zero helper redirects. All five
+bodies and complete141-byte nodes/child vectors/actors/owner records are guarded.
+7,387 actor yields,1,639 round-robin fallbacks and2,731 absent controllers are
+nonempty. Eight mutable traversal slots choose the first free slot or rotate
+when occupied, initialize nested cursors and use signed activity>=mode. The
+iterator introduces no active/health filter. Caller mode changes between calls
+are preserved. Root assignment honors owner flag4, terminal lookup follows39
+parents, and the absent-controller predicate checks owner+C equalffffffff.
+Five native cycle/rotation/owner/family refusals require caller-staged rollback.
+The isolated native CMake build and CTest pass. Immutable proof:
+original-source-graph-bound-20261012.json.
+
+The fresh static dependency export also pins source coordinate wrappers, vector
+insertion and recipient registration.416590 groups source roots by a minimum
+normalized squared distance after temporarily selecting traversal mode3. It
+allocates141-byte nodes and changes parent/recipient relationships and pending
+registration. Complete grouping/allocation/recipient semantics remain pending.
+Stack accounting shows the byte copied to node25 can initially be the low byte
+of the incoming actor argument: sub1c plus four pushes makes currentesp+30 the
+argument slot; traversal setne atesp+34 while one argument is pushed overwrites
+that same byte. No-traversal paths retain it. Its allocator/representation role
+is unconfirmed; do not label it an established random/uninitialized value or
+invent a zero baseline. This static finding does not establish execution parity.
+
+The existing reconstructed250-word RNG can be reused by future composition;
+this change adds no alternative generator or validation claim. Installed
+construction, full controller/group/recipient/World ownership, native session
+and live replacement remain pending. NS47/48 be4199a9 is reviewed against exact
+receipts and actual staged gate:28 file/143 behavior transitions, no accounting
+gaps. Historical review adds no new execution result.
