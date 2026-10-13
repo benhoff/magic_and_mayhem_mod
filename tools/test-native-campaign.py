@@ -403,6 +403,7 @@ def main():
     parser.add_argument('--worker-status-cadence',action='store_true',help='Experimental16ms owned-worker status construction')
     parser.add_argument('--worker-status-every-turn',action='store_true',help='Diagnostic baseline: construct owned-worker status on every turn')
     parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
+    parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
@@ -420,6 +421,7 @@ def main():
     if args.worker_status_cadence and not args.independent_world:parser.error('Worker status cadence requires independent World')
     if args.worker_status_every_turn and not args.independent_world:parser.error('Worker status baseline requires independent World')
     if args.frame_trace and not args.independent_world:parser.error('Frame trace requires independent resident World')
+    if args.reuse_world_image and not args.independent_world:parser.error('World image reuse requires independent resident World')
     if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
@@ -472,6 +474,7 @@ def main():
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public'])
+        if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
@@ -533,6 +536,8 @@ def main():
     # Regression proof requires fingerprints even when the normal launcher uses fast asset staging.
     if args.native_draw:env['MNM_VERIFY_ASSETS']='1'
     if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
+    # Make the comparison independent of an inherited experiment setting.
+    env['MNM_WORLD_IMAGE_REUSE']='1' if args.reuse_world_image else '0'
     if args.worker_status_cadence:env['MNM_WORKER_STATUS_CADENCE']='1'
     if args.worker_status_every_turn:env['MNM_WORKER_STATUS_EVERY_TURN']='1'
     if args.trace_engine_cadence:

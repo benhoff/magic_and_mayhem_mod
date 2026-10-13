@@ -56,6 +56,7 @@ private:
     std::unique_ptr<mnm::legacy::WorldRollingSession> world_;
     QString game_;
     bool independent_=false;
+    bool retainCompletedImage_=false;
     std::unique_ptr<mnm::legacy::WorldSnapshotQueue> snapshotQueue_;
     std::optional<mnm::legacy::OwnedWorldSnapshot> ownedPending_;
     mnm::render::GpuFrame ownedFrame_;

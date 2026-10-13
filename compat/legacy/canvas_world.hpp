@@ -20,9 +20,10 @@ public:
   };
   CanvasWorld(render::GlBlitter &, const assets::AssetStore &);
   ~CanvasWorld();
-  void enablePreparedReplay();
+  void enablePreparedReplay(bool retainCompletedImage = false);
   render::GpuFrame replayPrepared();
   std::uint64_t preparedReplays() const { return preparedReplays_; }
+  std::uint64_t retainedImageCaptures() const { return retainedImageCaptures_; }
   void begin(const CanvasProducer &, const render::Image &nativeHistory);
   void beginRolling(const CanvasProducer &,const render::Image &nativeHistory,std::uint64_t sequence);
   void beginResident(const CanvasProducer &, render::SurfaceId, std::uint64_t sequence);
@@ -57,8 +58,10 @@ private:
   bool active_=false,checked_=false;
   Profile profile_;
   bool preparedReplay_=false,baselineCaptured_=false;
+  bool retainCompletedImage_=false;
   render::SurfaceId replayBaseline_=0;
   std::vector<render::SceneDraw> replayDraws_;
   std::uint64_t preparedReplays_=0;
+  std::uint64_t retainedImageCaptures_=0;
 };
 }

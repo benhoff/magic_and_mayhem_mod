@@ -28,6 +28,8 @@ ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QStri
         capture_=std::make_unique<ResidentProfileCapture>(capture);
     }
     frameTrace_=qEnvironmentVariableIntValue("MNM_NATIVE_FRAME_TRACE")==1;
+    retainCompletedImage_=qEnvironmentVariableIntValue("MNM_WORLD_IMAGE_REUSE")==1;
+    if(retainCompletedImage_ && !independent_)throw std::invalid_argument("Retained World image requires independent resident presentation");
     if(independent_)snapshotQueue_=std::make_unique<WorldSnapshotQueue>(channel_,bool(capture_),frameTrace_);
 }
 void ResidentWorldSession::collectGpuTimings(){
@@ -161,7 +163,7 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         if(!world_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);auto store=mnm::assets::AssetStore::create(game_.toStdString());
             if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
-            world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true,true);
+            world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true,true,retainCompletedImage_);
         }
         if(source.generation!=completed_+1)throw std::runtime_error("Owned native source sequence gap");
         if(capture_)capture_->enqueue(source.generation,source.wireSource,source.wireRequest);
@@ -227,6 +229,8 @@ QJsonObject ResidentWorldSession::report() const {
         result["delivery_mode"]="owned-v5";result["source_accepted"]=QString::number(owned.accepted);result["source_returned"]=QString::number(owned.returned);
         result["source_outstanding"]=int(owned.outstanding);result["source_high_water"]=int(owned.highWater);
         result["native_extra_world_frames"]=QString::number(extraFrames_);
+        result["world_repeat_policy"]=retainCompletedImage_?"retained-native-image":"prepared-native-draws";
+        result["retained_world_image_captures"]=QString::number(world_?world_->retainedImageCaptures():0);
         result["native_extra_presented_frames"]=QString::number(extraPresented_);
         result["mean_extra_world_cpu_ms"]=extraFrames_?extraWorldMs_/extraFrames_:0;
         result["mean_extra_ui_cpu_ms"]=extraPresented_?extraUiMs_/extraPresented_:0;

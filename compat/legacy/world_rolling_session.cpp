@@ -4,7 +4,8 @@
 namespace mnm::legacy {
 WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
                                          const assets::AssetStore &store,
-                                         bool verify, bool resident, bool preparedReplay)
+                                         bool verify, bool resident, bool preparedReplay,
+                                         bool retainCompletedImage)
     : renderer_(renderer), mirror_(resident ? std::make_unique<render::GpuCanvasMirror>(renderer) : nullptr),
       producer_([store](const auto &name) {
         auto opened = store.open(name);
@@ -19,7 +20,8 @@ WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
       }, mirror_.get()),
       world_(renderer, store), verify_(verify), resident_(resident) {
   if(resident && verify)throw std::invalid_argument("Resident and pixel-reference modes are separate");
-  if(preparedReplay){if(!resident)throw std::invalid_argument("Prepared World requires resident native history");world_.enablePreparedReplay();}
+  if(retainCompletedImage && !preparedReplay)throw std::invalid_argument("Retained World image requires prepared resident presentation");
+  if(preparedReplay){if(!resident)throw std::invalid_argument("Prepared World requires resident native history");world_.enablePreparedReplay(retainCompletedImage);}
 }
 render::Image WorldRollingSession::consume(
     std::uint64_t sequence, const std::vector<std::uint8_t> &bytes,

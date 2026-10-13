@@ -7,7 +7,8 @@ namespace mnm::legacy {
 class WorldRollingSession final {
 public:
   WorldRollingSession(render::GlBlitter &, const assets::AssetStore &,
-                      bool verify = true, bool resident = false, bool preparedReplay = false);
+                      bool verify = true, bool resident = false, bool preparedReplay = false,
+                      bool retainCompletedImage = false);
   render::Image consume(
       std::uint64_t sequence, const std::vector<std::uint8_t> &,
       const std::function<void(const CanvasProducer &, const render::Image &)>
@@ -19,6 +20,7 @@ public:
   render::GpuFrame consumeResident(std::uint64_t, const CanvasProducerStream &);
   render::GpuFrame replayPrepared();
   std::uint64_t preparedReplays() const { return world_.preparedReplays(); }
+  std::uint64_t retainedImageCaptures() const { return world_.retainedImageCaptures(); }
   render::Image diagnosticReadResident(render::GlBlitter &);
   std::uint64_t worldReadbacks() const { return world_.readbacks(); }
   render::GpuFrame presentGpu() {

@@ -15121,7 +15121,8 @@
         "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json",
         "research/runtime/native-master-integration-current-public-pass-20261011.json",
         "research/runtime/native-master-integration-latest-master-public-pass-20261011.json",
-        "research/runtime/resident-drawing-history-gap.md"
+        "research/runtime/resident-drawing-history-gap.md",
+        "research/runtime/native-retained-world-image.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15159,7 +15160,8 @@
         "NR.native-draw-status-session-file.master-current-public-20261011",
         "NR.native-draw-status-session-file.latest-master-public-20261011",
         "NR.bounded-copy-order.history-diagnostics-fixtures-20261011",
-        "NR.bounded-copy-order.worker-isolation-regression-20261011"
+        "NR.bounded-copy-order.worker-isolation-regression-20261011",
+        "NR.native-retained-world-image.first-public-negative-20261013"
       ],
       "status": {
         "understanding": "scoped",
@@ -15298,7 +15300,8 @@
         "renderer/capture.cpp"
       ],
       "remaining_gaps": [
-        "Fresh post-bind TITAN failure identifies Unlock phase47 inline transport pumping at1030ms before epoch GAP1. Callback/copy bind admission and active-worker publication delegation pass controlled PE32 before/after tests plus209 independent GPU frames and expected timeout GAPs. Complete public stress/Quit, other long-owner branches and arbitrary OS scheduling remain unproven; this is native scheduling policy, not recovered driver equivalence."
+        "Fresh post-bind TITAN failure identifies Unlock phase47 inline transport pumping at1030ms before epoch GAP1. Callback/copy bind admission and active-worker publication delegation pass controlled PE32 before/after tests plus209 independent GPU frames and expected timeout GAPs. Complete public stress/Quit, other long-owner branches and arbitrary OS scheduling remain unproven; this is native scheduling policy, not recovered driver equivalence.",
+        "Image-reuse public run-09bsid6w retains a genuine copy-order timeout at first campaign menu: BltFast owner thread0x1cc/site257/phase4(game_blit_after) observed65ms while Lock thread0x190/site295 waits against50ms. Sampled native statusstage0; exact phase4 suboperation/CPU/OS cause and successful repeated live transition remain unclassified. No budget/generation guard is weakened; failed public record supplies no current validation promotion."
       ]
     },
     {
@@ -54703,6 +54706,79 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.native-retained-world-image",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Reuse completed native World images between source updates",
+      "scope": "Opt-in independent resident World captures exact completed native GPU storage at successful World return, refreshes one owned slot per source generation and restores it before existing sealed UI composition. No repeated sprite drawing or producer preparation, original destination seed, ordinary readback, simulation/ANI/RNG advance or source FIFO/return/lease relaxation. Incomplete generations and invalid modes refuse. Prepared draw replay remains the default comparison/stress path. Captured-input pixel/ownership controls and public TITAN throughput are separate; interpolation, scanout, arbitrary original pixel/driver equivalence and sustained60FPS excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-retained-world-image.md"
+      ],
+      "implementation": [
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/native-retained-world-test.cpp",
+        "tools/test-native-retained-world.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/world_preparation.cpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/native-prepared-world-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/original-manifest.sh",
+        "renderer/commands.hpp"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.native-retained-world-image.assertion-negative-20261013",
+        "NR.native-retained-world-image.history-negative-20261013",
+        "NR.native-retained-world-image.controls-20261013",
+        "NR.native-retained-world-image.first-public-negative-20261013",
+        "NR.native-retained-world-image.first-public-analysis-20261013"
+      ],
+      "remaining_gaps": [
+        "Source-bound TITAN authored/captured World parity and native worker/UI ownership controls pass. Full public gameplay/performance, broad captured generations/auxiliary mutations, original pixel/driver equivalence, interpolation and sustained60FPS remain pending. Default prepared drawing remains unchanged; historical shared-source results retain original hashes.",
+        "First image-reuse public run balances3837Worlds/captures with zero ordinary readbacks, but fails at first campaign menu due genuine copy-order timeout: BltFast ownerphase4/game_blit_after held65ms against50ms budget while Lock waits. Native statusstage0 excludes sampled status publication; exact suboperation/OS contribution unknown. Native49.933/engine18.964FPS do not prove throughput improvement or60FPS. Default-route paired full regression and fresh successful image-reuse journey remain pending."
+      ]
     }
   ],
   "evidence": [
@@ -110986,6 +111062,113 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.native-retained-world-image.assertion-negative-20261013",
+      "kind": "native_integration",
+      "scope": "Bounded native image reuse controls; initial assertion failure and missing-history refusal are retained without current validation credit.",
+      "record": "research/runtime/native-retained-world-assertion-negative-20261013.json",
+      "sha256": "b485fe173f33bd75ae0b6725cf29697ef740c73638324d8dfdc602e77e93215e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.history-negative-20261013",
+      "kind": "native_integration",
+      "scope": "Bounded native image reuse controls; initial assertion failure and missing-history refusal are retained without current validation credit.",
+      "record": "research/runtime/native-retained-world-history-negative-20261013.json",
+      "sha256": "5f79e744c789f6f1ba0d08fd42ad7516b96eda8256ee90f55e9631b4106fc164",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.controls-20261013",
+      "kind": "native_integration",
+      "scope": "TITAN source-bound authored/captured native World pixel parity, native UI ownership/teardown and synchronized paired repeat costs; no live FPS/original equivalence.",
+      "record": "research/runtime/native-retained-world-controls-20261013.json",
+      "sha256": "cacdd64a8c89248b1d5e1a1108832d39e2834bad49a8cb5c0ecaab9329e6e79e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NR.native-retained-world-image.first-public-negative-20261013",
+      "kind": "live_observation",
+      "scope": "Source-bound private TITAN completed native World image campaign; retain functional/performance outcomes independently. No full original equivalence, scanout or simulation interpolation claim.",
+      "record": "research/runtime/native-retained-world-first-public-negative-20261013.json",
+      "sha256": "6e95651ccdb1a161febc791fb848b09d9e730653b6c7ee2b748ee6b8b745a8eb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.first-public-analysis-20261013",
+      "kind": "static",
+      "scope": "Read-only bounded host frame timeline analysis of retained failed public run; no new execution/original/GPU-busy proof.",
+      "record": "research/runtime/native-retained-world-first-public-analysis-20261013.json",
+      "sha256": "ecb20e7b75c56d8e2736876d1d9eee42d682c50897065f57693e04792f21828b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -124124,6 +124307,35 @@
       "evidence": [
         "NR.native-status-outside-drawing.controls-20261013"
       ]
+    },
+    {
+      "id": "NR.native-retained-world-image.fixture",
+      "level": "headless",
+      "scope": "Authored overlapping destination-dependent composites across two generations and80repeats with interposed native UI writes; incomplete/invalid modes refuse. Complete captured public source prefix full-frame prepared-replay parity and synchronized paired200repeat timings; native worker immutable/UI/teardown controls. No live engine or60FPS proof.",
+      "behaviors": [
+        "NR.native-retained-world-image"
+      ],
+      "tests": [
+        "tests/native-retained-world-test.cpp",
+        "tools/test-native-retained-world.py"
+      ],
+      "evidence": [
+        "NR.native-retained-world-image.controls-20261013"
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.public",
+      "level": "live_observation",
+      "scope": "Private TITAN independent resident campaign with completed World image reuse, native menus/sealed UI, casting/combat/spells/portraits/menu resumes and normal Quit. Require balanced source/import/verified return FIFO, zero ordinary readbacks/fallback and unchanged19FPS floor; retain engine/native rates and all failures. Repeated presentations are not simulation updates or scanout.",
+      "behaviors": [
+        "NR.native-retained-world-image"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-retained-world-image.first-public-negative-20261013"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -124650,8 +124862,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-status-outside-drawing-final-v3-20261013.json",
-    "sha256": "886c8cd09c72e7ea4f409a42fb40a8af2a4937e21370260891b3dc820e71b141"
+    "path": "research/runtime/coverage/source-index-native-retained-world-first-public-20261013.json",
+    "sha256": "207d43fbf4ab28a2e9fe4f771cddd21669c1a331e87353ab651c1e76046a2d06"
   },
   "claim_bindings_required": true
 }

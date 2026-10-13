@@ -8747,3 +8747,28 @@ until successfulpublic evidence. The run stillfails performance:18.98168engineFP
 FPSbelow60, andretained worst-window native/paint checks. Offline source-matched
 artifact postcheck verifies gameplay outcomes without clearing those failures.
 No originalequivalence, fullnativeengine, every-GAPrepair or60FPSclaim is made.
+
+### Retained native World image controls — 2026-10-13
+
+Opt-in `MNM_WORLD_IMAGE_REUSE=1`/`test-native-campaign.py --reuse-world-image`
+freezes one completed native GPU World per source and restores it for repeat
+presentation before existing sealed UI composition. Full native drawing remains
+required for every source; prepared draw replay stays the default/stress control.
+[Policy and evidence](native-retained-world-image.md): TITAN controls pass80
+authored repeats, eight captured full-frame comparisons and worker/immutable UI
+ownership/teardown with zero ordinary readbacks. Same-input synchronized repeat
+cost falls2.24324→0.178185ms; this does not establish live60FPS or extra simulation
+updates. Initial assertion and incomplete-history input failures are retained.
+Public gameplay/performance, broad input coverage and original equivalence remain
+pending. Committed-history review `cc9248c0..b43b0bd1` checks24 exact source
+transitions with zero missing receipts; no retrospective execution claim.
+
+The first retained-image public TITAN attempt (`run-l57e71fc`) has3837 matching
+World/image captures/imports/verified returns and zero ordinary readbacks, but
+fails at first campaign menu with genuine65ms BltFast phase4 copy ownership
+against the unchanged50ms mutation budget. Native statusstage0 distinguishes
+it from prior deferred-status failure; suboperation/OS attribution is pending.
+Partial49.933native/18.964engineFPS do not demonstrate live throughput gain.
+The immutable negative report and bounded timeline analysis remain linked;
+formal new-policy integration remains headless, with full reuse/baseline
+regression, deadline scheduling and60FPS pending.
