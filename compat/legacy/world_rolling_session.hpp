@@ -27,6 +27,7 @@ public:
     return world_.presentGpu();
   }
   const CanvasWorld::Profile &profile() const { return world_.profile(); }
+  render::ColourRectangleCacheStats colourCacheStats() const { return world_.colourCacheStats(); }
   CanvasFrameCacheStats producerCacheStats() const {
     return producer_.frameCacheStats();
   }
