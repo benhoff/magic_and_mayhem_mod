@@ -701675,6 +701675,246 @@
         "status": "pending",
         "reason": "Public transition fails and its immutable report receives no current live validation credit. The unchanged copy-order contract retains historical statuses/fingerprints; fresh successful transition and phase4 suboperation attribution remain pending."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "10d35c69b767f934751e5ecb6839c4e8b2e7952a6f53f6be4bd66755c88b5eba",
+          "before_sha256": "fdfc51d59e365d7e1a779c3b998f7a6cabfebcb2285f1c3ebae4168aeeed7a70",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "f75724447b044396975884dacdc1622a1b5a5d47b0614a459bee1913ba2ef1c0",
+          "before_sha256": "b5e89b040b6b18e2d7db1171f0b94fe55344ff798799b4c43a0c8724613fe891",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "ac76cb7c964e630a5ceb25cfac551d739f89302c32c349c47be2f53be102f436",
+          "before_sha256": "fcb250b957f2bac5104605afaa9f2209f692f771cdd81fedf5752ef1c3294339",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "6d7502a6d125ee71d94aa50592bf094b34264f3389a6f2d2298d08e5f3b4b369",
+          "before_sha256": "8847aed1282760b1945967a594c399126f7b0cdbd8c5c53560c9ad2dea42cbcd",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "fd2a0183e414fd361368fda12d03997002833d2bd2f3d7d916e7779a104a1438",
+          "before_sha256": "54e126d801043e90d46e660bdeb1974b642e5aa65a7747d8d208f897da355587",
+          "id": "NR.minimap-write-candidates"
+        },
+        {
+          "after_sha256": "e7cb31b14aaf72801b8b95fc3921777ef35bf45e15c7ce36636d092921d79607",
+          "before_sha256": "6b757295bc8055e96bba135e0e26d2df5dcb7371ee041c1b0539bda6a8b4c612",
+          "id": "NR.native-retained-world-image"
+        },
+        {
+          "after_sha256": "12645370f05145f526af4f64ce1942095060a8c60a404eda7330102bca883e94",
+          "before_sha256": "f462bc43eb0b7bf2637c0cd7e39d8bc7ffac5a490aaab84cf9a9ab6fed774de0",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "763fd34a47447dfcb822220a1bf603f65db72ef639f8c8b119d35f14da4a97a0",
+          "before_sha256": "bd05955de9fea45457c5eae6961280a1d44f624eceecad454e81e98baf00adfe",
+          "id": "NR.resident-normal-shutdown"
+        },
+        {
+          "after_sha256": "189ebfedd59d9fc01cb5a745f2367a1fc7390595f59a774aeea4c970d091bd46",
+          "before_sha256": "9b8704da4ef0a822a8d5a954c17d48d59fbffba60aa9676011a2359b0e708720",
+          "id": "NR.world-source-region-epoch"
+        },
+        {
+          "after_sha256": "6f1784c877d2be4c739fc5e8f237b36854c2f1a2052ec4343fdd7e90afc580b0",
+          "before_sha256": "41b7806bcf001cfd9a5834ede3fc2917192451ba47ecb0654fef47a362b715a3",
+          "id": "RS.displacement-linear-stride"
+        },
+        {
+          "after_sha256": "bf6b5901aa641e11cab3fa7348b434955ba16e0cdcbc23e9b02f9585393ae774",
+          "before_sha256": "cbf3420e8d24f9fc2d87590dcab22113609ad9a9bb25ffa112e3c44180258b99",
+          "id": "RS.shadow-linear-stride"
+        },
+        {
+          "after_sha256": "d285e4a320c420363367b0a7c74ce16193a527ff64408bc7a4eccc17447d0f38",
+          "before_sha256": "48691e427d4d8e7f6349193668abd1fec73f0bc986eab07a4991172ebfc5ba66",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9ca1fa161649a768e01667d8efa80ddf296e89d257674f7696dcb4e557bf99f8",
+          "before_sha256": "78555ea9309c8ef0662dd9db3f5d41f2af9fe8c6e4c67a8f998afe739de8aa94",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a0423d28db0f4f1524ed201ff49db9c62287149ac697c4d65d6f3737efb0111c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-b43b0bd1-835d2c0c.json"
+        },
+        {
+          "after_sha256": "69c0f505f971b46feabfa702e59fb227d818a1051988435b7adc7d72eeca20de",
+          "before_sha256": "a5d0de4162ce6c02332d0fc87e624f0f85b4fd7e253cb5db1ce53032275f3170",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "207d43fbf4ab28a2e9fe4f771cddd21669c1a331e87353ab651c1e76046a2d06",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-retained-world-paired-public-20261013.json"
+        },
+        {
+          "after_sha256": "d27d69cd16f3f075e5ed7916ed04bac4b0b3b976ef2d861823a97719cbec2f63",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-retained-world-paired-public-20261013.md"
+        },
+        {
+          "after_sha256": "9f64162b6f93e9131ed222df4add0e389107d643bf7ca019241789d51ed10a3b",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-baseline-public-20261013.json"
+        },
+        {
+          "after_sha256": "df2e339e5228bfaeb29e024e9e41c305aef74021e2cf75b555d5142a327eeaf8",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-baseline-public-analysis-20261013.json"
+        },
+        {
+          "after_sha256": "3a47eaefda2c3f3e6bc3ed9e006266dc065e7dbc18bb27fce1cacbdb43a0795a",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-final-public-20261013.json"
+        },
+        {
+          "after_sha256": "b03e867cd25c5ac68d58330cc0d8cde41d4dc1efda84083f0c0900c3e8a3b48a",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-final-public-analysis-20261013.json"
+        },
+        {
+          "after_sha256": "36a36130dd11c169b3f92e9f895fa1992092e0549f8de7cb8dfe78e70fc45083",
+          "before_sha256": "22f4f25de5d725e1d092b45a75a3f5013913fffd2c096432d9fc93a1afea4fdc",
+          "path": "research/runtime/native-retained-world-image.md"
+        },
+        {
+          "after_sha256": "b8a39918f6f641f02c34cc3aa727366ca9eb479ba2a77b9d6e5ad3c23c47f535",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-paired-public-20261013.json"
+        }
+      ],
+      "id": "native-retained-world-paired-public-20261013-accounting",
+      "pending_gaps": [
+        "retired_execution_claims:01b1abce092ba2456d53be97f8a6e7725e50a7cb41af672e0bb8a15a83a7f986",
+        "retired_execution_claims:0a435bcd2a8ac026360b66fffd06d136798170f2a9150825f778d208d1025b69",
+        "retired_execution_claims:0ef140dfb629d8711040e65047069144eb14da3e0d3ffb7cf75e2289ff43df46",
+        "retired_execution_claims:127f23a3652c392bbaa648c321645a4cbd95df6984bbc0526db162dc2f9bed7c",
+        "retired_execution_claims:20775e90045c3be31dae9509f14f1e8768b5da977a59ee3c16ab9f956f050814",
+        "retired_execution_claims:241c0eb6a9996f58fe3e248596a7bf10c764b1250401cdbd0d84af7de4107ebd",
+        "retired_execution_claims:2a66ce28661ceb1ed05f0cfc613c80c1b94a34aa087eadc98570197f639513da",
+        "retired_execution_claims:3b33932dd56fc54f46c6f8c5595ff85f9b84aa2bd8a9c4c9a352579d0258bb8e",
+        "retired_execution_claims:3f15983edc52577d3f61ef92b1344510afa5bd3304cd70338b6674b252dce233",
+        "retired_execution_claims:42c676d2971882838294fbe25f703fc09825290897940ff68d5ee5bcf32082fb",
+        "retired_execution_claims:48ab1fa13612ec064b0684ceb7a03134bb25ecdc8375efabbc6f4ac9ea36cbcb",
+        "retired_execution_claims:4b1b5e128be7075ffd292e924906d66ae5f44e6b5e719a2d8110d3aa0fa52f9e",
+        "retired_execution_claims:75a444ee571cbc67dcb7526005713f6c4b352412a3b4fd043c108030e4089715",
+        "retired_execution_claims:76d9da0de81b06d05594b538682eb202739f0d1d0beb810af254beaf4cfe10f1",
+        "retired_execution_claims:808b7852092724e4f80afb71afec7f98a71fbdf4aa538ee38cea56dcfd1b0ecc",
+        "retired_execution_claims:825850239976ada91384d7650de31fb4434d60e69a38a256135a86965908d884",
+        "retired_execution_claims:932c6c21307cfd23b4dd240c95ab5b1663edfbbdc4a7a11eab23c2758574e5c3",
+        "retired_execution_claims:9a6facebcba7f0d61d2f8f187197d05b8249f1d50470d2b30e4aa077613cfd64",
+        "retired_execution_claims:a58eddcf4e34279c3394ed71bd7c78e3aa340263bf50798b6af8d2b04b3fee88",
+        "retired_execution_claims:ac76f98ff1ae64985a4afcd093456bf885c93300b2783808ff09e663cb74024a",
+        "retired_execution_claims:c96a16a7ba399cddd4d33fd0afbfcec0c83425fe8470135d05703b8be6151011",
+        "retired_execution_claims:c96d5ec981958d2d2890fa5aa2c4642b31504645266b1108d2c71e8ec35b66e8",
+        "retired_execution_claims:ca77754a95595b559e43bd8cd21269a9c1c2a4f5383a7ebf08360be174462c38",
+        "retired_execution_claims:ca9f766a67ae00de819d40be4f2990f05754f8c4c30909ff03427f274a09531f",
+        "retired_execution_claims:cfde6b266f27e867496d52dba327d3e94f3f3b8d49f83e72d03252c58bec0e27",
+        "retired_execution_claims:d2e58155c56111c76f606f55c3b9ee80bd139f55f455005799727d6431c34c7b",
+        "retired_execution_claims:d990bec2e6fd03ccc68e3f8480c5e03742c392121949f95dd2c752f2cbee8251",
+        "retired_execution_claims:ea8657853dd265edc282a2e47364cfaec00b664bb2be49460b4ff653edd7e447",
+        "retired_execution_claims:ffa933e046716d773ef0c342840bac976c2835fc527699b305bfbafc0bb6365b"
+      ],
+      "reason": "Reviewed retained current-code TITAN prepared/reuse full journeys, raw report hashes and bounded host analyses. Keep native World, source engine and gameplay presentation/paint rates separate; paired live inputs differ, while captured-input controls are exact. Retain initial GAP and all historical fingerprints. No tested source or default policy changes in this evidence commit.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh full public execution supports the new retained-image live-observation stage and current prepared-route observation only through the scoped execution receipt. Sustained60FPS, broad auxiliary inputs, original equivalence/replacement, phase4 stall attribution, GPU busy time, physical scanout and interpolation remain pending. Initial failed reuse journey is preserved."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e7cb31b14aaf72801b8b95fc3921777ef35bf45e15c7ce36636d092921d79607",
+          "before_sha256": "6b757295bc8055e96bba135e0e26d2df5dcb7371ee041c1b0539bda6a8b4c612",
+          "id": "NR.native-retained-world-image"
+        },
+        {
+          "after_sha256": "12645370f05145f526af4f64ce1942095060a8c60a404eda7330102bca883e94",
+          "before_sha256": "f462bc43eb0b7bf2637c0cd7e39d8bc7ffac5a490aaab84cf9a9ab6fed774de0",
+          "id": "NR.public-resident-world"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9ca1fa161649a768e01667d8efa80ddf296e89d257674f7696dcb4e557bf99f8",
+          "before_sha256": "78555ea9309c8ef0662dd9db3f5d41f2af9fe8c6e4c67a8f998afe739de8aa94",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a0423d28db0f4f1524ed201ff49db9c62287149ac697c4d65d6f3737efb0111c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-b43b0bd1-835d2c0c.json"
+        },
+        {
+          "after_sha256": "69c0f505f971b46feabfa702e59fb227d818a1051988435b7adc7d72eeca20de",
+          "before_sha256": "a5d0de4162ce6c02332d0fc87e624f0f85b4fd7e253cb5db1ce53032275f3170",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "207d43fbf4ab28a2e9fe4f771cddd21669c1a331e87353ab651c1e76046a2d06",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-retained-world-paired-public-20261013.json"
+        },
+        {
+          "after_sha256": "d27d69cd16f3f075e5ed7916ed04bac4b0b3b976ef2d861823a97719cbec2f63",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-retained-world-paired-public-20261013.md"
+        },
+        {
+          "after_sha256": "9f64162b6f93e9131ed222df4add0e389107d643bf7ca019241789d51ed10a3b",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-baseline-public-20261013.json"
+        },
+        {
+          "after_sha256": "df2e339e5228bfaeb29e024e9e41c305aef74021e2cf75b555d5142a327eeaf8",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-baseline-public-analysis-20261013.json"
+        },
+        {
+          "after_sha256": "3a47eaefda2c3f3e6bc3ed9e006266dc065e7dbc18bb27fce1cacbdb43a0795a",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-final-public-20261013.json"
+        },
+        {
+          "after_sha256": "b03e867cd25c5ac68d58330cc0d8cde41d4dc1efda84083f0c0900c3e8a3b48a",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-final-public-analysis-20261013.json"
+        },
+        {
+          "after_sha256": "36a36130dd11c169b3f92e9f895fa1992092e0549f8de7cb8dfe78e70fc45083",
+          "before_sha256": "22f4f25de5d725e1d092b45a75a3f5013913fffd2c096432d9fc93a1afea4fdc",
+          "path": "research/runtime/native-retained-world-image.md"
+        },
+        {
+          "after_sha256": "b8a39918f6f641f02c34cc3aa727366ca9eb479ba2a77b9d6e5ad3c23c47f535",
+          "before_sha256": null,
+          "path": "research/runtime/native-retained-world-paired-public-20261013.json"
+        }
+      ],
+      "id": "native-retained-world-paired-public-20261013-execution",
+      "pending_gaps": [],
+      "reason": "Credit only retained native World image bounded live observation and current prepared public route against prospectively declared successful full TITAN campaigns. Both source-binary/frame-count identities and independent status dimensions were reviewed.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.native-retained-world-image.final-public-20261013",
+          "NR.public-resident-world.retained-image-baseline-20261013"
+        ],
+        "reason": "run-v71bzxl6 and run-5r0ezlxe pass casting/combat/movement/spells/portraits/three menu resumes/normal Quit at unchanged19FPS, stable sources/original manifests/private cleanup and zero ordinary readbacks. Reuse has5230matching captures/World/imports/returns. Supports native live observation, not original equivalence/replacement or sustained60FPS; distinct live FPS inputs and the first GAP remain limitations."
+      }
     }
   ]
 }

@@ -8772,3 +8772,25 @@ Partial49.933native/18.964engineFPS do not demonstrate live throughput gain.
 The immutable negative report and bounded timeline analysis remain linked;
 formal new-policy integration remains headless, with full reuse/baseline
 regression, deadline scheduling and60FPS pending.
+
+### Retained native World image: complete paired TITAN journeys — 2026-10-13
+
+Current prepared replay `run-5r0ezlxe` and image reuse `run-v71bzxl6` both pass
+casting/combat/movement/spells/portraits, three menu resumes and normal Quit at
+the unchanged 19 FPS gate. They balance 5,353 and 5,230 Worlds respectively,
+with zero ordinary readbacks; reuse has exactly 5,230 image captures and no
+copy-order timeout/GAP in the successful lifecycle log. Source/shell identity,
+original manifests and private cleanup pass. [Evidence and comparison](native-retained-world-image.md)
+retain the earlier genuine GAP and separate distinct live inputs from identical
+captured-input controls. New-policy integration advances to bounded live
+observation; original comparison/replacement remain none.
+
+Live repeat-World CPU falls 4.57529→0.59140 ms (87.07%); engine FPS is
+19.45945→19.33535, World-specific native FPS 49.97270→50.80452, and gameplay
+GUI paint averages 62.64872→65.07059. The worst reuse window is 40.90909 FPS,
+so this is not sustained 60 FPS or scanout proof. New-source native processing
+remains about 13 ms and is the next render-side profiling/scheduling target.
+Reuse remains opt-in; prepared drawing stress is available by default. Exact
+phase4 stall/OS attribution, broader auxiliary inputs, interpolation and original
+equivalence remain pending. Committed-history review `b43b0bd1..835d2c0c`
+checks 22 exact transitions with zero missing receipts.

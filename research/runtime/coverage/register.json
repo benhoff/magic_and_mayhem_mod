@@ -37950,7 +37950,8 @@
         "NR.public-resident-world.render-bugs-short-fps-negative-20261013",
         "NR.public-resident-world.render-bugs-short-menu-timeout-negative-20261013",
         "NR.public-resident-world.render-bugs-cold-negative-20261013",
-        "NR.native-status-outside-drawing.final-public-20261013"
+        "NR.native-status-outside-drawing.final-public-20261013",
+        "NR.public-resident-world.retained-image-baseline-20261013"
       ],
       "status": {
         "understanding": "scoped",
@@ -54765,7 +54766,7 @@
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "evidence": [
@@ -54773,11 +54774,15 @@
         "NR.native-retained-world-image.history-negative-20261013",
         "NR.native-retained-world-image.controls-20261013",
         "NR.native-retained-world-image.first-public-negative-20261013",
-        "NR.native-retained-world-image.first-public-analysis-20261013"
+        "NR.native-retained-world-image.first-public-analysis-20261013",
+        "NR.native-retained-world-image.final-public-20261013",
+        "NR.native-retained-world-image.baseline-public-analysis-20261013",
+        "NR.native-retained-world-image.final-public-analysis-20261013",
+        "NR.native-retained-world-image.paired-public-analysis-20261013"
       ],
       "remaining_gaps": [
-        "Source-bound TITAN authored/captured World parity and native worker/UI ownership controls pass. Full public gameplay/performance, broad captured generations/auxiliary mutations, original pixel/driver equivalence, interpolation and sustained60FPS remain pending. Default prepared drawing remains unchanged; historical shared-source results retain original hashes.",
-        "First image-reuse public run balances3837Worlds/captures with zero ordinary readbacks, but fails at first campaign menu due genuine copy-order timeout: BltFast ownerphase4/game_blit_after held65ms against50ms budget while Lock waits. Native statusstage0 excludes sampled status publication; exact suboperation/OS contribution unknown. Native49.933/engine18.964FPS do not prove throughput improvement or60FPS. Default-route paired full regression and fresh successful image-reuse journey remain pending."
+        "Source-bound authored/captured pixel controls and a full TITAN reuse rerun pass casting/combat/spells/portraits/three menu resumes/normal Quit with5230matching captures/World/imports/returns and zero ordinary readbacks. Current-code prepared replay baseline also passes. Repeat World CPU drops4.57529\u21920.59140ms in distinct live journeys; World50.8045FPS and worst gameplay40.909FPS do not establish sustained60FPS. Original pixel/driver/scanout equivalence, interpolation and broad auxiliary input coverage remain excluded/pending. Reuse stays opt-in; default prepared draws preserve drawing stress.",
+        "First reuse journey retains genuine copy-order GAP at menu: sampled BltFast phase4 age65ms against50ms budget. Full rerun passes without GAP; exact suboperation/OS attribution and resilience to arbitrary stalls remain unresolved. No guard weakening or causal FPS claim from distinct live inputs."
       ]
     }
   ],
@@ -111169,6 +111174,106 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.native-retained-world-image.final-public-20261013",
+      "kind": "live_observation",
+      "scope": "Source-bound private TITAN completed native World image campaign; retain functional/performance outcomes independently. No full original equivalence, scanout or simulation interpolation claim.",
+      "record": "research/runtime/native-retained-world-final-public-20261013.json",
+      "sha256": "3a47eaefda2c3f3e6bc3ed9e006266dc065e7dbc18bb27fce1cacbdb43a0795a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NR.public-resident-world.retained-image-baseline-20261013",
+      "kind": "live_observation",
+      "scope": "Current-code TITAN prepared native draw replay baseline: full casting/combat/spells/portraits/three menu cycles/normal Quit at unchanged19FPS floor. Retained images disabled, no ordinary readbacks; no sustained60FPS/original equivalence claim.",
+      "record": "research/runtime/native-retained-world-baseline-public-20261013.json",
+      "sha256": "9f64162b6f93e9131ed222df4add0e389107d643bf7ca019241789d51ed10a3b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.baseline-public-analysis-20261013",
+      "kind": "static",
+      "scope": "Read-only host timeline analysis of the source-bound TITAN journey; no fresh execution/GPU-busy/scanout claim.",
+      "record": "research/runtime/native-retained-world-baseline-public-analysis-20261013.json",
+      "sha256": "df2e339e5228bfaeb29e024e9e41c305aef74021e2cf75b555d5142a327eeaf8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.final-public-analysis-20261013",
+      "kind": "static",
+      "scope": "Read-only host timeline analysis of the source-bound TITAN journey; no fresh execution/GPU-busy/scanout claim.",
+      "record": "research/runtime/native-retained-world-final-public-analysis-20261013.json",
+      "sha256": "b03e867cd25c5ac68d58330cc0d8cde41d4dc1efda84083f0c0900c3e8a3b48a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-retained-world-image.paired-public-analysis-20261013",
+      "kind": "static",
+      "scope": "Read-only same-code/same-scripted-objectives TITAN comparison; live journeys are distinct inputs, so changes are observations, not a controlled causal FPS result. Only the captured200-repeat test uses identical input.",
+      "record": "research/runtime/native-retained-world-paired-public-20261013.json",
+      "sha256": "b8a39918f6f641f02c34cc3aa727366ca9eb479ba2a77b9d6e5ad3c23c47f535",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/same_shell_binary",
+          "equals": true
+        },
+        {
+          "pointer": "/both_full_campaigns_passed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -121193,7 +121298,8 @@
         "NR.public-resident-world.profile-gap-negative-20261011",
         "NR.public-resident-world.repaired-ordinary-titan-20261011",
         "NR.public-resident-world.engine-cadence-campaign-20261011",
-        "NR.public-resident-world.budget-progress-campaign-20261012"
+        "NR.public-resident-world.budget-progress-campaign-20261012",
+        "NR.public-resident-world.retained-image-baseline-20261013"
       ]
     },
     {
@@ -124334,7 +124440,8 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.native-retained-world-image.first-public-negative-20261013"
+        "NR.native-retained-world-image.first-public-negative-20261013",
+        "NR.native-retained-world-image.final-public-20261013"
       ]
     }
   ],
@@ -124862,7 +124969,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-retained-world-first-public-20261013.json",
+    "path": "research/runtime/coverage/source-index-native-retained-world-paired-public-20261013.json",
     "sha256": "207d43fbf4ab28a2e9fe4f771cddd21669c1a331e87353ab651c1e76046a2d06"
   },
   "claim_bindings_required": true

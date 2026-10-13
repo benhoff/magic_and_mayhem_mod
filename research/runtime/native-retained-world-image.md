@@ -72,3 +72,42 @@ with48.344s World,24.858s commands,9.658s extra World/UI,1.763s export,
 throughput gain; source/UI eligibility and owner deadline scheduling remain
 separate candidates. The trace does not attribute original simulation CPU or
 GPU busy time. Paired current baseline and complete successful reuse are pending.
+
+## Complete paired public journeys
+
+Prepared replay `run-5r0ezlxe` and retained image `run-v71bzxl6` both pass the
+unchanged 19 FPS campaign gate on TITAN: casting, combat, movement, spell cases,
+portrait checks, three menu/resume cycles, Quit-No resume and normal Quit. Both
+have stable sources, identical shell binaries, matching common source hashes,
+the same accelerated renderer, zero ordinary delivery readbacks and private Wine
+cleanup. They use the same scripted objectives but different live game states;
+observed FPS differences are not a controlled causal result.
+
+| Metric | Prepared replay | Retained image |
+| --- | ---: | ---: |
+| Balanced source/import/verified-return Worlds | 5,353 | 5,230 |
+| Retained World image captures | 0 | 5,230 |
+| Extra World CPU wall time | 4.57529 ms | 0.59140 ms |
+| Engine FPS | 19.45945 | 19.33535 |
+| World-specific native FPS | 49.97270 | 50.80452 |
+| Gameplay native presentation FPS | 62.64872 | 65.06677 |
+| Gameplay GUI paint FPS | 62.64872 | 65.07059 |
+| Worst gameplay presentation/paint window | 39.12648 FPS | 40.90909 FPS |
+| New-source native processing | 12.80773 ms | 12.71408 ms |
+
+Extra World work is 87.07% lower in these live journeys, while observed World
+throughput rises 1.66% and mean GUI paint rate 3.87%. The identical captured-input
+200-repeat comparison remains the stronger causal cost measurement (92.06%
+lower). World rates count source plus repeat work separately from UI-only
+presentations; neither averages above 60 nor Qt paints establish physical
+scanout or sustained 60 FPS. The retained run has no copy-order timeout/GAP in
+its lifecycle log, but the first failed attempt remains a reliability limitation.
+
+The new policy now has current bounded live-observation support, independently
+of original comparison and replacement (both none). It remains opt-in, keeping
+prepared native drawing available by default for rendering stress. The next
+render-side target is the roughly 13 ms new-source work and its scheduling on
+the presentation owner. Exact original simulation CPU, phase4 stall attribution,
+broad auxiliary input coverage, interpolation and sustained 60 FPS are pending.
+The paired results, raw report hashes and rate formulae are retained in
+`native-retained-world-paired-public-20261013.json`.
