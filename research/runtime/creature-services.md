@@ -416,3 +416,33 @@ Complete storage/installed construction and canonical native World/session/live
 replacement stay pending; this chain comparison does not promote those stages.
 Incoming NS51 ab90556f has25 file/157 behavior transitions reviewed against exact
 receipts and actual staged gate with no gaps. History review adds no execution.
+
+
+## Owned ownership-transfer consequences (NS53)
+
+Native ownership transfer now composes recount/associated-owner lookup, owner
+visibility, queued-marker clearing, wizard classification and root activity on
+the caller's existing World actors, limits, orders and source graph. Whole51ec80
+plus actual522340/466870/51a880/512340/411e50/407b90 passes16,384 prospectively
+bound original32/native64/ASan+UBSan+LSan64 cases.6,826 same-owner no-ops,3,502
+root activity changes,9,558 visibility changes,15,817 combined route/queued-effect
+releases and2,402 display writes are nonempty.2,274 count UI calls,263 below-limit
+and161 at-limit callbacks cover the signed threshold reload after UI mutation.
+Complete actor/config/owner/relation/limit/selection/source/list/effect/display/
+global/body guards match, including effect reentry that changes a later marker.
+The independent native CMake build and CTest pass.
+Immutable proof:original-transfer-owned-bound-ns53-20261013.json.
+
+The bounded corpus uses one canonical1..32-actor World, owner/request0..7, eight
+owner records, four source nodes, stable0..15 orders/32 logical effects and one
+display. Lower reset, effect lifetime, UI/color, owner-target repair and source
+controller work remain supplied. Complete installed profiles, native session
+construction and live replacement remain pending. Two native malformed display
+refusals retain the caller-rollback requirement. The initial five-body development
+composition and expanded seven-body development run both passed; their records
+remain retained independently of the final bound result. Existing component
+source and historical evidence hashes are unchanged.
+
+Incoming NS52 c15fd872 has29 file/158 behavior transitions reviewed against exact
+receipts and its actual successful staged gate, with no unresolved accounting
+gaps. This committed-history review adds no new execution result.
