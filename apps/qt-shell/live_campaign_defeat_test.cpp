@@ -47,7 +47,7 @@ void installLiveCampaignDefeatTest(QApplication& app,QMainWindow& window,LiveMen
   const QPoint origin=container->mapToGlobal(QPoint((container->width()-800)/2,(container->height()-600)/2));
   answer->start("python3",{QDir::current().filePath("tools/test-live-qt-campaign-defeat.py"),"--origin-x",QString::number(origin.x()),"--origin-y",QString::number(origin.y()),"--answer",e->menus==1?"no":"yes","--experiment",session.evidenceDirectory(),"--capture",QFileInfo(path).dir().filePath(QString("original-confirmation-%1.png").arg(e->menus))});
  };
- auto state=session.stateChanged;session.stateChanged=[e,state,fail,&window,path](const MenuBridge::State& s){
+ auto state=session.stateChanged;session.stateChanged=[e,state,fail,&window,&session,path](const MenuBridge::State& s){
   if(state)state(s);
   if(e->menus==2&&s.ready&&s.screen==6&&!e->defeat){
    if(s.ack!=5||s.defeat.actions!=1||s.defeat.context!=5||s.defeat.depth!=5||s.defeat.outcome||s.defeat.title.isEmpty()||s.defeat.texts[19]!="You quit the battle."){fail("Unexpected original campaign defeat report.");return;}
@@ -62,9 +62,10 @@ void installLiveCampaignDefeatTest(QApplication& app,QMainWindow& window,LiveMen
    QTimer::singleShot(0,&window,[fail,&window,path]{window.grab().save(QFileInfo(path).dir().filePath("qt-campaign-quit-main.png"));auto* b=window.findChild<QPushButton*>("mainMenuAction4");if(!b||!b->isEnabled()){fail("Native Main Quit unavailable after campaign exit.");return;}b->click();});return;
   }
   if(!s.ready||s.screen!=17||e->waiting)return;
-  if(e->menus>=2||s.ack!=quint32(3+e->menus)||s.mini.battle||s.mini.context!=5||s.mini.mode!=2||s.mini.depth!=5||s.mini.actions!=5){fail("Unexpected campaign Mini ownership/acknowledgement.");return;}
+  const quint32 offered=session.progressedMenusEnabled?31u:5u;
+  if(e->menus>=2||s.ack!=quint32(3+e->menus)||s.mini.battle||s.mini.context!=5||s.mini.mode!=2||s.mini.depth!=5||s.mini.actions!=offered){fail("Unexpected campaign Mini ownership/acknowledgement.");return;}
   auto* w=window.findChild<MiniMenuWidget*>();if(!w||!w->isVisible()||w->mode()!=MiniMenuWidget::Mode::Campaign){fail("Native campaign Mini not presented.");return;}
-  for(int i=1;i<=5;++i){auto* b=w->findChild<QPushButton*>(QString("miniMenuButton%1").arg(i));if(!b||b->isEnabled()!=(i==4||i==5)){fail("Unsupported campaign controls offered.");return;}}
+  for(int i=1;i<=5;++i){auto* b=w->findChild<QPushButton*>(QString("miniMenuButton%1").arg(i));const bool enabled=i==4||i==5||(session.progressedMenusEnabled&&((i<=2&&session.storageMenusEnabled)||(i==3&&session.campaignPreferencesEnabled)));if(!b||b->isEnabled()!=enabled){fail("Unsupported campaign controls offered.");return;}}
   e->states.append(QJsonObject{{"screen",17},{"ack",int(s.ack)},{"generation",int(s.generation)},{"thread",int(s.thread)},{"context",int(s.mini.context)},{"mode",int(s.mini.mode)},{"depth",int(s.mini.depth)},{"actions",int(s.mini.actions)}});
   int pass=e->menus++;e->waiting=true;
   QTimer::singleShot(0,&window,[w,pass,&window,path]{window.grab().save(QFileInfo(path).dir().filePath(QString("qt-campaign-mini-%1.png").arg(pass)));w->findChild<QPushButton*>("miniMenuButton4")->click();});
