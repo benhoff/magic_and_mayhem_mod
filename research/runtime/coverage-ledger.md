@@ -8749,3 +8749,31 @@ composition and producer/physical interval alignment. More generic pending-frame
 logging or relaxed admission for the75offscreen rectangle copies would not
 close those presented-source gaps. Step2and all47/21remain open; steps3–7stay
 ordered/pending. Archive completion adds no new engine validation.
+
+## Step 2 source-completion physical interval checkpoint (2026-10-13 UTC)
+
+Source domain accounting committed as81128d74; staged/normal hook checks pass.
+Reviewed ec1c6d26..81128d74:11exact receipts and0gaps. New opt-in
+`--close-physical-on-source-complete` requires whole source and EGL physical
+observation. It polls during the input schedule and requests physical close only
+after the exact expected whole-source marker. Partial markers wait; failure,
+wrong count, corruption or an existing close request refuse. Defaults retain
+the original Quit-bound interval. Four meaningful close guards, three existing
+source-completion and eight cursor frontend guards pass.
+
+Fresh original32mode passes32queues/179599records/1346oracles/33001100bytes,
+238closed physical contexts and249later contexts. The closed interval contains
+114accepted leases,16gate refusals,53source refusals,54method/flag domains and
+one producer-stopped context. One in-flight/detection boundary remains; this is
+not an atomic producer/EGL boundary. Actual original gameexit0 and MainQuit
+dispatch pass, with794accepted/165refused gate pairs and0journal lifecycle gaps.
+Original manifests verify2927files before/after; section bytes remain unchanged.
+
+First native replay aborts under restricted Xvfb before any comparison; its
+114candidate/373excluded/nativeexit1report is preserved as negative evidence.
+The unchanged frozen input retry under host Xvfb passes114source/display
+comparisons with0pixel differences and preserves373excluded contexts. Native
+inputs contain only parameters and pinned encoded assets; original planes stay
+external. Neither candidate counts nor0compared in the failed attempt establish
+a match. Original120interval alignment and all gate/source/cursor/lifetime/routes/
+shutdown/47journey/21operation closure remain open; steps3–7stayordered/pending.
