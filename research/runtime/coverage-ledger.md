@@ -8528,3 +8528,16 @@ NS37 static seed records57b710 entry/body bytes, all103 compressed spell IDs and
 17targets plus bounded coordinate/path constructor windows. Cast admission itself
 is still pending implementation/comparison; exception-chain and lower service
 boundaries are documented independently.
+
+## NS37: whole original cast admission projection
+
+Native57b710 ordinary control flow passes24,576 prospectively source/scope-bound
+original32/native64/sanitized64 cases, all17compressed dispatch arms and eight
+separate native refusal cases. Cost/learning/source-target/dispatch and supplied
+service ordering agree, with full actor/config/profile/spell/input/body and
+private FS ordinary-chain guards. Earlier invalid/failed development results are
+retained. Creature Explode90 is an area-effect call, correcting the initial stun
+label. Exception/unwind and incidental Boolean EAX are excluded. Full lower
+resource/geometry/secondary/projectile/effect/area ownership, installed construction
+and native World/session integration remain pending; live replacement staysnone.
+See [cast admission research](cast-admission.md).

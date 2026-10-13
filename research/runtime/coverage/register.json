@@ -53708,30 +53708,62 @@
       "subsystem": "casting",
       "kind": "recovered",
       "title": "Original cast admission and secondary dispatch",
-      "scope": "Whole57b710 cast admission projection in recovery: configured cost/pool gates, source/target coordinate and visibility bookkeeping, resource/cost accounting, compressed spell dispatch, secondary admission and special movement/stun calls. Original Win32 SEH linkage is private harness infrastructure; native services exclude it. Valid finite actor/config/profile/coordinates only. Complete lower resource/geometry/secondary/effect/projectile ownership and native session integration pending.",
-      "confidence": "provisional",
+      "scope": "Whole57b710 ordinary cast-admission control-flow projection: configured cost/pool admission, source/target and fine-coordinate resolution, local-owner spell learning/visibility bookkeeping, conditional resource charging/refund/counter updates, all17 compressed dispatch arms, secondary admission and special relocation/area-effect calls. Owned104 spell configurations,1..8 valid fixture actors with canonical slots/owners/classes/directions, finite profiles/queues/coordinates and supplied lower services. Incidental EAX and exception/unwind behavior are excluded; native World/session, complete lower resource/geometry/secondary/projectile/effect ownership and installed profiles remain pending.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5748496,
-          "scope": "Whole57b710 cast admission projection in recovery: configured cost/pool gates, source/target coordinate and visibility bookkeeping, resource/cost accounting, compressed spell dispatch, secondary admission and special movement/stun calls. Original Win32 SEH linkage is private harness infrastructure; native services exclude it. Valid finite actor/config/profile/coordinates only. Complete lower resource/geometry/secondary/effect/projectile ownership and native session integration pending."
+          "scope": "Whole57b710 ordinary cast-admission control-flow projection: configured cost/pool admission, source/target and fine-coordinate resolution, local-owner spell learning/visibility bookkeeping, conditional resource charging/refund/counter updates, all17 compressed dispatch arms, secondary admission and special relocation/area-effect calls. Owned104 spell configurations,1..8 valid fixture actors with canonical slots/owners/classes/directions, finite profiles/queues/coordinates and supplied lower services. Incidental EAX and exception/unwind behavior are excluded; native World/session, complete lower resource/geometry/secondary/projectile/effect ownership and installed profiles remain pending."
         }
       ],
       "documents": [
         "research/runtime/cast-admission.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission_tables.hpp"
+      ],
+      "tests": [
+        "tests/cast-admission-test.cpp",
+        "tools/test-cast-admission.py"
+      ],
       "evidence": [
         "NS37.admission-static-v1",
-        "NS37.admission-static-v2"
+        "NS37.admission-static-v2",
+        "NS37.admission-original",
+        "NS37.admission-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/casting/admission/CMakeLists.txt",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Owned104 configured records,103 table IDs and one unsigned high-dispatch fallthrough;17arms checked nonempty",
+          "Canonical1..8 actors, owner0..7/local-owner-1..8, type/class0..27, direction0..7 and16x16x4 dimensions",
+          "Finite supplied path/cue/charge/visibility/pool/area/movement services; complete actor/config/profile/spell bytes and ordered calls",
+          "Private FS chain setup/restoration for ordinary original execution only; no Windows exception execution",
+          "Caller queue0..20, known flags0..3, bounded signed fine coordinates and32-bit resource/counter wrapping"
+        ],
+        "excluded": [
+          "Invalid raw references/indices/extents, missing actors in dereferencing arms and wider arithmetic/profile domains",
+          "Incidental EAX return as a Boolean and SEH exception/unwind semantics",
+          "Installed all-species/profile ownership; full lower geometry/resource/secondary/projectile/area/effect services",
+          "Native World/session/app composition and live replacement"
+        ]
       }
     },
     {
@@ -53755,6 +53787,45 @@
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.cast-admission",
+      "subsystem": "casting",
+      "kind": "native_policy",
+      "title": "Native cast projection domain refusals",
+      "scope": "Owned actor/config/profile/direction/extent checks reject unsupported logical references and missing required actors. Eight native-only refusal fixtures. Caller must stage state/events; the primitive can mutate supplied state before refusing and does not promise in-place rollback. Original malformed/null-pointer behavior and complete native session admission are excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/cast-admission.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission_tables.hpp"
+      ],
+      "tests": [
+        "tests/cast-admission-test.cpp",
+        "tools/test-cast-admission.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/casting/admission/CMakeLists.txt",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS37.admission-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -109024,6 +109095,162 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS37.admission-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively source/scope-bound whole57b710 ordinary projection:24576 paired original32/native64/sanitized64 cases, all17dispatch arms,8separate native refusals, complete actor/config/profile/spell/FS chain/input/body guards and ordered supplied service calls. No exception/unwind, incidental Boolean EAX, full lower World ownership or session integration.",
+      "record": "research/runtime/original-cast-admission-bound-20261012.json",
+      "sha256": "b395722ab4f892d2c9745ef32406f486161200cce36f286f69e05baed8284a93",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/dispatch_arm_cases",
+          "equals": [
+            6594,
+            189,
+            3317,
+            189,
+            774,
+            996,
+            566,
+            201,
+            189,
+            193,
+            205,
+            191,
+            383,
+            192,
+            202,
+            190,
+            5658
+          ]
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS37.admission-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively source/scope-bound whole57b710 ordinary projection:24576 paired original32/native64/sanitized64 cases, all17dispatch arms,8separate native refusals, complete actor/config/profile/spell/FS chain/input/body guards and ordered supplied service calls. No exception/unwind, incidental Boolean EAX, full lower World ownership or session integration.",
+      "record": "research/runtime/original-cast-admission-bound-20261012.json",
+      "sha256": "b395722ab4f892d2c9745ef32406f486161200cce36f286f69e05baed8284a93",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/dispatch_arm_cases",
+          "equals": [
+            6594,
+            189,
+            3317,
+            189,
+            774,
+            996,
+            566,
+            201,
+            189,
+            193,
+            205,
+            191,
+            383,
+            192,
+            202,
+            190,
+            5658
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -122543,8 +122770,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-cast-descriptor-rebased-20261012.json",
-    "sha256": "0030aea41550f248acecf411ab9e8546f7934a7f237c201246366bd83f5c5d5e"
+    "path": "research/runtime/coverage/source-index-original-cast-admission-20261012.json",
+    "sha256": "bb0eb84d3eb8932b8097b90f4f97c52b098b76a6a53e376b12116a0ed8b72c89"
   },
   "claim_bindings_required": true
 }
