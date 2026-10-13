@@ -8697,3 +8697,33 @@ one homogeneous failure.92are800x600stride800canvas2:75have one pending
 producer frame,17are after source recording stopped. Small/driver-backed sources
 retain their separate refused domains. Next inspect those75pending-frame contexts
 before changing admission. Steps3–7 and all47/21closures remain ordered/pending.
+
+## Approved archive03 completion and storage reconciliation (2026-10-13 UTC)
+
+The user's exact approval authorizes proposal03 SHA-256
+0e948f45e9834fb05db5adf9d3319037652bbd4469ef45269d7a0f2ebf629bee.
+The initial lock collision changed zero files. Attempt02 completes the unchanged
+24-run scope:85,860payloads and71,819,632,640allocated bytes (66.887245GiB).
+Every raw source was checked against its durable compressed/decompressed copy
+and both verified receipts before local unlink. Final reconciliation finds both
+catalog snapshots identical for all verified/pruned paths and rehashes all
+19,145unique compressed objects. All selected local payload paths are absent.
+Original manifests before/after still verify2,927files. Exact result, script,
+receipt snapshot, scheduling timeline and inventory hashes are pinned in
+`draw02-approved-archive-03-provenance-20261013.json`.
+
+The final inventory records1188.554569GiBunderworking and298.625549GiB
+filesystemfree, with no pressure. Independent cleanup and ongoing writers affect
+free-space deltas; this archive's own reclaimed allocation is66.887245GiB.
+The1280GiBworking maximum/100GiBfree reserve and disabled automatic archiving
+remain unchanged. Sources, reports, originals, pins, excluded/current templates
+and active/latest runs were preserved. Future analysis restores an archived
+input with `python3 tools/working-retention.py restore <archived-working-path>`
+before reading it. Archive provenance supplies no new engine validation and
+does not refresh historical source/evidence hashes.
+
+The documented input increment committed as e4ad313e with staged/normal hook
+checks. Reviewed cf621e95..e4ad313e:19exact file receipts, zero gaps, retained
+underworking/draw02-history-review-approved-archive03-20261013-01.json.
+Step2continues with pending producer-frame identity/source/caller lifetimes;
+steps3–7 and all47/21reference/native acceptance closures remain pending.
