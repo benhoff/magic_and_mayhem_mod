@@ -8367,3 +8367,33 @@ scenario will be registered with actual execution evidence, not a preflight.
 Committed `e3c0c2bf` parent/current accounting covers15versions with exact receipts;
 append-only journal metadata is separate. Remaining original activation and exact
 three-journal join validation remain pending.
+
+## Source descriptor activation and authorized storage override (2026-10-12 UTC)
+
+The user explicitly authorized “override the gib restrictions.” The
+[storage record](draw02-storage-override-20261012.json) disables the working ceiling
+and free-space reserve for this DRAW-02 continuation. The default policy and
+archive/deletion scope remain unchanged. Implementation commit `69726578` passes
+the working, staged and required hook checks. Its22 committed source versions
+have exact receipts; earlier stopped checks remain historical logs.
+
+[Original descriptor result01](draw02-wine-source-descriptor-original-01.json)
+passes2,546 exact submission/source-generation/subresource/lifecycle metadata
+bindings with5,092 extra public queries,466 physical API witnesses and174 advancing
+complete update windows. Sources stay stable, originals unchanged and Quit normal.
+The [focused findings](draw02-wine-source-descriptor.md) record12 descriptor
+shape/access tuples. This remains metadata acquisition; source pixels and
+ownership are open, as is every-presentation retention.
+
+[Control01](draw02-source-descriptor-cadence-control-01.json) passes261 original
+update windows with counter/menu/input observation only. The strict
+[comparison01](draw02-source-descriptor-cadence-comparison-01.json) binds actual
+schedule/settings/input/counter binaries and raw traces. Across120 common queued
+updates, combined diagnostic median timing is1.216344× and p95 is1.900047× the
+control. Randomized workloads and capture duration differ; unobtrusive gameplay
+and semantic equivalence remain unproved.
+
+Historical hashes are unchanged. Original activation and positive journal joins
+are now recorded. Adversarial joins, source pixel acquisition and ownership,
+every presentation, full action/caller/lifetime/routes and47/21 closure remain
+open. Step2 stays partial; later stages are not promoted.

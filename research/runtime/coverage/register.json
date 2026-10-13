@@ -44365,7 +44365,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/draw02-diagnostic-cadence-control.md"
+        "research/runtime/draw02-diagnostic-cadence-control.md",
+        "research/runtime/draw02-storage-override-20261012.json"
       ],
       "implementation": [
         "tools/drawing_diagnostic_cadence.py",
@@ -44395,7 +44396,9 @@
         "DRAW02.current-cadence-comparison-20261012",
         "DRAW02.pending-policy-cadence-fixture-01-20261012",
         "DRAW02.pending-policy-cadence-control-01-20261012",
-        "DRAW02.pending-policy-cadence-comparison-01-20261012"
+        "DRAW02.pending-policy-cadence-comparison-01-20261012",
+        "DRAW02.source-descriptor-cadence-control-01-20261012",
+        "DRAW02.source-descriptor-cadence-comparison-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44409,7 +44412,8 @@
         "Control still observes counters/menu/input, randomized original workloads and diagnostic interval lengths differ. Unobtrusive delivery/FPS, source ownership/all writers/uploads/whole lifetimes, all routes/semantic actions/full DRAW-02 47/21 acceptance remain open. Native parity not performed for this cadence-control change.",
         "Current short47queued median3.8414x/control and whole120median7.4675x. Shared declared inputs/settings do not prove identical workload or exclusive instrumentation cost. Expensive diagnostics, no unobtrusive timing/FPS claim; source/frame/journey/semantic completion independent.",
         "Eight offline guards pass after correcting fixed-name schedule lookup to exact executed actions. Historical cadence reports and hashes remain retained; current corrected-comparator/control execution is pending. Unchanged randomized workload, output routes, frame/action/caller/lifetime and unobtrusive gameplay boundaries remain open.",
-        "Corrected original counter-only control01 and comparison01 pass exact actual interactive action schedule/settings/input/counter binary and journal identities. First 120 queued updates: diagnostic/control median 7.6751x, p95 16.2093x. This establishes costly diagnostics relative to the counter-only condition; identical workload, uninstrumented gameplay, all presentation/source/action/caller/lifetime/routes and full47/21 remain unproved."
+        "Corrected original counter-only control01 and comparison01 pass exact actual interactive action schedule/settings/input/counter binary and journal identities. First 120 queued updates: diagnostic/control median 7.6751x, p95 16.2093x. This establishes costly diagnostics relative to the counter-only condition; identical workload, uninstrumented gameplay, all presentation/source/action/caller/lifetime/routes and full47/21 remain unproved.",
+        "Fresh source-descriptor control01 and comparison01 pass the same short executed input schedule/settings/counter/input binary and raw traces for120common queued updates, with combined diagnostic median1.216344x/p951.900047x. Actual randomized work and capture duration still differ; no unobtrusive gameplay, getter-only timing, source/frame/semantic equivalence or native parity claim. User storage override is separate authorization."
       ]
     },
     {
@@ -45668,7 +45672,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-wine-source-descriptor.md",
-        "research/formats/drawing-wine-source-descriptor.md"
+        "research/formats/drawing-wine-source-descriptor.md",
+        "research/runtime/draw02-storage-override-20261012.json"
       ],
       "implementation": [
         "runtime/drawing/wine_source_descriptor.h",
@@ -45694,7 +45699,8 @@
       ],
       "evidence": [
         "DRAW02.wine-source-descriptor-fixture-04-20261012",
-        "DRAW02.wine-source-descriptor-fixture-05-20261012"
+        "DRAW02.wine-source-descriptor-fixture-05-20261012",
+        "DRAW02.wine-source-descriptor-original-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45704,7 +45710,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Owned PE32 fixture05 passes seven original forwards, four extra resource getters/three descriptor queries, disabled/untrusted/null/failed/changed-generation cases, exact original entry/return FP and LastError. Five decoder methods and eight cadence guard methods pass. Corrected headless scenario is bound by fresh fixture05; fixture04 retains its earlier invalid-label declaration historically. Two 3GiB original probe preflights refuse at100.672 and101.470GiB free before launch. Original activation and exact cross-journal validation, opaque source bytes, all aliases/lifetimes/frame/action/routes and current controls remain pending; no comparison/integration/replacement or full47/21 promotion."
+        "Fresh fixture05 and original01 establish owned forwarding guards and2546current exact submission/source-generation/subresource/lifetime metadata bindings. Extra public descriptors expose12shape/access tuples, including40x40and400x280sources, but no source pixels or ownership. Original short capture retains466physical API witnesses and174advancing update windows with all-presentations flag false. Fresh counter-only control retains261windows; current comparison is separate. Adversarial cross-journal guards, source pixel acquisition/ownership, all internal aliases/lifetimes, complete frame/action/caller/routes and47/21 closure remain pending. User explicitly overrides GiB limits for continuation; storage authorization confers no engine status."
       ]
     }
   ],
@@ -97953,6 +97959,107 @@
           "equals": 6
         }
       ]
+    },
+    {
+      "id": "DRAW02.wine-source-descriptor-original-01-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active diagnostic public source descriptors at2546 Wine blit submissions, each bound to source generation, subresource, API/thread and exact lifecycle prefixes; 5092extra public queries,466physical API witnesses,174advancing complete update windows and normal Quit. Metadata only; no source pixels, ownership, every presentation, semantic or native-parity proof.",
+      "record": "research/runtime/draw02-wine-source-descriptor-original-01.json",
+      "sha256": "6efe648f01c0697ccb7ecd6ea37b101518bace8eff6856c637ef9eb3643807c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_descriptor_observation/known_descriptors",
+          "equals": 2546
+        },
+        {
+          "pointer": "/wine_source_descriptor_observation/all_sample_submission_identities_bound",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_descriptor_observation/source_pixels_read",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-descriptor-cadence-control-01-20261012",
+      "kind": "live_observation",
+      "scope": "Current counter/menu/input-only original control under the same short actual input schedule/settings; no drawing/source/Wine/display observer. Normal Quit and261complete update windows; randomized workload, source/frame/semantic parity and unobtrusive gameplay remain unproved.",
+      "record": "research/runtime/draw02-source-descriptor-cadence-control-01.json",
+      "sha256": "d0f025008d656ebe7051954e6c91a03119e77a8faaf968e0cad49e57c0fe027b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cadence_control",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-descriptor-cadence-comparison-01-20261012",
+      "kind": "native_integration",
+      "scope": "Strict actual executed-schedule/settings/input/counter-binary/raw-trace comparison of fresh original descriptor diagnostic against matching counter-only control. First120common queued updates: median1.216344x andp951.900047x; combined diagnostic timing only, with no identical-randomized-work, unobtrusive gameplay or source/frame/native equivalence proof.",
+      "record": "research/runtime/draw02-source-descriptor-cadence-comparison-01.json",
+      "sha256": "bd038e63d05bb8799a534563690766fa8fc8e9f2d0fe55673980ee56fcc9d40b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/0/measurement/common_queued_updates",
+          "equals": 120
+        },
+        {
+          "pointer": "/unobtrusive_capture_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109704,7 +109811,8 @@
       "evidence": [
         "DRAW02.cadence-control-original-01-live_observation-20261012",
         "DRAW02.cadence-control-original-02-live_observation-20261012",
-        "DRAW02.pending-policy-cadence-control-01-20261012"
+        "DRAW02.pending-policy-cadence-control-01-20261012",
+        "DRAW02.source-descriptor-cadence-control-01-20261012"
       ]
     },
     {
@@ -109721,7 +109829,8 @@
         "DRAW02.cadence-control-comparison-01-native_integration-20261012",
         "DRAW02.cadence-control-comparison-02-native_integration-20261012",
         "DRAW02.cadence-control-repeat-01-native_integration-20261012",
-        "DRAW02.pending-policy-cadence-comparison-01-20261012"
+        "DRAW02.pending-policy-cadence-comparison-01-20261012",
+        "DRAW02.source-descriptor-cadence-comparison-01-20261012"
       ]
     },
     {
@@ -109864,6 +109973,20 @@
       "evidence": [
         "DRAW02.wine-source-descriptor-fixture-04-20261012",
         "DRAW02.wine-source-descriptor-fixture-05-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-descriptor-original",
+      "level": "live_observation",
+      "scope": "Original-active diagnostic source descriptor sampling at exact known submission identities; no byte/ownership/global acquisition proof.",
+      "behaviors": [
+        "NR.drawing-wine-source-descriptor"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-descriptor-original-01-20261012"
       ]
     }
   ],

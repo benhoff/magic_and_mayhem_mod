@@ -43,3 +43,50 @@ scenario will be registered with actual execution evidence, not a preflight.
 Committed `e3c0c2bf` parent/current accounting covers15versions with exact receipts;
 append-only journal metadata is separate. Remaining original activation and exact
 three-journal join validation remain pending.
+
+## Source descriptor activation and authorized storage override (2026-10-12 UTC)
+
+The user explicitly authorized “override the gib restrictions.” The scoped
+[override record](draw02-storage-override-20261012.json) disables the working GiB
+ceiling and free-space reserve for this DRAW-02 continuation. The default policy
+and archive/deletion scope remain unchanged. Commands still record output
+estimates and measured storage. Implementation commit `69726578` passes the
+working, staged and required hook checks; the two earlier stopped staged checks
+remain historical logs. This authorization removes the earlier storage block.
+
+[Original descriptor result01](draw02-wine-source-descriptor-original-01.json)
+retains a fresh original-active short run with unchanged original manifests and
+executable sections, stable source hashes and normal original Quit. All 2,546
+source samples succeed and bind to exact submission/API/thread/source generation,
+subresource and lifecycle prefixes. The diagnostic records 5,092 extra public
+queries, 466 physical API witnesses and 174 consecutive advancing complete update
+windows. Every-presentation retention and native parity remain false.
+
+Twelve distinct descriptor shape/access tuples include 40×40 (3,200 bytes),
+400×280 (224,000 bytes) and 800×600 (960,000 bytes). All report format116.
+Launch-local opaque source generations distinguish observed instances; dimension
+equality does not identify content or prove shared backing. The Wine11.16
+[public declaration](https://raw.githubusercontent.com/wine-mirror/wine/wine-11.16/include/wine/wined3d.h)
+names format116 as B5G6R5_UNORM and access bits1/2/4/8 as GPU/CPU/map-read/map-write.
+Observed access13 therefore indicates GPU and mapping permissions; access14
+indicates CPU and mapping permissions. These labels are an interpretation of the
+public numeric descriptor, without private-layout reads. Pitch, source bytes,
+ownership, all aliases and concurrency still require independent acquisition.
+
+[Current control01](draw02-source-descriptor-cadence-control-01.json) retains
+261 complete original update windows with counter/menu/input observation only,
+unchanged originals and normal Quit. The
+[current comparison01](draw02-source-descriptor-cadence-comparison-01.json)
+binds the successful actual short input schedule, settings, input/counter
+executables and raw traces. The first120 common queued updates yield a combined
+diagnostic median1.216344× and p951.900047× the control. Randomized workloads and
+capture duration differ; this result grants no unobtrusive-gameplay or semantic
+equivalence claim. It does not isolate the cost of the descriptor getters.
+
+The committed `69726578` parent/current review checks22 source versions against
+exact receipts, with append-only journal metadata separate. Historical hashes
+remain unchanged. Original activation and positive three-journal bindings are now
+recorded at their bounded scope. Adversarial joins, source pixel acquisition and
+ownership, every presentation, full action/caller/lifetime/routes and the47/21
+gates remain open. Step2 is still partial; comparison, integration, replacement
+and later steps are not promoted.

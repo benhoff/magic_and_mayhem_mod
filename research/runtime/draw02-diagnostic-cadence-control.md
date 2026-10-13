@@ -53,3 +53,10 @@ and5GiB staged/hook reservations. The still-local remainder of the five previous
 reviewed older completed runs is9248files/7.642GiB. Cold backup verification is
 being prepared with no local deletion; previous cleanup approval does not extend
 to this remainder. Current original02/control01 raw references remain hot.
+
+The fresh source-descriptor control/comparison01 uses the same actual short
+schedule and current binaries, comparing120common queued updates at
+median1.216344×/p951.900047×. Both original runs verify unchanged originals and
+normal Quit. This scoped combined diagnostic timing result retains randomized
+workload and unobtrusive-capture limitations. See the source-descriptor checkpoint
+and explicit user storage override; no historical fingerprints are refreshed.
