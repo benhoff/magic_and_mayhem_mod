@@ -44154,7 +44154,8 @@
         "UI50.character-adapter-private",
         "UI52.character-adapter-launch-regression",
         "UI51.campaign-progress-preparation",
-        "UI54.character-fixture-transactions"
+        "UI54.character-fixture-transactions",
+        "UI56.character-fixture-build-regression"
       ],
       "status": {
         "understanding": "partial",
@@ -44291,6 +44292,217 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.campaign-menu-fixture-workflow",
+      "kind": "native_policy",
+      "subsystem": "campaign",
+      "title": "Connected synthetic Realm Region Character workflow",
+      "scope": "Synthetic native Realm/Region navigation host with real V18 Character bridge/session/controller and a mapped synthetic peer: six acknowledged parent returns, two caller identities, buy/refund/Cancel/OK and reopen, caller selection/difficulty/focus/Escape/disabled-action handling. Flat fixture prices and assets, no original callbacks in this journey. Actual Realm projection/dispatch,progression,tutorials/resources,disk persistence,window-close,pause and live replacement are excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-menu-fixture-workflow.md"
+      ],
+      "implementation": [
+        "tests/campaign-menu-fixture.cpp"
+      ],
+      "tests": [
+        "tools/test-campaign-menu-fixture.py",
+        "tests/campaign-menu-assets-fixture.hpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "apps/qt-shell/character_screen_widget.cpp",
+        "apps/qt-shell/character_screen_widget.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/grimoire_assets.cpp",
+        "apps/qt-shell/grimoire_assets.hpp",
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/grimoire_widget.hpp",
+        "apps/qt-shell/live_character_controller.cpp",
+        "apps/qt-shell/live_character_controller.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/load_game_widget.cpp",
+        "apps/qt-shell/load_game_widget.hpp",
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/main_menu_widget.hpp",
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/map_selection_widget.hpp",
+        "apps/qt-shell/menu_assets.cpp",
+        "apps/qt-shell/menu_assets.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/menu_fonts.hpp",
+        "apps/qt-shell/menu_preview.cpp",
+        "apps/qt-shell/menu_preview.hpp",
+        "apps/qt-shell/menu_sprites.cpp",
+        "apps/qt-shell/menu_sprites.hpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.cpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.hpp",
+        "apps/qt-shell/multiplayer_lobby_widget.cpp",
+        "apps/qt-shell/multiplayer_lobby_widget.hpp",
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp",
+        "apps/qt-shell/preferences_widget.cpp",
+        "apps/qt-shell/preferences_widget.hpp",
+        "apps/qt-shell/quick_battle_menu_widget.cpp",
+        "apps/qt-shell/quick_battle_menu_widget.hpp",
+        "apps/qt-shell/quick_battle_result_widget.cpp",
+        "apps/qt-shell/quick_battle_result_widget.hpp",
+        "apps/qt-shell/realm_viewer_assets.cpp",
+        "apps/qt-shell/realm_viewer_assets.hpp",
+        "apps/qt-shell/realm_viewer_visuals.cpp",
+        "apps/qt-shell/realm_viewer_visuals.hpp",
+        "apps/qt-shell/realm_viewer_widget.cpp",
+        "apps/qt-shell/realm_viewer_widget.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp",
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.hpp",
+        "apps/qt-shell/spell_research_widget.cpp",
+        "apps/qt-shell/spell_research_widget.hpp",
+        "apps/qt-shell/spellbox_widget.cpp",
+        "apps/qt-shell/spellbox_widget.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "audio/CMakeLists.txt",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "renderer/CMakeLists.txt",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "tests/campaign-menu-assets-fixture.hpp",
+        "tests/character-screen-test.cpp",
+        "tests/character-wire-fixture.hpp",
+        "tests/grimoire-fixtures.hpp",
+        "tests/menu-character-bridge-test.cpp",
+        "tests/menu-sprite-fixtures.hpp",
+        "tests/realm-viewer-fixtures.hpp",
+        "tests/realm-viewer-test.cpp",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI55.campaign-menu-fixture-workflow"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -91822,6 +92034,76 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI56.character-fixture-build-regression",
+      "kind": "native_integration",
+      "record": "research/runtime/character-fixture-build-regression-20261012.json",
+      "sha256": "b1048938306adf42c540653274b6f649140b39881450361ecb44a0d0f018c0f3",
+      "scope": "Refresh private original Character getter/pricing/callbacks and16 guards plus3 Qt tests after adding the connected fixture build target. Six-row transactions,both synthetic caller reopen paths and ACK refusals remain headless; no real progression or live ownership.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/guard_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI55.campaign-menu-fixture-workflow",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-menu-fixture-20261012.json",
+      "sha256": "f65ef1aae19152a43f6c1f274634d4754108db2525d6b5b063ee5338af580741",
+      "scope": "Connected synthetic Realm/Region/Character production-widget journey with six acknowledged Character returns,two callers,selection/difficulty/focus/Escape/disabled-action checks and3 companion Qt tests. Native fixture navigation/flat prices/assets; no original callbacks,progression,disk persistence or live ownership.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 4
+        },
+        {
+          "pointer": "/fixture/character_parent_returns",
+          "equals": 6
+        },
+        {
+          "pointer": "/fixture/callers",
+          "equals": 2
+        },
+        {
+          "pointer": "/fixture/synthetic_campaign",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/original_callbacks_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -102654,7 +102936,8 @@
       "evidence": [
         "UI50.character-adapter-private",
         "UI52.character-adapter-launch-regression",
-        "UI54.character-fixture-transactions"
+        "UI54.character-fixture-transactions",
+        "UI56.character-fixture-build-regression"
       ],
       "tests": [
         "tests/character-adapter-reference.cpp",
@@ -102677,6 +102960,23 @@
         "tests/original-gameplay-launch-test.py",
         "tools/test-live-original-gameplay.py",
         "tools/campaign-original-combat-input.py"
+      ]
+    },
+    {
+      "id": "campaign-menu-fixture-20261012",
+      "level": "headless",
+      "scope": "Connected synthetic Realm/Region/Character widget journey with production Character channel/controller; six parent returns, both caller identities, Cancel/OK reopening,selection/difficulty/focus/Escape/disabled actions and3 companion Qt tests. No original gameplay or live ownership.",
+      "behaviors": [
+        "NP.campaign-menu-fixture-workflow"
+      ],
+      "evidence": [
+        "UI55.campaign-menu-fixture-workflow"
+      ],
+      "tests": [
+        "tests/campaign-menu-fixture.cpp",
+        "tools/test-campaign-menu-fixture.py",
+        "tests/campaign-menu-assets-fixture.hpp",
+        "tests/character-wire-fixture.hpp"
       ]
     }
   ],
@@ -103011,7 +103311,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "e5ac93a10645f79bbed010692a850743cbd72790f038bda99b450df715549196",
+      "sha256": "85e1a9a1035d027cd025168a0875f7146e489d707d925833c82a49f22b02f06e",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character. UI49 compares bounded positive-domain Character pricing; native failed-input policy stays separate, live menus pending. UI50 adds experimental opt-in Character headless integration and original80-record wizard-selection finding; genuine live progression remains pending."
     },
     {
@@ -103096,8 +103396,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-character-fixtures-20261012.json",
-    "sha256": "17f47705c189b8ba0768dcb5a5103f259b96dd8a8654c4194365a3cd07e5bc45"
+    "path": "research/runtime/coverage/source-index-campaign-fixture-20261012.json",
+    "sha256": "c36f071fd54a91210643979e160c2e48e4fc5dede8d6e28f908f1e2b808e8eba"
   },
   "claim_bindings_required": true
 }
