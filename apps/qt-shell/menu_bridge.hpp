@@ -13,7 +13,7 @@ public:
     struct ResultPlayer {bool active=false;QString name,kills,deaths,handicap,score;};
     struct Results {quint32 actions=0,context=0,depth=0;std::array<ResultPlayer,4> players{};};
     struct Preferences {quint32 actions=0,available=0,parentScreen=0,depth=0;std::array<int,7> values{};};
-    struct RegionEntry {quint32 caller=0,depth=0,different=0,difficulty=0,available=0,actions=0,region=0;QString realm,name;};
+    struct RegionEntry {quint32 caller=0,depth=0,different=0,difficulty=0,available=0,actions=0,region=0;QString realm,name;quint32 enterHandoff=0;};
     struct Defeat {quint32 actions=0,context=0,depth=0,outcome=0;QString title;std::array<QString,21> texts{};};
     struct Storage {quint32 screen=0,parent=0,depth=0,context=0,modal=0,pending=0,selected=0;QString fileName;QVector<QString> names;};
     struct Lobby {quint32 parent=0,depth=0,context=0,provider=0,actions=0,map=0,localSlot=0;std::array<int,13> rules{};std::array<Player,4> players{};QString gameName,mapName;};
@@ -26,7 +26,7 @@ public:
     struct Character {quint32 parent=0,depth=0,context=0,wizard=0,experience=0,actions=0,adjustments=0;std::array<CharacterRow,6> rows{};QString name;};
     struct State { quint32 generation=0,screen=0,ready=0,ack=0,status=0,thread=0,sequence=0,handoff=0;Battle battle;Spells spells;Mini mini;Results results;Preferences preferences;RegionEntry region;Defeat defeat;Storage storage;Grimoire grimoire;Multiplayer multiplayer;Sessions sessions;Lobby lobby;Character character;Realm realm; };
     ~MenuBridge();
-    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false,bool campaignQuit=false,bool campaignDefeat=false,bool campaignPreferences=false,bool storage=false,bool grimoire=false,bool multiplayer=false,bool sessions=false,bool lobby=false,bool character=false,bool realm=false);
+    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false,bool campaignQuit=false,bool campaignDefeat=false,bool campaignPreferences=false,bool storage=false,bool grimoire=false,bool multiplayer=false,bool sessions=false,bool lobby=false,bool character=false,bool realm=false,bool campaign=false);
     bool read(State& state) const;
     void heartbeat(bool alive=true);
     bool request(quint32 action,const State& state,quint32 argument=0,const std::array<int,17>* rules=nullptr);
@@ -40,6 +40,6 @@ private:
     QFile file_;
     uchar* mapping_=nullptr;
     quint32 heartbeat_=0,request_=0;
-    bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false,preferences_=false,region_=false,enter_=false,campaignMini_=false,campaignQuit_=false,campaignDefeat_=false,campaignPreferences_=false,storage_=false,grimoire_=false,multiplayer_=false,sessions_=false,lobby_=false,character_=false,realm_=false;
+    bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false,preferences_=false,region_=false,enter_=false,campaignMini_=false,campaignQuit_=false,campaignDefeat_=false,campaignPreferences_=false,storage_=false,grimoire_=false,multiplayer_=false,sessions_=false,lobby_=false,character_=false,realm_=false,campaign_=false;
     void publish(bool alive,quint32 action=0,quint32 generation=0,quint32 argument=0,const std::array<int,17>* rules=nullptr,const std::array<int,63>* assignments=nullptr,const std::array<int,7>* preferences=nullptr,const QByteArray* storageName=nullptr,const QByteArray* multiplayerNames=nullptr);
 };
