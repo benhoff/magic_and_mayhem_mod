@@ -3,6 +3,7 @@
 import copy
 import importlib.util
 import json
+import os
 from pathlib import Path
 import struct
 import sys
@@ -10,6 +11,7 @@ import tempfile
 import unittest
 import threading
 import time
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 import native_music_launch as launch
@@ -46,6 +48,29 @@ class Admission(unittest.TestCase):
     def test_catalog_drift(self):
         track=self.root/'native-music/Track02.wav';track.write_bytes(track.read_bytes()[:-1])
         with self.assertRaises(ValueError):launch.authorize(self.root,self.metadata,{})
+    def test_ordinary_launch_does_not_hash_pcm(self):
+        metadata={**self.metadata,'full_asset_verification':False}
+        original=launch.sha;hashed=[]
+        def observe(path):
+            hashed.append(path)
+            return original(path)
+        with patch.object(launch,'sha',side_effect=observe):
+            launch.authorize(self.root,metadata,{})
+        self.assertTrue(hashed)
+        self.assertFalse(any(path.suffix=='.wav' for path in hashed))
+        (self.root/'native-music/Track02.wav').unlink()
+        with self.assertRaises(ValueError):launch.authorize(self.root,metadata,{})
+    def test_fast_staging_retains_catalog_and_policy(self):
+        fresh=self.base/'fast';fresh.mkdir()
+        original=launch.sha;hashed=[]
+        def observe(path):hashed.append(path);return original(path)
+        with patch.dict(os.environ,{'MNM_VERIFY_ASSETS':'0'}),patch.object(launch,'sha',side_effect=observe):
+            metadata=launch.stage(fresh,self.root/'native-music')
+        self.assertIs(metadata['full_asset_verification'],False)
+        self.assertFalse(any(path.suffix=='.wav' for path in hashed))
+        self.assertEqual(metadata['music_toc'],self.metadata['music_toc'])
+    def test_invalid_scan_policy_refused(self):
+        with self.assertRaises(ValueError):launch.authorize(self.root,{**self.metadata,'full_asset_verification':0},{})
     def test_symlink(self):
         borrowed=self.base/'borrowed.bin';self.channel.rename(borrowed);self.channel.symlink_to(borrowed)
         with self.assertRaises(ValueError):launch.authorize(self.root,self.metadata,{})
