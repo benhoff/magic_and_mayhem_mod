@@ -8,6 +8,7 @@ static void transactions(quint32 parent){
     CharacterWireFixture peer;peer.begin(parent);
     LiveMenuSession session("/unused");session.characterMenusEnabled=true;peer.attach(session);
     CharacterScreenWidget widget;LiveCharacterController controller(session,widget);
+    widget.show();QApplication::processEvents();
     auto button=[&](const char* name){return widget.findChild<QPushButton*>(name);};
     auto adjustment=[&](int row,bool up){return widget.findChild<QPushButton*>(QString("characterAdjustment%1").arg(row*2+!up));};
     int presented=0,returned=0;
@@ -20,8 +21,10 @@ static void transactions(quint32 parent){
         adjustment(i,true)->click();check(peer.word(28)==sequence+1,"duplicate click suppressed");
         check(peer.acknowledge(),"buy acknowledgement");LiveMenuSessionTestAccess::poll(session);
         check(widget.isEnabled()&&widget.draftRequest().values[i]==int(CharacterWireFixture::initial[i]+CharacterWireFixture::increment[i])&&widget.draftRequest().remainingExperience==39,"authoritative purchase");
+        check(adjustment(0,true)->hasFocus(),"first enabled stat focus restored after purchase acknowledgement");
         adjustment(i,false)->click();check(peer.acknowledge(),"refund acknowledgement");LiveMenuSessionTestAccess::poll(session);
         check(widget.draftRequest().values[i]==int(CharacterWireFixture::initial[i])&&widget.draftRequest().remainingExperience==50,"authoritative refund");
+        check(adjustment(0,true)->hasFocus(),"first enabled stat focus restored after refund acknowledgement");
         check(!adjustment(i,false)->isEnabled(),"cannot refund baseline");
     }
     adjustment(0,true)->click();check(peer.acknowledge(),"cancel draft buy");LiveMenuSessionTestAccess::poll(session);

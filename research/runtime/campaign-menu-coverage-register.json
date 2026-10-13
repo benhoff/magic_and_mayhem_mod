@@ -1467,7 +1467,7 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Guarded experimental Character state and original actions",
-      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending. Character acknowledgements must match the exact request and engine thread; waiting controls disable, and synthetic Realm/Region caller reopen tests cover all six adjustments, refunds, Cancel rollback and OK baseline retention.",
+      "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending. Character acknowledgements must match the exact request and engine thread; waiting controls disable, and synthetic Realm/Region caller reopen tests cover all six adjustments, refunds, Cancel rollback and OK baseline retention. Native keyboard focus is restored when Character readiness returns after a pending request; synthetic Qt checks assert focus after purchase/refund acknowledgements.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -1521,7 +1521,8 @@
         "UI52.character-adapter-launch-regression",
         "UI51.campaign-progress-preparation",
         "UI54.character-fixture-transactions",
-        "UI56.character-fixture-build-regression"
+        "UI56.character-fixture-build-regression",
+        "UI57.character-ready-focus"
       ],
       "status": {
         "understanding": "partial",
@@ -1666,7 +1667,7 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Connected synthetic Realm Region Character workflow",
-      "scope": "Synthetic native Realm/Region navigation host with real V18 Character bridge/session/controller and a mapped synthetic peer: six acknowledged parent returns, two caller identities, buy/refund/Cancel/OK and reopen, caller selection/difficulty/focus/Escape/disabled-action handling. Flat fixture prices and assets, no original callbacks in this journey. Actual Realm projection/dispatch,progression,tutorials/resources,disk persistence,window-close,pause and live replacement are excluded.",
+      "scope": "Synthetic native Realm/Region navigation host with real V18 Character bridge/session/controller and a mapped synthetic peer: six acknowledged parent returns, two caller identities, buy/refund/Cancel/OK and reopen, caller selection/difficulty/focus/Escape/disabled-action handling. Flat fixture prices and assets, no original callbacks in this journey. Actual Realm projection/dispatch,progression,tutorials/resources,disk persistence,window-close,pause and live replacement are excluded. Native keyboard focus is restored when Character readiness returns after a pending request; synthetic Qt checks assert focus after purchase/refund acknowledgements.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -1862,7 +1863,8 @@
         "tools/coverage_claims.py"
       ],
       "evidence": [
-        "UI55.campaign-menu-fixture-workflow"
+        "UI55.campaign-menu-fixture-workflow",
+        "UI58.campaign-fixture-ready-focus"
       ],
       "status": {
         "understanding": "partial",
@@ -2973,6 +2975,72 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI57.character-ready-focus",
+      "kind": "native_integration",
+      "record": "research/runtime/character-ready-focus-20261012.json",
+      "sha256": "4b00ea24d4febb8e9154544812964545cb5bb28f9c9355a60fa426887c69f963",
+      "scope": "Private original Character getter/pricing/callbacks and16 guards plus3 Qt tests,including24 first-enabled-stat focus checks across purchase/refund acknowledgements from both synthetic callers. No original focus semantics or live ownership.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 3
+        },
+        {
+          "pointer": "/private/guard_cases",
+          "equals": 16
+        }
+      ]
+    },
+    {
+      "id": "UI58.campaign-fixture-ready-focus",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-fixture-ready-focus-20261012.json",
+      "sha256": "c14cdd07d77be88709b47a54d2c90e88fa42fb3f447ca53e315e8f790a82eed1",
+      "scope": "Connected synthetic Realm/Region/Character journey and3 companion Qt tests,including Character readiness focus regression; six parent returns,two callers,synthetic prices/assets. No actual Realm dispatch,progression,disk persistence or live ownership.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/qt_tests",
+          "equals": 4
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/character_parent_returns",
+          "equals": 6
+        },
+        {
+          "pointer": "/fixture/callers",
+          "equals": 2
+        },
+        {
+          "pointer": "/fixture/original_callbacks_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -3197,7 +3265,7 @@
     {
       "id": "character-adapter-private-20261012",
       "level": "headless",
-      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence. Expanded Qt peer fixtures cover six rows, both parent identities, rollback/commit reopen and wrong/missing acknowledgement refusals; those lifecycle resources are synthetic.",
+      "scope": "Synthetic settled Character ownership with original getter/price refresh/adjust/refund/Cancel,16 guard branches and3 Qt wire/controller/widget tests. Fade and resources synthetic; no live progression/return/persistence. Expanded Qt peer fixtures cover six rows, both parent identities, rollback/commit reopen and wrong/missing acknowledgement refusals; those lifecycle resources are synthetic. Companion Character transactions assert ready focus recovery after all six purchase/refund rows for both callers.",
       "behaviors": [
         "NP.character-menu-dispatch"
       ],
@@ -3205,7 +3273,8 @@
         "UI50.character-adapter-private",
         "UI52.character-adapter-launch-regression",
         "UI54.character-fixture-transactions",
-        "UI56.character-fixture-build-regression"
+        "UI56.character-fixture-build-regression",
+        "UI57.character-ready-focus"
       ],
       "tests": [
         "tests/character-adapter-reference.cpp",
@@ -3233,12 +3302,13 @@
     {
       "id": "campaign-menu-fixture-20261012",
       "level": "headless",
-      "scope": "Connected synthetic Realm/Region/Character widget journey with production Character channel/controller; six parent returns, both caller identities, Cancel/OK reopening,selection/difficulty/focus/Escape/disabled actions and3 companion Qt tests. No original gameplay or live ownership.",
+      "scope": "Connected synthetic Realm/Region/Character widget journey with production Character channel/controller; six parent returns, both caller identities, Cancel/OK reopening,selection/difficulty/focus/Escape/disabled actions and3 companion Qt tests. No original gameplay or live ownership. Companion Character transactions assert ready focus recovery after all six purchase/refund rows for both callers.",
       "behaviors": [
         "NP.campaign-menu-fixture-workflow"
       ],
       "evidence": [
-        "UI55.campaign-menu-fixture-workflow"
+        "UI55.campaign-menu-fixture-workflow",
+        "UI58.campaign-fixture-ready-focus"
       ],
       "tests": [
         "tests/campaign-menu-fixture.cpp",

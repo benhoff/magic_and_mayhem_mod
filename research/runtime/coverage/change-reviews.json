@@ -540679,6 +540679,189 @@
         "reason": "Other referenced menu,asset,rendering,input and tooling contracts were not re-executed. Their unchanged semantics and historical stages are not promoted by fixture tests; newly stale historical evidence remains explicit. Genuine campaign/Realm ownership,save persistence,complete window-close,pause,Portmanteau/research and broader Grimoire remain pending.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "364c3983a12fa7ad0f2ffd4f267ab198767b34a69895e4b5a7e2d193b7ffab58",
+          "before_sha256": "0796d8f578dddee55124916688b787717ce8d6f0b9393163a01be47528017c4d",
+          "id": "NP.campaign-menu-fixture-workflow"
+        },
+        {
+          "after_sha256": "b50792c5736ffb7c83814e813db2bdbc6ba59e7bde4e40cae7d2aa691a54cb2b",
+          "before_sha256": "7cee91d1b9e9d1ec38657ef3b5bdb1e1c09d42223e713ae2c35d4051cdee8469",
+          "id": "NP.character-menu-dispatch"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "0ea30634a8fcc320800892232fb4c6a569dea9f0b9555028e1746cab785e35f3",
+          "before_sha256": "8ef93a8ddb1b398af472c1e75dc469ad2dee9fa65d231ec0c30c51798e3c8eef",
+          "path": "apps/qt-shell/live_character_controller.cpp"
+        },
+        {
+          "after_sha256": "c14cdd07d77be88709b47a54d2c90e88fa42fb3f447ca53e315e8f790a82eed1",
+          "before_sha256": null,
+          "path": "research/runtime/campaign-fixture-ready-focus-20261012.json"
+        },
+        {
+          "after_sha256": "c0ffb8f60d0b1f6e5feef192d4eda4b42026ccbd3fd9dbfd662465ed996badd5",
+          "before_sha256": "85e1a9a1035d027cd025168a0875f7146e489d707d925833c82a49f22b02f06e",
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "92ce0030e91cb04eb5269329d4d0ec43603951c614ae028c2ae990e5328598e1",
+          "before_sha256": "c85baf7dc38a7d6946302f4a5c47765f65bb5f706eb00128dad23e35c6b91575",
+          "path": "research/runtime/campaign-menu-fixture-workflow.md"
+        },
+        {
+          "after_sha256": "1a4f26ccb39a56e90cd9c2ebea9aaf2a1844376fd3faeb2175b3795e2e0a0994",
+          "before_sha256": "f0709a33a4b092cdd9aa338dc4a7c268dde08817bf11db50e7749ace27f02019",
+          "path": "research/runtime/character-live-adapter.md"
+        },
+        {
+          "after_sha256": "4b00ea24d4febb8e9154544812964545cb5bb28f9c9355a60fa426887c69f963",
+          "before_sha256": null,
+          "path": "research/runtime/character-ready-focus-20261012.json"
+        },
+        {
+          "after_sha256": "22c95a197805357441dc53c79d27b241c173fdf02fa5b4efa9e442c94bf8c9be",
+          "before_sha256": "d881892be126e69d3ecc58d217746fb6ce7eec6edffbba39322b4db39ba30256",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0a25230ca622d39515bf8f1135d4a72b1725da9a8dfa2ec271d67ae146dd785e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/character-focus-history-20261012.json"
+        },
+        {
+          "after_sha256": "2be435bbdc8aeef77d8232a1100ca174aaad3000d1167345eac84710b6096b49",
+          "before_sha256": "3a48bc90f52ae3803848836e345aaf3bfd9acb6b565a9d6b08dd93886d12d52b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f3444afa85379514c205a2fa40e534fb53c595b4085576a7efd86ee256ff1703",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-character-ready-focus-20261012.json"
+        },
+        {
+          "after_sha256": "3788af7a402b0f13d5fcadca92283ff28573a8e8cd0a074ad6baff6d7d4d5225",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-character-ready-focus-20261012.md"
+        },
+        {
+          "after_sha256": "7cf866b68622452022c43749bae231fa78c8e7d607ca961e0fcbf068103ac727",
+          "before_sha256": "5a09040f2d55f0e61ec53398b9820c3eb7be567fd412ef5fdd4741cf770486b3",
+          "path": "tests/menu-character-bridge-test.cpp"
+        }
+      ],
+      "id": "character-readiness-focus-20261012",
+      "pending_gaps": [],
+      "reason": "Reviewed Character readiness transition and cached-snapshot handling: restore the existing first-enabled-control policy after pending controls reenable. Added visible-widget focus assertions after all six purchase/refund pairs for both callers; corrected the preparation assertion that had expected OK. Reviewed fresh source-bound reports,focused/central scope reconciliation,13 exact prior committed versions,census and summary while retaining live-game limits.",
+      "validation": {
+        "status": "recorded",
+        "reason": "UI57 passes private original getter/pricing/callbacks,16 admission guards and3 Qt tests including24 native readiness focus assertions; original manifests pass before/after. UI58 passes the connected synthetic journey plus3 companion tests against current sources. No original focus equivalence,progression,actual Realm dispatch,disk persistence or live ownership is claimed.",
+        "evidence": [
+          "UI57.character-ready-focus",
+          "UI58.campaign-fixture-ready-focus"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fd0fbb64a5197446c7f9f424b628fb66489391e80e35486593ba7cd92105378d",
+          "before_sha256": "8027377c065b13385239ac18b152d0450c34e0a54a31c3c7752c725994290518",
+          "id": "CP.character-wizard-selection"
+        },
+        {
+          "after_sha256": "a55eb1a22644d17b8eb7fa8cceb650d8e5bd7203653d7826ee1d9c3ee2f923e5",
+          "before_sha256": "ed16d6467060268115ea2e259e02dc726108b0fd7c66b601ae0c1bd99dc5b99f",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "646d66faa83e36d02d87ec1fc4378acc9b451cdb8f94767c2ebba5a75e60bf64",
+          "before_sha256": "6a913eb21052753933867ec45cc086d09ef1708c89516abd251034df4ceaa09a",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "0ea30634a8fcc320800892232fb4c6a569dea9f0b9555028e1746cab785e35f3",
+          "before_sha256": "8ef93a8ddb1b398af472c1e75dc469ad2dee9fa65d231ec0c30c51798e3c8eef",
+          "path": "apps/qt-shell/live_character_controller.cpp"
+        },
+        {
+          "after_sha256": "c14cdd07d77be88709b47a54d2c90e88fa42fb3f447ca53e315e8f790a82eed1",
+          "before_sha256": null,
+          "path": "research/runtime/campaign-fixture-ready-focus-20261012.json"
+        },
+        {
+          "after_sha256": "c0ffb8f60d0b1f6e5feef192d4eda4b42026ccbd3fd9dbfd662465ed996badd5",
+          "before_sha256": "85e1a9a1035d027cd025168a0875f7146e489d707d925833c82a49f22b02f06e",
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "92ce0030e91cb04eb5269329d4d0ec43603951c614ae028c2ae990e5328598e1",
+          "before_sha256": "c85baf7dc38a7d6946302f4a5c47765f65bb5f706eb00128dad23e35c6b91575",
+          "path": "research/runtime/campaign-menu-fixture-workflow.md"
+        },
+        {
+          "after_sha256": "1a4f26ccb39a56e90cd9c2ebea9aaf2a1844376fd3faeb2175b3795e2e0a0994",
+          "before_sha256": "f0709a33a4b092cdd9aa338dc4a7c268dde08817bf11db50e7749ace27f02019",
+          "path": "research/runtime/character-live-adapter.md"
+        },
+        {
+          "after_sha256": "4b00ea24d4febb8e9154544812964545cb5bb28f9c9355a60fa426887c69f963",
+          "before_sha256": null,
+          "path": "research/runtime/character-ready-focus-20261012.json"
+        },
+        {
+          "after_sha256": "22c95a197805357441dc53c79d27b241c173fdf02fa5b4efa9e442c94bf8c9be",
+          "before_sha256": "d881892be126e69d3ecc58d217746fb6ce7eec6edffbba39322b4db39ba30256",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0a25230ca622d39515bf8f1135d4a72b1725da9a8dfa2ec271d67ae146dd785e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/character-focus-history-20261012.json"
+        },
+        {
+          "after_sha256": "2be435bbdc8aeef77d8232a1100ca174aaad3000d1167345eac84710b6096b49",
+          "before_sha256": "3a48bc90f52ae3803848836e345aaf3bfd9acb6b565a9d6b08dd93886d12d52b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f3444afa85379514c205a2fa40e534fb53c595b4085576a7efd86ee256ff1703",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-character-ready-focus-20261012.json"
+        },
+        {
+          "after_sha256": "3788af7a402b0f13d5fcadca92283ff28573a8e8cd0a074ad6baff6d7d4d5225",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-character-ready-focus-20261012.md"
+        },
+        {
+          "after_sha256": "7cf866b68622452022c43749bae231fa78c8e7d607ca961e0fcbf068103ac727",
+          "before_sha256": "5a09040f2d55f0e61ec53398b9820c3eb7be567fd412ef5fdd4741cf770486b3",
+          "path": "tests/menu-character-bridge-test.cpp"
+        }
+      ],
+      "id": "character-focus-shared-source-and-history-20261012",
+      "pending_gaps": [
+        "stale_evidence:2ad0450eb8de2014b36c28ce5799620900004df72dd9b0d44f5f19d0b49785a7",
+        "stale_evidence:581340dcad706315143d628bf95660bd5dbe362669b345ea417516bb7e13ee12",
+        "stale_evidence:78a9d7003190b41f32393c1e9138caca44059251eda96beca155d07cfd1fa0ac",
+        "stale_evidence:988999050fe2482c524995ec50b1ad08409b6a5231ed9033f96d86a0d4d8eb38",
+        "stale_evidence:b71ed148eb37cbafe6a733a5aa5c591b930eff810ed2b99c68c76c77413eebb7",
+        "stale_evidence:f6ffbdec6fdb94d2d1264ebcae10f742da7ac36774d879aba7c827524c918db8"
+      ],
+      "reason": "Reviewed other affected source/index associations and all6 newly stale/pending findings; preserve historic evidence hashes/statuses and the failed preparation raw artifacts. The code change is native keyboard readiness focus,with no runtime protocol or original-game mutation.",
+      "validation": {
+        "status": "pending",
+        "reason": "Other touched ownership/selection/accounting claims are not newly bound by the two native fixture reports; their existing evidence and current limitations remain. Actual Realm commands,progression,persistence,complete window-close,pause and live replacement remain pending.",
+        "evidence": []
+      }
     }
   ],
   "schema": 1

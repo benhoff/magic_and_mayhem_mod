@@ -31,3 +31,5 @@ No Wine process, installation staging or original media is needed.
 Synthetic one-pixel sprite placeholders use readable text-button fallbacks in
 this fixture. Its screenshots document navigation and control layout, not
 original artwork fidelity.
+Companion Character tests also verify keyboard focus when an acknowledged
+purchase/refund makes the pending page ready again.
