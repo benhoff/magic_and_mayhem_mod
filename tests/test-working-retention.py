@@ -34,6 +34,58 @@ class Storage(unittest.TestCase):
         self.assertEqual(retention.pressure(199*g, 101*g, self.rules, g), [])
         self.assertEqual(len(retention.pressure(199*g, 101*g, self.rules, 2*g)), 2)
 
+    def test_free_space_only_reservation_boundary_ignores_working_size(self):
+        rules = dict(self.rules, max_working_gib=None)
+        g = retention.GIB
+        self.assertEqual(retention.pressure(9999*g, 101*g, rules, g), [])
+        self.assertEqual(len(retention.pressure(0, 101*g, rules, g+1)), 1)
+        self.assertEqual(len(retention.pressure(0, 99*g, rules)), 1)
+
+    def test_free_space_only_policy_accepts_null_or_absent_maximum(self):
+        p = self.root / 'policy.json'
+        for omit in (False, True):
+            rules = dict(self.rules, max_working_gib=None)
+            if omit:del rules['max_working_gib']
+            p.write_text(json.dumps(rules))
+            self.assertIsNone(retention.policy(p).get('max_working_gib'))
+
+    def test_free_space_only_inventory_keeps_usage_and_reports_shortfall(self):
+        self.make('working/tests/unit/run-old')
+        with patch.object(retention.shutil, 'disk_usage', return_value=SimpleNamespace(free=99*retention.GIB)):
+            report = retention.inventory(self.root, dict(self.rules, max_working_gib=None))
+        self.assertGreater(report['working_allocated_bytes'], 0)
+        self.assertIsNone(report['over_budget_bytes'])
+        self.assertEqual(report['free_space_shortfall_bytes'], retention.GIB)
+        self.assertEqual(len(report['pressure']), 1)
+
+    def test_free_space_only_launch_skips_du_and_preserves_exit_status(self):
+        p = self.root / 'policy.json'
+        p.write_text(json.dumps(dict(self.rules, max_working_gib=None)))
+        for free, expected in ((101, 7), (100, 2)):
+            with patch.object(retention, 'ROOT', self.root), \
+                    patch.object(retention.sys, 'argv', ['working-retention.py', '--policy', str(p), 'run', '--reserve-gib', '1', '--', 'capture']), \
+                    patch.object(retention, 'usage') as scan, \
+                    patch.object(retention.shutil, 'disk_usage', return_value=SimpleNamespace(free=free*retention.GIB)), \
+                    patch.object(retention, 'guarded_run', return_value=7) as launch:
+                self.assertEqual(retention.main(), expected)
+                scan.assert_not_called()
+                if expected == 7:launch.assert_called_once_with(['capture'], self.root, retention.policy(p))
+                else:launch.assert_not_called()
+
+    def test_auto_archive_keeps_launch_reservation_in_free_space_target(self):
+        p = self.root / 'policy.json'
+        p.write_text(json.dumps(dict(self.rules, max_working_gib=None, auto_archive=True)))
+        maintain = Mock(return_value={'failures': []})
+        with patch.object(retention, 'ROOT', self.root), \
+                patch.object(retention.sys, 'argv', ['working-retention.py', '--policy', str(p), 'run', '--reserve-gib', '11', '--', 'capture']), \
+                patch.object(retention, 'usage', return_value={str(self.root/'working'):9999*retention.GIB}), \
+                patch.object(retention.shutil, 'disk_usage', side_effect=[SimpleNamespace(free=n*retention.GIB) for n in (110,112)]), \
+                patch.dict('sys.modules', {'working_archive': SimpleNamespace(maintain=maintain)}), \
+                patch.object(retention, 'guarded_run', return_value=0):
+            self.assertEqual(retention.main(), 0)
+        self.assertIsNone(maintain.call_args.args[1]['max_working_gib'])
+        self.assertEqual(maintain.call_args.args[1]['minimum_free_gib'], 111)
+
     def test_disappearing_capture_reply_keeps_complete_root_measurement(self):
         working = self.make('working')
         result = subprocess.CompletedProcess(['du'], 1,
@@ -91,7 +143,8 @@ class Storage(unittest.TestCase):
 
     def test_invalid_policy_rejected(self):
         p = self.root / 'policy.json'
-        for update in [{'max_working_gib': -1}, {'max_working_gib': float('nan')},
+        for update in [{'max_working_gib': -1}, {'max_working_gib': 0}, {'max_working_gib': True},
+                       {'max_working_gib': 'none'}, {'max_working_gib': float('nan')},
                        {'minimum_free_gib': float('inf')}, {'protected_names': ['../original']},
                        {'keep_latest_runs': .5}, {'monitor_seconds': 0}, {'stop_grace_seconds': float('nan')}]:
             p.write_text(json.dumps(dict(self.rules, **update)))

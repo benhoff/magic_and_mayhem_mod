@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inventory working storage and refuse new guarded runs above a reviewed budget.
+"""Inventory working storage and guard runs against the free-space reserve.
 
 Inventory is non-destructive. Archival verifies cold copies before optional pruning.
 """
@@ -25,11 +25,14 @@ def policy(path):
     value = json.loads(path.read_text())
     if value.get('schema') != 1:
         raise ValueError('Unsupported retention policy')
-    for key in ('max_working_gib', 'minimum_free_gib', 'recent_hours', 'keep_latest_runs'):
+    for key in ('minimum_free_gib', 'recent_hours', 'keep_latest_runs'):
         if type(value.get(key)) not in (int, float) or not math.isfinite(value[key]) or value[key] < 0:
             raise ValueError('Invalid policy value: ' + key)
-    if value['max_working_gib'] == 0 or type(value['keep_latest_runs']) is not int:
-        raise ValueError('Require a positive budget and integral retained-run count')
+    maximum = value.get('max_working_gib')
+    if maximum is not None and (type(maximum) not in (int, float) or not math.isfinite(maximum) or maximum <= 0):
+        raise ValueError('max_working_gib must be null or a positive finite number')
+    if type(value['keep_latest_runs']) is not int:
+        raise ValueError('Require an integral retained-run count')
     if not isinstance(value.get('protected_names'), list) or any(
             not isinstance(n, str) or not n or '/' in n or n in ('.', '..')
             for n in value['protected_names']):
@@ -73,8 +76,9 @@ def usage(working, depth=None):
 
 def pressure(total, free, rules, reserve=0):
     reasons = []
-    if total + reserve > rules['max_working_gib'] * GIB:
-        reasons.append(f"working usage plus reservation exceeds the {rules['max_working_gib']:g} GiB policy")
+    maximum = rules.get('max_working_gib')
+    if maximum is not None and total + reserve > maximum * GIB:
+        reasons.append(f"working usage plus reservation exceeds the {maximum:g} GiB policy")
     if free - reserve < rules['minimum_free_gib'] * GIB:
         reasons.append('reservation would leave less than the minimum free disk space')
     return reasons
@@ -191,7 +195,10 @@ def inventory(root, rules, now=None):
     candidates = sum(r['allocated_bytes'] for r in rows if r['classification'] == 'review_for_cleanup')
     return {'schema': 1, 'created_utc': datetime.fromtimestamp(now, timezone.utc).isoformat(),
             'root': str(root), 'policy': rules, 'working_allocated_bytes': total,
-            'filesystem_free_bytes': free, 'over_budget_bytes': max(0, total - rules['max_working_gib'] * GIB),
+            'filesystem_free_bytes': free,
+            'over_budget_bytes': (max(0, total - rules['max_working_gib'] * GIB)
+                                  if rules.get('max_working_gib') is not None else None),
+            'free_space_shortfall_bytes': max(0, rules['minimum_free_gib'] * GIB - free),
             'cleanup_review_bytes': candidates, 'projected_bytes_if_all_review_candidates_removed': total - candidates,
             'pressure': pressure(total, free, rules), 'units': rows,
             'limitations': ['Dry run only. Review candidates are not authorized or proven safe deletions.',
@@ -249,7 +256,7 @@ def main():
     sub = parser.add_subparsers(dest='action', required=True)
     plan = sub.add_parser('inventory', help='Write a new dry-run JSON report')
     plan.add_argument('--output', type=Path, required=True)
-    check = sub.add_parser('check', help='Return failure when the storage budget is exceeded')
+    check = sub.add_parser('check', help='Refuse reservations that would violate the free-space policy')
     check.add_argument('--reserve-gib', type=float, default=0)
     run = sub.add_parser('run', help='Preflight a command and monitor free disk space until it exits')
     run.add_argument('--reserve-gib', type=float, required=True)
@@ -292,18 +299,24 @@ def main():
         if args.action == 'run' and not command:
             raise ValueError('Supply a command after --')
         working = ROOT / 'working'
-        total = usage(working)[str(working)]
+        # Free-space-only launches need no expensive, non-atomic working-tree
+        # scan. Inventory remains available for allocated-size accounting.
+        total = usage(working)[str(working)] if rules.get('max_working_gib') is not None else 0
         free = shutil.disk_usage(working).free
         reasons = pressure(total, free, rules, args.reserve_gib * GIB)
         if reasons and args.action == 'run' and rules.get('auto_archive', False):
             from working_archive import maintain
             # Reserve room for this particular launch, then reassess actual usage.
-            archive_rules = dict(rules, max_working_gib=max(0, rules['max_working_gib'] - args.reserve_gib))
+            archive_rules = dict(rules, minimum_free_gib=rules['minimum_free_gib'] + args.reserve_gib)
+            if rules.get('max_working_gib') is not None:
+                archive_rules['max_working_gib'] = max(0, rules['max_working_gib'] - args.reserve_gib)
             maintain(ROOT, archive_rules, prune=True)
             total = usage(working)[str(working)]
             free = shutil.disk_usage(working).free
             reasons = pressure(total, free, rules, args.reserve_gib * GIB)
-        print(json.dumps({'working_gib': total / GIB, 'free_gib': free / GIB, 'refusal_reasons': reasons}), flush=True)
+        print(json.dumps({'working_gib': total / GIB if rules.get('max_working_gib') is not None else None,
+                          'free_gib': free / GIB, 'minimum_free_gib': rules['minimum_free_gib'],
+                          'reserved_gib': args.reserve_gib, 'refusal_reasons': reasons}), flush=True)
         if reasons:
             return 2
         return guarded_run(command, ROOT, rules) if command else 0

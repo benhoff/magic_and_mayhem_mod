@@ -1,11 +1,23 @@
 # Working storage retention
 
-The repository policy targets **1280 GiB (1.25 TiB)** of allocated storage under `working/`
-and at least **100 GiB** of filesystem free space. Game installations, toolchains,
-manifests, runtime staging, logs and retention reports are exemptions from cleanup
-selection, but still count toward the overall budget. Registered Git worktrees
-are retained whole, including their ignored outputs. The target was increased
-to defer cleanup; automatic archiving is disabled.
+The repository policy keeps at least **100 GiB of filesystem free space** on the
+main checkout's drive. There is no fixed size limit on `working/`, including
+nested worktree output. Before launching, the guard subtracts the estimated
+output reservation from available disk space and requires the remainder to stay
+at or above the reserve. For example, a 10 GiB reservation needs at least
+110 GiB free. Available space includes consumption by other directories and jobs
+on that filesystem.
+
+`tools/working-retention.json` sets `minimum_free_gib` to 100 and
+`max_working_gib` to `null`. A positive numeric maximum remains supported for
+older or explicitly stricter custom policies; omitting it also selects free-space
+only checks. Free-space-only `check` and `run` skip the working-size scan.
+Inventory still reports allocated working bytes, with `over_budget_bytes: null`
+when no size maximum applies and a separate `free_space_shortfall_bytes` field.
+
+Game installations, toolchains, manifests, runtime staging, logs and retention
+reports are exemptions from cleanup selection. Registered Git worktrees are
+retained whole, including ignored outputs. Automatic archiving remains disabled.
 
 Create a new dry-run inventory:
 
@@ -30,28 +42,32 @@ completed runs; preserve the recorded metadata and hashes. The inventory command
 never deletes files. The separately authorized archive workflow can remove bulk
 payloads after verification; it never removes worktrees.
 
-Check the budget or guard a future experiment:
+Check available space or guard a future experiment:
 
 ```bash
 python3 tools/working-retention.py check
 python3 tools/working-retention.py run --reserve-gib 10 -- python3 tools/test-creature-navigation.py
 ```
 
-Both commands refuse with exit status 2 if measured usage plus the requested
-reservation exceeds the budget, or the reservation would reduce free disk space
-below the minimum. The reservation is a preflight estimate, not allocated space.
+Both commands refuse with exit status 2 if the reservation would reduce free
+disk space below the minimum. An explicitly configured numeric working-size
+maximum is also checked for custom policies. The reservation is a preflight estimate, not allocated space.
 During `run`, filesystem free space is checked every two seconds. If it falls
 below 100 GiB, the guard sends SIGTERM to the command's isolated process group,
 allows up to five seconds for shutdown, then kills any remaining descendants and
 returns status 2. Ctrl-C also stops that group. A free-space measurement failure
-stops the command rather than leaving it running unmonitored.
+stops the command rather than leaving it running unmonitored. Separately
+authorized pruning stops once the configured free-space reserve and any custom
+size maximum are satisfied; auto-archive preflight also preserves the launch
+reservation.
 
 This is an opt-in launch guard, not a filesystem quota. Existing experiment tools
 and worktree copies require adopting the main checkout's wrapper. Already-running
 jobs and independent writers are not controlled. Very fast concurrent writes can
 consume space between checks; the reserve provides a buffer, not a guaranteed
-global disk limit. The working-size target is checked before launch; runtime
-monitoring checks free space without repeatedly scanning the whole tree.
+global disk limit. Runtime monitoring checks free space without repeatedly
+scanning the whole tree. Changing the minimum reserve requires an explicit policy
+change; growth of `working/` alone does not require raising a size cap.
 No background pruning is enabled, and `auto_archive` is false. Guarded launches
 refuse when there is insufficient space; manual archiving remains available for
 later cleanup.

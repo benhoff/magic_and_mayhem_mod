@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new execution validation claim. Main working changes excluded. Existing predecessor reports remain unchanged.",
+  "range": "81fdaf634aab49f1027880b1a93a0641c43865e8..e529af2f41707247b70b01040e5ceb52e49f69ef",
+  "transitions": [
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/battle-pause-distortion-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a7ba8d57089c6d0379406ea9b7e676b7bc7a744e941e59ff3222f12f52f76628",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "fe540b6edf096d9280a2cefa8adf38c40bcee8db4fce9506419296b670dcdecb",
+      "after_sha256": "8598b96c465dad347df5d4fddcae54af790d46115328e69a52e477b43e971fc8",
+      "exact_receipts": [
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/native-palette-first-parent-history-review-205e1659-81fdaf63.json",
+      "before_sha256": null,
+      "after_sha256": "496cd513adbe48690a51d58fa1cebc8a40e70579c8b40ee5220714cdad03f31a",
+      "exact_receipts": [
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation",
+        "native-palette-master-merge-master-20261012-exact",
+        "native-palette-master-merge-master-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/native-palette-first-parent-history-review-9e074d4e-2ece99d5.json",
+      "before_sha256": null,
+      "after_sha256": "e7191f5e7a878676e903a2fb09301473a475fabe092b0063abc72db1ef278b72",
+      "exact_receipts": [
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation",
+        "native-palette-master-merge-master-20261012-exact",
+        "native-palette-master-merge-master-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/origin-reconcile-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "05189d1ff1364728e6566195d7a7597c3eab969bb60556b2f995fcd726e925b6",
+      "exact_receipts": [
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "09fe4fac6e5d570a829035d35f2a3fa20cc8b18ca8c65169298bfbfdfd52efdb",
+      "after_sha256": "fe4890649c8ed4c36e1a3c368c7656bb340524737b64b7e56c461da49277b2f4",
+      "exact_receipts": [
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/source-index-native-palette-master-merge-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "59e3996c77aca0cfc71ec6eaa7ce69fa60c3929f33a932216fea094dc63d75a1",
+      "exact_receipts": [
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation",
+        "native-palette-master-merge-master-20261012-exact",
+        "native-palette-master-merge-master-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/source-index-origin-reconcile-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7722c0cce0bb77d3b70d5d7cb341c2c476f9a9e1114857e8786839315d05709e",
+      "exact_receipts": [
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/source-index-surface-tail-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ac728ccba3a1e7d586f11710423576bf05f431f17408a39d283a52cd888f2080",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/source-index-surface-tail-merge-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3fd6f04ba5efb43c28eb6e2113ce5a96753aebca869c52ca2558187bd3be036c",
+      "exact_receipts": [
+        "surface-tail-merge-local-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/summary-native-palette-master-merge-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "76c3ce61b1303f4c43c9f7435ab8bb32dfc6fd9664caf0cf9af2c6eb1994f34b",
+      "exact_receipts": [
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation",
+        "native-palette-master-merge-master-20261012-exact",
+        "native-palette-master-merge-master-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/summary-origin-reconcile-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "99eb8acd4f3f891de141b7ba40d91809b05f3a88ffb80af69f034a7110740c2d",
+      "exact_receipts": [
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/summary-surface-tail-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "b0d561c68be949f52532117508fab065f96e198ce13e8bcceb253f1719c4b8a5",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/summary-surface-tail-merge-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f471791572006d173b39c767c1062fa6350ba1347268b008d0c10476b75ae136",
+      "exact_receipts": [
+        "surface-tail-merge-local-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/coverage/surface-tail-merge-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e0493fc1058ccf38ae58dd39d30e63fb0f0b739e7fd5ae9a85c1d52e03e936b1",
+      "exact_receipts": [
+        "surface-tail-merge-local-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/native-surface-tail-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d9e87795a610759a55f243eb3aed9999d15393d7964a014847ad478fe449827a",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "research/runtime/surface-final-word-read.md",
+      "before_sha256": null,
+      "after_sha256": "67d511bc6f90314144877be3088390da33d42fde377ee25e417b6e361bd2b3d5",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact",
+        "native-palette-master-merge-head-20261012-scoped-observation"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "runtime/native-draw/surfaces.h",
+      "before_sha256": "9793380dff3185e961d0fa6bfd18888453de54be92fdf730bbc45c91c36a4042",
+      "after_sha256": "f6c5d9fa7368a6f23645f8e91d87f27f9930e4d24055e403524ab165e0f2fb84",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "tests/native-draw-surface-probe.c",
+      "before_sha256": "dabd50e1cf7972a845b432ea7decc8fcc02ea6e04a989e76280f825acd96adac",
+      "after_sha256": "4565d44857411d0c631c6886870855231fe0ca3e4bf5574dd957dbd72e8686d1",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact"
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "path": "tools/test-native-draw-surfaces.py",
+      "before_sha256": "fd71ee06713dbede7b29e8f6963e87b9a4a4c02c0e9f149b737f451a2cb2347f",
+      "after_sha256": "0a27f428536116846ba2f393b31f27f4f5c8d48018d28cf65c49c688bc90cc75",
+      "exact_receipts": [
+        "battle-pause-surface-tail-20261012",
+        "surface-tail-merge-remote-20261012",
+        "origin-reconcile-merge-accounting-20261012",
+        "native-palette-master-merge-head-20261012-exact"
+      ]
+    }
+  ],
+  "missing_exact_receipts": []
+}

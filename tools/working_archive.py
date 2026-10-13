@@ -292,7 +292,12 @@ def restore(root, destination, name):
 
 def maintain(root, rules, prune=False, include_worktrees=False, max_files=None):
     destination = Path(rules['archive_root'])
-    target = rules['max_working_gib'] * GIB
+    maximum = rules.get('max_working_gib')
+    target = maximum * GIB if maximum is not None else None
+
+    def enough_space(released):
+        within_size = target is None or total - released <= target
+        return within_size and shutil.disk_usage(root / 'working').free >= rules['minimum_free_gib'] * GIB
     print(json.dumps({'event': 'archive_measure_and_scan', 'prune': prune}), flush=True)
     total = int(subprocess.check_output(['du', '-x', '-s', '-B1', '--', str(root / 'working')]).split()[0])
     count, released, failures = 0, 0, []
@@ -301,7 +306,7 @@ def maintain(root, rules, prune=False, include_worktrees=False, max_files=None):
         runs = candidate_runs(root, rules, include_worktrees)
         print(json.dumps({'event': 'archive_start', 'working_gib': total / GIB, 'eligible_runs': len(runs), 'prune': prune}), flush=True)
         for _, run, payloads in runs:
-            if prune and total - released <= target:
+            if prune and enough_space(released):
                 break
             if any(p == run or run in p.parents for p in active_paths(root)):
                 continue
@@ -309,7 +314,7 @@ def maintain(root, rules, prune=False, include_worktrees=False, max_files=None):
             for _, path in sorted(payloads, key=lambda x: (-x[0], str(x[1]))):
                 if max_files is not None and count >= max_files:
                     break
-                if prune and total - released <= target:
+                if prune and enough_space(released):
                     break
                 try:
                     released += archive.store(path, prune)
@@ -328,6 +333,7 @@ def maintain(root, rules, prune=False, include_worktrees=False, max_files=None):
                   'archive_root': str(destination), 'files_verified': count, 'released_bytes': released,
                   'prune': prune, 'include_worktrees': include_worktrees, 'failures': failures,
                   'estimated_working_bytes': total - released, 'target_bytes': target,
+                  'minimum_free_bytes': rules['minimum_free_gib'] * GIB,
                   'scope': 'Verified storage copies and restoration identities only; no engine validation claim.'}
         name = 'archive-result-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ') + '.json'
         for directory in (root / 'working/retention', destination / 'reports'):
