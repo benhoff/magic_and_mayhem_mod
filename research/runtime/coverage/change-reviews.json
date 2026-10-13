@@ -684102,6 +684102,90 @@
         ],
         "reason": "Exact prospective source/scope/scenario-bound TITAN live observation remains fresh at this combined tree: 1920 balanced World completions/imports/returns, empty renderer error, stable declared sources, original manifest and private Wine cleanup. Full gameplay fails Fireball damage. Supports only partial palette implementation/live observation; no successful full flow, current independent pixel equivalence, original replacement or60FPS assertion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "94e2638b413c5d64baec72739c7eecc6b392b58635298f05b1a27664854389e0",
+          "before_sha256": "95d41e9072a48c2d6f7fefe9737900c21cdf0902147a699e6c7fbe96e3ca9ada",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "2293cac803ee4ab156dc2446443fd0802342e3da18eb9944c4c4b62ed9460ab0",
+          "before_sha256": "5dd5073501a50c53c2061abdde3ea55f916c5c74db0e4f8e278ab9eb18bed09f",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "a30a2323620df1a2037311e11b6e8fb48153566f78cc5de59d473374a30ffce7",
+          "before_sha256": "b4609b808669ca10ad507c98a96753da67cfbb7910099250f45e7f3ed849f1e6",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "7241f5a41a52659ab7fbb2150a103d82a70b47f3bd20c8ef4cc9945a8a51b72f",
+          "before_sha256": "7dd579da3915e8cc709ba049fef905cdc3a3b8969ffe67b5b4950224c2491d26",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "788c5419f27eb9621af6627dc1419b5f4dfe77050fd8a103894284c5f45a9bcd",
+          "before_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "0ea8f0f6cdaa8240420f5841e6ad652bda9a58470039a2854ed80ff7c9d90e94",
+          "before_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "01b773b5a5f5bcfc842ab9939bbac25285bf9ee7bd507a1a6e739b5c0580aab3",
+          "before_sha256": "fe4890649c8ed4c36e1a3c368c7656bb340524737b64b7e56c461da49277b2f4",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7b25458eb70db22e688fc3c94716a7514191f542312096b7f30e119954d96139",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-storage-free-space-20261013.json"
+        },
+        {
+          "after_sha256": "a91348af577656aee8a33f1fa8ec7570413e0ad60f762e4fcda2269d21087c4d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/storage-free-space-history-e529af2f-20261013.json"
+        },
+        {
+          "after_sha256": "819bbcdefdc7faa3030700d35f9538b371eff6a6b85ed6d1495a3bf053e2d2a8",
+          "before_sha256": "78355a9e9aefc64f87dfb5d2d98d82f24b67997ca55568ee03bdd0f0a6e2808a",
+          "path": "tests/test-working-archive.py"
+        },
+        {
+          "after_sha256": "c99459e0b7badb5c372da28701eec416b15b153dd5aebbb0cec1efc6725f18ba",
+          "before_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "c5cc59797661ed095294a50f5309d8bfbb2c1cbcc4457b19511cc7df85735cde",
+          "before_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+          "path": "tools/working-retention.json"
+        },
+        {
+          "after_sha256": "d67bb18afd2a495cecebe0d06e86cce877e6bfc7176e6235dd07a29769fa5015",
+          "before_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+          "path": "tools/working-retention.py"
+        },
+        {
+          "after_sha256": "ba94325a810689ff0e4899cb30a5afe214df80eec1766f3ab38076b35969a3fc",
+          "before_sha256": "a8d0c4325a0dcea6467643ec0237eabb106cc8a7bda71e6945ee0b9dfb1ef145",
+          "path": "tools/working_archive.py"
+        }
+      ],
+      "id": "storage-free-space-policy-20261013",
+      "pending_gaps": [],
+      "reason": "User requests disk-free-space policy instead of successive working-size cap increases. Default maximum is null and minimum free space remains100GiB. Review nullable/custom policy compatibility, reservation boundary, fast no-du preflight, inventory shortfall and separately authorized archive termination on actual free space. No auto-archiving or cleanup enabled. Review current source census and20 first-parent e529af2f transitions with zero missing exact receipts; preserve all historical evidence and gameplay objectives.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "17 storage guard tests and11 private archive tests pass in working/tests/free-space-retention-current.log and free-space-archive-current.log; successful main free-space preflight/guarded launches retained. Support-policy change only. AGENTS document bytes affect GP.commander/mana/veterancy and TOOL.coverage-gate fingerprints; no implementation, original comparison, gameplay or coverage-gate execution status promotion. Existing engine evidence/source hashes remain historical; no fresh bound engine validation is asserted."
+      }
     }
   ]
 }

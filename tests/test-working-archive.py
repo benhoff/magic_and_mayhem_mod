@@ -94,6 +94,40 @@ class ColdStorage(unittest.TestCase):
         with self.assertRaises(ValueError):
             storage.safe_source(self.root, 'working/alias/payload.bin')
 
+    def test_pruning_stops_when_free_space_reserve_is_restored(self):
+        from types import SimpleNamespace
+        path = self.payload()
+        second = self.payload('two.bin')
+        rules = {'archive_root': str(self.destination), 'max_working_gib': None,
+                 'minimum_free_gib': 100}
+        with patch.object(storage.subprocess, 'check_output', return_value=b'21474836480 working'), \
+                patch.object(storage, 'candidate_runs', return_value=[(0, path.parent, [(2,path),(1,second)])]), \
+                patch.object(storage, 'active_paths', return_value=set()), \
+                patch.object(storage, 'Archive') as archive, \
+                patch.object(storage.shutil, 'disk_usage', side_effect=[SimpleNamespace(free=n*storage.GIB) for n in (99,99,100)]):
+            archive.return_value.store.return_value = storage.GIB
+            result = storage.maintain(self.root, rules, prune=True)
+        archive.return_value.store.assert_called_once_with(path, True)
+        self.assertIsNone(result['target_bytes'])
+        self.assertEqual(result['minimum_free_bytes'], 100*storage.GIB)
+        self.assertEqual(result['files_verified'], 1)
+
+    def test_pruning_keeps_legacy_size_target_and_free_space_reserve(self):
+        from types import SimpleNamespace
+        path = self.payload()
+        second = self.payload('two.bin')
+        rules = {'archive_root': str(self.destination), 'max_working_gib': 10,
+                 'minimum_free_gib': 100}
+        with patch.object(storage.subprocess, 'check_output', return_value=b'21474836480 working'), \
+                patch.object(storage, 'candidate_runs', return_value=[(0, path.parent, [(2,path),(1,second)])]), \
+                patch.object(storage, 'active_paths', return_value=set()), \
+                patch.object(storage, 'Archive') as archive, \
+                patch.object(storage.shutil, 'disk_usage', return_value=SimpleNamespace(free=200*storage.GIB)):
+            archive.return_value.store.return_value = 10*storage.GIB
+            result = storage.maintain(self.root, rules, prune=True)
+        archive.return_value.store.assert_called_once_with(path, True)
+        self.assertEqual(result['target_bytes'], 10*storage.GIB)
+
     def test_selection_protects_active_recent_pinned_and_source_trees(self):
         old = time.time() - 7200
         base = self.root / 'working/tests/unit'
