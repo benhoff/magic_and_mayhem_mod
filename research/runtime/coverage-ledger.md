@@ -7094,3 +7094,30 @@ UI55 completes a bounded synthetic Realm/Region/Character presentation journey w
 ## Character readiness keyboard focus — 2026-10-12
 
 UI57 restores native focus to the first enabled stat control when Character readiness returns after a pending request. Synthetic Qt transactions assert24 purchase/refund focus returns across both callers; private original getter/pricing/callbacks and16 admission guards plus3 Qt tests pass on prospectively declared current sources,with original manifest checks before/after. UI58 refreshes the connected synthetic campaign journey and3 companion Qt tests against the focus correction. A failed preparation at `working/tests/character-adapter/run-pu44scwy` initially expected OK focus; the widget policy is the first enabled stat control,the assertion was corrected,and raw claims/logs remain pinned. That test expectation failure is not an original engine finding. Earlier evidence is retained. Actual Realm dispatch,progression,disk persistence,window-close,pause and live ownership/replacement remain pending.
+
+## Copy contention and recovery diagnostics — 2026-10-12
+
+The user-reported sessions1516015097/1516015098 identify a65ms copy admission
+timeout followed by incomplete300×128 surface pixels and failed fresh recovery.
+This is supplied evidence, not an independently reproduced first-victory failure;
+a bounded search of328 retained lifecycle logs across registered worktrees did
+not identify the exact launch. The earlier buffer-padding crash remains separate.
+
+`NP.copy-contention-timing-observation` adds exact opt-in, bounded producer
+records with publication-worker draining. The [controlled result](copy-contention-timing-private-20261012.json)
+passes trace-off/on admission, reentry/refusal/invalidation and LastError checks,
+65ms wait/three intervening acquisitions/16ms final owner publication age,
+coherent/unavailable samples, concurrent512-slot bounds, failure arming and
+pixel-discard reservation, four decoder refusals and two PE32 builds.
+Fresh headless integration applies only to this diagnostic policy. Existing
+50ms admission, conservative invalidation and recovery policies are unchanged.
+Historical renderer evidence is preserved; current shared-source validation,
+real Wine scheduling, driver equivalence, actual recovery surface provenance
+and first-victory reproduction/fix remain pending. See [scope and live capture](copy-contention-timing.md).
+
+Raw current preparation is retained at
+`working/tests/copy-timing/run-68_eft3a`; the initial compile-warning failure
+and earlier superseded passing run retain their separate pins and hashes.
+No original artifacts were consumed. The [committed-history review](coverage/copy-timing-history-20261012.json)
+accounts for12 exact prior file versions with no missing receipts and makes
+no retrospective execution/gate assertion.

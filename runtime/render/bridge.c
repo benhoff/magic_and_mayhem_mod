@@ -64,6 +64,7 @@ static void game_copy_stage(u32);
 struct GameCopyLease {u32 held,observe;};
 static struct GameCopyLease game_copy_bind_enter(void);
 static void game_copy_leave(struct GameCopyLease*);
+#include "copy_timing.h"
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
 #include "lock_dc.h"
