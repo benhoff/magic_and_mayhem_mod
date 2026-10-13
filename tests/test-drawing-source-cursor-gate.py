@@ -18,6 +18,11 @@ class Guards(unittest.TestCase):
   r=decode(fixture());self.assertEqual(r['completed'][0]['source_lease'],9);self.assertFalse(r['complete_reference'])
  def test_failed_attempt_id_is_retained_without_admission(self):
   r=decode(fixture(refused=True));self.assertEqual(r['completed'],[]);self.assertEqual(r['refused'][0]['token'],0);self.assertEqual(r['refused'][0]['attempted_token'],8);self.assertFalse(r['complete_reference'])
+ def test_post_snapshot_refusal_has_no_reservation(self):
+  data=bytearray(fixture(refused=True))
+  for start in [64,64+192]:
+   for word,value in [(6,17),(20,17),(21,0)]:struct.pack_into('<I',data,start+word*4,value)
+  r=decode(data);self.assertEqual(r['completed'],[]);self.assertEqual(r['refused'][0]['attempted_token'],0);self.assertEqual(r['refused'][0]['reason'],17);self.assertFalse(r['complete_reference'])
  def test_attempt_identity_phase_reason_and_owned_refusal_refuse(self):
   for index,value in [(64+192+21*4,9),(64+192+23*4,3),(64+192+19*4,2),(64+192+20*4,4),(64+29*4,1)]:
    data=bytearray(fixture(refused=True));struct.pack_into('<I',data,index,value)

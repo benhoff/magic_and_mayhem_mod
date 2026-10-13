@@ -77,7 +77,9 @@ def main():
         if observation['complete'] or observation['terminal_reason']!=3 or observation['active_leases'] or observation['fault'] or observation['orphans']:raise ValueError('Snapshot boundary differs')
         accounting=account(observation)
         if accounting['gaps'] or accounting['remaining_live_identities']:raise ValueError('Lifecycle pairing differs')
+        if sum(row['phase']==11 for row in observation['rows'])!=2:raise ValueError('Live snapshot retirement events missing')
         report = dict(schema=1, success=True, sources=sources, claims=declaration['claims'], sources_stable=True, artifacts=str(run.relative_to(ROOT)), binary_sha256=sha(binary.read_bytes()), original_game_executed=False, live_capture_integrated=False, journal=observation, lifecycle_accounting=accounting, journal_sha256=sha(capture.read_bytes()), complete_journal_admitted=False, actual_mutex_handles=True, actual_contended_outer_refusal=True, refused_attempt_token_retained=True, refusal_leases_drained=True, full_fx_state_preserved=True, last_error_preserved=True, relocated_owned_installer=True, changed_byte_anchor_refusals=4, original_import_mismatch_refusal=True, exact_create_close_forward_cells=4, original_forwards_per_cell=1, scope='Owned PE32 relocated installer byte refusal, real kernel Create/duplicate/Close and event-synchronized competing outer owner. Failed begin returns0 with nonzero attempted token/raw timeout, no held levels/leases; exact512FX/error retained. Successful token/retirement/drain and prior forwarding guards retained. Production pins unchanged; no original game/frontend/source/worker or complete reference/parity.')
+        report.update(live_snapshot_retirement_events=2,post_snapshot_begin_point_valid=True,post_snapshot_begin_reason=17,post_snapshot_begin_admitted=False)
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

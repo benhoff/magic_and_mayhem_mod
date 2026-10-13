@@ -2,8 +2,9 @@
 import time
 
 
-def wait_for_quit(process,state,heartbeat,request,timeout=15,monotonic=time.monotonic,sleep=time.sleep):
+def wait_for_quit(process,state,heartbeat,request,timeout=15,monotonic=time.monotonic,sleep=time.sleep,alive_before_dispatch=False):
     if request<=0 or not 0<timeout<=15:raise ValueError('Invalid Quit wait bounds')
+    if process.poll() is not None and not alive_before_dispatch:raise ValueError('Launcher already exited before Quit wait')
     deadline=monotonic()+timeout;ack=False
     while process.poll() is None and monotonic()<deadline:
         current=state()
@@ -14,4 +15,5 @@ def wait_for_quit(process,state,heartbeat,request,timeout=15,monotonic=time.mono
     code=process.poll()
     if code is None:raise ValueError('Normal original Quit timed out')
     if code:raise ValueError('Normal original Quit failed: '+str(code))
-    return dict(request=request,screen=3,action=3,ack_observed=ack,normal_exit=True,exit_code=code)
+    return dict(request=request,screen=3,action=3,ack_observed=ack,normal_exit=True,exit_code=code,
+                launcher_exit_code=code,original_child_exit_code_verified=False)

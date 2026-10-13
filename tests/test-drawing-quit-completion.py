@@ -11,6 +11,13 @@ class Quit(unittest.TestCase):
         p=Process();x=wait_for_quit(p,lambda:None,lambda:setattr(p,'code',0),11);self.assertFalse(x['ack_observed']);self.assertEqual(x['exit_code'],0)
     def test_ack_then_exit(self):
         p=Process();row=[0,3,0,11,1];x=wait_for_quit(p,lambda:(row,),lambda:setattr(p,'code',0),11);self.assertTrue(x['ack_observed'])
+        self.assertEqual(x['launcher_exit_code'],0);self.assertFalse(x['original_child_exit_code_verified'])
+    def test_already_exited_zero_cannot_prove_quit(self):
+        p=Process();p.code=0
+        with self.assertRaisesRegex(ValueError,'already exited'):wait_for_quit(p,lambda:None,lambda:None,11)
+    def test_fast_exit_after_live_dispatch_retains_launcher_scope(self):
+        p=Process();p.code=0;x=wait_for_quit(p,lambda:None,lambda:None,11,alive_before_dispatch=True)
+        self.assertFalse(x['ack_observed']);self.assertFalse(x['original_child_exit_code_verified'])
     def test_refused_failed_and_timeout(self):
         with self.assertRaises(ValueError):wait_for_quit(Process(),lambda:([0,3,0,11,2],),lambda:None,11)
         p=Process();p.code=99

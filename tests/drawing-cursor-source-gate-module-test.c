@@ -85,6 +85,12 @@ void start(void){
  prepare();check(!CursorSourceGateEndV1(owner,token,point,128),212);verify();
  prepare();check(!CursorSourceGateBeginV1(owner,0,128)&&!CursorSourceGateBeginV1(owner,point,127),213);verify();
  check_forward();
+ outer=cursor_gate_create_at(0,0,0,MNM_CURSOR_GATE_CREATE_OUTER+6);
+ inner=cursor_gate_create_at(0,0,0,MNM_CURSOR_GATE_CREATE_INNER+6);
+ check(outer&&inner&&cursor_gate_adapter.outer.duplicate&&cursor_gate_adapter.inner.duplicate,255);
+ *(void**)MNM_CURSOR_GATE_GLOBAL_OUTER=outer;*(void**)MNM_CURSOR_GATE_GLOBAL_INNER=inner;
  prepare();check(CursorSourceGateShutdownV1(owner,point,128)&&point[13]==0&&point[14]==0,214);verify();
+ prepare();check(!CursorSourceGateBeginV1(owner,point,128)&&point[0]==1&&point[1]==128&&point[3]==1&&point[4]==17&&!point[5]&&!point[13],256);verify();
+ check(!cursor_gate_adapter.outer.duplicate&&!cursor_gate_adapter.inner.duplicate&&CloseHandle(outer)&&CloseHandle(inner),257);
  ExitProcess(0);
 }

@@ -74,3 +74,31 @@ entry IDs. Seven malformed/refusal guards pass. Controlled production session
 fixture01 retains attempted8/scalar0/noEnd and accepted7/lease9 with two equal
 held snapshots; protection and worker callbacks remain mocked. No original gate
 capture, source alias or complete reference/parity validation.
+
+First live pilot16 retains718accepted/158refused API gate pairs but fails with
+a zero-byte module journal after API stopreason2. The requested Quit entry is
+absent from that retained session. Launcherexit0 alone cannot establish original
+Quit dispatch or child exit status; historical reports keep their recorded hashes.
+
+The frontend now requires engine cadence for this gate diagnostic and requests
+MainQuit while API observation and its physical peer remain active. It requires
+the exact retained Quit request/action/screen/entry phase before admitting that
+dispatch. An already-exited launcher refuses before dispatch/wait. Reports
+distinguish launcherexit0 from unverified original child status;
+`normal_original_quit_verified` staysfalse until that independent status exists.
+The reason3module snapshot remains partial, with late writers, timer quiescence
+and import restoration unresolved. Fresh affected original execution is pending.
+
+Direct child status is now implemented by the independent process-handle observer
+documented in drawing-process-exit.md. Only fresh observed child exit0and
+original MainQuit dispatch may set normal_original_quit_verified. Historical
+launcher-only hashes remain unchanged; current original execution pending.
+
+Current original32retry02retains713accepted/102explicit refused API pairs,
+32bound source queues/129stable held pairs and375API/365post-EGLphysical
+witnesses. Bounded EGL interval closes while the game remains active, then
+Quit snapshots with API/physical observation still active. Actual childexit0
+and exact Quit identity pass. Integration is bounded live observation; full
+source alias/storage ownership, normal timer/import quiescence and47/21closure
+remain open. Independent source-only native cohort01matches114eligible contexts
+with zero source/display differences while261contexts remainexcluded.

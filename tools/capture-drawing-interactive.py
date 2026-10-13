@@ -20,6 +20,7 @@ def main():
     if a.hud_state and (a.control or not a.semantic_state):p.error('HUD state requires semantic state and original observation, never control')
     if a.region_input and (a.control or not a.hud_state or not a.semantic_state):p.error('Region input requires original HUD/semantic observation, never control')
     if a.cursor_source_gate and (a.control or a.cadence_control or a.cursor_mutex or not a.source_held_snapshot):p.error('Cursor source gate requires protected held snapshot diagnostic, never controls or observation-only cursor mutex hook')
+    if a.cursor_source_gate and not a.engine_cadence:p.error('Cursor source gate requires engine cadence and an observed pre-stop Quit snapshot')
     if a.cursor_mutex and (a.control or not a.hud_input_point):p.error('Cursor mutex observation requires original cursor points, never control')
     if a.campaign_pause and (not a.semantic_state or a.cadence_control or a.whole_updates):p.error('Campaign pause requires semantic state and a bounded ordinary source interval')
     if a.wine_resource_copy and not a.wine_resource_map:p.error('Resource copy requires resource observation')
@@ -61,6 +62,7 @@ def main():
     if a.producer_update_binding:names += ['runtime/engine-cadence/queue_point.h','protocols/include/mnm/engine_cadence_queue_point_v1.h','runtime/scene/drawing_update_points.h','tools/drawing_producer_updates.py']
     if a.cadence_control:names += ['tools/drawing_diagnostic_cadence.py']
     if a.engine_cadence:names += ['runtime/engine-cadence/observer.c','runtime/engine-cadence/entry.S','tools/build-engine-cadence.py','tools/engine_cadence.py','tools/drawing_engine_windows.py','tools/drawing_quit_completion.py']
+    if a.engine_cadence:names += list(load('tools/build-drawing-process-exit.py').SOURCES)+['tools/drawing_process_exit.py']
     if a.hud_input_point:names += ['runtime/drawing/input_point.h','protocols/include/mnm/drawing_input_point_v1.h','tools/drawing_input_point.py']
     if a.campaign_guidance:names += ['tools/drawing_campaign_guidance.py']
     if a.hud_state:names += ['runtime/menu/drawing_hud_state.h','tools/drawing_hud_state.py']
@@ -103,7 +105,7 @@ def main():
         if library[:5]!=b'\x7fELF\x02' or struct.unpack_from('<H',library,18)[0]!=62:raise ValueError('Expected64-bit x86 Unix delivery library')
         if env_preload:=os.environ.get('LD_PRELOAD'):raise ValueError('Unpinned existing Unix preload: '+env_preload)
         target=run/'libmnm-drawing-x11-delivery.so';target.write_bytes(library);x11_library=dict(path=str(target),sha256=sha(library))
-    process=input_process=physical_peer=egl_peer=None;channel=None;failure=None
+    process=input_process=physical_peer=egl_peer=process_exit=None;channel=None;failure=None
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_SESSION_EXPERIMENT=str(run),QT_QPA_PLATFORM='xcb');env.pop('WAYLAND_DISPLAY',None)
     if a.observer_mode=='physical':env['MNM_DRAW_PHYSICAL_MIB']=str(a.physical_oracle_mib)
     def verify(label):
@@ -113,6 +115,7 @@ def main():
         load('tools/prepare-scene-observer.py').copy_installation(source,game)
         drawing=None if a.control else load('tools/build-drawing-session.py').build();menu=load('tools/build-menu-observer.py').build();input_binary=load('tools/build-drawing-session-input.py').build();scene=load('tools/build-scene-observer.py').build() if a.producer_samples else None
         cadence=load('tools/build-engine-cadence.py').build(ROOT/'working/build/engine-cadence') if a.engine_cadence else None
+        process_exit_binary=load('tools/build-drawing-process-exit.py').build() if a.engine_cadence else None
         cursor_gate=load('tools/build-cursor-source-gate.py').build() if a.cursor_source_gate else None
         cursor_mutex=load('tools/build-cursor-mutex-observer.py').build() if a.cursor_mutex else None
         importer=load('tools/prepare-shadow-experiment.py');patched=original if a.control else importer.add_import(original,'MnmDrawing.dll','DrawingAnchor',b'.mndraw');patched=importer.add_import(patched,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
@@ -165,7 +168,10 @@ def main():
             with (run/'egl-peer.log').open('x') as log:egl_peer=subprocess.Popen([str(a.physical_peer.resolve()),str(capture),str(run/'egl-physical-report.json'),'--egl','--transient-mib',str(a.physical_transient_mib)],env=env,stdout=log,stderr=subprocess.STDOUT)
         with (run/'game.log').open('x') as log:
             process=subprocess.Popen([str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],'--runner',str(ROOT/'tools/drawing-session-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-            wait(3)
+            initial_main=wait(3)
+            if process_exit_binary:
+                from drawing_process_exit import Monitor
+                process_exit=Monitor(process_exit_binary,env,initial_main[0][5],run,refresh)
             if x11_library:
                 from drawing_process_snapshot import snapshot_processes
                 (run/'process-main.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
@@ -227,25 +233,42 @@ def main():
                 physical_action('results-reopen',{'kind':'tap','key':'Escape','after_ms':600})
                 wait(26);send(26,17);wait(22);send(22,2);returned_main=wait(3)
             physical_action('exit-main',{'kind':'wait','after_ms':200})
+            quit_observation=None
+            def original_quit():
+                s=wait(3)
+                if process.poll() is not None:raise ValueError('Launcher exited before Quit dispatch')
+                event_start=(run/'events.bin').stat().st_size
+                refresh(3,s[0][0],0);quit_request=request
+                from drawing_quit_completion import wait_for_quit
+                result=wait_for_quit(process,state,refresh,quit_request,alive_before_dispatch=True)
+                child=process_exit.finish()
+                if child['exit_code']:raise ValueError('Original game process exit: '+str(child['exit_code']))
+                event_raw=(run/'events.bin').read_bytes()
+                if event_raw[:8]!=b'MNMMENU1' or event_start<16 or (event_start-16)%64 or (len(event_raw)-event_start)%64:raise ValueError('Quit menu event envelope')
+                dispatch=any(row[1]==2 and row[2]==s[0][5] and row[3]==3 and row[9]==4 for row in struct.iter_unpack('<16I',event_raw[event_start:]))
+                if not dispatch:raise ValueError('Original MainQuit callback entry not observed after request')
+                result.update(original_child_exit_code_verified=True,original_child_exit=child,dispatch_observed=True,dispatch_boundary='original_main_callback_after_request',menu_event_start=event_start,menu_event_sha256=sha(event_raw),process_exit_journal_sha256=sha(process_exit.path.read_bytes()),process_exit_binary_sha256=sha(process_exit_binary.read_bytes()))
+                menu_actions.append(dict(request=quit_request,screen=3,action=3,argument=0,status=1 if result['ack_observed'] else None,attempt=1,normal_exit=True))
+                return result
+            # The enabled gate snapshots at MainQuit entry. Keep API observation
+            # and its physical peer alive until that action has executed.
             if egl_peer:
                 (capture/'egl-physical-close.flag').write_bytes(b'close\n');deadline=time.monotonic()+10
                 while not (capture/'egl-physical.done').exists() and time.monotonic()<deadline:refresh();time.sleep(.02)
                 if not (capture/'egl-physical.done').exists():raise ValueError('EGL physical interval did not close')
                 (capture/'egl-physical-stop.flag').write_bytes(b'stop\n');egl_peer.wait(timeout=10)
                 if egl_peer.returncode:raise ValueError('EGL physical peer failed')
+            if a.cursor_source_gate:quit_observation=original_quit()
             (capture/'stop.flag').write_bytes(b'stop\n');deadline=time.monotonic()+10
             while not a.control and not (capture/'session.done').exists() and time.monotonic()<deadline:refresh();time.sleep(.02)
             if physical_peer:
                 (capture/'api-physical-stop.flag').write_bytes(b'stop\n');physical_peer.wait(timeout=10)
                 if physical_peer.returncode:raise ValueError('Physical capture peer failed')
-            quit_observation=None
-            if a.engine_cadence:
-                s=wait(3);refresh(3,s[0][0],0);quit_request=request
-                from drawing_quit_completion import wait_for_quit
-                quit_observation=wait_for_quit(process,state,refresh,quit_request)
-                quit_ack=quit_observation['ack_observed']
-                menu_actions.append(dict(request=quit_request,screen=3,action=3,argument=0,status=1 if quit_ack else None,attempt=1,normal_exit=True))
+            if a.engine_cadence and not a.cursor_source_gate:quit_observation=original_quit()
             observation={'frames':[],'inputs':[],'control_without_api_observer':True} if a.control else inspect(capture);gameplay=read_rows(capture/'gameplay.bin',complete=True);actors=creatures(gameplay)
+            if quit_observation is not None:
+                quit_observation['api_request_observed']=any(x['request']==quit_observation['request'] and x['action']==3 and x['screen']==3 and x['phase']==1 for x in observation.get('actions',[]))
+                if a.cursor_source_gate and not quit_observation['api_request_observed']:raise ValueError('Gate snapshot Quit action lacks retained dispatch identity')
             health_changes=[];initial={};movement=[]
             for row in gameplay:
                 if row[1]!=1:continue
@@ -271,6 +294,7 @@ def main():
         report={'schema':1,'success':False,'admitted':False,'error':str(error),'sources':sources,'experiment':str(run),'original_drawing_active':True,'complete_journey_coverage':False}
         if claims:report['claims']=claims['claims']
     finally:
+        if process_exit:process_exit.close()
         if egl_peer and egl_peer.poll() is None:egl_peer.terminate();egl_peer.wait(timeout=5)
         if physical_peer and physical_peer.poll() is None:physical_peer.terminate();physical_peer.wait(timeout=5)
         if input_process and input_process.poll() is None:input_process.terminate();input_process.wait(timeout=5)
@@ -395,7 +419,9 @@ def main():
         try:
             from drawing_engine_windows import analyze as analyze_windows
             report['engine_update_observation']=analyze_windows(capture/'engine-cadence.bin')
-            report['normal_original_quit_verified']=True
+            report['normal_original_quit_verified']=bool(report.get('quit_observation',{}).get('original_child_exit_code_verified') and report['quit_observation'].get('dispatch_observed'))
+            report['quit_dispatch_observed']=bool(report.get('quit_observation',{}).get('dispatch_observed'))
+            report['launcher_quit_exit_verified']=True
             if a.producer_update_binding:
                 from drawing_producer_updates import analyze as analyze_updates
                 report['producer_update_observation']=analyze_updates(capture)

@@ -147,9 +147,10 @@ static void cursor_gate_point(unsigned* point,unsigned phase,unsigned reason,
 }
 __declspec(dllexport) unsigned WIN CursorSourceGateBeginV1(unsigned owner,void* output,unsigned bytes){
  unsigned error=GetLastError(),result=0;unsigned char fx[512]__attribute__((aligned(16)));cursor_gate_fx_save(fx);
- if(cursor_gate_enabled&&!cursor_gate_shutdown&&owner==GetCurrentThreadId()&&bytes==128&&cursor_gate_writable(output,bytes)){
+ if(cursor_gate_enabled&&owner==GetCurrentThreadId()&&bytes==128&&cursor_gate_writable(output,bytes)){
   unsigned point[32];MnmCursorKernelLease* lease=0;
   EnterCriticalSection(cursor_gate_lock);
+  if(cursor_gate_shutdown){LeaveCriticalSection(cursor_gate_lock);cursor_gate_point(point,1,17,0);cursor_gate_copy(output,point,128);cursor_gate_fx_restore(fx);SetLastError(error);return 0;}
   if(cursor_gate_readable((void*)MNM_CURSOR_GATE_GLOBAL_OUTER,4)&&cursor_gate_readable((void*)MNM_CURSOR_GATE_GLOBAL_INNER,4))
    lease=mnm_cursor_kernel_reserve(&cursor_gate_adapter,owner,*(void**)MNM_CURSOR_GATE_GLOBAL_OUTER,*(void**)MNM_CURSOR_GATE_GLOBAL_INNER);
   LeaveCriticalSection(cursor_gate_lock);
@@ -196,16 +197,17 @@ __declspec(dllexport) unsigned WIN CursorSourceGateEndV1(unsigned owner,unsigned
 __declspec(dllexport) unsigned WIN CursorSourceGateShutdownV1(unsigned owner,void* output,unsigned bytes){
  unsigned error=GetLastError(),result=0;unsigned char fx[512]__attribute__((aligned(16)));cursor_gate_fx_save(fx);
  if(cursor_gate_enabled&&owner==GetCurrentThreadId()&&bytes==128&&cursor_gate_writable(output,bytes)){
-  unsigned point[32],active=0,fault=0,orphans=0;
+  unsigned point[32],active=0,fault=0,orphans=0,retired[2]={0};
   EnterCriticalSection(cursor_gate_lock);cursor_gate_shutdown=1;
   active=cursor_gate_wrappers+cursor_gate_publishing[0]+cursor_gate_publishing[1];
   for(unsigned i=0;i<64;++i)if(cursor_gate_adapter.tokens.cells[i].token)++active;
   fault=cursor_gate_adapter.fault;orphans=cursor_gate_orphan_count;
   if(!active&&!fault&&!orphans){
-   if(cursor_gate_adapter.outer.identity)mnm_cursor_kernel_retire(&cursor_gate_adapter,0,cursor_gate_adapter.outer.original,cursor_gate_adapter.outer.identity);
-   if(cursor_gate_adapter.inner.identity)mnm_cursor_kernel_retire(&cursor_gate_adapter,1,cursor_gate_adapter.inner.original,cursor_gate_adapter.inner.identity);
+   if(cursor_gate_adapter.outer.identity&&!cursor_gate_adapter.outer.retired){retired[0]=cursor_gate_adapter.outer.identity;mnm_cursor_kernel_retire(&cursor_gate_adapter,0,cursor_gate_adapter.outer.original,retired[0]);}
+   if(cursor_gate_adapter.inner.identity&&!cursor_gate_adapter.inner.retired){retired[1]=cursor_gate_adapter.inner.identity;mnm_cursor_kernel_retire(&cursor_gate_adapter,1,cursor_gate_adapter.inner.original,retired[1]);}
   }
   LeaveCriticalSection(cursor_gate_lock);
+  for(unsigned role=0;role<2;++role)if(retired[role])cursor_gate_journal_emit(11,3,0,1,error,1u<<role,0,retired[role],0,0);
   if(!active&&!fault&&!orphans){cursor_gate_close_retired(1);cursor_gate_close_retired(0);}
   EnterCriticalSection(cursor_gate_lock);
   unsigned live=(cursor_gate_adapter.outer.duplicate!=0)+(cursor_gate_adapter.inner.duplicate!=0);

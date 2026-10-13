@@ -8506,3 +8506,62 @@ stop, reject already-exited launcher waits, then rerun the bounded pilot.
 No source alias/full reference/native parity or status promotion; step2/all47/21
 remain open and steps3–7pending. Reviewedb5f6be6f..20fe9b37 exact committed
 receipts separately; historical reports/hashes are unchanged.
+
+## Step 2 explicit game exit, snapshot lifecycle and dual-physical checkpoint (2026-10-13 UTC)
+
+The negative pilot/storage checkpoint committed as`1e0d530f`; its7committed
+file receipts match exact parent/current hashes with0missing versions. First
+original16pilot01remainsfailed/immutable. Retry02reached exact Quit request/ack
+and module snapshot, but failed on seven later Begin pairs with untouched
+points and two private closes without diagnostic retirement. Begin now returns
+a valid phase1/reason17non-owning refusal after snapshot, with freeze checked
+under the owning lock. New journalphase11records diagnostic retirement apart
+from original Close. These are native diagnostic policies, not baseline changes.
+
+The independent PE32 observer opens the process owning the menu thread while
+alive and waits on its process handle. It neither injects nor reads target
+memory. Actual owned-child fixture01observes0/37/259exitcodes; signaled wait
+distinguishes actual exit259from STILL_ACTIVE259. The mutex fixture01passes
+33rows/two live snapshot retirements,0scoped lifecycle gaps and a structured
+post-snapshot refusal, retaining the prior contention/512FX/error/forwarding
+guards. Old launcher-only exit fields cannot prove past original child status.
+
+Original16pilot03passes508APIphysical witnesses/16bound source queues/117stable
+held pairs,781accepted/223refused API gate pairs and actual childexit0plus exact
+MainQuit. The first32dual-physical trial failed to close EGL after game exit;
+its negative result remains retained. Corrected retry02closes the declared EGL
+interval before Quit, with API observation/peer still active for the snapshot.
+It passes375API/365post-EGLwitnesses,32bound advancing queues through update34,
+54complete advancing windows,129stable held source pairs,713accepted/102refused
+gate pairs, actual original childexit0 and both2927file manifests.
+
+Only the three bounded gate/binding/exit behaviors gain integration=live_observation
+from fresh exact scenario-bound execution. Module snapshot and reference admission
+remainpartial/false; comparison/replacement retainnone. Source aliases/storage
+ownership, hardware completion/all routes, caller/fault/concurrency/normal
+timer-import quiescence and all47journey/21operation closures remainopen. Step2
+continues; steps3–7remainordered/pending. A fresh matched interactive control and
+source-owned native protected/worker/EGL comparison are running. Comparator now
+requires direct child exit and verifies the actual action fields against the
+selected declared schedule; listed source presence alone is insufficient.
+
+The unchanged approved24run archive continues with durable per-file verification
+and both receipts before local pruning. Its initial zero-file lock failure and
+retry are retained separately. No additional cleanup or storage policy change.
+
+Current native/control checkpoint: `draw02-source-gate-original32-held-egl-01.json`
+reexecutes native rendering from parameters and pinned encoded assets only. All
+114eligible source/worker/EGLcontexts/54,720,000pixels match, with zero source
+and display differences;261contexts stayexcluded. The current replay binary
+hash is retained and no original plane supplies native input. This bounded
+cohort is separate from full native parity, storage ownership and all routes.
+
+Fresh counter/menu/input-only original control02passes372complete advancing
+updates and actual original childexit0with MainQuit dispatch. Current static
+cadence comparison01checks actual action fields against the selected interactive
+schedule as well as settings/counter/input binaries and retained process/cadence
+records. Diagnostic16/32median ratios are2.4165/5.5837. Control observation,
+randomized workloads and concurrent archive/system I/O remain; no identical
+workload, unobtrusive capture or60FPSclaim. Next extend the bounded original
+source/gate/dual-physical diagnostic to120updates with explicit2GiBAPIphysical
+budget and12GiBstorage reservation, then rerun eligible native cohorts.

@@ -10,7 +10,7 @@ def decode(data):
     rows=[]
     for ordinal in range(count):
         row=struct.unpack('<48I',data[64+ordinal*192:64+(ordinal+1)*192])
-        if row[0]!=ordinal+1 or row[1] not in range(1,11) or not row[2] or any(row[32:]):raise ValueError('Gate journal row fields')
+        if row[0]!=ordinal+1 or row[1] not in range(1,12) or not row[2] or any(row[32:]):raise ValueError('Gate journal row fields')
         point=row[16:32]
         if any(point):
             if point[0:3]!=(1,128,0x40209ca7) or point[5]!=row[5] or point[7]!=row[6] or point[8]!=row[7]:raise ValueError('Gate point binding')
@@ -35,6 +35,10 @@ def account(observation):
         elif phase==4 and role:
             if call not in retirements:gaps.append('close return without retirement')
             else:retirements.pop(call)
+        elif phase==11:
+            state=identities.get(identity)
+            if call or row['reason']!=3 or row['diagnostic_result']!=1 or not state or not state['live'] or state['retired'] or state['role']!=role:gaps.append('unbound diagnostic snapshot retirement')
+            else:state['retired']=True
         elif phase==5:
             state=identities.get(identity)
             if not state or not state['live'] or not state['retired'] or state['role']!=role:gaps.append('private close without retired identity')

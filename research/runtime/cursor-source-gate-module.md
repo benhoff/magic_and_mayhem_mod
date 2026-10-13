@@ -84,3 +84,20 @@ still pass; all512FX/error preserved. The25row snapshot has zero scoped lifecycl
 gaps. This uses relocated owned installer pages and real kernel objects, with
 no original game or normal shutdown/completeness claim. The first preflight
 refused at99.37GiBfree before launch; its log is retained.
+
+The second actual pilot16 reached Quit and the module snapshot, but retained
+seven later Begin pairs with untouched zero points (adapterreason16), and two
+private closes lacked explicit diagnostic retirement. Both are negative scope.
+Begin now checks freeze under its owning lock and returns a valid non-owning
+phase1/reason17point after snapshot. New journalphase11records snapshot-driven
+retirement separately from phase3original Close; updated strict reader is required.
+The owned fixture now snapshots two live private identities and checks a later
+reason17Begin refusal. Fresh execution pending; no complete/late-writer admission.
+
+Current actual original16pilot03and scenario-bound32retry02pass module decoding
+and scoped lifecycle accounting with0gaps/remaining live private identities.
+The33row owned retirement fixture separately checks two live diagnostic
+retirements and a valid later reason17non-owning refusal. The gate integrates
+as bounded live observation; reason3snapshot stayspartial. Original timer
+writers/import restoration, full fault/concurrency/orphan cases and complete
+shutdown/source aliases/reference/native parity remain open.
