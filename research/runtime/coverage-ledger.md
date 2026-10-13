@@ -8565,3 +8565,49 @@ randomized workloads and concurrent archive/system I/O remain; no identical
 workload, unobtrusive capture or60FPSclaim. Next extend the bounded original
 source/gate/dual-physical diagnostic to120updates with explicit2GiBAPIphysical
 budget and12GiBstorage reservation, then rerun eligible native cohorts.
+
+## Step 2 whole120 and authoritative target-exit reassessment (2026-10-13 UTC)
+
+The bounded live gate/actual-exit/native/control checkpoint committed as
+`c626fbc0`, after the staged accounting check and normal commit hook passed.
+Accounting separates the five fresh execution scopes from172affected behavior
+contracts/100new historical/source validation gaps; no unrelated validation
+is inferred and historical hashes remain unchanged.
+
+Whole120attempts01/02timed out during90second private Wine initialization
+before game launch, with original staging/manifests retained. During high
+host I/O pressure, the approved archive writer was reversibly suspended for
+a bounded retry using completed original32prefix as template, then resumed
+automatically. Original120attempt03 reaches its source terminal:120queues,
+609,607records,2,228oracles,207,847,156producer bytes and0source failures.
+The independent target process observer retains actual gameexit0; gate module
+retains3,696rows/reason3snapshot/no drops, active leases, faults or orphans.
+The old wait nevertheless times out because the Wine desktop launcher lingers.
+The negative report/raw journals stayretained; complete frontend admission is
+not asserted from offline observations. Storage scheduling provenance is
+`working/retention/draw02-approved-archive-io-scheduling-20261013-03.jsonl`
+in the main checkout; the archive's authorized scope is unchanged.
+
+Current helper now polls the bound target exit independently of the launcher,
+checks known command rejection first, refuses failed/incomplete target results
+and records nullable launcher status separately. Private launcher cleanup
+follows targetexit; it doesnot supply game exit evidence. Seven decision
+guards pass. Fresh current-code120retry04is running under12GiBguard/2GiBAPI
+physical limit; no source/caller/alias/full route/reference/native parity or
+all47/21closure follows from the negative attempt. Step2continues, steps3–7pending.
+
+Current-code original120retry04passes804API/795post-EGLphysical witnesses,
+120bound source queues across132complete consecutive advancing windows,
+635,993producer records/2,227oracles/334,176,616bytes,147stable held pairs,
+1,073accepted/215explicit refused API gate pairs and0scoped lifecycle gaps.
+Exact MainQuit and bound game process exit0pass; lingering Wine desktop
+launcher is separatelyunobserved/null before private cleanup. Both original
+manifests verify2,927files. The archive resumes automatically; timeline retained.
+
+Fresh native protected/worker/EGLcohort01matches130eligible source/display
+contexts with0pixel differences, retaining674excluded contexts. No original
+plane supplies native input. Full aliases/storage/writers/routes/caller/semantic/
+hardware/import-timer quiescence and all47/21reference/native parity remainopen.
+Step2continues with source ownership and independently observed semantic actions;
+steps3–7remainordered/pending. Shared source-only changes preserve historical
+controls/unrelated validation boundaries without refreshing old fingerprints.

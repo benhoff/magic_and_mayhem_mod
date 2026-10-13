@@ -38,3 +38,17 @@ alive, retain signaled exit0and actual MainQuit dispatch. These establish bounde
 process/dispatch observation in this Wine11.16environment; no full timer/import
 quiescence or original shutdown-body equivalence. Confidence: confirmed within
 the recorded owned/live scopes; source/contract hashes remain per-result.
+
+Original120attempt03 reached the retained120source interval and actual process
+exit0, but the Wine desktop launcher lingered past the old15second wait. A
+launcher is not the observed target. Current wait polls the bound process-exit
+record, checks known command rejection first, refuses incomplete/nonzero target
+results and records launcher status separately (possiblynull). Cleanup of the
+private launcher follows original target exit; it supplies no game-exit proof.
+Seven decision guards pass, including live desktop launcher with signaled game
+exit0. Fresh original120frontend execution remains pending.
+
+Fresh original120retry04validates the current target wait: observed gameexit0
+and exact MainQuit pass despite a lingering desktop launcher. Launcher status
+is separatelynull/unobserved before private cleanup. This is bounded current
+process/dispatch observation, not full timer/import quiescence or reference/parity.

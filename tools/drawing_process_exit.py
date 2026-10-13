@@ -39,6 +39,13 @@ class Monitor:
   code=self.process.wait(timeout=10)
   if code:raise ValueError('Process monitor refused: '+str(code))
   return decode(self.path.read_bytes())
+ def poll_exit(self):
+  if self.path.exists() and self.path.stat().st_size>=192:
+   result=decode(self.path.read_bytes())
+   if (result['thread'],result['process'])!=(self.attached['thread'],self.attached['process']):raise ValueError('Process monitor identity changed')
+   return result
+  if self.process.poll() is not None:raise ValueError('Process monitor ended without an exit record')
+  return None
  def close(self):
   if self.process.poll() is None:self.process.terminate();self.process.wait(timeout=5)
   self.log.close()

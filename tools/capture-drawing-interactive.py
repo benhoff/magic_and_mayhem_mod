@@ -240,7 +240,7 @@ def main():
                 event_start=(run/'events.bin').stat().st_size
                 refresh(3,s[0][0],0);quit_request=request
                 from drawing_quit_completion import wait_for_quit
-                result=wait_for_quit(process,state,refresh,quit_request,alive_before_dispatch=True)
+                result=wait_for_quit(process,state,refresh,quit_request,alive_before_dispatch=True,target_exit=process_exit.poll_exit)
                 child=process_exit.finish()
                 if child['exit_code']:raise ValueError('Original game process exit: '+str(child['exit_code']))
                 event_raw=(run/'events.bin').read_bytes()
@@ -421,7 +421,7 @@ def main():
             report['engine_update_observation']=analyze_windows(capture/'engine-cadence.bin')
             report['normal_original_quit_verified']=bool(report.get('quit_observation',{}).get('original_child_exit_code_verified') and report['quit_observation'].get('dispatch_observed'))
             report['quit_dispatch_observed']=bool(report.get('quit_observation',{}).get('dispatch_observed'))
-            report['launcher_quit_exit_verified']=True
+            report['launcher_quit_exit_verified']=bool(report['quit_observation'].get('launcher_exit_observed') and report['quit_observation'].get('launcher_exit_code')==0)
             if a.producer_update_binding:
                 from drawing_producer_updates import analyze as analyze_updates
                 report['producer_update_observation']=analyze_updates(capture)
