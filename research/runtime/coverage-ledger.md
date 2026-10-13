@@ -8727,3 +8727,25 @@ checks. Reviewed cf621e95..e4ad313e:19exact file receipts, zero gaps, retained
 underworking/draw02-history-review-approved-archive03-20261013-01.json.
 Step2continues with pending producer-frame identity/source/caller lifetimes;
 steps3–7 and all47/21reference/native acceptance closures remain pending.
+
+## Step 2 original copy-client and EGL domain reassessment (2026-10-13 UTC)
+
+Approved archive03provenance committed as ec1c6d26; staged and normal hook pass.
+Reviewed e4ad313e..ec1c6d26:3exact receipts, zero gaps. Current binary/journal
+inspection verifies original manifests before/after and all75live800x600source
+refusals at caller58c5be inside inventory58c4a0..58c69f. They copy40x40rectangles
+to0,0and have no observed EGLcontext; exact pending-frame/alias ownership is
+still unproved. Static retry/restore branches remain separate from these
+successful original calls. No lease guard was changed.
+
+New immutable domain accounting joins all795physical-interval contexts:130
+accepted source leases,97cursor-gate refusals,256source-domain refusals,279
+method/flag domains outside lease observation, and33after producer stop. Nine
+contexts follow explicit physical close1079and remain outside the795interval.
+Four guard methods pass; historical native130/674counts/hashes are preserved.
+
+Reassessment narrows the next work to gate refusals, partial cursor/background
+composition and producer/physical interval alignment. More generic pending-frame
+logging or relaxed admission for the75offscreen rectangle copies would not
+close those presented-source gaps. Step2and all47/21remain open; steps3–7stay
+ordered/pending. Archive completion adds no new engine validation.
