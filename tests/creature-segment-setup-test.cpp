@@ -144,7 +144,9 @@ SetupFixture generateSetup(unsigned n, unsigned op) {
   e.moveVariant = 37;
   e.animationFacing = 2;
   e.animationOffset = 71;
-  e.previousMove = 9;
+  e.previousMove = n % 2;
+  e.previousMoveVariant = 71 + n % 7;
+  f.state.previousDirection = 9;
   e.actionRouteCounters = {81, 82, 83};
   f.motion.direction = n % 10;
   f.motion.visualSprite = n / 7 % 2;
@@ -208,7 +210,9 @@ void setupExtra(void *raw, const AutonomousCreature &a,
         {0x1c, unsigned(a.finePosition.z)},
         {0x608, m.direction},
         {0x610, unsigned(s.vertical)},
-        {0x614, e.previousMove},
+        {0x614, s.previousDirection},
+        {0x16c, e.previousMove},
+        {0x170, e.previousMoveVariant},
         {0x60c, e.animationFacing},
         {0x7cd, a.animationKind},
         {0x7d1, m.visualSprite ? 0xc001u : 0u},
@@ -597,6 +601,8 @@ int main(int argc, char **argv) try {
       mix(e.mode10c);
       mix(e.moveVariant);
       mix(e.previousMove);
+      mix(e.previousMoveVariant);
+      mix(expected.state.previousDirection);
       mix(unsigned(expected.motion.accumulator));
       mix(unsigned(expected.motion.duration));
       mix(unsigned(expected.motion.progress));

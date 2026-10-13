@@ -646762,6 +646762,363 @@
           "NS32.flight-native"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a0c2d7e74faa079cc8e7dfaf74b077db41afd0207f0e4f967042ac35f9ddbb8f",
+          "before_sha256": "ddb4d3358ef0d62356610a81b89b7492b576b7cf5024831ab5f0ab6f643e4bc1",
+          "id": "AI.actor-displacement"
+        },
+        {
+          "after_sha256": "821959d3050a0dcab75eac911eb8dec554bf9f8a74a2137ee3192a7194396f5b",
+          "before_sha256": "f2e61456d41436bfb1aba582cde32d8f5902eb0d28483de3059d08fa8dd7e8dc",
+          "id": "AI.actor-route-request"
+        },
+        {
+          "after_sha256": "0fd5ef181444cde4f40a416bbb9891d773b04a95dd0c3ebad4b14b70cdb88eb6",
+          "before_sha256": "0b1cacada87a960ce70473094b48d63ab6062e3652456fc96b6ada6a4c06865b",
+          "id": "AI.segment-initialization"
+        },
+        {
+          "after_sha256": "5c50ca3dfd933e39ca0f13be7dc55fa7974c1cdd060ab841e7cc191b78fc984b",
+          "before_sha256": "3ca5c31b193b1f0ff9b472416924d74adcbadf7123570c4c6d0da2d2fb4efbf7",
+          "id": "AI.special-flight-actions"
+        },
+        {
+          "after_sha256": "205397b5cced6477f6d790f95699cb85ef8cae80e2e47fb4c56ba06f66977f75",
+          "before_sha256": "8ac2b3703ba381f2c60958d8254222fc319bf0a51a79e230419f0f34154e04cf",
+          "id": "NP.actor-displacement-admission"
+        },
+        {
+          "after_sha256": "a2a528986665f50b2762d8173727bd80f383d8506762f506d187fccd193f251d",
+          "before_sha256": "552a1167853d6f7567ea416d7048ebb0aab0c54f984bc2f5fb8e43cc50af522d",
+          "id": "NP.actor-request-admission"
+        },
+        {
+          "after_sha256": "32b2bf177705f74c168687f07def02b3d64648d0f148880e807b71303ca6971d",
+          "before_sha256": "3a784153da6d86b688575a7a395f7b34461397aaff71e32033b123ad68ecd5d6",
+          "id": "NP.segment-setup-admission"
+        },
+        {
+          "after_sha256": "5bbab5c273da282424c8ce6ceaecef9030490e028a2f296d4ec1e63ebd94064f",
+          "before_sha256": "079f1749f103785014caaf77419f6fc4dbd7ae92e444818afc4c2d586b816b6f",
+          "id": "NP.special-flight-admission"
+        },
+        {
+          "after_sha256": "635428b9d77eca11bce81118207402ead43fb80b102fab7c2e1cfb724c910443",
+          "before_sha256": "234a5e5c355e5f9ded1991eb58b5f72f34adbbe9d237d43d3ef973ca6457b63d",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "1d42f71707380269c4097f4fe0eeeb7d06fa7589bcd1cdd4bd0e27363b675c6e",
+          "before_sha256": "65c43f3fbb1f34daf91317cfba7247ab6ce01c77690427bc9612ee0a4048e0b4",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "2d6c6f5fc45ca2a6bd311142a4fdbe2791199b8e9818cbb121c0afeac90176f9",
+          "before_sha256": "f1d9d9e285aa64fc42f57c81811f193d9c1ca24b9809f581a701299937c0346e",
+          "path": "reconstruction/creature-ai/full_segment_setup.cpp"
+        },
+        {
+          "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+          "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+          "path": "reconstruction/creature-ai/full_segment_setup.hpp"
+        },
+        {
+          "after_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+          "before_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "eb5f820945e92bbbd12e263961709bf172c39ffcdef83fd1e9be6097194fa542",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/original-field-layout-incoming-history-20261012.json"
+        },
+        {
+          "after_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+          "before_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json"
+        },
+        {
+          "after_sha256": "af4dbcddd2c7d95bab832bc4a707a40c317018447d8f37b8fefed8ea158fb3e3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-original-field-layout-20261012.md"
+        },
+        {
+          "after_sha256": "a57053b4109170ebee1ae7e946851de18b9ff44da7b0ce3eb4a2a5e65f1f3a6c",
+          "before_sha256": null,
+          "path": "research/runtime/creature-state-field-layout.md"
+        },
+        {
+          "after_sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+          "before_sha256": null,
+          "path": "research/runtime/original-creature-field-layout-displacement-20261012.json"
+        },
+        {
+          "after_sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+          "before_sha256": null,
+          "path": "research/runtime/original-creature-field-layout-flight-20261012.json"
+        },
+        {
+          "after_sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+          "before_sha256": null,
+          "path": "research/runtime/original-creature-field-layout-request-20261012.json"
+        },
+        {
+          "after_sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+          "before_sha256": null,
+          "path": "research/runtime/original-creature-field-layout-setup-20261012.json"
+        },
+        {
+          "after_sha256": "2b946ef5ef2b1799564a53525b164783e9d208ae750d279c8389178ed147470b",
+          "before_sha256": "d671f012b6063f86099ea92b4da7b97aafc8f7a942ec608c00c4e40899ac41e9",
+          "path": "tests/creature-segment-setup-test.cpp"
+        }
+      ],
+      "id": "original-field-layout-accounting-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:3776896f44e39e67358496e559f2ab2607147b6506ece78b561c7d01e2ce5fa2",
+        "retired_execution_claims:3a379a43603be4296d21ca94c4ffe43848ec663cadfa054a6f4c4981c856c70d",
+        "retired_execution_claims:71295837d6f4909073144d561525d5321281006c153618c39357298f211c705e",
+        "retired_execution_claims:cf23af826430d8569e9e702ef7c6e8373a4b9645914bc49405ea95e6b95f68ae",
+        "stale_evidence:06c407d0ed706677fae3e7a95c6af001416ed1ada8667ebc2ec744aa6528fa14",
+        "stale_evidence:129c4093bd143d6da32ec213e79ac721bfd1830d2ae8e733a1cd85974f1f6975",
+        "stale_evidence:29fe4a4fb28da44b3011bf5604f4b1aafb697d2826f7ea78601e63015e48eb42",
+        "stale_evidence:3b21acd16298ce3be32ecb99484ac8229020fad968e1b33dccd5d427ec08ab73",
+        "stale_evidence:3cffb8508f02a521b9020a2449020bd9ef1bd74886da9197e13e277bb1ba727c",
+        "stale_evidence:615793492a30184fffdc2c1abbf6859d81f2867e6212394c530c7314fc3badeb",
+        "stale_evidence:7034e7fff792a54bfd72dd3ee2f2f5decbebdcb42e9d9e828d93a1867d5c4cf0",
+        "stale_evidence:969888794d320e3a030ce13bb369a78e53a622222294a55ca30876a2e4c5392a",
+        "stale_evidence:a72afa064821d222b75dbc9a74b2709778ebf46a4420cd4e3588ecb949ebc638",
+        "stale_evidence:a95e23a2161327414ab28f53a81b279b31fbe7ca7a4df0fc8b6519526b98df54",
+        "stale_evidence:aaa5bebf9a128f362a487eb07cd70e76a934d33c568df0dd341af6f0cefe5138",
+        "stale_evidence:af2f959e82bdf0049748cbf8df9c674d331142560d769e238f60fae470301c3f",
+        "stale_evidence:e576b85065969b9d06728858802d5622dd953a7d17039666bf780077f22b6a22"
+      ],
+      "reason": "Review independent original614 previous-direction and16c/170 previous-motion fields. Correct the native setup owner and byte-check all three separately, preserve historical hashes/source staleness, register four fresh prospective comparisons and census, and audit committed NS32 parent/current receipts. This fixes interface composition groundwork without promoting World/session integration.",
+      "validation": {
+        "status": "pending",
+        "reason": "Exact review of shared docs/census and deliberately stale historical source fingerprints after the header/interface change. Four affected scopes have new source/scope-bound execution in separate receipts. Remaining lower World/ANI/geometry/health ownership, installed construction and native session/portable continuation/live integration remain pending. Untouched NS28/NS29 proofs are preserved.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "0fd5ef181444cde4f40a416bbb9891d773b04a95dd0c3ebad4b14b70cdb88eb6",
+          "before_sha256": "0b1cacada87a960ce70473094b48d63ab6062e3652456fc96b6ada6a4c06865b",
+          "id": "AI.segment-initialization"
+        },
+        {
+          "after_sha256": "32b2bf177705f74c168687f07def02b3d64648d0f148880e807b71303ca6971d",
+          "before_sha256": "3a784153da6d86b688575a7a395f7b34461397aaff71e32033b123ad68ecd5d6",
+          "id": "NP.segment-setup-admission"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "2d6c6f5fc45ca2a6bd311142a4fdbe2791199b8e9818cbb121c0afeac90176f9",
+          "before_sha256": "f1d9d9e285aa64fc42f57c81811f193d9c1ca24b9809f581a701299937c0346e",
+          "path": "reconstruction/creature-ai/full_segment_setup.cpp"
+        },
+        {
+          "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+          "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+          "path": "reconstruction/creature-ai/full_segment_setup.hpp"
+        },
+        {
+          "after_sha256": "2b946ef5ef2b1799564a53525b164783e9d208ae750d279c8389178ed147470b",
+          "before_sha256": "d671f012b6063f86099ea92b4da7b97aafc8f7a942ec608c00c4e40899ac41e9",
+          "path": "tests/creature-segment-setup-test.cpp"
+        }
+      ],
+      "id": "original-field-layout-setup-execution-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:3776896f44e39e67358496e559f2ab2607147b6506ece78b561c7d01e2ce5fa2",
+        "retired_execution_claims:3a379a43603be4296d21ca94c4ffe43848ec663cadfa054a6f4c4981c856c70d",
+        "retired_execution_claims:71295837d6f4909073144d561525d5321281006c153618c39357298f211c705e",
+        "retired_execution_claims:cf23af826430d8569e9e702ef7c6e8373a4b9645914bc49405ea95e6b95f68ae",
+        "stale_evidence:06c407d0ed706677fae3e7a95c6af001416ed1ada8667ebc2ec744aa6528fa14",
+        "stale_evidence:129c4093bd143d6da32ec213e79ac721bfd1830d2ae8e733a1cd85974f1f6975",
+        "stale_evidence:29fe4a4fb28da44b3011bf5604f4b1aafb697d2826f7ea78601e63015e48eb42",
+        "stale_evidence:3b21acd16298ce3be32ecb99484ac8229020fad968e1b33dccd5d427ec08ab73",
+        "stale_evidence:3cffb8508f02a521b9020a2449020bd9ef1bd74886da9197e13e277bb1ba727c",
+        "stale_evidence:615793492a30184fffdc2c1abbf6859d81f2867e6212394c530c7314fc3badeb",
+        "stale_evidence:7034e7fff792a54bfd72dd3ee2f2f5decbebdcb42e9d9e828d93a1867d5c4cf0",
+        "stale_evidence:969888794d320e3a030ce13bb369a78e53a622222294a55ca30876a2e4c5392a",
+        "stale_evidence:a72afa064821d222b75dbc9a74b2709778ebf46a4420cd4e3588ecb949ebc638",
+        "stale_evidence:a95e23a2161327414ab28f53a81b279b31fbe7ca7a4df0fc8b6519526b98df54",
+        "stale_evidence:aaa5bebf9a128f362a487eb07cd70e76a934d33c568df0dd341af6f0cefe5138",
+        "stale_evidence:af2f959e82bdf0049748cbf8df9c674d331142560d769e238f60fae470301c3f",
+        "stale_evidence:e576b85065969b9d06728858802d5622dd953a7d17039666bf780077f22b6a22"
+      ],
+      "reason": "Review source-stable setup projection after field separation. Setup guards independent614/16c/170 writes; transitive consumers retain their original actor/state/ABI/order behavior. Native safety inputs remain a separate policy.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh prospectively bound field-separation run: original32/native64/ASan+UBSan+LSan64 agreement, exact source/compiler/declaration stability, all actor/state/body/ABI guards and immutable original manifest before/after. All thirteen rebuilt native CTests pass. No integration/replacement promotion.",
+        "evidence": [
+          "NS33.fields-setup-original",
+          "NS33.fields-setup-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "821959d3050a0dcab75eac911eb8dec554bf9f8a74a2137ee3192a7194396f5b",
+          "before_sha256": "f2e61456d41436bfb1aba582cde32d8f5902eb0d28483de3059d08fa8dd7e8dc",
+          "id": "AI.actor-route-request"
+        },
+        {
+          "after_sha256": "a2a528986665f50b2762d8173727bd80f383d8506762f506d187fccd193f251d",
+          "before_sha256": "552a1167853d6f7567ea416d7048ebb0aab0c54f984bc2f5fb8e43cc50af522d",
+          "id": "NP.actor-request-admission"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+          "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+          "path": "reconstruction/creature-ai/full_segment_setup.hpp"
+        }
+      ],
+      "id": "original-field-layout-request-execution-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:3776896f44e39e67358496e559f2ab2607147b6506ece78b561c7d01e2ce5fa2",
+        "retired_execution_claims:3a379a43603be4296d21ca94c4ffe43848ec663cadfa054a6f4c4981c856c70d",
+        "retired_execution_claims:71295837d6f4909073144d561525d5321281006c153618c39357298f211c705e",
+        "retired_execution_claims:cf23af826430d8569e9e702ef7c6e8373a4b9645914bc49405ea95e6b95f68ae",
+        "stale_evidence:06c407d0ed706677fae3e7a95c6af001416ed1ada8667ebc2ec744aa6528fa14",
+        "stale_evidence:129c4093bd143d6da32ec213e79ac721bfd1830d2ae8e733a1cd85974f1f6975",
+        "stale_evidence:29fe4a4fb28da44b3011bf5604f4b1aafb697d2826f7ea78601e63015e48eb42",
+        "stale_evidence:3b21acd16298ce3be32ecb99484ac8229020fad968e1b33dccd5d427ec08ab73",
+        "stale_evidence:3cffb8508f02a521b9020a2449020bd9ef1bd74886da9197e13e277bb1ba727c",
+        "stale_evidence:615793492a30184fffdc2c1abbf6859d81f2867e6212394c530c7314fc3badeb",
+        "stale_evidence:7034e7fff792a54bfd72dd3ee2f2f5decbebdcb42e9d9e828d93a1867d5c4cf0",
+        "stale_evidence:969888794d320e3a030ce13bb369a78e53a622222294a55ca30876a2e4c5392a",
+        "stale_evidence:a72afa064821d222b75dbc9a74b2709778ebf46a4420cd4e3588ecb949ebc638",
+        "stale_evidence:a95e23a2161327414ab28f53a81b279b31fbe7ca7a4df0fc8b6519526b98df54",
+        "stale_evidence:aaa5bebf9a128f362a487eb07cd70e76a934d33c568df0dd341af6f0cefe5138",
+        "stale_evidence:af2f959e82bdf0049748cbf8df9c674d331142560d769e238f60fae470301c3f",
+        "stale_evidence:e576b85065969b9d06728858802d5622dd953a7d17039666bf780077f22b6a22"
+      ],
+      "reason": "Review source-stable request projection after field separation. Setup guards independent614/16c/170 writes; transitive consumers retain their original actor/state/ABI/order behavior. Native safety inputs remain a separate policy.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh prospectively bound field-separation run: original32/native64/ASan+UBSan+LSan64 agreement, exact source/compiler/declaration stability, all actor/state/body/ABI guards and immutable original manifest before/after. All thirteen rebuilt native CTests pass. No integration/replacement promotion.",
+        "evidence": [
+          "NS33.fields-request-original",
+          "NS33.fields-request-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a0c2d7e74faa079cc8e7dfaf74b077db41afd0207f0e4f967042ac35f9ddbb8f",
+          "before_sha256": "ddb4d3358ef0d62356610a81b89b7492b576b7cf5024831ab5f0ab6f643e4bc1",
+          "id": "AI.actor-displacement"
+        },
+        {
+          "after_sha256": "205397b5cced6477f6d790f95699cb85ef8cae80e2e47fb4c56ba06f66977f75",
+          "before_sha256": "8ac2b3703ba381f2c60958d8254222fc319bf0a51a79e230419f0f34154e04cf",
+          "id": "NP.actor-displacement-admission"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+          "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+          "path": "reconstruction/creature-ai/full_segment_setup.hpp"
+        }
+      ],
+      "id": "original-field-layout-displacement-execution-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:3776896f44e39e67358496e559f2ab2607147b6506ece78b561c7d01e2ce5fa2",
+        "retired_execution_claims:3a379a43603be4296d21ca94c4ffe43848ec663cadfa054a6f4c4981c856c70d",
+        "retired_execution_claims:71295837d6f4909073144d561525d5321281006c153618c39357298f211c705e",
+        "retired_execution_claims:cf23af826430d8569e9e702ef7c6e8373a4b9645914bc49405ea95e6b95f68ae",
+        "stale_evidence:06c407d0ed706677fae3e7a95c6af001416ed1ada8667ebc2ec744aa6528fa14",
+        "stale_evidence:129c4093bd143d6da32ec213e79ac721bfd1830d2ae8e733a1cd85974f1f6975",
+        "stale_evidence:29fe4a4fb28da44b3011bf5604f4b1aafb697d2826f7ea78601e63015e48eb42",
+        "stale_evidence:3b21acd16298ce3be32ecb99484ac8229020fad968e1b33dccd5d427ec08ab73",
+        "stale_evidence:3cffb8508f02a521b9020a2449020bd9ef1bd74886da9197e13e277bb1ba727c",
+        "stale_evidence:615793492a30184fffdc2c1abbf6859d81f2867e6212394c530c7314fc3badeb",
+        "stale_evidence:7034e7fff792a54bfd72dd3ee2f2f5decbebdcb42e9d9e828d93a1867d5c4cf0",
+        "stale_evidence:969888794d320e3a030ce13bb369a78e53a622222294a55ca30876a2e4c5392a",
+        "stale_evidence:a72afa064821d222b75dbc9a74b2709778ebf46a4420cd4e3588ecb949ebc638",
+        "stale_evidence:a95e23a2161327414ab28f53a81b279b31fbe7ca7a4df0fc8b6519526b98df54",
+        "stale_evidence:aaa5bebf9a128f362a487eb07cd70e76a934d33c568df0dd341af6f0cefe5138",
+        "stale_evidence:af2f959e82bdf0049748cbf8df9c674d331142560d769e238f60fae470301c3f",
+        "stale_evidence:e576b85065969b9d06728858802d5622dd953a7d17039666bf780077f22b6a22"
+      ],
+      "reason": "Review source-stable displacement projection after field separation. Setup guards independent614/16c/170 writes; transitive consumers retain their original actor/state/ABI/order behavior. Native safety inputs remain a separate policy.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh prospectively bound field-separation run: original32/native64/ASan+UBSan+LSan64 agreement, exact source/compiler/declaration stability, all actor/state/body/ABI guards and immutable original manifest before/after. All thirteen rebuilt native CTests pass. No integration/replacement promotion.",
+        "evidence": [
+          "NS33.fields-displacement-original",
+          "NS33.fields-displacement-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5c50ca3dfd933e39ca0f13be7dc55fa7974c1cdd060ab841e7cc191b78fc984b",
+          "before_sha256": "3ca5c31b193b1f0ff9b472416924d74adcbadf7123570c4c6d0da2d2fb4efbf7",
+          "id": "AI.special-flight-actions"
+        },
+        {
+          "after_sha256": "5bbab5c273da282424c8ce6ceaecef9030490e028a2f296d4ec1e63ebd94064f",
+          "before_sha256": "079f1749f103785014caaf77419f6fc4dbd7ae92e444818afc4c2d586b816b6f",
+          "id": "NP.special-flight-admission"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+          "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+          "path": "reconstruction/creature-ai/full_segment_setup.hpp"
+        }
+      ],
+      "id": "original-field-layout-flight-execution-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:3776896f44e39e67358496e559f2ab2607147b6506ece78b561c7d01e2ce5fa2",
+        "retired_execution_claims:3a379a43603be4296d21ca94c4ffe43848ec663cadfa054a6f4c4981c856c70d",
+        "retired_execution_claims:71295837d6f4909073144d561525d5321281006c153618c39357298f211c705e",
+        "retired_execution_claims:cf23af826430d8569e9e702ef7c6e8373a4b9645914bc49405ea95e6b95f68ae",
+        "stale_evidence:06c407d0ed706677fae3e7a95c6af001416ed1ada8667ebc2ec744aa6528fa14",
+        "stale_evidence:129c4093bd143d6da32ec213e79ac721bfd1830d2ae8e733a1cd85974f1f6975",
+        "stale_evidence:29fe4a4fb28da44b3011bf5604f4b1aafb697d2826f7ea78601e63015e48eb42",
+        "stale_evidence:3b21acd16298ce3be32ecb99484ac8229020fad968e1b33dccd5d427ec08ab73",
+        "stale_evidence:3cffb8508f02a521b9020a2449020bd9ef1bd74886da9197e13e277bb1ba727c",
+        "stale_evidence:615793492a30184fffdc2c1abbf6859d81f2867e6212394c530c7314fc3badeb",
+        "stale_evidence:7034e7fff792a54bfd72dd3ee2f2f5decbebdcb42e9d9e828d93a1867d5c4cf0",
+        "stale_evidence:969888794d320e3a030ce13bb369a78e53a622222294a55ca30876a2e4c5392a",
+        "stale_evidence:a72afa064821d222b75dbc9a74b2709778ebf46a4420cd4e3588ecb949ebc638",
+        "stale_evidence:a95e23a2161327414ab28f53a81b279b31fbe7ca7a4df0fc8b6519526b98df54",
+        "stale_evidence:aaa5bebf9a128f362a487eb07cd70e76a934d33c568df0dd341af6f0cefe5138",
+        "stale_evidence:af2f959e82bdf0049748cbf8df9c674d331142560d769e238f60fae470301c3f",
+        "stale_evidence:e576b85065969b9d06728858802d5622dd953a7d17039666bf780077f22b6a22"
+      ],
+      "reason": "Review source-stable flight projection after field separation. Setup guards independent614/16c/170 writes; transitive consumers retain their original actor/state/ABI/order behavior. Native safety inputs remain a separate policy.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh prospectively bound field-separation run: original32/native64/ASan+UBSan+LSan64 agreement, exact source/compiler/declaration stability, all actor/state/body/ABI guards and immutable original manifest before/after. All thirteen rebuilt native CTests pass. No integration/replacement promotion.",
+        "evidence": [
+          "NS33.fields-flight-original",
+          "NS33.fields-flight-native"
+        ]
+      }
     }
   ]
 }

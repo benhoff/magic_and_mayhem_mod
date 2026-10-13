@@ -52541,7 +52541,8 @@
         }
       ],
       "documents": [
-        "research/runtime/creature-segment-initialization.md"
+        "research/runtime/creature-segment-initialization.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/full_segment_setup.hpp",
@@ -52553,7 +52554,9 @@
       ],
       "evidence": [
         "NS30.setup-original",
-        "NS30.setup-native"
+        "NS30.setup-native",
+        "NS33.fields-setup-original",
+        "NS33.fields-setup-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52609,7 +52612,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/creature-segment-initialization.md"
+        "research/runtime/creature-segment-initialization.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/full_segment_setup.hpp",
@@ -52620,7 +52624,8 @@
         "tools/test-creature-segment-setup.py"
       ],
       "evidence": [
-        "NS30.setup-native"
+        "NS30.setup-native",
+        "NS33.fields-setup-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52682,7 +52687,8 @@
         }
       ],
       "documents": [
-        "research/runtime/creature-routing.md"
+        "research/runtime/creature-routing.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/actor_route_request.hpp",
@@ -52696,7 +52702,9 @@
       "evidence": [
         "NS31.routing-static",
         "NS31.request-original",
-        "NS31.request-native"
+        "NS31.request-native",
+        "NS33.fields-request-original",
+        "NS33.fields-request-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52758,7 +52766,8 @@
         }
       ],
       "documents": [
-        "research/runtime/creature-routing.md"
+        "research/runtime/creature-routing.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -52771,7 +52780,9 @@
       "evidence": [
         "NS31.routing-static",
         "NS31.displacement-original",
-        "NS31.displacement-native"
+        "NS31.displacement-native",
+        "NS33.fields-displacement-original",
+        "NS33.fields-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52852,7 +52863,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/creature-routing.md"
+        "research/runtime/creature-routing.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -52863,7 +52875,8 @@
         "tools/test-creature-routing.py"
       ],
       "evidence": [
-        "NS31.displacement-native"
+        "NS31.displacement-native",
+        "NS33.fields-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52905,7 +52918,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/creature-routing.md"
+        "research/runtime/creature-routing.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/actor_route_request.hpp",
@@ -52917,7 +52931,8 @@
         "tools/test-creature-routing.py"
       ],
       "evidence": [
-        "NS31.request-native"
+        "NS31.request-native",
+        "NS33.fields-request-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52977,7 +52992,8 @@
         }
       ],
       "documents": [
-        "research/runtime/creature-special-actions.md"
+        "research/runtime/creature-special-actions.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/special_flight_actions.hpp",
@@ -52991,7 +53007,9 @@
         "NS27.execution-static",
         "NS32.flight-development-original",
         "NS32.flight-original",
-        "NS32.flight-native"
+        "NS32.flight-native",
+        "NS33.fields-flight-original",
+        "NS33.fields-flight-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -53052,7 +53070,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/creature-special-actions.md"
+        "research/runtime/creature-special-actions.md",
+        "research/runtime/creature-state-field-layout.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/special_flight_actions.hpp",
@@ -53063,7 +53082,8 @@
         "tools/test-creature-special-flight.py"
       ],
       "evidence": [
-        "NS32.flight-native"
+        "NS32.flight-native",
+        "NS33.fields-flight-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -106850,6 +106870,422 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS33.fields-setup-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively source/scope-bound setup projection after separating original614 direction and16c/170 action fields. 24576 paired original32/native64/sanitized64 cases and 10 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-setup-20261012.json",
+      "sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-setup-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively source/scope-bound setup projection after separating original614 direction and16c/170 action fields. 24576 paired original32/native64/sanitized64 cases and 10 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-setup-20261012.json",
+      "sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-request-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively source/scope-bound request projection after separating original614 direction and16c/170 action fields. 24576 paired original32/native64/sanitized64 cases and 5 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-request-20261012.json",
+      "sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-request-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively source/scope-bound request projection after separating original614 direction and16c/170 action fields. 24576 paired original32/native64/sanitized64 cases and 5 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-request-20261012.json",
+      "sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-displacement-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively source/scope-bound displacement projection after separating original614 direction and16c/170 action fields. 8192 paired original32/native64/sanitized64 cases and 4 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-displacement-20261012.json",
+      "sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-displacement-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively source/scope-bound displacement projection after separating original614 direction and16c/170 action fields. 8192 paired original32/native64/sanitized64 cases and 4 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-displacement-20261012.json",
+      "sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-flight-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively source/scope-bound flight projection after separating original614 direction and16c/170 action fields. 24576 paired original32/native64/sanitized64 cases and 5 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-flight-20261012.json",
+      "sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS33.fields-flight-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively source/scope-bound flight projection after separating original614 direction and16c/170 action fields. 24576 paired original32/native64/sanitized64 cases and 5 separate native refusals. Complete lower World/session ownership remains excluded.",
+      "record": "research/runtime/original-creature-field-layout-flight-20261012.json",
+      "sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -119731,8 +120167,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-special-flight-20261012.json",
-    "sha256": "818a558edfe1c9d96952866a65a2445ae508c02878da9ec31af99b92ad6b12ef"
+    "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json",
+    "sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69"
   },
   "claim_bindings_required": true
 }
