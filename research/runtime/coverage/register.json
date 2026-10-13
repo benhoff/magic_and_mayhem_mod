@@ -55928,6 +55928,178 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "AI.source-pending-registration",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original source pending registration queues",
+      "scope": "Whole416fe0 with actual407920/4079f0 traversal,411e50 wizard predicate and42d830/430140 deque iterators: general2a deduplicated push-front if recipient5null, full traversal to first wizard-kind0/24/25/26 with zero block7c, drain all remaining actors, wizard5a or other8a deduplicated push-front. Finite8192 fixtures, three fixed acyclic nodes/two canonical actor/config records, mode1/3, directed recipient/class/queue states and preallocated single4096-byte block per queue. Actual deque capacity preparation is supplied; cross-block/reallocation/storage and malformed root/actor/backing, installed construction and full World/session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4288480,
+          "scope": "Whole416fe0 with actual407920/4079f0 traversal,411e50 wizard predicate and42d830/430140 deque iterators: general2a deduplicated push-front if recipient5null, full traversal to first wizard-kind0/24/25/26 with zero block7c, drain all remaining actors, wizard5a or other8a deduplicated push-front. Finite8192 fixtures, three fixed acyclic nodes/two canonical actor/config records, mode1/3, directed recipient/class/queue states and preallocated single4096-byte block per queue. Actual deque capacity preparation is supplied; cross-block/reallocation/storage and malformed root/actor/backing, installed construction and full World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Whole nested helper only within the finite416fe0 source pending projection, not standalone full traversal/iterator domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Whole nested helper only within the finite416fe0 source pending projection, not standalone full traversal/iterator domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4267600,
+          "scope": "Whole nested helper only within the finite416fe0 source pending projection, not standalone full traversal/iterator domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4380720,
+          "scope": "Whole nested helper only within the finite416fe0 source pending projection, not standalone full traversal/iterator domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4391232,
+          "scope": "Whole nested helper only within the finite416fe0 source pending projection, not standalone full traversal/iterator domain."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_pending.hpp",
+        "reconstruction/creature-ai/source_pending.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-pending-test.cpp",
+        "tools/test-creature-source-pending.py"
+      ],
+      "evidence": [
+        "NS49.source-controller-static",
+        "NS51.source-pending-static",
+        "NS51.source-pending-original",
+        "NS51.source-pending-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/source-pending/CMakeLists.txt",
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole6 unchanged bodies with complete node/actor/config/recipient/three queue/block/map/child/mode/body guards",
+          "Empty, existing, repeated entries and recipient-present cases with fixed reserved front room",
+          "Signed source traversal and first eligible wizard plus exhaustion; no extra actor health filter"
+        ],
+        "excluded": [
+          "Original deque capacity preparation/cross-block/storage/reallocation ownership; native stddeque storage is a separate backend",
+          "Malformed source actor/root/backing and installed profile/allocation interpretation",
+          "Complete native World/session composition, integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.source-pending-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native source pending backing admission",
+      "scope": "Two native-only invalid source root and invalid yielded actor refusals. Queues/cursors can mutate before refusal; caller stages state/events for rollback. Original malformed pointer and complete native World/session admission domains excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_pending.hpp",
+        "reconstruction/creature-ai/source_pending.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-pending-test.cpp",
+        "tools/test-creature-source-pending.py"
+      ],
+      "evidence": [
+        "NS51.source-pending-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/source-pending/CMakeLists.txt",
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole6 unchanged bodies with complete node/actor/config/recipient/three queue/block/map/child/mode/body guards",
+          "Empty, existing, repeated entries and recipient-present cases with fixed reserved front room",
+          "Signed source traversal and first eligible wizard plus exhaustion; no extra actor health filter"
+        ],
+        "excluded": [
+          "Original deque capacity preparation/cross-block/storage/reallocation ownership; native stddeque storage is a separate backend",
+          "Malformed source actor/root/backing and installed profile/allocation interpretation",
+          "Complete native World/session composition, integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "TOOL.source-pending-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned source pending deque export",
+      "scope": "Read-only static source pending deque dependencies, no execution equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-source-pending.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS51.source-pending-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -113433,6 +113605,174 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS51.source-pending-original",
+      "kind": "isolated_original",
+      "scope": "Whole416fe0 with actual407920/4079f0 traversal,411e50 wizard predicate and42d830/430140 deque iterators: general2a deduplicated push-front if recipient5null, full traversal to first wizard-kind0/24/25/26 with zero block7c, drain all remaining actors, wizard5a or other8a deduplicated push-front. Finite8192 fixtures, three fixed acyclic nodes/two canonical actor/config records, mode1/3, directed recipient/class/queue states and preallocated single4096-byte block per queue. Actual deque capacity preparation is supplied; cross-block/reallocation/storage and malformed root/actor/backing, installed construction and full World/session/live integration excluded.",
+      "record": "research/runtime/original-source-pending-bound-20261012.json",
+      "sha256": "82d2a08c896228f3d848bef3af24ca2ce27e4fd39e48e430bc1a190e38236dd0",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 6
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/general_admissions",
+          "equals": 1536
+        },
+        {
+          "pointer": "/wizard_admissions",
+          "equals": 1238
+        },
+        {
+          "pointer": "/other_admissions",
+          "equals": 2828
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS51.source-pending-native",
+      "kind": "native_integration",
+      "scope": "Whole416fe0 with actual407920/4079f0 traversal,411e50 wizard predicate and42d830/430140 deque iterators: general2a deduplicated push-front if recipient5null, full traversal to first wizard-kind0/24/25/26 with zero block7c, drain all remaining actors, wizard5a or other8a deduplicated push-front. Finite8192 fixtures, three fixed acyclic nodes/two canonical actor/config records, mode1/3, directed recipient/class/queue states and preallocated single4096-byte block per queue. Actual deque capacity preparation is supplied; cross-block/reallocation/storage and malformed root/actor/backing, installed construction and full World/session/live integration excluded.",
+      "record": "research/runtime/original-source-pending-bound-20261012.json",
+      "sha256": "82d2a08c896228f3d848bef3af24ca2ce27e4fd39e48e430bc1a190e38236dd0",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 6
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/general_admissions",
+          "equals": 1536
+        },
+        {
+          "pointer": "/wizard_admissions",
+          "equals": 1238
+        },
+        {
+          "pointer": "/other_admissions",
+          "equals": 2828
+        }
+      ]
+    },
+    {
+      "id": "NS51.source-pending-static",
+      "kind": "static",
+      "scope": "Pinned source pending deque advance/increment/front preparation helpers, byte export only; no semantic/execution completion.",
+      "record": "research/runtime/original-source-pending-static-v1-20261012.json",
+      "sha256": "ab7639ec3f52eb052c64870f0204e40400e48700e1c9a2409e4bd06052880845",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -127006,8 +127346,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-source-controller-20261012.json",
-    "sha256": "a551aa63190f2f67e39d5fddead956e52f16f24ad056a3f72ec029843f4e674b"
+    "path": "research/runtime/coverage/source-index-original-source-pending-20261012.json",
+    "sha256": "87bf83c36ae14f635ba59337519447416ee18958d821214c00dc613417c97a00"
   },
   "claim_bindings_required": true
 }

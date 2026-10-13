@@ -8839,3 +8839,33 @@ wizard5a and other8a pending queues; this is instruction evidence awaiting fresh
 comparison. NS49 421caf78 has18 file/149 behavior transitions reviewed against
 exact receipts and staged gate with no accounting gaps; history review adds no
 new execution or broad integration claim.
+
+
+## Source pending registration (NS51)
+
+Whole416fe0 with actual407920/4079f0/411e50/42d830/430140 passes8,192
+prospectively bound original32/native64/ASan+UBSan+LSan64 cases.1,536 general,
+1,238 wizard and2,828 other queue admissions are nonempty. Recipient-present
+roots skip the initial general2a admission. The full signed source traversal
+finds the first wizard-kind0/24/25/26 with zero block7c and drains remaining
+actors, then chooses wizard5a or other8a. Each selected queue deduplicates and
+pushes at the front; existing repeated entries are preserved. No health/active
+filter is introduced. Full node/actor/config/recipient/three queue/block/map/
+child/mode/body guards match. Two malformed native root/actor cases refuse
+with caller-staged rollback. The native CMake build and CTest pass.
+Immutable proof:original-source-pending-bound-20261012.json.
+
+Deque capacity preparation is a supplied boundary and the original iterator
+helpers run on one reserved4096-byte block per queue. Cross-block/reallocation
+and original storage ownership remain separate from native stddeque storage.
+The first development corpus stopped before original execution because recipient
+and queue-length seeds suppressed all new general admissions. Independent seeds
+correct that domain; the failed report remains retained. A launcher typo targeted
+a nonexistent driver and consumed no original artifact; the corrected guarded
+run is separate. No historical report hashes are refreshed.
+
+Grouping and registration are individually compared; their composed graph,
+complete native World/session construction and live replacement remain pending.
+NS50 7e19a955 has22 file/154 behavior transitions reviewed against exact receipts
+and actual staged gate with no accounting gaps. That history review adds no
+new execution result.
