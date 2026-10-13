@@ -1,5 +1,6 @@
 #include "../../protocols/include/mnm/menu_v18.h"
 static u8 character_payload[MNM_MENU_V18_CHARACTER_SIZE];
+static int character_campaign_enabled;
 static int character_snapshot(void* object,u8* out){
     u8* p=(u8*)object,*realm=(u8*)0x659408;
     if(p!=(u8*)0x6c5148||!readable(p,0x120)||get(p)!=0x5c66b4||get(p+4)!=20||get(p+8)!=1||p[0xc]||
@@ -11,11 +12,13 @@ static int character_snapshot(void* object,u8* out){
     if(!readable((void*)0x657ce0,8)||get((void*)0x657ce0)!=0x5c63e4||get((void*)0x657ce4)!=3)return 0;
     if(!readable(realm,0x1e25)||get(realm)!=0x5c6a60||get(realm+4)!=4||get(realm+0xa2b)||get(realm+0xa37)||
        get(realm+0xa44)||realm[0xa48]||get(realm+0x12)!=(u32)(realm+0xa49)||!get(realm+0x823)||get(realm+0x823)>19||
-       !equal(realm+0xa49,"Celtic",7)||!readable((void*)get(realm+0x59),800*600))return 0;
+       !(equal(realm+0xa49,"Celtic",7)||(character_campaign_enabled&&(equal(realm+0xa49,"Greek",6)||equal(realm+0xa49,"Medieval",9))))||
+       !readable((void*)get(realm+0x59),800*600))return 0;
     u32 parent=4;
     if(depth==5){u8* entry=(u8*)0x6578c0;parent=18;
         if(get((void*)0x6f34b0)!=(u32)entry||!readable(entry,0x81)||get(entry)!=0x5c667c||get(entry+4)!=18||
-           get(entry+0x7c)!=4||get(entry+0x6f)<2||get(entry+0x6f)>get(realm+0x823)||entry[0x80])return 0;
+           get(entry+0x7c)!=4||get(entry+0x6f)<((character_campaign_enabled&&!equal(realm+0xa49,"Celtic",7))?1u:2u)||
+           get(entry+0x6f)>get(realm+0x823)||entry[0x80])return 0;
     }
     u8* cb=(u8*)get(p+0x6f),*buttons=(u8*)get(p+0x73),*adjust=(u8*)get(p+0x87);
     u8* bars=(u8*)get(p+0x7f),*gems=(u8*)get(p+0x83);
