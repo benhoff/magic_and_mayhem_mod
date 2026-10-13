@@ -8541,3 +8541,44 @@ label. Exception/unwind and incidental Boolean EAX are excluded. Full lower
 resource/geometry/secondary/projectile/effect/area ownership, installed construction
 and native World/session integration remain pending; live replacement staysnone.
 See [cast admission research](cast-admission.md).
+
+## 2026-10-12: battle pause and distortion allocation boundary
+
+Read-only sampling confirmed a paused battle (mode one, advancing accepted
+updates, fixed world tick), followed by resumed ticks at mode zero. The later
+Wine crash at original instruction `0x5965f7` is a separate event. An isolated
+original fixture reproduces that instruction's final-pixel DWORD overread and
+passes with a readable tail. Native RGB565 allocations now include two extra
+readable bytes, without extending logical pixel bounds. See
+[evidence and limits](surface-final-word-read.md).
+
+`MV.pause-clock` records the selected observation;
+`RS.displacement-final-word-read` records original boundary characterization;
+`NP.surface-final-word-read` records the native compatibility policy. Its four
+page-boundary tail-read cases and64 Wine/native surface comparisons pass with
+zero mismatches; original manifests and source/input stability checks pass. The exact
+live crashing sample and fixed-code live battle validation remain pending.
+Existing DirectDraw retirement evidence retains its historical source hashes.
+
+## 2026-10-12: origin history reconciliation
+
+Merged local packed-cast decoding/admission commits with origin’s native surface
+tail-read fix. Both sets of behavior, evidence, scenario and exact review records
+remain retained. The combined source census is
+`coverage/source-index-origin-reconcile-20261012.json`; committed-history review
+is `coverage/origin-reconcile-incoming-history-20261012.json`. Retrospective
+receipts account for exact missing transitions without asserting past gate passage
+or fresh engine validation. The merged discovery audit has no errors, and the
+60 audit-tooling plus51 change-gate synthetic tests pass. Historical stale sources
+and remaining live battle, lower cast-service and integration boundaries remain
+explicit. No original execution experiment or stage promotion is added by this
+merge. Uncommitted Qt restart and creature-service work is restored separately
+after this merge; it is excluded from this committed source census and validation.
+
+Reconciliation storage boundary: the default100GiB guard stopped the final
+accounting check after concurrent experiments consumed free space. The user
+then authorized proceeding with the requested temporary90GiB reserve override.
+Only this reconciliation uses the private policy in
+`working/retention/origin-reconcile-authorized-policy-20261012.json`; temporary
+Git checkouts use RAM and automatic archiving remains disabled. The repository
+default policy and original artifacts are unchanged.
