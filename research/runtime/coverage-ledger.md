@@ -8862,3 +8862,45 @@ Next assess source-only replay checkpoints against the independently retained
 original planes, then repair only the demonstrated ordering/storage boundary.
 The earlier120native failure remains failed. Step2and all47/21remain open;
 steps3–7stayordered/pending.
+
+
+## Step 2 complete checkpoint comparison (2026-10-13 UTC)
+
+Strict request/API/worker associations committed as13c03f33with staged/normal
+hook checks. Reviewed19d1807d..13c03f33:9exact receipts,0gaps. The new
+source-only comparator executes every drawing operation and retains every
+checkpoint through the complete bounded source interval. Native inputs contain
+only parameters with original raster returns removed and195independently pinned
+encoded assets. Original planes remain outside native input paths/arguments.
+
+Initial32replay produced checkpoint files but refused the last V4 update-end
+bookkeeping record: nativeexit1and0compared remain explicit negative evidence.
+The corrected comparator strictly decodes the full original interval, retains
+that exact payload-free terminal separately and removes only that metadata from
+native drawing inputs. All1337checkpoint comparisons then pass with0differences,
+nativeexit0 and2927original-manifest files verified before/after.
+
+The same unchanged native renderer against the earlier original120interval
+compares all2182checkpoints:2180match and2fail. Checkpoint1335(sequence208520,
+canvas2)differs1600pixels; checkpoint1336(sequence208522,canvas22)differs950.
+All original/native checkpoint identities, extents and hashes are retained;
+no failed comparison is omitted. These repeat the earlier bounded source2
+failure and identify its immediate auxiliary-canvas failure. The32pass does not
+close120or physical parity, and entry/return order remains insufficient as a
+general replay policy. No rendering code or source COPYordering was changed.
+
+A combined copy/storage/resource-map/resource-copy acquisition failed. Its
+first launch lacked a private display and produced no engine records; corrected
+private-display launch produced startup headers but no completed source records.
+Both result/log paths under working/draw02-copy-storage-original32-01/02remain
+retained; the capture frontend replaced the primary error with the incomplete
+copy-sidecar error. Original manifests verify before/after both attempts.
+No new map/storage behavior is validated; startup cause and error preservation
+need separate bounded work.
+
+Reassessment: keep the successful32source cohort, failed120checkpoints and
+failed storage attempts independent. Narrow the next acquisition to copy and
+canvas-storage observations before adding resource observers, and retain the
+primary failure cause. General driver/noncopy/CPU ordering, source views/aliases/
+lifetimes and complete physical acquisition remain pending. Step2and all47/21
+remain open; steps3–7stayordered/pending.

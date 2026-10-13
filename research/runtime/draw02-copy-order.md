@@ -55,3 +55,19 @@ three execute in return order (requests692/693,837/838and841/842). Thus neither
 producer entry nor producer return order supplies a general replay ordering
 contract. This is static analysis of the frozen original capture, with no new
 game execution, renderer correction or semantic/physical ownership promotion.
+
+
+## Complete source checkpoints
+
+The source-only unchanged renderer matches all1337checkpoints in the explicit
+original32request cohort. The full earlier original120cohort compares2182:2180
+match,1335/canvas2differs1600pixels and1336/canvas22differs950. The original
+V4 update-end bookkeeping marker is strictly decoded and retained separately
+from the native drawing input prefix; every drawing operation/checkpoint remains.
+Initial native refusal of that metadata record is retained as nativeexit1/0
+compared. No native drawing or replay ordering repair has been made.
+
+The successful32comparison alongside45observed return reversals establishes
+that those reversals do not invariably cause different checkpoint output. The
+120failures narrow the concrete interval requiring ordering/view investigation;
+they do not establish the general cause or a safe record-sorting repair.

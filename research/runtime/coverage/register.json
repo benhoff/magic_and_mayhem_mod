@@ -45972,6 +45972,101 @@
       "remaining_gaps": [
         "Static913request/1130command associations and six native guards only.1075additional API calls lie outside admitted live-source intervals.42adjacent reversed returns follow entry order at the worker;3follow return order, so neither entry nor return order is a general replay policy. General producer/noncopy/driver operation ordering, source views/aliases, fresh execution-bound replay repair and whole47journey/21operation closure pending."
       ]
+    },
+    {
+      "id": "NR.drawing-copy-checkpoint-comparison",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Independent complete source checkpoint comparison for copy-order investigation",
+      "scope": "Execute unchanged return-order native scene replay through every drawing operation and compare every recorded source checkpoint in one complete original-active V4 source interval. The strictly decoded, payload-free terminal update-end bookkeeping marker is retained and validated separately from native drawing inputs. Native inputs contain only producer parameters with observed raster returns removed and independently pinned encoded assets from a prior isolated input tree. Original checkpoint bytes remain external, every original/native identity and full plane is checked, and all mismatches remain failures. Actual original execution is separate; no ordering repair, source/view/alias/lifetime ownership, physical presentation or journey closure inferred.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-order.md"
+      ],
+      "implementation": [
+        "tools/compare-drawing-copy-checkpoints.py"
+      ],
+      "tests": [
+        "tools/compare-drawing-copy-checkpoints.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/analyze-drawing-source-prediction.py",
+        "tools/audit-file-apis.py",
+        "tools/compare-drawing-source-points.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_presented_session.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inventory-binary.py",
+        "tools/original-manifest.sh",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-copy-checkpoints-terminal-negative-01-20261013",
+        "DRAW02.draw02-copy-checkpoints-original32-01-20261013",
+        "DRAW02.draw02-copy-checkpoints-original120-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original32all1337source checkpoints match unchanged return-order replay. Original120compares2182:2180match, canvas2/checkpoint1335fails1600pixels andcanvas22/checkpoint1336fails950. Initial native terminal refusal retained with0compared. The strict V4 metadata terminal is validated separately. These scoped results do not repair driver/noncopy/CPU ordering, views/aliases/lifetimes, physical coherence or whole47journey/21operation closure."
+      ]
     }
   ],
   "evidence": [
@@ -99094,6 +99189,63 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-checkpoints-terminal-negative-01-20261013",
+      "kind": "native_integration",
+      "scope": "Initial full-source native replay refuses final bookkeeping record, nativeexit1 and0compared. Output artifacts retained; no parity claim.",
+      "record": "research/runtime/draw02-copy-checkpoints-terminal-negative-01.json",
+      "sha256": "7d8f45f9b8825bf002a445d4faa6e4aefc082fd6bd5996ad7d4ea1e0ad310155",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-checkpoints-original32-01-20261013",
+      "kind": "native_integration",
+      "scope": "Unchanged return-order native replay compares all1337original32source checkpoints with0different pixels; V4 update-end bookkeeping marker strictly validated separately. Source-only encoded assets; no physical ownership or general ordering repair.",
+      "record": "research/runtime/draw02-copy-checkpoints-original32-01.json",
+      "sha256": "c618c595b443616c25e9d6bbbb9483dd622407c0034745c28c0812d9a10c3bf0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-checkpoints-original120-01-20261013",
+      "kind": "native_integration",
+      "scope": "Completed original120source checkpoint comparison:2182compared,2180match and2fail. Canvas2/checkpoint1335diff1600andcanvas22/checkpoint1336diff950; preserve all failures. No native parity or general repair.",
+      "record": "research/runtime/draw02-copy-checkpoints-original120-01.json",
+      "sha256": "54c3a8f74b95c1d2be3ed3e23f6a98bb167912a67ed7e76a95828ef4346867dc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111255,8 +111407,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-copy-bindings-20261013.json",
-    "sha256": "182931af5037ef3362d5386e1449a8b361585a792dce8282c69648b4d3f14752"
+    "path": "research/runtime/coverage/source-index-draw02-copy-checkpoints-20261013.json",
+    "sha256": "550e9482fd4a57d56ca99810546925445e5a15fe8cfc880983c1f27d14e13e13"
   },
   "claim_bindings_required": true
 }
