@@ -38,3 +38,15 @@ spans; each retained row still contains exactly `width*2` bytes. The public
 598×36 descriptor size43200 therefore admits43056dense retained bytes. Version2
 continues to require exact dense descriptor size so its historical refusals keep
 their original meaning.
+
+## MNMWMS04 source read clock
+
+Version4 keeps version3geometry/budgets and adds two little-endian64-bit Windows
+QueryPerformanceCounter values in sample words39/40and41/42. The first follows
+exclusive diagnostic admission and precedes source queries/read; the second
+follows copy/unmap, before the final lifetime snapshot and retention. Values must
+be nonzero and nondecreasing. Reserved sample words now start at43; terminal
+layout is unchanged. Both clock calls are metadata reads, separate from the four
+counted extra public Wine calls. Legacy versions remain exactly decodable.
+Counter intervals delimit observed accepted updates; temporal containment is not
+producer identity, actual worker consumption, source atomicity or presentation.

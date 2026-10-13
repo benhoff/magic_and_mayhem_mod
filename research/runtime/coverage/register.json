@@ -44426,7 +44426,8 @@
         "DRAW02.source-map-bounded-control-boot-refusal-03-20261012",
         "DRAW02.source-map-bounded-control-boot-refusal-04-20261012",
         "DRAW02.source-map-bounded-cadence-control-05-20261012",
-        "DRAW02.source-map-bounded-cadence-comparison-02-20261012"
+        "DRAW02.source-map-bounded-cadence-comparison-02-20261012",
+        "DRAW02.source-clock-cadence-comparison-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45788,7 +45789,8 @@
         "DRAW02.wine-source-map-original-02-20261012",
         "DRAW02.wine-source-map-fixture-03-20261012",
         "DRAW02.wine-source-map-fixture-04-20261012",
-        "DRAW02.wine-source-map-fixture-05-20261012"
+        "DRAW02.wine-source-map-fixture-05-20261012",
+        "DRAW02.wine-source-map-fixture-06-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45850,7 +45852,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded diagnostic mapping across readable RGB565 sources",
-      "scope": "Opt-in diagnostic public READ mapping of each known-live submitted RGB565 subresource with MAP_R access, no multisampling, depth1 and descriptor size covering dense rows within the32768bytepitchbound, dimensions1..800 by1..600. Generic CPU/GPU-readable sources are admitted; default8192attempt/2GiB retention bounds, explicit per-run lower caps and all unsupported/query/active-map/budget/map/range/generation refusals are recorded in MNMWMS03; historical version2 retains its exact dense-size restriction. Copy dense rows into independent memory while mapped, close mapping before retention and original forward, preserve API state, fail closed on failed unmap or overlapping invocation. The legacy two-shape mode remains separately decodable. No global alias/concurrency ownership, every physical/worker presentation/action/route, native parity, unobtrusive gameplay or replacement claim.",
+      "scope": "Opt-in diagnostic public READ mapping of each known-live submitted RGB565 subresource with MAP_R access, no multisampling, depth1 and descriptor size covering dense rows within the32768bytepitchbound, dimensions1..800 by1..600. Generic CPU/GPU-readable sources are admitted; default8192attempt/2GiB retention bounds, explicit per-run lower caps and all unsupported/query/active-map/budget/map/range/generation refusals are recorded in MNMWMS04with two Windows performance-counter stamps; historical version3supports padding without timestamps and version2 retains its exact dense-size restriction. Copy dense rows into independent memory while mapped, close mapping before retention and original forward, preserve API state, fail closed on failed unmap or overlapping invocation. The legacy two-shape mode remains separately decodable. No global alias/concurrency ownership, every physical/worker presentation/action/route, native parity, unobtrusive gameplay or replacement claim.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45890,7 +45892,10 @@
         "DRAW02.wine-source-map-bounded-original-03-20261012",
         "DRAW02.wine-source-map-world-results-refusal-04-20261012",
         "DRAW02.wine-source-map-bounded-fixture-03-20261012",
-        "DRAW02.wine-source-map-bounded-original-05-20261012"
+        "DRAW02.wine-source-map-bounded-original-05-20261012",
+        "DRAW02.wine-source-map-bounded-fixture-04-20261012",
+        "DRAW02.wine-source-clock-boot-refusal-06-20261012",
+        "DRAW02.wine-source-map-bounded-original-07-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45903,7 +45908,9 @@
         "Prospective broader acquisition policy. Owned generic geometry/access/both-cap guards and fresh original activation must precede any execution claim. Raw map-prefix/alias/concurrency binding, callers, semantic actions, all encountered routes and every physical presentation remain pending.",
         "Owned fixture01 passes12original forwards,8closed mapped copies over CPU/GPU full/HUD/small sizes and independent byte/attempt quota branches; legacy fixture03passes current code. Original activation, raw original-map-prefix/alias/concurrency ownership, caller/actions/routes/every presentation remain pending.",
         "Version2original01retains1600closed buffers/818546144bytes across1696samples,338physical witnesses and85advancing windows; only96padded598x36sources refused. Reference model binds338regions with335matches/90953600pixels and3retained mismatches. Version3explicitly admits padded descriptor storage while still copying dense mapped rows; fresh fixture/live execution pending. Exact version2source snapshots are pinned before revision.",
-        "Original05closes129consecutive advancing windows and2182owned snapshots/1017141856bytes with every observed submission retained,400API/399EGLwitnesses and normalQuit. Raw reference model binds400regions/398matches/112104000pixels with2mismatches. Exact source-to-engine-window/worker attribution, atomic original buffer/alias ownership, caller/actions, unknown display/movie/GDI routes and allphysicalchanges remain pending. FailedWorld04Results timeout and control03/04pre-game wineboot timeouts remain retained; no missing evidence is waived."
+        "Original05closes129consecutive advancing windows and2182owned snapshots/1017141856bytes with every observed submission retained,400API/399EGLwitnesses and normalQuit. Raw reference model binds400regions/398matches/112104000pixels with2mismatches. Exact source-to-engine-window/worker attribution, atomic original buffer/alias ownership, caller/actions, unknown display/movie/GDI routes and allphysicalchanges remain pending. FailedWorld04Results timeout and control03/04pre-game wineboot timeouts remain retained; no missing evidence is waived.",
+        "Version4adds before/after mapped-read performance counters for independent temporal classification. Fresh owned/native and original execution required; no producer or worker identity is inferred from time.",
+        "Timestamped original07closes178advancing windows and2629owned snapshots with every observed source,457API/456EGLwitnesses and normalQuit. Source times classify1975contained/0crossing/654outside; source/physical model matches456of457regions with1mismatch preserved. Original06pre-game boot refusal and analysis01adapter failure remain explicit. No producer/worker/global ownership or whole-frame promotion."
       ]
     },
     {
@@ -45938,7 +45945,8 @@
         "DRAW02.source-frame-binding-fixture-02-20261012",
         "DRAW02.source-frame-binding-analysis-02-20261012",
         "DRAW02.source-frame-binding-analysis-03-20261012",
-        "DRAW02.source-frame-binding-analysis-05-20261012"
+        "DRAW02.source-frame-binding-analysis-05-20261012",
+        "DRAW02.source-frame-binding-analysis-07-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45949,6 +45957,51 @@
       },
       "remaining_gaps": [
         "Prospective scoped physical-copy agreement model. Independent owned guards and raw-bound original analysis must precede claims. Keyed/scaled/clipped/unsupported copies, intervening unobserved writes, physical/driver delivery and native parity remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-update-intervals",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Temporal source reads within accepted update intervals",
+      "scope": "Diagnostic mapped-source READ intervals measured by the same Windows QueryPerformanceCounter API as the accepted-update observer. Version4records counters before source queries/read and after copy/unmap; raw map/lifetime/submission/counter revalidation binds samples temporally to complete accepted-update intervals, retaining foreign-thread, crossing and outside readings. Observed queue record numbers are adjacent temporal metadata, not producer identity. No source-to-producer/worker causality, alias/atomicity ownership, semantic action, every physical presentation, native parity or replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-source-map.md",
+        "research/formats/drawing-wine-source-map.md"
+      ],
+      "implementation": [
+        "tools/drawing_source_windows.py",
+        "tools/analyze-drawing-source-windows.py"
+      ],
+      "tests": [
+        "tests/test-drawing-source-windows.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_wine_source_map.py",
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_lifetime.py",
+        "tools/drawing_engine_windows.py",
+        "tools/engine_cadence.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.source-update-intervals-fixture-01-20261012",
+        "DRAW02.source-update-intervals-fixture-02-20261012",
+        "DRAW02.source-update-intervals-analysis-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Prospective timestamp/temporal classification policy only; fresh owned wire/read/containment guards and original counter/source execution are required. Timestamp containment cannot substitute for producer/worker identity, alias/lifetime ownership or global source/frame/action/routes.",
+        "Final owned fixture02passes5methods; analysis02classifies2629source intervals with1975contained/0crossing/654outside and429foreign-thread contained reads.176of178complete accepted updates contain source observations. Outside reads are preserved, not waived. These intervals and adjacent queue records are temporal context only; producer/worker, original-source atomicity/aliases, caller/actions and every physical route remain open."
       ]
     }
   ],
@@ -99173,6 +99226,176 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-fixture-06-20261012",
+      "kind": "native_integration",
+      "scope": "Current-source legacy sampled PE32 regression after timestamped mode introduction,27original forwards/17maps/16unmaps/11owned buffers and fatal children.",
+      "record": "research/runtime/draw02-wine-source-map-fixture-06.json",
+      "sha256": "be47386d9e57dbdf19093f88831b02392e1256687bb0017afdf8bcdb4259d51d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Timestamped version4owned PE32 mapping,12forwards/8closed copies/3892656bytes; original entry/return FP/LastError preserved, generic padding/CPU/GPU/both limits and fatal children. Eleven wire guards pass.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-fixture-04.json",
+      "sha256": "e2cee9ec49ea0e390a222e27258738146a637f81cbd97e42f8a081c7af51515b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-update-intervals-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Five independent temporal containment, crossing/outside/equal-boundary, foreign-thread, missing clock/identity and refused-source guards. No original engine or producer/worker attribution.",
+      "record": "research/runtime/draw02-source-update-intervals-fixture-01.json",
+      "sha256": "501d8acdcff57c404e2de2be75d8f9aaa649e8da0fca798a050197bd0583ef6d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-clock-boot-refusal-06-20261012",
+      "kind": "static",
+      "scope": "Timestamped source acquisition refuses during pre-gameWineboot90s; no original mapping/window attribution execution is admitted.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-06.json",
+      "sha256": "f40fcfd99f5b615218983813611938a5514f21032a3cef7daf6eed4c0ecc3d4a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-bounded-original-07-20261012",
+      "kind": "live_observation",
+      "scope": "Fresh timestamped original acquisition:178consecutive advancing complete updates,2629closed owned snapshots, every observed source retained,457API/456EGLwitnesses, stable sources/unchanged originals/normalQuit. No global alias/producer/worker/presentation equivalence.",
+      "record": "research/runtime/draw02-wine-source-map-bounded-original-07.json",
+      "sha256": "606e602c1305e427b929f52d56ca874421b5132cf05ba874dce85650daa38363",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-update-intervals-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Five final-source temporal boundary/clock/identity/foreign-thread/refusal guards. No original engine or worker/producer identity.",
+      "record": "research/runtime/draw02-source-update-intervals-fixture-02.json",
+      "sha256": "518d2fa847f9f88ae33f05bdf1a9610937b97ea96c0d5083525b85f88f65e528",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-update-intervals-analysis-02-20261012",
+      "kind": "native_integration",
+      "scope": "Raw-revalidated2629source clock intervals:1975contained in complete accepted updates,0crossing,654outside;429contained samples use a foreign thread.176of178update intervals have source samples. Temporal association only, not producer/worker/alias/frame identity. Initial adapter01passed bytes to a path decoder and failed before writing a result; its log is retained.",
+      "record": "research/runtime/draw02-source-update-intervals-analysis-02.json",
+      "sha256": "11b24f2730b36f9e4b82cdaa106af72c142a9a083db4c8b2bbcd5866ae3659cd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-frame-binding-analysis-07-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh raw-bound457APIcopy regions:456matches/135638400pixels and1retained mismatch. No native-renderer or global presentation parity.",
+      "record": "research/runtime/draw02-source-frame-binding-analysis-07.json",
+      "sha256": "8889a588ff635146bfa2ec2143fc87530745d80cbc0d23b073173c798f33dd0c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-clock-cadence-comparison-01-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh strict120common queued-update comparison against control05with matching actual schedule,600ms Results policy/settings/input/counter binaries and raw traces. Combined timestamped diagnostic cost only; not isolated clock/map cost, identical randomized work or unobtrusive gameplay.",
+      "record": "research/runtime/draw02-source-clock-cadence-comparison-01.json",
+      "sha256": "c2b94139090526a16ea3f8abb491b29fabd55756422d71453bb2260464f3632c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -110950,7 +111173,8 @@
         "DRAW02.source-descriptor-cadence-comparison-01-20261012",
         "DRAW02.source-map-cadence-comparison-01-20261012",
         "DRAW02.source-map-bounded-cadence-comparison-01-20261012",
-        "DRAW02.source-map-bounded-cadence-comparison-02-20261012"
+        "DRAW02.source-map-bounded-cadence-comparison-02-20261012",
+        "DRAW02.source-clock-cadence-comparison-01-20261012"
       ]
     },
     {
@@ -111124,7 +111348,8 @@
         "DRAW02.wine-source-map-fixture-02-20261012",
         "DRAW02.wine-source-map-fixture-03-20261012",
         "DRAW02.wine-source-map-fixture-04-20261012",
-        "DRAW02.wine-source-map-fixture-05-20261012"
+        "DRAW02.wine-source-map-fixture-05-20261012",
+        "DRAW02.wine-source-map-fixture-06-20261012"
       ]
     },
     {
@@ -111184,7 +111409,8 @@
       "evidence": [
         "DRAW02.wine-source-map-bounded-fixture-01-20261012",
         "DRAW02.wine-source-map-bounded-fixture-02-20261012",
-        "DRAW02.wine-source-map-bounded-fixture-03-20261012"
+        "DRAW02.wine-source-map-bounded-fixture-03-20261012",
+        "DRAW02.wine-source-map-bounded-fixture-04-20261012"
       ]
     },
     {
@@ -111201,7 +111427,8 @@
         "DRAW02.wine-source-map-bounded-original-01-20261012",
         "DRAW02.wine-source-map-bounded-original-02-20261012",
         "DRAW02.wine-source-map-bounded-original-03-20261012",
-        "DRAW02.wine-source-map-bounded-original-05-20261012"
+        "DRAW02.wine-source-map-bounded-original-05-20261012",
+        "DRAW02.wine-source-map-bounded-original-07-20261012"
       ]
     },
     {
@@ -111233,7 +111460,37 @@
         "DRAW02.source-frame-binding-analysis-01-20261012",
         "DRAW02.source-frame-binding-analysis-02-20261012",
         "DRAW02.source-frame-binding-analysis-03-20261012",
-        "DRAW02.source-frame-binding-analysis-05-20261012"
+        "DRAW02.source-frame-binding-analysis-05-20261012",
+        "DRAW02.source-frame-binding-analysis-07-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-update-intervals-owned",
+      "level": "headless",
+      "scope": "Owned exact interval boundaries, foreign-thread distinction, crossing/outside reads, missing clocks and invalid identities. No original engine.",
+      "behaviors": [
+        "NR.drawing-source-update-intervals"
+      ],
+      "tests": [
+        "tests/test-drawing-source-windows.py"
+      ],
+      "evidence": [
+        "DRAW02.source-update-intervals-fixture-01-20261012",
+        "DRAW02.source-update-intervals-fixture-02-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.source-update-intervals-analysis",
+      "level": "headless",
+      "scope": "Raw original source-read and accepted-update temporal containment, retaining all crossings/outside and unsupported samples. No producer/worker/physical causality or native parity.",
+      "behaviors": [
+        "NR.drawing-source-update-intervals"
+      ],
+      "tests": [
+        "tools/analyze-drawing-source-windows.py"
+      ],
+      "evidence": [
+        "DRAW02.source-update-intervals-analysis-02-20261012"
       ]
     }
   ],
@@ -111608,8 +111865,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-map-bounded-20261012-03.json",
-    "sha256": "40295da66774f7d13c98c04f4392938faa54165a1011e1ecf9d5665c53e717aa"
+    "path": "research/runtime/coverage/source-index-draw02-source-clock-20261012-02.json",
+    "sha256": "5c92811212183ed5c3849532f5e7fe977be75bf1b99c21ecb0c548f5ee011441"
   },
   "claim_bindings_required": true
 }

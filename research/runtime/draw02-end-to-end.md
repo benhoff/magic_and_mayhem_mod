@@ -1789,3 +1789,21 @@ copy region. Storage uses the explicit user override; no additional cleanup is
 inferred. Active references and intermediate source provenance remain pinned.
 
 The matching control05retry from original05's intact prefix completes834windows/normalQuit. Strict comparison02 covers120commonqueuedupdates: combined median2.132696×/p9532.359558×. Same executed schedule,600ms Results policy, preferences and input/counter binaries; randomized workload and unobtrusive/global equivalence remain unproved.
+
+Timestamped original07completes178consecutive advancing windows and2629closed
+owned source copies/1188148192bytes, every observed submission,457API/
+456EGLwitnesses and normalQuit with stable sources/unchanged originals. Temporal
+analysis02revalidates raw source/lifetime/submission/counter records:1975reads
+fall within complete accepted-update intervals,0cross,654lie outside and429of
+the contained reads use a foreign thread.176of178intervals contain source reads.
+These are temporal associations, not producer or worker identities. Source/frame
+analysis07binds457APIregions:456matches/135638400pixels and1mismatch retained.
+Strict comparison reuses the matching control05for120queued updates, combined
+median2.047185×/p953.098455×; randomized work and
+unobtrusive gameplay remain unproved. Original06fails before game launch during
+Wineboot90s, and initial temporal analysis01uses the wrong decoder argument;
+both failures remain retained without admitted execution claims. Fresh owned
+PE32fixture06/bounded04,11wire,5temporal,9cadence and8frame guards pass.
+Step2remains open for exact producer/worker/alias ownership, caller/action,
+unknown display/movie/GDI routes, the mismatch and every physical change. No
+native replay/parity/replacement or47/21completion is asserted.

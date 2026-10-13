@@ -8,15 +8,17 @@ def decode(data, directory):
     if len(data)<576 or (len(data)-64)%256 or len(data)>64+16384*256:
         raise ValueError('Source map envelope/closure')
     h=struct.unpack_from('<16I',data)
-    bounded=data[:8] in (b'MNMWMS02',b'MNMWMS03')
-    version=3 if data[:8]==b'MNMWMS03' else 2
+    bounded=data[:8] in (b'MNMWMS02',b'MNMWMS03',b'MNMWMS04')
+    version=int(chr(data[7])) if bounded else 1
     valid=(h[2:6]==(version,256,0x40209ca7,16384) and 1<=h[6]<=8192 and h[7:11]==(1,4,0x80000000,116) and 1<=h[11]<=2147483648 and h[12:]==(800,600,0,0)) if bounded else data[:8]==b'MNMWMS01' and h[2:]==(1,256,0x40209ca7,16384,16,2,4,0x80000000,116,3635200,40,40,400,280)
     if not valid:
         raise ValueError('Source map header')
     rows=list(struct.iter_unpack('<64I',data[64:]));samples=[];seen=set();attempts=[0] if bounded else [0,0];payloads=[];retained_bytes=0
     for ordinal,r in enumerate(rows[:-1],1):
-        if r[0]!=ordinal or r[1]!=1 or not r[2] or r[2] in seen or not r[4] or r[10]>7 or r[34]>4 or r[35]>(1 if bounded else 2) or any(r[39:]):
+        if r[0]!=ordinal or r[1]!=1 or not r[2] or r[2] in seen or not r[4] or r[10]>7 or r[34]>4 or r[35]>(1 if bounded else 2) or any(r[43:] if version==4 else r[39:]):
             raise ValueError('Source map sample identity/status/reserved')
+        if version==4 and (not (r[39]|r[40]<<32) or (r[41]|r[42]<<32)<(r[39]|r[40]<<32)):
+            raise ValueError('Source map performance-counter interval')
         seen.add(r[2])
         if r[17]<r[16] or (r[10]==7 and (not r[7] or r[7]==r[18])):
             raise ValueError('Source map lifecycle')
@@ -33,7 +35,7 @@ def decode(data, directory):
         if r[10] in ((0,2,3,4,5,6) if bounded else (0,3,4,5,6)) and ((r[10]!=2 and not r[35]) or not r[6] or not r[7] or not r[9] or r[11]&0x80000000):
             raise ValueError('Source map trusted identity')
         if bounded:
-            eligible=r[19]==116 and not r[20] and not r[21] and bool(r[24]&4) and 1<=r[25]<=800 and 1<=r[26]<=600 and r[27]==1 and (r[25]*r[26]*2<=r[28]<=r[26]*32768 if version==3 else r[28]==r[25]*r[26]*2)
+            eligible=r[19]==116 and not r[20] and not r[21] and bool(r[24]&4) and 1<=r[25]<=800 and 1<=r[26]<=600 and r[27]==1 and (r[25]*r[26]*2<=r[28]<=r[26]*32768 if version>=3 else r[28]==r[25]*r[26]*2)
             if bool(r[35])!=eligible or (r[10]==2 and eligible):
                 raise ValueError('Source map bounded eligibility/refusal')
             if r[10]==3 and attempts[0]<h[6] and r[25]*r[26]*2<=h[11]-retained_bytes:
@@ -65,6 +67,7 @@ def decode(data, directory):
         elif r[32] or r[33] or r[36]:
             raise ValueError('Source map refused payload')
         samples.append(dict(submission=r[2],api_entry=r[3],thread=r[4],source_texture=r[6],source_generation=r[7],subresource=r[8],resource=r[9],status=r[10],descriptor_result=r[11],map_result=r[12],unmap_result=r[14],lifetime_before=r[16],lifetime_after=r[17],source_generation_after=r[18],descriptor=list(r[19:29]),row_pitch=r[29],slice_pitch=r[30],shape_attempt=r[31],payload_ordinal=r[33],extra_public_calls=r[34],shape=r[35],query_refusal=r[38]))
+        if version==4:samples[-1].update(qpc_before=r[39]|r[40]<<32,qpc_after=r[41]|r[42]<<32)
     end=rows[-1]
     if end[:7]!=(len(rows),4,end[2],len(samples),len(payloads),*(attempts+[retained_bytes] if bounded else attempts)) or end[2] not in (1,2) or any(end[7:]):
         raise ValueError('Source map closure/counts')
