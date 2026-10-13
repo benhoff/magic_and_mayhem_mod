@@ -172,7 +172,8 @@ bool advanceOrders(AutonomousCreature &a, CreatureExecution &e,
   if (next == e.orders.size()) {
     if (!e.queuedFlag) {
       for (auto &o : e.orders)
-        release(o.effect, s);
+        if (o.kind == 2)
+          release(o.effect, s);
       e.orders.clear();
       e.queuedFlag = e.queuedCount = 0;
       e.orderCursor.reset();

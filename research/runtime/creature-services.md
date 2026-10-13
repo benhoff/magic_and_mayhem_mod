@@ -589,3 +589,61 @@ pending a broader paired queue corpus; the existing0..4-node corpus retains its
 original results. Incoming NS56 93e4867e has37 file/161 behavior transitions
 reviewed against exact receipts and staged gate with no accounting gaps; that
 history review adds no new execution.
+
+
+## Owned queue advancement in the ownership chain (NS58)
+
+Ownership transfer/reset/idle/follow now advances native owned order vectors on
+canonical actors and execution state, using stable serial cursors. Whole524130
+and five initializer/cursor/scalar/list-clear helpers join the prior fourteen
+unchanged original bodies. Command delivery520ad0 and fixed-slot free597870
+remain supplied. Queue delivery and transfer/reset/marker clearing share the
+same effect release service; deliberately rejecting duplicate providers guard
+that composition.
+
+Fresh prospectively declared original32/native64/ASan+UBSan+LSan64 comparison
+passes16,384 cases across20 unchanged original bodies, with6889 command deliveries
+and5841 retired nodes. The finite corpus has1..32 actors and0..15 allocated order
+slots per actor, repeat/cycle flags and valid initial serial cursors, bounded
+coordinates and at least one kind2 anchor in nonempty cyclic queues. The original
+live doubly-linked payload/link/count/cursor state is normalized to native order
+vectors. Retired IDs match removed native serials, double-free is rejected,
+retired snapshots remain unchanged after free, and padding/unused backing are
+guarded. This does not compare native physical retired-node bytes. Full actor,
+configuration, effects, globals, dispatch, body and live-storage guards pass.
+The independent CMake build and CTest pass. Immutable comparison:
+original-transfer-queue-owned-bound-ns58-20261013.json.
+
+The larger corpus confirms the NS57 cleanup discrepancy. Case219 of development-v2
+releases only kind2 markers2/5/8 in the original, while the previous native code
+also released non-move effects1/4/7. Terminal noncycling cleanup now releases only
+kind2 effects before clearing storage, matching actual512340 followed by52d0c0.
+Development-v2 and diagnostic development-v3 retain their failures and original
+source fingerprints. Development-v4 passes after that one-line semantic fix;
+final-v1 independently binds current source and scope. Existing historical records
+are preserved. Fresh current-code component proofs separately pass32768 queued
+order cases/eight bodies and16384 follow-chain cases/fourteen bodies:
+original-orders-current-bound-ns58-20261013.json and
+original-transfer-follow-current-bound-ns58-20261013.json.
+
+Delivery latches motion/action15, may change behavior/pending and may change the
+current non-anchor node kind after command data is copied. Original advancement
+reloads that kind before removal. Callbacks preserve cursor/topology/backing.
+Development-v1 stopped natively before original execution because repeated idle
+entry could reach an end cursor with live orders. Same-tick terminal-cursor reentry
+remains excluded rather than asserted recovered; motion-latching delivery bounds
+that path in the compared corpus. All-target cyclic queues, reshaping callbacks,
+out-of-range order coordinates and physical allocator equality remain excluded.
+Four native-only refusals include missing serial999 and the earlier display/binding
+domains. Caller rollback remains required; original malformed pointers are not
+compared. Native storage admission is registered independently as policy with no
+original-comparison promotion.
+
+Other affected historical component evidence may be source-stale after orders.cpp
+changed. Its recorded hashes/statuses remain preserved; the fresh proofs above
+cover their declared domains only. Complete command/action/geometry/effect/controller
+services, installed profiles, native World/session integration and live replacement
+remain pending. NS57 a9c84616 incoming history has43 file/163 behavior transitions
+reviewed against exact receipts and its successful actual staged gate, with zero
+unresolved accounting gaps. This history review is not a new execution result or
+retrospective gate assertion.

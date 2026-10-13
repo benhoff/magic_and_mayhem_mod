@@ -8985,3 +8985,30 @@ receipts and actual staged gate with no gaps. History review adds no execution.
   remain pending; integration/live replacement stay none. Terminal queue cleanup's
   non-kind2 effect discrepancy awaits broader paired validation.
 - Exact incoming NS56 93e4867e history:37 file/161 behavior transitions, no gaps.
+
+
+### NS58 — owned queue advancement and terminal marker cleanup (2026-10-13)
+
+Native ownership/reset/idle/follow now composes whole524130 queue advancement
+with serial/vector storage and shared release consequences. Fresh prospective
+original32/native64/ASan+UBSan+LSan64 comparison passes16,384 cases through20
+unchanged bodies, including five queue initializer/cursor/scalar/list-clear
+helpers,6889 deliveries and5841 retired nodes. Full actor/global/live-list/body
+and retired-identity/padding guards pass; native CMake/CTest pass. See
+`original-transfer-queue-owned-bound-ns58-20261013.json` and NS58 in
+`creature-services.md`. Integration and live replacement remain none.
+
+Original case219 confirms terminal noncycling cleanup releases only kind2
+markers. Native orders.cpp now filters that cleanup accordingly; old failures and
+historical evidence fingerprints are preserved. Fresh affected component proofs
+pass32768 queued-order cases/eight bodies and16384 follow cases/fourteen bodies.
+Other affected historical evidence retains explicit source-stale limits.
+
+Free and command delivery remain supplied. Delivery latches motion; repeated
+same-tick end-cursor entry with live orders remains unresolved and excluded, as do
+all-target cyclic queues, callback topology changes, physical retired-payload
+comparison and broader coordinate/profile domains. Missing native serial refusal
+is separate storage policy requiring caller rollback. Complete lower services,
+installed AI construction and native World/session/live ownership remain pending.
+NS57 incoming exact-history review covers43 files/163 behaviors with no gaps and
+adds no execution or retrospective gate assertion.

@@ -51652,7 +51652,9 @@
       "evidence": [
         "NS27.execution-static",
         "NS35.orders-original",
-        "NS35.orders-native"
+        "NS35.orders-native",
+        "NS58.orders-current-original",
+        "NS58.orders-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -56914,7 +56916,9 @@
       ],
       "evidence": [
         "NS57.transfer-follow-owned-original",
-        "NS57.transfer-follow-owned-native"
+        "NS57.transfer-follow-owned-native",
+        "NS58.follow-current-original",
+        "NS58.follow-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -56968,6 +56972,277 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owned-owner-transfer-queue-chain",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Owned ownership, idle, follow and queue-advance chain",
+      "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5368960,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5369328,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286704,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286448,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5286192,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5382976,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4614256,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5351552,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317440,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4267600,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225936,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5287088,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5322832,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4252240,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5390640,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5391248,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5426080,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4253264,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4272864,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5427392,
+          "scope": "Whole ownership/reset/idle/follow chain plus actual524130 advancement and five queue initializer/cursor/scalar/list-clear helpers:20 unchanged original bodies. Finite16384 canonical1..32-actor/execution fixtures, valid peers/cursors, owner0..7, positive16x16 dimensions, bounded positions and0..15 fixed allocated order slots per actor. Queue repeat/cycle flags, current removal, cycling target-order purge, terminal kind2 marker clear, command delivery and post-delivery kind reload share canonical actor/orders/binding state. Raw live-node payload/link/count/cursor and retired allocation/padding/body/global guards; storage free and command delivery remain supplied; delivery latches motion to bound terminal-cursor reentry. Physical retired payload equality, reshaping callbacks, invalid/all-target cycling queues and full installed/native session/live ownership excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp"
+      ],
+      "tests": [
+        "tests/creature-transfer-queue-owned-test.cpp",
+        "tools/test-creature-transfer-queue-owned.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS58.transfer-queue-owned-original",
+        "NS58.transfer-queue-owned-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Eleven whole unchanged original functions, original resolver data and callback pointers guarded; no reset/transition/resolver redirect",
+          "One canonical actor vector and per-actor execution vector with stable per-actor order storage",
+          "Shared release and peer consequences across reset/transfer/repair; rejecting duplicate provider callbacks",
+          "Reset mode/color/pending8, engagement counters, byte/word flags, home, health/motion/behavior2 gates and supplied callback binding continuation",
+          "Reset reaches resolver/transition argument1 only; the other dispatcher cases retain their independent prior proofs",
+          "Whole50acb0 executes unchanged; owns idle binding/body in the composed chain",
+          "Later raw callback identities follow original transitions, separately from behavior-word mutations",
+          "Mutable supplied query/action fields test cached type and short-circuit ordering",
+          "Whole513850 and40e250 execute unchanged; follow callback is not redirected",
+          "Raw separation, dead/absent target, normalized copied coordinates and descriptor22 ABI",
+          "Geometry callback may mutate follow/target health after admitted coordinates are cached",
+          "Whole524130 and five storage/default/scalar helpers execute unchanged; advancement is not redirected",
+          "Stable initial allocated slots, live doubly-linked payloads and logical native serial cursors",
+          "Terminal kind2-only releases; noncycling/cycling/post-delivery removals with supplied free/delivery"
+        ],
+        "excluded": [
+          "Complete lower geometry/move/action/queue/immediate/interaction/color/prepare/peer/effect/UI/controller ownership and installed profiles",
+          "Invalid raw peers/pointers, neutral visibility alias, storage reshaping and unknown resolver callers; native safety requires caller rollback",
+          "Complete native World/session integration and live replacement",
+          "Physical retired-node payload equality and callback cursor/topology changes",
+          "Cycling queues containing only kind3 targets and out-of-range node coordinates",
+          "Repeated same-tick advancement at a terminal cursor with live orders; supplied delivery latches motion before reentry"
+        ]
+      }
+    },
+    {
+      "id": "NP.queue-owned-storage",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Owned queue serial cursor and vector/list storage admission",
+      "scope": "Native vector/order serial continuation replaces original linked pointers; missing cursor serial refuses with caller rollback. Original free is supplied in fixed allocated slots; physical allocator/retired bytes and original invalid-pointer behavior are not asserted.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp"
+      ],
+      "tests": [
+        "tests/creature-transfer-queue-owned-test.cpp",
+        "tools/test-creature-transfer-queue-owned.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS58.transfer-queue-owned-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Canonical per-actor order vectors and stable logical serial cursors within bounded owned transfer/idle/follow/queue fixtures",
+          "Missing queue serial refuses before delivery; caller rollback remains required",
+          "Original live fixed-slot list normalized to native logical storage; supplied fixed-slot free and motion-latching command delivery"
+        ],
+        "excluded": [
+          "Complete lower geometry/move/action/queue/immediate/interaction/color/prepare/peer/effect/UI/controller ownership and installed profiles",
+          "Invalid raw peers/pointers, neutral visibility alias, storage reshaping and unknown resolver callers; native safety requires caller rollback",
+          "Complete native World/session integration and live replacement",
+          "Physical retired-node payload equality and callback cursor/topology changes",
+          "Cycling queues containing only kind3 targets and out-of-range node coordinates",
+          "Repeated same-tick advancement at a terminal cursor with live orders; supplied delivery latches motion before reentry"
+        ]
       }
     }
   ],
@@ -116104,6 +116379,406 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS58.transfer-queue-owned-original",
+      "kind": "isolated_original",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle/follow/queue behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-transfer-queue-owned-bound-ns58-20261013.json",
+      "sha256": "b5ece91c24de5be7a8c82a1dd86ade481cbe1015dde43ab8c5d23ca954eadf0a",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/functions",
+          "equals": 20
+        },
+        {
+          "pointer": "/queue_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/reset_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/transition_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/idle_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/queue_deliveries",
+          "equals": 6889
+        },
+        {
+          "pointer": "/retired_nodes",
+          "equals": 5841
+        },
+        {
+          "pointer": "/resolver_table_guard",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS58.transfer-queue-owned-native",
+      "kind": "native_integration",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle/follow/queue behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-transfer-queue-owned-bound-ns58-20261013.json",
+      "sha256": "b5ece91c24de5be7a8c82a1dd86ade481cbe1015dde43ab8c5d23ca954eadf0a",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/functions",
+          "equals": 20
+        },
+        {
+          "pointer": "/queue_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/reset_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/transition_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/idle_redirected",
+          "equals": false
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/queue_deliveries",
+          "equals": 6889
+        },
+        {
+          "pointer": "/retired_nodes",
+          "equals": 5841
+        },
+        {
+          "pointer": "/resolver_table_guard",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS58.orders-current-original",
+      "kind": "isolated_original",
+      "scope": "orders suite: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-orders-current-bound-ns58-20261013.json",
+      "sha256": "30b8ffe6ce8872204bec32cb2b18ab0d97e09ca3c4d59d05967de4ba085cdb16",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/functions",
+          "equals": 8
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS58.orders-current-native",
+      "kind": "native_integration",
+      "scope": "orders suite: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-orders-current-bound-ns58-20261013.json",
+      "sha256": "30b8ffe6ce8872204bec32cb2b18ab0d97e09ca3c4d59d05967de4ba085cdb16",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/functions",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NS58.follow-current-original",
+      "kind": "isolated_original",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle and follow behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-transfer-follow-current-bound-ns58-20261013.json",
+      "sha256": "d982098d3835339e213d7bc2b16cf15bdab9283bd06e86cd0bd108bde3c18662",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/functions",
+          "equals": 14
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS58.follow-current-native",
+      "kind": "native_integration",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle and follow behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-transfer-follow-current-bound-ns58-20261013.json",
+      "sha256": "d982098d3835339e213d7bc2b16cf15bdab9283bd06e86cd0bd108bde3c18662",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/functions",
+          "equals": 14
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -129221,7 +129896,26 @@
       ],
       "evidence": [
         "NS57.transfer-follow-owned-original",
-        "NS57.transfer-follow-owned-native"
+        "NS57.transfer-follow-owned-native",
+        "NS58.follow-current-original",
+        "NS58.follow-current-native"
+      ]
+    },
+    {
+      "id": "ownership-transfer-queue-owned-20261013",
+      "level": "headless",
+      "scope": "Bounded twenty-body ownership/reset/idle/follow/queue composition with supplied command delivery/free and native serial-cursor refusal separate from original malformed pointers.",
+      "behaviors": [
+        "AI.owned-owner-transfer-queue-chain",
+        "NP.queue-owned-storage"
+      ],
+      "tests": [
+        "tests/creature-transfer-queue-owned-test.cpp",
+        "tools/test-creature-transfer-queue-owned.py"
+      ],
+      "evidence": [
+        "NS58.transfer-queue-owned-original",
+        "NS58.transfer-queue-owned-native"
       ]
     }
   ],
@@ -129758,8 +130452,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-transfer-follow-owned-20261013.json",
-    "sha256": "eadd0dd85c1f38a907c4ecef03964d0d9c030ad2c1b1b4b637ca53a4076534d3"
+    "path": "research/runtime/coverage/source-index-original-transfer-queue-owned-20261013.json",
+    "sha256": "fdb383a7a3a13f4a0c588c0c2e067c7e0953bcc1f60d5ce7ec8b068ec1fe1f51"
   },
   "claim_bindings_required": true
 }
