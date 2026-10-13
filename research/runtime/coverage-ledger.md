@@ -7255,3 +7255,25 @@ A fresh prospective genuine rerun is recorded under
 `UI67.campaign-grimoire-first-reviewed`;it supersedes UI65's retired scenario
 claim without rewriting that record or its hashes. Both runs passed actual
 menu behavior;only the new result supports the corrected current declaration.
+
+### Genuine fresh campaign static book catalog (2026-10-13)
+
+`UI68.campaign-grimoire-catalog` validates every engine-admitted first-region
+static destination through native visible tabs/contents:22 locations,41 ACK
+states/original callbacks,same engine thread,nonempty article presentation,
+original Close/Region Cancel/Main Quit41,retired V22 channel and unchanged2927
+original files. Original graphics/audio remain active. This supports only
+`HOST.native-campaign-grimoire-catalog` live observation;loaded Realm/Character,
+research,dynamic/multipage content,persistence,mission-end native rendering and
+paired visual equivalence remain pending. Earlier compiler-closure evidence
+retains historical hashes after adding this test branch.
+
+`UI69.original-gameplay-progress-followup` records a separate unchanged-checkpoint
+original-display attempt with4619 creature/36 spell records and normal Quit. The
+pursuit stopped at its health threshold before Camulos defeat;dialogue completed
+through ordinary clicks and Quit awarded no experience. No mission completion,
+progressed Realm,Character or persistence claim is made. The declared older observer
+source pins remained stable,but actual build review found omitted newer adapter
+compiler dependencies. The register now includes them;UI69 retains its narrower
+historical declaration and full-closure observer revalidation remains pending. See [catalog validation](campaign-grimoire-catalog-live.md)
+for retained run paths and remaining boundaries.
