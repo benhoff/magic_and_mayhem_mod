@@ -7,6 +7,20 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCES = (
+    'runtime/cursor-source-gate/module.c',
+    'runtime/cursor-source-gate/pins.h',
+    'runtime/cursor-source-gate/journal.h',
+    'runtime/cursor-mutex/cursor_kernel_adapter.h',
+    'runtime/cursor-mutex/cursor_kernel_adapter_core.h',
+    'runtime/cursor-mutex/cursor_gate_lease.h',
+    'runtime/cursor-mutex/cursor_gate_tokens.h',
+    'runtime/cursor-mutex/diagnostic_lifetime.h',
+    'runtime/drawing/cursor_source_gate.h',
+    'runtime/shadow/win32_min.h',
+    'protocols/include/mnm/drawing_cursor_gate_v1.h',
+    'tools/build-cursor-source-gate.py',
+)
 
 
 def build(output=None):
@@ -24,8 +38,7 @@ def build(output=None):
     subprocess.run(['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding', '-fno-builtin', '-fno-stack-protector', '-mno-sse', '-mno-mmx', '-Wall', '-Wextra', '-Werror', '-c', str(source), '-o', str(output / 'observer.obj')], check=True)
     binary = output / 'MnmCursorGate.dll'
     subprocess.run(['lld-link', '/dll', '/machine:x86', '/entry:DllMain@12', '/nodefaultlib', '/safeseh:no', '/timestamp:0', '/export:CursorSourceGateAnchor', '/export:CursorSourceGateBeginV1=_CursorSourceGateBeginV1@12', '/export:CursorSourceGateEndV1=_CursorSourceGateEndV1@16', '/export:CursorSourceGateShutdownV1=_CursorSourceGateShutdownV1@12', '/out:' + str(binary), str(output / 'observer.obj'), str(output / 'kernel32.lib')], check=True)
-    sources = ['runtime/cursor-source-gate/module.c', 'runtime/shadow/win32_min.h', 'tools/build-cursor-source-gate.py']
-    (output / 'manifest.json').write_text(json.dumps(dict(schema=1, sha256=hashlib.sha256(binary.read_bytes()).hexdigest(), sources={name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in sources}, scope='Opt-in diagnostic private mutex gate with added zero-timeout waits/duplicate lifetime; source capture integration and complete shutdown admission pending.'), indent=2) + '\n')
+    (output / 'manifest.json').write_text(json.dumps(dict(schema=1, sha256=hashlib.sha256(binary.read_bytes()).hexdigest(), sources={name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in SOURCES}, scope='Opt-in diagnostic private mutex gate with added zero-timeout waits/duplicate lifetime. Capture adapter integrated; production game execution and complete shutdown admission pending.'), indent=2) + '\n')
     return binary
 
 

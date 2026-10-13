@@ -65,7 +65,9 @@ def main():
     if a.campaign_guidance:names += ['tools/drawing_campaign_guidance.py']
     if a.hud_state:names += ['runtime/menu/drawing_hud_state.h','tools/drawing_hud_state.py']
     if a.region_input:names += ['runtime/menu/drawing_region_input.h','tools/drawing_region_input.py']
-    if a.cursor_source_gate:names += ['runtime/cursor-source-gate/module.c','runtime/cursor-source-gate/pins.h','runtime/cursor-source-gate/journal.h','tools/build-cursor-source-gate.py','tools/drawing_cursor_gate_journal.py','runtime/drawing/source_cursor_gate.h','protocols/include/mnm/drawing_cursor_gate_v1.h']
+    if a.cursor_source_gate:
+        names += list(load('tools/build-cursor-source-gate.py').SOURCES)
+        names += ['tools/drawing_cursor_gate_journal.py','tools/drawing_source_cursor_gate.py','runtime/drawing/source_cursor_gate.h']
     if a.cursor_mutex:names += ['runtime/cursor-mutex/observer.c','tools/build-cursor-mutex-observer.py','tools/drawing_cursor_mutex.py']
     if a.semantic_state:names += ['runtime/menu/drawing_semantic_state.h','tools/drawing_semantic_state.py']
     if a.wine_resource_copy:names += ['runtime/drawing/wine_resource_copy.h','tools/drawing_wine_resource_copy.py']

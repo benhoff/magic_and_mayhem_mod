@@ -1769,3 +1769,29 @@ no additional pruning/policy change. Reassessment: step2remainsopen pending
 storageadmission and bounded actual original source/worker/cadence controls;
 normalquiescence/fullfault/earlyreturn/concurrency/reference/nativeparity open.
 All47/21and steps3–7retain scope. Reviewed620b61bf..7b98d584has10receipts,0gaps.
+
+## DRAW-02 source provenance reassessment (2026-10-12 UTC)
+
+The frontend/snapshot increment committed as `cb3dd4a5` after two guarded hooks
+stopped below 100 GiB and the unchanged third retry passed. The reviewed range
+`7b98d584..cb3dd4a5` contains 18 exact receipts and zero missing intermediate
+versions. No hook was bypassed.
+
+The gate builder previously fingerprinted only module.c, win32_min.h and the
+builder. The corrected shared SOURCES includes every compiler-reported header;
+capture also fingerprints this list and both decoders without optional claims.
+Static review 01 and the guarded production DLL compile pass. Four frontend
+binding guards and four cadence controls pass. No runtime behavior changed and
+this does not establish fresh original validation.
+
+Reassessment: step 2 remains open. Free space fluctuates near 100–103 GiB,
+insufficient for the 8 GiB original 32-update reservation. The exact additional
+8.0 GiB archive proposal 02 covers five completed quiet DRAW-02 runs and awaits
+explicit approval. No additional archive/prune or gate-enabled original trial
+has launched. A separately reserved 2 GiB counter-only control is attempted with
+source capture disabled. All 47/21 requirements and steps 3–7 retain their scope.
+
+The separately reserved 2 GiB counter-only control also refused before launch
+at 99.46 GiB free. `draw02-source-gate-cadence-control-preflight-01.json` retains
+the exact guard output/hash. No original artifacts or game were consumed by
+this refused attempt and no fresh cadence evidence is claimed.

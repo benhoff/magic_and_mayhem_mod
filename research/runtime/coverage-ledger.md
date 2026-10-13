@@ -8441,3 +8441,17 @@ no additional pruning/policy change. Reassessment: step2remainsopen pending
 storageadmission and bounded actual original source/worker/cadence controls;
 normalquiescence/fullfault/earlyreturn/concurrency/reference/nativeparity open.
 All47/21and steps3–7retain scope. Reviewed620b61bf..7b98d584has10receipts,0gaps.
+
+DRAW-02 dependency provenance checkpoint: frontend/snapshot committed as
+`cb3dd4a5`. The corrected gate builder manifest and capture fingerprints match
+the complete compiler include graph plus both gate decoders. Static review/build
+only; current original source/worker/cadence execution remains pending and
+historical hashes are preserved. Step 2 and all 47/21 requirements remain open.
+The additional 8.0 GiB archive proposal 02 awaits explicit approval; no additional
+archive/prune or gate-enabled original trial has launched. A separately reserved
+2 GiB counter-only control is attempted with source capture disabled.
+
+The separately reserved 2 GiB counter-only control also refused before launch
+at 99.46 GiB free. `draw02-source-gate-cadence-control-preflight-01.json` retains
+the exact guard output/hash. No original artifacts or game were consumed by
+this refused attempt and no fresh cadence evidence is claimed.

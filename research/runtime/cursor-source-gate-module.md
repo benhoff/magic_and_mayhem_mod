@@ -64,3 +64,12 @@ nonnull create,0/nonzero close), exact args/result/error/full512FX and one forwa
 Production build01pins default addresses and exports scalar anchor/begin/end/
 shutdown names; DLL runtime not executed. Complete shutdown/source integration
 remain independent and pending.
+
+## Dependency provenance checkpoint
+
+`draw02-source-gate-provenance-review-01.json` records the corrected complete
+production compiler include graph, builder source and DLL manifest. Capture
+fingerprints the shared list and both gate decoders even without optional
+coverage claims. This is static build provenance; no new original execution,
+complete shutdown, protected source ownership or caller equivalence. Earlier
+fixture/build hashes remain immutable and historical after source changes.
