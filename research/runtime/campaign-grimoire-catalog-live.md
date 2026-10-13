@@ -43,3 +43,10 @@ remains retained observation provenance with a retired narrower claim; it does
 not support current full-closure validation. A fresh observer execution declared
 against the expanded source domain remains pending. UI68 declared the complete
 adapter and Qt compiler closure before execution and is unaffected.
+
+[UI71](campaign-grimoire-catalog-report-closure-20261013.json) repeats the complete
+22-location/41-state catalog traversal after correcting the shared V22 Quit test
+harness. Raw `working/tests/live-menus/run-l0_ub3sh` retains the fresh captures,
+normal Quit41 and original before/after manifest checks. UI68 remains unchanged
+with its earlier compiler-source fingerprints;UI71 supports the current catalog
+claim for the shell compiler closure containing the report-test correction.

@@ -7277,3 +7277,27 @@ source pins remained stable,but actual build review found omitted newer adapter
 compiler dependencies. The register now includes them;UI69 retains its narrower
 historical declaration and full-closure observer revalidation remains pending. See [catalog validation](campaign-grimoire-catalog-live.md)
 for retained run paths and remaining boundaries.
+
+### Genuine V22 campaign Quit report round trip (2026-10-13)
+
+`UI70.campaign-report-quit-v22` records fresh Celtic Region/Adept/Enter,three
+original World ticks,native Mini Quit twice,original No/World resume then Yes,
+native defeat title/all21 original labels,original OK21/fresh Main ACK6 and
+normal Main Quit7. Seven callbacks retain one engine thread and the V22 channel
+retires;2927 immutable original files pass before/after checks. Original graphics
+and audio remain active. The initial harness refused valid V22 Mini mask31
+because it expected legacy V11 mask5;the corrected test checks negotiated
+capabilities and actual session per-control permissions. No engine or wire
+behavior was changed.
+
+This validates the existing Quit outcome with all experimental campaign menus
+negotiated. Natural victory/defeat,rewards,updated Realm/Character callers,
+persistence,research,dynamic/multipage book content and native mission-end
+rendering remain pending. Shared-closure historical evidence retains original
+hashes. See [V22 report validation](campaign-report-quit-v22-live.md).
+
+`UI71.campaign-grimoire-catalog-report-closure` supplies a fresh complete
+22-location/41-state native catalog traversal after the shared report-test
+correction,with prospective full compiler inputs,one engine thread,normal
+Quit41,retired V22 channel and2927 before/after immutable checks. UI68's historical
+hashes remain unchanged;UI71 supports current catalog integration.
