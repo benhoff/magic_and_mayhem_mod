@@ -1,0 +1,2559 @@
+{
+  "schema": 1,
+  "scope": "Review committed NS36 parent/current source, behavior, build, evidence and scenario hashes against exact receipts and successful actual staged gate. Separate from new cast admission recovery and execution findings; no new execution or retrospective gate claim. Review journal self-append is excluded from its own hash receipts.",
+  "base": "40b6ac2a76b46d9e5c573b60a88e8843a5bb5fc3",
+  "head": "d0afd176e677d508d43902fb434435973744cfa0",
+  "files": [
+    {
+      "after_sha256": "a3e43468c0f65ef66f72c934e71518ee9a8738292d8ab0b9d20bd41303511dba",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "reconstruction/casting/descriptor.cpp",
+      "role": "code",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "3d0146b803e61c834abdf8e2fdc87dbf292a8107a0cda99102c624fec5529457",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "reconstruction/casting/descriptor.hpp",
+      "role": "code",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "24b14f8b87e2cfb005c9f0f24f587f650894aa8a3cbdc2aa17478558fb6ea32e",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "reconstruction/casting/descriptor/CMakeLists.txt",
+      "role": "build",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "8a781c7808b9be8955da96d029a21d1c07e747cd749a27037375bc711ade208f",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "research/formats/packed-cast-command.md",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "dfbd72edf77247d7e61fd95e33a7f86270ffd6afbeed01e29be868c03e5ff79a",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.admission",
+        "TOOL.cast-admission-export"
+      ],
+      "change": "added",
+      "path": "research/runtime/cast-admission.md",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0f9289cd8fda61e74463d4727af652cc623e17598dda8f622ded3c613cef8ef0",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "research/runtime/cast-descriptor-expansion.md",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "78bf8949ba94f65b1faf849ed3a69259e17eda4e08bf04a551350844183e34bc",
+      "before_sha256": "9e7079d11d42e9a18ba6e86b0c911e8f87c445206e577e16f4bab47352e161f9",
+      "behaviors": [
+        "NR.canvas-fade-row-damage",
+        "TOOL.coverage-accounting"
+      ],
+      "change": "modified",
+      "path": "research/runtime/coverage-ledger.md",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a45046d3c09dd962dab197711fa033f8a43c5758ce8a49d57f1af161f76e0a08",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/cast-descriptor-qt-incoming-history-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "f6a528a1f7102426676e42ca1687627308718b86ef1584870ba4eb73b457498a",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/original-cast-descriptor-incoming-history-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5601426a4060481a3ff46c3aea6abcf7a01a96fee4940a2e5b21ffec2b0720da",
+      "before_sha256": "4327f5f190b0031d7df63be0073e93d1d9fa8cc366c2f8cef3a7257c1573a30f",
+      "behaviors": [],
+      "change": "modified",
+      "path": "research/runtime/coverage/register.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "128e575fd5f41ba5183570fc1cf1dc92148d048cc0b35dd94d7b1c5e4a1caec0",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/source-index-original-cast-descriptor-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0030aea41550f248acecf411ab9e8546f7934a7f237c201246366bd83f5c5d5e",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/source-index-original-cast-descriptor-rebased-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a15680ca934e8acff8cb5ea8ef2ebde54ccbea46b19d7b1573c9e72efb10fbae",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/summary-original-cast-descriptor-20261012.md",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "8f71871a8688021ccc88014ae6aee84fef28621bcd829e42a6c3807aa981ea11",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/summary-original-cast-descriptor-rebased-20261012.md",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "16a51486e3850a3106b0bdd559961e7de431e9ef391a78719f27b60bc964f55d",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-cast-admission-static-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "60f8248859edfee1cd57a9221fa23ebbbaa49577cbc7ada16fb2043872d97531",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-cast-admission-static-v2-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "9522749201263dad3874de88bf72a255afc8aa538f8413cb7c7b368a75a81e90",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-cast-descriptor-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-descriptor-execution-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012",
+        "original-cast-descriptor-rebased-descriptor-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b4f237b67381678fba6ecc54e7ec645ee6867c049bf2bd7e77cbecb888cd5ab7",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "tests/cast-descriptor-test.cpp",
+      "role": "test",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+      "before_sha256": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+      "behaviors": [
+        "AI.action-callbacks",
+        "AI.actor-displacement",
+        "AI.actor-route-request",
+        "AI.animation-action-events",
+        "AI.autonomous-behaviors",
+        "AI.autonomy-controller",
+        "AI.behavior-handlers",
+        "AI.corpse-lifecycle",
+        "AI.creature-control",
+        "AI.creature-maintenance",
+        "AI.execution-scheduler",
+        "AI.execution-transition",
+        "AI.follow-execution",
+        "AI.immediate-defense",
+        "AI.local-navigation",
+        "AI.motion-action",
+        "AI.periodic-maintenance",
+        "AI.position-snap",
+        "AI.queued-orders",
+        "AI.ranged-aiming",
+        "AI.route-continuation",
+        "AI.route-displacement",
+        "AI.segment-completion",
+        "AI.segment-initialization",
+        "AI.special-flight-actions",
+        "AI.strategic-policy",
+        "AI.world-object-selection",
+        "AU.cd_stop_controls",
+        "AU.cd_track_controls",
+        "AU.media_startup_probe",
+        "CAST.descriptor-expansion",
+        "CB.creature-stun",
+        "CB.defended-damage",
+        "CB.melee-animation-event",
+        "CB.melee-reach",
+        "CB.ordinary-health",
+        "CB.ordinary-melee",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "NP.actor-displacement-admission",
+        "NP.actor-request-admission",
+        "NP.motion-admission",
+        "NP.segment-admission",
+        "NP.segment-setup-admission",
+        "NP.special-flight-admission",
+        "NR.canvas-fade-row-damage",
+        "NR.canvas-image-production",
+        "NR.canvas-producer-replay",
+        "NR.font-byte-producer",
+        "NR.font-glyph-admission",
+        "NR.glyph-backend-admission",
+        "NR.glyph-backend-state-admission",
+        "NR.glyph-default-launch",
+        "NR.glyph-live-admission",
+        "NR.minimap-input-fixture",
+        "NR.minimap-interactive-presentation",
+        "NR.minimap-owned-observation",
+        "NR.offline-render-soak",
+        "NR.panel-atomic-admission",
+        "NR.sprites",
+        "NR.world-admission",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-cpu-composition-reuse",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-live-history",
+        "NR.world-producer-handoff",
+        "NR.world-raster-batch-transport",
+        "NR.world-resource-reuse",
+        "NR.world-startup-launcher",
+        "NR.world-startup-sequence",
+        "RI.movies",
+        "RS.canvas-fade-span",
+        "RS.displacement-linear-stride",
+        "RS.fade-live-pixels",
+        "RS.fade-loop-state",
+        "RS.font-byte-consumer",
+        "RS.font-glyph-raster",
+        "RS.font-line-layout",
+        "RS.glyph-backend",
+        "RS.glyph-backend-state",
+        "RS.glyph-live-route",
+        "RS.minimap-camera-corners",
+        "RS.minimap-cell-marker",
+        "RS.minimap-creature-markers",
+        "RS.minimap-terrain-raster",
+        "RS.panel-pixel-domain",
+        "RS.shadow-linear-stride",
+        "RS.world-composition",
+        "RS.world-frame",
+        "RS.world-kind8-additive",
+        "RS.world-kind8-colour",
+        "RS.world-kind8-noop",
+        "RS.world-producer-bypass",
+        "RS.world-raster-batch-return",
+        "RS.world-raster-queue-replacement",
+        "RS.world-rolling-handoff-equivalence",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-movie-reference"
+      ],
+      "change": "links_changed",
+      "path": "tests/sprite-binary-reference.cpp",
+      "role": "test",
+      "receipts": [
+        "world-frame-and-retained-word-execution-20261007",
+        "world-live-owned-delivery-and-current-execution-20261007",
+        "world-native-canvas-history-current-execution-20261007",
+        "world-shadow-refusal-current-execution-20261007",
+        "world-shadow-refusal-current-execution-reviewed-20261007",
+        "commit-split-frozen-runtime-and-world-execution-20261007",
+        "native-startup-sequence-provenance-and-historical-boundaries-20261008",
+        "canvas-producers-49-completed-native-review-20261008",
+        "world-producer-handoff-current-scoped-execution-20261008",
+        "world-producer-handoff-shared-history-limitations-20261008",
+        "world-raster-boundary-current-shared-pending-20261008",
+        "world-raster-boundary-preflight-execution-20261008",
+        "native-rendering-accumulated-commit-accounting-20261008",
+        "world-startup-launcher-accounting-20261008",
+        "world-raster-batch-v7-dependencies-pending-20261008",
+        "minimap-terrain-pixels-recorded-20261009",
+        "world-interactive-batch-source-and-index-review-20261009",
+        "world-resource-reuse-source-and-index-review-20261009",
+        "REVIEW.history-merge-20261009-1",
+        "minimap-live-source-and-accounting-20261009",
+        "minimap-interactive-source-accounting-20261010",
+        "world-cpu-composition-source-accounting-20261010",
+        "native-world32-source-reuse-20261010",
+        "native-world32-source-reuse-validated-20261010",
+        "native-world-throughput-source-policy-20261010",
+        "native-world-throughput-headless-validated-20261010",
+        "native-render-offline-soak-accounting-20261010",
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-byte-source-accounting-20261010",
+        "glyph-backend-state-source-accounting-20261010",
+        "glyph-backend-source-accounting-20261010",
+        "pixel-producers-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010",
+        "change-177202c43771f43f",
+        "native-fade-row-projection-and-dependency-review-20261011",
+        "native-fade-row-original-mirror-and-titan128-validation-20261011",
+        "native-master-integration-source-review-20261011",
+        "native-master-menu-admission-reviewed-20261011",
+        "native-master-final-history-accounting-20261011",
+        "native-master-integration-final-exact-review-20261011",
+        "native-master-integration-contract-final-review-20261011",
+        "native-final-concurrent-master-master-exact-review-20261011",
+        "public-displacement-linear-stride-20261011",
+        "public-displacement-linear-stride-complete-evidence-20261011",
+        "displacement-linear-stride-scoped-original-comparison-20261011",
+        "public-shadow-envelope-correction-20261011",
+        "public-shadow-envelope-scoped-original-review-20261011",
+        "public-shadow-envelope-final-contract-20261011",
+        "public-shadow-envelope-final-contract-original-review-20261011",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-fixture-validation-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-master-integration-exact-accounting-20261011",
+        "DRAW02.DRAW01-concurrent-physical-merge-accounting-20261011",
+        "public-resident-master-final-review-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segments-milestone-execution-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-segment-setup-execution-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-creature-request-execution-20261012",
+        "original-creature-displacement-execution-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-special-flight-execution-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "c5df1423ba09255fa663251a527297346aa8b8c53079d8174e2fb27054ee12b1",
+      "before_sha256": null,
+      "behaviors": [
+        "TOOL.cast-admission-export"
+      ],
+      "change": "added",
+      "path": "tools/export-cast-admission.py",
+      "role": "tool",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "c37d8d9eb665ffe1ae3cf236db52bf95daee58755d9420db1bc0c9233f6ddb54",
+      "before_sha256": null,
+      "behaviors": [
+        "CAST.descriptor-expansion"
+      ],
+      "change": "added",
+      "path": "tools/test-cast-descriptor.py",
+      "role": "tool",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "after_sha256": "596fca2b82f903b6554dd9981d345ec12892c283bb1129e0e98aeee2186bf354",
+      "before_sha256": "596fca2b82f903b6554dd9981d345ec12892c283bb1129e0e98aeee2186bf354",
+      "id": "AI.action-callbacks",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a0c2d7e74faa079cc8e7dfaf74b077db41afd0207f0e4f967042ac35f9ddbb8f",
+      "before_sha256": "a0c2d7e74faa079cc8e7dfaf74b077db41afd0207f0e4f967042ac35f9ddbb8f",
+      "id": "AI.actor-displacement",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "821959d3050a0dcab75eac911eb8dec554bf9f8a74a2137ee3192a7194396f5b",
+      "before_sha256": "821959d3050a0dcab75eac911eb8dec554bf9f8a74a2137ee3192a7194396f5b",
+      "id": "AI.actor-route-request",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "ab2c2b3500e8ada55c12047f47ff0b12fc5f41343ea69d8c40fc0217fc23eb5b",
+      "before_sha256": "ab2c2b3500e8ada55c12047f47ff0b12fc5f41343ea69d8c40fc0217fc23eb5b",
+      "id": "AI.animation-action-events",
+      "receipts": [
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "25628612ea3641612315b40430d441352c0d8d9ff25a9921b633cba260c53b46",
+      "before_sha256": "25628612ea3641612315b40430d441352c0d8d9ff25a9921b633cba260c53b46",
+      "id": "AI.autonomous-behaviors",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "11e8c776cd3a900ff394c7b6f504f879f77ba75b58cc2fd695c5364dfe1f7345",
+      "before_sha256": "11e8c776cd3a900ff394c7b6f504f879f77ba75b58cc2fd695c5364dfe1f7345",
+      "id": "AI.autonomy-controller",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "72e996e5656a67fc930c021568c9e1ec644188152b2d5ee56c22e68f443ce0a5",
+      "before_sha256": "72e996e5656a67fc930c021568c9e1ec644188152b2d5ee56c22e68f443ce0a5",
+      "id": "AI.behavior-handlers",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0c5b65ab5b35f221b8ac389e87132ee16eddf91637b9f50db50bb6458e917a44",
+      "before_sha256": "0c5b65ab5b35f221b8ac389e87132ee16eddf91637b9f50db50bb6458e917a44",
+      "id": "AI.corpse-lifecycle",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "ac5ca6bf8aa1a7a5763f8bcfd84a4f37dc8d4c2f47941a723c96afa81a801051",
+      "before_sha256": "ac5ca6bf8aa1a7a5763f8bcfd84a4f37dc8d4c2f47941a723c96afa81a801051",
+      "id": "AI.creature-control",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "3c5df55c365563d7aaa31fd8aac9e97790460363e95329784e937bb8a8b584dd",
+      "before_sha256": "3c5df55c365563d7aaa31fd8aac9e97790460363e95329784e937bb8a8b584dd",
+      "id": "AI.creature-maintenance",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "4c751d2969ed439b0f121a77bb3360081087a4c47521a9e984b76606d841e3df",
+      "before_sha256": "4c751d2969ed439b0f121a77bb3360081087a4c47521a9e984b76606d841e3df",
+      "id": "AI.execution-scheduler",
+      "receipts": [
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "68a93a95db633ecbccae3d6f8f78a4f73d5082c6e119ea744d95d9a5e5fddfc7",
+      "before_sha256": "68a93a95db633ecbccae3d6f8f78a4f73d5082c6e119ea744d95d9a5e5fddfc7",
+      "id": "AI.execution-transition",
+      "receipts": [
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "4a50c1086ef12930dd2c57ca3cdf721a136069dd0092dd80d3ed1ec083412094",
+      "before_sha256": "4a50c1086ef12930dd2c57ca3cdf721a136069dd0092dd80d3ed1ec083412094",
+      "id": "AI.follow-execution",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "cb8e064509fc364a8eaeef7f635aaf4bbf19d24e5fe088ba7a6db7e0ea195c78",
+      "before_sha256": "cb8e064509fc364a8eaeef7f635aaf4bbf19d24e5fe088ba7a6db7e0ea195c78",
+      "id": "AI.immediate-defense",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b0cefa4509e673bf0420c13493411621d01bc71a9cc300417a3a74c9c629f233",
+      "before_sha256": "b0cefa4509e673bf0420c13493411621d01bc71a9cc300417a3a74c9c629f233",
+      "id": "AI.local-navigation",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5c7e24638f728b03bf30fadf605e5256386565e78ae17f0fbdf272332dae6826",
+      "before_sha256": "5c7e24638f728b03bf30fadf605e5256386565e78ae17f0fbdf272332dae6826",
+      "id": "AI.motion-action",
+      "receipts": [
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "7f2f1cc4a4c00456bf9e9ab0e2b7b6470a79bc554a3e656647bb0ad6ff3495a9",
+      "before_sha256": "7f2f1cc4a4c00456bf9e9ab0e2b7b6470a79bc554a3e656647bb0ad6ff3495a9",
+      "id": "AI.periodic-maintenance",
+      "receipts": [
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "f751fc19549c5828b1448aa89b1eb944709a1ab75a17e73555b358d3d213c1d8",
+      "before_sha256": "f751fc19549c5828b1448aa89b1eb944709a1ab75a17e73555b358d3d213c1d8",
+      "id": "AI.position-snap",
+      "receipts": [
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "2b67703db41fdfabbdaae98d051cf41d1875567c8be222f12083cbab693caabd",
+      "before_sha256": "2b67703db41fdfabbdaae98d051cf41d1875567c8be222f12083cbab693caabd",
+      "id": "AI.queued-orders",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "eb4960372bf36c1d2d1921766566c7cc569225b246f6908d583221d46c1c3a4a",
+      "before_sha256": "eb4960372bf36c1d2d1921766566c7cc569225b246f6908d583221d46c1c3a4a",
+      "id": "AI.ranged-aiming",
+      "receipts": [
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "3b55def306106ad2481a956084cec1a133f0b97dc5b617a72808862b4fa47d4a",
+      "before_sha256": "3b55def306106ad2481a956084cec1a133f0b97dc5b617a72808862b4fa47d4a",
+      "id": "AI.route-continuation",
+      "receipts": [
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "ef11a728972a58ce208904fb39d4b7c064d90fdbebdc6df9b38480b62807ae59",
+      "before_sha256": "ef11a728972a58ce208904fb39d4b7c064d90fdbebdc6df9b38480b62807ae59",
+      "id": "AI.route-displacement",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "fb154fb0d2a92d81b3ac2cb5580d9840d58181fa21701f33cac232a4453dbe29",
+      "before_sha256": "fb154fb0d2a92d81b3ac2cb5580d9840d58181fa21701f33cac232a4453dbe29",
+      "id": "AI.segment-completion",
+      "receipts": [
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0fd5ef181444cde4f40a416bbb9891d773b04a95dd0c3ebad4b14b70cdb88eb6",
+      "before_sha256": "0fd5ef181444cde4f40a416bbb9891d773b04a95dd0c3ebad4b14b70cdb88eb6",
+      "id": "AI.segment-initialization",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5c50ca3dfd933e39ca0f13be7dc55fa7974c1cdd060ab841e7cc191b78fc984b",
+      "before_sha256": "5c50ca3dfd933e39ca0f13be7dc55fa7974c1cdd060ab841e7cc191b78fc984b",
+      "id": "AI.special-flight-actions",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0d2626f6458ab8d11c90c12d339af8daf9fa97cc87fc3976e75cff63ef1931eb",
+      "before_sha256": "0d2626f6458ab8d11c90c12d339af8daf9fa97cc87fc3976e75cff63ef1931eb",
+      "id": "AI.strategic-policy",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "af65b412fc9d0c0fc5cf2b60b7a83ea41dab59ffebeab5c8491f131832e2239a",
+      "before_sha256": "af65b412fc9d0c0fc5cf2b60b7a83ea41dab59ffebeab5c8491f131832e2239a",
+      "id": "AI.world-object-selection",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0b063599d8598999027ec2f6b0575b112da76af1f9c7d4e9b48995b162aaada1",
+      "before_sha256": "0b063599d8598999027ec2f6b0575b112da76af1f9c7d4e9b48995b162aaada1",
+      "id": "AU.cd_stop_controls",
+      "receipts": [
+        "audio-scheduler-scoped-accounting-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-file-size-scoped-accounting-20261012",
+        "native-render-latest-master-merge-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "e4dffd28a4161648326f806d929ab273ca34fc9a849659b662aa835ac03692d0",
+      "before_sha256": "e4dffd28a4161648326f806d929ab273ca34fc9a849659b662aa835ac03692d0",
+      "id": "AU.cd_track_controls",
+      "receipts": [
+        "native-file-size-scoped-accounting-20261012",
+        "native-render-latest-master-merge-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "d6e521f623ed28555cced1c58bd7d497147a69f952598175b905d55cf3cee7ab",
+      "before_sha256": "d6e521f623ed28555cced1c58bd7d497147a69f952598175b905d55cf3cee7ab",
+      "id": "AU.media_startup_probe",
+      "receipts": [
+        "audio-scheduler-scoped-accounting-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-ordinary-health-accounting-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "f2e6e9befd769594c86793ec7431e52d4525a86691f2752fe759e26421438f05",
+      "before_sha256": null,
+      "id": "CAST.admission",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "cd2360275a5cdf502d6d83086eea655fa709a7c0d831ddb74a2a88e46ec8f1f6",
+      "before_sha256": null,
+      "id": "CAST.descriptor-expansion",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-descriptor-execution-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012",
+        "original-cast-descriptor-rebased-descriptor-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "8d7c0b6c1766843a0f7f43e587c589e52eb83ba6ff4d0baf0dd9af389e638f76",
+      "before_sha256": "8d7c0b6c1766843a0f7f43e587c589e52eb83ba6ff4d0baf0dd9af389e638f76",
+      "id": "CB.creature-stun",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "9698a86707962e5cef54bde05ebc46177adff6e0e243020b144b29db0e657b82",
+      "before_sha256": "9698a86707962e5cef54bde05ebc46177adff6e0e243020b144b29db0e657b82",
+      "id": "CB.defended-damage",
+      "receipts": [
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "39fa5b8990db02a95d4aacb5ed28c345391f41fbd62ba684c5b1f544e240a4a6",
+      "before_sha256": "39fa5b8990db02a95d4aacb5ed28c345391f41fbd62ba684c5b1f544e240a4a6",
+      "id": "CB.melee-animation-event",
+      "receipts": [
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "bff896bf3c6859c335522e4c272d51df9195bcc3ab6b7d3db2e548b28b616744",
+      "before_sha256": "bff896bf3c6859c335522e4c272d51df9195bcc3ab6b7d3db2e548b28b616744",
+      "id": "CB.melee-reach",
+      "receipts": [
+        "original-creature-execution-partial-commit-checkpoint-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "ce73d05a9b63f2d4ebc884b2c612b947692df767f6e90c6dade9c16b00bcee43",
+      "before_sha256": "ce73d05a9b63f2d4ebc884b2c612b947692df767f6e90c6dade9c16b00bcee43",
+      "id": "CB.ordinary-health",
+      "receipts": [
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "bcfd321e03ac082c689e4211232961f29e2877dd795c59de7e5a19c2a3725d8f",
+      "before_sha256": "bcfd321e03ac082c689e4211232961f29e2877dd795c59de7e5a19c2a3725d8f",
+      "id": "CB.ordinary-melee",
+      "receipts": [
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0a833631fd64a23d3edc2bb5c23a7e5d7f5a384da73ff4e9249ea7700dfd8f46",
+      "before_sha256": "0a833631fd64a23d3edc2bb5c23a7e5d7f5a384da73ff4e9249ea7700dfd8f46",
+      "id": "DRAW.queue-client-state",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "ece0e365ab5d849d3110c82c1f73e6cb548af518a64b28d7d54fdd436cef4095",
+      "before_sha256": "ece0e365ab5d849d3110c82c1f73e6cb548af518a64b28d7d54fdd436cef4095",
+      "id": "DRAW.queue-dispatch",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "912b9c0cd33f5e028115b031b79f2186fa433d59ec9b4f9b029df403223925de",
+      "before_sha256": "912b9c0cd33f5e028115b031b79f2186fa433d59ec9b4f9b029df403223925de",
+      "id": "DRAW.queue-render-postlude",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "f076a2275afe6145da389613563fc11043ee7a56e94bd2c27b97f4f203338927",
+      "before_sha256": "f076a2275afe6145da389613563fc11043ee7a56e94bd2c27b97f4f203338927",
+      "id": "DRAW.world-kind-16",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "14f375f8b42c10a84923400d52df8c016889e63bc51ab33ad5926ac91a2f767a",
+      "before_sha256": "14f375f8b42c10a84923400d52df8c016889e63bc51ab33ad5926ac91a2f767a",
+      "id": "DRAW.world-kind-17",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "af60e17afb1cd6b0c9cee72715c282f223f9b6e20f9bbb0370e557f34cb878c9",
+      "before_sha256": "af60e17afb1cd6b0c9cee72715c282f223f9b6e20f9bbb0370e557f34cb878c9",
+      "id": "DRAW.world-kind-20",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "205397b5cced6477f6d790f95699cb85ef8cae80e2e47fb4c56ba06f66977f75",
+      "before_sha256": "205397b5cced6477f6d790f95699cb85ef8cae80e2e47fb4c56ba06f66977f75",
+      "id": "NP.actor-displacement-admission",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a2a528986665f50b2762d8173727bd80f383d8506762f506d187fccd193f251d",
+      "before_sha256": "a2a528986665f50b2762d8173727bd80f383d8506762f506d187fccd193f251d",
+      "id": "NP.actor-request-admission",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5f5c8dcb0a32400494a6fb5ed7b2eeefaabebe4b3e3d3424cf18114c8fd390ea",
+      "before_sha256": "5f5c8dcb0a32400494a6fb5ed7b2eeefaabebe4b3e3d3424cf18114c8fd390ea",
+      "id": "NP.motion-admission",
+      "receipts": [
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "9c187b9f3cbe3adf8302d56b231e5fc44bdb3eb032664d450e49d2c1808d2dfa",
+      "before_sha256": "9c187b9f3cbe3adf8302d56b231e5fc44bdb3eb032664d450e49d2c1808d2dfa",
+      "id": "NP.segment-admission",
+      "receipts": [
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "32b2bf177705f74c168687f07def02b3d64648d0f148880e807b71303ca6971d",
+      "before_sha256": "32b2bf177705f74c168687f07def02b3d64648d0f148880e807b71303ca6971d",
+      "id": "NP.segment-setup-admission",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5bbab5c273da282424c8ce6ceaecef9030490e028a2f296d4ec1e63ebd94064f",
+      "before_sha256": "5bbab5c273da282424c8ce6ceaecef9030490e028a2f296d4ec1e63ebd94064f",
+      "id": "NP.special-flight-admission",
+      "receipts": [
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "bd89637f98231dd82fab14d2cbdba3180bbb8390e681ca0914420760409a58c3",
+      "before_sha256": "475c25aaf112d6dc8563c9d4d227227fdae181dd5b56f3ea82e7d6d03e0a490a",
+      "id": "NR.canvas-fade-row-damage",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "7ec8711b004574441ff0cc16eca21e49ed2b987123985b4c69b379522618ab5f",
+      "before_sha256": "7ec8711b004574441ff0cc16eca21e49ed2b987123985b4c69b379522618ab5f",
+      "id": "NR.canvas-image-production",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "412e2b01c2c9a2c76d16005cf139c0843872bf952824ee9c5fc90707f0e861cc",
+      "before_sha256": "412e2b01c2c9a2c76d16005cf139c0843872bf952824ee9c5fc90707f0e861cc",
+      "id": "NR.canvas-producer-replay",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "20831c3e592db43f9f2392d5be17209efd4350f8686e0be3523d8eb412b0aadf",
+      "before_sha256": "20831c3e592db43f9f2392d5be17209efd4350f8686e0be3523d8eb412b0aadf",
+      "id": "NR.font-byte-producer",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "6681cb2f25f23d5986a8def7cd0e4777c7c746fdd1f2352e0b5b80e52da68543",
+      "before_sha256": "6681cb2f25f23d5986a8def7cd0e4777c7c746fdd1f2352e0b5b80e52da68543",
+      "id": "NR.font-glyph-admission",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+      "before_sha256": "58f7c99929d1b2c4152f7d1f597380ddb952b99b7426201fad76c5061cacaab8",
+      "id": "NR.glyph-backend-admission",
+      "receipts": [
+        "public-displacement-linear-stride-20261011",
+        "public-displacement-linear-stride-complete-evidence-20261011",
+        "public-shadow-envelope-correction-20261011",
+        "public-shadow-envelope-final-contract-20261011",
+        "public-resident-master-final-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+      "before_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+      "id": "NR.glyph-backend-state-admission",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010",
+        "pixel-producers-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "DRAW02.publication-source-review-20261011",
+        "DRAW02.publication-final-index-review-20261011",
+        "native-world-continuous-performance-checkpoint-20261010",
+        "change-177202c43771f43f",
+        "change-63a3ea26646e1335",
+        "change-726951d0430315fd-shared-pending",
+        "change-2827404fba470729-bound-pending",
+        "change-d67c62f6de953042-closure-pending",
+        "change-612d08616e5f4a89-shared-pending",
+        "native-fade-row-projection-and-dependency-review-20261011",
+        "native-master-integration-source-review-20261011",
+        "native-master-menu-admission-reviewed-20261011",
+        "native-master-final-history-accounting-20261011",
+        "native-master-integration-final-exact-review-20261011",
+        "native-master-integration-contract-final-review-20261011",
+        "native-final-concurrent-master-master-exact-review-20261011",
+        "public-displacement-linear-stride-20261011",
+        "public-displacement-linear-stride-complete-evidence-20261011",
+        "public-shadow-envelope-correction-20261011",
+        "public-shadow-envelope-final-contract-20261011",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-master-integration-exact-accounting-20261011",
+        "DRAW02.fenced-physical-source-accounting-20261011",
+        "DRAW02.retrospective-eb3cd1828a36-to-550e4895e4ef-20261011",
+        "DRAW02.retrospective-1fc60f40798c-to-597005a6eb1c-20261011",
+        "DRAW02.retrospective-2f460fa94bff-to-2e124ba45619-20261011",
+        "DRAW02.physical-master-integration-accounting-20261011",
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "DRAW02.census-integration-retrospective-336edd1f56a3-to-d462b1c86fd1-20261011",
+        "DRAW02.DRAW01-concurrent-physical-merge-accounting-20261011",
+        "DRAW02.DRAW01-latest-master-target-accounting-20261011",
+        "public-resident-master-final-review-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "06ce1b6a2dc18587fb742ccb7ab6f6558ed82331487310dbc628d314b9082304",
+      "before_sha256": "06ce1b6a2dc18587fb742ccb7ab6f6558ed82331487310dbc628d314b9082304",
+      "id": "NR.glyph-default-launch",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b900f44c03afbbae660635b6a87db538f4e26aa82d613d8e8347d1e8134fc891",
+      "before_sha256": "b900f44c03afbbae660635b6a87db538f4e26aa82d613d8e8347d1e8134fc891",
+      "id": "NR.glyph-live-admission",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "858856cc26e7f9c25b3808af4b79e71bfd63ddc1c64350ab25ec9a04873477b2",
+      "before_sha256": "858856cc26e7f9c25b3808af4b79e71bfd63ddc1c64350ab25ec9a04873477b2",
+      "id": "NR.minimap-input-fixture",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b85a6ed018962af3d1adb4bceeba3ba5992e7016738816ababdc75d3950a16fd",
+      "before_sha256": "b85a6ed018962af3d1adb4bceeba3ba5992e7016738816ababdc75d3950a16fd",
+      "id": "NR.minimap-interactive-presentation",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "983bedbe757d3a503ab97a88e33649e27b44bbec85d7a3537c0ea4e68ca2d153",
+      "before_sha256": "983bedbe757d3a503ab97a88e33649e27b44bbec85d7a3537c0ea4e68ca2d153",
+      "id": "NR.minimap-owned-observation",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a1b5836f0ddc4a09d28b73481093072cbfa862e49ab565ea29566751422dddfa",
+      "before_sha256": "a1b5836f0ddc4a09d28b73481093072cbfa862e49ab565ea29566751422dddfa",
+      "id": "NR.offline-render-soak",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "348e46ff60e1930477b3156b7dbed0d36075aabaf19c634eb1cc048e47896260",
+      "before_sha256": "348e46ff60e1930477b3156b7dbed0d36075aabaf19c634eb1cc048e47896260",
+      "id": "NR.panel-atomic-admission",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "403681188279671170a59ef3e677b383c11e7068f559f230455e2a6062032895",
+      "before_sha256": "403681188279671170a59ef3e677b383c11e7068f559f230455e2a6062032895",
+      "id": "NR.sprites",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "25f7ac480c90f57fdb7768d2f11dba3f57d44a9ffe41df597b675ba59daeb309",
+      "before_sha256": "25f7ac480c90f57fdb7768d2f11dba3f57d44a9ffe41df597b675ba59daeb309",
+      "id": "NR.world-admission",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "8bf52bf743980d129eb2a773e5b98c0163f22a15371f2458e695a01ac094b04c",
+      "before_sha256": "8bf52bf743980d129eb2a773e5b98c0163f22a15371f2458e695a01ac094b04c",
+      "id": "NR.world-batch-extended-prefix",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "1fc7451e6faf2ee85aaa6ea62bd7203cdb9d9bba6a941d4f9a8a6557a01ee80a",
+      "before_sha256": "1fc7451e6faf2ee85aaa6ea62bd7203cdb9d9bba6a941d4f9a8a6557a01ee80a",
+      "id": "NR.world-batch-profiling",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0bf37fbc0c70a4cedb7e0ab29b8ea8e471da1cf63cae437c4685f3936a6f090f",
+      "before_sha256": "0bf37fbc0c70a4cedb7e0ab29b8ea8e471da1cf63cae437c4685f3936a6f090f",
+      "id": "NR.world-batch-throughput",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "f06f9dc5d146c5e416b97bc37dfa7463d889f3d43a9d7b894943e950ffdec10f",
+      "before_sha256": "f06f9dc5d146c5e416b97bc37dfa7463d889f3d43a9d7b894943e950ffdec10f",
+      "id": "NR.world-cpu-composition-reuse",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "c5722e84df2c19fced7f5c124e80d96ffed6bc6c01f77cc6ff983bb8ead4d9d7",
+      "before_sha256": "c5722e84df2c19fced7f5c124e80d96ffed6bc6c01f77cc6ff983bb8ead4d9d7",
+      "id": "NR.world-interactive-batch-launcher",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "db7b26d058adfac2b64e884e39f004258050207ea95f1131d0bee6393840119c",
+      "before_sha256": "db7b26d058adfac2b64e884e39f004258050207ea95f1131d0bee6393840119c",
+      "id": "NR.world-live-history",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "c4b7fd72842514b02ed5dd6a8b77ec73051083a81739781fe4ded35c793ecd18",
+      "before_sha256": "c4b7fd72842514b02ed5dd6a8b77ec73051083a81739781fe4ded35c793ecd18",
+      "id": "NR.world-producer-handoff",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "1584ebc07ced5c661afb7f2064e4ad11d969d0e5d2b8d821eb7571ff948d694f",
+      "before_sha256": "1584ebc07ced5c661afb7f2064e4ad11d969d0e5d2b8d821eb7571ff948d694f",
+      "id": "NR.world-raster-batch-transport",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "121d3511b7e5f9f3cfe98999812fd6b6c8603b391e8b6367be9cb56f197b25af",
+      "before_sha256": "121d3511b7e5f9f3cfe98999812fd6b6c8603b391e8b6367be9cb56f197b25af",
+      "id": "NR.world-resource-reuse",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "3f53ee88d8273524c21c03b666a421305aead9734fe6ff2fc6b89197b7b14ac6",
+      "before_sha256": "3f53ee88d8273524c21c03b666a421305aead9734fe6ff2fc6b89197b7b14ac6",
+      "id": "NR.world-startup-launcher",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "3f6a1c370156e652dc088eed3995d8ed85b32d969d663688307c23acf928709f",
+      "before_sha256": "3f6a1c370156e652dc088eed3995d8ed85b32d969d663688307c23acf928709f",
+      "id": "NR.world-startup-sequence",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "e5016a30f5a95ca81c757216bb9f72243b1192d53a132d07e3e279c55b748031",
+      "before_sha256": "e5016a30f5a95ca81c757216bb9f72243b1192d53a132d07e3e279c55b748031",
+      "id": "RI.movies",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b21ef577c8057f5d36e01e72d93e6230c25de3f34a60abced642f2228c599b22",
+      "before_sha256": "b21ef577c8057f5d36e01e72d93e6230c25de3f34a60abced642f2228c599b22",
+      "id": "RS.canvas-fade-span",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "613162f7e2c96c0e6cc38e34c7a7f1240703fd1bc0d76f637c5fe47c022a7be9",
+      "before_sha256": "613162f7e2c96c0e6cc38e34c7a7f1240703fd1bc0d76f637c5fe47c022a7be9",
+      "id": "RS.displacement-linear-stride",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "37295249bb0ea6c1709c02ef8e1cd1956831aabb36664c473587f1c94dcfd5a4",
+      "before_sha256": "37295249bb0ea6c1709c02ef8e1cd1956831aabb36664c473587f1c94dcfd5a4",
+      "id": "RS.fade-live-pixels",
+      "receipts": [
+        "native-wave-loading-scoped-accounting-20261012",
+        "native-factory-media-scoped-accounting-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-music-wire-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-audio-controls-scoped-accounting-20261012",
+        "native-voice-recovery-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "native-profile-scoped-accounting-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-file-size-scoped-accounting-20261012",
+        "native-render-latest-master-merge-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+      "before_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+      "id": "RS.fade-loop-state",
+      "receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "DRAW02.publication-source-review-20261011",
+        "DRAW02.publication-final-index-review-20261011",
+        "native-master-integration-source-review-20261011",
+        "native-master-menu-admission-reviewed-20261011",
+        "native-master-final-history-accounting-20261011",
+        "native-master-integration-final-exact-review-20261011",
+        "native-master-integration-contract-final-review-20261011",
+        "native-final-concurrent-master-master-exact-review-20261011",
+        "public-displacement-linear-stride-20261011",
+        "public-displacement-linear-stride-complete-evidence-20261011",
+        "public-shadow-envelope-correction-20261011",
+        "public-shadow-envelope-final-contract-20261011",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-master-integration-exact-accounting-20261011",
+        "DRAW02.fenced-physical-source-accounting-20261011",
+        "DRAW02.physical-master-integration-accounting-20261011",
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "DRAW02.census-integration-retrospective-336edd1f56a3-to-d462b1c86fd1-20261011",
+        "DRAW02.DRAW01-concurrent-physical-merge-accounting-20261011",
+        "DRAW02.DRAW01-latest-master-target-accounting-20261011",
+        "public-resident-master-final-review-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b1aae26278c64b2442419436f3d56fbc826ebb4b546f8567554e1a9aa8bfb999",
+      "before_sha256": "b1aae26278c64b2442419436f3d56fbc826ebb4b546f8567554e1a9aa8bfb999",
+      "id": "RS.font-byte-consumer",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0cb07fef958ddc29e9fbb4f3f10ec6a6ca8c99b94c259f17d31c3deed5ad6217",
+      "before_sha256": "0cb07fef958ddc29e9fbb4f3f10ec6a6ca8c99b94c259f17d31c3deed5ad6217",
+      "id": "RS.font-glyph-raster",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "29ad68d870387044edc96f68da7d167d18f24a70d9c1dce960e6473eb2d08828",
+      "before_sha256": "29ad68d870387044edc96f68da7d167d18f24a70d9c1dce960e6473eb2d08828",
+      "id": "RS.font-line-layout",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+      "before_sha256": "6c5870d250825faa24e56e30590ef10ccd8ff62d78903b85fb9ef58ffc7f9356",
+      "id": "RS.glyph-backend",
+      "receipts": [
+        "public-displacement-linear-stride-20261011",
+        "public-displacement-linear-stride-complete-evidence-20261011",
+        "public-shadow-envelope-correction-20261011",
+        "public-shadow-envelope-final-contract-20261011",
+        "public-resident-master-final-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+      "before_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+      "id": "RS.glyph-backend-state",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010",
+        "pixel-producers-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "DRAW02.publication-source-review-20261011",
+        "DRAW02.publication-final-index-review-20261011",
+        "native-world-continuous-performance-checkpoint-20261010",
+        "change-177202c43771f43f",
+        "change-63a3ea26646e1335",
+        "change-726951d0430315fd-shared-pending",
+        "change-2827404fba470729-bound-pending",
+        "change-d67c62f6de953042-closure-pending",
+        "change-612d08616e5f4a89-shared-pending",
+        "native-fade-row-projection-and-dependency-review-20261011",
+        "native-master-integration-source-review-20261011",
+        "native-master-menu-admission-reviewed-20261011",
+        "native-master-final-history-accounting-20261011",
+        "native-master-integration-final-exact-review-20261011",
+        "native-master-integration-contract-final-review-20261011",
+        "native-final-concurrent-master-master-exact-review-20261011",
+        "public-displacement-linear-stride-20261011",
+        "public-displacement-linear-stride-complete-evidence-20261011",
+        "public-shadow-envelope-correction-20261011",
+        "public-shadow-envelope-final-contract-20261011",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-master-integration-exact-accounting-20261011",
+        "DRAW02.fenced-physical-source-accounting-20261011",
+        "DRAW02.retrospective-eb3cd1828a36-to-550e4895e4ef-20261011",
+        "DRAW02.retrospective-1fc60f40798c-to-597005a6eb1c-20261011",
+        "DRAW02.retrospective-2f460fa94bff-to-2e124ba45619-20261011",
+        "DRAW02.physical-master-integration-accounting-20261011",
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "DRAW02.census-integration-retrospective-336edd1f56a3-to-d462b1c86fd1-20261011",
+        "DRAW02.DRAW01-concurrent-physical-merge-accounting-20261011",
+        "DRAW02.DRAW01-latest-master-target-accounting-20261011",
+        "public-resident-master-final-review-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "cf36bc407c1d7e0ce72fa250dda39e5831ecebfa38cae7154546817fa09c851c",
+      "before_sha256": "cf36bc407c1d7e0ce72fa250dda39e5831ecebfa38cae7154546817fa09c851c",
+      "id": "RS.glyph-live-route",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+      "before_sha256": "308fe34a882e45529c344967f20f7cc50b9bf9a9a61915a85589a1d501d8a931",
+      "id": "RS.minimap-camera-corners",
+      "receipts": [
+        "public-resident-master-final-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+      "before_sha256": "2141209c75934265f06670d97039240fbf99cc17df327aad8f660d7d2ff7b651",
+      "id": "RS.minimap-cell-marker",
+      "receipts": [
+        "public-resident-master-final-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+      "before_sha256": "e99933f5b72c5ae5077e9e946b3321607bfebb1fd36a6f727e070ee29ddfdf92",
+      "id": "RS.minimap-creature-markers",
+      "receipts": [
+        "public-resident-master-final-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+      "before_sha256": "231a8aa3a8a465bec6e0f699dc90ab3a7a4b0b04e93a7f342d25afb5185ccb3a",
+      "id": "RS.minimap-terrain-raster",
+      "receipts": [
+        "public-resident-master-final-review-20261011",
+        "resident-master-closure-head-review-20261011",
+        "resident-profile-instrumentation-20261011",
+        "engine-cadence-observation-controls-20261011",
+        "scene-production-bounded-probe-controls-20261011",
+        "native-menu-audio-scoped-index-review-20261011",
+        "native-audio-default-worker-scope-review-20261012",
+        "native-audio-default-merged-index-review-20261012",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-live-music-scoped-accounting-20261012",
+        "native-audio-defaults-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "audio-scheduler-scoped-accounting-20261012",
+        "scene-draw-budget-worker-milestone-20261012",
+        "world-owned-snapshot-contract-reviewed-20261012",
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-render-master-merge-final-accounting-20261012",
+        "native-render-latest-master-publish-accounting-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "1da9d2e31060d9cb86c2820fcbbac2c5bd636c8d2f9d2ac3ee9a0feabc9c994f",
+      "before_sha256": "1da9d2e31060d9cb86c2820fcbbac2c5bd636c8d2f9d2ac3ee9a0feabc9c994f",
+      "id": "RS.panel-pixel-domain",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b213f1186222e08505089016414641ea4c08e7783f2d25f16ab2b6cdc2f8f313",
+      "before_sha256": "b213f1186222e08505089016414641ea4c08e7783f2d25f16ab2b6cdc2f8f313",
+      "id": "RS.shadow-linear-stride",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "dca079fb41f325022d5d038e9042815e6567285b11481f8f12bf10aa8fedca86",
+      "before_sha256": "dca079fb41f325022d5d038e9042815e6567285b11481f8f12bf10aa8fedca86",
+      "id": "RS.world-composition",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "7e63863328055d0954eb1b58605049070b3f4748ef8d652b594cbce753ea3274",
+      "before_sha256": "7e63863328055d0954eb1b58605049070b3f4748ef8d652b594cbce753ea3274",
+      "id": "RS.world-frame",
+      "receipts": [
+        "native-prepared-render-milestone-20261012",
+        "native-prepared-render-final-20261012",
+        "native-draw-cost-measurement-20261012-accounting",
+        "native-colour-cache-headless-20261012-accounting",
+        "masked-displacement-headless-20261012-accounting",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "native-gpu-cost-master-publication-accounting-20261012",
+        "native-gpu-cost-current-master-final-accounting-20261012",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b2eb951a6e38914065d17f852afb3ea4cb09e864515dce70f2bb1cd590fd5722",
+      "before_sha256": "b2eb951a6e38914065d17f852afb3ea4cb09e864515dce70f2bb1cd590fd5722",
+      "id": "RS.world-kind8-additive",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "7a729b519942869b4311fc997005615a26899baf35a7d11718d67c89d1d7df29",
+      "before_sha256": "7a729b519942869b4311fc997005615a26899baf35a7d11718d67c89d1d7df29",
+      "id": "RS.world-kind8-colour",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "d8d78b12e1e71da147e626f4b6c330cfa4de5c8e5654371027bf04cba32853b5",
+      "before_sha256": "d8d78b12e1e71da147e626f4b6c330cfa4de5c8e5654371027bf04cba32853b5",
+      "id": "RS.world-kind8-noop",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "1e2ce815700afd65a2b49da619c9ef4da2f053232e99732e052f6fa7fc388357",
+      "before_sha256": "1e2ce815700afd65a2b49da619c9ef4da2f053232e99732e052f6fa7fc388357",
+      "id": "RS.world-producer-bypass",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0ce26c0f6be3e59e00d41130d858760daa6fae99490306664918f9c929e3529f",
+      "before_sha256": "0ce26c0f6be3e59e00d41130d858760daa6fae99490306664918f9c929e3529f",
+      "id": "RS.world-raster-batch-return",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "091130096c5e457a65827c4cc28151b7df717652f2f216bd6d5dac263ba7ef33",
+      "before_sha256": "091130096c5e457a65827c4cc28151b7df717652f2f216bd6d5dac263ba7ef33",
+      "id": "RS.world-raster-queue-replacement",
+      "receipts": [
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "af7cc644e1ed212e8e581917245fe8eb6c25b6ee4336efc35f08396931e9dc3c",
+      "before_sha256": "af7cc644e1ed212e8e581917245fe8eb6c25b6ee4336efc35f08396931e9dc3c",
+      "id": "RS.world-rolling-handoff-equivalence",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "3bb960e7b4b75214e996a593e8674b67d23c1605e4e0be929d8adcaa71f9cc7e",
+      "before_sha256": null,
+      "id": "TOOL.cast-admission-export",
+      "receipts": [
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "d839a89c36561d53158530ba3f4d4f3e35c5beb66946e0d9c9c94824eacfeb43",
+      "before_sha256": "390cc87639ed4bd8046a45c03907848c213c99eb7901bb515e9220a972ed91a5",
+      "id": "TOOL.coverage-accounting",
+      "receipts": [
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "c86726ae722da918758abf5d1ff38b62c3892470edca80972f23bce3f9b0d6ae",
+      "before_sha256": "c86726ae722da918758abf5d1ff38b62c3892470edca80972f23bce3f9b0d6ae",
+      "id": "TOOL.drawing-dispatch-slices",
+      "receipts": [
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "id": "TOOL.drawing-movie-reference",
+      "receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011",
+        "draw01-terminal-crosswalk-exact-accounting-20261011",
+        "draw01-terminal-observer-exact-accounting-20261011",
+        "draw01-terminal-edges-exact-accounting-20261011",
+        "draw01-compact-cpu-exact-accounting-20261011",
+        "DRAW02.census-integration-retrospective-13ceb6639adf-to-2cff6ae13ede-20261011",
+        "public-resident-master-target-review-20261011",
+        "resident-master-closure-master-review-20261011",
+        "native-cd-foundations-scoped-accounting-20261012",
+        "native-cd-fade-scoped-accounting-20261012",
+        "native-hidden-movie-scoped-accounting-v2-20261012",
+        "native-media-probe-scoped-accounting-v2-20261012",
+        "ns23-owned-projection-accounting-20261012",
+        "ns24-melee-owned-accounting-20261012",
+        "ns24-final-owned-metadata-20261012",
+        "ns24-workspace-owned-accounting-20261012",
+        "ns25-workspace-final-accounting-20261012",
+        "simulation-control-autonomy-commit-checkpoint-20261012",
+        "native-gpu-cost-final-merge-20261012-accounting",
+        "original-motion-milestone-accounting-20261012",
+        "original-segments-milestone-accounting-20261012",
+        "original-segment-setup-accounting-20261012",
+        "original-creature-routing-accounting-20261012",
+        "original-special-flight-accounting-20261012",
+        "original-control-actions-v2-accounting-20261012",
+        "original-remaining-contracts-accounting-20261012",
+        "original-cast-descriptor-accounting-20261012",
+        "original-cast-descriptor-rebased-accounting-20261012"
+      ]
+    }
+  ],
+  "staged_gate_record": "working/tests/original-cast-descriptor-20261012/v2-commit-gate-final.json",
+  "staged_gate_sha256": "3b29ec4211dc1de0980783791cbeb86a531b689d9358cde502be0ae130cc0cd4",
+  "unresolved_gaps": [],
+  "counts": {
+    "file_transitions": 21,
+    "behavior_transitions": 107,
+    "unresolved_gaps": 0
+  }
+}
