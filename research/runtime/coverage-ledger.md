@@ -7121,3 +7121,30 @@ and earlier superseded passing run retain their separate pins and hashes.
 No original artifacts were consumed. The [committed-history review](coverage/copy-timing-history-20261012.json)
 accounts for12 exact prior file versions with no missing receipts and makes
 no retrospective execution/gate assertion.
+
+## Experimental settled Realm projection and ingress — 2026-10-12
+
+`NP.realm-menu-dispatch` adds default-off V19 original-owned Realm state and
+semantic activation/auxiliary ingress, with a native Qt controller. Availability
+comes from actual ownership/adjacency, and visible regions from the loaded
+hit map/count rather than the preview's8/12/16 catalog. Existing preview limits
+remain defaults; explicit bounded display capacities can admit19 regions.
+[Contract and exclusions](realm-live-adapter.md).
+
+[UI59](realm-adapter-private-20261012.json) passes four private unchanged-original
+tick travel/Region-request cases in both resolutions, three original auxiliary
+callbacks,23 invalid admission/input/map cases, eleven synthetic Qt wire/session
+cases, three companion Qt regressions and PE32/Qt builds. Current declared
+compiler sources and immutable-original manifests pass. Raw evidence is retained
+at `working/tests/realm-adapter/run-r8lpg4u4`; each earlier preparation failure
+has a separate pin. Only scoped implementation/headless integration advances.
+
+Progressed live Realm, actual polling/input concurrency, travel/tutorial/resource
+cleanup, broader Region Entry and auxiliary destinations, victory and disk
+persistence remain pending. V19 is explicitly experimental. Shared menu/Qt
+changes and the reusable reference's macro restoration stale earlier evidence;
+historical hashes/statuses remain unchanged, including Character, Realm-model
+comparison, Grimoire, storage and rendering. The last renderer-diagnostic commit
+is accounted for in[18 exact committed versions](coverage/realm-adapter-history-20261012.json),
+with no missing receipts or retrospective validation/gate claim. Campaign task
+items2–4 remain ongoing; this first chunk does not claim they are complete.
