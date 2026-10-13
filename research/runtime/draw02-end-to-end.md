@@ -1725,3 +1725,30 @@ Historical hashes are unchanged. Original activation and positive journal joins
 are now recorded. Adversarial joins, source pixel acquisition and ownership,
 every presentation, full action/caller/lifetime/routes and47/21 closure remain
 open. Step2 stays partial; later stages are not promoted.
+
+## Bounded source pixels and cursor ROI binding (2026-10-12 UTC)
+
+The [mapped source checkpoint](draw02-wine-source-map.md) now has owned safety
+guards and a fresh original-active result.32 closed read mappings retain16
+40×40 and16 400×280 RGB565 snapshots (3,635,200 bytes) at exact source/submission/
+lifecycle identities, with unchanged originals and normal Quit. Unsupported
+shapes and exhausted quotas remain explicit; every-source and every-frame
+coverage is false. An archived template fails before engine startup; retry uses
+an intact recent local prefix, and current dependencies/raw evidence are pinned.
+
+A reference-only cursor model binds observed save-under/keyed-draw/present/
+restore identities and reproduces13 physical40×40 regions within one channel
+(20,800 pixels). One startup-black mismatch and one missing sampled overlay
+remain recorded. Original pixels enter only this diagnostic model; native-app
+parity is not claimed. Seven mapped-source decoder guards, owned PE32 forwarding/
+lease guards and seven adversarial cursor-model methods pass. Current counter-
+only control and strict actual-input comparison measure120 common queued updates
+at median1.266315×/p952.161535× combined diagnostic timing, with randomized-work
+and unobtrusive-gameplay limitations retained.
+
+Source headers/CLI/dependency changes leave older evidence historical. The
+`9d13fd5a` committed range has11 exact source-version receipts and append-only
+journal metadata reviewed separately. This is a partial acquisition/source-to-
+physical binding milestone. Complete sources, frames/actions, callers/lifetimes,
+startup/alternate routes, every presentation and47/21 closure remain pending.
+The explicit user GiB override remains active; no further cleanup is authorized.

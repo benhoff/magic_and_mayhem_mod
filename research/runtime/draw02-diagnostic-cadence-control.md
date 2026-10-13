@@ -60,3 +60,9 @@ median1.216344×/p951.900047×. Both original runs verify unchanged originals an
 normal Quit. This scoped combined diagnostic timing result retains randomized
 workload and unobtrusive-capture limitations. See the source-descriptor checkpoint
 and explicit user storage override; no historical fingerprints are refreshed.
+
+Fresh mapped-source control/comparison01 uses the current code, intact pinned
+local prefix and actual short schedule/settings/input/counter binaries/raw trace.
+It compares120common queued updates at median1.266315×/p952.161535× combined
+diagnostic timing. Both originals exit normally with unchanged manifests.
+Randomized-work, unobtrusive-capture and whole acquisition limitations remain.

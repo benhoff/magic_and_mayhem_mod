@@ -37970,7 +37970,8 @@
         "tools/drawing_presented_session.py",
         "runtime/drawing/input_point.h",
         "protocols/include/mnm/drawing_input_point_v1.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -38137,7 +38138,8 @@
         "reconstruction/rendering/vertical_bar.h",
         "runtime/menu/drawing_actor_latches.h",
         "runtime/scene/source_pending_policy.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
       "remaining_gaps": [
@@ -42464,7 +42466,8 @@
         "runtime/scene/vertical_bar_trace.h",
         "reconstruction/rendering/vertical_bar.h",
         "runtime/scene/source_pending_policy.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-point-getter-fixture-01-20261012",
@@ -43053,7 +43056,8 @@
       "validation_dependencies": [
         "runtime/drawing/session.c",
         "runtime/shadow/win32_min.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-import-inventory-01-static-20261012",
@@ -43110,7 +43114,8 @@
         "runtime/drawing/wine_submission.h",
         "runtime/drawing/session.c",
         "tools/inspect-drawing-wine-imports.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-lifetime-fixture-01-native_integration-20261012",
@@ -43160,7 +43165,8 @@
       "validation_dependencies": [
         "runtime/drawing/wine_lifetime.h",
         "tools/drawing_wine_lifetime.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
@@ -43209,7 +43215,8 @@
         "runtime/drawing/wine_submission.h",
         "runtime/drawing/wine_lifetime.h",
         "tools/inspect-drawing-wine-imports.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-buffer-fixture-01-native_integration-20261012",
@@ -43252,7 +43259,8 @@
         "runtime/drawing/wine_lifetime.h",
         "runtime/drawing/wine_submission.h",
         "tools/inspect-drawing-wine-imports.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-texture-entry-fixture-01-native_integration-20261012",
@@ -43345,7 +43353,8 @@
       "validation_dependencies": [
         "runtime/drawing/wine_blit_worker.h",
         "runtime/drawing/wine_submission.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-blit-packet-fixture-01-native_integration-20261012",
@@ -43576,7 +43585,8 @@
         "runtime/drawing/session.c",
         "runtime/drawing/wine_submission.h",
         "runtime/scene/source_pending_policy.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012",
@@ -43634,7 +43644,8 @@
         "tools/drawing_source_pending_admission.py",
         "tools/drawing_source_pending_refusal.py",
         "tools/drawing_fixture_prefix.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
@@ -43990,7 +44001,8 @@
         "tools/inspect-drawing-wine-imports.py",
         "tools/build-drawing-session.py",
         "tools/drawing_quit_completion.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-resource-imports-01-static-20261012",
@@ -44045,7 +44057,8 @@
         "tools/drawing_source_pending_admission.py",
         "tools/drawing_source_pending_refusal.py",
         "tools/drawing_fixture_prefix.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.held-refusal-fixture-01-native-20261012",
@@ -44109,7 +44122,8 @@
         "runtime/scene/drawing_storage_transitions.h",
         "runtime/scene/drawing_storage_caller.h",
         "runtime/scene/source_pending_policy.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.map-storage-export-fixture-01-native-20261012",
@@ -44186,7 +44200,8 @@
         "runtime/scene/drawing_storage_transitions.h",
         "runtime/scene/drawing_storage_caller.h",
         "runtime/scene/source_pending_policy.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.client-memory-imports-01-static-20261012",
@@ -44263,7 +44278,8 @@
         "protocols/include/mnm/drawing_storage_point_v2.h",
         "runtime/scene/drawing_storage_transitions.h",
         "runtime/scene/drawing_storage_caller.h",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.retained-map-fixture-01-native-20261012",
@@ -44398,7 +44414,9 @@
         "DRAW02.pending-policy-cadence-control-01-20261012",
         "DRAW02.pending-policy-cadence-comparison-01-20261012",
         "DRAW02.source-descriptor-cadence-control-01-20261012",
-        "DRAW02.source-descriptor-cadence-comparison-01-20261012"
+        "DRAW02.source-descriptor-cadence-comparison-01-20261012",
+        "DRAW02.source-map-cadence-control-01-20261012",
+        "DRAW02.source-map-cadence-comparison-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -44600,7 +44618,8 @@
         "tools/drawing_diagnostic_cadence.py",
         "tools/inspect-drawing-wine-resource-copy.py",
         "tools/inspect-drawing-wine-imports.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ]
     },
     {
@@ -44954,7 +44973,8 @@
         "runtime/shadow/win32_min.h",
         "protocols/include/mnm/drawing_input_point_v1.h",
         "tools/build-drawing-session.py",
-        "runtime/drawing/wine_source_descriptor.h"
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_source_map.h"
       ]
     },
     {
@@ -45695,12 +45715,14 @@
         "tools/drawing-session-runner.py",
         "tools/drawing_fixture_prefix.py",
         "tools/drawing_wine_submission.py",
-        "tools/drawing_wine_lifetime.py"
+        "tools/drawing_wine_lifetime.py",
+        "runtime/drawing/wine_source_map.h"
       ],
       "evidence": [
         "DRAW02.wine-source-descriptor-fixture-04-20261012",
         "DRAW02.wine-source-descriptor-fixture-05-20261012",
-        "DRAW02.wine-source-descriptor-original-01-20261012"
+        "DRAW02.wine-source-descriptor-original-01-20261012",
+        "DRAW02.wine-source-map-original-02-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45711,6 +45733,102 @@
       },
       "remaining_gaps": [
         "Fresh fixture05 and original01 establish owned forwarding guards and2546current exact submission/source-generation/subresource/lifetime metadata bindings. Extra public descriptors expose12shape/access tuples, including40x40and400x280sources, but no source pixels or ownership. Original short capture retains466physical API witnesses and174advancing update windows with all-presentations flag false. Fresh counter-only control retains261windows; current comparison is separate. Adversarial cross-journal guards, source pixel acquisition/ownership, all internal aliases/lifetimes, complete frame/action/caller/routes and47/21 closure remain pending. User explicitly overrides GiB limits for continuation; storage authorization confers no engine status."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-source-map",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded diagnostic read-only Wine source mapping",
+      "scope": "Opt-in diagnostic read-only public map of known-live RGB565 GPU source subresources at Wine blit submission, limited to40x40and400x280shapes and16map attempts per shape. Copy dense rows into independent owned memory while mapping is valid, unmap before retaining payload/forwarding original blit, bind generation/lifecycle/submission identities, and retain explicit unsupported/budget/map/range/generation refusals. Failed unmap or overlapping diagnostic invocation aborts the run before forwarding into an unresolved map. Driver synchronization/residency changes are diagnostic effects. No all-source/alias/lifetime/concurrency ownership, every frame/action/route, unobtrusive gameplay, native parity or replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-source-map.md",
+        "research/formats/drawing-wine-source-map.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_map.h",
+        "tools/drawing_wine_source_map.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-source-map-test.c",
+        "tests/test-drawing-wine-source-map.py",
+        "tools/test-drawing-wine-source-map.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_lifetime.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-map-fixture-02-20261012",
+        "DRAW02.wine-source-map-boot-refusal-01-20261012",
+        "DRAW02.wine-source-map-original-02-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned fixture02 passes27 original forwards,17map attempts/16unmaps,11owned snapshots over padded mapped rows, disabled/unsupported/active-map/failed-map/invalid-range/generation/budget refusals and fail-closed unmap/reentry children. Seven decoder guards pass. Original driver read mapping, source payload identity/temporal/presentation proof, exact cross-journal adversarial cases, all aliases/lifetimes/concurrency and whole acquisition remain pending. Failed initial fixture build01 is retained; no original activation precedes the passing owned fixture.",
+        "Original02 validates32successful closed read mappings and3635200owned retained bytes at2361exact submission/lifetime identities.1824unsupported descriptors and505quota refusals remain; all-source ownership/every-submission/every-presentation flags are false. Cursor atlas and mutable40pixel backing roles are bounded visual/call-order findings; a separate reference-only model binds13physical ROIs with1startup mismatch and1sampling refusal retained. Fresh control/comparison quantify combined diagnostic overhead only. The archived old template is not reused; current local prefix31 and active raw reference4le are pinned."
+      ]
+    },
+    {
+      "id": "NR.drawing-cursor-map-composition",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Reference-only mapped cursor composition and physical ROI binding",
+      "scope": "Offline diagnostic model of complete40x40 save-under/keyed-draw/present/restore cycles using exact observed object generations, rectangles, call order and sampled mapped payloads. Reconstruct RGB565 keyed composition with explicit inferred blue31 key and compare against the associated independent primary API physical ROI within one channel value. Retain all unmatched/unsupported cycles and pixel mismatches, including black startup witnesses. Original captured pixels are diagnostic model inputs only; no production native renderer, full-frame/action/alias/routes, unobtrusive gameplay or all-source ownership claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-source-map.md"
+      ],
+      "implementation": [
+        "tools/drawing_cursor_map_composition.py",
+        "tools/analyze-drawing-cursor-map-composition.py"
+      ],
+      "tests": [
+        "tests/test-drawing-cursor-map-composition.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_wine_source_map.py",
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_lifetime.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_api_physical.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-map-composition-fixture-01-20261012",
+        "DRAW02.cursor-map-composition-analysis-01-20261012",
+        "DRAW02.cursor-map-composition-fixture-05-20261012",
+        "DRAW02.cursor-map-composition-analysis-05-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Seven guard methods and current analysis pass their execution checks.13ROI associations/20800pixels match within1channel, while one startup-black physical witness mismatches and one selected restore lacks a sampled overlay. Key31 remains an inferred diagnostic-model parameter. Internal writes, true key getters/overrides, clipped cases, complete source/frame/action/routes and production native parity remain pending."
       ]
     }
   ],
@@ -98060,6 +98178,288 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 mapped snapshot/refusal guards:27original blit forwards,17map attempts,16unmaps,11dense owned payloads surviving unmap mutation. Separate failed-unmap/reentrant children stop with99before original forwarding. No original driver or complete source ownership proof.",
+      "record": "research/runtime/draw02-wine-source-map-fixture-02.json",
+      "sha256": "e3c42c717ff495bf8cbe899058f65ef103f289c4565300585c536c7ff7152f58",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 27
+        },
+        {
+          "pointer": "/retained_payloads",
+          "equals": 11
+        },
+        {
+          "pointer": "/owned_copies_survive_unmap_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/fatal_guards/0/original_forwards",
+          "equals": 0
+        },
+        {
+          "pointer": "/fatal_guards/1/original_forwards",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-boot-refusal-01-20261012",
+      "kind": "static",
+      "scope": "Preparation-only refusal before game launch: archived old prefix lacks kernel32, wineboot53; immutable manifest after-check passes in retained logs. No original map or engine execution validation.",
+      "record": "research/runtime/draw02-wine-source-map-original-01.json",
+      "sha256": "698086ab5f3e0edbf8bb284366484b771b5d5c36c7cb2ef80c7b9f21fa14c70c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-original-02-20261012",
+      "kind": "live_observation",
+      "scope": "Original-active diagnostic RGB565 source acquisition:32successful map/copy/unmap cycles,16each40x40/400x280,3635200retained bytes,2361exact submission/lifetime sample bindings,437physical API witnesses and155advancing update windows. Sampling caps and unsupported sources remain explicit; no every-source/frame/alias/native-parity claim.",
+      "record": "research/runtime/draw02-wine-source-map-original-02.json",
+      "sha256": "7d4d4eb7966a0050fc7c21d7c60c58e7b3535d07e84b34c32a05e36eabe74434",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_map_observation/retained_payloads",
+          "equals": 32
+        },
+        {
+          "pointer": "/wine_source_map_observation/all_sample_submission_identities_bound",
+          "equals": true
+        },
+        {
+          "pointer": "/wine_source_map_observation/every_submission_pixels_retained",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-cadence-control-01-20261012",
+      "kind": "live_observation",
+      "scope": "Current counter/menu/input-only original control under the same short actual schedule/settings and intact recent prefix.274complete update windows, stable sources/unchanged originals and normal Quit; no drawing/source/Wine/display observation.",
+      "record": "research/runtime/draw02-source-map-cadence-control-01.json",
+      "sha256": "8e106b1846e550acdffc28066a849303e9bf9c63f7d4e8e112799a6443a3f003",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cadence_control",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-map-cadence-comparison-01-20261012",
+      "kind": "native_integration",
+      "scope": "Strict actual-schedule/settings/input/counter-binary/raw-trace comparison for120common queued updates. Combined diagnostic median1.266315x/p952.161535x; no identical randomized workload or unobtrusive gameplay/native parity proof.",
+      "record": "research/runtime/draw02-source-map-cadence-comparison-01.json",
+      "sha256": "414477453a117153cc8b37b78473270353f15e86c09422ec1b0c4eead9686e53",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/0/measurement/common_queued_updates",
+          "equals": 120
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor-map-composition-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Seven independent owned reference-only composition and generation/latest-writer/ambiguity/missing-input/thread/geometry/hash/path/order/black-mismatch guard methods. No original game or production native renderer.",
+      "record": "research/runtime/draw02-cursor-map-composition-fixture-01.json",
+      "sha256": "c5c4485794d79577c644619ce50a3ee2ec7b6486cf1d243fe03fffcd019f1132",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/methods",
+          "equals": 7
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor-map-composition-analysis-01-20261012",
+      "kind": "native_integration",
+      "scope": "Reference-only original pixel/source/metadata association:13matched1600pixel cursor regions within1channel, one preserved startup-black mismatch and one missing sampled overlay refusal. Original pixels are diagnostic model inputs; no production native or all-frame comparison.",
+      "record": "research/runtime/draw02-cursor-map-composition-analysis-01.json",
+      "sha256": "5d44d07547204d0be99f8c639b73018f37fe75bdd988f53783eb1c343971c302",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matched_cycles",
+          "equals": 13
+        },
+        {
+          "pointer": "/matched_pixels",
+          "equals": 20800
+        },
+        {
+          "pointer": "/mismatched_cycles",
+          "equals": 1
+        },
+        {
+          "pointer": "/all_selected_cycles_bound",
+          "equals": false
+        },
+        {
+          "pointer": "/all_candidate_pixels_match",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_application_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor-map-composition-fixture-05-20261012",
+      "kind": "native_integration",
+      "scope": "Fresh seven-method owned reference-only composition guards with the final raw-entry/physical adapter source; no original or production native rendering.",
+      "record": "research/runtime/draw02-cursor-map-composition-fixture-05.json",
+      "sha256": "e21d641fb1314263a93d951b383627b8a8e0c0e566754c46836dc9bac6c030fa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/methods",
+          "equals": 7
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.cursor-map-composition-analysis-05-20261012",
+      "kind": "native_integration",
+      "scope": "Current raw-submission/lifetime/API-entry/physical-request/ack/peer-report/source-payload validation before reference-only cursor ROI composition.13matching regions, one startup-black mismatch and one missing sampled overlay retained; no production native parity.",
+      "record": "research/runtime/draw02-cursor-map-composition-analysis-05.json",
+      "sha256": "56b1bdde5cb424fab3ba3d067ea4c3ba16c27a7ce53dee2da1bbd7ed59ddf5bd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matched_cycles",
+          "equals": 13
+        },
+        {
+          "pointer": "/matched_pixels",
+          "equals": 20800
+        },
+        {
+          "pointer": "/mismatched_cycles",
+          "equals": 1
+        },
+        {
+          "pointer": "/all_selected_cycles_bound",
+          "equals": false
+        },
+        {
+          "pointer": "/all_candidate_pixels_match",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109812,7 +110212,8 @@
         "DRAW02.cadence-control-original-01-live_observation-20261012",
         "DRAW02.cadence-control-original-02-live_observation-20261012",
         "DRAW02.pending-policy-cadence-control-01-20261012",
-        "DRAW02.source-descriptor-cadence-control-01-20261012"
+        "DRAW02.source-descriptor-cadence-control-01-20261012",
+        "DRAW02.source-map-cadence-control-01-20261012"
       ]
     },
     {
@@ -109830,7 +110231,8 @@
         "DRAW02.cadence-control-comparison-02-native_integration-20261012",
         "DRAW02.cadence-control-repeat-01-native_integration-20261012",
         "DRAW02.pending-policy-cadence-comparison-01-20261012",
-        "DRAW02.source-descriptor-cadence-comparison-01-20261012"
+        "DRAW02.source-descriptor-cadence-comparison-01-20261012",
+        "DRAW02.source-map-cadence-comparison-01-20261012"
       ]
     },
     {
@@ -109986,7 +110388,66 @@
         "tools/capture-drawing-interactive.py"
       ],
       "evidence": [
-        "DRAW02.wine-source-descriptor-original-01-20261012"
+        "DRAW02.wine-source-descriptor-original-01-20261012",
+        "DRAW02.wine-source-map-original-02-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-owned",
+      "level": "headless",
+      "scope": "Owned PE32 mapped snapshot and original-forward guards, with fail-closed unmap/reentrant negative children; no original game or all-source proof.",
+      "behaviors": [
+        "NR.drawing-wine-source-map"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-source-map.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-map-fixture-02-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.cursor-map-composition-owned",
+      "level": "headless",
+      "scope": "Independent owned red/green keyed pixels and generation/latest-writer/ambiguity/missing-input/thread/geometry/hash/path/black-mismatch guards. Reference-only model; no original execution.",
+      "behaviors": [
+        "NR.drawing-cursor-map-composition"
+      ],
+      "tests": [
+        "tests/test-drawing-cursor-map-composition.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-map-composition-fixture-01-20261012",
+        "DRAW02.cursor-map-composition-fixture-05-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.cursor-map-composition-analysis",
+      "level": "headless",
+      "scope": "Reference-only original metadata and mapped source pixels to independent physical cursor ROI associations; retain all refusals and pixel mismatches. No production native renderer or full-frame parity.",
+      "behaviors": [
+        "NR.drawing-cursor-map-composition"
+      ],
+      "tests": [
+        "tools/analyze-drawing-cursor-map-composition.py"
+      ],
+      "evidence": [
+        "DRAW02.cursor-map-composition-analysis-01-20261012",
+        "DRAW02.cursor-map-composition-analysis-05-20261012"
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-map-original",
+      "level": "live_observation",
+      "scope": "Original-active diagnostic read mappings of40x40/400x280RGB565 GPU sources at known submission identities, capped16attempts per shape. Owned snapshots only at successful closed mappings; no all-source/frame/action/route or unobtrusive gameplay proof.",
+      "behaviors": [
+        "NR.drawing-wine-source-map"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-map-original-02-20261012"
       ]
     }
   ],
@@ -110361,8 +110822,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-descriptor-20261012-02.json",
-    "sha256": "0d6604a53f55e66a2acbb7b54762e62315fd3cc77915fa16f96f8f00413e891e"
+    "path": "research/runtime/coverage/source-index-draw02-source-map-20261012-02.json",
+    "sha256": "8f02e10dc7b9a962ef10e713f34ea302432b31aa579af781b2bb6bb68df4916f"
   },
   "claim_bindings_required": true
 }
