@@ -48,6 +48,8 @@ def main():
             active, complete = False, r[14]
         queues[r[1]], in_world[r[1]] = complete, active
     by_api = {b['api_entry']: b for b in bindings['bindings']}
+    policy = template.get('copy_phase_policy')
+    moved = {v['save_sequence']: v['full_sequence'] for v in policy['selected']} if policy else {}
     images = {i['ordinal']: i for i in observed['images']}
     selected, excluded, frames = [], [], []
     for sample in observed['samples']:
@@ -72,10 +74,10 @@ def main():
             excluded.append(dict(api_entry=sample['api_entry'], request=b['request'], sequence=seq,
                                  oracle=sample['oracle'], reason=reason))
             continue
-        frame = dict(sequence=seq, queues=queues[seq], canvas=5, width=40, height=40)
+        frame = dict(sequence=moved.get(seq, seq), queues=queues[seq], canvas=5, width=40, height=40)
         frames.append(frame)
         selected.append(dict(api_entry=sample['api_entry'], request=b['request'], frame=frame,
-                             source_box=list(r[10:14]), oracle=images[sample['oracle']], sample=sample))
+                             original_sequence=seq, source_box=list(r[10:14]), oracle=images[sample['oracle']], sample=sample))
     if not selected or len({f['sequence'] for f in frames}) != len(frames):
         raise ValueError('Missing/duplicate admitted auxiliary publication')
     claims = json.loads(a.claims.read_bytes())
@@ -142,9 +144,11 @@ def main():
                   native=native, comparisons=comparisons, excluded=excluded, artifacts=str(run.relative_to(ROOT)),
                   native_input_sha256=sha(native_source), executable_sha256=executable_sha,
                   checkpoints_unchanged=result.returncode == 0, template_comparison_succeeded=template['success'],
-                  original_pixels_used_as_native_inputs=False, original_game_reexecuted=False, replay_order_changed=False,
+                  original_pixels_used_as_native_inputs=False, original_game_reexecuted=False,
+                  replay_order_changed=policy is not None, copy_phase_policy=policy,
                   original_manifest_verified_before_after=True,
-                  scope='External post-save diagnostic mapped-view pixels to source-only native logical saved buffer at exact producer return. All input parameters/order/checkpoints unchanged; within-World/other observed writers excluded explicitly. Additional original Lock can affect cache/timing; no original backing/phase equivalence, ordering repair or whole presentation.')
+                  scope=('External auxiliary pixels compared against an explicit experimental metadata-selected COPY policy template. Save publication follows its transposed COPY; original request/oracle association and all comparison denominators/exclusions remain. No additional input/order/checkpoint changes relative to that template. Extra original Lock may perturb timing/cache; no general schedule or ownership/live replacement proof.' if policy else
+                         'External post-save diagnostic mapped-view pixels to source-only native logical saved buffer at exact producer return. All input parameters/order/checkpoints unchanged; within-World/other observed writers excluded explicitly. Additional original Lock can affect cache/timing; no original backing/phase equivalence, ordering repair or whole presentation.'))
     with a.report.open('x') as output:
         json.dump(report, output, indent=2)
         output.write('\n')

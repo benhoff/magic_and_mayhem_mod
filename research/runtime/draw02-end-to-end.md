@@ -2723,3 +2723,50 @@ despite2403matching CPU checkpoints. Next validate the current defaultoff
 observer with a bounded original/control capture, preserving failed denominators
 and exact request bindings before any transfer-phase policy. All47journey and
 21operation closures and steps3–7 remain open.
+
+
+## Step2 bounded offline COPY phase correction (2026-10-13)
+
+The approved1360GiBpolicy is committed as29628ab7;eight exact parent/current
+receipts review with0history gaps. A fresh current-code auxiliary-defaultoff
+original120 retains549191records/2406oracles/859primary planes, actualquit0 and
+verified source/manifests. Auxiliary and worker-prefix flags arefalse and no
+auxiliary sidecar is present. Default native replay completes but fails one
+1600pixel canvas2checkpoint1459/seq194077;139admitted physical comparisons match
+with720exclusions.2301COPYrequests bind,155extra API entries/247return reversals
+and1567bound/3704unbound storage queries remain explicit.
+
+The separately authored [offline phase policy](draw02-copy-phase-policy.md)
+requires exact restore/full/save worker order, adjacent inverted full/save
+producer returns, bounded supported geometry/callers/keys and no other observed
+draw/lifetime during the full interval, outsideWorld. Restore/save cursor regions
+may differ because the intervening full worker overwrites the whole primary.
+Selection uses metadata only; original pixel outcomes never select a repair.
+Only the two payload-free COPYbodies transpose while sequential IDs remain in
+place. Every checkpoint/oracle stays required. Default replay remains unchanged.
+
+Seven policy guards and compact hash-denominator guards pass. The auxiliary
+cohort admits29triples/8refusals:all2403CPU checkpoints andall67admitted Aux
+buffers now match, retaining8World exclusions. The independent current defaultoff
+cohort admits25triples/6refusals and all2406full-plane hashes match, including its
+failed default checkpoint. Hash-only replay retains every ordinal/sequence/canvas/
+extent and freshly computed full-plane SHA; mismatch pixel counts would remain
+unknown failures. Earlier fiveAux, two priorCPU and onelegacyCPU failure reports
+and hashes are unchanged. No original bytes become native inputs.
+
+The older failed control metadata admits35triples/5refusals, but its0.5GiBnative
+reservation is refused at1360.3197GiBworking/122.9978GiBfree. No replay launched;
+those two old CPU failures are not claimed repaired. Shared storage includes other
+writers and the guard is not a quota. No cleanup/archive was performed. Relative
+CLI/internal binding path mistakes were refused before native execution; corrected
+absolute-path runs above are separately retained. First synthetic packing typo
+and overly strict first-plan region equality remain historical artifacts.
+
+Reassessment: the measured saved-transfer phase mismatch has a validated bounded
+offline correction in two cohorts. Step2 still requires all-writer/view/lifetime
+and source-to-frame/output-route accounting plus independent diagnostic cadence
+and semantic controls. Source changes leave old default-comparison evidence stale;
+new source/contract-bound results do not refresh its hashes or promote stages.
+All47journey/21operation closures and steps3–7 remain open. Additional experiments
+remain storage-preflight blocked pending a budget change or explicitly authorized
+cleanup; coverage accounting and the incremental commit can finish independently.

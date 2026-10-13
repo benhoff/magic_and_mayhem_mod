@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 from drawing_api_session import BUILD, sha
 from drawing_scene_corpus import asset_name, raster_inputs
+from drawing_copy_phase import select as select_phase, transpose
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,6 +23,7 @@ def main():
     parser.add_argument('--executable', type=Path, required=True)
     parser.add_argument('--claims', type=Path, required=True)
     parser.add_argument('--report', type=Path, required=True)
+    parser.add_argument('--copy-phase-plan', type=Path, help='Explicit experimental metadata-only offline COPY policy')
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Refusing evidence overwrite')
@@ -80,6 +82,28 @@ def main():
         asset_root = inputs / 'assets'
         asset_root.mkdir(parents=True)
         native_source = raster_inputs(drawing_prefix)
+        phase_policy = None
+        if args.copy_phase_plan:
+            plan_raw = args.copy_phase_plan.read_bytes()
+            plan = json.loads(plan_raw)
+            binding_path = Path(plan['bindings']['path'])
+            binding_raw = binding_path.read_bytes()
+            if (not plan['success'] or plan['reference']['sha256'] != sha(raw_reference) or
+                    plan['producer_sha256'] != sha(producer) or
+                    plan['bindings']['sha256'] != sha(binding_raw) or
+                    plan['original_pixels_used_as_native_inputs'] or
+                    any(sha((ROOT / n).read_bytes()) != h for n, h in plan['sources'].items())):
+                raise ValueError('Exact current metadata-only phase plan required')
+            bindings = json.loads(binding_raw)
+            if not bindings['success'] or bindings['reference']['sha256'] != sha(raw_reference):
+                raise ValueError('Phase plan bindings changed')
+            choices = select_phase(records, reference['copy_order_observation'], bindings)
+            if choices != {k: plan[k] for k in ('selected', 'refused')}:
+                raise ValueError('Phase selection differs from current guarded policy')
+            native_source = transpose(native_source, choices['selected'])
+            sources.update(plan['sources'])
+            phase_policy = dict(path=str(args.copy_phase_plan), sha256=sha(plan_raw),
+                                selected=choices['selected'], refused=choices['refused'])
         (inputs / 'producers.bin').write_bytes(native_source)
         hashes = assets_reference['source_assets']
         if not hashes or len(hashes) > 256:
@@ -147,8 +171,10 @@ def main():
                   original_terminal_metadata=list(terminal), native_terminal_metadata_separately_validated=True,
                   comparisons=comparisons, source_assets=hashes, original_game_executed=False,
                   original_manifest_verified_before_after=True, original_pixels_used_as_native_inputs=False,
-                  replay_order_changed=False, complete_journey_coverage=False,
-                  scope='Source-only unchanged return-order native replay of every checkpoint in a completed original copy-journal interval. The strict original V4 update-end bookkeeping marker is validated separately and retained; all drawing operations/checkpoints remain. Only parameters and independently pinned encoded assets enter native inputs; all original planes stay external. No general ordering repair, source/view ownership, physical presentation or whole journey closure.')
+                  replay_order_changed=phase_policy is not None, copy_phase_policy=phase_policy,
+                  complete_journey_coverage=False,
+                  scope=('Explicit experimental metadata-selected adjacent full/save transpositions; all checkpoint identities and denominators remain, original pixels stay external. Only guarded COPY bodies are transposed; no all-writer/view/GPU/CPU ownership, general schedule, live replacement or whole journey closure.' if phase_policy is not None else
+                         'Source-only unchanged return-order native replay of every checkpoint in a completed original copy-journal interval. The strict original V4 update-end bookkeeping marker is validated separately and retained; all drawing operations/checkpoints remain. Only parameters and independently pinned encoded assets enter native inputs; all original planes stay external. No general ordering repair, source/view ownership, physical presentation or whole journey closure.'))
     with args.report.open('x') as output:
         json.dump(report, output, indent=2)
         output.write('\n')

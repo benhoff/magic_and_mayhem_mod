@@ -43531,7 +43531,8 @@
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43599,7 +43600,8 @@
         "DRAW02.draw02-held120-approved-egl-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-egl-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-egl-01-20261013",
-        "DRAW02.draw02-aux-save-readback-egl-01-20261013"
+        "DRAW02.draw02-aux-save-readback-egl-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-egl-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44135,7 +44137,8 @@
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45436,7 +45439,8 @@
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45577,7 +45581,8 @@
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45669,7 +45674,8 @@
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45928,7 +45934,8 @@
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46031,7 +46038,9 @@
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-bindings-01-20261013",
         "DRAW02.draw02-aux-save-readback-original120-01-20261013",
-        "DRAW02.draw02-aux-save-readback-bindings-01-20261013"
+        "DRAW02.draw02-aux-save-readback-bindings-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46172,7 +46181,8 @@
         "tools/inspect-canvas-producers.py",
         "tools/inventory-binary.py",
         "tools/original-manifest.sh",
-        "tools/test-native-canvas-producers.py"
+        "tools/test-native-canvas-producers.py",
+        "tools/drawing_copy_phase.py"
       ],
       "evidence": [
         "DRAW02.draw02-copy-checkpoints-terminal-negative-01-20261013",
@@ -46187,7 +46197,8 @@
         "DRAW02.draw02-held120-approved-checkpoints-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-checkpoints-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-checkpoints-01-20261013",
-        "DRAW02.draw02-aux-save-readback-checkpoints-01-20261013"
+        "DRAW02.draw02-aux-save-readback-checkpoints-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-checkpoints-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46203,7 +46214,8 @@
         "Fresh source-only unchanged return-order replay:all2200 CPU checkpoints match, exit0. Historical1600pixel failure remains failed; no presentation or journey closure. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Fresh unchanged return-order source-only replay:all2533CPU checkpoints match, nativeexit0. Older1600pixel failure remains failed; no general order/backing or presentation closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Completed unchanged-order source-only replay:2400compared/2398match;canvas2checkpoints1352/1437each fail1600pixels. Originalsha b7626cbdf0e46cffee0c1d5a4d047e9c06597559f374cec15b0d4bf47361e859 matches historical failed Results source. Nativeexit0; preserve failed whole comparison. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Fresh explicit-readback trace source-only unchanged replay:all2403CPU checkpoints match, nativeexit0. Prior readback-off1600pixel failures remain failed; no observer causality or general order repair. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+        "Fresh explicit-readback trace source-only unchanged replay:all2403CPU checkpoints match, nativeexit0. Prior readback-off1600pixel failures remain failed; no observer causality or general order repair. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "Current defaultoff source-only replay2406hasone1600pixel failure atCP1459/seq194077. Separately authored metadata policy has fresh successful evidence under NR.drawing-copy-phase-transposition; the default comparator and its historical failure stages are not promoted."
       ]
     },
     {
@@ -46288,7 +46300,8 @@
         "DRAW02.draw02-worker-prefix120-query-returns-01-20261013",
         "DRAW02.draw02-held120-approved-query-returns-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-query-returns-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-query-returns-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-query-returns-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-query-returns-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -47222,7 +47235,8 @@
         "tools/test-drawing-worker-producer-points.py"
       ],
       "evidence": [
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -47269,7 +47283,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-aux-save-readback-fixture-01-20261013",
-        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-disabled-current-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -47281,7 +47296,8 @@
       "remaining_gaps": [
         "Prospective diagnostic implementation/fixtures pending. Extra readback can change driver/cache/timing state; keep opt-in and separate from default physical metadata and unobtrusive gameplay. Need fresh actual original auxiliary bytes, request/worker/source association, mapped-view/underlying GPU/CPU relation and all47/21closure.",
         "Synthetic fixture01passes256attempts/247mapped-word images/9refusals and forced-close rejection. Real recorded save970metadata has LIVE|MATCH canvas1\u21925/800x600\u219240x40 atqueue33, with0cachedWORDstrides; selector does not assume a cached CPU pointer. No actual auxiliary driver bytes captured yet.",
-        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "Fresh current source defaultoff original120 succeeds with aux_save_readbackfalse and no auxiliary sidecar. Defaultoff does not establish unobtrusive gameplay or noninterference of the extra readback profile."
       ]
     },
     {
@@ -47376,7 +47392,216 @@
       },
       "remaining_gaps": [
         "Prospective read-only native saved-buffer comparison pending. Current original diagnostic75images includes8insideWorldpublication refusals; every oracle must remain accounted. Original complete GPU/CPU/view ownership and timing/cache perturbation, oldfailure repair and all47/21closure remain open.",
-        "Fresh mapped-view comparison67:62match/5failed originalaux snapshots atSaveRequests1102/1240/1251/1269/1280;8insideWorldexcluded. CPU2403allmatch. Three failures have adjacent driverfull-before-save/producer-save-before-full pairs1101/1102,1239/1240,1268/1269;two may inherit prior saved-buffer state. Prove source/value propagation separately before schedule repair; no stage promotion."
+        "Fresh mapped-view comparison67:62match/5failed originalaux snapshots atSaveRequests1102/1240/1251/1269/1280;8insideWorldexcluded. CPU2403allmatch. Three failures have adjacent driverfull-before-save/producer-save-before-full pairs1101/1102,1239/1240,1268/1269;two may inherit prior saved-buffer state. Prove source/value propagation separately before schedule repair; no stage promotion.",
+        "The comparator now also publishes exact moved saves relative to an explicit experimental policy template; that evidence belongs to NR.drawing-copy-phase-transposition. Historical default unchanged-order67comparisons/fivefailures remain immutable and stale after this source change; no default comparison status promotion or underlying GPUCPU relation inferred."
+      ]
+    },
+    {
+      "id": "NR.drawing-copy-phase-transposition",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded experimental offline restore/full/save worker phase transposition",
+      "scope": "Authored offline COPY policy using metadata only: configured NoCD canvas2-to1 full transfer followed in worker order by canvas1-to5 40x40 save, with immediate in-bounds canvas5-to1 restore preceding both in worker order. Full/save producer returns must be adjacent and inverted, outside World, with successful exact request/API/exclusive-worker bindings, supported geometry/key/callers and no other observed draws/lifetimes in full interval. Transpose only the two payload-free COPY bodies, preserving sequential wire IDs, every checkpoint and original byte-oracle denominators. Native execution is experimental; no original all-writer/view/GPU/CPU ownership, general scheduling or live replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-phase-policy.md"
+      ],
+      "implementation": [
+        "tools/drawing_copy_phase.py",
+        "tools/plan-drawing-copy-phase.py",
+        "tools/compare-drawing-copy-checkpoints.py"
+      ],
+      "tests": [
+        "tests/test-drawing-copy-phase.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/analyze-drawing-copy-bindings.py",
+        "tools/analyze-drawing-source-prediction.py",
+        "tools/audit-file-apis.py",
+        "tools/compare-drawing-aux-readback.py",
+        "tools/compare-drawing-source-points.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_copy_bindings.py",
+        "tools/drawing_copy_order.py",
+        "tools/drawing_presented_session.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inventory-binary.py",
+        "tools/original-manifest.sh",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-copy-phase-guards-03-20261013",
+        "DRAW02.draw02-copy-phase-hash-guards-01-20261013",
+        "DRAW02.draw02-copy-phase-aux-plan-03-20261013",
+        "DRAW02.draw02-copy-phase-control-plan-01-20261013",
+        "DRAW02.draw02-copy-phase-prior-control-plan-01-20261013",
+        "DRAW02.draw02-copy-phase-aux-checkpoints-03-20261013",
+        "DRAW02.draw02-copy-phase-aux-native-01-20261013",
+        "DRAW02.draw02-copy-phase-control-hashes-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Seven synthetic guards pass. Auxiliary cohort29metadata-selected triples matches2403/2403CPU checkpoints and67/67admitted saved buffers;8World publications remain excluded. Independent current defaultoff cohort25triples matches2406/2406full-plane hashes including defaultfailed1600pixel checkpoint1459. This validates the explicit offline policy only within these recorded scopes. Need original all-writer/view/alias/lifetime/GPUCPU relations, nonadjacent/overlapping/World cases, diagnostic cadence/semantic controls and all47/21closures. Older failed control replay is refused by storage guard; legacy capture without explicit request IDs cannot qualify. No live replacement."
+      ]
+    },
+    {
+      "id": "NR.drawing-copy-phase-hash-comparison",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Compact all-checkpoint hash comparison for explicit offline COPY phase policy",
+      "scope": "Run the separately guarded metadata-only COPY transposition against a completed failed or successful default CPU template. Fresh native renderer computes every full-plane checkpoint SHA256; externally rehash every original plane and retain all identities and hash failures. Do not accumulate duplicate native checkpoint plane files; mismatching pixel counts remain unknown, never zero. No denominator filtering, original pixel input, general schedule/ownership or live replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-phase-policy.md"
+      ],
+      "implementation": [
+        "tools/compare-drawing-copy-phase-hashes.py"
+      ],
+      "tests": [
+        "tests/test-drawing-copy-phase-hashes.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/test-drawing-copy-phase.py",
+        "tools/analyze-drawing-copy-bindings.py",
+        "tools/analyze-drawing-source-prediction.py",
+        "tools/audit-file-apis.py",
+        "tools/compare-drawing-aux-readback.py",
+        "tools/compare-drawing-copy-checkpoints.py",
+        "tools/compare-drawing-source-points.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_copy_bindings.py",
+        "tools/drawing_copy_order.py",
+        "tools/drawing_copy_phase.py",
+        "tools/drawing_presented_session.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inventory-binary.py",
+        "tools/original-manifest.sh",
+        "tools/plan-drawing-copy-phase.py",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-copy-phase-hash-guards-01-20261013",
+        "DRAW02.draw02-copy-phase-control-hashes-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh denominator guard passes missing/duplicate/changedcanvas/malformedhash refusals and preserves mismatch pixelcountunknown. Current defaultoff policy comparison matches all2406checkpoint hashes. Prior failed control policy execution was refused before native launch at1360.3197GiBworking/reserve0.5GiB; historical two1600pixel failures remain. Need further independent cohorts, mismatch localization when needed, original all-writer/view/GPUCPU, cadence/semantic controls and all47/21closures."
       ]
     }
   ],
@@ -101935,6 +102160,220 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-disabled-current-original120-01-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh current observer defaultoff original120:549191records/2406oracles/859primary planes, actualquit0, source hashes/manifests stable. Both worker-prefix and auxiliary readback flags false; auxiliary sidecar absent. No unobtrusive/all-route/semantic closure.",
+      "record": "research/runtime/draw02-aux-disabled-current-original120-01.json",
+      "sha256": "d9716ad1b5799ada180930b16ad032b256f2fe8f92e51fee2b61a2d77768d53a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-aux-disabled-current-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Current defaultoff metadata:2301requests bind exactly,155extra API entries/247adjacent return reversals retained. No general schedule/ownership proof.",
+      "record": "research/runtime/draw02-aux-disabled-current-bindings-01.json",
+      "sha256": "cc02c3098c739ae395ca9af452ef76cb1d23c4c39f65dff719e786d3a6924d4f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-disabled-current-query-returns-01-20261013",
+      "kind": "static",
+      "scope": "Current defaultoff metadata:1567exact query associations/3704unbound of5271. Pointer/view ownership remains unproved.",
+      "record": "research/runtime/draw02-aux-disabled-current-query-returns-01.json",
+      "sha256": "d4c72bb46efaaf6aba7b907b2631fa8ae12099ea6bff875e57049a0f21365074",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-disabled-current-checkpoints-02-20261013",
+      "kind": "native_integration",
+      "scope": "Completed unchanged-return replay2406comparisons/2405match/one1600pixel failure atcanvas2checkpoint1459seq194077. Failure preserved; no closure.",
+      "record": "research/runtime/draw02-aux-disabled-current-checkpoints-02.json",
+      "sha256": "5d71ee4afa1ed4e809d02889b097f37dca9fe004b6c0203d040983a4793157d0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-aux-disabled-current-egl-02-20261013",
+      "kind": "native_integration",
+      "scope": "All139admitted physical comparisons match with720exclusions; this does not clear the separate CPU failure.",
+      "record": "research/runtime/draw02-aux-disabled-current-egl-02.json",
+      "sha256": "62f0faf1f9a70e984e40520c38f3723c3b04c7967cb68bf6e1191d9009d6697d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-guards-03-20261013",
+      "kind": "native_integration",
+      "scope": "Seven synthetic policy guards pass: exact two-COPY byte transform/sequences, missing binding, overlapping/reverse workers, unsupported geometry/key/caller/payload, World/other draws, differing in-bounds cursor regions, duplicate/nonadjacent transform refusal.",
+      "record": "research/runtime/draw02-copy-phase-guards-03.json",
+      "sha256": "d054f8b7673fe78707d2144e1e1c6f31b4dff8b82ef0b978f65fc83af8152361",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-hash-guards-01-20261013",
+      "kind": "native_integration",
+      "scope": "Synthetic compact comparison preserves every identity/failing hash and unknown mismatch pixel count; missing/duplicate/changedcanvas/malformedhash refuse.",
+      "record": "research/runtime/draw02-copy-phase-hash-guards-01.json",
+      "sha256": "d5bd5dba033dc6b3cab90e7e365d04d67ae11b28a42bfcfa2a33f516ff8ba8f2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-aux-plan-03-20261013",
+      "kind": "static",
+      "scope": "Metadata-only authored offline policy admits29COPY triples and retains8refusals on the auxiliary cohort. No original pixel planes used for selection.",
+      "record": "research/runtime/draw02-copy-phase-aux-plan-03.json",
+      "sha256": "f6306897b9750f1ebb41ff7fb640a6d28011e8adc7880e6310c0c68f470157e9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-control-plan-01-20261013",
+      "kind": "static",
+      "scope": "Metadata-only authored offline policy admits25COPY triples and retains6refusals on the independent current defaultoff cohort.",
+      "record": "research/runtime/draw02-copy-phase-control-plan-01.json",
+      "sha256": "24f5de0b476774c0f107c4b5b1031bbce7e85bf46914a7b005aaa534089d2b0f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-prior-control-plan-01-20261013",
+      "kind": "static",
+      "scope": "Older failed control metadata admits35triples/5refusals, including969/970and1050/1051. Native execution refused by storage guard; historical two CPU failures remain unresolved for this cohort.",
+      "record": "research/runtime/draw02-copy-phase-prior-control-plan-01.json",
+      "sha256": "93b05342816ecdc6d87ad7e2da5a2ab35cb7719a907ef664fb6d809ef8a66fee",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-aux-checkpoints-03-20261013",
+      "kind": "native_integration",
+      "scope": "Explicit experimental29-triple COPY policy matches all2403CPU checkpoints of retained auxiliary original120. All checkpoint identities and original external planes remain required; no general scheduling/ownership/live replacement.",
+      "record": "research/runtime/draw02-copy-phase-aux-checkpoints-03.json",
+      "sha256": "2b27f05a359239c01fc323b990848f62c56bbbaed93300fefaeb8aa4b7f0f704",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-aux-native-01-20261013",
+      "kind": "native_integration",
+      "scope": "Explicit policy matches all67admitted auxiliary saved buffers, retaining8World exclusions and all2403policy-template checkpoint hashes. Earlier unchanged-order five Aux failures stay immutable.",
+      "record": "research/runtime/draw02-copy-phase-aux-native-01.json",
+      "sha256": "5e3c1cd846549aa4cb6964eb5519cd997c59cfa918879d16809d22e9f2b05bc2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/checkpoints_unchanged",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-phase-control-hashes-01-20261013",
+      "kind": "native_integration",
+      "scope": "Independent current defaultoff cohort:25metadata-selected triples, all2406fresh native full-plane hashes match externally rehashed original planes. Includes defaultreplay failed1600pixel checkpoint1459; no duplicate plane dumps and every identity retained.",
+      "record": "research/runtime/draw02-copy-phase-control-hashes-01.json",
+      "sha256": "17b438ac9a33efe79fe17073c907ef302d27356f92c2cd8c86a2eae483473d22",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -114096,8 +114535,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-approved-budget-02-20261013.json",
-    "sha256": "7b84f29b77270fb017af9c49d006904dd2baf5583af8024f88ebc38b40cf4a0b"
+    "path": "research/runtime/coverage/source-index-draw02-copy-phase-20261013.json",
+    "sha256": "0cf1523ad0aacf13f7da6aff85dd068f9e5c4179a6b29ad20527f3be408fb46e"
   },
   "claim_bindings_required": true
 }
