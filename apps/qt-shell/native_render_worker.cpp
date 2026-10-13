@@ -74,12 +74,17 @@ void NativeRenderWorker::join(bool producerExited){
 void NativeRenderWorker::run(){
     std::vector<mnm::render::GpuFrame> leases;
     bool mediaPaused=false;
+    NativeWorkerStatusGate statusGate(statusEveryTurn_);
+    auto reportedState=LiveCommandSession::State::WaitingFrame;
+    unsigned reportedRecoveries=0;bool reportedPaused=false,reportedQuit=false,reportedHasResult=false;
     auto updateStatus=[&]{
+        ++statusBuilds_;
         Status next;next.state=commands_->state();next.recoveries=commands_->recoveries();next.error=commands_->error();
         if(const auto* result=commands_->result()){next.hasResult=true;next.result=*result;}
         next.report=world_->report();
         next.report["media_presentation_paused"]=mediaPaused;
         next.report["native_render_owner"]="dedicated-thread";
+        next.report["status_publication"]=QJsonObject{{"policy",statusEveryTurn_?"every-turn":"bounded-16ms"},{"snapshots",QString::number(statusBuilds_)},{"skipped_turns",QString::number(statusSkipped_)},{"period_ms",16},{"scope","Heavy status construction only; lifecycle/pause/quit/error/stop publish immediately. Render/source/command work and output leases remain independent. Busy turns may delay nonterminal reports beyond16ms."}};
         next.report["presentation_source_allocations"]=QString::number(next.hasResult?next.result.stats.gpuPresentationAllocations:0);
         next.report["presentation_exports"]=QString::number(exports_);
         next.report["presentation_export_allocations"]=QString::number(exportAllocations_);
@@ -190,7 +195,11 @@ void NativeRenderWorker::run(){
             trace.exportEnd=frameTrace_.stamp();trace.framesAfter=world_->nativeFrames();trace.pending=world_->displayState().pending;trace.reason=reason;
             const auto totalMs=turnClock.nsecsElapsed()/1000000.;turnTiming_.add(totalMs);
             if(totalMs>33.334 && slowTurns_.size()<256)slowTurns_.append(QJsonObject{{"turn",QString::number(turns_)},{"source_generation",QString::number(world_->displayState().generation)},{"prepared_generation",QString::number(generation)},{"command_presents",int(presents)},{"reason",reason},{"world_ms",worldMs},{"command_ms",commandMs},{"extra_ms",extraMs},{"export_ms",exportMs},{"total_ms",totalMs}});
-            ++turns_;updateStatus();
+            ++turns_;
+            const bool immediate=request || commands_->state()!=reportedState || commands_->recoveries()!=reportedRecoveries || pause!=reportedPaused || quit!=reportedQuit || bool(commands_->result())!=reportedHasResult;
+            if(statusGate.due(NativeFrameTrace::now(),immediate)){
+                updateStatus();reportedState=commands_->state();reportedRecoveries=commands_->recoveries();reportedPaused=pause;reportedQuit=quit;reportedHasResult=bool(commands_->result());
+            }else ++statusSkipped_;
             trace.statusEnd=frameTrace_.stamp();
             std::unique_lock<std::mutex> lock(mutex_);wake_.wait_for(lock,std::chrono::milliseconds(1),[this]{return stop_||requestStop_;});
             trace.waitEnd=frameTrace_.stamp();frameTrace_.record(trace);

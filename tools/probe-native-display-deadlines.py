@@ -5,12 +5,14 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True);parser.add_argument('--full',action='store_true');parser.add_argument('--frame-trace',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True);parser.add_argument('--full',action='store_true');parser.add_argument('--frame-trace',action='store_true');parser.add_argument('--worker-status-cadence',action='store_true');parser.add_argument('--worker-status-every-turn',action='store_true');args=parser.parse_args()
     declared=json.loads(args.claims.read_text());assert all(sha(ROOT/p)==h for p,h in declared['sources'].items())
     parent=ROOT/'working/tests/native-display-deadlines';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print('Display deadline evidence:',out,flush=True)
     report=dict(success=False,claims=declared['claims'],sources=declared['sources'],scope=__doc__)
     command=['python3',str(ROOT/'tools/test-native-campaign.py'),'--resident-world','--independent-world','--hardware','--difficulty','1','--stress-seconds','60' if args.full else '10','--min-fps','19','--normal-quit','--skip-movies','--timeout','600' if args.full else '240']
     if args.frame_trace:command+=['--frame-trace']
+    if args.worker_status_cadence:command+=['--worker-status-cadence']
+    if args.worker_status_every_turn:command+=['--worker-status-every-turn']
     if args.full:command+=['--require-casting-combat','--spell-cases','--portrait-stress-seconds','10']
     process=None
     try:

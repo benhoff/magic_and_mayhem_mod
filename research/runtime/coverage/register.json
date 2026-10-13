@@ -54201,7 +54201,8 @@
         "tools/launch_build_cache.py",
         "tools/menu-game-runner.py",
         "tools/native_music_launch.py",
-        "tools/prepare-menu-observer.py"
+        "tools/prepare-menu-observer.py",
+        "apps/qt-shell/native_worker_status_gate.hpp"
       ],
       "status": {
         "understanding": "partial",
@@ -54215,7 +54216,8 @@
         "HOST.native-frame-trace.baseline-public-negative-20261012"
       ],
       "remaining_gaps": [
-        "Current full functional TITAN trace balances4343Worlds with zero ordinary readbacks and verified originals/cleanup. Engine18.739FPS fails19floor; native48.913FPS fails60. Visible native49.438FPS; status publication19.873seconds/230.551visible seconds, GUI paintmean0.225ms. Current causal optimization, tracing overhead, GPU/scanout/original equivalence and intermittent pixels remain pending."
+        "Current full functional TITAN trace balances4343Worlds with zero ordinary readbacks and verified originals/cleanup. Engine18.739FPS fails19floor; native48.913FPS fails60. Visible native49.438FPS; status publication19.873seconds/230.551visible seconds, GUI paintmean0.225ms. Current causal optimization, tracing overhead, GPU/scanout/original equivalence and intermittent pixels remain pending.",
+        "Shared status-policy selection/test-harness source edits make earlier public observations historical. Final current headless observer controls pass; fresh full current trace/default gameplay validation remains pending,with historyGAP/displacement and startup failures retained."
       ]
     },
     {
@@ -54248,6 +54250,96 @@
       ],
       "remaining_gaps": [
         "Native/source/GUI baseline analysis passes structural/time/export joins. Tail GUI coverage is limited; source/driver CPU causality, workload comparability and60FPS are not established by analysis."
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bound heavy render-worker status publication to GUI cadence",
+      "scope": "Explicit opt-in native worker reporting policy via MNM_WORKER_STATUS_CADENCE=1; every-turn construction stays default pending reliable full regression proof. Construct regular native worker status snapshots at most once per16ms of monotonic wall time without adding waits. First report, lifecycle/recovery/result availability, media pause,normalQuit,stop and failures remain immediate. Source/command budgets, original pacing,FIFO/two credits,native World/UI rendering and immutable output leases continue every owner turn independently of reports. Busy turns can delay nonterminal status beyond16ms; terminal joined snapshot always current. Explicit every-turn environment/CLI baseline retains original construction policy. No source skipping,rendering reduction,simulation advancement or original policy recovery claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-frame-trace.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_worker_status_gate.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py",
+        "tools/test-native-campaign.py",
+        "tools/probe-native-display-deadlines.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/glyph_backend_launch.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/native_music_launch.py",
+        "tools/prepare-menu-observer.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-worker-status-cadence.paired-controls-20261012",
+        "HOST.native-worker-status-cadence.startup-negative-20261012",
+        "HOST.native-worker-status-cadence.fingerprint-negative-20261012",
+        "HOST.native-worker-status-cadence.history-gap-negative-20261012",
+        "HOST.native-worker-status-cadence.displacement-negative-20261012",
+        "HOST.native-worker-status-cadence.wizard-death-negative-20261012",
+        "HOST.native-worker-status-cadence.optin-startup-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Final opt-in policy has fresh synthetic gate/pixel/lifecycle validation only. All25nativeframebuffer hashes match every-turn baseline. Historical full functional observation reduces status wall work about82%,but overall asset-fingerprint validation fails and native50.64FPS remains below60. Current full reliability,default adoption and tracing-overhead causality remain pending. Startup timeout,historyGAP,covered-displacement bounds refusal and wizard-death runs remain failures. Regression asset fingerprinting is now explicit; no safeguard or target relaxed."
       ]
     }
   ],
@@ -110020,6 +110112,185 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.paired-controls-20261012",
+      "kind": "native_integration",
+      "scope": "Same final source declarations, identical generated native byte stream/pixel oracle and25full framebuffer hashes; immutable leases/reuse/pause/refusal/teardown and authored cadence boundaries. Full public gameplay/60FPS/default adoption excluded.",
+      "record": "research/runtime/native-worker-status-paired-controls-20261012.json",
+      "sha256": "dcf9d70936b247a07b9f5c641a55423bf8848915bbc6dd0863f14c11e4e96af2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/identical_framebuffer_hashes",
+          "equals": 25
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.startup-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Menu startup times out before World production; no performance/functional success. Historical/pending scope; original prospective claims retained in record but no current status-validation binding.",
+      "record": "research/runtime/native-worker-status-startup-negative-20261012.json",
+      "sha256": "5ad4010047fd6a1566f4b8bab83c1e3498402116e8fc6358799702b283591331",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.fingerprint-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Full functional gameplay,4498balanced returns/zero readbacks,engine19.3018FPS/native50.6438FPS; overall regression fails missing input-fingerprints.json. Status wall work3.511s/232.376s versus baseline19.873s/230.551s; different journeys do not prove causal FPS gain. Historical/pending scope; original prospective claims retained in record but no current status-validation binding.",
+      "record": "research/runtime/native-worker-status-fingerprint-negative-20261012.json",
+      "sha256": "84d3db914bd15572eb7f23ce6af0e1b189cf27a2a6120b7437b690f936ef1416",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.history-gap-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Current full-asset-verification trace fails conservative drawing-history GAP reason2 near startup. No repair/performance success. Historical/pending scope; original prospective claims retained in record but no current status-validation binding.",
+      "record": "research/runtime/native-worker-status-history-gap-negative-20261012.json",
+      "sha256": "a91861b9b54709beacbde21f1d22c76f491f3d9d231c98063390957e17323a07",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.displacement-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Trace-off full run refuses genuinely covered displacement samples outside canvas at scene_renderer.cpp:108.2353imports/2354returns at cancellation; not a balanced successful journey. Native bounds guard retained. Historical/pending scope; original prospective claims retained in record but no current status-validation binding.",
+      "record": "research/runtime/native-worker-status-displacement-negative-20261012.json",
+      "sha256": "78aecdd747da1336033c4b26aa960cb4f83d54623daca755ff04022a95146432",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.wizard-death-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Trace-off full gameplay loses wizard before required combat completion;2688balanced returns and empty renderer error. Partial17.3296engine/48.3607nativeFPS are not full performance validation. Historical/pending scope; original prospective claims retained in record but no current status-validation binding.",
+      "record": "research/runtime/native-worker-status-wizard-death-negative-20261012.json",
+      "sha256": "8fd7875786d4a48b029b4d654f7810d7d35ec029bf616c5cec1f2a9c3742d078",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.optin-startup-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Final explicit opt-in short menu smoke times out at startup; no World/functional/performance validation. Historical/pending scope; original prospective claims retained in record but no current status-validation binding.",
+      "record": "research/runtime/native-worker-status-optin-startup-negative-20261012.json",
+      "sha256": "24ce13650ee9cb9aa7b6cf93e263a70841b03c5cf0c62c96fdcff14802336a9a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -123094,6 +123365,21 @@
       "evidence": [
         "HOST.native-frame-trace.baseline-public-negative-20261012"
       ]
+    },
+    {
+      "id": "HOST.native-worker-status-cadence.fixture",
+      "scope": "Authored16ms/forced/baseline/regressed-clock gate checks plus identical native GPU pixels and buffering/pause/teardown controls",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-worker-status-cadence"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py"
+      ],
+      "evidence": [
+        "HOST.native-worker-status-cadence.paired-controls-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -123620,8 +123906,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-frame-trace-baseline-20261012.json",
-    "sha256": "befcc20806889dfedb37ed5bb69e39a88cb74887de1b2cf8ba2a93e17d7490bb"
+    "path": "research/runtime/coverage/source-index-native-worker-status-cadence-20261012.json",
+    "sha256": "cb8bed2cbd781c441cb299b62c6c2c9d608f53c48f2e1a7a1f56febd9f2bc3c8"
   },
   "claim_bindings_required": true
 }

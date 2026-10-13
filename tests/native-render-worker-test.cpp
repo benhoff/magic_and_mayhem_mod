@@ -7,10 +7,12 @@
 #include <QFile>
 #include <QtEndian>
 #include <QJsonDocument>
+#include <QCryptographicHash>
 #include <thread>
 #include <chrono>
 #include <cstdio>
 namespace {
+QJsonArray pixelHashes;
 void require(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
 void word(QByteArray& out,unsigned v){char b[4];qToLittleEndian(v,b);out.append(b,4);}
 void record(QByteArray& out,unsigned op,unsigned& sequence,std::initializer_list<unsigned> fields,QByteArray pixels={}){
@@ -22,12 +24,21 @@ void pixel(GlViewport& viewport,QColor expected){
     viewport.repaint();const auto image=viewport.grabFramebuffer();
     require(viewport.error().isEmpty()&&!image.isNull(),"Threaded viewport paint failed");
     require(image.pixelColor(image.width()/2,image.height()/2)==expected,"Immutable native frame changed or disagreed with pixel oracle");
+    const auto rgba=image.convertToFormat(QImage::Format_RGBA8888);
+    pixelHashes.append(QString::fromLatin1(QCryptographicHash::hash(QByteArrayView(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex()));
 }
 }
 int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);
     try{
+        {
+            NativeWorkerStatusGate gate;unsigned builds=0;for(int us=0;us<1000000;us+=1000)if(gate.due(us,false))++builds;
+            require(builds==63,"Status cadence busy-polled diagnostic construction");
+            NativeWorkerStatusGate urgent;require(urgent.due(0,false)&&!urgent.due(1000,false)&&urgent.due(7000,true)&&!urgent.due(16000,false)&&urgent.due(23000,false),"Immediate status event or cadence restart lost");
+            bool refused=false;try{urgent.due(22000,false);}catch(const std::logic_error&){refused=true;}require(refused,"Status clock regression accepted");
+            NativeWorkerStatusGate baseline(true);for(int us=0;us<10000;us+=1000)require(baseline.due(us,false),"Every-turn baseline changed");
+        }
         RenderDeadlineProbe probe;using Clock=std::chrono::steady_clock;
         const auto start=Clock::time_point(std::chrono::seconds(10));
         // A 1ms polling loop must not count fifteen misses for one frame tick.
@@ -173,6 +184,7 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":25,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"frame_trace_bounds\":true,\"frame_trace_gui\":true,\"frame_trace_order_refusal\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
+        const auto hashes=QJsonDocument(pixelHashes).toJson(QJsonDocument::Compact);
+        std::printf("{\"success\":true,\"pixel_sha256\":%s,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":25,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"frame_trace_bounds\":true,\"frame_trace_gui\":true,\"frame_trace_order_refusal\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n",hashes.constData());return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

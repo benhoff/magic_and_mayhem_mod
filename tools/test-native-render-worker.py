@@ -7,9 +7,9 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     parent=ROOT/'working/tests/native-render-worker';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print('Render owner evidence:',out,flush=True)
-    subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','HOST.native-render-owner','--scenario','HOST.native-render-owner.fixture','--behavior','HOST.native-display-deadlines','--scenario','HOST.native-display-deadlines.fixture','--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.fixture','--output',str(out/'claims.json')],cwd=ROOT,check=True)
+    subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','HOST.native-render-owner','--scenario','HOST.native-render-owner.fixture','--behavior','HOST.native-display-deadlines','--scenario','HOST.native-display-deadlines.fixture','--behavior','HOST.native-worker-status-cadence','--scenario','HOST.native-worker-status-cadence.fixture','--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.fixture','--output',str(out/'claims.json')],cwd=ROOT,check=True)
     declared=json.loads((out/'claims.json').read_text());report=dict(success=False,scope=__doc__,claims=declared['claims'],sources=declared['sources'])
-    env=dict(os.environ,TMPDIR=str(ROOT/'working/coverage-hook-tmp'),MNM_NATIVE_FRAME_TRACE='1',QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4')
+    env=dict(os.environ,TMPDIR=str(ROOT/'working/coverage-hook-tmp'),MNM_WORKER_STATUS_CADENCE='1',MNM_NATIVE_FRAME_TRACE='1',QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4')
     for key in ['MESA_LOADER_DRIVER_OVERRIDE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','QT_XCB_GL_INTEGRATION']:env.pop(key,None)
     try:
         build=ROOT/'working/build/qt-shell'
