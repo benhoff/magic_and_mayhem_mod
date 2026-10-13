@@ -20,6 +20,7 @@ void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& 
     session.sessionMenusEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_MULTIPLAYER")){installLiveMultiplayerTest(app,window,session,path);return;}
     session.multiplayerMenusEnabled=false;
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_GRIMOIRE")){installLiveCampaignGrimoireTest(app,window,session,path);return;}
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_GRIMOIRE")){installLiveGrimoireTest(app,window,session,path);return;}
     session.grimoireMenusEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_STORAGE")){installLiveStorageMenuTest(app,window,session,path);return;}

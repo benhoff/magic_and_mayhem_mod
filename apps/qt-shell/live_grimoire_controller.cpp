@@ -13,10 +13,10 @@ bool LiveGrimoireController::present(const MenuBridge::State& state,QString* err
     const auto& b=state.grimoire;
     if(b.broader){
         if(!session_.campaignBookEnabled){if(error)*error="Broader Grimoire is unavailable.";return false;}
-        QMap<int,int> admitted;const auto& book=widget_.book();
-        for(auto it=b.entries.cbegin();it!=b.entries.cend();++it){const int chapter=it.key()/124,section=it.key()%124;if(chapter>=book.chapters.size())continue;if(!section){admitted.insert(it.key(),0);continue;}
-            for(const auto& entry:book.chapters[chapter].entries)if(entry.section==section&&entry.levels.contains(it.value())){const auto& text=entry.levels[it.value()];if(text.pages.size()==1&&text.dynamicLabels.isEmpty())admitted.insert(it.key(),it.value());}}
-        const int selected=int(b.chapter*124+b.section);if(!admitted.contains(selected)){if(error)*error="This original Grimoire page requires original controls.";return false;}
+        QMap<QPair<int,int>,int> admitted;const auto& book=widget_.book();
+        for(auto it=b.entries.cbegin();it!=b.entries.cend();++it){const int chapter=it.key()/124,section=it.key()%124;if(chapter>=book.chapters.size())continue;if(!section){admitted.insert({chapter,section},0);continue;}
+            for(const auto& entry:book.chapters[chapter].entries)if(entry.section==section&&entry.levels.contains(it.value())){const auto& text=entry.levels[it.value()];if(text.pages.size()==1&&text.dynamicLabels.isEmpty())admitted.insert({chapter,section},it.value());}}
+        const QPair<int,int> selected{int(b.chapter),int(b.section)};if(!admitted.contains(selected)){if(error)*error="This original Grimoire page requires original controls.";return false;}
         widget_.setLiveCampaignEntries(admitted);
         const auto current=widget_.location();if((!entered_||current.chapter!=int(b.chapter)||current.section!=int(b.section)||current.level!=int(b.level))&&!widget_.setLocation({int(b.chapter),int(b.section),int(b.level),0},error))return false;
         entered_=true;return true;

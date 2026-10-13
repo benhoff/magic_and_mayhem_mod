@@ -14,7 +14,7 @@ public:
     bool loadAssets(const QString& root,QString* error=nullptr);
     bool setLocation(const Location&,QString* error=nullptr);
     void setLiveCampaignReader(bool enabled);
-    void setLiveCampaignEntries(const QMap<int,int>& entries,bool broader=true);
+    void setLiveCampaignEntries(const QMap<QPair<int,int>,int>& entries,bool broader=true);
     Location location() const {return location_;}
     const mnm::ui::GrimoireBook& book() const {return book_;}
     QRect contentRect() const;
@@ -40,7 +40,7 @@ private:
     void populate();
     void arrange();
     bool liveCampaignReader_=false,broaderLiveReader_=false;
-    QMap<int,int> liveEntries_;
+    QMap<QPair<int,int>,int> liveEntries_;
     void navigate(const Location&);
     QString root_;
     mnm::ui::GrimoireBook book_;

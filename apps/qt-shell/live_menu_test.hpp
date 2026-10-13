@@ -32,3 +32,5 @@ void installLiveMultiplayerTest(QApplication&,QMainWindow&,LiveMenuSession&,cons
 void installLiveMultiplayerSessionsTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveHostLobbyTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveCampaignGrimoireTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
