@@ -1,8 +1,9 @@
-#include "../../protocols/include/mnm/menu_v14.h"
+#include "grimoire_campaign.h"
 static u32 grimoire_guard_failure;
 static u8 grimoire_payload[MNM_MENU_V14_GRIMOIRE_SIZE];
 static int grimoire_snapshot(void* object,u8* out){
-    u8* p=object;grimoire_guard_failure=1;
+    if(grimoire_campaign_enabled)return grimoire_campaign_snapshot(object,out);
+    u8* p=(u8*)object;grimoire_guard_failure=1;
     if(p!=(u8*)0x6e0088||!readable(p,0x1a3e)||get(p)!=0x5c6b70||get(p+4)||get(p+8)||
        !readable((void*)0x6f349c,0x48)||get((void*)0x6f349c)!=5||get((void*)0x6f34e0)!=(u32)p||
        get((void*)0x6f34b4)!=(u32)p||get((void*)0x6f34b0)!=0x6578c0||
@@ -23,7 +24,8 @@ static int grimoire_snapshot(void* object,u8* out){
     grimoire_guard_failure=4;
     u32 mask=0;
     for(u32 i=0;i<124;++i){u8* e=(u8*)get(catalog+12+4*i);if(!e)continue;
-        if(!readable(e,32))return 0;u32 id=get(e+4);
+        if(!readable(e,32))return 0;
+        u32 id=get(e+4);
         if(id>4||(mask&(1u<<id))||(id&&(!readable((void*)get(e),1)||!readable((void*)get(e+12),1))))return 0;
         mask|=1u<<id;
     }
@@ -32,7 +34,8 @@ static int grimoire_snapshot(void* object,u8* out){
         if(!readable(e,32))return 0;
         if(get(e+4)==1){if(found||!readable((void*)get(e),1)||!readable((void*)get(e+12),1))return 0;found=1;}
     }
-    if(!found)return 0;mask|=32;
+    if(!found)return 0;
+    mask|=32;
     grimoire_guard_failure=5;
     if(mask!=63)return 0;
     for(u32 i=0;i<MNM_MENU_V14_GRIMOIRE_SIZE;++i)out[i]=0;
@@ -41,10 +44,11 @@ static int grimoire_snapshot(void* object,u8* out){
 }
 static u32 grimoire_dispatch(void* object,u32 action,u32 argument){
     u8 state[MNM_MENU_V14_GRIMOIRE_SIZE];if(!grimoire_snapshot(object,state))return MNM_MENU_UNAVAILABLE;
-    u8* p=object;if(p[0xc]||get(p+0x1e)||get(p+0x3a)||get(p+0x3e)||get(p+0x1a2e))return MNM_MENU_UNAVAILABLE;
+    u8* p=(u8*)object;if(p[0xc]||get(p+0x1e)||get(p+0x3a)||get(p+0x3e)||get(p+0x1a2e))return MNM_MENU_UNAVAILABLE;
     u32 original;
     if(action==MNM_MENU_GRIMOIRE_CLOSE){if(argument)return MNM_MENU_INVALID;original=3999;}
-    else if(action==MNM_MENU_GRIMOIRE_SELECT){if(argument>5)return MNM_MENU_INVALID;if(!(get(state+12)&(1u<<argument)))return MNM_MENU_UNAVAILABLE;original=argument==5?125:argument;}
+    else if(action==MNM_MENU_GRIMOIRE_SELECT){if(grimoire_campaign_enabled){if(argument>=MNM_MENU_V22_BOOK_ENTRIES)return MNM_MENU_INVALID;if(get(grimoire_campaign_payload+32+4*argument)>4)return MNM_MENU_UNAVAILABLE;original=argument;}
+        else {if(argument>5)return MNM_MENU_INVALID;if(!(get(state+12)&(1u<<argument)))return MNM_MENU_UNAVAILABLE;original=argument==5?125:argument;}}
     else return MNM_MENU_UNSUPPORTED;
     record(2,object,original,0);u32 result=((ActionFn)0x4c77c0)(object,original);record(3,object,original,result);return MNM_MENU_OK;
 }

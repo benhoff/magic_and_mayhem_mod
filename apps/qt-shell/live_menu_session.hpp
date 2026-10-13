@@ -15,6 +15,7 @@ public:
     bool nativeVoicesEnabled=false;
     std::function<bool(const QString&)> prepareNativeAudio;
     std::function<bool(const QString&)> prepareNativePresentation;
+    bool campaignBookEnabled=false; // Experimental V22 static knowledge pages.
     bool campaignSpellboxEnabled=false; // Experimental V21 campaign inventory/caller.
     bool progressedMenusEnabled=false; // Experimental loaded-Realm Region paths.
     bool realmMenusEnabled=false; // Experimental until genuine progressed-caller proof.

@@ -1,13 +1,13 @@
 #pragma once
 #include "character-wire-fixture.hpp"
-#include "../protocols/include/mnm/menu_v21.h"
+#include "../protocols/include/mnm/menu_v22.h"
 // Synthetic engine peer only. No game process, progress grants or save writes.
 class CampaignMenuWireFixture final {
 public:
-    explicit CampaignMenuWireFixture(bool campaignSpells=false){
+    explicit CampaignMenuWireFixture(bool campaignSpells=false,bool campaignBook=false){
         bridge_=std::make_unique<MenuBridge>();
-        check(directory_.isValid()&&bridge_->create(directory_.filePath("campaign.bin"),true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,campaignSpells),"Campaign channel");
-        file_.setFileName(directory_.filePath("campaign.bin"));check(file_.open(QIODevice::ReadWrite)&&file_.size()==(campaignSpells?MNM_MENU_V21_SIZE:MNM_MENU_V20_SIZE),"Campaign peer");
+        check(directory_.isValid()&&bridge_->create(directory_.filePath("campaign.bin"),true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,campaignSpells,campaignBook),"Campaign channel");
+        file_.setFileName(directory_.filePath("campaign.bin"));check(file_.open(QIODevice::ReadWrite)&&file_.size()==(campaignBook?MNM_MENU_V22_SIZE:campaignSpells?MNM_MENU_V21_SIZE:MNM_MENU_V20_SIZE),"Campaign peer");
         bytes_=file_.map(0,file_.size());check(bytes_,"V20 mapping");put(148,MNM_MENU_OK);put(152,9);region();
     }
     ~CampaignMenuWireFixture(){if(bytes_)file_.unmap(bytes_);}
@@ -34,6 +34,13 @@ public:
         put(at,1);put(at+4,5);put(at+8,5);put(at+12,outcome);
         std::strcpy(reinterpret_cast<char*>(bytes_+at+16),outcome?"Original victory title":"Original defeat title");
         for(int i=0;i<21;++i)std::strcpy(reinterpret_cast<char*>(bytes_+at+272+i*256),i==19?"":"Original score text");
+        publish();
+    }
+    void book(quint32 parent=4,quint32 chapter=0,quint32 section=0){
+        put(136,27);put(140,1);put(156,0);const int at=MNM_MENU_V14_GRIMOIRE;
+        std::memset(bytes_+at,0,MNM_MENU_V14_GRIMOIRE_SIZE);put(at,chapter);put(at+4,section);put(at+8,1);put(at+16,parent);put(at+20,parent==4?4:5);put(at+24,5);
+        const int meta=MNM_MENU_V22_GRIMOIRE;std::memset(bytes_+meta,0,MNM_MENU_V22_GRIMOIRE_SIZE);put(meta,79);put(meta+8,16);
+        for(int i=0;i<992;++i)put(meta+32+4*i,i%124<2?0:UINT32_MAX);
         publish();
     }
     void spells(quint32 parent=4,quint32 owner=79){
