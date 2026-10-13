@@ -877,7 +877,7 @@
       "subsystem": "movement",
       "kind": "recovered",
       "title": "Original pause, admission and world tick cadence",
-      "scope": "Native caller-supplied tick admission does not establish original pause or live scheduling semantics.",
+      "scope": "Native caller-supplied tick admission does not establish original pause or live scheduling semantics. Selected live pause/resume is observed: mode one freezes world ticks while accepted updates continue, mode zero resumes ticks; initial pause trigger remains unknown.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -887,11 +887,14 @@
       ],
       "documents": [
         "research/runtime/world-tick-loop.md",
-        "research/runtime/native-world-foundation.md"
+        "research/runtime/native-world-foundation.md",
+        "research/runtime/surface-final-word-read.md"
       ],
       "implementation": [],
       "tests": [],
-      "evidence": [],
+      "evidence": [
+        "MV.pause-clock.observed-20261012"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "none",
@@ -35163,7 +35166,8 @@
         "research/runtime/native-master-integration-current-recovery128-pass-20261011.json",
         "research/runtime/native-master-integration-current-world4096-pass-20261011.json",
         "research/runtime/native-default-offscreen-pass-20261011.json",
-        "research/runtime/public-resident-surface-refusal-20261011.json"
+        "research/runtime/public-resident-surface-refusal-20261011.json",
+        "research/runtime/surface-final-word-read.md"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -35876,7 +35880,8 @@
         "research/runtime/native-draw-status-artifacts-20261011.json",
         "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json",
         "research/runtime/native-master-integration-current-public-pass-20261011.json",
-        "research/runtime/native-master-integration-latest-master-public-pass-20261011.json"
+        "research/runtime/native-master-integration-latest-master-public-pass-20261011.json",
+        "research/runtime/surface-final-word-read.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -52949,6 +52954,78 @@
         "tests/creature-execution-test.cpp",
         "tests/sprite-binary-reference.cpp"
       ]
+    },
+    {
+      "id": "NP.surface-final-word-read",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native surface readable final-pixel DWORD tail",
+      "scope": "Allocate two extra zeroed readable bytes after each logical RGB565 surface payload to permit the original distortion DWORD load at its last WORD. Logical pitch, dimensions and pixel domain remain unchanged. Does not admit source pixels outside the surface or establish live crash resolution.",
+      "original": [],
+      "documents": [
+        "research/runtime/surface-final-word-read.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/surfaces.h"
+      ],
+      "tests": [
+        "tests/native-draw-surface-probe.c",
+        "tools/test-native-draw-surfaces.py"
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "NP.surface-final-word-read.native-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "RS.displacement-final-word-read",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Original distortion final-pixel DWORD read",
+      "scope": "Selected original 0x596490 one-pixel distortion: sampling the last valid RGB565 WORD performs a DWORD read at 0x5965f7. A protected following page faults; readable tail returns the expected low WORD. Exact crashed live request, other offsets/leaves and complete distortion semantics remain unestablished.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Selected final-pixel DWORD source load at 0x5965f7 only."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-final-word-read.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "RS.displacement-final-word-read.original-20261012"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
     }
   ],
   "evidence": [
@@ -106544,6 +106621,95 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "MV.pause-clock.observed-20261012",
+      "kind": "live_observation",
+      "scope": "Read-only non-atomic DWORD windows in one user-operated session: mode one fixed tick with advancing accepted updates, then mode zero advancing both. No original trigger attribution or replacement.",
+      "record": "research/runtime/battle-pause-distortion-20261012.json",
+      "sha256": "a7ba8d57089c6d0379406ea9b7e676b7bc7a744e941e59ff3222f12f52f76628",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sample_summary/before.txt/modes",
+          "equals": [
+            1
+          ]
+        },
+        {
+          "pointer": "/sample_summary/before.txt/world_tick_last",
+          "equals": 894
+        },
+        {
+          "pointer": "/sample_summary/followup-1.txt/modes",
+          "equals": [
+            0
+          ]
+        },
+        {
+          "pointer": "/sample_summary/followup-1.txt/world_tick_last",
+          "equals": 1403
+        }
+      ]
+    },
+    {
+      "id": "RS.displacement-final-word-read.original-20261012",
+      "kind": "isolated_original",
+      "scope": "Embedded standalone original fixture: protected tail faults at 0x5965f7, readable tail passes. Not the crashed live request.",
+      "record": "research/runtime/battle-pause-distortion-20261012.json",
+      "sha256": "a7ba8d57089c6d0379406ea9b7e676b7bc7a744e941e59ff3222f12f52f76628",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/distortion/host_results/0/returncode",
+          "equals": 42
+        },
+        {
+          "pointer": "/distortion/host_results/1/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NP.surface-final-word-read.native-20261012",
+      "kind": "native_integration",
+      "scope": "Four page-boundary final-pixel DWORD reads against the patched native PE32 allocator, plus64 unchanged surface caller/pixel comparisons with Wine DirectDraw and native policy/resource tests. No current-code live game validation.",
+      "record": "research/runtime/native-surface-tail-20261012.json",
+      "sha256": "d9e87795a610759a55f243eb3aed9999d15393d7964a014847ad478fe449827a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/mismatch_words",
+          "equals": []
+        },
+        {
+          "pointer": "/native_policy/final_pixel_dword_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -119407,8 +119573,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-qt-shell-tests-opt-in-20261012.json",
-    "sha256": "95fd96a7780f6f0ae5d3f286aa3448f9483af5993db69f18e55f9870960c6595"
+    "path": "research/runtime/coverage/source-index-surface-tail-20261012.json",
+    "sha256": "ac728ccba3a1e7d586f11710423576bf05f431f17408a39d283a52cd888f2080"
   },
   "claim_bindings_required": true
 }

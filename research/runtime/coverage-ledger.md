@@ -8408,3 +8408,21 @@ World/session/portable continuation composition remain in the original objective
 Committed range9d2ad1d5..2976cdd6 has33 source/link and103 behavior transitions
 with exact parent/current receipts and no unresolved gaps. Private authorized
 90GiB reserve policy is used; no cleanup is performed by this workstream.
+
+## 2026-10-12: battle pause and distortion allocation boundary
+
+Read-only sampling confirmed a paused battle (mode one, advancing accepted
+updates, fixed world tick), followed by resumed ticks at mode zero. The later
+Wine crash at original instruction `0x5965f7` is a separate event. An isolated
+original fixture reproduces that instruction's final-pixel DWORD overread and
+passes with a readable tail. Native RGB565 allocations now include two extra
+readable bytes, without extending logical pixel bounds. See
+[evidence and limits](surface-final-word-read.md).
+
+`MV.pause-clock` records the selected observation;
+`RS.displacement-final-word-read` records original boundary characterization;
+`NP.surface-final-word-read` records the native compatibility policy. Its four
+page-boundary tail-read cases and64 Wine/native surface comparisons pass with
+zero mismatches; original manifests and source/input stability checks pass. The exact
+live crashing sample and fixed-code live battle validation remain pending.
+Existing DirectDraw retirement evidence retains its historical source hashes.
