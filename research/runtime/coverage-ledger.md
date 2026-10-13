@@ -8684,3 +8684,11 @@ The unchanged next retry reached gameplay but was terminated by the storage guar
 ### Native palette integration into master (2026-10-12)
 
 Merge the palette work with master `2ece99d5`, retaining its final-word native surface read fix and all historical coverage receipts. Incoming source edits do not overlap the palette observation or replay declared source closures. Renderer implementation is unchanged. Latest startup full gameplay remains failed at Fireball damage, and the next retry remains storage-interrupted; neither is promoted to full success. The earlier paired CPU improvement and full native gameplay observation retain their original source hashes and historical limits. The intermittent pixel gap and 60 FPS target remain open.
+
+## Public native frame tracing (2026-10-12)
+
+Seed HOST.native-frame-trace before execution. Native bounded owner/source/GUI observation measures previously excluded status publication and actual sleep, preserving original clock domains and ordered two-credit delivery. Per-frame delay attribution, tracing overhead, current gameplay and a measured fix remain pending; diagnostic events alone do not prove60FPS or engine/GPU CPU equivalence.
+
+Native frame trace synthetic controls pass: disabled/order refusal, bounded16384/8192tail rings, independent active-frame/status clock accounting and native immutable pixels/GUI/pause/lease/teardown. Offline analyzer has three authored clock/export/paint/visibility/refusal controls. The first sandbox display attempt is retained as an environment admission failure, not a native test pass. Current public source readiness, TITAN trace and a measured scheduling fix remain pending.
+
+Public TITAN frame trace now completes the functional casting/combat/spell/portrait/menu/Quit journey,4343balanced returns, original/source/cleanup checks and zero ordinary readbacks.19/60FPSfail at18.739/48.913FPS; visible native49.438FPS. Status construction consumes19.873s of230.551s visible owner work at0.250ms/poll. Target a bounded status cadence while preserving immediate lifecycle/error and independent output handoff; outcome and tracing overhead remain pending.

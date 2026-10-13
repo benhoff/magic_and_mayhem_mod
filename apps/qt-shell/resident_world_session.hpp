@@ -1,5 +1,6 @@
 #pragma once
 #include "native_render_target.hpp"
+#include "native_frame_trace.hpp"
 #include "../../compat/legacy/world_continuous.hpp"
 #include "../../compat/legacy/world_snapshot_queue.hpp"
 #include <chrono>
@@ -30,6 +31,8 @@ public:
     DisplayState displayState() const{return {nextFrame_,completed_,independent_&&bool(world_)&&!normalQuitRetired_&&error_.isEmpty(),bool(ownedPending_)};}
     void pollOwned(bool);
     void noteIndependentPresentation(double uiMilliseconds);
+    std::uint64_t nativeFrames() const{return completed_+extraFrames_;}
+    NativeFrameSourceTiming lastSourceTiming() const{return lastSourceTiming_;}
     void saveReport(const QString&);
 private:
     unsigned phaseLogRows_=0;
@@ -69,6 +72,8 @@ private:
     QString error_;
     bool normalQuitRetired_=false;
     bool stageProfile_=false;
+    bool frameTrace_=false;
+    NativeFrameSourceTiming lastSourceTiming_;
     QJsonArray stageSamples_;
     std::unique_ptr<ResidentProfileCapture> capture_;
     std::uint64_t gpuDropped_=0,samplesDropped_=0;

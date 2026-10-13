@@ -400,6 +400,7 @@ def main():
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
+    parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
@@ -414,6 +415,7 @@ def main():
     args.native_voices |= args.default_audio or args.native_loading or args.native_factory or args.native_music
     if args.native_music and (args.legacy_audio or not args.normal_quit):parser.error('Native music requires native audio and normal Quit')
     if args.disable_wine_dsound and not args.native_factory:parser.error('Module-disable diagnostic requires native factory verification')
+    if args.frame_trace and not args.independent_world:parser.error('Frame trace requires independent resident World')
     if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
@@ -464,6 +466,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public'])
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
@@ -522,6 +525,7 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
     if args.trace_engine_cadence:
         if not args.resident_world or not args.normal_quit:raise ValueError('Engine cadence requires resident World and normal Quit')
         env['MNM_ENGINE_CADENCE_TRACE']='1'

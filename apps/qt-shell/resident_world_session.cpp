@@ -27,7 +27,8 @@ ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QStri
         if(!stageProfile_)throw std::runtime_error("Resident capture requires stage profiling");
         capture_=std::make_unique<ResidentProfileCapture>(capture);
     }
-    if(independent_)snapshotQueue_=std::make_unique<WorldSnapshotQueue>(channel_,bool(capture_));
+    frameTrace_=qEnvironmentVariableIntValue("MNM_NATIVE_FRAME_TRACE")==1;
+    if(independent_)snapshotQueue_=std::make_unique<WorldSnapshotQueue>(channel_,bool(capture_),frameTrace_);
 }
 void ResidentWorldSession::collectGpuTimings(){
     if(!stageProfile_ || !renderer_)return;
@@ -156,6 +157,7 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         const auto now=std::chrono::steady_clock::now();
         if(nextFrame_.time_since_epoch().count() && now<nextFrame_)return;
         OwnedWorldSnapshot source;if(!snapshotQueue_->take(source))return;
+        const auto sourceTakenAt=frameTrace_?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
         if(!world_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);auto store=mnm::assets::AssetStore::create(game_.toStdString());
             if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
@@ -165,6 +167,9 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         if(capture_)capture_->enqueue(source.generation,source.wireSource,source.wireRequest);
         QElapsedTimer timing;timing.start();ownedFrame_=world_->consumeResident(source.generation,source.handoff.stream);
         const auto native=double(timing.nsecsElapsed())/1000000.;nativeMs_+=native;maxNativeMs_=std::max(maxNativeMs_,native);
+        if(frameTrace_){
+            lastSourceTiming_={std::chrono::duration<double,std::milli>(sourceTakenAt-source.readyAt).count(),std::chrono::duration<double,std::milli>(source.readyAt-source.acquiredAt).count(),source.decodeMs,source.prepareMs,world_->producerWorkMs(),world_->profile().prepareMs,world_->profile().submitMs,source.ticks};
+        }
         if(world_->completed()!=source.generation || world_->worldReadbacks() || renderer_->stats().nativeReadbacks || renderer_->stats().rgbaReadbacks)
             throw std::runtime_error("Owned native completion/readback contract");
         decodeMs_+=source.decodeMs;handoffMs_+=source.prepareMs;producerMs_+=world_->producerWorkMs();prepareMs_+=world_->profile().prepareMs;submitMs_+=world_->profile().submitMs;++profiled_;

@@ -2,6 +2,7 @@
 #include "live_command_session.hpp"
 #include "resident_world_session.hpp"
 #include "render_deadline_probe.hpp"
+#include "native_frame_trace.hpp"
 #include <QThread>
 #include <QOffscreenSurface>
 #include <mutex>
@@ -50,6 +51,8 @@ private:
     bool baselineUiClock_=false;
     std::uint64_t uiPublicationRedraws_=0,sealedUiRedraws_=0,inheritedUiRedraws_=0;
     RenderDeadlineProbe deadlineProbe_;
+    NativeFrameTrace frameTrace_{qEnvironmentVariableIntValue("MNM_NATIVE_FRAME_TRACE")==1};
+    std::uint64_t readySerial_=0,readyGeneration_=0,guiSerial_=0,guiGeneration_=0,paintedSerial_=0,paintedGeneration_=0;
     RenderStageTiming worldTiming_,commandTiming_,extraTiming_,exportTiming_,turnTiming_;
     RenderStageTiming activeWorldTiming_,activeCommandTiming_;
     QJsonArray slowTurns_;

@@ -16,8 +16,17 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
     commands_->residentReady=[this](auto g,auto n){return world_->ready(g,n);};
     commands_->prepareResidentFrames=true;
     commands_->reuseSealedUi=!baselineUiClock_ && qEnvironmentVariableIntValue("MNM_WORLD_FIRST_SEAL_BASELINE")!=1;
+    if(frameTrace_.enabled())QObject::connect(&viewport_,&QOpenGLWidget::frameSwapped,this,[this]{
+        std::lock_guard<std::mutex> lock(mutex_);
+        frameTrace_.recordGui({paintedSerial_,paintedGeneration_,NativeFrameTrace::now(),1,drawAllowed_,paused_});
+    });
+    if(frameTrace_.enabled())viewport_.framePaintTiming=[this](bool complete){
+        std::lock_guard<std::mutex> lock(mutex_);
+        if(complete){paintedSerial_=guiSerial_;paintedGeneration_=guiGeneration_;}
+        frameTrace_.recordGui({guiSerial_,guiGeneration_,NativeFrameTrace::now(),complete?3:2,drawAllowed_,paused_});
+    };
 }
-NativeRenderWorker::~NativeRenderWorker(){join(false);}
+NativeRenderWorker::~NativeRenderWorker(){if(frameTrace_.enabled())viewport_.framePaintTiming={};join(false);}
 bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 version,int timeout){
     if(version!=2){status_.error="Render worker requires streaming owned World commands";return false;}
     if(!commands_->create(path,session,version,timeout)){status_.error=commands_->error();return false;}
@@ -25,10 +34,12 @@ bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 vers
 }
 bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     mnm::render::GpuFrame frame;
+    std::uint64_t serial=0,generation=0;
     {
         std::lock_guard<std::mutex> lock(mutex_);
         normalQuit_=normalQuit;drawAllowed_=drawAllowed;paused_=paused;
         status_=published_;frame=std::move(readyFrame_);
+        serial=readySerial_;generation=readyGeneration_;
     }
     wake_.notify_one();
     if(!started_ && viewport_.ready()){
@@ -39,6 +50,10 @@ bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     if(!status_.error.isEmpty())return false;
     if(frame.valid() && !paused){
         viewport_.setGpuFrame(std::move(frame));
+        if(frameTrace_.enabled()){
+            std::lock_guard<std::mutex> lock(mutex_);guiSerial_=serial;guiGeneration_=generation;
+            frameTrace_.recordGui({serial,generation,NativeFrameTrace::now(),0,drawAllowed_,paused_});
+        }
         if(framePresented)framePresented();
     }
     if(stateChanged)stateChanged(status_.state);
@@ -94,12 +109,13 @@ void NativeRenderWorker::run(){
     };
     auto save=[&]{
         world_->saveReport(reportPath_);
-        QJsonObject report;{std::lock_guard<std::mutex> lock(mutex_);report=published_.report;}
+        QJsonObject report;{std::lock_guard<std::mutex> lock(mutex_);report=published_.report;report["frame_trace"]=frameTrace_.report();}
         QSaveFile file(reportPath_);const auto bytes=QJsonDocument(report).toJson();
         if(!file.open(QIODevice::WriteOnly)||file.write(bytes)!=bytes.size()||!file.commit())throw std::runtime_error("Render owner report publication");
     };
     try{
         for(;;){
+            NativeFrameTrace::Turn trace;trace.begin=frameTrace_.stamp();trace.turn=turns_;
             bool stop,exited,quit,draw,pause,request;
             {std::lock_guard<std::mutex> lock(mutex_);stop=stop_;exited=producerExited_;quit=normalQuit_;draw=drawAllowed_;pause=paused_;request=requestStop_;requestStop_=false;}
             if(stop){
@@ -109,10 +125,15 @@ void NativeRenderWorker::run(){
             }
             QElapsedTimer turnClock,stageClock;turnClock.start();stageClock.start();
             if(request)commands_->requestStop();
-            const auto beforeWorld=world_->displayState().generation;
+            const auto beforeState=world_->displayState();const auto beforeWorld=beforeState.generation;
+            trace.sourceBefore=beforeWorld;trace.framesBefore=world_->nativeFrames();trace.draw=draw;trace.paused=pause;
+            trace.deadline=beforeState.deadline.time_since_epoch().count()?std::chrono::duration_cast<std::chrono::microseconds>(beforeState.deadline.time_since_epoch()).count():0;
             mediaPaused=pause;commands_->setMediaActive(pause);
             world_->poll(quit);
             const double worldMs=stageClock.nsecsElapsed()/1000000.;worldTiming_.add(worldMs);if(world_->displayState().generation!=beforeWorld)activeWorldTiming_.add(worldMs);stageClock.restart();
+            trace.worldEnd=frameTrace_.stamp();trace.commandEnd=trace.extraEnd=trace.worldEnd;
+            trace.sourceAfter=world_->displayState().generation;
+            if(frameTrace_.enabled()&&trace.sourceAfter!=trace.sourceBefore)trace.source=world_->lastSourceTiming();
             double commandMs=0,extraMs=0,exportMs=0;unsigned presents=0;std::uint64_t generation=0;
             int reason=-1;
             if(!commands_->ended()){
@@ -123,6 +144,9 @@ void NativeRenderWorker::run(){
                 const auto after=commands_->result()?commands_->result()->presents:0;
                 presents=after-before;commandMs=stageClock.nsecsElapsed()/1000000.;commandTiming_.add(commandMs);stageClock.restart();
                 if(commands_->result()&&commands_->result()->commands!=commandsBefore)activeCommandTiming_.add(commandMs);
+                trace.commands=commands_->result()?commands_->result()->commands-commandsBefore:0;
+                trace.imports=commands_->result()?commands_->result()->residentWorldImports-importsBefore:0;
+                trace.presents=presents;trace.commandEnd=frameTrace_.stamp();
                 const auto uiState=commands_->displayState();
                 const auto strictGeneration=commands_->preparedGeneration();
                 generation=baselineUiClock_?strictGeneration:commands_->sealedGeneration();
@@ -146,6 +170,7 @@ void NativeRenderWorker::run(){
                     }}
                 }
                 extraMs=stageClock.nsecsElapsed()/1000000.;if(extraMs>0.1)extraTiming_.add(extraMs);stageClock.restart();
+                trace.extraEnd=frameTrace_.stamp();
                 if(!pause && frameChanged_ && rendered_.valid()){
                     // Bounded immutable output leases. Display coalescing never
                     // discards/reorders engine source updates or command imports.
@@ -155,16 +180,20 @@ void NativeRenderWorker::run(){
                         if(available!=leases.end()){frozen=rendered_.snapshot(std::move(*available));*available=frozen;}
                         else{frozen=rendered_.snapshot();leases.push_back(frozen);++exportAllocations_;}
                         highWater_=std::max(highWater_,std::uint64_t(leases.size()));++exports_;
-                        std::lock_guard<std::mutex> lock(mutex_);readyFrame_=std::move(frozen);
+                        trace.exportSerial=exports_;
+                        std::lock_guard<std::mutex> lock(mutex_);trace.published=frameTrace_.stamp();readyFrame_=std::move(frozen);readySerial_=exports_;readyGeneration_=uiState.worldOutput?uiState.generation:0;
                     }else ++skipped_;
                     frameChanged_=false;
                 }
             }
             exportMs=stageClock.nsecsElapsed()/1000000.;if(exportMs>0.1)exportTiming_.add(exportMs);
+            trace.exportEnd=frameTrace_.stamp();trace.framesAfter=world_->nativeFrames();trace.pending=world_->displayState().pending;trace.reason=reason;
             const auto totalMs=turnClock.nsecsElapsed()/1000000.;turnTiming_.add(totalMs);
             if(totalMs>33.334 && slowTurns_.size()<256)slowTurns_.append(QJsonObject{{"turn",QString::number(turns_)},{"source_generation",QString::number(world_->displayState().generation)},{"prepared_generation",QString::number(generation)},{"command_presents",int(presents)},{"reason",reason},{"world_ms",worldMs},{"command_ms",commandMs},{"extra_ms",extraMs},{"export_ms",exportMs},{"total_ms",totalMs}});
             ++turns_;updateStatus();
+            trace.statusEnd=frameTrace_.stamp();
             std::unique_lock<std::mutex> lock(mutex_);wake_.wait_for(lock,std::chrono::milliseconds(1),[this]{return stop_||requestStop_;});
+            trace.waitEnd=frameTrace_.stamp();frameTrace_.record(trace);
         }
     }catch(const std::exception& e){
         world_->abort(QString::fromUtf8(e.what()));commands_->abort();updateStatus();

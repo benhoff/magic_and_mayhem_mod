@@ -1,5 +1,6 @@
 #pragma once
 #include <QImage>
+#include <functional>
 #include "blit.hpp"
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
@@ -21,6 +22,8 @@ public:
     bool imagePoint(QPointF position,QPoint& point,bool clamp=false) const;
     bool ready() const{return ready_;}
     QString error() const{return error_;}
+    // Optional native diagnostic observer: false begins painting, true completes.
+    std::function<void(bool)> framePaintTiming;
 protected:
     void initializeGL() override;
     void paintGL() override;

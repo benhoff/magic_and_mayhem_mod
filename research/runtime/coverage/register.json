@@ -54133,6 +54133,122 @@
         "replacement": "none"
       },
       "confidence": "high_within_scope"
+    },
+    {
+      "id": "HOST.native-frame-trace",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded public native frame/source/GUI wall-time trace",
+      "scope": "Opt-in owned V5 worker tail timeline with16384 meaningful turns and8192GUI pickup/paint/Qt frameSwapped events tagged by completed native widget paint. Native steady-clock spans source/commands/extraWorld+UI/export/status/wait/gaps; visible native World counts differ from GUI/UI-only counts. Existing original uint32 capture/ACK/return durations remain separate coarse clock observations. Native capture readiness after verified return and native dequeue delay preserve source FIFO/two credits. Bounded rings serialize only at joined completion/cancellation; default tracing off. CPU elapsed includes driver waits, no GPU busy-time/physical scanout/original CPU/simulation advance or60FPS claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-frame-trace.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py",
+        "tools/probe-native-display-deadlines.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/glyph_backend_launch.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/native_music_launch.py",
+        "tools/prepare-menu-observer.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-frame-trace.controls-20261012",
+        "HOST.native-frame-trace.baseline-public-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Current full functional TITAN trace balances4343Worlds with zero ordinary readbacks and verified originals/cleanup. Engine18.739FPS fails19floor; native48.913FPS fails60. Visible native49.438FPS; status publication19.873seconds/230.551visible seconds, GUI paintmean0.225ms. Current causal optimization, tracing overhead, GPU/scanout/original equivalence and intermittent pixels remain pending."
+      ]
+    },
+    {
+      "id": "TOOL.native-frame-trace-analysis",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Offline public frame timeline analysis",
+      "scope": "Read-only native schema1 owner/source/GUI trace analysis, with monotonicity and row shape checks, active-generation/visibility segmentation, joined export/pickup/completed-paint/swap latencies and separate original millisecond duration statistics. Tail loss/missing exports stay explicit; timing analysis does not prove functionality, GPU CPU/scanout or60FPS.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-frame-trace.md"
+      ],
+      "implementation": [
+        "tools/analyze-native-frame-trace.py"
+      ],
+      "tests": [
+        "tests/test-native-frame-trace.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "TOOL.native-frame-trace-analysis.controls-20261012",
+        "TOOL.native-frame-trace-analysis.baseline-20261012"
+      ],
+      "remaining_gaps": [
+        "Native/source/GUI baseline analysis passes structural/time/export joins. Tail GUI coverage is limited; source/driver CPU causality, workload comparability and60FPS are not established by analysis."
+      ]
     }
   ],
   "evidence": [
@@ -109828,6 +109944,82 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-frame-trace.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Independent synthetic native controls; no original/live/60FPS comparison.",
+      "record": "research/runtime/native-frame-trace-controls-20261012.json",
+      "sha256": "831e94510a1e4f7c509c8cda39a89d4b433b30c61b6d0d2610f80b58aed2d22f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.native-frame-trace-analysis.controls-20261012",
+      "kind": "native_integration",
+      "scope": "Independent synthetic native controls; no original/live/60FPS comparison.",
+      "record": "research/runtime/native-frame-analysis-controls-20261012.json",
+      "sha256": "d2a3d24d9a85edbd9a6689106437474fdf1d8bdd4d7ccd36e7a8b327e9c4abac",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-frame-trace.baseline-public-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Functional full TITAN journey passes,4343balanced returns/zero ordinary readbacks, but engine18.739FPS fails19floor and native48.913FPS fails60. Source/worker/GUI timing observations do not assert GPU busy/physical scanout/original equivalence; tracing overhead and different workloads remain separate.",
+      "record": "research/runtime/native-frame-trace-baseline-public-negative-20261012.json",
+      "sha256": "063eda1a15a8ac712238dda413ac6b96aa9a2a736832776ae1cd644f462af9b5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.native-frame-trace-analysis.baseline-20261012",
+      "kind": "native_integration",
+      "scope": "Analyze bounded public host frame traces without assigning GPU/scanout CPU costs.",
+      "record": "research/runtime/native-frame-trace-baseline-analysis-20261012.json",
+      "sha256": "f34f2e63dc6f1845ebcbcb5985a74383d9def22a99b8e353b48ac2f67f8f5614",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -122872,6 +123064,36 @@
         "NR.native-palette-row-cache.wizard-death-negative-20261012",
         "NR.native-palette-row-cache.startup-public-negative-20261012"
       ]
+    },
+    {
+      "id": "HOST.native-frame-trace.fixture",
+      "scope": "Native synthetic trace ring/order/clock/refusal and worker immutable pixel,GUI/movie/lease/teardown controls; no original or live performance claim",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-frame-trace"
+      ],
+      "tests": [
+        "tests/native-render-worker-test.cpp",
+        "tools/test-native-render-worker.py"
+      ],
+      "evidence": [
+        "HOST.native-frame-trace.controls-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-frame-trace.public",
+      "scope": "Private TITAN native gameplay source/owner/GUI trace with bounded original integrity and cleanup; functional/19FPS/60FPS and timing overhead remain separate",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-frame-trace"
+      ],
+      "tests": [
+        "tools/probe-native-display-deadlines.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-frame-trace.baseline-public-negative-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -123398,8 +123620,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-palette-master-merge-20261012.json",
-    "sha256": "59e3996c77aca0cfc71ec6eaa7ce69fa60c3929f33a932216fea094dc63d75a1"
+    "path": "research/runtime/coverage/source-index-native-frame-trace-baseline-20261012.json",
+    "sha256": "befcc20806889dfedb37ed5bb69e39a88cb74887de1b2cf8ba2a93e17d7490bb"
   },
   "claim_bindings_required": true
 }
