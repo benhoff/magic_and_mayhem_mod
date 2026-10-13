@@ -7,6 +7,8 @@ static void** mu_palette;
 static u8 mu_colors[1024];
 static u32 mu_calls[10],mu_failed,mu_frames,mu_nested_metadata;
 static u32 mu_gate_dc,mu_gate_flip,mu_gate_property,mu_gate_metadata,mu_metadata_calls;
+static u32 mu_description_tracker;
+API u32 WIN RenderDescriptionDomainForTest(u32,u32*);
 static void mu_palette_change(u32,u32,u32);
 static void mu_record(void);
 static u32 mu_gate_lock,mu_gate_mode,mu_gate_ready,mu_gate_arrived,mu_gate_done,mu_gate_original;
@@ -88,9 +90,11 @@ static i32 WIN mu_blt(void* object,void* destination,void* source,void* rectangl
     mu_entry();__atomic_add_fetch(&mu_calls[6],1,__ATOMIC_RELAXED);if(mu_failed==3){mu_failed=0;return -1;}
     if(mu_gate_mode){
         if(object==&mu_front){
+            if(mu_description_tracker)RenderCaptureGuardForTest(1);
             __atomic_store_n(&mu_gate_ready,1,__ATOMIC_RELEASE);u32 start=GetTickCount();
             while(!__atomic_load_n(mu_gate_mode==2?&mu_gate_done:&mu_gate_arrived,__ATOMIC_ACQUIRE)){if(GetTickCount()-start>2000)ExitProcess(395);Sleep(0);}
             if(mu_gate_mode==1){Sleep(10);if(__atomic_load_n(&mu_gate_original,__ATOMIC_ACQUIRE))ExitProcess(396);}
+            if(mu_description_tracker)RenderCaptureGuardForTest(0);
             SetLastError(0x88);
         }else __atomic_store_n(&mu_gate_original,1,__ATOMIC_RELEASE);
     }
@@ -212,13 +216,16 @@ static void test_mutations(const char* mode){
     for(u32 i=0;i<6;++i){char positive[32]="cross-",timeout[32];u32 n=6;const char* p=metadata_names[i];while(*p)positive[n++]=*p++;positive[n]=0;
         n=0;p=metadata_names[i];while(*p)timeout[n++]=*p++;p="-timeout";while(*p)timeout[n++]=*p++;timeout[n]=0;
         if(rs_mode(mode,positive)){mu_gate_metadata=i+1;cross_copy=1;}if(rs_mode(mode,timeout)){mu_gate_metadata=i+1;copy_timeout=1;}}
+    u32 description_tracker=rs_mode(mode,"desc-tracker"),description_gate=rs_mode(mode,"desc-gate");
+    if(description_tracker || description_gate){mu_gate_metadata=1;copy_timeout=1;}
+    mu_description_tracker=description_tracker;
     mu_gate_property=rs_mode(mode,"cross-key") || rs_mode(mode,"key-timeout")?1:rs_mode(mode,"cross-clipper") || rs_mode(mode,"clipper-timeout")?2:rs_mode(mode,"cross-palette") || rs_mode(mode,"palette-timeout")?3:0;
     cross_copy|=rs_mode(mode,"cross-key") || rs_mode(mode,"cross-clipper") || rs_mode(mode,"cross-palette");copy_timeout|=rs_mode(mode,"key-timeout") || rs_mode(mode,"clipper-timeout") || rs_mode(mode,"palette-timeout");
     mu_gate_dc=rs_mode(mode,"cross-dc") || rs_mode(mode,"dc-timeout");mu_gate_flip=rs_mode(mode,"cross-flip") || rs_mode(mode,"flip-timeout");
     mu_gate_lock=rs_mode(mode,"cross-lock") || rs_mode(mode,"lock-timeout");
     u32 meta_changed=rs_mode(mode,"meta-change"),source_write=rs_mode(mode,"source-write") || rs_mode(mode,"source-key");mu_nested_metadata=rs_mode(mode,"meta16")?1:meta_changed?2:source_write?(rs_mode(mode,"source-key")?4:3):0;
     if(mu_nested_metadata || cross_copy || copy_timeout)bits=mu_gate_property==3?8:16;
-    u32 valid=!(bounded || partial || unsupported || palette_flags || meta_changed || source_write || copy_timeout || mu_gate_metadata>=3);
+    u32 valid=!(bounded || partial || unsupported || palette_flags || meta_changed || source_write || (copy_timeout && mu_gate_metadata!=1) || mu_gate_metadata>=3);
     if(partial)bits=32;
     static void* table[33];table[3]=(void*)&mu_add;table[8]=(void*)&mu_delete;table[27]=(void*)&mu_restore;table[6]=(void*)&mu_batch;table[2]=(void*)&mu_surface_release;table[5]=(void*)&mu_blt;table[7]=(void*)&mu_fast;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
     table[22]=(void*)&mu_desc;table[25]=(void*)&mu_lock;table[26]=(void*)&mu_release_dc;table[28]=(void*)&mu_clipper;table[29]=(void*)&mu_key;table[31]=(void*)&mu_assign;table[32]=(void*)&mu_unlock;
@@ -261,11 +268,23 @@ static void test_mutations(const char* mode){
         u32 requested[4]={4};void* out=0;SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void**))table[12])(&mu_front,requested,&out)!=23 || out!=&mu_back || GetLastError()!=0x88)ExitProcess(374);
         if(cross_copy || copy_timeout){
             mu_cycle(&mu_back,0,mu_gate_property==3?6:0x44,0);mu_gate_mode=copy_timeout?2:1;mu_metadata_calls=0;__atomic_store_n(&mu_gate_original,0,__ATOMIC_RELEASE);
+            u32 before[3];if(!RenderDescriptionDomainForTest(0,before))ExitProcess(418);
+            if(description_gate){if(!RenderDescriptionDomainForTest(1,0))ExitProcess(419);__atomic_store_n(&mu_gate_ready,1,__ATOMIC_RELEASE);}
             HANDLE worker=CreateThread(0,0,mu_gate_worker,0,0,0);if(!worker)ExitProcess(397);
+            if(description_gate){
+                if(WaitForSingleObject(worker,2000)!=0 || !RenderDescriptionDomainForTest(2,0))ExitProcess(420);
+                mu_gate_mode=0;
+            }
             if(rs_mode(mode,"cross-fast")){SetLastError(0x77);if(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))table[7])(&mu_front,0,0,&mu_back,0,0x10)!=17 || GetLastError()!=0x88)ExitProcess(400);mu_record();}
             else if(mu_gate_property==3 || mu_gate_metadata){SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))table[5])(&mu_front,0,&mu_back,0,0x1000000,0)!=17 || GetLastError()!=0x88)ExitProcess(408);}
             else if(mu_gate_flip){i32 r[4]={1,1,3,3};SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))table[5])(&mu_front,r,&mu_back,r,0x1000000,0)!=17 || GetLastError()!=0x88)ExitProcess(405);}
             else mu_draw(0,0,0,0,0);if(WaitForSingleObject(worker,2000)!=0)ExitProcess(398);CloseHandle(worker);
+            if(mu_gate_metadata==1){
+                u32 after[3];if(!RenderDescriptionDomainForTest(0,after))ExitProcess(418);
+                u32 domains[5]={before[0],after[0],before[1],after[1],after[2]};
+                if(domains[0]!=domains[1] || domains[2]!=domains[3])ExitProcess(421);
+                pl_file("description-domains.bin",domains,sizeof(domains));
+            }
         }else if(unsupported || meta_changed || source_write){mu_cycle(&mu_back,0,0x44,0);mu_draw(0,0,0,0,unsupported);}
         else for(u32 pass=0;pass<40;++pass){
             mu_cycle(&mu_back,0,pass,pass==3);mu_cycle(&mu_back,1,5,0);

@@ -11,10 +11,18 @@ static void* game_pixel_misses[128];
 static u32 game_pixel_misses_pending;
 /* Pixel uncertainty invalidates pending work; missed identity/property changes
  * additionally invalidate metadata. Neither path waits across application calls. */
-static void game_metadata_invalidate(void){
+static u32 game_tracker_site(const char*,u32);
+static u32 game_metadata_invalid_epoch,game_metadata_invalid_site,game_metadata_invalid_thread;
+static void game_metadata_invalidate_at(const char* file,u32 line){
+    u32 error=GetLastError();
     __atomic_add_fetch(&game_metadata_epoch,1,__ATOMIC_RELAXED);
-    __atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
+    u32 epoch=__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
+    __atomic_store_n(&game_metadata_invalid_site,game_tracker_site(file,line),__ATOMIC_RELAXED);
+    __atomic_store_n(&game_metadata_invalid_thread,GetCurrentThreadId(),__ATOMIC_RELAXED);
+    __atomic_store_n(&game_metadata_invalid_epoch,epoch,__ATOMIC_RELEASE);
+    SetLastError(error);
 }
+#define game_metadata_invalidate() game_metadata_invalidate_at(__FILE__,__LINE__)
 /* Detached partial bases are counted as pending storage and never published. */
 static void game_lock_clear(struct GameLock* slot){
     if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);

@@ -62,6 +62,11 @@ static int game_surface_enter_at(u32 site){
     if(!game_tracker_acquire_at(site)){game_metadata_invalidate();return 0;}
     game_surface_sync();return 1;
 }
+static int game_surface_observation_enter_at(u32 site){
+    if(!lock_capture_path_length || !game_tracker_acquire_at(site))return 0;
+    game_surface_sync();return 1;
+}
+#define game_surface_observation_enter() game_surface_observation_enter_at(game_tracker_site(__FILE__,__LINE__))
 #define game_surface_pixels_enter(object) game_surface_pixels_enter_at(object,game_tracker_site(__FILE__,__LINE__))
 static int game_surface_pixels_enter_at(void* object,u32 site){
     if(!lock_capture_path_length)return 0;
@@ -143,7 +148,7 @@ static void game_surface_describe_locked(void* object,u32 kind,const u32* d){
 }
 static void game_surface_described(void* object,u32 kind,const u32* d,i32 result){
     if(result<0){lock_diagnostic("surface_metadata_failed",object,kind,0,0,result,0,0);return;}
-    if(!game_surface_enter())return;
+    if(!game_surface_observation_enter())return;
     game_surface_describe_locked(object,kind,d);game_tracker_release();
 }
 static void game_surface_created(void* object,u32 kind,const u32* d){

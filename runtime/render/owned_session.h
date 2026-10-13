@@ -30,7 +30,17 @@ static void game_session_gap(u32 reason){
     lock_diagnostic("session_gap",0,0,reason,0,0,0,0);
 }
 static void game_session_sync(void){
-    if(session_active && session_epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED))game_session_gap(1);
+    const u32 epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);
+    if(session_active && session_epoch!=epoch){
+        // A bounded failure record identifies the last metadata invalidator.
+        // A mismatching tag epoch is explicitly inconclusive under concurrency.
+        u32 tagged=__atomic_load_n(&game_metadata_invalid_epoch,__ATOMIC_ACQUIRE);
+        u32 values[19]={session_epoch,epoch,tagged,
+            __atomic_load_n(&game_metadata_invalid_site,__ATOMIC_RELAXED),
+            __atomic_load_n(&game_metadata_invalid_thread,__ATOMIC_RELAXED),
+            GetCurrentThreadId(),__atomic_load_n(&game_metadata_epoch,__ATOMIC_RELAXED)};
+        lock_diagnostic_values("session_epoch_origin",values);game_session_gap(1);
+    }
 }
 static int session_emit(u32 op,const void* fields,u32 fl,const void* pixels,u32 length,u32 closing){
     if(!session_active)return 0;

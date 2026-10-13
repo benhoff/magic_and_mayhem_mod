@@ -8710,3 +8710,21 @@ atlas/nonatlas comparisons andtwo renderer regressions pass withzero ordinary
 readbacks/leaks. No original equivalence for that tap, current public reliability
 or60FPS claim; drawing-history GAP remains under investigation. Historical
 source fingerprints and failures stay intact.
+
+### Read-only description false history GAP (2026-10-13)
+
+`NR.readonly-description-continuity` separates GetSurfaceDesc observation from
+pixel/metadata mutation. A pre-fix PE32 concurrency fixture proves a false native
+GAP on two read-only queries. Current three admission-layer refusal controls and
+ordinary cross-thread observation preserve both native frames and epochs; four
+actual-change/write/unsupported-mutation controls still refuse. Eightcases and12
+full-frame comparisons pass withzero ordinaryreadbacks/viewportuploads andzero
+terminalsurfaces. Bounded failure site tags remain diagnostic only. No original
+API/wire/cadence/balance changes or unsafe history recovery are enabled.
+
+The first displacement fix's pre-readonly full TITAN run completed4476balanced
+Worlds, successfulcasting/combat/spells/portrait/menu/resume/Quit and19.12engine /
+50.11nativeFPS. Preserve its historical source fingerprints after this repair.
+Short repeats retain a19FPSfloor miss and a menu timeout without a renderererror;
+a cold-cache fullfunctional run misses19FPSat18.99486. No current60FPSor every-GAP
+repair claim follows. Final-source full public validation remains pending.

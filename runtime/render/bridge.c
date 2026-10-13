@@ -185,9 +185,9 @@ static i32 WIN surface_delete_attached(void* object,u32 flags,void* other){
     if(status>=0)game_metadata_invalidate();SetLastError(error);return status;
 }
 static i32 WIN surface_desc(void* object,u32* desc){
-    COMMAND_CALLBACK(((Description)lookup(object)->original[22])(object,desc));
-    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((Description)lookup(object)->original[22])(object,desc);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
+    COMMAND_OBSERVATION_CALLBACK(((Description)lookup(object)->original[22])(object,desc));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_observation_enter(object);
+    if(!copy_lease.observe)return ((Description)lookup(object)->original[22])(object,desc);
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((Description)t->original[22])(object,desc);u32 error=GetLastError();
     game_surface_described(object,t->kind,desc,status);SetLastError(error);return status;
@@ -558,6 +558,18 @@ __declspec(dllexport) void WIN RenderCaptureGuardForTest(u32 held){
     __atomic_store_n(&game_locks_busy,held!=0,__ATOMIC_RELEASE);
 }
 __declspec(dllexport) u32 WIN RenderCaptureWaitsForTest(void){return __atomic_load_n(&game_tracker_wait_count,__ATOMIC_RELAXED);}
+/* Selftest-only admission barriers and read-only epoch inspection. */
+__declspec(dllexport) u32 WIN RenderDescriptionDomainForTest(u32 operation,u32* values){
+    u32 error=GetLastError(),ready=0;
+    if(!operation && values){
+        u32 state[3]={__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED),
+            __atomic_load_n(&game_metadata_epoch,__ATOMIC_RELAXED),
+            __atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE)};
+        copy(values,state,sizeof(state));ready=1;
+    }else if(operation==1)ready=command_gate_close();
+    else if(operation==2)ready=__sync_bool_compare_and_swap(&command_gate,COMMAND_GATE_EXCLUSIVE,0);
+    SetLastError(error);return ready;
+}
 __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid,void** result,void* outer){
     original_create=original;return create_draw(guid,result,outer);
 }

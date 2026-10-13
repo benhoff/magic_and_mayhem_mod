@@ -15841,12 +15841,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded surface metadata and unsupported mutation callback admission",
-      "scope": "Existing continuous opt-in50ms drawing lease spans GetSurfaceDesc/GetAttachedSurface, Add/DeleteAttachedSurface, Restore and BltBatch through original and existing successful observation/invalidation. Timed-out originals forward once with metadata/pixel epochs invalidated on both sides. Surface attachment metadata is separate from interface aliases. Twelve Surface2 synthetic worker schedules cover failure+retry waiting/timeouts, exact arguments/results/LastError, copy-before-invalidation with a consumer drain window, independent native frames and terminal zero storage. Restore/BltBatch pixel reconstruction remains unsupported. Dedicated nested/changed attachment metadata, stale returned interfaces, startup DirectDrawCreate, borrowed CPU/DC intervals/owner termination, unseen-object recovery, dedicated palette lifetime races, archive-timeout replay, repeated scenes/actions and original/live/driver/full-frame equivalence/default enablement remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending.",
+      "scope": "Existing continuous opt-in50ms drawing lease spans GetSurfaceDesc/GetAttachedSurface, Add/DeleteAttachedSurface, Restore and BltBatch through original and existing successful observation/invalidation. Timed-out originals forward once with metadata/pixel epochs invalidated on both sides. Surface attachment metadata is separate from interface aliases. Twelve Surface2 synthetic worker schedules cover failure+retry waiting/timeouts, exact arguments/results/LastError, copy-before-invalidation with a consumer drain window, independent native frames and terminal zero storage. Restore/BltBatch pixel reconstruction remains unsupported. Dedicated nested/changed attachment metadata, stale returned interfaces, startup DirectDrawCreate, borrowed CPU/DC intervals/owner termination, unseen-object recovery, dedicated palette lifetime races, archive-timeout replay, repeated scenes/actions and original/live/driver/full-frame equivalence/default enablement remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Current read-only GetSurfaceDesc admission skips are accounted separately by NR.readonly-description-continuity: they preserve known epochs without establishing new metadata. Historical mutation-order/description-timeout evidence retains its original scope and source hashes; current validation of other shared consumers remains pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-metadata-order.md",
-        "research/runtime/opengl-draw-startup-order.md"
+        "research/runtime/opengl-draw-startup-order.md",
+        "research/runtime/native-readonly-description-continuity.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -37941,7 +37942,11 @@
         "NR.public-resident-world.scene-production-full-campaign-20261011",
         "NR.public-resident-world.scene-production-slice-campaign-20261011",
         "NR.public-resident-world.scene-production-prepared-campaign-20261012",
-        "NR.public-resident-world.budget-progress-campaign-20261012"
+        "NR.public-resident-world.budget-progress-campaign-20261012",
+        "NR.public-resident-world.render-bugs-full-pre-readonly-20261013",
+        "NR.public-resident-world.render-bugs-short-fps-negative-20261013",
+        "NR.public-resident-world.render-bugs-short-menu-timeout-negative-20261013",
+        "NR.public-resident-world.render-bugs-cold-negative-20261013"
       ],
       "status": {
         "understanding": "scoped",
@@ -54566,6 +54571,48 @@
       ],
       "remaining_gaps": [
         "Current native/headless and stated corrected full public TITAN flow pass with4612balanced returns and19.5966Hzsource floor. NativeWorld48.9985FPS and visiblepaint57.3311FPS secondcycle fail60 target; original comparison/replacement, unobserved failures, hardware/driver/scanout/interpolation/movieWorld and wider shared-source freshness remain pending. Earlierfailedjourneys/capture histories retained."
+      ]
+    },
+    {
+      "id": "NR.readonly-description-continuity",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Skipped read-only surface descriptions preserve native drawing history",
+      "scope": "Intentional native observation policy only for COM surface GetSurfaceDesc slot22: original query forwards exactly once with original result/LastError; skipped observation at callback, copy or tracker admission does not change pixel/metadata epochs or publish new metadata. Successful admitted description changes retain existing strict invalidation. Callback counting and administrative collision refusal stay intact; all mutations, lifetime/interface-returning operations and genuine missed writes retain conservative GAP behavior. Bounded metadata-origin tags aid diagnosis and never authorize recovery. Does not establish the exact provenance of previously site-unrecorded public GAP or original-driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-readonly-description-continuity.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/copy_order.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py"
+      ],
+      "evidence": [
+        "NR.readonly-description-continuity.controls-20261013",
+        "NR.readonly-description-continuity.baseline-negative-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "tests/live-render-channel-test.cpp",
+        "tools/build-render-bridge.py"
       ]
     }
   ],
@@ -110544,6 +110591,155 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.readonly-description-continuity.controls-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh actual PE32 callback matrix: skipped descriptions at copy lease, tracker and exclusive callback gate preserve epochs, original-once failure/retry arguments/results/LastError and both authored complete native frames. Ordinary cross-desc succeeds; observed changed metadata and copy/lock/attachment mutation timeouts retainGAPrefusal. Eightcases/fourvalid/fourrefused,12independent full-frame comparisons, zero ordinaryreadbacks/viewportuploads/terminalsurfaces andstableprospective sources. No original driver/live or60FPS proof.",
+      "record": "research/runtime/readonly-description-controls-20261013.json",
+      "sha256": "4288b5d5c3b10d1f1ef3c3b3b7b8a449c42f92036502e296b6518aac63f33aa1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.render-bugs-full-pre-readonly-20261013",
+      "kind": "live_observation",
+      "scope": "Full pre-readonly-fix TITAN trace/cadence campaign passes casting/combat/spells/portrait/resume/Quit,4476balancedWorlds,19.1227engine/50.1107nativeFPS,zeroordinaryreadbacks. Current renderer edgepolicy is exercised by separate headless controls; no claim this journey hit thattap or repaired intermittentGAP. Historical fingerprints preserved; final readonly-fix public/FPS validation remains pending.",
+      "record": "research/runtime/native-render-bugs-full-public-20261013.json",
+      "sha256": "cbd45ab7ef1b5e222eb0a57503f80dcd0d5dca8e1968deed04b4e285e4eb078a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.render-bugs-short-fps-negative-20261013",
+      "kind": "live_observation",
+      "scope": "Pre-readonly-fix short repeat finishes native route/Quit without renderer errors but18.4839engineFPSfails19floor;637balancedWorlds. Failedperformance observation only. Historical fingerprints preserved; final readonly-fix public/FPS validation remains pending.",
+      "record": "research/runtime/native-render-bugs-short-fps-negative-20261013.json",
+      "sha256": "977cf07df4228a24c00a2e28b53d3009b4237576f75f42ae8e81e1ade800a604",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.render-bugs-short-menu-timeout-negative-20261013",
+      "kind": "live_observation",
+      "scope": "Pre-readonly-fix repeat times out waiting campaign menu;3776Worlds withemptyrenderererror and no observedGAP. Native57.9125/engine19.3091partial rates are not successful route proof. Historical fingerprints preserved; final readonly-fix public/FPS validation remains pending.",
+      "record": "research/runtime/native-render-bugs-short-menu-timeout-negative-20261013.json",
+      "sha256": "66368aa9d234ff1cf6686477f5026ffc8aa4be00ebe4eb3397b453401bac5041",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.render-bugs-cold-negative-20261013",
+      "kind": "live_observation",
+      "scope": "Pre-readonly-fix coldshadercache fullfunctional campaign passes4446balancedWorlds withzeroordinaryreadbacks, but18.994859engineFPSfails19floor. MesaShaderCacheDisabletrue;49.7207nativeFPS. Doesnotprove intermittentGAPrepair. Historical fingerprints preserved; final readonly-fix public/FPS validation remains pending.",
+      "record": "research/runtime/native-render-bugs-cold-negative-20261013.json",
+      "sha256": "322970c78c8ebd95e4208b39911dac1603af8fd1b2884adfd530a584ca3f6dfa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.readonly-description-continuity.baseline-negative-20261013",
+      "kind": "native_integration",
+      "scope": "Pre-fix actualPE32 desc-timeout false continuity refusal withoriginalquery failure/retry forwarding preserved, epoch0->8and internalreason1/transportGAP2;cross-descpositivecontrol. Retainedhistoric sources; prospectivebehavior didnotyetexist and no currentpromotion credit.",
+      "record": "research/runtime/readonly-description-baseline-negative-20261013.json",
+      "sha256": "da23c9a209557b1daddd7d9976505c0502ceb983e825c0748cd3359bfa69ef20",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/controls_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -123649,6 +123845,21 @@
       "evidence": [
         "NR.displacement-finite-edge.controls-20261013"
       ]
+    },
+    {
+      "id": "readonly-description-fixture-20261013",
+      "scope": "Actual PE32 callbacks under copy50ms, tracker8ms and exclusive-callback50ms contention: two failed/successful description queries preserve original arguments/results/LastError and existing epochs, complete both independently authored native frames, preserve administrative collision refusal. Changed observed metadata, misses of writes and other unsupported mutations still refuse. No original/live equivalence claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.readonly-description-continuity"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py"
+      ],
+      "evidence": [
+        "NR.readonly-description-continuity.controls-20261013"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -124175,8 +124386,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-displacement-finite-edge-20261013.json",
-    "sha256": "3516bf0fd5b4304495b2aeb355016a2b8559cede6678054e0c87271adae210b9"
+    "path": "research/runtime/coverage/source-index-readonly-description-continuity-20261013.json",
+    "sha256": "8dc800f51b01be8ff8cf8582da6d391ce6df54037bca370fd7c2043bfaaea46e"
   },
   "claim_bindings_required": true
 }

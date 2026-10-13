@@ -5,6 +5,7 @@ static u32 (WIN *game_copy_native_stage)(void);
  * callbacks keep generation guards; timeout forwards and invalidates both sides
  * of the unobserved call. Other mutation families retain generation checks. */
 #define GAME_COPY_WAIT_MS 50u
+enum { GAME_COPY_BIND=0, GAME_COPY_MUTATION=1, GAME_COPY_OBSERVATION=2 };
 static u32 game_copy_owner,game_copy_started,game_copy_site,game_copy_phase;
 static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 original_call){
     u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),waited=0;
@@ -21,12 +22,12 @@ static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 ori
             lease.observe=0;
             /* Binding has no original fallback or unobserved pixel mutation.
              * Refuse admission without inventing a missing drawing operation. */
-            if(original_call){
+            if(original_call==GAME_COPY_MUTATION){
                 if(history_current())__atomic_store_n(&history_invalid,1,__ATOMIC_RELEASE);
                 __atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);game_pixel_missed(target);
             }
             u32 values[19]={(u32)target,thread,owner,GetTickCount()-start,GetTickCount()-__atomic_load_n(&game_copy_started,__ATOMIC_RELAXED),__atomic_load_n(&game_copy_site,__ATOMIC_RELAXED),site,__atomic_load_n(&game_copy_phase,__ATOMIC_RELAXED),game_copy_native_stage?game_copy_native_stage():0};
-            lock_diagnostic_values(original_call?"copy_order_timeout":"resident_bind_admission_timeout",values);break;
+            lock_diagnostic_values(original_call==GAME_COPY_OBSERVATION?"copy_observation_timeout":original_call?"copy_order_timeout":"resident_bind_admission_timeout",values);break;
         }
         /* Wait only while this observed owner remains unchanged. Release wakes
          * waiters without relying on Sleep timer granularity; no lost wakeup. */
@@ -36,6 +37,7 @@ static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 ori
  done:SetLastError(error);return lease;
 }
 static struct GameCopyLease game_copy_enter_at(void* target,u32 site){return game_copy_enter_policy(target,site,1);}
+static struct GameCopyLease game_copy_observation_enter_at(void* target,u32 site){return game_copy_enter_policy(target,site,GAME_COPY_OBSERVATION);}
 static struct GameCopyLease game_copy_bind_enter(void){return game_copy_enter_policy(0,0x80000000u,0);}
 static void game_copy_stage(u32 phase){
     /* Tracker release also runs outside an ordered callback. Such a caller
@@ -44,6 +46,7 @@ static void game_copy_stage(u32 phase){
         __atomic_store_n(&game_copy_phase,phase,__ATOMIC_RELAXED);
 }
 #define game_copy_enter(target) game_copy_enter_at((target),__LINE__)
+#define game_copy_observation_enter(target) game_copy_observation_enter_at((target),__LINE__)
 static void game_copy_leave(struct GameCopyLease* lease){
     if(lease->held){u32 error=GetLastError();__atomic_store_n(&game_copy_owner,0,__ATOMIC_RELEASE);WakeByAddressAll(&game_copy_owner);SetLastError(error);}
 }
