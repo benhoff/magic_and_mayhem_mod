@@ -446,3 +446,33 @@ source and historical evidence hashes are unchanged.
 Incoming NS52 c15fd872 has29 file/158 behavior transitions reviewed against exact
 receipts and its actual successful staged gate, with no unresolved accounting
 gaps. This committed-history review adds no new execution result.
+
+
+## Owned transfer and target-repair chain (NS54)
+
+Ownership transfer now calls native whole51edf0 target repair on the same
+canonical actors as its owned recount/lookup/visibility/marker/classification/
+activity rules. Fresh prospectively bound original32/native64/ASan+UBSan+LSan64
+passes16,384 cases through eight unchanged original bodies, with no target-repair
+redirect.43,942 behavior callbacks and27,774 peer callbacks are nonempty. The
+scan reloads mutable count/source owner/later activity, caches behavior before
+action20 callbacks and reloads target/pending afterwards. Callbacks can kill
+a visited actor or disable the next actor without introducing a new intra-slot
+health gate. Full actor/config/relation/limit/selection/source/list/effect/display/
+global/body guards pass. Native CMake build and CTest pass. Immutable proof:
+original-transfer-targets-owned-bound-ns54-20261013.json.
+
+Both transfer and target repair use the same lower.reset consequence, matching
+the shared original50ab30 call. A deliberately rejecting secondary repair reset
+callback verifies that this chain uses the canonical reset service. Lower
+prepare/peer/behavior/reset internals, effect lifetime, UI/color and source
+controller work remain supplied. The finite1..32-actor backing/order/root domain
+and caller rollback for native malformed references stay explicit. Complete
+installed construction, native World/session integration and live replacement
+remain pending; this composed proof promotes neither. The successful development
+record is retained with its original source version; the final shared-reset
+version has its own prospective declaration and stable compiler closure.
+
+NS53 357264ed has27 file/157 behavior transitions reviewed against exact receipts
+and its actual successful staged gate with no unresolved gaps. This incoming
+committed-history review adds no new execution result.

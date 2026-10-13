@@ -8915,3 +8915,21 @@ receipts and actual staged gate with no gaps. History review adds no execution.
   construction and native World/session composition remain pending. Integration
   and live replacement stay none; no balance/veterancy/commander change.
 - NS52 c15fd872 committed-history exact29-file/158-behavior review has no gaps.
+
+
+### NS54: composed ownership transfer and target repair (2026-10-13)
+
+- Whole51ec80 now calls owned51edf0 target repair on the same canonical actors
+  as NS53 recount/lookup/visibility/markers/classification/source activity.
+  Transfer and repair share one supplied reset50ab30 consequence.
+- Fresh bound original32/native64/ASan+UBSan+LSan64 passes16,384 cases through
+  eight whole unchanged original bodies;43,942 behavior and27,774 peer callbacks.
+  Complete backing/global/body guards cover mutable scan count/source owner,
+  cached behavior, callback death/next-actor disable and target/pending reload.
+- Independent native CMake build and CTest pass. Immutable result:
+  `original-transfer-targets-owned-bound-ns54-20261013.json`; explicit headless
+  scenario:`ownership-transfer-targets-owned-20261013`. Development proof retained.
+- Lower prepare/peer/behavior/reset internals, effects/UI/color/controller work,
+  installed construction and full native World/session remain pending. Integration
+  and live replacement stay none; no gameplay balance change.
+- Exact NS53 357264ed history review:27 file/157 behavior transitions, no gaps.
