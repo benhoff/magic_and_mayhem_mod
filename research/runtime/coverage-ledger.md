@@ -9339,3 +9339,21 @@ GPU/CPU/all-writer ownership and a safe general schedule remain unproved. Source
 and scope changes retain historical hashes/stages; no promotion. Step2 and all
 47/21closures remain open; steps3–7 not complete. No new scheduling or gameplay
 policy is applied by this diagnostic increment.
+
+
+## Approved DRAW-02 storage extension (2026-10-13)
+
+The user approved the prepared1344→1360GiB(1.328125TiB)working budget.
+The main checkout and DRAW-02 worktree policies agree;100GiB free reserve and
+automatic archivingoff remain enforced. No cleanup or archiving was performed.
+See [applied provenance](draw02-approved-storage-budget-20261013-02.json).
+The previous7GiB reservation refusal is retained as a historical capacity result,
+not an engine run or automatic-approval rejection. The committed auxiliary
+readback increment d40cd9ef has27exact history receipts with0gaps; this accounting
+adds no retrospective execution claim.
+
+Step2 remains active: the fresh auxiliary witness has5saved-buffer mismatches
+despite2403matching CPU checkpoints. Next validate the current defaultoff
+observer with a bounded original/control capture, preserving failed denominators
+and exact request bindings before any transfer-phase policy. All47journey and
+21operation closures and steps3–7 remain open.

@@ -50,7 +50,7 @@ changes.
 
 ## Working storage budget
 
-- Target at most 1344 GiB (1.3125 TiB) under the main checkout's `working/`, including nested
+- Target at most 1360 GiB (1.328125 TiB) under the main checkout's `working/`, including nested
   worktree output, and retain at least 100 GiB of filesystem free space.
 - Before a storage-producing experiment or large build, use the main checkout's
   `tools/working-retention.py run --reserve-gib <estimated-output> -- <command>`.
