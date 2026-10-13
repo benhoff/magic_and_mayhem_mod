@@ -53932,29 +53932,59 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original local queued-move marker creation",
-      "scope": "Whole512220 local-owner queued move marker creation in recovery: kind2 nodes without effect, owned63-DWORD parameter initialization, allocate49cec0, store token before initialize493f20 kind70, retained token on initializer failure. Actual command delivery belongs520ad0; lower secondary pool/effect/render ownership and fresh comparison/native session integration pending.",
-      "confidence": "provisional",
+      "scope": "Whole512220 local-owner queued-move marker projection for a consistent owned finite order list. Kind2/no-effect admission, zero-initialized63-DWORD parameters with wrapped signed32 destination transforms and reference inequality, optional49cec0 allocation stored before493f20 kind70 initialization, retained token despite initializer failure. Owned opaque tokens may be zero; normalized nonnull legacy pointers represent them. Caller services preserve queue topology/backing. Actual lower secondary/effect/render ownership, command delivery520ad0 and native World/session integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5317152,
-          "scope": "Whole512220 local-owner queued move marker creation in recovery: kind2 nodes without effect, owned63-DWORD parameter initialization, allocate49cec0, store token before initialize493f20 kind70, retained token on initializer failure. Actual command delivery belongs520ad0; lower secondary pool/effect/render ownership and fresh comparison/native session integration pending."
+          "scope": "Whole512220 local-owner queued-move marker projection for a consistent owned finite order list. Kind2/no-effect admission, zero-initialized63-DWORD parameters with wrapped signed32 destination transforms and reference inequality, optional49cec0 allocation stored before493f20 kind70 initialization, retained token despite initializer failure. Owned opaque tokens may be zero; normalized nonnull legacy pointers represent them. Caller services preserve queue topology/backing. Actual lower secondary/effect/render ownership, command delivery520ad0 and native World/session integration excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/order_markers.hpp",
+        "reconstruction/creature-ai/order_markers.cpp"
+      ],
+      "tests": [
+        "tests/creature-order-markers-test.cpp",
+        "tools/test-creature-order-markers.py"
+      ],
       "evidence": [
-        "NS38.services-static"
+        "NS38.services-static",
+        "NS39.markers-original",
+        "NS39.markers-native",
+        "NS39.services-static-v3"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/order-markers/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Owned consistent lists0..15 nodes, matching/nonmatching local owners including-1, dead/living actors without invented health gate",
+          "Kinds0..4, existing/missing effects, partial allocation failure, arbitrary initializer returns ignored",
+          "Complete63-DWORD parameters, independent XYZ reference differences and signed32 coordinate extremes with DWORD wrapping",
+          "Store-before-initialize assertion, logical zero token, full actor/container/sentinel/node/token/body guards"
+        ],
+        "excluded": [
+          "Malformed raw pointers/list topology and callbacks changing owned queue backing/topology",
+          "Actual lower secondary pool/effect/render/World ownership, installed profiles and native session integration",
+          "Incidental EAX result semantics and actual520ad0 command delivery"
+        ]
       }
     },
     {
@@ -53977,7 +54007,8 @@
       "implementation": [],
       "tests": [],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS39.services-static-v3"
       ],
       "status": {
         "understanding": "partial",
@@ -54007,7 +54038,8 @@
       "implementation": [],
       "tests": [],
       "evidence": [
-        "NS38.services-static"
+        "NS38.services-static",
+        "NS39.services-static-v3"
       ],
       "status": {
         "understanding": "partial",
@@ -54037,7 +54069,8 @@
       "implementation": [],
       "tests": [],
       "evidence": [
-        "NS38.services-static"
+        "NS38.services-static",
+        "NS39.services-static-v3"
       ],
       "status": {
         "understanding": "partial",
@@ -54063,7 +54096,8 @@
       ],
       "tests": [],
       "evidence": [
-        "NS38.services-static"
+        "NS38.services-static",
+        "NS39.services-static-v3"
       ],
       "status": {
         "understanding": "scoped",
@@ -109649,6 +109683,158 @@
           ]
         }
       ]
+    },
+    {
+      "id": "NS39.markers-original",
+      "kind": "isolated_original",
+      "scope": "Prospectively bound whole512220 projection:16384 original32/native64/sanitized64 cases, complete actor/container/sentinel/node/token/body guards and full63-DWORD parameters. Includes store-before-initialize and valid logicalzero tokens. Lower allocation/secondary/render ownership and native World/session integration excluded.",
+      "record": "research/runtime/original-creature-order-markers-bound-20261012.json",
+      "sha256": "f9fd73215b0b7e4f76a8d6d977978a51f7dfed667a3b8a67f48caff766447527",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/allocation_calls",
+          "equals": 14042
+        },
+        {
+          "pointer": "/initialized_markers",
+          "equals": 10530
+        },
+        {
+          "pointer": "/zero_token_markers",
+          "equals": 6593
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS39.markers-native",
+      "kind": "native_integration",
+      "scope": "Prospectively bound whole512220 projection:16384 original32/native64/sanitized64 cases, complete actor/container/sentinel/node/token/body guards and full63-DWORD parameters. Includes store-before-initialize and valid logicalzero tokens. Lower allocation/secondary/render ownership and native World/session integration excluded.",
+      "record": "research/runtime/original-creature-order-markers-bound-20261012.json",
+      "sha256": "f9fd73215b0b7e4f76a8d6d977978a51f7dfed667a3b8a67f48caff766447527",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/allocation_calls",
+          "equals": 14042
+        },
+        {
+          "pointer": "/initialized_markers",
+          "equals": 10530
+        },
+        {
+          "pointer": "/zero_token_markers",
+          "equals": 6593
+        }
+      ]
+    },
+    {
+      "id": "NS39.services-static-v3",
+      "kind": "static",
+      "scope": "Fresh pinned helper export with corrected queued-marker/conversion labels, aligned inline contribution window509fa4 and living predicate412aa0 plus four environment dispatch targets. Static only; not execution equivalence.",
+      "record": "research/runtime/original-creature-services-static-v3-20261012.json",
+      "sha256": "1bb30758ec9f4014e975c71f7c388f081953ad05081688e9dfe8abef6610da7e",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -123177,8 +123363,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-creature-object-action-v2-20261012.json",
-    "sha256": "46636b67d0d9dceeedef3d01436a76c0a219be1cb67f982475148f73d1811682"
+    "path": "research/runtime/coverage/source-index-original-creature-markers-20261012.json",
+    "sha256": "9a8727c362965bb47442223669691173912bf9d4a12cb1b445bfb20dff85aa8d"
   },
   "claim_bindings_required": true
 }

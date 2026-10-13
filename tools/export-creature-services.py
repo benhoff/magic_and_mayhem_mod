@@ -10,9 +10,11 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 HASH = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 RANGES = {'object-action': (0x50f3b0,0x50f590),
-          'queue-delivery': (0x512220,0x512335),
-          'upkeep': (0x514c60,0x514e33),
-          'environment': (0x52a9f0,0x52ab17)}
+          'queued-markers': (0x512220,0x512335),
+          'owner-conversion': (0x514c60,0x514e33),
+          'environment': (0x52a9f0,0x52ab17),
+          'resource-contribution-window': (0x509fa4,0x50a0da),
+          'living-predicate-window': (0x412aa0,0x412ad0)}
 
 
 def sha(raw):
@@ -56,6 +58,7 @@ def main():
             report['bodies'][name] = {'start': start, 'end': end,
                                       'sha256': sha(body), 'anchor': body[:16].hex()}
             report['artifacts'][artifact.name] = sha(artifact.read_bytes())
+        report['environment_dispatch'] = {'address':0x52ab18,'targets':list(struct.unpack('<4I',image_bytes(0x52ab18,16)))}
         report['entry_anchors'] = {hex(v['start']):v['anchor'] for v in report['bodies'].values()}
         report['input_unchanged'] = executable.read_bytes() == raw
         if not report['input_unchanged']:

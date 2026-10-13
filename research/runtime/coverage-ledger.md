@@ -8554,3 +8554,14 @@ pending, with no native session integration or live replacement. NS38 sources
 were recovered into an isolated worktree after concurrent origin reconciliation
 stashed them; all nine source hashes still match the prior bound execution.
 See [creature services](creature-services.md) and the preserved recovery report.
+
+## NS39: original queued move marker projection
+
+Whole512220 passes16,384 prospectively bound original/native/sanitized cases,
+full63-word parameters and actor/list/pool/body guards. Allocation is stored
+before initialization; failed initialization retains the token; logicalzero
+tokens remain valid. This is visual marker creation, separate from520ad0 command
+delivery. Lower secondary/render/World ownership and session integration remain
+pending. Staticv3 corrects helper labels/window alignment and maps all four valid
+environment arms plus the living predicate; out-of-table latch semantics remain
+unresolved. See [creature services](creature-services.md).

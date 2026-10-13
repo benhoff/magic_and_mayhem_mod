@@ -63,3 +63,26 @@ pool/body guards and ordered calls match. Recovery from the concurrent main
 stash preserves every source hash; the isolated native CMake build and CTest
 also pass. Complete lower World/service ownership and session integration stay
 pending. No original pointer/cycle or incidental-return semantics are claimed.
+
+## Queued marker current comparison (NS39)
+
+Whole512220 passes16,384 prospectively bound original32/native64/sanitized64
+cases with ordered allocation/initialization and complete63-word/full-byte
+guards. Token storage precedes initialization; failed initialization retains
+the token. Logical tokenzero is valid when mapped to a nonnull owned legacy
+fixture pointer. Command delivery and lower renderer/secondary ownership remain
+separate; no native World/session or replacement stage is promoted.
+
+The fresh staticv3 record preserves corrected helper labels and aligns the
+contribution window at509fa4. Staticv2 remains retained inworking with its
+misaligned509fa3 window and is not registered as semantic/execution proof. The
+living predicate412aa0 returns health!=0. The environment table maps kinds0/1
+to52aaa6 (top below waterline), kind2 to52aad0 (water edge test), and kind3 to
+52ab04 (clear latch). Those valid arms always assignBL. Out-of-table kinds retain
+the uninitialized/prior latch and remain an explicit unresolved domain.
+
+The isolated native CMake build and CTest for markers pass. The first configure
+attempt was launched from the storage wrapper's main-checkout cwd and stopped
+before building; retry explicitly sets the isolated worktree cwd. Both logs are
+retained. The explicit storage wrapper also resolves the earlier approval-review
+rejection of an interactive-shell build submission. No build remains blocked.
