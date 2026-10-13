@@ -44088,7 +44088,8 @@
         "DRAW02.draw02-whole120-epochs-pending-diagnosis-01-20261012",
         "DRAW02.draw02-whole120-epochs-original-02-20261012",
         "DRAW02.draw02-whole120-epochs-binding-01-20261012",
-        "DRAW02.draw02-whole120-epochs-chain-01-20261012"
+        "DRAW02.draw02-whole120-epochs-chain-01-20261012",
+        "DRAW02.draw02-copy-storage-original32-04-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45587,7 +45588,8 @@
         "DRAW02.draw02-region-selection-pause-original-02-20261013",
         "DRAW02.draw02-source-physical-close-original32-01-20261013",
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
-        "DRAW02.draw02-copy-order-original32-02-20261013"
+        "DRAW02.draw02-copy-order-original32-02-20261013",
+        "DRAW02.draw02-copy-storage-original32-04-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45877,7 +45879,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-source-physical-close-copy-order-01-20261013",
-        "DRAW02.draw02-copy-order-producer-links-01-20261013"
+        "DRAW02.draw02-copy-order-producer-links-01-20261013",
+        "DRAW02.draw02-copy-storage-producer-links-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45922,7 +45925,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-copy-order-fixture-02-20261013",
-        "DRAW02.draw02-copy-order-original32-02-20261013"
+        "DRAW02.draw02-copy-order-original32-02-20261013",
+        "DRAW02.draw02-copy-storage-original32-04-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45960,7 +45964,8 @@
         "tools/drawing_wine_blit_packet.py"
       ],
       "evidence": [
-        "DRAW02.copy-api-worker-bindings-01-20261013"
+        "DRAW02.copy-api-worker-bindings-01-20261013",
+        "DRAW02.draw02-copy-storage-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46066,6 +46071,45 @@
       },
       "remaining_gaps": [
         "Original32all1337source checkpoints match unchanged return-order replay. Original120compares2182:2180match, canvas2/checkpoint1335fails1600pixels andcanvas22/checkpoint1336fails950. Initial native terminal refusal retained with0compared. The strict V4 metadata terminal is validated separately. These scoped results do not repair driver/noncopy/CPU ordering, views/aliases/lifetimes, physical coherence or whole47journey/21operation closure."
+      ]
+    },
+    {
+      "id": "NR.drawing-copy-failure-provenance",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Preserve primary acquisition failures alongside copy journal refusal",
+      "scope": "Optional copy journal admission retains its separate error without replacing an existing acquisition exception or primary error text. Missing/incomplete journals refuse successful acquisition; a valid journal never promotes an already failed acquisition. No change to runtime journal bytes, renderer, source ordering, original behavior or complete journey closure.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-order.md"
+      ],
+      "implementation": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "tests": [
+        "tests/test-drawing-copy-failure-provenance.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_copy_order.py",
+        "tests/test-drawing-copy-order.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-copy-failure-guards-01-20261013",
+        "DRAW02.draw02-copy-storage-original32-04-20261013",
+        "DRAW02.draw02-copy-storage-original32-negative-01-20261013",
+        "DRAW02.draw02-copy-storage-original32-negative-02-20261013",
+        "DRAW02.draw02-copy-storage-original32-negative-03-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Four native guards and fresh explicit800x600x24 original32capture pass after the host error-path fix. Prior failures and primary-error masking remain preserved under their original hashes. Same observer binaries in the default-display failed and explicit-size successful narrow profiles; observed800x600x16SetDisplayMode failure0x80004001does not establish all startup/environment causes. Source/physical ownership and all47journey/21operation closure pending."
       ]
     }
   ],
@@ -99246,6 +99290,110 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-failure-guards-01-20261013",
+      "kind": "native_integration",
+      "scope": "Four executed native guards retain primary acquisition exception/report alongside missing/incomplete journal errors, refuse otherwise successful acquisition on journal failure, and prevent valid-journal promotion of failed acquisition.",
+      "record": "research/runtime/draw02-copy-failure-guards-01.json",
+      "sha256": "4fad82c3e7618bdc693b1acc0dc22d7f2026792cd6f1c68959d8ac7d12093a99",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-storage-original32-04-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh explicit800x600x24 private-display original32capture:906paired copies,972closed storage calls/897lock-return epochs/118local address IDs; actual gameexit0. No storage lifetime ownership or native parity.",
+      "record": "research/runtime/draw02-copy-storage-original32-04.json",
+      "sha256": "a5e3d28fe94da2bf9e607d69390c726f5becc5c93c20a4eb9597154baa6698ae",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-storage-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Static exact906request/API/worker associations,0unbound requests,1251excluded APIentries and44adjacent return reversals in the fresh storage cohort. No source ownership or general replay policy.",
+      "record": "research/runtime/draw02-copy-storage-bindings-01.json",
+      "sha256": "6469235c28872b677419f0945bedb386e131a461f12f78ab85f8d62d96514c62",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-storage-producer-links-01-20261013",
+      "kind": "static",
+      "scope": "Static exact906journal/producer COPYlinks,0unmatched and44adjacent entry/return reversals. No original reexecution or general driver-order repair.",
+      "record": "research/runtime/draw02-copy-storage-producer-links-01.json",
+      "sha256": "8a9a4750fb98209f5a3aaa8d8a60236a2951c4915d5b36f500cd897ab8b01f8e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-storage-original32-negative-01-20261013",
+      "kind": "static",
+      "scope": "Preserved failed storage acquisition report only; legacy frontend replaced primary cause with missing/incomplete copy journal. First run lacked display; second/third retain incomplete startup prefixes. No successful original acquisition or native validation.",
+      "record": "research/runtime/draw02-copy-storage-original32-negative-01.json",
+      "sha256": "2094053a19790ca7225334981fc2d25d588b372979d8d558928580fd3dfdbc41",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-storage-original32-negative-02-20261013",
+      "kind": "static",
+      "scope": "Preserved failed storage acquisition report only; legacy frontend replaced primary cause with missing/incomplete copy journal. First run lacked display; second/third retain incomplete startup prefixes. No successful original acquisition or native validation.",
+      "record": "research/runtime/draw02-copy-storage-original32-negative-02.json",
+      "sha256": "f117351b667a454cda2aeae9405487b6a6735ad673801a18bdd656fa44e09af0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-storage-original32-negative-03-20261013",
+      "kind": "static",
+      "scope": "Preserved failed storage acquisition report only; legacy frontend replaced primary cause with missing/incomplete copy journal. First run lacked display; second/third retain incomplete startup prefixes. No successful original acquisition or native validation.",
+      "record": "research/runtime/draw02-copy-storage-original32-negative-03.json",
+      "sha256": "86de83cf3036ee4dcd10298b92c4365d408fc8bb42e11fe5f349daf48e9fa067",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111407,8 +111555,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-copy-checkpoints-20261013.json",
-    "sha256": "550e9482fd4a57d56ca99810546925445e5a15fe8cfc880983c1f27d14e13e13"
+    "path": "research/runtime/coverage/source-index-draw02-copy-failure-storage-20261013.json",
+    "sha256": "695b427a32701e3843088b4360ee991faa7cec1ebf19e297f6cf77f0a8dc13bf"
   },
   "claim_bindings_required": true
 }

@@ -2270,3 +2270,45 @@ canvas-storage observations before adding resource observers, and retain the
 primary failure cause. General driver/noncopy/CPU ordering, source views/aliases/
 lifetimes and complete physical acquisition remain pending. Step2and all47/21
 remain open; steps3–7stayordered/pending.
+
+
+## Step 2 failure provenance and storage retry (2026-10-13 UTC)
+
+Complete checkpoint comparison committed asb670a41a; staged/normal hook checks
+pass. Reviewed13c03f33..b670a41a:9exact receipts,0gaps. The host frontend now
+preserves the primary acquisition exception/error and records optional-copy
+journal refusal separately ascopy_order_error. Missing/incomplete journals
+still refuse successful acquisition; valid journals never promote an already
+failed acquisition. Four executed failure guards, four decoder guards and
+eight source-cursor frontend guards pass.
+
+The smaller storage retry also failed before source recording, leaving headers
+and an incomplete APIprefix. Its original DirectDraw SetDisplayMode800x600x16
+call returns0x80004001(E_NOTIMPL); there is no normal source/exit result. All
+three earlier negative reports and raw runs remain retained. They do not
+validate a storage/resource observer defect; primary-error masking is itself a
+separate host failure.
+
+Fresh retry withxvfb-run -a -s '-screen 0 800x600x24 -nolisten tcp' passes:
+32bound source queues/151219records/1321oracles/27808690bytes;906paired
+copy requests;972storage calls/returns,0open calls,897observed lock-return
+epochs and118local address IDs.600physical planes/1746consumed inputs and
+actual gameexit0 complete. Original manifests verify2927files before/after.
+The same narrow failed/successful profiles have identical observer/executable
+binaries and source inputs; the fresh original SetDisplayMode call returns0.
+This records a reproducibility constraint for private display geometry, not a
+proof of all startup causes or complete display-route behavior.
+
+Static associations link all906requests to exact API/worker identities, with
+0unbound source requests/1251excluded APIentries/44adjacent return reversals.
+Producer cross-check independently matches all906COPYrecords. The storage
+epochs/addresses are process-local observations, not allocation lifetimes,
+source ownership or cross-launch stable identities. Earlier current-source
+claims involving the changed host frontend remain historical until refreshed
+within their exact scopes; no old evidence hash is rewritten.
+
+Reassessment: reintroduce resource-map/map-point/resource-copy observers on this
+explicit-size private display to investigate CPU/driver view boundaries. Keep
+complete32source checks, failed120checkpoints, host error guards, startup failures
+and successful storage acquisition independent. Step2and all47/21remain open;
+steps3–7stayordered/pending.

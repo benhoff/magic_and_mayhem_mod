@@ -71,3 +71,21 @@ The successful32comparison alongside45observed return reversals establishes
 that those reversals do not invariably cause different checkpoint output. The
 120failures narrow the concrete interval requiring ordering/view investigation;
 they do not establish the general cause or a safe record-sorting repair.
+
+
+## Storage acquisition and primary failure provenance
+
+Three failed storage acquisitions remain retained. The narrower default-display
+run reaches original SetDisplayMode800x600x16with0x80004001(E_NOTIMPL), then
+retains no source interval. The frontend formerly replaced this acquisition
+error with incomplete optional-copy journal refusal; it now preserves the
+primary exception/error and recordscopy_order_errorseparately. Four executed
+guards retain both failures and prevent false acquisition promotion.
+
+An explicit800x600x24 private-Xvfb retry with identical runtime binaries passes
+32queues/906requests/972closed storage calls,897lock-return epochs and118local
+address IDs, with actual gameexit0. All906COPYrecords and API/worker associations
+match;1251additional APIentries and44return reversals remain explicit. Local
+epoch/address observation does not assert storage ownership or stable addresses
+across launches. The screen-geometry observation constrains reproducibility;
+complete startup causes and CPU/driver views remain pending.
