@@ -76,3 +76,30 @@ inputs contain only parameters and pinned encoded assets; original planes stay
 external. Neither candidate counts nor0compared in the failed attempt establish
 a match. Original120interval alignment and all gate/source/cursor/lifetime/routes/
 shutdown/47journey/21operation closure remain open; steps3–7stayordered/pending.
+
+## Step 2 original120 source-close and ordering failure (2026-10-13 UTC)
+
+The32queue source-close increment committed as73ce54c3with staged/normal hook
+checks. Reviewed81128d74..73ce54c3:12exact receipts, zero gaps. Fresh120mode
+passes120bound advancing queues across132windows,921758producer records,
+2182oracles/262280756bytes. Record headroom is126818under1048576; no budget
+was reset. Actual gameexit0/MainQuit and1064accepted/213refused gate pairs
+with0scoped journal gaps pass; original manifests verify2927files before/after.
+Physical interval723contains141accepted leases,76gate refusals,252source
+refusals,253method/flag domains and1producer-stopped context;69later contexts
+remain outside. This confirms the observed-boundary policy at120, not atomic
+source/physical lifetime ownership or full shutdown.
+
+Completed native141comparison has140matches and1failed40x40region at
+440310..480350(API3768/EGL430/prefix208533), with1600source and display
+pixel differences.651exclusions remain. The failed report is preserved;
+nativeexit0does not establish parity. Original CPU checkpoints1334/1335remain
+equal while native1335changes after background-copy replay. Exact local
+matching proves driver full-copy commands1037/1038finish before background
+save1039enters, yet producer return records208516/208517list save before full.
+
+Reassessment: add explicit copy request/entry/return/API/worker associations
+before a general ordering or storage-view repair. The local reversal is confirmed;
+its complete causal scope remains provisional. No record swapping by hypothesis,
+original-pixel input, failed-context exclusion or old-hash refresh is accepted.
+Step2and all47/21remain open; steps3–7stayordered/pending.

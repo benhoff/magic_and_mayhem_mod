@@ -540206,6 +540206,294 @@
         "evidence": [],
         "reason": "Four meaningful interval guards, three original source marker methods and eight cursor frontend guards pass. Original32passes32queues/179599records/1346oracles/33001100bytes with original manifests2927files before/after. Host native retry114source/display comparisons yields0differences;373exclusions remain. Physical close is host-observed, with1in-flight/detection boundary and249after-close contexts; no atomic ownership, full original120/allroute/shutdown/47/21closure or replacement promotion. Shared frontend/source link edits retain15explicit new gap identities and unchanged historical hashes."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a579b4ea10f82bbb6c0f78a090ddcf5f0bef91cbc7d8fd5b2cf86929a9dcf658",
+          "before_sha256": "3da380c3c212f8fa738dbfda08d9394e0a6318b9efd39a8299f1c1bf5ea25a5c",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "39eef36ffd3de1745d7c8ac9e1884ccd6b082d2f5ec4f69adce66f67a112f4ae",
+          "before_sha256": "1a0980c3a6bc5af41d2256f5223c3342fdede796ca642e16c908db962fd8e30a",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "fbcd9998bca7efd80abc43adec983cf8feb42ab283e935feca49887639e29052",
+          "before_sha256": "efa937a2ccd69f2d6bcb47622b3639c95f0ee278e0633047a467e10461f983f0",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "fe8ba7c0674a5d81d92f35600b020aeefa2abe8c53993c8a257cf3371b0c5cef",
+          "before_sha256": "85ce9d0c395c38078e6cd596f7d5fa87017121be219276c9bf6b5a5f583f343d",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "9e1ea428f0c3eef40fe8835c8e6a0d728eed866ff6f3e1e3cd3b4478778669e3",
+          "before_sha256": "453f28aef4c6cc594926608f177968440d8b187e958c7b610f8bbe6ae15b4449",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "1009de01c259b78ba0f5e7b02eb7a71b93b6f873970d718b3d9e8e1ea204150c",
+          "before_sha256": "bf1277b72fd00fb7c3977b6f372c5acdbc0f16723ed847c2ee15f71bd2217c01",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "fa39eb7ce9f4e3cf15c8354e9517e11bb79c6c2566b74688911613bca985486a",
+          "before_sha256": "49d78dbdb7ea19138094bd0ef673eb163a3ca4c2287eac0b43feb755ac73ef88",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "c5de04a9c2fa788bbd357bcabb424ba65bd0c2f07be14c91ecd0f8fd12731158",
+          "before_sha256": "790281c6453aed80ea1cdb72679479818933946b3f637e4faa6dc2bd96c615d1",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "0e6e9529f6bcd57b2e1b66ca1e54918cac25450ce5b06e8eafe8756af796fba0",
+          "before_sha256": null,
+          "id": "NR.drawing-copy-order-observation"
+        },
+        {
+          "after_sha256": "6e92d9f923f7f56e31864629cd509ab9c0490a00d8958ad85327d21535fe045c",
+          "before_sha256": "6e92d9f923f7f56e31864629cd509ab9c0490a00d8958ad85327d21535fe045c",
+          "id": "NR.drawing-cursor-gate-forwarding"
+        },
+        {
+          "after_sha256": "610dffc565c0be42d2130cca917c3d9fb27f160e3315af726a1611b46c3b5d6b",
+          "before_sha256": "610dffc565c0be42d2130cca917c3d9fb27f160e3315af726a1611b46c3b5d6b",
+          "id": "NR.drawing-cursor-kernel-lease-state"
+        },
+        {
+          "after_sha256": "346f32f7b21a1abc55a820ac415f34510dc24b17df1f653cf1570617e9dc4429",
+          "before_sha256": "5039eea72dcd9f2b0563b53cd96cfd2c4ad57cf2e03e42ed36e545b66e8c0f08",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "1de26aae9b8054c964dcbe39df5a42e4bc0d1138eb4a3c95d71287f3a7cd24df",
+          "before_sha256": "dccf6ffbd7c2f5344495d991c93641ae5051b07e8b01135eaaf09a5406f90568",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "e84bc63d795428c682838e0a62f5ed03fe8019b942efa9a0dcc418190c06f2a7",
+          "before_sha256": "e84bc63d795428c682838e0a62f5ed03fe8019b942efa9a0dcc418190c06f2a7",
+          "id": "NR.drawing-cursor-source-gate"
+        },
+        {
+          "after_sha256": "3d21053ad4c681fb48ffe636e2654a923949b6bc4927aefdf8eb7bf887a92b4c",
+          "before_sha256": "ded8bd2cf5c3ef197c02509a58c5eaf410545c973510cc25824d2e2ac6d70131",
+          "id": "NR.drawing-cursor-source-gate-module"
+        },
+        {
+          "after_sha256": "94b0f1b2e087e59ea99b5e8ad83fc6e05f8f1aabd702172d83babc535b14995f",
+          "before_sha256": "4cbea4f8e299b1ecb48b070466e7e348f0a26cba92ca15ae95b9bfea15bb1a65",
+          "id": "NR.drawing-egl-source-domain-accounting"
+        },
+        {
+          "after_sha256": "2b1be8e1573dda98aaef93ebc9dcf4c02d778d797f10f6f6d21f104d39432200",
+          "before_sha256": "2b1be8e1573dda98aaef93ebc9dcf4c02d778d797f10f6f6d21f104d39432200",
+          "id": "NR.drawing-engine-update-windows"
+        },
+        {
+          "after_sha256": "ae33724b16bb0359fa8430197151d721de044b6d10285a29440fe0d2a58b1ba6",
+          "before_sha256": "30d3b7be6473fb05a6f15ca3dab7f38758ca18de2be49eca3efcf0dca2b34566",
+          "id": "NR.drawing-held-source-egl-causality"
+        },
+        {
+          "after_sha256": "4c122dc4f77b719e189cafc8e0950c5670b72ca51dec34a8508a2fb422f43180",
+          "before_sha256": "e6c74a0417c52cabe94faf2ff1fd0ca079df436a3b875828a5579f87359093c2",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "db1841bb68b2ad3c1aa8021921b8ea48d857bb52486cc2d0b618fc4a33f51b4b",
+          "before_sha256": "abebce8c5fc03473d02d96814fa039230ccd28065f1bb8bc037ee7b03bc62809",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "8c4fc5618fbf89fb62a52c5e138f79d053d13bf452a730a66ea1ec762e19b32f",
+          "before_sha256": "8c4fc5618fbf89fb62a52c5e138f79d053d13bf452a730a66ea1ec762e19b32f",
+          "id": "NR.drawing-interactive-acquisition"
+        },
+        {
+          "after_sha256": "4ef14208e8a9f09aa1b8215874dc0a6aa00f4aa4bb9f02688273c85f4a8afb9d",
+          "before_sha256": "2b3047f3043863d1b9f20e5c65a2b698785d40e254264bd6a39a9dbab41a3482",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "cdbdff36bf9f0a864e5d29c955258204807e3bee41166857a75a29d850daadb8",
+          "before_sha256": "cdbdff36bf9f0a864e5d29c955258204807e3bee41166857a75a29d850daadb8",
+          "id": "NR.drawing-pause-key-observation"
+        },
+        {
+          "after_sha256": "132b2a264aff0f9d018a421390acd0c97a1e1af6ae05db993e405fa8dfe04a16",
+          "before_sha256": "132b2a264aff0f9d018a421390acd0c97a1e1af6ae05db993e405fa8dfe04a16",
+          "id": "NR.drawing-physical-sample-timing"
+        },
+        {
+          "after_sha256": "c15fd5b25b28a62db7d6ff2f4293696c42e0339580b90751781ce8385a552e2e",
+          "before_sha256": "c15fd5b25b28a62db7d6ff2f4293696c42e0339580b90751781ce8385a552e2e",
+          "id": "NR.drawing-producer-source-points"
+        },
+        {
+          "after_sha256": "a47fe57b67aa9671884ec6c406c4763ee578b43197efc59515e98afe4a43311a",
+          "before_sha256": "a7ed73c51835e86b877640ed420ca94f109fd0205b7450479cd875419fbdb975",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "b2f57525509f85a299f21639f9194529aa2e23bd349885d04c8e56b78dcf85b5",
+          "before_sha256": "4f0091cf6095f34af7142ee4d459393fbdd87d47603a118d286bc5842bb3f020",
+          "id": "NR.drawing-quit-dispatch-observation"
+        },
+        {
+          "after_sha256": "7e036e88f691b3c5cd824b3c350e8c0e600d1b2871a4a5ba20596d00702b22e4",
+          "before_sha256": "abce1ce3b53e618f0d8a381a49c45cc264510c4daeb42c825f4892b94a88f52c",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "dce568467cd3151a9467db14c672930121a062d7da875f212b8aeced923c5e13",
+          "before_sha256": "e005ed27e865e7234c6090210c938a785f1399ef3015a3f9397fbc4a545b1daf",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "ba3c2f18e33bc30af332ddb2c99f2142ee04551db93429fcd072be8c9e495166",
+          "before_sha256": "ba3c2f18e33bc30af332ddb2c99f2142ee04551db93429fcd072be8c9e495166",
+          "id": "NR.drawing-result-comparison"
+        },
+        {
+          "after_sha256": "06ac9e421fc3a603f51d4ed23a142548ff5d04094aa1ba9a53e2ee05188b6c67",
+          "before_sha256": "06ac9e421fc3a603f51d4ed23a142548ff5d04094aa1ba9a53e2ee05188b6c67",
+          "id": "NR.drawing-selection-toggle-observation"
+        },
+        {
+          "after_sha256": "d69b460bea7f97a384ffff4c52ff5cb7624f2d47efb19b374aca85effd1d0d61",
+          "before_sha256": "ef4a12b0aa6ca93b12d84225e5031131f4095c498f1f8b6002761b2a1eab3f3c",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "e0337b94f595c079466b96a888326c2dac00f3854fdc83e372d4c1f7e9a63553",
+          "before_sha256": "e0337b94f595c079466b96a888326c2dac00f3854fdc83e372d4c1f7e9a63553",
+          "id": "NR.drawing-session-api"
+        },
+        {
+          "after_sha256": "b0158052cd802005f1912ae0dcabdd5f3f06c3a0b94f8a013977bf8a323796c7",
+          "before_sha256": "513dc6e75748486d2800f2224490249d788d48191619fc970351bea295cdd7ee",
+          "id": "NR.drawing-source-cursor-gate-binding"
+        },
+        {
+          "after_sha256": "7db79a6c714d7f493f264f8ee83e39529a3c89711e9b45028c14f0ef802bae99",
+          "before_sha256": "4deb31a5e6a2a4f497bcf1e1e70716774dbc24593958b98820385c93ee2384cc",
+          "id": "NR.drawing-source-physical-interval-close"
+        },
+        {
+          "after_sha256": "82ad365ad1d72c1fe94b89fc92ec163383f77fc0bf9f2c4f0ed9cb03910bd67c",
+          "before_sha256": "48a1ce879966428fd3d9898762eb28e774de83b60c5900b022686f5c67dbbde1",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "032dbd925d636be75434fc0f452f4e1bfc4da9e900f3537a576ced9f1088e841",
+          "before_sha256": "032dbd925d636be75434fc0f452f4e1bfc4da9e900f3537a576ced9f1088e841",
+          "id": "NR.drawing-two-stage-source-chain"
+        },
+        {
+          "after_sha256": "b470a8abfed8e97ba4e20f6e0fa31bc95d1671c68570cb5481ee782bc80c11eb",
+          "before_sha256": "d28dc82d918561cd34e44c04ffdcc94c4b7a92a9fba709759076f69ceb57ec74",
+          "id": "NR.drawing-whole120-acquisition"
+        },
+        {
+          "after_sha256": "d084383515baa422cfd0b30f514499dc5b19476e982322e29c8b53913bfa59cd",
+          "before_sha256": "d084383515baa422cfd0b30f514499dc5b19476e982322e29c8b53913bfa59cd",
+          "id": "NR.drawing-x11-delivery-observation"
+        },
+        {
+          "after_sha256": "7f829c8ef1bf6c085d25691afa958c8890122e58eb8a508d6f13a8b586a4b1ba",
+          "before_sha256": "59bad8fd376a8b7779cbb7e83c6e28908002e875b7347d3cebf7138e22201e40",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "2cacb563f525ae3d4a6bc58171a6ad2833ce079e56c56087dc2bd51db2266267",
+          "before_sha256": "b80551682c53c05d0c4ce413741eaed96afeba9ef99e26bd85e6d0bca3d89b7e",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "cd962e84ebc2f4a15e18efb7c07b125db9b4c8078b6c1bd79603ff3a5ff6d614",
+          "before_sha256": "33e38bb2e9c391f45b4f64acd5a8dce1ea01aa8b001b23cc76b69f8d2adcec24",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "62f8e4a4b2840f993b4486143df440cea10385b020e9bd242281654022451de5",
+          "before_sha256": "1c3a38ec8088757a00109420680d5a3472dab664c214fad111ea3dee0141291a",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8b4e838b264cc0ab1d86c87e4448ccdc37f1f42f7fdc6cda39f222a77b8b18d9",
+          "before_sha256": "e0f2cc507823f20358c53c83c187c4e87d32a8cd8cd25e36cc70d0096adda2f9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "45a9837f83eea41bc273511155b10afa344bdddf01d9c397cf9d79ecf4d1fd69",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-source-close120-order-20261013.json"
+        },
+        {
+          "after_sha256": "e8b96663e6d7abf723b4e0ee70f0c8593b0a8c19a0d47b8534e5aebfe16762ed",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-copy-order.md"
+        },
+        {
+          "after_sha256": "2b645761898eb2f03bc3623bf200af5b063a7e6705c4e615fd765bb0ecd475cb",
+          "before_sha256": "f4c491382c19558043bf503b577400d68a38c9e5c84fc3bfab02ca27d59fb7eb",
+          "path": "research/runtime/draw02-egl-source-domains.md"
+        },
+        {
+          "after_sha256": "0af433f21a794e6a6fcc0771b5e31c7a72eaf6280d51acf3e91cef5fe45f93d7",
+          "before_sha256": "2ba56bdf4a504fb7d0823adeb4624f168f7246b3fc483e58da2648febbd2914d",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "d854fa5b763b8965f25a4a55b22c2b6aa49822e7a97fb289661b258c72613d52",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-physical-close-copy-order-01.json"
+        },
+        {
+          "after_sha256": "4d9f669cdd68c66d1495ed53b906ebab1a93be0490420a63cd1f17ed8e1c5f44",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-physical-close-domains-120-01.json"
+        },
+        {
+          "after_sha256": "0229b1d5ce756acd030ed789e8629d43a4ec5dbfa11a7ba2410c14788f3c3b5c",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-physical-close-held-egl-120-01.json"
+        },
+        {
+          "after_sha256": "ce6fb88b57f25db6fe632d4707a461f667e075871901b80075a153d728bc3ee7",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-physical-close-original120-01.json"
+        },
+        {
+          "after_sha256": "914d05c132b324584d14f5d5cd424622d02231001ebc385fbce656fbe282b2ad",
+          "before_sha256": null,
+          "path": "tools/analyze-drawing-copy-order.py"
+        },
+        {
+          "after_sha256": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+          "before_sha256": "d9b927eebf99cc1144a60e1217c92dbfc17c5b8b33ab0e1b3a913844caf9753f",
+          "path": "tools/drawing_api_session.py"
+        }
+      ],
+      "id": "draw02-source-close120-native-failure-and-copy-order-observation-20261013",
+      "pending_gaps": [
+        "behaviors_without_comparison:b8745f0eca6fd96a374224c599ade08f1c4121be5dc7d78a6c31ab760ad12529",
+        "behaviors_without_scenarios:b8745f0eca6fd96a374224c599ade08f1c4121be5dc7d78a6c31ab760ad12529",
+        "validation_gaps:f03779b027891a1a73848747ed5748cfe8f0b23fa1f4174681a43b335ec870a3"
+      ],
+      "reason": "Reviewed fresh120source-close original capture and immutable native failure:120bound advancing queues/132windows/921758records under1048576cap,723closed/69later physical contexts, actual gameexit0 and0scoped gate lifecycle gaps. Completed141context native execution matches140but differs1600pixels in one40x40source/display region; no parity promotion. New static analyzer binds unique local full/background copy records to API3756/3757and observed driver completion before background entry, opposite producer return order208516/208517. Original CPU checkpoint1334/1335unchanged while native1335changes. Preserve ordering as confirmed and complete cause/views/aliases/general repair as hypotheses. Census/links reviewed;81128d74..73ce54c3has12exact receipts/0gaps.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Original120capture and manifests2927files before/after pass, but source-only native141comparison fails one40x40region despite nativeexit0.140matches and651exclusions remain partial. Static exact ordering reversal/checkpoint evidence supplies no fresh repair or whole equivalence; no oracle seeding, record swapping, failed-context removal, budget reset or old hash refresh. Retain3new policy gap identities and existing all47/21/source/caller/alias/frame/route/shutdown limitations. Next explicit request/entry/return/API/worker association validation precedes general replay repair."
+      }
     }
   ]
 }
