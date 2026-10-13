@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/native-draw/clipper.h": "06476f3c4945f29e54299606956b1d68d4aca82395f8aa8463c62df608cf2e54",
+    "runtime/native-draw/dc.h": "f787f9aeefa00ecb72df8e746126170bd6dd931f99b3df55fe3689830bf0a6aa",
+    "runtime/native-draw/factory.c": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079",
+    "runtime/native-draw/refusal.h": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
+    "runtime/native-draw/status.h": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+    "runtime/native-draw/surfaces.h": "f6c5d9fa7368a6f23645f8e91d87f27f9930e4d24055e403524ab165e0f2fb84",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-surface-probe.c": "4565d44857411d0c631c6886870855231fe0ca3e4bf5574dd957dbd72e8686d1",
+    "tools/build-native-draw.py": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-native-draw-surfaces.py": "0a27f428536116846ba2f393b31f27f4f5c8d48018d28cf65c49c688bc90cc75"
+  },
+  "claims": [
+    {
+      "behavior": "NP.surface-final-word-read",
+      "contract_sha256": "544fc947a60b8e7a2e90ff5953486dee5d43115a9e001c42f1e0f91b5fe36e3c",
+      "scenarios": {}
+    }
+  ],
+  "scope": "Four native default-placement 510x180 RGB565 policies on108/124-byte descriptors and two malformed-cap/format refusals, separately from64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+  "real_game_directdraw_retired": false,
+  "prefix_template": "/home/hoff/swdev/magic_and_mayhem_mod/working/wineprefix-x86_64",
+  "wine_version": "wine-11.12",
+  "compiled_sources": {
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-surface-probe.c": "4565d44857411d0c631c6886870855231fe0ca3e4bf5574dd957dbd72e8686d1",
+    "runtime/native-draw/clipper.h": "06476f3c4945f29e54299606956b1d68d4aca82395f8aa8463c62df608cf2e54",
+    "runtime/native-draw/dc.h": "f787f9aeefa00ecb72df8e746126170bd6dd931f99b3df55fe3689830bf0a6aa",
+    "runtime/native-draw/factory.c": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079",
+    "runtime/native-draw/refusal.h": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
+    "runtime/native-draw/status.h": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+    "runtime/native-draw/surfaces.h": "f6c5d9fa7368a6f23645f8e91d87f27f9930e4d24055e403524ab165e0f2fb84",
+    "tools/build-native-draw.py": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149"
+  },
+  "native_build": {
+    "architecture": "PE32 i386",
+    "sha256": "a35750dc1b476b553ad79f96bfcebd7af0e77906e491e56da975f5cb19ff2168",
+    "directdraw_imports": false,
+    "sources": {
+      "runtime/native-draw/clipper.h": "06476f3c4945f29e54299606956b1d68d4aca82395f8aa8463c62df608cf2e54",
+      "runtime/native-draw/dc.h": "f787f9aeefa00ecb72df8e746126170bd6dd931f99b3df55fe3689830bf0a6aa",
+      "runtime/native-draw/factory.c": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079",
+      "runtime/native-draw/refusal.h": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
+      "runtime/native-draw/status.h": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+      "runtime/native-draw/surfaces.h": "f6c5d9fa7368a6f23645f8e91d87f27f9930e4d24055e403524ab165e0f2fb84",
+      "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+      "tools/build-native-draw.py": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149"
+    }
+  },
+  "cases": 64,
+  "caller_words": 2048,
+  "pixel_words": 37440,
+  "original_results_sha256": "8e8febc5d11d827fb0dbcd3c816309b91b42ff783a71450937bf7e4d71ffc5ca",
+  "native_results_sha256": "8e8febc5d11d827fb0dbcd3c816309b91b42ff783a71450937bf7e4d71ffc5ca",
+  "mismatch_words": [],
+  "native_ddraw_disabled": true,
+  "native_ddraw_module_absent": true,
+  "native_directdraw_imports": false,
+  "native_remaining_surfaces": 0,
+  "native_remaining_devices": 0,
+  "native_policy": {
+    "refusals": 10,
+    "unchanged_words": 117,
+    "surface_capacity": 512,
+    "remaining_surfaces": 0,
+    "default_offscreen_cases": 4,
+    "default_offscreen_words": 367200,
+    "final_pixel_dword_cases": 4,
+    "policy_sha256": "7eb7234008401e6db93b05995a42cf6024834b105a93e913df5ed3260962fcfb"
+  },
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/wineprefix-x86_64/system.reg": "a2173434094c307a479e5132f8622eb8ba2eae3cd2dc55163296e4ebed93be68",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/wineprefix-x86_64/user.reg": "7f4685099248e594127beec7f92d87d1cda95217036398df16cbeb2af0704b1a",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/wineprefix-x86_64/userdef.reg": "b4f177d371bb7589dcfeea3e7eaa398eef9a22f919e26658fc94a29d47235ee8",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-draw-surfaces/run-rmbno8er/wineprefix/drive_c/windows/system32/ddraw.dll": "505acd0da3c9739da8eeb80bd67a01ac4acf291d5b5876a08125b698261611c3",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-draw-surfaces/run-rmbno8er/wineprefix/drive_c/windows/syswow64/ddraw.dll": "b7f3391dee7d12cd4a5c6d204b664fc09110e9951496546dc40cb53fd79b747d",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-draw-surfaces/run-rmbno8er/MnmDraw.dll": "a35750dc1b476b553ad79f96bfcebd7af0e77906e491e56da975f5cb19ff2168",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-draw-surfaces/run-rmbno8er/probe.exe": "5f78b8d368fafda33a963454466fe03f95245af69ef00df25884060d30c3d838"
+  },
+  "inputs_stable": true
+}

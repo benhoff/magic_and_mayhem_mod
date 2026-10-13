@@ -52,6 +52,26 @@ static void default_offscreen(Create create){
   ((Ref)table(object)[2])(object);((Ref)table(fourth)[2])(fourth);((Ref)table(draw)[2])(draw);
  }
 }
+/* Native storage contract: a DWORD load at the last RGB565 word must be
+ * readable, including when the logical allocation ends on a page boundary.
+ * Only its low WORD is a pixel; upper bytes are allocation padding. */
+static void final_pixel_read(Create create){
+ for(u32 i=0;i<4;++i){
+  void *draw=0,*fourth=0,*object=0;u32 d[31],newer=i&1;
+  if(create(0,&draw,0) || ((Query)table(draw)[0])(draw,dd4,&fourth))ExitProcess(165);
+  void* device=newer?fourth:draw;describe(d,newer);
+  d[3]=(i&2)?800:640;d[2]=(i&2)?640:480;
+  if(((i32 (WIN *)(void*,const u32*,void**,void*))table(device)[6])(device,d,&object,0))ExitProcess(166);
+  u32 width=d[3],height=d[2];describe(d,newer);
+  if(((Lock)table(object)[25])(object,0,d,1,0) || d[3]!=width || d[2]!=height || d[4]!=width*2)ExitProcess(167);
+  u16* last=(u16*)(d[9]+d[4]*height-2);*last=0x6b5a;
+  /* volatile requires the same four-byte load as the original leaf. */
+  u32 sampled=*(volatile u32*)last;
+  if((sampled&0xffff)!=0x6b5a || sampled>>16)ExitProcess(168);
+  if(((Unlock)table(object)[32])(object,newer?0:(void*)d[9]))ExitProcess(169);
+  ((Ref)table(object)[2])(object);((Ref)table(fourth)[2])(fourth);((Ref)table(draw)[2])(draw);
+ }
+}
 static void policies(Create create,void* module){
  void *draw=0,*a=0,*b=0,*held[512];u32 d[31],before[WIDTH*HEIGHT],after[WIDTH*HEIGHT];
  if(create(0,&draw,0))ExitProcess(140);describe(d,0);
@@ -76,13 +96,14 @@ static void policies(Create create,void* module){
  describe(d,0);d[26]=0x800;d[22]=0x7c00;rejected=(void*)0x1234;
  if(surface(draw,d,&rejected,0)!=(i32)0x80004001u || rejected)ExitProcess(164);
  default_offscreen(create);
+ final_pixel_read(create);
  describe(d,0);d[2]=d[3]=1;
  for(u32 i=0;i<512;++i)if(surface(draw,d,&held[i],0))ExitProcess(152);
  void* denied=(void*)0x1234;if(surface(draw,d,&denied,0)!=(i32)0x8007000eu || denied)ExitProcess(153);
  for(u32 i=0;i<512;++i)((Ref)table(held[i])[2])(held[i]);((Ref)table(draw)[2])(draw);
  typedef u32 (WIN *Count)(void);Count count=(Count)GetProcAddress(module,"NativeDrawSurfaces");if(count())ExitProcess(154);
  count=(Count)GetProcAddress(module,"NativeDrawObjects");if(count())ExitProcess(155);
- u32 policy[6]={10,WIDTH*HEIGHT,512,0,4,4*510*180},n=0;HANDLE out=CreateFileA("surface-policy.bin",0x40000000,0,0,2,0x80,0);
+ u32 policy[7]={10,WIDTH*HEIGHT,512,0,4,4*510*180,4},n=0;HANDLE out=CreateFileA("surface-policy.bin",0x40000000,0,0,2,0x80,0);
  if(out==(HANDLE)-1 || !WriteFile(out,policy,sizeof(policy),&n,0) || n!=sizeof(policy))ExitProcess(156);CloseHandle(out);
 }
 void start(void){
