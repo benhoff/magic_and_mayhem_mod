@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Follow-up guarded mnm-qt-shell incremental build succeeded after space recovered; fresh CLI-policy and shell construction smoke on combined UI sources. No live game, hard-restart process lifecycle or rendering equivalence test. Prior startup support record and storage refusals remain historical.",
+  "sources": {
+    "apps/qt-shell/main.cpp": "f3251306b2635bf8de0c4b99e04801a390b3be01857cd17079d854a47b9d42cc",
+    "apps/qt-shell/CMakeLists.txt": "84f17afaa4bd72fa8345e47f03bc608fcb294657fb4110d0d5b72d9c5d1dd598",
+    "apps/qt-shell/game_process.hpp": "176493ea90f415a03b5cdce2b56130442e9b233bd122b4d408c3002c0e710264",
+    "apps/qt-shell/live_menu_session.cpp": "c8d07139af589375639601cd60a1334dba6924e17f338a8fedd0a9e6e732cada",
+    "apps/qt-shell/live_menu_session.hpp": "20e5ce0eeb37350d62d117df516502cec8f977ed6ab7e95f70aa417964c187ba",
+    "tests/test-native-audio-policy.py": "32caae49bb12bd8bc213de0901c2bf06a9d89c98cfeb3e5a1d2ac100a0b885b7"
+  },
+  "source_stability_verified": true,
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-native-audio-policy.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Public audio selection: 10 voice admissions/2 refusals; 6 media/music admissions/3 refusals; no game or audio device\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "working/build/qt-shell/mnm-qt-shell",
+        "--repo",
+        "/home/hoff/swdev/magic_and_mayhem_mod",
+        "--renderer",
+        "native",
+        "--smoke-test"
+      ],
+      "exit_code": 0,
+      "stdout": "Native audio policy: legacy\nNative media policy: legacy\nNative music policy: disabled\n",
+      "stderr": ""
+    }
+  ],
+  "qt_binary_sha256": "896db9c3a336614c25bdaa029c01f1982ef0da57cfdc86250f3b3eb6dd72c5aa"
+}

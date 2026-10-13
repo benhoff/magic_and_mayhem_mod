@@ -35,7 +35,7 @@ def main():
     env.pop('MNM_MUSIC_CHANNEL',None)
     env['MNM_MENU_NATIVE_RENDER']='1' if args.native_render else '0'
     if args.menu_channel:env['MNM_MENU_CHANNEL']='Z:'+str(channel).replace('/','\\')
-    subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         command=[str(REPO/'tools/run-game.sh'),'smoke' if args.seconds else 'launch','--no-gamescope',
                  '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools/menu-game-runner.py')]
@@ -45,5 +45,6 @@ def main():
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
             if hashlib.sha256((root/'game'/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} changed')
         return result.returncode
-    finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    finally:
+        if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
 if __name__=='__main__':raise SystemExit(main())

@@ -3,7 +3,7 @@
 namespace mnm::reconstruction::combat {
 struct SegmentInitializationState {
   int vertical = 0, slow778 = 0, fast77c = 0;
-  unsigned specialRate73c = 0;
+  unsigned specialRate73c = 0, previousDirection = 0;
   // Definition-relative byte offset; inline71e is a separate logical bank.
   // Composition must bind the selected owned bank to MotionActionState.samples.
   unsigned sampleBank = 0xd8, initialSampleBank = 0xd8;

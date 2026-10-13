@@ -5,6 +5,9 @@ import json
 import os
 from pathlib import Path
 import shutil
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from launch_build_cache import build_adapter
 ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def load(name,path):
@@ -22,7 +25,7 @@ def stage(root,original,patched,mode,scene_imported=False):
     if original[at:at+7]!=bytes.fromhex('83ec288b442430'):raise ValueError('Unsupported glyph entry')
     if not (root/'game/MnmScene.dll').resolve().is_relative_to((root/'game').resolve()):raise ValueError('Glyph DLL target escapes its disposable game copy')
     if not scene_imported:
-        dll=load('glyph_build','tools/build-scene-observer.py').build()
+        dll=build_adapter('tools/build-scene-observer.py',lambda: load('glyph_build','tools/build-scene-observer.py').build())
         patched=load('glyph_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmScene.dll','SceneAnchor',b'.mnglyph')
         shutil.copy2(dll,root/'game'/dll.name)
         shutil.copy2(dll.parent/'manifest.json',root/'glyph-bridge-build.json')

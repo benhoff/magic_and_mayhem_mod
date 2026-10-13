@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "scope": "Committed parent/current source SHA-256 review against exact retained receipt chains; independent of startup source changes. No retrospective gate or new engine validation claim. Existing original special-flight/field-layout behaviors and evidence retain their reviewed scopes.",
+  "base": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+  "head": "e67c00dffe3b325875cd02a90d26a58776b51277",
+  "files": [
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "reconstruction/creature-ai/special-flight/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "f3a18f218ecfa72eb73428320c62661a51a226d7c21a6daa4df995b4843d3eb0",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "reconstruction/creature-ai/special_flight_actions.cpp",
+      "before_sha256": null,
+      "after_sha256": "ededa654dfbc19bace825d02916752b7e7b1edf81449da4f0264c8a99b75a705",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "reconstruction/creature-ai/special_flight_actions.hpp",
+      "before_sha256": null,
+      "after_sha256": "e5a664b83a4b64fff2fb1d3ff489228c9a69ea217df95b667bd7640de24f45da",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "2208f79b94677d445c8e59966ffe593fcc57f033427075ce802c716b6d424275",
+      "after_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "scope": "Append-only journal; excluded from its own source receipts"
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage/original-special-flight-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9365b8ff5400a1a47d16cda15cbcf56eb485ca418de3ffebccf49bc93b036818",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "869e055169eb53054c21c3c362fa39edb7556f4140caa7e2910a97b53dc5dab2",
+      "after_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage/source-index-original-special-flight-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "818a558edfe1c9d96952866a65a2445ae508c02878da9ec31af99b92ad6b12ef",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage/special-flight-qt-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9364a15b574c44cb5c12d91a8784e82d9c2fa6f365a87911f5e92566471708b6",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/coverage/summary-original-special-flight-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "2c88c0e8b6326ab32ec8b4030d93d7719bcb92ac76da80d5e3acc6eb60c93839",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/creature-special-actions.md",
+      "before_sha256": null,
+      "after_sha256": "e425b8f10916392c903a6d36ab83b948fa65d4482af68b7b5cbbb7b3f987bcd1",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/original-creature-special-flight-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "db37bddf4cf1a819bd7365efb5dd1fa1ee0d338ff77b1bcd8332fb9ea811b260",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "research/runtime/original-creature-special-flight-development-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e85bd4268c4dadc8c86f912cdc483729766349282ee56d4d4cdbcfa550711aef",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "tests/creature-special-flight-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c1f5fe67a0d1d7b4b5ba9e9a620a0d773ca7b9f35ba386723cfecd5045c3cce9",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "path": "tools/test-creature-special-flight.py",
+      "before_sha256": null,
+      "after_sha256": "d0d86c3c399991be965a0f8a6b7bd1071f6ac18ee9e7294939de6b3efedf0694",
+      "receipts": [
+        "original-special-flight-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "reconstruction/creature-ai/full_segment_setup.cpp",
+      "before_sha256": "f1d9d9e285aa64fc42f57c81811f193d9c1ca24b9809f581a701299937c0346e",
+      "after_sha256": "2d6c6f5fc45ca2a6bd311142a4fdbe2791199b8e9818cbb121c0afeac90176f9",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "reconstruction/creature-ai/full_segment_setup.hpp",
+      "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+      "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+      "after_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "scope": "Append-only journal; excluded from its own source receipts"
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/original-field-layout-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "eb5f820945e92bbbd12e263961709bf172c39ffcdef83fd1e9be6097194fa542",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+      "after_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/summary-original-field-layout-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "af4dbcddd2c7d95bab832bc4a707a40c317018447d8f37b8fefed8ea158fb3e3",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/creature-state-field-layout.md",
+      "before_sha256": null,
+      "after_sha256": "a57053b4109170ebee1ae7e946851de18b9ff44da7b0ce3eb4a2a5e65f1f3a6c",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-displacement-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-flight-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-request-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-setup-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "tests/creature-segment-setup-test.cpp",
+      "before_sha256": "d671f012b6063f86099ea92b4da7b97aafc8f7a942ec608c00c4e40899ac41e9",
+      "after_sha256": "2b946ef5ef2b1799564a53525b164783e9d208ae750d279c8389178ed147470b",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
