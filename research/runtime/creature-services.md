@@ -647,3 +647,68 @@ remain pending. NS57 a9c84616 incoming history has43 file/163 behavior transitio
 reviewed against exact receipts and its successful actual staged gate, with zero
 unresolved accounting gaps. This history review is not a new execution result or
 retrospective gate assertion.
+
+
+## Owned command dispatch in the ownership chain (NS59)
+
+Ownership/reset/idle/follow/queue now calls native whole520ad0 command dispatch
+on the same canonical actor/execution/order state. The dispatcher selects kind2
+move, kind3 only when the referenced target's health is nonzero, and kind4
+coordinate attack. Other modes do nothing. Lower50fae0/50ad10/50ca30 command
+bodies remain supplied. Follow and delivery use the same supplied50fae0 move
+consequence, matching the original shared call boundary. Duplicate queue
+performOrder and release providers deliberately throw if composition escapes.
+
+Fresh prospectively source/scope-bound original32/native64/ASan+UBSan+LSan64
+passes20,480 cases:16,384 composed ownership fixtures through21 unchanged bodies
+and4096 direct dispatcher fixtures. Delivery520ad0 is not redirected. Direct
+modes0..6 cover585 move,293 living-target,585 coordinate,292 dead-target and2341
+unsupported-mode cases. Dead targets and unsupported modes have no lower command
+calls or actor/order changes. All complete actor/configuration/effect/global/
+dispatch/body/live-list/retired-identity/padding guards pass. The composed corpus
+has1316 target handlers,1412 coordinate handlers,9258 shared move handlers and
+4995 retired nodes. Shared moves include follow and queue movement; they are not
+a count of queue deliveries or follow moves alone. Native CMake build and CTest
+pass. Immutable final proof:
+original-transfer-delivery-owned-bound-ns59-20261013.json. Read-only pinned
+520ad0 export:original-order-delivery-static-ns59-20261013.json. Confidence is
+high only within these explicitly bounded domains.
+
+Composed fixtures have1..32 actors,0..15 fixed order slots, valid serial cursors,
+positive16x16 dimensions and bounded coordinates. First and last nodes of each
+nonempty queue are kind2 move anchors. Target slots vary over valid actors;
+lower target handlers may kill an admitted target, and lower target/coordinate
+handlers may change the current non-anchor non-tail node kind after delivery
+copies command fields. Lower command consequences latch motion and preserve
+backing/topology/cursor. Mutable target health is tested after the living gate;
+the dispatcher calls its admitted handler once. The original fixed-slot free
+boundary remains supplied. Native vectors/serials do not model physical retired
+payloads or raw allocator state.
+
+Development-v1 stopped in native execution before running the original because
+unanchored dead-target delivery could reach the previously recorded end-cursor
+reentry refusal. Its failed report/source fingerprints and manifest checks are
+retained; it establishes neither original behavior nor equivalence. Reviewing
+524130 shows it reads repeat/effect fields through its current cursor before
+comparing the advanced cursor to the sentinel. Installed sentinel payload and
+end-cursor reentry therefore remain unresolved. Development-v2 and final-v1
+use explicit first/last move anchors and preserve that boundary, rather than
+promoting it. Invalid cursors/raw targets, all-target cyclic lists, topology
+changes, wider coordinates/profiles and installed queue construction remain
+excluded. Four native-only display/binding/missing-serial refusals preserve the
+existing caller-rollback policy. Original malformed pointers are not compared.
+
+Complete lower move/target/coordinate/immediate/interaction/action/geometry/
+effect/controller services, installed profiles, native World/session scheduling
+and live replacement remain pending. This adds composed dispatcher ownership,
+not native session integration. Existing component sources and historical
+evidence hashes remain unchanged. NS58 2868446d incoming history has45 file/165
+behavior transitions reviewed against exact parent/current receipts and its
+successful actual staged gate, with zero accounting gaps. That review adds no
+execution result or retrospective gate assertion.
+
+The earlier1280GiB storage policy refused both static/history preflights at
+1289.26GiB due concurrent output; neither experiment started. The user's prior
+storage authorization supplies a private1312GiB cap for NS59 while preserving
+100GiB filesystem free space. The inventory and authorization record remain
+under working/retention. This is storage provenance, not engine validation.

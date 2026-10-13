@@ -9012,3 +9012,31 @@ is separate storage policy requiring caller rollback. Complete lower services,
 installed AI construction and native World/session/live ownership remain pending.
 NS57 incoming exact-history review covers43 files/163 behaviors with no gaps and
 adds no execution or retrospective gate assertion.
+
+
+### NS59 — owned command dispatcher in the ownership chain (2026-10-13)
+
+Canonical ownership/reset/idle/follow/queue now owns whole520ad0 delivery mode
+selection and living-target admission. Fresh prospective original32/native64/
+ASan+UBSan+LSan64 passes20,480 cases:16,384 composed cases through21 unchanged
+bodies plus4096 direct dispatch cases. Direct move/living-target/coordinate/
+dead-target/unsupported-mode paths are nonempty; full actor/global/body/list
+and retired-ID/padding guards pass. CMake/CTest pass. See
+`original-transfer-delivery-owned-bound-ns59-20261013.json` and NS59 in
+`creature-services.md`. Delivery is not redirected; original whole-body command
+services50fae0/50ad10/50ca30 remain supplied. Shared move consequences serve both
+follow and delivery. Integration and live replacement remain none.
+
+Development-v1 retains its native end-cursor reentry refusal before original
+execution. The final composed corpus uses first/last move anchors, bounded valid
+orders and motion-latching lower handlers. Installed sentinel payload, end-cursor
+reentry, invalid/all-target cyclic queues, callback topology changes and physical
+allocator/retired-byte equality remain excluded. Four native safety refusals
+retain caller rollback. Existing component sources/evidence fingerprints remain
+unchanged. Lower command/geometry/action/controller ownership, installed profiles
+and full native World/session scheduling remain pending.
+
+NS58 incoming history reviews45 file/165 behavior transitions against exact
+receipts and the actual successful staged gate, with no accounting gaps and no
+new execution claim. Refused1280GiB preflights and the authorized private1312GiB
+NS59 policy/100GiB free reserve are retained under working/retention.
