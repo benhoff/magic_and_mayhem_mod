@@ -53830,6 +53830,248 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "AI.object-action",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original object interaction action13",
+      "scope": "Whole50f3b0 object interaction action13: kind1 overlay before main event, event1 behavior callback, type9/event3 cue62, current definition-width1/four-corner footprint, signed bounds without wrapping, finite WORD-linked558-byte object chain search for kinds26/62/65, no-match reset. Owned canonical head grid/object pool and supplied animation/behavior/cue/reset services. Valid finite pools plus signed32 coordinate/extreme/width fixtures; cycles/raw pointers, broader backend layouts, installed assets and native World/session integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305264,
+          "scope": "Whole50f3b0 object interaction action13: kind1 overlay before main event, event1 behavior callback, type9/event3 cue62, current definition-width1/four-corner footprint, signed bounds without wrapping, finite WORD-linked558-byte object chain search for kinds26/62/65, no-match reset. Owned canonical head grid/object pool and supplied animation/behavior/cue/reset services. Valid finite pools plus signed32 coordinate/extreme/width fixtures; cycles/raw pointers, broader backend layouts, installed assets and native World/session integration excluded.",
+          "recovered_range": "creature-object-action-50f3b0"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/object_action.cpp"
+      ],
+      "tests": [
+        "tests/creature-object-action-test.cpp",
+        "tools/test-creature-object-action.py"
+      ],
+      "evidence": [
+        "NS38.services-static",
+        "NS38.object-original",
+        "NS38.object-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/object-action/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged480-byte body, full actor/config/map/pool/body guards and ordered callback/cue/poll/reset calls",
+          "Owned finite canonical8/16by8/16by4 grids, pool0..16, acyclic valid/out-of-range WORD links",
+          "All animation events0..6, types0..27, definition widths0/1/2/3/ffffffff, bounds/seams and extreme signed32 positions",
+          "Behavior reentry changes profile width and position before footprint lookup"
+        ],
+        "excluded": [
+          "Cyclic nonmatching chains and invalid raw pointers/backend layouts",
+          "Real ANI, reset/behavior/cue World consequences, installed assets and native session integration",
+          "Incidental EAX return meaning"
+        ]
+      }
+    },
+    {
+      "id": "NP.object-action-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native object action grid and chain refusals",
+      "scope": "Owned canonical grid/pool shape checks and bounded object-chain traversal refuse malformed dimensions/storage and nonmatching cycles. Three separate native refusal cases; caller-staged state/events required. Original malformed pointer/cycle semantics and native session admission excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/object_action.cpp"
+      ],
+      "tests": [
+        "tests/creature-object-action-test.cpp",
+        "tools/test-creature-object-action.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/creature-ai/object-action/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS38.object-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.queued-order-markers",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original local queued-move marker creation",
+      "scope": "Whole512220 local-owner queued move marker creation in recovery: kind2 nodes without effect, owned63-DWORD parameter initialization, allocate49cec0, store token before initialize493f20 kind70, retained token on initializer failure. Actual command delivery belongs520ad0; lower secondary pool/effect/render ownership and fresh comparison/native session integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317152,
+          "scope": "Whole512220 local-owner queued move marker creation in recovery: kind2 nodes without effect, owned63-DWORD parameter initialization, allocate49cec0, store token before initialize493f20 kind70, retained token on initializer failure. Actual command delivery belongs520ad0; lower secondary pool/effect/render ownership and fresh comparison/native session integration pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.upkeep-admission",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original inline periodic owner resource contribution",
+      "scope": "509e50 inline509faa..50a0da resource contribution in recovery: deadline gate/update, owner controller/wizard lookup, unsigned resource high-byte snapshots, wrapped resource grant and inventory-type19 aggregate, supplied416d80 numeric return and two ancestry-root counter2f credits. Not514c60 conversion scanning. Owner/resource/score/profile/contribution ownership and fresh whole-maintenance comparison/native session integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5283408,
+          "scope": "509e50 inline509faa..50a0da resource contribution in recovery: deadline gate/update, owner controller/wizard lookup, unsigned resource high-byte snapshots, wrapped resource grant and inventory-type19 aggregate, supplied416d80 numeric return and two ancestry-root counter2f credits. Not514c60 conversion scanning. Owner/resource/score/profile/contribution ownership and fresh whole-maintenance comparison/native session integration pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS27.execution-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owner-conversion",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original bonus ownership-conversion scan",
+      "scope": "Whole514c60 bonus-mode2 scan in recovery: owner-associated count/limit gating, ten slots per call up to125, active/living/diplomacy/type/distance checks, ordered56c650/51ec80 calls, early-full repeated cursor and rollover. Owner/resource transfer semantics, fresh comparison and native session integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5327968,
+          "scope": "Whole514c60 conversion scan in recovery; not upkeep."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.environment-pass",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature environment pass52a9f0",
+      "scope": "Pinned52a9f0..52ab17 post-scheduler environment pass in recovery. Type/terrain/health branches, current original comparison and native World composition pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5417456,
+          "scope": "Pinned52a9f0..52ab17 post-scheduler environment pass in recovery. Type/terrain/health branches, current original comparison and native World composition pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.creature-services-export",
+      "subsystem": "coverage-tooling",
+      "kind": "native_policy",
+      "title": "Read-only remaining creature service export",
+      "scope": "Pinned original hash/body/anchor exports and bounded disassembly with original manifest checks and new-output refusal; static research only.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-creature-services.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -109251,6 +109493,162 @@
           ]
         }
       ]
+    },
+    {
+      "id": "NS38.services-static",
+      "kind": "static",
+      "scope": "Pinned50f3b0/512220/514c60/52a9f0 byte ranges/anchors and disassembly with immutable manifest checks. Static only; no semantic or execution equivalence.",
+      "record": "research/runtime/original-creature-services-static-20261012.json",
+      "sha256": "e7c42487e15a6319825040b4e2a14d4e123ccc11a7ae806930d25f913e972cee",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS38.object-original",
+      "kind": "isolated_original",
+      "scope": "Prospectively source/scope-bound whole50f3b0 projection:12288 original32/native64/sanitized64 cases and3separate native refusals, complete actor/config/map/pool/body guards and ordered poll/behavior/cue/reset calls. All restored source hashes match original declaration/execution; native World/session and lower services remain excluded.",
+      "record": "research/runtime/original-creature-object-action-bound-20261012.json",
+      "sha256": "d355d23ffdfbc57434da68658e2988b6acb19a27fe4f365687277fb15f76f2f9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 12288
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 3
+        },
+        {
+          "pointer": "/coverage",
+          "equals": [
+            1756,
+            63,
+            4713,
+            7575,
+            2982
+          ]
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS38.object-native",
+      "kind": "native_integration",
+      "scope": "Prospectively source/scope-bound whole50f3b0 projection:12288 original32/native64/sanitized64 cases and3separate native refusals, complete actor/config/map/pool/body guards and ordered poll/behavior/cue/reset calls. All restored source hashes match original declaration/execution; native World/session and lower services remain excluded.",
+      "record": "research/runtime/original-creature-object-action-bound-20261012.json",
+      "sha256": "d355d23ffdfbc57434da68658e2988b6acb19a27fe4f365687277fb15f76f2f9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 12288
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 3
+        },
+        {
+          "pointer": "/coverage",
+          "equals": [
+            1756,
+            63,
+            4713,
+            7575,
+            2982
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -122660,6 +123058,15 @@
       "document": "research/runtime/creature-special-actions.md",
       "evidence": "NS32.flight-development-original",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "creature-object-action-50f3b0",
+      "build": "nocd-40209ca7",
+      "start": 5305264,
+      "end": 5305744,
+      "document": "research/runtime/creature-services.md",
+      "evidence": "NS38.object-original",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -122770,8 +123177,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-cast-admission-20261012.json",
-    "sha256": "bb0eb84d3eb8932b8097b90f4f97c52b098b76a6a53e376b12116a0ed8b72c89"
+    "path": "research/runtime/coverage/source-index-original-creature-object-action-v2-20261012.json",
+    "sha256": "46636b67d0d9dceeedef3d01436a76c0a219be1cb67f982475148f73d1811682"
   },
   "claim_bindings_required": true
 }

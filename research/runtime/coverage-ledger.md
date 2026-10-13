@@ -8541,3 +8541,16 @@ label. Exception/unwind and incidental Boolean EAX are excluded. Full lower
 resource/geometry/secondary/projectile/effect/area ownership, installed construction
 and native World/session integration remain pending; live replacement staysnone.
 See [cast admission research](cast-admission.md).
+
+## NS38: original object interaction action13 and remaining service map
+
+Whole50f3b0 passes12,288 prospectively bound original/native/sanitized cases and
+three separate native refusals. Full actor/config/map/pool/body guards and ordered
+events agree. Action13 scans object-linked footprint cells; it is not teleport.
+Static pinned services clarify512220 queued-move markers,514c60 ownership
+conversion, inline maintenance resource contribution and52a9f0 environment work.
+Those remaining bodies and lower World/ANI/pool/resource/score ownership remain
+pending, with no native session integration or live replacement. NS38 sources
+were recovered into an isolated worktree after concurrent origin reconciliation
+stashed them; all nine source hashes still match the prior bound execution.
+See [creature services](creature-services.md) and the preserved recovery report.
