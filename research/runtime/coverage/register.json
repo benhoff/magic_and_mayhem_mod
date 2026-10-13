@@ -51397,17 +51397,18 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original creature route budget and periodic scheduling",
-      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
-      "confidence": "provisional",
+      "scope": "Whole52a780 scheduling projection for owned1..128 actors: signed53-slot route budget, continuation/yield/wrap, independent20/90 phases, active/health gates, ordered pre-decision/decision/valuation/region callbacks and owner work. Supplied route and world consequence services; wall-clock/app scheduling and full lower World ownership excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5416832,
-          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+          "scope": "Whole52a780 scheduling projection for owned1..128 actors: signed53-slot route budget, continuation/yield/wrap, independent20/90 phases, active/health gates, ordered pre-decision/decision/valuation/region callbacks and owner work. Supplied route and world consequence services; wall-clock/app scheduling and full lower World ownership excluded."
         }
       ],
       "documents": [
-        "research/runtime/creature-execution.md"
+        "research/runtime/creature-execution.md",
+        "research/runtime/creature-control-actions-validation.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/execution.hpp",
@@ -51418,38 +51419,61 @@
         "tools/test-creature-execution.py"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS34.control-original",
+        "NS34.control-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
-        "reconstruction/creature-ai/execution/CMakeLists.txt"
-      ]
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Prospectively bound unchanged original bodies with complete actor-byte/ordered service/body guards and native64/original32/sanitized64 agreement",
+          "Owned1..128 actor pools, valid references,16x16x4 coordinates and selected finite fixture fields",
+          "Valid dispatcher/action1..25 and behavior1..16 selection with table nulls, independent16c/170 action carry state",
+          "Control corpus spans eight scheduler/transition/order/route bodies and their declared lower services"
+        ],
+        "excluded": [
+          "Invalid raw pointers/indices/divisors, empty actor pools and broader arithmetic/profile domains",
+          "Unknown/out-of-range dispatcher callers beyond explicitly tested inputs",
+          "Full lower ANI/geometry/World/health/cast/effect ownership and installed profile construction",
+          "Native World/session/app scheduling and live replacement"
+        ]
+      }
     },
     {
       "id": "AI.route-continuation",
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original resumable route continuation and failures",
-      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
-      "confidence": "provisional",
+      "scope": "Whole519ae0 route-continuation projection in valid16x16x4 actor/reference domains: suppression/cooldown/phase gates, direct/target/coordinate/strategic/ranged/displacement cases, request0/1/2, reach/edge/adjustment, retries/retreat/reset/queue and route-mode/cooldown cleanup. Lower5128a0/51a600/510e80/geometry and behavior services supplied; actual lower World/session integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5348064,
-          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+          "scope": "Whole519ae0 route-continuation projection in valid16x16x4 actor/reference domains: suppression/cooldown/phase gates, direct/target/coordinate/strategic/ranged/displacement cases, request0/1/2, reach/edge/adjustment, retries/retreat/reset/queue and route-mode/cooldown cleanup. Lower5128a0/51a600/510e80/geometry and behavior services supplied; actual lower World/session integration excluded."
         }
       ],
       "documents": [
-        "research/runtime/creature-execution.md"
+        "research/runtime/creature-execution.md",
+        "research/runtime/creature-control-actions-validation.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/execution.hpp",
@@ -51460,43 +51484,66 @@
         "tools/test-creature-execution.py"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS34.control-original",
+        "NS34.control-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
-        "reconstruction/creature-ai/execution/CMakeLists.txt"
-      ]
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Prospectively bound unchanged original bodies with complete actor-byte/ordered service/body guards and native64/original32/sanitized64 agreement",
+          "Owned1..128 actor pools, valid references,16x16x4 coordinates and selected finite fixture fields",
+          "Valid dispatcher/action1..25 and behavior1..16 selection with table nulls, independent16c/170 action carry state",
+          "Control corpus spans eight scheduler/transition/order/route bodies and their declared lower services"
+        ],
+        "excluded": [
+          "Invalid raw pointers/indices/divisors, empty actor pools and broader arithmetic/profile domains",
+          "Unknown/out-of-range dispatcher callers beyond explicitly tested inputs",
+          "Full lower ANI/geometry/World/health/cast/effect ownership and installed profile construction",
+          "Native World/session/app scheduling and live replacement"
+        ]
+      }
     },
     {
       "id": "AI.periodic-maintenance",
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original terrain relocation and creature valuation",
-      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
-      "confidence": "provisional",
+      "scope": "Whole522ad0 periodic terrain relocation and5244f0 valuation projection: terrain/top check, status/living class gates, masked RNG/threshold/region selection, original move/reset ordering,28 HTH/response matrices and class/status modifiers, wrapped arithmetic and original x87 evaluation/conversion ordering. Supplied terrain/RNG/move/reset services and bounded fixture stats; complete World/health/profile/score ownership and native session integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5384912,
-          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+          "scope": "Whole522ad0 periodic terrain relocation and5244f0 valuation projection: terrain/top check, status/living class gates, masked RNG/threshold/region selection, original move/reset ordering,28 HTH/response matrices and class/status modifiers, wrapped arithmetic and original x87 evaluation/conversion ordering. Supplied terrain/RNG/move/reset services and bounded fixture stats; complete World/health/profile/score ownership and native session integration excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5391600,
-          "scope": "5244f0 recomputes creature combat valuation; prior export label periodic_follow_work is not a confirmed meaning."
+          "scope": "Whole522ad0 periodic terrain relocation and5244f0 valuation projection: terrain/top check, status/living class gates, masked RNG/threshold/region selection, original move/reset ordering,28 HTH/response matrices and class/status modifiers, wrapped arithmetic and original x87 evaluation/conversion ordering. Supplied terrain/RNG/move/reset services and bounded fixture stats; complete World/health/profile/score ownership and native session integration excluded."
         }
       ],
       "documents": [
-        "research/runtime/creature-execution.md"
+        "research/runtime/creature-execution.md",
+        "research/runtime/creature-control-actions-validation.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/execution.hpp",
@@ -51507,21 +51554,48 @@
         "tools/test-creature-execution.py"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS34.actions-original",
+        "NS34.actions-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
-        "reconstruction/creature-ai/execution/CMakeLists.txt"
-      ]
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Prospectively bound unchanged original bodies with complete actor-byte/ordered service/body guards and native64/original32/sanitized64 agreement",
+          "Owned1..128 actor pools, valid references,16x16x4 coordinates and selected finite fixture fields",
+          "Valid dispatcher/action1..25 and behavior1..16 selection with table nulls, independent16c/170 action carry state",
+          "Actions corpus spans28 types/classes, seven operations/eight bodies, bounded negative and positive valuation entries/statuses,32-bit wrapped arithmetic and x87 modifier ordering"
+        ],
+        "excluded": [
+          "Invalid raw pointers/indices/divisors, empty actor pools and broader arithmetic/profile domains",
+          "Unknown/out-of-range dispatcher callers beyond explicitly tested inputs",
+          "Full lower ANI/geometry/World/health/cast/effect ownership and installed profile construction",
+          "Native World/session/app scheduling and live replacement"
+        ]
+      }
     },
     {
       "id": "AI.queued-orders",
@@ -51581,37 +51655,38 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original behavior/action transition and dispatch",
-      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
-      "confidence": "provisional",
+      "scope": "Joint50a930/50aa30/50ab30/50da50/50db60 behavior/action dispatch and transition projection. Controlled valid behavior/action values including null entries, health/pending/motion and status/engagement/order-effect cleanup, original16c/170 carry state, original animation/overlay/action selection, peer count wrapping and callback tokens. Both control and actions comparison components are required; complete lower behavior/ANI/geometry/health/effect/World/session execution excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5286448,
-          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+          "scope": "Joint50a930/50aa30/50ab30/50da50/50db60 behavior/action dispatch and transition projection. Controlled valid behavior/action values including null entries, health/pending/motion and status/engagement/order-effect cleanup, original16c/170 carry state, original animation/overlay/action selection, peer count wrapping and callback tokens. Both control and actions comparison components are required; complete lower behavior/ANI/geometry/health/effect/World/session execution excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5286704,
-          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+          "scope": "Joint50a930/50aa30/50ab30/50da50/50db60 behavior/action dispatch and transition projection. Controlled valid behavior/action values including null entries, health/pending/motion and status/engagement/order-effect cleanup, original16c/170 carry state, original animation/overlay/action selection, peer count wrapping and callback tokens. Both control and actions comparison components are required; complete lower behavior/ANI/geometry/health/effect/World/session execution excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5286192,
-          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+          "scope": "Joint50a930/50aa30/50ab30/50da50/50db60 behavior/action dispatch and transition projection. Controlled valid behavior/action values including null entries, health/pending/motion and status/engagement/order-effect cleanup, original16c/170 carry state, original animation/overlay/action selection, peer count wrapping and callback tokens. Both control and actions comparison components are required; complete lower behavior/ANI/geometry/health/effect/World/session execution excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5299040,
-          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+          "scope": "Joint50a930/50aa30/50ab30/50da50/50db60 behavior/action dispatch and transition projection. Controlled valid behavior/action values including null entries, health/pending/motion and status/engagement/order-effect cleanup, original16c/170 carry state, original animation/overlay/action selection, peer count wrapping and callback tokens. Both control and actions comparison components are required; complete lower behavior/ANI/geometry/health/effect/World/session execution excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5298768,
-          "scope": "Entry identified in static export; exact transition/dispatch recovery underway."
+          "scope": "Joint50a930/50aa30/50ab30/50da50/50db60 behavior/action dispatch and transition projection. Controlled valid behavior/action values including null entries, health/pending/motion and status/engagement/order-effect cleanup, original16c/170 carry state, original animation/overlay/action selection, peer count wrapping and callback tokens. Both control and actions comparison components are required; complete lower behavior/ANI/geometry/health/effect/World/session execution excluded."
         }
       ],
       "documents": [
-        "research/runtime/creature-execution.md"
+        "research/runtime/creature-execution.md",
+        "research/runtime/creature-control-actions-validation.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/execution.hpp",
@@ -51624,43 +51699,69 @@
         "tools/test-creature-execution.py"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS34.joint-original",
+        "NS34.joint-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
-        "reconstruction/creature-ai/execution/CMakeLists.txt"
-      ]
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Prospectively bound unchanged original bodies with complete actor-byte/ordered service/body guards and native64/original32/sanitized64 agreement",
+          "Owned1..128 actor pools, valid references,16x16x4 coordinates and selected finite fixture fields",
+          "Valid dispatcher/action1..25 and behavior1..16 selection with table nulls, independent16c/170 action carry state",
+          "Actions corpus spans28 types/classes, seven operations/eight bodies, bounded negative and positive valuation entries/statuses,32-bit wrapped arithmetic and x87 modifier ordering"
+        ],
+        "excluded": [
+          "Invalid raw pointers/indices/divisors, empty actor pools and broader arithmetic/profile domains",
+          "Unknown/out-of-range dispatcher callers beyond explicitly tested inputs",
+          "Full lower ANI/geometry/World/health/cast/effect ownership and installed profile construction",
+          "Native World/session/app scheduling and live replacement"
+        ]
+      }
     },
     {
       "id": "AI.ranged-aiming",
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original ranged aiming and admission",
-      "scope": "Instruction-derived native model in development; original geometry, state/effect services, full composition and current-source comparisons remain explicit pending boundaries.",
-      "confidence": "provisional",
+      "scope": "Whole505cf0 style resolver and50b2c0 ranged tactic projection: all28 class kinds/styles0/1/2, living valid target, deadline/readiness/motion/flight gates, blocked/range/closing response, fine orientation, cast/wait/maintain and latch/distance updates. Supplied geometry/target/turn/action/response services; bounded coordinates/stats/ticks and full World/projectile/cast/session ownership excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5288640,
-          "scope": "Entry identified in retained static export; implementation and complete callers pending."
+          "scope": "Whole505cf0 style resolver and50b2c0 ranged tactic projection: all28 class kinds/styles0/1/2, living valid target, deadline/readiness/motion/flight gates, blocked/range/closing response, fine orientation, cast/wait/maintain and latch/distance updates. Supplied geometry/target/turn/action/response services; bounded coordinates/stats/ticks and full World/projectile/cast/session ownership excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5266672,
-          "scope": "Class-dependent ranged tactic resolver; current-source comparison pending."
+          "scope": "Whole505cf0 style resolver and50b2c0 ranged tactic projection: all28 class kinds/styles0/1/2, living valid target, deadline/readiness/motion/flight gates, blocked/range/closing response, fine orientation, cast/wait/maintain and latch/distance updates. Supplied geometry/target/turn/action/response services; bounded coordinates/stats/ticks and full World/projectile/cast/session ownership excluded."
         }
       ],
       "documents": [
-        "research/runtime/creature-execution.md"
+        "research/runtime/creature-execution.md",
+        "research/runtime/creature-control-actions-validation.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/execution.hpp",
@@ -51671,21 +51772,48 @@
         "tools/test-creature-execution.py"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS34.actions-original",
+        "NS34.actions-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
-        "reconstruction/creature-ai/execution/CMakeLists.txt"
-      ]
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Prospectively bound unchanged original bodies with complete actor-byte/ordered service/body guards and native64/original32/sanitized64 agreement",
+          "Owned1..128 actor pools, valid references,16x16x4 coordinates and selected finite fixture fields",
+          "Valid dispatcher/action1..25 and behavior1..16 selection with table nulls, independent16c/170 action carry state",
+          "Actions corpus spans28 types/classes, seven operations/eight bodies, bounded negative and positive valuation entries/statuses,32-bit wrapped arithmetic and x87 modifier ordering"
+        ],
+        "excluded": [
+          "Invalid raw pointers/indices/divisors, empty actor pools and broader arithmetic/profile domains",
+          "Unknown/out-of-range dispatcher callers beyond explicitly tested inputs",
+          "Full lower ANI/geometry/World/health/cast/effect ownership and installed profile construction",
+          "Native World/session/app scheduling and live replacement"
+        ]
+      }
     },
     {
       "id": "AI.strategic-policy",
@@ -51910,27 +52038,28 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original ranged and ready animation action events",
-      "scope": "Native recovery in progress; comparison, complete world execution and live replacement pending.",
-      "confidence": "provisional",
+      "scope": "Whole50e670/50e6f0/50f7c0 ranged/alternate/ready event projections: main/overlay order, event1/2 admission, readiness/recovery deadline, form restoration and behavior2 early return, cooldown rebinding/decrement and repeated behavior callbacks. Supplied ANI/cast/behavior/form/animation services; real ANI timing, projectile/effect ownership and native World/session integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5301872,
-          "scope": "Static entry identified; exact recovery and comparison pending."
+          "scope": "Whole50e670/50e6f0/50f7c0 ranged/alternate/ready event projections: main/overlay order, event1/2 admission, readiness/recovery deadline, form restoration and behavior2 early return, cooldown rebinding/decrement and repeated behavior callbacks. Supplied ANI/cast/behavior/form/animation services; real ANI timing, projectile/effect ownership and native World/session integration excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5302000,
-          "scope": "Static entry identified; exact recovery and comparison pending."
+          "scope": "Whole50e670/50e6f0/50f7c0 ranged/alternate/ready event projections: main/overlay order, event1/2 admission, readiness/recovery deadline, form restoration and behavior2 early return, cooldown rebinding/decrement and repeated behavior callbacks. Supplied ANI/cast/behavior/form/animation services; real ANI timing, projectile/effect ownership and native World/session integration excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5306304,
-          "scope": "Static entry identified; exact recovery and comparison pending."
+          "scope": "Whole50e670/50e6f0/50f7c0 ranged/alternate/ready event projections: main/overlay order, event1/2 admission, readiness/recovery deadline, form restoration and behavior2 early return, cooldown rebinding/decrement and repeated behavior callbacks. Supplied ANI/cast/behavior/form/animation services; real ANI timing, projectile/effect ownership and native World/session integration excluded."
         }
       ],
       "documents": [
-        "research/runtime/creature-execution.md"
+        "research/runtime/creature-execution.md",
+        "research/runtime/creature-control-actions-validation.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/execution.hpp",
@@ -51941,21 +52070,48 @@
         "tools/test-creature-execution.py"
       ],
       "evidence": [
-        "NS27.execution-static"
+        "NS27.execution-static",
+        "NS34.actions-original",
+        "NS34.actions-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_dependencies": [
-        "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
-        "reconstruction/creature-ai/execution/CMakeLists.txt"
-      ]
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Prospectively bound unchanged original bodies with complete actor-byte/ordered service/body guards and native64/original32/sanitized64 agreement",
+          "Owned1..128 actor pools, valid references,16x16x4 coordinates and selected finite fixture fields",
+          "Valid dispatcher/action1..25 and behavior1..16 selection with table nulls, independent16c/170 action carry state",
+          "Actions corpus spans28 types/classes, seven operations/eight bodies, bounded negative and positive valuation entries/statuses,32-bit wrapped arithmetic and x87 modifier ordering"
+        ],
+        "excluded": [
+          "Invalid raw pointers/indices/divisors, empty actor pools and broader arithmetic/profile domains",
+          "Unknown/out-of-range dispatcher callers beyond explicitly tested inputs",
+          "Full lower ANI/geometry/World/health/cast/effect ownership and installed profile construction",
+          "Native World/session/app scheduling and live replacement"
+        ]
+      }
     },
     {
       "id": "AI.behavior-handlers",
@@ -107286,6 +107442,318 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS34.control-original",
+      "kind": "isolated_original",
+      "scope": "Prospectively source/scope-bound control isolated projection: 24576 original32/native64/sanitized64 paired cases. Lower services supplied; complete World/session integration excluded.",
+      "record": "research/runtime/original-creature-control-bound-20261012.json",
+      "sha256": "0b8ca9858a99c282dcb33d2f042da490a6be0ffd706bb67bc22485e24e25172b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS34.control-native",
+      "kind": "native_integration",
+      "scope": "Prospectively source/scope-bound control isolated projection: 24576 original32/native64/sanitized64 paired cases. Lower services supplied; complete World/session integration excluded.",
+      "record": "research/runtime/original-creature-control-bound-20261012.json",
+      "sha256": "0b8ca9858a99c282dcb33d2f042da490a6be0ffd706bb67bc22485e24e25172b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        }
+      ]
+    },
+    {
+      "id": "NS34.actions-original",
+      "kind": "isolated_original",
+      "scope": "Prospectively source/scope-bound actions isolated projection: 28672 original32/native64/sanitized64 paired cases. Lower services supplied; complete World/session integration excluded.",
+      "record": "research/runtime/original-creature-actions-bound-20261012.json",
+      "sha256": "1665c547cea1319aae87a3944eae15b86ce458b54199cf32df058a29db8c65dd",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 28672
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS34.actions-native",
+      "kind": "native_integration",
+      "scope": "Prospectively source/scope-bound actions isolated projection: 28672 original32/native64/sanitized64 paired cases. Lower services supplied; complete World/session integration excluded.",
+      "record": "research/runtime/original-creature-actions-bound-20261012.json",
+      "sha256": "1665c547cea1319aae87a3944eae15b86ce458b54199cf32df058a29db8c65dd",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 28672
+        }
+      ]
+    },
+    {
+      "id": "NS34.joint-original",
+      "kind": "isolated_original",
+      "scope": "Prospectively source/scope-bound joint isolated projection: 53248 original32/native64/sanitized64 paired cases. Lower services supplied; complete World/session integration excluded.",
+      "record": "research/runtime/original-creature-transitions-joint-20261012.json",
+      "sha256": "b58f3ce1ac6d3bcf2e129e167dcc17c5f91820a3d8f80052a20515f34f30f7e9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 53248
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS34.joint-native",
+      "kind": "native_integration",
+      "scope": "Prospectively source/scope-bound joint isolated projection: 53248 original32/native64/sanitized64 paired cases. Lower services supplied; complete World/session integration excluded.",
+      "record": "research/runtime/original-creature-transitions-joint-20261012.json",
+      "sha256": "b58f3ce1ac6d3bcf2e129e167dcc17c5f91820a3d8f80052a20515f34f30f7e9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 53248
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -120167,8 +120635,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json",
-    "sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69"
+    "path": "research/runtime/coverage/source-index-original-control-actions-v2-20261012.json",
+    "sha256": "df04680ba11c25b33967a8221f58a2ccc3f7919dd8ac80221faee2833c4af939"
   },
   "claim_bindings_required": true
 }
