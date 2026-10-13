@@ -1838,3 +1838,13 @@ objects rehashed. Original manifests before/after verify all 2,927 files. The
 tracked `draw02-storage-archive-20261012-02.json` pins proposal/executor/verifier/
 result/receipt provenance. No broader cleanup, policy change, refreshed historical
 engine hashes or new engine validation. Restore archived inputs before use.
+
+After verified archive02 completed and the checkpoint committed as `b5f6be6f`,
+the first16update API-physical/EGL-metadata gate pilot5GiBpreflight refused at
+98.91GiBfree before launch. No original artifacts/game consumed or new gate
+validation. Current storage outside this run has consumed recovered headroom.
+`draw02-source-gate-original16-preflight-01.json` retains the exact refusal and
+pins next proposal03:66.8872GiB/24older completed runs/85,860payloads, reviewed
+but not authorized/executed. Sources/reports/pins/current templates/recent
+captures retained; raw evidence requires verified durable copies before pruning.
+Step2/all47/21remain open; steps3–7pending, no policy/status/hash reset.
