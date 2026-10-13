@@ -20,6 +20,7 @@ public:
     struct Campaign {
         QString id,name;
         std::array<QVector<Region>,3> regions;
+        std::array<int,3> regionLimits{8,12,16}; // Caller-supplied bounded display capacity, at most19.
         std::array<bool,3> realmAvailable{true,true,true};
         std::array<bool,5> auxiliaryAvailable{true,true,true,true,true};
         Realm realm=Realm::Celtic;

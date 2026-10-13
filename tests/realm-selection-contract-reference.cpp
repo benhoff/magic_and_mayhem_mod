@@ -1,7 +1,10 @@
 // Execute unchanged original settled Realm tick; stub only external dependencies.
+#pragma push_macro("main")
+#undef main
 #define main sprite_reference_unused_main
 #include "sprite-binary-reference.cpp"
 #undef main
+#pragma pop_macro("main")
 #include "realm_selection_fixture_bytes.h"
 #include "../reconstruction/campaign/realm_selection.hpp"
 #include <array>
