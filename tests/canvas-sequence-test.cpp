@@ -211,8 +211,10 @@ void clippedGrayscale() {
   canvas.raster(1,sprite,0,0,{1,1,3,3},0,11,{},{});
   const auto clipped=canvas.read(1);
   expect(clipped.pixels[0]==0x1234 && clipped.pixels[257]==0x1234 && clipped.pixels[259]==0x1234);
-  expect(clipped.pixels[258]==((0+8/2+2)/3)*2113);
-  const auto before=clipped.pixels;
+  expect(clipped.pixels[258]==258);
+  canvas.raster(1,sprite,0,0,{0,1,256,3},0,11,{},{});
+  expect(canvas.read(1).pixels[258]==((0+8/2+2)/3)*2113);
+  const auto before=canvas.read(1).pixels;
   refuses([&]{canvas.raster(1,sprite,0,0,{0,0,256,256},1,11,{},{});});
   sprite.pixels=std::vector<std::uint8_t>(65536,1);
   refuses([&]{canvas.raster(1,sprite,0,0,{0,0,256,256},0,11,{},{});});

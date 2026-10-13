@@ -46102,7 +46102,9 @@
         "DRAW02.draw02-worker-prefix-checkpoints-01-20261013",
         "DRAW02.draw02-worker-prefix120-checkpoints-negative-01-20261013",
         "DRAW02.draw02-grayscale-current120-01-20261013",
-        "DRAW02.draw02-grayscale-prior120-01-20261013"
+        "DRAW02.draw02-grayscale-prior120-01-20261013",
+        "DRAW02.draw02-grayscale-horizontal-current120-01-20261013",
+        "DRAW02.draw02-grayscale-horizontal-prior120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46309,13 +46311,13 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Clipped direct-word sprite RGB565 grayscale conversion",
-      "scope": "Selected original No-CD589c90 direct-word sprite path with bound RGB565 masks and native backend11, mode0, direct16-bit frame words. Clip and transparency retain prior destination; each drawn source word averages five-bit red, green reduced to five bits by shift6, and blue with unsigned integer division by3, then packs identical five-bit intensity at shifts11,6,0. Original RGB555/global-format variants and indexed sources remain outside this native contract; no general drawing order, byte ownership or presentation closure.",
+      "scope": "Selected original No-CD589c90 direct-word sprite path with bound RGB565 masks and native backend11, mode0, direct16-bit frame words. Full-horizontal-width and vertical-only clipped paths average five-bit red, green reduced by shift6, and blue using integer division by3, then pack intensity at11/6/0. Horizontally clipped paths copy original colored words. Transparency, clipping and row padding retain prior destination. Original RGB555/global-format variants and indexed sources remain outside this native contract; no general drawing order, byte ownership or presentation closure.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5807248,
-          "scope": "Direct-word clipped row decoding and RGB565 grayscale arithmetic at589e80..589ee4; selected zero-global format branch at589c93..589cb4 only."
+          "scope": "Direct-word clipped RLE row decoding: gray arithmetic589e80..589ee4, colored horizontal-clip loops589f54..589fca, zero-global format selection589c93..589cb4."
         }
       ],
       "documents": [
@@ -46325,17 +46327,27 @@
         "renderer/canvas_sequence.cpp"
       ],
       "tests": [
-        "tests/canvas-sequence-test.cpp"
+        "tests/canvas-sequence-test.cpp",
+        "tests/clipped-word-grayscale-reference.cpp",
+        "tools/test-clipped-word-grayscale.py"
       ],
       "validation_dependencies": [
         "compat/legacy/canvas_producers.cpp",
-        "assets/sprite_frame_decoder.hpp"
+        "assets/sprite_frame_decoder.hpp",
+        "tools/original-manifest.sh"
       ],
       "evidence": [
         "DRAW02.draw02-grayscale-diagnosis-01-20261013",
         "DRAW02.draw02-grayscale-unit-01-20261013",
         "DRAW02.draw02-grayscale-current120-01-20261013",
-        "DRAW02.draw02-grayscale-prior120-01-20261013"
+        "DRAW02.draw02-grayscale-prior120-01-20261013",
+        "DRAW02.draw02-grayscale-original-01-20261013",
+        "DRAW02.draw02-grayscale-original-02-20261013",
+        "DRAW02.draw02-grayscale-original-03-20261013",
+        "DRAW02.draw02-grayscale-original-04-20261013",
+        "DRAW02.draw02-grayscale-horizontal-unit-01-20261013",
+        "DRAW02.draw02-grayscale-horizontal-current120-01-20261013",
+        "DRAW02.draw02-grayscale-horizontal-prior120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46345,7 +46357,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "RGB565backend11mode0directwords pass exhaustive CPUtests and every2278checkpoint in retained new120trace; old120grayscalecheckpoint also matches. Isolated original full-word/clip comparison, RGB555/globalformat variants, indexed source dispatch, general byte/order and47/21closure remain pending."
+        "Eight isolated original589c90cases pass530432words including all65536RGB565colors, transparent/padding/guards, full/vertical/left/right/combined clipping and origins. Native CPUguards pass; current120all2278checkpoints match and prior120retains1600pixelcanvas2failure. RGB555/global format variants, indexed dispatch, extreme-coordinate/full callerABI, Windows/session integration, byte/backing/general execution order and47/21closure remain pending. Historical prior gray sources/scopes remain explicit; no comparison/integration/replacement status promotion."
       ]
     }
   ],
@@ -100112,6 +100124,147 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-original-01-20261013",
+      "kind": "isolated_original",
+      "scope": "Sandboxed32bit reference terminatesSIGSYS without results. Its historical original_body_executed flag records process launch, not proof original589c90was entered; no original comparison claim.",
+      "record": "research/runtime/draw02-grayscale-original-01.json",
+      "sha256": "96296fcbb1171cfa21aaade5431f7d261ffd6c087e8beb20a048dc96dc7ad826",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": -31
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_pe_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-original-02-20261013",
+      "kind": "isolated_original",
+      "scope": "Isolated original first two cases pass, then combined horizontal clipping differs from all-gray expectation in case2; originalloop branch remained missing from the authored model.",
+      "record": "research/runtime/draw02-grayscale-original-02.json",
+      "sha256": "7e5bd221fbd51ac1c60f34a57f85378e2f594fa7efb36a2f91d087b3cfa8573b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 1
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_pe_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-original-03-20261013",
+      "kind": "isolated_original",
+      "scope": "Isolated debug confirms376colored-word differences under horizontal clipping in case2; raworiginal/expected planes and firstsample coordinates retained, no passed contract.",
+      "record": "research/runtime/draw02-grayscale-original-03.json",
+      "sha256": "b882344b064b4ae3d57f54be8d4822c8e0e2125f447c4ffaa667f17443f65b5a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 1
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_pe_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-original-04-20261013",
+      "kind": "isolated_original",
+      "scope": "Isolated unmodified original589c90 compared against authored unpacked-channel scalar expectations and clipped/transparency/origin/padding/guard conditions in eight private-memory cases, including all65536RGB565words. Full-width/vertical-only routes convert to gray; horizontally clipped routes retain colored words. Private fixture globals use the zero-format branch. No original output supplied to native renderer, Windows/session integration, RGB555 or indexed validation, full caller ABI or complete presentation claim.",
+      "record": "research/runtime/draw02-grayscale-original-04.json",
+      "sha256": "4b68e35fc4ea71f7460a18d8351c53f54fa904f1d3137013201fa1a0206dfb17",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_pe_sha256"
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-horizontal-unit-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh CPU tests: all65536RGB565words, full-width/vertical-only grayscale, colored horizontal clip, transparency/padding and mode/indexed refusal. No originalgame or fullpresentation.",
+      "record": "research/runtime/draw02-grayscale-horizontal-unit-01.json",
+      "sha256": "84eeaa4a5f6b59124fdb70b1a0ca086ed8cdf28d58a94f2a1b64fcb0c4bc38ac",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-horizontal-current120-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh source-only native replay with recovered grayscale/horizontal-color branches: all2278checkpoints match currentworker-bound120trace; nativeexit0. No physical or journey closure.",
+      "record": "research/runtime/draw02-grayscale-horizontal-current120-01.json",
+      "sha256": "ba2c565419afcd5d04ceed7ced162a72ecfd7bf153f2d84c2cc7f5b2cd2b1621",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-horizontal-prior120-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh source-only native replay after horizontal-color correction:2182compared,2181match; oldcanvas2checkpoint1335stillfails1600pixels,canvas22graycheckpointmatches. Fullresult remainsfailed.",
+      "record": "research/runtime/draw02-grayscale-horizontal-prior120-01.json",
+      "sha256": "4cd47bb728feffc335293057da92a8056438058176b9c02ea37a4d714a594eda",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -112273,8 +112426,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-grayscale-20261013.json",
-    "sha256": "7adcc5520f0a677863cad884fe00af91114e5718f2bf974bf136c2f397d8ec73"
+    "path": "research/runtime/coverage/source-index-draw02-gray-horizontal-20261013.json",
+    "sha256": "596096e2db44a2f3632c43ffc53e007cce9e28a194715f1c498b7ff12f911960"
   },
   "claim_bindings_required": true
 }

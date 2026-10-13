@@ -446,8 +446,9 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
         colour = colours.at(indices->at(from));
       else
         colour = std::get<std::vector<std::uint16_t>>(f.pixels).at(from);
-      if (backend == 11) {
-        // No-CD 589c90 averages five-bit channels; green loses its low bit.
+      if (backend == 11 && left >= clip.left && left + f.width <= clip.right) {
+        // No-CD 589c90's full-width path averages five-bit channels. Its
+        // horizontal clipping path instead copies the original colored words.
         const auto gray = (((colour >> 11) & 31) + ((colour >> 6) & 31) + (colour & 31)) / 3;
         colour = (gray << 11) | (gray << 6) | gray;
       }

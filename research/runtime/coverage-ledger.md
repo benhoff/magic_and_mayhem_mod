@@ -9162,3 +9162,40 @@ copy sort. The old canvas2failure still requires source/driver view and
 noncopy/checkpoint execution accounting. New120CPU parity does not establish
 every physical route or complete semantic journeys. Step2remains open;
 steps3–7stayordered/pending with all47/21requirements unchanged.
+
+
+## Step 2 isolated gray/color clipping contract (2026-10-13 UTC)
+
+Grayscale repair committed as `4673e283` with staged and normal hook checks.
+Reviewed `db79f699..4673e283`:18exact file-version receipts, zero gaps.
+New isolated original fixture maps hash-pinned unmodified No-CD589c90 into
+private32-bit memory with authored RGB565 globals/RLE rows. Initial sandbox
+process endsSIGSYS; its historical original_body_executed flag denoted launch,
+not verified entry, and remains explicitly unsupported. The runner now emits
+verified-bodytrue only after successful checks, unknown on failed execution.
+Escalated comparison passes exhaustive/full-width and HUD cases, then fails
+combined horizontal clipping. Debug retains376different colored words and
+rawplanes;0x589f54..0x589fcadisassembly confirms the horizontal clip loops copy
+words directly. Their conversion differs from full-width/vertical-only gray.
+
+The corrected independent scalar original comparison passes8cases/530432
+destination-and-padding words with0differences, including all65536source
+RGB565colors, transparent runs, negative/shifted origins, pureleft/right/
+combined/vertical clipping, no overlap and guard retention. Nativebackend11
+now preserves colored words whenever horizontal clipping is required. CPU
+tests pass; fresh unchanged-input source-only replay matches all2278current120
+checkpoints. The earlierheld120trace compares2182with2181match and the same
+1600pixelcanvas2failure. All failed fixture/replay reports remain immutable.
+This scoped original scalar comparison does not execute native presentation
+or original callers; status axes remain partial/none independently.
+
+Reassessment: gray/color branch closure is stronger; full original frame
+acquisition, byte/backing identity and copy/noncopy execution remain open.
+The next held120capture with exact worker IDs did not launch: the storage
+guard measured1275.36GiB and refused its7GiB reservation against1280GiB.
+A subsequent retained inventory measures1277.858GiBworking/202.990GiBfree.
+Small0.125/0.25/0.5GiB guarded checks fit; larger capture needs storage review
+or explicit budget change perAGENTS.md. No cleanup, archive or policy change
+was applied. A concrete main1280→1344GiBproposal retains100GiBfree and
+automatic archivingoff at working/retention/draw02-storage-budget-proposal-
+20261013-01.json. Step2and all47/21remain open; steps3–7remainordered/pending.

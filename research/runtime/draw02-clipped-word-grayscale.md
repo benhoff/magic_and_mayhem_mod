@@ -1,7 +1,9 @@
 # Clipped direct-word sprite grayscale
 
 Original No-CD build40209ca7, routine0x589c90, is observed as producer
-backend11. It clips RLE rows and converts drawn16-bit source words to gray.
+backend11. Its full-horizontal-width and vertical-only clipping paths convert
+drawn16-bit source words to gray. Its horizontal clipping paths copy colored
+source words at0x589f54..0x589fca. Transparency and row padding are retained.
 Static disassembly0x589c93..0x589cb4 chooses channel shifts11/6 for the
 zero-global format branch;0x589e80..0x589ee4 masks channels, shifts red and
 green to five bits, divides their sum with blue by3, and packs the mean at
@@ -32,3 +34,23 @@ clipping/transparency and unsupported-input refusal.
 but retaining the separate1600pixelcanvas2failure. This is scoped native
 execution against independently retained original output, not isolated original
 full-word validation, complete physical presentation or live replacement.
+
+## Isolated original horizontal-clip branch
+
+The first sandboxed32-bit process ends withSIGSYS without results; its old
+original_body_executed field meant process launch and cannot prove entry.
+The runner now records successful body execution only after completed checks.
+An escalated run passes the full-word and HUD cases, then fails a combined
+left/right/top clipping expectation. Debug retains376different words and raw
+original/expected planes. Original disassembly0x589f54..0x589fca confirms
+these horizontal loops copy words directly, bypassing the gray arithmetic.
+
+The corrected independent scalar fixture passes eight original cases and
+530432destination/padding words with zero differences: all65536source colors,
+HUD placement, negative and shifted origins, transparent runs, combined and
+pureleft/right clipping, vertical-only clipping and no overlap. Its PE image
+bytes remain unmodified; fixture globals live only in private mapped memory.
+This validates the selected zero-format RGB565 branch against authored scalar
+expectations. Original callerABI, RGB555 and indexed variants remain open.
+Native backend11 now applies gray only when the horizontal frame extent fits
+the clip rectangle, reproducing the original colored clipping branch.
