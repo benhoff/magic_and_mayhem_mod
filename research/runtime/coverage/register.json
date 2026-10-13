@@ -37969,7 +37969,8 @@
         "tools/build-shadow-bridge.py",
         "tools/drawing_presented_session.py",
         "runtime/drawing/input_point.h",
-        "protocols/include/mnm/drawing_input_point_v1.h"
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -38135,7 +38136,8 @@
         "runtime/scene/vertical_bar_trace.h",
         "reconstruction/rendering/vertical_bar.h",
         "runtime/menu/drawing_actor_latches.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
       "remaining_gaps": [
@@ -42461,7 +42463,8 @@
         "tools/inspect-canvas-producers.py",
         "runtime/scene/vertical_bar_trace.h",
         "reconstruction/rendering/vertical_bar.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-point-getter-fixture-01-20261012",
@@ -43049,7 +43052,8 @@
       ],
       "validation_dependencies": [
         "runtime/drawing/session.c",
-        "runtime/shadow/win32_min.h"
+        "runtime/shadow/win32_min.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-import-inventory-01-static-20261012",
@@ -43105,7 +43109,8 @@
       "validation_dependencies": [
         "runtime/drawing/wine_submission.h",
         "runtime/drawing/session.c",
-        "tools/inspect-drawing-wine-imports.py"
+        "tools/inspect-drawing-wine-imports.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-lifetime-fixture-01-native_integration-20261012",
@@ -43154,7 +43159,8 @@
       ],
       "validation_dependencies": [
         "runtime/drawing/wine_lifetime.h",
-        "tools/drawing_wine_lifetime.py"
+        "tools/drawing_wine_lifetime.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-generation-fixture-01-native_integration-20261012",
@@ -43202,7 +43208,8 @@
       "validation_dependencies": [
         "runtime/drawing/wine_submission.h",
         "runtime/drawing/wine_lifetime.h",
-        "tools/inspect-drawing-wine-imports.py"
+        "tools/inspect-drawing-wine-imports.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-buffer-fixture-01-native_integration-20261012",
@@ -43244,7 +43251,8 @@
       "validation_dependencies": [
         "runtime/drawing/wine_lifetime.h",
         "runtime/drawing/wine_submission.h",
-        "tools/inspect-drawing-wine-imports.py"
+        "tools/inspect-drawing-wine-imports.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-texture-entry-fixture-01-native_integration-20261012",
@@ -43336,7 +43344,8 @@
       ],
       "validation_dependencies": [
         "runtime/drawing/wine_blit_worker.h",
-        "runtime/drawing/wine_submission.h"
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-blit-packet-fixture-01-native_integration-20261012",
@@ -43566,7 +43575,8 @@
         "runtime/scene/drawing_source_lease.h",
         "runtime/drawing/session.c",
         "runtime/drawing/wine_submission.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-worker-lease-fixture-01-native_integration-20261012",
@@ -43623,7 +43633,8 @@
         "runtime/scene/source_pending_policy.h",
         "tools/drawing_source_pending_admission.py",
         "tools/drawing_source_pending_refusal.py",
-        "tools/drawing_fixture_prefix.py"
+        "tools/drawing_fixture_prefix.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-held-fixture-01-native_integration-20261012",
@@ -43978,7 +43989,8 @@
         "runtime/drawing/wine_lifetime.h",
         "tools/inspect-drawing-wine-imports.py",
         "tools/build-drawing-session.py",
-        "tools/drawing_quit_completion.py"
+        "tools/drawing_quit_completion.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.draw02-wine-resource-imports-01-static-20261012",
@@ -44032,7 +44044,8 @@
         "runtime/drawing/source_byte_witness.h",
         "tools/drawing_source_pending_admission.py",
         "tools/drawing_source_pending_refusal.py",
-        "tools/drawing_fixture_prefix.py"
+        "tools/drawing_fixture_prefix.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.held-refusal-fixture-01-native-20261012",
@@ -44095,7 +44108,8 @@
         "protocols/include/mnm/drawing_storage_point_v2.h",
         "runtime/scene/drawing_storage_transitions.h",
         "runtime/scene/drawing_storage_caller.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.map-storage-export-fixture-01-native-20261012",
@@ -44171,7 +44185,8 @@
         "protocols/include/mnm/drawing_storage_point_v2.h",
         "runtime/scene/drawing_storage_transitions.h",
         "runtime/scene/drawing_storage_caller.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.client-memory-imports-01-static-20261012",
@@ -44247,7 +44262,8 @@
         "tools/drawing-session-runner.py",
         "protocols/include/mnm/drawing_storage_point_v2.h",
         "runtime/scene/drawing_storage_transitions.h",
-        "runtime/scene/drawing_storage_caller.h"
+        "runtime/scene/drawing_storage_caller.h",
+        "runtime/drawing/wine_source_descriptor.h"
       ],
       "evidence": [
         "DRAW02.retained-map-fixture-01-native-20261012",
@@ -44579,7 +44595,8 @@
         "tools/drawing-session-runner.py",
         "tools/drawing_diagnostic_cadence.py",
         "tools/inspect-drawing-wine-resource-copy.py",
-        "tools/inspect-drawing-wine-imports.py"
+        "tools/inspect-drawing-wine-imports.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ]
     },
     {
@@ -44932,7 +44949,8 @@
         "runtime/drawing/session.c",
         "runtime/shadow/win32_min.h",
         "protocols/include/mnm/drawing_input_point_v1.h",
-        "tools/build-drawing-session.py"
+        "tools/build-drawing-session.py",
+        "runtime/drawing/wine_source_descriptor.h"
       ]
     },
     {
@@ -45638,6 +45656,55 @@
       },
       "remaining_gaps": [
         "Corrected-contract owned suites02 pass16 pending guards, default refusal, protected-page/identity/restore checks and a real foreign aliased-write fault. Original02 passes strict106 V2 overlap admissions joined to231 protected snapshot pairs/447 completed worker commands and120 advancing producer queues. Numeric IDs do not prove disjoint backing or complete source/COM/resource lifetime, all writers/output routes, hardware completion, unobtrusive cadence, semantic outcomes or complete presentation acquisition. No comparison/integration/replacement status promotion."
+      ]
+    },
+    {
+      "id": "NR.drawing-wine-source-descriptor",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Diagnostic public Wine source descriptor at exact submission",
+      "scope": "Opt-in extra public texture_get_resource/get_sub_resource_desc queries at a known-live source texture submission. Record exact submission/API/thread/source generation/subresource, public format/access/geometry descriptor and query outcomes using opaque IDs; forward the original blit once with original entry and returned LastError/FP state. No private layout or pixel reads, map/unmap, new waits, source byte ownership, all aliases/lifetimes, presentation completeness, unobtrusive gameplay or native parity claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-wine-source-descriptor.md",
+        "research/formats/drawing-wine-source-descriptor.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_descriptor.h",
+        "tools/drawing_wine_source_descriptor.py"
+      ],
+      "tests": [
+        "tests/drawing-wine-source-descriptor-test.c",
+        "tools/test-drawing-wine-source-descriptor.py",
+        "tests/test-drawing-wine-source-descriptor.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/session.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_lifetime.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-descriptor-fixture-04-20261012",
+        "DRAW02.wine-source-descriptor-fixture-05-20261012"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned PE32 fixture05 passes seven original forwards, four extra resource getters/three descriptor queries, disabled/untrusted/null/failed/changed-generation cases, exact original entry/return FP and LastError. Five decoder methods and eight cadence guard methods pass. Corrected headless scenario is bound by fresh fixture05; fixture04 retains its earlier invalid-label declaration historically. Two 3GiB original probe preflights refuse at100.672 and101.470GiB free before launch. Original activation and exact cross-journal validation, opaque source bytes, all aliases/lifetimes/frame/action/routes and current controls remain pending; no comparison/integration/replacement or full47/21 promotion."
       ]
     }
   ],
@@ -97832,6 +97899,60 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.wine-source-descriptor-fixture-04-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 extra public source getter/descriptor queries, disabled/untrusted/null/failed/changed-generation cases, exactly seven original blit forwards with entry/return512BFP and LastError preservation. Synthetic objects only; no original source/driver bytes, ownership or full acquisition proof.",
+      "record": "research/runtime/draw02-wine-source-descriptor-fixture-04.json",
+      "sha256": "171d8178752979706c4f5c7d075a030819adb47040fe0558f0bbced33fc3dfa1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 7
+        },
+        {
+          "pointer": "/descriptor_samples",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.wine-source-descriptor-fixture-05-20261012",
+      "kind": "native_integration",
+      "scope": "Owned PE32 extra public source getter/descriptor queries, disabled/untrusted/null/failed/changed-generation cases, exactly seven original blit forwards with entry/return512BFP and LastError preservation. Synthetic objects only; no original source/driver bytes, ownership or full acquisition proof.",
+      "record": "research/runtime/draw02-wine-source-descriptor-fixture-05.json",
+      "sha256": "481ad5dc6a5df72273b44fa2ca71650660fbb90fdd4373bcf1cf9382ffda7277",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_blits",
+          "equals": 7
+        },
+        {
+          "pointer": "/descriptor_samples",
+          "equals": 6
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109729,6 +109850,21 @@
         "DRAW02.pending-policy-original-refusal-01-20261012",
         "DRAW02.pending-policy-original-02-20261012"
       ]
+    },
+    {
+      "id": "DRAW02.wine-source-descriptor-owned",
+      "level": "headless",
+      "scope": "Owned PE32 public source-descriptor query and original blit state/forwarding guards only.",
+      "behaviors": [
+        "NR.drawing-wine-source-descriptor"
+      ],
+      "tests": [
+        "tools/test-drawing-wine-source-descriptor.py"
+      ],
+      "evidence": [
+        "DRAW02.wine-source-descriptor-fixture-04-20261012",
+        "DRAW02.wine-source-descriptor-fixture-05-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -110102,8 +110238,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-pending-control-20261012.json",
-    "sha256": "1b439ae0d9f96621b90ccdc19147f712c5308feabc72db11d25c701ee02f5110"
+    "path": "research/runtime/coverage/source-index-draw02-source-descriptor-20261012-02.json",
+    "sha256": "0d6604a53f55e66a2acbb7b54762e62315fd3cc77915fa16f96f8f00413e891e"
   },
   "claim_bindings_required": true
 }

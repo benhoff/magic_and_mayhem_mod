@@ -8317,3 +8317,53 @@ hot. Only storage provenance changes; old engine evidence hashes are preserved.
 Archived engine inputs require restore before use. Step2 still needs complete
 frame/action/caller/lifetime and encountered-route acquisition; no47/21 or later
 step is promoted by cleanup, bounded120queue capture or cadence comparison.
+
+
+## Public source descriptor diagnostic checkpoint (2026-10-12 UTC)
+
+The accepted original02 dataset has launch-local source2 at800x600/stride800,
+source5 at40x40/stride0 and source6 at400x280/stride0. The opaque sources need
+separate driver-backed byte/lifetime accounting. A newly seeded behavior and
+opt-in source descriptor observer adds only public resource/subresource metadata
+queries at known-live Wine source submissions, with opaque IDs and explicit
+unknown/null/failed/changed-generation outcomes. It reads no pixel or private
+object bytes, adds no map/unmap or wait, and forwards the original blit once with
+entry/return LastError/FP preserved. Decoder joins every sample to the independent
+submission/source/subresource and exact lifecycle prefixes; it grants no whole
+ownership/presentation or semantic claim.
+
+Owned PE32fixture04 passes seven original forwards, four extra resource getters
+and three descriptor queries across six samples, including disabled, unknown,
+null, failed and changed-generation cases. Five decoder methods pass. An initial
+fixture's uninitialized reserved FXSAVE comparison bytes are corrected; later
+source changes correctly reject an in-flight declaration, and a mistyped path
+fails before execution. Those raw failure logs remain retained. Final-source
+fixture04 is stable and no live activation precedes it.
+
+The bounded original probe is not started: the unchanged3GiB preflight refuses
+at100.672GiB free, despite the completed approved18.023GiB cleanup. Other writers
+consume main-disk headroom independently. Default drawing/source observers remain
+separate from the new opt-in queries. Source changes/dependency links leave prior
+execution fingerprints historical rather than refreshed. Actual original probe,
+opaque driver bytes, full frame/action/caller/lifetime/routes and whole47/21
+closure remain pending. Step2 is open; no comparison/integration/replacement or
+later step is promoted.
+
+Coverage checks use private second-NVMe scratch `/var/tmp/mnm-draw02-coverage-1x183g5a`
+for temporary Git base/index copies. The main guard still monitors the100GiB floor;
+0.2GiB reserves cover main report/index metadata, while several GiB of temporary
+copies live on the separate filesystem. Cold archives and engine references are
+not relocated by this scratch choice. Accepted capture/control accounting is
+committed as `e3c0c2bf`, with zero working/staged/hook errors.
+
+Fixture05 repeats the unchanged source with a corrected `headless` scenario
+declaration after audit01 rejected the earlier `native_integration` scenario
+label. Seven original forwards and all five decoder guards pass with stable
+sources. Fixture04 and its exact claims remain historical; its scenario binding
+is not current validation. The additional eight cadence guard methods pass.
+The second unchanged3GiB original preflight also refuses, at101.470GiB free;
+no Xvfb/game run starts and no original result is registered. The desired original
+scenario will be registered with actual execution evidence, not a preflight.
+Committed `e3c0c2bf` parent/current accounting covers15versions with exact receipts;
+append-only journal metadata is separate. Remaining original activation and exact
+three-journal join validation remain pending.

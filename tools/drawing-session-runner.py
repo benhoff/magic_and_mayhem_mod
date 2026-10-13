@@ -58,6 +58,8 @@ if metadata.get('wine_map_storage_point'):os.environ['MNM_DRAW_WINE_MAP_STORAGE'
 else:os.environ.pop('MNM_DRAW_WINE_MAP_STORAGE',None)
 if metadata.get('wine_resource_copy'):os.environ['MNM_DRAW_WINE_RESOURCE_COPY']='1'
 else:os.environ.pop('MNM_DRAW_WINE_RESOURCE_COPY',None)
+if metadata.get('wine_source_descriptor'):os.environ['MNM_DRAW_WINE_SOURCE_DESCRIPTOR']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_DESCRIPTOR',None)
 if metadata.get('wine_resource_map'):os.environ['MNM_DRAW_WINE_RESOURCE_MAP']='1'
 else:os.environ.pop('MNM_DRAW_WINE_RESOURCE_MAP',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']
