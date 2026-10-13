@@ -2632,3 +2632,25 @@ Reassessment: acquire actual request-bound menu redraw/restoration evidence and
 source state, retaining the old1600pixel failure. Static caller recovery does not
 justify COPY reordering or close ownership, diagnostic controls or presentation.
 Step2 remains active; all47/21closures and steps3–7 remain open.
+
+
+## Step2 repeated Results redraw checkpoint (2026-10-13)
+
+Fresh original120repeat retains31inputactions,566697records,2533oracles and900
+primary physical planes; actual original Quit exits0 and manifests verify.
+Source-only unchanged-return replay matches all2533CPU checkpoints and all134
+admitted physical contexts, with766contexts excluded.2364copy requests bind3185
+commands;1684query associations are admitted and3802unbound retained. All new
+records retain prospective current-source claims where execution applies.
+
+Twelve menu redraw copies occur after World entry. Four exact worker/return
+inversions have immediate saved-buffer→CPUsource restoration, but their native
+prior-primary/current-source ROIs are identical. The older failed menu case has
+1600ROI differences. The native value probe32pairs preserves every operation and
+checkpoint;18ordinary-frame regions differ without new CPU checkpoint failure.
+This distinguishes the unobserved failing conjunction and does not repair it.
+
+Reassessment: step2 remains active; test optional worker-prefix observation
+perturbation with the same stimulus and explicit request IDs. Keep ownership,
+all-writer/view/lifetime/route and cadence/semantic controls independent. All47/21
+closures and steps3–7 remain open. No gameplay or native scheduling changes.
