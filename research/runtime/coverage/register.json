@@ -44551,7 +44551,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/original-gameplay-observation.md"
+        "research/runtime/original-gameplay-observation.md",
+        "research/runtime/original-campaign-manual-observation.md"
       ],
       "implementation": [
         "tools/prepare-menu-observer.py",
@@ -44637,7 +44638,8 @@
       ],
       "evidence": [
         "UI53.original-gameplay-observation",
-        "UI69.original-gameplay-progress-followup"
+        "UI69.original-gameplay-progress-followup",
+        "UI77.original-campaign-manual-observation"
       ],
       "status": {
         "understanding": "partial",
@@ -96709,6 +96711,33 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI77.original-campaign-manual-observation",
+      "kind": "live_observation",
+      "record": "research/runtime/original-campaign-manual-observation-20261013.json",
+      "sha256": "3683b28628741b66baa40bf14562404907667a605c7b6ea269ef11eed72ff24c",
+      "scope": "Fresh original-display passive creature/spell observation with complete current 76-source build/test closure; unchanged genuine checkpoint, manual ordinary controls, death/reload/summons and normal Quit. No mission completion,native menu/Character/renderer or complete hook-equivalence proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_launcher_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/mission_completion",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -107562,7 +107591,8 @@
       ],
       "evidence": [
         "UI53.original-gameplay-observation",
-        "UI69.original-gameplay-progress-followup"
+        "UI69.original-gameplay-progress-followup",
+        "UI77.original-campaign-manual-observation"
       ],
       "tests": [
         "tests/original-gameplay-launch-test.py",
@@ -108067,7 +108097,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "e0467194fe9ae082c3b4fae18de9b8d216f42fe2d05633024230e47edf2a19b7",
+      "sha256": "33c8414ce87d2d3a077ec99637aaf5d5480ca0348e700ced0de1c2c17acdb3e3",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character. UI49 compares bounded positive-domain Character pricing; native failed-input policy stays separate, live menus pending. UI50 adds experimental opt-in Character headless integration and original80-record wizard-selection finding; genuine live progression remains pending."
     },
     {

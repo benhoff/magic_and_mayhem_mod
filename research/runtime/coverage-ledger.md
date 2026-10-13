@@ -7323,3 +7323,17 @@ research actions and real post-win Realm/Character/Spellbox/persistence remain
 pending. The read-only model performs no gameplay changes;drawing-lock/recovery
 remains a separate unresolved failure. See [dynamic descriptors](grimoire-dynamic-fields.md)
 and [text/page flow](grimoire-text-pages.md) for exact scope and retained runs.
+
+### Full-closure original campaign observation (2026-10-13)
+
+`UI77.original-campaign-manual-observation` adds fresh passive original-display
+observation with all76 current adapter/launcher/test source fingerprints,2150
+creature records,157 spell records,normal original report/Main/Quit and2927
+immutable-file checks. Historical UI53/UI69 fingerprints are preserved. Raw
+manual actions/captures remain in working/tests/original-campaign-manual-20261013;
+[the note](original-campaign-manual-observation.md) records their limits. A genuine
+checkpoint was loaded and reloaded unchanged. Fireball/summon attempts did not
+win; original Quit awarded zero experience. This restores current observer
+support only. Post-win Realm/Character/Portmanteau/persistence,dynamic/multipage
+book integration,research mutation and native renderer crash resolution remain
+pending; no balance/progression writes or new native menu admission occurred.
