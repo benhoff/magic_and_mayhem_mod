@@ -6,6 +6,7 @@ LiveCharacterController::LiveCharacterController(LiveMenuSession& session,Charac
     QObject::connect(&widget_,&CharacterScreenWidget::cancelled,&widget_,[this]{session_.request(MNM_MENU_CHARACTER_CANCEL);});
 }
 bool LiveCharacterController::present(const MenuBridge::State& state,QString* error){
+    widget_.setEnabled(state.screen==20&&state.ready&&session_.characterMenusEnabled);
     if(state.screen!=20){generation_=0;return true;}
     if(!session_.characterMenusEnabled){if(error)*error="Character integration disabled.";return false;}
     if(!state.ready||state.generation==generation_)return true;
