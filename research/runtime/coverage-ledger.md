@@ -8409,6 +8409,112 @@ Committed range9d2ad1d5..2976cdd6 has33 source/link and103 behavior transitions
 with exact parent/current receipts and no unresolved gaps. Private authorized
 90GiB reserve policy is used; no cleanup is performed by this workstream.
 
+## NS32 — Whole special finishing, ascent and descent callbacks (2026-10-12)
+
+Whole521790/5217e0/521dd0 projections pass24576 prospectively bound
+original32/native64/sanitized64 cases and five separate native refusals. Thirteen
+native CTests pass. Every actor/peer byte, ordered lower-service effects and
+original body bytes are checked. Non-square grids/eight layers, all28 types,
+class-specific random/region probes, signed rollover, finishing after removal,
+reserved occupancy, corpse/live descent, temporary104 restoration/removal,
+forced movement-kind3/selector1 landing ABI, response and fall/type15 damage
+are included. Development failures and hashes remain preserved.
+
+AI.special-flight-actions records scoped implementation and original comparison;
+NP.special-flight-admission records five native refusals with caller-staged
+rollback. Integration/replacement staynone. Actual lower World/geometry/region/
+ANI/health/stun ownership, installed constructors, remaining aiming/cast and
+native World/session/portable continuation composition remain in the objective.
+Undiscovered ascent/descent bodies have explicit pinned recovered-range links;
+the inventory's unknown ranges are retained.
+
+Committed NS31 range2976cdd6..b6cc497b reviews36 source/link and105 behavior
+transitions; the incoming Qt opt-in commitb6cc497b..6458a16f reviews four source/
+link and33 behavior transitions, including evidence/scenario links. Both retain
+exact receipts with no unresolved gaps and assert no retrospective execution.
+Builds use the private authorized90GiB reserve policy; no cleanup is performed.
+
+## NS33 — Separate previous direction and previous motion state (2026-10-12)
+
+The composition review found that setup's614 previous direction and action's16c
+previous-motion flag reused one native member. SegmentInitializationState now
+owns previousDirection; CreatureExecution.previousMove remains16c and its prior
+rate remains170. Setup's fixture packs/checks all three independently, preserving
+the action fields while changing direction. No original field or rule is merged.
+
+Four fresh prospectively bound original32/native64/sanitized64 runs pass81920
+cases:24576setup,24576request,8192displacement and24576special-flight. Their
+native-only refusal counts are10/5/4/5. All thirteen rebuilt native CTests pass.
+New NS33.fields evidence records preserve all prior hashes/status history and
+refresh only the four source-affected scopes; NS28/NS29 do not depend on the
+changed setup header and are not rerun. Integration/replacement remainnone.
+
+This fixes state composition groundwork; installed constructor/profile binding,
+remaining original execution/aim/cast/upkeep, full lower World ownership, native
+CreatureRuleSession composition and portable continuation/application integration
+remain in the authorized objective. The committed NS32 range6458a16f..c9d19a92
+has38 source/link and106 behavior transitions with exact parent/current receipts
+and no unresolved accounting gaps. Private90GiB storage policy remains authorized;
+no cleanup is performed by this workstream.
+
+## NS34: current original scheduler and action projection proofs
+
+Fresh prospective control/actions runs pass53,248 paired cases (24,576+28,672)
+with original32/native64/sanitized64 agreement and unchanged text/inputs/sources.
+Six scoped contracts gain current isolated comparison. Transition proof requires
+both immutable components; the joint record is aggregation, not a composed World
+run. Reviewed declarations include canonical compiler dependencies. Lower
+World/ANI/geometry/health/cast/effect services and installed profiles remain supplied
+or excluded; native session integration and live replacement remain none.
+See [scope and evidence](creature-control-actions-validation.md). Earlier unbound
+results and the failed missing-dependency attempt remain historical.
+
+## NS35: remaining creature projections with current comparison
+
+Six prospectively bound suites pass151,552 paired original/native/sanitized cases
+for orders/follow, roaming, behavior handlers, maintenance/movement/death and
+idle/corpse/melee/interaction/stun callbacks. Eight scoped contracts gain current
+comparison; follow requires joint orders/control proof.512220 queue delivery is
+still supplied;509e50 upkeep admission is deliberately excluded. Lower World,
+ANI/geometry/health/effect/resource/RNG ownership, full wizard/scenario policy,
+installed construction and native session integration remain pending. No live
+replacement or balance change. See [scope details](creature-remaining-contracts-validation.md).
+
+Public Qt launch policy (2026-10-12): `HOST.launch-original-verification` skips
+the full original-media manifest scan by default through
+`MNM_VERIFY_ORIGINALS=0`. Set `MNM_VERIFY_ORIGINALS=1` when launching to restore
+before/after verification. Direct experiment helpers still verify by default;
+experiments consuming original artifacts require the checks. Working executable,
+DLL, installation and callback-byte admission remain in place. Synthetic
+orchestration and syntax checks cover the selection; live engine validation
+remains pending. This changes startup policy, with no engine comparison or
+replacement milestone promotion. Historical evidence retains its recorded hashes
+and may become stale for the shared launcher/UI files.
+
+Public startup preparation (2026-10-12), `HOST.startup-preparation`: the Qt
+launcher reuses matching CMake configuration and verifies cached production
+adapter DLL/manifest pairs. Source content, options or toolchain file identity
+changes invalidate cache entries. Full installed-asset and repeated Python music
+scans are opt-in; native music catalog validation, executable/DLL/callback/config
+and fresh channel admission remain mandatory. Details exposes the initially
+collapsed launch log. Synthetic boundary tests, real adapter reuse and Qt
+build/smoke cover preparation; offline staging uses a preserved pinned input.
+No live comparison or replacement stage is promoted. See
+[policy and retained reports](public-launch-startup.md). Shared source changes
+retain historical evidence and can leave earlier fingerprints stale.
+
+Startup final boundary: concurrent hard-restart edits changed the shared UI
+after its recorded build/smoke result. Retention preflight refused the combined
+rebuild (about100.24GiB free; 0.5GiB reservation would cross the100GiB reserve).
+The existing result remains bound to its earlier hash; current combined UI
+validation and whole-tree accounting are pending. No cleanup or budget override.
+
+Startup UI follow-up: after free space recovered, the guarded combined Qt build
+and fresh CLI/shell smoke checks passed for stable source hashes, retained in
+`public-launch-startup-ui-final-20261012.json`. Earlier storage refusals and
+source versions remain historical. Live engine validation and independent
+whole-tree accounting remain pending; no engine milestone promotion.
+
 ## 2026-10-12: battle pause and distortion allocation boundary
 
 Read-only sampling confirmed a paused battle (mode one, advancing accepted

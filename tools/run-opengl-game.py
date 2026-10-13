@@ -11,6 +11,10 @@ import shutil
 import struct
 import subprocess
 import tempfile
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from launch_build_cache import build_adapter
+from launch_asset_checks import full_asset_verification
 REPO=Path(__file__).resolve().parent.parent
 
 # Shared wire definitions are repository-local; no package installation required.
@@ -128,7 +132,7 @@ def main():
     if not source.is_relative_to(REPO/'working') or not source.is_dir():raise ValueError('Native source game must be under working/')
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=stage.HASH:raise ValueError('Unsupported game hash')
-    dll=load('render_build','tools/build-render-bridge.py').build()
+    dll=build_adapter('tools/build-render-bridge.py',lambda: load('render_build','tools/build-render-bridge.py').build())
     parent=REPO/'working/experiments/opengl-render';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
@@ -140,7 +144,7 @@ def main():
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Copied game hash changed')
     patched=data;draw_dll=None
     if native_draw:
-        draw_dll=load('native_draw_build','tools/build-native-draw.py').build(root/'native-draw-build')
+        draw_dll=build_adapter('tools/build-native-draw.py',lambda: load('native_draw_build','tools/build-native-draw.py').build(root/'native-draw-build'))
         patched=load('native_draw_import','tools/prepare-native-draw.py').redirect(patched,enumeration=True)
         shutil.copy2(draw_dll,game/draw_dll.name)
         shutil.copy2(draw_dll.parent/'manifest.json',root/'native-draw-build.json')
@@ -151,14 +155,14 @@ def main():
         for address in (0x597086,0x596cb8):
             at=exporter.image_offset(data,address,6)
             if data[at:at+6]!=bytes.fromhex('558bec565753'):raise ValueError('Unsupported direct-word backend entry')
-        word_dll=load('word_build','tools/build-word-sprites.py').build()
+        word_dll=build_adapter('tools/build-word-sprites.py',lambda: load('word_build','tools/build-word-sprites.py').build())
         patched=stage.add_import(patched,dll='MnmWord.dll',symbol_name='WordAnchor',section_name=b'.mnword')
         shutil.copy2(word_dll,game/word_dll.name)
         shutil.copy2(word_dll.parent/'manifest.json',root/'word-bridge-build.json')
         (root/'word-sprites').mkdir()
     audio_dll=None
     if voice_path:
-        audio_dll=load('audio_build','tools/build-audio-bridge.py').build()
+        audio_dll=build_adapter('tools/build-audio-bridge.py',lambda: load('audio_build','tools/build-audio-bridge.py').build())
         patched=load('audio_native_import','tools/prepare-native-audio.py').redirect(data,patched)
         shutil.copy2(audio_dll,game/audio_dll.name)
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
@@ -171,8 +175,9 @@ def main():
     metadata={'cd_music_disabled':True,'cd_music_preference_edits':cd_edits,'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
     metadata.update(native_draw=native_draw,native_render=bool(command_path),native_draw_sha256=hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,native_draw_status=str(root/'native-draw-status.bin') if native_draw else None)
-    if native_draw:
-        metadata['origin']='native_graphics_opengl_presentation'
+    metadata['full_asset_verification']=full_asset_verification()
+    if native_draw:metadata['origin']='native_graphics_opengl_presentation'
+    if native_draw and metadata['full_asset_verification']:
         inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
         (root/'input-fingerprints.json').write_text(json.dumps(inputs,indent=2)+'\n')
     metadata['voice_channel']=str(voice_path) if voice_path else None
@@ -242,6 +247,7 @@ def main():
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Source game changed')
     return result.returncode
 if __name__=='__main__':
-    subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
     try:raise SystemExit(main())
-    finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    finally:
+        if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
