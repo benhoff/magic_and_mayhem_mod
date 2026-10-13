@@ -44436,7 +44436,8 @@
         "DRAW02.source-map-bounded-cadence-control-05-20261012",
         "DRAW02.source-map-bounded-cadence-comparison-02-20261012",
         "DRAW02.source-clock-cadence-comparison-01-20261012",
-        "DRAW02.source-worker-cadence-comparison-01-20261013"
+        "DRAW02.source-worker-cadence-comparison-01-20261013",
+        "DRAW02.source-version-cadence-comparison-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44774,7 +44775,8 @@
         "DRAW02.source-map-worker-campaign-original-03-20261013",
         "DRAW02.source-worker-campaign-pause-negative-03-20261013",
         "DRAW02.source-worker-campaign-pause-fixture-02-20261013",
-        "DRAW02.source-worker-campaign-pause-analysis-04-20261013"
+        "DRAW02.source-worker-campaign-pause-analysis-04-20261013",
+        "DRAW02.source-version-campaign-pause-analysis-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45813,7 +45815,8 @@
         "DRAW02.wine-source-map-fixture-03-20261012",
         "DRAW02.wine-source-map-fixture-04-20261012",
         "DRAW02.wine-source-map-fixture-05-20261012",
-        "DRAW02.wine-source-map-fixture-06-20261012"
+        "DRAW02.wine-source-map-fixture-06-20261012",
+        "DRAW02.source-version-legacy-map-regression-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45922,7 +45925,8 @@
         "DRAW02.source-map-worker-original-01-20261013",
         "DRAW02.source-map-worker-campaign-original-01-20261013",
         "DRAW02.source-map-worker-campaign-original-02-20261013",
-        "DRAW02.source-map-worker-campaign-original-03-20261013"
+        "DRAW02.source-map-worker-campaign-original-03-20261013",
+        "DRAW02.source-version-bounded-map-regression-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46077,7 +46081,9 @@
         "DRAW02.source-worker-egl-campaign-analysis-01-20261013",
         "DRAW02.source-worker-egl-campaign-analysis-02-20261013",
         "DRAW02.source-worker-egl-campaign-analysis-03-20261013",
-        "DRAW02.source-worker-egl-campaign-analysis-04-20261013"
+        "DRAW02.source-worker-egl-campaign-analysis-04-20261013",
+        "DRAW02.source-version-egl-analysis-01-20261013",
+        "DRAW02.source-version-campaign-egl-analysis-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46090,6 +46096,79 @@
         "Fresh final fixture04passes10guards; Quick Battle analysis04matches456whole images and first campaign analysis02matches162whole images, every observed source/selected worker and every retained EGLwitness bound. One final stable context in each closed run has no retained physical witness. Original-source atomicity, all backing aliases/writers, every presentation route, semantic action outcomes and native parity remain open.",
         "Intermediate model evidence retains its original source/scope fingerprints. It does not assert final-code validation; final source-only reanalysis is separate from new original execution.",
         "Final campaign acquisition03and analysis04close1424source-worker links and193full images; together with Quick Battle analysis04there are649matched final whole images/311520000RGBpixels. Earlier campaign captures/failed scalar analyses remain separate immutable evidence. All original aliases/writers, semantic action attribution, alternate routes and unobtrusive acquisition remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-version-guard",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Observed resource write versions between mapped snapshot and selected worker",
+      "scope": "Opt-in bounded diagnostic guard sharing write epochs by exact public resource identity, including aliases resolving to that resource. Register mapped snapshot version after successful public READ mapping and reject observed writes during copy/unmap or before/during its exact emitted packet worker. Track non-read map attempts/open write leases, selected worker destination writes, public copy destinations and pinned public texture descriptor/client-memory rebind attempts. Validate original texture generation/resource/subresource and exact packet/worker binding. Fail closed on epoch/generation changes, active writes, missing/duplicate/unknown identity, pending snapshots and capacity. No worker-side public map, private object layout, mapped-pointer reuse, hardware completion, unhooked direct CPU/GPU writes, separate resource objects sharing storage, all-alias/source atomicity or native parity proof.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-version-guard.md",
+        "research/formats/drawing-source-version-guard.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_source_version.h",
+        "tools/drawing_source_version.py"
+      ],
+      "tests": [
+        "tests/drawing-source-version-test.c",
+        "tools/test-drawing-source-version.py",
+        "tests/test-drawing-source-version.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_resource_copy.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/drawing/wine_texture_entry.h",
+        "tools/build-drawing-session.py",
+        "tools/drawing_wine_source_map.py",
+        "tools/drawing_wine_submission.py",
+        "tools/drawing_wine_blit_worker.py",
+        "tools/drawing_wine_blit_packet.py",
+        "tools/drawing_wine_lifetime.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/build-shadow-bridge.py",
+        "runtime/shadow/win32_min.h",
+        "runtime/drawing/wine_source_descriptor.h",
+        "tools/drawing_wine_source_descriptor.py",
+        "tools/drawing_wine_resource_mapping.py",
+        "tools/drawing_wine_resource_copy.py",
+        "tools/inspect-drawing-wine-client-memory.py"
+      ],
+      "evidence": [
+        "DRAW02.source-version-build-negative-01-20261013",
+        "DRAW02.source-version-fixture-negative-01-20261013",
+        "DRAW02.source-version-original-01-20261013",
+        "DRAW02.source-version-close-negative-01-20261013",
+        "DRAW02.source-version-fixture-03-20261013",
+        "DRAW02.source-version-fixture-04-20261013",
+        "DRAW02.source-version-fixture-05-20261013",
+        "DRAW02.source-version-original-02-20261013",
+        "DRAW02.source-version-campaign-original-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Final wire2fixture05passes13owned PE32cases and8decoder methods; legacy/bounded default-off regressions pass. Source/generation/epoch and exact packet/worker relationships are checked in fresh Quick Battle3083and campaign1402sources. Source-only intermediate versions and failed runs retain original fingerprints.",
+        "Wire2records open writes after every pending source interval has retired, without claiming all global leases closed. Original01global close refusal remains unadmitted; current positive runs both have zero open boundary leases. No pending snapshot or overlapping checked write is waived.",
+        "Owned direct-write case proves bytes can change between snapshot and consumption while this observed-path guard still admits. Unhooked CPU writes, distinct resource objects sharing backing, other command opcodes, GPU completion and fullsource atomicity remain unproved. No native replacement/integration or complete DRAW-02 promotion."
       ]
     }
   ],
@@ -99943,6 +100022,284 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.source-version-build-negative-01-20261013",
+      "kind": "static",
+      "scope": "Owned fixture compile failed on missing thread API declarations; no original execution.",
+      "record": "research/runtime/draw02-source-version-build-negative-01.json",
+      "sha256": "3fb1ac9a28398056a6e75c850419d7ea04c6e4006160ce9ddc13f6ab51366d8b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-fixture-negative-01-20261013",
+      "kind": "static",
+      "scope": "Owned FP comparison buffer included uninitialized reserved bytes; valid guard entry precedes fixture refusal, no guard admission.",
+      "record": "research/runtime/draw02-source-version-fixture-negative-01.json",
+      "sha256": "a3f2e9c7c192be244ee05d1652e2098d851ec7b32ab4b32a938429de29bf4ad4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-original-01-20261013",
+      "kind": "static",
+      "scope": "Failed original capture:wire1global close rejects later unrelated writable map, session.done missing; no accepted update/frame/normalQuit claim.",
+      "record": "research/runtime/draw02-source-version-original-01.json",
+      "sha256": "52d4b0a31ee6d4114b3c3bd8bbc2ec5b862834098410d3dca24a179d9db9a6eb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-close-negative-01-20261013",
+      "kind": "static",
+      "scope": "Static review of unclosed original01prefix:3066snapshot/worker returns before global boundary refusal. Counts do not assert admitted acquisition.",
+      "record": "research/runtime/draw02-source-version-close-negative-01.json",
+      "sha256": "6b3ed8d5556516a4c4f4b8ecd2a6e263f107cf0ef24e8262822c0ab5e259f215",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-fixture-03-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE3211cases plus strict decoder guards; default-off/FP/error forwarding and exact observed write/alias/reuse refusals. Fixture05is final wire2with open boundary and post-close forwarding; fixture04/05prove unobserved direct writes can escape.",
+      "record": "research/runtime/draw02-source-version-fixture-03.json",
+      "sha256": "6663095bcc6700abf5ebc0b747db6a209ab19df2584d8f89b3784e9c800e7fab",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-fixture-04-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE3212cases plus strict decoder guards; default-off/FP/error forwarding and exact observed write/alias/reuse refusals. Fixture05is final wire2with open boundary and post-close forwarding; fixture04/05prove unobserved direct writes can escape.",
+      "record": "research/runtime/draw02-source-version-fixture-04.json",
+      "sha256": "2635bf31221eb83bd9c33d52985460416d81bdf04660d61b7fe7e7f8173dd61a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-fixture-05-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE3213cases plus strict decoder guards; default-off/FP/error forwarding and exact observed write/alias/reuse refusals. Fixture05is final wire2with open boundary and post-close forwarding; fixture04/05prove unobserved direct writes can escape.",
+      "record": "research/runtime/draw02-source-version-fixture-05.json",
+      "sha256": "963048b48327da0f07813342f78ea11538556b48094b572ee908e19b482a5dbe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-original-02-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh original Quick Battle:3083sources checked through exact selected workers,225complete advancing updates,508API/507EGLwitnesses, unchanged originals and normalQuit. Observed writes only; no atomicity/allaliases/native parity.",
+      "record": "research/runtime/draw02-source-version-original-02.json",
+      "sha256": "ce3eeae2fb965cac9cb98b8c92522fbfbb88e1258a0a21171792ba4750997ae7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-campaign-original-01-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh campaign:1402sources checked through selected workers,50complete updates,195API/194EGLwitnesses through Mini/Preferences/resume/abort and normalQuit. No atomicity/fullpause/native parity.",
+      "record": "research/runtime/draw02-source-version-campaign-original-01.json",
+      "sha256": "42046a84a2ab6fcebc6afee128cf79edf0cae53748a65cdda5edcb97c5f361c7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-egl-analysis-01-20261013",
+      "kind": "native_integration",
+      "scope": "Raw-bound507copy regions and507whole images/243360000RGBpixels agree under observed-version guard. No native renderer or unobserved writer proof.",
+      "record": "research/runtime/draw02-source-version-egl-analysis-01.json",
+      "sha256": "ec6840e42b35fa7aafaada98a1b9396eb76e96f79b8e2206ad0968616e0a6afd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-campaign-egl-analysis-01-20261013",
+      "kind": "native_integration",
+      "scope": "Raw-bound194copy regions and194whole images/93120000RGBpixels agree under observed-version guard. No atomicity or full native parity.",
+      "record": "research/runtime/draw02-source-version-campaign-egl-analysis-01.json",
+      "sha256": "641490673d47bd3d24fb177a920c146eea41072506ab628f92ae6a3e40411b66",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-cadence-comparison-01-20261013",
+      "kind": "native_integration",
+      "scope": "120common queued update timings against same input/settings counter-only control:median2.060958254x/p953.187467537x. Combined diagnostic cost, not identical-work/unobtrusive/source atomicity proof.",
+      "record": "research/runtime/draw02-source-version-cadence-comparison-01.json",
+      "sha256": "363728a60bfd6a6e3dc064f3ad8fed87e6385ca6376b66fd58abc5b1ecd9fc88",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-campaign-pause-analysis-01-20261013",
+      "kind": "static",
+      "scope": "Raw selected original state:Mini2479ms/3114ms andPreferences2513msstable,22resumed samples with actual counter advancement. No fullpause/animation/camera/native equivalence.",
+      "record": "research/runtime/draw02-source-version-campaign-pause-analysis-01.json",
+      "sha256": "4038c01c2e5c4dbed3cbbfa4f8595ac3080faab2bc8c3fa38493fdb05c8793cc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-map-boot-negative-01-20261013",
+      "kind": "static",
+      "scope": "Pre-fixture shared-prefix wineboot timeout90s; no owned fixture execution or engine failure inference.",
+      "record": "research/runtime/draw02-source-version-map-boot-negative-01.json",
+      "sha256": "d4ec54f534a1103f4345a1fadc0d2ab34e7fac5107638628a899114e1cca508d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-legacy-map-regression-02-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh existing owned PE32 default-off legacy map regression:27original forwards/11retained payloads, mapped row/copy/unmap/error/FP and fatal guards.",
+      "record": "research/runtime/draw02-source-version-legacy-map-regression-02.json",
+      "sha256": "7e974185bf956847082d73053b1e9cecdd47b014ebd07dca2e957bf36f7fe93c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-version-bounded-map-regression-02-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh existing owned PE32 default-off bounded map regression:12forwards/8payloads, independent byte/attempt quotas, dense padded rows and fatal guards.",
+      "record": "research/runtime/draw02-source-version-bounded-map-regression-02.json",
+      "sha256": "caf1ae872cf8c175e758af39e1843aa188c828e665e6ad76407bacf618fc7bf1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -112094,7 +112451,9 @@
         "DRAW02.source-worker-egl-campaign-analysis-01-20261013",
         "DRAW02.source-worker-egl-campaign-analysis-02-20261013",
         "DRAW02.source-worker-egl-campaign-analysis-03-20261013",
-        "DRAW02.source-worker-egl-campaign-analysis-04-20261013"
+        "DRAW02.source-worker-egl-campaign-analysis-04-20261013",
+        "DRAW02.source-version-egl-analysis-01-20261013",
+        "DRAW02.source-version-campaign-egl-analysis-01-20261013"
       ]
     },
     {
@@ -112116,6 +112475,52 @@
         "DRAW02.source-map-worker-campaign-original-01-20261013",
         "DRAW02.source-map-worker-campaign-original-02-20261013",
         "DRAW02.source-map-worker-campaign-original-03-20261013"
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-owned",
+      "level": "headless",
+      "scope": "Bounded observed resource version/snapshot/packet/worker checks; preserve all refusals and limitations. No global atomicity or native parity.",
+      "behaviors": [
+        "NR.drawing-source-version-guard"
+      ],
+      "tests": [
+        "tools/test-drawing-source-version.py"
+      ],
+      "evidence": [
+        "DRAW02.source-version-fixture-03-20261013",
+        "DRAW02.source-version-fixture-04-20261013",
+        "DRAW02.source-version-fixture-05-20261013"
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-original",
+      "level": "live_observation",
+      "scope": "Bounded observed resource version/snapshot/packet/worker checks; preserve all refusals and limitations. No global atomicity or native parity.",
+      "behaviors": [
+        "NR.drawing-source-version-guard"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.source-version-original-02-20261013"
+      ]
+    },
+    {
+      "id": "DRAW02.source-version-campaign-original",
+      "level": "live_observation",
+      "scope": "Bounded original campaign Mini/Preferences/resume/abort acquisition with observed source version checks, exact selected packet-workers and physical witnesses; no source atomicity or full pause/native parity.",
+      "behaviors": [
+        "NR.drawing-source-version-guard"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/campaign-pause-schedule.json"
+      ],
+      "evidence": [
+        "DRAW02.source-version-campaign-original-01-20261013"
       ]
     }
   ],
@@ -112490,8 +112895,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-worker-20261013.json",
-    "sha256": "017ec95d6dc1f1e92d48f1a29891173e9a5bc93d4281b7b15971ddd7206cec01"
+    "path": "research/runtime/coverage/source-index-draw02-source-version-20261013.json",
+    "sha256": "b1232c030d08374056981a79fe4decdde5bcfd822e085ce6cbe6350ff467152a"
   },
   "claim_bindings_required": true
 }

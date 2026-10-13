@@ -8523,3 +8523,48 @@ semantic input-to-source outcomes, remaining movie/display routes and unobtrusiv
 acquisition remain unproved. Existing timing control measures median2.27×/
 p953.20×costfor120common queued updates; this is diagnostic acquisition.
 Steps3–7and full47journey/21operation admission remain outstanding.
+
+
+## Observed source write-version checks — 2026-10-13
+
+The [source-version guard](draw02-source-version-guard.md) checks resource write
+epochs and texture generations from a mapped snapshot through the exact emitted
+packet's worker entry and return. Aliases resolving to the same public resource
+share an epoch. Observed writable maps, copy attempts, selected worker destinations
+and descriptor rebind attempts invalidate older reads. The guard defaults to off;
+original simulation and rasterization continue to execute.
+
+[Owned fixture 05](draw02-source-version-fixture-05.json) passes 13 PE32 cases and
+8 decoder tests. These cover concurrent writes, generation reuse, failed rebinds,
+wrong subresources, mutation during copying, valid self-copies, unrelated writes,
+open leases at capture close and default-off forwarding. FP and error state are
+preserved. Both existing mapped-source regression suites also pass. Failed builds,
+fixtures, prefix startup and capture close remain separate historical records.
+
+[Quick Battle](draw02-source-version-original-02.json) checks 3,083 sources across
+225 complete advancing updates; [its analysis](draw02-source-version-egl-analysis-01.json)
+matches 507 whole images. [Campaign](draw02-source-version-campaign-original-01.json)
+checks 1,402 sources across 50 complete updates; [its analysis](draw02-source-version-campaign-egl-analysis-01.json)
+matches 194 whole images. Combined, these are 4,485 source-to-worker checks and
+701 matching whole images containing 336,480,000 RGB pixels. Both runs verify
+unchanged original manifests and sections, and normal original Quit.
+[Selected campaign state](draw02-source-version-campaign-pause-analysis-01.json)
+stays stable during two Mini dwells of 2,479 and 3,114 ms and a Preferences dwell
+of 2,513 ms; 22 resumed samples show actual World advancement. This covers the
+selected state, with animation, camera and full pause equivalence still open.
+
+[The timing comparison](draw02-source-version-cadence-comparison-01.json) covers
+120 common queued updates. Relative to the same counter-only control, median
+cost is 2.061× and p95 cost is 3.187×. Combined diagnostic acquisition therefore
+remains intrusive; the comparison does not isolate guard cost or establish
+identical randomized work or native parity.
+
+The owned direct-write case changes the worker's consumed byte from 3 to 2
+without an observed Wine mutation, and the guard accepts it. This confirms a
+remaining gap: unhooked direct writes, other opcodes, separate resource objects
+sharing backing and asynchronous GPU reads remain outside the check. Original
+source atomicity and complete alias ownership remain unproved. Steps 3–7 and
+admission for all 47 journeys and 21 operations remain outstanding.
+
+History from 72a357b0 through b030d7fc was reviewed against 38 exact file receipts
+with zero gaps. The source census and exact current review accompany this change.
