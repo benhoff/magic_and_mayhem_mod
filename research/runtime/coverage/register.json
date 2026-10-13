@@ -45313,7 +45313,9 @@
         "DRAW02.draw02-cursor-module-production-build-01-20261012",
         "DRAW02.source-gate-provenance-review-01-20261012",
         "DRAW02.gate-refusal-module-fixture-01-20261012",
-        "DRAW02.source-gate-original16-preflight-01-20261012"
+        "DRAW02.source-gate-original16-preflight-01-20261012",
+        "DRAW02.source-gate-original16-negative-01-20261012",
+        "DRAW02.source-gate-original16-negative-review-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45327,7 +45329,8 @@
         "Static dependency review and production compile fingerprints full compiler include graph plus capture decoders. Source-only provenance changes leave prior owned execution historical; current production original32/worker/cadence and normal quiescence/reference/parity validation remain pending. Additional8GiB archive proposal prepared but not authorized/executed; no original32 launch.",
         "New actual foreign-owner outer-timeout case pending fresh execution; previous owned fixture source hashes remain historical. Full original integration/normal quiescence still pending.",
         "Fresh contended fixture01 passes25rows with nonzero failed attempt ID/raw258/no owned levels or leases and512FX/error. Historical prior fixtures stay immutable; original game integration and normal quiescence still unexecuted.",
-        "After approved archive02 completed, first16update gate pilot5GiBpreflight refused at98.91GiBfree before launch. New exact66.9GiBproposal03 for24older completed runs is reviewed and awaits approval; no additional pruning or current original gate integration/reference/parity evidence."
+        "After approved archive02 completed, first16update gate pilot5GiBpreflight refused at98.91GiBfree before launch. New exact66.9GiBproposal03 for24older completed runs is reviewed and awaits approval; no additional pruning or current original gate integration/reference/parity evidence.",
+        "First actual original16 pilot ran under unchanged5GiB guard; 718 accepted/158 refused API gate pairs retained, but module journal empty and no Quit action recorded after API stop reason2. Launcher0 is insufficient to prove original Quit dispatch/child exit. Negative result preserved; explicit pre-stop snapshot/action and original shutdown validation remain pending. Proposal03 approved; zero-file lock contention preserved and unchanged scope retry running. Independent cleanup restored storage headroom; no status promotion."
       ]
     },
     {
@@ -45425,7 +45428,9 @@
         "DRAW02.source-gate-provenance-review-01-20261012",
         "DRAW02.source-gate-cadence-control-preflight-01-20261012",
         "DRAW02.gate-refusal-binding-fixture-01-20261012",
-        "DRAW02.source-gate-original16-preflight-01-20261012"
+        "DRAW02.source-gate-original16-preflight-01-20261012",
+        "DRAW02.source-gate-original16-negative-01-20261012",
+        "DRAW02.source-gate-original16-negative-review-01-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45440,7 +45445,8 @@
         "Counter-only original control reservation2GiBrefused at99.46GiBfree before launch; no fresh control or gate-enabled original acquisition. Additional8GiBarchiveproposal remains pending explicit authorization.",
         "Production failed-begin point retains attempted token while scalar return0. Decoder now distinguishes non-owning refusal and pairs exact point identity/phase/reason; fresh contended module and controlled binding execution pending. No original launch or reference/parity promotion.",
         "Fresh controlled binding fixture01 distinguishes admitted7 from refused attempted8/scalar0/noEnd; seven decoder guards pass including point identity/phase/reason/acquired levels and duplicate completed API refusal. Actual original source/worker/gate acquisition, source aliases/full reference/native parity remain pending.",
-        "After approved archive02 completed, first16update gate pilot5GiBpreflight refused at98.91GiBfree before launch. New exact66.9GiBproposal03 for24older completed runs is reviewed and awaits approval; no additional pruning or current original gate integration/reference/parity evidence."
+        "After approved archive02 completed, first16update gate pilot5GiBpreflight refused at98.91GiBfree before launch. New exact66.9GiBproposal03 for24older completed runs is reviewed and awaits approval; no additional pruning or current original gate integration/reference/parity evidence.",
+        "First actual original16 pilot ran under unchanged5GiB guard; 718 accepted/158 refused API gate pairs retained, but module journal empty and no Quit action recorded after API stop reason2. Launcher0 is insufficient to prove original Quit dispatch/child exit. Negative result preserved; explicit pre-stop snapshot/action and original shutdown validation remain pending. Proposal03 approved; zero-file lock contention preserved and unchanged scope retry running. Independent cleanup restored storage headroom; no status promotion."
       ]
     }
   ],
@@ -97744,6 +97750,51 @@
         {
           "pointer": "/success",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-gate-original16-negative-01-20261012",
+      "kind": "live_observation",
+      "scope": "Read-only same-run negative review. API journal shows actual accepted/refused module calls, but module journal remains zero bytes after API stop reason2. No requested Quit action recorded in retained session. Launcher exit0 alone does not prove original Quit dispatch or original child exit status. Gate snapshot, normal original shutdown, source alias ownership, complete references and native parity remain unproved.",
+      "record": "research/runtime/draw02-source-gate-original16-01.json",
+      "sha256": "bbfd54623fa4db64f4497e20dd907c3310af90b5c570da6566558beede26d374",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/error",
+          "equals": "Gate journal magic/header"
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-gate-original16-negative-review-01-20261012",
+      "kind": "static",
+      "scope": "Read-only same-run negative review. API journal shows actual accepted/refused module calls, but module journal remains zero bytes after API stop reason2. No requested Quit action recorded in retained session. Launcher exit0 alone does not prove original Quit dispatch or original child exit status. Gate snapshot, normal original shutdown, source alias ownership, complete references and native parity remain unproved.",
+      "record": "research/runtime/draw02-source-gate-original16-negative-review-01.json",
+      "sha256": "d370d874f280bbae32c85d17c8a3d24d64da6d60cc9743a30a374da3509c2b1f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/module_journal_bytes",
+          "equals": 0
+        },
+        {
+          "pointer": "/requested_quit_action_records",
+          "equals": 0
         }
       ]
     }

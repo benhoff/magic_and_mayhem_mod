@@ -1848,3 +1848,27 @@ pins next proposal03:66.8872GiB/24older completed runs/85,860payloads, reviewed
 but not authorized/executed. Sources/reports/pins/current templates/recent
 captures retained; raw evidence requires verified durable copies before pruning.
 Step2/all47/21remain open; steps3–7pending, no policy/status/hash reset.
+
+## Step 2 live gate pilot and storage reassessment (2026-10-13 UTC)
+
+The user approved proposal03's exact24runs/85,860payloads/66.8872GiB.
+The first attempt retained a lock-contention failure with zero files changed;
+its unchanged-scope retry is running after the independent archive job finished.
+`draw02-storage-reconciliation-20261012-01.json` records1166.49GiBworking
+and317.53GiBfree from the new inventory, below1280/above100GiBpolicy limits.
+Concurrent cleanup reports64.02GiBarchival and29.06GiBexternal build removal;
+the larger overall free-space increase is not wholly attributed. The cold
+archive is on the separate NVMe; open deleted files are negligible.
+
+`draw02-source-gate-original16-01.json` retains the first actual gate-enabled
+original pilot, both original manifests and stable source fingerprints. It
+**fails** with an empty module journal. Same-run read-only negative review01
+decodes718accepted/158refused API gate pairs and API/session stopreason2.
+The capture stops API observation before sending Quit; no requested Quit action
+is in the retained session and launcherexit0 alone does not prove original
+Quit dispatch or the child's exit status. The partial snapshot remains unproved.
+Reassessment: make snapshot/dispatch ordering reviewable before the observation
+stop, reject already-exited launcher waits, then rerun the bounded pilot.
+No source alias/full reference/native parity or status promotion; step2/all47/21
+remain open and steps3–7pending. Reviewedb5f6be6f..20fe9b37 exact committed
+receipts separately; historical reports/hashes are unchanged.

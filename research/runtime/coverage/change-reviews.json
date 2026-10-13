@@ -535507,6 +535507,165 @@
         "evidence": [],
         "reason": "Audit has zero errors with retained historical warnings. This increment records static preflight/proposal provenance only: no original artifact use, experiment launch, fresh gate-enabled original comparison or milestone promotion. Source/worker/alias/normal-quiescence/full-reference/native-parity boundaries remain open; broader cleanup awaits explicit approval under AGENTS.md."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3d1d942f920f0a162fc4591fcc6115cfb045e1e01c586eeb1e6f674784f67b49",
+          "before_sha256": "81a993714a5459a52d9316d6e2cb30b743452822d5f5de871a30972fd0173cf9",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "3e1077af06b9fbffeddee04d2ec588736a800c681325c8f091e56c07ad029ebd",
+          "before_sha256": "a12aa29397fe37cfdec0fed6269ed2ef7b319541eced98164ed7039f360757f6",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "50d1e35361c625a4abda4e2e618fdbadad950f40affbc43be48986b2dd68618b",
+          "before_sha256": "d99b263f73ff65212cf6431ab6aaa64f055c9245a65fb9732c7e2fa499a9d94f",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "a92e6475c5af4d7cf2444cf188e8876d3e6318c55025af15b10df4a74a9fb4ab",
+          "before_sha256": "1b73773b02792a3da97ccb19c2281a29b641209310455fd5e1d8875368b989eb",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "77284582af0b0ae47355fff62a1eeba70ced06472214840c27564da2be52fdb8",
+          "before_sha256": "8d44dc9e9c4149792926ebda68c281d469d8d22ad5397ab2a26d600eb601e8f3",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "8cb6d96426ab230ff63cb5c78bea0e45b66ce2f4066c195f1d2838aca53b13ac",
+          "before_sha256": "5f3b34799cece8e9af4e8cd5cee25b57bff38612e15fb629e3a262588cfe5a25",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "ddf48bb81bae4827818692f7b1249802909a81a15c502a7cd3ea9bb6e1009cc2",
+          "before_sha256": "270ce2e667cc0b77c672337d7246d1dec22f4957af0208ba0e92bd7b8eb261e9",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "549fb88d4dd4e3d3fc1634413473df41803a13e3af2bbd6c3d17e091a35dded9",
+          "before_sha256": "f532e7f72ccd42703cbcb40c05cbdb7554c57671fa066d526a592594119d55a9",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "5123375a88d7ec797ca548d668e408e8dc54219eeb63ae2ebae07e2304f1aede",
+          "before_sha256": "37f7fabc2bdf21529817705db887e3f2bf8d3fdd2c1a15c58dd6ada1f52c577c",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "ae7b1f8b0915ff786b66e050e8694da44dae108604699efce2fd99194c6ff126",
+          "before_sha256": "990de7a2f896cf5bb191814cb29edc80100db552672faac2f96e586713429593",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "109060d851badee332315220adfb3ce61029997f19921ccf761907b4bf148b4e",
+          "before_sha256": "914c9d8efba3760f1af3194d97f6f9d69588e2fbd8d4e5c1e1909b5050fa2561",
+          "id": "NR.drawing-cursor-source-gate-module"
+        },
+        {
+          "after_sha256": "c255ef146e2410cfcc3ffdf3a79e83b4ea3bc5d8c790949349bff7744171e1bc",
+          "before_sha256": "ff32c808e278b3fd09d5cd81c0c8ac4983d6ef999b4bcaf6fa4d0846de26e3f0",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "96df52fec564ad77eaae262b315474a891777155e0101d6629d1c503395437db",
+          "before_sha256": "ab8fb9f461bb8fe3115a84fca0eb1af856a7645c04e59c492d3d6d4e7fd302a0",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "04153e0b64b861ab9be7556ae6867db3eb97d56791514cda28521412c9c2baf3",
+          "before_sha256": "3d6775757ffb5756f6cd00201669f6f47475015e394d3d15fe039edd851fd97d",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "037b63d3c89dd0f491045c500da6c4634bcda870ed6e3df1a938082ebc192fc9",
+          "before_sha256": "7e97ccceab59f5c15d01df249121b57c34f1d9d726c6374a379e9bd3cc58a747",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "173952cb7b51458882ee78fd408c91e3d2532036038d540d63fdf246df360505",
+          "before_sha256": "d533563c6dcd5723a08e7b60f4a5bf283c7489e787acd53b36e9a2be6db5cbff",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "b6fa01d52ce9ea77b9d09a7d62a66b72b0c8d4d51b6a538489441b9f33b228a8",
+          "before_sha256": "53186986cab76f45a54aac245aa2b29814aded12cba7f00714da10465f3b0102",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "7e15f87b24fc043f889fa349f75c4cf2f5d35d7cbb404e9a0e5534adf1dd9919",
+          "before_sha256": "da262ed263e66519cc76b525934a5921941cd9a2a6c40acf39ff2bc2f9fa78b7",
+          "id": "NR.drawing-source-cursor-gate-binding"
+        },
+        {
+          "after_sha256": "b6dd0b0c9f7d5b3a0a38dd128ade7ad95fd4bcab1fa6ad0c0410867cb71ef411",
+          "before_sha256": "5e85e8235e4f931b3879fea7444f842f1fe75eb8b84164c4fdf97e905b356129",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "1beac1b97d55a332765f3e84da8b0ba44174a70fd6b661da4c8a7f823ddbccb6",
+          "before_sha256": "a49e47f490aab006dd09b64a1e2564b43f241467368b1e0d303ca9278b23f3f6",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "a47a7da544afb5b8ca016c77903b5c80b2e8c26a2f52b35cec2443645fc56c58",
+          "before_sha256": "e8c5e4e76c0154889c7d522614709e4c4779c4c3eb15346ab73af19bf2f163dc",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "2ae70f148b6094dc137d749dfe7a087f7aedd744724985914993efe7e1ca8418",
+          "before_sha256": "62bccbfa29ab344466d497225a8b322937d0a587bfd9f4f694408ae50e4be00e",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "b41239e8c1ed47da4605a47723764c45ee047a7b12f5b61d5e009af564d2b85b",
+          "before_sha256": "46245bd113ac2ac5f00ec308ac0e58e67e52333e5e3ead9b6ff1f30e619734d0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "650264c5c82e7d38b5acbbe4529c615fa4c718c501e930c98e9f1cbfed33f97b",
+          "before_sha256": "ebe287f038bcd5a9893fad6d6f1d19be23b39e388e9305e54c601f36e4a7a163",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "5e38d8ca7a28b698ead1b2f4d291003f676c2f5feb3df8346f60936b9afa34dc",
+          "before_sha256": "63847c1468156a383c4beed8c2d58618213bdc319a07535b4d76be8490451c6f",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "3970984a7a3c710472a5566fc37e0c2abbc3431defabcb999070e0668c9e2899",
+          "before_sha256": "8c18d8b50d70d04d39f8f8836d8922b78c46ea58c3433c50435ae40c19f35272",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "bbfd54623fa4db64f4497e20dd907c3310af90b5c570da6566558beede26d374",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-gate-original16-01.json"
+        },
+        {
+          "after_sha256": "d370d874f280bbae32c85d17c8a3d24d64da6d60cc9743a30a374da3509c2b1f",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-gate-original16-negative-review-01.json"
+        },
+        {
+          "after_sha256": "063254ee5a0425a1c839f6282d8eafc2262aa9def0cc418f98bb6601c04cf6cf",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-reconciliation-20261012-01.json"
+        }
+      ],
+      "id": "draw02-original16-negative-and-approved-storage-reconciliation-20261013",
+      "pending_gaps": [],
+      "reason": "Reviewed actual original16 negative capture, stable source/claim pins and same-run raw API journal: accepted/refused module calls occurred, module journal is empty, retained session closed before the requested Quit action. Preserved failure without gate/quiescence/reference/parity promotion. Recorded the exact approved archive scope, zero-file lock failure/retry and read-only independent storage recovery provenance; earlier receipt range reviewed with no gaps.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Original16 executed but failed gate journal decoding; 718 accepted/158 refused bindings are bounded negative observations only. Snapshot/explicit Quit dispatch/current original child exit verification remain open; archive03 retry is in progress. No engine status promotion, source equivalence or complete reference/native parity."
+      }
     }
   ]
 }
