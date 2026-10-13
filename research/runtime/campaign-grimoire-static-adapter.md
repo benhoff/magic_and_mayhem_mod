@@ -51,3 +51,14 @@ Static supporting allocation evidence: original `00593a01` allocates `0x57c`
 bytes for the knowledge object and `004c3600` zeroes `0x136` DWORDs (1240
 bytes),with additional state at `+0x578`. This is allocation/initialization
 disassembly,not a recovered research purchase or full save loader contract.
+
+Current typed widget/controller sources were revalidated under
+`UI66.campaign-grimoire-typed` (`campaign-grimoire-typed-20261013.json`).
+`UI65.campaign-grimoire-first` separately validates only the genuine fresh
+Celtic first-Region book round trip;it does not promote the broad loaded-caller
+headless scope to live equivalence. Widget availability uses chapter/section
+pairs;the application controller owns original packed action encoding.
+
+The first-caller integration claim is superseded by fresh
+`UI67.campaign-grimoire-first-reviewed`,after correcting the prospective
+scenario-level label. `UI65` remains unchanged historical evidence.

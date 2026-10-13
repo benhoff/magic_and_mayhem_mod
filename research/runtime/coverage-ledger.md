@@ -7234,3 +7234,24 @@ Dynamic ~D values,multiple ~NP pages,full original selector/renderer,artwork,
 real caller/persistence and research cost/progression remain pending. Research
 sprite lettering has no established purchase callback;no resources or knowledge
 are granted. Historical shared-source fingerprints remain unchanged.
+
+### Genuine V22 first-region native book round trip (2026-10-13)
+
+`UI65.campaign-grimoire-first` records original New Game -> fresh Celtic Region
+-> native Forest/Intro contents/Intro2/Celtic contents/Forest -> original Close
+-> native Region -> Main -> original Quit. All nine states/callbacks,thread,
+channel retirement and normal exit matched;2927 original files verified before
+and after. Original graphics/audio stayed active in isolated Xvfb;this is a
+narrow caller integration observation,not native rendering or paired visual
+equivalence. `UI66.campaign-grimoire-typed` supplies fresh headless execution
+after typed widget permissions moved wire packing wholly into the controller.
+The startup-harness rejection and compile preparation failure remain retained.
+Realm/Character live purchases/save-reload,actual victory,native rendering
+contention/recovery,loaded other-Realm callers,dynamic pages and original
+research costs/progression still have no new live proof from this scenario.
+
+Coverage review corrected the first-caller scenario level to live_observation.
+A fresh prospective genuine rerun is recorded under
+`UI67.campaign-grimoire-first-reviewed`;it supersedes UI65's retired scenario
+claim without rewriting that record or its hashes. Both runs passed actual
+menu behavior;only the new result supports the corrected current declaration.
