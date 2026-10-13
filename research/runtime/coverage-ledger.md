@@ -8933,3 +8933,22 @@ receipts and actual staged gate with no gaps. History review adds no execution.
   installed construction and full native World/session remain pending. Integration
   and live replacement stay none; no gameplay balance change.
 - Exact NS53 357264ed history review:27 file/157 behavior transitions, no gaps.
+
+
+### NS55: composed ownership reset and transition rules (2026-10-13)
+
+- Transfer and target repair now call owned50ab30 reset and50aa30/50a930
+  behavior transition/resolver (executed argument1) on the canonical actor and
+  per-actor execution vectors. Release/peer consequences are shared across callers.
+- Fresh bound original32/native64/ASan+UBSan+LSan64:16,384 cases through11 whole
+  unchanged original bodies. Complete backing/field/global/body/dispatch-table/
+  callback guards; mode/color/pending8, home/flags, engagement and effect cleanup,
+  health/motion gates and supplied callback-binding continuation covered.
+- Native CMake build and CTest pass. Immutable record:
+  `original-transfer-reset-owned-bound-ns55-20261013.json`; scenario:
+  `ownership-transfer-reset-owned-20261013`. Development history retained.
+- Behavior body/binding/color/prepare/peer internals, effects/UI/controller work,
+  installed construction and full native World/session stay pending. Integration
+  and live replacement remain none. No gameplay balance change.
+- Exact incoming NS54 e5be42d5 history review:31 file/158 behavior transitions,
+  no accounting gaps; history review is separate from the new comparison.

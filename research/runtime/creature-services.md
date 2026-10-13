@@ -476,3 +476,43 @@ version has its own prospective declaration and stable compiler closure.
 NS53 357264ed has27 file/157 behavior transitions reviewed against exact receipts
 and its actual successful staged gate with no unresolved gaps. This incoming
 committed-history review adds no new execution result.
+
+
+## Owned transfer, target repair and reset transitions (NS55)
+
+Ownership transfer and target repair now call native whole50ab30 reset on the
+same canonical World actors and per-actor execution vector. Reset composes
+whole50aa30 behavior transition and50a930 resolver with executed argument1.
+Fresh prospectively bound original32/native64/ASan+UBSan+LSan64 passes16,384
+cases through11 unchanged original bodies. Reset and transition are not
+redirected. Complete actor/config/owner/relation/limit/selection/source/per-actor
+list/effect/display/global/body guards and resolver table/callback identities
+pass. The independent native CMake build and CTest pass. Immutable proof:
+original-transfer-reset-owned-bound-ns55-20261013.json.
+
+Reset's mode/color ordering, pending8 gate, byte/word flag clearing, home update,
+disengagement and behavior2 route/order releases execute in the composed chain.
+The effect-release endpoint is shared with transfer/marker clearing; the peer
+endpoint is shared with target repair. Rejecting duplicate factory callbacks
+verify those bindings.31,867 supplied idle callbacks,18,743 color restores and
+27,290 final newly bound actor callback states are nonempty.18,437 moving actor
+states retain pending1; that is a state count, not a claim that each was newly
+deferred. The native64/sanitized64 digest includes all added reset fields as
+well as actor/execution/queue/continuation outcomes.
+
+The original transition installs a callback independently of later behavior-word
+changes. The supplied logical callback bridge therefore retains initial versus
+idle binding separately; later repair dispatch follows that binding. Raw legacy
+function/this-adjust fields are guarded against the expected original identity.
+This does not claim complete native behavior binding/body ownership. Color
+restoration, behavior bodies, prepare/peer internals, effect lifetime, UI/color
+and controller work remain supplied. Installed profiles, arbitrary pointer/
+resolver callers, reshaping backing and complete native World/session/live
+replacement remain pending. Two native display refusals preserve caller rollback.
+
+The successful unbound development record retains its source version. The final
+comparison has a separate prospective declaration and stable compiler closure;
+existing component source and historical evidence fingerprints remain unchanged.
+Incoming NS54 e5be42d5 has31 file/158 behavior transitions reviewed against exact
+receipts and its successful actual staged gate, with no unresolved accounting
+gaps. This history review adds no new execution or retrospective gate assertion.
