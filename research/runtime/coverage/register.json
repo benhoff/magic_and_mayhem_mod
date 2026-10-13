@@ -45586,7 +45586,8 @@
         "DRAW02.draw02-region-selection-pause-original-01-20261013",
         "DRAW02.draw02-region-selection-pause-original-02-20261013",
         "DRAW02.draw02-source-physical-close-original32-01-20261013",
-        "DRAW02.draw02-source-physical-close-original120-01-20261013"
+        "DRAW02.draw02-source-physical-close-original120-01-20261013",
+        "DRAW02.draw02-copy-order-original32-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45864,16 +45865,19 @@
         "research/runtime/draw02-copy-order.md"
       ],
       "implementation": [
-        "tools/analyze-drawing-copy-order.py"
+        "tools/analyze-drawing-copy-order.py",
+        "tools/analyze-drawing-copy-requests.py"
       ],
       "tests": [
-        "tools/analyze-drawing-copy-order.py"
+        "tools/analyze-drawing-copy-order.py",
+        "tools/analyze-drawing-copy-requests.py"
       ],
       "validation_dependencies": [
         "tools/drawing_api_session.py"
       ],
       "evidence": [
-        "DRAW02.draw02-source-physical-close-copy-order-01-20261013"
+        "DRAW02.draw02-source-physical-close-copy-order-01-20261013",
+        "DRAW02.draw02-copy-order-producer-links-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45884,6 +45888,51 @@
       },
       "remaining_gaps": [
         "Retained original/native local failure and exact ordering evidence only. General entry/return/request/API/worker associations, cached storage views, runtime ordering observation and fresh source-only repair validation pending. Do not reorder records by hypothesis or seed from original output."
+      ]
+    },
+    {
+      "id": "NR.drawing-copy-request-trace",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in pointer-free original copy request entry/return identities",
+      "scope": "Prospective original-active observer sidecar records local monotonic copy request IDs at producer entry and pairs them with emitted producer return sequences, owner thread, pinned hook tag, logical source/destination/geometry/key and caller RVA. Private recorder synchronization only, bounded65536rows and strict completed terminal/active counts. Preserve return-order reversals separately from entry order; no driver execution, API binding, byte/view/alias ownership or replay repair inferred. Default producer stream bytes/semantics remain unchanged.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-order.md",
+        "research/formats/drawing-copy-order-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_copy_order.h",
+        "runtime/scene/canvas_producers.c",
+        "protocols/include/mnm/drawing_copy_order_v1.h",
+        "tools/drawing_copy_order.py"
+      ],
+      "tests": [
+        "tests/test-drawing-copy-order.py",
+        "tests/drawing-copy-order-test.c",
+        "tools/test-drawing-copy-order.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-copy-order-fixture-02-20261013",
+        "DRAW02.draw02-copy-order-original32-02-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned five-case PE32 and original32/913paired requests validate the bounded request journal. Explicit API/worker bindings, original callback/FX preservation for every hook with the new sidecar, driver ordering, source/view ownership, replay repair and complete source/native closure remain pending. No rendering/admission/model changes."
       ]
     }
   ],
@@ -98941,6 +98990,54 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-copy-order-fixture-02-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE32 five cases: two actual threads with entry1/2 and return2/1, LastError and descriptor preservation, disabled/invalid modes, incomplete terminal and budget refusal.",
+      "record": "research/runtime/draw02-copy-order-fixture-02.json",
+      "sha256": "e74bcaa2e490ea7f6b0408ed0e0e40a21f829d2ff63be4f49e92a885a73183d2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-order-original32-02-20261013",
+      "kind": "live_observation",
+      "scope": "Original-active physical32 capture:913 paired copy requests, completed actual game exit zero; API/worker identity, driver ordering, ownership and replay parity remain unproved.",
+      "record": "research/runtime/draw02-copy-order-original32-02.json",
+      "sha256": "438ea90eee31be8f0822461636f2fb40d865a73a03d5d55189efa37b8c840c60",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-copy-order-producer-links-01-20261013",
+      "kind": "static",
+      "scope": "Static exact913 journal/producer COPY matches,0unmatched,45adjacent entry pairs reverse return order. No driver order, API request binding, source ownership or fresh original execution.",
+      "record": "research/runtime/draw02-copy-order-producer-links-01.json",
+      "sha256": "501d163d5a2c7d8635f6179d711667119118ad447140ab2588c6e4faebd304bd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111102,8 +111199,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-close120-order-20261013.json",
-    "sha256": "45a9837f83eea41bc273511155b10afa344bdddf01d9c397cf9d79ecf4d1fd69"
+    "path": "research/runtime/coverage/source-index-draw02-copy-requests-20261013.json",
+    "sha256": "279ee1bf1ad53bc83033344f45d5a0b25bcc339ac5f966211e3f1a8668f14f8a"
   },
   "claim_bindings_required": true
 }

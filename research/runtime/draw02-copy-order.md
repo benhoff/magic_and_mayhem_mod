@@ -24,3 +24,16 @@ It does not alone prove every CPU/GPU view, alias or the full cause of the
 for copy operations and retain all missing/ambiguous links before a general
 source-only replay correction. Do not swap records by hypothesis, discard the
 failed context, use original raster as input or refresh older evidence hashes.
+
+
+## Explicit request observation
+
+`draw02-copy-order-fixture-02.json` passes five owned PE32 cases, including
+actual two-thread reversed returns. `draw02-copy-order-original32-02.json`
+retains913paired request IDs with actual gameexit0.
+`draw02-copy-order-producer-links-01.json` checks every descriptor and emitted
+COPYsequence against the unchanged producer stream:913matches,0unmatched,
+45adjacent entry pairs with reversed return order. Four decoder and eight
+source-cursor frontend guards pass. These observations establish entry and
+return identities only; API request/worker binding, driver order, CPU/GPU view
+ownership and the safe source-only replay repair remain pending.

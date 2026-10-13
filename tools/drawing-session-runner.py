@@ -35,6 +35,8 @@ if metadata.get('source_held_snapshot'):os.environ['MNM_DRAW_SOURCE_HELD_SNAPSHO
 else:os.environ.pop('MNM_DRAW_SOURCE_HELD_SNAPSHOT',None)
 if metadata.get('hud_input_point'):os.environ.update(MNM_DRAW_INPUT_POINT='1',MNM_DRAW_HUD_INPUT_POINT='1')
 if metadata.get('hud_state'):os.environ['MNM_DRAW_HUD_STATE_FILE']='Z:'+str(root/'capture/hud-state.bin').replace('/','\\')
+if metadata.get('copy_order'):os.environ['MNM_DRAW_COPY_ORDER']='1'
+else:os.environ.pop('MNM_DRAW_COPY_ORDER',None)
 if metadata.get('region_input'):os.environ['MNM_DRAW_REGION_INPUT_FILE']='Z:'+str(root/'capture/region-input.bin').replace('/','\\')
 if metadata.get('region_track_slot') is not None:os.environ['MNM_DRAW_REGION_TRACK_SLOT']=str(metadata['region_track_slot'])
 else:os.environ.pop('MNM_DRAW_REGION_TRACK_SLOT',None)

@@ -8804,3 +8804,32 @@ before a general ordering or storage-view repair. The local reversal is confirme
 its complete causal scope remains provisional. No record swapping by hypothesis,
 original-pixel input, failed-context exclusion or old-hash refresh is accepted.
 Step2and all47/21remain open; steps3–7stayordered/pending.
+
+
+## Step 2 explicit copy request checkpoint (2026-10-13 UTC)
+
+The previous failure/ordering increment committed asb5b72730; staged and normal
+hook checks pass. Reviewed73ce54c3..b5b72730:11exact receipts, zero gaps. The
+new opt-in pointer-free MNMDCQ01 sidecar assigns request IDs at producer entry,
+pairs emitted return sequences and preserves owner/tag/geometry/key/caller,
+active counts and bounded terminal. Existing producer stream and native
+rendering/admission policies remain separate.
+
+Four strict decoder guards, eight source-cursor frontend guards and the full
+scene build pass. Retained owned PE32 five-case fixture passes actual two-thread
+entry1/2 and return2/1, LastError and request preservation, disabled/invalid
+configuration, incomplete-terminal refusal and row-budget exit99. Initial
+fixture compilation failure and prelaunch metadata-mode refusal remain retained
+under working; neither executed the original game.
+
+Fresh original32 physical capture retains913paired requests,564physical planes
+and1547consumed inputs; actual gameexit0 and original manifests before/after
+pass. Static exact cross-check links all913producer COPYrecords with0unmatched;
+45adjacent entry pairs return in reversed order. This makes entry/return order
+explicit without claiming that entry order equals driver execution order.
+
+Reassessment: connect these local request IDs to exact API entries and worker
+commands before changing replay ordering. Preserve ambiguous/unbound requests
+and source/physical lifetime boundaries. The earlier120native40x40failure stays
+failed; no source-only replay correction or validation promotion is asserted.
+Step2and all47/21remain open; steps3–7stayordered/pending.
