@@ -44461,7 +44461,10 @@
         "DRAW02.draw02-hud-state-original-04-20261012",
         "DRAW02.draw02-hud-state-analysis-01-20261012",
         "DRAW02.draw02-hud-input-camera-analysis-01-20261012",
-        "DRAW02.draw02-hud-input-original-02-20261012"
+        "DRAW02.draw02-hud-input-original-02-20261012",
+        "DRAW02.current-region-metadata-original-03-20261013",
+        "DRAW02.current-region-metadata-negative-01-20261013",
+        "DRAW02.current-region-metadata-negative-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44594,7 +44597,10 @@
         "DRAW02.draw02-input-metadata-storage-reassessment-01-20261012",
         "DRAW02.draw02-hud-input-binding-negative-01-20261012",
         "DRAW02.draw02-hud-input-binding-analysis-01-20261012",
-        "DRAW02.draw02-hud-input-original-02-20261012"
+        "DRAW02.draw02-hud-input-original-02-20261012",
+        "DRAW02.current-region-metadata-original-03-20261013",
+        "DRAW02.current-region-metadata-negative-01-20261013",
+        "DRAW02.current-region-metadata-negative-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44825,7 +44831,10 @@
         "DRAW02.draw02-region-input-fixture-03-20261012",
         "DRAW02.draw02-region-input-original-02-20261012",
         "DRAW02.draw02-region-input-fixture-04-20261012",
-        "DRAW02.draw02-region-input-original-03-20261012"
+        "DRAW02.draw02-region-input-original-03-20261012",
+        "DRAW02.current-region-metadata-original-03-20261013",
+        "DRAW02.current-region-metadata-negative-01-20261013",
+        "DRAW02.current-region-metadata-negative-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45537,7 +45546,10 @@
         "DRAW02.source-gate-original120-negative-01-20261013",
         "DRAW02.source-gate-original120-negative-02-20261013",
         "DRAW02.source-gate-original120-negative-03-20261013",
-        "DRAW02.source-gate-original120-04-20261013"
+        "DRAW02.source-gate-original120-04-20261013",
+        "DRAW02.current-region-metadata-original-03-20261013",
+        "DRAW02.current-region-metadata-negative-01-20261013",
+        "DRAW02.current-region-metadata-negative-02-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45556,6 +45568,44 @@
         "Current original counter/menu/input-only interactive control:372complete advancing updates, exact observed MainQuit callback after request and actual process exit0; source/drawing/Wine/display/gate diagnostics disabled. No identical work/semantic/unobtrusive claim. Full step2source/action/frame/lifetime/route/semantic boundaries and all47/21closures remain independent/open.",
         "Original120attempt03 retained target process exit0 and complete source120terminal, but old helper timed out on lingering desktop launcher. Current helper polls the bound target exit independently, rejects failed/partial identity and retains separate nullable launcher status. Seven decision guards pass; fresh original120front-end execution pending. Two prior attempts timed out during Wine initialization before game launch; no game evidence from them.",
         "Current scenario-bound actual original120:804API/795post-EGLphysical witnesses,120bound source queues/132consecutive advancing windows,147stable held pairs,1073accepted/215refused gate API pairs, zero scoped lifecycle gaps, exact MainQuit/actual target exit0. Lingering launcher nullable status is separate. Source alias/full route/timer-import quiescence/reference/native parity remain unproved. All47/21closures remain independent/open; historical source/evidence hashes unchanged."
+      ]
+    },
+    {
+      "id": "NR.drawing-region-click-latch-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original click and persistent observed actor latch admission",
+      "scope": "Diagnostic analysis of unique declared left click and actual RegionV2mask1/mask2callback pairs with exact pool/slot/type/owner identity. Require before-to-return raw actor+68/count/mode transition, matching button release and a later validated same observed slot carrying the latch after at least1000ms. This establishes bounded callback/raw-latch observation only; actor allocation/generation, general persistent selection/tooltip semantics, all-source/physical ownership and full reference/native parity remain unproved. Visual witnesses remain independent original observations.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-region-input.md",
+        "research/runtime/draw02-end-to-end.md"
+      ],
+      "implementation": [
+        "tools/drawing_region_selection.py",
+        "tools/analyze-drawing-region-selection.py"
+      ],
+      "tests": [
+        "tests/test-drawing-region-selection.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_region_input.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.current-region-selection-latch-analysis-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh analysis/negative guards pending; click-coordinate uniqueness is scoped to the recorded schedule/callbacks and does not prove allocation identity or all semantic routes. Full presentation/source ownership/reference/native parity remain open.",
+        "Current static analysis admits one declared click/originalmask1/2transition and later same observed-slot latch after9488ms. Four negative guards pass. Independent visual witnesses beforeclick/afterclick/aftercamera inspected: bracket absent before, appears after and persists while cursor moves away. No actor generation, general semantic closure, exact frame/source synchronization or native comparison."
       ]
     }
   ],
@@ -98217,6 +98267,79 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.current-region-metadata-original-03-20261013",
+      "kind": "live_observation",
+      "scope": "Current original Region/HUD metadata capture with explicit software rendering request, exact callback/scalar observations and actual game exit0; no full selection/tooltip/generation/reference/native parity.",
+      "record": "research/runtime/draw02-current-region-metadata-original-03.json",
+      "sha256": "1121a676c3f6c35bddde375f71bd58e18f6799a954aece9c42465714d4496047",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.current-region-metadata-negative-01-20261013",
+      "kind": "static",
+      "scope": "Pre-launch isolated Wine initialization timeout; no original game/callback/semantic validation.",
+      "record": "research/runtime/draw02-current-region-metadata-negative-01.json",
+      "sha256": "9177dde68f367af75fb1a97e094764a8ef7e92b9f879d25be7e5fb8a1d2507d8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.current-region-metadata-negative-02-20261013",
+      "kind": "static",
+      "scope": "Pre-launch isolated Wine initialization timeout; no original game/callback/semantic validation.",
+      "record": "research/runtime/draw02-current-region-metadata-negative-02.json",
+      "sha256": "bcf77df3e30edcd9cad8b2168cc13c2718a4ca041c851ada04fea6d016faf0da",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.current-region-selection-latch-analysis-01-20261013",
+      "kind": "static",
+      "scope": "Static immutable callback/action/raw-latch analysis and independent original visual witness hashes. Exact original mask1/2calls change and retain actor+68/count/mode on same observed pool/slot/type/owner; no allocation generation, full persistent selection/tooltip semantics, source/frame/all-route/native parity or new original execution.",
+      "record": "research/runtime/draw02-current-region-selection-latch-analysis-01.json",
+      "sha256": "65be49d70b6c3ab438bc522405736df1c63c081794d28f467e222679577dda80",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/callback_latch_transition_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/actor_allocation_generation_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -110377,8 +110500,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-target-exit-20261013.json",
-    "sha256": "7910e90a254b8b1efa807c1248e1187dca99ec029ad1a0aca6c43bbd022fc89a"
+    "path": "research/runtime/coverage/source-index-draw02-current-region-latch-20261013.json",
+    "sha256": "8672e958ef29fcb55706e2c3ae565352b8b8ca4634aa51be61f5848dd3a9502e"
   },
   "claim_bindings_required": true
 }

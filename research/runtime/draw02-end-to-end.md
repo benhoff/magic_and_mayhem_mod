@@ -1977,3 +1977,34 @@ hardware/import-timer quiescence and all47/21reference/native parity remainopen.
 Step2continues with source ownership and independently observed semantic actions;
 steps3–7remainordered/pending. Shared source-only changes preserve historical
 controls/unrelated validation boundaries without refreshing old fingerprints.
+
+## Step 2 current Region click/latch and bootstrap checkpoint (2026-10-13 UTC)
+
+The whole120/authoritative target increment committed as`61307428`; required
+staged check and normal hook passed. Current lighter metadata attempts01/02
+time out during Wine initialization, including an archive-scheduled retry.
+The isolated software-rendering-only initialization probe passes16.65seconds
+without launching the game; it isnot semantic or engine validation. Explicit
+LIBGL_ALWAYS_SOFTWARE=1execution03thenpasses original Region/HUD capture
+with exact environment/command/result hashes retained, actual gameexit0and
+no forced game termination. Requested software policy isnot hardware evidence.
+
+Current RegionV2retains11paired original callbacks. Unique left click400300
+invokes mask1callback2on validatedpool1slot0/type0/owner0/active1/health400.
+Its original callback changes raw+68/count/mode0→1; mask2callback3preserves it.
+Callback8retains the same observed-slot latch9488mslater, with health345and
+changed camera. Current strict static analysis/4guards reject ambiguity,
+identity changes, failed release/later latch, loss and unknown versions.
+Independent images1/3/8were inspected: green wizard bracket absent before
+click, appears after and remains after camera movement with cursor away.
+These are bounded scalar/visual observations, not allocation/generation proof,
+exact frame/source ownership, allselection/tooltip or fullreference/native parity.
+
+Lighter HUDanalysis binds458samples,389timely/143timely validated hits; exact
+HUD/semantic pairing457with1unpaired,16Worldcamera states. This improves
+observation versus heavy120's0timely validated hits, but doesnot relax the
+diagnostic100mstiming policy or infer unobtrusive baseline. Next observe a
+requested actor slot's latch independently of currenthit during pointer motion
+and deselection, retain action/callback/frame and lifetime gaps. Step2/all47/21
+remainopen; steps3–7remainordered/pending. Exact approved24run archival
+continues and its temporarily scheduled pauses are recorded/resumed.

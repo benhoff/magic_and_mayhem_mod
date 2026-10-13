@@ -51,3 +51,10 @@ These raw fields do not independently establish complete selection semantics.
 The PE32 fixture uses relocated owned pages and a synthetic original callback.
 Production address pins remain fixed. Its first fixed-address allocation attempt
 is retained as negative evidence; its allocation conflict is unassigned.
+
+Current bounded click-latch analysis requires one uniquely matched original
+mask1/mask2pair with stable validated pool/slot/type/owner, raw+68/count/mode
+0→1and a later same observed-slot latch after1000ms. The1000msbound is
+diagnostic policy. It doesnot establish allocation generations, general
+selection/tooltip semantics or exact physical/source causality. Four strict
+guards and current static original metadata analysis are retained separately.
