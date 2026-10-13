@@ -2580,3 +2580,37 @@ unmodified. A new prospective declaration precedes the guarded held120retry
 with copy-request IDs, V5storage-query IDs and worker producer-prefix bounds.
 Its execution, physical comparison and Step2closure require separate results;
 no earlier failure or evidence hash is rewritten by this budget change.
+
+
+## Approved held120 cohort and copy-value reassessment (2026-10-13)
+
+The approved 1344 GiB working budget allowed the previously refused bounded
+capture to run. `draw02-worker-prefix-held120-approved-01.json` retains 120
+queues, 645189 producer records, 2200 CPU checkpoints and 812 primary physical
+planes. Original raster remains active; original sections and 2927 immutable
+inputs verify unchanged before/after. Actual original quit exits successfully.
+This is a diagnostic capture; selection, tooltip and pause outcomes remain false.
+
+`draw02-held120-approved-checkpoints-01.json` compares every CPU checkpoint:
+all 2200 match unchanged return-order native replay. Parameters and independently
+pinned encoded assets are the native inputs. `draw02-held120-approved-egl-01.json`
+compares all 126 admitted protected-source/API/worker/physical contexts: zero
+differences, with all 686 excluded contexts retained. These results do not repair
+the historical held120 checkpoint1335/1600pixel failure or close full routes.
+
+Static exact request binding accounts for 2193 copies and 2920 commands, with
+187 extra API calls and 255 adjacent return reversals preserved. Worker prefixes
+classify 2311 stable, 523 other-record and 86 touched commands. All 89 touched
+COPY returns associate with 67 prior worker completions or 22 same-request
+workers; this is return attribution, not byte immutability. Storage analysis
+binds 1295 of 4833 numerical queries and preserves 3538 unbound queries
+(2610 non-map, 928 without a same-thread Lock). Backing/view/allocation ownership
+and complete original/native presentation remain unresolved.
+
+Reassessment: step2 remains active. A matching new trace cannot replace a failed
+old trace. Native-only buffer probes distinguish the failed branch from harmless
+return inversions without reordering operations or importing original pixels.
+Recover the distinct caller/control flow and acquire fresh exact request evidence
+for the failing branch before proposing an ordering policy. Whole-route lifetime,
+diagnostic controls, semantic outcomes and all47/21closures remain open; steps3–7
+have not been completed.
