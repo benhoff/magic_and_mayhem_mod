@@ -53649,6 +53649,116 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CAST.descriptor-expansion",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original packed cast descriptor expansion",
+      "scope": "Whole534000 packed opcode4 cast descriptor expansion for33-byte nonoverlapping owned input and12-DWORD caller-initialized output. Unsigned byte/six little-endian WORD fields, independent0xff source/target sentinels, arbitrary copied DWORD/byte and preservation of output+24. No admission, semantic interpretation of opaque fields, projectile/effect/world execution or native session integration.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5455872,
+          "scope": "Whole534000 packed opcode4 cast descriptor expansion for33-byte nonoverlapping owned input and12-DWORD caller-initialized output. Unsigned byte/six little-endian WORD fields, independent0xff source/target sentinels, arbitrary copied DWORD/byte and preservation of output+24. No admission, semantic interpretation of opaque fields, projectile/effect/world execution or native session integration."
+        }
+      ],
+      "documents": [
+        "research/runtime/cast-descriptor-expansion.md",
+        "research/formats/packed-cast-command.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/casting/descriptor.cpp"
+      ],
+      "tests": [
+        "tests/cast-descriptor-test.cpp",
+        "tools/test-cast-descriptor.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/casting/descriptor/CMakeLists.txt"
+      ],
+      "validation_domain": {
+        "included": [
+          "All65536 source/target byte combinations, including independent0xff sentinels",
+          "Arbitrary caller output word9 retained, input/output guards and all writes compared",
+          "Unsigned byte/WORD extremes and arbitrary DWORD bit patterns"
+        ],
+        "excluded": [
+          "Aliasing input/output or invalid raw pointers/extents",
+          "Cast admission/projectiles/effects/World/session integration"
+        ]
+      },
+      "evidence": [
+        "NS36.descriptor-original",
+        "NS36.descriptor-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CAST.admission",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original cast admission and secondary dispatch",
+      "scope": "Whole57b710 cast admission projection in recovery: configured cost/pool gates, source/target coordinate and visibility bookkeeping, resource/cost accounting, compressed spell dispatch, secondary admission and special movement/stun calls. Original Win32 SEH linkage is private harness infrastructure; native services exclude it. Valid finite actor/config/profile/coordinates only. Complete lower resource/geometry/secondary/effect/projectile ownership and native session integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5748496,
+          "scope": "Whole57b710 cast admission projection in recovery: configured cost/pool gates, source/target coordinate and visibility bookkeeping, resource/cost accounting, compressed spell dispatch, secondary admission and special movement/stun calls. Original Win32 SEH linkage is private harness infrastructure; native services exclude it. Valid finite actor/config/profile/coordinates only. Complete lower resource/geometry/secondary/effect/projectile ownership and native session integration pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/cast-admission.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS37.admission-static-v1",
+        "NS37.admission-static-v2"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.cast-admission-export",
+      "subsystem": "coverage-tooling",
+      "kind": "native_policy",
+      "title": "Pinned read-only cast admission dispatch export",
+      "scope": "Verify immutable manifest before/after, pinned executable SHA and byte backing; export body anchor/hash, all103 compressed choices/17targets and bounded constructor windows with new-output refusal. Static research only.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/cast-admission.md"
+      ],
+      "implementation": [
+        "tools/export-cast-admission.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS37.admission-static-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -108770,6 +108880,150 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS36.descriptor-original",
+      "kind": "isolated_original",
+      "scope": "Prospectively bound complete534000 projection:65536 original32/native64/sanitized64 cases, all source/target sentinel pairs, full caller output/input/body/return guards. Casting admission and world/session ownership excluded.",
+      "record": "research/runtime/original-cast-descriptor-20261012.json",
+      "sha256": "9522749201263dad3874de88bf72a255afc8aa538f8413cb7c7b368a75a81e90",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 65536
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS36.descriptor-native",
+      "kind": "native_integration",
+      "scope": "Prospectively bound complete534000 projection:65536 original32/native64/sanitized64 cases, all source/target sentinel pairs, full caller output/input/body/return guards. Casting admission and world/session ownership excluded.",
+      "record": "research/runtime/original-cast-descriptor-20261012.json",
+      "sha256": "9522749201263dad3874de88bf72a255afc8aa538f8413cb7c7b368a75a81e90",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 65536
+        }
+      ]
+    },
+    {
+      "id": "NS37.admission-static-v1",
+      "kind": "static",
+      "scope": "Pinned57b710 body/entry and complete compressed103-ID/17-target dispatch export; v2 also preserves bounded coordinate/path helper windows. Static instruction evidence only, no execution equivalence.",
+      "record": "research/runtime/original-cast-admission-static-20261012.json",
+      "sha256": "16a51486e3850a3106b0bdd559961e7de431e9ef391a78719f27b60bc964f55d",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS37.admission-static-v2",
+      "kind": "static",
+      "scope": "Pinned57b710 body/entry and complete compressed103-ID/17-target dispatch export; v2 also preserves bounded coordinate/path helper windows. Static instruction evidence only, no execution equivalence.",
+      "record": "research/runtime/original-cast-admission-static-v2-20261012.json",
+      "sha256": "60f8248859edfee1cd57a9221fa23ebbbaa49577cbc7ada16fb2043872d97531",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -112231,6 +112485,644 @@
           "behaviors": [
             "AI.segment-initialization",
             "NP.segment-setup-admission"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CAST.admission-compressed-dispatch",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5752440,
+        "relation": "data",
+        "scope": "All103 byte choices into17pinned targets; complete mapping, branch semantics and execution pending."
+      },
+      "document": "research/runtime/cast-admission.md",
+      "complete": true,
+      "scope": "Static compressed routing map only; not spell effect completion.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 35,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 37,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 38,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 39,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 40,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 41,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 42,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 43,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 44,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 45,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 46,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 47,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 48,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 49,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 50,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 51,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 52,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 53,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 54,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 55,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 56,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 57,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 58,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 59,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 60,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 61,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 62,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 63,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 64,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 65,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 66,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 67,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 68,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 69,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 70,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 71,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 72,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 73,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 74,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 75,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 76,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 77,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 78,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 79,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 80,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 81,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 82,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 83,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 84,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 85,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 86,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 87,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 88,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 89,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 90,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 91,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 92,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 93,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 94,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 95,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 96,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 97,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 98,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 99,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 100,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 101,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": 102,
+          "behaviors": [
+            "CAST.admission"
+          ]
+        },
+        {
+          "value": "default",
+          "behaviors": [
+            "CAST.admission"
           ]
         }
       ]
@@ -121651,8 +122543,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-startup-commit-fae75a9e-20261012.json",
-    "sha256": "fd4c91d0446b1a1531dab6a469626c1287a414e9d435f2a177f91ee009d66c87"
+    "path": "research/runtime/coverage/source-index-original-cast-descriptor-rebased-20261012.json",
+    "sha256": "0030aea41550f248acecf411ab9e8546f7934a7f237c201246366bd83f5c5d5e"
   },
   "claim_bindings_required": true
 }
