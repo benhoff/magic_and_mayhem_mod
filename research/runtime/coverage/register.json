@@ -43648,7 +43648,8 @@
         "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
         "DRAW02.draw02-resource-postclose-fixture-01-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
-        "DRAW02.draw02-storage-v5-original32-01-20261013"
+        "DRAW02.draw02-storage-v5-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43768,7 +43769,8 @@
         "DRAW02.draw02-resource-postclose-original32-negative-01-20261013",
         "DRAW02.draw02-map-point-postclose-fixture-01-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
-        "DRAW02.draw02-storage-v5-original32-01-20261013"
+        "DRAW02.draw02-storage-v5-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44105,7 +44107,8 @@
         "DRAW02.draw02-copy-storage-original32-04-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
         "DRAW02.draw02-storage-v5-fixture-01-20261013",
-        "DRAW02.draw02-storage-v5-original32-01-20261013"
+        "DRAW02.draw02-storage-v5-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45610,7 +45613,8 @@
         "DRAW02.draw02-copy-order-original32-02-20261013",
         "DRAW02.draw02-copy-storage-original32-04-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
-        "DRAW02.draw02-storage-v5-original32-01-20261013"
+        "DRAW02.draw02-storage-v5-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45950,7 +45954,8 @@
         "DRAW02.draw02-copy-order-original32-02-20261013",
         "DRAW02.draw02-copy-storage-original32-04-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
-        "DRAW02.draw02-storage-v5-original32-01-20261013"
+        "DRAW02.draw02-storage-v5-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original32-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45991,7 +45996,8 @@
         "DRAW02.copy-api-worker-bindings-01-20261013",
         "DRAW02.draw02-copy-storage-bindings-01-20261013",
         "DRAW02.draw02-resource-postclose-bindings-01-20261013",
-        "DRAW02.draw02-storage-v5-copy-bindings-01-20261013"
+        "DRAW02.draw02-storage-v5-copy-bindings-01-20261013",
+        "DRAW02.draw02-worker-prefix-copy-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46188,6 +46194,96 @@
       },
       "remaining_gaps": [
         "Owned V5eight-call/five-epoch/seven-query fixture,18decoder and6interval guards pass. Fresh original32has985closed storage calls/910epochs/119local address IDs. Static all910live queries match unique same-thread Lock intervals and exact returned/cache numerical IDs;805external points are inactive. V4all910queries remain unbound legacy inputs. Pointer equality/event order do not prove allocation generations, exclusive byte/backing ownership, source uploads, physical coherence, general replay order or47/21closure."
+      ]
+    },
+    {
+      "id": "NR.drawing-worker-producer-prefix",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Optional source-prefix bounds around original driver worker execution",
+      "scope": "Separate opt-in128byte sidecar queries the existing read-only SceneDrawingSourcePointV1with null COM input before and after selected opcode42original worker bodies. Retain exact worker/thread/legacy entry identities, unavailable/refused getter states, source sequence/queue/failure/pending metadata and complete terminal counts. Getter and original callback run outside journal_lock; preserve original args/error/FP and default legacy wire. Prefix bounds and metadata consistency do not prove atomic source bytes, total execution order, source ownership, replay repair, quiescence or complete presentation.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-worker-producer-points-v1.md",
+        "research/runtime/draw02-copy-order.md"
+      ],
+      "implementation": [
+        "runtime/drawing/worker_producer_points.h",
+        "runtime/drawing/wine_blit_worker.h",
+        "protocols/include/mnm/drawing_worker_producer_points_v1.h",
+        "tools/drawing_worker_producer_points.py"
+      ],
+      "tests": [
+        "tests/drawing-worker-producer-points-test.c",
+        "tests/test-drawing-worker-producer-points.py",
+        "tools/test-drawing-worker-producer-points.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/wine_lifetime.h",
+        "runtime/scene/drawing_source_point.h",
+        "runtime/scene/producer_trace_guard.h",
+        "protocols/include/mnm/drawing_source_point_v1.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/build-scene-observer.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-worker-prefix-fixture-negative-01-20261013",
+        "DRAW02.draw02-worker-prefix-fixture-negative-02-20261013",
+        "DRAW02.draw02-worker-prefix-fixture-03-20261013",
+        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Seven owned PE32 configurations and fresh original322591worker/source-point pairs pass, with0unavailable/110changed prefixes;4decoder/8frontend/4cadence guards pass. Initial guard111/123snapshot-padding failures retained with raw snapshots; canonical comparison buffers are now initialized. Prefix stability or only unrelated logical mutations does not establish bytes/backing aliases/actual noncopy execution or general replay order. Source/physical lifetime, full module/IAT/timer quiescence and47/21closure remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-worker-prefix-analysis",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Strict worker prefix interval classification for bound copies",
+      "scope": "Static join of exact request/API/packet/worker identities to null-COM producer-prefix bounds before/after original worker callbacks. Retain stable prefixes, intervening records on other logical canvases and observed mutations touching copy source/destination IDs separately; every outside-scope worker remains listed. Prefix stability and unrelated logical IDs do not prove immutable bytes/backing aliases or total execution order. No copy record rewriting, output seeding, replay repair or complete presentation claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-copy-order.md"
+      ],
+      "implementation": [
+        "tools/analyze-drawing-worker-prefixes.py"
+      ],
+      "tests": [
+        "tools/analyze-drawing-worker-prefixes.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_worker_producer_points.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-worker-prefix-analysis-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Static original32interval classification only; one source/destination mutation interval and1464workers after source scope remain explicit. Noncopy event execution, byte/backing aliases, source/physical lifetime, general ordering/replay repair and47/21closure remain pending."
       ]
     }
   ],
@@ -99674,6 +99770,106 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-fixture-negative-01-20261013",
+      "kind": "native_integration",
+      "scope": "First owned fixture fails combined entry argument/error/FP guard111; no original activation or forwarding proof.",
+      "record": "research/runtime/draw02-worker-prefix-fixture-negative-01.json",
+      "sha256": "7428f8087000160b7a4277c812dc7dd588ffc6605a4583d67cabb0d62084d59c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 111
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-fixture-negative-02-20261013",
+      "kind": "native_integration",
+      "scope": "Owned debug fixture isolates123to noncanonical FP snapshot comparison, differences only upper uninitialised destination region; raw before/actual snapshots preserved. No original execution/runtime defect conclusion.",
+      "record": "research/runtime/draw02-worker-prefix-fixture-negative-02.json",
+      "sha256": "3142b92aff89a797097524d01093c675b034f90040155c2370c52cff25a2c6c5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 123
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-fixture-03-20261013",
+      "kind": "native_integration",
+      "scope": "Seven owned PE32 enabled/disabled/unavailable/refused/midclose/budget/invalid cases pass with argument/error/canonical512byteFP preserved, getter/original outside-lock reentry and postclose forwarding. Budget99and midclose incomplete refused; no original game or total ordering proof.",
+      "record": "research/runtime/draw02-worker-prefix-fixture-03.json",
+      "sha256": "fc2c99c6db04d0eb5a66fa048ba47397f82afba8b696ad2573316a465cdb1b49",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-original32-01-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh original32worker-prefix capture:2591pairs,0unavailable,110producer-changing bounds,1127live/1464stopped pairs,910copy requests and actualexit0. No original body suppression, source ownership or ordering repair.",
+      "record": "research/runtime/draw02-worker-prefix-original32-01.json",
+      "sha256": "b86f9b379eead116b4fffe68d5e0955423a894875bf844824a69f74d62b50c68",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-copy-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Static all910copy/APIjoins with1127commands,0unbound requests,1098excluded APIcalls and44return reversals; source/driver semantics remain separate.",
+      "record": "research/runtime/draw02-worker-prefix-copy-bindings-01.json",
+      "sha256": "181498796faba13eb0760e150ca01cae3d10c4ab2bb25a5f620e58da274c9397",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-analysis-01-20261013",
+      "kind": "static",
+      "scope": "Static1127bound command intervals:1017stable-prefix,109other-records-only,1touches-copy-canvas;1464other/stopped workers retained. Request714/worker852before49777after49778includes cursor-copy return49778on destination1. No stable bytes/backing alias or reorder proof.",
+      "record": "research/runtime/draw02-worker-prefix-analysis-01.json",
+      "sha256": "293e619758eec15c588cbf4e375989f163516ca06ebbc19fadd73d6517e5a1dd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111835,8 +112031,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-storage-v5-20261013.json",
-    "sha256": "e88da093957f91678ff2991d6a904b569e876fbccef29c7098202fee2cb815b0"
+    "path": "research/runtime/coverage/source-index-draw02-worker-prefix-20261013.json",
+    "sha256": "c965781da644910772c05eb61dc2605f0458a145e76c1361818cb4e0f0d0b6ac"
   },
   "claim_bindings_required": true
 }

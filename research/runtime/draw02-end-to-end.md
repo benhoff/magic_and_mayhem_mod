@@ -2396,3 +2396,46 @@ exclusive byte/backing/allocation ownership or driver upload order. The earlier
 at actual driver worker execution, keeping ambiguous overlaps separate before
 changing native ordering. Step2 and all47/21 remain open; steps3–7 stay ordered
 and pending.
+
+
+## Step 2 worker execution producer bounds (2026-10-13 UTC)
+
+V5 query identity increment committed as2098ea97with staged/normal hook checks.
+Reviewedc83284b6..2098ea97:21exact receipts,0gaps. Optional
+--wine-worker-producer-points requires original-active producer and Wine worker
+observation, and is refused in controls. It uses the existing null-COM read-only
+SceneDrawingSourcePointV1export before/after original opcode42worker bodies.
+The separate MNMWPP01 journal retains worker/thread/legacy-entry identities,
+unavailable/refused metadata and complete counts; legacy wire stays separate.
+Getter and original callback run outside journal_lock, with pending workers
+preventing ordinary close; forced midclose remains incomplete. No pointers or
+pixels are transported, and no original drawing body is suppressed.
+
+Initial owned111/123guards fail noncanonical FP comparison because stack
+snapshot destinations contained unwritten upper-region bytes. Raw before/actual
+snapshots and original source hashes remain retained. Initialized comparison
+buffers fix the guard without changing the runtime recorder. Seven owned PE32
+configurations pass:enabled/disabled/unavailable/refused/midclose/budget/invalid,
+argument/error/canonical512byteFP preservation, getter/original cross-thread
+journal reentry and postclose forwarding. Budgetexit99and missing midclose
+return remain explicit refused evidence. Four decoder/eight frontend/four
+diagnostic-cadence guards pass.
+
+Fresh original32passes32queues/173540records/1335oracles/30139986bytes,
+910copy requests,2591worker pairs,0unavailable source points.1127pairs are live
+and1464stopped;110pairs have changed producer prefixes.583physical planes/
+1622consumed inputs and actual originalexit0 pass;2927original-manifest files
+verify before/after. Static all910copy/APIjoins account1127commands,1098
+additional APIcalls and44return reversals. Among those1127commands,1017have
+stable prefixes,109bracket records only on other logical canvases,1brackets
+an observed copy return touching its destination. Request714/worker852
+(source2/destination1)bounds49777..49778include cursor copy6→1return49778.
+Maximum observed producer interval spans518records. All1464outside workers
+remain listed; no interval or failed context is discarded.
+
+Reassessment: these are execution bounds, not an atomic byte or complete
+replay-order contract. The110intervals contain other producer work; logical
+canvas separation does not disprove backing aliases. Resolve the one touching
+copy interval and noncopy/checkpoint ordering before a source-only ordering
+repair. Earlier120source/physical failures remain failed. Step2and all47/21
+remain open; steps3–7stayordered/pending.
