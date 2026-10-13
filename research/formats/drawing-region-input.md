@@ -9,7 +9,7 @@ EAX result, LastError and 512-byte FX state are preserved. The mask and raw
 result retain their original values without assigning complete event semantics.
 
 The 64-byte little-endian header contains magic (8 bytes), then 14 DWORDs:
-version 1 or 2, row size 256, build marker `40209ca7`, capacity 8192, emitted rows,
+version 1, 2 or 3, row size 256, build marker `40209ca7`, capacity 8192, emitted rows,
 dropped calls, numeric owner thread, foreign-thread calls, pending calls,
 recorded calls, phase count, and three zero words. Complete decoding requires
 zero drops, foreign calls and pending calls; each recorded call has two rows.
@@ -58,3 +58,34 @@ mask1/mask2pair with stable validated pool/slot/type/owner, raw+68/count/mode
 diagnostic policy. It doesnot establish allocation generations, general
 selection/tooltip semantics or exact physical/source causality. Four strict
 guards and current static original metadata analysis are retained separately.
+
+## Optional V3 requested actor slot
+
+`--region-track-slot 0..255` requires `--region-input` and selects V3 through
+`MNM_DRAW_REGION_TRACK_SLOT`. Tracking disabled retains V2. The same 256-byte
+row appends an independent read-only sample after the ordinary hit sample:
+
+| Row DWORDs | Meaning |
+| --- | --- |
+| 45 | Requested (4), pool valid (1), actor valid (2) bits |
+| 46–48 | Local pool ID, capacity, requested slot + 1 (zero if actor invalid) |
+| 49–54 | Type +a8, owner +174, activity +4, health +e4, raw +68 and +70 |
+| 55 | Requested zero-based slot |
+| 56–63 | Reserved zero |
+
+The bounded pool must have capacity 1..256 and contain the requested slot.
+The address calculation uses stride e4b with overflow checks; the first 178
+bytes must be readable and the actor's first word must equal the requested
+slot. Invalid pools or actor slot words refuse data, retaining only valid
+request/pool metadata. No original state is written. The hit and tracked
+samples share the local pool ID counter; equal IDs do not establish allocation
+generation. Strict decoding rejects incompatible flags, capacities, slot
+identities, nonzero invalid fields, pair requests or reserved words.
+
+Current owned V3 and disabled V2 executions each pass 32 paired callbacks and
+35 forwards with exact result, LastError, full 512-byte FX state and read-only
+source-memory guards. The original V3 capture records seven retained actor+68
+latch samples without a current actor hit, 6214–24501ms after the left click.
+The analysis requires an independently tracked later sample for V3 admission.
+Five analysis guards pass. Deselection and complete selection semantics remain
+open; these are callback-time observations without synchronized frame proof.

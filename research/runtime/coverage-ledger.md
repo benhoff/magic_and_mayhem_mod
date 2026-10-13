@@ -8642,3 +8642,24 @@ requested actor slot's latch independently of currenthit during pointer motion
 and deselection, retain action/callback/frame and lifetime gaps. Step2/all47/21
 remainopen; steps3–7remainordered/pending. Exact approved24run archival
 continues and its temporarily scheduled pauses are recorded/resumed.
+
+## Step 2 independent actor-slot observation (2026-10-13 UTC)
+
+The optional V3 Region observer reads a requested bounded actor slot independently
+of the current hit, preserving V2 when disabled. The owned V3 fixture and current
+V2 regression each retain 32 pairs/35 forwards, exact result/error/full FX state
+and unchanged source memory. Invalid actor slot words refuse samples.
+
+`draw02-region-v3-original-01.json` records 11 original callback pairs and actual
+game process exit zero with a software rendering request in the launch manifest.
+Immutable analysis records seven same observed pool/slot/type/owner latch samples
+without a current actor hit, 6214–24501ms after the click. Five analysis guards
+and seven Region protocol guards pass. Numeric identity does not prove actor
+allocation/generation, and this does not close deselection, tooltip, exact
+action/frame/source ownership or native parity. Step 2 continues; steps 3–7 and
+all 47 journey/21 operation closures remain open.
+
+Reviewed committed range 61307428..c7cb39e0: 13 exact file receipts, zero gaps,
+retained under working/draw02-history-review-region-v3-20261013-01.json. Shared
+capture/runner/decoder changes retain older results and their hashes as historical;
+current execution support is limited to the declared V3 and disabled V2 scopes.

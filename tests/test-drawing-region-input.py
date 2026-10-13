@@ -26,6 +26,16 @@ def fixture(nested=False):
 
 
 class RegionInput(unittest.TestCase):
+    def test_v3_actor_can_be_valid_without_current_hit(self):
+        raw=fixture();struct.pack_into('<I',raw,8,3)
+        for start in [64,64+256]:
+            for word in range(24,32):struct.pack_into('<I',raw,start+word*4,0)
+            struct.pack_into('<11I',raw,start+45*4,7,1,8,1,0,0,1,400,1,0,0)
+        x=decode(raw)['calls'][0]['entry'];self.assertEqual(x['actor_state'],0);self.assertTrue(x['tracked_actor']['actor_valid']);self.assertEqual(x['tracked_actor']['actor_flag_68'],1);self.assertFalse(x['tracked_actor']['allocation_generation_proved'])
+        for word,value in [(45,6),(46,0),(47,0),(48,2),(55,256),(63,1)]:
+            changed=bytearray(raw);struct.pack_into('<I',changed,64+word*4,value)
+            with self.assertRaises(ValueError):decode(changed)
+
     def test_pair_and_observed_actor_do_not_prove_selection(self):
         result = decode(fixture())
         self.assertEqual(result['calls'][0]['mouse_record'][:2], [400, 265])

@@ -60,9 +60,22 @@ void start(void){
  put((void*)actor,0);put((void*)(actor+4),1);put((void*)(actor+0xa8),27);put((void*)(actor+0x174),0);put((void*)(actor+0xe4),100);
  put((void*)MNM_REGION_INPUT_CLASS,2);put((void*)MNM_REGION_INPUT_INDEX,7);put((void*)(MNM_REGION_INPUT_CAMERA+4),3);put((void*)(MNM_REGION_INPUT_CAMERA+8),1);
  put((void*)(MNM_REGION_INPUT_CAMERA+0x31),2);for(u32 i=0;i<6;++i)put((void*)(MNM_REGION_INPUT_CAMERA+0x39+i*4),10+i);
- for(u32 i=0;i<32;++i){invoke(i);
-  require(region_input_rows[i*2][31]==100+i&&region_input_rows[i*2+1][31]==101+i&&region_input_rows[i*2][27]==1,216);
-  require(region_input_rows[i*2][28]==27&&region_input_rows[i*2][29]==0&&region_input_rows[i*2][30]==1,222);
+ for(u32 i=0;i<32;++i){
+  if(region_input_track_enabled){
+   if(i==3)put((void*)MNM_REGION_INPUT_ACTOR,0);
+   if(i==4){put((void*)(actor+0x68),1);put((void*)MNM_REGION_INPUT_LATCH_COUNT,1);}
+   if(i==5)put((void*)actor,1);
+   if(i==6){put((void*)actor,0);put((void*)MNM_REGION_INPUT_ACTOR,actor);}
+  }
+  invoke(i);u32* entry=region_input_rows[i*2];u32* returned=region_input_rows[i*2+1];
+  int hit=!region_input_track_enabled||i<3||i>5;
+  require(entry[31]==(hit?100+i:0)&&returned[31]==(hit?101+i:0)&&entry[27]==(hit?1u:0u),216);
+  if(hit)require(entry[28]==27&&entry[29]==0&&entry[30]==1,222);
+  if(region_input_track_enabled){
+   require(entry[45]==(i==5?5u:7u)&&entry[46]==1&&entry[47]==1&&!entry[55],223);
+   require(entry[48]==(i==5?0u:1u)&&entry[52]==(i==5?0u:100+i)&&returned[52]==(i==5?0u:101+i),224);
+   if(i==4)require(!entry[24]&&entry[53]==1&&returned[53]==1,225);
+  }
  }
  require(region_input_count==64&&region_input_phase==64&&region_input_calls==32&&!region_input_pending&&!region_input_dropped&&!region_input_foreign,217);
  region_input_close();invoke(32);require(region_input_count==64,218);

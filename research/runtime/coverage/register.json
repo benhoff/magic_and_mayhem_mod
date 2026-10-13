@@ -44464,7 +44464,8 @@
         "DRAW02.draw02-hud-input-original-02-20261012",
         "DRAW02.current-region-metadata-original-03-20261013",
         "DRAW02.current-region-metadata-negative-01-20261013",
-        "DRAW02.current-region-metadata-negative-02-20261013"
+        "DRAW02.current-region-metadata-negative-02-20261013",
+        "DRAW02.draw02-region-v3-original-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44600,7 +44601,8 @@
         "DRAW02.draw02-hud-input-original-02-20261012",
         "DRAW02.current-region-metadata-original-03-20261013",
         "DRAW02.current-region-metadata-negative-01-20261013",
-        "DRAW02.current-region-metadata-negative-02-20261013"
+        "DRAW02.current-region-metadata-negative-02-20261013",
+        "DRAW02.draw02-region-v3-original-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44786,7 +44788,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original Region mouse callback entry/return observer",
-      "scope": "Opt-in pinned Region virtual-slot0observer: one original thiscall eventmask/40byte by-value record forward, exact result/LastError/512FXstate, bounded owner-thread paired phase records and read-only slot-validated hit/camera/scalars, V2correctedtype/owner/activity offsets and raw actor+68/+70/count fields; strictV1normalization preserves older raw bytes. No persistent selection/tooltip meaning, allocation generations, complete control routes or presentation/source/native parity.",
+      "scope": "Opt-in pinned Region virtual-slot0observer: one original thiscall eventmask/40byte by-value record forward, exact result/LastError/512FXstate, bounded owner-thread paired phase records and read-only slot-validated hit/camera/scalars, V2correctedtype/owner/activity offsets and raw actor+68/+70/count fields; strictV1normalization preserves older raw bytes. No persistent selection/tooltip meaning, allocation generations, complete control routes or presentation/source/native parity. Optional V3same-size records append a requested read-only actor-slot sample independent of currenthit, validated against current bounded pool/slot and recorded under the same local pool identity. Invalid requested slots/pools refuse data; numeric pool IDs still do not prove allocation/generation. V1/V2raw formats remain separately strict.",
       "confidence": "provisional",
       "original": [
         {
@@ -44807,7 +44809,8 @@
       ],
       "implementation": [
         "runtime/menu/drawing_region_input.h",
-        "runtime/menu/observer.c"
+        "runtime/menu/observer.c",
+        "runtime/menu/drawing_region_tracked_actor.h"
       ],
       "tests": [
         "tools/test-drawing-region-input.py",
@@ -44834,7 +44837,10 @@
         "DRAW02.draw02-region-input-original-03-20261012",
         "DRAW02.current-region-metadata-original-03-20261013",
         "DRAW02.current-region-metadata-negative-01-20261013",
-        "DRAW02.current-region-metadata-negative-02-20261013"
+        "DRAW02.current-region-metadata-negative-02-20261013",
+        "DRAW02.draw02-region-v3-fixture-01-20261013",
+        "DRAW02.draw02-region-v2-current-regression-01-20261013",
+        "DRAW02.draw02-region-v3-original-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44847,7 +44853,8 @@
         "Actual callback meaning, input-to-state causality, queue/control/thread lifetimes, persistent selection/tooltip and full source/physical/native parity pending. Numeric pool IDs are address-change counters, not allocation/generation proof. Callback4fdad0has bounded static discovery only and unknown inventory ranges remain intact.",
         "Initial V1actorlabels incorrect; current strict decoder normalizes without changingraw/reporthashes and V2writercorrects offsets. Initial fixed-address fixtureallocation exits202; conflictunassigned. V1results stayhistorical. V2currentlyretains14callbackpairs but complete selection/tooltip and actor lifetime remain pending.",
         "Initial prospective declaration used unsupportednativekindlabel; correctnative_policycategory changes contractfingerprint. PriorV2execution retained as historical; fresh corrected-contractfixture/original executions recorded separately.",
-        "Cursor-mutex capture flag changes sharedcapture/runner/controlsources. Existing RegionV2rawexecution remains historical for currentfrontendfingerprints; no freshRegion comparison/integration assertion frommutexcapture, which keepsRegionflagoff."
+        "Cursor-mutex capture flag changes sharedcapture/runner/controlsources. Existing RegionV2rawexecution remains historical for currentfrontendfingerprints; no freshRegion comparison/integration assertion frommutexcapture, which keepsRegionflagoff.",
+        "V3 owned fixture and disabled V2 regression pass current forwarding/state/read-only guards; original V3 capture records seven later independent requested-slot latch samples with no current actor hit. Deselection, allocation/generation, complete selection/tooltip and all-source/frame/native parity remain pending."
       ]
     },
     {
@@ -45549,7 +45556,8 @@
         "DRAW02.source-gate-original120-04-20261013",
         "DRAW02.current-region-metadata-original-03-20261013",
         "DRAW02.current-region-metadata-negative-01-20261013",
-        "DRAW02.current-region-metadata-negative-02-20261013"
+        "DRAW02.current-region-metadata-negative-02-20261013",
+        "DRAW02.draw02-region-v3-original-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45575,7 +45583,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original click and persistent observed actor latch admission",
-      "scope": "Diagnostic analysis of unique declared left click and actual RegionV2mask1/mask2callback pairs with exact pool/slot/type/owner identity. Require before-to-return raw actor+68/count/mode transition, matching button release and a later validated same observed slot carrying the latch after at least1000ms. This establishes bounded callback/raw-latch observation only; actor allocation/generation, general persistent selection/tooltip semantics, all-source/physical ownership and full reference/native parity remain unproved. Visual witnesses remain independent original observations.",
+      "scope": "Diagnostic analysis of unique declared left click and actual Region V2/V3 mask1/mask2callback pairs with exact pool/slot/type/owner identity. Require before-to-return raw actor+68/count/mode transition, matching button release and a later validated same observed slot carrying the latch after at least1000ms. This establishes bounded callback/raw-latch observation only; actor allocation/generation, general persistent selection/tooltip semantics, all-source/physical ownership and full reference/native parity remain unproved. Visual witnesses remain independent original observations. V3 additionally requires a later independently tracked validated same pool/slot/type/owner latch sample while current actor hit is absent; the requested slot is observation policy, not allocation identity.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45594,7 +45602,8 @@
         "tools/drawing_api_session.py"
       ],
       "evidence": [
-        "DRAW02.current-region-selection-latch-analysis-01-20261013"
+        "DRAW02.current-region-selection-latch-analysis-01-20261013",
+        "DRAW02.draw02-region-v3-selection-analysis-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45605,7 +45614,8 @@
       },
       "remaining_gaps": [
         "Fresh analysis/negative guards pending; click-coordinate uniqueness is scoped to the recorded schedule/callbacks and does not prove allocation identity or all semantic routes. Full presentation/source ownership/reference/native parity remain open.",
-        "Current static analysis admits one declared click/originalmask1/2transition and later same observed-slot latch after9488ms. Four negative guards pass. Independent visual witnesses beforeclick/afterclick/aftercamera inspected: bracket absent before, appears after and persists while cursor moves away. No actor generation, general semantic closure, exact frame/source synchronization or native comparison."
+        "Current static analysis admits one declared click/originalmask1/2transition and later same observed-slot latch after9488ms. Four negative guards pass. Independent visual witnesses beforeclick/afterclick/aftercamera inspected: bracket absent before, appears after and persists while cursor moves away. No actor generation, general semantic closure, exact frame/source synchronization or native comparison.",
+        "Current V3 static analysis admits seven independent retained-latch samples 6214\u201324501ms after click with current hit absent. Five strict guards pass. Deselection, actor generation and synchronized physical/source/native semantic closure remain pending."
       ]
     }
   ],
@@ -98340,6 +98350,69 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-region-v3-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE32 V3 requested-slot fixture: 32 paired callbacks, 35 forwards, exact result/error/512-byte FX state, read-only actor memory, independent sample without current hit and invalid actor slot-word refusal.",
+      "record": "research/runtime/draw02-region-v3-fixture-01.json",
+      "sha256": "5bbcf806a7eb7ce17ef8e4a138779662a2fc62e52251f02871871437d14859db",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-region-v2-current-regression-01-20261013",
+      "kind": "native_integration",
+      "scope": "Current owned PE32 fixture with tracking disabled retains strict V2: 32 paired callbacks, 35 forwards, exact result/error/512-byte FX and source memory.",
+      "record": "research/runtime/draw02-region-v2-current-regression-01.json",
+      "sha256": "06249b354511e585757d5179ddd37946a971caeb356089a1c0051018c74f1ecc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-region-v3-original-01-20261013",
+      "kind": "live_observation",
+      "scope": "Bounded original V3 Region/HUD metadata capture: independent requested actor slot when current hit absent, explicit software request, actual observed game exit zero; no allocation generation, deselection, full semantic or native parity.",
+      "record": "research/runtime/draw02-region-v3-original-01.json",
+      "sha256": "d1599691cc8e1a0a43785e720dd6bedb4beb5e9912f9bb69d9ab15bf888bf719",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-region-v3-selection-analysis-01-20261013",
+      "kind": "static",
+      "scope": "Immutable original callback/action analysis admits click/release transition and seven later independently tracked actor latch samples with current hit absent; no new original execution or complete selection semantics.",
+      "record": "research/runtime/draw02-region-v3-selection-analysis-01.json",
+      "sha256": "92bf4cc705a5b7acbd33efff82676bb9589f324a1514a708c4436c8e3ddfacfd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -110500,8 +110573,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-current-region-latch-20261013.json",
-    "sha256": "8672e958ef29fcb55706e2c3ae565352b8b8ca4634aa51be61f5848dd3a9502e"
+    "path": "research/runtime/coverage/source-index-draw02-region-v3-20261013.json",
+    "sha256": "c898fd37f2c318c7595694c7cad700aaae1eae8d0566846b37b32b82d853d407"
   },
   "claim_bindings_required": true
 }

@@ -5,8 +5,8 @@ def identity(sample):
     return tuple(sample[k] for k in ('pool_id','capacity','slot_plus_one','actor_type','actor_owner'))
 
 def observe(region,actions):
-    if region['wire_version']!=2 or region['dropped'] or region['foreign_thread_calls'] or region['pending']:
-        raise ValueError('Closed owner-only RegionV2required')
+    if region['wire_version'] not in (2,3) or region['dropped'] or region['foreign_thread_calls'] or region['pending']:
+        raise ValueError('Closed owner-only RegionV2/V3required')
     matches=[]
     for action in actions:
         if action.get('kind')!='click' or action.get('button')!=1:continue
@@ -28,8 +28,18 @@ def observe(region,actions):
             sample=call['returned'];elapsed=(sample['tick']-end['tick'])&0xffffffff
             if identity(sample)==key and sample['actor_flag_68']==1 and sample['raw_latch_count']==1 and 1000<=elapsed<0x80000000:
                 later.append(dict(call=call['call'],elapsed_ms=elapsed,actor_health=sample['actor_health']))
-        if not later:raise ValueError('No later validated observed-slot latch')
-        matches.append(dict(action_ordinal=action['ordinal'],coordinates=list(xy),down_call=down[0]['call'],up_call=release['call'],observed_identity=list(key),later=later))
+        independent=[]
+        if region['wire_version']==3:
+            for call in region['calls']:
+                if call['call']<=release['call']:continue
+                sample=call['returned'];track=sample.get('tracked_actor',{});elapsed=(sample['tick']-end['tick'])&0xffffffff
+                if sample['actor_state']==1 or not track.get('actor_valid') or not 1000<=elapsed<0x80000000:continue
+                tracked_key=tuple(track[k] for k in ('pool_id','capacity','slot_plus_one','actor_type','actor_owner'))
+                if tracked_key==key and track['actor_flag_68']==1 and sample['raw_latch_count']==1:
+                    independent.append(dict(call=call['call'],elapsed_ms=elapsed,current_hit_state=sample['actor_state'],requested_slot=track['requested_slot'],actor_health=track['actor_health']))
+            if not independent:raise ValueError('No independent tracked actor latch while cursor hit absent')
+        if not later and not independent:raise ValueError('No later validated observed-slot latch')
+        matches.append(dict(action_ordinal=action['ordinal'],coordinates=list(xy),down_call=down[0]['call'],up_call=release['call'],observed_identity=list(key),later=later,**({'independent_tracked_latch':independent} if region['wire_version']==3 else {})))
     if len(matches)!=1:raise ValueError('Exactly one unique admitted click required')
     return dict(callback_latch_transition_observed=True,later_observed_slot_latch=True,matches=matches,
                 actor_allocation_generation_proved=False,persistent_selection_semantics_proved=False,
