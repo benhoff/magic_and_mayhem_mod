@@ -72,9 +72,9 @@ bool MenuBridge::read(State& state) const {
     if(campaignDefeat_&&next.screen==MNM_MENU_DEFEAT_SCREEN){
         auto* m=words+MNM_MENU_V11_DEFEAT/4;auto& d=next.defeat;
         d.actions=load(m);d.context=load(m+1);d.depth=load(m+2);d.outcome=load(m+3);
-        if(d.actions!=1||d.context!=5||d.depth!=5||d.outcome||!name(MNM_MENU_V11_DEFEAT+16,256,d.title)||d.title.isEmpty())return false;
+        if(d.actions!=1||d.context!=5||d.depth!=5||d.outcome>quint32(campaign_)||!name(MNM_MENU_V11_DEFEAT+16,256,d.title)||d.title.isEmpty())return false;
         for(int i=0;i<21;++i)if(!name(MNM_MENU_V11_DEFEAT+272+256*i,256,d.texts[i]))return false;
-        if(d.texts[19].isEmpty())return false;
+        if(!campaign_&&d.texts[19].isEmpty())return false;
     }
     if(results_&&next.screen==MNM_MENU_RESULT_SCREEN){
         const int at=MNM_MENU_V5_RESULTS;auto* r=words+at/4;auto& b=next.results;

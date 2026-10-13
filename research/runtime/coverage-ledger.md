@@ -7194,3 +7194,16 @@ are edited. Older evidence hashes/statuses remain retained after shared source
 changes. The previous Region commit has[23 exact receipt versions](coverage/character-three-realms-history-20261012.json)
 and no retrospective execution/gate assertion. Mission-end/native rendering
 and remaining campaign auxiliary menus continue as separate chunks.
+
+### Experimental natural campaign reports (2026-10-12)
+
+V20 opt-in report admission now supports original outcome 0/1 in the exact
+Main/Realm/World/report caller, copies original title and all 21 fields, and
+delegates original OK/fade. `UI62.campaign-natural-report` records two private
+original outcomes, 13 guards, eight synthetic Qt cases and four regressions.
+Acknowledgement identity is checked before original cleanup; a fresh Realm
+state restores native ownership. Earlier versions retain Quit-only admission.
+No actual victory, natural defeat, score/reward comparison, save/reload, installed
+artwork comparison or World cleanup has been validated here. The drawing-lock
+timeout/recovery failure remains unresolved and separate. Shared source changes
+leave earlier menu evidence historical; none of its hashes was refreshed.
