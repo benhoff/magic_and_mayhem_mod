@@ -8642,3 +8642,28 @@ Installed construction, UI implementation and composed World/session integration
 remain pending. NS41 e2c7f03e has33 file/125 behavior transitions reviewed against
 exact parent/current receipts and actual staged gate with no accounting gaps.
 No new execution is inferred from that committed-history review.
+
+
+## Numeric contribution account comparison (NS43)
+
+Whole416d80 and both profile accessors505bf0/505c50 now pass24,576 prospectively
+bound original32/native64/ASan+UBSan+LSan64 cases. The original account executes
+the actual whole profile accessors and59bee0 truncate helper, with zero redirects.
+Readonly profile/body guards and x87 controlword/stack checks pass; the independent
+native CMake build and CTest pass. Immutable proof is
+original-contribution-account-bound-20261012.json.
+
+The model retains class0/24/25/26's reciprocal quantity calculation with profile0
+capacity square; other classes use28-pair wrapped sum, unsigned average/product
+and capacity division. The first profile accessor gives source kinds8/20 fixed10;
+otherwise both accessors use target/source58 flags for signed truncation bythree.
+Pinned numeric constants1,180000,30,1000000 and double0.999999 preserve original
+roles. Both conversions retain the signed64 low word and intermediate signed-word
+interpretation. No scoring/veterancy interpretation or balance change is added.
+
+Five native numeric/type refusals are separate from original undefined behavior.
+This comparison explicitly sets x87 precision64 and nearest rounding; original
+Windows caller/FPU modes and broader conversion/divisor/profile domains remain
+unvalidated. Complete native World/session composition and replacement stay
+pending. Incoming NS42 commit6cc03cbd is reviewed against exact receipts and its
+actual staged gate; committed-history accounting adds no new execution claim.

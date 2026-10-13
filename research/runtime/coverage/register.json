@@ -54513,30 +54513,48 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original numeric contribution account",
-      "scope": "Whole416d80 in recovery: class-specific quantity formula,28-entry profile totals, wrapped arithmetic, x87 reciprocal/constant computation and59bee0 conversion. Constants/domains/rounding/lower profile access/full World and fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole416d80 with unchanged505bf0/505c50/59bee0 nested execution and zero helper redirects: class0/24/25/26 quantity reciprocal branch using profile0 capacity square, other classes28-pair wrapped sum/unsigned average/product/capacity division, pinned resource reciprocal constants and two truncations to signed64 lowword with controlword/stack preservation. Finite28 owned profiles, fixture0..8191 boundary seeds, fixed readonly catalog, x87 64-significand nearest mode, finite nonzero divisors and signed64 conversion range. Installed profile/caller/FPU mode validation, malformed raw pointers, complete scoring interpretation, native World/session integration and live replacement excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4287872,
-          "scope": "Whole416d80 in recovery: class-specific quantity formula,28-entry profile totals, wrapped arithmetic, x87 reciprocal/constant computation and59bee0 conversion. Constants/domains/rounding/lower profile access/full World and fresh execution pending."
+          "scope": "Whole416d80 with unchanged505bf0/505c50/59bee0 nested execution and zero helper redirects: class0/24/25/26 quantity reciprocal branch using profile0 capacity square, other classes28-pair wrapped sum/unsigned average/product/capacity division, pinned resource reciprocal constants and two truncations to signed64 lowword with controlword/stack preservation. Finite28 owned profiles, fixture0..8191 boundary seeds, fixed readonly catalog, x87 64-significand nearest mode, finite nonzero divisors and signed64 conversion range. Installed profile/caller/FPU mode validation, malformed raw pointers, complete scoring interpretation, native World/session integration and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Truncate helper only as reached within the declared416d80 finite account domain; lowword result/controlword/stack checked. No standalone out-of-range/NaN/alternate rounding-mode equivalence."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp"
+      ],
+      "tests": [
+        "tests/contribution-account-test.cpp",
+        "tools/test-contribution-account.py"
+      ],
       "evidence": [
-        "NS41.resources-static"
+        "NS41.resources-static",
+        "NS43.account-static",
+        "NS43.account-original",
+        "NS43.account-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/account/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
     },
     {
       "id": "TOOL.creature-resource-export",
@@ -54600,6 +54618,150 @@
         "reconstruction/combat/control.hpp",
         "tests/sprite-binary-reference.cpp"
       ]
+    },
+    {
+      "id": "AI.account-profile-first",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original first contribution profile value",
+      "scope": "Whole505bf0: source kind8/20 fixed10, otherwise target flag58/source flag58 choose signed truncation by3 or raw source280 indexed value. Finite28 owned profiles, fixture0..8191 boundary seeds, fixed readonly catalog, x87 64-significand nearest mode, finite nonzero divisors and signed64 conversion range. Installed profile/caller/FPU mode validation, malformed raw pointers, complete scoring interpretation, native World/session integration and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266416,
+          "scope": "Whole505bf0: source kind8/20 fixed10, otherwise target flag58/source flag58 choose signed truncation by3 or raw source280 indexed value. Finite28 owned profiles, fixture0..8191 boundary seeds, fixed readonly catalog, x87 64-significand nearest mode, finite nonzero divisors and signed64 conversion range. Installed profile/caller/FPU mode validation, malformed raw pointers, complete scoring interpretation, native World/session integration and live replacement excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp"
+      ],
+      "tests": [
+        "tests/contribution-account-test.cpp",
+        "tools/test-contribution-account.py"
+      ],
+      "evidence": [
+        "NS43.account-static",
+        "NS43.account-original",
+        "NS43.account-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/account/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.account-profile-second",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original second contribution profile value",
+      "scope": "Whole505c50: target flag58/source flag58 choose signed truncation by3 or raw source1a0 indexed value. Finite28 owned profiles, fixture0..8191 boundary seeds, fixed readonly catalog, x87 64-significand nearest mode, finite nonzero divisors and signed64 conversion range. Installed profile/caller/FPU mode validation, malformed raw pointers, complete scoring interpretation, native World/session integration and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266512,
+          "scope": "Whole505c50: target flag58/source flag58 choose signed truncation by3 or raw source1a0 indexed value. Finite28 owned profiles, fixture0..8191 boundary seeds, fixed readonly catalog, x87 64-significand nearest mode, finite nonzero divisors and signed64 conversion range. Installed profile/caller/FPU mode validation, malformed raw pointers, complete scoring interpretation, native World/session integration and live replacement excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp"
+      ],
+      "tests": [
+        "tests/contribution-account-test.cpp",
+        "tools/test-contribution-account.py"
+      ],
+      "evidence": [
+        "NS43.account-static",
+        "NS43.account-original",
+        "NS43.account-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/account/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "NP.contribution-account-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native account numeric domain refusals",
+      "scope": "Five native-only account refusals: source type28, nonwizard zero capacity, zero resource denominator, NaN conversion and wizard zero quantity divisor. Complete malformed original numeric/pointer equivalence excluded; fixture precision64/nearest is explicit and other environments remain unvalidated.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/contribution_account.cpp"
+      ],
+      "tests": [
+        "tests/contribution-account-test.cpp",
+        "tools/test-contribution-account.py"
+      ],
+      "evidence": [
+        "NS43.account-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/account/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "TOOL.contribution-account-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned contribution numerics export",
+      "scope": "Read-only original account/profile/truncate export and literal constant byte/value extraction; no execution or semantic equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-contribution-account.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS43.account-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -110905,6 +111067,150 @@
           "equals": 906
         }
       ]
+    },
+    {
+      "id": "NS43.account-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively bound whole416d80,505bf0,505c50 and nested unchanged59bee0 execution:24,576 original32/native64/sanitized64 cases, zero helper redirects, readonly profiles and original bodies, x87 controlword/stack guards. Finite precision64/nearest fixture only; installed callers/FPU modes, malformed domains and World/session ownership excluded.",
+      "record": "research/runtime/original-contribution-account-bound-20261012.json",
+      "sha256": "192c3fba02f52530bf1c62dc9470fd108ae2daa0568fed0be4de8b5136cf82a8",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/helper_redirects",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS43.account-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively bound whole416d80,505bf0,505c50 and nested unchanged59bee0 execution:24,576 original32/native64/sanitized64 cases, zero helper redirects, readonly profiles and original bodies, x87 controlword/stack guards. Finite precision64/nearest fixture only; installed callers/FPU modes, malformed domains and World/session ownership excluded.",
+      "record": "research/runtime/original-contribution-account-bound-20261012.json",
+      "sha256": "192c3fba02f52530bf1c62dc9470fd108ae2daa0568fed0be4de8b5136cf82a8",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/helper_redirects",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NS43.account-static",
+      "kind": "static",
+      "scope": "Pinned account/profile/truncate bytes and five original numeric constants, no execution or semantic completeness.",
+      "record": "research/runtime/original-contribution-account-static-v1-20261012.json",
+      "sha256": "5c4d517316cd17ffe2ffe0ee1ae07000641b0036ebf6a06f7a8587ae535f5bdd",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -124478,8 +124784,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-resource-services-20261012.json",
-    "sha256": "abd741242c24808e056fa5a9c651ae51df96c5ae48a9df6190f335a94e01407a"
+    "path": "research/runtime/coverage/source-index-original-contribution-account-20261012.json",
+    "sha256": "c8dba93ef85b70ec3fa7569ccc91524a04fe41460237a18216dd862844bd2480"
   },
   "claim_bindings_required": true
 }
