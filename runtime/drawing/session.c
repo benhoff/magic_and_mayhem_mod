@@ -189,7 +189,16 @@ static short WIN async(i32 code){u32 a[6]={(u32)code};struct Context c=begin(0,1
 static short WIN key(i32 code){u32 a[6]={(u32)code};struct Context c=begin(0,2,a,1,(u32)__builtin_return_address(0),2);short r=((short(WIN*)(i32))original_key)(code);end(&c,0,(u32)(i32)r);return r;}
 static i32 WIN cursor(i32* point){u32 a[6]={(u32)point};struct Context c=begin(0,3,a,1,(u32)__builtin_return_address(0),2);c.r[21]=0;i32 r=((i32(WIN*)(i32*))original_cursor)(point);end(&c,0,r);return r;}
 static u32 WIN map(u32 code,u32 mode){u32 a[6]={code,mode};struct Context c=begin(0,4,a,2,(u32)__builtin_return_address(0),2);u32 r=((u32(WIN*)(u32,u32))original_map)(code,mode);end(&c,0,r);return r;}
-void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){u32 a[6]={0};struct Context c=begin(0,phase,a,0,0,3);c.r[21]=request;c.r[22]=action;c.r[23]=screen;c.r[24]=generation;c.r[25]=argument;c.r[26]=phase;c.r[27]=status;end(&c,0,status);}
+typedef u32(WIN* DrawingCursorGateSnapshot)(u32,void*,u32);
+static DrawingCursorGateSnapshot drawing_cursor_gate_snapshot_callback;
+static void drawing_cursor_gate_snapshot(void){
+ if(!drawing_cursor_gate_enabled)return;u32 error=GetLastError();u8 fx[512]__attribute__((aligned(16)));snapshot_fp(fx);void* module=GetModuleHandleA("MnmCursorGate.dll");
+ DrawingCursorGateSnapshot shutdown=drawing_cursor_gate_snapshot_callback?drawing_cursor_gate_snapshot_callback:module?(DrawingCursorGateSnapshot)GetProcAddress(module,"CursorSourceGateShutdownV1"):0;
+ u32 point[32]={0};if(!shutdown||!shutdown(GetCurrentThreadId(),point,128))ExitProcess(99);
+ restore_fp(fx);SetLastError(error);
+ /* This is reason3partial diagnostic snapshot, not quiescent normal shutdown. */
+}
+void WIN DrawingActionV1(u32 request,u32 action,u32 screen,u32 generation,u32 argument,u32 phase,u32 status){u32 a[6]={0};struct Context c=begin(0,phase,a,0,0,3);c.r[21]=request;c.r[22]=action;c.r[23]=screen;c.r[24]=generation;c.r[25]=argument;c.r[26]=phase;c.r[27]=status;end(&c,0,status);if(action==3&&screen==3&&phase==1)drawing_cursor_gate_snapshot();}
 void WIN DrawingAnchor(void){}
 #ifdef MNM_DRAWING_SELFTEST
 u32 WIN DrawingInstallForTest(void* object,u32 k){install(object,k);return enabled;}

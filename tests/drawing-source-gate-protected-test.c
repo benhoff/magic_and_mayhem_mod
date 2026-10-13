@@ -6,7 +6,7 @@ API unsigned WIN SetEnvironmentVariableA(const char*,const char*);
 #undef DllMain
 void* memcpy(void* out,const void* in,unsigned bytes){copy(out,in,bytes);return out;}
 static unsigned starts,ends,refuse,lease_calls,held_calls;
-static unsigned mock_protection_active;
+static unsigned mock_protection_active,snapshots;
 static unsigned WIN gate_start(unsigned owner,void* output,unsigned bytes){
  unsigned* p=output;if(bytes!=128||owner!=GetCurrentThreadId())ExitProcess(201);
  p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=1;p[4]=refuse?3:0;p[5]=refuse?0:7;p[6]=owner;p[7]=1;p[8]=2;p[13]=refuse?0:3;++starts;return refuse?0:7;
@@ -27,6 +27,11 @@ static unsigned WIN mock_source_bytes(void* source,unsigned* before,unsigned* af
  before[0]=after[0]=64;before[1]=after[1]=1;before[2]=after[2]=19;before[6]=after[6]=61;before[7]=after[7]=800;before[8]=after[8]=600;before[9]=after[9]=800;
  for(unsigned i=0;i<capacity;++i)pixels[i]=(unsigned char)i;return 0;
 }
+static unsigned WIN snapshot(unsigned owner,void* output,unsigned bytes){
+ check(owner==GetCurrentThreadId()&&bytes==128&&!mock_protection_active&&!source_worker_lease.api,230);++snapshots;memset(output,0,128);
+ unsigned* p=output;p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=3;
+ u16 control=0x017f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0xdeadbeef);return 1;
+}
 void start(void){
  check(SetEnvironmentVariableA("MNM_DRAW_CURSOR_SOURCE_GATE",0)&&initialize(),203);
  check(SetEnvironmentVariableA("MNM_DRAW_CURSOR_SOURCE_GATE","1"),209);source_lease_enabled=source_worker_lease_enabled=source_held_enabled=1;
@@ -46,5 +51,7 @@ void start(void){
  refuse=1;SetLastError(0xabcdef01);c=begin(0,7,args,5,0x4a1000,1);
  check(c.observed&&!c.cursor_gate_token&&c.cursor_gate_reason==3&&starts==2,207);
  check(end(&c,0,0x80004005)==0x80004005&&ends==1,208);
+ drawing_cursor_gate_snapshot_callback=snapshot;SetLastError(0x12345678);u16 control=0x027f;__asm__ volatile("fldcw %0"::"m"(control));
+ DrawingActionV1(1,3,3,1,0,1,0);u16 actual;__asm__ volatile("fnstcw %0":"=m"(actual));check(snapshots==1&&GetLastError()==0x12345678&&actual==control,231);
  finish(1);ExitProcess(0);
 }

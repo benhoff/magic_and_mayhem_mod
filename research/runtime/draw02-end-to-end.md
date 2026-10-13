@@ -1748,3 +1748,24 @@ snapshot and strict token/API/source joins, early-return/refusal/concurrency
 controls, then bounded original32source/worker/cadence trial with manifests.
 No source alias/unobtrusive/fullreference/nativeparity proof from controlled
 ordering. All47/21and steps3–7retain scope. Reviewed46be1034..620b61bfhas11receipts,0gaps.
+
+## DRAW-02 opt-in frontend and snapshot checkpoint (2026-10-12 UTC)
+
+Controlled source/worker ordering committed7b98d584with both coverage checks
+passed. Frontend now stages the separate gate DLL/import with original sections
+checked unchanged, requires protected held snapshot, excludes control/cadence
+control/conflicting cursor mutex observer, sets private journal paths and decodes
+separate module/APIjournals with completeadmissionfalse. MainQuit action takes
+partialreason3snapshot outside journal lock preserving caller state.
+
+Current fixture03passes controlled production ordering plus actual MainQuit
+snapshot trigger with mocked callback clobbering error/controlword;4binding/
+frontendguards+4cadencecontrolguards pass. Fixture01/02retain historical source
+hashes after callback/report changes. No originalgame or current live gate trial.
+
+Original32trial8GiBstoragepreflight refused at103.120GiBfree: reservation would
+leave below100GiBreserve. No original artifacts consumed or experiment launched,
+no additional pruning/policy change. Reassessment: step2remainsopen pending
+storageadmission and bounded actual original source/worker/cadence controls;
+normalquiescence/fullfault/earlyreturn/concurrency/reference/nativeparity open.
+All47/21and steps3–7retain scope. Reviewed620b61bf..7b98d584has10receipts,0gaps.

@@ -52,3 +52,13 @@ Controlled fixture01passes production source/worker lease/held machinery: two
 equal960000byte snapshots, command100/worker200entry-return, restored mock
 protection and drained worker state before gate End, refused point noEnd.
 Protection callback mocked; actual VirtualProtect/Wine worker/physical pending.
+
+Frontend opt-in requires protected held snapshot and excludes controls/competing
+mutex observer. Scripted gate DLL import staging checks original sections intact.
+MainQuit action takes reason3partial snapshot outside journal lock with caller
+state preservation. Gate/APIjournals decode independently; completefalse retained.
+
+Frontend fixture03freshly passes controlled ordering and exact MainQuit snapshot
+trigger with LastError/controlword preservation; prior fixture01/02historical
+after callback/report changes. Four binding/frontend and four cadencecontrol
+guards pass. Original32trial requires8GiBpreflight, normalquiescence still open.

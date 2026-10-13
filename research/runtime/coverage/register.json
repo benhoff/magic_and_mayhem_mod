@@ -45324,7 +45324,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded drawing API cursor gate and source lease binding",
-      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate. Owned include-production-session fixture executes enabled begin/end with controlled numeric gate callbacks, accepted/refused API entries and raw failure/error; source/worker callbacks disabled in this bounded path. Controlled production source/worker lease schedule uses mocked protection/getter and explicit worker command/return; equal held snapshots and restored/drained state required before gate End. Actual VirtualProtect/Wine worker independent.",
+      "scope": "Opt-in drawing-module diagnostic acquires numeric cursor gate token before journal/producer locks for source BltFast calls, binds exact API entry and source lease through separate scalar journal, skips protected-source capture explicitly on refused token, releases after worker/page restoration before physical ACK. Owned fixture pending; no live integration/source alias/unobtrusive claim. Fresh existing full production session gate-disabled COM regression checks32callback result/LastError/x87/eightplanes/menu/reentrant behavior; gate-enabled production path remains separate. Owned include-production-session fixture executes enabled begin/end with controlled numeric gate callbacks, accepted/refused API entries and raw failure/error; source/worker callbacks disabled in this bounded path. Controlled production source/worker lease schedule uses mocked protection/getter and explicit worker command/return; equal held snapshots and restored/drained state required before gate End. Actual VirtualProtect/Wine worker independent. Optional frontend stages separate pinned gate DLL/scripted import, excludes controls/conflicting mutex observation, joins scalar gate/API journals and takes reason3partial snapshot before original MainQuit. Complete gate/reference admission remains false.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -45344,13 +45344,25 @@
         "tests/drawing-source-gate-session-test.c",
         "tools/test-drawing-source-gate-session.py",
         "tests/drawing-source-gate-protected-test.c",
-        "tools/test-drawing-source-gate-protected.py"
+        "tools/test-drawing-source-gate-protected.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing_source_cursor_gate.py",
+        "tests/test-drawing-source-cursor-gate.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/drawing_cursor_gate_v1.h",
         "protocols/include/mnm/drawing_input_point_v1.h",
         "protocols/include/mnm/drawing_worker_context_v1.h",
+        "runtime/cursor-mutex/cursor_gate_lease.h",
+        "runtime/cursor-mutex/cursor_gate_tokens.h",
+        "runtime/cursor-mutex/cursor_kernel_adapter.h",
+        "runtime/cursor-mutex/cursor_kernel_adapter_core.h",
+        "runtime/cursor-mutex/diagnostic_lifetime.h",
+        "runtime/cursor-source-gate/journal.h",
+        "runtime/cursor-source-gate/module.c",
+        "runtime/cursor-source-gate/pins.h",
         "runtime/drawing/call_intervals.h",
+        "runtime/drawing/cursor_source_gate.h",
         "runtime/drawing/input_point.h",
         "runtime/drawing/physical_fence.h",
         "runtime/drawing/session.c",
@@ -45376,11 +45388,15 @@
         "runtime/drawing/wine_worker_context.h",
         "runtime/shadow/win32_min.h",
         "tests/drawing-api-physical-peer.py",
+        "tools/build-cursor-source-gate.py",
         "tools/build-drawing-session.py",
         "tools/build-shadow-bridge.py",
+        "tools/drawing-session-runner.py",
         "tools/drawing_api_physical.py",
         "tools/drawing_api_session.py",
         "tools/drawing_call_intervals.py",
+        "tools/drawing_cursor_gate_journal.py",
+        "tools/drawing_diagnostic_cadence.py",
         "tools/drawing_presented_session.py"
       ],
       "evidence": [
@@ -45391,7 +45407,10 @@
         "DRAW02.source-gate-legacy-regression-01-20261012",
         "DRAW02.draw02-source-gate-session-build-negative-01-20261012",
         "DRAW02.draw02-source-gate-session-fixture-02-20261012",
-        "DRAW02.source-gate-protected-fixture-01-20261012"
+        "DRAW02.source-gate-protected-fixture-01-20261012",
+        "DRAW02.draw02-source-gate-frontend-fixture-01-20261012",
+        "DRAW02.draw02-source-gate-frontend-fixture-02-20261012",
+        "DRAW02.draw02-source-gate-frontend-fixture-03-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -45401,7 +45420,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh controlled production source/worker schedule fixture01passes; Actual VirtualProtect/Wine worker/physical/early-return/concurrency and frontend/import/original control capture remain pending. Earlier fixtures historical after extended tests/scope; no actual sourceownership/full reference/native parity claim."
+        "Fresh fixture03passescurrent frontend/snapshot-controlled ordering;4binding/frontendguards+4cadencecontrolguards pass. Original32trial8GiBpreflight refused at103.120GiBfree, no original launch; earlier controlled fixture historical after source/frontend/contract change. Normalquiescence/latewriter/fault/concurrency/actual worker/cadence/full reference/parity remain open."
       ]
     }
   ],
@@ -97527,6 +97546,63 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-source-gate-frontend-fixture-01-20261012",
+      "kind": "native_integration",
+      "scope": "Owned frontend-current production controlled source/worker/snapshot fixture perrecord; no original runtime/live parity.",
+      "record": "research/runtime/draw02-source-gate-frontend-fixture-01.json",
+      "sha256": "12c9058024c77845222b20024f6889966270a988b59af88a847677ba46c6ca06",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-gate-frontend-fixture-02-20261012",
+      "kind": "native_integration",
+      "scope": "Owned frontend-current production controlled source/worker/snapshot fixture perrecord; no original runtime/live parity.",
+      "record": "research/runtime/draw02-source-gate-frontend-fixture-02.json",
+      "sha256": "a55a4c0d5ebdf29b023c3b42db6354647140be2e9ad3fe3756048a7e0e2548d1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-source-gate-frontend-fixture-03-20261012",
+      "kind": "native_integration",
+      "scope": "Owned frontend-current production controlled source/worker/snapshot fixture perrecord; no original runtime/live parity.",
+      "record": "research/runtime/draw02-source-gate-frontend-fixture-03.json",
+      "sha256": "7423634c16fba35b370d613931e5d4830e5a637e80e1e8c3c92496e85bde42dd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -109669,8 +109745,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-gate-protected-20261012.json",
-    "sha256": "be9b31975e509dbeff9e04da09409b4f70d04131b480fca8f4c390044053ac13"
+    "path": "research/runtime/coverage/source-index-draw02-source-gate-frontend-20261012.json",
+    "sha256": "dea1bec2a2e090613e874cfd0143054ad0820649348a78b5c5d3bdced149730d"
   },
   "claim_bindings_required": true
 }
