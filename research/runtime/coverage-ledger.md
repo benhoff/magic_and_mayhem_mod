@@ -8433,3 +8433,82 @@ transitions; the incoming Qt opt-in commitb6cc497b..6458a16f reviews four source
 link and33 behavior transitions, including evidence/scenario links. Both retain
 exact receipts with no unresolved gaps and assert no retrospective execution.
 Builds use the private authorized90GiB reserve policy; no cleanup is performed.
+
+
+## Public native context costs — 2026-10-12
+
+Identical compiled native World inputs now run on verified TITAN EGL and
+the public xcb/zink backend, with bounded timestamps, ordinary-readback
+refusal and separate exact diagnostic pixel checks. The optional xcb/NVIDIA
+EGL route cannot create desktop OpenGL3.3; backend policy stays unchanged.
+Early128World redraw medians are1.48ms EGL/2.24ms zink. Extended2423World
+throughput observations average1.75ms/5.65ms; later redraws submit median
+189uploads and271draws, versus12/75early. These observations belong to an
+overall failed comparison: public checkpoint redraw pixels changed once.
+A fresh public diagnostic repeat matches everyWorld/redraw and every prior
+EGL primary hash; intermittent pixel instability remains an explicit gap.
+
+`NR.native-draw-cost-profiling.public-context-checkpoints-20261012` records
+only that successful diagnostic repeat. Failure reports retain original
+source hashes. A partial CPU sample has2046samples/no loss;299redraw-ancestry
+samples include153copy-submission samples. Diagnostic hashing/readback and
+unwind/inlining gaps prevent treating overall sample percentages as normal
+rendering cost. No live gameplay, repaired pixels, original replacement or
+60FPS promotion. Bounded source-cache pressure and public sharing/UI/export
+remain next measurements.
+
+
+## Native palette-row transfer reuse — 2026-10-12
+
+The512slot colour-source experiment is retained but discarded: median189
+palette-bank uploads remain. Exact transfer-category counters identify those
+uploads separately from colour cache hits/misses. Native colour capacity stays64.
+The bounded native palette-row cache instead owns1024exact256word keys and a
+private256x1024R32UI bank. Row eviction flushes queued readers before replacement.
+
+`NR.native-palette-row-cache.paired-public-20261012` passes2423ordered public
+TITAN Worlds and4846native redraws for old/current consumers; every primary
+and prepared hash agrees. Timestamp/throughput final hashes, original/source/
+input checks, ordinary-readback refusal and query/surface/display retirement
+pass. Six independent32word scalar checks include warm reuse,1200-row pressure,
+241evictions, mutable owned keys, coverage and refusal/last-frame preservation.
+
+Timestamp-disabled warm public redraw mean5.17535→3.92946ms (24.1%less),
+median189→0uploads and271draw calls unchanged. The earlier intermittent public
+pixel failure remains unresolved and is not declared repaired. Full live flow,
+engine19FPS and native/visible60FPS still require separate current execution.
+Two disk-guard stops and two fixture preflights remain negative records; original
+manifest verification after the guard stop is retained. No gameplay/clock/
+source-order/native drawing policy is removed or original equivalence promoted.
+
+
+## Native palette rows — full public observation, 2026-10-12
+
+`NR.native-palette-row-cache.full-performance-negative-20261012` passes
+casting, player Zombie lethal combat, spell refusals/ranged damage, portrait
+recenter/retreat, native menus/resume and ordinary Quit.4603completions/imports/
+verified returns balance, source outstanding0, all ordinary World/native/RGBA
+readbacks/pixel replies0; original/source/private cleanup pass. Engine19.2932FPS
+passes the19floor. NativeWorld49.3965FPS fails60; visible cycles64.6508/59.0043
+paintFPS are not distinct simulation updates. Paired captured-input gains
+remain valid; this different live journey does not supply a causal old/newFPS
+comparison. Live extraWorld CPU4.55772ms and source submit3.43316ms are lower
+observations than the prior7.07750/6.89511ms but full native frame rate remains
+below target. Source polling12.3749ms, active commands2.64219ms, extraWorld+UI
+5.44399ms and immutable export0.16424ms localize remaining work; timings include
+driver waits. No original UI roundtrip or GPU busy-time attribution is inferred.
+
+The first current journey fails its Zombie melee deadline; the second observes
+melee but loses the wizard before lethal completion. Both reports preserve
+original/source checks and empty renderer errors. The unchanged third retry
+passes; neither earlier failure is overwritten. Historical intermittent
+public checkpoint pixels remain an open gap. No gameplay values, source order,
+clock, native drawing or original renderer replacement status changes.
+
+
+Combined committed masterc9d19a92 with renderingfa88cb3a: reviewed exact
+history0280403c..c9d19a92(76transitions) and0280403c..fa88cb3a(37transitions),
+with0missing receipts. Both journals/status histories are preserved; the sole
+semantic conflicts are source-index path/hash, replaced by a reviewed combined
+census. All paired/live rendering fingerprints still match. This retrospective
+accounting does not assert a past gate pass or new validation.

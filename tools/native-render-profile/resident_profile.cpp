@@ -21,13 +21,17 @@ static std::vector<std::uint8_t> read(QFile& file,std::uint64_t size){
 int main(int argc,char** argv) try {
     QGuiApplication app(argc,argv);
     if(argc!=6 && argc!=8){std::cerr<<"Usage: mnm-resident-profile CORPUS ASSETS {timestamps|throughput} REPEATS REPORT [WORLDS EXTRA_REPLAYS]\n";return 2;}
-    require(qgetenv("DISPLAY").isEmpty() && qgetenv("WAYLAND_DISPLAY").isEmpty(),"Resident benchmark must have no desktop display");
+    const int backend=qEnvironmentVariableIntValue("MNM_PROFILE_PUBLIC_BACKEND");
+    require(backend>=0&&backend<=2,"Unknown resident profile backend");
+    const bool publicBackend=backend!=0;
+    require(qgetenv("WAYLAND_DISPLAY").isEmpty() && (publicBackend?!qgetenv("DISPLAY").isEmpty():qgetenv("DISPLAY").isEmpty()),"Resident benchmark display/backend mismatch");
+    require(QGuiApplication::platformName()==(publicBackend?"xcb":"mnm-headless-egl"),"Resident benchmark platform mismatch");
     const bool timed=QByteArray(argv[3])=="timestamps";require(timed||QByteArray(argv[3])=="throughput","Invalid resident benchmark mode");
     const int repeats=QByteArray(argv[4]).toInt();require(repeats>=1 && repeats<=4,"Resident repeats outside1..4");
     const int limit=argc==8?QByteArray(argv[6]).toInt():0, extras=argc==8?QByteArray(argv[7]).toInt():0;
     require((!limit||(limit>=64&&limit<=8192))&&extras>=0&&extras<=3,"Replay bounds");
     const bool checkpoints=qEnvironmentVariableIntValue("MNM_PROFILE_CHECKPOINTS")==1;
-    const auto stats=[](const render::RenderStats& a,const render::RenderStats& b){return QJsonObject{{"draw_calls",double(b.drawCalls-a.drawCalls)},{"draw_instances",double(b.drawInstances-a.drawInstances)},{"upload_calls",double(b.textureUploadCalls-a.textureUploadCalls)},{"upload_bytes",double(b.textureUploadBytes-a.textureUploadBytes)},{"program_changes",double(b.programChanges-a.programChanges)},{"framebuffer_attachments",double(b.framebufferAttachments-a.framebufferAttachments)},{"copy_batches",double(b.copyBatches-a.copyBatches)},{"snapshot_pixels",double(b.snapshotPixels-a.snapshotPixels)}};};
+    const auto stats=[](const render::RenderStats& a,const render::RenderStats& b){return QJsonObject{{"palette_upload_calls",double(b.paletteTextureUploadCalls-a.paletteTextureUploadCalls)},{"palette_upload_bytes",double(b.paletteTextureUploadBytes-a.paletteTextureUploadBytes)},{"draw_calls",double(b.drawCalls-a.drawCalls)},{"draw_instances",double(b.drawInstances-a.drawInstances)},{"upload_calls",double(b.textureUploadCalls-a.textureUploadCalls)},{"upload_bytes",double(b.textureUploadBytes-a.textureUploadBytes)},{"program_changes",double(b.programChanges-a.programChanges)},{"framebuffer_attachments",double(b.framebufferAttachments-a.framebufferAttachments)},{"copy_batches",double(b.copyBatches-a.copyBatches)},{"snapshot_pixels",double(b.snapshotPixels-a.snapshotPixels)}};};
     const auto hash=[](const render::Image& image){QByteArray words;words.resize(qsizetype(image.pixels.size()*4));for(std::size_t i=0;i<image.pixels.size();++i)for(unsigned k=0;k<4;++k)words[qsizetype(i*4+k)]=char(image.pixels[i]>>(k*8));return QString::fromLatin1(QCryptographicHash::hash(words,QCryptographicHash::Sha256).toHex());};
     auto opened=assets::AssetStore::create(argv[2]);if(const auto* error=std::get_if<assets::Error>(&opened))throw std::runtime_error(error->detail);
     const auto store=std::get<assets::AssetStore>(std::move(opened));
@@ -37,7 +41,9 @@ int main(int argc,char** argv) try {
         require(file.read(8)=="MNMPROF1","Resident profile capture magic");
         QElapsedTimer clock;clock.start();
         render::GlBlitter renderer;const auto driver=renderer.driver();driverName=QString::fromStdString(driver.renderer);
-        require(driver.vendor.find("NVIDIA")!=std::string::npos && driver.renderer.find("TITAN")!=std::string::npos,"Expected NVIDIA TITAN; refusing fallback");
+        require(driver.renderer.find("NVIDIA")!=std::string::npos && driver.renderer.find("TITAN")!=std::string::npos,"Expected NVIDIA TITAN; refusing fallback");
+        if(backend==1)require(driver.vendor=="Mesa"&&driver.renderer.find("zink")!=std::string::npos&&driver.renderer.find("NVIDIA_PROPRIETARY")!=std::string::npos,"Expected public NVIDIA zink backend");
+        else require(driver.vendor.find("NVIDIA")!=std::string::npos&&driver.renderer.find("zink")==std::string::npos,"Expected NVIDIA EGL backend");
         const auto ms=[&]{return double(clock.nsecsElapsed())/1000000.;};
         QJsonArray rows;std::uint64_t sequence=0,dropped=0;double completionMs=0;QString digest;
         {
@@ -65,12 +71,18 @@ int main(int argc,char** argv) try {
                 const double consumeEnd=ms();
                 require(frame.valid() && session.completed()==sequence && !session.worldReadbacks() && renderer.stats().nativeReadbacks==before.nativeReadbacks && renderer.stats().rgbaReadbacks==before.rgbaReadbacks,"Resident delivery/readback/completion contract");
                 QJsonObject costs=stats(before,renderer.stats());
-                QString primaryHash;if(checkpoints)primaryHash=hash(session.diagnosticReadResident(renderer));
+                render::Image primaryImage;QString primaryHash;if(checkpoints){primaryImage=session.diagnosticReadResident(renderer);primaryHash=hash(primaryImage);}
                 QJsonArray extraRows;
-                for(int n=0;n<extras;++n){const auto a=renderer.stats();const auto start=ms();if(timed){if(!renderer.profileBatch(sequence*4+n+1,[&]{frame=session.replayPrepared();}))++dropped;}else frame=session.replayPrepared();
-                    auto extra=stats(a,renderer.stats());extra["cpu_ms"]=ms()-start;
+                for(int n=0;n<extras;++n){const auto cacheBefore=session.colourCacheStats();const auto a=renderer.stats();const auto start=ms();if(timed){if(!renderer.profileBatch(sequence*4+n+1,[&]{frame=session.replayPrepared();}))++dropped;}else frame=session.replayPrepared();
+                    auto extra=stats(a,renderer.stats());extra["cpu_ms"]=ms()-start;const auto cacheAfter=session.colourCacheStats();extra["colour_cache_uploads"]=double(cacheAfter.uploads-cacheBefore.uploads);extra["colour_cache_hits"]=double(cacheAfter.hits-cacheBefore.hits);extra["colour_cache_evictions"]=double(cacheAfter.evictions-cacheBefore.evictions);extra["colour_cache_entries"]=double(cacheAfter.entries);
                     require(frame.valid()&&renderer.stats().nativeReadbacks==a.nativeReadbacks&&renderer.stats().rgbaReadbacks==a.rgbaReadbacks,"Extra replay performed a delivery readback");
-                    if(checkpoints){const auto pixels=hash(session.diagnosticReadResident(renderer));require(pixels==primaryHash,"Extra World replay changed native pixels");extra["native_words_sha256"]=pixels;}extraRows.append(extra);}
+                    if(checkpoints){const auto replayImage=session.diagnosticReadResident(renderer);const auto pixels=hash(replayImage);
+                        if(pixels!=primaryHash){QJsonArray differences;std::uint64_t count=0;
+                            for(std::size_t i=0;i<primaryImage.pixels.size();++i)if(primaryImage.pixels[i]!=replayImage.pixels[i]){++count;if(differences.size()<32)differences.append(QJsonObject{{"x",int(i%primaryImage.width)},{"y",int(i/primaryImage.width)},{"primary",double(primaryImage.pixels[i])},{"replay",double(replayImage.pixels[i])}});}
+                            QFile failure(argv[5]);require(failure.open(QIODevice::WriteOnly|QIODevice::NewOnly),"Cannot retain replay mismatch");
+                            failure.write(QJsonDocument(QJsonObject{{"success",false},{"renderer",driverName},{"generation",QString::number(sequence)},{"phase",n+1},{"repeat",repeat},{"primary_sha256",primaryHash},{"replay_sha256",pixels},{"different_words",double(count)},{"first_differences",differences},{"costs",extra}}).toJson());
+                            throw std::runtime_error("Extra World replay changed native pixels at generation "+std::to_string(sequence));}
+                        extra["native_words_sha256"]=pixels;}extraRows.append(extra);}
                 rows.append(QJsonObject{{"generation",QString::number(sequence)},{"source_read_ms",ioEnd-ioStart},{"decode_ms",decodeEnd-ioEnd},
                     {"handoff_ms",handoffEnd-decodeEnd},{"native_consume_ms",consumeEnd-handoffEnd},
                     {"native_cpu_producer_ms",session.producerWorkMs()},{"native_prepare_ms",session.profile().prepareMs},
@@ -101,8 +113,8 @@ int main(int argc,char** argv) try {
             {"samples",rows},{"final_native_words_sha256",digest},{"world_readbacks",0},{"delivery_readbacks",0},{"diagnostic_readbacks_outside_timing",double(1+(checkpoints?sequence*(extras+1):0))},
             {"query_drops",double(dropped)},{"remaining_queries",0},{"remaining_surfaces",0}});
     }
-    QJsonObject report{{"success",true},{"renderer",driverName},{"mode",timed?"timestamps":"throughput"},{"runs",runs},
-        {"checkpoint_diagnostics",checkpoints},{"scope","Actual captured public World sequences through unchanged decode/ownedV5 handoff/resident consumption, ordered cold-to-complete replay on NVIDIA TITAN EGL. All-frame completion throughput includes disk acquisition, decode, handoff, native CPU, GPU drain and cold startup; one diagnostic hash follows timing. Optional extra replay restores the exact native baseline and reruns ordered native draws without advancing producers. Checkpoint mode performs per-phase diagnostic hashes outside operation timings and is not a throughput benchmark. No original engine pacing/simulation, command import/UI, Qt widget paint or scanout. Timestamp GPU intervals include CPU submission starvation; timestamp-disabled mode has only an end-of-stream completion marker."}};
+    QJsonObject report{{"success",true},{"backend",backend==1?"public-xcb-zink":backend==2?"public-xcb-nvidia-egl":"headless-nvidia-egl"},{"renderer",driverName},{"mode",timed?"timestamps":"throughput"},{"runs",runs},
+        {"checkpoint_diagnostics",checkpoints},{"scope","Actual captured public World sequences through unchanged decode/ownedV5 handoff/resident consumption, ordered cold-to-complete replay on verified NVIDIA TITAN using the explicitly selected EGL or public xcb/zink context backend. All-frame completion throughput includes disk acquisition, decode, handoff, native CPU, GPU drain and cold startup; one diagnostic hash follows timing. Optional extra replay restores the exact native baseline and reruns ordered native draws without advancing producers. Checkpoint mode performs per-phase diagnostic hashes outside operation timings and is not a throughput benchmark. No original engine pacing/simulation, command import/UI, Qt widget paint or scanout. Timestamp GPU intervals include CPU submission starvation; timestamp-disabled mode has only an end-of-stream completion marker."}};
     QFile output(argv[5]);require(output.open(QIODevice::WriteOnly|QIODevice::NewOnly) && output.write(QJsonDocument(report).toJson())>0,"Cannot retain resident benchmark report");
     std::cout<<expectedWorlds<<" actual ordered Worlds, "<<repeats<<" completed replays on "<<driverName.toStdString()<<'\n';return 0;
 }catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}

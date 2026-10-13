@@ -25,3 +25,7 @@ find_package(Threads REQUIRED)
 add_executable(mnm-resident-capture-fixture "${MNM_REPO_ROOT}/tests/resident-profile-capture-test.cpp" "${MNM_REPO_ROOT}/apps/qt-shell/resident_profile_capture.cpp")
 target_link_libraries(mnm-resident-capture-fixture PRIVATE Qt6::Core Threads::Threads)
 target_compile_options(mnm-resident-capture-fixture PRIVATE -Wall -Wextra -Werror -pedantic)
+
+add_executable(mnm-palette-row-fixture "${MNM_REPO_ROOT}/tests/palette-row-cache-test.cpp")
+target_link_libraries(mnm-palette-row-fixture PRIVATE mnm-renderer)
+target_compile_options(mnm-palette-row-fixture PRIVATE -Wall -Wextra -Werror -pedantic)

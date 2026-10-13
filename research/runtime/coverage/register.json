@@ -48566,7 +48566,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native draw and upload cost attribution",
-      "scope": "Diagnostic submitted OpenGL draw calls/instances, CPU-to-texture upload calls/bytes, program switches and framebuffer attachment changes. Native renderer timestamps are bounded to64 outstanding pairs and polled without waiting. Source-only exact ordered captured World prefix on verified TITAN compares primary processing and up tothree baseline-restored native redraws per source, with timestamps enabled/disabled and separate diagnostic pixel hashes. GPU timeline includes CPU feeding gaps; excludes GPU busy-time attribution, engine simulation, UI/scanout and60FPS proof. Historical failed source journey stays failed. No source drop/order/pacing or native drawing policy change.",
+      "scope": "Diagnostic submitted OpenGL draw calls/instances, CPU-to-texture upload calls/bytes, program switches and framebuffer attachment changes. Native renderer timestamps are bounded to64 outstanding pairs and polled without waiting. Source-only exact ordered captured World prefix on verified TITAN compares primary processing and up tothree baseline-restored native redraws per source, with timestamps enabled/disabled and separate diagnostic pixel hashes. GPU timeline includes CPU feeding gaps; excludes GPU busy-time attribution, engine simulation, UI/scanout and60FPS proof. Historical failed source journey stays failed. No source drop/order/pacing or native drawing policy change. Optional identical binary/input comparison uses an owned private NVIDIA Xorg with the public xcb/zink context backend and Qt xcb with NVIDIA EGL versus isolated NVIDIA EGL; every selected native World and redraw must match. This isolates backend capacity, not public worker sharing/UI/export/scanout or gameplay performance. Separate actual indexed palette-bank upload calls/bytes and native colour-source cache hits/uploads/evictions distinguish later-scene upload categories. Public-throughput-only mode has only final diagnostic hashes and makes no per-World checkpoint/cross-backend claim.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -48761,7 +48761,8 @@
         "tools/test-native-world-rolling-hardware.py",
         "tools/test-native-world-rolling.py",
         "tools/test-public-resident-fixtures.py",
-        "tools/test-resident-leaf-abi.py"
+        "tools/test-resident-leaf-abi.py",
+        "tests/palette-row-cache-test.cpp"
       ],
       "status": {
         "understanding": "partial",
@@ -48773,10 +48774,14 @@
       "evidence": [
         "NR.native-draw-cost-profiling.baseline-titan-20261012",
         "NR.native-colour-rectangle-cache.paired-titan-20261012",
-        "NR.native-colour-rectangle-cache.final-paired-titan-20261012"
+        "NR.native-colour-rectangle-cache.final-paired-titan-20261012",
+        "NR.native-draw-cost-profiling.public-context-checkpoints-20261012",
+        "NR.native-palette-row-cache.paired-public-20261012",
+        "NR.native-draw-cost-profiling.colour-capacity-neutral-20261012"
       ],
       "remaining_gaps": [
-        "Current TITAN EGL128World/256redraw controls pass; publiczink/GLXGPU attribution, measured optimization, current full gameplay/60FPS and original/shared-source equivalence remain pending. Earlier compiler-closure and benchmark diagnostic-read accounting refusals stay retained."
+        "Current TITAN EGL128World/256redraw controls pass; publiczink/GLXGPU attribution, measured optimization, current full gameplay/60FPS and original/shared-source equivalence remain pending. Earlier compiler-closure and benchmark diagnostic-read accounting refusals stay retained.",
+        "Extended2423World public-zink checkpoint comparison fails once with a changed prepared redraw; fresh diagnostic repetition and posthoc EGL hashes pass. Intermittent native pixel instability remains unresolved, not repaired or excused by performance measurements. Later scenes show189median uploads/271draws, versus12/75early; cache pressure is a hypothesis pending controls. CPU samples include excluded diagnostic work; public worker/sharing/UI/scanout and60FPS remain pending."
       ]
     },
     {
@@ -53098,6 +53103,224 @@
         "reconstruction/creature-ai/special-flight/CMakeLists.txt",
         "tests/creature-execution-test.cpp",
         "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded exact native indexed palette-row reuse",
+      "scope": "Native policy stores up to1024exact owned256word palettes in a private256x1024R32UI bank. Full word equality guards hash collisions; instance row indices stay resident across batches and source generations. Least-recent row eviction flushes all queued readers before replacement. Equal rows avoid CPU-to-GPU transfers. One1MiBGPUtexture,1MiBowned key words and1024entry metadata are bounded and owner-retired. Native draw order, masks/history/known-word/source delivery and simulation are preserved. Baseline selector retains old64row per-batch upload. Independent masked/ordered/eviction/mutation/refusal controls and matched captured prefix/public backend performance are separate from original comparison, live replacement and60FPS.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-palette-row-cache.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
+      ],
+      "tests": [
+        "tests/palette-row-cache-test.cpp",
+        "tools/profile-native-draw-costs.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_continuous_clock.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "tests/campaign-pacer-reference.c",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/menu-resident-quit-test.cpp",
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-prepared-world-test.cpp",
+        "tests/native-shell-provenance-test.py",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/render-gpu-timing-test.cpp",
+        "tests/render-resident-world-test.cpp",
+        "tests/resident-leaf-abi.S",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-deferred-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/benchmark-native-resident.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/menu-game-runner.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/profile-native-resident.py",
+        "tools/profile_native_resident_helpers.py",
+        "tools/test-native-campaign.py",
+        "tools/test-native-pacer.py",
+        "tools/test-native-prepared-world.py",
+        "tools/test-native-world-rolling-hardware.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-resident-leaf-abi.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.native-palette-row-cache.paired-public-20261012",
+        "NR.native-palette-row-cache.full-performance-negative-20261012",
+        "NR.native-palette-row-cache.combat-deadline-negative-20261012",
+        "NR.native-palette-row-cache.wizard-death-negative-20261012"
+      ],
+      "remaining_gaps": [
+        "Current full nativeTITAN casting/lethal combat/spells/portrait/menu/resume/normalQuit and19.2932FPSfloor pass with4603balanced returns and zero ordinary pixel readbacks/fallback. NativeWorld49.3965FPS fails60; public source/command scheduling and remaining submission work need attribution. Earlier intermittent pixel instability and two current failed gameplay journeys remain unresolved/preserved, not declared repaired. Original renderer equivalence/replacement, interpolation and wider shared-source freshness remain separate."
       ]
     }
   ],
@@ -106850,6 +107073,172 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.native-draw-cost-profiling.public-context-checkpoints-20261012",
+      "kind": "native_integration",
+      "scope": "One successful2423World public-zink diagnostic checkpoint replay, two prepared redraws each, exact native self-equality. Posthoc comparison with earlier EGL checkpoint rows also agrees. Earlier extended comparison remains failed: public pixel mismatch is intermittent/unresolved. Diagnostic sampling is not throughput/live gameplay/60FPS or fixed rendering proof.",
+      "record": "research/runtime/native-public-context-checkpoints-20261012.json",
+      "sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_display_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.paired-public-20261012",
+      "kind": "native_integration",
+      "scope": "Source-bound paired public TITAN prefix:2423orderedWorlds plus4846native prepared redraws for each consumer. Every primary/extra native hash matches old/current, mode/repeat final hashes agree; independent row controls and bounded timestamp fixture pass. This supports native headless implementation/performance only, not gameplay/scanout/60FPS or repair of historical intermittent pixel failure.",
+      "record": "research/runtime/native-palette-row-cache-paired-public-20261012.json",
+      "sha256": "c222d62fe16c3d380d2460173420420d624d42c7b4d92cd0fe3452688c342871",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_display_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/paired_pixel_equality",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-draw-cost-profiling.colour-capacity-neutral-20261012",
+      "kind": "native_integration",
+      "scope": "Larger colour cache leaves median189palette transfers and271draws. Median colour-cache source uploads zero; existing64-slot policy restored. No causal FPS gain or repaired pixel instability claim.",
+      "record": "research/runtime/native-colour-capacity-neutral-20261012.json",
+      "sha256": "ca4c71da7b5bddbba7501dfb9b76068ef19836d84689d53816b3b34425f268f1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/adopted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.full-performance-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Full functional19FPSfloor passes; nativeWorld49.3965FPS fails60FPS. Visible cycle64.6508/59.0043FPS are paints, not distinct simulation updates. Historical intermittent pixel failure remains unresolved. Earlier combat deadline/death results remain failed; no original-equivalence/replacement or interpolation claim.",
+      "record": "research/runtime/native-palette-row-full-performance-negative-20261012.json",
+      "sha256": "917b98504afeaaaa4a305dab9c573cc44c706aa9a25ff51aea8a5e70c414cd29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.combat-deadline-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Fulljourney fails Zombie melee deadline, no renderer error; original/source/private cleanup retained, no functional/FPS claim.",
+      "record": "research/runtime/native-palette-row-combat-deadline-negative-20261012.json",
+      "sha256": "5dc148ca92e8b313be7f1765e8d2c3748923e89d9e76901d535bfddcdfa05ee4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.wizard-death-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Melee damage observed but wizard dies before required lethal completion; no renderer error, original/source/private cleanup retained, no functional/FPS claim.",
+      "record": "research/runtime/native-palette-row-wizard-death-negative-20261012.json",
+      "sha256": "91937f7c2b6fc4f4ce71946d450bc590da1afb2aa35dbe2492f4a8b80ea9fc29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -119205,6 +119594,56 @@
         "NR.native-colour-rectangle-cache.fixed-player-death-negative-20261012",
         "NR.native-colour-rectangle-cache.fixed-full-performance-negative-20261012"
       ]
+    },
+    {
+      "id": "native-public-context-cost-20261012",
+      "scope": "Same compiled native renderer and ordered selected bounded World source-only prefix, two native redraws each, TITAN EGL versus public xcb/zink and Qt xcb/NVIDIA EGL offscreen contexts; exact pixels and bounded diagnostics, no public worker/widget/shared-export/UI or60FPS claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.native-draw-cost-profiling"
+      ],
+      "tests": [
+        "tools/profile-native-draw-costs.py",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-draw-cost-profiling.public-context-checkpoints-20261012"
+      ]
+    },
+    {
+      "id": "native-palette-row-cache-paired-20261012",
+      "scope": "Same2423ordered captured World prefix, frozen previous/current consumers on public TITAN xcb/zink, two native prepared redraws each; bounded GPU query fixture and independent scalar palette-row controls; separate timestamps/throughput and exact per-World/redraw checkpoint diagnostics. No full original journey, live gameplay/scanout or60FPS claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.native-palette-row-cache",
+        "NR.native-draw-cost-profiling"
+      ],
+      "tests": [
+        "tools/profile-native-draw-costs.py",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tests/palette-row-cache-test.cpp"
+      ],
+      "evidence": [
+        "NR.native-palette-row-cache.paired-public-20261012"
+      ]
+    },
+    {
+      "id": "native-palette-row-cache-public-20261012",
+      "scope": "Full public native TITAN casting/lethal combat, spell refusal/damage, portrait/camera, native menus/resume/normalQuit using owned V5World delivery; original/source integrity, balanced returns, zero ordinary readbacks/fallback. Engine19FPS floor and native/visible60FPS evaluated separately; no interpolation/original renderer equivalence or repair of historical intermittent pixel failure.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.native-palette-row-cache"
+      ],
+      "tests": [
+        "tools/probe-native-display-deadlines.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-palette-row-cache.full-performance-negative-20261012",
+        "NR.native-palette-row-cache.combat-deadline-negative-20261012",
+        "NR.native-palette-row-cache.wizard-death-negative-20261012"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -119731,8 +120170,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-special-flight-20261012.json",
-    "sha256": "818a558edfe1c9d96952866a65a2445ae508c02878da9ec31af99b92ad6b12ef"
+    "path": "research/runtime/coverage/source-index-native-palette-row-master-current-20261012.json",
+    "sha256": "a27eb0b42bb1880fd7edd3ada02006ddade0749f34b6dfb9702d03a64eb1a44b"
   },
   "claim_bindings_required": true
 }
