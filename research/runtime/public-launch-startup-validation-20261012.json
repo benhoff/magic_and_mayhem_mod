@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Startup orchestration support only: fresh synthetic tests and Qt CLI smoke, real cached production adapters and pinned offline staging. No live Wine engine, equivalence, replacement or gameplay-performance promotion.",
+  "sources": {
+    "apps/qt-shell/main.cpp": "590593261148eb333dfb69f836113ded6d45e6b68c92b5c2ab3482b8deab3458",
+    "tests/test-launch-build-cache.py": "c33bfdf7f99b58354136b656c959d563323e4996c3cfbeadd724084c59c1996e",
+    "tests/test-native-audio-policy.py": "32caae49bb12bd8bc213de0901c2bf06a9d89c98cfeb3e5a1d2ac100a0b885b7",
+    "tests/test-native-music-launch.py": "6c5c1a9ffc5a762c2338d2ae23fc3633dd4be6432010e8d69da9f0df11126c42",
+    "tests/test-qt-launcher-startup.py": "b557578d0f06667f88dc81947aae3e8a910f802187ce436c23498d5248da4c16",
+    "tools/build-audio-bridge.py": "a269b774ce03cb72d3fb51024c08c199e0ad1f8ea0a1a568ca525d22146d9598",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-native-draw.py": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149",
+    "tools/build-render-bridge.py": "dea919101db686d200c543bb5c381d0983d941c13d0e5fa2efa6143ec8571321",
+    "tools/build-scene-observer.py": "0c5d3d17ea817e76033ae1c8bdd5fa1ad1c2c5974edcb6a123ecdc402ade24ae",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+    "tools/glyph_backend_launch.py": "8a05a2b6b5df244c956ef2676ec700bfc87553119de003e188480fecb14f3ccc",
+    "tools/launch_asset_checks.py": "42907172036456fecfaeba751bf87c0203a3d7971789962d8a5a3c45ef284edd",
+    "tools/launch_build_cache.py": "0662abaa2c70a0ca32b53062c3cbfb9e6545ff9d6fce770c85fcae4d4e84a7c6",
+    "tools/menu-game-runner.py": "d7a40f2130a55b6d532e57ee66cdbcbac72ff26570cfb7c62e1a4d34e2ecde22",
+    "tools/native_music_launch.py": "f2369a37145f71f22ca5a0a73432eca9383371d41e893685ab1414cc218a5bf6",
+    "tools/prepare-menu-observer.py": "96bebe3b9874596d57099051d8249f90208a5681a61b68f16dcf54ac9e93bd45",
+    "tools/render-game-runner.py": "ed2485fa40ddbdae52f79b72c597612640d98d201cfec7aa3f9c55435061507c",
+    "tools/run-opengl-game.py": "07507a6b5298e380fe269bb4a1f359ed662b90a118e98afb2184e3c4f09481cd",
+    "tools/run-qt-shell.sh": "80c0bc450508cf31de737543909dd231f7430c5d2548f0071d6d25a55189f739"
+  },
+  "source_stability_verified": true,
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-launch-build-cache.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.033s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-qt-launcher-startup.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.444s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-native-music-launch.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.733s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-native-audio-policy.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Public audio selection: 10 voice admissions/2 refusals; 6 media/music admissions/3 refusals; no game or audio device\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-native-media-launch.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-native-audio-launch.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.015s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/render-movie-preferences-test.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.006s\n\nOK\n"
+    },
+    {
+      "command": [
+        "working/build/qt-shell/mnm-qt-shell",
+        "--repo",
+        "/home/hoff/swdev/magic_and_mayhem_mod",
+        "--renderer",
+        "native",
+        "--smoke-test"
+      ],
+      "exit_code": 0,
+      "stdout": "Native audio policy: legacy\nNative media policy: legacy\nNative music policy: disabled\n",
+      "stderr": ""
+    }
+  ],
+  "qt_binary_sha256": "d2d74c65ff84f9c797929e29988073dc846166fceab1876d45f70dbd364c965a",
+  "retained_reports": {
+    "working/tests/startup-adapter-cache-final-20261012.json": {
+      "sha256": "7a19f22991e20843a4f7289274a20bc029223b7868395ad245b03426e0b55cb7",
+      "result": {
+        "success": true,
+        "scope": "Final cache helper real build plus verified reuse; no game media or live engine",
+        "adapters": [
+          {
+            "builder": "build-menu-observer.py",
+            "prepare_seconds": 0.8429913659929298,
+            "reuse_seconds": 0.02485046800575219,
+            "cached_dll": "working/build/launch-adapters/build-menu-observer/cda3fd6c34365e0770ff1337253fcef426b3df3ab3a47b86471ae2bd88e8277a/MnmMenu.dll",
+            "dll_sha256": "e374ae526673171b8d5252091aa77fbc21e0fc724d0930a66c139f63d3fa4988"
+          },
+          {
+            "builder": "build-render-bridge.py",
+            "prepare_seconds": 2.79887972297729,
+            "reuse_seconds": 0.03145622799638659,
+            "cached_dll": "working/build/launch-adapters/build-render-bridge/739fbe0a47a4c2d2ce1a5000bc4ead54141f691731acc08c1e12a1ed64f16b83/MnmRender.dll",
+            "dll_sha256": "b86e0b74d585e22f3fedeef8d7417073ba5268c0cd64db7a6b83200cf694857b"
+          },
+          {
+            "builder": "build-native-draw.py",
+            "prepare_seconds": 0.485579386993777,
+            "reuse_seconds": 0.03494236298138276,
+            "cached_dll": "working/build/launch-adapters/build-native-draw/9e3543599e27723e55eaa9e0ce4573fb4e052145e4271d8ca08bb1cc0538c46b/MnmDraw.dll",
+            "dll_sha256": "f7d4e63c569733908b54e265aa5f9790b3816c364e803bd177bebf5ace57a1da"
+          },
+          {
+            "builder": "build-audio-bridge.py",
+            "prepare_seconds": 0.5074138950149063,
+            "reuse_seconds": 0.037533030001213774,
+            "cached_dll": "working/build/launch-adapters/build-audio-bridge/d39d820e04281ec66f65fad091ed87f42e6aa436e13aa6af835a6ec3a292776c/MnmAudio.dll",
+            "dll_sha256": "0900f3f4e1ee5013f055ea0c7a4b56914f1c360143a0971c79c773ff817227ff"
+          },
+          {
+            "builder": "build-scene-observer.py",
+            "prepare_seconds": 2.6300417329766788,
+            "reuse_seconds": 0.03485383102088235,
+            "cached_dll": "working/build/launch-adapters/build-scene-observer/66958c26db6f5e4b8bf327b5f8cafb7ce4c565c5c6922fe3b2a3a06a8a9c7217/MnmScene.dll",
+            "dll_sha256": "7c6b4ee7e7afcb456b4d542f93504e4b691c2b7d028e9cd06bc43f6274571237"
+          }
+        ]
+      }
+    },
+    "working/tests/startup-menu-staging-final-20261012.json": {
+      "sha256": "26940fe6d867ce71688c609fd263fa68fdaa58181e9ba2ddb97ffbcd857b2898",
+      "result": {
+        "success": true,
+        "scope": "Production staging from preserved pinned installation, scans on/off, original manifest verified before/after; no Wine or live engine",
+        "cases": [
+          {
+            "full_asset_verification": false,
+            "seconds": 2.7170353689871263,
+            "session": "working/experiments/menu-observer/run-jbov38t7",
+            "game_hash_checked": true
+          },
+          {
+            "full_asset_verification": true,
+            "seconds": 1.1716282249835785,
+            "session": "working/experiments/menu-observer/run-qw2qlsqc",
+            "game_hash_checked": true
+          }
+        ],
+        "default_source_limitation": "working/game-nocd/Chaos.exe has unsupported hash 1060a739ae220f4dfcf0e86b848df229fd5e37ab253d3d000e39ca2601c6c4cb; default staging refused before copying, installation left unchanged"
+      }
+    }
+  },
+  "limitations": [
+    "Current default working installation has unsupported executable hash; preserved pinned input used for staging.",
+    "Full installed-asset scans are opt-in during public launches; no all-assets identity claim.",
+    "No fresh live gameplay validation; earlier shared-file engine evidence may be stale."
+  ]
+}

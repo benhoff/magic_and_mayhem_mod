@@ -1,0 +1,1512 @@
+{
+  "schema": 1,
+  "scope": "Committed concurrent Qt startup40b6ac2a review against parent/current exact source, behavior, build, evidence and scenario hashes. Reviewed cache publication/invalidation, lightweight asset checks, public launch preparation and UI details; retained pending engine validation. Separate from uncommitted casting and not retrospective execution/gate evidence.",
+  "base": "fae75a9e4fe7aa361e2012de04a5a0b0fe8129f0",
+  "head": "40b6ac2a76b46d9e5c573b60a88e8843a5bb5fc3",
+  "files": [
+    {
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "6f5c1da296ee4bcdc3eac3697a7821440a2ef835731cfbc591dc0dc8b6692215",
+      "after_sha256": "4b4d5af1d543b9a85e9a64b35aac44abbbe1df35e19078795e867e4860601941",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "efe5bc5f97729f1d16fa7b6bcfdb18aaef23a9a598f7374742e0188c0a9dd6b2",
+      "after_sha256": "590593261148eb333dfb69f836113ded6d45e6b68c92b5c2ab3482b8deab3458",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d61e66aac9537a4bb12deb53e9be5d14cd09d1470c2879e6c3763d62b39c1789",
+      "after_sha256": "9e7079d11d42e9a18ba6e86b0c911e8f87c445206e577e16f4bab47352e161f9",
+      "receipts": [
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/public-launch-startup-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8ef802063d0de14fee8621572aeba3e6d14f153b438e001e338068a5e36230d0",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "6f4b90d4893068476d452fb3ef476c853e9739376cf9139cef656d3cf627d29d",
+      "after_sha256": "4327f5f190b0031d7df63be0073e93d1d9fa8cc366c2f8cef3a7257c1573a30f",
+      "receipts": [
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-launch-original-verification-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1180d63a902c8de4f7bba4b4d15c867fb9714c6a7716265d482cad334d09ba74",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-public-launch-startup-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8d9edc4fb696029a9c2bd0b67f9d7c1fd85852544b75f894a1b5fe88e5de3c8d",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-public-launch-startup-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "53879a4e990549922b4e28e22f4a18fc8c78ade7cb79d99d38e42ec736875cff",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-startup-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d91298a122c80aa8a694610ad12f46995394af247f35242718d53350bbcd6d60",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-startup-commit-fae75a9e-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fd4c91d0446b1a1531dab6a469626c1287a414e9d435f2a177f91ee009d66c87",
+      "receipts": [
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-startup-commit-rebased-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "f743b12fd57c5d45806bb6fb0b3824918d5b1270c73005d6455d6e68d08aeedc",
+      "receipts": [
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/startup-commit-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3b9803184099601881f35b5848540d9e2373682373610336d295c403f157158c",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-public-launch-startup-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "7ed09589ad1437809e4a937afcaceadd18f6b48a7c4f1151431723ad9e2ba9cc",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/public-launch-startup-ui-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "474f99f008db1affa2136f8e6770ed0f5fcf1e5fc337e474567ab2ca074f9cca",
+      "receipts": [
+        "public-launch-startup-ui-followup-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/public-launch-startup-validation-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4d7b727e2d4de0d67698a7aa9764ae36079bec9beb92e5b2bb0623ae70dab724",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "research/runtime/public-launch-startup.md",
+      "before_sha256": null,
+      "after_sha256": "901126648b89c46585b114a58724d32f7e075ae2bd56131cc38b5855a29e1c18",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-launch-build-cache.py",
+      "before_sha256": null,
+      "after_sha256": "c33bfdf7f99b58354136b656c959d563323e4996c3cfbeadd724084c59c1996e",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-native-music-launch.py",
+      "before_sha256": "4500551a9a5d7a22ce5ef0220ced44ac42398cc6a4426e2427e1f2821760180f",
+      "after_sha256": "6c5c1a9ffc5a762c2338d2ae23fc3633dd4be6432010e8d69da9f0df11126c42",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tests/test-qt-launcher-startup.py",
+      "before_sha256": null,
+      "after_sha256": "b557578d0f06667f88dc81947aae3e8a910f802187ce436c23498d5248da4c16",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/glyph_backend_launch.py",
+      "before_sha256": "94cb37af6021d5b6be038ab7e2a797ecd40ec8cb7dd34909488de528c035868e",
+      "after_sha256": "8a05a2b6b5df244c956ef2676ec700bfc87553119de003e188480fecb14f3ccc",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/launch_asset_checks.py",
+      "before_sha256": null,
+      "after_sha256": "42907172036456fecfaeba751bf87c0203a3d7971789962d8a5a3c45ef284edd",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/launch_build_cache.py",
+      "before_sha256": null,
+      "after_sha256": "0662abaa2c70a0ca32b53062c3cbfb9e6545ff9d6fce770c85fcae4d4e84a7c6",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "e5076585647a5d3287b0b1c2da5850faa9e099369cf30eb8dc4b1e64f31d0898",
+      "after_sha256": "d7a40f2130a55b6d532e57ee66cdbcbac72ff26570cfb7c62e1a4d34e2ecde22",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/native_music_launch.py",
+      "before_sha256": "a263acad932b90d70cc2a8d01d082c8237f991f315dad00b27a84bbd1b0d4dcf",
+      "after_sha256": "f2369a37145f71f22ca5a0a73432eca9383371d41e893685ab1414cc218a5bf6",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "4072d4c135e88c9bb7b8621ea550ac539734a01450cc17fe71787695facea30e",
+      "after_sha256": "96bebe3b9874596d57099051d8249f90208a5681a61b68f16dcf54ac9e93bd45",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/render-game-runner.py",
+      "before_sha256": "58f02bc3164d0a704d0356933de977e533f8e1fcbb9fb2934d8439661de036cc",
+      "after_sha256": "ed2485fa40ddbdae52f79b72c597612640d98d201cfec7aa3f9c55435061507c",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "ef3caca4c16b0f4faf730a4e2ac55645464c305b0b2227069da91421e902f34d",
+      "after_sha256": "714360b7ebb1589bea5e974d98d04646c655ce2534034d16fb52268ee7f12da5",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "d8ab79b7301e059f263543b753b94b87f14ce78764e7618b850a7483bf1aaa5f",
+      "after_sha256": "07507a6b5298e380fe269bb4a1f359ed662b90a118e98afb2184e3c4f09481cd",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "path": "tools/run-qt-shell.sh",
+      "before_sha256": "53290e652a3444c03f8bf05a18b6cb92d97c160a544e9eace711360cb022590f",
+      "after_sha256": "80c0bc450508cf31de737543909dd231f7430c5d2548f0071d6d25a55189f739",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": "b299aad71188750e9f6d9b9b6bb063397a0a8d66dbdcc36c1f953ac472870725",
+      "after_sha256": "3632913ff1e81380a75a6448cc070eebfdc2336460c9dae242cf8e926c58c7ee",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "5a080283265c957b367c49081045dfba9ba0c136a3e021b62fa1eaf917c77cbd",
+      "after_sha256": "f004c80800b9f223abbe60fb8101b61953f6608c699369fcdabffdf20c680882",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "1c99875abfee3772c2c2c2dacd45420f98da69765cbb57c55c5c9644bbfc1124",
+      "after_sha256": "249e164e74613671f94a1a1d58d8f27bf1575c4f80ede2b8d3156ffd80b6f588",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-preferences",
+      "before_sha256": "95444fa6f0e2eca3f203b0cf98a5a9d549b555785af24af9d3037ebdd52970eb",
+      "after_sha256": "c135b6d98a1a4fd4f591c83a667e3cf3d725c1594dff5108844b4b24bced1827",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": "a125f1819b4a30a9a051dbc19b65d6945b0a03ddd4e1821a8eb277cf3bd828c9",
+      "after_sha256": "be6bbd354fb6497277567387ca7a9ce0b45fcb9770c43adc19eff85b640a0e6b",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": "7f6ccad6916e16b57bb0857cf58c1f6f6933daf5ca4cbbf4bb9e83408a4cd83b",
+      "after_sha256": "457129d1c23eb6d9cc42f42f7f8e0f32c3e1ebad8616a9de9cdf1b70b86f633c",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "36dcd722b1ff4b0b8a3d8031580c8581b271117b2d612ce28639abd0dd8d8a0f",
+      "after_sha256": "4205d9ddd7d56e818c539eca3e02ef5e11b0af7813d9eb3299272827d27ce54c",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.realm-observation",
+      "before_sha256": "2262ade9dde84f1ab8c51d19d09f0a72033bb30334bfa319a2d163568c017d4f",
+      "after_sha256": "7b097128765e975bdb241117a76e932fa1f9154bad01643eae937066c58d826d",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "befe002347b799bc9e3a0c5ac769468cf6aecaad5cad9b1f41ba669b64747c26",
+      "after_sha256": "6bf1ecce8833c40eb3e7029207f21b16b3ffc687e34052cc16d337a4128b1993",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "CP.region-entry-enter",
+      "before_sha256": "1e6f9cb6e7fcdd6d7abec21c5678a406382e4c623cf94a42cfe7e0e9d32086de",
+      "after_sha256": "8e0cae8f6497f21eb0c62ff98051d3e71640f8e42533ae184cdd49ba802d81f7",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "c32a23799dd106c8e7368f91a323b1ab321947c14e85748950682ea317223340",
+      "after_sha256": "18392ce6eee6be946008f48d9fd78044be2cd5f6f6489ee11d169513d25f3fd8",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "8479b955b777b5592de3e0ecc90575daff41f7c65082cfb394dd8c48bb5eb61c",
+      "after_sha256": "32858f80c83280b3f4bf2ed0282659a8562b7eae3cf88781e965d92fcdd466e5",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.campaign-progress-publication",
+      "before_sha256": "5888ec4536c8083a5f7633ebdb82c6c8f32dab779c845bf845eeb781b256c70a",
+      "after_sha256": "9640ec27bfa3da5efb2d318853e9058d0d50bd853ecd29f4d15260dedea49672",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.command-input-fallback",
+      "before_sha256": "2e1ee8f79e51cc6a547aba933f6ecf8248b7eb28a48a787ed3ae8e0181e364f3",
+      "after_sha256": "a647f544a0255471d33b31cc9c55ce1db683944fa943e1ea9200bf56d9fc74ec",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.independent-native-world-loop",
+      "before_sha256": "b9421f5d8e73c5d49e4a8fde4c0537f0d738a4d2d76deb489782022b7f54fc92",
+      "after_sha256": "413339a8fac7a74f0c5fe87578b5945a411a9da59959320448641b191c75ee54",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.launch-original-verification",
+      "before_sha256": null,
+      "after_sha256": "c9429bd802b32797fe00b88459c5d0400954c569d7babdf68663d286f16d32be",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.menu-render-progress-heartbeat",
+      "before_sha256": "9b23fa9ef37a2bdd23f6113ff16ca67bcb74a1852bd401c1c9dfdf75115e41cb",
+      "after_sha256": "43e15f02c5898c0e5bbb473598a28e3eefc167df3759f1ce5ea55b63c5f04e34",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-audio-defaults",
+      "before_sha256": "15a31357f64116d8ead66979725f027d2d591bb9c13a4aa7dcf86f92416f4241",
+      "after_sha256": "aa5c872c1a73693b6c084eb14dd3ba821ce4641e757bf9c6f9fcbad9d78a4cce",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-audio-factory",
+      "before_sha256": "54bebe88df764ad2caf37001b698c766a5ea4b5ccb1469b3f8b7f0d70814f097",
+      "after_sha256": "6ed3d5851c8ae2cd4b003e373c620b2f87b42a8d3c895102b72181e2a6a4cf49",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-audio-file-sizes",
+      "before_sha256": "31339b8d5dee2581e8c49e5fa3dd2561e688b81f0c5e1d6cdf5e341c264fb14a",
+      "after_sha256": "d2f8eef454e8330cfc168896cf67d2d25ccb29d6341f75edf79032118c7910a1",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-audio-initial-silence",
+      "before_sha256": "99e334852f0656314c1a33f47c54497811c1f2270a171d5bcd5d06d99c396791",
+      "after_sha256": "7ed125102526e2705ff63710b0014d03f1c4a2d9164909c6a8ecc492034d4785",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-audio-profile-reads",
+      "before_sha256": "f35dfb2882b5df3059a863ad1bf13dcf0a1f4a2cd77516e1936f52359e99886c",
+      "after_sha256": "b38c6fe450d3c8bf02378e0f30c64b54fbe53cc6942ab2f3128d3eb6fa7a3bc2",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-capture-retry",
+      "before_sha256": "9d4ddceffa77dbec6b95af98de5a7c22b52b0dfbddfb0cacf5a9951980dd9da5",
+      "after_sha256": "440d2a0e4168517a8ac46a9a3c621687db47b6eb55ee39a68a7acfa95e761ef8",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-casting-combat",
+      "before_sha256": "784dccadef26206502feb980cda67fe584c7ccff4fc852077bee4a0dfad6f60d",
+      "after_sha256": "6ba9620bffc5e40a8b62d7051ef863108802184d04814e0706d9a440db418eaf",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-dialogue-readiness",
+      "before_sha256": "e93af17ac6005780930c248d4f61b2d884bdf8768ea0848269235c72ef25961d",
+      "after_sha256": "6bc9a9d33f1bf3e1afb205e8dd95d56072655aa768fd107a282898b7e087e4fb",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-movement-probes",
+      "before_sha256": "23ec8f60c9c1b35cc953be4f8408431b6aa218d7b3792882c734708ba291306e",
+      "after_sha256": "2fbc7d1c23167b484e524e6468511389d90a110559d5bfbeed67343b328cb5c2",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-normal-quit",
+      "before_sha256": "14f089e0c16a115320dff8ea8f880ab7fca565ccb08ce85bdfa251a4812a702b",
+      "after_sha256": "54c6449628a541e05fe8214a3f09c59cf2da80adf9c58f13a2554a1f4ba53c7d",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-session",
+      "before_sha256": "a229630740e2c592783f7d8f400978bb8957731ba979af17c8c9e5a0099b04b0",
+      "after_sha256": "bc6024e080e500750dca74759504d6bac840a80c9f956b7c84dfde5e28e62cfd",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-spell-cases",
+      "before_sha256": "9a636e377d058fd8e2e7f4b9066646a134957091783e222a695e23adb439a7d6",
+      "after_sha256": "7f85003bc67f1e17f1b19c36fec6eb6917734be9a0a28987205d9e172080785b",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-spell-observation",
+      "before_sha256": "613a099cd0638d62f53e159492ba82df2015b186826b1cfb50d2d4a893142ba9",
+      "after_sha256": "1beb2dd94d63a7dc755f3443a767761fcf511bf065fead44ce8b8e85347b80fe",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-cd-fade-gain",
+      "before_sha256": "e2c7ca22d3b59f3d5219575b4a6490c003206cd732ce72fde337ddfd26057099",
+      "after_sha256": "d54960cb9833d7782a7da16ea38c8b60971353714713f6090d551c919f1e69c8",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-command-launch",
+      "before_sha256": "4cff49503d50250c0e45f5b6ae105b831a1751cb908404c4390cc7c873f522ac",
+      "after_sha256": "19b41dfb05dc6ecf1e609069ce6d14a4061be0d987a265d5c471c992103152e0",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-command-responsiveness",
+      "before_sha256": "ce3f1020171fcabb6d4604d7e4ba81c2271f3fbebd09ad96f706f7f2cc91c7dd",
+      "after_sha256": "b0532184aa2f9ff3ee238f9b2c0158985c19d70891a4a2e503d2c672bee44b9b",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-crowded-battle-stress",
+      "before_sha256": "f6947d0017d13eafcdb61199b59c8da31ef215891efe06f790d9c7792959dcf5",
+      "after_sha256": "e6934a67a0dc10e9439c2de731e897d6c6022909a28ce6fe313694b13c1ea787",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-display-deadlines",
+      "before_sha256": "57f319acfde6252f1e620700a0d92b2196a0c0eba4e4cf0ff77edc4ac8716f9d",
+      "after_sha256": "932bd181244e3bb38a21e0829e50c164135ca857bb423c7bb801c31e094a00de",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-dsound-module-policy",
+      "before_sha256": "d6964349d000fa6ed28b90b816652aa911cf4ede62580944929b9d004b95d860",
+      "after_sha256": "cd6cc5d56ae4fcccd6f354d4d4b1cd4bfc0f31631fc2d766f0ea609203531371",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-file-sound-retirement",
+      "before_sha256": "7441c53bac672fc09d77b52ac880c319346e5c6fe5930b6b8d27bc9aadf0651e",
+      "after_sha256": "0628e5e3124ff706be8ecadb326262d285b6cd2fed30b5d747b468a6118e19af",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-healing-loadout",
+      "before_sha256": "528298f333eb7a0e0a87508060282dcebbdc45b21f4368bea66e92632af6f80c",
+      "after_sha256": "c422d13064d6546011fa7725c878978d8de934ecf05c6c36a2188019972fbc5d",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-media-startup-probe",
+      "before_sha256": "8a05d34e5b7d721a36548ea2afadd4b6d0660a0794fe7227c03b4a1f62a14e18",
+      "after_sha256": "542dd16bcbd781a8137af0f3a589d7b66d878635ddf9ddbfb2ea5fbee737217d",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-menu-audio",
+      "before_sha256": "4d90b7e63282a18b5250953cb2834ca9cf8e240b3e81514e5877fa2a1420b858",
+      "after_sha256": "c47c386737cdc6379eb99542fb7c1c433591c4d04a45c5bc3ca23dc51de09bb4",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-menu-media",
+      "before_sha256": "7ceae17d46dd787a8157b3ad3a7cdb9ea70c214fc189234b7651f2f9f4ebc6c4",
+      "after_sha256": "2929bdf4f64c29ab12d8c996cf5f1a483477bc8d5207e81b5a6a9f02b2a6f591",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-menu-music",
+      "before_sha256": "1d5bcc9ff9173174fe5358637dc2ef24351d5e9b0d807c90b0b9364aa4bf8571",
+      "after_sha256": "99652d5122c97bcf0b09426488405d9eb381f8a4f2b45469f1cbc7284f850919",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-movie-hidden-video",
+      "before_sha256": "de09f03b99de896f581f079c21f6f106659b2411fe114002c5df84bd27e7c9c3",
+      "after_sha256": "0b106e0cb03e15ac438008612ad201ce02428ef1abd1a76be67d374e6efb14b4",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-music-backend-recovery",
+      "before_sha256": "c20ebb6306436fadb797c03b94db8cbef97014b0262fa17b5a37bdf70334710a",
+      "after_sha256": "6a4e7392051e9dbb8d1bf2316d25525d3a0a9206a96782890a54932aa7f79e23",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-pacer-yield",
+      "before_sha256": "28191b9b851a9fedf35121d61d3583508f718f8af1ec6d07edc0ff7d70520050",
+      "after_sha256": "2121315523d5337f40832751af7d201fdd24d0ae4e9b33175a559d8836978c8e",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-precise-uptime-clock",
+      "before_sha256": "d45dd0b72bde12a3c5f9f7926a0947c4cc1a971b7bbcce97cec7c163a3a9bf14",
+      "after_sha256": "900f1e010b974c0be0ddf5ed88ba8cd6894a976d8c720a68eb88a023ee771d80",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-render-draw-cadence",
+      "before_sha256": "9fd8eeedd9aca180315cacfbd6cac04eec1a8d1e4584f14319c5c536e93f637e",
+      "after_sha256": "57f20d7bbd395dc3e07bea43bc180b6c73162690571a00dad38fe80c710f7649",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-render-owner",
+      "before_sha256": "dba49513e070e339d7a06fdac712826e3348c12c396963bafc733c4539d959e3",
+      "after_sha256": "63e2194ae13092b1d4ebb97b70c5a549ad661611c9bbab7d2406f6ad1b47919b",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.native-wave-loading",
+      "before_sha256": "5ef672a90019412d3eb82820705d6c8f8e430ddc0a65e076a3010766f99905bd",
+      "after_sha256": "6fb04e98daf079e8a35efbb55c7e771de40c535e520f2f5f006d9c06fb061aab",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.presentation",
+      "before_sha256": "85fa182f16bd975396fff17b1558f53d923bef2f93ed790041f2c2936e4f084c",
+      "after_sha256": "6014771f64a1be9a29b5b05b02b870542d3866783248f42ff4fcc52e995fd6cc",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.session",
+      "before_sha256": "27f8e3175755444672305233d31f812d1eccf32642dda3f03f498c3587e0c05a",
+      "after_sha256": "670cbf6361d2160a234c229a73f00167ea47d7ac2b90e0f10241f559c45f51ec",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.startup-preparation",
+      "before_sha256": null,
+      "after_sha256": "8d856cba41a9e21440a2da90fac783321fa48b5fb328a8e994605fdec7ed4ea7",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "HOST.wine-import-census",
+      "before_sha256": "7cda26edc8696060626f604596f421038fed147f7bbb91bfcbb5de2267d207d6",
+      "after_sha256": "2fe4cc09cbc387628ab963ea01e3efbca46316fd5b72f27336928c124b597e61",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": "0ad64add136098244dd2a1c01e1efe7e8353c2d6bb40293f0b3dbf16b2aec2d9",
+      "after_sha256": "5bcc88df4ee5a49fa453b543dc274eec36ab1403a9a68970329167a5c8c7874f",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "a21e7c9f7002d456eefafb81684dcc22ee2249b7bad1f74710c539060431ba42",
+      "after_sha256": "5197e1036ccacc304c36f528fb2060389e8ecafbf18b213e61b890fcd1414394",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": "75e4f2543f5fed1d638971802b8e5346df8497257f88e3fa32ccbc87b0f14652",
+      "after_sha256": "b7f37a35db240e664c87dc923591530f0e964b6b0d84e0f1bb6d38d3f1176de3",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NP.campaign-preferences-policy",
+      "before_sha256": "b611c456a5963ac7315b781523323f9740eab083a17a43bf0aa4b65a16e2637d",
+      "after_sha256": "0e155e16b57a8ffbd0057188290dcf0c68d452598510fe5165b9ecb63350083d",
+      "receipts": [
+        "public-launch-original-verification-opt-in-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NP.preferences-persistence",
+      "before_sha256": "e9a644fdbdf7a77f51e1ffd568300d2e6412e1eda1cba6889da6903f3c982d86",
+      "after_sha256": "7740b4fcfa940fdb0135c0e471c8d5afe50d0286e9c58cde890f73ad29dd3fb5",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "07f6e3382ae81acd9f18672f23072b88a0905596d9f77a4117b4b48f4360448e",
+      "after_sha256": "ec0701e05ae7bc2eb3e44e24bb3eed376c92e5c25d1c4cc044abd892cba10962",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.application-shutdown",
+      "before_sha256": "ac1806799aec4ffeab4bac0546259c4e6a4efcae9e5fae0a738795956a7389ec",
+      "after_sha256": "df71b76029dd2015321d0bd17f83f9e1ea0a2e91aa4b1a63d835dab532e6c6da",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.canvas-fade-row-damage",
+      "before_sha256": "a18ec5177591ffeeedb9fd17a33e46a8db19031e09624b7b4ecdf99af3385a58",
+      "after_sha256": "475c25aaf112d6dc8563c9d4d227227fdae181dd5b56f3ea82e7d6d03e0a490a",
+      "receipts": [
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery",
+      "before_sha256": "8d2421b5bf7908c400f2180a4f7ed934c2041f0eee2d750c749a7306296be755",
+      "after_sha256": "b7e766853badcc3572bd0b6678b73be1a92964f7bebd5982faff31121db80bc9",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter",
+      "before_sha256": "1672d65d21219d5ff1ed5ab43f22b704bded053542c7b120d55dec4a24ada9c2",
+      "after_sha256": "df00197d63ae1671f158cb61fd6687d77976b472f8ce7d2a95dc39a32b6cc833",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.continuous-producer",
+      "before_sha256": "834f7fe1dfa5f3af848f7449ba89cf4046b957e09fc0e8ce589fec290c65a55f",
+      "after_sha256": "77dea72cd4faf3dfec4ff27f3fbbe6091b7d82935a495753d4d7b4b7894729cf",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.directdraw-native-opengl-launch",
+      "before_sha256": "20bb6b437bb017759bb8d0a19218f01e0ad71734f4e69af38a625e01d623b4b6",
+      "after_sha256": "5d3fd90e1996f7fd3dbda27d41f6e017068c9b6716d990e6e16d5d24ea3aeb6d",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu",
+      "before_sha256": "65bd82a0e6f92871c232f53e6764434dfe72cc5d9cc128e3f96c3eacb4199278",
+      "after_sha256": "48f40c5c1ff55024b5f14c41b8e88b67b573e98bdda1dbd7120dc01a3459bb69",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement",
+      "before_sha256": "6654690f5c2eb01530c5743b9279c3c41fd38d7c70c57cec29932eb05bb8311c",
+      "after_sha256": "30501a1673a30f77d00719a9366eaa86d4d5a0b9301a04d52c09691ad3ca0d05",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.drawing-fenced-acquisition",
+      "before_sha256": "c492bead71db15cf369481d6e24629b7c9483398fd253bde5280540a161f475f",
+      "after_sha256": "eba4ac8843076374fa1dd82fb8ff7f75b18e3e330e3fc41fcc5f45a2c31e6992",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition",
+      "before_sha256": "a9d73c26b4fbf2048384dd7c4d7d5793c60c1f8ba3780d1ec97f36cfb8d110c6",
+      "after_sha256": "e6bd6b88b57247096eda228348b1cfe4fef2904b69bd951746bf2828e131b72f",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.engine-cadence-observation",
+      "before_sha256": "15e6b22f7c444a5a93d26e5ea5bff291014fffd75c567d89a7dc50172f092da0",
+      "after_sha256": "5446622a6bc114c183548c2226732ee541a9630697d52058099ce5f6ad2d69aa",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.glyph-default-launch",
+      "before_sha256": "2d15bbaee5cd25053a85ac3977f00a9698a9f265e215bf57098a660381227b31",
+      "after_sha256": "06ce1b6a2dc18587fb742ccb7ab6f6558ed82331487310dbc628d314b9082304",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.glyph-live-admission",
+      "before_sha256": "6cec366137eeb4de4f7b7992fc2f47ca50c6fdc22a6c784ff4b271fcd1c62315",
+      "after_sha256": "b900f44c03afbbae660635b6a87db538f4e26aa82d613d8e8347d1e8134fc891",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.gpu-presentation",
+      "before_sha256": "925828be76db568b5f936e1bd3cadac244bc2a0f085346e55fa03a907b51128e",
+      "after_sha256": "dfd13ac2cc958c86e35edd52f55cae7c50bbefd5bab8a46b2a2b20f801ce0f21",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "before_sha256": "aae37ffd34480d9ad776b736dd8500c06204b6f73e48ed1d6c780c5622d2f3ba",
+      "after_sha256": "dfcac3ac10f4001f975a342d3ae8530305ee1151a90724164b37a17500aaf407",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.masked-displacement-admission",
+      "before_sha256": "7e9ca46c401df40d552a3ab265d6983d531800085c023f77adb8920332531484",
+      "after_sha256": "8e3259730e52576c20347301474201dd8f3447675ff3ca6336f089cdb34864ac",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "86979e79ac4dfef8097d55ecff338f4da8fd657ce31632ebcb9e838f93843b0b",
+      "after_sha256": "b85a6ed018962af3d1adb4bceeba3ba5992e7016738816ababdc75d3950a16fd",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.movie-enabled-startup",
+      "before_sha256": "63df8093d9f8e8395b85e86921682210092a2fe6754843a0e20857e7612ec85b",
+      "after_sha256": "e7c015eadd49c6dba088bca7919caa2d8636ae465d7dce7bcc0710956a190846",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-colour-rectangle-cache",
+      "before_sha256": "c8b6ed45f731f544920a835c6cc7e84df327f24b284663faee8a9759936d029a",
+      "after_sha256": "c2e56e38ce7af8befc20db6a7c9613f91415a1845d2d2a4f65e5009ba763e88b",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-draw-cost-profiling",
+      "before_sha256": "44effb744b72136d2ea75e9f57390fa583a9f077f17b2c993f3e31c9becedc4b",
+      "after_sha256": "6fd388d8becdf20a930b0ee11670fe58d8fd1990845b0338c9d38996f1722414",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.native-draw-status-session-file",
+      "before_sha256": "ebb580be8d9ef5057eaefbeb8b58f9fc36efe4a7c306cf860fbaab441af2c1c6",
+      "after_sha256": "6378bae80524cc363943c73c279be5280dba98c1e4ae5f7da706fddf36fa7b08",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.observer-lock-avoidance",
+      "before_sha256": "d106fdead086617d7d902a7dad07795f1aa3e3d97e2e5e775bd817ec50d93e35",
+      "after_sha256": "6be3dce70eae1664ffc6dbad03e211b5fbf546c1666903f0e6ccbfdea10402ff",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.offline-render-soak",
+      "before_sha256": "ef4c2d1aaef7e2e63bbcc40f8a4cb20b031fc6cae646bbc2460a459d1080a94d",
+      "after_sha256": "a1b5836f0ddc4a09d28b73481093072cbfa862e49ab565ea29566751422dddfa",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.palette-resources",
+      "before_sha256": "5c7243b7f2c7728e74f758e47dd0db6fe0bb8ae26c998a5b124affc3d8334017",
+      "after_sha256": "8a0046a6da58454a996672c9a9270726e2e9eeaaede125b2d337518f3965fc7e",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.presentation-damage",
+      "before_sha256": "d4ca0dec918ec47192c09a403c59604d10b921f007dc168a1f6e23fb1294dbfa",
+      "after_sha256": "b536656a3291bc5e2c40fc3455e3b90786970385691f1cb8786056e4379833fe",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.public-resident-world",
+      "before_sha256": "e538766a09c37f69035ab3c1bbc320368e208480a878ddab6b641d32fbd1c8f1",
+      "after_sha256": "2a66df16862cfa39234d758c7cbb783d967a766014322f26656de680bfc17896",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.resident-normal-shutdown",
+      "before_sha256": "5e9c43e39f6a6d4efe8de48b97149c94a166c6b29691b43f16253da9d83c3b40",
+      "after_sha256": "c2d8b5ca738f49e39cec0e9a01927ca3e34a07589cfbbb9497d8aae6f506a6ee",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling",
+      "before_sha256": "cd3cfa71364c07439d1813913c2a17f37ef000acdc498bd224595cf1f74bc057",
+      "after_sha256": "92589734af2494c4bbf57c25bf29bee78347cb75e906f6d740a6b3760955a5fc",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.scene-draw-budget",
+      "before_sha256": "7ce8ae52226e96f883fa7b07b89da386dcca37f9909185d674f623e9073a6a0a",
+      "after_sha256": "68758123d61b8cf1542478c8fed7aae93120a0c871bad4a1ee8c12b7c3d96239",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition",
+      "before_sha256": "d6bd5812e29a3075abcfe859df2ebbbb08781caf7708c1ea04f78712a7c8f964",
+      "after_sha256": "274a4aab650c7d9cd264431b847c5c6db27563761b2ce62ce6f70ddfa9269bbd",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.word-clipped-takeover-admission",
+      "before_sha256": "076c950d1c6356dd373c5cf972ce14a4864b3daf0ceacfbeeb73278621ab033f",
+      "after_sha256": "49ddffd0214ba0e5d20b95a1234fb412157041a842c9b87c19c6512064ca574e",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.word-clipping-plane-bounds",
+      "before_sha256": "4a157964e14f16064118af9cde3368bcc42bf7b100b93f3c4ae9cbe9669378d2",
+      "after_sha256": "8660e8c2ce4a9e662755fdfbe5fbc574439f957f2aa46c485146230c61d8e29a",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "0743561acf82c6135b0688d17f4d8d30bcc6423dee9539f53c994472c0f8b751",
+      "after_sha256": "8bf52bf743980d129eb2a773e5b98c0163f22a15371f2458e695a01ac094b04c",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "fea31c558bbf1efa2609ccb66da5b17626afa2b9be0b6401473550de03218471",
+      "after_sha256": "1fc7451e6faf2ee85aaa6ea62bd7203cdb9d9bba6a941d4f9a8a6557a01ee80a",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "fe3c6aa17e622918f7636112731c63eba84d984cc4ead47d73a2b35b7413a19f",
+      "after_sha256": "0bf37fbc0c70a4cedb7e0ab29b8ea8e471da1cf63cae437c4685f3936a6f090f",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-channel",
+      "before_sha256": "44ea658b0503b9a4b097e887988487411221ac4771332c0f71b8b40d09949409",
+      "after_sha256": "38ed8ed8299f94f8dee8fbe85dac824baaa8d724c65b910e90618ae251d6c856",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-continuous-normal-performance",
+      "before_sha256": "2f28998f7aee9949291ab619887789dd31a556cb8d372fe8b55a220e6c0678b2",
+      "after_sha256": "3bafdc4e99282c8e4fe2cde73e43c456de9a27e5589157ff72bd5041ce93e823",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-continuous-source",
+      "before_sha256": "40637bbffc1550daa4f0125fdfb61de91d181a6118578f5f1ded0d92f41a4557",
+      "after_sha256": "6c7b3903bdb0cc870ffb23711515017228125f756fdb9ed1375efb16db203a9c",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-gpu-ack-delivery",
+      "before_sha256": "46939533c0d26a0927b3c44c29eb254c5f9021cd7296d224517a33835d8fb55f",
+      "after_sha256": "655c8e7419ee03eefa7a1322be75f0a6494a2b57a1bc7d9101f09b24f1e7f9da",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "9c7fa29d97d986b9dc76dce8c4849497c4a92a73c87f41476b9afb5e7244d025",
+      "after_sha256": "c5722e84df2c19fced7f5c124e80d96ffed6bc6c01f77cc6ff983bb8ead4d9d7",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-live-view",
+      "before_sha256": "48b29767db793031bab28c76fa35311e50521a29063dcb7423cc34f5e09aea5d",
+      "after_sha256": "9f85ba9b8b312a92eca76b3ee64b1fc25a7e59c8f2d9ae09bcbcf94b146d0a27",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "6d318a066c6dd79e282a3bfeb9556e4c799fb5a042552950edeaea5dd4acef4d",
+      "after_sha256": "121d3511b7e5f9f3cfe98999812fd6b6c8603b391e8b6367be9cb56f197b25af",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-rolling-live-handoff",
+      "before_sha256": "50883e286acf7b86766625e04871cc608448f2f8d0c876fd3fbc09086aa40163",
+      "after_sha256": "d12bf8e89c5b30d283ee972e67a761fbaea624a98df77e01e2e89a5af8bf8f31",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-shadow-refusal",
+      "before_sha256": "ba0cdbd304ad667ce1a241657ee96cac3dd4676f98b3fb0cb54c2a3016c2b825",
+      "after_sha256": "8776ba9b6017670fe42b3784c511a49a83cbf4e126ddb0539a63f388f698d73f",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "c6efdbf3e5067c1961ff3e1b5260a2c397a0e19613540c925a9f5e2cfb0b2c4a",
+      "after_sha256": "3f53ee88d8273524c21c03b666a421305aead9734fe6ff2fc6b89197b7b14ac6",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "e975e35b6740c855a7001a2bc980d952ed8a44d46df6e868c7ad320ae02cbc3e",
+      "after_sha256": "e5016a30f5a95ca81c757216bb9f72243b1192d53a132d07e3e279c55b748031",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.glyph-live-route",
+      "before_sha256": "8c4717e955e1cd0a70100a6ebe1628f12ef71aad80a37764026c1fd8b75d56e1",
+      "after_sha256": "cf36bc407c1d7e0ce72fa250dda39e5831ecebfa38cae7154546817fa09c851c",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.word-clip-aux-shadow",
+      "before_sha256": "1fea99b042bed9c89e9b08b57cfc68ec1477a8b308a33f760eed783495d5236b",
+      "after_sha256": "62ffef16f7621d6bb88a4a05addfbac089f8cdc89fa3a64b710877ca4fc08ad2",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.word-clip-shadow",
+      "before_sha256": "e402987f411705b62e8957e2a6121b0612c94c46de5c494ed2f8c0c4d03655e9",
+      "after_sha256": "7e27daa371a06b2b16f38c0fd1919f14fbdcc2b2c69ed89017ed65466d5ee959",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.word-clip-takeover",
+      "before_sha256": "3d7f8eb5e82ea56aa4618599eb577f18841d4bcdca44796f284a728bbc451151",
+      "after_sha256": "048d7ffb5b6916034f73dc9bc63cd9c0077bce2e6b0ec5ab169d80f303b1c37e",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.word-route",
+      "before_sha256": "e0c6b965c6bcb60761cd59bf94c8c450822990fece7f7e56c45802bbe6000964",
+      "after_sha256": "9b2ceeb8a438ab8cf93e1e03242a5c9f6ac3ac72f36e259de004c2a522290a38",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.world-continuous-producer",
+      "before_sha256": "a57dc9de551b77e4ec0b8ef1806d9d049c99446aac833769b5b3f531fa926267",
+      "after_sha256": "494af4d7466a4a9f32ce66ebef0342d1425f6cee357ee975da23d108af48aab8",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "RS.world-rolling-handoff-equivalence",
+      "before_sha256": "bdb4a275a87d0688bb4aba41f7e6ae2634db5b2483a212271d70ffa6381b28ad",
+      "after_sha256": "af7cc644e1ed212e8e581917245fe8eb6c25b6ee4336efc35f08396931e9dc3c",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "98aa55fbcd0ca78be83902883065171e8c518d17b80612cddc869b1e62913909",
+      "after_sha256": "390cc87639ed4bd8046a45c03907848c213c99eb7901bb515e9220a972ed91a5",
+      "receipts": [
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "22c858378d8da41f6aa99288b3a9ee1832c08f9bd6d5d27afc18a30d792ab3a2",
+      "after_sha256": "d89e93022b0abbc3022c9d547325a233275bdb6ecf158a36a493e430f85b98d0",
+      "receipts": [
+        "public-launch-startup-preparation-pending-20261012",
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    },
+    {
+      "id": "UI.preview",
+      "before_sha256": "c366bab6e61b6c9669bc027ac71dec4b512d39fed05bdb5701cdc829e1880fde",
+      "after_sha256": "64aed07b306cb253cb9dba2ce739c689d611f4027323cf1fe07f83aa471dc74a",
+      "receipts": [
+        "public-launch-startup-isolated-commit-review-20261012",
+        "public-launch-startup-isolated-rebased-commit-review-20261012",
+        "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "file_transitions": 29,
+    "behavior_transitions": 115,
+    "unresolved_gaps": 0
+  }
+}

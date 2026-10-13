@@ -1,0 +1,282 @@
+{
+  "schema": 1,
+  "scope": "Review committed NS33 parent/current source, behavior, build, evidence and scenario hashes against exact receipts and successful actual staged gate. Separate from new control/action validation; no new execution or retrospective gate claim. Review journal self-append is excluded from its own hash receipts.",
+  "base": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+  "head": "e67c00dffe3b325875cd02a90d26a58776b51277",
+  "files": [
+    {
+      "after_sha256": "2d6c6f5fc45ca2a6bd311142a4fdbe2791199b8e9818cbb121c0afeac90176f9",
+      "before_sha256": "f1d9d9e285aa64fc42f57c81811f193d9c1ca24b9809f581a701299937c0346e",
+      "behaviors": [
+        "AI.segment-initialization",
+        "NP.segment-setup-admission"
+      ],
+      "change": "modified",
+      "path": "reconstruction/creature-ai/full_segment_setup.cpp",
+      "role": "code",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+      "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+      "behaviors": [
+        "AI.actor-displacement",
+        "AI.actor-route-request",
+        "AI.segment-initialization",
+        "AI.special-flight-actions",
+        "NP.actor-displacement-admission",
+        "NP.actor-request-admission",
+        "NP.segment-setup-admission",
+        "NP.special-flight-admission"
+      ],
+      "change": "modified",
+      "path": "reconstruction/creature-ai/full_segment_setup.hpp",
+      "role": "code",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012",
+        "original-field-layout-request-execution-20261012",
+        "original-field-layout-displacement-execution-20261012",
+        "original-field-layout-flight-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+      "before_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+      "behaviors": [
+        "NR.canvas-fade-row-damage",
+        "TOOL.coverage-accounting"
+      ],
+      "change": "modified",
+      "path": "research/runtime/coverage-ledger.md",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "eb5f820945e92bbbd12e263961709bf172c39ffcdef83fd1e9be6097194fa542",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/original-field-layout-incoming-history-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+      "before_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+      "behaviors": [],
+      "change": "modified",
+      "path": "research/runtime/coverage/register.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "af4dbcddd2c7d95bab832bc4a707a40c317018447d8f37b8fefed8ea158fb3e3",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/coverage/summary-original-field-layout-20261012.md",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a57053b4109170ebee1ae7e946851de18b9ff44da7b0ce3eb4a2a5e65f1f3a6c",
+      "before_sha256": null,
+      "behaviors": [
+        "AI.actor-displacement",
+        "AI.actor-route-request",
+        "AI.segment-initialization",
+        "AI.special-flight-actions",
+        "NP.actor-displacement-admission",
+        "NP.actor-request-admission",
+        "NP.segment-setup-admission",
+        "NP.special-flight-admission"
+      ],
+      "change": "added",
+      "path": "research/runtime/creature-state-field-layout.md",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-creature-field-layout-displacement-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-creature-field-layout-flight-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-creature-field-layout-request-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+      "before_sha256": null,
+      "behaviors": [],
+      "change": "added",
+      "path": "research/runtime/original-creature-field-layout-setup-20261012.json",
+      "role": "research",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "2b946ef5ef2b1799564a53525b164783e9d208ae750d279c8389178ed147470b",
+      "before_sha256": "d671f012b6063f86099ea92b4da7b97aafc8f7a942ec608c00c4e40899ac41e9",
+      "behaviors": [
+        "AI.segment-initialization",
+        "NP.segment-setup-admission"
+      ],
+      "change": "modified",
+      "path": "tests/creature-segment-setup-test.cpp",
+      "role": "test",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "after_sha256": "a0c2d7e74faa079cc8e7dfaf74b077db41afd0207f0e4f967042ac35f9ddbb8f",
+      "before_sha256": "ddb4d3358ef0d62356610a81b89b7492b576b7cf5024831ab5f0ab6f643e4bc1",
+      "id": "AI.actor-displacement",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-displacement-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "821959d3050a0dcab75eac911eb8dec554bf9f8a74a2137ee3192a7194396f5b",
+      "before_sha256": "f2e61456d41436bfb1aba582cde32d8f5902eb0d28483de3059d08fa8dd7e8dc",
+      "id": "AI.actor-route-request",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-request-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "0fd5ef181444cde4f40a416bbb9891d773b04a95dd0c3ebad4b14b70cdb88eb6",
+      "before_sha256": "0b1cacada87a960ce70473094b48d63ab6062e3652456fc96b6ada6a4c06865b",
+      "id": "AI.segment-initialization",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5c50ca3dfd933e39ca0f13be7dc55fa7974c1cdd060ab841e7cc191b78fc984b",
+      "before_sha256": "3ca5c31b193b1f0ff9b472416924d74adcbadf7123570c4c6d0da2d2fb4efbf7",
+      "id": "AI.special-flight-actions",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-flight-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "205397b5cced6477f6d790f95699cb85ef8cae80e2e47fb4c56ba06f66977f75",
+      "before_sha256": "8ac2b3703ba381f2c60958d8254222fc319bf0a51a79e230419f0f34154e04cf",
+      "id": "NP.actor-displacement-admission",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-displacement-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "a2a528986665f50b2762d8173727bd80f383d8506762f506d187fccd193f251d",
+      "before_sha256": "552a1167853d6f7567ea416d7048ebb0aab0c54f984bc2f5fb8e43cc50af522d",
+      "id": "NP.actor-request-admission",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-request-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "32b2bf177705f74c168687f07def02b3d64648d0f148880e807b71303ca6971d",
+      "before_sha256": "3a784153da6d86b688575a7a395f7b34461397aaff71e32033b123ad68ecd5d6",
+      "id": "NP.segment-setup-admission",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "5bbab5c273da282424c8ce6ceaecef9030490e028a2f296d4ec1e63ebd94064f",
+      "before_sha256": "079f1749f103785014caaf77419f6fc4dbd7ae92e444818afc4c2d586b816b6f",
+      "id": "NP.special-flight-admission",
+      "receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-flight-execution-20261012"
+      ]
+    },
+    {
+      "after_sha256": "635428b9d77eca11bce81118207402ead43fb80b102fab7c2e1cfb724c910443",
+      "before_sha256": "234a5e5c355e5f9ded1991eb58b5f72f34adbbe9d237d43d3ef973ca6457b63d",
+      "id": "NR.canvas-fade-row-damage",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "after_sha256": "1d42f71707380269c4097f4fe0eeeb7d06fa7589bcd1cdd4bd0e27363b675c6e",
+      "before_sha256": "65c43f3fbb1f34daf91317cfba7247ab6ce01c77690427bc9612ee0a4048e0b4",
+      "id": "TOOL.coverage-accounting",
+      "receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    }
+  ],
+  "staged_gate_record": "working/tests/original-ai-special-flight-20261012/commit-field-gate-final.json",
+  "staged_gate_sha256": "2e7d8728d251f2d319d8e1c95fce244972854700810118325a1b3207e4c55bf0",
+  "unresolved_gaps": [],
+  "counts": {
+    "file_transitions": 13,
+    "behavior_transitions": 10,
+    "unresolved_gaps": 0
+  }
+}

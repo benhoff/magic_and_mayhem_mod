@@ -8457,6 +8457,91 @@ has38 source/link and106 behavior transitions with exact parent/current receipts
 and no unresolved accounting gaps. Private90GiB storage policy remains authorized;
 no cleanup is performed by this workstream.
 
+## NS34: current original scheduler and action projection proofs
+
+Fresh prospective control/actions runs pass53,248 paired cases (24,576+28,672)
+with original32/native64/sanitized64 agreement and unchanged text/inputs/sources.
+Six scoped contracts gain current isolated comparison. Transition proof requires
+both immutable components; the joint record is aggregation, not a composed World
+run. Reviewed declarations include canonical compiler dependencies. Lower
+World/ANI/geometry/health/cast/effect services and installed profiles remain supplied
+or excluded; native session integration and live replacement remain none.
+See [scope and evidence](creature-control-actions-validation.md). Earlier unbound
+results and the failed missing-dependency attempt remain historical.
+
+## NS35: remaining creature projections with current comparison
+
+Six prospectively bound suites pass151,552 paired original/native/sanitized cases
+for orders/follow, roaming, behavior handlers, maintenance/movement/death and
+idle/corpse/melee/interaction/stun callbacks. Eight scoped contracts gain current
+comparison; follow requires joint orders/control proof.512220 queue delivery is
+still supplied;509e50 upkeep admission is deliberately excluded. Lower World,
+ANI/geometry/health/effect/resource/RNG ownership, full wizard/scenario policy,
+installed construction and native session integration remain pending. No live
+replacement or balance change. See [scope details](creature-remaining-contracts-validation.md).
+
+Public Qt launch policy (2026-10-12): `HOST.launch-original-verification` skips
+the full original-media manifest scan by default through
+`MNM_VERIFY_ORIGINALS=0`. Set `MNM_VERIFY_ORIGINALS=1` when launching to restore
+before/after verification. Direct experiment helpers still verify by default;
+experiments consuming original artifacts require the checks. Working executable,
+DLL, installation and callback-byte admission remain in place. Synthetic
+orchestration and syntax checks cover the selection; live engine validation
+remains pending. This changes startup policy, with no engine comparison or
+replacement milestone promotion. Historical evidence retains its recorded hashes
+and may become stale for the shared launcher/UI files.
+
+Public startup preparation (2026-10-12), `HOST.startup-preparation`: the Qt
+launcher reuses matching CMake configuration and verifies cached production
+adapter DLL/manifest pairs. Source content, options or toolchain file identity
+changes invalidate cache entries. Full installed-asset and repeated Python music
+scans are opt-in; native music catalog validation, executable/DLL/callback/config
+and fresh channel admission remain mandatory. Details exposes the initially
+collapsed launch log. Synthetic boundary tests, real adapter reuse and Qt
+build/smoke cover preparation; offline staging uses a preserved pinned input.
+No live comparison or replacement stage is promoted. See
+[policy and retained reports](public-launch-startup.md). Shared source changes
+retain historical evidence and can leave earlier fingerprints stale.
+
+Startup final boundary: concurrent hard-restart edits changed the shared UI
+after its recorded build/smoke result. Retention preflight refused the combined
+rebuild (about100.24GiB free; 0.5GiB reservation would cross the100GiB reserve).
+The existing result remains bound to its earlier hash; current combined UI
+validation and whole-tree accounting are pending. No cleanup or budget override.
+
+Startup UI follow-up: after free space recovered, the guarded combined Qt build
+and fresh CLI/shell smoke checks passed for stable source hashes, retained in
+`public-launch-startup-ui-final-20261012.json`. Earlier storage refusals and
+source versions remain historical. Live engine validation and independent
+whole-tree accounting remain pending; no engine milestone promotion.
+
+## NS36: original packed cast descriptor decoding
+
+Native534000 decoding passes65,536 prospectively bound original/native/sanitized
+cases, exhaustive source/target sentinel pairs and complete byte/return guards.
+The caller-owned descriptor word9 is preserved. This is decoding only: cast
+admission/resource/target/effect/projectile ownership and native World/session
+integration remain outstanding. See [decoder research](cast-descriptor-expansion.md)
+and [packed command layout](../formats/packed-cast-command.md).
+
+NS37 static seed records57b710 entry/body bytes, all103 compressed spell IDs and
+17targets plus bounded coordinate/path constructor windows. Cast admission itself
+is still pending implementation/comparison; exception-chain and lower service
+boundaries are documented independently.
+
+## NS37: whole original cast admission projection
+
+Native57b710 ordinary control flow passes24,576 prospectively source/scope-bound
+original32/native64/sanitized64 cases, all17compressed dispatch arms and eight
+separate native refusal cases. Cost/learning/source-target/dispatch and supplied
+service ordering agree, with full actor/config/profile/spell/input/body and
+private FS ordinary-chain guards. Earlier invalid/failed development results are
+retained. Creature Explode90 is an area-effect call, correcting the initial stun
+label. Exception/unwind and incidental Boolean EAX are excluded. Full lower
+resource/geometry/secondary/projectile/effect/area ownership, installed construction
+and native World/session integration remain pending; live replacement staysnone.
+See [cast admission research](cast-admission.md).
+
 
 ## Public native context costs — 2026-10-12
 
@@ -8544,3 +8629,7 @@ with0missing exact receipts. Rendering execution fingerprints remain unchanged;
 original/layout/launcher histories and staged-work preservation are independent
 from the native renderer proof. Source-index metadata is regenerated for the
 combined tree; this review is not new gameplay validation.
+
+### Palette row integration with current startup changes (2026-10-12)
+
+The paired TITAN replay and full gameplay records retain their original source hashes. Master startup changes to `apps/qt-shell/main.cpp`, `tools/menu-game-runner.py`, and `tools/prepare-menu-observer.py` now make those full source closures stale. Renderer implementation and palette fixture sources remain unchanged. Current merged launcher/gameplay validation is pending; historical integration observations and the measured 49.4 native FPS are not fresh current-code or 60 FPS claims. The intermittent late-scene pixel mismatch remains unresolved. No gameplay balance or draw-order change is introduced by this merge.

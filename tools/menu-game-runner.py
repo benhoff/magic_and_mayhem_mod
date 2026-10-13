@@ -2,6 +2,7 @@
 """Hash-checked disposable game runner used only through tools/run-game.sh."""
 import hashlib
 import json
+from launch_asset_checks import verify_staged_assets
 import os
 from pathlib import Path
 import sys
@@ -36,10 +37,11 @@ if native_draw:
     if hashlib.sha256((game/'MnmDraw.dll').read_bytes()).hexdigest()!=metadata['native_draw_sha256']:raise ValueError('Native graphics DLL hash mismatch')
     status=root/'native-draw-status.bin'
     if metadata.get('native_draw_status')!=str(status) or status.exists():raise ValueError('Refusing redirected or stale native graphics status')
-    inputs=json.loads((root/'input-fingerprints.json').read_text())
-    for name,digest in inputs.items():
-        path=game/name
-        if Path(name).is_absolute() or '..' in Path(name).parts or hashlib.sha256(path.read_bytes()).hexdigest()!=digest:raise ValueError('Native graphics input changed before launch: '+name)
+    if verify_staged_assets(metadata):
+        inputs=json.loads((root/'input-fingerprints.json').read_text())
+        for name,digest in inputs.items():
+            path=game/name
+            if Path(name).is_absolute() or '..' in Path(name).parts or hashlib.sha256(path.read_bytes()).hexdigest()!=digest:raise ValueError('Native graphics input changed before launch: '+name)
     os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
     overrides=os.environ.get('WINEDLLOVERRIDES','')
     os.environ['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'ddraw='

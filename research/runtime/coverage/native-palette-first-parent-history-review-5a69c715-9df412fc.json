@@ -1,0 +1,661 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new validation claim.",
+  "range": "5a69c715..9df412fc",
+  "transitions": [
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "reconstruction/creature-ai/full_segment_setup.cpp",
+      "before_sha256": "f1d9d9e285aa64fc42f57c81811f193d9c1ca24b9809f581a701299937c0346e",
+      "after_sha256": "2d6c6f5fc45ca2a6bd311142a4fdbe2791199b8e9818cbb121c0afeac90176f9",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "reconstruction/creature-ai/full_segment_setup.hpp",
+      "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+      "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012",
+        "original-field-layout-request-execution-20261012",
+        "original-field-layout-displacement-execution-20261012",
+        "original-field-layout-flight-execution-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+      "after_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/original-field-layout-incoming-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "eb5f820945e92bbbd12e263961709bf172c39ffcdef83fd1e9be6097194fa542",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+      "after_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/coverage/summary-original-field-layout-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "af4dbcddd2c7d95bab832bc4a707a40c317018447d8f37b8fefed8ea158fb3e3",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/creature-state-field-layout.md",
+      "before_sha256": null,
+      "after_sha256": "a57053b4109170ebee1ae7e946851de18b9ff44da7b0ce3eb4a2a5e65f1f3a6c",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-displacement-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-flight-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-request-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "research/runtime/original-creature-field-layout-setup-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "path": "tests/creature-segment-setup-test.cpp",
+      "before_sha256": "d671f012b6063f86099ea92b4da7b97aafc8f7a942ec608c00c4e40899ac41e9",
+      "after_sha256": "2b946ef5ef2b1799564a53525b164783e9d208ae750d279c8389178ed147470b",
+      "exact_receipts": [
+        "original-field-layout-accounting-20261012",
+        "original-field-layout-setup-execution-20261012"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "compat/legacy/canvas_world.hpp",
+      "before_sha256": "dc00af8e558485c4227cb2f7aee31630341bf725d79e1b5084f13704c568a760",
+      "after_sha256": "6800f0a46a575a1073a7cb5750947357c6f34b5ca45d70d17257ca49be8b39dc",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "compat/legacy/world_rolling_session.hpp",
+      "before_sha256": "ac6757a39e3300737c515aefe5bb34f8a2c53a3d23c1fdd93a7c96e48ff4cbfb",
+      "after_sha256": "f3415b5873ad97bdb38e876e29ff7b2b22b02773b28693e1395371ff9365c234",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+      "after_sha256": "fd4aa3afe86019039b5ae1c8af8d52c30de903332033078bc82750e07d828a8c",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "2002b434e57d472db18115e251eee034125eede184cc8466f4f7de3abc9a6858",
+      "after_sha256": "bade811f3c720344578160c194187cbf61181a3ee8c465156324cb1d300b7ff9",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "dcbd27afcfa5c446a96052270f5b3c4c06290faea77a1f646645ab956a274fea",
+      "after_sha256": "5c77676a3c06c23fe2388a345d85d6015825cbc2f475b15deb66e29fbcfd1e8a",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+      "after_sha256": "1626340e834f49a202e2d491cef2c98a157c2fcc862a23b0f6616ddc16a84ba2",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/native-campaign-history-review-0280403c-c9d19a92.json",
+      "before_sha256": null,
+      "after_sha256": "fed622d094731eabb7c63aa7d1583f71cf68a4b2c22dc8aa26d4f99022914181",
+      "exact_receipts": [
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/native-campaign-history-review-0280403c-fa88cb3a.json",
+      "before_sha256": null,
+      "after_sha256": "54323299cca2e51cd89e97476264a1d0526a6f7a71e768604204b4c83aa03db3",
+      "exact_receipts": [
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/native-campaign-history-review-c9d19a92-e67c00df.json",
+      "before_sha256": null,
+      "after_sha256": "e620aea4c652f9a2f91b2263a4a9b682d67a4e17b93bbb6fedfb766617072644",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/native-campaign-history-review-fa88cb3a-5a69c715.json",
+      "before_sha256": null,
+      "after_sha256": "c3ea0725b9a94299367a19587c749f7623dfafef7948f5a762ae295813fb6c34",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/native-palette-first-parent-history-review-c9d19a92-e67c00df.json",
+      "before_sha256": null,
+      "after_sha256": "e620aea4c652f9a2f91b2263a4a9b682d67a4e17b93bbb6fedfb766617072644",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/native-palette-first-parent-history-review-fa88cb3a-5a69c715.json",
+      "before_sha256": null,
+      "after_sha256": "4d6968fc2df9970cf6407a0fa83d057bd1b1d7c027d226fcc5ff1184958f0aec",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+      "after_sha256": "e994e5b2d9ec7918a66111d5433ed0961e7e3d8ec15219ab8ab167a64eb5fe17",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/source-index-native-palette-row-headless-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/source-index-native-palette-row-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+      "exact_receipts": [
+        "native-palette-row-live-20261012-accounting",
+        "native-palette-row-live-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/source-index-native-palette-row-master-current-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a27eb0b42bb1880fd7edd3ada02006ddade0749f34b6dfb9702d03a64eb1a44b",
+      "exact_receipts": [
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/source-index-native-palette-row-master-final-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5c65573a8be49f16f9de5a97b093b8cad10970180366a14f4fbb620f03d01a26",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/summary-native-palette-row-headless-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "2e281135d2b6a86a515df43b35371ad2dc3ca96ce4e36c78bb25059bb2bd8fb5",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/summary-native-palette-row-live-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "0fc0e51fb97b57abe487f1ca791efcbcc8327efcffa4020b47b7a1d16c66db7b",
+      "exact_receipts": [
+        "native-palette-row-live-20261012-accounting",
+        "native-palette-row-live-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/summary-native-palette-row-master-current-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "549993d62665de4996c568c945ce0e007b7916bc2db2327874983be32f4fb891",
+      "exact_receipts": [
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/summary-native-palette-row-master-final-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "4cce2447de62f4da0acc4561e6a0dfcdf669a5186a82b67151512867735f83e5",
+      "exact_receipts": [
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/coverage/summary-native-public-context-cost-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "0b23d6daea9d684bb75aa4eb16d5f89eb5b77e977d2dda7ce1ac780f074ebf98",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-colour-capacity-neutral-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "ca4c71da7b5bddbba7501dfb9b76068ef19836d84689d53816b3b34425f268f1",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-draw-cost-profiling.md",
+      "before_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+      "after_sha256": "32156c1ba91831ddf655e27e8a13834020d5cfdd42b25eeb7ef252379b0756af",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-cache-paired-public-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "c222d62fe16c3d380d2460173420420d624d42c7b4d92cd0fe3452688c342871",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-cache.md",
+      "before_sha256": null,
+      "after_sha256": "c948bb835b3f30b8266744f3fbbd00849b901ce46832780fb9be093e0e0f9207",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-combat-deadline-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5dc148ca92e8b313be7f1765e8d2c3748923e89d9e76901d535bfddcdfa05ee4",
+      "exact_receipts": [
+        "native-palette-row-live-20261012-accounting",
+        "native-palette-row-live-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-full-performance-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "917b98504afeaaaa4a305dab9c573cc44c706aa9a25ff51aea8a5e70c414cd29",
+      "exact_receipts": [
+        "native-palette-row-live-20261012-accounting",
+        "native-palette-row-live-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-guard-build-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "fc6098c1d46964c1d25bd5d4b9fe5f9f4379cd2b4d55a22db9427a75007aeec3",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-storage-contract-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "83a736322647216ddd082b3f830eb756d7c736b1561108475fb4a8fe578d74d3",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-palette-row-wizard-death-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "91937f7c2b6fc4f4ce71946d450bc590da1afb2aa35dbe2492f4a8b80ea9fc29",
+      "exact_receipts": [
+        "native-palette-row-live-20261012-accounting",
+        "native-palette-row-live-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-public-context-checkpoints-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-public-context-pixels-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "c3890c6314be6ce8e589e7cc060b8268e7d45d5cce6851d14afd2b4a157ce1ab",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-public-context-relative-path-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5c777d567ee140286fe4ceec4d9b33227f31bd4e14cbf1ac4c6f13c9bde3c0ea",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-public-context-vendor-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a51b7611f6ec96486efbf1f6c0bac4df239d728577b85789a9fa54bcb8c9549b",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "research/runtime/native-public-context-xcb-egl-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "efd568c38e0264f50ba0b83caaa81ca88e056474c4b29f018e7c94347ad0ea77",
+      "exact_receipts": [
+        "native-public-context-cost-accounting-20261012",
+        "native-public-context-cost-diagnostic-execution-20261012",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "tests/palette-row-cache-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "0f95f47a49f4f2348be972931704cdffeb0664b53037a2633fd0ae9433097768",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "tools/native-render-profile/CMakeLists.txt",
+      "before_sha256": "8e0c2426a17cdb0b98227c319ee9150b21639eb6c6f284726d4d21865b83983d",
+      "after_sha256": "912597c83528d40bb631d22c366bc874e762fa7e8f2c154b1a9772a4dd38116b",
+      "exact_receipts": [
+        "native-palette-row-headless-20261012-accounting",
+        "native-palette-row-headless-20261012-execution",
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "tools/native-render-profile/resident_profile.cpp",
+      "before_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+      "after_sha256": "a6fdb3a025f7ae7b072dca34580ad81054391648bc3b1ee2eede529e3b33ec39",
+      "exact_receipts": [
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "path": "tools/profile-native-draw-costs.py",
+      "before_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+      "after_sha256": "59a372ecce944b68b3ece184001399a1f97170bb4bbec7a9480517e32828a6b8",
+      "exact_receipts": [
+        "native-palette-row-master-current-20261012-accounting",
+        "native-palette-row-master-current-20261012-execution",
+        "native-palette-row-master-final-20261012-accounting",
+        "native-palette-row-master-final-20261012-execution"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
