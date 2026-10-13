@@ -8514,3 +8514,17 @@ and fresh CLI/shell smoke checks passed for stable source hashes, retained in
 `public-launch-startup-ui-final-20261012.json`. Earlier storage refusals and
 source versions remain historical. Live engine validation and independent
 whole-tree accounting remain pending; no engine milestone promotion.
+
+## NS36: original packed cast descriptor decoding
+
+Native534000 decoding passes65,536 prospectively bound original/native/sanitized
+cases, exhaustive source/target sentinel pairs and complete byte/return guards.
+The caller-owned descriptor word9 is preserved. This is decoding only: cast
+admission/resource/target/effect/projectile ownership and native World/session
+integration remain outstanding. See [decoder research](cast-descriptor-expansion.md)
+and [packed command layout](../formats/packed-cast-command.md).
+
+NS37 static seed records57b710 entry/body bytes, all103 compressed spell IDs and
+17targets plus bounded coordinate/path constructor windows. Cast admission itself
+is still pending implementation/comparison; exception-chain and lower service
+boundaries are documented independently.
