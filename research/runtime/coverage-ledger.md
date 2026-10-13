@@ -8568,3 +8568,44 @@ admission for all 47 journeys and 21 operations remain outstanding.
 
 History from 72a357b0 through b030d7fc was reviewed against 38 exact file receipts
 with zero gaps. The source census and exact current review accompany this change.
+
+## Protected source writer tracing — 2026-10-13
+
+The [writer tracer](draw02-source-write-trace.md) snapshots every registered
+canvas cache before a selected diagnostic read-only lease and records a faulting
+CPU writer's thread, normalized PE instruction identity and target offset. It
+keeps pixel-span overlap separate from page-alignment overlap. Fault handling
+uses the frozen cache metadata, takes no recorder lock and never resumes the
+store. Lease metadata is published before protection changes, covering a write
+fault during arming. Default tracing remains off.
+
+[Owned fixture 01](draw02-source-write-trace-fixture-01.json) passes 12 actual
+PE32 cases and 10 decoder tests. Equal/partial aliases, both page halos and a
+write during arming stop with exit 99; all six traced faults resolve to exact
+fixture instruction bytes. Unrelated same-reservation writes, normal restoration,
+invalid flags and default-off behavior pass. The existing
+[lease regression](draw02-source-write-trace-lease-regression-01.json) also passes.
+Two freestanding build failures and a no-display launch failure remain separate
+negative records; none establishes an engine failure or current validation.
+
+[Original run 02](draw02-source-write-trace-original-02.json) closes 139 protected
+source pairs through 264 exact worker commands, with byte-identical before/after
+planes, 136 complete advancing updates and normal original Quit. Immutable
+manifests and original sections remain unchanged. Six source cache IDs use
+MEM_PRIVATE storage with 48-byte offsets inside their protected first page.
+Known cache spans and reservations show no overlap during those leases.
+The 2,154 unknown layout entries cover 49 cache IDs, each lacking a recorded
+pixel pointer. They are retained, without an allocation or alias classification.
+[Fresh source/worker/EGL reanalysis](draw02-source-write-trace-egl-analysis-01.json)
+matches 352 whole images containing 168,960,000 RGB pixels.
+
+The owned second-mapping case changes the leased source word from 0x1111 to
+0xabcd through another view of the same file mapping. Protection on the first
+view does not stop it. This confirms the limit of the page guard: complete
+original backing provenance, other virtual aliases, GPU consumption and
+unobtrusive acquisition remain open. Original source atomicity, native parity,
+full 47-journey/21-operation acceptance and steps 3–7 are not promoted.
+
+The b030d7fc..9a5f14b6 committed range was reviewed against 38 exact file
+receipts with zero gaps. Source census, preserved evidence fingerprints and
+exact current review accounting accompany this increment.

@@ -43537,7 +43537,8 @@
         "runtime/drawing/source_byte_witness.h",
         "runtime/scene/source_pending_refusal.h",
         "runtime/scene/source_pending_policy.h",
-        "tools/drawing_fixture_prefix.py"
+        "tools/drawing_fixture_prefix.py",
+        "runtime/scene/source_write_trace.h"
       ],
       "evidence": [
         "DRAW02.draw02-source-lease-fixture-06-native_integration-20261012",
@@ -43549,7 +43550,8 @@
         "DRAW02.pending-policy-lease-fixture-01-20261012",
         "DRAW02.pending-policy-original-refusal-01-20261012",
         "DRAW02.pending-policy-lease-fixture-02-20261012",
-        "DRAW02.pending-policy-original-02-20261012"
+        "DRAW02.pending-policy-original-02-20261012",
+        "DRAW02.source-write-trace-lease-regression-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43562,7 +43564,8 @@
         "Pendingpageownership/protection/ABI/writefault/restorefixtures;actuallease/sourcecheckpoint/nativecomparisonandasyncworker/EGLreleaseboundary. Writeguardisexplicitdiagnosticnotbaseline,sharedheapaliases/otherwriters remainunknown.",
         "Original01admits123APIbodyreadonlyleases/669refusals/noobservedwritefault,fullcheckedrestore. APIreturnrelease doesnotcoverasyncworker/EGLbyteownership. Sharedheap/allroutes/fullsemantic120windowsremainpending.",
         "The shared refusal-only pending-frame diagnostic is now an explicit validation dependency. Existing regression executions retain their prospective source/contract fingerprints; expanded contracts do not assert a new whole-source admission or status promotion.",
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Fresh owned regression verifies restoration, wrong/nested identities and legacy default-off write refusal after metadata publication moved before protection. Writer fixture adds arming-window and alias faults; original02 confirms139 selected stable leased pairs. Other virtual mappings, page-halo ownership, original allocation lifetime and GPU access remain outside the guard."
       ]
     },
     {
@@ -46083,7 +46086,8 @@
         "DRAW02.source-worker-egl-campaign-analysis-03-20261013",
         "DRAW02.source-worker-egl-campaign-analysis-04-20261013",
         "DRAW02.source-version-egl-analysis-01-20261013",
-        "DRAW02.source-version-campaign-egl-analysis-01-20261013"
+        "DRAW02.source-version-campaign-egl-analysis-01-20261013",
+        "DRAW02.source-write-trace-egl-analysis-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46169,6 +46173,61 @@
         "Final wire2fixture05passes13owned PE32cases and8decoder methods; legacy/bounded default-off regressions pass. Source/generation/epoch and exact packet/worker relationships are checked in fresh Quick Battle3083and campaign1402sources. Source-only intermediate versions and failed runs retain original fingerprints.",
         "Wire2records open writes after every pending source interval has retired, without claiming all global leases closed. Original01global close refusal remains unadmitted; current positive runs both have zero open boundary leases. No pending snapshot or overlapping checked write is waived.",
         "Owned direct-write case proves bytes can change between snapshot and consumption while this observed-path guard still admits. Unhooked CPU writes, distinct resource objects sharing backing, other command opcodes, GPU completion and fullsource atomicity remain unproved. No native replacement/integration or complete DRAW-02 promotion."
+      ]
+    },
+    {
+      "id": "NR.drawing-source-write-trace",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Writer attribution and recorded canvas overlap for diagnostic protected sources",
+      "scope": "Opt-in metadata trace around the existing selected original-canvas read-only lease. Snapshot every registered canvas cache and report same virtual range, pixel-span and protection-page overlap; fault handler records normalized PE instruction identity and target offset without recorder locks or live cache reads. Preserve fail-stop writes and exact protection restoration. Same-address CPU writes are bounded by the protected lease; cache equality, shared reservation and absence of faults do not prove allocation ownership, other virtual mappings, GPU reads or complete source atomicity.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-source-write-trace.md",
+        "research/formats/drawing-source-write-trace.md"
+      ],
+      "implementation": [
+        "runtime/scene/source_write_trace.h",
+        "tools/drawing_source_write_trace.py"
+      ],
+      "tests": [
+        "tests/drawing-source-write-trace-test.c",
+        "tests/test-drawing-source-write-trace.py",
+        "tools/test-drawing-source-write-trace.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/drawing_source_lease.h",
+        "runtime/scene/drawing_source_point.h",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_source_lease.py",
+        "tools/drawing_source_worker_lease.py",
+        "tools/drawing_diagnostic_cadence.py"
+      ],
+      "evidence": [
+        "DRAW02.source-write-trace-build-negative-01-20261013",
+        "DRAW02.source-write-trace-build-negative-02-20261013",
+        "DRAW02.source-write-trace-fixture-01-20261013",
+        "DRAW02.source-write-trace-original-01-20261013",
+        "DRAW02.source-write-trace-original-02-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current owned fixture01 passes12 actual PE32 cases and10 decoder methods; six traced foreign write faults resolve to exact fixture instructions, including same/partial aliases, both page halos and the arming window. Existing read-only lease regression passes. Build failures and no-display launch failure retain their original source hashes.",
+        "Original02 closes139 protected source leases/264 worker commands with stable source pairs across136 complete advancing updates and normal Quit. All six observed source canvases report MEM_PRIVATE and48-byte first-page offsets; known cached pixel ranges and reservations do not overlap during those leases.2154 entries across49 cache IDs have no recorded pixel pointer, and remain unknown.",
+        "Owned separate file-mapping views demonstrably change protected source bytes without faulting. Complete original backing provenance, other virtual mappings, GPU reads/completion, current cache identity at fault and unobtrusive acquisition remain open. No native parity, live replacement or complete DRAW-02 promotion."
       ]
     }
   ],
@@ -100300,6 +100359,136 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-write-trace-build-negative-01-20261013",
+      "kind": "static",
+      "scope": "Owned fixture compile refused unused recorder-depth helper; no fixture/original execution.",
+      "record": "research/runtime/draw02-source-write-trace-build-negative-01.json",
+      "sha256": "d00cf89472a173bc70e4ea714c76e79e6f81d9f502f3d2b3b0e78294cb09aacd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-write-trace-build-negative-02-20261013",
+      "kind": "static",
+      "scope": "Owned fixture link refused CRT memset dependency and missing existing pending-diagnostic import; no fixture/original execution.",
+      "record": "research/runtime/draw02-source-write-trace-build-negative-02.json",
+      "sha256": "c3070557a3ebe849b6af00e18901103044975408bbc292b0c9e9141632db1ff1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-write-trace-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Twelve actual PE32 cases validate same-view direct/alias/arming write refusal and writer attribution, restoration/default-off behavior; separate shared mapping explicitly escapes.",
+      "record": "research/runtime/draw02-source-write-trace-fixture-01.json",
+      "sha256": "b25fd39990d33922f9c91d8cb925068652b544bbe23845fea72388221345bd91",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-write-trace-lease-regression-01-20261013",
+      "kind": "native_integration",
+      "scope": "Existing PE32 lease restoration, wrong-identity/nested query and legacy write-fault regression after lease publication change.",
+      "record": "research/runtime/draw02-source-write-trace-lease-regression-01.json",
+      "sha256": "3b95e1bfc21408b48b1a8aad6666de281cba006c6def9907c91902f7f5f6e0d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.source-write-trace-original-01-20261013",
+      "kind": "static",
+      "scope": "Launch failed because no graphical display was available; no game records, source leases or writer faults were produced. No engine execution or guard failure is inferred.",
+      "record": "research/runtime/draw02-source-write-trace-original-01.json",
+      "sha256": "a045ee23eab5aff1ac85546651228d8f113da463a0e32865f8a687e4ab14e71b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-write-trace-original-02-20261013",
+      "kind": "live_observation",
+      "scope": "Original-active selected protected source intervals:139 leases/264 completed commands with identical before/after planes, zero source write faults and no recorded known cache overlap.2154 unknown layout entries retained; no all-alias or GPU completion claim.",
+      "record": "research/runtime/draw02-source-write-trace-original-02.json",
+      "sha256": "1d7da93a533fba9bd33a3b4c7eb85346e6c0739cfc4afc3bf18470a5e557893c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/source_write_trace_observation/traced_leases",
+          "equals": 139
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.source-write-trace-egl-analysis-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh raw-bound mapped source/emitted packet/worker/EGL analysis of original02:352 whole images/168960000 RGB pixels agree; no native renderer parity, complete source atomicity or GPU completion.",
+      "record": "research/runtime/draw02-source-write-trace-egl-analysis-01.json",
+      "sha256": "636a2194f4c1351e1c650ac7e6459b3a3942d40fe50988b2975a14647550c9a5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_source_images_matched",
+          "equals": 352
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -111610,7 +111799,8 @@
         "DRAW02.draw02-source-lease-fixture-refusals-01-static-20261012",
         "DRAW02.source-pending-lease-regression-01-native_integration-20261012",
         "DRAW02.pending-policy-lease-fixture-01-20261012",
-        "DRAW02.pending-policy-lease-fixture-02-20261012"
+        "DRAW02.pending-policy-lease-fixture-02-20261012",
+        "DRAW02.source-write-trace-lease-regression-01-20261013"
       ]
     },
     {
@@ -112453,7 +112643,8 @@
         "DRAW02.source-worker-egl-campaign-analysis-03-20261013",
         "DRAW02.source-worker-egl-campaign-analysis-04-20261013",
         "DRAW02.source-version-egl-analysis-01-20261013",
-        "DRAW02.source-version-campaign-egl-analysis-01-20261013"
+        "DRAW02.source-version-campaign-egl-analysis-01-20261013",
+        "DRAW02.source-write-trace-egl-analysis-01-20261013"
       ]
     },
     {
@@ -112521,6 +112712,37 @@
       ],
       "evidence": [
         "DRAW02.source-version-campaign-original-01-20261013"
+      ]
+    },
+    {
+      "id": "DRAW02.source-write-trace-owned",
+      "title": "Owned page write attribution and alias boundaries",
+      "scope": "Bounded diagnostic observation with original/source ownership and complete replacement remaining separate.",
+      "behaviors": [
+        "NR.drawing-source-write-trace"
+      ],
+      "evidence": [
+        "DRAW02.source-write-trace-fixture-01-20261013"
+      ],
+      "level": "headless",
+      "tests": [
+        "tools/test-drawing-source-write-trace.py"
+      ]
+    },
+    {
+      "id": "DRAW02.source-write-trace-original",
+      "title": "Selected original protected source writer tracing",
+      "scope": "Bounded diagnostic observation with original/source ownership and complete replacement remaining separate.",
+      "behaviors": [
+        "NR.drawing-source-write-trace"
+      ],
+      "evidence": [
+        "DRAW02.source-write-trace-original-02-20261013"
+      ],
+      "level": "live_observation",
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-schedule.json"
       ]
     }
   ],
@@ -112895,8 +113117,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-version-20261013.json",
-    "sha256": "b1232c030d08374056981a79fe4decdde5bcfd822e085ce6cbe6350ff467152a"
+    "path": "research/runtime/coverage/source-index-draw02-source-write-trace-20261013.json",
+    "sha256": "e7c383ac033bd9ceac74ceef5ae48b2224c1bb1a2de224a7107bd9f0de433fe5"
   },
   "claim_bindings_required": true
 }
