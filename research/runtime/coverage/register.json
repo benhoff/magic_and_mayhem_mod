@@ -54762,6 +54762,112 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "AI.owned-contribution-chain",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Owned original maintenance contribution call chain",
+      "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5283408,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4614256,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275392,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4287872,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266416,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5266512,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/contribution_owned.hpp",
+        "reconstruction/creature-ai/contribution_owned.cpp"
+      ],
+      "tests": [
+        "tests/creature-contribution-owned-test.cpp",
+        "tools/test-creature-contribution-owned.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/contribution-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/contribution_account.cpp",
+        "reconstruction/creature-ai/contribution_account.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/resource_contribution.cpp",
+        "reconstruction/creature-ai/resource_contribution.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-lifecycle-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/creature-resource-contribution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS44.owned-contribution-original",
+        "NS44.owned-contribution-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Whole unchanged seven-body graph and complete actor/profile/owner/ancestry/recipient/config guards",
+          "One owned persistent resource value, UI mutations read at original points",
+          "Defined positive resource/profile/divisor domain, precision64/nearest original/native fixtures"
+        ],
+        "excluded": [
+          "Other maintenance siblings and UI implementation supplied",
+          "Full native World/session integration, installed all-species/profile/FPU modes and live replacement",
+          "Malformed pointers/indices/cycles and broader arithmetic/denominator domains; caller stages rollback"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -111211,6 +111317,134 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS44.owned-contribution-original",
+      "kind": "isolated_original",
+      "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded.",
+      "record": "research/runtime/original-contribution-owned-bound-20261012.json",
+      "sha256": "c8a7d17f8d4662aee30e4fc17d44e09ecacb46a4b2e6e025c153962ee41ec26b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/display_cases",
+          "equals": 181
+        },
+        {
+          "pointer": "/credited_cases",
+          "equals": 2120
+        },
+        {
+          "pointer": "/owned_graph_redirects",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS44.owned-contribution-native",
+      "kind": "native_integration",
+      "scope": "Whole509e50 maintenance with enabled periodic contribution plus actual unchanged466870/507f00/416d80/505bf0/505c50/59bee0 callees, zero executed redirects in that seven-body graph. Native composition uses one persistent resource vector, canonical controller/index and enabled records, capacities/profiles, ordered UI reentry/resource reload/dirty update, inventory aggregate and both ancestry credits. Finite8192 fixtures with1..128 canonical actors, positive initial resource/inventory/maximum and valid catalog/acyclic ancestry, owner0..7, precision64/nearest. UI and other maintenance sibling services supplied; installed profile/FPU domains, invalid pointer/index/divisor cases, complete World/session and live replacement excluded.",
+      "record": "research/runtime/original-contribution-owned-bound-20261012.json",
+      "sha256": "c8a7d17f8d4662aee30e4fc17d44e09ecacb46a4b2e6e025c153962ee41ec26b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/display_cases",
+          "equals": 181
+        },
+        {
+          "pointer": "/credited_cases",
+          "equals": 2120
+        },
+        {
+          "pointer": "/owned_graph_redirects",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -124784,8 +125018,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-contribution-account-20261012.json",
-    "sha256": "c8dba93ef85b70ec3fa7569ccc91524a04fe41460237a18216dd862844bd2480"
+    "path": "research/runtime/coverage/source-index-original-contribution-owned-20261012.json",
+    "sha256": "b4e14be5f494c8242623197ca9af0e3bc38c613b1ea2c85fbd89b305d3bda835"
   },
   "claim_bindings_required": true
 }

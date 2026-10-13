@@ -8667,3 +8667,33 @@ Windows caller/FPU modes and broader conversion/divisor/profile domains remain
 unvalidated. Complete native World/session composition and replacement stay
 pending. Incoming NS42 commit6cc03cbd is reviewed against exact receipts and its
 actual staged gate; committed-history accounting adds no new execution claim.
+
+
+## Owned maintenance contribution chain (NS44)
+
+The complete contribution branch now composes native owner lookup,resource change
+and numeric account. Its single persistent current-resource vector is shared
+through display reentry; controller/index and enabled fields resolve the same
+owned actor. No second persistent resource copy is introduced.
+
+A fresh prospective comparison passes8,192 original32/native64/ASan+UBSan+LSan64
+cases through unchanged509e50,466870,507f00,416d80,505bf0,505c50 and59bee0. All
+seven bodies execute without helper redirects within that graph.181 UI sequences
+and2,120 credited fixtures are nonempty. Complete actors/catalog/owner/ancestry/
+recipient/config/body guards and ordered consequences match. The isolated native
+CMake build and CTest pass. Immutable record:
+original-contribution-owned-bound-20261012.json.
+
+The first development corpus stopped before original execution because correlated
+controller/owner seeds left its UI branch empty. The corrected corpus decouples
+those seeds. The inherited lifecycle fixture's death-account redirect is restored
+to the pinned whole account before graph execution; that restoration and body
+guards are explicit. Both development reports remain retained.
+
+UI implementation and other maintenance siblings remain supplied. The composed
+domain uses positive initial resource/inventory/capacity, canonical1..128 actors,
+valid acyclic ancestry and precision64/nearest; broader primitive domains remain
+covered only by their separate scoped proofs. This is a recovered call-chain
+comparison, not complete native World/session integration or live replacement.
+Incoming NS43 c31d0571 has15 file/128 behavior transitions reviewed against exact
+receipts and actual staged gate with no unresolved accounting gaps.
