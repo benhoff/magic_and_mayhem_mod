@@ -252,3 +252,32 @@ complete native World/session and live replacement remain pending. No balance
 changes or broad integration stages are asserted. Incoming NS44 f62ba148 is
 reviewed against exact receipts and actual staged gate; historical review is
 separate from these new execution results.
+
+
+## Owner count and target repair comparisons (NS47/NS48)
+
+Whole522340 with actual unchanged466870 lookup passes16,384 prospectively bound
+original32/native64/ASan+UBSan+LSan64 cases. The associated actor is cached; count
+includes active/living same-associated-owner actors except its slot and type27.
+The count write precedes local wizard UI.2,201 count display calls,212 below-limit
+and181 at-limit calls validate signed saved-old/current/maximum thresholds after
+UI reentry. Full actors/definitions/owner/global/two-body guards match. Two native
+owner/limit backing refusals are separate from original behavior.
+
+Whole51edf0 passes8,192 prospectively bound original32/native64/sanitized64 cases:
+102,441 behavior callbacks,78,109 resets and68,284 engagement notifications.
+Behavior is cached before the action callback, while target/pending/logical count
+and later actor/owner fields reload at the original points. Callback death does
+not add a new same-iteration health gate. Source preparation precedes logical
+count reads; callbacks can shrink or expand count with fixed backing. Complete
+actor/relation/count/fixed-capacity/body guards and ordered calls match. Two
+native malformed count/owner refusals require staged caller rollback.
+
+Independent native CMake builds and CTests pass. Count UI and target preparation/
+peer/behavior/reset consequences remain supplied; neutral relation alias,
+invalid pointers/indices/capacity, arbitrary adjusted indirect handlers, installed
+profiles and complete World/session/live replacement remain outside these proofs.
+Both immutable records preserve fresh source/compiler/declaration closure and
+original-manifest before/after verification. Incoming NS45/46 ad348ede is reviewed
+against its exact receipts and actual staged gate:25 file/141 behavior transitions
+with no accounting gaps. This history review adds no new execution evidence.

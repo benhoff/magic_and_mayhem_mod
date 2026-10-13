@@ -55174,29 +55174,67 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original owner creature count recomputation",
-      "scope": "Whole522340 in recovery:466870 cached associated actor, active/living same-owner scan excluding subject slot/type27,8f5 count write, wizard/block/local UI and signed old/current-vs-limit threshold reload. Complete actor-capacity and lower owner/UI domains and fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole522340 with unchanged nested466870 owner lookup: cached optional associated actor, active/living same-associated-owner count excluding its slot and type27,8f5 write, definition-kind0/24/25/26/block/local UI gate, saved signed old count and post-display current/maximum reload for below/at-limit notifications. Finite16384 canonical1..128 actor fixtures, owner/source/local-1..7, eight enabled/index records, consistent capacity/iteration count and finite signed count/limit seeds; UI mutates current/maximum. Lower UI implementation, raw pointers/invalid owner/limit backing, installed profiles and full native World/session integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5382976,
-          "scope": "Whole522340 in recovery:466870 cached associated actor, active/living same-owner scan excluding subject slot/type27,8f5 count write, wizard/block/local UI and signed old/current-vs-limit threshold reload. Complete actor-capacity and lower owner/UI domains and fresh execution pending."
+          "scope": "Whole522340 with unchanged nested466870 owner lookup: cached optional associated actor, active/living same-associated-owner count excluding its slot and type27,8f5 write, definition-kind0/24/25/26/block/local UI gate, saved signed old count and post-display current/maximum reload for below/at-limit notifications. Finite16384 canonical1..128 actor fixtures, owner/source/local-1..7, eight enabled/index records, consistent capacity/iteration count and finite signed count/limit seeds; UI mutates current/maximum. Lower UI implementation, raw pointers/invalid owner/limit backing, installed profiles and full native World/session integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4614256,
+          "scope": "Whole nested associated actor resolution only within the declared522340 cohort domain."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-counts-test.cpp",
+        "tools/test-creature-owner-counts.py"
+      ],
       "evidence": [
-        "NS45.ownership-static-v2"
+        "NS45.ownership-static-v2",
+        "NS47.owner-counts-original",
+        "NS47.owner-counts-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/counts/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged count and associated-lookup bodies, complete actor/definition/owner/global/body guards",
+          "Canonical actor slots, fixed backing and consistent logical/physical iteration capacity",
+          "Typed UI count/limit reentry before original signed threshold reload"
+        ],
+        "excluded": [
+          "Actual UI implementation, installed profiles and complete World/session ownership",
+          "Raw owner>=8/index/pointer/layout domains and inconsistent iteration capacity",
+          "Native-only malformed owner/limit refusals require caller rollback; no live integration/replacement"
+        ]
       }
     },
     {
@@ -55204,29 +55242,57 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original ownership target repair",
-      "scope": "Whole51edf0 in recovery: initial5178c0 callback, active/living self-or-related peers, cached behavior/action20 alternate-target disengagement, callback and target/pending reload/reset, mutable iteration cap. Neutral/null relation alias, indirect behavior callbacks and full lower ownership/fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole51edf0 ownership target-repair projection: initial5178c0 service, active/living self-or-related scan, behavior cached before action20 matching alternate-target disengagement/6a4 clear/alternate-1/direct behavior callback, target/reset and pending reload after callbacks, mutable logical iteration count. Finite8192 canonical1..128 fixed-back actors, owners0..7, valid logical count0..capacity, direct behavior receiver adjustment0; callbacks mutate owner/health/next activity/behavior/target/pending/count. Lower prepare/peer-engagement/behavior/reset ownership, neutral/null relation alias/invalid owner/capacity/raw pointers, arbitrary indirect handlers and native World/session/live integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5369328,
-          "scope": "Whole51edf0 in recovery: initial5178c0 callback, active/living self-or-related peers, cached behavior/action20 alternate-target disengagement, callback and target/pending reload/reset, mutable iteration cap. Neutral/null relation alias, indirect behavior callbacks and full lower ownership/fresh execution pending."
+          "scope": "Whole51edf0 ownership target-repair projection: initial5178c0 service, active/living self-or-related scan, behavior cached before action20 matching alternate-target disengagement/6a4 clear/alternate-1/direct behavior callback, target/reset and pending reload after callbacks, mutable logical iteration count. Finite8192 canonical1..128 fixed-back actors, owners0..7, valid logical count0..capacity, direct behavior receiver adjustment0; callbacks mutate owner/health/next activity/behavior/target/pending/count. Lower prepare/peer-engagement/behavior/reset ownership, neutral/null relation alias/invalid owner/capacity/raw pointers, arbitrary indirect handlers and native World/session/live integration excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-target-repair-test.cpp",
+        "tools/test-creature-owner-target-repair.py"
+      ],
       "evidence": [
-        "NS45.ownership-static-v2"
+        "NS45.ownership-static-v2",
+        "NS48.owner-target-repair-original",
+        "NS48.owner-target-repair-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/owner-target-repair/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged body, complete actor/relation/logical-count/fixed-capacity/body guards and ordered callbacks",
+          "Fixed actor backing/identities with changing logical count and later actor/owner fields",
+          "Cached behavior survives callback changes while target/pending/count reloads preserve original order"
+        ],
+        "excluded": [
+          "Complete lower prepare/peer engagement/behavior/reset World ownership and installed profiles",
+          "Neutral source relation null alias, malformed owner/count/backing and arbitrary adjusted indirect handlers",
+          "Native World/session integration and live replacement; caller stages native refusal rollback"
+        ]
       }
     },
     {
@@ -55283,6 +55349,111 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.owner-count-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native owner count backing admission",
+      "scope": "Two native-only source-owner8 and missing limit backing refusals. Original malformed pointer/index/capacity domains excluded; caller stages state/events for rollback. No full native World/session admission claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-counts-test.cpp",
+        "tools/test-creature-owner-counts.py"
+      ],
+      "evidence": [
+        "NS47.owner-counts-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/counts/CMakeLists.txt",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged count and associated-lookup bodies, complete actor/definition/owner/global/body guards",
+          "Canonical actor slots, fixed backing and consistent logical/physical iteration capacity",
+          "Typed UI count/limit reentry before original signed threshold reload"
+        ],
+        "excluded": [
+          "Actual UI implementation, installed profiles and complete World/session ownership",
+          "Raw owner>=8/index/pointer/layout domains and inconsistent iteration capacity",
+          "Native-only malformed owner/limit refusals require caller rollback; no live integration/replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.owner-target-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native owner target iteration admission",
+      "scope": "Two native-only excessive logical count and invalid related actor-owner refusals; primitive may mutate state/events before refusal and caller must stage rollback. Original malformed pointer/neutral alias domains excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-target-repair-test.cpp",
+        "tools/test-creature-owner-target-repair.py"
+      ],
+      "evidence": [
+        "NS48.owner-target-repair-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/owner-target-repair/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged body, complete actor/relation/logical-count/fixed-capacity/body guards and ordered callbacks",
+          "Fixed actor backing/identities with changing logical count and later actor/owner fields",
+          "Cached behavior survives callback changes while target/pending/count reloads preserve original order"
+        ],
+        "excluded": [
+          "Complete lower prepare/peer engagement/behavior/reset World ownership and installed profiles",
+          "Neutral source relation null alias, malformed owner/count/backing and arbitrary adjusted indirect handlers",
+          "Native World/session integration and live replacement; caller stages native refusal rollback"
+        ]
       }
     }
   ],
@@ -112157,6 +112328,278 @@
           "equals": 1490
         }
       ]
+    },
+    {
+      "id": "NS47.owner-counts-original",
+      "kind": "isolated_original",
+      "scope": "Whole522340 with unchanged nested466870 owner lookup: cached optional associated actor, active/living same-associated-owner count excluding its slot and type27,8f5 write, definition-kind0/24/25/26/block/local UI gate, saved signed old count and post-display current/maximum reload for below/at-limit notifications. Finite16384 canonical1..128 actor fixtures, owner/source/local-1..7, eight enabled/index records, consistent capacity/iteration count and finite signed count/limit seeds; UI mutates current/maximum. Lower UI implementation, raw pointers/invalid owner/limit backing, installed profiles and full native World/session integration excluded.",
+      "record": "research/runtime/original-creature-owner-counts-bound-20261012.json",
+      "sha256": "909e7c3f0b31960327ad0640dd455336b453b359d07c38db07a612a3a57f5fd5",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/display_calls",
+          "equals": 2201
+        },
+        {
+          "pointer": "/below_calls",
+          "equals": 212
+        },
+        {
+          "pointer": "/at_calls",
+          "equals": 181
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS47.owner-counts-native",
+      "kind": "native_integration",
+      "scope": "Whole522340 with unchanged nested466870 owner lookup: cached optional associated actor, active/living same-associated-owner count excluding its slot and type27,8f5 write, definition-kind0/24/25/26/block/local UI gate, saved signed old count and post-display current/maximum reload for below/at-limit notifications. Finite16384 canonical1..128 actor fixtures, owner/source/local-1..7, eight enabled/index records, consistent capacity/iteration count and finite signed count/limit seeds; UI mutates current/maximum. Lower UI implementation, raw pointers/invalid owner/limit backing, installed profiles and full native World/session integration excluded.",
+      "record": "research/runtime/original-creature-owner-counts-bound-20261012.json",
+      "sha256": "909e7c3f0b31960327ad0640dd455336b453b359d07c38db07a612a3a57f5fd5",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/display_calls",
+          "equals": 2201
+        },
+        {
+          "pointer": "/below_calls",
+          "equals": 212
+        },
+        {
+          "pointer": "/at_calls",
+          "equals": 181
+        }
+      ]
+    },
+    {
+      "id": "NS48.owner-target-repair-original",
+      "kind": "isolated_original",
+      "scope": "Whole51edf0 ownership target-repair projection: initial5178c0 service, active/living self-or-related scan, behavior cached before action20 matching alternate-target disengagement/6a4 clear/alternate-1/direct behavior callback, target/reset and pending reload after callbacks, mutable logical iteration count. Finite8192 canonical1..128 fixed-back actors, owners0..7, valid logical count0..capacity, direct behavior receiver adjustment0; callbacks mutate owner/health/next activity/behavior/target/pending/count. Lower prepare/peer-engagement/behavior/reset ownership, neutral/null relation alias/invalid owner/capacity/raw pointers, arbitrary indirect handlers and native World/session/live integration excluded.",
+      "record": "research/runtime/original-creature-owner-target-repair-bound-20261012.json",
+      "sha256": "58bea55e2f15a729e8248ae0c4c742a4744228ad1e3004994762682215932d6b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/behavior_callbacks",
+          "equals": 102441
+        },
+        {
+          "pointer": "/reset_calls",
+          "equals": 78109
+        },
+        {
+          "pointer": "/engagement_calls",
+          "equals": 68284
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS48.owner-target-repair-native",
+      "kind": "native_integration",
+      "scope": "Whole51edf0 ownership target-repair projection: initial5178c0 service, active/living self-or-related scan, behavior cached before action20 matching alternate-target disengagement/6a4 clear/alternate-1/direct behavior callback, target/reset and pending reload after callbacks, mutable logical iteration count. Finite8192 canonical1..128 fixed-back actors, owners0..7, valid logical count0..capacity, direct behavior receiver adjustment0; callbacks mutate owner/health/next activity/behavior/target/pending/count. Lower prepare/peer-engagement/behavior/reset ownership, neutral/null relation alias/invalid owner/capacity/raw pointers, arbitrary indirect handlers and native World/session/live integration excluded.",
+      "record": "research/runtime/original-creature-owner-target-repair-bound-20261012.json",
+      "sha256": "58bea55e2f15a729e8248ae0c4c742a4744228ad1e3004994762682215932d6b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/behavior_callbacks",
+          "equals": 102441
+        },
+        {
+          "pointer": "/reset_calls",
+          "equals": 78109
+        },
+        {
+          "pointer": "/engagement_calls",
+          "equals": 68284
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -125730,8 +126173,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-owner-services-20261012.json",
-    "sha256": "ac1681334b1d1e44b116f99cddc226be96d9d26d9d57d7c20018658dda80d9fd"
+    "path": "research/runtime/coverage/source-index-original-owner-count-targets-20261012.json",
+    "sha256": "a70c9a1db810915aa8cb087bdcd5e446f29c5948af9f9ca38ef2924be8f89148"
   },
   "claim_bindings_required": true
 }
