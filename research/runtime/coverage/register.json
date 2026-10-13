@@ -54348,90 +54348,135 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original creature resource adjustment",
-      "scope": "Whole507f00 in recovery: wrapped E8+delta, signed-negative-tozero then unsignedmin with EC<<8, wizard-kind/block/local-owner changed-value UI gate, second UI callback reload and unconditional92e dirty flag. Lower UI/state composition and fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole507f00 projection: wrapped E8+delta, signed-negative-tozero followed by unsigned min with EC<<8, definition-kind0/24/25/26 and block7c/local-owner/changed-value UI gate, ordered display callbacks with current resource reload after the first, unconditional92e dirty. Finite eight full-word boundary seeds and1..128 owned backing, owner/local-1..7, fixed definition pointer; typed first callback mutates resource. Incidental EAX/UI implementation/raw pointers/installed profiles/full World/session composition excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5275392,
-          "scope": "Whole507f00 in recovery: wrapped E8+delta, signed-negative-tozero then unsignedmin with EC<<8, wizard-kind/block/local-owner changed-value UI gate, second UI callback reload and unconditional92e dirty flag. Lower UI/state composition and fresh execution pending."
+          "scope": "Whole507f00 projection: wrapped E8+delta, signed-negative-tozero followed by unsigned min with EC<<8, definition-kind0/24/25/26 and block7c/local-owner/changed-value UI gate, ordered display callbacks with current resource reload after the first, unconditional92e dirty. Finite eight full-word boundary seeds and1..128 owned backing, owner/local-1..7, fixed definition pointer; typed first callback mutates resource. Incidental EAX/UI implementation/raw pointers/installed profiles/full World/session composition excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/resource.cpp"
+      ],
+      "tests": [
+        "tests/creature-resource-test.cpp",
+        "tools/test-creature-resource.py"
+      ],
       "evidence": [
-        "NS41.resources-static"
+        "NS41.resources-static",
+        "NS42.resources-original",
+        "NS42.resources-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/resource/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
     },
     {
       "id": "AI.resource-owner-snapshot",
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original per-owner creature resource snapshot",
-      "scope": "Whole507fa0 in recovery: foreign-owner E2b indexed adjustment uses wrapped signed clamp with EC<<8; own-owner ignores delta and stores E8 plus42 available type19 magnitudes<<8. Complete pointer/owner domains and fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole507fa0 projection: owner0..7 indexed E2b snapshot; foreign owner wrapped sum and signed capacity clamp against EC<<8; same owner ignores delta and stores wrapped E8 plus all42 available type19 magnitudes<<8. Finite eight full-word boundary seeds, canonical actor and fixed backing. Raw invalid owner/pointer/installed profile/full World/session ownership excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5275552,
-          "scope": "Whole507fa0 in recovery: foreign-owner E2b indexed adjustment uses wrapped signed clamp with EC<<8; own-owner ignores delta and stores E8 plus42 available type19 magnitudes<<8. Complete pointer/owner domains and fresh execution pending."
+          "scope": "Whole507fa0 projection: owner0..7 indexed E2b snapshot; foreign owner wrapped sum and signed capacity clamp against EC<<8; same owner ignores delta and stores wrapped E8 plus all42 available type19 magnitudes<<8. Finite eight full-word boundary seeds, canonical actor and fixed backing. Raw invalid owner/pointer/installed profile/full World/session ownership excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/resource.cpp"
+      ],
+      "tests": [
+        "tests/creature-resource-test.cpp",
+        "tools/test-creature-resource.py"
+      ],
       "evidence": [
-        "NS41.resources-static"
+        "NS41.resources-static",
+        "NS42.resources-original",
+        "NS42.resources-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/resource/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
     },
     {
       "id": "AI.associated-actor",
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original owner-associated actor resolution",
-      "scope": "Whole466870 in recovery: owner-1 null,340-byte record enabled flag, unsigned controller/index vs actor capacity, canonical actorstrideE4b pointer. No active/health filter. Logical owned mapping and fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole466870 projection: owner-1 returns null; owner0..7 indexes enabled340-byte record, unsigned controller/index below capacity maps canonical E4b actor pointer even for inactive/dead slots. Finite capacity0..128, all8 records and boundary indices with fixed owned backing. Raw invalid owner/manager/pointer arithmetic and full World/session ownership excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4614256,
-          "scope": "Whole466870 in recovery: owner-1 null,340-byte record enabled flag, unsigned controller/index vs actor capacity, canonical actorstrideE4b pointer. No active/health filter. Logical owned mapping and fresh execution pending."
+          "scope": "Whole466870 projection: owner-1 returns null; owner0..7 indexes enabled340-byte record, unsigned controller/index below capacity maps canonical E4b actor pointer even for inactive/dead slots. Finite capacity0..128, all8 records and boundary indices with fixed owned backing. Raw invalid owner/manager/pointer arithmetic and full World/session ownership excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/resource.cpp"
+      ],
+      "tests": [
+        "tests/creature-resource-test.cpp",
+        "tools/test-creature-resource.py"
+      ],
       "evidence": [
-        "NS41.resources-static"
+        "NS41.resources-static",
+        "NS42.resources-original",
+        "NS42.resources-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/resource/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
     },
     {
       "id": "AI.owner-transfer",
@@ -54518,6 +54563,43 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.resource-service-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native resource snapshot and associated-owner admission",
+      "scope": "Four native-only owner-2/8 resource-snapshot and associated-owner refusals. Original invalid indexed owner/pointer domains are excluded; no full native World/session admission claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/resource.cpp"
+      ],
+      "tests": [
+        "tests/creature-resource-test.cpp",
+        "tools/test-creature-resource.py"
+      ],
+      "evidence": [
+        "NS42.resources-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/resource/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ]
     }
   ],
   "evidence": [
@@ -110687,6 +110769,142 @@
           "equals": 8192
         }
       ]
+    },
+    {
+      "id": "NS42.resources-original",
+      "kind": "isolated_original",
+      "scope": "Fresh whole507f00/507fa0/466870 original32/native64/sanitized64 projection:24,576 cases, complete actor/catalog/owner/global/body guards, ordered UI and reentry reload, inactive/dead pointer resolution. Lower UI implementation, installed domains and World/session integration excluded.",
+      "record": "research/runtime/original-creature-resource-services-bound-20261012.json",
+      "sha256": "3709cad0b1b2bb78fb4a34e568e1683f01c877222102c17c7a95a48c33559a31",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/display_cases",
+          "equals": 2023
+        },
+        {
+          "pointer": "/subjects",
+          "equals": 1998
+        },
+        {
+          "pointer": "/own_snapshots",
+          "equals": 906
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS42.resources-native",
+      "kind": "native_integration",
+      "scope": "Fresh whole507f00/507fa0/466870 original32/native64/sanitized64 projection:24,576 cases, complete actor/catalog/owner/global/body guards, ordered UI and reentry reload, inactive/dead pointer resolution. Lower UI implementation, installed domains and World/session integration excluded.",
+      "record": "research/runtime/original-creature-resource-services-bound-20261012.json",
+      "sha256": "3709cad0b1b2bb78fb4a34e568e1683f01c877222102c17c7a95a48c33559a31",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 24576
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/display_cases",
+          "equals": 2023
+        },
+        {
+          "pointer": "/subjects",
+          "equals": 1998
+        },
+        {
+          "pointer": "/own_snapshots",
+          "equals": 906
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -124260,8 +124478,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-resource-contribution-v2-20261012.json",
-    "sha256": "4c9ede17dba360fb27434aabd291d40cbcbd2932b559a96fb9131702bdaa7851"
+    "path": "research/runtime/coverage/source-index-original-resource-services-20261012.json",
+    "sha256": "abd741242c24808e056fa5a9c651ae51df96c5ae48a9df6190f335a94e01407a"
   },
   "claim_bindings_required": true
 }

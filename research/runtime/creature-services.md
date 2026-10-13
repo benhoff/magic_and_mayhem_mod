@@ -139,3 +139,25 @@ filter. Owner transfer and numeric account still require scoped execution and fu
 lower services. Static evidence does not establish equivalence. Incoming NS40
 commit bf07d2e7 has22 file/118 behavior transitions reviewed against exact receipts
 and the actual staged gate, with no unresolved accounting gaps.
+
+
+## Lower resource and associated actor comparison (NS42)
+
+Whole507f00,507fa0 and466870 pass24,576 prospectively bound original32/native64/
+ASan+UBSan+LSan64 cases, including2,023 paired UI sequences,1,998 resolved
+subjects and906 own-owner inventory snapshots. Full actor,definition,owner,
+global and original-body guards match. Associated resolution returns canonical
+pointers for inactive/dead slots; it does not add a living filter. Four native
+invalid-owner refusals are separate from original pointer behavior. The isolated
+native CMake build and CTest pass. Immutable proof:
+original-creature-resource-services-bound-20261012.json.
+
+Resource adjustment preserves signed-negative-tozero then unsigned capacity
+clamp, first-display/second-display reload and unconditional dirty update. The
+foreign-owner snapshot retains signed capacity clamp; own-owner snapshot ignores
+delta and credits all42 available type19 inventory magnitudes with wrapped
+addition. Current native service APIs own values and indices, not host pointers.
+Installed construction, UI implementation and composed World/session integration
+remain pending. NS41 e2c7f03e has33 file/125 behavior transitions reviewed against
+exact parent/current receipts and actual staged gate with no accounting gaps.
+No new execution is inferred from that committed-history review.
