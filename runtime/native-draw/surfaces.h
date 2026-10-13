@@ -129,7 +129,10 @@ static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)r
 static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps){
  if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*2+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
  struct NsState* s=HeapAlloc(GetProcessHeap(),8,sizeof(*s));if(!s)return 0;
- s->pitch=(width*2+7)&~7u;s->pixels=VirtualAlloc(0,s->pitch*height,0x3000,4);
+ /* Original distortion 005965f7 reads a DWORD but uses only its low WORD.
+  * Keep that read valid at the last logical pixel without changing pitch or
+  * exposing another row. This does not admit a source pixel past the surface. */
+ s->pitch=(width*2+7)&~7u;s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);
  if(!s->pixels){HeapFree(GetProcessHeap(),0,s);return 0;}
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
  s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;++nd_surfaces;++ns_creates;ns_bytes+=s->pitch*height;nd_status();return s;

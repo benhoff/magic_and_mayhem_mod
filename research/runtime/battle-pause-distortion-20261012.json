@@ -1,0 +1,161 @@
+{
+  "scope": "Read-only pause/resume sampling and isolated original distortion boundary characterization; no live crash source coordinates or current-code live resolution established. Separate DWORD samples are not atomic.",
+  "raw_directory": "working/experiments/battle-progress/run-f96qgva2",
+  "provenance": {
+    "created_utc": "2026-10-12T23:54:08.414777+00:00",
+    "experiment": "working/experiments/menu-observer/run-_k21dqtv",
+    "inputs": {
+      "working/experiments/menu-observer/run-_k21dqtv/manifest.json": "ccddb81548295052d4b21a6e9e3991bd5135c49af2aafa9bf5bf80db3f66662f",
+      "working/experiments/menu-observer/run-_k21dqtv/game/Chaos.exe": "eb6681aa1bf0697b156adec626a79ba6a37ac18b6777d8bac08de5e2fa8f7956",
+      "runtime/engine-cadence/observer.c": "e5f1a11c1ec2555eb8d103ab5ab0126db40e52918166eeeee49e8c2cbee3104d",
+      "research/runtime/world-tick-loop.md": "eb8d434f1c38eccfca32cc29a9dd924355498dbfd40ad4b71b5abc99dd1f72e9"
+    },
+    "scope": "Read-only Wine ReadProcessMemory sampling; no debugger attach, suspension, remote writes or calls. Separate DWORD reads are not an atomic snapshot.",
+    "artifacts": {
+      "kernel32.lib": "92e419fd028cb95cdcbe34b112b5d65289df572680c6d82fe07ea4bbfa5eae5b",
+      "BattleRead.exe": "864613020684c4a3484bdaf5feb1b6f482f50c1291d005dfab76125e03758926",
+      "probe.obj": "1d83964ccbdf8717f8a8dfcf9110fd09354d859d223a00b858070d7b54a4d23d",
+      "kernel32.def": "3bce735ab6116ec65d611b6f4f2d7450417ed3b9f763005d5dd6e7811c251de8",
+      "probe.c": "026a324af87bbe577853f83a6d79c2ce5a119b3d3aaf9f3fd4266292cc53b90c"
+    }
+  },
+  "sources": {
+    "runtime/engine-cadence/observer.c": "e5f1a11c1ec2555eb8d103ab5ab0126db40e52918166eeeee49e8c2cbee3104d",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19"
+  },
+  "samples": {
+    "before.txt": "gameplay_update_slot=2039428704\npid=300 image=Z:\\home\\hoff\\swdev\\magic_and_mayhem_mod\\working\\experiments\\menu-observer\\run-_k21dqtv\\game\\Chaos.exe\nsample,host_ms,world_tick,accepted_sequence,mode_dword,active_screen,active_flag,interval_ms,suppression,scheduler_phase20,scheduler_phase90\n0,144396795,894,11825,1,7125880,1,50,0,14,84\n1,144397036,894,11830,1,7125880,1,50,0,14,84\n2,144397292,894,11835,1,7125880,1,50,0,14,84\n3,144397536,894,11840,1,7125880,1,50,0,14,84\n4,144397796,894,11845,1,7125880,1,50,0,14,84\n5,144398036,894,11850,1,7125880,1,50,0,14,84\n6,144398297,894,11855,1,7125880,1,50,0,14,84\n7,144398536,894,11860,1,7125880,1,50,0,14,84\n8,144398796,894,11865,1,7125880,1,50,0,14,84\n9,144399053,894,11870,1,7125880,1,50,0,14,84\n10,144399296,894,11875,1,7125880,1,50,0,14,84\n11,144399553,894,11880,1,7125880,1,50,0,14,84\n",
+    "followup-1.txt": "gameplay_update_slot=2039428704\npid=300 image=Z:\\home\\hoff\\swdev\\magic_and_mayhem_mod\\working\\experiments\\menu-observer\\run-_k21dqtv\\game\\Chaos.exe\nsample,host_ms,world_tick,accepted_sequence,mode_dword,active_screen,active_flag,interval_ms,suppression,scheduler_phase20,scheduler_phase90\n0,144442589,1348,12741,0,7125880,1,50,0,8,88\n1,144442832,1353,12746,0,7125880,1,50,0,13,3\n2,144443084,1358,12751,0,7125880,1,50,0,18,8\n3,144443333,1363,12756,0,7125880,1,50,0,3,13\n4,144443592,1368,12761,0,7125880,1,50,0,8,18\n5,144443832,1373,12766,0,7125880,1,50,0,13,23\n6,144444092,1378,12771,0,7125880,1,50,0,18,28\n7,144444332,1383,12776,0,7125880,1,50,0,3,33\n8,144444593,1388,12781,0,7125880,1,50,0,8,38\n9,144444838,1393,12786,0,7125880,1,50,0,13,43\n10,144445096,1398,12791,0,7125880,1,50,0,18,48\n11,144445349,1403,12796,0,7125880,1,50,0,3,53\n",
+    "recheck-20261012T235659Z.txt": "gameplay_update_slot=2039428704\npid=300 image=Z:\\home\\hoff\\swdev\\magic_and_mayhem_mod\\working\\experiments\\menu-observer\\run-_k21dqtv\\game\\Chaos.exe\nsample,host_ms,world_tick,accepted_sequence,mode_dword,active_screen,active_flag,interval_ms,suppression,scheduler_phase20,scheduler_phase90\n0,144562168,3071,14595,0,7125880,1,50,0,11,11\n1,144562407,3071,14595,0,7125880,1,50,0,11,11\n2,144562657,3071,14595,0,7125880,1,50,0,11,11\n3,144562907,3071,14595,0,7125880,1,50,0,11,11\n4,144563157,3071,14595,0,7125880,1,50,0,11,11\n5,144563423,3071,14595,0,7125880,1,50,0,11,11\n6,144563673,3071,14595,0,7125880,1,50,0,11,11\n7,144563923,3071,14595,0,7125880,1,50,0,11,11\n8,144564173,3071,14595,0,7125880,1,50,0,11,11\n9,144564423,3071,14595,0,7125880,1,50,0,11,11\n10,144564673,3071,14595,0,7125880,1,50,0,11,11\n11,144564924,3071,14595,0,7125880,1,50,0,11,11\n"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "distortion": {
+    "original_run": {
+      "scope": "Synthetic one-pixel opaque distortion on 640x480 storage. Isolated unmodified original leaf execution; not the crashed live request. Padding control diagnoses memory access only and is not a validated rendering policy.",
+      "build_command": [
+        "g++",
+        "-m32",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-fno-pie",
+        "-no-pie",
+        "-I",
+        "/home/hoff/swdev/magic_and_mayhem_mod",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/battle-progress/run-f96qgva2/distortion-boundary.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/battle-progress/run-f96qgva2/distortion-boundary"
+      ],
+      "results": [
+        {
+          "mode": "tight",
+          "returncode": -31,
+          "output": ""
+        },
+        {
+          "mode": "padded",
+          "returncode": -31,
+          "output": ""
+        }
+      ],
+      "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "sources": {
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/battle-progress/run-f96qgva2/distortion-boundary.cpp": "0249f1f9cc2fea86884d3a3cda9073953f7ed71587a6184e17bc87e2751ef682",
+        "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19"
+      }
+    },
+    "host_results": [
+      {
+        "mode": "tight",
+        "returncode": 42,
+        "output": "fault=f7b65000 eip=005965f7 eax=00000001 edi=f7b64ffc logical_end=f7b65000\n"
+      },
+      {
+        "mode": "padded",
+        "returncode": 0,
+        "output": "returned=0 pixel_matches=1 padded=1\n"
+      }
+    ],
+    "fixture_source": "\n#define main sprite_reference_unused_main\n#include \"tests/sprite-binary-reference.cpp\"\n#undef main\n#include <csignal>\n#include <ucontext.h>\n#include <unistd.h>\nstatic uintptr_t storageEnd;\nstatic void fault(int,siginfo_t* info,void* raw){\n auto* c=static_cast<ucontext_t*>(raw);char b[256];int n=snprintf(b,sizeof(b),\"fault=%08x eip=%08x eax=%08x edi=%08x logical_end=%08x\\n\",unsigned(uintptr_t(info->si_addr)),unsigned(c->uc_mcontext.gregs[REG_EIP]),unsigned(c->uc_mcontext.gregs[REG_EAX]),unsigned(c->uc_mcontext.gregs[REG_EDI]),unsigned(storageEnd));\n if(n>0)write(1,b,n);_exit(42);\n}\nint main(int argc,char** argv)try{\n if(argc!=3)throw std::runtime_error(\"PE and tight/padded mode required\");map_image(read(argv[1]));\n const unsigned char anchor[]={0x8b,0x14,0x47,0x66,0x89,0x17};\n if(std::memcmp(reinterpret_cast<void*>(0x5965f7),anchor,6))throw std::runtime_error(\"instruction mismatch\");\n constexpr unsigned width=640,height=480,length=width*height*2;\n auto* p=static_cast<unsigned char*>(mmap(nullptr,length+8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_ANONYMOUS,-1,0));if(p==MAP_FAILED)throw std::runtime_error(\"allocation\");\n const bool padded=std::string(argv[2])==\"padded\";storageEnd=uintptr_t(p)+length;\n if(mprotect(p+length+(padded?4096:0),4096,PROT_NONE))throw std::runtime_error(\"guard\");\n struct sigaction action{};action.sa_sigaction=fault;action.sa_flags=SA_SIGINFO;sigemptyset(&action.sa_mask);sigaction(SIGSEGV,&action,nullptr);\n for(unsigned i=0;i<length/2;++i)reinterpret_cast<uint16_t*>(p)[i]=uint16_t(i*97+13);\n global(0x658174,uintptr_t(p));global(0x6a2dc8,width);global(0x6e0008,0);global(0x6cbb6c,0);global(0x6a49b8,width);global(0x656618,height);global(0x6c4830,0);\n for(unsigned i=0;i<16;++i)global(0x656640+i*4,1);\n Bytes frame(50,0);auto field=[&](unsigned o,uint32_t v){memcpy(frame.data()+o,&v,4);};field(0,50);field(4,1);field(8,1);field(40,48);field(44,50);frame[48]=0;frame[49]=1;\n using Draw=unsigned(*)(void*,int,int);unsigned result=reinterpret_cast<Draw>(0x596490)(frame.data(),638,479);\n bool pixelMatches=reinterpret_cast<uint16_t*>(p)[height*width-2]==reinterpret_cast<uint16_t*>(p)[height*width-1];\n std::cout<<\"returned=\"<<result<<\" pixel_matches=\"<<pixelMatches<<\" padded=\"<<padded<<\"\\n\";\n return result||!pixelMatches?1:0;\n}catch(const std::exception& e){std::cerr<<e.what()<<'\\n';return 1;}\n",
+    "fixture_source_sha256": "0249f1f9cc2fea86884d3a3cda9073953f7ed71587a6184e17bc87e2751ef682"
+  },
+  "disassembly": {
+    "space-branch.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n0046d125 <.text+0x6c125>:\n  46d125:\t85 c9                \ttest   ecx,ecx\n  46d127:\t75 70                \tjne    0x46d199\n  46d129:\ta0 59 48 6c 00       \tmov    al,ds:0x6c4859\n  46d12e:\t84 c0                \ttest   al,al\n  46d130:\t75 5f                \tjne    0x46d191\n  46d132:\t8b 4c 24 10          \tmov    ecx,DWORD PTR [esp+0x10]\n  46d136:\t8b 81 df 00 01 00    \tmov    eax,DWORD PTR [ecx+0x100df]\n  46d13c:\t85 c0                \ttest   eax,eax\n  46d13e:\t74 10                \tje     0x46d150\n  46d140:\t80 38 00             \tcmp    BYTE PTR [eax],0x0\n  46d143:\t74 0b                \tje     0x46d150\n  46d145:\t8a 50 01             \tmov    dl,BYTE PTR [eax+0x1]\n  46d148:\t84 d2                \ttest   dl,dl\n  46d14a:\t0f 84 36 0f 00 00    \tje     0x46e086\n  46d150:\t8b 81 5a fd 00 00    \tmov    eax,DWORD PTR [ecx+0xfd5a]\n  46d156:\t85 c0                \ttest   eax,eax\n  46d158:\t74 24                \tje     0x46d17e\n  46d15a:\t8d 4c 24 18          \tlea    ecx,[esp+0x18]\n  46d15e:\te8 0d 67 00 00       \tcall   0x473870\n  46d163:\t8d 54 24 18          \tlea    edx,[esp+0x18]\n  46d167:\tb9 98 28 6a 00       \tmov    ecx,0x6a2898\n  46d16c:\t52                   \tpush   edx\n  46d16d:\te8 5e aa 0c 00       \tcall   0x537bd0\n  46d172:\t5f                   \tpop    edi\n  46d173:\t5e                   \tpop    esi\n  46d174:\t5d                   \tpop    ebp\n  46d175:\t33 c0                \txor    eax,eax\n  46d177:\t5b                   \tpop    ebx\n  46d178:\t83 c4 14             \tadd    esp,0x14\n  46d17b:\tc2 10 00             \tret    0x10\n  46d17e:\t6a 01                \tpush   0x1\n  46d180:\te8 9b 1c 00 00       \tcall   0x46ee20\n  46d185:\t5f                   \tpop    edi\n  46d186:\t5e                   \tpop    esi\n  46d187:\t5d                   \tpop    ebp\n  46d188:\t33 c0                \txor    eax,eax\n  46d18a:\t5b                   \tpop    ebx\n  46d18b:\t83 c4 14             \tadd    esp,0x14\n  46d18e:\tc2 10 00             \tret    0x10\n",
+    "key-tables.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n0046e160 <.text+0x6d160>:\n  46e160:\t86 cf                \txchg   bh,cl\n  46e162:\t46                   \tinc    esi\n  46e163:\t00 4a da             \tadd    BYTE PTR [edx-0x26],cl\n  46e166:\t46                   \tinc    esi\n  46e167:\t00 6f da             \tadd    BYTE PTR [edi-0x26],ch\n  46e16a:\t46                   \tinc    esi\n  46e16b:\t00 d8                \tadd    al,bl\n  46e16d:\tdb 46 00             \tfild   DWORD PTR [esi+0x0]\n  46e170:\t4f                   \tdec    edi\n  46e171:\tdc 46 00             \tfadd   QWORD PTR [esi+0x0]\n  46e174:\tdd d1                \tfst    st(1)\n  46e176:\t46                   \tinc    esi\n  46e177:\t00 07                \tadd    BYTE PTR [edi],al\n  46e179:\td1 46 00             \trol    DWORD PTR [esi+0x0],1\n  46e17c:\t94                   \txchg   esp,eax\n  46e17d:\tda 46 00             \tfiadd  DWORD PTR [esi+0x0]\n  46e180:\t04 db                \tadd    al,0xdb\n  46e182:\t46                   \tinc    esi\n  46e183:\t00 c6                \tadd    dh,al\n  46e185:\td0 46 00             \trol    BYTE PTR [esi+0x0],1\n  46e188:\tae                   \tscas   al,BYTE PTR es:[edi]\n  46e189:\td1 46 00             \trol    DWORD PTR [esi+0x0],1\n  46e18c:\tee                   \tout    dx,al\n  46e18d:\tdb 46 00             \tfild   DWORD PTR [esi+0x0]\n  46e190:\ta8 d3                \ttest   al,0xd3\n  46e192:\t46                   \tinc    esi\n  46e193:\t00 e5                \tadd    ch,ah\n  46e195:\td6                   \tsalc\n  46e196:\t46                   \tinc    esi\n  46e197:\t00 1c da             \tadd    BYTE PTR [edx+ebx*8],bl\n  46e19a:\t46                   \tinc    esi\n  46e19b:\t00 33                \tadd    BYTE PTR [ebx],dh\n  46e19d:\tda 46 00             \tfiadd  DWORD PTR [esi+0x0]\n  46e1a0:\t48                   \tdec    eax\n  46e1a1:\td3 46 00             \trol    DWORD PTR [esi+0x0],cl\n  46e1a4:\t78 d3                \tjs     0x46e179\n  46e1a6:\t46                   \tinc    esi\n  46e1a7:\t00 25 d1 46 00 cf    \tadd    BYTE PTR ds:0xcf0046d1,ah\n  46e1ad:\tdc 46 00             \tfadd   QWORD PTR [esi+0x0]\n\t...\n  46e1b8:\t00 00                \tadd    BYTE PTR [eax],al\n  46e1ba:\t01 02                \tadd    DWORD PTR [edx],eax\n  46e1bc:\t13 03                \tadc    eax,DWORD PTR [ebx]\n  46e1be:\t04 05                \tadd    al,0x5\n  46e1c0:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1c2:\t06                   \tpush   es\n  46e1c3:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1c5:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1c7:\t13 07                \tadc    eax,DWORD PTR [edi]\n  46e1c9:\t08 13                \tor     BYTE PTR [ebx],dl\n  46e1cb:\t13 09                \tadc    ecx,DWORD PTR [ecx]\n  46e1cd:\t0a 13                \tor     dl,BYTE PTR [ebx]\n  46e1cf:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1d1:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1d3:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1d5:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1d7:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1d9:\t0b 0c 0d 0e 0f 13 13 \tor     ecx,DWORD PTR [ecx*1+0x13130f0e]\n  46e1e0:\t13 10                \tadc    edx,DWORD PTR [eax]\n  46e1e2:\t11 13                \tadc    DWORD PTR [ebx],edx\n  46e1e4:\t13 13                \tadc    edx,DWORD PTR [ebx]\n  46e1e6:\t13 12                \tadc    edx,DWORD PTR [edx]\n",
+    "creature-gate.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n0046b700 <.text+0x6a700>:\n  46b700:\t8b 86 62 fd 00 00    \tmov    eax,DWORD PTR [esi+0xfd62]\n  46b706:\tb9 98 28 6a 00       \tmov    ecx,0x6a2898\n  46b70b:\t50                   \tpush   eax\n  46b70c:\te8 cf c8 0c 00       \tcall   0x537fe0\n  46b711:\t39 9e 5a fd 00 00    \tcmp    DWORD PTR [esi+0xfd5a],ebx\n  46b717:\t0f 85 a5 00 00 00    \tjne    0x46b7c2\n  46b71d:\ta1 80 f1 6d 00       \tmov    eax,ds:0x6df180\n  46b722:\t8b 3d 58 ef 6d 00    \tmov    edi,DWORD PTR ds:0x6def58\n  46b728:\t33 ed                \txor    ebp,ebp\n  46b72a:\t3b c3                \tcmp    eax,ebx\n  46b72c:\t76 1c                \tjbe    0x46b74a\n  46b72e:\t39 5f 04             \tcmp    DWORD PTR [edi+0x4],ebx\n  46b731:\t74 07                \tje     0x46b73a\n  46b733:\t8b cf                \tmov    ecx,edi\n  46b735:\te8 16 e7 09 00       \tcall   0x509e50\n  46b73a:\ta1 80 f1 6d 00       \tmov    eax,ds:0x6df180\n  46b73f:\t45                   \tinc    ebp\n  46b740:\t81 c7 4b 0e 00 00    \tadd    edi,0xe4b\n  46b746:\t3b e8                \tcmp    ebp,eax\n  46b748:\t72 e4                \tjb     0x46b72e\n  46b74a:\tb9 fc ef 6d 00       \tmov    ecx,0x6deffc\n  46b74f:\te8 6c 97 ff ff       \tcall   0x464ec0\n  46b754:\tb9 2c f0 6d 00       \tmov    ecx,0x6df02c\n  46b759:\te8 62 97 ff ff       \tcall   0x464ec0\n  46b75e:\tb9 5c f0 6d 00       \tmov    ecx,0x6df05c\n  46b763:\te8 58 97 ff ff       \tcall   0x464ec0\n  46b768:\tb9 8c f0 6d 00       \tmov    ecx,0x6df08c\n  46b76d:\te8 4e 97 ff ff       \tcall   0x464ec0\n  46b772:\tb9 bc f0 6d 00       \tmov    ecx,0x6df0bc\n  46b777:\te8 44 97 ff ff       \tcall   0x464ec0\n  46b77c:\tb9 ec f0 6d 00       \tmov    ecx,0x6df0ec\n  46b781:\te8 3a 97 ff ff       \tcall   0x464ec0\n  46b786:\tb9 1c f1 6d 00       \tmov    ecx,0x6df11c\n  46b78b:\te8 30 97 ff ff       \tcall   0x464ec0\n  46b790:\tb9 4c f1 6d 00       \tmov    ecx,0x6df14c\n  46b795:\te8 26 97 ff ff       \tcall   0x464ec0\n  46b79a:\tb9 58 ef 6d 00       \tmov    ecx,0x6def58\n  46b79f:\te8 dc ef 0b 00       \tcall   0x52a780\n  46b7a4:\tb9 58 ef 6d 00       \tmov    ecx,0x6def58\n  46b7a9:\te8 42 f2 0b 00       \tcall   0x52a9f0\n  46b7ae:\t39 1d 3c 1f 6e 00    \tcmp    DWORD PTR ds:0x6e1f3c,ebx\n  46b7b4:\t74 26                \tje     0x46b7dc\n  46b7b6:\tb9 08 af 6e 00       \tmov    ecx,0x6eaf08\n  46b7bb:\te8 e0 4c 0d 00       \tcall   0x5404a0\n  46b7c0:\teb 1a                \tjmp    0x46b7dc\n  46b7c2:\t38 1d 5b 48 6c 00    \tcmp    BYTE PTR ds:0x6c485b,bl\n  46b7c8:\t74 12                \tje     0x46b7dc\n  46b7ca:\tbf 0a 00 00 00       \tmov    edi,0xa\n  46b7cf:\tb9 08 af 6e 00       \tmov    ecx,0x6eaf08\n  46b7d4:\te8 c7 4c 0d 00       \tcall   0x5404a0\n  46b7d9:\t4f                   \tdec    edi\n  46b7da:\t75 f3                \tjne    0x46b7cf\n  46b7dc:\t8b ce                \tmov    ecx,esi\n  46b7de:\te8 dd 6c 00 00       \tcall   0x4724c0\n  46b7e3:\t8b 86 5a fd 00 00    \tmov    eax,DWORD PTR [esi+0xfd5a]\n  46b7e9:\t8b 3d 98 94 68 00    \tmov    edi,DWORD PTR ds:0x689498\n  46b7ef:\t3b c3                \tcmp    eax,ebx\n  46b7f1:\t75 29                \tjne    0x46b81c\n  46b7f3:\ta1 dc 98 68 00       \tmov    eax,ds:0x6898dc\n  46b7f8:\t33 ed                \txor    ebp,ebp\n  46b7fa:\t3b c3                \tcmp    eax,ebx\n  46b7fc:\t76 38                \tjbe    0x46b836\n  46b7fe:\t39 5f 04             \tcmp    DWORD PTR [edi+0x4],ebx\n  46b801:\t74 07                \tje     0x46b80a\n  46b803:\t8b cf                \tmov    ecx,edi\n  46b805:\te8 d6 b8 02 00       \tcall   0x4970e0\n  46b80a:\ta1 dc 98 68 00       \tmov    eax,ds:0x6898dc\n  46b80f:\t45                   \tinc    ebp\n  46b810:\t81 c7 2e 02 00 00    \tadd    edi,0x22e\n  46b816:\t3b e8                \tcmp    ebp,eax\n  46b818:\t72 e4                \tjb     0x46b7fe\n  46b81a:\teb 1a                \tjmp    0x46b836\n  46b81c:\tbd 7d 00 00 00       \tmov    ebp,0x7d\n  46b821:\t39 5f 04             \tcmp    DWORD PTR [edi+0x4],ebx\n  46b824:\t74 07                \tje     0x46b82d\n  46b826:\t8b cf                \tmov    ecx,edi\n  46b828:\te8 b3 b8 02 00       \tcall   0x4970e0\n  46b82d:\t81 c7 2e 02 00 00    \tadd    edi,0x22e\n  46b833:\t4d                   \tdec    ebp\n  46b834:\t75 eb                \tjne    0x46b821\n  46b836:\t39 9e 5a fd 00 00    \tcmp    DWORD PTR [esi+0xfd5a],ebx\n",
+    "world-counter-gate.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n0046b444 <.text+0x6a444>:\n  46b444:\te8 77 cf 0c 00       \tcall   0x5383c0\n  46b449:\t85 c0                \ttest   eax,eax\n  46b44b:\t0f 84 52 08 00 00    \tje     0x46bca3\n  46b451:\t8b be 62 fd 00 00    \tmov    edi,DWORD PTR [esi+0xfd62]\n  46b457:\tb9 40 50 6c 00       \tmov    ecx,0x6c5040\n  46b45c:\t47                   \tinc    edi\n  46b45d:\t8b c7                \tmov    eax,edi\n  46b45f:\t89 be 62 fd 00 00    \tmov    DWORD PTR [esi+0xfd62],edi\n  46b465:\t50                   \tpush   eax\n  46b466:\te8 a5 c6 01 00       \tcall   0x487b10\n  46b46b:\t8b 96 62 fd 00 00    \tmov    edx,DWORD PTR [esi+0xfd62]\n  46b471:\tb9 78 7d 65 00       \tmov    ecx,0x657d78\n  46b476:\t52                   \tpush   edx\n  46b477:\te8 84 a6 01 00       \tcall   0x485b00\n  46b47c:\t39 9e 5a fd 00 00    \tcmp    DWORD PTR [esi+0xfd5a],ebx\n  46b482:\t0f 85 76 01 00 00    \tjne    0x46b5fe\n  46b488:\ta1 30 48 6c 00       \tmov    eax,ds:0x6c4830\n  46b48d:\t8b 0d 14 1f 6e 00    \tmov    ecx,DWORD PTR ds:0x6e1f14\n  46b493:\t40                   \tinc    eax\n  46b494:\t3b c1                \tcmp    eax,ecx\n  46b496:\ta3 30 48 6c 00       \tmov    ds:0x6c4830,eax\n  46b49b:\t75 0c                \tjne    0x46b4a9\n  46b49d:\ta1                   \t.byte 0xa1\n  46b49e:\t14 66                \tadc    al,0x66\n",
+    "keyboard-dispatch.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n0046c070 <.text+0x6b070>:\n  46c070:\t83 ec 14             \tsub    esp,0x14\n  46c073:\t53                   \tpush   ebx\n  46c074:\t55                   \tpush   ebp\n  46c075:\t56                   \tpush   esi\n  46c076:\t8b 74 24 2c          \tmov    esi,DWORD PTR [esp+0x2c]\n  46c07a:\t33 ed                \txor    ebp,ebp\n  46c07c:\t57                   \tpush   edi\n  46c07d:\t8b f9                \tmov    edi,ecx\n  46c07f:\t55                   \tpush   ebp\n  46c080:\t56                   \tpush   esi\n  46c081:\t89 7c 24 18          \tmov    DWORD PTR [esp+0x18],edi\n  46c085:\t33 db                \txor    ebx,ebx\n  46c087:\tc7 05 fc 16 5e 00 01 \tmov    DWORD PTR ds:0x5e16fc,0x1\n  46c08e:\t00 00 00 \n  46c091:\tff 15 8c 52 5c 00    \tcall   DWORD PTR ds:0x5c528c\n  46c097:\t8b 4c 24 2c          \tmov    ecx,DWORD PTR [esp+0x2c]\n  46c09b:\t81 c1 00 ff ff ff    \tadd    ecx,0xffffff00\n  46c0a1:\t83 f9 04             \tcmp    ecx,0x4\n  46c0a4:\t77 10                \tja     0x46c0b6\n  46c0a6:\tff 24 8d 94 e0 46 00 \tjmp    DWORD PTR [ecx*4+0x46e094]\n  46c0ad:\t83 fe 10             \tcmp    esi,0x10\n  46c0b0:\t0f 84 d0 1f 00 00    \tje     0x46e086\n  46c0b6:\t5f                   \tpop    edi\n  46c0b7:\t5e                   \tpop    esi\n  46c0b8:\t5d                   \tpop    ebp\n  46c0b9:\tb8 01 00 00 00       \tmov    eax,0x1\n  46c0be:\t5b                   \tpop    ebx\n  46c0bf:\t83 c4 14             \tadd    esp,0x14\n  46c0c2:\tc2 10 00             \tret    0x10\n  46c0c5:\t83 fe 25             \tcmp    esi,0x25\n  46c0c8:\t7c 09                \tjl     0x46c0d3\n  46c0ca:\t83 fe 28             \tcmp    esi,0x28\n  46c0cd:\t0f 8e b3 1f 00 00    \tjle    0x46e086\n",
+    "pause-command.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n0046ee20 <.text+0x6de20>:\n  46ee20:\t83 ec 0c             \tsub    esp,0xc\n  46ee23:\t8b 44 24 10          \tmov    eax,DWORD PTR [esp+0x10]\n  46ee27:\t8d 4c 24 00          \tlea    ecx,[esp+0x0]\n  46ee2b:\t51                   \tpush   ecx\n  46ee2c:\tb9 98 28 6a 00       \tmov    ecx,0x6a2898\n  46ee31:\ta3 3c 9e 5d 00       \tmov    ds:0x5d9e3c,eax\n  46ee36:\tc7 44 24 04 00 00 00 \tmov    DWORD PTR [esp+0x4],0x0\n  46ee3d:\t00 \n  46ee3e:\tc7 44 24 08 1a 00 00 \tmov    DWORD PTR [esp+0x8],0x1a\n  46ee45:\t00 \n  46ee46:\tc7 44 24 0c 0c 00 00 \tmov    DWORD PTR [esp+0xc],0xc\n  46ee4d:\t00 \n  46ee4e:\te8 7d 8d 0c 00       \tcall   0x537bd0\n  46ee53:\t83 c4 0c             \tadd    esp,0xc\n  46ee56:\tc2 04 00             \tret    0x4\n  46ee59:\t90                   \tnop\n  46ee5a:\t90                   \tnop\n  46ee5b:\t90                   \tnop\n  46ee5c:\t90                   \tnop\n  46ee5d:\t90                   \tnop\n  46ee5e:\t90                   \tnop\n  46ee5f:\t90                   \tnop\n  46ee60:\t83 ec 0c             \tsub    esp,0xc\n  46ee63:\t8d 44 24 00          \tlea    eax,[esp+0x0]\n  46ee67:\tb9 98 28 6a 00       \tmov    ecx,0x6a2898\n  46ee6c:\t50                   \tpush   eax\n  46ee6d:\tc7 44 24 04 00 00 00 \tmov    DWORD PTR [esp+0x4],0x0\n  46ee74:\t00 \n  46ee75:\tc7 44 24 08 1b 00 00 \tmov    DWORD PTR [esp+0x8],0x1b\n  46ee7c:\t00 \n  46ee7d:\tc7 44 24 0c 0c 00 00 \tmov    DWORD PTR [esp+0xc],0xc\n  46ee84:\t00 \n  46ee85:\te8 46 8d 0c 00       \tcall   0x537bd0\n  46ee8a:\t83 c4 0c             \tadd    esp,0xc\n  46ee8d:\tc3                   \tret\n  46ee8e:\t90                   \tnop\n  46ee8f:\t90                   \tnop\n  46ee90:\tb8 01 00 00 00       \tmov    eax,0x1\n  46ee95:\t89 81 5a fd 00 00    \tmov    DWORD PTR [ecx+0xfd5a],eax\n  46ee9b:\t89 81 5e fd 00 00    \tmov    DWORD PTR [ecx+0xfd5e],eax\n  46eea1:\t8b 0d 3c 9e 5d 00    \tmov    ecx,DWORD PTR ds:0x5d9e3c\n  46eea7:\t85 c9                \ttest   ecx,ecx\n  46eea9:\t74 0a                \tje     0x46eeb5\n  46eeab:\tb9 98 01 6b 00       \tmov    ecx,0x6b0198\n  46eeb0:\te9 2b 0c 10 00       \tjmp    0x56fae0\n  46eeb5:\ta3 3c 9e 5d 00       \tmov    ds:0x5d9e3c,eax\n  46eeba:\tc3                   \tret\n  46eebb:\t90                   \tnop\n  46eebc:\t90                   \tnop\n  46eebd:\t90                   \tnop\n  46eebe:\t90                   \tnop\n  46eebf:\t90                   \tnop\n  46eec0:\tc7 81 5a fd 00 00 00 \tmov    DWORD PTR [ecx+0xfd5a],0x0\n  46eec7:\t00 00 00 \n  46eeca:\tc7 81 5e fd 00 00 01 \tmov    DWORD PTR [ecx+0xfd5e],0x1\n  46eed1:\t00 00 00 \n  46eed4:\tc3                   \tret\n",
+    "resume-command.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n00473850 <.text+0x72850>:\n  473850:\tc7 01 00 00 00 00    \tmov    DWORD PTR [ecx],0x0\n  473856:\tc7 41 04 1b 00 00 00 \tmov    DWORD PTR [ecx+0x4],0x1b\n  47385d:\tc7 41 08 0c 00 00 00 \tmov    DWORD PTR [ecx+0x8],0xc\n  473864:\tc3                   \tret\n  473865:\t90                   \tnop\n  473866:\t90                   \tnop\n  473867:\t90                   \tnop\n  473868:\t90                   \tnop\n  473869:\t90                   \tnop\n  47386a:\t90                   \tnop\n  47386b:\t90                   \tnop\n  47386c:\t90                   \tnop\n  47386d:\t90                   \tnop\n  47386e:\t90                   \tnop\n  47386f:\t90                   \tnop\n  473870:\t8b c1                \tmov    eax,ecx\n  473872:\tc7 00 00 00 00 00    \tmov    DWORD PTR [eax],0x0\n  473878:\tc7 40 04 1b 00 00 00 \tmov    DWORD PTR [eax+0x4],0x1b\n  47387f:\tc7 40 08 0c 00 00 00 \tmov    DWORD PTR [eax+0x8],0xc\n  473886:\tc3                   \tret\n",
+    "command-dispatch.asm": "\nworking/game-nocd/Chaos.exe:     file format pei-i386\n\n\nDisassembly of section .text:\n\n005395cb <.text+0x1385cb>:\n  5395cb:\tb9 78 bb 6c 00       \tmov    ecx,0x6cbb78\n  5395d0:\te8 bb 58 f3 ff       \tcall   0x46ee90\n  5395d5:\te9 19 fd ff ff       \tjmp    0x5392f3\n  5395da:\tb9 78 bb 6c 00       \tmov    ecx,0x6cbb78\n  5395df:\te8 dc 58 f3 ff       \tcall   0x46eec0\n  5395e4:\te9 0a fd ff ff       \tjmp    0x5392f3\n"
+  },
+  "committed_history_review": {
+    "range": "b6cc497baf2d27ec72d46fb2a920dc62d0b5c45b..6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+    "receipt": "qt-shell-tests-opt-in-20261012",
+    "files": [
+      {
+        "path": "apps/qt-shell/README.md",
+        "before_sha256": "22d426e590fdab2957a5c001dc7ac1d84ce3bc75ae19fd65ae0f9a8b3440fee0",
+        "before_sha256_receipt_matches": true,
+        "after_sha256": "6f5c1da296ee4bcdc3eac3697a7821440a2ef835731cfbc591dc0dc8b6692215",
+        "after_sha256_receipt_matches": true
+      },
+      {
+        "path": "research/runtime/coverage/register.json",
+        "before_sha256": "a125c82a319b39e6a920a0702dd8c52408803f4f87d75435588d1994b1636157",
+        "before_sha256_receipt_matches": true,
+        "after_sha256": "869e055169eb53054c21c3c362fa39edb7556f4140caa7e2910a97b53dc5dab2",
+        "after_sha256_receipt_matches": true
+      },
+      {
+        "path": "research/runtime/coverage/source-index-qt-shell-tests-opt-in-20261012.json",
+        "before_sha256": null,
+        "before_sha256_receipt_matches": true,
+        "after_sha256": "95fd96a7780f6f0ae5d3f286aa3448f9483af5993db69f18e55f9870960c6595",
+        "after_sha256_receipt_matches": true
+      },
+      {
+        "path": "tools/run-qt-shell.sh",
+        "before_sha256": "78bd8cfc8a0ea69e73d6072a530b7fa7c08d730ef1de253acdf6c07d3b2fcbbf",
+        "before_sha256_receipt_matches": true,
+        "after_sha256": "53290e652a3444c03f8bf05a18b6cb92d97c160a544e9eace711360cb022590f",
+        "after_sha256_receipt_matches": true
+      }
+    ],
+    "unresolved": [],
+    "scope": "Committed parent/current file hashes only; journal self-excluded; no retrospective execution or gate assertion. Prior receipt is present at HEAD; no intervening commit since it."
+  },
+  "sample_summary": {
+    "before.txt": {
+      "count": 12,
+      "modes": [
+        1
+      ],
+      "world_tick_first": 894,
+      "world_tick_last": 894,
+      "sequence_first": 11825,
+      "sequence_last": 11880
+    },
+    "followup-1.txt": {
+      "count": 12,
+      "modes": [
+        0
+      ],
+      "world_tick_first": 1348,
+      "world_tick_last": 1403,
+      "sequence_first": 12741,
+      "sequence_last": 12796
+    },
+    "recheck-20261012T235659Z.txt": {
+      "count": 12,
+      "modes": [
+        0
+      ],
+      "world_tick_first": 3071,
+      "world_tick_last": 3071,
+      "sequence_first": 14595,
+      "sequence_last": 14595
+    }
+  }
+}
