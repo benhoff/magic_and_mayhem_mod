@@ -352,6 +352,8 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
   auto &s = surface(id);
   if (mode > 5 || !period || period > 16)
     throw std::invalid_argument("Invalid producer raster mode");
+  if (backend == 11 && (mode || !std::holds_alternative<std::vector<std::uint16_t>>(f.pixels)))
+    throw std::invalid_argument("Clipped grayscale requires direct RGB565 words and mode zero");
   const auto left = std::int64_t(x) - f.originX,
              top = std::int64_t(y) - f.originY;
   if ((backend == 0 || backend == 9) &&
@@ -444,6 +446,11 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
         colour = colours.at(indices->at(from));
       else
         colour = std::get<std::vector<std::uint16_t>>(f.pixels).at(from);
+      if (backend == 11) {
+        // No-CD 589c90 averages five-bit channels; green loses its low bit.
+        const auto gray = (((colour >> 11) & 31) + ((colour >> 6) & 31) + (colour & 31)) / 3;
+        colour = (gray << 11) | (gray << 6) | gray;
+      }
       if (mode) {
         known(s.defined, at);
         const auto d = s.image.pixels[at], m = 0x7befu;

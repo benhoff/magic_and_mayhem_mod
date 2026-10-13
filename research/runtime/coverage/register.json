@@ -43649,7 +43649,8 @@
         "DRAW02.draw02-resource-postclose-fixture-01-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
         "DRAW02.draw02-storage-v5-original32-01-20261013",
-        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+        "DRAW02.draw02-worker-prefix-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43770,7 +43771,8 @@
         "DRAW02.draw02-map-point-postclose-fixture-01-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
         "DRAW02.draw02-storage-v5-original32-01-20261013",
-        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+        "DRAW02.draw02-worker-prefix-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44108,7 +44110,8 @@
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
         "DRAW02.draw02-storage-v5-fixture-01-20261013",
         "DRAW02.draw02-storage-v5-original32-01-20261013",
-        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+        "DRAW02.draw02-worker-prefix-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45614,7 +45617,8 @@
         "DRAW02.draw02-copy-storage-original32-04-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
         "DRAW02.draw02-storage-v5-original32-01-20261013",
-        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+        "DRAW02.draw02-worker-prefix-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45955,7 +45959,8 @@
         "DRAW02.draw02-copy-storage-original32-04-20261013",
         "DRAW02.draw02-resource-postclose-original32-01-20261013",
         "DRAW02.draw02-storage-v5-original32-01-20261013",
-        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+        "DRAW02.draw02-worker-prefix-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45997,7 +46002,8 @@
         "DRAW02.draw02-copy-storage-bindings-01-20261013",
         "DRAW02.draw02-resource-postclose-bindings-01-20261013",
         "DRAW02.draw02-storage-v5-copy-bindings-01-20261013",
-        "DRAW02.draw02-worker-prefix-copy-bindings-01-20261013"
+        "DRAW02.draw02-worker-prefix-copy-bindings-01-20261013",
+        "DRAW02.draw02-worker-prefix120-copy-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46093,7 +46099,10 @@
         "DRAW02.draw02-copy-checkpoints-terminal-negative-01-20261013",
         "DRAW02.draw02-copy-checkpoints-original32-01-20261013",
         "DRAW02.draw02-copy-checkpoints-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-checkpoints-01-20261013"
+        "DRAW02.draw02-worker-prefix-checkpoints-01-20261013",
+        "DRAW02.draw02-worker-prefix120-checkpoints-negative-01-20261013",
+        "DRAW02.draw02-grayscale-current120-01-20261013",
+        "DRAW02.draw02-grayscale-prior120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46104,7 +46113,8 @@
       },
       "remaining_gaps": [
         "Original32all1337source checkpoints match unchanged return-order replay. Original120compares2182:2180match, canvas2/checkpoint1335fails1600pixels andcanvas22/checkpoint1336fails950. Initial native terminal refusal retained with0compared. The strict V4 metadata terminal is validated separately. These scoped results do not repair driver/noncopy/CPU ordering, views/aliases/lifetimes, physical coherence or whole47journey/21operation closure.",
-        "Fresh worker-prefix original32 trace compares all1335 source checkpoints with zero differences using unchanged return-order native replay; this trace has44copy return reversals and one delayed COPY return whose commands already completed. Earlier120 checkpoint1335/1336 failures remain failed. No general ordering policy or whole journey closure."
+        "Fresh worker-prefix original32 trace compares all1335 source checkpoints with zero differences using unchanged return-order native replay; this trace has44copy return reversals and one delayed COPY return whose commands already completed. Earlier120 checkpoint1335/1336 failures remain failed. No general ordering policy or whole journey closure.",
+        "After recoveredbackend11grayscale repair, newworker-bound120all2278checkpoints match. Priorheld1202182compared:2181match, canvas2checkpoint1335stillfails1600pixels while canvas22checkpoint1336matches. All pre-repair failures/hashes retained; neither source ordering nor physical coherence is repaired."
       ]
     },
     {
@@ -46185,7 +46195,8 @@
         "DRAW02.draw02-storage-v5-fixture-01-20261013",
         "DRAW02.draw02-storage-query-return-guards-01-20261013",
         "DRAW02.draw02-storage-v4-query-return-legacy-01-20261013",
-        "DRAW02.draw02-storage-v5-query-return-analysis-01-20261013"
+        "DRAW02.draw02-storage-v5-query-return-analysis-01-20261013",
+        "DRAW02.draw02-worker-prefix120-query-returns-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46240,7 +46251,8 @@
         "DRAW02.draw02-worker-prefix-fixture-negative-01-20261013",
         "DRAW02.draw02-worker-prefix-fixture-negative-02-20261013",
         "DRAW02.draw02-worker-prefix-fixture-03-20261013",
-        "DRAW02.draw02-worker-prefix-original32-01-20261013"
+        "DRAW02.draw02-worker-prefix-original32-01-20261013",
+        "DRAW02.draw02-worker-prefix-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46277,7 +46289,8 @@
       ],
       "evidence": [
         "DRAW02.draw02-worker-prefix-analysis-01-20261013",
-        "DRAW02.draw02-worker-prefix-delayed-return-01-20261013"
+        "DRAW02.draw02-worker-prefix-delayed-return-01-20261013",
+        "DRAW02.draw02-worker-prefix120-analysis-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46287,7 +46300,52 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Static original32 interval attribution only. The sole touching COPY return is request711, whose driver commands completed before request714 workers entered; delayed producer journaling does not prove atomic bytes or general ordering. Retain 1464 outside-scope workers, noncopy/checkpoint execution, byte/backing aliases, source/physical lifetime, replay repair and47/21closure as pending."
+        "Static original32 interval attribution only. The sole touching COPY return is request711, whose driver commands completed before request714 workers entered; delayed producer journaling does not prove atomic bytes or general ordering. Retain 1464 outside-scope workers, noncopy/checkpoint execution, byte/backing aliases, source/physical lifetime, replay repair and47/21closure as pending.",
+        "New120has2811boundcommands:2341stable,464otherlogicalrecords,6touchingCOPYreturns. All6drivercommandenvelopes finish before bracketworkerentry;205outsideworkers remain. Backing aliases/noncopy/checkpoint byte execution remain unresolved."
+      ]
+    },
+    {
+      "id": "RS.raster-clipped-word-grayscale",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Clipped direct-word sprite RGB565 grayscale conversion",
+      "scope": "Selected original No-CD589c90 direct-word sprite path with bound RGB565 masks and native backend11, mode0, direct16-bit frame words. Clip and transparency retain prior destination; each drawn source word averages five-bit red, green reduced to five bits by shift6, and blue with unsigned integer division by3, then packs identical five-bit intensity at shifts11,6,0. Original RGB555/global-format variants and indexed sources remain outside this native contract; no general drawing order, byte ownership or presentation closure.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5807248,
+          "scope": "Direct-word clipped row decoding and RGB565 grayscale arithmetic at589e80..589ee4; selected zero-global format branch at589c93..589cb4 only."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw02-clipped-word-grayscale.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp"
+      ],
+      "tests": [
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/canvas_producers.cpp",
+        "assets/sprite_frame_decoder.hpp"
+      ],
+      "evidence": [
+        "DRAW02.draw02-grayscale-diagnosis-01-20261013",
+        "DRAW02.draw02-grayscale-unit-01-20261013",
+        "DRAW02.draw02-grayscale-current120-01-20261013",
+        "DRAW02.draw02-grayscale-prior120-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RGB565backend11mode0directwords pass exhaustive CPUtests and every2278checkpoint in retained new120trace; old120grayscalecheckpoint also matches. Isolated original full-word/clip comparison, RGB555/globalformat variants, indexed source dispatch, general byte/order and47/21closure remain pending."
       ]
     }
   ],
@@ -99907,6 +99965,153 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-original120-01-20261013",
+      "kind": "live_observation",
+      "scope": "Fresh original120:562789records/2278oracles/2136copy requests,1439closed storage calls and1361epochs,123addresses,470changed worker-prefix pairs and actualexit0. No complete physical acquisition or ownership.",
+      "record": "research/runtime/draw02-worker-prefix-original120-01.json",
+      "sha256": "077b58280b2a5a8b5e91eadcd72915ddd5ee8c358d85afffde31e12a91823289",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix120-copy-bindings-01-20261013",
+      "kind": "static",
+      "scope": "All2136requests bind exact API/worker identities with2811commands,141extraAPIcalls and241return reversals. No general replay policy.",
+      "record": "research/runtime/draw02-worker-prefix120-copy-bindings-01.json",
+      "sha256": "bd4ef0cdd8a464ce5bcc1528578bd27b82cc347b5ffbe77fa2df171efad7e7f5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix120-analysis-01-20261013",
+      "kind": "static",
+      "scope": "2811bound command prefixes:2341stable,464other-records-only,6touchingCOPYreturns; all6COPYcommands completed before bracket worker entry.205outside workers retained.",
+      "record": "research/runtime/draw02-worker-prefix120-analysis-01.json",
+      "sha256": "1fe77ca7013cf4b665b760755ee5d11b8139e8836d9fde2e1fbc358b09fb816c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix120-query-returns-01-20261013",
+      "kind": "static",
+      "scope": "All1361livequery inputs join unique same-thread wrapperLock returns by exact IDs. No storage ownership.",
+      "record": "research/runtime/draw02-worker-prefix120-query-returns-01.json",
+      "sha256": "9287703ebf4bc50248a94e7f45b929a1d265cfc727cddb0174c2f631a14991bb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix120-checkpoints-negative-01-20261013",
+      "kind": "native_integration",
+      "scope": "Unchanged replay compares2278checkpoints:2277match,onecanvas22checkpoint1541fails950pixels with identical old120original/nativehashes; nativeexit0. Fullresult failed; sourcefiles predate grayscale repair.",
+      "record": "research/runtime/draw02-worker-prefix120-checkpoints-negative-01.json",
+      "sha256": "f801c04c94e11430bac38ac0beb544cce6f106cb074f1a3c23dc9db315320389",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-diagnosis-01-20261013",
+      "kind": "static",
+      "scope": "Static disassembly and external plane diagnosis: all950differentpixels agree with recovered RGB565 grayscale branch. No original bytes supplied to native replay; this diagnosis alone is not execution proof or a general drawing-order repair.",
+      "record": "research/runtime/draw02-grayscale-diagnosis-01.json",
+      "sha256": "d2d9da72be7488c711c905be867f51da9e485cd2d4ec00d23256418331adcce6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/gray_formula_matches",
+          "equals": 950
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-unit-01-20261013",
+      "kind": "native_integration",
+      "scope": "CPU owned tests pass all65536RGB565values, bothgreenlowbits, transparent/clipped retention, mode/indexed refusal and existing canvas contracts; no original game execution.",
+      "record": "research/runtime/draw02-grayscale-unit-01.json",
+      "sha256": "03aa32c8e7a3cb1c61dd5a0a69d20453e379cd61d676ff312bbba115f0bc25bf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-current120-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh source-only native replay after grayscale repair: all2278checkpoints of worker-bound120trace match, nativeexit0, every original oracle external. No ordering repair or physical/journey closure.",
+      "record": "research/runtime/draw02-grayscale-current120-01.json",
+      "sha256": "1f4df00765909002dcb7a56320d9687f8e8fb3271b83c76f80e2a7be8fd2fd0d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-grayscale-prior120-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh repaired native replay of earlierheld120trace:2182compared,2181match; grayscalecanvas22checkpoint1336nowmatches,canvas2checkpoint1335stillfails1600pixels. No failure excluded; overall result remains failed.",
+      "record": "research/runtime/draw02-grayscale-prior120-01.json",
+      "sha256": "24ac17dc56f6cc2ed3b27a0c4adcf4cef4ef5e97714591862daeeab7a7c6d2f3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -112068,8 +112273,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-delayed-return-20261013.json",
-    "sha256": "142ff7f909559714f7e1895193c21bb0c01b13f89f43aeb60b7abf12ae869036"
+    "path": "research/runtime/coverage/source-index-draw02-grayscale-20261013.json",
+    "sha256": "7adcc5520f0a677863cad884fe00af91114e5718f2bf974bf136c2f397d8ec73"
   },
   "claim_bindings_required": true
 }

@@ -2488,3 +2488,43 @@ physical mismatch. A new guarded 120-update capture adds actual worker-prefix
 and V5 storage-query identities to investigate larger intervals; its result
 must be assessed independently. Step 2 remains open, steps 3–7 pending and all
 47/21 requirements unchanged.
+
+
+## Step 2 repeatable grayscale repair (2026-10-13 UTC)
+
+The worker-bound32checkpoint increment committed as `db79f699`; staged gate
+and normal hook passed. Reviewed `0b21befb..db79f699`: five exact receipts,
+zero gaps. Fresh original120 completes562789records/2278oracles/177867348bytes,
+2136copy requests,1439closed wrapper calls/1361Lock epochs/123local addresses
+and actual gameexit0. All2136COPY/APIjoins account2811commands,141otherAPIcalls
+and241return reversals.2341command prefixes are stable,464bracket other
+logical-canvas records,6bracket touchingCOPYreturns. Each of those6associated
+driver command envelopes finished before its bracket worker entered;205outside
+workers remain explicit. All1361livequery inputs bind unique same-thread Lock
+returns. These are numerical/event associations, not byte/backing ownership.
+
+Unchanged replay compares2278checkpoints:2277match, canvas22checkpoint1541
+fails950pixels. Its original/native hashes repeat the old120canvas22failure.
+Source record228745 is backend11, the clipped direct-word routine0x589c90.
+Static original disassembly recovers its RGB565 gray conversion: average the
+five-bit red, green reduced by shift6, and blue channels, divide by3, then pack
+at11/6/0. All950mismatched pixels agree with that formula. Native CPU replay
+had copied these words in color. The additive World rectangle backend remains
+a separate contract from this sprite route.
+
+Native backend11 now implements that selected direct-word/mode0conversion,
+retaining clipping/transparency and refusing indexed/mode variants before
+writes. Owned CPU tests pass all65536RGB565values and both green low bits,
+clipping/transparency and unsupported-input retention. Fresh source-only
+replay after repair matches every2278checkpoint in the new120trace. The old
+held120trace compares2182:2181match; its gray checkpoint1336is repaired while
+canvas2checkpoint1335stillfails1600pixels. All initial failures, raw outputs
+and original source hashes remain unchanged; original planes never enter
+native input. Build/capture/replays use guarded1/6GiB reservations and verify
+original manifests before/after original-consuming comparisons.
+
+Reassessment: this is a recovered drawing conversion repair, not a global
+copy sort. The old canvas2failure still requires source/driver view and
+noncopy/checkpoint execution accounting. New120CPU parity does not establish
+every physical route or complete semantic journeys. Step2remains open;
+steps3–7stayordered/pending with all47/21requirements unchanged.

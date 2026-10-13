@@ -189,7 +189,37 @@ void rasterSampling() {
   row.pixels[1]=17; row.pixels[2]=18; expect(wide.read(1).pixels==row.pixels);
 }
 } // namespace
+void clippedGrayscale() {
+  using namespace mnm;
+  assets::SpriteFrame sprite; sprite.width=256; sprite.height=256;
+  sprite.opaqueMask.assign(65536,1);
+  std::vector<std::uint16_t> words(65536);
+  for(unsigned i=0;i<65536;++i)words[i]=std::uint16_t(i);
+  sprite.pixels=words;
+  render::CanvasSequence canvas; canvas.create(1,256,256);
+  canvas.fill(1,{0,0,256,256},0x1234);
+  canvas.raster(1,sprite,0,0,{0,0,256,256},0,11,{},{});
+  const auto actual=canvas.read(1);
+  // Independently enumerate unpacked RGB channel combinations, including both
+  // green low-bit values, rather than deriving expected values from outputs.
+  for(unsigned red=0;red<32;++red)for(unsigned green=0;green<64;++green)for(unsigned blue=0;blue<32;++blue){
+    const auto mean=(red+green/2+blue)/3;
+    expect(actual.pixels[red*2048+green*32+blue]==mean*2113);
+  }
+  canvas.fill(1,{0,0,256,256},0x1234);
+  sprite.opaqueMask[257]=0;
+  canvas.raster(1,sprite,0,0,{1,1,3,3},0,11,{},{});
+  const auto clipped=canvas.read(1);
+  expect(clipped.pixels[0]==0x1234 && clipped.pixels[257]==0x1234 && clipped.pixels[259]==0x1234);
+  expect(clipped.pixels[258]==((0+8/2+2)/3)*2113);
+  const auto before=clipped.pixels;
+  refuses([&]{canvas.raster(1,sprite,0,0,{0,0,256,256},1,11,{},{});});
+  sprite.pixels=std::vector<std::uint8_t>(65536,1);
+  refuses([&]{canvas.raster(1,sprite,0,0,{0,0,256,256},0,11,{},{});});
+  expect(canvas.read(1).pixels==before);
+}
 int main() {
+  clippedGrayscale();
   try {
     using namespace mnm;
     decodedFrameCache();
