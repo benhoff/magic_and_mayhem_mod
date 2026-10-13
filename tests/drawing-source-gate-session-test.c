@@ -8,7 +8,7 @@ void* memcpy(void* out,const void* in,unsigned bytes){copy(out,in,bytes);return 
 static unsigned starts,ends,refuse;
 static unsigned WIN gate_start(unsigned owner,void* output,unsigned bytes){
  unsigned* p=output;if(bytes!=128||owner!=GetCurrentThreadId())ExitProcess(201);
- p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=1;p[4]=refuse?3:0;p[5]=refuse?0:7;p[6]=owner;p[7]=1;p[8]=2;p[13]=refuse?0:3;++starts;return refuse?0:7;
+ p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=1;p[4]=refuse?3:0;p[5]=refuse?8:7;p[6]=owner;p[7]=1;p[8]=2;p[13]=refuse?0:3;++starts;return refuse?0:7;
 }
 static unsigned WIN gate_stop(unsigned owner,unsigned token,void* output,unsigned bytes){
  unsigned* p=output;if(bytes!=128||owner!=GetCurrentThreadId()||token!=7)ExitProcess(202);

@@ -4,6 +4,9 @@ API u32 WIN GetCurrentThreadId(void);
 API u32 WIN WaitForSingleObject(HANDLE,u32);
 API u32 WIN ReleaseMutex(HANDLE);
 API u32 WIN SetEnvironmentVariableA(const char*,const char*);
+API HANDLE WIN CreateEventA(void*,u32,u32,const char*);
+API u32 WIN SetEvent(HANDLE);
+API HANDLE WIN CreateThread(void*,u32,u32(WIN*)(void*),void*,u32,u32*);
 static u8* owned;
 #define MNM_CURSOR_GATE_BASE 0x18000000u
 #define MNM_CURSOR_GATE_CREATE_INNER ((u32)owned+0x100)
@@ -17,6 +20,11 @@ static u8* owned;
 #include "../runtime/cursor-source-gate/module.c"
 #undef DllMain
 static void check(int ok,u32 code){if(!ok)ExitProcess(code);}
+static HANDLE contention_ready,contention_return;
+static u32 WIN contend(void* outer){
+ check(WaitForSingleObject(outer,5000)==0,246);check(SetEvent(contention_ready),247);
+ check(WaitForSingleObject(contention_return,5000)==0&&ReleaseMutex(outer),248);return 0;
+}
 static u8 fp_before[512]__attribute__((aligned(16))),fp_after[512]__attribute__((aligned(16)));
 static void prepare(void){for(u32 i=0;i<512;++i)fp_before[i]=fp_after[i]=0;u16 control=0x027f;__asm__ volatile("fldcw %0"::"m"(control));cursor_gate_fx_save(fp_before);SetLastError(0xabcdef01);}
 static void verify(void){cursor_gate_fx_save(fp_after);check(GetLastError()==0xabcdef01&&cursor_gate_equal(fp_after,fp_before,512),230);}
@@ -60,7 +68,14 @@ void start(void){
  HANDLE inner=cursor_gate_create_at(0,0,0,MNM_CURSOR_GATE_CREATE_INNER+6);
  check(outer&&inner&&cursor_gate_adapter.outer.duplicate&&cursor_gate_adapter.inner.duplicate,205);
  *(void**)MNM_CURSOR_GATE_GLOBAL_OUTER=outer;*(void**)MNM_CURSOR_GATE_GLOBAL_INNER=inner;
- unsigned point[32],owner=GetCurrentThreadId();prepare();unsigned token=CursorSourceGateBeginV1(owner,point,128);verify();
+ unsigned point[32],owner=GetCurrentThreadId();
+ contention_ready=CreateEventA(0,1,0,0);contention_return=CreateEventA(0,1,0,0);check(contention_ready&&contention_return,249);
+ HANDLE competitor=CreateThread(0,0,contend,outer,0,0);check(competitor&&WaitForSingleObject(contention_ready,5000)==0,250);
+ prepare();check(!CursorSourceGateBeginV1(owner,point,128),251);verify();
+ check(point[4]==3&&point[5]&&point[9]==0x102&&!point[13]&&!cursor_gate_adapter.outer.leases&&!cursor_gate_adapter.inner.leases,252);
+ check(SetEvent(contention_return)&&WaitForSingleObject(competitor,5000)==0,253);
+ check(CloseHandle(competitor)&&CloseHandle(contention_return)&&CloseHandle(contention_ready),254);
+ prepare();unsigned token=CursorSourceGateBeginV1(owner,point,128);verify();
  check(token&&point[5]==token&&point[13]==3&&point[9]==0&&point[10]==0,206);
  prepare();check(!CursorSourceGateEndV1(owner+1,token,point,128),207);verify();
  check(cursor_gate_close(outer)&&cursor_gate_close(inner),208);

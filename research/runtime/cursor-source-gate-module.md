@@ -73,3 +73,14 @@ fingerprints the shared list and both gate decoders even without optional
 coverage claims. This is static build provenance; no new original execution,
 complete shutdown, protected source ownership or caller equivalence. Earlier
 fixture/build hashes remain immutable and historical after source changes.
+
+## Real contended refusal checkpoint
+
+`draw02-gate-refusal-module-fixture-01.json` runs an event-synchronized competing
+Wine thread holding the original outer object. Begin returns0 and point word5
+retains attempted ID1/raw outer timeout258 with zero held levels/reservation
+leases. The subsequent admitted token and retirement/drain/forwarding guards
+still pass; all512FX/error preserved. The25row snapshot has zero scoped lifecycle
+gaps. This uses relocated owned installer pages and real kernel objects, with
+no original game or normal shutdown/completeness claim. The first preflight
+refused at99.37GiBfree before launch; its log is retained.

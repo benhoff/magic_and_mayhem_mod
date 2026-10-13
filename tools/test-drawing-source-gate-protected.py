@@ -7,6 +7,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 from drawing_api_session import sha
+from drawing_source_cursor_gate import decode as decode_binding
 from coverage_claims import behavior_contract, required_sources
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,9 +79,12 @@ def main():
         if raw[:8]!=b'MNMDGA01' or len(raw)!=64+5*192:raise ValueError('Binding extent/magic')
         rows=[struct.unpack('<48I',raw[64+i*192:64+(i+1)*192]) for i in range(5)]
         if [r[1] for r in rows]!=[1,2,1,2,4] or rows[0][2]!=1 or rows[0][4]!=7 or rows[1][4:6]!=(7,9) or rows[2][2]!=2 or rows[2][6]!=3 or rows[3][4]!=0:raise ValueError('Binding identities differ')
+        binding=decode_binding(raw)
+        if len(binding['completed'])!=1 or len(binding['refused'])!=1 or binding['refused'][0]['attempted_token']!=8 or binding['refused'][0]['token'] or binding['complete_reference']:raise ValueError('Failed attempt disposition differs')
         held=list(run.glob('source-held-oracle-*.565'))
         if len(held)!=2 or any(p.stat().st_size!=960000 for p in held) or sha(held[0].read_bytes())!=sha(held[1].read_bytes()):raise ValueError('Held snapshot fixture differs')
         report=dict(schema=1,success=True,sources=sources,claims=declaration['claims'],sources_stable=True,artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),journal_sha256=sha(raw),records=5,accepted_token=7,api_entry=1,source_lease=9,refused_api_entry=2,refused_end_not_called=True,production_begin_end_executed=True,source_worker_callbacks_executed=True,protection_callback_mocked=True,partial_snapshot_trigger_executed=True,partial_snapshot_error_control_word_preserved=True,held_snapshots=2,held_snapshot_sha256=sha(held[0].read_bytes()),original_game_executed=False,live_capture_integrated=False,scope='Owned production session begin/end with controlled enabled gate callbacks, accepted/refused requests, exact raw failure/error and token/APIbinding. Controlled mocked source protection/getter and explicit worker command/return schedule executed; actual page protection/Wine worker remains separate; no original game/physical/sourcepage/native parity.')
+        report['binding']=binding;report['refused_attempt_token']=8
         with args.report.open('x') as out:
             json.dump(report, out, indent=2)
             out.write('\n')

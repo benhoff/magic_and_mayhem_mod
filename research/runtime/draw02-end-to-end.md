@@ -1795,3 +1795,46 @@ The separately reserved 2 GiB counter-only control also refused before launch
 at 99.46 GiB free. `draw02-source-gate-cadence-control-preflight-01.json` retains
 the exact guard output/hash. No original artifacts or game were consumed by
 this refused attempt and no fresh cadence evidence is claimed.
+
+## DRAW-02 refused reservation checkpoint (2026-10-12 UTC)
+
+The dependency provenance fix committed as `b3faa8f8` with the required staged
+check and normal hook passed. Its verification copies ran in shared memory;
+builds and engine experiments keep the unchanged storage guard. The reviewed
+`cb3dd4a5..b3faa8f8` range has 11 exact receipts and zero missing versions.
+
+A production failed Begin returns zero after reservation drainage but can retain
+the attempted ID in point word5. Earlier controlled callbacks used zero in both
+places, so the decoder rejected a legitimate contended refusal. The corrected
+decoder separates admitted and attempted tokens, pairs owner/attempt/mutex
+identities and point phase/reason, rejects retained acquired levels, and refuses
+reused completed API identities. Seven guards pass. No runtime gate algorithm
+or original wait/forwarding body was changed.
+
+Fresh real-kernel module fixture01 passes an event-synchronized foreign outer
+owner: raw timeout258, attempted ID1/scalar0, no owned levels/reservation leases,
+all512FX/error preserved,25rows and zero scoped lifecycle gaps. The first storage
+preflight refused before launch; its log remains. Controlled production session
+fixture01 passes accepted7/lease9 and refused attempted8/scalar0/noEnd, two equal
+held snapshots and restored/drained state before End. Protection/getter and
+worker callbacks remain mocked; actual original integration is independent.
+
+Fresh counter-only original control01 completes399advancing/357queued updates,
+normal original Quit0 and both original manifests. Drawing/source/Wine/display/
+gate diagnostics are disabled. Timing with the enabled gate, identical gameplay
+work, source aliases and semantic completion remain unproved.
+
+Reassessment: step2 remains open; all47/21 requirements and steps3–7 retain their
+scope. The approved five-run archive is in progress. Recheck actual storage
+before the planned32update dual-physical diagnostic. If its8GiBreservation cannot
+fit, first use a bounded16update API-physical gate integration pilot with EGL
+metadata and a5GiBestimate, retaining the absence of post-EGL physical planes and
+all refusals explicitly. This smaller prerequisite cannot close the32/120window,
+complete source/frame/reference/parity or unobtrusive capture boundaries.
+
+Approved archive02 completed: 13,598 payloads across the exact five runs,
+7.9823 GiB freed, both durable catalogs agree and all 3,198 unique compressed
+objects rehashed. Original manifests before/after verify all 2,927 files. The
+tracked `draw02-storage-archive-20261012-02.json` pins proposal/executor/verifier/
+result/receipt provenance. No broader cleanup, policy change, refreshed historical
+engine hashes or new engine validation. Restore archived inputs before use.

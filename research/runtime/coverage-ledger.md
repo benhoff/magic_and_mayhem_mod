@@ -8455,3 +8455,20 @@ The separately reserved 2 GiB counter-only control also refused before launch
 at 99.46 GiB free. `draw02-source-gate-cadence-control-preflight-01.json` retains
 the exact guard output/hash. No original artifacts or game were consumed by
 this refused attempt and no fresh cadence evidence is claimed.
+
+DRAW-02 refused reservation checkpoint: decoder distinguishes the attempted ID
+from scalar admission on failed Begin. Seven guards, real contended module
+fixture01 and controlled production session fixture01 pass within their stated
+scope. Current counter-only original control01 completes399advancing/357queued
+updates and normal Quit0; both original manifests pass. No gate-enabled original
+acquisition, source alias/full reference/native parity or status promotion yet.
+Step2 and all47/21 remain open. Approved archive02 is in progress; original trials
+require storage admission. A bounded16update API-physical/EGL-metadata pilot may
+precede the32update dual-physical trial under a separately declared5GiBestimate.
+
+Approved archive02 completed: 13,598 payloads across the exact five runs,
+7.9823 GiB freed, both durable catalogs agree and all 3,198 unique compressed
+objects rehashed. Original manifests before/after verify all 2,927 files. The
+tracked `draw02-storage-archive-20261012-02.json` pins proposal/executor/verifier/
+result/receipt provenance. No broader cleanup, policy change, refreshed historical
+engine hashes or new engine validation. Restore archived inputs before use.

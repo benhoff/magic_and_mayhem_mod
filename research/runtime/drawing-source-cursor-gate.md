@@ -62,3 +62,15 @@ Frontend fixture03freshly passes controlled ordering and exact MainQuit snapshot
 trigger with LastError/controlword preservation; prior fixture01/02historical
 after callback/report changes. Four binding/frontend and four cadencecontrol
 guards pass. Original32trial requires8GiBpreflight, normalquiescence still open.
+
+## Refused attempt identity
+
+The owning module can return zero from Begin after a failed wait and successful
+reservation drainage while retaining the attempted token in scalar point word5.
+The binding row records the admitted token separately. A nonzero attempted ID
+does not establish active ownership. Decoder now retains this refusal and checks
+owner/attempt/mutex identities, phase/reason, zero acquired levels and unique API
+entry IDs. Seven malformed/refusal guards pass. Controlled production session
+fixture01 retains attempted8/scalar0/noEnd and accepted7/lease9 with two equal
+held snapshots; protection and worker callbacks remain mocked. No original gate
+capture, source alias or complete reference/parity validation.

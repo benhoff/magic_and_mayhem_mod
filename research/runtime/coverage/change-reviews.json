@@ -535067,6 +535067,292 @@
         "evidence": [],
         "reason": "Production DLL compiles and is byte-identical to prior build SHAe85cfd91a448fb01eddfbf23806e3c6e9151a8e4b1accbc5804b1be6e8992a11; all compiler-included sources match the corrected manifest. Four frontend binding and four cadence control guards pass. Static audit has0errors and only retained historical warnings. Original8GiBdiagnostic and2GiBcounter-only preflights refused before launch. No current original source/worker/cadence, complete shutdown/reference or native parity validation/status promotion; previous execution hashes remain historical."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "60a4dabf3f44e0571655d9ca15a1c67503949e5c13f61878cd17b6603e7884bf",
+          "before_sha256": "9f37d9c4b491fa0ebcf995266b7a497b1b681d482a8ff578567bf0d2e364d89e",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "fa6c82739fa5c388c40f2d5f1f38f2335d685e083c68bd5575814f593230c952",
+          "before_sha256": "2b923b07d24bc34a013f037a9bd45eaf0e0e2abe8e2ad64140058611611e7f6d",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "103f392a02af5763084d66193fc8dd4c5749c995ba27718cf62270695c54b2fb",
+          "before_sha256": "5e3590f90f4e548d8529871e40cad4bac5c6abd753ce04e581686dfbe8fa1202",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "3a544860d3ea3fa34eb5cd4e99761f4b5032182e100a6b60c8a93a65a1700e45",
+          "before_sha256": "4cd2cf8e7d1b766f7a83f55768a1f6a55ab3fc1d327055dffafa8ae3d6a9e455",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "15d52365fcdb9ebd8960963e11a8ce0e7d09384222229263503a48da35aacde4",
+          "before_sha256": "d783ee5d048d33da243d7b4f6b029b4566c9abd891c2e125aad9c200dbb12c8a",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "a7f18d4948e19fca690bbdfac881817361a72352bd65f51a55a6a6fbb6c030e8",
+          "before_sha256": "26642d7f4404a2e0238787212cbb46f4d99bc7f920a1efd4dd265f91dddb9576",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "8d0d973ebe4ffb722b9bdd85b978e060f10280e7e00c14fec823e6729cfae8f6",
+          "before_sha256": "0ae993df4d8a2bc30123120dfda7569b742ad5a1425c13eff9f7eaa379945f9d",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "de5e6ee8b3cd01d5dc161a679df25e5a028aee42b973bc799648aa72ca84afb0",
+          "before_sha256": "87d94a428f06601b273710f4ee36ecda70dcde2aee6de9e5f0a4759277098609",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "bad58483007f8c08292cf31b6a006336328d87e1ed803d71af6cd7db8a3544fb",
+          "before_sha256": "870f67c67e474670c9a5be9168855854ee1f3d540979ac8276eabbbd16fe6b0f",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "ace4e1def0504ef8de10fc1ee59c2e0d30f920bcf5684c820bde403800b52334",
+          "before_sha256": "7223d0da2f843e7988593ff3bf1c5113564eae902349f0bf668bd1bb5b56b3cb",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "fbf725e721b345a262aa847d63779e8f6873bc34a188ffab3f059006ea73e405",
+          "before_sha256": "cb678b80c6aa1aebe26ced09e5c1761ac3d96546bb31a690c8d2712ff0f2a32c",
+          "id": "NR.drawing-cursor-source-gate-module"
+        },
+        {
+          "after_sha256": "ce209166bc0058955c14081b60a760d0700a359311307c0d1f3fd8f04afde9f2",
+          "before_sha256": "bd6e45fbab46d9ecb99c5182a52e7434cd0c259ec4ffe669ea9f9d61f29c921c",
+          "id": "NR.drawing-diagnostic-cadence-control"
+        },
+        {
+          "after_sha256": "78c4718076e1bc8c80fcd80e2da7379a1f59018bee4702bcb74246c170842495",
+          "before_sha256": "78d2c396f75b77a0b51c3e85bcc7e3448a9b7a90197ed62848a176f6258eddea",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "a3c95aa048a695410fa5a59decf623da8e7f0717596cbf93317eaa0da9dc3e69",
+          "before_sha256": "fca81ee4888dea9d8ca97232968d840e71ddd70fd8b0dafa34dc3e43ddb1c663",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "0794ef77b7086655f6befa7335bd591a60fde3fc705792c0d4d190cb9afe7168",
+          "before_sha256": "8d1470f409efe460b9632e26493e1fc60007be7b14ef88c87b1c1b1da2c8b1e4",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "76ae7a2efe8b28ce44e04fd42a99c55136689e3350ac100c3915893e63d4aeac",
+          "before_sha256": "0aca9e943ffb731bf95ff6907f2ae7fa9c9a3e6c873d26bb8955c30d1d359fdc",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "b79c9758a1f2664511567353aba425755c951476d9d2f4aad17ddc19f35a104a",
+          "before_sha256": "3d616b0eeb4056d02fa54bcfea769ee45ae153f1cc43ed4ad4a0f1c53b5aa9ad",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "e9cfc2c11bd5ec004f3ae5815e8a821458d73ab72b7d1a44c2aa7cd1de9339c2",
+          "before_sha256": "7317eb2f9e7f6dc514899e2da0171312c998bb1b0f8a55b18947e6423376a4a4",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "d6fd40b08a63e0f4eaee3770d1f9bb3a705deefb8edbf7575935e34c73b1bce7",
+          "before_sha256": "bdf6bbfaac215d5ca1136c64b9f6ec562b0fd0b7fb7c930f40e3b2ef38ea78e7",
+          "id": "NR.drawing-source-cursor-gate-binding"
+        },
+        {
+          "after_sha256": "71e66c5bb383ddac6bb853a8dc90200aed9ecc2f9cda809b60e32226b65a9965",
+          "before_sha256": "a0e367bac993dbc544194712f509c0cc12192e83b641c139a7c0bcb79dd428ba",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "9b071259ed242c89db925a4773e7adb411531a3c0ecbc9f1514591188cd6ee67",
+          "before_sha256": "d957e9f0c779dadb35fbf393fcdd3ae4f4f804d167f3759f2dd22f1245fb74c0",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "aa17d3a1c03b3bf9ee78532748e19cebe257d9ef9ee9ba30ed11d77536804e68",
+          "before_sha256": "c41ff08efdfb05f192c4665812a90ca838aee815afeab7de9eaad52294e5856b",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "3c0306f7756a1fa92e027fa77a36eb97a41bc68a84ef34442943e0353d007486",
+          "before_sha256": "dc503594c1497deedb33c0e4774b3e4d653f62d2dc6f1e056c0d639d3ef584c5",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "6b1b018162bd41593e1f18f6fb53cc572aefaa16203ba5f6a93f039d5471bcc9",
+          "before_sha256": "3850ef31d5c5c9f68e99c5e0e9bd35006332832c316879dad4f3e49565e2fd33",
+          "path": "protocols/include/mnm/drawing_cursor_gate_v1.h"
+        },
+        {
+          "after_sha256": "ad6484512f0e233bdd763931f6f314860345149a3320602f8f27333628b1b784",
+          "before_sha256": "19640a79dd3ec58e970384fd8d2932375c6b7c55afbccb857074f084670faee3",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8be5b0d0bb01b9b4a9dd7631cc8bfc3eb2136f73bc27aa4be5e88190cc1d5cb6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-draw02-refusal-start-20261012.json"
+        },
+        {
+          "after_sha256": "3896dd900d1aa1a609d50f83f69cf8cd0155599daa24147fc7309d8490f4c104",
+          "before_sha256": "0a56759ced36c38a2a68b88af34be31e29619d6d2ebd31b0e07deab19643375f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "c0163dc4d43f353e9edd368ad2f0b93ae35bccbaffde17e872b4d9c5a56e03b5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-gate-refusal-20261012.json"
+        },
+        {
+          "after_sha256": "fbed14c231c9b9972fba01cd1b19148012d0d2b27fe11fd009007feb05b41f0e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-gate-refusal-20261012.md"
+        },
+        {
+          "after_sha256": "8b6095d744fded1a2101ebf0a82091f95f61fb1ccba59b043b4eab104b11ef85",
+          "before_sha256": "1adeb2c29c55689dc19e1fef2d23b3ba7b474ea5f3e25b72f675a355d62b791a",
+          "path": "research/runtime/cursor-source-gate-module.md"
+        },
+        {
+          "after_sha256": "2d816b9be7a989740c91b84bdf66d383fcdcf5d91c101221eb1146184c1eba90",
+          "before_sha256": "35727106955fc112ef35aa2d6a75d94927274db935e3526a21b0a198a19226e4",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "16de52e8919297da7af48ad19fef2429a5e0796110131f0c13e002c8f5dfbeaf",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-gate-refusal-binding-fixture-01.json"
+        },
+        {
+          "after_sha256": "64989d0587d549314bccafd4c4cc31ef69c4ed25db0f3963617ee2c7a032bf96",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-gate-refusal-module-fixture-01.json"
+        },
+        {
+          "after_sha256": "c0486cf0e04b4291cd90a424a7ee95aa8c12b1a9b8143c5244e4b771df28eaa5",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-source-gate-cadence-control-original-01.json"
+        },
+        {
+          "after_sha256": "3516895effbc97a32f1c1b994abcbfb47199376b7f2ddf1c855d5177e72db563",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-storage-archive-20261012-02.json"
+        },
+        {
+          "after_sha256": "5e08ec07558bc54e9e4befaff2df0653b2f9aad42abcaef4d77cff97b5813f1e",
+          "before_sha256": "f96feeb204aefa602bc6029231396d3f6460945c9e12cbc91c87c93a6fa4f1d9",
+          "path": "research/runtime/drawing-source-cursor-gate.md"
+        },
+        {
+          "after_sha256": "2f99339ca435356992c52575bb30f7dc9d1d23cbe2f039f5468a09052d497caf",
+          "before_sha256": "fe921cdc3acbddd33ffd41e1dd5e33a84aad553b3faa1d2daef20d52f083e3f9",
+          "path": "tests/drawing-cursor-source-gate-module-test.c"
+        },
+        {
+          "after_sha256": "ff29545ccbbbedab903c2aa5459fbca43f44afa9a3ae12aa06476a9031d1c78d",
+          "before_sha256": "f9706c545d9932efc194c7997be633a628cd057ab3088ff33e10f7355cc64397",
+          "path": "tests/drawing-source-cursor-gate-test.c"
+        },
+        {
+          "after_sha256": "37165bc45efc8dc4f57795a178e5b6d37d025f05ef347f510baed1e9318bc8fa",
+          "before_sha256": "b98685d1431bcab924f50735b3ee7ea5cf570c640573031880d9213a085cbbee",
+          "path": "tests/drawing-source-gate-protected-test.c"
+        },
+        {
+          "after_sha256": "9ab169143a6ba4c1f39e0fa024cf46ff0c3249414599873fd2e3fd9b79244d19",
+          "before_sha256": "9ea9d3a1748a1d77da3379f9ec0a7c8f02e8a6218a496d943f199d1137e9558e",
+          "path": "tests/drawing-source-gate-session-test.c"
+        },
+        {
+          "after_sha256": "0c296c18a93ad32501f1d89958c0727c827c6776978b384d8bf2e9e443724195",
+          "before_sha256": "2f6657e9c78310cfd89ed859b998b550974a5850ec7a183dd40d17676679cc22",
+          "path": "tests/test-drawing-source-cursor-gate.py"
+        },
+        {
+          "after_sha256": "a07526fae7371e06e333d5829fcd816530b2287093965b5bb4cde8172e6d9f0c",
+          "before_sha256": "92ca32c0420f4e04fbf7daf8d079aef859bde0c8cf4a0f70134b8a9ea6c31308",
+          "path": "tools/drawing_source_cursor_gate.py"
+        },
+        {
+          "after_sha256": "43ab546aa7b755da6f05a58831628aea228313040f4e605d7a07155e90297ef6",
+          "before_sha256": "1e5873e753bf0edce3e34101f4dda159ea75eb129e3a587142b1dd29ec108ef2",
+          "path": "tools/test-drawing-cursor-source-gate-module.py"
+        },
+        {
+          "after_sha256": "ddbb7df55602c1774c89cf4f4a494ce15e5a0a58c6281c19f2b8bba26ae68742",
+          "before_sha256": "83cbd6d0c70fab6d8b040a86f4a6c4a1556bc6f8fa7b7173a89001218245aa59",
+          "path": "tools/test-drawing-source-gate-protected.py"
+        }
+      ],
+      "id": "draw02-retain-refused-attempt-identity-and-verified-archive02-20261012",
+      "pending_gaps": [
+        "retired_execution_claims:1b15ea6be7427805033e099e0b186767d523fd8db5dae631cc3492588ab87848",
+        "stale_evidence:01c348f390e9ccf9eeedba22b3769fac1a79577b218146b3478ee2a430f58341",
+        "stale_evidence:068a6de63edd6d43235eb11d25ab059ae02321167b36b6dc891daab88ea773ca",
+        "stale_evidence:08c23cbe36821928c1fc02bd9f1e81d650aa5e7ee1e4647bcb1668a0120e6807",
+        "stale_evidence:0ba1a79f10f6192ee10def8bad288179d75b82124b928a5f8d3989004d746986",
+        "stale_evidence:0f5b469b2a7c9c7118d25793104084509957669acfa7acc4f144c7a2cd08cbd2",
+        "stale_evidence:1944fd50ab6c4c752f3bfc07eeb71a7566a806757b344cc6c1ef01190c6ba894",
+        "stale_evidence:195ce1a0e6d1d924bf34c9c995a8439e677ef7a4e67fa523f5e8f675720a70f9",
+        "stale_evidence:1d8b39b89ce86b623695153299640770aa572bd723c523bb4578fb324b3d8508",
+        "stale_evidence:22073a1dcf512236ce9192dd13b314bc32b89f832ac57bf311e5059acbe7d69c",
+        "stale_evidence:23745f2f2d106752d4b4d52f6d76025be1335c311e420763b25a3f472859b189",
+        "stale_evidence:25464c5749d6127d8a70f5194fa96bc529393aaa45818536d711917736fd5919",
+        "stale_evidence:2632c98a4d42939426ccdf8be545bffd2a7ab468e86e6ba67b71d0775a507f5d",
+        "stale_evidence:2c644dece30594942c843c5cc9cb8e7eb69752f70736fee281404daffc53d1a4",
+        "stale_evidence:39cf4004d94dc426a6ffbbe65b1688fee2db48498152db2cbd45cfda99624937",
+        "stale_evidence:3fb738ce006450be7492e32453617d1b99a819b577871abd25672ddd205066e9",
+        "stale_evidence:44f9acd09915a7d5391008ad4b66a11842d03ae0dbb134a6967af83d91aee4d8",
+        "stale_evidence:4781eaae872c797690ba2c8478f8adb80aa467a9439deae190c8ac834c6ec36d",
+        "stale_evidence:4f73ef5a15e0038b443880c38bee7a2d0751b69e133a720f6f75c3b1d7f25fe5",
+        "stale_evidence:54ce04124221438c8fb3b6ee7718ccb6b9208f74a5b75b411c8caa71c48d2290",
+        "stale_evidence:5f466e7e4d41adbfcebaf41edd0f8557041252e03fb3f0fedb87f7b69665c38e",
+        "stale_evidence:5f86bd23e8585c1cbf86a1d07d3633e5bb214e9e8eff4f1641c307f3d071693c",
+        "stale_evidence:61901c1c920b9f437e7a08e62cbd4f5128c1ddfc08e5b2554340ba498296e5c2",
+        "stale_evidence:65381eafb8ec0e9808360efb87e02948fb4bf528b8f93bea03fd90a2a6127995",
+        "stale_evidence:68032f1eb4d3532cf08ba8136fe75a6b27fd1533355d2f0e86535e9f2397a440",
+        "stale_evidence:6893eeccb2f30128c7cdaaacc1c56bf0a123f6d0a4acf867b34bd8836d9fa6ec",
+        "stale_evidence:819e1e94165a422c89984ce5323ad3351332a3dcc95f150504dc9a4a012dc79e",
+        "stale_evidence:890ec4a95d54852db599b9db6b1178b63084461705a642539f43825a875ff1cf",
+        "stale_evidence:8bbe0038f8fe7ac600f53f01fdcc6f43552b0b7ddad6b2f4f7a4ef8d75296cf8",
+        "stale_evidence:90d56e48c059a4004ff2db909c69d08430ebf05093a306437f0f14b53baf7941",
+        "stale_evidence:9f0aee711236047af8f5b8b39615c78158e54057c2e46c25fe5f38ebaaa4fd8f",
+        "stale_evidence:a048817d7c4d48b4a4b5317ca76fbb05fc1730c5e8ce4d65e719cb9b54a32a33",
+        "stale_evidence:a460228362607306b0a994ccaa383c0d4dbcdc4cfc4ac01e82342225e3910b90",
+        "stale_evidence:a68bcf1b0b76c8dd10d36a06c06b367e46bc1268843ae1a83a9f08c967992a78",
+        "stale_evidence:a81046531c3c9c9f6e34038d1db320e5ef62de26bb3b9fc4b91846b8abe2fbd4",
+        "stale_evidence:bc781050c630b20b9262f5f85183c9dc096e31402da4ad4bc655154ef27e5ae9",
+        "stale_evidence:c8aba51a615448f3e3833d606fc4808cc3b5715b3d01da686ea30802b0ee6a17",
+        "stale_evidence:cf6aeebe0b7aa33e6006bd040ac8d84a0fb45e0fe42ec710907c38c19ab1dd97",
+        "stale_evidence:cf8decd9a7e76efe31eaa15021e0d3c3460ed4168bf2f8942b72959ac631affd",
+        "stale_evidence:d447115243d6a3285e91abbc926bb2a40c9652bc9bfaa8974dc4ee86e085e9b8",
+        "stale_evidence:e17cbac32822ae59a197311c20d02d80474f04db2b953e135d8b258f42ca298f",
+        "stale_evidence:e239f25a76ef2e7202758e483de51e9576878f3361170c5befe4424a05ffff11",
+        "stale_evidence:e4140c5283c4f325e0dbea4a6183b64377cdbed8f08b02e9c691868974ceaa18",
+        "stale_evidence:e69c4413a8feb4bcc38320c56c3606ca8ef1978ed3780b91f8b82a2f1caed88d",
+        "stale_evidence:ea37a8828fdb0b8ba0d2373d8663694cc52eb32a86fdbbc2d2004c957d05a7e3",
+        "stale_evidence:ef2e0e6b95e4ae1b191f6ea88879d9b5167b5043f822e44d3ba6456f92a3bd1e",
+        "stale_evidence:f3dbda17cdd6f575d78c348d640eb8bb45103b7a27608d051f71bb89072dde03",
+        "stale_evidence:f4157d357977462b54321a463ed941aedffbd656c138ffaa21d5fa4c7c3c2a21",
+        "stale_evidence:f9a3c6d563fbc783dc6ccb6001935c1f6bb1e4f9e7ee18be3e698615c9216509",
+        "stale_evidence:fb9d32d151efd99de7871868881d881b9243398ec3cb5e3534371028e514f724",
+        "stale_evidence:feaf75994c626a6d455d9795e38328bf58c078e60eabf11be53c1948528dbcd8"
+      ],
+      "reason": "Reviewed failed Begin reservation identity versus scalar admission; retain valid refusals while checking owner/attempt/mutex identity, point phase/reason, zero held levels and unique API identity. Updated native protocol comments and realistic controlled callbacks. Reviewed committed cb3dd4a5..b3faa8f8 with 11 matching exact receipts and zero gaps. Archive bookkeeping preserves exactly approved five runs, raw verified cold copies and both receipts; no broader cleanup or refreshed historical hashes.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Seven decoder guards pass. Fresh owned module fixture01 uses a real event-synchronized foreign outer owner: raw258, attemptedID1/scalar0, no held levels/leases, full512FX/error and25rows/zero scoped gaps. Controlled production session fixture01 checks attempted8/scalar0/noEnd and admitted7/lease9/two equal snapshots with mocked protection/worker. Fresh counter-only original control01 completes399advancing/357queued updates, normal Quit0 and both original manifests. Approved archive02 independently verifies13598paths/3198objects and matching receipts. Actual gate-enabled original acquisition, source aliases, normal quiescence/full reference/native parity and current diagnostic timing comparison remain pending; no status promotion."
+      }
     }
   ]
 }

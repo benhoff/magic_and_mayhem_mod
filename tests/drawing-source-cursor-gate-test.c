@@ -13,7 +13,7 @@ static void path(char* out,const char* suffix){(void)suffix;u32 n=GetEnvironment
 #include "../runtime/drawing/source_cursor_gate.h"
 static unsigned begins,ends,refuse;
 static void check(int ok,unsigned n){if(!ok)ExitProcess(n);}
-static unsigned WIN gate_begin(unsigned owner,void* out,unsigned bytes){check(owner==GetCurrentThreadId()&&bytes==128,210);unsigned* p=out;p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=1;p[4]=refuse?3:0;p[5]=refuse?0:7;p[6]=owner;p[7]=1;p[8]=2;p[13]=refuse?0:3;++begins;return refuse?0:7;}
+static unsigned WIN gate_begin(unsigned owner,void* out,unsigned bytes){check(owner==GetCurrentThreadId()&&bytes==128,210);unsigned* p=out;p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=1;p[4]=refuse?3:0;p[5]=refuse?8:7;p[6]=owner;p[7]=1;p[8]=2;p[13]=refuse?0:3;++begins;return refuse?0:7;}
 static unsigned WIN gate_end(unsigned owner,unsigned token,void* out,unsigned bytes){check(owner==GetCurrentThreadId()&&token==7&&bytes==128,211);unsigned* p=out;p[0]=1;p[1]=128;p[2]=0x40209ca7;p[3]=2;p[5]=7;p[6]=owner;p[7]=1;p[8]=2;p[11]=p[12]=1;++ends;return 1;}
 void start(void){
  InitializeCriticalSection(journal_lock);check(drawing_cursor_gate_open(),202);drawing_cursor_gate_begin=gate_begin;drawing_cursor_gate_end=gate_end;
