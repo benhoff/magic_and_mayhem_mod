@@ -3,9 +3,12 @@
 #include <iostream>
 #include <stdexcept>
 #ifdef MNM_SOURCE_CONTROLLER_REFERENCE
+#pragma push_macro("main")
+#undef main
 #define main unused_sprite_reference_main
 #include "sprite-binary-reference.cpp"
 #undef main
+#pragma pop_macro("main")
 #endif
 using namespace mnm::reconstruction::combat;
 namespace {
@@ -90,6 +93,7 @@ unsigned char *actorBase;
 std::vector<Bytes> childLists;
 unsigned allocated = 0, initialNodes = 0;
 std::vector<std::pair<unsigned, Bytes>> bodies;
+Bytes originalRegistrationBody;
 unsigned get(const void *p, unsigned off) {
   unsigned v;
   std::memcpy(&v, static_cast<const unsigned char *>(p) + off, 4);
@@ -144,6 +148,8 @@ extern "C" void __attribute__((thiscall)) registerStub(void *p, void *node) {
 }
 void install(const char *path) {
   map_image(read(path));
+  originalRegistrationBody = Bytes(reinterpret_cast<unsigned char *>(0x416fe0),
+                                   reinterpret_cast<unsigned char *>(0x4172f7));
   for (auto r : {std::pair<unsigned, unsigned>{0x416590, 0x416b7e},
                  {0x407920, 0x407982},
                  {0x4079f0, 0x407a73},
@@ -210,8 +216,15 @@ extern "C" void __attribute__((naked)) invokeController(void *, void *,
                "mov 16(%ebp),%edx; mov %eax,(%edx); mov $0x416590,%eax;"
                "call *%eax; pop %edi; pop %esi; pop %ebx; leave; ret");
 }
+struct ControllerCompareExtension {
+  std::function<void()> install;
+  std::function<void(Bytes &, const Fixture &, unsigned)> packNewCursors;
+  std::function<void(Bytes &)> packManager;
+  std::function<void()> verify;
+};
 void compare(const Fixture &input, const Fixture &expected,
-             const std::vector<unsigned> &trace) {
+             const std::vector<unsigned> &trace,
+             const ControllerCompareExtension *extension = nullptr) {
   current = const_cast<Fixture *>(&input);
   events.clear();
   initialNodes = input.state.graph.size();
@@ -272,6 +285,8 @@ void compare(const Fixture &input, const Fixture &expected,
   global(0x6a29dc, input.state.random.right);
   std::memcpy(reinterpret_cast<void *>(0x6a29e0),
               input.state.random.words.data(), 1000);
+  if (extension)
+    extension->install();
   auto actorsExpected = actorStorage, nodesExpected = nodes,
        managerExpected = manager, listExpected = rootList,
        recipientExpected = recipients;
@@ -294,6 +309,8 @@ void compare(const Fixture &input, const Fixture &expected,
       put(childrenExpected[i].data(), j * 4,
           nodePointer(expected.state.graph[i].children[j]));
   }
+  if (extension)
+    extension->packNewCursors(nodesExpected, expected, initialNodes);
   for (unsigned i = 0; i < expected.manager.nodes.size(); ++i)
     put(listExpected.data(), i * 4, nodePointer(expected.manager.nodes[i]));
   put(managerExpected.data(), 0x22,
@@ -301,6 +318,8 @@ void compare(const Fixture &input, const Fixture &expected,
                                        expected.manager.nodes.size() * 4));
   put(recipientExpected.data(), 8,
       nodePointer(expected.state.recipientRoot[0]));
+  if (extension)
+    extension->packManager(managerExpected);
   if (allocated != expected.state.graph.size() ||
       actorStorage != actorsExpected || nodes != nodesExpected ||
       manager != managerExpected || rootList != listExpected ||
@@ -333,6 +352,8 @@ void compare(const Fixture &input, const Fixture &expected,
     if (std::memcmp(reinterpret_cast<void *>(b.first), b.second.data(),
                     b.second.size()))
       throw std::runtime_error("controller target text");
+  if (extension)
+    extension->verify();
 }
 #endif
 } // namespace

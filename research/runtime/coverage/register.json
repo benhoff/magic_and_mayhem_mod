@@ -55385,7 +55385,9 @@
         "NS49.source-controller-static",
         "NS50.source-coordinates-static",
         "NS50.source-controller-original",
-        "NS50.source-controller-native"
+        "NS50.source-controller-native",
+        "NS52.source-controller-current-original",
+        "NS52.source-controller-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -55817,7 +55819,8 @@
         "tools/test-creature-source-controller.py"
       ],
       "evidence": [
-        "NS50.source-controller-native"
+        "NS50.source-controller-native",
+        "NS52.source-controller-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -55870,7 +55873,8 @@
         "tools/test-creature-source-controller.py"
       ],
       "evidence": [
-        "NS50.source-controller-native"
+        "NS50.source-controller-native",
+        "NS52.source-controller-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -56099,6 +56103,154 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owned-source-controller-chain",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Owned source grouping and registration chain",
+      "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4285840,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4288480,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225312,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225520,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5326864,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5342192,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5367696,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5562880,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4252304,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4253856,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4255408,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4252896,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4254576,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4236976,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4267600,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4380720,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4391232,
+          "scope": "Whole416590 plus actual416fe0 registration and15 unchanged traversal/root/controller/RNG/coordinate/class/deque iterator helpers on one native tree/queue state. Finite8192 fixtures,3 fixed canonical actors,2/3 initial acyclic nodes, owner0..7/family0..1, mode1/3, positive16x16 dimensions, successful zero-filled allocation and fixed vector/deque capacity. Native grouping invokes native pending registration; original registration executes unchanged with no registration redirect. Complete grouping/queue/actor/node/owner/recipient/mode/RNG/body guards; new cursor initialization and opaque byte25 machine provenance checked separately from native tag equality. Allocation/vector append/deque capacity are supplied storage boundaries; complete storage/allocator interpretation, installed profiles and World/session/live integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/source_owned.hpp",
+        "reconstruction/creature-ai/source_owned.cpp"
+      ],
+      "tests": [
+        "tests/creature-source-owned-test.cpp",
+        "tools/test-creature-source-owned.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/source-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/source_controller.cpp",
+        "reconstruction/creature-ai/source_controller.hpp",
+        "reconstruction/creature-ai/source_graph.cpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/source_pending.cpp",
+        "reconstruction/creature-ai/source_pending.hpp",
+        "tests/creature-source-controller-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS52.source-owned-original",
+        "NS52.source-owned-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Whole17 unchanged original bodies with no registration redirect and one persistent native source tree/queue set",
+          "Complete semantic node/root/queue/RNG/mode and fixed backing/body guards",
+          "Zero-filled successful allocator and stable reserved vector/deque capacity; opaque tag25 machine checks remain separate from native representation"
+        ],
+        "excluded": [
+          "Full storage/cross-block/reallocation/allocator interpretation and installed profile construction",
+          "Whole native World/session integration and live replacement",
+          "Malformed owner/actor/node/backing/mode domains and arbitrary original heap/representation"
+        ]
       }
     }
   ],
@@ -113773,6 +113925,334 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS52.source-owned-original",
+      "kind": "isolated_original",
+      "scope": "Whole17-body source grouping/registration composition, no registration redirect. Storage/allocation/capacity supplied and opaque tag25 equivalence excluded; no native World/session/live integration.",
+      "record": "research/runtime/original-source-owned-bound-ns52-20261012.json",
+      "sha256": "da9298b55b099338ca90650530396f6ca3532e37151b59565d6c3c2d254f32c6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 17
+        },
+        {
+          "pointer": "/allocator_tag_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/general_admissions",
+          "equals": 5345
+        },
+        {
+          "pointer": "/wizard_admissions",
+          "equals": 2233
+        },
+        {
+          "pointer": "/other_admissions",
+          "equals": 3112
+        },
+        {
+          "pointer": "/groups",
+          "equals": 3098
+        },
+        {
+          "pointer": "/registration_redirected",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS52.source-owned-native",
+      "kind": "native_integration",
+      "scope": "Whole17-body source grouping/registration composition, no registration redirect. Storage/allocation/capacity supplied and opaque tag25 equivalence excluded; no native World/session/live integration.",
+      "record": "research/runtime/original-source-owned-bound-ns52-20261012.json",
+      "sha256": "da9298b55b099338ca90650530396f6ca3532e37151b59565d6c3c2d254f32c6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 17
+        },
+        {
+          "pointer": "/allocator_tag_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/general_admissions",
+          "equals": 5345
+        },
+        {
+          "pointer": "/wizard_admissions",
+          "equals": 2233
+        },
+        {
+          "pointer": "/other_admissions",
+          "equals": 3112
+        },
+        {
+          "pointer": "/groups",
+          "equals": 3098
+        },
+        {
+          "pointer": "/registration_redirected",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NS52.source-controller-current-original",
+      "kind": "isolated_original",
+      "scope": "Fresh source-bound unchanged13-body controller component after fixture macro/capture/optional extension changes. Original scope unchanged; extension inactive, no new storage/registration/World stage.",
+      "record": "research/runtime/original-source-controller-current-bound-ns52-20261012.json",
+      "sha256": "aef772024994bc9b78c0c6e64c020829b1465cfee87d313dae969f8a27fcee67",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 13
+        },
+        {
+          "pointer": "/allocator_tag_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/representation_policy_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/leaves",
+          "equals": 5473
+        },
+        {
+          "pointer": "/groups",
+          "equals": 3098
+        },
+        {
+          "pointer": "/blocked_cases",
+          "equals": 2719
+        },
+        {
+          "pointer": "/rng_draws",
+          "equals": 1113
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS52.source-controller-current-native",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound unchanged13-body controller component after fixture macro/capture/optional extension changes. Original scope unchanged; extension inactive, no new storage/registration/World stage.",
+      "record": "research/runtime/original-source-controller-current-bound-ns52-20261012.json",
+      "sha256": "aef772024994bc9b78c0c6e64c020829b1465cfee87d313dae969f8a27fcee67",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/functions",
+          "equals": 13
+        },
+        {
+          "pointer": "/allocator_tag_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/representation_policy_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/leaves",
+          "equals": 5473
+        },
+        {
+          "pointer": "/groups",
+          "equals": 3098
+        },
+        {
+          "pointer": "/blocked_cases",
+          "equals": 2719
+        },
+        {
+          "pointer": "/rng_draws",
+          "equals": 1113
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -127346,8 +127826,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-source-pending-20261012.json",
-    "sha256": "87bf83c36ae14f635ba59337519447416ee18958d821214c00dc613417c97a00"
+    "path": "research/runtime/coverage/source-index-original-source-owned-20261012.json",
+    "sha256": "ad595214e280bbe833aad783522fc1d98de799cf0fdc35087d87d0f9cb4be5c6"
   },
   "claim_bindings_required": true
 }

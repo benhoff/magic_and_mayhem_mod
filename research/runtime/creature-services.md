@@ -388,3 +388,31 @@ complete native World/session construction and live replacement remain pending.
 NS50 7e19a955 has22 file/154 behavior transitions reviewed against exact receipts
 and actual staged gate with no accounting gaps. That history review adds no
 new execution result.
+
+
+## Owned source grouping and registration chain (NS52)
+
+Native grouping now invokes native pending registration on the same owned source
+tree/three queue set. A fresh prospective comparison passes8,192 original32/
+native64/ASan+UBSan+LSan64 cases through17 unchanged original bodies, including
+actual416fe0 registration,411e50 classification and deque iterators. Registration
+is not redirected.5,345 general,2,233 wizard and3,112 other admissions plus3,098
+groups are nonempty. Full modelled nodes/roots/actors/configs/queues/maps/owners/
+recipients/mode/RNG/body guards and ordered allocation events match. New cursor
+initialization after registration is compared explicitly. The native CMake build
+and CTest pass. Immutable proof:original-source-owned-bound-ns52-20261012.json.
+
+The common controller fixture preserves an including caller's main macro, saves
+the original registration body before its standalone redirect, and adds optional
+comparison extensions for shared queues/configs/new cursors. The unchanged
+standalone controller domain separately passes8,192 fresh bound cases with these
+extensions inactive; the NS50 record retains its original source hashes. Both
+records have prospective declarations and stable compiler/source closure.
+
+Successful zero-filled allocation, generic vector append and reserved deque
+capacity remain supplied storage boundaries. Original allocator/private byte25
+equality is excluded and the captured machine stack-byte guard remains explicit.
+Complete storage/installed construction and canonical native World/session/live
+replacement stay pending; this chain comparison does not promote those stages.
+Incoming NS51 ab90556f has25 file/157 behavior transitions reviewed against exact
+receipts and actual staged gate with no gaps. History review adds no execution.
