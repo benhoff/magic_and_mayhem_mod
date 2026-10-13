@@ -10,5 +10,8 @@
  * Region actions additionally offer Spellbox8 and Character16. Caller4/depth4
  * remains fixed; settled original realm names/region counts and different0/1
  * are admitted separately from the preserved fresh first-region path.
+ * V11 report outcome0/1 additionally admits natural defeat/victory through
+ * exact original report/parent/control guards; legacy Quit provenance is retained
+ * in older versions. Original scores/text/OK/unwind remain authoritative.
  * Experimental only; no invented campaign progress or arbitrary caller ingress.
  */

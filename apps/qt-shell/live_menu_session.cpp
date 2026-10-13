@@ -161,9 +161,9 @@ void LiveMenuSession::poll(){
         sequence_=next.sequence;lastState_=clock_.elapsed();
         if(next.status==MNM_MENU_RETIRED){fallback("Menu adapter retired; using original menus.");return;}
         if(pending_&&next.ack!=state_.ack){
-            if(((progressedMenusEnabled&&state_.screen==18)||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
+            if(((progressedMenusEnabled&&(state_.screen==18||action_==MNM_MENU_DEFEAT_OK))||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
                (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
-                fallback("Character acknowledgement identity differs; using original menus.");return;
+                fallback("Menu acknowledgement identity differs; using original menus.");return;
             }
             pending_=false;
             if(next.status!=MNM_MENU_OK){fallback(QString("Menu action rejected (%1); using original menus.").arg(next.status));return;}
