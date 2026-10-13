@@ -37698,7 +37698,9 @@
         "tools/build-shadow-bridge.py",
         "tools/drawing_presented_session.py",
         "runtime/drawing/input_point.h",
-        "protocols/include/mnm/drawing_input_point_v1.h"
+        "protocols/include/mnm/drawing_input_point_v1.h",
+        "runtime/drawing/aux_save_readback.h",
+        "protocols/include/mnm/drawing_aux_save_readback_v1.h"
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
@@ -37722,7 +37724,8 @@
         "NR.drawing-session-api.query-lifetimes-forwarding-native-20261012",
         "DRAW02.draw02-source-points-api-legacy-fixture-01-20261012",
         "DRAW02.draw02-source-points-api-physical-fixture-01-20261012",
-        "DRAW02.draw02-input-point-api-baseline-01-20261012"
+        "DRAW02.draw02-input-point-api-baseline-01-20261012",
+        "DRAW02.draw02-aux-default-api-physical-02-20261013"
       ],
       "status": {
         "understanding": "scoped",
@@ -37735,7 +37738,8 @@
       "remaining_gaps": [
         "New physical API mode is a bounded reference-only increment. Synthetic ACK tests do not acquire original frames; actual X11 witnesses, source input bindings, all presentation/GDI/movie routes, semantic input/lifetime and full journey admission remain pending. Historical forwarding/original capture hashes are preserved and shared changes require new comparisons.",
         "Shared producer depth/surface state requires concurrency-safe ownership before source binding; call intervals do not make API physical witnesses complete presented frames.",
-        "Temporal QueryInterface grouping explains local-interface mismatches in the pinned585witness capture; this offline reanalysis does not rerun original code or establish immutable producers, physical causality or all backing aliases."
+        "Temporal QueryInterface grouping explains local-interface mismatches in the pinned585witness capture; this offline reanalysis does not rerun original code or establish immutable producers, physical causality or all backing aliases.",
+        "New auxiliary readback is explicit opt-in and adds driver calls; default metadata/physical behavior remains independently tested. Header dependency requires fresh source accounting; historical fixtures remain with original hashes and scope contracts. No baseline observer noninterference or GPU/CPU ownership promotion."
       ]
     },
     {
@@ -43526,7 +43530,8 @@
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43541,7 +43546,8 @@
         "Longernativeprediction01refuseslegacydeclarationsequencecap262144beforedrawing;V4version-aware1MsequenceadmissionandNaN/fraction/overbudget/legacyguardsrequirefreshcomparison.",
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -43592,7 +43598,8 @@
         "DRAW02.draw02-source-physical-close-held-egl-120-01-20261013",
         "DRAW02.draw02-held120-approved-egl-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-egl-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-egl-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-egl-01-20261013",
+        "DRAW02.draw02-aux-save-readback-egl-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -43609,7 +43616,8 @@
         "Fresh original120early-close native comparison141has1failed context atAPI3768/sourceprefix208533:1600source/display differing pixels in440310..480350.140contexts match,651exclusions retained. Local original checkpoints1334/1335remain equal; native1335changes after cursor-background copy. Driver copy order differs from producer-return order; do not treat the partial match as full parity or repair by original output seeding.",
         "Fresh source-only protected-source/API/worker/physical comparison:126 admitted contexts match; all686 exclusions retained. No all-route or presentation closure. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Fresh protected-source/API/worker/physical comparisons:134admitted matches;766excluded contexts retained. No full source/texture/route ownership or journey closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Completed physical cohort140matches/695exclusions retained. CPU failures remain failed; matching admitted physical subset does not discharge excluded contexts or original backing ownership. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Completed physical cohort140matches/695exclusions retained. CPU failures remain failed; matching admitted physical subset does not discharge excluded contexts or original backing ownership. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Fresh readback diagnostic physical cohort137matches/720exclusions; keep auxiliary extra calls and baseline source ownership separate. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -44126,7 +44134,8 @@
         "DRAW02.draw02-worker-prefix-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -44146,7 +44155,8 @@
         "Owned V5eight-call/five-epoch/seven-query fixture,18decoder and6interval guards pass. Fresh original32has985closed storage calls/910epochs/119local address IDs. Static all910live queries match unique same-thread Lock intervals and exact returned/cache numerical IDs;805external points are inactive. V4all910queries remain unbound legacy inputs. Pointer equality/event order do not prove allocation generations, exclusive byte/backing ownership, source uploads, physical coherence, general replay order or47/21closure.",
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ],
       "validation_dependencies": [
         "runtime/scene/canvas_producers.c",
@@ -45425,7 +45435,8 @@
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45449,7 +45460,8 @@
         "Current scenario-bound actual original120:804API/795post-EGLphysical witnesses,120bound source queues/132consecutive advancing windows,147stable held pairs,1073accepted/215refused gate API pairs, zero scoped lifecycle gaps, exact MainQuit/actual target exit0. Lingering launcher nullable status is separate. Source alias/full route/timer-import quiescence/reference/native parity remain unproved. All47/21closures remain independent/open; historical source/evidence hashes unchanged.",
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -45564,7 +45576,8 @@
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45589,7 +45602,8 @@
         "Current scenario-bound actual original120:804API/795post-EGLphysical witnesses,120bound source queues/132consecutive advancing windows,147stable held pairs,1073accepted/215refused gate API pairs, zero scoped lifecycle gaps, exact MainQuit/actual target exit0. Lingering launcher nullable status is separate. Source alias/full route/timer-import quiescence/reference/native parity remain unproved. All47/21closures remain independent/open; historical source/evidence hashes unchanged.",
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -45654,7 +45668,8 @@
         "DRAW02.draw02-worker-prefix-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45675,7 +45690,8 @@
         "Current scenario-bound actual original120:804API/795post-EGLphysical witnesses,120bound source queues/132consecutive advancing windows,147stable held pairs,1073accepted/215refused gate API pairs, zero scoped lifecycle gaps, exact MainQuit/actual target exit0. Lingering launcher nullable status is separate. Source alias/full route/timer-import quiescence/reference/native parity remain unproved. All47/21closures remain independent/open; historical source/evidence hashes unchanged.",
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -45911,7 +45927,8 @@
         "DRAW02.draw02-source-physical-close-original120-01-20261013",
         "DRAW02.draw02-worker-prefix-held120-approved-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -45926,7 +45943,8 @@
         "Original120mode passes723closed/69later contexts and1producer-stopped context;120bound advancing queues across132windows,921758records under1048576limit. Completed native141comparison fails one40x40source/display region;140contexts match. Exact producer return versus driver-copy order reversal confirmed locally, cause and source-only repair pending; no current full native parity.",
         "Original-active 120 queues:645189 producer records,2200 checkpoints,812 primary physical planes; source interval closes and actual original exit0. Diagnostic cohort only; all routes, source backing ownership and semantic outcomes remain open. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -46011,7 +46029,9 @@
         "DRAW02.draw02-results-redraw-repeat-original120-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-bindings-01-20261013",
         "DRAW02.draw02-worker-prefix-disabled-original120-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-bindings-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-bindings-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+        "DRAW02.draw02-aux-save-readback-bindings-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46027,7 +46047,9 @@
         "Original-active repeated Results stimulus:31inputactions/120queues/566697records/2533oracles/900primary physicalplanes, actual original exit0.12post-World menu redraws and4exact worker/return inversions. Raster remains active; no complete routes or semantic closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Static exact2364COPYrequests bind3185commands;154extraAPIentries/256adjacent return reversals retained. Four menu redraw inversions have explicit request/API/worker identities, unlike older legacy diagnosis. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
         "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
-        "Exact2265copy requests bind legacy worker commands;123extraAPIentries/252adjacent return reversals retained. Menu pairs969/970,1050/1051,1229/1230have fullworker-before-save and save-return-before-full; no source-prefix sidecar or general order proof. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Exact2265copy requests bind legacy worker commands;123extraAPIentries/252adjacent return reversals retained. Menu pairs969/970,1050/1051,1229/1230have fullworker-before-save and save-return-before-full; no source-prefix sidecar or general order proof. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open.",
+        "Fresh explicit diagnostic trace2282copy requests bind exactcommand identities;161extraAPIentries/261adjacent return reversals retained. Readback extra calls do not become application COPYs or source ownership. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -46164,7 +46186,8 @@
         "DRAW02.draw02-grayscale-horizontal-prior120-01-20261013",
         "DRAW02.draw02-held120-approved-checkpoints-01-20261013",
         "DRAW02.draw02-results-redraw-repeat-checkpoints-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-checkpoints-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-checkpoints-01-20261013",
+        "DRAW02.draw02-aux-save-readback-checkpoints-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46179,7 +46202,8 @@
         "After recoveredbackend11grayscale repair, newworker-bound120all2278checkpoints match. Priorheld1202182compared:2181match, canvas2checkpoint1335stillfails1600pixels while canvas22checkpoint1336matches. All pre-repair failures/hashes retained; neither source ordering nor physical coherence is repaired.",
         "Fresh source-only unchanged return-order replay:all2200 CPU checkpoints match, exit0. Historical1600pixel failure remains failed; no presentation or journey closure. Existing historical hashes/statuses remain;47journey/21operation closures stay open.",
         "Fresh unchanged return-order source-only replay:all2533CPU checkpoints match, nativeexit0. Older1600pixel failure remains failed; no general order/backing or presentation closure. All47/21closures and full step2ownership/diagnostic-control boundaries remain open; no stage promotion.",
-        "Completed unchanged-order source-only replay:2400compared/2398match;canvas2checkpoints1352/1437each fail1600pixels. Originalsha b7626cbdf0e46cffee0c1d5a4d047e9c06597559f374cec15b0d4bf47361e859 matches historical failed Results source. Nativeexit0; preserve failed whole comparison. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Completed unchanged-order source-only replay:2400compared/2398match;canvas2checkpoints1352/1437each fail1600pixels. Originalsha b7626cbdf0e46cffee0c1d5a4d047e9c06597559f374cec15b0d4bf47361e859 matches historical failed Results source. Nativeexit0; preserve failed whole comparison. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Fresh explicit-readback trace source-only unchanged replay:all2403CPU checkpoints match, nativeexit0. Prior readback-off1600pixel failures remain failed; no observer causality or general order repair. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
       ]
     },
     {
@@ -46522,7 +46546,8 @@
         "DRAW02.draw02-copy-order-values-legacy120-01-20261013",
         "DRAW02.draw02-copy-order-values-legacy120-02-20261013",
         "DRAW02.draw02-results-redraw-repeat-values-01-20261013",
-        "DRAW02.draw02-worker-prefix-disabled-values-01-20261013"
+        "DRAW02.draw02-worker-prefix-disabled-values-01-20261013",
+        "DRAW02.draw02-aux-copy-values-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46537,7 +46562,8 @@
         "First01reports retain prospective duplicate-dependency contracts and earlier source versions; contract/source freshness limitations are intentional. Current02results have new prospective declaration after deduplication/tool change. No historical hash refresh or status promotion.",
         "Original source/view/backing ownership, actual execution ordering beyond associated worker bodies, fresh request-bound reproduction of the old failing branch, safe ordering repair, diagnostic controls and all47/21closure remain open.",
         "Repeated-menu current native probe32pairs/18divergent World regions. Four menu inversions atrequests955/1007/1150/1164have0prior-primary/current-source ROI differences and immediate5\u21922restoration before next CPU checkpoint. This isolates a missing conjunction:older failed menu pair has1600ROI differences. Optional worker-prefix observer perturbation, initial menu redraw/backing/actual cause and general repair remain unproved; no stage promotion.",
-        "Read-only unchanged-order native publication35pairs/20divergent ROIs. Menu pairs969/970and1050/1051differ1600pixels and restore5\u21922before failed checkpoint;1229/1230has0ROI difference. All2400checkpoint hashes unchanged; failed template remainsfalse. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+        "Read-only unchanged-order native publication35pairs/20divergent ROIs. Menu pairs969/970and1050/1051differ1600pixels and restore5\u21922before failed checkpoint;1229/1230has0ROI difference. All2400checkpoint hashes unchanged; failed template remainsfalse. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open.",
+        "Aux readback current native29pairs/18divergent regions:originalAux mapped hashes atSave1102/1240/1269equal native current full-source ROI, while native Saved equals prior-primary and67pairAuxcomparison failednative plane. Later badSave1251/1280follow5\u21921restoration ofpreviouslybadNativeAux acrosspostlude source2writes. Supports a scoped executed-transfer ordering hypothesis; all-source/GPUCPU views/general policy/live remain independent and unproved."
       ]
     },
     {
@@ -47208,6 +47234,149 @@
       "remaining_gaps": [
         "Prospective worker-prefix-disabled capture pending. A changed outcome cannot establish probe causality without controlled state/timing and further evidence. Need exact failing first menu redraw/ROI/restore conjunction, source/view/backing/all-writer lifetimes, cadence controls and all47/21closures.",
         "Disabled-sidecar original120:31actions/545423records/2400oracles/835primary planes, actualquit0;9post-World menu redraws,3exact adjacent inversions. Sidecar requestedfalse and absent, not a proof of noninterference. Existing source hashes/statuses retained. All47/21closures and actual source/backing/diagnostic-control boundaries remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-aux-save-readback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in bounded post-save auxiliary DirectDraw readback witness",
+      "scope": "Explicit diagnostic extra GetDesc/read-only nonblocking Lock/Unlock on observed live canvas1\u21925full40x40background saves in configured800x600NoCD source queues30..50, at most256attempts. Clone mapped RGB565words only within the extra successful Lock interval, after original copy callback completes and before original API return. Record all failures, call counts, source point metadata and forced-close incompleteness. Pixels are external oracles; defaultoff keeps app callbacks/default observation unchanged. No observer noninterference, original GPU/CPU/backing identity beyond the mapped view, scheduling repair or full presentation.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-aux-save-readback.md",
+        "research/formats/drawing-aux-save-readback-v1.md"
+      ],
+      "implementation": [
+        "runtime/drawing/aux_save_readback.h",
+        "runtime/drawing/session.c",
+        "protocols/include/mnm/drawing_aux_save_readback_v1.h",
+        "tools/drawing_aux_save_readback.py"
+      ],
+      "tests": [
+        "tests/drawing-aux-save-readback-test.c",
+        "tests/test-drawing-aux-save-readback.py",
+        "tools/test-drawing-aux-save-readback.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/source_points.h",
+        "runtime/drawing/call_intervals.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/capture-drawing-interactive.py",
+        "protocols/include/mnm/drawing_source_point_v1.h"
+      ],
+      "evidence": [
+        "DRAW02.draw02-aux-save-readback-fixture-01-20261013",
+        "DRAW02.draw02-aux-save-readback-original120-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Prospective diagnostic implementation/fixtures pending. Extra readback can change driver/cache/timing state; keep opt-in and separate from default physical metadata and unobtrusive gameplay. Need fresh actual original auxiliary bytes, request/worker/source association, mapped-view/underlying GPU/CPU relation and all47/21closure.",
+        "Synthetic fixture01passes256attempts/247mapped-word images/9refusals and forced-close rejection. Real recorded save970metadata has LIVE|MATCH canvas1\u21925/800x600\u219240x40 atqueue33, with0cachedWORDstrides; selector does not assume a cached CPU pointer. No actual auxiliary driver bytes captured yet.",
+        "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed. Extra diagnostic readback may change GPU/cache/timing; original baseline/mapped-view relations, oldfailure repair and all47/21closures remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-aux-readback-native-comparison",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original diagnostic auxiliary mapped-view to unchanged native saved-buffer comparison",
+      "scope": "Bind every admitted post-save auxiliary oracle by exact API\u2192copy request\u2192producer return, preserve within-World/unsupported/source-writer exclusions and compare outside-World native canvas5publication against external mapped-view bytes. Replay source-only parameters/pinned encoded assets unchanged; every native checkpoint hash must equal the unmodified template, including its existing failures. Probe timing and dirty/queue metadata remain separate from native logical state; no original GPU/CPU/backing, general scheduling repair or whole presentation claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-aux-save-readback.md"
+      ],
+      "implementation": [
+        "tools/compare-drawing-aux-readback.py"
+      ],
+      "tests": [
+        "tools/compare-drawing-aux-readback.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/analyze-drawing-source-prediction.py",
+        "tools/audit-file-apis.py",
+        "tools/compare-drawing-source-points.py",
+        "tools/drawing_api_session.py",
+        "tools/drawing_aux_save_readback.py",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_presented_session.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inventory-binary.py",
+        "tools/original-manifest.sh",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "DRAW02.draw02-aux-readback-native-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Prospective read-only native saved-buffer comparison pending. Current original diagnostic75images includes8insideWorldpublication refusals; every oracle must remain accounted. Original complete GPU/CPU/view ownership and timing/cache perturbation, oldfailure repair and all47/21closure remain open.",
+        "Fresh mapped-view comparison67:62match/5failed originalaux snapshots atSaveRequests1102/1240/1251/1269/1280;8insideWorldexcluded. CPU2403allmatch. Three failures have adjacent driverfull-before-save/producer-save-before-full pairs1101/1102,1239/1240,1268/1269;two may inherit prior saved-buffer state. Prove source/value propagation separately before schedule repair; no stage promotion."
       ]
     }
   ],
@@ -101623,6 +101792,149 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-aux-save-readback-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Synthetic PE32 auxiliary fixture:256attempts/247padded-row RGB565copies/9refusals, supported legacy/extended descriptor ABI, defaultoff, error/x87,reentrant driver/forcedclose/budget guards. No actual game/backing equivalence.",
+      "record": "research/runtime/draw02-aux-save-readback-fixture-01.json",
+      "sha256": "28eac52675a2ccc1ff8f2e8e8ff89648648b49b6140faeb94f9fa5c3d48efd24",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-default-api-physical-02-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh default-off physical observer:32application callback cases/eight primary planes/eight competing threads,0diagnosticLock/Unlock, preservedHRESULT/LastError/x87 and original once-only forwarding. Synthetic only.",
+      "record": "research/runtime/draw02-aux-default-api-physical-02.json",
+      "sha256": "5c8552dde31532de549f8b17e2b9a9165cc85dac37168c66e2ef14f3b905e766",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-save-readback-original120-01-20261013",
+      "kind": "live_observation",
+      "scope": "Original120explicit readback:586057producer records/2403oracles, verified actualquit0;75selected auxiliary RGB565images/225extraGetDescLockUnlockcalls/0refusals. Original driver extra Unlocks all succeeded; cache/timing noninterference not claimed.",
+      "record": "research/runtime/draw02-aux-save-readback-original120-01.json",
+      "sha256": "737c1cfb633a855921f17adae867a71bfc746c75932bcb92e9ca226c984b8473",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-aux-save-readback-checkpoints-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh explicit-readback trace source-only unchanged replay:all2403CPU checkpoints match, nativeexit0. Prior readback-off1600pixel failures remain failed; no observer causality or general order repair.",
+      "record": "research/runtime/draw02-aux-save-readback-checkpoints-01.json",
+      "sha256": "a369ee84a040d1b9b0725c9506552ac093531b4ab9a02217695a2bd6f30de662",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-aux-save-readback-egl-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh readback diagnostic physical cohort137matches/720exclusions; keep auxiliary extra calls and baseline source ownership separate.",
+      "record": "research/runtime/draw02-aux-save-readback-egl-01.json",
+      "sha256": "96f69d870445f60b210ca04e04de97d23a3c48654056d4e66195c78fe71b5a1e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.draw02-aux-save-readback-bindings-01-20261013",
+      "kind": "static",
+      "scope": "Fresh explicit diagnostic trace2282copy requests bind exactcommand identities;161extraAPIentries/261adjacent return reversals retained. Readback extra calls do not become application COPYs or source ownership.",
+      "record": "research/runtime/draw02-aux-save-readback-bindings-01.json",
+      "sha256": "f6b541169cc77d0697d77e976c2e7beb8036349d11117487dd00d7b41dc67007",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-readback-native-01-20261013",
+      "kind": "native_integration",
+      "scope": "Completed unchanged source-only auxiliary replay67comparisons:62match/5fail(86,56,56,28,28pixels),8active-World publications excluded. All2403CPU checkpoint hashes unchanged. Auxiliary whole result remainsfalse despite CPUtemplate matching; no ordering repair/underlyingGPUCPU equivalence.",
+      "record": "research/runtime/draw02-aux-readback-native-01.json",
+      "sha256": "e43dd8774c524b8ac0ca685aaa8c772ba9d62933b7ab9e16d1a782e8348a243a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/checkpoints_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-aux-copy-values-01-20261013",
+      "kind": "native_integration",
+      "scope": "Read-only native29pair publication/18divergent regions;all2403checkpoint hashes unchanged. AtfailedAuxSave1102/1240/1269actual diagnostic mapped-view hashes equal nativecurrent full-source ROI;nativeSaved equals prior-primary and corresponding failedAux nativepublication. Exact adjacent worker-order reversals; no oracle input or schedule repair.",
+      "record": "research/runtime/draw02-aux-copy-values-01.json",
+      "sha256": "8c5c84b207d1886ad891782cbb739264867badc97a259c2ba3d0204b7df58e32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/checkpoints_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -113784,8 +114096,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-worker-control-20261013.json",
-    "sha256": "706c898d0fd3b599a22fb42f1476aa01fde3befa365984a06d2f5204ede748a4"
+    "path": "research/runtime/coverage/source-index-draw02-aux-readback-20261013.json",
+    "sha256": "eec63e8d0af6e13f3ae0a22a84f06e875de58d1232dcf6a62adab75fbd2b5fd5"
   },
   "claim_bindings_required": true
 }

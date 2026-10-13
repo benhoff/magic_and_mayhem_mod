@@ -21,6 +21,7 @@ if metadata.get('wine_texture_entry'):os.environ['MNM_DRAW_WINE_TEXTURE_ENTRY']=
 else:os.environ.pop('MNM_DRAW_WINE_TEXTURE_ENTRY',None)
 if metadata.get('wine_blit_worker'):os.environ['MNM_DRAW_WINE_BLIT_WORKER']='1'
 else:os.environ.pop('MNM_DRAW_WINE_BLIT_WORKER',None)
+if metadata.get('aux_save_readback'):os.environ['MNM_DRAW_AUX_SAVE_READBACK']='1'
 if metadata.get('wine_worker_producer_points'):os.environ['MNM_DRAW_WINE_WORKER_PRODUCER']='1'
 else:os.environ.pop('MNM_DRAW_WINE_WORKER_PRODUCER',None)
 if metadata.get('wine_blit_packet'):os.environ['MNM_DRAW_WINE_BLIT_PACKET']='1'

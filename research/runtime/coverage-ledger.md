@@ -9312,3 +9312,30 @@ explicit request/API/worker evidence. Keep these comparisons failed and establis
 original auxiliary/GPU/CPU view contents before a native scheduling repair.
 Storage associations and admitted physical matches do not prove that ownership.
 Step2 remains active; all47/21closures and steps3–7 remain open.
+
+
+## Step2 opt-in auxiliary mapped-view witness (2026-10-13)
+
+Committed failure reproduction `d5677a44` has13exact receipts/0history gaps.
+New opt-in diagnostic reads selected live canvas1→5/40×40saves in source queues
+30..50with256attempt cap. Extra GetDesc/read-only nonblocking Lock/Unlock calls
+are explicitly separate from primary physical metadata; defaultoff adds none.
+Synthetic256attempt/247image/9refusal,ABI,error/x87,reentrant-driver/budget and
+forced-close tests pass; default physical32cases/eightplanes passes0extraLock/
+Unlock. Python8new and24existing API/physical/interval guard methods pass.
+
+Fresh original120extra-readback trace retains586057records/2403CPU oracles,
+verifiedquit0 and75auxiliary images/225extra driver calls/0refusals. Manifests and
+source hashes verify. Native CPU2403/2403matches;137admitted physical matches
+retain720exclusions. Auxiliary saved-buffer comparison67has5failures and8World
+publication exclusions. Original outputs remain external; operation order and
+all2403checkpoint hashes stay unchanged. CPU matches do not clear Aux failures.
+
+Three adjacent full/save inversions have actual Aux mapped-view hashes matching
+native current-source ROIs, while native saves hold earlier primary regions.
+Two later failures follow reuse ofbad saved regions. This supports a scoped
+transfer-phase model mismatch. Extra readback may affectcache/timing; original
+GPU/CPU/all-writer ownership and a safe general schedule remain unproved. Source
+and scope changes retain historical hashes/stages; no promotion. Step2 and all
+47/21closures remain open; steps3–7 not complete. No new scheduling or gameplay
+policy is applied by this diagnostic increment.
