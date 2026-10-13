@@ -70,5 +70,6 @@ __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 __declspec(dllexport) void WIN NativeDrawAnchor(void) {}
 /* Read-only launch-local diagnostic; never takes loader or drawing locks. */
 __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_n(&nd_status_phase,__ATOMIC_RELAXED);}
+__declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
 i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();}else if(reason==0)nd_status_finish();return 1;}

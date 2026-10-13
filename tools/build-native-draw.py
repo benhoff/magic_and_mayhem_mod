@@ -53,7 +53,8 @@ def build(output, declared=None):
                'NativeDrawDCs': ('NativeDrawDCs', 0),
                'NativeDrawSurfaces': ('NativeDrawSurfaces', 0),
                'NativeDrawAnchor': ('NativeDrawAnchor', 0),
-               'NativeDrawStatusStage': ('NativeDrawStatusStage', 0)}
+               'NativeDrawStatusStage': ('NativeDrawStatusStage', 0),
+               'NativeDrawStatusDeferV1': ('NativeDrawStatusDeferV1', 4)}
     subprocess.run(['lld-link', '/dll', '/machine:x86', '/entry:DllMain@12', '/nodefaultlib',
                     '/safeseh:no', '/timestamp:0', '/out:'+str(dll),
                     *[f'/export:{alias}=_{symbol}@{size}' for alias, (symbol, size) in exports.items()],

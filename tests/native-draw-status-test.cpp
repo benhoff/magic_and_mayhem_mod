@@ -42,5 +42,16 @@ int main(){
  for(unsigned f=1;f<=6;++f){reset();fault=f;try{nd_status_start();nd_status_finish();assert(false);}catch(Termination x){assert(x.code==(f==1?102u:100u));}}
  reset();loaded=true;try{nd_status_start();assert(false);}catch(Termination x){assert(x.code==101);}assert(sink()[4]==1);
  reset();nd_status_start();nd_status_busy=1;loaded=true;try{nd_status();assert(false);}catch(Termination x){assert(x.code==101);}assert(nd_status_exports==1);
- std::cout<<"mapped status: 1024 complete bounded memory snapshots, zero drawing file IO, every-call module checks, LastError, collision and terminal failures PASS\n";
+ reset();nd_status_deferred=nd_status_dirty=0;nd_status_start();old=guarded;
+ last_error=0x12345678;nd_status_defer(1);nd_status_defer(1);
+ ns_locks=77;nd_status();ns_locks=99;nd_status();
+ assert(guarded==old&&module_checks==1&&last_error==0x12345678);
+ nd_status_defer(0);assert(guarded==old&&module_checks==1);
+ nd_status_defer(0);assert(sink()[11]==99&&module_checks==2&&last_error==0x12345678&&!nd_status_dirty&&!nd_status_deferred);
+ nd_status_defer(1);nd_status_defer(0);assert(module_checks==2);nd_status_finish();
+ reset();nd_status_deferred=nd_status_dirty=0;nd_status_start();nd_status_defer(1);loaded=true;nd_status();assert(module_checks==1);
+ try{nd_status_defer(0);assert(false);}catch(Termination x){assert(x.code==101);}assert(sink()[4]==1);
+ reset();nd_status_deferred=nd_status_dirty=0;nd_status_start();nd_status_defer(1);ns_copies=17;nd_status();nd_status_finish();assert(module_checks==2&&flushes==1&&unmaps==1);
+ nd_status_deferred=nd_status_dirty=0;try{nd_status_defer(0);assert(false);}catch(Termination x){assert(x.code==103);}
+ std::cout<<"mapped status: 1024 snapshots, deferred/nested/latest publication, module refusal, terminal pending flush, LastError and bounds PASS\n";
 }

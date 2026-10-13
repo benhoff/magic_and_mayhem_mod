@@ -8728,3 +8728,22 @@ Worlds, successfulcasting/combat/spells/portrait/menu/resume/Quit and19.12engine
 Short repeats retain a19FPSfloor miss and a menu timeout without a renderererror;
 a cold-cache fullfunctional run misses19FPSat18.99486. No current60FPSor every-GAP
 repair claim follows. Final-source full public validation remains pending.
+
+### Native mapped status stall and final rendering regression (2026-10-13)
+
+The next three-cycle test catches a real final-quit GAP: a drawing waiter exceeds
+50ms while CreateSurface owns drawing167ms, sampled atnative status phase3 mapped
+stores. `NR.native-status-outside-drawing` adds balanced local deferral andpublishes
+status/module checks after drawing ownership releases. Allocation/lifetime/order,
+LastError,96-byte status layout andgenuine-write deadlines/refusal remain intact.
+Native status assertions/ASan/UBSan and actualPE32 injected125ms publication-stall
+plusreadonly/mutation controls pass: sixcases/tenfull-frame comparisons, zeroordinary
+readbacks/uploads/terminalsurfaces. The earlier5528Worldfinal-quit failure remains.
+
+Final TITAN code completes5284balancedWorlds, three native menu/resume cycles,
+casting/lethalcombat/spells/portrait/QuitNo-resume andnormalQuit, withno renderererror
+or historyadmissionfault andzeroordinaryreadbacks. The failed public observation is retained; formalintegration remainsheadless
+until successfulpublic evidence. The run stillfails performance:18.98168engineFPSbelow19,50.23648native
+FPSbelow60, andretained worst-window native/paint checks. Offline source-matched
+artifact postcheck verifies gameplay outcomes without clearing those failures.
+No originalequivalence, fullnativeengine, every-GAPrepair or60FPSclaim is made.

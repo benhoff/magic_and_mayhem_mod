@@ -61,7 +61,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "command_channel.h"
 #include "draw_capture.h"
 static void game_copy_stage(u32);
-struct GameCopyLease {u32 held,observe;};
+struct GameCopyLease {u32 held,observe,deferred;};
 static struct GameCopyLease game_copy_bind_enter(void);
 static void game_copy_leave(struct GameCopyLease*);
 #include "lock_lifecycle.h"
@@ -570,6 +570,20 @@ __declspec(dllexport) u32 WIN RenderDescriptionDomainForTest(u32 operation,u32* 
     else if(operation==2)ready=__sync_bool_compare_and_swap(&command_gate,COMMAND_GATE_EXCLUSIVE,0);
     SetLastError(error);return ready;
 }
+static u32 game_status_probe_phase,game_status_probe_ends;
+static void WIN game_status_probe_defer(u32 begin){
+    if(begin)return;
+    if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId())ExitProcess(422);
+    __atomic_add_fetch(&game_status_probe_ends,1,__ATOMIC_RELAXED);
+    if(__sync_bool_compare_and_swap(&game_status_probe_phase,0,1)){Sleep(125);__atomic_store_n(&game_status_probe_phase,2,__ATOMIC_RELEASE);}
+}
+__declspec(dllexport) u32 WIN RenderNativeStatusProbeForTest(u32 operation){
+    u32 error=GetLastError(),result=0;
+    if(operation==1){game_status_probe_phase=game_status_probe_ends=0;game_copy_native_defer=game_status_probe_defer;}
+    else if(operation==2)result=__atomic_load_n(&game_status_probe_phase,__ATOMIC_ACQUIRE);
+    else{game_copy_native_defer=0;result=__atomic_load_n(&game_status_probe_ends,__ATOMIC_RELAXED);}
+    SetLastError(error);return result;
+}
 __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid,void** result,void* outer){
     original_create=original;return create_draw(guid,result,outer);
 }
@@ -598,7 +612,10 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     PinModule pin=(PinModule)GetProcAddress(GetModuleHandleA("kernel32.dll"),"GetModuleHandleExA");
     if(!pin || !pin(5,(const char*)&RenderAnchor,&pinned)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     void* native_draw=GetModuleHandleA("MnmDraw.dll");
-    if(native_draw)game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
+    if(native_draw){
+        game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
+        game_copy_native_defer=(void (WIN *)(u32))GetProcAddress(native_draw,"NativeDrawStatusDeferV1");
+    }
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
