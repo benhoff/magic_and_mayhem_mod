@@ -54483,29 +54483,57 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original creature ownership transfer",
-      "scope": "Whole51ec80 in recovery: same-owner no-op, ordered visibility/route/reset callbacks with owner change, pending/marker/selection cleanup, color/update/behavior reset, two ancestry release calls, global memberships and animationKind2 display owner write. Complete lower services/state ownership and fresh execution pending.",
-      "confidence": "provisional",
+      "scope": "Whole51ec80 ownership-transfer projection: same-owner no-op; ordered owner-count/visibility-refresh/reset calls and owner/pending/6e4 updates; selected count wrap/presence, route effect release/clear, marker/UI/color/owner-work ordering; post-callback behavior/pending resets; per-slot ancestry-root reload, general/wizard controller calls and animationKind2 display write from requested owner. Finite16384 one-actor fixtures, owner/request-1..7, four logical effects/root records and one display; callbacks mutate owner/behavior/pending/kind/second root. Lower owner-count/visibility-refresh/reset/classification/UI/color/owner-refresh/reference/list services supplied; raw pointers/malformed IDs/installed profiles/full World/session ownership excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5368960,
-          "scope": "Whole51ec80 in recovery: same-owner no-op, ordered visibility/route/reset callbacks with owner change, pending/marker/selection cleanup, color/update/behavior reset, two ancestry release calls, global memberships and animationKind2 display owner write. Complete lower services/state ownership and fresh execution pending."
+          "scope": "Whole51ec80 ownership-transfer projection: same-owner no-op; ordered owner-count/visibility-refresh/reset calls and owner/pending/6e4 updates; selected count wrap/presence, route effect release/clear, marker/UI/color/owner-work ordering; post-callback behavior/pending resets; per-slot ancestry-root reload, general/wizard controller calls and animationKind2 display write from requested owner. Finite16384 one-actor fixtures, owner/request-1..7, four logical effects/root records and one display; callbacks mutate owner/behavior/pending/kind/second root. Lower owner-count/visibility-refresh/reset/classification/UI/color/owner-refresh/reference/list services supplied; raw pointers/malformed IDs/installed profiles/full World/session ownership excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-transfer-test.cpp",
+        "tools/test-creature-owner-transfer.py"
+      ],
       "evidence": [
-        "NS41.resources-static"
+        "NS41.resources-static",
+        "NS45.transfer-original",
+        "NS45.transfer-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/transfer/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged51ec80 and complete actor/definition/effect/root/display/global byte guards",
+          "Ordered helper callbacks mutate fields before the original reloads them",
+          "Finite logical tokenzero maps to nonnull owned legacy pointer; selection counter wraps unsigned"
+        ],
+        "excluded": [
+          "Full lower count/visibility/reset/UI/owner-target/controller/root-activity ownership and installed profiles",
+          "Malformed display references and original invalid pointers; native-only refusals require caller rollback",
+          "Complete native World/session composition, integration and live replacement"
+        ]
       }
     },
     {
@@ -54867,6 +54895,394 @@
           "Full native World/session integration, installed all-species/profile/FPU modes and live replacement",
           "Malformed pointers/indices/cycles and broader arithmetic/denominator domains; caller stages rollback"
         ]
+      }
+    },
+    {
+      "id": "NP.owner-transfer-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native ownership-transfer display admission",
+      "scope": "Two native-only missing/out-of-range display refusals when animationKind2 requires a terminal owner write. Primitive may mutate before refusal; caller must stage state/events for rollback. No original malformed-pointer equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-transfer-test.cpp",
+        "tools/test-creature-owner-transfer.py"
+      ],
+      "evidence": [
+        "NS45.transfer-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/transfer/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged51ec80 and complete actor/definition/effect/root/display/global byte guards",
+          "Ordered helper callbacks mutate fields before the original reloads them",
+          "Finite logical tokenzero maps to nonnull owned legacy pointer; selection counter wraps unsigned"
+        ],
+        "excluded": [
+          "Full lower visibility/route/reset/UI/owner-work/list/reference ownership and installed profiles",
+          "Malformed display references and original invalid pointers; native-only refusals require caller rollback",
+          "Complete native World/session composition, integration and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "AI.wizard-kind",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original wizard kind predicate",
+      "scope": "Whole411e50 predicate: kind0/24/25/26 returns1, every other word0. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4267600,
+          "scope": "Whole411e50 predicate: kind0/24/25/26 returns1, every other word0. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp"
+      ],
+      "tests": [
+        "tests/creature-ownership-helpers-test.cpp",
+        "tools/test-creature-ownership-helpers.py"
+      ],
+      "evidence": [
+        "NS45.ownership-static-v2",
+        "NS46.ownership-helpers-original",
+        "NS46.ownership-helpers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership-helpers/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.root-activity-clear",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original ancestry root activity flag clear",
+      "scope": "Whole407b90 numeric state89:1to0 or3to2, all other words preserved; this is not a refcount decrement. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4225936,
+          "scope": "Whole407b90 numeric state89:1to0 or3to2, all other words preserved; this is not a refcount decrement. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp"
+      ],
+      "tests": [
+        "tests/creature-ownership-helpers-test.cpp",
+        "tools/test-creature-ownership-helpers.py"
+      ],
+      "evidence": [
+        "NS45.ownership-static-v2",
+        "NS46.ownership-helpers-original",
+        "NS46.ownership-helpers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership-helpers/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.owner-visibility-refresh",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original owner visibility refresh",
+      "scope": "Whole51a880: own-owner or nonzero relation18 plus share20 sets24-array visibility30, otherwisezero; all separate48-array words cleared. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5351552,
+          "scope": "Whole51a880: own-owner or nonzero relation18 plus share20 sets24-array visibility30, otherwisezero; all separate48-array words cleared. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp"
+      ],
+      "tests": [
+        "tests/creature-ownership-helpers-test.cpp",
+        "tools/test-creature-ownership-helpers.py"
+      ],
+      "evidence": [
+        "NS45.ownership-static-v2",
+        "NS46.ownership-helpers-original",
+        "NS46.ownership-helpers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership-helpers/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.queued-marker-clear",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original queued move marker clear",
+      "scope": "Whole512340: stable owned list, only kind2 nonnull effect28 releases4943f0 then clears; later marker values are loaded after callbacks. Reentry modifies later token fields with fixed backing/shape. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317440,
+          "scope": "Whole512340: stable owned list, only kind2 nonnull effect28 releases4943f0 then clears; later marker values are loaded after callbacks. Reentry modifies later token fields with fixed backing/shape. Whole unchanged original body and complete actor-or-root/definition/list/sentinel/node/effect/relation/body guards. Finite8192 fixtures per operation with directed full-word boundary and multiplicative seeds, owner0..7, all8 relation/share flags, consistent0..15 nodes and32 stable logical effects; tokenzero maps nonnull. Raw pointers/neutral visibility alias/list reshaping, complete lower effects/control/installed profiles and World/session integration excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp"
+      ],
+      "tests": [
+        "tests/creature-ownership-helpers-test.cpp",
+        "tools/test-creature-ownership-helpers.py"
+      ],
+      "evidence": [
+        "NS45.ownership-static-v2",
+        "NS46.ownership-helpers-original",
+        "NS46.ownership-helpers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership-helpers/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "NP.owner-visibility-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native owner visibility relation admission",
+      "scope": "Two native-only owner-1/8 visibility refusals; original neutral-owner null relation alias and other malformed owner/pointer domains are excluded. No native World/session admission claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp"
+      ],
+      "tests": [
+        "tests/creature-ownership-helpers-test.cpp",
+        "tools/test-creature-ownership-helpers.py"
+      ],
+      "evidence": [
+        "NS46.ownership-helpers-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/ownership-helpers/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
+    },
+    {
+      "id": "AI.owner-count-recompute",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original owner creature count recomputation",
+      "scope": "Whole522340 in recovery:466870 cached associated actor, active/living same-owner scan excluding subject slot/type27,8f5 count write, wizard/block/local UI and signed old/current-vs-limit threshold reload. Complete actor-capacity and lower owner/UI domains and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5382976,
+          "scope": "Whole522340 in recovery:466870 cached associated actor, active/living same-owner scan excluding subject slot/type27,8f5 count write, wizard/block/local UI and signed old/current-vs-limit threshold reload. Complete actor-capacity and lower owner/UI domains and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS45.ownership-static-v2"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owner-target-repair",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original ownership target repair",
+      "scope": "Whole51edf0 in recovery: initial5178c0 callback, active/living self-or-related peers, cached behavior/action20 alternate-target disengagement, callback and target/pending reload/reset, mutable iteration cap. Neutral/null relation alias, indirect behavior callbacks and full lower ownership/fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5369328,
+          "scope": "Whole51edf0 in recovery: initial5178c0 callback, active/living self-or-related peers, cached behavior/action20 alternate-target disengagement, callback and target/pending reload/reset, mutable iteration cap. Neutral/null relation alias, indirect behavior callbacks and full lower ownership/fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS45.ownership-static-v2"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.source-controller-work",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original source controller work",
+      "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4285840,
+          "scope": "Whole416590 in recovery: actor/controller gates, ancestor/control lists, temporary shared mode and repeated407920/4079f0 traversal, owner comparisons and later lower source work. This is not established simple global-list insertion. Complete numeric/indirect/lower control effects and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS45.ownership-static-v2"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.creature-ownership-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned ownership consequence exports",
+      "scope": "Read-only pinned ownership parent and lower body exports, corrected semantic labels. Static instruction evidence only.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-creature-ownership.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS45.ownership-static-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
       }
     }
   ],
@@ -111445,6 +111861,302 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NS45.ownership-static-v2",
+      "kind": "static",
+      "scope": "Pinned ownership parent/lower helpers with corrected role labels; original-manifest before/after and immutable input bytes. Static findings only, no execution or semantic completion.",
+      "record": "research/runtime/original-creature-ownership-static-v2-20261012.json",
+      "sha256": "c781b0ef40a3f37b3b4d1ea7ea00269201eaa4da3564c3f64af76af39e6950c9",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS45.transfer-original",
+      "kind": "isolated_original",
+      "scope": "Whole51ec80 with supplied lower count/visibility/reset/UI/color/owner-target/root-activity/controller consequences; ordered callbacks and complete owned fixture/body guards.",
+      "record": "research/runtime/original-creature-transfer-bound-20261012.json",
+      "sha256": "7a9fadc8e8fd883bd743e6f2a4b3ab2ebdec445b85c30b27cafd23bbfcfe5af6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/same_owner_noops",
+          "equals": 5461
+        },
+        {
+          "pointer": "/root_callback_cases",
+          "equals": 10923
+        },
+        {
+          "pointer": "/display_writes",
+          "equals": 2789
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS45.transfer-native",
+      "kind": "native_integration",
+      "scope": "Whole51ec80 with supplied lower count/visibility/reset/UI/color/owner-target/root-activity/controller consequences; ordered callbacks and complete owned fixture/body guards.",
+      "record": "research/runtime/original-creature-transfer-bound-20261012.json",
+      "sha256": "7a9fadc8e8fd883bd743e6f2a4b3ab2ebdec445b85c30b27cafd23bbfcfe5af6",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 16384
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/same_owner_noops",
+          "equals": 5461
+        },
+        {
+          "pointer": "/root_callback_cases",
+          "equals": 10923
+        },
+        {
+          "pointer": "/display_writes",
+          "equals": 2789
+        }
+      ]
+    },
+    {
+      "id": "NS46.ownership-helpers-original",
+      "kind": "isolated_original",
+      "scope": "Whole411e50/407b90/51a880/512340 finite owner/class/flag/list domain; lower marker release supplied. Complete actor-or-root/list/relation/body guards.",
+      "record": "research/runtime/original-creature-ownership-helpers-bound-20261012.json",
+      "sha256": "6d5a453fd2895a90b4b6eee1b3b80090e7ccd049bcef2cad984dc5571b93f3f4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/activity_clears",
+          "equals": 746
+        },
+        {
+          "pointer": "/marker_releases",
+          "equals": 9557
+        },
+        {
+          "pointer": "/wizard_classes",
+          "equals": 1490
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS46.ownership-helpers-native",
+      "kind": "native_integration",
+      "scope": "Whole411e50/407b90/51a880/512340 finite owner/class/flag/list domain; lower marker release supplied. Complete actor-or-root/list/relation/body guards.",
+      "record": "research/runtime/original-creature-ownership-helpers-bound-20261012.json",
+      "sha256": "6d5a453fd2895a90b4b6eee1b3b80090e7ccd049bcef2cad984dc5571b93f3f4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/activity_clears",
+          "equals": 746
+        },
+        {
+          "pointer": "/marker_releases",
+          "equals": 9557
+        },
+        {
+          "pointer": "/wizard_classes",
+          "equals": 1490
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -125018,8 +125730,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-contribution-owned-20261012.json",
-    "sha256": "b4e14be5f494c8242623197ca9af0e3bc38c613b1ea2c85fbd89b305d3bda835"
+    "path": "research/runtime/coverage/source-index-original-owner-services-20261012.json",
+    "sha256": "ac1681334b1d1e44b116f99cddc226be96d9d26d9d57d7c20018658dda80d9fd"
   },
   "claim_bindings_required": true
 }

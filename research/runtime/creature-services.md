@@ -216,3 +216,39 @@ covered only by their separate scoped proofs. This is a recovered call-chain
 comparison, not complete native World/session integration or live replacement.
 Incoming NS43 c31d0571 has15 file/128 behavior transitions reviewed against exact
 receipts and actual staged gate with no unresolved accounting gaps.
+
+
+## Ownership transfer and leaf comparisons (NS45/NS46)
+
+Whole51ec80 passes16,384 prospectively bound original32/native64/sanitized64
+cases:5,461 same-owner no-ops,10,923 fixtures invoking root callbacks and2,789
+display writes. Ordered owner-count/visibility/reset/UI/color/target-repair/root/
+controller calls and complete actor/definition/effect/root/display/global/body
+guards match. Each ancestry root is reloaded separately. The terminal display
+write uses the requested owner even if a callback changes the actor owner. Two
+native-only malformed display refusals require caller rollback.
+
+Whole411e50,407b90,51a880 and512340 independently pass32,768 prospective
+original32/native64/ASan+UBSan+LSan64 cases. Wizard class0/24/25/26 returnsone.
+Root activity89 changes1to0 or3to2; every other word is preserved. Visibility
+sets24-array words30 for own/shared-allied owners, otherwisezero, and clears
+separate48-array words. Marker clear releases only kind2 nonnull effects, then
+clears that node's token; later token mutations are read at the original points.
+Full actor-or-root/list/sentinel/node/effect/relation/body guards match. Two
+native-only invalid visibility-owner refusals are separate from baseline behavior.
+Independent native CMake builds and CTests pass for both components.
+
+Static lower-helper review corrects provisional names:522340 recounts owner
+creatures,51a880 refreshes visibility,407b90 clears a finite root activity state,
+and416590 remains source-controller work rather than established list insertion.
+The transfer fixture's root callback counters are supplied consequence data, not
+a claim about407b90 reference counts. Final transferv1 with provisional names is
+retained inworking; renamed source/scope is freshly compared under finalv2.
+Staticv1 is also retained; corrected staticv2 is the new registered result.
+
+These are parent and leaf projections, not a composed ownership chain. Lower
+count/target/controller/color/UI/reset/effect ownership, installed construction,
+complete native World/session and live replacement remain pending. No balance
+changes or broad integration stages are asserted. Incoming NS44 f62ba148 is
+reviewed against exact receipts and actual staged gate; historical review is
+separate from these new execution results.
