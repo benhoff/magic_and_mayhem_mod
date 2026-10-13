@@ -516,3 +516,41 @@ existing component source and historical evidence fingerprints remain unchanged.
 Incoming NS54 e5be42d5 has31 file/158 behavior transitions reviewed against exact
 receipts and its successful actual staged gate, with no unresolved accounting
 gaps. This history review adds no new execution or retrospective gate assertion.
+
+
+## Owned idle behavior and callback continuation (NS56)
+
+The composed ownership transfer/repair/reset chain now owns whole50acb0 idle
+behavior and an explicit per-actor supplied/idle callback binding. Reset installs
+the idle binding before running it; later target-repair dispatch follows that
+binding even when a lower consequence changes the behavior word. The initial
+other callback remains supplied. No raw function pointer or this-adjust value
+is stored by the native binding model. An unknown logical binding refuses at
+dispatch, with caller rollback required; this is native representation/admission
+policy, separate from original malformed-pointer behavior.
+
+Fresh prospectively bound original32/native64/ASan+UBSan+LSan64 passes16,384
+cases through12 unchanged original bodies, including actual50acb0. Idle is not
+redirected.26,417 immediate,24,554 interaction,14,652 follow and11,495 queue
+queries are nonempty, along with8,436 action1 and13,738 action6 consequences.
+The initial type22/27 gate, cached admission when the immediate callback edits
+type, ordered short circuits and later field/callback reloads match. The record
+counts final bound callbacks whose behavior word differs from1; raw callback
+identity and zero this-adjust are guarded independently of the word. Complete
+actor/config/owner/relation/limit/selection/source/per-actor list/effect/display/
+global/resolver-table/body guards and native64 semantic digests pass. Native
+CMake build and CTest pass. Immutable record:
+original-transfer-idle-owned-bound-ns56-20261013.json.
+
+Three native-only refusals cover the two display domains plus invalid binding99.
+Rejecting duplicate idle/reset/release/peer providers guard canonical dispatch.
+Lower immediate/interaction/follow/queue/action internals, other behavior bodies,
+color/prepare/peer internals, effect lifetime, UI and controller work remain
+supplied. Installed profiles, unknown/raw callback families, reshaping backing
+and complete native World/session/live replacement remain pending. The successful
+development source/report remain retained separately from the final prospective
+proof; earlier component source and evidence fingerprints are unchanged.
+
+Incoming NS55 36434067 has34 file/159 behavior transitions reviewed against exact
+receipts and its successful actual staged gate, with no accounting gaps. That
+history review adds no new execution result or retrospective gate assertion.

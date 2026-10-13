@@ -8952,3 +8952,21 @@ receipts and actual staged gate with no gaps. History review adds no execution.
   and live replacement remain none. No gameplay balance change.
 - Exact incoming NS54 e5be42d5 history review:31 file/158 behavior transitions,
   no accounting gaps; history review is separate from the new comparison.
+
+
+### NS56: owned idle handler and callback continuation (2026-10-13)
+
+- Composed transfer/repair/reset now owns50acb0 idle and the per-actor supplied/idle
+  binding. Reset installs idle; later dispatch follows the binding independently
+  of behavior-word edits. Invalid-tag admission is an explicit native policy.
+- Fresh bound original32/native64/ASan+UBSan+LSan64:16,384 cases through12 whole
+  unchanged bodies, including actual idle. Full backing/field/global/table/callback/
+  body guards and semantic digests; type22/27/cached admission and ordered
+  immediate/interaction/follow/queue/action1or6 callbacks covered.
+- Native CMake build and CTest pass. Three native-only refusals, including tag99.
+  Immutable result:`original-transfer-idle-owned-bound-ns56-20261013.json`;
+  scenario:`ownership-transfer-idle-owned-20261013`. Development history retained.
+- Lower query/action/other behavior/color/prepare/peer/effect/UI/controller internals,
+  installed construction and complete native World/session remain pending. Integration
+  and live replacement remain none; no gameplay balance change.
+- Exact incoming NS55 36434067 review:34 file/159 behavior transitions, no gaps.
