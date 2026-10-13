@@ -8542,6 +8542,47 @@ resource/geometry/secondary/projectile/effect/area ownership, installed construc
 and native World/session integration remain pending; live replacement staysnone.
 See [cast admission research](cast-admission.md).
 
+## 2026-10-12: battle pause and distortion allocation boundary
+
+Read-only sampling confirmed a paused battle (mode one, advancing accepted
+updates, fixed world tick), followed by resumed ticks at mode zero. The later
+Wine crash at original instruction `0x5965f7` is a separate event. An isolated
+original fixture reproduces that instruction's final-pixel DWORD overread and
+passes with a readable tail. Native RGB565 allocations now include two extra
+readable bytes, without extending logical pixel bounds. See
+[evidence and limits](surface-final-word-read.md).
+
+`MV.pause-clock` records the selected observation;
+`RS.displacement-final-word-read` records original boundary characterization;
+`NP.surface-final-word-read` records the native compatibility policy. Its four
+page-boundary tail-read cases and64 Wine/native surface comparisons pass with
+zero mismatches; original manifests and source/input stability checks pass. The exact
+live crashing sample and fixed-code live battle validation remain pending.
+Existing DirectDraw retirement evidence retains its historical source hashes.
+
+## 2026-10-12: origin history reconciliation
+
+Merged local packed-cast decoding/admission commits with origin’s native surface
+tail-read fix. Both sets of behavior, evidence, scenario and exact review records
+remain retained. The combined source census is
+`coverage/source-index-origin-reconcile-20261012.json`; committed-history review
+is `coverage/origin-reconcile-incoming-history-20261012.json`. Retrospective
+receipts account for exact missing transitions without asserting past gate passage
+or fresh engine validation. The merged discovery audit has no errors, and the
+60 audit-tooling plus51 change-gate synthetic tests pass. Historical stale sources
+and remaining live battle, lower cast-service and integration boundaries remain
+explicit. No original execution experiment or stage promotion is added by this
+merge. Uncommitted Qt restart and creature-service work is restored separately
+after this merge; it is excluded from this committed source census and validation.
+
+Reconciliation storage boundary: the default100GiB guard stopped the final
+accounting check after concurrent experiments consumed free space. The user
+then authorized proceeding with the requested temporary90GiB reserve override.
+Only this reconciliation uses the private policy in
+`working/retention/origin-reconcile-authorized-policy-20261012.json`; temporary
+Git checkouts use RAM and automatic archiving remains disabled. The repository
+default policy and original artifacts are unchanged.
+
 
 ## Public native context costs — 2026-10-12
 
@@ -8639,3 +8680,7 @@ The paired TITAN replay and full gameplay records retain their original source h
 NR.native-palette-row-cache.startup-public-negative-20261012 records the current merged startup tree; success=False. The first sandbox retry could not access nvidia-smi and stopped before original artifacts or gameplay. Its raw report remains at working/tests/native-display-deadlines/run-e4nrtezm/report.json. The hardware retry uses a private TITAN display, unchanged gameplay/thresholds, prospective source claims and source stability checks. Current source-bound gameplay observation only; no paired old/new live FPS causality, original renderer equivalence, 60 FPS or repair of the intermittent checkpoint pixel failure is inferred. Preserve all previous source-bound failures and successes.
 
 The unchanged next retry reached gameplay but was terminated by the storage guard at 99.12 GiB free. Its final campaign/wrapper report is unavailable; no performance or functional success is inferred. Exact owned shell/monitor/Xorg groups and private Wine prefix were stopped and original manifest verified manually afterward. Durable sandbox/storage negative records retain these boundaries. New startup Fireball failure observes 1920 balanced World completions and no renderer error; full-flow launcher validation remains pending despite current scoped live observation.
+
+### Native palette integration into master (2026-10-12)
+
+Merge the palette work with master `2ece99d5`, retaining its final-word native surface read fix and all historical coverage receipts. Incoming source edits do not overlap the palette observation or replay declared source closures. Renderer implementation is unchanged. Latest startup full gameplay remains failed at Fireball damage, and the next retry remains storage-interrupted; neither is promoted to full success. The earlier paired CPU improvement and full native gameplay observation retain their original source hashes and historical limits. The intermittent pixel gap and 60 FPS target remain open.
