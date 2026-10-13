@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "private": {
+    "success": true,
+    "guard_cases": 16,
+    "original_adjust_refund_cancel": true,
+    "live_validated": false
+  },
+  "qt_tests": 3,
+  "execution_claims": [
+    {
+      "behavior": "NP.character-menu-dispatch",
+      "contract_sha256": "21ecf006b1ac188820662efca94740c703e29ea3e2a2715ed4443c8a683bceb0",
+      "scenarios": {
+        "character-adapter-private-20261012": "4b147ade5a41213166699de6414d4f353f9a665b850a7f9da5cda624d0013610"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "4de9dd924b9f241959dc9f1092fbe69ef663435e6ceed30c4479869cd675707a",
+    "apps/qt-shell/character_screen_widget.cpp": "ffb616e8afcac67d81fe0464f6096cacfb738b34499d2fc6a6b3e5630e6be504",
+    "apps/qt-shell/character_screen_widget.hpp": "4ec1486a2ee356fd97cf55992116099cc6334254c2a83e6f795e3773f0970143",
+    "apps/qt-shell/live_character_controller.cpp": "0ea30634a8fcc320800892232fb4c6a569dea9f0b9555028e1746cab785e35f3",
+    "apps/qt-shell/live_character_controller.hpp": "e70665d9aef5fe11514122a643bdaaa442fda8092a13f99a8478ac6a38ba587f",
+    "apps/qt-shell/live_menu_session.cpp": "5b912c969a26415ccb485c95eb3ac2b0d314fdc03a710b9b9e632beb7a1cecfb",
+    "apps/qt-shell/live_menu_session.hpp": "05e788f087f4961534f0ca7b1b2591a21eb0dd0a6e2ddf68b4893342524d888c",
+    "apps/qt-shell/main.cpp": "8f2da91ea26c764df75df2594f314dc19d56fee8885e1966f6dfa7b064046977",
+    "apps/qt-shell/menu_bridge.cpp": "5f3960800c4b69474db5d189412b40ea66b57bb8dd73b9d2fc5bec90aa05fcf9",
+    "apps/qt-shell/menu_bridge.hpp": "154d22aa28272d087d888fc8e87f7d750f8615d04cada0741512f39bdb7ea536",
+    "protocols/include/mnm/menu_v17.h": "be293c6c1edcec7982c0281ce4becf74b806102d0c3ce239f91d25ed67127bb9",
+    "protocols/include/mnm/menu_v18.h": "c6501ea87e8b7f2871a852b8b47f702a0f5251db359c9101b37b2d641e324368",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/channel.h": "41d4b53cad580f413fd24dacf75f0497d87729963d1a1142470a7c86ba9d3557",
+    "runtime/menu/character.h": "f5bf7516b62e8bf0f278150714519f822299bad0d3228cf98b7c28abf6c3a433",
+    "runtime/menu/grimoire.h": "5209a9be7cae1db008b54ab0e59f2c037a8df86ae4875a6c3807317a1fe5b84f",
+    "runtime/menu/lobby.h": "a133e8fa4ce4084fe268f2bc12ccef852d2b7907cc785ab8f63784d3e53dd1eb",
+    "runtime/menu/mini.h": "feb3305d85c77856a0da52931bdabd6646b6e28727196b7eda90b7222abba50f",
+    "runtime/menu/multiplayer.h": "d07556a96ee331106b6891e82dbdd327ec965a435a19f82f3b8d0b9ba141a6c8",
+    "runtime/menu/observer.c": "3ce46114197c00eec8e4919cfd08eb3a9e25db4a17aee97f466ed25b0a45ec66",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/region_entry.h": "e16e21093ee2da8b50b278004e538bae9bba149b00afa11a0f5f85686a33934f",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/sessions.h": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/character-adapter-reference.cpp": "b8166b09a6e0c2f3451086c5434df602acfb2e93207a92aa2055053d8d94cac9",
+    "tests/character-wire-fixture.hpp": "bcd10b636822757ed8677775eca470aaebb398d656ad6ee769fd7249e4fda831",
+    "tests/menu-character-bridge-test.cpp": "7cf866b68622452022c43749bae231fa78c8e7d607ca961e0fcbf068103ac727",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/build-menu-observer.py": "a2cfac77e343fd2a2d3055f0fe0de5f4f29c5f42a2d42bc830ef2a29ee629ae6",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/run-menu-observer.py": "c2bb75d68e5f9a928e8bc511c296c83fe3ec66d5e3865aeebdcdb28c1e6838ba",
+    "tools/test-character-adapter.py": "cd6cbdc85df6d93f3b44bab4fd4a89e74f1678df865e5813f2bbb14f092d406d"
+  },
+  "live_validated": false,
+  "original_work_bypassed": false,
+  "scope": "V18 experimental Character20 view and original adjustment25..36/OK0/Cancel1 callbacks; settled Celtic Realm or non-first Region parent with current owner/thread/generation, wizard/control/price/budget/row/transition guards. Qt displays engine-confirmed state without optimistic grants, duplicate/stale requests refuse; original resources/tick/fade/return stay active. Disabled by default; genuine progressed caller, live return/window-close, full pause/persistence and native Realm navigation remain pending. Character acknowledgements must match the exact request and engine thread; waiting controls disable, and synthetic Realm/Region caller reopen tests cover all six adjustments, refunds, Cancel rollback and OK baseline retention. Native keyboard focus is restored when Character readiness returns after a pending request; synthetic Qt checks assert focus after purchase/refund acknowledgements.",
+  "artifacts": {
+    "original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "build-qt.log": "e6ed01959edb8342d7fdb1dbf2275a747f58ec3eb12f8dd3c9d0c157cf08aaaf",
+    "ctest.log": "7d027634a29d9e774c7cb4f518f14af9028a64d0f3d75f4f77f901950d422882",
+    "configure.log": "4938054a288180ed3324ee3107061d3c52ef35caab40a159bacce15c033c85a4",
+    "qt.xml": "74049c015b47df1bb3583a65a2a41d6b2d356165a6740786da4bd29a6ed706be",
+    "private.log": "5df4417b0aaa3b4563254ce2e52b05f396cbe8667739de5c9d79eadd41f27b61",
+    "character_adapter_fixture.h": "5b136aee510144caa67d8bf54a28342b314db517a8fff0a514e56cc3e3687139",
+    "reference": "e710aff98698ca0fb25f7cd4aa30dd6b6065ff2e80308fd04b50d6bc59140d35",
+    "compile-private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "claims.json": "15036b2f00e14803c26cc5a848788f199af55e6b1b994670079430b1711aea34",
+    "build-observer.log": "3d1f4399422888a3b48efeb4fd086afc80dd6e4f7182bb32d17c12e585fc4ce9"
+  }
+}

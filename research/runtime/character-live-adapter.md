@@ -54,3 +54,10 @@ refusals. Those fixture transactions are headless lifecycle evidence only.
 The separate private PE oracle continues to execute actual original pricing,
 getter and callbacks; the fixture does not establish original campaign entry,
 disk save persistence, real Realm navigation or live replacement.
+
+Disabling a Qt Character page can clear its keyboard focus. The controller now
+restores the first action when readiness returns, including a cached snapshot.
+This keeps keyboard navigation available after a purchase/refund acknowledgement
+even when the host sees the page already reenabled. Synthetic Qt transactions
+assert focus after all six purchase/refund pairs from both caller identities
+(24 checks); this is a native presentation policy, not original focus recovery.

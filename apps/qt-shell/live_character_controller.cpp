@@ -6,10 +6,12 @@ LiveCharacterController::LiveCharacterController(LiveMenuSession& session,Charac
     QObject::connect(&widget_,&CharacterScreenWidget::cancelled,&widget_,[this]{session_.request(MNM_MENU_CHARACTER_CANCEL);});
 }
 bool LiveCharacterController::present(const MenuBridge::State& state,QString* error){
-    widget_.setEnabled(state.screen==20&&state.ready&&session_.characterMenusEnabled);
+    const bool ready=state.screen==20&&state.ready&&session_.characterMenusEnabled;
+    const bool gainedReady=ready&&!widget_.isEnabled();
+    widget_.setEnabled(ready);
     if(state.screen!=20){generation_=0;return true;}
     if(!session_.characterMenusEnabled){if(error)*error="Character integration disabled.";return false;}
-    if(!state.ready||state.generation==generation_)return true;
+    if(!state.ready||state.generation==generation_){if(gainedReady)widget_.focusFirstControl();return true;}
     const auto& b=state.character;CharacterScreenWidget::Character c;
     c.id=QString("original-wizard-%1").arg(b.wizard);c.name=b.name;c.experiencePoints=int(b.experience);
     std::array<int,6> opening{},decrease{};
@@ -18,5 +20,5 @@ bool LiveCharacterController::present(const MenuBridge::State& state,QString* er
         if(row.value+row.increment<=row.maximum)c.stats[i].upgradeCosts.append(int(row.increase));
     }
     if(!widget_.setLiveCharacter(c,opening,decrease,b.adjustments,error))return false;
-    generation_=state.generation;return true;
+    generation_=state.generation;if(gainedReady)widget_.focusFirstControl();return true;
 }
