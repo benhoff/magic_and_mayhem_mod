@@ -2654,3 +2654,27 @@ Reassessment: step2 remains active; test optional worker-prefix observation
 perturbation with the same stimulus and explicit request IDs. Keep ownership,
 all-writer/view/lifetime/route and cadence/semantic controls independent. All47/21
 closures and steps3–7 remain open. No gameplay or native scheduling changes.
+
+
+## Step2 fresh request-bound failure reproduction (2026-10-13)
+
+Repeated Results evidence is committed as `caa9acc1`;15committed-file receipts
+review with0gaps. A fresh optional-worker-prefix-disabled control preserves the
+same31action input/profile otherwise:120queues,545423records,2400oracles,
+835primary planes and actualquit0. Requested sidecar isfalse/absent; all source
+hashes and original manifests verify. Changed timing/random state prevent causal
+observer-noninterference claims.
+
+Unchanged-order native CPU replay completes but fails two canvas2checkpoints,
+1352and1437,each1600pixels. Original full-plane hash equals the prior failed
+Results image. Exact full/save request pairs969/970 and1050/1051reproduce driver
+full-before-save, producer save-before-full, divergent1600pixel native ROIs and
+immediate5→2restoration. The third menu inversion has0ROI differences and matches.
+Read-only native publication preserves all2400checkpoint hashes. All140admitted
+physical comparisons match with695excluded; those cannot discharge CPU failures.
+
+Reassessment: the previously unbound local failure is reproduced with fresh
+explicit request/API/worker evidence. Keep these comparisons failed and establish
+original auxiliary/GPU/CPU view contents before a native scheduling repair.
+Storage associations and admitted physical matches do not prove that ownership.
+Step2 remains active; all47/21closures and steps3–7 remain open.
