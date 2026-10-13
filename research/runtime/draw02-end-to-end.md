@@ -2565,3 +2565,18 @@ or explicit budget change perAGENTS.md. No cleanup, archive or policy change
 was applied. A concrete main1280→1344GiBproposal retains100GiBfree and
 automatic archivingoff at working/retention/draw02-storage-budget-proposal-
 20261013-01.json. Step2and all47/21remain open; steps3–7remainordered/pending.
+
+
+## Approved DRAW-02 storage budget (2026-10-13 UTC)
+
+The user approved the prepared1280→1344GiBworking-budget change after the
+7GiBheld120reservation was refused. Main and DRAW02worktreeAGENTS.md and
+working-retention.json now agree on1344GiB(1.3125TiB), with100GiBfree reserve
+and automaticarchivefalse retained. Existing12retention guards pass; no files
+were cleaned or archived. Exact approval/configuration provenance is retained
+in draw02-approved-storage-budget-20261013.json. Reviewed4673e283..edd2d9d4:
+17exact parent/current file receipts, zero gaps. Main unrelated changes remain
+unmodified. A new prospective declaration precedes the guarded held120retry
+with copy-request IDs, V5storage-query IDs and worker producer-prefix bounds.
+Its execution, physical comparison and Step2closure require separate results;
+no earlier failure or evidence hash is rewritten by this budget change.

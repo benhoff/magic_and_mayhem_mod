@@ -548056,6 +548056,179 @@
         "status": "pending",
         "reason": "Fresh isolated_original DRAW02.draw02-grayscale-original-04-20261013passes8cases/530432words/all65536RGB565colors, transparency, padding/guards, origins and pure/combined/vertical clipping. Fresh CPUguards pass; source-only current120matchesall2278checkpoints while prior120retains1600pixelcanvas2failure with2181/2182matched. Initialfailed source hashes and launch-only body flag remain historical; corrected runner bodytrue requires success. RGB555/indexed/fullcallerABI/session/byte-backings/generalordering/47and21closure remain pending. Larger held120capture never launched after7GiB storage preflightrefusal; reviewable1344GiBbudgetproposal prepared without applying policy or deleting data. All existing unrelated historical staleness retained."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "f44cda10746cd1039429cff6f9caa0a27fe3d8a69c0617221519ede54773e56d",
+          "before_sha256": "c67c27708e5ff05c1cc90a4b1c07d20b9f97873e1534c3d01c4671ce26dd502d",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "e65c190ab939b5c9da5c1a96c3563359c86335f223c561179c429a4373ca375b",
+          "before_sha256": "571bc406e2355d45703cf009e13d4d9a3db509f162243a31de19a7a5a6e548d5",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "7ec2eb7293c98833ff2da28284ba48c6f03bb020027532259a9224e577dc889e",
+          "before_sha256": "394d464f2f96232dbf3562d12228f0082f65e10953e9f835f502298721592368",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "5f2780d2821ca1df78d770f32ae65a2bb1b7616d15ca3276a826f48c6b22a1d3",
+          "before_sha256": "55a1fc9f00098f19b09938c0fe1cb867cd13cd5e01e1872058ce455a91044105",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "fb87c322a5614bf239389c7313056b7098addb0a3a141ef40e7d0be504db8a06",
+          "before_sha256": "0c8aa91776c3a00edcff888412fe99be2085119e9a7af7b50d57cf01e24c2775",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "89ae8f60371aba89cc06ca3238384c7986230417e3f025d4493de3a1c7100a14",
+          "before_sha256": "0ee6865a4798bae3787bcaef1bb8ee98f038329f015723063a19df546c276b8f",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "b1176828b11d7eff4d69294d55fdb16cc83d0651fb8a5f38a3b286f932f1a1ce",
+          "before_sha256": "a2f1ccc13545d459ea1e4cd3fc6937cbabe16c50cab17721bc5b95f16846c7bc",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "068fbeb930146e259348e708760ece3f1e129ebc3a838785a3efc01ee325016b",
+          "before_sha256": "483bd6105518564fe262ef0b4d1676b5026979e2295800a4bed183246595ac14",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "3439d00362f25bb4e96a71d44816c7dfa4ff29498efa1d415f8c31f9c5b93022",
+          "before_sha256": "40f5916f77de37a01f109640a8296eaeae64a457330c6e9c54f8ca840220deeb",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "8bd201f6ec2223f5d6ce2a9032a47d3cd90b980f3c1c4462dc965b53565b304f",
+          "before_sha256": "2cc969d14bed3be219f42a0a13456bc44aeb420d188604f1c43e94d74e0f2506",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "62369281997f7941429b570357185c3948e387e8a5c1c4a654822e3f5b65c64d",
+          "before_sha256": "74fc039940446ef667023a0a7bab9aa842e91de0f42d1b58831cc5332df320b6",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "061fc8967c523d736da7c2c837a1e7c7ca95844d4bb1a1b7db7bb2c9193e9357",
+          "before_sha256": "70c04b8755436b618a0740fe67df4b0e66b97f4b9073ac3c34d43769b1ee2e01",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "ceba6335172e0ed81e21c4bededaff2ba0a2ded9ebac8eff859c90ffa46906a5",
+          "before_sha256": "decd157a2e58328f64f3f446bcd25d28bb19a5282ffecbef85bb0982146463b6",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "3f5750583ce2b508f6720b53988ef0ccd37b7e93b2e13255bb5e983fff392442",
+          "before_sha256": "f9222e4a3f6914b935371730bde3f592a555f73cdb42e3ec960255a8ca5ca6ec",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "aa3f492ccb9ca289f92528a80819b585058836f6a04e83080f9502a0275d4870",
+          "before_sha256": "4501f89ebdc7446a77ef4bfacf7fb270150c0622360905da9756e95db2324cfd",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "622c948f7e95045403e7f74718a8b28b66c036ac571a1f2ea1c0c8bce80368ba",
+          "before_sha256": "5156dcf88c852fad07bcce7da58f6183f4211aaf5aab5f9eb2e6e2ea8df48136",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "28c265f56396634cff63c9911b94a0decb879107962e8abc27da1f8aa4752469",
+          "before_sha256": "24782d8e8d0c45fc0e6c5d9d1b091708d9d1e7e1d78a633737d7da0af1ecc0fe",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "5c145899518d4d6555cd048ca5f89fbb1d05ed1eee3b0a90b6d54abcd0e32c97",
+          "before_sha256": "7df4588985b28a7c37dc7e766dbbf4ab7c3a49df3f4ab01bb74f24a3154c14fd",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "a2e111d6405595a0d10232e90f033207755018c6eea4c229b52c470483d13f84",
+          "before_sha256": "a33acb8159f20c6f7b5dbb23f11faee3012090b199b1e51a0ae7bb5e0e904cc3",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "e7cb3e99a9979f3163542b7c420cbf29d18095da8023cd3c08d1f568c5ef264a",
+          "before_sha256": "76ea611a0ff0f36f161f448b2fd8c47638a74b0fa2716f06c04133cb9e601d20",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "0ff02ea2bd0744518b7e6006a3753b45ecd00591a967a0f57011b0d4d9af6101",
+          "before_sha256": "828ea42b2da57e6dfc60be076740f5be6c94156f13d618c487afb0edf650f063",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "3f4ce6582a8945b0192ae1be39b4f57166e7fc857e9ee39e655ad06137d25512",
+          "before_sha256": "618c296a297ab3e7000e2d41be0d38599c9b92113150bd488a53bb5004ff41b9",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "b6e3630bc8a53103ec95c852a1637326a0a7006665c932aec63fd602d851a273",
+          "before_sha256": "3ba6acbd7ae7dbd36f959c886b5e5ab11d5db5ec2ec9cf5dcaeb087b0aa3181d",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "ce9ea0a2c2a3771f4035594f10fcd58ee91c19530660dd1ae842a04d97499565",
+          "before_sha256": "74bdb964758f0039d99c78ac4060b65cfb6dea83627bb86d8a6e2d5aa3ca723c",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "09d786f31b2a2cb8058228f522e665c7b39d8cfa161643554db55ccd84055f3e",
+          "before_sha256": "4c62733299af81f16a3b9793ccfc175662402247df48ab782f563d56dd69f889",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "0d994a41a4cf34caaad9b48482319b3ad9737382d5ce06f78c168819e18a88a4",
+          "before_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "ab260ee2686249869b4d5c4a55435d558d86f36025435c9967c86e3492a42056",
+          "before_sha256": "e525ad11db2adafaad35fa7085cce60db9d74a0923b80e6694b57552535c5acd",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e86f83952b8ab7e31b49dc5b907c5ae7919906e1cda38afdae621efc1d2c0158",
+          "before_sha256": "fbc33bfbbca2b3cc8c981d780f8300cf0d6af9c8c769b0d87ec4f5c9a0633ef0",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "061d479bb12b29c2ba8638b2f5e3bd721cdc46b87c7bf3f921d6eee4997794fd",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-approved-budget-20261013.json"
+        },
+        {
+          "after_sha256": "fd538ed60b6298df3dcef43462b6e2ab5f7a110fbd7cd3c906f573f423ee923b",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-approved-storage-budget-20261013.json"
+        },
+        {
+          "after_sha256": "4bf37e5105b90d53b6b00c8f772230a81792bf29551a0849082f78f500aab671",
+          "before_sha256": "922fe64c2a3b1089e18b54fd439f8e0fa801045fcd26dc9ff42f9e75f981ce74",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "6700bd3a9f8e1fb7d306b246a4e31efd19440b02863ff2534eabd332774bc893",
+          "before_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+          "path": "tools/working-retention.json"
+        }
+      ],
+      "id": "draw02-user-approved-working-budget1344-20261013",
+      "pending_gaps": [],
+      "reason": "User explicitly approved the prepared1280to1344GiB storage proposal. Reviewed exact two-line policy/AGENTS change in main and isolated DRAW02tree;100GiBreserve, monitor behavior and autoarchivefalse remain unchanged. Preserve unrelated main work and all historical engine/storage hashes. Reconciled changed indexed JSON configuration into a new durable census. Reviewed4673e283..edd2d9d4:17exact committed receipts,zero gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Existing12retention guards pass and approved configuration hashes/provenance are retained. New main preflight under1344GiB admits7GiBheld120reservation at1279.87GiBworking/203.43GiBfree. Capture success and physical/native results are separate engine evidence, to be accounted in the next increment; no stage promotion or original equivalence asserted by policy/source-index changes. Historical affected document fingerprints remain historical."
+      }
     }
   ]
 }
