@@ -8456,3 +8456,15 @@ remain in the authorized objective. The committed NS32 range6458a16f..c9d19a92
 has38 source/link and106 behavior transitions with exact parent/current receipts
 and no unresolved accounting gaps. Private90GiB storage policy remains authorized;
 no cleanup is performed by this workstream.
+
+## NS34: current original scheduler and action projection proofs
+
+Fresh prospective control/actions runs pass53,248 paired cases (24,576+28,672)
+with original32/native64/sanitized64 agreement and unchanged text/inputs/sources.
+Six scoped contracts gain current isolated comparison. Transition proof requires
+both immutable components; the joint record is aggregation, not a composed World
+run. Reviewed declarations include canonical compiler dependencies. Lower
+World/ANI/geometry/health/cast/effect services and installed profiles remain supplied
+or excluded; native session integration and live replacement remain none.
+See [scope and evidence](creature-control-actions-validation.md). Earlier unbound
+results and the failed missing-dependency attempt remain historical.
