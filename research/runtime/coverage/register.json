@@ -44507,6 +44507,163 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.copy-contention-timing-observation",
+      "kind": "native_policy",
+      "subsystem": "renderer",
+      "title": "Bounded opt-in copy contention and recovery diagnostics",
+      "scope": "MNM_RENDER_COPY_TIMING exact opt-in: immutable512-slot producer buffer,publication-worker file drain,coherent/unavailable sampled owner and published acquisition counts,QPC/wait endpoints,checkpoint/fresh-reset and tracked pixel-discard provenance; no drawing-thread I/O or diagnostic waits. Existing50ms timeout,WaitOnAddress/reentry/admission and conservative history/pixel invalidation policies retained. Controlled Win32 stubs and PE32 builds only; no real scheduler,driver equivalence,first-victory reproduction or crash-fix claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/copy-contention-timing.md",
+        "research/formats/copy-timing-v1.md"
+      ],
+      "implementation": [
+        "runtime/render/copy_timing.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/bridge.c",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/command_recovery.h"
+      ],
+      "tests": [
+        "tests/copy-timing-test.cpp",
+        "tools/test-copy-timing.py",
+        "tools/copy_timing.py"
+      ],
+      "validation_dependencies": [
+        "protocols/generate.py",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/render_stream-v2.json",
+        "protocols/schemas/render_stream-v3.json",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "RD01.copy-contention-timing-private"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -92172,6 +92329,45 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RD01.copy-contention-timing-private",
+      "kind": "native_integration",
+      "record": "research/runtime/copy-contention-timing-private-20261012.json",
+      "sha256": "3103ee67057363cfd394a62d7db5d1299741dcef080e4a1ce7016087f56875ce",
+      "scope": "MNM_RENDER_COPY_TIMING exact opt-in: immutable512-slot producer buffer,publication-worker file drain,coherent/unavailable sampled owner and published acquisition counts,QPC/wait endpoints,checkpoint/fresh-reset and tracked pixel-discard provenance; no drawing-thread I/O or diagnostic waits. Existing50ms timeout,WaitOnAddress/reentry/admission and conservative history/pixel invalidation policies retained. Controlled Win32 stubs and PE32 builds only; no real scheduler,driver equivalence,first-victory reproduction or crash-fix claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/execution_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/probe/reacquisition_case",
+          "equals": true
+        },
+        {
+          "pointer": "/probe/bounded_records",
+          "equals": 512
+        },
+        {
+          "pointer": "/decoder_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/pe32_builds",
+          "equals": 2
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -103048,6 +103244,22 @@
         "tests/campaign-menu-assets-fixture.hpp",
         "tests/character-wire-fixture.hpp"
       ]
+    },
+    {
+      "id": "copy-timing-private-20261012",
+      "level": "headless",
+      "scope": "Actual admission/diagnostic headers with controlled Win32 clocks/waits: tracing off/on,release/reentry/timeout/refusal,65ms wait spanning3 published reacquisitions and16ms final owner age,coherence failures,concurrent immutable slots,bounded drops,worker-only I/O,strict opt-in and decoder negatives; production/selftest PE32 compilation. No original driver or real campaign.",
+      "behaviors": [
+        "NP.copy-contention-timing-observation"
+      ],
+      "evidence": [
+        "RD01.copy-contention-timing-private"
+      ],
+      "tests": [
+        "tests/copy-timing-test.cpp",
+        "tools/test-copy-timing.py",
+        "tools/copy_timing.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -103466,8 +103678,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-character-ready-focus-20261012.json",
-    "sha256": "f3444afa85379514c205a2fa40e534fb53c595b4085576a7efd86ee256ff1703"
+    "path": "research/runtime/coverage/source-index-copy-timing-20261012.json",
+    "sha256": "e44ac5ba15f23324f279ca10707b17f5710d21edf1a4cd30f3964d9e82a850aa"
   },
   "claim_bindings_required": true
 }

@@ -51,6 +51,7 @@ static int command_checkpoint_reject(u32 reason,struct GameSurface* s,u32 surfac
         s?s->epoch:0,s?s->metadata_epoch:0,s?s->layout_known:0,s?s->pixels.data!=0:0,
         s?s->pixels.width:0,s?s->pixels.height:0,s?s->pixels.bits:0,s?s->pixels.length:0,
         s?s->primary:0,game_pixel_misses_pending,game_alias_reset_pending};
+    copy_trace_record(COPY_TRACE_CHECKPOINT,command_channel_session,v);
     lock_diagnostic_values("checkpoint_admission_refused",v);return 0;
 }
 static int command_checkpoint_complete(void){
@@ -167,6 +168,8 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
         __sync_lock_release(&command_queue_draining);game_tracker_release();goto done;
     }
     command_files[command_file_count++]=next.file;
+    if(copy_trace_enabled){u32 values[19]={command_channel_session,writer.session,(u32)checkpoint,game_lock_epoch,game_metadata_epoch};
+        copy_trace_record(COPY_TRACE_RECOVERY,command_channel_session,values);}
     command_recovery_checkpoints(checkpoint);
     command_ring=writer;command_channel=next.map;command_queue=next.queue;
     command_channel_session=writer.session;command_channel_bytes=command_channel_refused=0;
