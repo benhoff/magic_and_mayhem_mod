@@ -7148,3 +7148,30 @@ comparison, Grimoire, storage and rendering. The last renderer-diagnostic commit
 is accounted for in[18 exact committed versions](coverage/realm-adapter-history-20261012.json),
 with no missing receipts or retrospective validation/gate claim. Campaign task
 items2–4 remain ongoing; this first chunk does not claim they are complete.
+
+## Experimental loaded-Realm Region Entry — 2026-10-12
+
+`NP.loaded-region-menu-dispatch` introduces separately opted-in V20. Original
+three-realm loaded caller4/depth4,region/different/control and resource guards
+extend the retained fresh first-region scope. Original callbacks own difficulty,
+Cancel and auxiliary entry. Enter explicitly separates colocated-opponent battle
+from an ordinary destination return and checks the original resulting fields.
+Native capacity refusal and command admission are policies; no extra tick or
+native progression/ownership/destination write is added.
+
+[UI60](region-campaign-adapter-private-20261012.json) has18 unchanged-original
+Enter cases,15 refusals,nine original auxiliary callbacks,two Cancel outcomes,
+thirteen synthetic Qt wire/session/controller cases,five compatibility tests
+and PE32/Qt builds. Declared sources/compiler closure and immutable originals
+pass. [Contract and boundaries](region-campaign-live-adapter.md). Raw current
+evidence is `working/tests/region-campaign-adapter/run-45wllhbe`; earlier compile
+preparation failures retain independent pins. Scoped implementation/headless
+integration only advances for the new policy.
+
+Actual progressed campaign resources, original input/World travel, broader
+auxiliary ownership, victory/report/persistence and driver equivalence remain
+pending. Existing Realm/Character/menu/renderer evidence retains historical
+hashes and statuses after shared-source changes; UI59 now describes its exact
+earlier source version. [28 prior committed versions](coverage/region-campaign-history-20261012.json)
+have exact matching receipts and no retrospective execution/gate assertion.
+Campaign items2–4 remain ongoing.
