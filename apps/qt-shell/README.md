@@ -5,10 +5,30 @@ continues its simulation and drawing; complete live drawing replacement is
 unavailable. The [authoritative replacement plan](../../docs/live-drawing-replacement.md)
 defines the remaining work and criteria for enabling a complete launcher mode.
 
-`./tools/run-qt-shell.sh` configures with `BUILD_TESTING=OFF` and builds only
-`mnm-qt-shell` and its dependencies. To also build the tests before launching,
-run `MNM_QT_BUILD_TESTS=ON ./tools/run-qt-shell.sh`. Each launch sets the option
-explicitly, overriding any previous test setting in the CMake cache.
+`./tools/run-qt-shell.sh` uses `BUILD_TESTING=OFF` and builds only
+`mnm-qt-shell` and its dependencies. It reuses a matching CMake configuration;
+the incremental build still regenerates it when build inputs change. Changing
+`MNM_QT_BUILD_TESTS` or `MNM_QT_BUILD_TYPE` also triggers configuration. To build
+the tests before launching, run `MNM_QT_BUILD_TESTS=ON ./tools/run-qt-shell.sh`.
+Set `MNM_QT_RECONFIGURE=1` to force configuration.
+
+Ordinary Qt launches skip the full `original/` manifest scan. Opt in with
+`MNM_VERIFY_ORIGINALS=1 ./tools/run-qt-shell.sh` to verify before and after
+staging and execution. Working executable and adapter hash checks still run.
+Standalone experiment helpers retain verification by default; experiments
+consuming original artifacts must keep their before/after checks.
+
+Ordinary launches reuse adapter DLLs built from the same source files, build
+options and toolchain identity, checking the cached DLL and manifest before use.
+Set `MNM_CACHE_ADAPTERS=0` to force adapter rebuilding. Repeated staging/runner scans of installed assets and prepared music are
+skipped; use `MNM_VERIFY_ASSETS=1` for those scans. The native music loader
+still validates its prepared tracks. Standalone experiment helpers retain full scans and fresh builds by
+default. Executable, adapter and fresh channel checks still run. A normal launch
+does not establish that every asset is byte-identical to an earlier result.
+
+The launch log is hidden initially. Click **Details** to show or hide it; errors
+and preparation/startup progress remain visible in the main view. See
+[startup policy and validation boundaries](../../research/runtime/public-launch-startup.md).
 
 A standalone continuous native World shadow viewer is available with:
 
@@ -251,6 +271,9 @@ unsupported.
 ## Verification
 
 ```bash
+python3 -B tests/test-launch-build-cache.py
+python3 -B tests/test-qt-launcher-startup.py
+python3 -B tests/test-native-music-launch.py
 cmake -S apps/qt-shell -B working/build/qt-shell -DBUILD_TESTING=ON
 cmake --build working/build/qt-shell --parallel 4
 ctest --test-dir working/build/qt-shell --output-on-failure

@@ -7,8 +7,12 @@ import json
 import os
 from pathlib import Path
 import shutil
+import sys
 import subprocess
 import tempfile
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from launch_build_cache import build_adapter
+from launch_asset_checks import full_asset_verification
 REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
@@ -24,7 +28,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     if not source.is_relative_to(REPO/'working') or not source.is_dir():raise ValueError('Menu source game must be a directory under working/')
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
-    dll=module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini)
+    dll=build_adapter('tools/build-menu-observer.py',lambda: module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini),options={'experimental_mini':experimental_mini})
     parent=REPO/'working/experiments/menu-observer';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
@@ -36,7 +40,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Copy hash mismatch')
     patched=data;draw_dll=None
     if native_draw:
-        draw_dll=module('menu_native_draw_build','tools/build-native-draw.py').build(root/'native-draw-build')
+        draw_dll=build_adapter('tools/build-native-draw.py',lambda: module('menu_native_draw_build','tools/build-native-draw.py').build(root/'native-draw-build'))
         patched=module('menu_native_draw_import','tools/prepare-native-draw.py').redirect(patched,enumeration=True)
         shutil.copy2(draw_dll,game/'MnmDraw.dll')
         shutil.copy2(draw_dll.parent/'manifest.json',root/'native-draw-build.json')
@@ -44,14 +48,14 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     render_dll=None
     if native_render:
         if not actions:raise ValueError('Native rendering requires the menu action bridge')
-        render_dll=module('menu_render_build','tools/build-render-bridge.py').build()
+        render_dll=build_adapter('tools/build-render-bridge.py',lambda: module('menu_render_build','tools/build-render-bridge.py').build())
         patched=module('menu_render_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmRender.dll','RenderAnchor',b'.mnmgl')
         shutil.copy2(render_dll,game/render_dll.name)
         shutil.copy2(render_dll.parent/'manifest.json',root/'render-bridge-build.json')
         (root/'lock-capture').mkdir()
     audio_dll=None
     if native_voices:
-        audio_dll=module('menu_audio_build','tools/build-audio-bridge.py').build()
+        audio_dll=build_adapter('tools/build-audio-bridge.py',lambda: module('menu_audio_build','tools/build-audio-bridge.py').build())
         patched=module('menu_audio_import','tools/prepare-native-audio.py').redirect(data,patched)
         shutil.copy2(audio_dll,game/'MnmAudio.dll')
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
@@ -59,7 +63,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     patched,glyph_metadata=stage_glyph(root,data,patched,None if resident_world else mode_from_environment())
     resident_metadata={}
     if resident_world:
-        scene=module('public_world_scene_build','tools/build-scene-observer.py').build()
+        scene=build_adapter('tools/build-scene-observer.py',lambda: module('public_world_scene_build','tools/build-scene-observer.py').build())
         patched=module('public_world_scene_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmScene.dll','SceneAnchor',b'.mnworld')
         shutil.copy2(scene,game/'MnmScene.dll');shutil.copy2(scene.parent/'manifest.json',root/'scene-bridge-build.json')
         (root/'resident-world').mkdir()
@@ -133,7 +137,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         if not music_source.is_relative_to(REPO/'working'):raise ValueError('Prepared music source must be under working/')
         metadata.update(stage_music(root,music_source))
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
-    if native_draw:
+    metadata['full_asset_verification']=full_asset_verification()
+    if native_draw and metadata['full_asset_verification']:
         immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx','.wav','.ini','.avi')}
         (root/'input-fingerprints.json').write_text(json.dumps(immutable_inputs,indent=2)+'\n')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
@@ -156,6 +161,7 @@ if __name__=='__main__':
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; default working/game-nocd')
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
-    subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
     try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media,args.native_music,args.music_assets,args.skip_movies)}',flush=True)
-    finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    finally:
+        if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

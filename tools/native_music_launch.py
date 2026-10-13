@@ -6,6 +6,8 @@ import struct
 import subprocess
 import sys
 import time
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from launch_asset_checks import full_asset_verification, verify_staged_assets
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'protocols/python'))
 from mnm_protocols import music_v1 as wire
 
@@ -24,7 +26,7 @@ def startup_snapshot(path):
         if time.monotonic()>=deadline:raise ValueError('Native music startup snapshot did not settle')
         time.sleep(.001)
 
-def catalog_inputs(root):
+def catalog_inputs(root, verify=True):
     if root.is_symlink() or (root/'manifest.json').is_symlink():raise ValueError('Redirected native music catalog')
     manifest=json.loads((root/'manifest.json').read_text())
     if manifest.get('success') is not True or manifest.get('schema')!=1:raise ValueError('Unprepared native CD tracks')
@@ -33,19 +35,21 @@ def catalog_inputs(root):
         name=f'Track{expected:02d}.wav';path=root/name
         start,end=row['start_sector'],row['end_sector']
         if row['track']!=expected or row['file']!=name or type(start) is not int or type(end) is not int or not 0<start<end<=0xffffffff or (previous and start!=previous):raise ValueError('Invalid native CD track table')
-        if path.is_symlink() or sha(path)!=row['wav_sha256']:raise ValueError('Native CD asset hash mismatch')
+        if path.is_symlink() or not path.is_file():raise ValueError('Native CD asset is missing or redirected')
+        if verify and sha(path)!=row['wav_sha256']:raise ValueError('Native CD asset hash mismatch')
         if not toc:toc.append((0,start))
         toc.append((start,end));inputs[name]=row['wav_sha256'];previous=end
     if not 2<=len(toc)<=99:raise ValueError('Invalid native music track count')
     return inputs,toc
 
 def stage(root,source):
-    before,toc=catalog_inputs(source);target=root/'native-music'
+    verify=full_asset_verification()
+    before,toc=catalog_inputs(source,verify);target=root/'native-music'
     if target.exists():raise ValueError('Native music staging already exists')
     subprocess.run(['cp','-a','--reflink=auto','--',str(source),str(target)],check=True)
-    after,copied=catalog_inputs(target)
-    if before!=after or toc!=copied or catalog_inputs(source)[0]!=before:raise ValueError('Native music inputs changed during staging')
-    return dict(native_music=True,music_channel=str(root/'native-music.bin'),music_catalog=str(target),music_inputs=before,music_toc=[list(x) for x in toc])
+    after,copied=catalog_inputs(target,verify)
+    if before!=after or toc!=copied or catalog_inputs(source,verify)[0]!=before:raise ValueError('Native music inputs changed during staging')
+    return dict(native_music=True,full_asset_verification=verify,music_channel=str(root/'native-music.bin'),music_catalog=str(target),music_inputs=before,music_toc=[list(x) for x in toc])
 
 def authorize(root,metadata,environment):
     environment.pop('MNM_MUSIC_CHANNEL',None)
@@ -57,7 +61,7 @@ def authorize(root,metadata,environment):
     if dll.is_symlink() or sha(dll)!=metadata.get('audio_dll_sha256'):raise ValueError('Native music adapter hash mismatch')
     catalog=root/'native-music'
     if metadata.get('music_catalog')!=str(catalog):raise ValueError('Redirected native music catalog')
-    inputs,toc=catalog_inputs(catalog)
+    inputs,toc=catalog_inputs(catalog,verify_staged_assets(metadata))
     if inputs!=metadata.get('music_inputs') or [list(x) for x in toc]!=metadata.get('music_toc'):raise ValueError('Staged native music catalog drift')
     path=root/'native-music.bin'
     if metadata.get('music_channel')!=str(path) or path.is_symlink():raise ValueError('Redirected native music channel')

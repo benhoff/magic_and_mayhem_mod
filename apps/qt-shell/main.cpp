@@ -145,9 +145,9 @@ public:
                 QStringList arguments;
                 return createNativePresentation(directory+"/render-frame.bin",directory+"/render-input.bin",directory+"/render-commands.bin",true,arguments);
             };
-            liveMenus_->launched=[this]{elapsed_.restart();if(nativeCommands_){frames_.start();inputTimer_.start();}poll_.start();placeholder_->setText("Checking launch files and starting Wine…\nStartup may take a few minutes. See the launch log below.");statusBar()->showMessage("Checking launch files and starting Wine…");};
+            liveMenus_->launched=[this]{elapsed_.restart();if(nativeCommands_){frames_.start();inputTimer_.start();}poll_.start();placeholder_->setText("Starting the game…");statusBar()->showMessage("Starting the game…");};
             liveMenus_->output=[this](const QString& text){log_->appendPlainText(text.trimmed());};
-            liveMenus_->failed=[this](const QString& error){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(!foreign_)placeholder_->setText(error+"\nSee the launch log below.");statusBar()->showMessage(error);};
+            liveMenus_->failed=[this](const QString& error){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(!foreign_)placeholder_->setText(error+"\nOpen Details for the launch log.");statusBar()->showMessage(error);};
             liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!nativeActive());activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
             liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!nativeActive());activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
@@ -182,8 +182,12 @@ public:
         if(opengl_){detach_->hide();retry_->hide();}
         if(liveMenus_){fallback_=new QPushButton("Use original menus",this);fallback_->setObjectName("originalMenusFallback");toolbar->addWidget(fallback_);fallback_->setEnabled(false);
             connect(fallback_,&QPushButton::clicked,this,[this]{liveMenus_->fallback("Original menus active for this session.");});}
-        auto* dock=new QDockWidget("Launch log",this);log_=new QPlainTextEdit(dock);
+        auto* dock=new QDockWidget("Launch log",this);dock->setObjectName("launchLogDock");log_=new QPlainTextEdit(dock);
         log_->setReadOnly(true);log_->setMaximumBlockCount(2000);dock->setWidget(log_);addDockWidget(Qt::BottomDockWidgetArea,dock);
+        dock->hide();
+        auto* details=new QPushButton("Details",this);details->setObjectName("launchDetails");details->setCheckable(true);toolbar->addWidget(details);
+        connect(details,&QPushButton::toggled,dock,&QWidget::setVisible);
+        connect(dock,&QDockWidget::visibilityChanged,details,&QPushButton::setChecked);
         if(gl_){
             presentation_=std::make_unique<ViewportPresentation>(*this,*gl_,presentation);
             presentation_->addControls(*toolbar);presentation_->hideInFullscreen(*toolbar);
@@ -382,9 +386,9 @@ private:
         if(opengl_){detach_->hide();retry_->hide();}
         if(liveMenus_&&!check){
             excluded_=host_.windows();launch_->setEnabled(false);check_->setEnabled(false);fallback_->setEnabled(true);
-            placeholder_->setText("Verifying original files and preparing the game…\nStartup may take a few minutes. See the launch log below.");
-            log_->appendPlainText("Starting menu session: verifying original files, staging a disposable installation, then checking launch files. This may take a few minutes.");
-            liveMenus_->start();statusBar()->showMessage("Verifying original files and preparing the menu adapter…");return;
+            placeholder_->setText("Preparing the game…");
+            log_->appendPlainText("Starting menu session: staging a disposable installation, then checking launch files. This may take a few minutes.");
+            liveMenus_->start();statusBar()->showMessage("Preparing the game…");return;
         }
         const QString launcher=QDir(repo_).filePath(opengl_ && !check?"tools/run-opengl-game.py":"tools/run-game.sh");
         if(!QFileInfo(launcher).isExecutable()){statusBar()->showMessage("Cannot find tools/run-game.sh. Set --repo to the repository directory.");return;}
