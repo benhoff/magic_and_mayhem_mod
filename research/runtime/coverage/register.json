@@ -54023,30 +54023,57 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original bonus ownership-conversion scan",
-      "scope": "Whole514c60 bonus-mode2 scan in recovery: owner-associated count/limit gating, ten slots per call up to125, active/living/diplomacy/type/distance checks, ordered56c650/51ec80 calls, early-full repeated cursor and rollover. Owner/resource transfer semantics, fresh comparison and native session integration pending.",
-      "confidence": "provisional",
+      "scope": "Whole514c60 bonus-mode2 ownership-conversion projection: cached optional owner-associated actor, signed count/limit gates, ten slots per call with fixed125 cap, active/living/diplomacy/same-type checks, normalized wrapped XY custom metric <=2, ordered56c650 notification/51ec80 transfer with source owner reloaded, newly-full current-index retention and rollover. Owned125..128 canonical actors, owner0..7, valid16x16 positions and cursor0..124. Lower associated-actor/notification/transfer ownership, neutral/raw-pointer/wider coordinate domains and native World/session integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5327968,
-          "scope": "Whole514c60 conversion scan in recovery; not upkeep."
+          "scope": "Whole514c60 bonus-mode2 ownership-conversion projection: cached optional owner-associated actor, signed count/limit gates, ten slots per call with fixed125 cap, active/living/diplomacy/same-type checks, normalized wrapped XY custom metric <=2, ordered56c650 notification/51ec80 transfer with source owner reloaded, newly-full current-index retention and rollover. Owned125..128 canonical actors, owner0..7, valid16x16 positions and cursor0..124. Lower associated-actor/notification/transfer ownership, neutral/raw-pointer/wider coordinate domains and native World/session integration excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_conversion.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-conversion-test.cpp",
+        "tools/test-creature-owner-conversion.py"
+      ],
       "evidence": [
         "NS38.services-static",
-        "NS39.services-static-v3"
+        "NS39.services-static-v3",
+        "NS40.conversion-original",
+        "NS40.conversion-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/conversion/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged body with complete actor/config/iterator-or-limits/globals/readonly/body guards and ordered typed callbacks",
+          "Prospectively declared original32/native64/sanitized64 comparison on the precise finite domain in scope",
+          "Reentry mutates relevant later actor/owner/config fields with fixed backing; original load/order and captured configuration preserved"
+        ],
+        "excluded": [
+          "Raw invalid pointers/indices/backing, invalid original division/neutral relation alias/wider profile domains",
+          "Native-only domain refusals separate from baseline behavior; caller-staged rollback required",
+          "Actual lower water/health/owner/transfer/World ownership, installed profiles, native session/live integration"
+        ]
       }
     },
     {
@@ -54054,30 +54081,57 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original creature environment pass52a9f0",
-      "scope": "Pinned52a9f0..52ab17 post-scheduler environment pass in recovery. Type/terrain/health branches, current original comparison and native World composition pending.",
-      "confidence": "provisional",
+      "scope": "Whole52a9f0 defined movement-kind0..3 projection: ordered active/living iterator initialization/advance, unchanged412aa0 predicate, captured waterline, wrapped top-height/edge arithmetic and branch-specific normalized water query, per-hit damage reload and forced owner-1 health calls. Finite0..128 canonical actors, fixed positive8/16 dimensions, signed32 Z/height/damage cases and supplied lower water/health consequences. Out-of-table movement kinds retain uninitialized/prior BL and are excluded/refused; exception/incidental-return/full lower World/session ownership and installed profile validation excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5417456,
-          "scope": "Pinned52a9f0..52ab17 post-scheduler environment pass in recovery. Type/terrain/health branches, current original comparison and native World composition pending."
+          "scope": "Whole52a9f0 defined movement-kind0..3 projection: ordered active/living iterator initialization/advance, unchanged412aa0 predicate, captured waterline, wrapped top-height/edge arithmetic and branch-specific normalized water query, per-hit damage reload and forced owner-1 health calls. Finite0..128 canonical actors, fixed positive8/16 dimensions, signed32 Z/height/damage cases and supplied lower water/health consequences. Out-of-table movement kinds retain uninitialized/prior BL and are excluded/refused; exception/incidental-return/full lower World/session ownership and installed profile validation excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp"
+      ],
+      "tests": [
+        "tests/creature-environment-test.cpp",
+        "tools/test-creature-environment.py"
+      ],
       "evidence": [
         "NS38.services-static",
-        "NS39.services-static-v3"
+        "NS39.services-static-v3",
+        "NS40.environment-original",
+        "NS40.environment-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/environment/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged body with complete actor/config/iterator-or-limits/globals/readonly/body guards and ordered typed callbacks",
+          "Prospectively declared original32/native64/sanitized64 comparison on the precise finite domain in scope",
+          "Reentry mutates relevant later actor/owner/config fields with fixed backing; original load/order and captured configuration preserved"
+        ],
+        "excluded": [
+          "Raw invalid pointers/indices/backing, invalid original division/neutral relation alias/wider profile domains",
+          "Native-only domain refusals separate from baseline behavior; caller-staged rollback required",
+          "Actual lower water/health/owner/transfer/World ownership, installed profiles, native session/live integration"
+        ]
       }
     },
     {
@@ -54102,6 +54156,80 @@
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.owner-conversion-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native conversion projection domain refusals",
+      "scope": "Four native-only cursor/pool/owner/coordinate refusals for conversion. Caller stages state/events; primitive can mutate before refusal and does not promise in-place rollback. Original malformed-pointer/undefined-latch and complete native session admission excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_conversion.cpp"
+      ],
+      "tests": [
+        "tests/creature-owner-conversion-test.cpp",
+        "tools/test-creature-owner-conversion.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/creature-ai/conversion/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS40.conversion-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.environment-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native environment projection domain refusals",
+      "scope": "Three native-only zero-XY extent/undefined movement-kind refusals for environment; original uninitialized/prior latch is not assigned an invented default. Caller stages state/events; primitive can mutate before refusal and does not promise in-place rollback. Original malformed-pointer/undefined-latch and complete native session admission excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp"
+      ],
+      "tests": [
+        "tests/creature-environment-test.cpp",
+        "tools/test-creature-environment.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/creature-ai/environment/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS40.environment-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -109835,6 +109963,230 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS40.conversion-original",
+      "kind": "isolated_original",
+      "scope": "Whole514c60 bonus-mode2 ownership-conversion projection: cached optional owner-associated actor, signed count/limit gates, ten slots per call with fixed125 cap, active/living/diplomacy/same-type checks, normalized wrapped XY custom metric <=2, ordered56c650 notification/51ec80 transfer with source owner reloaded, newly-full current-index retention and rollover. Owned125..128 canonical actors, owner0..7, valid16x16 positions and cursor0..124. Lower associated-actor/notification/transfer ownership, neutral/raw-pointer/wider coordinate domains and native World/session integration excluded.",
+      "record": "research/runtime/original-creature-conversion-bound-20261012.json",
+      "sha256": "520d235961e73f18f87d0c54d164f0c5d2ded835ef38144e1063791ff4873982",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS40.conversion-native",
+      "kind": "native_integration",
+      "scope": "Whole514c60 bonus-mode2 ownership-conversion projection: cached optional owner-associated actor, signed count/limit gates, ten slots per call with fixed125 cap, active/living/diplomacy/same-type checks, normalized wrapped XY custom metric <=2, ordered56c650 notification/51ec80 transfer with source owner reloaded, newly-full current-index retention and rollover. Owned125..128 canonical actors, owner0..7, valid16x16 positions and cursor0..124. Lower associated-actor/notification/transfer ownership, neutral/raw-pointer/wider coordinate domains and native World/session integration excluded.",
+      "record": "research/runtime/original-creature-conversion-bound-20261012.json",
+      "sha256": "520d235961e73f18f87d0c54d164f0c5d2ded835ef38144e1063791ff4873982",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "NS40.environment-original",
+      "kind": "isolated_original",
+      "scope": "Whole52a9f0 defined movement-kind0..3 projection: ordered active/living iterator initialization/advance, unchanged412aa0 predicate, captured waterline, wrapped top-height/edge arithmetic and branch-specific normalized water query, per-hit damage reload and forced owner-1 health calls. Finite0..128 canonical actors, fixed positive8/16 dimensions, signed32 Z/height/damage cases and supplied lower water/health consequences. Out-of-table movement kinds retain uninitialized/prior BL and are excluded/refused; exception/incidental-return/full lower World/session ownership and installed profile validation excluded.",
+      "record": "research/runtime/original-creature-environment-bound-20261012.json",
+      "sha256": "716c052b54ac71084ab5a96aed9307d333da7a8788a04be777489bdd6500f78f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 3
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS40.environment-native",
+      "kind": "native_integration",
+      "scope": "Whole52a9f0 defined movement-kind0..3 projection: ordered active/living iterator initialization/advance, unchanged412aa0 predicate, captured waterline, wrapped top-height/edge arithmetic and branch-specific normalized water query, per-hit damage reload and forced owner-1 health calls. Finite0..128 canonical actors, fixed positive8/16 dimensions, signed32 Z/height/damage cases and supplied lower water/health consequences. Out-of-table movement kinds retain uninitialized/prior BL and are excluded/refused; exception/incidental-return/full lower World/session ownership and installed profile validation excluded.",
+      "record": "research/runtime/original-creature-environment-bound-20261012.json",
+      "sha256": "716c052b54ac71084ab5a96aed9307d333da7a8788a04be777489bdd6500f78f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 3
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -113934,6 +114286,51 @@
           "value": "default",
           "behaviors": [
             "CAST.admission"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AI.environment-movement-dispatch",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5417752,
+        "relation": "data",
+        "scope": "Four pinned movement-kind dispatch DWORDs; kind0/1 share target52aaa6, kind2 targets52aad0, kind3 targets52ab04."
+      },
+      "document": "research/runtime/creature-services.md",
+      "complete": true,
+      "scope": "Finite movement-kind0..3 dispatch only. Out-of-table kinds retain uninitialized/prior BL; native refusal is a separate policy. Lower consequence services and installed profile domains remain pending.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "AI.environment-pass"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "AI.environment-pass"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "AI.environment-pass"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "AI.environment-pass"
+          ]
+        },
+        {
+          "value": "default",
+          "behaviors": [
+            "AI.environment-pass",
+            "NP.environment-admission"
           ]
         }
       ]
@@ -123363,8 +123760,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-creature-markers-20261012.json",
-    "sha256": "9a8727c362965bb47442223669691173912bf9d4a12cb1b445bfb20dff85aa8d"
+    "path": "research/runtime/coverage/source-index-original-conversion-environment-20261012.json",
+    "sha256": "2ffb61dec674062ed14790419c31b1b27f7427ade0efe0cb0beb54bdb14a77a8"
   },
   "claim_bindings_required": true
 }

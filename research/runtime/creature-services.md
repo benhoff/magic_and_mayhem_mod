@@ -84,5 +84,25 @@ the uninitialized/prior latch and remain an explicit unresolved domain.
 The isolated native CMake build and CTest for markers pass. The first configure
 attempt was launched from the storage wrapper's main-checkout cwd and stopped
 before building; retry explicitly sets the isolated worktree cwd. Both logs are
-retained. The explicit storage wrapper also resolves the earlier approval-review
-rejection of an interactive-shell build submission. No build remains blocked.
+retained. 
+
+## Ownership conversion and environment comparisons (NS40)
+
+Whole514c60 and whole52a9f0 each pass8,192 prospectively source/scope-bound
+original32/native64/ASan+UBSan+LSan64 cases. Both independent native CMake builds
+and CTests pass. Immutable records are original-creature-conversion-bound-20261012.json
+and original-creature-environment-bound-20261012.json. Complete actor/global/
+iterator-or-limit/body guards and ordered consequences match. Conversion covers
+2,642 transfers,411 rollovers and718 retained cursors, including owner reload
+after notification. Environment covers11,240 water queries and125,572 forced
+health calls, including later actor/config mutations with captured waterline
+and per-hit damage reload.
+
+Four conversion and three environment native-only domain refusals are distinct
+from original behavior. Movement kinds beyond0..3 remain excluded: the original
+uninitialized/prior BL is not silently assigned a zero default. Complete lower
+associated-actor/notification/transfer/water/health ownership, installed profile
+validation, composed World/session execution and live replacement remain pending.
+Incoming marker commit4dda04ea is reviewed against its exact receipts and actual
+staged gate:19 file and116 behavior transitions, with no unresolved accounting
+gaps. This history review asserts no new execution or past gate result.
