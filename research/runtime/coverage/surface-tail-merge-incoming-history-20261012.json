@@ -1,0 +1,767 @@
+{
+  "scope": "Committed parent/current hash review of five incoming commits; exact receipts may be contemporaneous or retrospective. Preserves historical evidence and does not assert past gate passes or new engine validation.",
+  "range": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0..40b6ac2a76b46d9e5c573b60a88e8843a5bb5fc3",
+  "commits": [
+    {
+      "commit": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "parent": "6458a16f72c0cd8f4c3edbbd6e7abd2b21dd13b0",
+      "subject": "Validate original finishing ascent and descent callbacks",
+      "files": [
+        {
+          "path": "reconstruction/creature-ai/special-flight/CMakeLists.txt",
+          "before_sha256": null,
+          "after_sha256": "f3a18f218ecfa72eb73428320c62661a51a226d7c21a6daa4df995b4843d3eb0",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012",
+            "original-special-flight-execution-20261012"
+          ]
+        },
+        {
+          "path": "reconstruction/creature-ai/special_flight_actions.cpp",
+          "before_sha256": null,
+          "after_sha256": "ededa654dfbc19bace825d02916752b7e7b1edf81449da4f0264c8a99b75a705",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012",
+            "original-special-flight-execution-20261012"
+          ]
+        },
+        {
+          "path": "reconstruction/creature-ai/special_flight_actions.hpp",
+          "before_sha256": null,
+          "after_sha256": "e5a664b83a4b64fff2fb1d3ff489228c9a69ea217df95b667bd7640de24f45da",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012",
+            "original-special-flight-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "2208f79b94677d445c8e59966ffe593fcc57f033427075ce802c716b6d424275",
+          "after_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/original-special-flight-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "9365b8ff5400a1a47d16cda15cbcf56eb485ca418de3ffebccf49bc93b036818",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "869e055169eb53054c21c3c362fa39edb7556f4140caa7e2910a97b53dc5dab2",
+          "after_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-special-flight-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "818a558edfe1c9d96952866a65a2445ae508c02878da9ec31af99b92ad6b12ef",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/special-flight-qt-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "9364a15b574c44cb5c12d91a8784e82d9c2fa6f365a87911f5e92566471708b6",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-special-flight-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "2c88c0e8b6326ab32ec8b4030d93d7719bcb92ac76da80d5e3acc6eb60c93839",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/creature-special-actions.md",
+          "before_sha256": null,
+          "after_sha256": "e425b8f10916392c903a6d36ab83b948fa65d4482af68b7b5cbbb7b3f987bcd1",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-special-flight-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "db37bddf4cf1a819bd7365efb5dd1fa1ee0d338ff77b1bcd8332fb9ea811b260",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-special-flight-development-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "e85bd4268c4dadc8c86f912cdc483729766349282ee56d4d4cdbcfa550711aef",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012"
+          ]
+        },
+        {
+          "path": "tests/creature-special-flight-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "c1f5fe67a0d1d7b4b5ba9e9a620a0d773ca7b9f35ba386723cfecd5045c3cce9",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012",
+            "original-special-flight-execution-20261012"
+          ]
+        },
+        {
+          "path": "tools/test-creature-special-flight.py",
+          "before_sha256": null,
+          "after_sha256": "d0d86c3c399991be965a0f8a6b7bd1071f6ac18ee9e7294939de6b3efedf0694",
+          "exact_receipts": [
+            "original-special-flight-accounting-20261012",
+            "original-special-flight-execution-20261012"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "parent": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "subject": "Separate original direction and previous-motion state ownership",
+      "files": [
+        {
+          "path": "reconstruction/creature-ai/full_segment_setup.cpp",
+          "before_sha256": "f1d9d9e285aa64fc42f57c81811f193d9c1ca24b9809f581a701299937c0346e",
+          "after_sha256": "2d6c6f5fc45ca2a6bd311142a4fdbe2791199b8e9818cbb121c0afeac90176f9",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012",
+            "original-field-layout-setup-execution-20261012"
+          ]
+        },
+        {
+          "path": "reconstruction/creature-ai/full_segment_setup.hpp",
+          "before_sha256": "109b1a0fbe340bba7cb0c8032451f7ae15ea9ffc1013b87c6c0e09d8937b268a",
+          "after_sha256": "27363651fd5a20ddc8e6fcdb37d6bec4200fb4753a11b3452e9ff20aa8774e4c",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012",
+            "original-field-layout-setup-execution-20261012",
+            "original-field-layout-request-execution-20261012",
+            "original-field-layout-displacement-execution-20261012",
+            "original-field-layout-flight-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+          "after_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/original-field-layout-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "eb5f820945e92bbbd12e263961709bf172c39ffcdef83fd1e9be6097194fa542",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+          "after_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-field-layout-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b0738cc09bef10708c896392e751c6256831e459b5933f19bc23b08070c56b69",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-field-layout-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "af4dbcddd2c7d95bab832bc4a707a40c317018447d8f37b8fefed8ea158fb3e3",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/creature-state-field-layout.md",
+          "before_sha256": null,
+          "after_sha256": "a57053b4109170ebee1ae7e946851de18b9ff44da7b0ce3eb4a2a5e65f1f3a6c",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-field-layout-displacement-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b761d4d72247b2ead5c4c7da7416cb5fa8f413f23517639a491942492239da51",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-field-layout-flight-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "0cbf5cc670c1ffcf4dc90e3df7a3c035e3e7bcd6f29f0c32ff5ff21bb2d9f8c4",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-field-layout-request-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "9f74cd16409a9485e8723b69ec6ca7d0de8817dce5cf2c25d5532b54e7afb168",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-field-layout-setup-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "7f559eea04193a0165411dd396078d43a0788f71f6bc74e829c56b404a19b03f",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012"
+          ]
+        },
+        {
+          "path": "tests/creature-segment-setup-test.cpp",
+          "before_sha256": "d671f012b6063f86099ea92b4da7b97aafc8f7a942ec608c00c4e40899ac41e9",
+          "after_sha256": "2b946ef5ef2b1799564a53525b164783e9d208ae750d279c8389178ed147470b",
+          "exact_receipts": [
+            "original-field-layout-accounting-20261012",
+            "original-field-layout-setup-execution-20261012"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "d0c581c27833d66bb905237fa75961df6a4d9300",
+      "parent": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "subject": "Validate original scheduler transitions and action services",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+          "after_sha256": "3f9786ba119fd9c10cc2a4c6e390990cc7b03cf8d3814415d071cc8c41614964",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/original-control-actions-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "2650364984f4b524be7d1157309d936ffff516a3d167d8871f3e8b30fba3869d",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+          "after_sha256": "512c13f31d3137c2f253ba612d33093c794675d1c88dc31bdab4b4790220fc1f",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-control-actions-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "df04680ba11c25b33967a8221f58a2ccc3f7919dd8ac80221faee2833c4af939",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-control-actions-v2-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "df04680ba11c25b33967a8221f58a2ccc3f7919dd8ac80221faee2833c4af939",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-control-actions-v2-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "55508945457706d5ded5b6af923bae3f56e26552917a5af6967eb62e678e2d67",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/creature-control-actions-validation.md",
+          "before_sha256": null,
+          "after_sha256": "50cf7f2df2266bb09ba3894ffed1cd5cdf6d8a481aa09f1a9d3b5f8b177ad6d1",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-actions-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "1665c547cea1319aae87a3944eae15b86ce458b54199cf32df058a29db8c65dd",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012",
+            "original-control-actions-v2-actions-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-control-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "0b8ca9858a99c282dcb33d2f042da490a6be0ffd706bb67bc22485e24e25172b",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012",
+            "original-control-actions-v2-control-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-transitions-joint-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b58f3ce1ac6d3bcf2e129e167dcc17c5f91820a3d8f80052a20515f34f30f7e9",
+          "exact_receipts": [
+            "original-control-actions-v2-accounting-20261012",
+            "original-control-actions-v2-joint-execution-20261012"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "fae75a9e4fe7aa361e2012de04a5a0b0fe8129f0",
+      "parent": "d0c581c27833d66bb905237fa75961df6a4d9300",
+      "subject": "Validate original orders roaming lifecycle and action callbacks",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "3f9786ba119fd9c10cc2a4c6e390990cc7b03cf8d3814415d071cc8c41614964",
+          "after_sha256": "d61e66aac9537a4bb12deb53e9be5d14cd09d1470c2879e6c3763d62b39c1789",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/original-remaining-contracts-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "111ccf6a13a68d37c7e32a749153ac3506c13c0553beb49414c6a45b7f9a1a49",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "512c13f31d3137c2f253ba612d33093c794675d1c88dc31bdab4b4790220fc1f",
+          "after_sha256": "6f4b90d4893068476d452fb3ef476c853e9739376cf9139cef656d3cf627d29d",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-remaining-contracts-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "0086448ea8730d527a0a2d19f2c1956429f79e052ec26d42d01a7b0f29cc4b81",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-remaining-contracts-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "d8934401bc5ff3100a593b4e54eb770604a47ff0dcfbe596b26a8c863f05f638",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/creature-remaining-contracts-validation.md",
+          "before_sha256": null,
+          "after_sha256": "2fa6655730b1c98d9e6b25377ab40624a166a6d8b843215617f7e31e07689377",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-behaviors-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "e928ca9f5a123eb6418bacab9e6cee2c79ecb5bc00c078f13c5ff81e8ad272e8",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012",
+            "original-remaining-contracts-behaviors-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-callbacks-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "97749d08f804e5445d76d45b49fc4341eab8e76e0569071a67ef5f3ccddaeab6",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012",
+            "original-remaining-contracts-callbacks-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-control-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "24118ff52131ee877b47d22328c8dd35619a6a90fedcf6463ba95da066739b9d",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-follow-joint-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "4b8b432c436b9d3cf87bb0346221f42991f5c336ea0882b580c16d7f547d3953",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012",
+            "original-remaining-contracts-follow-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-lifecycle-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5fc8ccca58bae44907941cff39f5611a8f09cf1a22f4afe29bb343c5f0eea00b",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012",
+            "original-remaining-contracts-lifecycle-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-orders-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d5d7fedcbd12e88551a786173bc797d044b124072d5f4c4b273ccec6ced0e056",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012",
+            "original-remaining-contracts-orders-execution-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/original-creature-strategy-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b95262f139b21d246d233a4fd8ed57c13fc0814ffb0fdce75bef36b1b0cd3ef2",
+          "exact_receipts": [
+            "original-remaining-contracts-accounting-20261012",
+            "original-remaining-contracts-strategy-execution-20261012"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "40b6ac2a76b46d9e5c573b60a88e8843a5bb5fc3",
+      "parent": "fae75a9e4fe7aa361e2012de04a5a0b0fe8129f0",
+      "subject": "Streamline Qt game startup preparation",
+      "files": [
+        {
+          "path": "apps/qt-shell/README.md",
+          "before_sha256": "6f5c1da296ee4bcdc3eac3697a7821440a2ef835731cfbc591dc0dc8b6692215",
+          "after_sha256": "4b4d5af1d543b9a85e9a64b35aac44abbbe1df35e19078795e867e4860601941",
+          "exact_receipts": [
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/main.cpp",
+          "before_sha256": "efe5bc5f97729f1d16fa7b6bcfdb18aaef23a9a598f7374742e0188c0a9dd6b2",
+          "after_sha256": "590593261148eb333dfb69f836113ded6d45e6b68c92b5c2ab3482b8deab3458",
+          "exact_receipts": [
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "d61e66aac9537a4bb12deb53e9be5d14cd09d1470c2879e6c3763d62b39c1789",
+          "after_sha256": "9e7079d11d42e9a18ba6e86b0c911e8f87c445206e577e16f4bab47352e161f9",
+          "exact_receipts": [
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/public-launch-startup-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "8ef802063d0de14fee8621572aeba3e6d14f153b438e001e338068a5e36230d0",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "6f4b90d4893068476d452fb3ef476c853e9739376cf9139cef656d3cf627d29d",
+          "after_sha256": "4327f5f190b0031d7df63be0073e93d1d9fa8cc366c2f8cef3a7257c1573a30f",
+          "exact_receipts": [
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-launch-original-verification-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "1180d63a902c8de4f7bba4b4d15c867fb9714c6a7716265d482cad334d09ba74",
+          "exact_receipts": [
+            "public-launch-original-verification-opt-in-20261012",
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-public-launch-startup-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "8d9edc4fb696029a9c2bd0b67f9d7c1fd85852544b75f894a1b5fe88e5de3c8d",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-public-launch-startup-final-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "53879a4e990549922b4e28e22f4a18fc8c78ade7cb79d99d38e42ec736875cff",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-startup-commit-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d91298a122c80aa8a694610ad12f46995394af247f35242718d53350bbcd6d60",
+          "exact_receipts": [
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-startup-commit-fae75a9e-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "fd4c91d0446b1a1531dab6a469626c1287a414e9d435f2a177f91ee009d66c87",
+          "exact_receipts": [
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-startup-commit-rebased-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "f743b12fd57c5d45806bb6fb0b3824918d5b1270c73005d6455d6e68d08aeedc",
+          "exact_receipts": [
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/startup-commit-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "3b9803184099601881f35b5848540d9e2373682373610336d295c403f157158c",
+          "exact_receipts": [
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-public-launch-startup-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "7ed09589ad1437809e4a937afcaceadd18f6b48a7c4f1151431723ad9e2ba9cc",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/public-launch-startup-ui-final-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "474f99f008db1affa2136f8e6770ed0f5fcf1e5fc337e474567ab2ca074f9cca",
+          "exact_receipts": [
+            "public-launch-startup-ui-followup-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/public-launch-startup-validation-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "4d7b727e2d4de0d67698a7aa9764ae36079bec9beb92e5b2bb0623ae70dab724",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "research/runtime/public-launch-startup.md",
+          "before_sha256": null,
+          "after_sha256": "901126648b89c46585b114a58724d32f7e075ae2bd56131cc38b5855a29e1c18",
+          "exact_receipts": [
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tests/test-launch-build-cache.py",
+          "before_sha256": null,
+          "after_sha256": "c33bfdf7f99b58354136b656c959d563323e4996c3cfbeadd724084c59c1996e",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tests/test-native-music-launch.py",
+          "before_sha256": "4500551a9a5d7a22ce5ef0220ced44ac42398cc6a4426e2427e1f2821760180f",
+          "after_sha256": "6c5c1a9ffc5a762c2338d2ae23fc3633dd4be6432010e8d69da9f0df11126c42",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tests/test-qt-launcher-startup.py",
+          "before_sha256": null,
+          "after_sha256": "b557578d0f06667f88dc81947aae3e8a910f802187ce436c23498d5248da4c16",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/glyph_backend_launch.py",
+          "before_sha256": "94cb37af6021d5b6be038ab7e2a797ecd40ec8cb7dd34909488de528c035868e",
+          "after_sha256": "8a05a2b6b5df244c956ef2676ec700bfc87553119de003e188480fecb14f3ccc",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/launch_asset_checks.py",
+          "before_sha256": null,
+          "after_sha256": "42907172036456fecfaeba751bf87c0203a3d7971789962d8a5a3c45ef284edd",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/launch_build_cache.py",
+          "before_sha256": null,
+          "after_sha256": "0662abaa2c70a0ca32b53062c3cbfb9e6545ff9d6fce770c85fcae4d4e84a7c6",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/menu-game-runner.py",
+          "before_sha256": "e5076585647a5d3287b0b1c2da5850faa9e099369cf30eb8dc4b1e64f31d0898",
+          "after_sha256": "d7a40f2130a55b6d532e57ee66cdbcbac72ff26570cfb7c62e1a4d34e2ecde22",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/native_music_launch.py",
+          "before_sha256": "a263acad932b90d70cc2a8d01d082c8237f991f315dad00b27a84bbd1b0d4dcf",
+          "after_sha256": "f2369a37145f71f22ca5a0a73432eca9383371d41e893685ab1414cc218a5bf6",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/prepare-menu-observer.py",
+          "before_sha256": "4072d4c135e88c9bb7b8621ea550ac539734a01450cc17fe71787695facea30e",
+          "after_sha256": "96bebe3b9874596d57099051d8249f90208a5681a61b68f16dcf54ac9e93bd45",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/render-game-runner.py",
+          "before_sha256": "58f02bc3164d0a704d0356933de977e533f8e1fcbb9fb2934d8439661de036cc",
+          "after_sha256": "ed2485fa40ddbdae52f79b72c597612640d98d201cfec7aa3f9c55435061507c",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/run-menu-observer.py",
+          "before_sha256": "ef3caca4c16b0f4faf730a4e2ac55645464c305b0b2227069da91421e902f34d",
+          "after_sha256": "714360b7ebb1589bea5e974d98d04646c655ce2534034d16fb52268ee7f12da5",
+          "exact_receipts": [
+            "public-launch-original-verification-opt-in-20261012",
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/run-opengl-game.py",
+          "before_sha256": "d8ab79b7301e059f263543b753b94b87f14ce78764e7618b850a7483bf1aaa5f",
+          "after_sha256": "07507a6b5298e380fe269bb4a1f359ed662b90a118e98afb2184e3c4f09481cd",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        },
+        {
+          "path": "tools/run-qt-shell.sh",
+          "before_sha256": "53290e652a3444c03f8bf05a18b6cb92d97c160a544e9eace711360cb022590f",
+          "after_sha256": "80c0bc450508cf31de737543909dd231f7430c5d2548f0071d6d25a55189f739",
+          "exact_receipts": [
+            "public-launch-startup-preparation-pending-20261012",
+            "public-launch-startup-isolated-commit-review-20261012",
+            "public-launch-startup-isolated-rebased-commit-review-20261012",
+            "public-launch-startup-isolated-fae75a9e-commit-review-20261012"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}
