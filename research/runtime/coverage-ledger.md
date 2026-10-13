@@ -8970,3 +8970,18 @@ receipts and actual staged gate with no gaps. History review adds no execution.
   installed construction and complete native World/session remain pending. Integration
   and live replacement remain none; no gameplay balance change.
 - Exact incoming NS55 36434067 review:34 file/159 behavior transitions, no gaps.
+
+
+### NS57: owned follow pursuit in the idle chain (2026-10-13)
+
+- Owns513850 pursuit on canonical actors/execution: raw XY separation, living
+  target admission, normalization and cached geometry/move consequences.
+- Fresh bound original32/native64/ASan+UBSan+LSan64:16,384 cases through14 whole
+  unchanged bodies, including513850/40e250. Full state/backing/body/table/callback/
+  descriptor22 guards; successful and rejected geometry callbacks. CMake/CTest pass.
+- Proof:`original-transfer-follow-owned-bound-ns57-20261013.json`; scenario:
+  `ownership-transfer-follow-owned-20261013`. Development/export history retained.
+- Lower geometry/move/queue/action/immediate/interaction and complete native session
+  remain pending; integration/live replacement stay none. Terminal queue cleanup's
+  non-kind2 effect discrepancy awaits broader paired validation.
+- Exact incoming NS56 93e4867e history:37 file/161 behavior transitions, no gaps.

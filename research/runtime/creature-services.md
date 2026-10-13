@@ -554,3 +554,38 @@ proof; earlier component source and evidence fingerprints are unchanged.
 Incoming NS55 36434067 has34 file/159 behavior transitions reviewed against exact
 receipts and its successful actual staged gate, with no accounting gaps. That
 history review adds no new execution result or retrospective gate assertion.
+
+
+## Owned follow pursuit in the idle/reset chain (NS57)
+
+Idle follow now calls native whole513850 on the same canonical World actors/
+execution. Fresh bound original32/native64/ASan+UBSan+LSan64 passes16,384 cases
+through14 unchanged original bodies, including actual513850 and40e250 descriptor
+construction. Follow is not redirected. 9022 geometry adjustments and6151
+moves cover both successful and rejected adjustments. Raw XY separation precedes
+target health and XY normalization; its initial gate does not use wrapped
+distance. Geometry can clear the follow reference or kill the target after
+coordinates are copied; admitted moves retain those copied values. Full actor/
+config/owner/relation/limit/selection/source/per-actor list/effect/display/global/
+body/dispatch/callback guards and descriptor22 ABI match. Native CMake build and
+CTest pass. Immutable proof:original-transfer-follow-owned-bound-ns57-20261013.json.
+
+The finite corpus has1..32 actors, valid follow references or-1, positive16x16
+dimensions and XY-1..17/Z0..3. Descriptor22 copies four DWORD profile arguments
+at0/4/8/12, zero byte16, current kind DWORD17 and zero byte21. Fixture profiles
+bind configuration offsetsC/8/3c/44 without assigning unconfirmed installed
+meanings. Geometry/move, action/queue/immediate/interaction and remaining lower
+ownership stay supplied. Complete profile/World/session/live replacement remain
+pending. Development seeds initially correlated follow admission with geometry
+success; independent final seeds cover rejection. The old source/report remain
+unchanged. Current read-only export:original-follow-queue-static-ns57-20261013.json;
+earlier export versions remain retained separately. Broad helper spans include
+padding and are static findings, not complete recovered-boundary assertions.
+
+Queue instruction review finds terminal noncycling cleanup calls512340, which
+releases kind2 markers, then generic52d0c0 teardown. Current native advanceOrders
+releases every remaining effect. This scoped instruction/model discrepancy is
+pending a broader paired queue corpus; the existing0..4-node corpus retains its
+original results. Incoming NS56 93e4867e has37 file/161 behavior transitions
+reviewed against exact receipts and staged gate with no accounting gaps; that
+history review adds no new execution.
