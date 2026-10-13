@@ -7,6 +7,7 @@ from pathlib import Path
 import struct
 from drawing_api_session import sha
 from drawing_worker_producer_points import decode
+from drawing_copy_return_execution import associate_return
 
 ROOT = Path(__file__).resolve().parents[1]
 MUTATIONS = {1, 2, 5, 6, 7, 8, 9, *range(14, 25)}
@@ -42,6 +43,8 @@ def main():
         records[row[1]] = row
     workers = {w['worker']: w for w in observed['calls']}
     requests = {q['request']: q for q in reference['copy_order_observation']['entries']}
+    returns = {q['producer_return_sequence']: q for q in reference['copy_order_observation']['returns']}
+    bindings = {q['request']: q for q in joined['bindings']}
     result, counts = [], Counter()
     seen = set()
     for association in joined['bindings']:
@@ -63,23 +66,33 @@ def main():
                 touched = [r for r in inside if r[2] in MUTATIONS and r[3] in canvases]
                 classification = 'stable-prefix' if lower == upper else 'touches-copy-canvas' if touched else 'other-records-only'
             counts[classification] += 1
+            copy_returns = []
+            for row in touched:
+                if row[2] != 6:
+                    continue
+                returned = returns.get(row[1])
+                if returned is None or returned['request'] not in bindings:
+                    raise ValueError('Touched COPY lacks exact request/API/worker binding')
+                copy_returns.append(associate_return(row, returned, bindings[returned['request']], command))
             result.append(dict(request=association['request'], worker=command['worker'], command=command['command'],
                                source=request['source'], destination=request['destination'],
                                before_prefix=before['point'][3], after_prefix=after['point'][3],
                                classification=classification,
                                inside_kind_counts={str(k): v for k, v in Counter(r[2] for r in inside).items()},
                                observed_canvas_mutations=[dict(sequence=r[1], kind=r[2], destination=r[3]) for r in touched],
+                               copy_return_execution_associations=copy_returns,
                                source_storage_owned=False, execution_order_repaired=False))
     outside = sorted(set(workers) - seen)
     report = dict(schema=1, success=True, review_only=True,
                   sources={p: sha((ROOT / p).read_bytes()) for p in
-                           ['tools/analyze-drawing-worker-prefixes.py', 'tools/drawing_worker_producer_points.py', 'tools/drawing_api_session.py']},
+                           ['tools/analyze-drawing-worker-prefixes.py', 'tools/drawing_copy_return_execution.py',
+                            'tools/drawing_worker_producer_points.py', 'tools/drawing_api_session.py']},
                   reference=dict(path=str(args.reference), sha256=sha(raw)),
                   bindings=dict(path=str(args.bindings), sha256=sha(joined_raw)), producer_sha256=sha(wire),
                   counts=dict(counts), copy_commands=result, workers_outside_copy_scope=outside,
                   original_game_reexecuted=False, byte_or_backing_aliases_proved=False,
                   general_replay_order_proved=False,
-                  scope='Static exact source-prefix intervals around request/API-bound worker bodies. Classify observed producer mutations on logical source/destination IDs; all other records and workers remain accounted. Stable prefix or unrelated logical canvas IDs do not prove immutable bytes/backing aliases. No opcode reordering, failed-context exclusion or original output input.')
+                  scope='Static exact source-prefix intervals around request/API-bound worker bodies. Classify observed producer records on logical source/destination IDs and associate touched COPY returns with exact request/API/command worker intervals. A producer return within a prefix interval does not establish when its driver work executed. All other records and workers remain accounted. Stable prefix or unrelated logical canvas IDs do not prove immutable bytes/backing aliases. No opcode reordering, failed-context exclusion or original output input.')
     with args.report.open('x') as output:
         json.dump(report, output, indent=2)
         output.write('\n')

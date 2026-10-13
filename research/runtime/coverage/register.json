@@ -46256,24 +46256,26 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Strict worker prefix interval classification for bound copies",
-      "scope": "Static join of exact request/API/packet/worker identities to null-COM producer-prefix bounds before/after original worker callbacks. Retain stable prefixes, intervening records on other logical canvases and observed mutations touching copy source/destination IDs separately; every outside-scope worker remains listed. Prefix stability and unrelated logical IDs do not prove immutable bytes/backing aliases or total execution order. No copy record rewriting, output seeding, replay repair or complete presentation claim.",
+      "scope": "Static join of exact request/API/packet/worker identities to null-COM producer-prefix bounds before/after original worker callbacks. Retain stable prefixes, intervening records on other logical canvases and observed mutations touching copy source/destination IDs separately; every outside-scope worker remains listed. Prefix stability and unrelated logical IDs do not prove immutable bytes/backing aliases or total execution order. No copy record rewriting, output seeding, replay repair or complete presentation claim. Exact touched COPY descriptors/return sequences/owners associate to request/API/worker intervals; distinguish completed-before, started-after, same-request and interleaved envelopes without assigning producer record time to driver mutation time.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/draw02-copy-order.md"
       ],
       "implementation": [
-        "tools/analyze-drawing-worker-prefixes.py"
+        "tools/analyze-drawing-worker-prefixes.py",
+        "tools/drawing_copy_return_execution.py"
       ],
       "tests": [
-        "tools/analyze-drawing-worker-prefixes.py"
+        "tests/test-drawing-copy-return-execution.py"
       ],
       "validation_dependencies": [
         "tools/drawing_worker_producer_points.py",
         "tools/drawing_api_session.py"
       ],
       "evidence": [
-        "DRAW02.draw02-worker-prefix-analysis-01-20261013"
+        "DRAW02.draw02-worker-prefix-analysis-01-20261013",
+        "DRAW02.draw02-worker-prefix-delayed-return-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46283,7 +46285,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Static original32interval classification only; one source/destination mutation interval and1464workers after source scope remain explicit. Noncopy event execution, byte/backing aliases, source/physical lifetime, general ordering/replay repair and47/21closure remain pending."
+        "Static original32 interval attribution only. The sole touching COPY return is request711, whose driver commands completed before request714 workers entered; delayed producer journaling does not prove atomic bytes or general ordering. Retain 1464 outside-scope workers, noncopy/checkpoint execution, byte/backing aliases, source/physical lifetime, replay repair and47/21closure as pending."
       ]
     }
   ],
@@ -99870,6 +99872,20 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-delayed-return-01-20261013",
+      "kind": "static",
+      "scope": "Exact retained32 trace: cursor request711/API3115 worker commands complete at2544 before request714 workers enter at2552/2555; producer COPY49778 appears within worker852 prefix49777..49778. Delayed producer return recording only, no original reexecution or replay repair.",
+      "record": "research/runtime/draw02-worker-prefix-delayed-return-01.json",
+      "sha256": "af910cd79805082d1185e919299137418faf69fe1dbfd09e764e27b451589c47",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -112031,8 +112047,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-worker-prefix-20261013.json",
-    "sha256": "c965781da644910772c05eb61dc2605f0458a145e76c1361818cb4e0f0d0b6ac"
+    "path": "research/runtime/coverage/source-index-draw02-delayed-return-20261013.json",
+    "sha256": "142ff7f909559714f7e1895193c21bb0c01b13f89f43aeb60b7abf12ae869036"
   },
   "claim_bindings_required": true
 }

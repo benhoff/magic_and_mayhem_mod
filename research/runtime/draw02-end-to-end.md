@@ -2439,3 +2439,32 @@ canvas separation does not disprove backing aliases. Resolve the one touching
 copy interval and noncopy/checkpoint ordering before a source-only ordering
 repair. Earlier120source/physical failures remain failed. Step2and all47/21
 remain open; steps3–7stayordered/pending.
+
+
+## Step 2 delayed producer return attribution (2026-10-13 UTC)
+
+Worker-prefix work committed as `364116d5`; staged gate and commit hook passed.
+Reviewed `2098ea97..364116d5`: 23 exact file-version receipts, zero gaps.
+New static `draw02-worker-prefix-delayed-return-01.json` preserves all 1127
+copy-bound commands and 1464 outside-scope workers. Its one touching producer
+record, sequence 49778, binds exactly to cursor request 711/API 3115 and
+commands 847/848. Their worker records 2540..2544 finish before full-frame
+request 714's commands begin at 2552 (worker 851) and 2555 (worker 852).
+The cursor producer return was recorded during worker 852's producer-prefix
+bounds 49777..49778, after its associated driver commands had finished.
+This is delayed producer journaling in this retained trace, not proof of a
+driver mutation during worker 852. Four new guards distinguish prior, later,
+overlapping and same-request execution and refuse changed request descriptors,
+owners, sequences and incomplete worker intervals; six association and four
+worker-prefix decoder guards also pass. No original execution was repeated.
+
+Reassessment: original producer return order cannot stand in for driver order.
+The one touching interval is attributed, but stable prefixes and other logical
+canvas IDs still cannot exclude backing aliases. Noncopy/checkpoint execution,
+source-byte ownership and the earlier 120-window failures remain unresolved.
+Keep native ordering unchanged until a bounded execution policy accounts for
+all relevant operation and checkpoint boundaries. Step 2 remains open; steps
+3–7 remain ordered and pending, with all 47/21 requirements unchanged.
+Latest retained storage inventory reports 1268.343 GiB working and 220.933 GiB
+free, leaving about 11.657 GiB under the working target. This increment uses
+retained journals and no new game installation or large capture.
