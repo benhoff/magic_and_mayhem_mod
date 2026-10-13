@@ -53799,7 +53799,8 @@
         "NR.native-palette-row-cache.paired-public-20261012",
         "NR.native-palette-row-cache.full-performance-negative-20261012",
         "NR.native-palette-row-cache.combat-deadline-negative-20261012",
-        "NR.native-palette-row-cache.wizard-death-negative-20261012"
+        "NR.native-palette-row-cache.wizard-death-negative-20261012",
+        "NR.native-palette-row-cache.startup-public-negative-20261012"
       ],
       "remaining_gaps": [
         "Historical source-bound full nativeTITAN casting/lethal combat/spells/portrait/menu/resume/normalQuit and19.2932FPSfloor pass with4603balanced returns and zero ordinary pixel readbacks/fallback. NativeWorld49.3965FPS fails60; public source/command scheduling and remaining submission work need attribution. Earlier intermittent pixel instability and two current failed gameplay journeys remain unresolved/preserved, not declared repaired. Original renderer equivalence/replacement, interpolation and wider shared-source freshness remain separate.",
@@ -109642,6 +109643,25 @@
           ]
         }
       ]
+    },
+    {
+      "id": "NR.native-palette-row-cache.startup-public-negative-20261012",
+      "kind": "live_observation",
+      "scope": "Current source-bound gameplay observation only; no paired old/new live FPS causality, original renderer equivalence, 60 FPS or repair of the intermittent checkpoint pixel failure is inferred. Preserve all previous source-bound failures and successes.",
+      "record": "research/runtime/native-palette-startup-public-negative-20261012.json",
+      "sha256": "50cf45ba98f1e5b579435f980a329b83f88f141c5bbc7b90b4b50ec3ed6c777b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -122683,7 +122703,8 @@
       "evidence": [
         "NR.native-palette-row-cache.full-performance-negative-20261012",
         "NR.native-palette-row-cache.combat-deadline-negative-20261012",
-        "NR.native-palette-row-cache.wizard-death-negative-20261012"
+        "NR.native-palette-row-cache.wizard-death-negative-20261012",
+        "NR.native-palette-row-cache.startup-public-negative-20261012"
       ]
     }
   ],
@@ -123211,7 +123232,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-palette-startup-integration-20261012.json",
+    "path": "research/runtime/coverage/source-index-native-palette-startup-observation-20261012.json",
     "sha256": "d022ed27156e5fdd054062989c8fd6ec6fd1a2a65a82a832e5040668e249781f"
   },
   "claim_bindings_required": true
