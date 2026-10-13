@@ -546447,6 +546447,184 @@
         "status": "pending",
         "reason": "Four return-execution guards, six copy association guards and four worker-prefix decoder guards pass. New static retained-trace report attributes the sole touching COPY to prior worker completion. No original reexecution or byte/backing alias/general-order proof; original120 mismatches and complete47/21 closure remain pending. Shared research edits retain historical source fingerprints and do not promote status."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "2e7ddcd3c3dcbdb83e2353298e9bf5dfd20536f76d908051fe784f66a56fe0a6",
+          "before_sha256": "d9031af69f2ccceda7c6c443e5e343291e8519466a1f2473f367eb1f1e07842b",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "16951b2f60b48ccdde15415aca29bf9e6fb4b47240a2da35ad759f71fb96f52e",
+          "before_sha256": "235068553e6d047ff6c3159e13c39d11cb2859809c941712d19dcca7cf9ebe6c",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "faf325a283a9bdebe2d0b81a41c45ec1e44c6a854accc66ef59498ed775aebc8",
+          "before_sha256": "f1b7883144572d787d3c50d56734d2635299e45d4c7baa446f816d599d9f7372",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "81a8756328563435077a860bf35b72806aa9522cbe71bd3a40a1b5eb0a2e5d9d",
+          "before_sha256": "da9a36817e5a4fcc6b7e7b0cccd95697d96201a2b17b82db9c614f2b96c221ab",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "4809d727bbd7feeb960a5d2b49c03e999c4d927b313cbbf07fd688bdca3a5383",
+          "before_sha256": "1b5aa0391a1ee1f9ff011c38eaf6016984de21884f846af7207d4822db294b6f",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "a3582e230843fef3b3f4a7233d2fcf1de8d40f790a07a72d486481183ea3af3f",
+          "before_sha256": "285254909a053f69579a91a966c6e3c9a469084fa27249f50c78c55c997c72ea",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "18eae389cd0aa58c541c9a827158160bbde53f355c88979d95cd9ac1788f810e",
+          "before_sha256": "c21529c770c3061e885dedcc225c0f58fb5010ed9b955781b69ec93635b13671",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "0cd1bf988c778cfc80ec07bac595ba5b28522dfd0caaa38c4fd5a0524f737469",
+          "before_sha256": "9db305acf20e38fac7850bb2079856693606c310e4e0fc7a7559452bb07fe61f",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "174cd90a74c821d65db5ca2326e1b08b57b28e358c553591660d67afecf642e8",
+          "before_sha256": "44a28d62a63baed054e0df492cbb14cc61eee5b75d1cd440cdd0240de31e0420",
+          "id": "NR.drawing-copy-api-worker-association"
+        },
+        {
+          "after_sha256": "094046a3387f51bdb32cad8e33dbd0ef5fafcffeaf7129f02082451fc955c578",
+          "before_sha256": "5197fa07bf4ed70ef03ee25e1a24324d4e4da98f7d050ebffb2a67596b35de8d",
+          "id": "NR.drawing-copy-checkpoint-comparison"
+        },
+        {
+          "after_sha256": "5ae352de2ed879fe32593553a08fd9626e7b99b32f6c9193099fb7e035143654",
+          "before_sha256": "6bdd964c322193777b0dbc92f8b266912f3054827901e764a1b8d1849c6faf6e",
+          "id": "NR.drawing-copy-failure-provenance"
+        },
+        {
+          "after_sha256": "f722f11d7955dd80ef788d2648c43cc4c317432c068517eed21ea58d2d18b2f0",
+          "before_sha256": "3ada337d105a2146116908d4425d2fc3cdc58a163f9770a707c65231c8e74b2d",
+          "id": "NR.drawing-copy-order-observation"
+        },
+        {
+          "after_sha256": "84615cd6623259ef2234ae8da756866faea08b3a496a948078188f88d7c92de8",
+          "before_sha256": "ed994a380399c82cd22cde171da62915b472f9705ce7b8ea519b08dd298808db",
+          "id": "NR.drawing-copy-request-trace"
+        },
+        {
+          "after_sha256": "d45dc2dd3a21f2c883d9e254a7031f5c063b72f2bd0f18973cc7b769d22be9ce",
+          "before_sha256": "cc9e35111e1130813c3b0bf24bd4a9e31a0a5dfdb65b80aaf3f791db7af72462",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "482bec47efa13d786206343001d5ad7ab173daced54daf5ee4815f8df1e2a1f0",
+          "before_sha256": "ddee1df7bf73baef1572744f4e2e765f937f97a0b247ea3374a85b35a536df20",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "a01287800593264fb40b16859475d5c709173673184b316c2a6a889744ca4ad9",
+          "before_sha256": "cb94cdc0d5be3ed95f0c013388935fff1fc355555fea0c0802e42f7791283678",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "ba86e4b184dac30f31f65d17129901cb9cae2a08e655f61b68c2e782ea10c34d",
+          "before_sha256": "ee368dbdacaf6e566fbf84ab04388aa5307d8a337bfec7d335c313e8630ab100",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "51555bc798f33284b5a0f668fd4084bd42ec16bb5299f25e46d449f96b768c48",
+          "before_sha256": "c1f5236fedafe1bd9d9a5ea627974c98cb724ab853739e9a1691480c321059cb",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "c17944ecce9fbf37d56bfd45b7d6241b67dddf5c157b2e0a80bcf3ece9b77e7f",
+          "before_sha256": "78b329eed16fd5fac682e60443f59b74178221f0fcd1a2f21255fb7a0c416ed7",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "eb1e6616147d6e9182be528077ff88a5c7014212513474723029c2aff8af13eb",
+          "before_sha256": "2011af4f796f964530ab3b18a6c196953c94e8a322d153fe5a1e5457a38a62c7",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "b1610c70e864e582f16d2a8fc991a2306b879e55585b87745e094f1150b6b39b",
+          "before_sha256": "256f0be4306efc369401e93a76a5b2d8bd333c8b18214d5808cbc7d34ac0abf8",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "ba475a643d60b147cb1769407dcdea92e30868961db4fa8482f46cfe5bc351db",
+          "before_sha256": "44f2b90dc137d0d4f8f287eede7825a6b46845adc7f741ebd47d1f4c79b5371b",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "d47265ec0f1b88bad28b0d35f66b23ee63cabcad2edc06ab2b0edb957b9c302e",
+          "before_sha256": "112b78d95fcac3af0bcd9833a4c8a79e6c760409a673211e438d118896a01c2d",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "e95ceeac0df68ccfd8708c0f7b025fee644e226c76e5b3b951494840cd390d8b",
+          "before_sha256": "e66cecb5ee0805176f32595057073700b208e4a740766b20db2ebdf8a637009e",
+          "id": "NR.drawing-worker-prefix-analysis"
+        },
+        {
+          "after_sha256": "193ed134404ea09ce00863fed5830fc02f92f538f04be5ef45d658867117f8de",
+          "before_sha256": "6e86f709f56649b3f547149f5c0bfcdbd389a96130858bc49ce84ad78052d4dc",
+          "id": "NR.drawing-worker-producer-prefix"
+        },
+        {
+          "after_sha256": "813108909c0fb20353910032e843f6d6d46df18d9fc3af9fb03260afbc68a188",
+          "before_sha256": "f9248bd54479ae8997d63d3c13f69d4f1d7a16626eb44d677c296c97a7a9509b",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "6fdc06dabdb29cb1186ee9c1ad804d135c4027f7c86020d402add2beb1640048",
+          "before_sha256": "06aad7a6593bdd8712fdaa412530b0c80dfd2c46a6a1a5eec691adc7a4b71203",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "07762e3618a5553a75756cab1a0c788904ae49af6bce106f44395c179771d8ba",
+          "before_sha256": "3623adeec0848d1611f0b41c0150737e46c41ae1370e25d6d2bb2643ab7c7732",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "87e19d3551f22c74b8d33a443c65527fa197bb2c97878b342567f951a0df83d6",
+          "before_sha256": "7f59898b2679a4dc11f2f52b61c04f99dd6119c60f61ff2647ec05d1c385e612",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0efc9a349fa3a1c892a41206dcd2f8a0b6a57499539ce45d1e3b09668a2a08e9",
+          "before_sha256": "a424fe3830d5d85af6135cf596fb799f0719bdb3911678a2332de1e19b2aa838",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ef056fb691756bf9805bb1ecd14543d546b9d5834f9c14cc62b20249bcd49ae3",
+          "before_sha256": "45509f1b844d9ec9a8c4281454384e0079823c9ef2a340d8596d7dae7c9e72cf",
+          "path": "research/runtime/draw02-copy-order.md"
+        },
+        {
+          "after_sha256": "3745941532df1fe449f3c4f4a0316bb1a5443bc46734e61a5c10ffd7cfe8a46e",
+          "before_sha256": "fa04b0edfb6e95d61d9b079eaef18e54d8706d7f4b6dd7d53095a3e1e13407c2",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "1e79e05436abbac03cf09daf33e4384c4deb27dfc4287cbcec0aa37172c88763",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-worker-prefix-checkpoints-01.json"
+        }
+      ],
+      "id": "draw02-worker-bound-source-checkpoint-comparison-20261013",
+      "pending_gaps": [],
+      "reason": "Reviewed unchanged-source complete checkpoint replay and prospective scope/source claim. Retain new1335/1335matched result separately from historical120 failures; no ordering repair or status promotion. Reviewed364116d5..0b21befb committed file hashes:9exact receipts,0gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh native_integration DRAW02.draw02-worker-prefix-checkpoints-01-20261013 compares every1335checkpoint with zero differing pixels and nativeexit0, encoded assets only and external original oracles; original manifests and source hashes verified before/after. This32update trace does not establish complete source ownership, general replay ordering, physical coherence or47/21 closure. Earlier120two failures remain failed."
+      }
     }
   ]
 }

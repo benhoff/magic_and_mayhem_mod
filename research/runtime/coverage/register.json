@@ -46092,7 +46092,8 @@
       "evidence": [
         "DRAW02.draw02-copy-checkpoints-terminal-negative-01-20261013",
         "DRAW02.draw02-copy-checkpoints-original32-01-20261013",
-        "DRAW02.draw02-copy-checkpoints-original120-01-20261013"
+        "DRAW02.draw02-copy-checkpoints-original120-01-20261013",
+        "DRAW02.draw02-worker-prefix-checkpoints-01-20261013"
       ],
       "status": {
         "understanding": "partial",
@@ -46102,7 +46103,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Original32all1337source checkpoints match unchanged return-order replay. Original120compares2182:2180match, canvas2/checkpoint1335fails1600pixels andcanvas22/checkpoint1336fails950. Initial native terminal refusal retained with0compared. The strict V4 metadata terminal is validated separately. These scoped results do not repair driver/noncopy/CPU ordering, views/aliases/lifetimes, physical coherence or whole47journey/21operation closure."
+        "Original32all1337source checkpoints match unchanged return-order replay. Original120compares2182:2180match, canvas2/checkpoint1335fails1600pixels andcanvas22/checkpoint1336fails950. Initial native terminal refusal retained with0compared. The strict V4 metadata terminal is validated separately. These scoped results do not repair driver/noncopy/CPU ordering, views/aliases/lifetimes, physical coherence or whole47journey/21operation closure.",
+        "Fresh worker-prefix original32 trace compares all1335 source checkpoints with zero differences using unchanged return-order native replay; this trace has44copy return reversals and one delayed COPY return whose commands already completed. Earlier120 checkpoint1335/1336 failures remain failed. No general ordering policy or whole journey closure."
       ]
     },
     {
@@ -99884,6 +99886,25 @@
         {
           "pointer": "/success",
           "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.draw02-worker-prefix-checkpoints-01-20261013",
+      "kind": "native_integration",
+      "scope": "Current-source native unchanged return-order replay of worker-prefix original32 trace: all1335 CPU checkpoints match; encoded assets only, all original oracles remain outside native inputs. No fresh original execution in this replay, physical parity, source ownership or general replay-order repair.",
+      "record": "research/runtime/draw02-worker-prefix-checkpoints-01.json",
+      "sha256": "1e79e05436abbac03cf09daf33e4384c4deb27dfc4287cbcec0aa37172c88763",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_exit",
+          "equals": 0
         }
       ]
     }

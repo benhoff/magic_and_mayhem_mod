@@ -2468,3 +2468,23 @@ all relevant operation and checkpoint boundaries. Step 2 remains open; steps
 Latest retained storage inventory reports 1268.343 GiB working and 220.933 GiB
 free, leaving about 11.657 GiB under the working target. This increment uses
 retained journals and no new game installation or large capture.
+
+
+## Step 2 worker-bound checkpoint comparison (2026-10-13 UTC)
+
+Delayed return attribution committed as `0b21befb`; staged gate and normal hook
+passed. Reviewed `364116d5..0b21befb`: nine exact file-version receipts, zero
+gaps. Fresh `draw02-worker-prefix-checkpoints-01.json` runs unchanged native
+return-order replay against the retained worker-bound 32-update trace. All
+1335 independently retained CPU checkpoints match, native exit 0, with source
+hashes checked before/after and original manifests verified. Only parameters
+and pinned encoded assets enter native input; original planes remain external.
+The 1 GiB guarded reservation passed; raw comparison output is retained.
+
+Reassessment: this trace's 44 adjacent copy return reversals and delayed cursor
+return do not produce a checkpoint mismatch. Their presence alone is not a
+repair trigger. The earlier 120 trace retains both checkpoint failures and its
+physical mismatch. A new guarded 120-update capture adds actual worker-prefix
+and V5 storage-query identities to investigate larger intervals; its result
+must be assessed independently. Step 2 remains open, steps 3–7 pending and all
+47/21 requirements unchanged.
