@@ -52068,7 +52068,9 @@
         "NS27.lifecycle-development-original",
         "NS27.execution-static",
         "NS35.lifecycle-original",
-        "NS35.lifecycle-native"
+        "NS35.lifecycle-native",
+        "NS41.lifecycle-original",
+        "NS41.lifecycle-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52159,7 +52161,9 @@
         "NS27.lifecycle-development-original",
         "NS27.execution-static",
         "NS35.lifecycle-original",
-        "NS35.lifecycle-native"
+        "NS35.lifecycle-native",
+        "NS41.lifecycle-original",
+        "NS41.lifecycle-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52465,7 +52469,9 @@
         "NS27.lifecycle-development-original",
         "NS27.execution-static",
         "NS35.lifecycle-original",
-        "NS35.lifecycle-native"
+        "NS35.lifecycle-native",
+        "NS41.lifecycle-original",
+        "NS41.lifecycle-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -53992,30 +53998,70 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Original inline periodic owner resource contribution",
-      "scope": "509e50 inline509faa..50a0da resource contribution in recovery: deadline gate/update, owner controller/wizard lookup, unsigned resource high-byte snapshots, wrapped resource grant and inventory-type19 aggregate, supplied416d80 numeric return and two ancestry-root counter2f credits. Not514c60 conversion scanning. Owner/resource/score/profile/contribution ownership and fresh whole-maintenance comparison/native session integration pending.",
-      "confidence": "provisional",
+      "scope": "Whole509e50 maintenance execution with inline periodic contribution509faa..50a0da enabled: unsigned deadline gate/update, controller gate, cached nonnull associated actor, unsigned E8 high-byte snapshots and wrapped grant, all42 available type19 inventory entries, signed truncated aggregate/float delta, supplied416d80 numeric word and both ancestry-root terminal counter2f credits including duplicate roots. Owned1..128 actors, owner0..7, finite acyclic ancestry and full32-bit resource/grant/inventory/total values; typed callbacks mutate inventory/source type before reload. Lower owner/resource/account/World ownership, neutral/null/raw pointers, exception/incidental-return domains, balance changes, installed profiles and native session/live integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5283408,
-          "scope": "509e50 inline509faa..50a0da resource contribution in recovery: deadline gate/update, owner controller/wizard lookup, unsigned resource high-byte snapshots, wrapped resource grant and inventory-type19 aggregate, supplied416d80 numeric return and two ancestry-root counter2f credits. Not514c60 conversion scanning. Owner/resource/score/profile/contribution ownership and fresh whole-maintenance comparison/native session integration pending."
+          "scope": "Whole509e50 maintenance execution with inline periodic contribution509faa..50a0da enabled: unsigned deadline gate/update, controller gate, cached nonnull associated actor, unsigned E8 high-byte snapshots and wrapped grant, all42 available type19 inventory entries, signed truncated aggregate/float delta, supplied416d80 numeric word and both ancestry-root terminal counter2f credits including duplicate roots. Owned1..128 actors, owner0..7, finite acyclic ancestry and full32-bit resource/grant/inventory/total values; typed callbacks mutate inventory/source type before reload. Lower owner/resource/account/World ownership, neutral/null/raw pointers, exception/incidental-return domains, balance changes, installed profiles and native session/live integration excluded."
         }
       ],
       "documents": [
         "research/runtime/creature-services.md"
       ],
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "reconstruction/creature-ai/resource_contribution.hpp",
+        "reconstruction/creature-ai/resource_contribution.cpp"
+      ],
+      "tests": [
+        "tests/creature-resource-contribution-test.cpp",
+        "tools/test-creature-resource-contribution.py"
+      ],
       "evidence": [
         "NS27.execution-static",
-        "NS39.services-static-v3"
+        "NS39.services-static-v3",
+        "NS41.contribution-original",
+        "NS41.contribution-native"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/contribution/CMakeLists.txt",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-lifecycle-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged maintenance parent, complete actor/ancestry/recipient/config/controller/body guards and ordered consequences",
+          "Unsigned deadline/controller gates, wrapped numeric domain and independently cached associated actor",
+          "Caller keeps owned backing stable; callback inventory/type mutation occurs before original reads"
+        ],
+        "excluded": [
+          "Complete original507f00/466870/416d80 services and installed profile construction",
+          "Raw invalid pointers/neutral owner/null subject/cyclic ancestry; native-only refusals require caller rollback",
+          "Native World/session/live integration and gameplay balance changes"
+        ]
       }
     },
     {
@@ -54230,6 +54276,244 @@
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.resource-contribution-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native contribution ownership domain refusals",
+      "scope": "Native-only neutral owner, missing associated actor, invalid root and cyclic ancestry refusals. Primitive may mutate before refusal; caller must stage state/events for rollback. No malformed original pointer equivalence claimed.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/resource_contribution.hpp",
+        "reconstruction/creature-ai/resource_contribution.cpp"
+      ],
+      "tests": [
+        "tests/creature-resource-contribution-test.cpp",
+        "tools/test-creature-resource-contribution.py"
+      ],
+      "evidence": [
+        "NS41.contribution-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/contribution/CMakeLists.txt",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "tests/creature-execution-lifecycle-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged maintenance parent, complete actor/ancestry/recipient/config/controller/body guards and ordered consequences",
+          "Unsigned deadline/controller gates, wrapped numeric domain and independently cached associated actor",
+          "Caller keeps owned backing stable; callback inventory/type mutation occurs before original reads"
+        ],
+        "excluded": [
+          "Complete original507f00/466870/416d80 services and installed profile construction",
+          "Raw invalid pointers/neutral owner/null subject/cyclic ancestry; native-only refusals require caller rollback",
+          "Native World/session/live integration and gameplay balance changes"
+        ]
+      }
+    },
+    {
+      "id": "AI.resource-change",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature resource adjustment",
+      "scope": "Whole507f00 in recovery: wrapped E8+delta, signed-negative-tozero then unsignedmin with EC<<8, wizard-kind/block/local-owner changed-value UI gate, second UI callback reload and unconditional92e dirty flag. Lower UI/state composition and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275392,
+          "scope": "Whole507f00 in recovery: wrapped E8+delta, signed-negative-tozero then unsignedmin with EC<<8, wizard-kind/block/local-owner changed-value UI gate, second UI callback reload and unconditional92e dirty flag. Lower UI/state composition and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS41.resources-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.resource-owner-snapshot",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original per-owner creature resource snapshot",
+      "scope": "Whole507fa0 in recovery: foreign-owner E2b indexed adjustment uses wrapped signed clamp with EC<<8; own-owner ignores delta and stores E8 plus42 available type19 magnitudes<<8. Complete pointer/owner domains and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5275552,
+          "scope": "Whole507fa0 in recovery: foreign-owner E2b indexed adjustment uses wrapped signed clamp with EC<<8; own-owner ignores delta and stores E8 plus42 available type19 magnitudes<<8. Complete pointer/owner domains and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS41.resources-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.associated-actor",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original owner-associated actor resolution",
+      "scope": "Whole466870 in recovery: owner-1 null,340-byte record enabled flag, unsigned controller/index vs actor capacity, canonical actorstrideE4b pointer. No active/health filter. Logical owned mapping and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4614256,
+          "scope": "Whole466870 in recovery: owner-1 null,340-byte record enabled flag, unsigned controller/index vs actor capacity, canonical actorstrideE4b pointer. No active/health filter. Logical owned mapping and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS41.resources-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.owner-transfer",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature ownership transfer",
+      "scope": "Whole51ec80 in recovery: same-owner no-op, ordered visibility/route/reset callbacks with owner change, pending/marker/selection cleanup, color/update/behavior reset, two ancestry release calls, global memberships and animationKind2 display owner write. Complete lower services/state ownership and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5368960,
+          "scope": "Whole51ec80 in recovery: same-owner no-op, ordered visibility/route/reset callbacks with owner change, pending/marker/selection cleanup, color/update/behavior reset, two ancestry release calls, global memberships and animationKind2 display owner write. Complete lower services/state ownership and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS41.resources-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.contribution-account",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original numeric contribution account",
+      "scope": "Whole416d80 in recovery: class-specific quantity formula,28-entry profile totals, wrapped arithmetic, x87 reciprocal/constant computation and59bee0 conversion. Constants/domains/rounding/lower profile access/full World and fresh execution pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4287872,
+          "scope": "Whole416d80 in recovery: class-specific quantity formula,28-entry profile totals, wrapped arithmetic, x87 reciprocal/constant computation and59bee0 conversion. Constants/domains/rounding/lower profile access/full World and fresh execution pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS41.resources-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.creature-resource-export",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Pinned lower resource and ownership static exporter",
+      "scope": "Read-only pinned original export; manifest before/after and input byte equality. No semantic/execution/replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-creature-resources.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS41.resources-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -110187,6 +110471,222 @@
           "equals": 3
         }
       ]
+    },
+    {
+      "id": "NS41.resources-static",
+      "kind": "static",
+      "scope": "Pinned bounds/anchors/disassembly of507f00/507fa0/466870/51ec80/416d80 only. No execution or semantic completeness.",
+      "record": "research/runtime/original-creature-resources-static-v1-20261012.json",
+      "sha256": "65c4ba3fad6242a263387c70e9637dd5d3e0d897d16cb5d6bfaa1898b9863654",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS41.contribution-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively declared whole-body contribution original32/native64/sanitized64 projection; complete actor/ordered consequence/body guards. Contribution enabled and ancestry/recipient/controller/config bytes checked; lower owner/resource/account services supplied.",
+      "record": "research/runtime/original-creature-contribution-bound-ns41-20261012.json",
+      "sha256": "a96bc17e3272ec27b71ce8d446bc2deb43c453ab980e7e15a7773792891d0033",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS41.contribution-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively declared whole-body contribution original32/native64/sanitized64 projection; complete actor/ordered consequence/body guards. Contribution enabled and ancestry/recipient/controller/config bytes checked; lower owner/resource/account services supplied.",
+      "record": "research/runtime/original-creature-contribution-bound-ns41-20261012.json",
+      "sha256": "a96bc17e3272ec27b71ce8d446bc2deb43c453ab980e7e15a7773792891d0033",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        }
+      ]
+    },
+    {
+      "id": "NS41.lifecycle-original",
+      "kind": "isolated_original",
+      "scope": "Fresh prospectively declared whole-body lifecycle original32/native64/sanitized64 projection; complete actor/ordered consequence/body guards. Ordinary lifecycle domain unchanged: upkeep admission remains excluded. Shared fixture extension inactive; confirms current source regression, no new scope.",
+      "record": "research/runtime/original-creature-lifecycle-bound-ns41-20261012.json",
+      "sha256": "6bad3573a4fdb5cab392cc8f7b0f2eb914cd8ea4325906c02e2c668a02fde726",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS41.lifecycle-native",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively declared whole-body lifecycle original32/native64/sanitized64 projection; complete actor/ordered consequence/body guards. Ordinary lifecycle domain unchanged: upkeep admission remains excluded. Shared fixture extension inactive; confirms current source regression, no new scope.",
+      "record": "research/runtime/original-creature-lifecycle-bound-ns41-20261012.json",
+      "sha256": "6bad3573a4fdb5cab392cc8f7b0f2eb914cd8ea4325906c02e2c668a02fde726",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 8192
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -123760,8 +124260,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-conversion-environment-20261012.json",
-    "sha256": "2ffb61dec674062ed14790419c31b1b27f7427ade0efe0cb0beb54bdb14a77a8"
+    "path": "research/runtime/coverage/source-index-original-resource-contribution-v2-20261012.json",
+    "sha256": "4c9ede17dba360fb27434aabd291d40cbcbd2932b559a96fb9131702bdaa7851"
   },
   "claim_bindings_required": true
 }

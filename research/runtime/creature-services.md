@@ -106,3 +106,36 @@ validation, composed World/session execution and live replacement remain pending
 Incoming marker commit4dda04ea is reviewed against its exact receipts and actual
 staged gate:19 file and116 behavior transitions, with no unresolved accounting
 gaps. This history review asserts no new execution or past gate result.
+
+
+## Periodic resource contribution comparison (NS41)
+
+Whole509e50 now has a separate prospectively bound contribution comparison:
+8,192 original32/native64/ASan+UBSan+LSan64 cases,2,275 paired grants/account
+calls,3,187 blocked deadlines and820 duplicate-root fixtures. Unsigned high-byte
+snapshots, wrapped grant/42-entry inventory aggregation, signed truncation and
+float delta, controller gate and both ancestry counter2f credits match. Callback
+changes to inventory/source type are read at the original points. Full actor,
+ancestry/recipient/controller/config bytes, ordered consequences and whole body
+are guarded. Four native-only malformed-domain refusals require caller rollback.
+The independent native CMake build and CTest pass. The initial development build
+failed on a fixture member typo and indentation warning; those logs are retained.
+
+The fixture extension preserves its caller's main macro and adds optional owned
+field packing/guards. The ordinary lifecycle corpus separately passes8,192 fresh
+source-bound cases with the extension inactive; its historical excluded-upkeep
+scope is unchanged. NS35 records retain their old source hashes. Contribution is
+recorded under AI.upkeep-admission, distinct from514c60 ownership conversion.
+Neither proof supplies complete lower466870/507f00/416d80 ownership or composed
+World/session execution. No balance change or integration/replacement promotion.
+
+The new static lower-service export pins507f00/507fa0/466870/51ec80/416d80 bodies.
+Instruction review finds resource change uses signed negative-tozero followed by
+unsigned capacity clamp, while foreign-owner snapshot uses signed capacity clamp;
+these differ on high-bit capacities. Local wizard UI notifications occur in order
+and reload current resource after the first callback. Associated actor resolution
+uses the owner enabled flag and unsigned controller/index capacity, with no living
+filter. Owner transfer and numeric account still require scoped execution and full
+lower services. Static evidence does not establish equivalence. Incoming NS40
+commit bf07d2e7 has22 file/118 behavior transitions reviewed against exact receipts
+and the actual staged gate, with no unresolved accounting gaps.
