@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "scope": "Original Quick Battle map2 documented Shift-left selection toggle, Space pause/resume and supplied Readme Insert/Delete pause controls. Actual original callbacks, tracked actor fields and semantic journals determine outcomes. No whole selection/pause/presentation parity assumed. Explicit pointer dwell precedes each modifier click to avoid using an old hit candidate from a move immediately followed by button-down.",
+  "actions": [
+    {
+      "kind": "wait",
+      "after_ms": 500
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 300,
+      "button": 1,
+      "after_ms": 500
+    },
+    {
+      "kind": "move",
+      "x": 500,
+      "y": 300,
+      "after_ms": 1200
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 299,
+      "after_ms": 600
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 299,
+      "button": 1,
+      "modifiers": [
+        "Shift"
+      ],
+      "after_ms": 500
+    },
+    {
+      "kind": "move",
+      "x": 500,
+      "y": 300,
+      "after_ms": 1200
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 298,
+      "after_ms": 600
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 298,
+      "button": 1,
+      "modifiers": [
+        "Shift"
+      ],
+      "after_ms": 500
+    },
+    {
+      "kind": "move",
+      "x": 500,
+      "y": 300,
+      "after_ms": 1200
+    },
+    {
+      "kind": "tap",
+      "key": "space",
+      "after_ms": 2500
+    },
+    {
+      "kind": "hold",
+      "key": "Right",
+      "duration_ms": 180,
+      "after_ms": 800
+    },
+    {
+      "kind": "tap",
+      "key": "space",
+      "after_ms": 2500
+    },
+    {
+      "kind": "tap",
+      "key": "Insert",
+      "after_ms": 2500
+    },
+    {
+      "kind": "tap",
+      "key": "Delete",
+      "after_ms": 2500
+    },
+    {
+      "kind": "move",
+      "x": 744,
+      "y": 522,
+      "after_ms": 1800
+    },
+    {
+      "kind": "move",
+      "x": 500,
+      "y": 300,
+      "after_ms": 1200
+    },
+    {
+      "kind": "tap",
+      "key": "Escape",
+      "after_ms": 600
+    },
+    {
+      "kind": "tap",
+      "key": "Escape",
+      "after_ms": 600
+    },
+    {
+      "kind": "wait",
+      "after_ms": 2000
+    }
+  ]
+}

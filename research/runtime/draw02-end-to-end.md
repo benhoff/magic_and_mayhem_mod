@@ -2029,3 +2029,37 @@ Reviewed committed range 61307428..c7cb39e0: 13 exact file receipts, zero gaps,
 retained under working/draw02-history-review-region-v3-20261013-01.json. Shared
 capture/runner/decoder changes retain older results and their hashes as historical;
 current execution support is limited to the declared V3 and disabled V2 scopes.
+
+## Step 2 documented selection and pause probes (2026-10-13 UTC)
+
+Independent actor-slot observation committed as cf621e95 with staged and normal
+hook checks. Reviewed c7cb39e0..cf621e95: 20 exact file receipts, zero gaps.
+Ordinary original ground clicks at 500300 and 550350 produce no actor hit while
+retaining the selected actor latch; repeated creature click also retains it.
+
+The publisher manual scan and supplied Readme define prospective Shift selection
+toggle and Space/Insert/Delete pause inputs. The private XTest runner adds only
+those controls, rejects malformed modifiers before injection and checks button
+returns. The owned six-case X11 fixture confirms actual modifier/button/key
+states, four refusals and cancellation cleanup without original execution.
+
+Original documented probe01 is retained: immediate move/click leaves no hit at
+both Shift button-down points and does not toggle the actor. Probe02 adds
+600ms pointer settling. Its actual callbacks2/6/10 change raw actor+68/count/mode
+0→1→0→1 on the same validated observed pool/slot/type/owner. Releases and later
+independent pointer-away samples retain each state. Inspected original images
+at actions3/6/9 show creature and portrait brackets present/absent/present.
+
+Immutable analysis also binds four original mapped-key groups to World mode
+0→1→0→1→0 within500ms. Two pause intervals keep the selected World counter
+fixed while accepted rendering updates continue; active/resumed controls advance
+the counter. Six analysis guards pass. No actor allocation generation, complete
+selection/all-animation/simulation pause, exact action/frame/source ownership
+or full reference/native parity is asserted. Both original runs exit through
+observed actual game process code0 and verify original manifests before/after.
+
+Step2 remains open. Reassessment of its120source run:926lease refusals are not
+one homogeneous failure.92are800x600stride800canvas2:75have one pending
+producer frame,17are after source recording stopped. Small/driver-backed sources
+retain their separate refused domains. Next inspect those75pending-frame contexts
+before changing admission. Steps3–7 and all47/21closures remain ordered/pending.
