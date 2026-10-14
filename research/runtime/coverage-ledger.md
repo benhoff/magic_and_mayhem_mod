@@ -9456,3 +9456,26 @@ about inaccessible Docker mounts; privileged inspection requires a password.
 The exact hash-bound candidate/script is prepared, not permission to delete.
 No cleanup occurred. Required temporary Git accounting now uses conventional
 /var/tmp on the second NVMe; the cold archive and main100GiBreserve are preserved.
+
+
+## Step2 approved temporary-checkout cleanup and storage reassessment (2026-10-13)
+
+The user explicitly approved the prepared orphaned accounting-checkout cleanup.
+Immediate verification rechecks all6914file hashes/sizes, immutable Git blobs,
+exact membership, pins, tracked-file absence and visible host activity. Only the
+2.714GiBtemporary source snapshot is removed; no original media, engine evidence,
+registered worktree or cold archive is deleted. Docker mount visibility remains
+limited and no complete privileged process-visibility claim is made. Applied
+provenance is retained in `draw02-approved-orphan-cleanup-20261013-01.json`.
+
+The third-cohort commit58016304has eight exact parent/current receipts and0history
+gaps. Four-run cadence comparison02is still refused before launch: shared working
+usage1379.5737GiB/free103.8481GiB/reserve0.01GiB exceeds the explicit1376GiBcap.
+No timing comparison is inferred. The100GiBphysical reserve remains required.
+Further cleanup or a budget change is not included in this approval.
+
+Reassessment: step2stays active; bounded COPY correction remains7209CPU/67Aux
+matches across three cohorts, while complete all-writer/view/lifetime/source-frame/
+route accounting and independent timing/semantic controls remain open. Step1is
+complete; all47/21closures and steps3–7remain open. This storage-provenance update
+does not promote engine status, change gameplay or refresh historical hashes.
