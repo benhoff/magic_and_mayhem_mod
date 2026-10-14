@@ -1,13 +1,17 @@
 #include "../reconstruction/creature-ai/transfer_commands_owned.hpp"
+#include <algorithm>
 #include <cstring>
 #include <iostream>
 #include <map>
 #include <set>
 #include <stdexcept>
 #ifdef MNM_TRANSFER_COMMANDS_REFERENCE
+#pragma push_macro("main")
+#undef main
 #define main unused_sprite_reference_main
 #include "sprite-binary-reference.cpp"
 #undef main
+#pragma pop_macro("main")
 #endif
 using namespace mnm::reconstruction::combat;
 namespace {
@@ -750,7 +754,10 @@ void importQueues() {
       if (id / 16 != slot || !seen.insert(id).second || retiredNodes.count(id))
         throw std::runtime_error("live queue topology");
       auto *node = reinterpret_cast<unsigned char *>(address);
-      auto o = current->initialOrders[slot].at(id % 16);
+      const auto &initial=current->initialOrders.at(slot);
+      auto source=std::find_if(initial.begin(),initial.end(),[&](const auto &o){return o.serial==id%16+1;});
+      if(source==initial.end())throw std::runtime_error("unknown live queue serial");
+      auto o=*source;
       o.kind = get(node, 8);
       o.destination = {signedQueueWord(get(node, 12)),
                        signedQueueWord(get(node, 16)),
@@ -1026,7 +1033,9 @@ void packOrders(Bytes &data, const Fixture &f) {
 }
 void compare(Fixture input, const Fixture &expected,
              const std::vector<unsigned> &trace,
-             const CreatureOrder *directDelivery = nullptr) {
+             const CreatureOrder *directDelivery = nullptr,
+             const std::function<void(void *)> &operation = {},
+             bool zeroSentinelPayload = false) {
   current = &input;
   original = true;
   events.clear();
@@ -1047,7 +1056,12 @@ void compare(Fixture input, const Fixture &expected,
           std::array<unsigned, 4>{12, 8, 0x3c, 0x44}[j], profile[j]);
   }
   for (unsigned i = 0; i < input.relations.creatures.size(); ++i) {
-    put(actor.data() + i * 0xe4b, 0x5f4,
+    const auto binding=input.idleBindings[i];
+    put(actor.data()+i*0xe4b,0x5f4,
+        binding==CommandBehaviorBinding::idle?0x50acb0:
+        binding==CommandBehaviorBinding::move?0x510010:
+        binding==CommandBehaviorBinding::target?0x50afa0:
+        binding==CommandBehaviorBinding::coordinate?0x50ccd0:
         reinterpret_cast<std::uintptr_t>(repairBehaviorStub));
     put(actor.data() + i * 0xe4b, 0x5f8, 0);
   }
@@ -1059,23 +1073,23 @@ void compare(Fixture input, const Fixture &expected,
   for (unsigned slot = 0; slot < input.executions.size(); ++slot) {
     auto *c = container.data() + slot * 16;
     auto *tail = sentinel.data() + slot * 48;
+    if (zeroSentinelPayload) std::memset(tail+8,0,37);
     const auto &list = input.executions[slot].orders;
-    auto *first = orders.data() + slot * 16 * 48;
     put(actor.data() + slot * 0xe4b, 0x8f9,
         reinterpret_cast<std::uintptr_t>(c));
     put(c, 4, reinterpret_cast<std::uintptr_t>(tail));
     put(c, 8, list.size());
-    put(tail, 4,
-        reinterpret_cast<std::uintptr_t>(
-            list.empty() ? tail : first + (list.size() - 1) * 48));
-    put(tail, 0, reinterpret_cast<std::uintptr_t>(list.empty() ? tail : first));
-    for (unsigned i = 0; i < list.size(); ++i)
-      put(first + i * 48, 4,
-          reinterpret_cast<std::uintptr_t>(i ? first + (i - 1) * 48 : tail));
-    for (unsigned i = 0; i < list.size(); ++i)
-      put(first + i * 48, 0,
-          reinterpret_cast<std::uintptr_t>(
-              i + 1 == list.size() ? tail : first + (i + 1) * 48));
+    put(tail, 4, reinterpret_cast<std::uintptr_t>(
+        list.empty()?tail:orderPointer(slot,list.back().serial)));
+    put(tail, 0, reinterpret_cast<std::uintptr_t>(
+        list.empty()?tail:orderPointer(slot,list.front().serial)));
+    for(unsigned j=0;j<list.size();++j) {
+      auto *node=orderPointer(slot,list[j].serial);
+      put(node,4,reinterpret_cast<std::uintptr_t>(
+          j?orderPointer(slot,list[j-1].serial):tail));
+      put(node,0,reinterpret_cast<std::uintptr_t>(
+          j+1<list.size()?orderPointer(slot,list[j+1].serial):tail));
+    }
   }
   packOrders(orders, input);
   for (unsigned slot = 0; slot < input.executions.size(); ++slot)
@@ -1122,7 +1136,9 @@ void compare(Fixture input, const Fixture &expected,
   global(0x6e984c, input.world.selected);
   global(0x6903e8, input.world.selectionPresent);
   using F = void(__attribute__((thiscall)) *)(void *, int);
-  if (directDelivery) {
+  if (operation)
+    operation(actor.data());
+  else if (directDelivery) {
     using Deliver = void(__attribute__((thiscall)) *)(void *, unsigned, int, int, int, void *);
     auto &o = *directDelivery;
     auto *target = o.target < 0 ? nullptr : actor.data() + unsigned(o.target) * 0xe4b;

@@ -767,3 +767,52 @@ gaps. This is history accounting, not new execution or a retrospective gate pass
 Refused1312GiB preflights at1342.90GiB/140.45GiB free and the user's authorized
 private1376GiB/100GiB-free guard are retained under working/retention; no cleanup
 or archive was used.
+
+
+## Cyclic end cursors and zero sentinel continuation (NS61)
+
+The repeated524130 corpus now compares128 seeds ×4 shapes ×4 calls =2048
+steps, with an explicitly zeroed original sentinel payload at bytes8..44.
+Cycling from logical end advances to the first live node without a target purge.
+Wrapping from a live tail purges kind3 targets; if that empties the list, original
+524130 still dispatches zero-sentinel mode0 and returns1. Development-v1 confirms
+this return mismatch against the prior native false result. The port now dispatches
+that no-op command and returns true. It leaves the cycling flag set and logical
+cursor at end; a later call on the empty list returns false through the ordinary
+empty-list gate. No sentinel effect or repeat state is invented.
+
+Fresh prospective original32/native64/ASan+UBSan+LSan64 passes all2048 steps,
+including128 successful empty wraps and189 nonempty end-cursor starts. Full
+actor/config/map/global/body/callback/live-list/retirement/padding guards pass;
+24 unchanged declared bodies are guarded, with524130 as the repeated entry.
+The scope does not infer that every guarded body executes on every step.
+Immutable proof:original-queue-continuation-bound-ns61-20261013.json.
+Native CMake/CTest pass. Source-current component proofs separately pass20480
+full command-chain cases and32768 queued-order primitive cases, preserving old
+records rather than rewriting their source hashes.
+
+Development-v2 faulted because the fixture rebuilt sparse live nodes at contiguous
+physical positions after removals. Development-v3 then found payload import still
+indexed the shortened vector by physical slot ID. Both now resolve stable live
+serials. Development-v4 caught the missing explicit algorithm include; the fixed
+v5 passes. These reports/debugger output and earlier source fingerprints remain
+retained. Initial callback bindings are now reconstructed independently of current
+behavior words before every repeated call. Comparison support accepts a declared
+entry operation without redirecting that entry or the owned command bodies.
+
+Native zero-sentinel representation and terminal admission are separate policy.
+Noncycling end entry refuses; a noncycling delivery that leaves live nodes at end
+also refuses before a caller can publish that continuation. The session still
+must roll back actor/order/effect/backend mutations; NS62 validates publication.
+These two native-only refusals are not original unsafe-pointer comparisons.
+Installed/uninitialized sentinel payload, invalid references and broader recursive
+or reshaping original callbacks remain unknown/excluded. Native cyclic support
+does not establish installed sentinel equivalence or complete original queue
+construction. Full lower services/campaign/live replacement remain pending.
+
+NS60 1ac5f6b9 incoming exact history covers51 files/172 behaviors with no accounting
+gaps against actual parent/current receipts and staged gate. It adds no execution
+or retrospective gate assertion. Other source-affected historical results retain
+explicit stale-source limits; the fresh components above cover only their scopes.
+The user-authorized private1408GiB cap retains100GiB filesystem free after the
+1376GiB guard refused at1376.34GiB; retained storage records are provenance only.

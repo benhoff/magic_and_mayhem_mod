@@ -9065,3 +9065,25 @@ NS59 exact-history review covers48 files/167 behaviors with no accounting gaps;
 no new execution or retrospective gate assertion. Authorized private storage
 headroom is1376GiB with100GiB filesystem reserve after concurrent-output refusal;
 reports are retained under working/retention.
+
+
+### NS61 — cyclic end-cursor and empty-wrap continuation (2026-10-13)
+
+Whole524130 repeated continuation with known-zero sentinel payload now passes2048
+original32/native64/sanitized64 steps,128 successful empty all-target wraps and189
+nonempty end starts. Corrected the confirmed empty-wrap false/true mismatch and
+admitted cycling logical end without target purge. Full actor/map/body/global/
+callback/live-list/retirement/padding guards and CMake/CTest pass;24 unchanged
+bodies are guarded, not an assertion of all-body execution on every step.
+Immutable proof:original-queue-continuation-bound-ns61-20261013.json.
+Source-current full-command/queued-order component proofs pass20480/32768 cases.
+
+Native zero sentinel and two noncycling end/unsafe-publication refusals are separate
+policies requiring caller rollback. Installed/uninitialized sentinel, original
+unsafe reentry, broader construction and full campaign/live replacement remain
+pending. Native session publication is the next milestone. Repeated-frame fixture
+link/import failures and compilation correction are retained. Existing historical
+hashes/statuses remain; other affected stale-source evidence is explicit.
+
+NS60 incoming history reviews51 files/172 behaviors with no gaps and no new
+execution/retrospective gate assertion. See NS61 in creature-services.md.

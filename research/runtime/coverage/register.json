@@ -51654,7 +51654,9 @@
         "NS35.orders-original",
         "NS35.orders-native",
         "NS58.orders-current-original",
-        "NS58.orders-current-native"
+        "NS58.orders-current-native",
+        "NS61.orders-current-original",
+        "NS61.orders-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57642,7 +57644,9 @@
       ],
       "evidence": [
         "NS60.transfer-commands-owned-original",
-        "NS60.transfer-commands-owned-native"
+        "NS60.transfer-commands-owned-native",
+        "NS61.commands-current-original",
+        "NS61.commands-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57728,7 +57732,8 @@
         "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
-        "NS60.transfer-commands-owned-native"
+        "NS60.transfer-commands-owned-native",
+        "NS61.commands-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57808,7 +57813,8 @@
         "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
-        "NS60.transfer-commands-owned-native"
+        "NS60.transfer-commands-owned-native",
+        "NS61.commands-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57941,6 +57947,199 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.queue-terminal-continuation",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Cyclic queue end cursor and empty wrap continuation",
+      "scope": "Whole524130 repeated continuation with valid live or end cursors and explicitly zeroed sentinel payload, owned command/reset/dispatcher consequences. Cycling end advances to first live node; all-target purge can empty the list. Bounded original comparison pending; original installed/uninitialized sentinel and noncycling end reentry excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5390640,
+          "scope": "Queue continuation through unchanged524130 and owned520ad0/command consequences within an explicit zero-sentinel domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5376720,
+          "scope": "Queue continuation through unchanged524130 and owned520ad0/command consequences within an explicit zero-sentinel domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5307104,
+          "scope": "Queue continuation through unchanged524130 and owned520ad0/command consequences within an explicit zero-sentinel domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5287184,
+          "scope": "Queue continuation through unchanged524130 and owned520ad0/command consequences within an explicit zero-sentinel domain."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5294640,
+          "scope": "Queue continuation through unchanged524130 and owned520ad0/command consequences within an explicit zero-sentinel domain."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp"
+      ],
+      "tests": [
+        "tests/creature-queue-continuation-test.cpp",
+        "tools/test-creature-queue-continuation.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/queue-continuation/CMakeLists.txt",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-delivery-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS61.queue-continuation-original",
+        "NS61.queue-continuation-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Explicit zeroed original sentinel payload; positive cycling end-cursor admission and empty all-target wrap",
+          "Bounded repeated primitive calls with canonical live serials and complete actor/list/retirement/body guards",
+          "Finite128 seeds, four queue shapes, four sequential primitive calls per shape:2048 cases",
+          "Known-zero sentinel bytes8..44, stable live serials after removal, initial callback identity preserved across calls",
+          "Source admission gates cleared within16x16x4/1..32-actor backing; fixed0..6 slots and first/last move anchors for noncycling cases"
+        ],
+        "excluded": [
+          "Installed/uninitialized sentinel bytes, noncycling end cursor, invalid serial/pointers and callback topology changes",
+          "Complete native session/live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.command-terminal-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native zero-sentinel and terminal publication admission",
+      "scope": "Logical end uses immutable zero sentinel payload. Noncycling end entry and noncycling live-list/null-cursor output refuse before publication, with caller rollback required. Original uninitialized sentinel payload and unsafe reentry are excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp"
+      ],
+      "tests": [
+        "tests/creature-queue-continuation-test.cpp",
+        "tools/test-creature-queue-continuation.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-delivery-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS61.queue-continuation-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Zero native sentinel mapping for cycling end/empty wrap",
+          "Native-only noncycling end and unsafe post-delivery terminal refusal"
+        ],
+        "excluded": [
+          "Original uninitialized/installed sentinel contents and unsafe noncycling reentry",
+          "Atomic native session publication pending"
+        ]
       }
     }
   ],
@@ -118017,6 +118216,382 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS61.queue-continuation-original",
+      "kind": "isolated_original",
+      "scope": "Bounded queue continuation with owned command admission and zeroed sentinel payload: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-queue-continuation-bound-ns61-20261013.json",
+      "sha256": "f3f0b62eb7a3f72b575c86581817cb110c39a65ac41680bfca5aa85cb5868fd5",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2048
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        },
+        {
+          "pointer": "/empty_cycles",
+          "equals": 128
+        },
+        {
+          "pointer": "/end_cursor_starts",
+          "equals": 189
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/sentinel_payload_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/queue_redirected",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS61.queue-continuation-native",
+      "kind": "native_integration",
+      "scope": "Bounded queue continuation with owned command admission and zeroed sentinel payload: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-queue-continuation-bound-ns61-20261013.json",
+      "sha256": "f3f0b62eb7a3f72b575c86581817cb110c39a65ac41680bfca5aa85cb5868fd5",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2048
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        },
+        {
+          "pointer": "/empty_cycles",
+          "equals": 128
+        },
+        {
+          "pointer": "/end_cursor_starts",
+          "equals": 189
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/sentinel_payload_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/queue_redirected",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NS61.commands-current-original",
+      "kind": "isolated_original",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle/follow/queue/delivery/command admission behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-commands-current-bound-ns61-20261013.json",
+      "sha256": "25913ee705c1ad96ef96f6725fb92bb06e1a4335dc9e596fb44cc38b11961e51",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 20480
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS61.commands-current-native",
+      "kind": "native_integration",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle/follow/queue/delivery/command admission behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-commands-current-bound-ns61-20261013.json",
+      "sha256": "25913ee705c1ad96ef96f6725fb92bb06e1a4335dc9e596fb44cc38b11961e51",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 20480
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "NS61.orders-current-original",
+      "kind": "isolated_original",
+      "scope": "orders suite: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-orders-current-bound-ns61-20261013.json",
+      "sha256": "e2e404c12c5ada04e610b23b172a6d620b8910d6e882e45bc750dbfc3eb1b740",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/functions",
+          "equals": 8
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS61.orders-current-native",
+      "kind": "native_integration",
+      "scope": "orders suite: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-orders-current-bound-ns61-20261013.json",
+      "sha256": "e2e404c12c5ada04e610b23b172a6d620b8910d6e882e45bc750dbfc3eb1b740",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/functions",
+          "equals": 8
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -131185,7 +131760,25 @@
       ],
       "evidence": [
         "NS60.transfer-commands-owned-original",
-        "NS60.transfer-commands-owned-native"
+        "NS60.transfer-commands-owned-native",
+        "NS61.commands-current-original",
+        "NS61.commands-current-native"
+      ]
+    },
+    {
+      "id": "queue-terminal-continuation-20261013",
+      "level": "headless",
+      "scope": "Whole524130 repeated continuation with valid live or end cursors and explicitly zeroed sentinel payload, owned command/reset/dispatcher consequences. Cycling end advances to first live node; all-target purge can empty the list. Bounded original comparison pending; original installed/uninitialized sentinel and noncycling end reentry excluded.",
+      "behaviors": [
+        "AI.queue-terminal-continuation"
+      ],
+      "tests": [
+        "tests/creature-queue-continuation-test.cpp",
+        "tools/test-creature-queue-continuation.py"
+      ],
+      "evidence": [
+        "NS61.queue-continuation-original",
+        "NS61.queue-continuation-native"
       ]
     }
   ],
@@ -131722,8 +132315,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-transfer-commands-owned-20261013.json",
-    "sha256": "068c213eefc8317d2837bb6b1624201db1caed72cb6b96aaf960bc5764e1f29d"
+    "path": "research/runtime/coverage/source-index-original-queue-continuation-20261013.json",
+    "sha256": "98f221fec0130267a1e7815388d7176aac7eff1d963329b1b6eddd82f141e7a9"
   },
   "claim_bindings_required": true
 }

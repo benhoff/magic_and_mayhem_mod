@@ -93,7 +93,11 @@ bool OwnedCreatureCommands::queue(AutonomousCreature &a) {
     if (after != serials || e.orderCursor != cursor || e.queuedCount != count)
       throw std::invalid_argument("command changed queue topology");
   };
-  return advanceOrders(a, execution_.at(a.ai.slot), s);
+  auto &e = execution_.at(a.ai.slot);
+  const bool result = advanceOrders(a, e, s);
+  if (!e.orders.empty() && !e.orderCursor && !e.queuedFlag)
+    throw std::invalid_argument("unsafe noncycling queue continuation");
+  return result;
 }
 void OwnedCreatureCommands::deliver(AutonomousCreature &a,
                                     const CreatureOrder &o) {
