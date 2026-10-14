@@ -26,7 +26,8 @@ RealmViewerWidget::RealmViewerWidget(QWidget* parent):QWidget(parent) {
 }
 bool RealmViewerWidget::valid(const Campaign& c) {
     const int active=int(c.realm);if(active<0||active>2||!c.realmAvailable[active]||!line(c.id,128)||!line(c.name,256))return false;
-    QSet<QString> ids;const std::array<int,3> maximum{8,12,16};
+    QSet<QString> ids;const auto maximum=c.regionLimits;
+    for(int limit:maximum)if(limit<1||limit>19)return false;
     for(int r=0;r<3;++r){if(c.regions[r].size()>maximum[r])return false;QSet<int> art;bool selection=c.selectedRegionIds[r].isEmpty();for(const auto& region:c.regions[r]){
         if(!line(region.id,128)||!line(region.name,256)||ids.contains(region.id)||region.artworkNumber<1||region.artworkNumber>maximum[r]||art.contains(region.artworkNumber)||region.flagArtworkIndex< -1||region.flagArtworkIndex>88||region.flagPosition.x()<0||region.flagPosition.x()>752||region.flagPosition.y()<0||region.flagPosition.y()>548)return false;
         ids.insert(region.id);art.insert(region.artworkNumber);if(region.id==c.selectedRegionIds[r])selection=true;

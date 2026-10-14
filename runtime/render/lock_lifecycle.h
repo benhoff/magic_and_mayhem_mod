@@ -60,6 +60,7 @@ static void init_lock_lifecycle(void){
     }
     u32 length=GetEnvironmentVariableA("MNM_RENDER_LOCK_CAPTURE_DIR",lock_capture_path,sizeof(lock_capture_path));
     if(length && length+28<sizeof(lock_capture_path))lock_capture_path_length=length;
+    copy_trace_init(lock_capture_path,lock_capture_path_length);
 }
 #include "lock_diagnostics.h"
 /* Tracker work contains no original COM calls. Brief cross-thread overlap can

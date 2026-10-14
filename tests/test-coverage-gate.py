@@ -425,6 +425,30 @@ class GateTests(unittest.TestCase):
         run('commit', '-qm', 'reviewed baseline')
         return run('rev-parse', 'HEAD').decode().strip()
 
+    def test_inherited_milestone_still_requires_exact_source_and_gap_reviews(self):
+        self.register['behaviors'][0]['status']['implementation'] = 'scoped'
+        self.write('assets/model.cpp', 'merged implementation\n')
+        after, audit_report = self.current()
+        history = {'statuses': {'MV.test': {'commit': 'fixture-parent'}}, 'reviews': [], 'parents': []}
+        result = check(self.before, after, {'schema': 1, 'reviews': []}, audit_report, history)
+        self.assert_error(result, 'Unreviewed source change')
+        self.assertTrue(any(e.startswith('New gap needs explicit pending accounting') for e in result['errors']))
+        self.assertFalse(any(e.startswith('Status promotion') for e in result['errors']))
+        self.assertEqual(check(self.before, after, self.receipt(), audit_report, history)['errors'], [])
+
+    def test_imported_recorded_receipt_grants_no_current_validation_credit(self):
+        self.register['behaviors'][0]['status']['implementation'] = 'scoped'
+        self.write('assets/model.cpp', 'merged implementation\n')
+        receipt = self.receipt()
+        r = receipt['reviews'][0]
+        r['validation'].update(status='recorded', evidence=['old-original'])
+        after, audit_report = self.current()
+        history = {'statuses': {}, 'reviews': [r['id']], 'parents': []}
+        result = check(self.before, after, receipt, audit_report, history)
+        self.assert_error(result, 'Unreviewed source change')
+        self.assert_error(result, 'Status promotion requires fresh recorded validation')
+        self.assertFalse(any('validation evidence missing, static or stale' in e for e in result['errors']))
+
     def test_real_git_base_cannot_be_reset_by_current_baseline_edit(self):
         revision = self.init_git()
         self.write('assets/model.cpp', 'changed\n')
@@ -481,7 +505,7 @@ class GateTests(unittest.TestCase):
         self.assertIn('Reconcile source', out.getvalue())
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'index-coverage-sources.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_merge_history.py', 'index-coverage-sources.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)

@@ -89,12 +89,16 @@ all valid indices and ignored values. Static tick destinations are:
 | Callback index | Flag | Original destination |
 | --- | --- | --- |
 | 1 | `0x006f2d28` | `0x006f2aa0` (Portmanteau/Spell Selection) |
-| 2 | `0x006f2d34` | `0x006c5148` (Grimoire) |
-| 3 | `0x006f2d2c` | `0x006e0088` (Character, with original bookkeeping) |
+| 2 | `0x006f2d34` | `0x006c5148` (Character Screen20) |
+| 3 | `0x006f2d2c` | `0x006e0088` (Grimoire, with original realm/region bookkeeping) |
 | 4 | `0x006f2d30` | Mini Menu `0x006a5088`, mode 4 |
 
-Destination addresses/flags are confirmed statically; names follow original
-control tooltip/build order. UI26 does not execute the full auxiliary pushes.
+Destination addresses/flags are confirmed statically. The
+[2026-10-12 identity review](grimoire-engine-contract.md) corrects the earlier
+reversed Grimoire/Character names using constructors and resource consumers.
+Historical observation fields named grimoire_flag/character_flag retain their
+original wire positions and raw values; read their address identities using
+this corrected table. UI26 does not execute the full auxiliary pushes.
 Escape (`WM_KEYDOWN`, key `0x1b`) also pushes Mini Menu in mode 4. Fourteen
 navigation cases check that ingress, ignored messages/keys, the original
 system-key V/v flag, and the pending-return branches in enter/tick: clear

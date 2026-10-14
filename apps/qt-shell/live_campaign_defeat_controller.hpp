@@ -4,7 +4,9 @@
 class LiveCampaignDefeatController final {
 public:
     LiveCampaignDefeatController(LiveMenuSession&,BattleResultWidget&);
+    bool loadAssets(const QString&,QString* error=nullptr);
     bool present(const MenuBridge::State&,QString* error=nullptr);
 private:
     LiveMenuSession& session_;BattleResultWidget& widget_;
+    QString root_;
 };

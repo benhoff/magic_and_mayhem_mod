@@ -82,7 +82,7 @@ bool MultiplayerSetupWidget::loadAssets(const QString& root, QString* error) {
 }
 bool MultiplayerSetupWidget::setForm(const Form& form, QString* error) {
     if (error) error->clear();
-    if (!validText(form.gameName) || !validText(form.userName) || !validTransport(form.transport) || (mode_==Mode::Join && !form.gameName.isEmpty())) {
+    if (!(validText(form.gameName)&&form.gameName.size()<=(live_?63:64)) || !(validText(form.userName)&&form.userName.size()<=(live_?15:64)) || !validTransport(form.transport) || (mode_==Mode::Join && !form.gameName.isEmpty())) {
         if (error) *error="Invalid multiplayer form: use single-line names of at most 64 characters and a known transport.";
         return false;
     }
@@ -93,15 +93,21 @@ MultiplayerSetupWidget::Form MultiplayerSetupWidget::form() const {
     Form result; result.transport=Transport(transports_->checkedId());
     result.gameName=mode_==Mode::Create?edits_[0]->text():QString(); result.userName=edits_[mode_==Mode::Join?0:1]->text(); return result;
 }
+void MultiplayerSetupWidget::setLiveAvailability(quint32 transports,quint32 actions) {
+    live_=true;liveTransports_=transports&7;liveActions_=actions&3;
+    edits_[0]->setMaxLength(mode_==Mode::Join?15:63);edits_[1]->setMaxLength(15);
+    for(int i=0;i<3;++i)radios_[i]->setEnabled(liveTransports_&(1u<<i));
+    cancel_->setEnabled(liveActions_&2);updateAvailability();
+}
 void MultiplayerSetupWidget::updateAvailability() {
     if (!ok_) return;
     const auto value=form();
-    ok_->setEnabled(validTransport(value.transport) && validText(value.userName) && !value.userName.trimmed().isEmpty() &&
-        (mode_==Mode::Join || (validText(value.gameName) && !value.gameName.trimmed().isEmpty())));
+    ok_->setEnabled(validTransport(value.transport) && (!live_||((liveActions_&1)&&(liveTransports_&(1u<<int(value.transport))))) && validText(value.userName) && (live_?!value.userName.isEmpty():!value.userName.trimmed().isEmpty()) &&
+        (mode_==Mode::Join || (validText(value.gameName) && (live_?!value.gameName.isEmpty():!value.gameName.trimmed().isEmpty()))));
 }
 void MultiplayerSetupWidget::submit() {
     updateAvailability(); if (!ok_->isEnabled()) return;
-    const auto value=form(); emit requestSubmitted(Request{mode_,value.transport,value.gameName.trimmed(),value.userName.trimmed()});
+    const auto value=form(); emit requestSubmitted(Request{mode_,value.transport,live_?value.gameName:value.gameName.trimmed(),live_?value.userName:value.userName.trimmed()});
 }
 void MultiplayerSetupWidget::focusFirstField() { edits_[0]->setFocus(Qt::OtherFocusReason); edits_[0]->selectAll(); }
 QRect MultiplayerSetupWidget::contentRect() const { return mnm::ui::menuContentRect(size()); }

@@ -21,6 +21,8 @@ from native_media_launch import authorize as authorize_media
 authorize_media(root,metadata,os.environ)
 from wine_import_census import authorize as authorize_census
 authorize_census(root,metadata,os.environ)
+from directplay_dx6_launch import authorize as authorize_directplay
+authorize_directplay(root,metadata,os.environ)
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')
@@ -65,12 +67,23 @@ if metadata.get('scene_production_mode') is not None:
 elif os.environ.get('MNM_SCENE_PRODUCTION_PROBE') is not None:
     raise ValueError('Scene production observer was not staged')
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(events).replace('/','\\')
-if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
+original_gameplay=metadata.get('original_gameplay',False)
+if type(original_gameplay) is not bool:raise ValueError('Invalid original gameplay observation policy')
+if original_gameplay:
+    if (os.environ.get('MNM_MENU_ORIGINAL_GAMEPLAY')!='1' or metadata['origin']!='menu_observation_only'
+        or metadata.get('campaign_observe') is not True or metadata.get('native_render') is not False or native_draw
+        or metadata.get('native_voices') is not False or metadata.get('resident_world',False) or os.environ.get('MNM_MENU_CHANNEL')
+        or os.environ.get('MNM_MENU_CAMPAIGN_OBSERVE')!='Z:'+str(root/'campaign.bin').replace('/','\\')
+        or os.environ.get('MNM_MENU_NATIVE_RENDER')=='1' or os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1'):
+        raise ValueError('Refusing unapproved original gameplay observation')
+elif os.environ.get('MNM_MENU_ORIGINAL_GAMEPLAY') is not None:
+    raise ValueError('Original gameplay observation was not staged')
+if original_gameplay or os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     trace=root/'gameplay-events.bin'
-    if not metadata.get('native_render') or trace.exists():raise ValueError('Refusing unapproved or stale gameplay observation')
+    if (not original_gameplay and not metadata.get('native_render')) or trace.exists() or trace.is_symlink():raise ValueError('Refusing unapproved or stale gameplay observation')
     os.environ['MNM_MENU_GAMEPLAY_OBSERVE']='Z:'+str(trace).replace('/','\\')
     spells=root/'spell-events.bin'
-    if spells.exists():raise ValueError('Refusing stale spell observation')
+    if spells.exists() or spells.is_symlink():raise ValueError('Refusing stale spell observation')
     os.environ['MNM_MENU_SPELL_OBSERVE']='Z:'+str(spells).replace('/','\\')
 if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     if not metadata.get('native_render'):raise ValueError('Native rendering was not staged')
@@ -122,4 +135,7 @@ with (root/'native-audio-launch-policy.json').open('x') as policy:
                    wine_directsound_disabled=directsound_disabled(os.environ)),policy,indent=2)
     policy.write('\n')
 os.chdir(game)
+if metadata.get('directplay_dx6') is not None:
+    from directplay_dx6_launch import launch as launch_directplay
+    raise SystemExit(launch_directplay(root,metadata,sys.argv[2:]))
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

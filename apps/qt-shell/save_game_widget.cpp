@@ -107,7 +107,7 @@ void SaveGameWidget::discardConfirmation() {
 }
 void SaveGameWidget::requestSave() {
     if (!validName(fileName_->text()) || confirmation_) return;
-    if (selectedSaveId().isEmpty()) emit saveRequested(fileName_->text(),QString());
+    if (selectedSaveId().isEmpty()||originalOverwriteConfirmation_) emit saveRequested(fileName_->text(),selectedSaveId());
     else confirmAction(false);
 }
 void SaveGameWidget::requestDelete() { if (!selectedSaveId().isEmpty() && !confirmation_) confirmAction(true); }

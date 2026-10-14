@@ -20,6 +20,7 @@ static void command_stop_worker_pause_for_test(u32 kind){
 static u32 WIN command_worker_run(void* unused){
     (void)unused;
     while(!__atomic_load_n(&command_worker_stop,__ATOMIC_ACQUIRE)){
+        copy_trace_drain();
         command_channel_pump();
         u32 failure=__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
         if(failure && !command_pressure_logged){
@@ -32,6 +33,7 @@ static u32 WIN command_worker_run(void* unused){
               !__atomic_load_n(&command_queue_blocked,__ATOMIC_ACQUIRE)?1:10);
     }
     command_channel_pump();
+    copy_trace_drain();
 #ifdef MNM_RENDER_SELFTEST
     command_stop_worker_pause_for_test(2);
 #endif

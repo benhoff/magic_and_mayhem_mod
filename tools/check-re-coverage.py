@@ -10,6 +10,7 @@ import tarfile
 import tempfile
 
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, draft, load_json, snapshot
+from coverage_merge_history import inherited_history
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -125,7 +126,8 @@ def run(args, stack):
             before = json.loads(path.read_text())
             base_label = str(path)
         reviews = json.loads((args.reviews or current_root/REVIEWS).read_text())
-        report = check(before, current, reviews, audit_report)
+        history = inherited_history(ROOT, base_label, current, reviews, args.staged) if args.base and not args.bootstrap else None
+        report = check(before, current, reviews, audit_report, history)
         report['base'] = base_label
         if args.json:
             write_new(args.json, report)

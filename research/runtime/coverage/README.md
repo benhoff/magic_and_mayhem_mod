@@ -88,6 +88,17 @@ gap identities, or evidence overwrites. Human review still determines whether a
 scope, test or pending reason adequately describes the work. The gate establishes
 accounting, not scientific completeness or the identity of every indirect caller.
 
+For actual Git merges, the gate reads incoming parent registers and receipts
+without executing historical code. Identical behavior contracts, original build
+hashes, evidence definitions/links and status dimensions can retain their parent
+milestones as historical inheritance. Changed scopes or higher stages still need
+fresh recorded validation. Unmerged branches cannot supply inheritance. Imported
+receipts receive no final source, gap or current-validation credit; the combined
+tree needs its own exact reviews against the actual PR/push/staged base. Current
+validation remains independently pending when merged sources differ from earlier
+execution fingerprints. The report names the inspected commits and inherited
+statuses. CI fetches full history; staged checks also inspect actual MERGE_HEAD.
+
 The [CI workflow](../../../.github/workflows/re-coverage.yml) runs both guard suites
 and the change gate without game media, Ghidra, Qt, Wine or original execution.
 Configure the repository's merge rules to require **Coverage accounting**; a
