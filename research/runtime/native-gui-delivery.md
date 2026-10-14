@@ -84,3 +84,13 @@ the original 144 ms event are not individually proven. Move request intake off
 GUI; keep owned native reads, strict artifact checks and performance gates.
 Sources/assets/original manifests remain stable. No engine-rate, original
 equivalence, scanout or sustained 60 FPS claim.
+
+## Request intake fixed
+
+[Bounded worker intake](native-capture-request-intake.md) removes existence/open/
+read/parse from GUI. Current controls and full `run-rnwjsprp` preserve artifacts,
+casting/combat and original/source integrity. Maximum request span drops from
+224.411 to 17.594 ms including owned image reads; zero eligible warm >=50 ms gaps
+remain in that run. The per-second progress publication suspect was unconfirmed
+and stayed under 0.762 ms; its behavior was preserved. No exact historical144ms
+causal claim, source-rate gain, scanout or sustained60FPS inference.

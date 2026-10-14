@@ -4,8 +4,11 @@
 #include <functional>
 #include <future>
 #include <mutex>
+#include <memory>
 #include <stdexcept>
 #include <thread>
+#include <type_traits>
+#include <utility>
 // Owned image/file tasks only. No GUI or GL objects belong in submitted work.
 class NativeImageEncoder {
 public:
@@ -16,15 +19,20 @@ public:
     }
     NativeImageEncoder(const NativeImageEncoder&)=delete;
     NativeImageEncoder& operator=(const NativeImageEncoder&)=delete;
-    template<class F> auto submit(F work)->std::future<std::invoke_result_t<F>>{
+    template<class F> auto trySubmit(F work)->std::future<std::invoke_result_t<F>>{
         using Result=std::invoke_result_t<F>;
         auto task=std::make_shared<std::packaged_task<Result()>>(std::move(work));
         auto result=task->get_future();
         {std::lock_guard<std::mutex> lock(mutex_);
-            if(stop_||queue_.size()>=2)throw std::runtime_error("Image encoder queue unavailable");
+            if(stop_||queue_.size()>=2)return {};
             queue_.push_back([task]{(*task)();});
         }
         wake_.notify_one();return result;
+    }
+    template<class F> auto submit(F work)->std::future<std::invoke_result_t<F>>{
+        auto result=trySubmit(std::move(work));
+        if(!result.valid())throw std::runtime_error("Image encoder queue unavailable");
+        return result;
     }
 private:
     void run(){for(;;){

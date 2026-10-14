@@ -54181,6 +54181,7 @@
         "apps/qt-shell/live_command_session.cpp",
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_capture_request.hpp",
         "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
         "apps/qt-shell/native_worker_status_gate.hpp",
@@ -55027,6 +55028,7 @@
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_capture_request.hpp",
         "apps/qt-shell/native_frame_trace.hpp",
         "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/world_rolling_main.cpp",
@@ -55246,6 +55248,7 @@
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_capture_request.hpp",
         "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
         "apps/qt-shell/native_worker_status_gate.hpp",
@@ -55450,7 +55453,9 @@
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
         "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ],
       "remaining_gaps": [
         "Historical interrupted capture and1008.957ms pending-import gating diagnosis retained unchanged. Current final controls and full public run-s_dutjcz support bounded capture/source-clock correlation; later policy keeps last imported World displayable. Scope excludes cold/hidden/movie/non-world continuity.",
@@ -55492,6 +55497,7 @@
         "apps/qt-shell/live_command_session.cpp",
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/native_capture_request.hpp",
         "apps/qt-shell/native_frame_trace.hpp",
         "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
@@ -55701,7 +55707,9 @@
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
         "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ],
       "remaining_gaps": [
         "Final unchanged-source TITAN run-s_dutjcz passes complete casting/combat/spell/portrait/menu/Quit journey at19.16361engineHz/58.77168nativeWorldFPS with5200 balanced sources/imports/returns and60 pending redraws. Same final source previously failed unchanged19FPS floor at18.61690; source-rate variability remains unresolved.",
@@ -55743,6 +55751,8 @@
         "apps/qt-shell/live_command_session.cpp",
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
         "apps/qt-shell/native_worker_status_gate.hpp",
         "apps/qt-shell/render_control.cpp",
@@ -55885,6 +55895,7 @@
         "tests/menu-resident-quit-test.cpp",
         "tests/minimap-candidates-test.cpp",
         "tests/minimap-producer-test.cpp",
+        "tests/native-image-encoder-test.cpp",
         "tests/native-prepared-world-test.cpp",
         "tests/native-render-worker-test.cpp",
         "tests/native-shell-provenance-test.py",
@@ -55923,9 +55934,7 @@
         "tools/test-native-world-rolling-hardware.py",
         "tools/test-native-world-rolling.py",
         "tools/test-public-resident-fixtures.py",
-        "tools/test-resident-leaf-abi.py",
-        "apps/qt-shell/native_image_encoder.hpp",
-        "tests/native-image-encoder-test.cpp"
+        "tools/test-resident-leaf-abi.py"
       ],
       "status": {
         "understanding": "partial",
@@ -55952,11 +55961,13 @@
         "HOST.native-gui-delivery-diagnostics.phase-public-negative-20261014",
         "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
         "HOST.native-gui-delivery-diagnostics.phase-negative-analysis-20261014",
-        "HOST.native-gui-delivery-diagnostics.phase-public-analysis-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-analysis-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ],
       "remaining_gaps": [
-        "Phase controls pass authored144ms progress span, all fast-poll aggregates retained while bounded slow/completed sampling avoids clipping,128 native World words and ownership/retirement checks. First phase public run-t764kwik stops on producer cancellation; cause unknown and no complete live credit.",
-        "Unchanged phase repeat run-acopfvr_ passes full casting/combat/menu/Quit at19.54621engine/58.75104globalWorld/59.56581visibleWorld. Complete230.309ms hitch overlaps216.818ms capture-request intake; diagnostic activity overlaps0.988ms and progress max0.605ms. Request-file check/read/parse/future inspection are not individually separated, but request intake blocks GUI: confirmed native harness boundary. Off-GUI request intake and fresh full validation remain pending; no stable60FPS."
+        "Latest source-bound intake controls and full TITAN run-rnwjsprp validate phase tracing and off-GUI request intake. Zero eligible warm>=50ms gaps; prior144ms unknown and complete230ms request-intake diagnosis preserved, alongside producer-cancellation negative. Source histogram aggregate counts preserved while fast facade/status rows are sampled.",
+        "Current visibleWorld59.78562/global59.05049/engine19.36550 is one successful journey, not sustained60FPS, physical scanout, original equivalence or an engine throughput improvement. Non-world/cold/hidden continuity and rarer unobserved GUI/filesystem/system scheduling failures remain incomplete."
       ]
     },
     {
@@ -55980,6 +55991,249 @@
         "tests/native-image-encoder-test.cpp",
         "tools/test-native-world-gpu-production.py",
         "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_worker_status_gate.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_preparation.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "tests/async-world-replay-test.cpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/gpu-production-queue-test.cpp",
+        "tests/menu-resident-quit-test.cpp",
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-hitch-capture-test.cpp",
+        "tests/native-prepared-world-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/native-shell-provenance-test.py",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/render-resident-world-test.cpp",
+        "tests/resident-leaf-abi.S",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-deferred-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/glyph_backend_launch.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/native_music_launch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/profile-native-world-owner.py",
+        "tools/profile_native_resident_helpers.py",
+        "tools/test-native-world-rolling-hardware.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-resident-leaf-abi.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
+      ],
+      "remaining_gaps": [
+        "Final persistent encoder controls validate bounded2-task queue, GUI heartbeat through blocked encoding, PNG pixel roundtrip, failure propagation and continued work. run-98mfpjv9 passes complete casting/combat/spell/portrait/three-menu-cycle/Quit journey with14 route captures,5265 balanced sources/imports/returns, no ordinary readbacks, stable source/input and verified originals.",
+        "GUI route capture max20.248ms, diagnostic capture max18.801ms; PNG saving up to621.652ms runs on persistent background encoder. Defensive route identity/write/deadline branches are not exhaustively live exercised. One clipped144.164ms eligible paint gap remains unclassified; global nativeWorld59.28694FPS/visible60.01656/engine19.37173 do not establish sustained60FPS or source-rate optimization."
+      ]
+    },
+    {
+      "id": "HOST.native-capture-request-intake",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nonblocking bounded native diagnostic capture request intake",
+      "scope": "Campaign diagnostic request existence/open/read/JSON parsing and invalid-request cleanup occur on persistent bounded worker. GUI polls one future for owned valid name and retains it across busy original reference reads; no file existence/read/parse or thread joins on GUI intake. Single request handshake: valid file remains until copied native/reference images are queued, worker removes before encoding acknowledgement, and no repeated read while image job pending. JSON max4096bytes, string name length1..79, slash/backslash/dotdot refused; absent/unopenable request retries, invalid removes on worker. Opportunistic queue admission can skip diagnostic polls under bounded backpressure; mandatory image jobs still refuse overflow. No QWidget/GL/host pointers in worker, no source/clock/19FPS gate or gameplay balance changes. Authored blocked-worker GUI responsiveness, valid/invalid/missing/bounded requests and full TITAN artifacts/casting journey separate from original equivalence/scanout or sustained60FPS.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-capture-request-intake.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/native_image_encoder.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/native-image-encoder-test.cpp",
+        "tools/test-native-world-gpu-production.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/campaign_smoke_test.hpp",
@@ -56187,16 +56441,13 @@
         "replacement": "none"
       },
       "evidence": [
-        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014",
+        "HOST.native-capture-request-intake.public-analysis-20261014"
       ],
       "remaining_gaps": [
-        "Final persistent encoder controls validate bounded2-task queue, GUI heartbeat through blocked encoding, PNG pixel roundtrip, failure propagation and continued work. run-98mfpjv9 passes complete casting/combat/spell/portrait/three-menu-cycle/Quit journey with14 route captures,5265 balanced sources/imports/returns, no ordinary readbacks, stable source/input and verified originals.",
-        "GUI route capture max20.248ms, diagnostic capture max18.801ms; PNG saving up to621.652ms runs on persistent background encoder. Defensive route identity/write/deadline branches are not exhaustively live exercised. One clipped144.164ms eligible paint gap remains unclassified; global nativeWorld59.28694FPS/visible60.01656/engine19.37173 do not establish sustained60FPS or source-rate optimization."
+        "Current controls run-hj3chstj pass missing/valid/invalid/oversized packet handling, valid-file retention, opportunistic full-queue skip, blocked-worker GUI heartbeat, PNG pixels and128 native World words. Full run-rnwjsprp passes casting/combat/spells/portrait/menu/Quit with14 retained route captures,5407 balanced source/import/returns, stable source/input and original manifests, zero ordinary readbacks.",
+        "Measured request-intake GUI max falls from224.411ms to17.594ms including diagnostic readback; zero eligible>=50ms warm paint gaps in final run. Exact old144ms event/syscall remains unproved; later230.309ms reproduced intake boundary is fixed structurally. Missing/unopenable retries and original JSON file guard are intentional native policies. Non-world/cold/hidden continuity, exact scanout and sustained60FPS remain excluded. VisibleWorld59.78562/global59.05049/engine19.36550 means no causal engine-rate gain claim."
       ]
     }
   ],
@@ -113263,6 +113514,50 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.intake-controls-20261014",
+      "kind": "native_integration",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-intake-controls-20261014.json",
+      "sha256": "7764ae057a71b8ba967ba7f594ca6f339775daeafb3b4bca5cb6a596fb5b4f1a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.intake-public-20261014",
+      "kind": "live_observation",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-intake-public-20261014.json",
+      "sha256": "0de36fa1e16a6ab15f316ff484cf6654b3ab885c7559a44b6b25d481c33f7db4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-capture-request-intake.public-analysis-20261014",
+      "kind": "static",
+      "scope": "Final same-host-clock intake regression: full passing TITAN run has no eligible>=50ms warm paint gaps; request activity includes GUI readback, and no original syscall/scanout or sustained60FPS assertion.",
+      "record": "research/runtime/native-gui-delivery-intake-public-analysis-20261014.json",
+      "sha256": "229f2cc78a8cce1b73a09f1dbfa173a2389667e0e42a303b087676ba271453bb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -126500,7 +126795,8 @@
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014"
       ]
     },
     {
@@ -126521,7 +126817,8 @@
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ]
     },
     {
@@ -126541,7 +126838,8 @@
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014"
       ]
     },
     {
@@ -126563,7 +126861,8 @@
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ]
     },
     {
@@ -126582,7 +126881,8 @@
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014"
       ]
     },
     {
@@ -126603,7 +126903,8 @@
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
         "HOST.native-gui-delivery-diagnostics.phase-public-negative-20261014",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ]
     },
     {
@@ -126620,7 +126921,8 @@
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ]
     },
     {
@@ -126637,7 +126939,38 @@
       ],
       "evidence": [
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014"
+      ]
+    },
+    {
+      "id": "HOST.native-capture-request-intake.controls",
+      "level": "headless",
+      "scope": "Campaign diagnostic request existence/open/read/JSON parsing and invalid-request cleanup occur on persistent bounded worker. GUI polls one future for owned valid name and retains it across busy original reference reads; no file existence/read/parse or thread joins on GUI intake. Single request handshake: valid file remains until copied native/reference images are queued, worker removes before encoding acknowledgement, and no repeated read while image job pending. JSON max4096bytes, string name length1..79, slash/backslash/dotdot refused; absent/unopenable request retries, invalid removes on worker. Opportunistic queue admission can skip diagnostic polls under bounded backpressure; mandatory image jobs still refuse overflow. No QWidget/GL/host pointers in worker, no source/clock/19FPS gate or gameplay balance changes. Authored blocked-worker GUI responsiveness, valid/invalid/missing/bounded requests and full TITAN artifacts/casting journey separate from original equivalence/scanout or sustained60FPS.",
+      "behaviors": [
+        "HOST.native-capture-request-intake"
+      ],
+      "tests": [
+        "tests/native-hitch-capture-test.cpp",
+        "tools/test-native-world-gpu-production.py",
+        "tests/native-render-worker-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-gui-delivery-diagnostics.intake-controls-20261014"
+      ]
+    },
+    {
+      "id": "HOST.native-capture-request-intake.public",
+      "level": "live_observation",
+      "scope": "Campaign diagnostic request existence/open/read/JSON parsing and invalid-request cleanup occur on persistent bounded worker. GUI polls one future for owned valid name and retains it across busy original reference reads; no file existence/read/parse or thread joins on GUI intake. Single request handshake: valid file remains until copied native/reference images are queued, worker removes before encoding acknowledgement, and no repeated read while image job pending. JSON max4096bytes, string name length1..79, slash/backslash/dotdot refused; absent/unopenable request retries, invalid removes on worker. Opportunistic queue admission can skip diagnostic polls under bounded backpressure; mandatory image jobs still refuse overflow. No QWidget/GL/host pointers in worker, no source/clock/19FPS gate or gameplay balance changes. Authored blocked-worker GUI responsiveness, valid/invalid/missing/bounded requests and full TITAN artifacts/casting journey separate from original equivalence/scanout or sustained60FPS.",
+      "behaviors": [
+        "HOST.native-capture-request-intake"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-gui-delivery-diagnostics.intake-public-20261014"
       ]
     }
   ],
@@ -127165,8 +127498,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-gui-request-phase-20261014.json",
-    "sha256": "2e86558dc9502be22fa7c8c4fd46841fccb1b8f6b0aff7432e38eee5a6815d4e"
+    "path": "research/runtime/coverage/source-index-native-capture-request-intake-20261014.json",
+    "sha256": "c877e5aa9a3a4d98b803bee05e5410cdd5a19454381df10a814a137d442ce3b0"
   },
   "claim_bindings_required": true
 }

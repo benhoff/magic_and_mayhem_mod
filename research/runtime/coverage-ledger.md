@@ -8960,3 +8960,24 @@ operation as the cause of this reproduced gap. Exact file operation and original
 Historical hashes and independent status dimensions remain unchanged; no original
 equivalence, source-rate gain, scanout or sustained 60 FPS claim. History
 `bd928081..6392f6d3` reviews 20 exact transitions with zero missing receipts.
+
+### Capture request intake off GUI — 2026-10-14
+
+[Worker request intake](native-capture-request-intake.md) replaces per-poll GUI
+file existence/open/read/parse with one polled future and an owned pending name.
+A persistent bounded worker validates <=4096-byte JSON/name constraints, retries
+missing/unopenable files, removes invalid requests and preserves valid request
+until copied images queue. No duplicate read while image job pending; optional
+full-queue submissions skip, mandatory encoding still refuses overflow. No GUI/GL
+objects cross into worker. Native readback and all performance/source gates stay.
+
+Current controls `run-hj3chstj` pass request bounds/names/cleanup/backpressure,
+blocked-worker GUI responsiveness, PNG pixels,128 native World words and resource
+ownership. Final full `run-rnwjsprp` passes casting/combat/spells/portraits/menus/
+Quit with14 retained artifacts and5407 balanced source/import/returns, stable
+source/assets/originals, zero ordinary readbacks. GUI request max17.594ms versus
+224.411ms baseline, zero eligible warm>=50ms gaps; global nativeWorld59.05049/
+visible59.78562/engine19.36550FPS are recorded without stable60FPS or causal mean
+gain. Old144ms exact syscall remains unproved; complete230ms intake boundary is
+removed. Preserve cancellation negative and cold/hidden/nonworld/scanout limits.
+History `6392f6d3..b023fa98` reviews17 exact committed transitions / zero gaps.

@@ -487,7 +487,7 @@ def main():
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
-        if args.frame_trace and not (args.no_route_screenshots or args.synchronous_route_capture):declaration_command.extend(['--behavior','HOST.native-route-capture','--scenario','HOST.native-route-capture.public'])
+        if args.frame_trace and not (args.no_route_screenshots or args.synchronous_route_capture):declaration_command.extend(['--behavior','HOST.native-route-capture','--scenario','HOST.native-route-capture.public','--behavior','HOST.native-capture-request-intake','--scenario','HOST.native-capture-request-intake.public'])
         if args.hitch_capture:declaration_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.public'])
         if args.async_world:declaration_command.extend(['--behavior','HOST.native-world-gpu-production','--scenario','HOST.native-world-gpu-production.public'])
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
