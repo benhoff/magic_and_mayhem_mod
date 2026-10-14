@@ -24,7 +24,7 @@ public:
     QString error() const{return error_;}
     // Optional native diagnostic observer: false begins painting, true completes.
     std::function<void(bool)> framePaintTiming;
-    enum class Activity { PresentationPoll, RouteCapture, ReferenceRead, ScreenCapture, NativeReadback, ImageEncoding, DiagnosticCapture };
+    enum class Activity { PresentationPoll, RouteCapture, ReferenceRead, ScreenCapture, NativeReadback, ImageEncoding, DiagnosticCapture, CampaignPoll, ProgressPublication, CaptureRequest, WindowDiscovery, InputHeartbeat, RenderStatusPickup };
     std::function<void(Activity,bool)> activityTiming;
     class ActivityScope {
     public:

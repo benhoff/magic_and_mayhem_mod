@@ -170,8 +170,11 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     auto* poll=new QTimer(&window);poll->setInterval(100);
     QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,&session,&window]{
         if(run->done)return;
+        auto* phaseViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+        GlViewport::ActivityScope campaignActivity(phaseViewport,GlViewport::Activity::CampaignPoll);
         const auto p=probe();
         if(!run->diagnosticClock.isValid() || run->diagnosticClock.elapsed()>=1000){
+            GlViewport::ActivityScope progressActivity(phaseViewport,GlViewport::Activity::ProgressPublication);
             run->diagnosticClock.start();
             const bool ready=!run->diagnosticJob.valid() || run->diagnosticJob.wait_for(std::chrono::seconds(0))==std::future_status::ready;
             if(ready){
@@ -188,6 +191,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             }
         }
         if(p.active&&!p.renderer.isEmpty())run->renderer=p.renderer;
+        {GlViewport::ActivityScope requestActivity(phaseViewport,GlViewport::Activity::CaptureRequest);
         const auto captureRequest=QFileInfo(path).dir().filePath("capture-request.json");
         if(p.active&&QFileInfo::exists(captureRequest)&&(!run->captureJob.valid()||run->captureJob.wait_for(std::chrono::seconds(0))==std::future_status::ready)){
             QFile file(captureRequest);
@@ -223,6 +227,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                     }
                 }else QFile::remove(captureRequest);
             }
+        }
         }
         if(p.fallback){finish(false,"Native rendering fell back to the original window");return;}
         if(normalQuit&&run->stage==9&&run->quitPass==0&&run->quitAnswered&&campaignResumeConfirmed(p,run->frameBase,run->resumeSourceBase,qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1")){

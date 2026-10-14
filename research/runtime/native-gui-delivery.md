@@ -53,3 +53,34 @@ encoding. The exact diagnostic wait after the earlier readback was not separatel
 attributed; persistent task reuse and off-GUI cleanup address that boundary.
 Current statuses remain scoped live observation, not original equivalence,
 engine-rate improvement, scanout or sustained 60 FPS.
+
+## Remaining gap attribution — 2026-10-14
+
+Schema 4 covers whole campaign callback, progress publication, request intake,
+window discovery, input heartbeat and render status pickup. Aggregate every
+facade/status poll, but retain completed spans >=1 ms or one fast sample per
+second/activity (kind 9); begin is end minus duration. Original ring/window
+capacities remain unchanged. Authored 1 ms polling with a 144 ms slow progress
+span now retains unclipped boundaries; aggregate counts remain complete.
+
+TITAN `run-yowhbyub` passes these controls and 128 native World comparisons.
+`run-t764kwik` stops on source producer cancellation after 1454 imported/returned
+Worlds and has one outstanding source; preserve the negative and unknown cause.
+It retains no eligible hitch and does not establish complete journey success.
+
+Unchanged-source repeat `run-acopfvr_` passes complete casting/combat/spells/
+portraits/menu/Quit at 19.54621 engine Hz / 58.75104 global native World FPS /
+59.56581 visible native World FPS. A 230.309 ms warm paint gap is fully captured,
+unclipped, including its post window. Request intake spans 224.411 ms, overlaps
+216.818 ms of the gap, and ends after the native readback. Native diagnostic
+capture overlaps only 0.988 ms of the gap; original reference read 0.682 ms and
+native readback 7.609 ms. Renderer continues 15 Worlds with 17 export refusals.
+Progress publication max 0.605 ms, status pickup 0.481 ms, discovery 5.372 ms and
+input heartbeat 0.071 ms do not explain this stall.
+
+This confirms request intake (existence/open/read/parse/future inspection) as the
+blocking boundary for the reproduced gap. The exact filesystem operation and
+the original 144 ms event are not individually proven. Move request intake off
+GUI; keep owned native reads, strict artifact checks and performance gates.
+Sources/assets/original manifests remain stable. No engine-rate, original
+equivalence, scanout or sustained 60 FPS claim.

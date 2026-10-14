@@ -36,5 +36,25 @@ int main(int argc,char** argv)try{
  require(activities["image_encoding"].toObject()["max_ms"].toDouble()==200&&activities["route_capture"].toObject()["open_depth"].toInt()==0,"Nested capture phase timing missing");
  require(delivery["paint_cpu"].toObject()["max_ms"].toDouble()==2&&delivery["compose_to_swap"].toObject()["max_ms"].toDouble()==3&&delivery["heartbeat_lateness"].toObject()["max_ms"].toDouble()==220,"GUI paint/compose/heartbeat boundaries collapsed");
  require(delivery["unmatched_activity_ends"].toString()=="1"&&guiTrace.report()["gui_columns"].toArray().size()==8,"GUI marker validation/schema missing");
+ NativeFrameTrace sampled(true,true);const auto sampleOrigin=sampled.report()["host_origin_us"].toString().toLongLong();
+ for(int n=0;n<1000;++n)for(int id:{0,12}){
+  sampled.recordGui({1,65,sampleOrigin+n*1000,4,true,false,id});
+  sampled.recordGui({1,65,sampleOrigin+n*1000+10,5,true,false,id});
+ }
+ sampled.recordGui({1,65,sampleOrigin+1000000,3,true,false});
+ sampled.recordGui({1,65,sampleOrigin+1000001,4,true,false,7});
+ sampled.recordGui({1,65,sampleOrigin+1000002,4,true,false,8});
+ sampled.recordGui({1,65,sampleOrigin+1140000,5,true,false,8});
+ sampled.recordGui({1,65,sampleOrigin+1141000,5,true,false,7});
+ sampled.recordGui({1,65,sampleOrigin+1144000,3,true,false});
+ for(int n=1145;n<1500;++n)for(int id:{0,12}){
+  sampled.recordGui({1,65,sampleOrigin+n*1000,4,true,false,id});
+  sampled.recordGui({1,65,sampleOrigin+n*1000+10,5,true,false,id});
+ }
+ const auto sample=sampled.report();auto sampleActivities=sample["gui_delivery"].toObject()["activities"].toObject();
+ require(sampleActivities["presentation_poll"].toObject()["samples"].toString()=="1355"&&sample["gui_rows"].toArray().size()<20,"Fast poll aggregate or retention sampling lost");
+ require(sampleActivities["progress_publication"].toObject()["max_ms"].toDouble()==139.998,"Unmeasured progress span lost");
+ auto sampleWindows=sample["hitch_capture"].toObject()["windows"].toArray();
+ require(sampleWindows.size()==1&&!sampleWindows[0].toObject()["clipped"].toBool(),"Fast status/facade polls clipped authored144ms hitch");
  std::cout<<"{\"success\":true,\"early_hitch_preserved_after_tail_wrap\":true,\"pre_post_state_recorded\":true,\"hidden_movie_nonworld_reset\":true,\"bounded_largest_gap_reservoir\":true,\"host_origin_exported\":true,\"window_limit\":8,\"ordinary_readbacks\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

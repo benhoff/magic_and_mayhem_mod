@@ -55448,7 +55448,9 @@
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ],
       "remaining_gaps": [
         "Historical interrupted capture and1008.957ms pending-import gating diagnosis retained unchanged. Current final controls and full public run-s_dutjcz support bounded capture/source-clock correlation; later policy keeps last imported World displayable. Scope excludes cold/hidden/movie/non-world continuity.",
@@ -55697,7 +55699,9 @@
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ],
       "remaining_gaps": [
         "Final unchanged-source TITAN run-s_dutjcz passes complete casting/combat/spell/portrait/menu/Quit journey at19.16361engineHz/58.77168nativeWorldFPS with5200 balanced sources/imports/returns and60 pending redraws. Same final source previously failed unchanged19FPS floor at18.61690; source-rate variability remains unresolved.",
@@ -55709,7 +55713,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native GUI delivery, paint, compose and capture attribution",
-      "scope": "Opt-in bounded native host GUI activity begin/end markers for presentation callbacks, route/diagnostic captures, original reference reads, screen capture, native framebuffer readback and image encoding; paint and compose-to-Qt-swap durations, independent16ms GUI heartbeat lateness. Same steady host clock, aggregate counts and bounded tail/hitch rings, no live JSON/pixel diagnostic additions. Explicit route-screenshot-free comparison skips only route artifacts and never asserts their pixel coverage; casting/combat diagnostic captures and source/engine performance gates unchanged. Timing separates GUI callback/event-loop stalls from native World owner work; GPU busy/scanout/root cause, original equivalence/full replacement and sustained60FPS excluded.",
+      "scope": "Opt-in bounded native host GUI activity begin/end markers for presentation callbacks, route/diagnostic captures, original reference reads, screen capture, native framebuffer readback and image encoding; paint and compose-to-Qt-swap durations, independent16ms GUI heartbeat lateness. Same steady host clock, aggregate counts and bounded tail/hitch rings, no live JSON/pixel diagnostic additions. Explicit route-screenshot-free comparison skips only route artifacts and never asserts their pixel coverage; casting/combat diagnostic captures and source/engine performance gates unchanged. Timing separates GUI callback/event-loop stalls from native World owner work; GPU busy/scanout/root cause, original equivalence/full replacement and sustained60FPS excluded. GUI activities additionally cover whole campaign callback, progress publication, request file intake, window discovery, input heartbeat and render status pickup. Aggregate all presentation polls, retaining only >=1ms completed spans or one fast sample/second, to avoid hitch clipping from1ms facade polling. Additional same-clock phase coverage is diagnostic, not cause attribution or a fix.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -55943,11 +55947,16 @@
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
         "HOST.native-gui-delivery-diagnostics.async-public-analysis-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-analysis-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-analysis-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-negative-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-negative-analysis-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-analysis-20261014"
       ],
       "remaining_gaps": [
-        "Current persistent controls/public validate scoped native GUI tracing with full casting/combat. Historical first wizard-death failure and earlier transient-async632.919ms diagnostic gap are preserved; no new original equivalence or causal engine-rate claim.",
-        "Final run has one144.164ms clipped eligible warm paint gap; visibleWorld60.01656FPS, global59.28694 and engine19.37173. Captured diagnostic activity overlaps only1.121ms of that gap, full diagnostic callback max18.801ms. Cause remains unknown; callback/event-loop/system scheduling attribution and non-world/cold/hidden gaps are incomplete. Sustained60FPS remains pending."
+        "Phase controls pass authored144ms progress span, all fast-poll aggregates retained while bounded slow/completed sampling avoids clipping,128 native World words and ownership/retirement checks. First phase public run-t764kwik stops on producer cancellation; cause unknown and no complete live credit.",
+        "Unchanged phase repeat run-acopfvr_ passes full casting/combat/menu/Quit at19.54621engine/58.75104globalWorld/59.56581visibleWorld. Complete230.309ms hitch overlaps216.818ms capture-request intake; diagnostic activity overlaps0.988ms and progress max0.605ms. Request-file check/read/parse/future inspection are not individually separated, but request intake blocks GUI: confirmed native harness boundary. Off-GUI request intake and fresh full validation remain pending; no stable60FPS."
       ]
     },
     {
@@ -56181,7 +56190,9 @@
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ],
       "remaining_gaps": [
         "Final persistent encoder controls validate bounded2-task queue, GUI heartbeat through blocked encoding, PNG pixel roundtrip, failure propagation and continued work. run-98mfpjv9 passes complete casting/combat/spell/portrait/three-menu-cycle/Quit journey with14 route captures,5265 balanced sources/imports/returns, no ordinary readbacks, stable source/input and verified originals.",
@@ -113180,6 +113191,78 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.phase-controls-20261014",
+      "kind": "native_integration",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-phase-controls-20261014.json",
+      "sha256": "2d7011ef8ec0597af4cc8060d2bea3058b8ef64b459eacf892d64e17d0203ce5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.phase-public-negative-20261014",
+      "kind": "live_observation",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-phase-public-negative-20261014.json",
+      "sha256": "9a50c08335b5f2d8466ac1a9b0107359b930f32a96a260bacb8aef51d8d4d32d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.phase-public-20261014",
+      "kind": "live_observation",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-phase-public-20261014.json",
+      "sha256": "c435143881a00a3b3126d0d0ac53ce4e3b6ef4d47fc7bda38ed5095f5b3a5822",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.phase-negative-analysis-20261014",
+      "kind": "static",
+      "scope": "Same-host-clock GUI phase attribution from preserved raw report; complete paired spans distinguish request intake from progress, capture and presentation. Earlier144ms exact cause remains historical hypothesis; reproduced230ms gap overlaps216.818ms request intake, no original equivalence or scanout claim.",
+      "record": "research/runtime/native-gui-delivery-phase-negative-analysis-20261014.json",
+      "sha256": "7d40b510ddcf3e346092daff857dbb98c7c837e74b897eb3041898ea61f6e41c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.phase-public-analysis-20261014",
+      "kind": "static",
+      "scope": "Same-host-clock GUI phase attribution from preserved raw report; complete paired spans distinguish request intake from progress, capture and presentation. Earlier144ms exact cause remains historical hypothesis; reproduced230ms gap overlaps216.818ms request intake, no original equivalence or scanout claim.",
+      "record": "research/runtime/native-gui-delivery-phase-public-analysis-20261014.json",
+      "sha256": "4f486820d486376c4758e8653ba2b1b2dc9ae4f5efe96f4578eb5ed75e80eecc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -126416,7 +126499,8 @@
         "HOST.pending-import-display.final-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
       ]
     },
     {
@@ -126436,7 +126520,8 @@
         "HOST.native-gui-delivery-diagnostics.route-free-20261013",
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ]
     },
     {
@@ -126455,7 +126540,8 @@
         "HOST.pending-import-display.final-controls-20261013",
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
       ]
     },
     {
@@ -126476,7 +126562,8 @@
         "HOST.native-gui-delivery-diagnostics.route-free-20261013",
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ]
     },
     {
@@ -126494,7 +126581,8 @@
       "evidence": [
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
       ]
     },
     {
@@ -126513,7 +126601,9 @@
         "HOST.native-gui-delivery-diagnostics.route-free-20261013",
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-public-negative-20261014",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ]
     },
     {
@@ -126529,7 +126619,8 @@
       "evidence": [
         "HOST.native-gui-delivery-diagnostics.async-public-20261013",
         "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-public-20261014"
       ]
     },
     {
@@ -126545,7 +126636,8 @@
         "tests/native-render-worker-test.cpp"
       ],
       "evidence": [
-        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.phase-controls-20261014"
       ]
     }
   ],
@@ -127073,8 +127165,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-persistent-image-encoder-20261013.json",
-    "sha256": "63079a0c696168570d5c58630020c8b8ee542592d85c5506d202e40dd1ea4193"
+    "path": "research/runtime/coverage/source-index-native-gui-request-phase-20261014.json",
+    "sha256": "2e86558dc9502be22fa7c8c4fd46841fccb1b8f6b0aff7432e38eee5a6815d4e"
   },
   "claim_bindings_required": true
 }

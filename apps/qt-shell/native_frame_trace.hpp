@@ -14,7 +14,7 @@ struct NativeFrameSourceTiming {
 // are protected by the worker mutex. No wire clocks, host pointers or pixels.
 class NativeFrameTrace {
 public:
-    static constexpr std::size_t TurnLimit=16384,GuiLimit=8192,HitchLimit=8,HitchTurnLimit=2048,HitchGuiLimit=512;
+    static constexpr std::size_t TurnLimit=16384,GuiLimit=8192,HitchLimit=8,HitchTurnLimit=2048,HitchGuiLimit=512,GuiActivityCount=13;
     struct Turn {
         std::uint64_t turn=0,sourceBefore=0,sourceAfter=0,framesBefore=0,framesAfter=0,commands=0,presents=0,imports=0,exportSerial=0;
         std::int64_t begin=0,worldEnd=0,commandEnd=0,extraEnd=0,exportEnd=0,statusEnd=0,waitEnd=0,deadline=0,published=0;
@@ -53,8 +53,20 @@ public:
         if(hitches_)recordHitchTurn(t);
     }
     void recordGui(Gui g){if(enabled_){
-        if(g.kind==4&&g.activity>=0&&g.activity<7){if(!activityDepth_[g.activity]++)activityBegin_[g.activity]=g.time;}
-        if(g.kind==5&&g.activity>=0&&g.activity<7){if(!activityDepth_[g.activity])++unmatchedActivities_;else if(!--activityDepth_[g.activity])activityTimings_[g.activity].add(double(g.time-activityBegin_[g.activity])/1000.);}
+        if(g.kind==4&&g.activity>=0&&g.activity<int(GuiActivityCount)){if(!activityDepth_[g.activity]++)activityBegin_[g.activity]=g.time;}
+        bool completedActivity=false;
+        if(g.kind==5&&g.activity>=0&&g.activity<int(GuiActivityCount)){
+            if(!activityDepth_[g.activity])++unmatchedActivities_;
+            else if(!--activityDepth_[g.activity]){g.duration=g.time-activityBegin_[g.activity];activityTimings_[g.activity].add(double(g.duration)/1000.);completedActivity=true;}
+        }
+        ++allGuiEvents_;
+        // Aggregate every1ms facade poll, but keep slow completed spans and one
+        // fast sample/second. Preserve full duration without flooding hitch rings.
+        if(hitches_&&(!g.draw||g.paused))previousPaint_=0;
+        if((g.kind==4||g.kind==5)&&(g.activity==0||g.activity==12)){
+            if(!completedActivity|| (g.duration<1000&&g.time-lastActivitySample_[g.activity]<1000000)){++sampledGuiEvents_;return;}
+            g.kind=9;lastActivitySample_[g.activity]=g.time;
+        }
         if(g.kind==2)paintBegin_=g.time;
         if(g.kind==3&&paintBegin_){paintTiming_.add(double(g.time-paintBegin_)/1000.);paintBegin_=0;}
         if(g.kind==8)composeBegin_=g.time;
@@ -69,7 +81,7 @@ public:
         for(std::uint64_t i=savedTurns_-count;i<savedTurns_;++i){const auto& t=turns_[i%TurnLimit];rows.append(turnRow(t));}
 
         QJsonArray gui;const auto n=std::min(guiCount_,std::uint64_t(GuiLimit));for(std::uint64_t i=guiCount_-n;i<guiCount_;++i){const auto& g=gui_[i%GuiLimit];gui.append(guiRow(g));}
-        return QJsonObject{{"enabled",true},{"schema",3},{"gui_delivery",guiDeliveryReport()},{"host_origin_us",QString::number(origin_)},{"hitch_capture",hitchReport()},{"turn_limit",int(TurnLimit)},{"gui_limit",int(GuiLimit)},{"all_turns",QString::number(allTurns_)},{"saved_turns",QString::number(savedTurns_)},{"overwritten_turns",QString::number(savedTurns_-count)},{"gui_events",QString::number(guiCount_)},{"overwritten_gui_events",QString::number(guiCount_-n)},{"timings",summary(timings_)},{"visible_timings",summary(activeTimings_)},{"visible_owner_seconds",double(activeUs_)/1000000.},{"visible_native_world_frames",QString::number(activeFrames_)},{"visible_native_world_fps",activeUs_?double(activeFrames_)*1000000./activeUs_:0.},
+        return QJsonObject{{"enabled",true},{"schema",4},{"gui_delivery",guiDeliveryReport()},{"host_origin_us",QString::number(origin_)},{"hitch_capture",hitchReport()},{"turn_limit",int(TurnLimit)},{"gui_limit",int(GuiLimit)},{"all_turns",QString::number(allTurns_)},{"saved_turns",QString::number(savedTurns_)},{"overwritten_turns",QString::number(savedTurns_-count)},{"all_gui_events",QString::number(allGuiEvents_)},{"sampled_out_gui_events",QString::number(sampledGuiEvents_)},{"gui_events",QString::number(guiCount_)},{"overwritten_gui_events",QString::number(guiCount_-n)},{"timings",summary(timings_)},{"visible_timings",summary(activeTimings_)},{"visible_owner_seconds",double(activeUs_)/1000000.},{"visible_native_world_frames",QString::number(activeFrames_)},{"visible_native_world_fps",activeUs_?double(activeFrames_)*1000000./activeUs_:0.},
             {"columns",QJsonArray{"turn","begin_us","world_end_us","commands_end_us","extra_end_us","export_end_us","status_end_us","wait_end_us","deadline_us","source_before","source_after","frames_before","frames_after","commands","presents","imports","export_serial","reason","draw_allowed","paused","pending_after","source_queue_ms","source_ready_ms","source_decode_ms","source_handoff_ms","native_producer_ms","native_prepare_ms","native_submit_ms","original_tick","original_capture_ms","original_ack_wait_ms","original_return_ms","published_us","source_accepted","source_returned","source_outstanding","source_ready","gpu_submitted","gpu_produced","gpu_taken","gpu_outstanding","ui_generation","prepared_generation","sealed_source_generation","ui_sealed","world_output","export_blocked"}},
             {"rows",rows},{"gui_columns",QJsonArray{"kind","serial","generation","time_us","draw_allowed","paused","activity","duration_us"}},{"gui_rows",gui},
             {"scope","Opt-in bounded native host timeline. GUI kind0 is frame pickup,1 is Qt frameSwapped tagged by completed paint,2/3 are GPU widget paint begin/end; swaps are not physical scanout or distinct simulation updates. Steady-clock microseconds are relative to the exported native host origin; campaign host_us fields use this same clock. Optional bounded hitch windows preserve all owner polls around warm active paint gaps. Original clocks remain separate. Original uint32 millisecond durations are separate, coarse and wrap-subtracted; no cross-clock timestamp subtraction or original CPU attribution. CPU wall spans include driver waits. Source ready includes decode/ACK/return verification; queue delay begins only after verification. Tail samples may overwrite; aggregate timings include all turns. Full functional and60FPS validation remain separate."}};
@@ -85,9 +97,9 @@ private:
     QJsonArray guiRow(const Gui& g) const{return QJsonArray{g.kind,QString::number(g.serial),QString::number(g.generation),double(g.time-origin_),g.draw,g.paused,g.activity,double(g.duration)};}
     QJsonObject guiDeliveryReport() const{
         const auto summary=[](const RenderStageTiming& t){return QJsonObject{{"samples",QString::number(t.samples)},{"total_ms",t.totalMs},{"mean_ms",t.samples?t.totalMs/t.samples:0.},{"max_ms",t.maxMs}};};
-        const char* names[]={"presentation_poll","route_capture","reference_read","screen_capture","native_readback","image_encoding","diagnostic_capture"};QJsonObject activities;
-        for(unsigned i=0;i<7;++i){auto row=summary(activityTimings_[i]);row["open_depth"]=int(activityDepth_[i]);activities[names[i]]=row;}
-        return QJsonObject{{"activities",activities},{"paint_cpu",summary(paintTiming_)},{"compose_to_swap",summary(composeTiming_)},{"heartbeat_lateness",summary(heartbeatTiming_)},{"unmatched_activity_ends",QString::number(unmatchedActivities_)},{"scope","GUI kind4/5 activity begin/end (nested same activity counts outer span),6 heartbeat lateness beyond16ms interval,8 Qt aboutToCompose. Activity IDs0..6 follow listed names. Bounded host wall timing includes driver waits; compose/swap is not scanout. Capture phases overlap their outer capture; totals are not additive. No added readbacks or live JSON."}};
+        const char* names[]={"presentation_poll","route_capture","reference_read","screen_capture","native_readback","image_encoding","diagnostic_capture","campaign_poll","progress_publication","capture_request","window_discovery","input_heartbeat","render_status_pickup"};QJsonObject activities;
+        for(unsigned i=0;i<GuiActivityCount;++i){auto row=summary(activityTimings_[i]);row["open_depth"]=int(activityDepth_[i]);activities[names[i]]=row;}
+        return QJsonObject{{"activities",activities},{"paint_cpu",summary(paintTiming_)},{"compose_to_swap",summary(composeTiming_)},{"heartbeat_lateness",summary(heartbeatTiming_)},{"unmatched_activity_ends",QString::number(unmatchedActivities_)},{"scope","GUI kind4/5 activity begin/end (nested same activity counts outer span),6 heartbeat lateness beyond16ms interval,8 Qt aboutToCompose. Activity IDs0..12 follow listed names. Kind9 is completed sampled activity0/12 (end minus duration gives begin): every >=1ms span and one fast sample/second; every span still contributes to aggregates. Bounded host wall timing includes driver waits; compose/swap is not scanout. Capture phases overlap their outer capture; totals are not additive. No added readbacks or live JSON."}};
     }
     struct HitchWindow {
         std::int64_t before=0,trigger=0,until=0,gap=0;
@@ -141,10 +153,11 @@ private:
     std::uint64_t allTurns_=0,savedTurns_=0,guiCount_=0,activeFrames_=0;
     std::vector<Turn> turns_;std::vector<Gui> gui_;
     std::array<RenderStageTiming,7> timings_{},activeTimings_{};
-    std::array<RenderStageTiming,7> activityTimings_{};
-    std::array<std::int64_t,7> activityBegin_{};
-    std::array<unsigned,7> activityDepth_{};
+    std::array<RenderStageTiming,GuiActivityCount> activityTimings_{};
+    std::array<std::int64_t,GuiActivityCount> activityBegin_{};
+    std::array<unsigned,GuiActivityCount> activityDepth_{};
     RenderStageTiming paintTiming_,composeTiming_,heartbeatTiming_;
     std::int64_t paintBegin_=0,composeBegin_=0;
-    std::uint64_t unmatchedActivities_=0;
+    std::uint64_t unmatchedActivities_=0,allGuiEvents_=0,sampledGuiEvents_=0;
+    std::array<std::int64_t,GuiActivityCount> lastActivitySample_{};
 };

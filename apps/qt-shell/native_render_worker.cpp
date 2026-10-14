@@ -52,11 +52,13 @@ bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 vers
 bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     mnm::render::GpuFrame frame;
     std::uint64_t serial=0,generation=0;
-    {
+    {GlViewport::ActivityScope pickup(&viewport_,GlViewport::Activity::RenderStatusPickup);
+     {
         std::lock_guard<std::mutex> lock(mutex_);
         normalQuit_=normalQuit;drawAllowed_=drawAllowed;paused_=paused;
         status_=published_;frame=std::move(readyFrame_);
         serial=readySerial_;generation=readyGeneration_;
+     }
     }
     wake_.notify_one();
     if(!started_ && viewport_.ready()){

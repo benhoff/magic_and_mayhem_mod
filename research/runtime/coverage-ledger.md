@@ -8943,3 +8943,20 @@ is only 1.121 ms. No sustained 60 FPS, source-rate gain, scanout or equivalence
 promotion. Defensive route failure branches and non-world/cold/hidden continuity
 remain partial. Historical shared-source evidence remains unchanged. History
 `693c7602..bd928081` reviews 20 exact committed transitions / zero missing receipts.
+
+### Remaining GUI gap phase attribution — 2026-10-14
+
+[GUI diagnostics](native-gui-delivery.md) now isolate campaign/progress/request/
+discovery/input/status work, sampling only fast facade/status records while
+aggregating every call. Current TITAN controls `run-yowhbyub` validate an unclipped
+authored 144 ms window, 128 native pixel comparisons and ownership/retirement.
+Failed `run-t764kwik` producer cancellation is preserved with unknown cause.
+Unchanged `run-acopfvr_` passes the full casting journey at 19.54621 engine Hz,
+58.75104 global World / 59.56581 visible World FPS. A complete, unclipped
+230.309 ms gap contains 216.818 ms request-intake overlap, only 0.988 ms diagnostic
+capture overlap and 15 ongoing native Worlds. Progress max 0.605 ms refutes that
+operation as the cause of this reproduced gap. Exact file operation and original
+144 ms cause remain unproved; asynchronous request intake is the next fix.
+Historical hashes and independent status dimensions remain unchanged; no original
+equivalence, source-rate gain, scanout or sustained 60 FPS claim. History
+`bd928081..6392f6d3` reviews 20 exact transitions with zero missing receipts.

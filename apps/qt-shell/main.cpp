@@ -209,8 +209,8 @@ public:
         connect(&process_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this](int code,QProcess::ExitStatus){
             finished();statusBar()->showMessage(QString("Launcher exited with status %1.").arg(code));
         });
-        poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{discover();});
-        inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{if(input_)input_->heartbeat();});
+        poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::WindowDiscovery);discover();});
+        inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::InputHeartbeat);if(input_)input_->heartbeat();});
         frames_.setInterval(16);commandDrain_.setSingleShot(true);commandDrain_.setInterval(0);
         const auto pollFrame=[this]{
             if(!stream_)return;
