@@ -2,6 +2,7 @@
 #include "../../game/simulation/creature_rules_session.hpp"
 #include "../../reconstruction/creature-ai/transfer_commands_owned.hpp"
 #include "../../reconstruction/creature-ai/command_behaviors_owned.hpp"
+#include "../../reconstruction/creature-ai/command_actions_owned.hpp"
 namespace mnm::command_session {
 namespace model = reconstruction::combat;
 struct Continuation {
@@ -26,6 +27,9 @@ struct Hooks {
   std::function<void(model::AutonomousCreature &, unsigned)> body;
   std::function<void(model::AutonomousCreature &, unsigned,
                      model::OwnedCreatureCommands &)> commandBodies;
+  std::function<void(model::AutonomousCreature &, unsigned,
+                     model::OwnedCreatureCommands &)> actionTransition;
+  std::function<void(model::AutonomousCreature &, model::OwnedCreatureCommands &)> actionTick;
   std::function<void(model::AutonomousCreature &)> supplied;
   std::function<void(unsigned)> release;
   std::function<void(model::AutonomousCreature &, bool)> peer;

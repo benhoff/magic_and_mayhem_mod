@@ -49,3 +49,11 @@ reject such restoration; supplied-body profiles can migrate without changing
 previous fields. An unsupported version, partial pair of vectors, pool mismatch
 or trailing bytes refuses. The outer native map/profile identity stays stable
 and remains separate from the continuation version.
+
+
+Owned action selection/event integration uses the existing execution fields,
+including optional logical `actionCallback`, animation facing/offset, previous
+movement carry, route counters, readiness and ranged deadline. Callback identity
+is independent of the current action word. No wire fields or version change.
+The profile's ANI/RNG/cast provider state must be saved in staged backend bytes;
+its schema is profile-specific, not an original save/ANI/RNG format claim.

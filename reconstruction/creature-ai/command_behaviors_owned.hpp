@@ -10,8 +10,9 @@ struct CommandBehaviorProviders {
   std::function<BehaviorExecutionServices(unsigned)> behavior;
   std::function<RangedExecutionServices(unsigned)> ranged;
 };
-// Borrow the same staged roots and command context. Geometry, action, animation,
-// renew/landing/occupancy/health and World removal are still explicit providers.
+// Borrow the same staged roots and command context. An installed action layer
+// owns action requests; geometry, animation, renew/landing/occupancy/health and
+// World removal remain explicit providers.
 class OwnedCommandBehaviors {
   AutonomousWorld &world_;
   std::vector<CreatureExecution> &execution_;

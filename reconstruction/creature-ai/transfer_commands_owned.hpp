@@ -20,6 +20,8 @@ class OwnedCreatureCommands {
   std::function<void(unsigned)> release_;
   std::function<void(AutonomousCreature &, bool)> peer_;
   std::vector<unsigned char> queueActive_;
+  std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> actionTransition_;
+  std::function<void(AutonomousCreature &, OwnedCreatureCommands &)> actionTick_;
   ExecutionServices services(unsigned);
   void bind(AutonomousCreature &, unsigned);
 
@@ -41,6 +43,12 @@ public:
   void installBodies(std::function<void(AutonomousCreature &, unsigned,
                                        OwnedCreatureCommands &)>);
   void transition(AutonomousCreature &, unsigned);
+  void installActions(
+      std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)>,
+      std::function<void(AutonomousCreature &, OwnedCreatureCommands &)>);
+  bool ownsActions() const;
+  void action(AutonomousCreature &, unsigned);
+  void tickAction(AutonomousCreature &);
   bool owns(const AutonomousWorld &, const std::vector<CreatureExecution> &) const;
   void idle(AutonomousCreature &);
   void dispatch(AutonomousCreature &);

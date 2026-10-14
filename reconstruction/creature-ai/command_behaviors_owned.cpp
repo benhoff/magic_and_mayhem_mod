@@ -27,6 +27,7 @@ OwnedCommandBehaviors::OwnedCommandBehaviors(
 }
 BehaviorExecutionServices OwnedCommandBehaviors::behaviorServices(unsigned slot) {
   auto s = providers_.behavior(slot);
+  if (commands_.ownsActions()) s.action = [this](auto &a, unsigned kind) { commands_.action(a, kind); };
   s.behavior = [this](auto &a, unsigned kind) { commands_.transition(a, kind); };
   s.reset = [this](auto &a) { commands_.reset(a); };
   s.maintainTarget = [this](auto &a) { maintain(a); };
@@ -40,6 +41,7 @@ void OwnedCommandBehaviors::maintain(AutonomousCreature &a) {
 void OwnedCommandBehaviors::ranged(AutonomousCreature &a) {
   safeFineAim(world_.creatures.at(unsigned(a.ai.target)));
   auto s = providers_.ranged(a.ai.slot);
+  if (commands_.ownsActions()) s.action = [this](auto &actor, unsigned kind) { commands_.action(actor, kind); };
   s.maintainTarget = [this](auto &actor) { maintain(actor); };
   rangedTactic(a, execution_.at(a.ai.slot), world_, rangedStyle(a.ai.kind),
                environment_.tick, s);
@@ -61,6 +63,7 @@ void OwnedCommandBehaviors::dispatch(AutonomousCreature &a, unsigned kind) {
         throw std::invalid_argument("unsafe command behavior arithmetic");
     }
     auto s = providers_.movement(a.ai.slot);
+    if (commands_.ownsActions()) s.action = [this](auto &actor, unsigned action) { commands_.action(actor, action); };
     s.renewMove = [this](auto &actor, Cell p) { commands_.move(actor, p); };
     s.reset = [this](auto &actor) { commands_.reset(actor); };
     movementBehavior(a, e, maintenance_.at(a.ai.slot), movement_.at(a.ai.slot),

@@ -967,3 +967,50 @@ behavior corpus. NS62 history review covers77 file transitions/132 behaviors wit
 no missing exact receipts; it does not infer new original comparison or live
 replacement. Final builds, snapshots and checks use the authorized private1408GiB
 cap with100GiB free reserve; prior90GiB development guard records remain retained.
+
+
+## NS64: owned action selection and animation-event continuation
+
+`OwnedCommandActions` shares the staged world/execution roots and existing
+`OwnedCreatureCommands` context. Optional paired action installation routes
+reset/move/idle and recovered movement/target/coordinate/ranged action requests
+through the recovered50db60 selector. The50da50 mapping is preserved as a logical
+installed callback in `CreatureExecution.actionCallback`; null entries remain
+inert. Selection installs a callback without immediately invoking it.
+
+Installed8/9/15 callbacks execute recovered50e6f0/50e670/50f7c0 respectively.
+Animation event1/2, main/overlay poll order, cast suppression, recovery deadline,
+form restoration and its behavior2 early return, and ready cooldown/repeated
+behavior calls are retained. A behavior call uses the installed command binding,
+not the mutable behavior word; action tick likewise uses the installed callback,
+not the current action word. Other valid action handlers require an explicit
+remaining-body provider and refuse if missing. Foreign actors/roots, malformed
+logical callback tokens and incomplete/duplicate installation are native policies.
+
+The original comparison runs4096 seeds x7 operations through five unchanged
+bodies. It compares selection followed by installed ranged/ready/null/shared
+callback dispatch, motion suppression, independent action/behavior word edits,
+ordered scripted lower services, full actor bytes and configuration/list/body
+guards. Its lower behavior callback is supplied: it does not claim a paired
+original full command-body/action/frame execution. Existing command bodies are
+regressed separately, and their composition with owned actions is exercised in
+the real native rule session. Native tests resume80 ticks exactly, route three
+semantic command kinds through owned selection, and roll back failed ANI poll
+and cast consequences before publication; nine context refusals are separate.
+
+ANI event production, RNG, overlay configuration, cast effects and form work
+remain explicit providers, as do other action bodies, geometry, route/frame
+scheduling and World lifecycle. The finite native profile uses scripted events
+and staged backend counters/RNG bytes; it does not establish original animation
+timing or RNG equivalence. These provider boundaries are simulation work and
+are independent of native Qt/OpenGL presentation. Complete campaign execution
+and live replacement remain pending; no balance changes are introduced.
+
+CMD1/version2 already stores installed action callback, readiness/deadline,
+previous move/animation/route state and opaque staged backend bytes. This change
+adds no fields or wire version. Providers must retain all mutable event/RNG/cast
+state in that continuation and keep external effects unpublished until success.
+The NS63 incoming-history review checks89 file transitions/202 behaviors against
+exact receipts with no missing accounting. Historical evidence/source hashes
+remain unchanged, including failed development attempts and stale unrelated
+contracts. Fresh NS64 records are separate evidence IDs.

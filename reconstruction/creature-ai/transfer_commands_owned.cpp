@@ -24,6 +24,7 @@ ExecutionServices OwnedCreatureCommands::services(unsigned slot) {
   result.releaseEffect = release_;
   result.peerEngagement = [&](auto &a, unsigned flag) { peer_(a, flag != 0); };
   result.behavior = [&](auto &a, unsigned kind) { bind(a, kind); };
+  if (ownsActions()) result.action = [this](auto &a, unsigned kind) { action(a, kind); };
   result.performOrder = [this, slot](const CreatureOrder &o) {
     deliver(world_.creatures.at(slot), o);
   };
@@ -77,11 +78,34 @@ bool OwnedCreatureCommands::owns(const AutonomousWorld &world,
                                  const std::vector<CreatureExecution> &execution) const {
   return &world == &world_ && &execution == &execution_;
 }
+void OwnedCreatureCommands::installActions(
+    std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> transition,
+    std::function<void(AutonomousCreature &, OwnedCreatureCommands &)> tick) {
+  if (!transition || !tick || actionTransition_ || actionTick_)
+    throw std::invalid_argument("command actions must be installed once");
+  for (auto active : queueActive_)
+    if (active) throw std::invalid_argument("cannot install actions during queue execution");
+  actionTransition_ = std::move(transition);
+  actionTick_ = std::move(tick);
+}
+bool OwnedCreatureCommands::ownsActions() const { return bool(actionTransition_); }
+void OwnedCreatureCommands::action(AutonomousCreature &a, unsigned kind) {
+  if (a.ai.slot >= world_.creatures.size() || &a != &world_.creatures[a.ai.slot])
+    throw std::invalid_argument("owned command action actor is foreign");
+  if (actionTransition_) actionTransition_(a, kind, *this);
+  else executionServices_(a.ai.slot).action(a, kind);
+}
+void OwnedCreatureCommands::tickAction(AutonomousCreature &a) {
+  if (a.ai.slot >= world_.creatures.size() || &a != &world_.creatures[a.ai.slot] || !actionTick_)
+    throw std::invalid_argument("owned command action tick context differs");
+  actionTick_(a, *this);
+}
 void OwnedCreatureCommands::reset(AutonomousCreature &a) {
   resetBehavior(a, execution_.at(a.ai.slot), world_, services(a.ai.slot));
 }
 void OwnedCreatureCommands::idle(AutonomousCreature &a) {
   auto s = idleServices_(a.ai.slot);
+  if (ownsActions()) s.action = [this](auto &actor, unsigned kind) { action(actor, kind); };
   s.follow = [&](auto &actor) {
     auto follow = followServices_(actor.ai.slot);
     follow.move = [&](auto &mover, Cell p) { move(mover, p); };

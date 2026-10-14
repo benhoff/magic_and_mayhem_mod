@@ -1,6 +1,9 @@
+#pragma push_macro("main")
+#undef main
 #define main unused_native_command_session_main
 #include "native-command-session-test.cpp"
 #undef main
+#pragma pop_macro("main")
 namespace {
 command_session::HookFactory recoveredProviders(std::shared_ptr<Faults> faults){
  return [faults](auto &c){auto h=providers(faults)(c);h.body={};

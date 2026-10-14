@@ -27,6 +27,7 @@ model::OwnedCreatureCommands context(Continuation &s, const Hooks &h) {
   model::OwnedCreatureCommands commands{s.world, s.execution, s.bindings,
       execution, h.idle, h.follow, h.queue, h.body, h.supplied, h.release, h.peer};
   if (h.commandBodies) commands.installBodies(h.commandBodies);
+  if (h.actionTransition || h.actionTick) commands.installActions(h.actionTransition, h.actionTick);
   return commands;
 }
 } // namespace

@@ -65,3 +65,19 @@ Lower callbacks must preserve canonical backing and their admitted arithmetic
 domain throughout invocation. Unsafe saved movement differences or fine-aim sums
 refuse before dispatch; these native policies do not compare original overflow
 or malformed-pointer behavior.
+
+
+`Hooks.actionTransition` and `Hooks.actionTick` install a paired optional action
+provider on the same command context. `OwnedCommandActions` supplies recovered
+selection and installed ranged/ready callbacks8/9/15; their behavior continuations
+use the installed command binding. Once installed, command and recovered body
+requests share this selector. Applications advance it with `commands.tickAction`.
+Null callbacks are inert. Other action bodies require an explicit provider;
+missing bodies, malformed tokens and foreign roots/actors refuse.
+
+ANI events, RNG, profile overlays, cast/form effects and full frame/geometry
+remain supplied. The action integration test uses staged synthetic providers,
+checks move/target/coordinate selection, two event/cast rollback cases, nine
+context refusals and80 byte-identical snapshot-resumed ticks. Its event/RNG/cast
+state lives in opaque backend bytes. CMD1/version2 already contains the needed
+model state and installed callback token; this milestone changes no wire fields.

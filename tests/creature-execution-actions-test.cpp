@@ -1,6 +1,9 @@
+#pragma push_macro("main")
+#undef main
 #define main unused_execution_fixture_main
 #include "creature-execution-test.cpp"
 #undef main
+#pragma pop_macro("main")
 namespace {
 unsigned randomState = 1;
 unsigned draw() {
@@ -489,6 +492,7 @@ int main(int argc, char **argv) try {
     }
   std::cout << "{\"success\":true,\"cases\":" << cases
             << ",\"functions\":8,\"outcome_digest\":" << digest << "}\n";
+  return 0;
 } catch (const std::exception &e) {
   std::cerr << e.what() << '\n';
   return 1;

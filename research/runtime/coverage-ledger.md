@@ -9157,3 +9157,41 @@ outstanding. This owns command callback behavior and bounded native continuation
 it does not establish complete campaign Wine removal. Final guarded executions
 and accounting retain100GiB free under the previously authorized private1408GiB
 cap; earlier private90GiB development provenance is preserved without cleanup here.
+
+
+## NS64 — owned action selection and ranged/ready continuation (2026-10-13)
+
+Native commands and recovered movement/target/coordinate/ranged body action
+requests can now share one staged action selector. Recovered50db60 selection and
+50da50 logical callback mapping preserve motion admission, animation/overlay and
+engagement/carry state. Installed8/9/15 events use recovered50e6f0/50e670/50f7c0;
+behavior continuations use installed command bindings independently of later
+word edits. Other valid action bodies require an explicit remaining provider;
+null callbacks are inert. This is simulation ownership, separate from Qt/OpenGL
+presentation and complete live rendering replacement.
+
+The prospectively source/scope-bound five-body original32/native64/sanitized64
+comparison passed28,672 cases:1,433 casts,8,192 behavior resumes,1,638 double
+behavior calls and5,850 null callbacks. Full actor/config/list/body/service guards
+and original manifest/hash before/after remain required. Its lower behavior
+handler is supplied; it does not establish paired original whole-command/frame
+execution. Existing command-body/ownership/queue/ingress and action/control
+comparisons are regressed under separate immutable NS64 evidence IDs.
+
+Real native CreatureRuleSession integration passed three CTests and normal/
+ASan+UBSan+LSan execution. The action profile exercises three semantic command
+kinds,80 byte-identical snapshot-resumed ticks, staged ANI cursor/RNG/cast state,
+two poll/cast rollback cases and nine context admission refusals. CMD1/version2
+already contains its model roots and logical callback; no wire fields changed.
+Native callback/token/provider admission is a policy, separate from original
+malformed-pointer semantics. NS63 incoming history checks89 file transitions/
+202 behavior transitions with no missing exact receipts.
+
+Remaining: other action bodies, original ANI timing/RNG/profile overlays/cast and
+form effects, geometry/reach/route/frame/World services, dynamic actor lifecycle,
+original-save/profile/campaign integration and live replacement. Explicit
+synthetic providers and scoped comparison are not complete original execution.
+Historical evidence and failed development attempts remain immutable; unrelated
+staleness is retained. Fresh records, staged census and exact review receipts
+are included with the implementation. The authorized private1408GiB storage cap
+and100GiB free reserve protect final builds/checks; no original media is changed.
