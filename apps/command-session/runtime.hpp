@@ -4,6 +4,7 @@
 #include "../../reconstruction/creature-ai/command_behaviors_owned.hpp"
 #include "../../reconstruction/creature-ai/command_actions_owned.hpp"
 #include "../../reconstruction/creature-ai/command_action_bodies.hpp"
+#include "native_state.hpp"
 namespace mnm::command_session {
 namespace model = reconstruction::combat;
 struct Continuation {
@@ -21,6 +22,7 @@ struct Continuation {
   // v3: full original behavior descriptors and action-body continuation.
   bool originalBehaviorBindings = false;
   model::CommandActionBodyState actions;
+  NativeProviderState native;
 };
 // Providers operate only on this operation's staged continuation. They must not
 // publish external effects; publish returned events only after session success.
@@ -42,7 +44,7 @@ struct Hooks {
       Continuation &, model::OwnedCreatureCommands &, game::TickInput)> advance;
 };
 using HookFactory = std::function<Hooks(Continuation &)>;
-game::Bytes encode(const Continuation &, unsigned version = 3);
+game::Bytes encode(const Continuation &, unsigned version = 4);
 Continuation decode(const game::Bytes &);
 void validate(const Continuation &);
 class Runtime final : public game::CreatureRuleRuntime {

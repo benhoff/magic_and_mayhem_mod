@@ -77,3 +77,22 @@ writes refuse losing action or maintenance state; normal writes use version3.
 Motion division/sample and cyclic object/contribution semantics are checked by
 the recovered bodies at execution, with the outer session retaining rollback.
 Original-save rebinding and dynamic actor lifecycle remain separate.
+
+## Version 4: native provider continuation
+
+Version4 preserves the complete version3 prefix and appends a presence boolean.
+If present, explicit little-endian words encode the immutable profile stamp,
+sequence/tick/alternate flags, original250-word RNG and cursors, actor/body/overlay/
+auxiliary and eight World ANI channels, terrain/occupancy cells, open searches and
+node records, known packed route context bytes, segment initialization and
+environment pass state. ANI record positions are checked32-bit ordinals rather
+than host pointers. The profile stamp is two32-bit words on both i386 and amd64;
+execution records separately retain SHA-256 provenance. It is not a security hash.
+
+Readers admit versions1–3 with absent native state. A profile requiring native
+providers rejects such state. Explicit legacy writers reject dropping a present
+version4 payload. Fixed actor roots, channel bounds, RNG cursors and occupancy
+references are checked; the1MiB envelope and65536-cell/search bounds are native
+admission policies, not original save compatibility or exhaustive campaign scale
+validation. Persisted searches retain multimap ordering and node records so a
+budget-exhausted search can resume without restarting.

@@ -9225,3 +9225,43 @@ Next within the authorized scope: owned ANI/RNG, native geometry/motion and the
 recovered maintenance/budget/environment creature-frame order. Full World effects,
 installed profile/campaign/save rebinding, dynamic actor lifecycle and visible
 live replacement remain independent contracts.
+
+
+### NS66 — owned ANI, geometry, motion and creature-core frame providers (2026-10-14)
+
+Native command sessions can now use decoded ANI with recovered forward/reverse
+controller timing, original RNG, canonical terrain/occupancy and wrapped movement,
+line-based diagonal reach, persisted budgeted route searches, segment initialization/
+interpolation/completion and maintenance/eight-ANI/scheduler/environment creature
+passes. Normal/alternate simulation counters are explicit; no universal wall-clock
+rate or complete46afc0 World/network/audio equivalence is asserted.
+
+Whole guarded original ANI controller bodies match512 controlled cases (96 state
+steps each) and whole4f4ba0 line admission matches8192 cases with ordered declared
+4f3990 outcomes. Current source-bound reports retain original manifest checks,
+unchanged target bodies and native64/original32/sanitized64 agreement. Native
+provider integration uses the actual installed crocodile ANI and a controlled
+3-actor16x16x4 profile for120 byte-identical resumed ticks through completed route
+and fine motion. A128x128x1 profile exhausts the53-node budget, checkpoints open
+search state and agrees for30 more resumed ticks. Occupancy/wrap, alternate-frame,
+pause, profile incompatibility, rollback and legacy migration checks are included.
+The prior four command/behavior/action/all-action native corpora remain checked.
+
+CMD1/v4 appends complete typed ANI/RNG/cell/search/segment/environment state and
+rejects lossy legacy writes. Native fixed-pool occupancy/profile/admission policies
+remain separate from recovered baseline contracts. Explicit lower health/effect/
+region/owner/hazard/ranged/special-profile services, large attack/animation-kind1
+profile work, CFG/MAP/campaign import, dynamic actors, original-save rebinding,
+whole composed original frames and live replacement remain pending. No Wine is
+needed for these native headless providers; the existing game launcher still
+hosts other original engine systems. No balance changes are introduced.
+
+NS65 committed-history review covers110 file transitions/206 behaviors without
+missing exact receipts. Exact current census/reviews and fresh scoped evidence are
+recorded together; historical source hashes and failed attempts remain unchanged.
+Build and temporary snapshots use isolated secondary-NVMe storage outside the
+verified cold archive, under the existing100GiB primary reserve guard.
+
+Static510480 corpse-flight and4f3260 four-cell height findings are mapped as
+provisional partial behaviors with explicit pending helper comparisons and native
+profile tests; the passing width1/living-actor corpus does not cover those branches.

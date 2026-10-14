@@ -2,10 +2,11 @@
 
 This adapter connects the recovered owned move/target/coordinate, queue and
 follow/clear context to `game::CreatureRuleSession`. It needs no Wine, PE image,
-Qt widget or original assets. Applications supply stage-only behavior, geometry,
-effect and frame providers; there is no implicit substitute for missing original
-World services. The test backend is synthetic and does not establish complete
-original frame timing, movement, campaign or live replacement equivalence.
+Qt widget or original assets. Applications may supply staged providers or use `nativeProviders` for owned ANI,
+geometry, motion and creature-core frame work. Lower World/health/effect services
+remain explicit. The incremental milestones below retain their original scope;
+the current native provider profile is described at the end. None establishes
+whole original World frame, campaign or live replacement equivalence.
 
 `Runtime` owns an initial canonical actor/execution profile, an exact opaque
 profile identity and a provider factory. The native game service owns the public
@@ -98,3 +99,28 @@ checkpoints. The native corpus runs all14 handler tokens through24 resumed ticks
 per profile, checks melee failure rollback and null/deferred descriptor behavior,
 and retains the prior command/behavior/action session corpora. These are native
 integration tests, separate from the primitive original body comparisons.
+
+## Native provider profile (NS66)
+
+`nativeProviders` binds immutable decoded ANI, creature scalar tables and terrain
+records to the staged continuation. It owns forward/reverse playback, wrapped
+geometry, footprint admission, route searches and segment motion. Creature core
+passes execute maintenance, eight world ANI channels, the recovered budgeted
+scheduler and the environment pass in the observed normal-frame order. The
+alternate-frame flag advances only the sequence counter. No wall-clock frequency
+is inferred from this ordering.
+
+`prepareNativeContinuation` initializes the fixed actor pool and terrain occupancy;
+CMD1/v4 saves animation timing, reverse cursors, original RNG, geometry, open route
+searches, segment initialization and environment state. Snapshot resume rejects a
+different immutable profile. The lower consequence factory must mutate only its
+staged continuation, preserving transaction rollback. Health/effects, region and
+owner work, hazards, ranged queries and special profile services remain explicit
+inputs. Large attack animation selection and animation-kind1 repair-overlay
+profiles are refused until their asset/profile contracts are supplied.
+
+The native provider test accepts an optional installed ANI path through
+`MNM_NATIVE_PROVIDER_ANI`; without it CTest uses a controlled ANI fixture. This is
+a headless simulation adapter, not a full campaign launcher or a whole original
+World frame replacement. Other World/network/audio work and presentation pacing
+remain separate.

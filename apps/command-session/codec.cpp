@@ -28,9 +28,24 @@ auto fields(model::SegmentCompletionState &v){return std::tie(v.route,v.cursor,v
 auto fields(model::ActionObject &v){return std::tie(v.kind,v.next);}
 auto fields(model::ObjectActionWorld &v){return std::tie(v.dimensions,v.heads,v.objects);}
 auto fields(model::CommandActionBodyState &v){return std::tie(v.callbacks,v.motion,v.segments,v.objects);}
+auto fields(reconstruction::AnimationState &v){return std::tie(v.pc,v.displayedRecord,v.active,v.delay,v.elapsed,v.repeats,v.breakFlag);}
+auto fields(reconstruction::AnimationControllerState &v){return std::tie(v.forward,v.reverse,v.reverseCursor,v.reverseLength);}
+auto fields(model::RandomState &v){return std::tie(v.left,v.right,v.words);}
+auto fields(NativeAnimationChannel &v){return std::tie(v.asset,v.sequence,v.bound,v.state);}
+auto fields(NativeActorAnimation &v){return std::tie(v.body,v.overlay,v.auxiliary);}
+auto fields(NativeGeometryCell &v){return std::tie(v.kind,v.occupant,v.flags,v.links);}
+auto fields(NativeOpenNode &v){return std::tie(v.priority,v.node);}
+auto fields(reconstruction::MovementPayload &v){return std::tie(v.category,v.unknown_04);}
+auto fields(reconstruction::NodeRecord &v){return std::tie(v.priority,v.predecessor,v.movement);}
+auto fields(NativeSearchNode &v){return std::tie(v.node,v.record);}
+auto fields(NativeSearchContinuation &v){return std::tie(v.open,v.records,v.bestNode,v.bestHeuristic,v.initialized,v.destination,v.context);}
+auto fields(model::SegmentInitializationState &v){return std::tie(v.vertical,v.slow778,v.fast77c,v.specialRate73c,v.previousDirection,v.sampleBank,v.initialSampleBank,v.inlineSample);}
+auto fields(model::EnvironmentPassState &v){return std::tie(v.cursor,v.filter,v.receiverAdjustment);}
+auto fields(NativeProviderState &v){return std::tie(v.randomSeeded,v.alternate,v.profileStamp,v.tick,v.sequence,v.random,v.animation,v.worldAnimation,v.cells,v.search,v.initialization,v.environment);}
 auto fieldsV1(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend);}
 auto fieldsV2(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement);}
-auto fields(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement,v.originalBehaviorBindings,v.actions);}
+auto fieldsV3(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement,v.originalBehaviorBindings,v.actions);}
+auto fields(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement,v.originalBehaviorBindings,v.actions,v.native);}
 template<class T>struct optional_type:std::false_type{};
 template<class T>struct optional_type<std::optional<T>>:std::true_type{};
 template<class T>struct vector_type:std::false_type{};
@@ -41,7 +56,11 @@ struct Writer {
   game::Bytes bytes;
   void word(std::uint32_t v){for(unsigned i=0;i<4;++i)bytes.push_back(std::uint8_t(v>>(8*i)));}
   template<class T>void value(T &v){
-    if constexpr(std::is_integral_v<T> || std::is_enum_v<T>) word(std::uint32_t(v));
+    if constexpr(std::is_same_v<T,NativeProviderState>){word(v.present);if(v.present)std::apply([&](auto &...x){(value(x),...);},fields(v));}
+    else if constexpr(std::is_integral_v<T> || std::is_enum_v<T>){
+      if constexpr(std::is_integral_v<T> && std::is_unsigned_v<T> && sizeof(T)>4)need(v<=UINT32_MAX,"native command word overflow");
+      word(std::uint32_t(v));
+    }
     else if constexpr(optional_type<T>::value){word(v.has_value());if(v)value(*v);}
     else if constexpr(vector_type<T>::value){word(std::uint32_t(v.size()));for(auto &x:v)value(x);}
     else if constexpr(array_type<T>::value){for(auto &x:v)value(x);}
@@ -52,7 +71,9 @@ struct Reader {
   const game::Bytes &bytes;std::size_t pos=0;
   std::uint32_t word(){need(bytes.size()-pos>=4,"truncated native command continuation");std::uint32_t v=0;for(unsigned i=0;i<4;++i)v|=std::uint32_t(bytes[pos++])<<(8*i);return v;}
   template<class T>void value(T &v){
-    if constexpr(std::is_same_v<T,bool>){auto w=word();need(w<=1,"invalid native command boolean");v=w!=0;}
+    if constexpr(std::is_same_v<T,NativeProviderState>){auto tag=word();need(tag<=1,"invalid native provider tag");v.present=tag!=0;if(v.present)std::apply([&](auto &...x){(value(x),...);},fields(v));}
+    else if constexpr(std::is_same_v<T,bool>){auto w=word();need(w<=1,"invalid native command boolean");v=w!=0;}
+    else if constexpr(std::is_same_v<T,std::byte>){auto w=word();need(w<=255,"native command opaque byte overflow");v=std::byte(w);}
     else if constexpr(std::is_enum_v<T>) v=static_cast<T>(word());
     else if constexpr(std::is_integral_v<T>){
       auto w=word();
@@ -65,6 +86,7 @@ struct Reader {
       auto count=word();
       constexpr unsigned limit=std::is_same_v<typename T::value_type,std::uint8_t>?65536:
           std::is_same_v<typename T::value_type,std::uint16_t>?65536:
+          (std::is_same_v<typename T::value_type,NativeGeometryCell> || std::is_same_v<typename T::value_type,NativeOpenNode> || std::is_same_v<typename T::value_type,NativeSearchNode>)?65536:
           std::is_same_v<typename T::value_type,model::CreatureOrder>?15:128;
       need(count<=limit,"native command continuation vector limit");v.resize(count);for(auto &x:v)value(x);
     }else if constexpr(array_type<T>::value){for(auto &x:v)value(x);}
@@ -92,6 +114,17 @@ void validate(const Continuation &c){
     for(const auto &o:a.objects.objects)need(o.next==0xffff||o.next<a.objects.objects.size(),"native command object link differs");
     for(const auto &s:a.segments)need(s.count<=s.route.size()&&s.cursor<=s.count&&s.regionCursor<s.regionPath.size(),"native command segment cursor differs");
   }
+  const auto &native=c.native;
+  if(native.present){
+    need(c.originalBehaviorBindings&&a.callbacks.size()==n&&native.animation.size()==n&&native.search.size()==n&&native.initialization.size()==n,
+         "native provider actor roots differ");
+    need(native.cells.size()==std::uint64_t(d.x)*d.y*d.z&&native.cells.size()<=65536&&native.random.left<250&&native.random.right<250,
+         "native provider geometry/random roots differ");
+    for(const auto &cell:native.cells)need(cell.occupant==0xffff||(cell.occupant>=1&&cell.occupant<=n),"native provider occupant differs");
+    auto channel=[](const NativeAnimationChannel &ch){const auto &s=ch.state;need(s.forward.pc<=65536&&s.forward.elapsed<=s.forward.delay&&s.forward.breakFlag<=1&&s.reverseCursor<=s.reverseLength&&s.reverseLength<=65536,"native ANI continuation differs");};
+    for(const auto &ani:native.animation){channel(ani.body);channel(ani.overlay);for(const auto &aux:ani.auxiliary)channel(aux);}
+    for(const auto &ch:native.worldAnimation)channel(ch);
+  }else need(native.animation.empty()&&native.cells.empty()&&native.search.empty()&&native.initialization.empty(),"absent native provider roots differ");
   need(c.scheduler.cursor>=0&&unsigned(c.scheduler.cursor)<n&&c.scheduler.phase20>=0&&c.scheduler.phase20<20&&c.scheduler.phase90>=0&&c.scheduler.phase90<90,"native command scheduler out of bounds");
   need(c.backend.size()<=65536,"native command backend continuation limit");
   auto reference=[&](int v){need(v==-1||(v>=0&&unsigned(v)<n),"native command actor reference out of bounds");};
@@ -111,20 +144,23 @@ void validate(const Continuation &c){
   }
 }
 game::Bytes encode(const Continuation &input, unsigned version){
-  validate(input);need(version>=1&&version<=3,"unsupported native command write version");
+  validate(input);need(version>=1&&version<=4,"unsupported native command write version");
+  if(version<4)need(!input.native.present,"legacy command write loses native providers");
   if(version<3)need(!input.originalBehaviorBindings&&input.actions.callbacks.empty(),"legacy command write loses action state");
   if(version==1)need(input.maintenance.empty()&&input.movement.empty(),"legacy command write loses behavior state");
   auto c=input;Writer w;w.bytes={'C','M','D','1'};w.word(version);
   if(version==1)std::apply([&](auto &...x){(w.value(x),...);},fieldsV1(c));
   else if(version==2)std::apply([&](auto &...x){(w.value(x),...);},fieldsV2(c));
+  else if(version==3)std::apply([&](auto &...x){(w.value(x),...);},fieldsV3(c));
   else w.value(c);
   need(w.bytes.size()<=1024*1024,"native command encoded continuation limit");return w.bytes;
 }
 Continuation decode(const game::Bytes &bytes){
   need(bytes.size()>=8&&bytes.size()<=1024*1024&&game::Bytes(bytes.begin(),bytes.begin()+4)==game::Bytes{'C','M','D','1'},"unknown native command continuation");
-  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=3,"unsupported native command continuation version");Continuation c;
+  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=4,"unsupported native command continuation version");Continuation c;
   if(version==1)std::apply([&](auto &...x){(r.value(x),...);},fieldsV1(c));
   else if(version==2)std::apply([&](auto &...x){(r.value(x),...);},fieldsV2(c));
+  else if(version==3)std::apply([&](auto &...x){(r.value(x),...);},fieldsV3(c));
   else r.value(c);
   need(r.pos==bytes.size(),"trailing native command continuation");validate(c);return c;
 }

@@ -67,6 +67,8 @@ Continuation Runtime::read(const game::State &s) const {
        c.actions.motion.size()==initial_.actions.motion.size() &&
        c.actions.segments.size()==initial_.actions.segments.size(),
        "native command action profile differs");
+  need(c.native.present==initial_.native.present && c.native.profileStamp==initial_.native.profileStamp,
+       "native command provider profile differs");
   for (unsigned i = 0; i < s.slots.size(); ++i) {
     const auto &slot = s.slots[i]; const auto &a = c.world.creatures[i];
     need(slot.generation == c.generations[i] && slot.entity.has_value(), "native command actor generation differs");

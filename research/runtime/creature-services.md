@@ -1042,3 +1042,11 @@ missing exact receipts. Final native build outputs and temporary accounting
 snapshots use an isolated directory on the second NVMe outside the cold archive,
 with the existing100GiB primary reserve guard. Original media and historical
 failed/execution records are preserved; no cleanup or balance changes occur.
+
+
+NS66 integrates owned ANI/RNG, native geometry, saved route search/segment motion
+and creature-core frame providers into the same staged command context. See
+[native creature providers](native-creature-providers.md) for confirmed static
+ordering, paired controller/line admission evidence, the native profile and its
+explicit lower-services/campaign/lifecycle boundaries. CMD1/v4 owns their mutable
+continuation; older versions decode absence and required profiles refuse loss.
