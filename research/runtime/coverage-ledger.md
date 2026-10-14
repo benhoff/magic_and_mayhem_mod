@@ -8808,3 +8808,46 @@ simulation CPU or GPU busy time. Native World/UI owner separation is the next
 structural experiment; FIFO, two credits, guards and original pacing stay fixed.
 History review `835d2c0c..13f27e3e` verifies 11 exact transitions with zero missing
 receipts. Native diagnostics gain headless support only; live60FPS is pending.
+
+### Separate native World GPU production controls — 2026-10-13
+
+[Native GPU producer](native-world-gpu-production.md) is experimental and opt-in.
+TITAN `run-cfe19qzn` passes128 captured native-word comparisons, presentation
+during a blocked producer, two-job/two-lease bounds, ordered completion, exception
+refusal, worker/movie-pause/presentation controls and joined cleanup. Producer
+ordinary readbacks remain zero. Same native World work and original two-credit
+return protocol now have a separate owner; simulation clock and balance remain
+fixed. Full public journey/cadence proof is pending. First runner trace omission
+is preserved independently. History review `13f27e3e..ee3a1e42` finds15 exact
+committed transitions and zero missing receipts; it asserts no new validation.
+
+Public candidate `run-q5jyiyuf` now passes the full TITAN casting/combat/spell/
+portrait/three-menu/normal-Quit journey. All5268 World/image/import/return/GPU
+counts balance, source/GPU bounds remain two and ordinary readbacks zero; source/
+original manifests and private cleanup pass. Native World presentation57.18977
+FPS (visible trace57.72239), engine19.58158Hz and worst gameplay paint52.89421
+FPS are not sustained60FPS. Native World production remains13.84ms but its
+render-owner completion poll is0.0075ms. New-policy integration advances to
+bounded live observation only; same-build baseline remains pending.
+
+The first paired synchronous baseline `run-5352r9gj` exposes an experimental
+retirement regression:5108 balanced completed Worlds were compared with an
+absent GPU queue's zero counts. Its normal-Quit gate fails; it is retained as
+negative evidence, not successful comparison. The corrected predicate applies
+GPU checks only in async mode and retains all source/Quit checks in both. Fresh
+TITAN `run-5glxwuyn` passes128 pixel comparisons and mode-specific retirement
+controls. Both complete public paths must rerun before current-code live claims.
+
+Final-source TITAN controls `run-5glxwuyn` and complete async public candidate
+`run-435f6o9s` now pass. All5250 World/image/source/GPU counts balance, source/
+GPU bounds are two and ordinary readbacks zero; casting/combat/spells/portraits/
+three menu resumes/normal Quit, original/source checks and private cleanup pass.
+The same-binary final synchronous baseline `run-l4egvl9q` retires5393 balanced
+Worlds but fails the unchanged19FPS gate at17.78094Hz; candidate passes19.27881.
+Native World47.31881→56.25228FPS and UI-owner World poll12.917→0.007889ms
+are observed across distinct game states; total World production remains13.74ms.
+Final worst gameplaypaint17.27273FPS is retained as a hitch, so sustained60FPS
+is unresolved. Early bounded trace overwrite/absent absolute host origin prevent
+precise cause attribution; targeted hitch retention/UI-gate/lease/GUI-driver
+correlation is the next render experiment. New policy gains current bounded
+live-observation support only. Original equivalence/replacement remain none.

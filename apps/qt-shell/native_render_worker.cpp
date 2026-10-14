@@ -9,7 +9,7 @@
 NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const QString& game,const QString& reportPath):viewport_(v),reportPath_(reportPath){
     baselineUiClock_=qEnvironmentVariableIntValue("MNM_WORLD_UI_CLOCK_BASELINE")==1;
     NativeRenderTarget target{[this]{return share_!=nullptr;},[this]{return share_;},
-        [this](auto frame){rendered_=std::move(frame);frameChanged_=rendered_.valid();},[]{return QString();},&surface_};
+        [this](auto frame){rendered_=std::move(frame);frameChanged_=rendered_.valid();},[]{return QString();},&surface_,&worldSurface_};
     world_=std::make_unique<ResidentWorldSession>(target,path,game,true);
     commands_=std::make_unique<LiveCommandSession>(target);
     commands_->residentWorld=[this](auto g,auto n){return world_->import(g,n);};
@@ -45,6 +45,10 @@ bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     if(!started_ && viewport_.ready()){
         share_=viewport_.context();surface_.setFormat(share_->format());surface_.create();
         if(!surface_.isValid()){status_.error="Render worker offscreen surface creation failed";return false;}
+        if(qEnvironmentVariableIntValue("MNM_ASYNC_WORLD_GPU")==1){
+            worldSurface_.setFormat(share_->format());worldSurface_.create();
+            if(!worldSurface_.isValid()){status_.error="World producer offscreen surface creation failed";return false;}
+        }
         started_=true;start();
     }
     if(!status_.error.isEmpty())return false;

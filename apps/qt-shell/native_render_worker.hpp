@@ -40,6 +40,7 @@ private:
     GlViewport& viewport_;
     // Platform surfaces are created/destroyed on the GUI; worker contexts use them.
     QOffscreenSurface surface_;
+    QOffscreenSurface worldSurface_;
     QOpenGLContext* share_=nullptr;
     QString reportPath_;
     std::unique_ptr<ResidentWorldSession> world_;

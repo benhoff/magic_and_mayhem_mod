@@ -17,6 +17,7 @@ struct LiveMenuSessionTestAccess {
  static void poll(LiveMenuSession& s){s.poll();}
 };
 struct ResidentWorldSessionTestAccess {
+ static bool production(bool asynchronous,unsigned complete,const mnm::render::GpuProductionQueue::Stats& p){return ResidentWorldSession::productionRetired(asynchronous,complete,p);}
  static void queue(ResidentWorldSession& s,const QString& path){s.queueReport(path);}
  static void busy(ResidentWorldSession& s,std::shared_ptr<std::promise<void>> gate){s.reportWork_=std::async(std::launch::async,[gate]{gate->get_future().wait();});}
  static QString latest(ResidentWorldSession& s){return s.latestReport_?QJsonDocument::fromJson(s.latestReport_->bytes).object()["completed"].toString():QString();}
@@ -26,6 +27,17 @@ struct ResidentWorldSessionTestAccess {
 };
 int main(int argc,char** argv) try {
  QApplication app(argc,argv);QTemporaryDir root;check(root.isValid());unsigned ackCases=0,refusals=0,retired=0;
+ {
+  mnm::render::GpuProductionQueue::Stats p;
+  // A synchronous owner with completed Worlds has no GPU queue. This must not
+  // inherit the asynchronous zero-vs-nonzero queue-count rejection.
+  check(ResidentWorldSessionTestAccess::production(false,4498,p));
+  check(!ResidentWorldSessionTestAccess::production(true,4498,p));
+  p.submitted=p.produced=p.taken=4498;check(ResidentWorldSessionTestAccess::production(true,4498,p));
+  p.outstanding=1;check(!ResidentWorldSessionTestAccess::production(true,4498,p));p.outstanding=0;
+  --p.taken;check(!ResidentWorldSessionTestAccess::production(true,4498,p));++p.taken;
+  p.error="authored producer failure";check(!ResidentWorldSessionTestAccess::production(true,4498,p));
+ }
  for(unsigned variant=0;variant<5;++variant){
   LiveMenuSession session("/unused");const auto path=root.filePath(QString("menu-%1.bin").arg(variant));LiveMenuSessionTestAccess::initialize(session,path);
   QFile peer(path);check(peer.open(QIODevice::ReadWrite));auto* words=peer.map(0,MNM_MENU_V1_SIZE);check(words);
@@ -82,5 +94,5 @@ int main(int argc,char** argv) try {
   QFile periodic(directory+"/periodic.json");check(periodic.open(QIODevice::ReadOnly));check(QJsonDocument::fromJson(periodic.readAll()).object()["completed"].toString()=="512");
   ResidentWorldSessionTestAccess::fail(session);refuses([&]{ResidentWorldSessionTestAccess::service(session);});++refusals;
  }
- std::cout<<"{\"report_coalescing\":true,\"report_final_current\":true,\"report_error_propagation\":true,\"ack_cases\":"<<ackCases<<",\"retired_cases\":"<<retired<<",\"refusals\":"<<refusals<<",\"idempotent\":true}"<<std::endl;return 0;
+ std::cout<<"{\"success\":true,\"owned_sync_nonzero_retirement\":true,\"gpu_retirement_refusals\":4,\"report_coalescing\":true,\"report_final_current\":true,\"report_error_propagation\":true,\"ack_cases\":"<<ackCases<<",\"retired_cases\":"<<retired<<",\"refusals\":"<<refusals<<",\"idempotent\":true}"<<std::endl;return 0;
 } catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

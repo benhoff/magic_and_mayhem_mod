@@ -404,6 +404,7 @@ def main():
     parser.add_argument('--worker-status-every-turn',action='store_true',help='Diagnostic baseline: construct owned-worker status on every turn')
     parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
     parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
+    parser.add_argument('--async-world',action='store_true',help='Experimental separate native GPU World producer and immutable bounded handoff')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
@@ -422,6 +423,7 @@ def main():
     if args.worker_status_every_turn and not args.independent_world:parser.error('Worker status baseline requires independent World')
     if args.frame_trace and not args.independent_world:parser.error('Frame trace requires independent resident World')
     if args.reuse_world_image and not args.independent_world:parser.error('World image reuse requires independent resident World')
+    if args.async_world and (not args.reuse_world_image or not args.independent_world or args.profile_resident or args.capture_resident):parser.error('Async World requires independent image reuse and excludes resident capture profiling')
     if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
@@ -475,6 +477,7 @@ def main():
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
+        if args.async_world:declaration_command.extend(['--behavior','HOST.native-world-gpu-production','--scenario','HOST.native-world-gpu-production.public'])
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
@@ -538,6 +541,7 @@ def main():
     if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
     # Make the comparison independent of an inherited experiment setting.
     env['MNM_WORLD_IMAGE_REUSE']='1' if args.reuse_world_image else '0'
+    env['MNM_ASYNC_WORLD_GPU']='1' if args.async_world else '0'
     if args.worker_status_cadence:env['MNM_WORKER_STATUS_CADENCE']='1'
     if args.worker_status_every_turn:env['MNM_WORKER_STATUS_EVERY_TURN']='1'
     if args.trace_engine_cadence:
@@ -719,6 +723,14 @@ def main():
                 if resident['error'] or min(int(resident[k]) for k in ('completed','imports','verified_returns'))<64 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
                     raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
                 if args.normal_quit and (not resident.get('normal_quit_retired') or resident['pending'] or len({int(resident[k]) for k in ('completed','imports','verified_returns')})!=1):raise ValueError('Resident World normal Quit was not acknowledged and balanced')
+                if args.async_world:
+                    production=resident.get('world_gpu_production',{})
+                    if production.get('policy')!='dedicated-native-owner' or production.get('error') or production.get('high_water',3)>2 or int(production.get('immutable_allocations',3))>2:
+                        raise ValueError('Native GPU production ownership/bound proof failed')
+                    if args.normal_quit and (production.get('outstanding',1) or any(int(production.get(k,-1))!=int(resident['completed']) for k in ('submitted','produced','taken'))):
+                        raise ValueError('Native GPU production normal Quit did not balance')
+                    if int(resident.get('retained_world_image_captures',-1))!=int(resident['completed']) or resident.get('source_high_water',3)>2:
+                        raise ValueError('Native GPU production image/source credit proof failed')
                 if resident['engine_fps']<args.min_fps:raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
                 if args.hardware and ('NVIDIA' not in resident['renderer'] or any(x in resident['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Resident World did not use NVIDIA hardware')
                 report['resident_world']=resident

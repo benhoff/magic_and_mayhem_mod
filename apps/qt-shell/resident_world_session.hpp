@@ -1,4 +1,5 @@
 #pragma once
+#include "../../renderer/gpu_production_queue.hpp"
 #include "native_render_target.hpp"
 #include "native_frame_trace.hpp"
 #include "../../compat/legacy/world_continuous.hpp"
@@ -13,6 +14,7 @@
 #include <future>
 class GlViewport;
 class ResidentProfileCapture;
+struct ResidentWorldGpuBackend;
 // Application service: strictly pairs a completed native World with an ordered
 // command import and an independently verified original return before reuse.
 class ResidentWorldSession final {
@@ -28,13 +30,16 @@ public:
     bool independent() const{return independent_;}
     mnm::render::GpuFrame drawIndependent(std::uint64_t generation);
     struct DisplayState {std::chrono::steady_clock::time_point deadline;std::uint64_t generation;bool active,pending;};
-    DisplayState displayState() const{return {nextFrame_,completed_,independent_&&bool(world_)&&!normalQuitRetired_&&error_.isEmpty(),bool(ownedPending_)};}
+    DisplayState displayState() const{return {nextFrame_,completed_,independent_&&(bool(world_)||(asynchronous_&&completed_))&&!normalQuitRetired_&&error_.isEmpty(),bool(ownedPending_)};}
     void pollOwned(bool);
     void noteIndependentPresentation(double uiMilliseconds);
     std::uint64_t nativeFrames() const{return completed_+extraFrames_;}
     NativeFrameSourceTiming lastSourceTiming() const{return lastSourceTiming_;}
     void saveReport(const QString&);
 private:
+    static bool productionRetired(bool asynchronous,std::uint64_t completed,const mnm::render::GpuProductionQueue::Stats& p){
+        return !asynchronous || (p.error.empty() && p.submitted==completed && p.produced==completed && p.taken==completed && !p.outstanding);
+    }
     unsigned phaseLogRows_=0;
     struct ReportSnapshot {QString path;QByteArray bytes;};
     std::future<void> reportWork_;
@@ -57,6 +62,14 @@ private:
     QString game_;
     bool independent_=false;
     bool retainCompletedImage_=false;
+    bool asynchronous_=false;
+    std::shared_ptr<ResidentWorldGpuBackend> gpuBackend_;
+    std::unique_ptr<mnm::render::GpuProductionQueue> gpuProduction_;
+    mnm::render::RenderStats producerStats_;
+    QString producerDriver_;
+    std::uint64_t submittedWorlds_=0,producerReadbacks_=0,producerCaptures_=0;
+    double productionMs_=0,maxProductionMs_=0;
+    void pollAsynchronous(bool);
     std::unique_ptr<mnm::legacy::WorldSnapshotQueue> snapshotQueue_;
     std::optional<mnm::legacy::OwnedWorldSnapshot> ownedPending_;
     mnm::render::GpuFrame ownedFrame_;
