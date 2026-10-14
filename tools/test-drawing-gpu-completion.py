@@ -27,7 +27,7 @@ def main():
     prefix,lock=prepare(ROOT,run,a.prefix_template,a.shared_fixture_prefix);env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_WINE_GPU_COMPLETION='1',MNM_DRAW_WINE_BLIT_WORKER='1');results=[]
     try:
         with (run/'wineboot.log').open('x') as out:subprocess.run(['wineboot','-u'],env=env,stdout=out,stderr=subprocess.STDOUT,check=True,timeout=90)
-        cases=[('satisfied',0,0),('already-signaled',1,0),('no-context',2,0),('sentinel-procedures',3,99),('null-fence',4,99),('timeout',5,99),('wait-failed',6,99),('context-changed',8,99),('unknown-wait',9,99),('invalid-flag',10,0),('default-off',11,0)]
+        cases=[('satisfied',0,0),('already-signaled',1,0),('no-context',2,0),('sentinel-procedures',3,99),('null-fence',4,99),('timeout',5,99),('wait-failed',6,99),('context-changed',8,99),('unknown-wait',9,99),('invalid-flag',10,0),('default-off',11,0),('after-observer-close',12,0),('resource-after-close',13,0)]
         for label,mode,expected in cases:
             target=run/label;target.mkdir();trial=dict(env,MNM_GPU_TEST=chr(ord('0')+mode))
             if mode==10:trial['MNM_DRAW_WINE_GPU_COMPLETION']='x'
@@ -40,7 +40,7 @@ def main():
             elif observed is None or len(observed['calls'])!=1 or (observed['calls'][0]['worker'],observed['calls'][0]['command'],observed['calls'][0]['submission'])!=(1,7,8):raise ValueError('Worker binding missing')
             results.append(dict(case=label,exit_code=x.returncode,observation=observed))
         checks=subprocess.run(['python3',str(ROOT/'tests/test-drawing-gpu-completion.py')],capture_output=True,text=True,check=True);stable()
-        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=results,decoder_tests=checks.stderr,worker_abi_fp_last_error_preserved=True,original_callback_forwarded_once=True,failed_fence_prevents_worker_return=True,original_game_executed=False,actual_gl_context_executed=False,scope='Owned PE32 fake GL public ABI responses through the actual worker wrapper. Signal/no-context/default-off accepted, six failures stop before lease-return publication. Not hardware or original GPU proof.')
+        report=dict(schema=1,success=True,sources=sources,sources_stable=True,claims=claims['claims'],artifacts=str(run.relative_to(ROOT)),binary_sha256=sha(binary.read_bytes()),cases=results,decoder_tests=checks.stderr,worker_abi_fp_last_error_preserved=True,original_callback_forwarded_once=True,late_worker_after_close_forwarded_without_gl=True,late_resource_get_map_unmap_forwarded_without_log=True,failed_fence_prevents_worker_return=True,original_game_executed=False,actual_gl_context_executed=False,scope='Owned PE32 fake GL public ABI responses through the actual worker wrapper. Signal/no-context/default-off accepted, six failures stop before lease-return publication. Not hardware or original GPU proof.')
         with a.report.open('x') as out:json.dump(report,out,indent=2);out.write('\n')
         print(json.dumps(dict(success=True,cases=len(results))))
     finally:

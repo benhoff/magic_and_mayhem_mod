@@ -23,13 +23,23 @@ static void wine_blit_packet_worker(const void* p,u32 w,u32 phase){(void)p;(void
 static void wine_worker_context_publish(const void* p,u32 w,u32 phase){(void)p;(void)w;(void)phase;}
 #include "../runtime/drawing/wine_blit_worker.h"
 #include "../runtime/drawing/wine_gpu_completion.h"
+static u32 producer_points_enabled;
+static struct {u32 depth,entry[32];} wine_submission_parents[32];
+static u32 wine_submission_slot(void){return 0;}
+static void wine_source_version_write(void* r,u32 s,u32 k,u32 p){(void)r;(void)s;(void)k;(void)p;}
+#include "../runtime/drawing/wine_resource_mapping.h"
+static u32 late_resource_calls;
+static void* __attribute__((cdecl)) original_get(void* texture){require(texture==(void*)0x1111&&GetLastError()==0xbeef,220);++late_resource_calls;SetLastError(0xcafe);return(void*)0x2222;}
+static u32 __attribute__((cdecl)) original_map(void* resource,u32 sub,u32* descriptor,const u32* box,u32 flags){require(resource==(void*)0x2222&&sub==3&&descriptor&&!box&&flags==0x80000000u&&GetLastError()==0xbeef,221);++late_resource_calls;descriptor[0]=16;descriptor[1]=32;descriptor[2]=0x3333;SetLastError(0xcafe);return 0;}
+static u32 __attribute__((cdecl)) original_unmap(void* resource,u32 sub){require(resource==(void*)0x2222&&sub==3&&GetLastError()==0xbeef,222);++late_resource_calls;SetLastError(0xcafe);return 0;}
+
 static void clobber(void){u16 control=0x037f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0x1234);}
 static void* WIN current(void){clobber();if(mode==2)return 0;++context_calls;return (void*)(mode==8&&context_calls>1?0x5678:0x1234);}
 static void* WIN fence(u32 condition,u32 flags){require(held&&forwarded==1&&condition==0x9117&&!flags,202);clobber();return mode==4?0:(void*)0x9876;}
 static u32 WIN wait(void* sync,u32 flags,unsigned long long timeout){require(held&&sync==(void*)0x9876&&flags==1&&timeout==1000000000ULL,203);++waited;clobber();return mode==5?0x911b:mode==6?0x911d:mode==9?0x1234:mode==1?0x911a:0x911c;}
 static void WIN destroy(void* sync){require(held&&sync==(void*)0x9876&&waited==1,204);++destroyed;clobber();}
 static void* WIN proc(const char* n){clobber();if(mode==3)return(void*)1;if(n[2]=='F')return(void*)&fence;if(n[2]=='C')return(void*)&wait;return(void*)&destroy;}
-static void __attribute__((cdecl)) original(void* ctx,const void* packet){require(ctx==(void*)0x4567&&packet==wine_blit_packets[0].pointer&&held&&GetLastError()==0xbeef,205);++forwarded;u16 control=0x077f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0xcafe);}
+static void __attribute__((cdecl)) original(void* ctx,const void* packet){require(ctx==(void*)0x4567&&packet==wine_blit_packets[0].pointer&&(wine_submission_enabled?held:!held)&&GetLastError()==0xbeef,205);++forwarded;u16 control=0x077f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0xcafe);}
 void start(void){
  char value[2];require(GetEnvironmentVariableA("MNM_GPU_TEST",value,2)==1,200);mode=value[0]-'0';InitializeCriticalSection(journal_lock);
  if(mode==10){require(!wine_gpu_open(),211);ExitProcess(0);}
@@ -37,5 +47,19 @@ void start(void){
  require(wine_blit_worker_open(),207);u32 packet[25]={0};packet[0]=42;wine_blit_packets[0].pointer=packet;wine_blit_packets[0].command=7;wine_blit_packets[0].submission=8;copy(wine_blit_packets[0].words,packet,100);
  SetLastError(0xbeef);u32 stack_before,stack_after;__asm__ volatile("movl %%esp,%0":"=r"(stack_before));wine_blit_worker((void*)0x4567,packet);__asm__ volatile("movl %%esp,%0":"=r"(stack_after));
  u16 control;__asm__ volatile("fnstcw %0":"=m"(control));require(stack_before==stack_after&&control==0x077f&&GetLastError()==0xcafe&&forwarded==1&&returned==1&&!held,208);
- require(destroyed==waited&&(mode==2||mode==11||destroyed==1),209);wine_blit_worker_close(1);wine_gpu_close(1);ExitProcess(0);
+ require(destroyed==waited&&(mode==2||mode==11||destroyed==1),209);wine_blit_worker_close(1);wine_gpu_close(1);
+ if(mode==12){
+  wine_submission_enabled=0;SetLastError(0xbeef);u32 before=context_calls;
+  wine_blit_worker((void*)0x4567,packet);
+  require(forwarded==2&&returned==1&&!held&&context_calls==before&&GetLastError()==0xcafe&&!wine_gpu_enabled,213);
+ }
+ if(mode==13){
+  wine_resource_file=CreateFileA("resource-close-test.bin",0x40000000,0,0,1,0x80,0);require(wine_resource_file!=(HANDLE)-1,214);wine_resource_enabled=1;
+  wine_resource_original[0]=(void*)&original_get;wine_resource_original[1]=(void*)&original_map;wine_resource_original[2]=(void*)&original_unmap;
+  wine_resource_close(1);require(!wine_resource_enabled,215);
+  SetLastError(0xbeef);require(wine_resource_get((void*)0x1111)==(void*)0x2222&&GetLastError()==0xcafe,216);
+  u32 descriptor[3];SetLastError(0xbeef);require(wine_resource_map((void*)0x2222,3,descriptor,0,0x80000000u)==0&&GetLastError()==0xcafe&&descriptor[2]==0x3333,217);
+  SetLastError(0xbeef);require(wine_resource_unmap((void*)0x2222,3)==0&&GetLastError()==0xcafe&&late_resource_calls==3&&!wine_resource_calls,218);
+ }
+ ExitProcess(0);
 }

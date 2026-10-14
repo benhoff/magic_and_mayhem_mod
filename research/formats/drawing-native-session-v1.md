@@ -89,3 +89,21 @@ and an encoded BMP, independently checks six complete planes across six native
 segments (including interrupted World history), and checks 29 refusal cases.
 The evidence retains execution logs, prospective scope/source claims and binary
 hashes; it supplies no original behavioral comparison.
+
+## Comparison-only source snapshots
+
+The explicit `--source-snapshots` option uses the same contained, hash-bound
+inputs and bounded decoder but reads owned `DrawingScene` source canvases. It
+does not publish a `DrawingSession` frame. The source sequence may repeat for
+different canvases; a duplicate canvas at that sequence is refused. A source
+canvas independent of an active World canvas may be read; the active World
+canvas itself refuses until completion. Undefined pixels and poisoned history
+remain refused. Existing ordinary session publication stays strict.
+
+Outputs are `source-000001.565` and exact source identities in `frames`; the
+report declares `native_source_snapshots: true`, terminal state
+`source_snapshots_complete`, no physical presentation, and zero resources after
+cleanup. Snapshot success asserts owned source acquisition only. An external
+comparison tool must account for primary-buffer rectangle copies and retained
+output before claiming whole presented images. The complete producer, asset and
+declaration immutability checks also apply to this mode.

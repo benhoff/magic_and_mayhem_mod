@@ -41,4 +41,4 @@ static int wine_gpu_install(void){
  if(current!=(void*)((u32)module+0xda210)||proc!=(void*)((u32)module+0xda900)||!readable(current,16)||!readable(proc,16)||!equal(current,a,16)||!equal(proc,b,16))return 0;
  wine_gpu_current=(void*)current;wine_gpu_proc=(void*)proc;return 1;
 }
-static void wine_gpu_close(u32 reason){if(!wine_gpu_file)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[3]=wine_gpu_calls;r[8]=wine_gpu_failed;r[9]=wine_gpu_unwitnessed;r[10]=wine_gpu_signaled;wine_gpu_emit(r);if(!CloseHandle(wine_gpu_file))ExitProcess(99);wine_gpu_file=0;}
+static void wine_gpu_close(u32 reason){if(!wine_gpu_file)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[3]=wine_gpu_calls;r[8]=wine_gpu_failed;r[9]=wine_gpu_unwitnessed;r[10]=wine_gpu_signaled;wine_gpu_emit(r);if(!CloseHandle(wine_gpu_file))ExitProcess(99);wine_gpu_file=0;wine_gpu_enabled=0;}

@@ -16,7 +16,7 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
         if(output_){renderer_.destroy(output_);output_=0;}
         const auto &r=c.fields;
         if(sequence_==std::numeric_limits<unsigned>::max()||r[1]!=sequence_+1||
-           r[2]<1||r[2]>MNM_PRODUCER_PAYLOAD_SOURCE||r[23]||
+           r[2]<1||r[2]>MNM_PRODUCER_COLOUR_RECT||r[23]||
            c.bytes().size()>128u*1024u*1024u-96||r[0]!=96+c.bytes().size()||r[18]!=c.bytes().size())
             throw std::invalid_argument("Drawing scene source sequence or record is invalid");
         const bool independentCopy=r[2]==MNM_PRODUCER_COPY&&
@@ -112,6 +112,11 @@ void DrawingScene::seal(DrawingBoundary boundary){
 void DrawingScene::requirePublished() const{
     if(poisoned_||!output_||publishedSequence_!=sequence_)
         throw std::runtime_error("Drawing scene has no complete current published output");
+}
+render::Image DrawingScene::sourceSnapshot(unsigned canvas) const {
+    if(poisoned_||!canvas||(world_->active()&&world_->canvas()==canvas))
+        throw std::runtime_error("Native source snapshot is unavailable");
+    return replay_.read(canvas);
 }
 render::Image DrawingScene::read(){requirePublished();return renderer_.read(output_);}
 render::GpuFrame DrawingScene::presentGpu(){requirePublished();return renderer_.presentGpu(output_);}

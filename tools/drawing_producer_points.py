@@ -65,11 +65,12 @@ def decode_points(raw, journal, intervals, producer_records):
                 coherent_presented_frames=False,complete_presented_journey=False)
 
 
-def inspect_points(directory):
+def inspect_points(directory,session=False):
     root=Path(directory)
     path=Path(__file__).with_name('inspect-canvas-producers.py')
     spec=importlib.util.spec_from_file_location('producer_inspector',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    producers=(root/'canvas-producers.bin').read_bytes();_,records=module.decode(producers,complete=True)
+    producers=(root/'canvas-producers.bin').read_bytes();_,records=module.decode_session(producers,(root/'canvas-session-0000.done').read_bytes()) if session else module.decode(producers,complete=True)
     result=decode_points((root/'api-producer-points.bin').read_bytes(),(root/'session.bin').read_bytes(),(root/'api-call-intervals.bin').read_bytes(),records)
     result['producer_journal_sha256']=sha(producers)
+    if session:result['session_producer_marker_sha256']=sha((root/'canvas-session-0000.done').read_bytes())
     return result

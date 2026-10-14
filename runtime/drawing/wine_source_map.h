@@ -102,5 +102,5 @@ static void wine_source_map_close(u32 reason){
  if(!wine_source_map_file)return;if(wine_source_map_busy)ExitProcess(99);
  u32 r[64]={0};r[0]=++wine_source_map_records;r[1]=4;r[2]=reason;r[3]=wine_source_map_samples;r[4]=wine_source_map_payloads;r[5]=wine_source_map_attempts[0];r[6]=wine_source_map_attempts[1];
  if(wine_source_map_bounded){r[5]=wine_source_map_total_attempts;r[6]=wine_source_map_total_bytes;}
- if(wine_source_map_records>16384||!write(wine_source_map_file,r,256)||!CloseHandle(wine_source_map_file))ExitProcess(99);wine_source_map_file=0;
+ if(wine_source_map_records>16384||!write(wine_source_map_file,r,256)||!CloseHandle(wine_source_map_file))ExitProcess(99);wine_source_map_file=0;wine_source_map_enabled=0;
 }

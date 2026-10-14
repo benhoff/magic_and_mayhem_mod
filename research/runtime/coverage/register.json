@@ -46267,7 +46267,9 @@
         "DRAW02.gpu-completion-build-negative-01-20261013",
         "DRAW02.gpu-completion-fixture-01-20261013",
         "DRAW02.gpu-completion-original-01-20261013",
-        "DRAW02.gpu-completion-lease-review-01-20261013"
+        "DRAW02.gpu-completion-lease-review-01-20261013",
+        "DRAW02.gpu-completion-fixture-02-20261014",
+        "DRAW02.gpu-completion-fixture-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -46326,6 +46328,159 @@
         "Fresh offline analysis02 fingerprints all replay dependencies and classifies2154 unlocated entries across49 identities:2144 entries on46 identities have no observed Lock return in the capture;10 entries on canvases2/21/53 precede later Lock returns. Four classification tests pass.",
         "Analysis01 retains its earlier narrower dependency contract; analysis02 supersedes it for current provenance. The CLI path failure is retained separately. No observed Lock is not a GPU-only or no-backing classification; equal prefixes cannot establish event order.",
         "Physical allocations, alternate views, all-call Lock observation and original backing lifetimes remain unproved. Original source atomicity, native parity and full DRAW-02 are not promoted."
+      ]
+    },
+    {
+      "id": "NR.drawing-quick-battle-native-comparison",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete bounded Quick Battle capture to owned native frame replay",
+      "scope": "Bounded Main/setup/loading/Quick Battle interaction/results/returned Main journey. Retain drawing producers through declared interval and normal Quit, bind every observed EGL physical frame to exact worker/submission/API source generation/prefix, replay source-owned native inputs without oracle pixels and compare whole planes. Missing sources/frames, unsupported native operations and mismatches remain explicit; no all-route, all-journey or live replacement promotion. Source snapshots may include independent cursor canvases during active World work; active World canvas snapshots refuse until completion. Compose recorded bounded primary rectangle updates over prior native output; cursor backgrounds follow exact driver save/copy order from native source snapshots or prior native primary output; a pending primary colour fill requires the following closed source command and successful colour-fill API result. No session-frame publication or native physical scanout claim for this source-snapshot comparator.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-quick-battle-native-comparison.md"
+      ],
+      "implementation": [
+        "tools/compare-drawing-quick-battle.py"
+      ],
+      "tests": [
+        "tests/test-drawing-quick-battle.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/drawing_session_main.cpp",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "tools/inspect-canvas-producers.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_source_worker_egl.py",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_api_session.py",
+        "protocols/include/mnm/canvas_producers_v5.h",
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_egl_physical.py",
+        "tools/drawing_x11_delivery.py",
+        "tools/drawing_delivery_timing.py",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json",
+        "compat/legacy/drawing_scene.hpp",
+        "tests/drawing-scene-test.cpp",
+        "tools/test-native-drawing-session-runner.py"
+      ],
+      "evidence": [
+        "DRAW02.quick-battle-comparison-01-20261014",
+        "DRAW02.quick-battle-comparison-02-20261014",
+        "DRAW02.quick-battle-comparison-03-20261014",
+        "DRAW02.quick-battle-comparison-04-20261014",
+        "DRAW02.quick-battle-comparison-05-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "All observed frames of one bounded Quick Battle pass. All fourteen journey and twenty-one operation completion gates, source/backing atomicity across all aliases, native scanout and live replacement remain independent and unproved."
+      ]
+    },
+    {
+      "id": "NR.drawing-session-producer-capture",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Drawing source capture across one bounded Quick Battle session",
+      "scope": "Opt-in original-active trace recorder retains source-only producer commands past the old32-return stop through an explicit quiescent interval end, followed by normal Quit, within explicit v5 120-queue/1048576-record/512MiB wire budgets, while legacy budgets remain unchanged. Emit metadata-only checkpoints and an independent closed-session marker only with no failures or pending producer frames. Legacy complete-prefix decode remains separate. No original destination pixels enter native replay and budget/closure failures refuse.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-session-producers.md",
+        "research/runtime/draw02-quick-battle-native-comparison.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_session_producers.h"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/test-drawing-session-producers.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/observer.c",
+        "tools/drawing-session-runner.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/drawing_producer_points.py",
+        "tools/build-scene-observer.py",
+        "runtime/scene/producer_trace_guard.h",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/canvas_producers_v5.h",
+        "compat/legacy/canvas_producers.cpp",
+        "tools/drawing_diagnostic_cadence.py"
+      ],
+      "evidence": [
+        "DRAW02.quick-battle-original-01-20261014",
+        "DRAW02.quick-battle-original-02-20261014",
+        "DRAW02.quick-battle-original-03-20261014",
+        "DRAW02.quick-battle-original-04-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending fresh complete bounded original session capture and native comparison; legacy capture scopes remain historical."
+      ]
+    },
+    {
+      "id": "NR.drawing-observer-shutdown",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Late original drawing callbacks after observer shutdown",
+      "scope": "Shutdown disables diagnostic GL/resource helpers before subsequent original callbacks. Worker admission checks observation state under the journal mutex and only admitted callbacks publish return metadata. Late workers/get/map/unmap forward original bodies and preserve results/error state without GL probes or closed-log writes. No original body suppression or broader driver replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-quick-battle-native-comparison.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_gpu_completion.h",
+        "runtime/drawing/wine_resource_mapping.h",
+        "runtime/drawing/wine_source_map.h",
+        "runtime/drawing/wine_source_descriptor.h"
+      ],
+      "tests": [
+        "tests/drawing-gpu-completion-test.c",
+        "tools/test-drawing-gpu-completion.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/session.c",
+        "runtime/drawing/wine_map_storage_point.h",
+        "runtime/drawing/wine_retained_map_source.h",
+        "runtime/drawing/storage_point_exports.h",
+        "runtime/shadow/win32_min.h",
+        "tools/drawing_gpu_completion.py",
+        "tools/drawing_fixture_prefix.py"
+      ],
+      "evidence": [
+        "DRAW02.quick-battle-original-01-20261014",
+        "DRAW02.quick-battle-original-02-20261014",
+        "DRAW02.quick-battle-original-03-20261014",
+        "DRAW02.gpu-completion-fixture-02-20261014",
+        "DRAW02.gpu-completion-fixture-03-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Pending fresh original normal-Quit validation after late resource helper fix; existing scoped observer evidence remains historical."
       ]
     }
   ],
@@ -100717,6 +100872,232 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW02.quick-battle-original-01-20261014",
+      "kind": "static",
+      "scope": "Retained unsuccessful original acquisition and shutdown/closure failure. No passing capture or observer validation claimed.",
+      "record": "research/runtime/draw02-quick-battle-original-01.json",
+      "sha256": "cddec0ab3778e74d629bc9f1281d78942b2a693c970a7d29684f578e48c5bdd5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.quick-battle-original-02-20261014",
+      "kind": "static",
+      "scope": "Retained unsuccessful original acquisition and shutdown/closure failure. No passing capture or observer validation claimed.",
+      "record": "research/runtime/draw02-quick-battle-original-02.json",
+      "sha256": "df0684e0d6743038d1a198d9c94119085f966e570e6da7d8c9a16318f8f7baec",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.quick-battle-original-03-20261014",
+      "kind": "static",
+      "scope": "Retained unsuccessful original acquisition and shutdown/closure failure. No passing capture or observer validation claimed.",
+      "record": "research/runtime/draw02-quick-battle-original-03.json",
+      "sha256": "723f51a489ae48c3f3a7e0a21b6241224b3ef422f299c2a9caaedd31b04c8ab5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.gpu-completion-fixture-02-20261014",
+      "kind": "native_integration",
+      "scope": "Historical 12-case owned PE32 worker shutdown fixture before the resource-map fix; immutable source fingerprints retained.",
+      "record": "research/runtime/draw02-gpu-completion-fixture-02.json",
+      "sha256": "49eb7672395a7bb5e0acec0bc83c101189030c2f4786cef79708284901694ca1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.gpu-completion-fixture-03-20261014",
+      "kind": "native_integration",
+      "scope": "13 owned PE32 cases plus six decoder cases. Late worker and resource callbacks after observer closure preserve original forwarding/results without GL probes or closed-log writes. Fake GL, no hardware or universal in-flight shutdown proof.",
+      "record": "research/runtime/draw02-gpu-completion-fixture-03.json",
+      "sha256": "d1cf7019d96994eaefd68eefb33b098ca02cd1670b8c2af5e85f7be3597c3645",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.quick-battle-original-04-20261014",
+      "kind": "live_observation",
+      "scope": "One complete bounded Quick Battle source interval with 41 World returns, 215430 records, independent quiescent v5 closure, 323 observed EGL frames and normal original Quit. Original drawing remains active.",
+      "record": "research/runtime/draw02-quick-battle-original-04.json",
+      "sha256": "b928efc0588fed728975ed76fde0ff00e7f15ca67291a3f9ccdd0c6e8fa98c81",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.quick-battle-comparison-01-20261014",
+      "kind": "native_integration",
+      "scope": "Retained first native asset-name failure.",
+      "record": "research/runtime/draw02-quick-battle-comparison-01.json",
+      "sha256": "4bd5543c9d352561611e62e07612e3a6c2d00168bce49723a52bb06af044a800",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.quick-battle-comparison-02-20261014",
+      "kind": "native_integration",
+      "scope": "Historical first source-owned native prefix: 126/333 frames, zero mismatches; missing source records past32 World returns refuse.",
+      "record": "research/runtime/draw02-quick-battle-comparison-02.json",
+      "sha256": "f6718bf8715a77eec8864a7a6d4c9bb85124e883932798b3617db4a1f5f87de2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 126
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.quick-battle-comparison-03-20261014",
+      "kind": "native_integration",
+      "scope": "Historical v5 whole-source attempt: 151/323 frames, zero mismatches; cursor source extents and pending clear refuse.",
+      "record": "research/runtime/draw02-quick-battle-comparison-03.json",
+      "sha256": "07aa9cacf8445d9ea50559d8ff50f5e0ef4979e5f9f7c7253677a1a20747fcc2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 151
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.quick-battle-comparison-04-20261014",
+      "kind": "native_integration",
+      "scope": "Historical full frame association/composition attempt:323 compared,25 mismatch frames, including cross-thread cursor background ordering and pending primary clear. Not passing parity.",
+      "record": "research/runtime/draw02-quick-battle-comparison-04.json",
+      "sha256": "f9fa2b14046fd5f648ed8d7a4b8cf3343ea0d94938a48b408a88edf238a921ff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 323
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.quick-battle-comparison-05-20261014",
+      "kind": "native_integration",
+      "scope": "All323 original observed EGL presentations reconstructed from source-owned native snapshots and driver-ordered rectangle/background/fill commands. Whole800x600 RGB565 expanded RGB tolerance1, zero mismatch. No original planes supply native inputs; no native physical scanout, live replacement or broad journey admission.",
+      "record": "research/runtime/draw02-quick-battle-comparison-05.json",
+      "sha256": "11ada4a43757f95067ad64d6f97ae9aabfe614168a7be4b2983bd90759dbd1b9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/observed_presentations",
+          "equals": 323
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 323
+        },
+        {
+          "pointer": "/mismatched_presentations",
+          "equals": 0
+        },
+        {
+          "pointer": "/all_observed_presentations_compared",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -112981,7 +113362,9 @@
         "NR.drawing-gpu-completion"
       ],
       "evidence": [
-        "DRAW02.gpu-completion-fixture-01-20261013"
+        "DRAW02.gpu-completion-fixture-01-20261013",
+        "DRAW02.gpu-completion-fixture-02-20261014",
+        "DRAW02.gpu-completion-fixture-03-20261014"
       ],
       "level": "headless",
       "tests": [
@@ -113019,6 +113402,56 @@
       "tests": [
         "tools/analyze-drawing-backing-provenance.py"
       ]
+    },
+    {
+      "id": "DRAW02.quick-battle-native-run",
+      "title": "One complete bounded Quick Battle native comparison",
+      "scope": "Original-active bounded Quick Battle observed EGL route; native replay only receives source inputs, all missing frames and mismatches retained.",
+      "behaviors": [
+        "NR.drawing-quick-battle-native-comparison"
+      ],
+      "tests": [
+        "tools/compare-drawing-quick-battle.py"
+      ],
+      "evidence": [
+        "DRAW02.quick-battle-comparison-01-20261014",
+        "DRAW02.quick-battle-comparison-02-20261014",
+        "DRAW02.quick-battle-comparison-03-20261014",
+        "DRAW02.quick-battle-comparison-04-20261014",
+        "DRAW02.quick-battle-comparison-05-20261014"
+      ],
+      "level": "headless"
+    },
+    {
+      "id": "DRAW02.quick-battle-session-source-capture",
+      "title": "Original Quick Battle full interval source collection",
+      "scope": "Bounded Main/setup/World/results/returned Main source collection, original active and normal Quit verified.",
+      "behaviors": [
+        "NR.drawing-session-producer-capture"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py"
+      ],
+      "evidence": [
+        "DRAW02.quick-battle-original-04-20261014"
+      ],
+      "level": "live_observation"
+    },
+    {
+      "id": "DRAW02.observer-shutdown-owned",
+      "title": "Actual PE32 late worker and resource forwarding",
+      "scope": "Owned callback teardown with unchanged originals and no GL/log use after closure.",
+      "behaviors": [
+        "NR.drawing-observer-shutdown"
+      ],
+      "tests": [
+        "tools/test-drawing-gpu-completion.py"
+      ],
+      "evidence": [
+        "DRAW02.gpu-completion-fixture-02-20261014",
+        "DRAW02.gpu-completion-fixture-03-20261014"
+      ],
+      "level": "headless"
     }
   ],
   "recovered_ranges": [
@@ -113392,8 +113825,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-gpu-provenance-final-20261013.json",
-    "sha256": "39bba00ed6d2ff7c5e5c17e2c16c7c3ed0d062f65636a3d630ac53ff83f3cea5"
+    "path": "research/runtime/coverage/source-index-draw02-quick-battle-20261014.json",
+    "sha256": "4f04dbc1da65348a360b0ce1c6fcc0c4a1912aab2cfbcb885ba827e71d715051"
   },
   "claim_bindings_required": true
 }

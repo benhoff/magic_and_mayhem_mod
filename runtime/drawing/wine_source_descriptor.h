@@ -40,5 +40,5 @@ static int wine_source_descriptor_install(void* module){
 }
 static void wine_source_descriptor_close(u32 reason){
  if(!wine_source_descriptor_file)return;u32 row[40]={0};row[1]=4;row[2]=reason;row[3]=wine_source_descriptor_samples;wine_source_descriptor_emit(row);
- if(!CloseHandle(wine_source_descriptor_file))ExitProcess(99);wine_source_descriptor_file=0;
+ if(!CloseHandle(wine_source_descriptor_file))ExitProcess(99);wine_source_descriptor_file=0;wine_source_descriptor_enabled=0;
 }

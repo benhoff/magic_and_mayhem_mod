@@ -54,6 +54,16 @@ int main(int argc,char **argv)try{
         submit(scene,fill(9,0));scene.publish({scene.sequence(),1,7,5,3});
         require(scene.read().pixels==baselineWorld,"Independent copy changed active World composition");
     }
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);
+        submit(scene,create(8));submit(scene,fill(8,0xabcd));
+        submit(scene,entry());submit(scene,raster());
+        require(scene.sourceSnapshot(8).pixels==std::vector<std::uint32_t>(15,0xabcd),"Independent source snapshot changed");
+        rejected([&]{scene.sourceSnapshot(7);});
+        auto returned=entry();returned.fields[2]=12;submit(scene,returned);
+        require(scene.sourceSnapshot(7).pixels==baselineWorld,"Completed World source snapshot changed");
+        require(scene.frames()==0,"Source snapshot published a session frame");
+    }
     for(unsigned endpoint:{0u,1u}){
         legacy::DrawingScene scene(renderer,input,source);startup(scene);
         submit(scene,create(8));submit(scene,fill(8,0x2468));submit(scene,entry());submit(scene,raster());

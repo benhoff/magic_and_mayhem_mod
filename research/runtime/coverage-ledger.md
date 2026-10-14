@@ -8644,3 +8644,39 @@ and full DRAW-02 remain partial; steps3–7 and full47-journey/21-operation admi
 are not promoted. The9a5f14b6..f56822f6history range has24exact file receipts and
 zero unresolved gaps. Source census, immutable evidence and current exact review
 accounting accompany this increment.
+
+
+## Bounded Quick Battle completion and shutdown repair — 2026-10-14
+
+The user authorized freezing diagnostic expansion and completing one bounded
+Quick Battle through native comparison. [Original04](draw02-quick-battle-original-04.json)
+records215430source commands through41World returns and a quiescent source
+interval close, followed by verified normal Quit. The prior32-return stop is
+replaced only in the opt-in source-only v5 capture policy; checkpoints contain
+metadata, not destination-plane inputs. All2927original inputs and executable
+sections verify unchanged. The bounded gameplay interval shows movement/health
+changes; semantic selection, tooltip and pause outcomes remain unclaimed.
+
+Observer shutdown was failing because late workers still ran the completion
+probe and resource helpers still logged after their files closed. The corrected
+admission/close guards preserve original forwarding and results.
+[Owned fixture03](draw02-gpu-completion-fixture-03.json) passes13PE32cases plus
+6decoder cases; [the completion record](draw02-quick-battle-native-comparison.md)
+retains both failure paths and the tested shutdown boundary. Universal in-flight
+teardown, original source backing/aliases and real hardware proof remain open.
+
+[Native comparison05](draw02-quick-battle-comparison-05.json) compares all323
+observed800x600EGLplanes:155040000RGB pixels and zero mismatches, with channel
+tolerance1for565expansion and alpha excluded. Native source snapshots plus
+recorded driver-order background/rectangle/fill commands reconstruct the full
+primary image. Original planes never supply native inputs. Intermediate asset,
+source extent and25-frame ordering/clear failures remain immutable. Ordinary
+complete-session frame publication remains independent of comparison snapshots.
+
+The requested one-Quick-Battle milestone is complete. DRAW-02 as a whole remains
+partial: full47-journey/21-operation admission, native physical scanout, live
+replacement and the remaining broader causality contracts are not promoted.
+Native scene/session checks pass3/3, final CLI snapshot/refusal checks pass, and
+relevant Python checks pass. The f56822f6..7976a431history review records28exact
+file receipts with zero gaps. Current source census/reviews retain all historical
+evidence and explicitly account for shared-code staleness.

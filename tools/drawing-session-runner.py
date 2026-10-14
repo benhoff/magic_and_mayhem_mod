@@ -29,6 +29,8 @@ if metadata.get('source_byte_witness'):os.environ['MNM_DRAW_SOURCE_BYTES']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_BYTES',None)
 if metadata.get('source_pending_copy'):os.environ['MNM_DRAW_SOURCE_PENDING_COPY']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_PENDING_COPY',None)
+if metadata.get('session_producers'):os.environ['MNM_CANVAS_SESSION_PRODUCERS']='1'
+else:os.environ.pop('MNM_CANVAS_SESSION_PRODUCERS',None)
 if metadata.get('source_write_trace'):os.environ['MNM_DRAW_SOURCE_WRITE_TRACE']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_WRITE_TRACE',None)
 if metadata.get('source_readonly_lease'):os.environ['MNM_DRAW_SOURCE_LEASE']='1'
