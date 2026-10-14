@@ -73,8 +73,8 @@ class EvidenceTests(unittest.TestCase):
         for _ in range(3):
             event(12, 2)
         event(3, 17, 4); event(20, 2)
-        channel = bytearray(106496)
-        channel[:16] = b'MNMMCM12' + struct.pack('<II', 12, len(channel))
+        channel = bytearray(196608)
+        channel[:16] = b'MNMMCM17' + struct.pack('<II', 17, len(channel))
         struct.pack_into('<I', channel, 36*4, 3)
         (root / 'channel.bin').write_bytes(channel)
         return rows
@@ -97,6 +97,18 @@ class EvidenceTests(unittest.TestCase):
                 self.write_events(root, changed)
                 with self.subTest(kind=kind), self.assertRaises(ValueError):
                     smoke.validate_events(root)
+
+    def test_current_menu_protocol_requires_exact_header_and_extent(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);self.write_events(root,self.events(root))
+            channel=(root/'channel.bin').read_bytes()
+            self.assertEqual(smoke.validate_events(root)['protocol_version'],17)
+            for bad in [b'MNMMCM12'+struct.pack('<II',12,106496)+channel[16:106496],
+                        b'MNMMCM17'+struct.pack('<II',22,196608)+channel[16:],
+                        b'MNMMCM17'+struct.pack('<II',17,196607)+channel[16:],
+                        channel[:-1],channel+b'\0']:
+                (root/'channel.bin').write_bytes(bad)
+                with self.assertRaises(ValueError):smoke.validate_events(root)
 
     def test_normal_quit_requires_no_resume_yes_and_final_ack(self):
         with tempfile.TemporaryDirectory() as d:

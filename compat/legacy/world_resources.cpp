@@ -5,6 +5,9 @@
 #include <cctype>
 #include <stdexcept>
 #include <tuple>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
 namespace mnm::legacy {
 namespace {
 quint32 get(const QByteArray &b, qsizetype at) {
@@ -150,9 +153,15 @@ std::vector<WorldAssetFile> WorldCatalogue::needed(
 }
 WorldResources::WorldResources(const assets::AssetStore &store,
                                assets::ResourceManager &resources)
-    : catalogue_(store), resources_(resources), bindings_(store, resources) {}
+    : catalogue_(store), resources_(resources), bindings_(store, resources) {
+  const auto flag=std::getenv("MNM_WORLD_OWNER_PROFILE");profileEnabled_=flag&&std::strcmp(flag,"1")==0;
+}
 std::vector<render::SceneDraw>
 WorldResources::display(const WorldFrame &frame) {
+  using Clock=std::chrono::steady_clock;
+  const auto start=profileEnabled_?Clock::now():Clock::time_point{};
+  const auto ms=[](auto a,auto b){return std::chrono::duration<double,std::milli>(b-a).count();};
+  profile_={};profile_.enabled=profileEnabled_;
   std::vector<SnapshotFrameIdentity> identities;
   identities.reserve(frame.draws.size());
   // A lease owns immutable decoded-source bytes for this entire frame.
@@ -175,9 +184,11 @@ WorldResources::display(const WorldFrame &frame) {
       identities.push_back(found->second);
     }
   std::vector<WorldAssetFile> needed;
+  const auto identified=profileEnabled_?Clock::now():Clock::time_point{};
   for (const auto &f : catalogue_.needed(identities))
     if (!bound_.count(f.id))
       needed.push_back(f);
+  const auto catalogued=profileEnabled_?Clock::now():Clock::time_point{};
   for (const auto &f : needed) {
     resources_.bind(f.id,
                     {assets::ResourceImageFormat::sprite, f.path, {}, {}, {}});
@@ -186,6 +197,7 @@ WorldResources::display(const WorldFrame &frame) {
                           f.sha);
     bound_.insert(f.id);
   }
+  const auto prepared=profileEnabled_?Clock::now():Clock::time_point{};
   std::vector<render::SceneDraw> draws;
   draws.reserve(frame.draws.size());
   std::size_t i = 0;
@@ -198,6 +210,7 @@ WorldResources::display(const WorldFrame &frame) {
     draws.push_back({bound.resource, bound.frame, draw.x, draw.y, true, true,
                      draw.colours, draw.clip, draw.composite});
   }
+  if(profileEnabled_){profile_.identitiesMs=ms(start,identified);profile_.catalogueMs=ms(identified,catalogued);profile_.resourcesMs=ms(catalogued,prepared);profile_.resolveMs=ms(prepared,Clock::now());}
   return draws;
 }
 } // namespace mnm::legacy

@@ -39,15 +39,19 @@ private:
 // Bounded native catalogue; decode and bind only files actually requested.
 class WorldResources final {
 public:
+    struct Profile {bool enabled=false;double identitiesMs=0,catalogueMs=0,resourcesMs=0,resolveMs=0;};
     WorldResources(const assets::AssetStore&,assets::ResourceManager&);
     std::vector<render::SceneDraw> display(const WorldFrame&);
     SnapshotBindingStats bindingStats() const { return bindings_.stats(); }
     WorldIdentityStats identityStats() const { return identities_.stats(); }
+    const Profile& profile() const { return profile_; }
 private:
     WorldCatalogue catalogue_;
     assets::ResourceManager& resources_;
     std::set<assets::ResourceId> bound_;
     SnapshotResources bindings_;
     WorldIdentityCache identities_;
+    bool profileEnabled_=false;
+    Profile profile_;
 };
 }

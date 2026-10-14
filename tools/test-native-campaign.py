@@ -236,7 +236,7 @@ def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20, normal_quit=Fals
         if flow.get('normal_quit') is not True:raise ValueError('Missing normal original game Quit')
     if [s.get('step') for s in steps] != expected:
         raise ValueError('Incomplete campaign click-through')
-    if any(s.get('screenshot_saved') is not True for s in steps if s['step'] != 'campaign-handoff'):
+    if flow.get("route_screenshots",True) and any(s.get('screenshot_saved') is not True for s in steps if s['step'] != 'campaign-handoff'):
         raise ValueError('Missing campaign screenshots')
     if stress_seconds:
         rates = flow.get('gameplay_rates', [])
@@ -281,8 +281,8 @@ def validate_events(experiment, cycles=1, difficulty=0, normal_quit=False):
     if len(ticks) < 3 or len(resumes)<cycles or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
         raise ValueError('Missing same-thread original World updates/Cancel resume')
     channel = (experiment / 'channel.bin').read_bytes()
-    if channel[:16] != b'MNMMCM12' + struct.pack('<II', 12, 106496) or len(channel) != 106496:
-        raise ValueError('Campaign test did not use the ordinary V12 menu protocol')
+    if channel[:16] != b'MNMMCM17' + struct.pack('<II', 17, 196608) or len(channel) != 196608:
+        raise ValueError('Campaign test did not use the ordinary V17 menu protocol')
     if struct.unpack_from('<I', channel, 36*4)[0] != 2+cycles+bool(difficulty)+(4 if normal_quit else 0):
         raise ValueError('Missing third menu acknowledgement')
     if normal_quit:
@@ -293,7 +293,7 @@ def validate_events(experiment, cycles=1, difficulty=0, normal_quit=False):
         if not any(r[1]==20 and answers[0][0]<r[0]<quits[1][0] and r[11]==0x6cbb78 and r[2]==answers[0][2] for r in rows):
             raise ValueError('Original No did not resume World before repeated Quit')
     return {'actions': actions, 'world_ticks': len(ticks), 'world_resumes': len(resumes),
-            'protocol_version': 12, 'events_sha256': sha(experiment / 'events.bin')}
+            'protocol_version': 17, 'events_sha256': sha(experiment / 'events.bin')}
 
 
 def stop_group(process):
@@ -400,6 +400,15 @@ def main():
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
+    parser.add_argument('--worker-status-cadence',action='store_true',help='Experimental16ms owned-worker status construction')
+    parser.add_argument('--worker-status-every-turn',action='store_true',help='Diagnostic baseline: construct owned-worker status on every turn')
+    parser.add_argument('--synchronous-route-capture',action='store_true',help='Diagnostic comparison: encode route screenshots on GUI instead of bounded background job')
+    parser.add_argument('--no-route-screenshots',action='store_true',help='Diagnostic comparison: skip route screenshots, retain casting/combat diagnostic captures and all performance gates')
+    parser.add_argument('--display-while-pending',action='store_true',help='Keep last imported native World displayable while new async generation waits for command import')
+    parser.add_argument('--hitch-capture',action='store_true',help='Bounded warm active paint-hitch windows with queue/UI/lease state; requires frame trace')
+    parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
+    parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
+    parser.add_argument('--async-world',action='store_true',help='Experimental separate native GPU World producer and immutable bounded handoff')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
@@ -414,6 +423,15 @@ def main():
     args.native_voices |= args.default_audio or args.native_loading or args.native_factory or args.native_music
     if args.native_music and (args.legacy_audio or not args.normal_quit):parser.error('Native music requires native audio and normal Quit')
     if args.disable_wine_dsound and not args.native_factory:parser.error('Module-disable diagnostic requires native factory verification')
+    if args.worker_status_cadence and not args.independent_world:parser.error('Worker status cadence requires independent World')
+    if args.worker_status_every_turn and not args.independent_world:parser.error('Worker status baseline requires independent World')
+    if args.synchronous_route_capture and (not args.frame_trace or args.no_route_screenshots):parser.error('Synchronous capture comparison requires frame trace and retained route screenshots')
+    if args.no_route_screenshots and (not args.frame_trace or args.healing_case or args.crowded_case):parser.error('Route screenshot comparison requires frame trace and ordinary campaign')
+    if args.display_while_pending and not args.async_world:parser.error('Display while pending requires --async-world')
+    if args.hitch_capture and not args.frame_trace:parser.error('Hitch capture requires --frame-trace')
+    if args.frame_trace and not args.independent_world:parser.error('Frame trace requires independent resident World')
+    if args.reuse_world_image and not args.independent_world:parser.error('World image reuse requires independent resident World')
+    if args.async_world and (not args.reuse_world_image or not args.independent_world or args.profile_resident or args.capture_resident):parser.error('Async World requires independent image reuse and excludes resident capture profiling')
     if args.independent_world and (not args.resident_world or args.scene_production_probe):parser.error('Independent World requires resident mode and excludes original extra-draw diagnostics')
     if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
     if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
@@ -458,12 +476,20 @@ def main():
               'wine_dsound_disable_requested':args.disable_wine_dsound,
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
+              'route_screenshots_requested':not args.no_route_screenshots,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
+        if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
+        if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
+        if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
+        if args.frame_trace and not (args.no_route_screenshots or args.synchronous_route_capture):declaration_command.extend(['--behavior','HOST.native-route-capture','--scenario','HOST.native-route-capture.public','--behavior','HOST.native-capture-request-intake','--scenario','HOST.native-capture-request-intake.public'])
+        if args.hitch_capture:declaration_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.public'])
+        if args.async_world:declaration_command.extend(['--behavior','HOST.native-world-gpu-production','--scenario','HOST.native-world-gpu-production.public'])
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
         if args.native_loading:declaration_command.extend(['--behavior','HOST.native-wave-loading','--scenario','native-wave-loading-campaign-20261012'])
         if args.native_factory:declaration_command.extend(['--behavior','HOST.native-audio-factory','--scenario','native-audio-factory-campaign-20261012'])
@@ -522,6 +548,18 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    # Regression proof requires fingerprints even when the normal launcher uses fast asset staging.
+    if args.native_draw:env['MNM_VERIFY_ASSETS']='1'
+    env['MNM_SYNC_ROUTE_CAPTURE']='1' if args.synchronous_route_capture else '0'
+    env['MNM_NO_ROUTE_SCREENSHOTS']='1' if args.no_route_screenshots else '0'
+    env['MNM_DISPLAY_WHILE_PENDING']='1' if args.display_while_pending else '0'
+    env['MNM_NATIVE_HITCH_CAPTURE']='1' if args.hitch_capture else '0'
+    if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
+    # Make the comparison independent of an inherited experiment setting.
+    env['MNM_WORLD_IMAGE_REUSE']='1' if args.reuse_world_image else '0'
+    env['MNM_ASYNC_WORLD_GPU']='1' if args.async_world else '0'
+    if args.worker_status_cadence:env['MNM_WORKER_STATUS_CADENCE']='1'
+    if args.worker_status_every_turn:env['MNM_WORKER_STATUS_EVERY_TURN']='1'
     if args.trace_engine_cadence:
         if not args.resident_world or not args.normal_quit:raise ValueError('Engine cadence requires resident World and normal Quit')
         env['MNM_ENGINE_CADENCE_TRACE']='1'
@@ -677,6 +715,10 @@ def main():
                 if resident_path.exists():
                     report['resident_world']=json.loads(resident_path.read_text());report['experiment']=str(roots[0])
                     if report['resident_world']['error']:raise ValueError('Resident World rendering stopped: '+report['resident_world']['error'])
+            expected_capture_policy='omitted' if args.no_route_screenshots else 'synchronous' if args.synchronous_route_capture else 'bounded-background-encoding'
+            if not (args.healing_case or args.crowded_case) and flow.get('route_capture_policy')!=expected_capture_policy:raise ValueError('Route capture policy differs from requested mode')
+            if flow.get('route_screenshots',True)!= (not args.no_route_screenshots):raise ValueError('Route screenshot mode differs from requested comparison')
+            if args.no_route_screenshots and any(not step.get('route_capture_skipped') or any(step.get(k) for k in ('screenshot_saved','native_image_saved','original_image_saved')) for step in flow['steps'] if step['step']!='campaign-handoff'):raise ValueError('Route screenshot omission not explicitly recorded')
             if flow.get('success') is not True:raise ValueError(flow.get('error') or 'Campaign flow failed')
             if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
             if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
@@ -686,7 +728,7 @@ def main():
                     if inputs.get('success') is not True or inputs['seconds']<args.stress_seconds or len(inputs['actions'])<20:raise RuntimeError('Incomplete gameplay input sequence')
                 report['gameplay_input_exercised']=True
             for step in flow['steps']:
-                if step['step'] not in ('campaign-handoff','healing-loadout','crowded-setup'):
+                if not args.no_route_screenshots and step['step'] not in ('campaign-handoff','healing-loadout','crowded-setup'):
                     if step['step'] in ('gameplay','gameplay-resumed') and (step.get('native_image_saved') is not True or step.get('original_image_saved') is not True):raise RuntimeError('Missing independent native/original gameplay image')
                     shot = Path(step['screenshot']).resolve()
                     if shot.parent != out or not shot.is_file() or shot.stat().st_size == 0:
@@ -701,6 +743,14 @@ def main():
                 if resident['error'] or min(int(resident[k]) for k in ('completed','imports','verified_returns'))<64 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
                     raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
                 if args.normal_quit and (not resident.get('normal_quit_retired') or resident['pending'] or len({int(resident[k]) for k in ('completed','imports','verified_returns')})!=1):raise ValueError('Resident World normal Quit was not acknowledged and balanced')
+                if args.async_world:
+                    production=resident.get('world_gpu_production',{})
+                    if production.get('policy')!='dedicated-native-owner' or production.get('error') or production.get('high_water',3)>2 or int(production.get('immutable_allocations',3))>2:
+                        raise ValueError('Native GPU production ownership/bound proof failed')
+                    if args.normal_quit and (production.get('outstanding',1) or any(int(production.get(k,-1))!=int(resident['completed']) for k in ('submitted','produced','taken'))):
+                        raise ValueError('Native GPU production normal Quit did not balance')
+                    if int(resident.get('retained_world_image_captures',-1))!=int(resident['completed']) or resident.get('source_high_water',3)>2:
+                        raise ValueError('Native GPU production image/source credit proof failed')
                 if resident['engine_fps']<args.min_fps:raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
                 if args.hardware and ('NVIDIA' not in resident['renderer'] or any(x in resident['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Resident World did not use NVIDIA hardware')
                 report['resident_world']=resident

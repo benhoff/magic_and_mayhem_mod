@@ -11,5 +11,6 @@ struct NativeRenderTarget {
     std::function<void(mnm::render::GpuFrame)> present;
     std::function<QString()> error;
     QOffscreenSurface* offscreen=nullptr;
+    QOffscreenSurface* worldOffscreen=nullptr;
 };
 NativeRenderTarget viewportRenderTarget(GlViewport&);

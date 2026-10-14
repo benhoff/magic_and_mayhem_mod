@@ -91,7 +91,7 @@ public:
         const auto* result=renderWorker_?renderWorker_->result():commands_?commands_->result():nullptr;
         return {nativeCommandFrames_,nativeActive(),nativeFallback_,nativePaintedFrames_,renderWorker_?renderWorker_->recoveries():commands_?commands_->recoveries():0,
             !residentWorldError_.isEmpty()?residentWorldError_:renderWorker_?renderWorker_->error():commands_?commands_->error():QString(),
-            result?QString::fromStdString(result->driver.renderer):QString(),result?result->stats.presentationPixels:0};
+            result?QString::fromStdString(result->driver.renderer):QString(),result?result->stats.presentationPixels:0,result?result->residentWorldImports:0};
     }
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={},bool nativeMusic=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
@@ -242,12 +242,13 @@ public:
         connect(&process_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this](int code,QProcess::ExitStatus){
             finished();statusBar()->showMessage(QString("Launcher exited with status %1.").arg(code));
         });
-        poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{discover();});
-        inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{if(input_)input_->heartbeat();});
+        poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::WindowDiscovery);discover();});
+        inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::InputHeartbeat);if(input_)input_->heartbeat();});
         frames_.setInterval(16);commandDrain_.setSingleShot(true);commandDrain_.setInterval(0);
         const auto pollFrame=[this]{
             if(!stream_)return;
             if(renderWorker_){
+                GlViewport::ActivityScope guiActivity(gl_,GlViewport::Activity::PresentationPoll);
                 if(liveMenus_)liveMenus_->renderingProgress();
                 if(!renderWorker_->poll(liveMenus_&&liveMenus_->normalQuitAccepted(),gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_),media_&&media_->movieActive()) || !gl_->error().isEmpty()){
                     residentWorldError_=!gl_->error().isEmpty()?gl_->error():renderWorker_->error();

@@ -35,3 +35,30 @@ Eleven mask/proof controls and four renderer regressions pass, withzero ordinary
 readbacks, no remaining surfaces and original/input/source checks. The failed
 full public journey, unknown-history isolated wholeWorld attempts and historical
 FPS/source outcomes stay recorded. Current full gameplay/performance is pending.
+
+## Finite native World edge policy, 2026-10-13
+
+The retained `run-r9nz3st2` V5 generation2354 source, producer1592, admits
+backend9/AX0 at anchor763,603 (decoded origin31,31, extent61x47). Its opaque
+pixel788,599 samples linear word480001, beyond the logical480000-word canvas.
+This is distinct from the previously fixed conservative padding refusal.
+The isolated unmodified nocd-40209ca7 entries0x596490/0x5968a4 both execute the
+request with explicit authored32-word backing padding and match the independent
+linear model over960064words. Each reads one opaque tap outside the logical
+canvas. Confidence is high for this input; backing allocation contents in a live
+original process remain unknown, and no equivalence is claimed for that tap.
+
+Public native World draws explicitly select `retainOutsideDisplacement`:
+covered taps outside owned storage leave the existing destination word intact.
+All in-range arithmetic, row phase, mask coverage, original callerAX and valid
+linear wrapping remain unchanged. Generic blitter/scene draws remain strict by
+default. The shader discards invalid taps before any undefined fetch; no original
+padding, readback or destination pixels enter native rendering. This is an
+intentional native boundary policy, separate from recovered engine behavior.
+
+[Fresh controls](displacement-finite-edge-controls-20261013.json) pass14 strict,
+mask/proof, retained-edge and valid wrapping cases, two captured full800x600
+atlas/nonatlas pixel comparisons, and scene/atlas regressions. They retain one
+invalid tap, withzero ordinary delivery readbacks and no remaining surfaces.
+Original/input/source checks pass. Full public casting/combat, continuity and
+FPS validation remain pending; historical failures/evidence are unchanged.

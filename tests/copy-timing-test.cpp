@@ -25,7 +25,7 @@ static int write_all(HANDLE,const void* p,u32 n){++ioCalls;const auto* bytes=sta
 int QueryPerformanceCounter(unsigned long long* out){__atomic_add_fetch(&qpcCalls,1,__ATOMIC_RELAXED);*out=1000000+static_cast<unsigned long long>(tick)*1000;lastError=0xaa;return 1;}
 int QueryPerformanceFrequency(unsigned long long* out){*out=1000000;lastError=0xaa;return 1;}
 static u32 game_copy_order_enabled=1,game_lock_epoch,historyInvalid,command_channel_session=1516015097;
-struct GameCopyLease {u32 held,observe;};
+struct GameCopyLease {u32 held,observe,deferred;};
 static u32* history_current(){return &historyInvalid;}
 #define history_invalid historyInvalid
 static void game_pixel_missed(void*){++misses;}
@@ -38,6 +38,12 @@ static void WakeByAddressAll(void*){++wakes;lastError=0xbb;}
 static void Sleep(u32){++tick;}
 #include "../runtime/render/copy_order.h"
 static void require(bool ok,const char* why){if(!ok){std::fprintf(stderr,"Copy timing: %s\n",why);std::exit(1);}}
+static u32 deferStarts,deferEnds;
+static void deferredStatus(u32 begin){
+    if(begin){require(game_copy_owner==threadId,"status deferral begins under admission");++deferStarts;}
+    else{require(!game_copy_owner&&!copy_trace_owner_ready,"status flush follows diagnostic close and admission release");++deferEnds;}
+    lastError=0xaa;
+}
 static void reset(bool enabled){
     tick=mode=ioCalls=misses=wakes=qpcCalls=game_copy_owner=game_copy_started=game_copy_site=game_copy_phase=0;
     game_lock_epoch=historyInvalid=game_alias_reset_pending=0;threadId=1;lastError=0x77;
@@ -45,6 +51,17 @@ static void reset(bool enabled){
     copy_trace_owner_sequence=copy_trace_owner_ready=copy_trace_acquisitions=0;copy_trace_file=nullptr;
     zero(copy_trace_slots,sizeof(copy_trace_slots));zero(copy_trace_owner,sizeof(copy_trace_owner));output.clear();
     option=enabled?"1":"0";copy_trace_init("capture",7);require(lastError==0x77,"init LastError");
+    game_copy_native_defer=nullptr;deferStarts=deferEnds=0;
+}
+static void deferredRelease(){
+    for(bool enabled:{false,true}){
+        reset(enabled);game_copy_native_defer=deferredStatus;
+        auto lease=game_copy_enter_at(nullptr,17);
+        require(lease.held&&lease.deferred&&deferStarts==1&&lastError==0x77,"deferred admission preserves LastError");
+        lastError=0x88;game_copy_leave(&lease);
+        require(!lease.held&&!lease.deferred&&deferEnds==1&&wakes==1&&lastError==0x88,"deferred release preserves LastError");
+        game_copy_leave(&lease);require(deferEnds==1&&wakes==1,"release and status flush are idempotent");
+    }
 }
 static void holder(u32 at){
     tick=at;game_copy_owner=2;game_copy_started=at;game_copy_site=56;game_copy_phase=0;
@@ -77,6 +94,8 @@ static void admission(){
         require(lease.held&&lease.observe&&tick==10&&lastError==0x77&&!historyInvalid,"released holder admission");game_copy_leave(&lease);
         reset(enabled);game_copy_owner=1;lease=game_copy_enter_at(nullptr,9);require(!lease.held&&lease.observe,"original reentry unchanged");
         lease=game_copy_bind_enter();require(!lease.held&&!lease.observe&&!copy_trace_written,"bind reentry is not timeout");
+        reset(enabled);holder(0);mode=1;lease=game_copy_observation_enter_at(nullptr,19);
+        require(!lease.held&&!lease.observe&&tick==65&&!game_lock_epoch&&!misses&&!historyInvalid&&lastError==0x77,"read-only observation timeout preserves drawing history");
         command_callback_missed();require(game_alias_reset_pending==1,"callback invalidation unchanged");
         reset(enabled);lease=game_copy_shutdown_enter();require(lease.held&&lease.observe,"shutdown admission unchanged");game_copy_leave(&lease);
     }
@@ -112,6 +131,6 @@ static void boundedRecords(){
     require(output.size()==232,"recovery records same bounded contract");
     reset(false);option="yes";copy_trace_init("capture",7);require(!copy_trace_enabled,"strict opt in");
 }
-int main(int argc,char** argv){admission();reacquisition();copy_trace_drain();
+int main(int argc,char** argv){admission();deferredRelease();reacquisition();copy_trace_drain();
     if(argc==2){auto* file=std::fopen(argv[1],"wb");require(file&&std::fwrite(output.data(),1,output.size(),file)==output.size(),"fixture log write");std::fclose(file);}
     boundedRecords();std::puts("{\"success\":true,\"admission_modes\":2,\"reacquisition_case\":true,\"bounded_records\":512,\"dropped_records\":288,\"live_validated\":false}");}

@@ -6,6 +6,7 @@
 #include <deque>
 #include <mutex>
 #include <thread>
+#include <chrono>
 namespace mnm::legacy {
 // A source receipt, not a GPU frame. No original pointers or GL/widget objects
 // enter this queue. The handoff owns its source payloads through immutable refs.
@@ -15,6 +16,7 @@ struct OwnedWorldSnapshot {
   std::array<std::uint32_t,10> ticks{};
   std::size_t sourceBytes=0;
   double decodeMs=0,prepareMs=0;
+  std::chrono::steady_clock::time_point acquiredAt{},readyAt{};
   std::vector<std::uint8_t> wireSource,wireRequest;
 };
 class WorldSnapshotQueue final {
@@ -26,7 +28,7 @@ public:
     bool terminal=false;
     std::string error;
   };
-  explicit WorldSnapshotQueue(WorldContinuousChannel&,bool retainWire=false);
+  explicit WorldSnapshotQueue(WorldContinuousChannel&,bool retainWire=false,bool trace=false);
   ~WorldSnapshotQueue();
   WorldSnapshotQueue(const WorldSnapshotQueue&)=delete;
   bool take(OwnedWorldSnapshot&);
@@ -37,6 +39,7 @@ private:
   void capture();
   WorldContinuousChannel& channel_;
   bool retainWire_=false;
+  bool trace_=false;
   mutable std::mutex mutex_;
   std::condition_variable progress_;
   std::deque<OwnedWorldSnapshot> ready_;

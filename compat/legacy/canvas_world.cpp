@@ -72,6 +72,10 @@ WorldDraw producerWorldDraw(const CanvasProducer &c) {
   draw.backend = r[15];
   draw.composite.mode = render::CompositeMode(r[14]);
   if (r[14] == 3) {
+    // Original leaves may read past the logical last row. Public native World
+    // storage has no such backing bytes: preserve those destination pixels.
+    // This is an explicit native edge policy, not recovered equivalence.
+    draw.composite.retainOutsideDisplacement = true;
     draw.composite.rowPeriod = r[16];
     if (!r[16] || r[16] > 16)
       throw std::invalid_argument("Native World displacement period");
@@ -94,9 +98,10 @@ CanvasWorld::CanvasWorld(render::GlBlitter &renderer,
     : renderer_(renderer), store_(store), resources_(store_),
       bindings_(store_, resources_) {}
 CanvasWorld::~CanvasWorld(){if(replayBaseline_)renderer_.destroy(replayBaseline_);}
-void CanvasWorld::enablePreparedReplay(){
+void CanvasWorld::enablePreparedReplay(bool retainCompletedImage){
   if(active_ || completed_ || rollingCompleted_)throw std::logic_error("Prepared replay activation after source updates");
   preparedReplay_=true;
+  retainCompletedImage_=retainCompletedImage;
 }
 render::GpuFrame CanvasWorld::replayPrepared(){
   if(!preparedReplay_ || !resident_ || active_ || !rollingCompleted_ || !baselineCaptured_)
@@ -104,8 +109,10 @@ render::GpuFrame CanvasWorld::replayPrepared(){
   if(preparedReplays_==std::numeric_limits<std::uint64_t>::max())throw std::overflow_error("Prepared World frame exhaustion");
   renderer_.batch([&]{
     renderer_.restoreSurface(replayBaseline_,residentSurface_);
-    scene_->beginFrame(replayDraws_,render::SceneStart::retainedCanvas);
-    while(!scene_->drawNext(12320)){}
+    if(!retainCompletedImage_){
+      scene_->beginFrame(replayDraws_,render::SceneStart::retainedCanvas);
+      while(!scene_->drawNext(12320)){}
+    }
   });
   ++preparedReplays_;return scene_->presentGpu();
 }
@@ -222,7 +229,7 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
   if (!active_ || readbacks_ == std::numeric_limits<std::uint64_t>::max())
     throw std::runtime_error("No native producer/World queue to complete or "
                              "readback counter exhausted");
-  if(preparedReplay_ && resident_ && !baselineCaptured_){
+  if(preparedReplay_ && !retainCompletedImage_ && resident_ && !baselineCaptured_){
     if(!replayBaseline_)replayBaseline_=renderer_.cloneSurface(residentSurface_);
     else renderer_.restoreSurface(residentSurface_,replayBaseline_);
     baselineCaptured_=true;
@@ -233,7 +240,10 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
     const auto identitiesBefore = bindings_.identityStats();
     auto started = Clock::now();
     const auto draws = bindings_.display(pending_);
-    if(preparedReplay_ && resident_)replayDraws_.insert(replayDraws_.end(),draws.begin(),draws.end());
+    const auto bindingProfile=bindings_.profile();profile_.binding.enabled=bindingProfile.enabled;
+    profile_.binding.identitiesMs+=bindingProfile.identitiesMs;profile_.binding.catalogueMs+=bindingProfile.catalogueMs;
+    profile_.binding.resourcesMs+=bindingProfile.resourcesMs;profile_.binding.resolveMs+=bindingProfile.resolveMs;
+    if(preparedReplay_ && !retainCompletedImage_ && resident_)replayDraws_.insert(replayDraws_.end(),draws.begin(),draws.end());
     const auto bindingsAfter = bindings_.bindingStats();
     const auto identitiesAfter = bindings_.identityStats();
     profile_.identityHashes += identitiesAfter.hashes - identitiesBefore.hashes;
@@ -254,9 +264,13 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
     // context for the whole queue; drawNext's nested batches retain draw order.
     const auto rendererBefore = renderer_.stats();
     renderer_.batch([&] {
+      const auto admission=profile_.binding.enabled?Clock::now():Clock::time_point{};
       scene_->beginFrame(draws, render::SceneStart::retainedCanvas);
+      const auto drawing=profile_.binding.enabled?Clock::now():Clock::time_point{};
+      if(profile_.binding.enabled)profile_.sceneAdmissionMs+=std::chrono::duration<double,std::milli>(drawing-admission).count();
       while (!scene_->drawNext(32)) {
       }
+      if(profile_.binding.enabled)profile_.sceneDrawingMs+=milliseconds(drawing);
     });
     const auto rendererAfter = renderer_.stats();
     profile_.copyBatches +=
@@ -294,6 +308,15 @@ void CanvasWorld::end(const CanvasProducer &c) {
       c.fields[2] != MNM_PRODUCER_QUEUE_RETURN || c.fields[14] != queue_ ||
       c.fields[3] != canvas_ || !pending_.draws.empty())
     throw std::invalid_argument("Incomplete native World return");
+  // Freeze only a successfully completed native World, before later UI writes.
+  // The same owned slot is reused; no destination pixels cross the bridge.
+  if(preparedReplay_ && retainCompletedImage_ && resident_){
+    if(retainedImageCaptures_==std::numeric_limits<std::uint64_t>::max())
+      throw std::overflow_error("Retained World image capture exhaustion");
+    if(!replayBaseline_)replayBaseline_=renderer_.cloneSurface(residentSurface_);
+    else renderer_.restoreSurface(residentSurface_,replayBaseline_);
+    baselineCaptured_=true;++retainedImageCaptures_;
+  }
   if (rolling_)
     rollingCompleted_ = rollingSequence_;
   else

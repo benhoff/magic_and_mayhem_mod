@@ -1,5 +1,6 @@
 #pragma once
 #include <QImage>
+#include <functional>
 #include "blit.hpp"
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
@@ -21,6 +22,19 @@ public:
     bool imagePoint(QPointF position,QPoint& point,bool clamp=false) const;
     bool ready() const{return ready_;}
     QString error() const{return error_;}
+    // Optional native diagnostic observer: false begins painting, true completes.
+    std::function<void(bool)> framePaintTiming;
+    enum class Activity { PresentationPoll, RouteCapture, ReferenceRead, ScreenCapture, NativeReadback, ImageEncoding, DiagnosticCapture, CampaignPoll, ProgressPublication, CaptureRequest, WindowDiscovery, InputHeartbeat, RenderStatusPickup };
+    std::function<void(Activity,bool)> activityTiming;
+    class ActivityScope {
+    public:
+        ActivityScope(GlViewport* viewport,Activity activity):viewport_(viewport),activity_(activity){if(viewport_&&viewport_->activityTiming)viewport_->activityTiming(activity_,false);}
+        ~ActivityScope(){if(viewport_&&viewport_->activityTiming)viewport_->activityTiming(activity_,true);}
+        ActivityScope(const ActivityScope&)=delete;
+        ActivityScope& operator=(const ActivityScope&)=delete;
+    private:
+        GlViewport* viewport_;Activity activity_;
+    };
 protected:
     void initializeGL() override;
     void paintGL() override;

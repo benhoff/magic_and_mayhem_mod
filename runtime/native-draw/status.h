@@ -9,11 +9,12 @@ API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API i32 WIN FlushViewOfFile(const void*,u32);
 API i32 WIN UnmapViewOfFile(const void*);
 static char nd_status_path[4096];
+static u32 nd_status_deferred,nd_status_dirty;
 static HANDLE nd_status_file,nd_status_mapping;
 static volatile u32* nd_status_view;
 static volatile i32 nd_status_busy;
 static u32 nd_status_exports,nd_peak_surfaces,nd_peak_bytes,nd_peak_dcs,nd_peak_clippers;
-static void nd_status(void){
+static void nd_status_publish(void){
  u32 error=GetLastError();__atomic_store_n(&nd_status_phase,1,__ATOMIC_RELAXED);
  u32 loaded=GetModuleHandleA("ddraw.dll")!=0;
  __atomic_store_n(&nd_status_phase,2,__ATOMIC_RELAXED);
@@ -35,6 +36,25 @@ static void nd_status(void){
  __sync_lock_release(&nd_status_busy);
  SetLastError(error);if(loaded)ExitProcess(101);
 }
+static void nd_status(void){
+ if(__atomic_load_n(&nd_status_deferred,__ATOMIC_ACQUIRE)){
+  __atomic_store_n(&nd_status_dirty,1,__ATOMIC_RELEASE);return;
+ }
+ nd_status_publish();
+}
+/* Versioned local adapter policy. No mapped stores or loader queries inside a
+ * drawing lease; the final release publishes outside that lease. Unhooked
+ * facade calls retain immediate diagnostics and forbidden-module refusal. */
+static void nd_status_defer(u32 begin){
+ u32 error=GetLastError();
+ if(begin)__atomic_add_fetch(&nd_status_deferred,1,__ATOMIC_ACQ_REL);
+ else {
+  u32 previous=__atomic_fetch_sub(&nd_status_deferred,1,__ATOMIC_ACQ_REL);
+  if(!previous)ExitProcess(103);
+  if(previous==1 && __atomic_exchange_n(&nd_status_dirty,0,__ATOMIC_ACQ_REL))nd_status();
+ }
+ SetLastError(error);
+}
 static void nd_status_start(void){
  u32 count=GetEnvironmentVariableA("MNM_NATIVE_DRAW_STATUS",nd_status_path,sizeof(nd_status_path));
  if(count>=sizeof(nd_status_path))ExitProcess(102);
@@ -49,6 +69,7 @@ static void nd_status_start(void){
  nd_status();
 }
 static void nd_status_finish(void){
+ if(__atomic_exchange_n(&nd_status_dirty,0,__ATOMIC_ACQ_REL))nd_status_publish();
  if(nd_status_view){
   __atomic_store_n(&nd_status_phase,4,__ATOMIC_RELAXED);
   if(!FlushViewOfFile((const void*)nd_status_view,96))ExitProcess(100);

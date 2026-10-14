@@ -66,6 +66,7 @@ void GlViewport::paintGL(){
     const int width=qRound(this->width()*devicePixelRatioF()),height=qRound(this->height()*devicePixelRatioF());
     glViewport(0,0,width,height);glClearColor(0,0,0,1);glClear(GL_COLOR_BUFFER_BIT);
     if(!ready_ || frameSize().isEmpty())return;
+    if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
     glActiveTexture(GL_TEXTURE0);
     try {glBindTexture(GL_TEXTURE_2D,gpuFrame_.valid()?gpuFrame_.textureForCurrentContext():texture_);}
     catch(const std::exception& e){error_=QString::fromUtf8(e.what());return;}
@@ -81,6 +82,7 @@ void GlViewport::paintGL(){
     vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
     catch(const std::exception& e){error_=QString::fromUtf8(e.what());}
+    if(gpuFrame_.valid() && error_.isEmpty() && framePaintTiming)framePaintTiming(true);
 }
 
 NativeRenderTarget viewportRenderTarget(GlViewport& v){

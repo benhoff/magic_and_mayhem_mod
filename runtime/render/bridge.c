@@ -61,7 +61,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "command_channel.h"
 #include "draw_capture.h"
 static void game_copy_stage(u32);
-struct GameCopyLease {u32 held,observe;};
+struct GameCopyLease {u32 held,observe,deferred;};
 static struct GameCopyLease game_copy_bind_enter(void);
 static void game_copy_leave(struct GameCopyLease*);
 #include "copy_timing.h"
@@ -188,9 +188,9 @@ static i32 WIN surface_delete_attached(void* object,u32 flags,void* other){
     if(status>=0)game_metadata_invalidate();SetLastError(error);return status;
 }
 static i32 WIN surface_desc(void* object,u32* desc){
-    COMMAND_CALLBACK(((Description)lookup(object)->original[22])(object,desc));
-    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((Description)lookup(object)->original[22])(object,desc);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
+    COMMAND_OBSERVATION_CALLBACK(((Description)lookup(object)->original[22])(object,desc));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_observation_enter(object);
+    if(!copy_lease.observe)return ((Description)lookup(object)->original[22])(object,desc);
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((Description)t->original[22])(object,desc);u32 error=GetLastError();
     game_surface_described(object,t->kind,desc,status);SetLastError(error);return status;
@@ -561,6 +561,32 @@ __declspec(dllexport) void WIN RenderCaptureGuardForTest(u32 held){
     __atomic_store_n(&game_locks_busy,held!=0,__ATOMIC_RELEASE);
 }
 __declspec(dllexport) u32 WIN RenderCaptureWaitsForTest(void){return __atomic_load_n(&game_tracker_wait_count,__ATOMIC_RELAXED);}
+/* Selftest-only admission barriers and read-only epoch inspection. */
+__declspec(dllexport) u32 WIN RenderDescriptionDomainForTest(u32 operation,u32* values){
+    u32 error=GetLastError(),ready=0;
+    if(!operation && values){
+        u32 state[3]={__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED),
+            __atomic_load_n(&game_metadata_epoch,__ATOMIC_RELAXED),
+            __atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE)};
+        copy(values,state,sizeof(state));ready=1;
+    }else if(operation==1)ready=command_gate_close();
+    else if(operation==2)ready=__sync_bool_compare_and_swap(&command_gate,COMMAND_GATE_EXCLUSIVE,0);
+    SetLastError(error);return ready;
+}
+static u32 game_status_probe_phase,game_status_probe_ends;
+static void WIN game_status_probe_defer(u32 begin){
+    if(begin)return;
+    if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId())ExitProcess(422);
+    __atomic_add_fetch(&game_status_probe_ends,1,__ATOMIC_RELAXED);
+    if(__sync_bool_compare_and_swap(&game_status_probe_phase,0,1)){Sleep(125);__atomic_store_n(&game_status_probe_phase,2,__ATOMIC_RELEASE);}
+}
+__declspec(dllexport) u32 WIN RenderNativeStatusProbeForTest(u32 operation){
+    u32 error=GetLastError(),result=0;
+    if(operation==1){game_status_probe_phase=game_status_probe_ends=0;game_copy_native_defer=game_status_probe_defer;}
+    else if(operation==2)result=__atomic_load_n(&game_status_probe_phase,__ATOMIC_ACQUIRE);
+    else{game_copy_native_defer=0;result=__atomic_load_n(&game_status_probe_ends,__ATOMIC_RELAXED);}
+    SetLastError(error);return result;
+}
 __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid,void** result,void* outer){
     original_create=original;return create_draw(guid,result,outer);
 }
@@ -589,7 +615,10 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     PinModule pin=(PinModule)GetProcAddress(GetModuleHandleA("kernel32.dll"),"GetModuleHandleExA");
     if(!pin || !pin(5,(const char*)&RenderAnchor,&pinned)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     void* native_draw=GetModuleHandleA("MnmDraw.dll");
-    if(native_draw)game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
+    if(native_draw){
+        game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
+        game_copy_native_defer=(void (WIN *)(u32))GetProcAddress(native_draw,"NativeDrawStatusDeferV1");
+    }
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();

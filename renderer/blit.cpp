@@ -129,6 +129,9 @@ void main(){
     else {
         int linearX=destination.x+rowOffsets[destination.y%rowPeriod];
         ivec2 sampleAt=ivec2(linearX%destinationStride,destination.y+linearX/destinationStride);
+        // Admission permits this only for the explicit finite-canvas policy.
+        // Never fetch undefined texels, including unused transparent padding.
+        if(sampleAt.y>=textureSize(oldPixels,0).y+oldOrigin.y)discard;
         nativePixel=texelFetch(oldPixels,sampleAt-oldOrigin,0).r;
     }
 })";
@@ -863,7 +866,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
         if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Displacement row period outside bounds");
         for(unsigned i=0;i<c.rowPeriod;++i){if(c.rowOffsets[i]<0||c.rowOffsets[i]>16)throw std::invalid_argument("Backward or excessive displacement unsupported");reach=std::max(reach,c.rowOffsets[i]);}
         const auto lastSample=std::int64_t(y+r.bottom-r.top-1)*dst.width+x+r.right-r.left-1+reach;
-        if(lastSample>=std::int64_t(dst.width)*dst.height){
+        if(lastSample>=std::int64_t(dst.width)*dst.height&&!c.retainOutsideDisplacement){
             if(coverage.coverage.empty())throw std::invalid_argument("Displacement sample outside destination without owned mask proof");
             for(int row=0;row<r.bottom-r.top;++row)for(int col=0;col<r.right-r.left;++col){
                 if(!coverage.coverage[std::size_t(r.top+row)*coverage.width+r.left+col])continue;

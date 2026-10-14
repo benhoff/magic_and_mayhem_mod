@@ -6,10 +6,13 @@
 #include <QTemporaryDir>
 #include <QFile>
 #include <QtEndian>
+#include <QJsonDocument>
+#include <QCryptographicHash>
 #include <thread>
 #include <chrono>
 #include <cstdio>
 namespace {
+QJsonArray pixelHashes;
 void require(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
 void word(QByteArray& out,unsigned v){char b[4];qToLittleEndian(v,b);out.append(b,4);}
 void record(QByteArray& out,unsigned op,unsigned& sequence,std::initializer_list<unsigned> fields,QByteArray pixels={}){
@@ -21,12 +24,21 @@ void pixel(GlViewport& viewport,QColor expected){
     viewport.repaint();const auto image=viewport.grabFramebuffer();
     require(viewport.error().isEmpty()&&!image.isNull(),"Threaded viewport paint failed");
     require(image.pixelColor(image.width()/2,image.height()/2)==expected,"Immutable native frame changed or disagreed with pixel oracle");
+    const auto rgba=image.convertToFormat(QImage::Format_RGBA8888);
+    pixelHashes.append(QString::fromLatin1(QCryptographicHash::hash(QByteArrayView(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex()));
 }
 }
 int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);
     try{
+        {
+            NativeWorkerStatusGate gate;unsigned builds=0;for(int us=0;us<1000000;us+=1000)if(gate.due(us,false))++builds;
+            require(builds==63,"Status cadence busy-polled diagnostic construction");
+            NativeWorkerStatusGate urgent;require(urgent.due(0,false)&&!urgent.due(1000,false)&&urgent.due(7000,true)&&!urgent.due(16000,false)&&urgent.due(23000,false),"Immediate status event or cadence restart lost");
+            bool refused=false;try{urgent.due(22000,false);}catch(const std::logic_error&){refused=true;}require(refused,"Status clock regression accepted");
+            NativeWorkerStatusGate baseline(true);for(int us=0;us<10000;us+=1000)require(baseline.due(us,false),"Every-turn baseline changed");
+        }
         RenderDeadlineProbe probe;using Clock=std::chrono::steady_clock;
         const auto start=Clock::time_point(std::chrono::seconds(10));
         // A 1ms polling loop must not count fifteen misses for one frame tick.
@@ -59,6 +71,23 @@ int main(int argc,char** argv){
         }
         require(sources==20&&frames==60,"Continuous UI traffic starved deterministic display deadlines");
         require(!nativeDisplayEligible(false,false,false,1,1)&&!nativeDisplayEligible(true,false,false,0,1),"Hidden/incomplete first frame admitted redraw");
+        {
+            NativeFrameTrace disabled;NativeFrameTrace::Turn invalid;invalid.begin=10;
+            disabled.record(invalid);require(!disabled.report()["enabled"].toBool(),"Disabled trace recorded work");
+            NativeFrameTrace trace(true);bool refused=false;try{trace.record(invalid);}catch(const std::logic_error&){refused=true;}
+            require(refused,"Trace accepted reversed spans");
+            const auto origin=NativeFrameTrace::now();
+            for(unsigned i=0;i<NativeFrameTrace::TurnLimit+37;++i){
+                NativeFrameTrace::Turn t;t.turn=i;t.begin=origin+std::int64_t(i)*16667;t.worldEnd=t.begin+500;t.commandEnd=t.worldEnd+500;t.extraEnd=t.commandEnd+500;t.exportEnd=t.extraEnd+250;t.statusEnd=t.exportEnd+250;t.waitEnd=t.statusEnd+1000;t.sourceBefore=t.sourceAfter=64;t.framesBefore=i;t.framesAfter=i+1;t.commands=1;t.draw=true;trace.record(t);
+            }
+            for(unsigned i=0;i<NativeFrameTrace::GuiLimit+7;++i)trace.recordGui({i,64,origin+std::int64_t(i)*16667,int(i%2),true,false});
+            const auto r=trace.report();const auto rows=r["rows"].toArray(),gui=r["gui_rows"].toArray();
+            require(rows.size()==int(NativeFrameTrace::TurnLimit)&&gui.size()==int(NativeFrameTrace::GuiLimit),"Trace exceeded its ring bound");
+            require(rows.first().toArray().first().toString()=="37"&&gui.first().toArray()[1].toString()=="7","Trace tail/order lost on wrap");
+            require(r["overwritten_turns"].toString()=="37"&&r["overwritten_gui_events"].toString()=="7","Trace overwrite accounting lost");
+            require(r["visible_native_world_fps"].toDouble()>59.99&&r["visible_native_world_fps"].toDouble()<60.02,"Trace active clock/count accounting");
+            require(r["timings"].toObject()["status_publication"].toObject()["mean_ms"].toDouble()==.25,"Trace omitted status time");
+        }
         GlViewport viewport;viewport.resize(320,240);viewport.show();app.processEvents();require(viewport.ready(),"Viewport initialization");
         {
             mnm::render::GlBlitter renderer(viewport.context());
@@ -140,6 +169,9 @@ int main(int argc,char** argv){
         input.clear();record(input,7,sequence,{1});record(input,8,sequence,{});
         require(mnm_ring_write(&producer,input.data(),unsigned(input.size()))==1&&mnm_ring_end(&producer),"Clean producer END");
         wait([&]{return worker.ended();});require(worker.finishProducer(),"Joined normal teardown failed");
+        QFile traceFile(dir.filePath("report.json"));require(traceFile.open(QIODevice::ReadOnly),"Worker trace report absent");
+        const auto traceReport=QJsonDocument::fromJson(traceFile.readAll()).object()["frame_trace"].toObject();
+        require(traceReport["enabled"].toBool()&&traceReport["gui_events"].toString().toULongLong()>0&&traceReport["rows"].toArray().size()>0,"Worker/GUI trace did not capture joined lifecycle");
         require(viewport.frameSize().isEmpty(),"GUI retained worker lease after join");
         const auto* result=worker.result();require(result&&result->presents==172&&!result->stats.nativeReadbacks&&!result->stats.rgbaReadbacks,"Native counts/readback contract");
         require(result->stats.gpuPresentationAllocations==1,"Mutable producer presentation storage was recreated between polls");
@@ -152,6 +184,7 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
-        std::printf("{\"success\":true,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":25,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n");return 0;
+        const auto hashes=QJsonDocument(pixelHashes).toJson(QJsonDocument::Compact);
+        std::printf("{\"success\":true,\"pixel_sha256\":%s,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":25,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"frame_trace_bounds\":true,\"frame_trace_gui\":true,\"frame_trace_order_refusal\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n",hashes.constData());return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

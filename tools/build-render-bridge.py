@@ -29,6 +29,8 @@ def build(selftest=False):
     if selftest:exports+=['/export:RenderLifecyclePauseForTest=_RenderLifecyclePauseForTest@4','/export:RenderLifecycleGuardForTest=_RenderLifecycleGuardForTest@4','/export:RenderAliasSameForTest=_RenderAliasSameForTest@8','/export:RenderQueueForTest=_RenderQueueForTest@12','/export:RenderResidentBindHoldForTest=_RenderResidentBindHoldForTest@0','/export:RenderCallbackPublicationProbeForTest=_RenderCallbackPublicationProbeForTest@4']
     exports+=['/export:RenderResidentWorldV1=_RenderResidentWorldV1@32','/export:RenderStop=_RenderStop@4','/export:RenderShutdown=_RenderShutdown@4','/export:RenderStartup=_RenderStartup@0','/export:RenderRecover=_RenderRecover@4']
     if selftest:exports+=['/export:RenderStopStateForTest=_RenderStopStateForTest@4','/export:RenderRecoveryStorageForTest=_RenderRecoveryStorageForTest@4','/export:RenderExitInstallForTest=_RenderExitInstallForTest@4','/export:RenderRecoveryStateForTest=_RenderRecoveryStateForTest@4']
+    if selftest:exports+=['/export:RenderDescriptionDomainForTest=_RenderDescriptionDomainForTest@8']
+    if selftest:exports+=['/export:RenderNativeStatusProbeForTest=_RenderNativeStatusProbeForTest@4']
     dll=root/'MnmRender.dll'
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'kernelbase.lib'),str(root/'gdi32.lib')],check=True)
     closure={'tools/build-render-bridge.py','tools/build-shadow-bridge.py','protocols/generate.py'}
@@ -44,6 +46,7 @@ def build(selftest=False):
         'protocol_sources':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest() for p in protocol_sources}},indent=2)+'\n')
     if selftest:
         definition=root/'render.def';definition.write_text('LIBRARY MnmRender.dll\nEXPORTS\nRenderInstallForTest@8\nRenderCaptureGuardForTest@4\nRenderCaptureWaitsForTest@0\nRenderCreateForTest@16\nRenderInputForTest@12\nRenderMediaForTest@12\nRenderStop@4\nRenderStopStateForTest@4\nRenderShutdown@4\nRenderStartup@0\nRenderRecover@4\nRenderRecoveryStateForTest@4\nRenderRecoveryStorageForTest@4\nRenderExitInstallForTest@4\nRenderQueueForTest@12\nRenderAliasSameForTest@8\nRenderLifecycleGuardForTest@4\nRenderLifecyclePauseForTest@4\n')
+        with definition.open('a') as exports:exports.write('RenderDescriptionDomainForTest@8\nRenderNativeStatusProbeForTest@4\n')
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'render.lib')],check=True)
         subprocess.run(flags+['-c',str(source/'selftest.c'),'-o',str(root/'selftest.obj')],check=True)
         subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root / "selftest.exe"}',str(root/'selftest.obj'),str(root/'render.lib'),str(root/'kernel32.lib'),str(root/'kernelbase.lib'),str(root/'gdi32.lib')],check=True)

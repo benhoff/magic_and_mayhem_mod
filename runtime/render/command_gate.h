@@ -34,9 +34,9 @@ static int command_borrows_quiet(void){
     return 1;
 }
 static int command_observers_quiet(void);
-struct CommandLease {u32 counted,observe,retired;};
-static struct CommandLease command_gate_enter(void){
-    u32 error=GetLastError(),start=GetTickCount();struct CommandLease lease={0,1,0};
+struct CommandLease {u32 counted,observe,retired,mutating;};
+static struct CommandLease command_gate_enter_policy(u32 mutating){
+    u32 error=GetLastError(),start=GetTickCount();struct CommandLease lease={0,1,0,mutating};
     if(__atomic_load_n(&command_application_closed,__ATOMIC_ACQUIRE)){lease.observe=0;lease.retired=1;goto done;}
     if(!command_gate_enabled)goto done;
     for(;;){
@@ -51,16 +51,24 @@ static struct CommandLease command_gate_enter(void){
             }
         }else Sleep(1);
     }
- done:if(!lease.observe && !lease.retired)command_callback_missed();SetLastError(error);return lease;
+ done:if(!lease.observe && !lease.retired && lease.mutating)command_callback_missed();SetLastError(error);return lease;
 }
+static struct CommandLease command_gate_enter(void){return command_gate_enter_policy(1);}
+static struct CommandLease command_observation_enter(void){return command_gate_enter_policy(0);}
 static void command_gate_leave(struct CommandLease* lease){
     u32 error=GetLastError();
-    if(!lease->observe && !lease->retired)command_callback_missed();
+    if(!lease->observe && !lease->retired && lease->mutating)command_callback_missed();
     if(lease->counted)__atomic_fetch_sub(&command_gate,1,__ATOMIC_RELEASE);
     SetLastError(error);
 }
 #define COMMAND_CALLBACK(fallback) \
     struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_gate_enter(); \
+    if(!command_lease.observe)return (fallback)
+/* Description reads neither mutate pixels nor expose a new COM interface.
+ * Keep callback counting/collision refusal, but a skipped observation cannot
+ * invalidate an already owned drawing history. */
+#define COMMAND_OBSERVATION_CALLBACK(fallback) \
+    struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_observation_enter(); \
     if(!command_lease.observe)return (fallback)
 /* Direct recovery and the administrative worker share this single owner.
  * Contending closers must not clear another owner's collision evidence. */
