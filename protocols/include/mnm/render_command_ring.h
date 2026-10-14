@@ -1,5 +1,5 @@
 /* Version2 single-producer/single-consumer mapped-byte ring. Host-local cursors;
- * wire identity/counters are aligned32-bit little-endian atomics on x86.
+ * wire identity/counters are aligned32-bit little-endian atomics on x86/AArch64.
  * Nonblocking: FULL writes nothing; callers must retain input and retry later.
  * ACK means a private copy owns the bytes, not that GPU execution is complete. */
 #ifndef MNM_RENDER_COMMAND_RING_H
@@ -9,8 +9,14 @@
 #if !defined(__BYTE_ORDER__) || __BYTE_ORDER__ != __ORDER_LITTLE_ENDIAN__
 #error "Command ring requires a verified little-endian atomic32 host"
 #endif
-#if !defined(__i386__) && !defined(__x86_64__)
-#error "Command ring currently supports x86 atomic32 hosts only"
+#if !defined(__i386__) && !defined(__x86_64__) && !defined(__aarch64__)
+#error "Command ring supports x86 and AArch64 atomic32 hosts only"
+#endif
+/* Process-shared counters must never use a process-local fallback lock. */
+#if __SIZEOF_INT__ != 4 || \
+    ((!defined(__GCC_ATOMIC_INT_LOCK_FREE) || __GCC_ATOMIC_INT_LOCK_FREE != 2) && \
+     (!defined(__CLANG_ATOMIC_INT_LOCK_FREE) || __CLANG_ATOMIC_INT_LOCK_FREE != 2))
+#error "Command ring requires always-lock-free 32-bit integer atomics"
 #endif
 #define MNM_RING_REJECTED (-1)
 #define MNM_RING_FULL 0

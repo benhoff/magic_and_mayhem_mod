@@ -13536,7 +13536,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Acknowledged bounded reusable command-byte transport",
-      "scope": "Version2 single writer/reader ring with monotonic published/acknowledged cursors, finite32-bit lifetime, owned copies before acknowledgement and nonblocking backpressure. Foundation only; legacy hook integration, queues, shutdown scheduling and sustained rendering not yet claimed.",
+      "scope": "Version2 single writer/reader ring with monotonic published/acknowledged cursors, finite32-bit lifetime, owned copies before acknowledgement and nonblocking backpressure. Foundation only; legacy hook integration, queues, shutdown scheduling and sustained rendering not yet claimed. Little-endian x86 and AArch64 hosts are admitted only with always-lock-free 32-bit integer atomics; native ARM cross-process checks do not establish mixed-architecture Wine channel integration or live game equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -43173,7 +43173,8 @@
         "tests/test-cd-audio.py"
       ],
       "evidence": [
-        "HOST.native-cd-assets.installed-20261012"
+        "HOST.native-cd-assets.installed-20261012",
+        "HOST.native-cd-assets.installed-arm-20261013"
       ],
       "status": {
         "understanding": "scoped",
@@ -109417,6 +109418,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-cd-assets.installed-arm-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh read-only extraction on ARM64 of all12 supplied CD audio tracks,438057648 PCM bytes, with immutable original manifest and source/input hash checks before/after. Asset preparation only; no playback/MCI equivalence.",
+      "record": "research/runtime/native-cd-assets-installed-arm-20261013.json",
+      "sha256": "ec234bb510fd45ceb215b4ded3fbf00f85c924ffb2874b48613014ddb647836a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -122936,8 +122968,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-origin-reconcile-20261012.json",
-    "sha256": "7722c0cce0bb77d3b70d5d7cb341c2c476f9a9e1114857e8786839315d05709e"
+    "path": "research/runtime/coverage/source-index-qt-arm-host-final-20261013.json",
+    "sha256": "800c4f13c402a75698784e1e8ea806c245da3a18cbc7b39d07df344f1126fe76"
   },
   "claim_bindings_required": true
 }

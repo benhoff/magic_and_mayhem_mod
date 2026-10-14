@@ -10,10 +10,31 @@ The existing append-only v1 wire and ordinary producer remain active.
 
 The exclusively created mapping is1,048,640 bytes:64-byte header plus1MiB data.
 Magic `MNMRDC02`, version2. Integers are aligned unsigned32 little-endian values.
-Only verified GNU-style x86 atomic32 hosts are supported. No host pointers or
+GNU-style little-endian x86 and AArch64 hosts with always-lock-free 32-bit
+integer atomics are admitted. Compile-time checks reject other architectures,
+byte orders and fallback-lock atomics. No host pointers or
 C/C++ objects cross the wire. The creator assigns a nonzero session and zeroes
 all counters, state, reason, cancel and reserved bytes before peers attach.
 The caller supplies a valid mapping of exactly the declared size.
+
+### AArch64 host validation, 2026-10-13
+
+Confirmed on this AArch64 host: the existing C ring regression passes all 16
+cases, including 73,400,320 bytes shared between independent native processes.
+ASan/UBSan passes with leak detection disabled: LeakSanitizer cannot run under
+the sandbox's ptrace environment. Qt 6.11.2 RelWithDebInfo builds the native
+ARM64 shell; XCB shell startup, OpenGL pixel self-test and the installed
+main-menu preview smoke all exit successfully. These are bounded host checks;
+mixed x86-producer/ARM-consumer and live original-game validation remain pending.
+Historical evidence fingerprints remain unchanged. Support results are retained
+in `working/tests/qt-arm-20261013/`; they do not promote live equivalence or
+replacement status.
+
+Injected DLLs remain PE32 x86 because the original executable is x86. This
+machine lacks `lld-link`, `llvm-dlltool` and `llvm-readobj` on PATH; live adapter
+compilation and the original game were not exercised. The temporary storage
+policy `working/retention/qt-arm-policy-20261013.json` uses a 20 GiB free-space
+reserve with explicit user authorization; repository defaults remain unchanged.
 
 | Offset | Field | Writer |
 | --- | --- | --- |

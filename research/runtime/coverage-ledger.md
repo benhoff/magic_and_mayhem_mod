@@ -1,5 +1,32 @@
 # Engine modernization coverage ledger
 
+## ARM64 Qt host support — 2026-10-13
+
+The shared V2 command ring now admits little-endian AArch64 with compile-time
+always-lock-free 32-bit atomics, preserving its wire layout and acquire/release
+ordering. The native ARM64 Qt shell builds with Qt 6.11.2; XCB shell smoke,
+OpenGL pixel self-test and installed main-menu preview pass. Existing ring
+regressions pass 16 cases and a 70 MiB cross-process stream in optimized and
+ASan/UBSan builds (sandbox LeakSanitizer unavailable). This is host support,
+not original comparison, mixed x86/ARM channel integration or live replacement.
+Those boundaries remain pending; historical evidence hashes/statuses are retained.
+The x86 DLL toolchain is incomplete on this machine. See the
+[ring contract and validation limits](../formats/render-command-ring-v2.md).
+
+Native audio host checks also pass: the default MacBook Air J313 speaker
+endpoint supports stereo Int16 at 48 kHz; the quiet PCM tone advances the
+backend clock before and after restart. PipeWire/Pulse compatibility,
+WirePlumber and speakersafetyd are active. The previously absent default CD
+catalog is now prepared from immutable media: 12 tracks, 438,057,648 PCM bytes,
+with before/after manifest checks and prospective extraction claims under
+`HOST.native-cd-assets.installed-arm-20261013`. Native Qt/FFmpeg music consumes
+77,824 frames, advances position, pauses/resumes and closes without errors.
+See [ARM music support report](qt-arm-music-support-20261013.json).
+This does not validate the x86 audio producer, mixed-architecture transport,
+original MCI equivalence, device-loss recovery or speaker audibility. The
+installed ARM Wine prefix already selects FEX WoW64; game compatibility
+remains a separate check. Historical stage statuses are unchanged.
+
 ## NS26 — original autonomous decision producers and behavior handlers
 
 Native reconstruction now includes the original controller, target-admission,
