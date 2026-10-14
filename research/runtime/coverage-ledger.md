@@ -1,5 +1,42 @@
 # Engine modernization coverage ledger
 
+## ARM64 Qt host support — 2026-10-13
+
+The shared V2 command ring now admits little-endian AArch64 with compile-time
+always-lock-free 32-bit atomics, preserving its wire layout and acquire/release
+ordering. The native ARM64 Qt shell builds with Qt 6.11.2; XCB shell smoke,
+OpenGL pixel self-test and installed main-menu preview pass. Existing ring
+regressions pass 16 cases and a 70 MiB cross-process stream in optimized and
+ASan/UBSan builds (sandbox LeakSanitizer unavailable). This is host support,
+not original comparison, mixed x86/ARM channel integration or live replacement.
+Those boundaries remain pending; historical evidence hashes/statuses are retained.
+The x86 DLL toolchain is incomplete on this machine. See the
+[ring contract and validation limits](../formats/render-command-ring-v2.md).
+
+Native audio host checks also pass: the default MacBook Air J313 speaker
+endpoint supports stereo Int16 at 48 kHz; the quiet PCM tone advances the
+backend clock before and after restart. PipeWire/Pulse compatibility,
+WirePlumber and speakersafetyd are active. The previously absent default CD
+catalog is now prepared from immutable media: 12 tracks, 438,057,648 PCM bytes,
+with before/after manifest checks and prospective extraction claims under
+`HOST.native-cd-assets.installed-arm-20261013`. Native Qt/FFmpeg music consumes
+77,824 frames, advances position, pauses/resumes and closes without errors.
+See [ARM music support report](qt-arm-music-support-20261013.json).
+This does not validate the x86 audio producer, mixed-architecture transport,
+original MCI equivalence, device-loss recovery or speaker audibility. The
+installed ARM Wine prefix already selects FEX WoW64; game compatibility
+remains a separate check. Historical stage statuses are unchanged.
+
+The subsequent merge of `origin/master` retains its palette reuse implementation
+and all prior review/evidence records. The combined ARM shell rebuild and OpenGL
+pixel self-test pass. The incoming palette-cache regression passes six independent
+pixel checks, zero warm palette uploads and bounded 1024-row eviction; the native
+and ASan/UBSan ring checks remain passing. These host regressions do not rerun the
+incoming TITAN/gameplay experiments or establish original-game equivalence on ARM.
+The eight incoming commits' first-parent file hashes match exact retained
+receipts; [the incoming history report](coverage/qt-arm-master-incoming-history-20261013.json)
+records this accounting review without asserting a past gate pass.
+
 ## NS26 — original autonomous decision producers and behavior handlers
 
 Native reconstruction now includes the original controller, target-admission,
@@ -9300,3 +9337,29 @@ statuses remain intact while current validation stays independently pending.
 The12 actual-Git provenance controls,53 gate tests and60 audit tests pass.
 CI and the local tooling runner include the new tests. This addresses merge
 accounting only; it supplies no engine/gameplay or old gate-passage evidence.
+
+
+## Origin ARM host changes merged with native menus — 2026-10-14
+
+This merge combines locala8e14531 with fetched origin/master3fa3b054
+(two incoming commits,including2769f79b). Aligned always-lock-free32-bit
+integer atomic admission adds little-endian AArch64 without changing ring
+bytes,cursors or native backpressure. Remote ARM Qt/audio installation results
+remain immutable historical observations on their recorded host;no ARM or
+mixed x86/ARM original-game execution is inferred on this x86 workstation.
+
+The merged Qt shell and production PE32 renderer bridge compile. Current native
+and ASan/UBSan ring controls pass16 cases each with73,400,320 cross-process
+bytes,plus four independent GPU frames with zero ordinary readbacks/uploads.
+The legacy runner's stable-source report is retained under a new evidence ID
+as an unbound regression result,not a retrospectively declared current milestone.
+Existing scopes/statuses and historical report hashes remain unchanged;current
+combined-tree original/driver/game validation remains pending. No original
+artifacts are consumed by these checks.
+
+The committed-history report reviews five commits/520 exact parent/current
+file transitions with zero missing receipts;it asserts no past gate passage
+or new engine validation. Metadata conflicts preserve both branch registers
+and append-only reviews;new census/merge reviews account for the combined
+tree against actual locala8e14531. Unrelated main-checkout changes remain
+backed up and separate from the committed integration.

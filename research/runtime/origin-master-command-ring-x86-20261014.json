@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "protocols/schemas/render_commands-v2.json": "c640c1a425345eb569e90acc5c716e77317b63d24624d3741962ca1a4126354b",
+    "protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "protocols/python/mnm_protocols/render_commands_v2.py": "101a8efa81e63dc4f0eff660b15aca9b2c924d77ac537b868780f8c3be11e007",
+    "protocols/include/mnm/render_command_ring.h": "0ccf1b04f3b8f904f5e06077d305ec95d109d2bcfe76a117d1f29eea6c830823",
+    "protocols/generate.py": "f8b49cea292748d0b7d1a49b3e8512ac4d01878e0b267da26aa3e99ed9705bb0",
+    "tests/render-command-ring-test.c": "a2be91aed9c30db3c35be7bb2774b082b1a5d8992f322ce5e1f71d98712c5549",
+    "tests/render-command-ring-gpu-test.cpp": "d9bd64b240d42314fc2d5210631b1ff695248d6c184f178d52c174b224459a73",
+    "tools/test-render-command-ring.py": "d409203ac7960e7043573c9ccd8202561eb27f27f243e28b12ab0fe79f073c49",
+    "renderer/CMakeLists.txt": "fd4aa3afe86019039b5ae1c8af8d52c30de903332033078bc82750e07d828a8c",
+    "renderer/commands.cpp": "55fe9b498537ab01f9d91ad9e5acd8208abc2556392cb955bdb54ce68d52b815",
+    "renderer/commands.hpp": "2566133c6309b90e14f2855ea9301b3e8f7f2c51cc2f5359731da23c0c76953f",
+    "renderer/command_consumer.cpp": "cc0edb879b69ec7d3a1ed36ba6fd6b1c259c3dd47fe69779a9dee4ede0e91eef",
+    "renderer/command_state.hpp": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+    "renderer/blit.cpp": "bade811f3c720344578160c194187cbf61181a3ee8c465156324cb1d300b7ff9",
+    "renderer/blit.hpp": "5c77676a3c06c23fe2388a345d85d6015825cbc2f475b15deb66e29fbcfd1e8a",
+    "apps/qt-shell/gl_viewport.cpp": "3e4a7242904ba22d86a36a1469d7f9c9f46fd4fae8ba682c07978bff14a847c4",
+    "apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18"
+  },
+  "scope": "Native/sanitized x86 cross-process byte ring plus four direct GPU frames through existing bounded decoder/consumer; no PE32 hook/live game integration, queue scheduling or unbounded decoder claim.",
+  "native": {
+    "success": true,
+    "cases": 16,
+    "cross_process_bytes": 73400320
+  },
+  "sanitized": {
+    "success": true,
+    "cases": 16,
+    "cross_process_bytes": 73400320
+  },
+  "gpu": {
+    "success": true,
+    "frames": 4,
+    "bytes": 4194548,
+    "full_retries": 49,
+    "ordinary_readbacks": 0,
+    "viewport_uploads": 0
+  }
+}
