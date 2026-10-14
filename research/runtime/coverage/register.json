@@ -38004,7 +38004,9 @@
         "DRAW02.current120-mutator-alias-02-20261014",
         "DRAW02.step2-integration-api-physical-01-20261014",
         "DRAW02.step2-integration-api-legacy-01-20261014",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.gpu-teardown-acquisition-negative-01-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "scoped",
@@ -44512,7 +44514,8 @@
         "DRAW02.source-clock-cadence-comparison-01-20261012",
         "DRAW02.source-worker-cadence-comparison-01-20261013",
         "DRAW02.source-version-cadence-comparison-01-20261013",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.integrated-repeat-cadence-05-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48313,7 +48316,8 @@
         "DRAW02.pending-policy-policy-fixture-02-20261012",
         "DRAW02.pending-policy-held-fixture-02-20261012",
         "DRAW02.pending-policy-original-02-20261012",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48541,7 +48545,8 @@
         "DRAW02.source-map-worker-campaign-original-02-20261013",
         "DRAW02.source-map-worker-campaign-original-03-20261013",
         "DRAW02.source-version-bounded-map-regression-02-20261013",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48705,7 +48710,8 @@
         "DRAW02.source-version-egl-analysis-01-20261013",
         "DRAW02.source-version-campaign-egl-analysis-01-20261013",
         "DRAW02.source-write-trace-egl-analysis-01-20261013",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48781,7 +48787,8 @@
         "DRAW02.source-version-original-02-20261013",
         "DRAW02.source-version-campaign-original-01-20261013",
         "DRAW02.step2-integration-version-01-20261014",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48839,7 +48846,8 @@
         "DRAW02.source-write-trace-original-01-20261013",
         "DRAW02.source-write-trace-original-02-20261013",
         "DRAW02.step2-integration-writer-01-20261014",
-        "DRAW02.step2-integration-python-02-20261014"
+        "DRAW02.step2-integration-python-02-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48895,7 +48903,10 @@
         "DRAW02.gpu-completion-lease-review-01-20261013",
         "DRAW02.step2-integration-gpu-02-20261014",
         "DRAW02.step2-integration-python-02-20261014",
-        "DRAW02.step2-integration-development-negative-01-20261014"
+        "DRAW02.step2-integration-development-negative-01-20261014",
+        "DRAW02.gpu-postclose-fixed-02-20261014",
+        "DRAW02.gpu-teardown-acquisition-negative-01-20261014",
+        "DRAW02.integrated-original32-03-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -48908,7 +48919,8 @@
         "Owned fixture01 passes11 actual PE32 cases and6 decoder tests, with fake GL responses through the actual worker wrapper. Original callback forwards once; stack, x87 control and LastError are preserved. Six fence failures stop before worker return publication. Default-off and no-context paths pass.",
         "Original01 observes1918 selected worker completions with signaled current-context GL fences and zero unwitnessed contexts. Static identity review joins266 protected commands across140 stable source leases to those witnesses.115 complete advancing updates and normal original Quit are verified; the nominal120-window schedule target was not reached.",
         "The original run forces llvmpipe software rendering. Signaled current-stream fences do not prove hardware completion, the identity of source backing consumed by the driver, alternate mappings, all contexts, unobtrusive acquisition, native parity or complete DRAW-02.",
-        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending."
+        "Committed selection-branch diagnostics integrated into end-to-end tree with fresh156Python guard methods and targeted PE32 forwarding/version/writer/GPU fixtures. Imported original observations retain historical source hashes; no current-original comparison, alternate-backing/all-writer atomicity, all-context/hardware completion, semantic closure or47/21native parity promotion. Additional current-code original acquisition remains pending.",
+        "Current owned regression02 passes12 PE32 cases and6 decoder methods: recorder disabled before close, later workers forward once without extra GL/journal calls, and close during an in-flight fence remains strictly incomplete. Two original acquisition failures are preserved (wrong EGL library; normal journals followed by exit99). Fresh combined original32pilot03 exits0 after2108signaled fences and144restored source leases; this bounded rerun supports the teardown correction while the earlier exit99 remains preserved; no whole-hook quiescence or all-context/backing ownership proof."
       ]
     },
     {
@@ -106847,6 +106859,96 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.gpu-postclose-fixed-02-20261014",
+      "kind": "native_integration",
+      "scope": "Twelve owned PE32 fake-GL cases and six decoder methods, including postclose original forwarding and forced-midwait incomplete refusal. No original/hardware/all-context proof.",
+      "record": "research/runtime/draw02-gpu-postclose-fixed-02.json",
+      "sha256": "ed603fa29ed93f2ab07e29f13adc0b30106f453775151eeac0f321a11783f181",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.gpu-teardown-acquisition-negative-01-20261014",
+      "kind": "static",
+      "scope": "Two failed original acquisitions and the owned postclose exit216 regression; preserved source hashes and raw logs. Exit99 cause remains a hypothesis pending fresh original rerun.",
+      "record": "research/runtime/draw02-gpu-teardown-acquisition-negative-01.json",
+      "sha256": "c807cf13a396f4a24543117a8446cd8f408e33b729048a39b04ca4e62275e444",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.integrated-repeat-cadence-05-20261014",
+      "kind": "static",
+      "scope": "Offline merged comparator rechecks all four retained diagnostic cadence cohorts and exact31-action/raw-exit contracts. Identical workload and exclusive timing cost remain unproved.",
+      "record": "research/runtime/draw02-integrated-repeat-cadence-05.json",
+      "sha256": "10cf18ff9cd5a5b5fec419b7a6f071b53c95ef85e7166e7dcb1ba436e7b8af81",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.integrated-original32-03-20261014",
+      "kind": "live_observation",
+      "scope": "Current combined diagnostics original-active pilot32: normal observed original child exit0,133 advancing updates,2108 signaled current-context fences/version checks,144 protected stable source pairs/272commands. No120whole-update/source identity closure, hardware/all-context/all-writer/backing ownership, semantics or native parity.",
+      "record": "research/runtime/draw02-integrated-original32-03.json",
+      "sha256": "b52ed097dadcfac6cc1f750d89b274e4a53f3633793eaecd86af7ba4fdbe0911",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_parity_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_journey_coverage",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -119541,8 +119643,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-step2-integration-20261014.json",
-    "sha256": "b0989d7049adae5d757e726609df22222d2636b06849deff917a82892cadd518"
+    "path": "research/runtime/coverage/source-index-draw02-gpu-teardown-20261014.json",
+    "sha256": "b85c73bfd73e9c302548f6b63be9404041c9b30688be53a0833b89248f5274e3"
   },
   "claim_bindings_required": true
 }

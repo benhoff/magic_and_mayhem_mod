@@ -36,10 +36,14 @@ static u32 WIN producer_point(void* object,u32* out,u32 size){
 static void clobber(void){u16 control=0x037f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0x1234);}
 static void* WIN current(void){clobber();if(mode==2)return 0;++context_calls;return (void*)(mode==8&&context_calls>1?0x5678:0x1234);}
 static void* WIN fence(u32 condition,u32 flags){require(held&&forwarded==1&&producer_return_seen==1&&condition==0x9117&&!flags,202);clobber();return mode==4?0:(void*)0x9876;}
-static u32 WIN wait(void* sync,u32 flags,unsigned long long timeout){require(held&&sync==(void*)0x9876&&flags==1&&timeout==1000000000ULL,203);++waited;clobber();return mode==5?0x911b:mode==6?0x911d:mode==9?0x1234:mode==1?0x911a:0x911c;}
+static u32 WIN wait(void* sync,u32 flags,unsigned long long timeout){require(held&&sync==(void*)0x9876&&flags==1&&timeout==1000000000ULL,203);++waited;clobber();if(mode==12){EnterCriticalSection(journal_lock);wine_gpu_close(2);LeaveCriticalSection(journal_lock);}return mode==5?0x911b:mode==6?0x911d:mode==9?0x1234:mode==1?0x911a:0x911c;}
 static void WIN destroy(void* sync){require(held&&sync==(void*)0x9876&&waited==1,204);++destroyed;clobber();}
 static void* WIN proc(const char* n){clobber();if(mode==3)return(void*)1;if(n[2]=='F')return(void*)&fence;if(n[2]=='C')return(void*)&wait;return(void*)&destroy;}
 static void __attribute__((cdecl)) original(void* ctx,const void* packet){require(ctx==(void*)0x4567&&packet==wine_blit_packets[0].pointer&&held&&GetLastError()==0xbeef,205);++forwarded;u16 control=0x077f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0xcafe);}
+static void __attribute__((cdecl)) teardown_original(void* ctx,const void* packet){
+ require(ctx==(void*)0x4567&&packet==wine_blit_packets[0].pointer&&!held&&GetLastError()==0xbeef,217);
+ ++forwarded;u16 control=0x087f;__asm__ volatile("fldcw %0"::"m"(control));SetLastError(0xface);
+}
 void start(void){
  char value[2];require(GetEnvironmentVariableA("MNM_GPU_TEST",value,2)==1,200);mode=value[0]-'0';InitializeCriticalSection(journal_lock);
  if(mode==10){require(!wine_gpu_open(),211);ExitProcess(0);}
@@ -48,5 +52,9 @@ void start(void){
  SetLastError(0xbeef);u32 stack_before,stack_after;__asm__ volatile("movl %%esp,%0":"=r"(stack_before));wine_blit_worker((void*)0x4567,packet);__asm__ volatile("movl %%esp,%0":"=r"(stack_after));
  u16 control;__asm__ volatile("fnstcw %0":"=m"(control));require(stack_before==stack_after&&control==0x077f&&GetLastError()==0xcafe&&forwarded==1&&returned==1&&!held,208);
  require(producer_entry_seen==1&&producer_return_seen==1,215);
- require(destroyed==waited&&(mode==2||mode==11||destroyed==1),209);wine_blit_worker_close(1);wine_gpu_close(1);ExitProcess(0);
+ require(destroyed==waited&&(mode==2||mode==11||destroyed==1),209);wine_blit_worker_close(1);wine_gpu_close(1);
+ require(!wine_gpu_enabled,216);wine_submission_enabled=0;wine_blit_worker_original=(void*)&teardown_original;
+ u32 queries=context_calls,fences=waited;SetLastError(0xbeef);wine_blit_worker((void*)0x4567,packet);
+ __asm__ volatile("fnstcw %0":"=m"(control));require(control==0x087f&&GetLastError()==0xface&&forwarded==2&&context_calls==queries&&waited==fences&&!wine_gpu_file,218);
+ ExitProcess(0);
 }

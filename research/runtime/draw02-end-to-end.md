@@ -3470,3 +3470,62 @@ remain open. A second mapping and unhooked direct writes explicitly escape the
 respective guards. Imported original GL evidence is software-only and reaches115
 updates rather than the required120. Step2 remains active; all47/21closures and
 steps3–7 remain open. No historical-hash refresh or engine status promotion.
+
+
+## Step 2 GPU recorder teardown regression (2026-10-14)
+
+The merged original-active pilot first selected the X11-only delivery library,
+so the EGL interval could not close. Correcting that selection produced closed
+API/EGL/producer, source-version, worker-packet and GPU journals, followed by
+original exit99. Both failed acquisitions remain retained; closed journals
+do not override the actual process exit. The second pilot recorded2,065 signaled
+current-stream fences and142 restored source leases, without a recorded source
+fault. These counts are diagnostic observations from a failed acquisition.
+
+The owned postclose regression failed with exit216 because the GPU recorder
+remained enabled after its file closed. The fix disables recording before
+terminal emission/close and rechecks admission under the journal lock. GL calls
+remain outside that lock. A callback finishing after a forced close cannot write
+the closed file or fabricate a completed result; its started count makes strict
+terminal decoding reject the incomplete cohort. Subsequent workers forward to
+the original callback without additional GL calls, preserving x87 and LastError.
+This fixes recorder retirement, not global worker or context quiescence.
+
+[Fresh owned regression02](draw02-gpu-postclose-fixed-02.json) passes12 PE32 cases
+and6 decoder methods. Six existing fence failures still stop before worker-return
+publication. The postclose and forced-midwait cases use injected GL responses,
+not hardware. [Acquisition/development negatives01](draw02-gpu-teardown-acquisition-negative-01.json)
+preserve raw logs, failed reports and pre-fix source hashes. Causal attribution
+of original exit99 remains pending a fresh original-active rerun.
+
+[Offline cadence recheck05](draw02-integrated-repeat-cadence-05.json) passes the
+merged comparator's exact action ordinal/timing, settings and direct-exit checks
+on all four retained original diagnostic cohorts. The prior median ratios remain
+8.0889/7.5769/8.1704/7.6898; no new original timing capture, equal workload or
+exclusive diagnostic cost is asserted.
+
+The integrated committed history through6453a4c9 has715 exact first-parent file
+versions with zero missing receipts, including traversed merge ancestry.
+Retrospective accounting does not assert past gate passes or fresh validation.
+Step1 remains complete, step2 active, all47journey/21operation closures open and
+steps3–7 pending. Native statuses and historical evidence hashes are preserved.
+
+
+The fresh [combined original32 pilot03](draw02-integrated-original32-03.json)
+passes after the GPU teardown fix. The observed original child exits0 after
+MainQuit dispatch; both2,927-file manifest checks and unchanged original sections
+pass. The cohort has356 primary planes,2,302 consumed input calls,133 contiguous
+advancing updates,2,108 signaled current-context fences and matching observed
+source-version checks, and144 stable protected source pairs across272 completed
+commands. The bounded source map retains964,557,152bytes and makes8,432 additional
+public calls; diagnostic interference remains explicit. This fresh rerun supports
+the teardown correction, without rewriting or excluding the earlier exit99.
+
+Pilot32 does not request whole-update capture or producer/update binding. Its133
+advancing counter windows therefore do not establish the required120 complete
+source/frame/route cohort. Current-stream completion is software GL; alternate
+mappings, direct unhooked writes, all contexts and source backing ownership remain
+open. Semantic selection/tooltip/pause and native parity are unverified.
+No status promotion or47/21closure. The8GiB reservation admitted1374.5187GiBworking
+and108.3209GiBfree; the100GiB guard remained active. Further large capture sizing
+requires a new storage preflight.
