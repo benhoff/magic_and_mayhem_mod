@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "scope": "Bounded diagnostic120whole-source retry: preserve the initial30second World dwell and camera/click actions, then add30seconds passive dwell before first Escape. The earlier combined diagnostic retained72queues before timed-out closure. Physical capture closes only after the observed exact120queue/next-update marker. Input injection, source closure, semantic outcomes and complete route/frame ownership remain independent.",
+  "actions": [
+    {
+      "kind": "wait",
+      "after_ms": 500
+    },
+    {
+      "kind": "wait",
+      "after_ms": 30000
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 300,
+      "button": 1,
+      "after_ms": 300
+    },
+    {
+      "kind": "hold",
+      "key": "Right",
+      "duration_ms": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "hold",
+      "key": "Left",
+      "duration_ms": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "tap",
+      "key": "comma",
+      "after_ms": 450
+    },
+    {
+      "kind": "move",
+      "x": 744,
+      "y": 522,
+      "after_ms": 1000
+    },
+    {
+      "kind": "click",
+      "x": 744,
+      "y": 522,
+      "button": 1,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 440,
+      "y": 310,
+      "button": 3,
+      "after_ms": 2000
+    },
+    {
+      "kind": "wait",
+      "after_ms": 30000
+    },
+    {
+      "kind": "tap",
+      "key": "Escape",
+      "after_ms": 600
+    },
+    {
+      "kind": "tap",
+      "key": "Escape",
+      "after_ms": 600
+    },
+    {
+      "kind": "wait",
+      "after_ms": 800
+    }
+  ]
+}
