@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "cases": 468,
+  "omitted": 18,
+  "constructor_cases": 1,
+  "legacy_unknown_cases": 1,
+  "native_guards": 10,
+  "allocator_crt_and_combat_backends_stubbed": true,
+  "live_validated": false,
+  "source_stable": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "reconstruction/grimoire/dynamic_field.hpp": "7f891986e52eda4d70b35cf5f12299f821cf06bcb577273231891abee3f2ac2f",
+    "tests/grimoire-dynamic-abi.S": "c6ca95b606fc47aac0ffd13dd3997011158e441ce4de9c01288860dc26ebc822",
+    "tests/grimoire-dynamic-reference.cpp": "e115486e0a0f219c7f6c588ad041631e77866da077d57cc822ce43e2c23530cc",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/test-grimoire-dynamic.py": "d1eb4a67803e5a51d18b482973bec1a8ff728b577e51f09efd15134044e70aa1"
+  },
+  "execution_claims": [
+    {
+      "behavior": "CP.grimoire-dynamic-fields",
+      "contract_sha256": "800576b8d20746b39ba81d4f04f9611d7dce0b916a564d960e922178fda450ec",
+      "scenarios": {}
+    },
+    {
+      "behavior": "NP.grimoire-dynamic-guards",
+      "contract_sha256": "a93f4e5978ea7e7d6e5d8d5dc99077efabbe5143e240d421eca3d232621833f3",
+      "scenarios": {}
+    }
+  ],
+  "scope": "Bounded well-formed original4c8950 ~D labels,position/size/color-token parsing,known dynamic property dispatch and bar min/max/value fields,low-resolution geometry scaling,zero ranged/flying omission and nonzero ranged getter retry,constructor defaults and final input cursor. Recovered pure C++ descriptor model uses read-only typed source values/backend callbacks. Private original execution retains full parser/constructor bodies;allocator,CRT character/integer conversion and creature-receiver/opponent-index combat-value backends are explicit fixture stubs. Tokenizer reset/markup,full font wrapping/pages/bar rendering/live capture,research mutations and campaign progress excluded.",
+  "original_parser_constructor_unmodified": true,
+  "original_work_bypassed": false,
+  "raw_directory": "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/tests/grimoire-dynamic/run-gv06p3dc",
+  "artifacts": {
+    "comparison.log": "cdf9d33471e96e93f538d9c77d23ab517fa800013947f6faaf34521aba90f7b0",
+    "grimoire_dynamic_bytes.h": "ad1dfd037b708428405a42dac316015ea8aa32ed3c1dee5affed37bf1a72ed12",
+    "original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    ".retain": "5c4ba7d5d2028294ac971a4e2aa739f9d45f769b4b56ef7e7a1bd067e8c4c4a9",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference": "bcd383074107853b12c54f54bb3834ea93d25da4fa23e598bac75b24c0749d00",
+    "claims.json": "c3399d89a3d45d1dc82e5986adc89148e6da02a4fbd76c0923737a8a5b5a6d0d"
+  }
+}

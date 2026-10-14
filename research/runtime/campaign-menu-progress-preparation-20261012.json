@@ -1,0 +1,95 @@
+{
+  "scope": "Negative/preparation provenance only; no retrospective execution claim binding or live menu validation.",
+  "prior_report": {
+    "path": "working/tests/campaign-character-preparation-results-20261012.json",
+    "sha256": "b292615fcff05b2920662aa2d4e8bd7db32d9b966e5f455f72aade1e74119c81"
+  },
+  "temporary_budget": {
+    "path": "working/tests/campaign-original-progress-90gib-20261012/budget-approval.json",
+    "sha256": "87ce86604452730a4a87420c514a546938a82fcca68b596044576770f56334a8",
+    "approved_minimum_free_gib": 90,
+    "max_working_gib": 1280,
+    "default_policy_changed": false
+  },
+  "cases": [
+    {
+      "directory": "working/tests/campaign-original-progress-90gib-20261012",
+      "result": "Original Main reached; early ordinary Escape requested exit, no mission completed.",
+      "artifacts": {
+        "working/tests/campaign-original-progress-90gib-20261012/session.json": "590b67e92a82dc99db9630496f7797370fe868f63a3d1a04b400a9e1783ea12c",
+        "working/tests/campaign-original-progress-90gib-20261012/prepare.log": "f83409949c40d9a2dc061c8a79bfffe2852bc8837d7ff33c58041a6f67d2bb43",
+        "working/tests/campaign-original-progress-90gib-20261012/game.log": "a244485864b85db3308229c79c0208445aaed90e363098c1563116b89a174133",
+        "working/tests/campaign-original-progress-90gib-20261012/screen-000.png": "05bfe63eea714070334b4ab346bc65b5207846ad8041a276c26a18d7be7c5aaa",
+        "working/tests/campaign-original-progress-90gib-20261012/original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+        "working/tests/campaign-original-progress-90gib-20261012/.retain": "10e46148acc80bca696131ae38d4396b5a794a74ac61ad7ae0b0a5a214e7aec4",
+        "working/tests/campaign-original-progress-90gib-20261012/launch.py": "f1d9cedbcf26d240ed843b7703a5151e3f416820ae6c4eb79165a3f449b5738c",
+        "working/tests/campaign-original-progress-90gib-20261012/original-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+        "working/tests/campaign-original-progress-90gib-20261012/actions.jsonl": "19bd0058c37b4a8256ca1d7a04b28f77dbd7f019d3fe0ccabd1ee291f75a468a",
+        "working/tests/campaign-original-progress-90gib-20261012/display": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+        "working/tests/campaign-original-progress-90gib-20261012/xvfb.log": "e87602ca644ed5cc111bff973573e6804d6e0c97c7d16088036f7cd37da40d48",
+        "working/tests/campaign-original-progress-90gib-20261012/retention-policy.json": "caab35beafba447a5ea785918dee68079d9cd3623d0ccf45635a7e96da6d5898",
+        "working/tests/campaign-original-progress-90gib-20261012/control.py": "1f532957538cb019b168684890af2702b0e06914877123286895f9d1298d1b01",
+        "working/tests/campaign-original-progress-90gib-20261012/budget-approval.json": "87ce86604452730a4a87420c514a546938a82fcca68b596044576770f56334a8",
+        "working/tests/campaign-original-progress-90gib-20261012/screen-001.png": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6"
+      }
+    },
+    {
+      "directory": "working/tests/campaign-original-progress-90gib-retry-20261012",
+      "result": "Original Fireballs and conversation objective, original-writer bridge/encounter checkpoints, then defeat; original normal Quit.",
+      "artifacts": {
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-027.png": "446af2c5b918111d356eb22e8f62e88512974ac0e0d18f16ce4c86fdb17356c1",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/session.json": "f9c4079fb179d9d567aceef8951c22d29c74487bf73004e1bc33528672c94dc0",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/saved-camulos-decoded.vas": "4af85fb58df88b913a9e0beff551379e99630c224f28715438ca60c1d9b8912b",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/prepare.log": "a811b5d90965a98acc7c9cd3c06fc145e0cda7b6da88eb24d859023642014c8e",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-018.png": "de450a83613b73da653ed229f7722be5f241bddaa34ab904966619b2b88acc1f",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-021.png": "de13e922404eb7e430711c26ea78ff404c6fe46bd37898d2f58dd51973f9a2bb",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/save-camulos-inspection.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-006.png": "24b5a3e3fce835081f8f736181c32652eef44ae3e9c868d1c1ab3cf3b39a7cd2",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/game.log": "a8cbab6618a763d61869d07fbe5a023a2db13b16a3305bbbf08ab9f9fba24326",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-010.png": "9312e4c6886783a8b0d56b4d6da0289cf4dab74f968998c9f0b62256dee7f4c1",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-015.png": "d7ec2137a53714220c8c6ed9f39206d6f74489f75d7cc95e763594f293fc03e1",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-026.png": "f546e4f55e641f434cf7e5da446de0c5e520f63600a42d1707d4f35f43482f8b",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-000.png": "4ee11fdf19ab71543a2928c8c7ea9ccbf4e175e33476cf765b8d8831e058bc55",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-020.png": "12ea57368622fa44a889b36072e4bf055d2889bdf9813c0cd0e129714dac0cc6",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/.retain": "4621ee8b9a64882a1eb0417c381b99588ee14465af9fa829ae9d665992560a06",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/launch.py": "d42092fa97e8f9e41a20683bb57b45c733152bd7a43c745ce0b0d19672e16884",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-024.png": "8412d8a6eeca469e04b0c3b0ba0755f24dabd977e671d67fbc7ea91a336d8c34",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-003.png": "0a89e94141ddde6fdb0f2538754e507e07fece3958ee54b12126589d694b1299",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-012.png": "b407099bf811ce1de5552bce30dfe86a8e9fbe4a8da45215606afef10b6d6a2e",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-009.png": "bc9be7757e5855df6ea26685f2469344fc412785dd000b72ce3ca707cc9bd4de",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/original-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-017.png": "eb9449ee63994e7a1625c66743b6aac1fb308f1416191730d11d6c3882a73bc1",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-029.png": "cff332036ad5dea13978eac92ba2be15b81f2a6309cc40d32a1141c51bbf6618",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/actions.jsonl": "0e350c9b4c739c5af7dfccc9ceb67ef72df6227409277f4e35335061c8e0968a",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/display": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-011.png": "d33188211c3970dd1046cfda9d38cb55caa93cd43aeebeccc507ad92840ed739",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-016.png": "297ad7aded057ea5d9076f51e55d02abf058ffc7f65897e0c8f683852a6f1488",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-008.png": "008f84ec8b11eef42982b9e1a9224d8ca5d349a49e5ca82714af907dd02a3efe",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/xvfb.log": "e87602ca644ed5cc111bff973573e6804d6e0c97c7d16088036f7cd37da40d48",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/campaign-original-bridge.sav": "27d4ac906f0335700f2259d6751bc032a7acb37c431226de09bc5f2bbc40398d",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-030.png": "3c0c090bca2577aa0cbd7e93bdd5ebb279d3984d0017b64741f39a96afe061e2",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-007.png": "24c8be69596154829470bf3ea099964c80e584db370ce0d82f3f00864de6a87c",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-002.png": "0adfcb205ed3ef529a813bd8d26fe98263334972efc2a84de5d9223b00c0931f",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-019.png": "8666920ec28ad4557e81023c9b01ceb0772f0a38bcb8872c9de17e6bfc733a39",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-025.png": "e967ffddc61eadbf8f486fb7c8f3b7f04fa7825b0a1a917ad812ba6a7978bcc4",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-005.png": "e2a440526ffb89dc2931c82f3b947019a388425e71e3413e2faa15b16891d03c",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/control.py": "1f532957538cb019b168684890af2702b0e06914877123286895f9d1298d1b01",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-004.png": "1439c50be8b1221d4114d148be4c54f10e446d492c5295d3c74764b31e574fa8",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-022.png": "18e1cc0201037c571323b1cb669d1e407dbc5d6d1d71dba03ce95d486d5ea985",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-028.png": "50901e06ce84242ae537e674768cd86acd7bb496cc88da940fc2d0ce183cb901",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-013.png": "d58d330da2cca1fd2d68003d74507bcff5eedfb34ebac69d4d48c9f95ef555e7",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-014.png": "51295ae101c103db7cccbfd555241b7591686b8f53cc4864938a4f2e47a7be87",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-001.png": "2bfda4f99b2515349404d95421cf2811d378f0651092587df0ab903db19e4c14",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-031.png": "0b974b3113034d7e980a1d98b88c6b3bbf1e0bd2e8db217b2716e8df6a9e25fe",
+        "working/tests/campaign-original-progress-90gib-retry-20261012/screen-023.png": "56b573c4758aeb8017dd343c82b08a2cf701034519af8ba6a095e626c0dc2f5f"
+      }
+    }
+  ],
+  "mission_completed": false,
+  "live_character_validated": false,
+  "sources": {
+    "research/runtime/character-live-adapter.md": "20a9054cbcad896fe205700dbbee4a8a70fae4fc279f497726ef7bb239335e16"
+  },
+  "source_provenance_scope": "Unchanged committed Character-boundary document only; historical attempt programs are retained as artifact references, without retrospective execution bindings."
+}

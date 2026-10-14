@@ -26,10 +26,15 @@ static int game_publish_pixels(const struct Snapshot* s,struct GameSurface* surf
         if(surface){game_presented_object=surface->object;game_presented_generation=surface->generation;game_presented_frame=stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4];}}
     __atomic_store_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,sequence+2,__ATOMIC_RELEASE);__sync_lock_release(&capture_busy);return ok;
 }
-static void game_surface_drop(struct GameSurface* s){
+static void game_surface_drop_at(struct GameSurface* s,u32 site){
+    if(copy_trace_enabled){u32 values[19]={site,(u32)s->object,s->generation,s->epoch,s->metadata_epoch,
+        game_lock_epoch,game_metadata_epoch,s->pixels.data!=0,s->pixels.width,s->pixels.height,s->pixels.bits,s->pixels.length,
+        s->layout_known,s->primary,s->generation_origin,s->generation_caller,s->generation_owner};
+        copy_trace_record(COPY_TRACE_DROP,command_channel_session,values);}
     if(s->pixels.data){game_surface_bytes-=s->pixels.length;free_snapshot(&s->pixels);}
     s->dc=0;s->dc_bitmap=0;s->dc_owner=0;s->dc_generation=0;s->generation=++game_surface_generation;s->generation_origin=1;
 }
+#define game_surface_drop(s) game_surface_drop_at((s),copy_trace_enabled?game_tracker_site(__FILE__,__LINE__):0)
 static void game_surface_sync(void){
     game_alias_sync();game_session_sync();
     for(u32 i=0;i<32;++i)if(game_locks[i].object && game_locks[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED))game_lock_clear(game_locks+i);
@@ -178,7 +183,7 @@ static void game_surface_key(void* object,u32 flags,int valid,const u32* key){
 static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,const u32* descriptor){
     struct GameSurface* s=game_surface_find(object,1);
     if(!s)return;
-    game_surface_drop(s);
+    game_surface_drop_at(s,0); /* Complete replacement, not pixel invalidation. */
     if(!pixels->data || pixels->length>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED))return;
     s->caps=(descriptor[1]&1)?descriptor[26]:0;
     if(descriptor[0]>=124 && (descriptor[27] || descriptor[28] || descriptor[29]))s->caps=0;
@@ -334,7 +339,7 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     if(file!=(HANDLE)-1)CloseHandle(file);
     if(record)game_blit_bytes+=record_bytes;
     for(u32 i=0;i<32;++i)if(game_alias_same(p->target,game_locks[i].object))game_lock_clear(game_locks+i);
-    game_surface_drop(dst);dst->generation_origin=8;dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;game_surface_bytes+=dst->pixels.length;
+    game_surface_drop_at(dst,0);dst->generation_origin=8;dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;game_surface_bytes+=dst->pixels.length;
     __atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
     if(p->bootstrap)lock_diagnostic("blit_initialized",p->target,0,(u32)p->source,0,result,0,0);
     if(dst->primary)lock_diagnostic(game_surface_publish_region(dst,p->fields[6],p->fields[7],p->fields[4]-p->fields[2],p->fields[5]-p->fields[3],p->target_generation)?"blit_presented":"blit_presentation_skipped",p->target,0,(u32)p->source,0,result,0,0);

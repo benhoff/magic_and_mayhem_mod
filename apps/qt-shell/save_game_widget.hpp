@@ -16,6 +16,7 @@ public:
     bool loadAssets(const QString& root, QString* error = nullptr);
     bool setSaves(const QVector<Save>& saves, const QString& selectedId = QString(), QString* error = nullptr);
     QString selectedSaveId() const;
+    void setOriginalOverwriteConfirmation(bool enabled){originalOverwriteConfirmation_=enabled;}
     QRect contentRect() const;
     void focusSelection();
 signals:
@@ -45,5 +46,6 @@ private:
     QPushButton* delete_ = nullptr;
     QPointer<QMessageBox> confirmation_;
     quint64 revision_ = 0;
+    bool originalOverwriteConfirmation_=false;
     QRect headingRectangle_, listRectangle_, editRectangle_, saveRectangle_, cancelRectangle_, deleteRectangle_;
 };

@@ -21,6 +21,16 @@ public:
     std::function<bool(const QString&)> prepareNativeMedia;
     std::function<bool(const QString&)> prepareNativeMusic;
     std::function<bool(const QString&)> prepareNativePresentation;
+    bool campaignBookEnabled=false; // Experimental V22 static knowledge pages.
+    bool campaignSpellboxEnabled=false; // Experimental V21 campaign inventory/caller.
+    bool progressedMenusEnabled=false; // Experimental loaded-Realm Region paths.
+    bool realmMenusEnabled=false; // Experimental until genuine progressed-caller proof.
+    bool characterMenusEnabled=false; // Experimental until genuine progressed-caller proof.
+    bool hostLobbyEnabled=true;
+    bool sessionMenusEnabled=true;
+    bool multiplayerMenusEnabled=true;
+    bool grimoireMenusEnabled=true;
+    bool storageMenusEnabled=true;
     bool campaignPreferencesEnabled=true;
     bool campaignDefeatEnabled=true;
     bool resultMenusEnabled=true; // Compatibility harnesses may explicitly retain V3.
@@ -45,6 +55,8 @@ public:
     bool requestDefeatContinue();
     bool requestResults(quint32 action);
     bool requestMini(quint32 action);
+    bool requestMultiplayer(quint32 action,quint32 transport=0,const QString& gameName={},const QString& userName={});
+    bool requestStorage(quint32 action,quint32 row=0,const QString& name={});
     bool requestExit(); // Back from Quick Battle, then original Main Quit.
     void fallback(const QString& reason);
     std::function<void(const MenuBridge::State&)> stateChanged;

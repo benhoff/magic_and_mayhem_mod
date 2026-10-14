@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "scope": "Prospective scope/source declaration only. Execute the experiment and verify source stability before registering its result.",
+  "claims": [
+    {
+      "behavior": "NP.character-menu-dispatch",
+      "contract_sha256": "f6b51485ab692561ab1f9212b820521804b0046cd82e3d344435cc79473678e5",
+      "scenarios": {
+        "character-adapter-private-20261012": "ebd7474b7df4d723c8e0145be2addb307ecf6190bb9fce6d9a50d5e818ab9f58"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "cd8c607d9df36d2abe03e4717f40d78439d03f7fb085c58301f0547793653a48",
+    "apps/qt-shell/character_screen_widget.cpp": "ffb616e8afcac67d81fe0464f6096cacfb738b34499d2fc6a6b3e5630e6be504",
+    "apps/qt-shell/character_screen_widget.hpp": "4ec1486a2ee356fd97cf55992116099cc6334254c2a83e6f795e3773f0970143",
+    "apps/qt-shell/live_character_controller.cpp": "cc18b5e9e394dde43d864ce9e87d4f38a44029b55745c1c46307f2fd4a7939ee",
+    "apps/qt-shell/live_character_controller.hpp": "e70665d9aef5fe11514122a643bdaaa442fda8092a13f99a8478ac6a38ba587f",
+    "apps/qt-shell/live_menu_session.cpp": "f6476f7441640c7d8eec33ad8c17f7be0a13955f3cf25918d23a86e06c298ef4",
+    "apps/qt-shell/live_menu_session.hpp": "05e788f087f4961534f0ca7b1b2591a21eb0dd0a6e2ddf68b4893342524d888c",
+    "apps/qt-shell/main.cpp": "8f2da91ea26c764df75df2594f314dc19d56fee8885e1966f6dfa7b064046977",
+    "apps/qt-shell/menu_bridge.cpp": "5f3960800c4b69474db5d189412b40ea66b57bb8dd73b9d2fc5bec90aa05fcf9",
+    "apps/qt-shell/menu_bridge.hpp": "154d22aa28272d087d888fc8e87f7d750f8615d04cada0741512f39bdb7ea536",
+    "protocols/include/mnm/menu_v17.h": "be293c6c1edcec7982c0281ce4becf74b806102d0c3ce239f91d25ed67127bb9",
+    "protocols/include/mnm/menu_v18.h": "c6501ea87e8b7f2871a852b8b47f702a0f5251db359c9101b37b2d641e324368",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/channel.h": "41d4b53cad580f413fd24dacf75f0497d87729963d1a1142470a7c86ba9d3557",
+    "runtime/menu/character.h": "f5bf7516b62e8bf0f278150714519f822299bad0d3228cf98b7c28abf6c3a433",
+    "runtime/menu/grimoire.h": "5209a9be7cae1db008b54ab0e59f2c037a8df86ae4875a6c3807317a1fe5b84f",
+    "runtime/menu/lobby.h": "a133e8fa4ce4084fe268f2bc12ccef852d2b7907cc785ab8f63784d3e53dd1eb",
+    "runtime/menu/mini.h": "feb3305d85c77856a0da52931bdabd6646b6e28727196b7eda90b7222abba50f",
+    "runtime/menu/multiplayer.h": "d07556a96ee331106b6891e82dbdd327ec965a435a19f82f3b8d0b9ba141a6c8",
+    "runtime/menu/observer.c": "3ce46114197c00eec8e4919cfd08eb3a9e25db4a17aee97f466ed25b0a45ec66",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/region_entry.h": "e16e21093ee2da8b50b278004e538bae9bba149b00afa11a0f5f85686a33934f",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/sessions.h": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/character-adapter-reference.cpp": "b8166b09a6e0c2f3451086c5434df602acfb2e93207a92aa2055053d8d94cac9",
+    "tests/menu-character-bridge-test.cpp": "1a2a3c99e324959335d20bc7d239efe0a09bcc0c1936738ef21f560616e533f1",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/build-menu-observer.py": "a2cfac77e343fd2a2d3055f0fe0de5f4f29c5f42a2d42bc830ef2a29ee629ae6",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/run-menu-observer.py": "51cdf2aeb66cf7e2efccf8f6f9f9ea59c824c1cf85de1407dcf9690f20abedaf",
+    "tools/test-character-adapter.py": "cd6cbdc85df6d93f3b44bab4fd4a89e74f1678df865e5813f2bbb14f092d406d"
+  }
+}

@@ -1,0 +1,60 @@
+#pragma once
+#include "character-wire-fixture.hpp"
+#include "../protocols/include/mnm/menu_v22.h"
+// Synthetic engine peer only. No game process, progress grants or save writes.
+class CampaignMenuWireFixture final {
+public:
+    explicit CampaignMenuWireFixture(bool campaignSpells=false,bool campaignBook=false){
+        bridge_=std::make_unique<MenuBridge>();
+        check(directory_.isValid()&&bridge_->create(directory_.filePath("campaign.bin"),true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,campaignSpells,campaignBook),"Campaign channel");
+        file_.setFileName(directory_.filePath("campaign.bin"));check(file_.open(QIODevice::ReadWrite)&&file_.size()==(campaignBook?MNM_MENU_V22_SIZE:campaignSpells?MNM_MENU_V21_SIZE:MNM_MENU_V20_SIZE),"Campaign peer");
+        bytes_=file_.map(0,file_.size());check(bytes_,"V20 mapping");put(148,MNM_MENU_OK);put(152,9);region();
+    }
+    ~CampaignMenuWireFixture(){if(bytes_)file_.unmap(bytes_);}
+    void put(int at,quint32 value){qToLittleEndian(value,bytes_+at);}
+    quint32 word(int at)const{return qFromLittleEndian<quint32>(bytes_+at);}
+    void text(int at,const QByteArray& value){check(value.size()<128,"fixture text bound");std::memset(bytes_+at,0,128);std::memcpy(bytes_+at,value.constData(),value.size());}
+    void publish(){put(132,++generation_);put(128,word(128)+2);}
+    void region(const QByteArray& realm="Greek",quint32 id=3,bool different=true,quint32 actions=31,quint32 handoff=4){
+        std::memset(bytes_+MNM_MENU_V7_REGION,0,MNM_MENU_V7_REGION_SIZE);put(136,18);put(140,1);
+        const int at=MNM_MENU_V7_REGION;const std::array<quint32,8> header{4,4,quint32(different),1,15,actions,id,(actions&2)?handoff:0};
+        for(int i=0;i<8;++i)put(at+4*i,header[i]);
+        text(at+32,realm);text(at+160,"Original supplied region");publish();
+    }
+    void realm(){
+        put(136,4);put(140,1);put(156,0);const int at=MNM_MENU_V19_REALM;
+        std::memset(bytes_+at,0,MNM_MENU_V19_REALM_SIZE);
+        const std::array<quint32,10> header{3,3,5,2,3,0,1,UINT32_MAX,14,7};for(int i=0;i<10;++i)put(at+4*i,header[i]);
+        for(int i=0;i<3;++i){const int row=at+48+i*24;put(row,quint32(i+1));put(row+4,i?1:0);put(row+8,i?0:1);put(row+12,i?1:0);put(row+16,100+100*i);put(row+20,100);}publish();
+    }
+    void original(quint32 handoff=0){put(136,0);put(140,0);put(156,handoff);publish();}
+    void report(quint32 outcome){
+        put(136,MNM_MENU_DEFEAT_SCREEN);put(140,1);put(156,0);
+        const int at=MNM_MENU_V11_DEFEAT;std::memset(bytes_+at,0,MNM_MENU_V11_DEFEAT_SIZE);
+        put(at,1);put(at+4,5);put(at+8,5);put(at+12,outcome);
+        std::strcpy(reinterpret_cast<char*>(bytes_+at+16),outcome?"Original victory title":"Original defeat title");
+        for(int i=0;i<21;++i)std::strcpy(reinterpret_cast<char*>(bytes_+at+272+i*256),i==19?"":"Original score text");
+        publish();
+    }
+    void book(quint32 parent=4,quint32 chapter=0,quint32 section=0){
+        put(136,27);put(140,1);put(156,0);const int at=MNM_MENU_V14_GRIMOIRE;
+        std::memset(bytes_+at,0,MNM_MENU_V14_GRIMOIRE_SIZE);put(at,chapter);put(at+4,section);put(at+8,1);put(at+16,parent);put(at+20,parent==4?4:5);put(at+24,5);
+        const int meta=MNM_MENU_V22_GRIMOIRE;std::memset(bytes_+meta,0,MNM_MENU_V22_GRIMOIRE_SIZE);put(meta,79);put(meta+8,16);
+        for(int i=0;i<992;++i)put(meta+32+4*i,i%124<2?0:UINT32_MAX);
+        publish();
+    }
+    void spells(quint32 parent=4,quint32 owner=79){
+        put(136,7);put(140,1);put(156,0);const int at=MNM_MENU_V3_SPELL;
+        std::memset(bytes_+at,0,MNM_MENU_V3_SPELL_SIZE);put(at,owner);put(at+4,UINT32_MAX);put(at+8,3);
+        for(int a=0;a<3;++a){put(at+MNM_MENU_V3_COUNTS+4*a,2);for(int i=0;i<21;++i)put(at+MNM_MENU_V3_SLOTS+4*(a*21+i),UINT32_MAX);}
+        for(int i=0;i<25;++i)put(at+MNM_MENU_V3_SHELVES+4*i,i<2?quint32(i):UINT32_MAX);
+        for(int i=0;i<2;++i){text(at+MNM_MENU_V3_ITEM_NAMES+i*128,i?"Second":"First");for(int a=0;a<3;++a){put(at+MNM_MENU_V3_RECIPES+4*(i*3+a),i*3+a);text(at+MNM_MENU_V3_SPELL_NAMES+(i*3+a)*128,"Original spell name");}}
+        const int meta=MNM_MENU_V21_SPELL_CONTEXT;std::memset(bytes_+meta,0,MNM_MENU_V21_SPELL_CONTEXT_SIZE);put(meta+4,parent);put(meta+8,parent==4?4:5);put(meta+12,5);publish();
+    }
+    void acknowledge(){put(144,word(28));put(148,MNM_MENU_OK);publish();}
+    MenuBridge& bridge(){return *bridge_;}
+    void attach(LiveMenuSession& session){MenuBridge::State state;check(bridge_->read(state),"V20 initial read");LiveMenuSessionTestAccess::attach(session,std::move(bridge_),state);}
+private:
+    static void check(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
+    QTemporaryDir directory_;QFile file_;uchar* bytes_=nullptr;std::unique_ptr<MenuBridge> bridge_;quint32 generation_=0;
+};

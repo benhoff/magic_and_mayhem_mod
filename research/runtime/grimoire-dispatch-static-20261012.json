@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "entries": [
+    5011392,
+    5001088,
+    5010128,
+    5001776,
+    5003872
+  ],
+  "anchors": {
+    "0x4c77c0": "53568bf133db57395e3e7505395e3a74",
+    "0x4c4f80": "83ec10568bf18b862a1a000083f8200f",
+    "0x4c72d0": "5355568bf1578b7c24148b46423bf875",
+    "0x4c5230": "81ec6c0100005356578bf16a32e80e26",
+    "0x4c5a60": "83ec7853558bd9565733ff8d432a897c"
+  },
+  "command": [
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/toolchain/ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_/support/analyzeHeadless",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/decompiled/nocd-nn0_667n/project",
+    "MagicMayhem",
+    "-process",
+    "Chaos.exe",
+    "-readOnly",
+    "-noanalysis",
+    "-scriptPath",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/tools/ghidra",
+    "-postScript",
+    "ExportPersistenceProgression.java",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/decompiled/grimoire-controls-n_e98vvs/c",
+    "4c4f80",
+    "4c5230",
+    "4c5a60",
+    "4c72d0",
+    "4c77c0",
+    "-max-cpu",
+    "2"
+  ],
+  "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+  "tables": {
+    "0x5c6b70": [
+      "0x4ca300",
+      "0x4ca320",
+      "0x4ca330",
+      "0x4ca340",
+      "0x4c7890",
+      "0x4c7920",
+      "0x4732d0",
+      "0x4ca2a0",
+      "0x4ca2b0",
+      "0x0",
+      "0xffffffff",
+      "0xffffffff",
+      "0x59b823",
+      "0x464320"
+    ],
+    "0x5c667c": [
+      "0x4b2960",
+      "0x4b2990",
+      "0x4b29d0",
+      "0x4b29b0",
+      "0x5595d0",
+      "0x4b35c0",
+      "0x4b38c0",
+      "0x4b29e0",
+      "0x4b2ae0",
+      "0x4b2c10",
+      "0x4b3390",
+      "0x4b3880",
+      "0x4bc840",
+      "0x4bcaa0"
+    ]
+  },
+  "texts": {},
+  "installed_inputs": {
+    "Interface/RegionEntry/screen (Region Entry).cfg": "4eabc2e3aabf6cd508df3f20872505668ef768f26702f4046cb77aaf00419659"
+  },
+  "sources": {
+    "tools/export-grimoire-menu.py": "0cd5d4ef625b1a849d1e5edae6ebec77a79c4ae356b6134f5e641cf271f6bc8f",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/audit-file-apis.py": "c516ca9e40c3f68685501fb20d3348808d813a78e87207a9ea95fc18b6b8aa8e",
+    "tools/decompile-game.py": "6200c741f514398f4256e2255cdf05041859c99eeb4f3a9430c4c09a33d221d9",
+    "tools/ghidra/ExportPersistenceProgression.java": "c11ace07ee8e512656dc50fd7fb56a461b57ce4dee63348ac7c304c9845f24f5"
+  },
+  "artifacts": {
+    "original.asm": "25733004af7ed9654cbbb009d28c9a474e85cbce7c4dad1b7a3192700263c683",
+    "references.json": "49ab8b8368f2c7112982effb7b09bc2b05710060e61b39ff97308fae7c095cba",
+    "c/004c4f80.c": "03fbf5da36b0bb846d43a982255e43742b3b7ce0598c05b8d3b4f77b249d5514",
+    "c/004c5230.refs": "6f05b15bf7a88c1c4f3e8259ea07e6b9b713c68e988218d092e7c8beefc7d2f8",
+    "c/004c5a60.c": "948704c116cab8245237374b68521a6d9e149e36cce81a96a809979c31479e36",
+    "c/004c72d0.refs": "3499338e24dec5a34183bb418f021aba8da85df272c5b3150f82f2a6105faed8",
+    "c/004c5230.c": "4dd51980eb6f131e5e0c1bfa7a70af60ee91aba823b7ba3bd29e8a1da03ff1ee",
+    "c/004c5a60.refs": "7dcd7e9fed7489c4e9d942a15dabdf592ae2ccbf9a027064c810a5668b47b5b1",
+    "c/004c72d0.c": "288cb317169402591ac15d86fff33abea0e929fc1228e59769953fbd6e15fa44",
+    "c/004c77c0.c": "6ed371dda881fc9fd983f79829ef884dd09e723596e6525c008b03d1777fedcc",
+    "c/004c77c0.refs": "9e5013b4376696b0d67bdb1efdbd4ef2a6dcd452ef2b8129728ecb48303e52c9",
+    "c/004c4f80.refs": "337cd5dd0dbfb5b80f88e27bc37ca3b36ebf0c3578f619230087b373d7301fd9",
+    "inputs/0.cfg": "4eabc2e3aabf6cd508df3f20872505668ef768f26702f4046cb77aaf00419659"
+  }
+}

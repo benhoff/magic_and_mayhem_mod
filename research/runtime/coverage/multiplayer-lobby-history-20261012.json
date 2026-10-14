@@ -1,0 +1,270 @@
+{
+  "range": "1f7032ba..acab86fa",
+  "scope": "Committed exact receipt accounting only; no retrospective gate pass or new validation.",
+  "versions": [
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "f9b31a0f8c08232adf4df9765fe65c490383034989070f01835071fe7b8f439e",
+      "after_sha256": "d766f947336bb4d74d295bca584a427d5b04b5092c3db1825e3abe136777d31e",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "6828e0f76556bd7bc9cd5325a2ac451cd91b3be4e27b971c27f50352eebc9b77",
+      "after_sha256": "fc490109e28988caf79462a8188bdb9af50b45d34ed6670fc71ee2306e47a02a",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "459dc88689396eb355ef823407ad02bbb771f8d558aeb52965c0e6ed4125ac4d",
+      "after_sha256": "c21ad2c1f4f14f4d6654e063a0c0d787d4eac0627d7073923784f222095fded1",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "8e3cf9c38280e6f89347c793b9b11993db73d1689cf7a5c1ce2b828b349f7808",
+      "after_sha256": "7a1b2c5d726dec8aaf8c1ddf87e676a17a742d46033da7fbebf928bf123ea2be",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "557a527d4e5fd24ab70d78e41f6b014b962d0bd85879dc585991a7cd2299b438",
+      "after_sha256": "27eba21047b1a4bda72d65ea0b907d758d269a38a4cc50439f7b95d1bb10a043",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_multiplayer_sessions_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "cf2b8dca9d241fda9e762f9151d5218f6c6480b3757431e32f94f67c6cc265a4",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_session_selection_controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "39a742f3b4c0a6b6c4ea4a088fcb493889255628141ca539f440f262c6bd8e8a",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/live_session_selection_controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "bb249f6c330a99c4a1655efcf930ed75a1f820cb6402a46e2071a58820606b61",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "e0a6343401c6645861c09628e5cdf7a0d1510c27a77416a8f916028a68cdb803",
+      "after_sha256": "3c3d8c7e0f6da970b398444f6cfd5d98e7cbbb20e2684f5358c0c114c2f8a8c8",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "2d72a72b180d15167d13e6a6eb2420461fde83b8ac645808f8ef0a91fb223494",
+      "after_sha256": "3fa30fad209d7cdea6812eff9f96dc2f7dad1bca0a368c85b598492c1dad49aa",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "ff9ce94fc4e6eab7ba4bc62abdaa150cca927278e35d42a2b8925cf8f143645e",
+      "after_sha256": "67cf354d0e9bf196b64cc2216d8778bd2043379c78bb9d117a658ed908cfd64c",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "protocols/include/mnm/menu_v16.h",
+      "before_sha256": null,
+      "after_sha256": "1ab47b771eda03a625dde951d5aae62604fcbe416ba2f3db304cd09fbec0c74a",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "0638be410fddff38bce388a99da3c25cc71bec720a3ed4209ffbc9e6c299f72f",
+      "after_sha256": "b5f65db5b3ad3efc501d7b6e17e8a0ec80711b8673ca7b235841b7bebface535",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/coverage/multiplayer-session-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8f71c1479a4b310ddde504e26bacbd6b3edaaceba8cc6aa4efe06fa9fa81d0ea",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "60603ba1593a196c7f1af7e8ce1cd57b4da4ea819ef7e4b64b86add057f8e70a",
+      "after_sha256": "6220de3452832bd53e12d7d6fa006716da28c3eaeb1cdcdc297e8218af7dcef5",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/coverage/summary-multiplayer-sessions-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "9fd34c6d19a84c3b030e0eb0afdf4b818a492b735912305630a17b250aa80a2d",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/multiplayer-session-contract-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "22fed635e5d48817e8da78647f94bca9a5ea79f0a9732682cec76195c627f3bc",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/multiplayer-session-menu-contract.md",
+      "before_sha256": null,
+      "after_sha256": "c7aa7bdf60821567b7b1565277736d7ba45b21edbea210eb23976d7818fefd2b",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "research/runtime/multiplayer-sessions-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "40929f9b3ef013572cc76bd2c2ec9a77d7b3cf81d547982181cf2a7f21b6dc9f",
+      "receipts": [
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "4ea7ae3320520cec05af529ccc1aac68f1528e5958a3155c0813c875444cd55e",
+      "after_sha256": "d8480d0c5bf6c9359e7358e71c529e4f5f3a02a1b48a0bdfc9f303f8a07c35aa",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "9435d34c7b85db3dd39022f041300c4438f422494e9f0d70290dafacef7089f6",
+      "after_sha256": "9be52ba3d9d5ace848d90cd70f9776c852eb8b5cd2df26db6bfa76d8ede9a314",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "runtime/menu/sessions.h",
+      "before_sha256": null,
+      "after_sha256": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "tests/menu-session-bridge-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3cf9e7adfe51f0542a968e39da76678fcf958cf60a9f3b20131646c3491785cb",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "tests/multiplayer-session-contract.c",
+      "before_sha256": null,
+      "after_sha256": "6ab10301d91a69c35a0bc76c79eabacd474b042ce53e97d5fd429f59ee857b2d",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "1709b07c18674d82b0261fd9f7f9c4690e66c2441ee7c499d6b87e1f40592cbb",
+      "after_sha256": "b72d1bbe73617b52a1bd04af5b6b7c1236310e8e87dc943a979534fdf0b578ec",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "tools/test-live-multiplayer-sessions.py",
+      "before_sha256": null,
+      "after_sha256": "fca7ef8505f5db7042189b9cd58fcc312f44163286329d9b1304654dec4e9158",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    },
+    {
+      "commit": "acab86fa1c18b70881e4f820da3f01c564ad9f7e",
+      "path": "tools/test-multiplayer-session-contract.py",
+      "before_sha256": null,
+      "after_sha256": "3f21402f108b8a0f2e7f72c28136d2272017442f1ecf16a75bd08f9d77ad6c0b",
+      "receipts": [
+        "multiplayer-empty-sessions-live-20261012",
+        "multiplayer-sessions-accounting-and-historical-limits-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

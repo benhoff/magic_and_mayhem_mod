@@ -50,6 +50,12 @@ The auxiliary destinations above are address identities. Their full control-labe
 mapping, destination lifecycles and return paths are not confirmed by this result.
 Do not infer a bridge command from preview navigation names alone.
 
+The later [Grimoire identity review](grimoire-engine-contract.md) confirms the
+installed standard-button order and resource consumers: action2 is Grimoire
+`0x6e0088`, action3 is Spellbox/Portmanteau `0x6f2aa0`, action4 is Character
+Screen20 `0x6c5148`. Earlier campaign prose had Grimoire/Character reversed.
+Those corrected names do not promote live auxiliary navigation or return status.
+
 Deferred hook `0x4b3880` consumes nonzero +0x80, invokes world preparation
 `0x470950`, requests `0x6cbb78`, transitions and marks return. The test privately
 stubs world preparation; it does not start a real world. Realm resume `0x552210`

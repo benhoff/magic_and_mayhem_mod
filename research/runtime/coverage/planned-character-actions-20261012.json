@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "scope": "Prospective scope/source declaration only. Execute the experiment and verify source stability before registering its result.",
+  "claims": [
+    {
+      "behavior": "CP.character-actions",
+      "contract_sha256": "718798761aa69d9f5f60fb6883bb66b57b64dc1f12a813a5bc08929fe27b5edb",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "tests/character-menu-contract-reference.cpp": "14fe6f80f52f22d44a2bac4df74a5676e8198662dde36f6163484ce97dadadb8",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/test-character-menu-contract.py": "e382ee975ce32d94ed994e91e7511c68e3494a455ce552230db07aa541f346e8"
+  }
+}

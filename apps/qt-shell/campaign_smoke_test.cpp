@@ -27,6 +27,7 @@
 // protocol downgrade or fallback is enabled by this automation.
 void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,
                              const QString& path,std::function<CampaignPresentationProbe()> probe){
+    if(qEnvironmentVariableIntValue("MNM_CAMPAIGN_STORAGE")==1){installCampaignStorageTest(app,window,session,path,probe);return;}
     if(qEnvironmentVariableIntValue("MNM_NATIVE_HEALING")==1){installNativeHealingSmokeTest(app,window,session,path,probe);return;}
     const int difficulty=qEnvironmentVariableIntValue("MNM_CAMPAIGN_DIFFICULTY");
     const int stressSeconds=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STRESS_SECONDS");

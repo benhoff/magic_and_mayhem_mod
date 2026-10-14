@@ -1,0 +1,167 @@
+{
+  "scope": "Committed parent/current hash receipt audit only; no retrospective gate pass or new engine validation.",
+  "range": "556ded96..cf23c406",
+  "versions": [
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "0976e77e5b2b2f6785812769bd8f55c990c06ed60f7242b37a4d21b683c7baa8",
+      "after_sha256": "f21805a02825e4502952a6f9fac9e24c58f718734fa1ad155002dd5dddf043b1",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/coverage/grimoire-observation-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "6b1a0401cbc46dcce5cdc49c2c22b70318b50930dcc4675ec792adab3d1fd34a",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "67ac9f9e194a442711e64a1fad12b6f748b9f4c44d661bab9e7f6bcb2cad9806",
+      "after_sha256": "afdec9b409586d6d141a5514ceb21029b91418c750281171bd23b2df24288680",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/coverage/summary-grimoire-observation-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "98174a2bfb4bef253aa27b6eec2be66a6fd216d1152f1da469e6168a654863d2",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/grimoire-animation-close-observation-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "cdad193e4d48a0a38e8bc7149f0b484daeae9c1e45a557135e1e523c515b89f5",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/grimoire-default-menu-regression-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "bff88ec66ca7aaa1d40f8989beb629440b6efe0c334c1d88b40dbbb515f3d5d3",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/grimoire-observation.md",
+      "before_sha256": null,
+      "after_sha256": "1fc676b289da00fda75d2002578725d55c93d3a5a6a864df55eefbea8acd6b3e",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/grimoire-observer-final-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9807efcb7cebf00c410cca6b73107dea6ad63d207525a89dc5b8d14218aac6d3",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/grimoire-observer-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1f77402828b11604fd8e8ecdc50091e92efd5e2937048729a5c7d1e6d42ac8ae",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "research/runtime/grimoire-settled-live-observation-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "76b24328ab2f8350de1c2ec033e53b7ef240555e92d8898791a573db6726a739",
+      "receipts": [
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "runtime/menu/grimoire_observe.h",
+      "before_sha256": null,
+      "after_sha256": "bded7938f4c982f192dab3792e8f6b66565801071dc08b40a3d7d3e7a8049f0a",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "588774baeeccb5b5559b10ee1a5efa5b5b0fd6e22ba511816e95222b3b504918",
+      "after_sha256": "6d445cdad37834854a82b57d466ff897895ba3d3658ceeb5c4666eb9ac89c219",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "tests/grimoire-observer-reference.c",
+      "before_sha256": null,
+      "after_sha256": "548dae5658f58e0122df49cb9abef2c0d0c71926f927a9ca98d576737ada7762",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "2c90f549e738c4ffc29946ba43879cea4c5bef9fc5c4c0684821b04ab42b5106",
+      "after_sha256": "eb3308b04c5242b210638b31edf0b54e24ba7ddbe2ca61242ab6b237fd79244d",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "7e2c049d16dd2023a4cff7331c82f77084bcfade1457344652e51ac649e1c5bd",
+      "after_sha256": "9e991d98d8ed7b197990b10a0763b867f47613d89b94d0d1256cf0d6dff83e68",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "tools/test-grimoire-observer.py",
+      "before_sha256": null,
+      "after_sha256": "67ea8a5f7c5823b94450e86fe4543f72791037a9305667094819ef3a0c100248",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    },
+    {
+      "commit": "cf23c40630948c8588d296f935aa678a73f1441a",
+      "path": "tools/test-live-grimoire-observation.py",
+      "before_sha256": null,
+      "after_sha256": "8328923c44e960b78752647b5e68727bbdc3e00f181ad015a2dedea937d850e5",
+      "receipts": [
+        "grimoire-settled-original-lifecycle-live-20261012",
+        "grimoire-probe-accounting-and-historical-limitations-20261012"
+      ]
+    }
+  ],
+  "unresolved": []
+}

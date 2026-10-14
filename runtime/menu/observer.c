@@ -84,8 +84,9 @@ static int install_battle(void){
     VirtualProtect((void*)0x5c6950,4,b,&unused);VirtualProtect((void*)0x5c6544,4,a,&unused);return 1;
 }
 static u32 THIS result_tick(void* object){
-    u32 error=GetLastError();menu_poll(object,1);SetLastError(error);
-    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();menu_poll(object,0);SetLastError(error);return result;
+    u32 error=GetLastError();int storage=menu_version>=13&&readable(object,8)&&(get((u8*)object+4)==MNM_MENU_LOAD_SCREEN||get((u8*)object+4)==13);
+    if(storage)record(1,object,0,0);menu_poll(object,1);SetLastError(error);
+    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();menu_poll(object,0);if(storage)record(4,object,0,result);SetLastError(error);return result;
 }
 #include "preferences_display.h"
 #include "campaign_observe.h"
@@ -93,6 +94,7 @@ static u32 THIS result_tick(void* object){
 #include "campaign_world_observe.h"
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
+#include "grimoire_observe.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
     const u8 quick_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0xf1,0x0a,0x00};
@@ -125,6 +127,7 @@ static int install(void){
         original_tick=(TickFn)0x5595d0;
         if(!drawing_action_init())return 0;
         menu_init();
+        if(!install_grimoire_observe())menu_retired=1;
         if(!install_campaign_observe())menu_retired=1;
         if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
         if(!install_gameplay_observe())menu_retired=1;
@@ -146,6 +149,49 @@ static int install(void){
             if(!readable((void*)0x5c776c,4)||get((void*)0x5c776c)!=0x576830||!equal((void*)0x576830,(u8[]){0x81,0xec,0,2},4)||
                !VirtualProtect((void*)0x5c776c,4,0x40,&old))menu_retired=1;
             else{put((void*)0x5c776c,(u32)&spell_tick);VirtualProtect((void*)0x5c776c,4,old,&unused);}
+        }
+        if(menu_version>=18){
+            u32 old,restore;const u8 bytes[]={0x56,0x57,0x8b,0xf1,0xe8,0x67,0xb4,0x0d,0x00};
+            if(!readable((void*)0x5c66c4,4)||get((void*)0x5c66c4)!=0x5595d0||!readable((void*)0x4b5470,sizeof(bytes))||
+               !equal((void*)0x4b5470,bytes,sizeof(bytes))||!VirtualProtect((void*)0x5c66c4,4,0x40,&old))menu_retired=1;
+            else{put((void*)0x5c66c4,(u32)&result_tick);VirtualProtect((void*)0x5c66c4,4,old,&restore);}
+        }
+        if(menu_version>=17){
+            u32 old,restore;
+            if(!readable((void*)0x5c68ac,4)||get((void*)0x5c68ac)!=0x5595d0||
+               !equal((void*)0x4b7bf0,(u8[]){0x8b,0x44,0x24,4,0x56,0x85,0xc0,0x8b},8)||
+               !VirtualProtect((void*)0x5c68ac,4,0x40,&old))menu_retired=1;
+            else {put((void*)0x5c68ac,(u32)&result_tick);VirtualProtect((void*)0x5c68ac,4,old,&restore);}
+        }
+        if(menu_version>=16){
+            u32 old,restore;
+            if(!readable((void*)0x5c65e4,4)||get((void*)0x5c65e4)!=0x5595d0||
+               !equal((void*)0x4b0a00,(u8[]){0x8b,0x44,0x24,4,0x56,0x83,0xe8,0},8)||
+               !VirtualProtect((void*)0x5c65e4,4,0x40,&old))menu_retired=1;
+            else {put((void*)0x5c65e4,(u32)&result_tick);VirtualProtect((void*)0x5c65e4,4,old,&restore);}
+        }
+        if(menu_version>=15){
+            u32 old,other,restore;
+            if(!readable((void*)0x5c65ac,4)||get((void*)0x5c65ac)!=0x5595d0||
+               !readable((void*)0x5c661c,4)||get((void*)0x5c661c)!=0x5595d0||
+               !equal((void*)0x4af910,(u8[]){0x8b,0x44,0x24,4,0x55,0x57,0x83,0xe8},8)||
+               !equal((void*)0x4b1840,(u8[]){0x8b,0x44,0x24,4,0x53,0x55,0x56,0x83},8)||
+               !equal((void*)0x4cd0e0,(u8[]){0x57,0x8b,0x7c,0x24,8},5))menu_retired=1;
+            else if(!VirtualProtect((void*)0x5c65ac,4,0x40,&old))menu_retired=1;
+            else if(!VirtualProtect((void*)0x5c661c,4,0x40,&other)){VirtualProtect((void*)0x5c65ac,4,old,&restore);menu_retired=1;}
+            else {put((void*)0x5c65ac,(u32)&result_tick);put((void*)0x5c661c,(u32)&result_tick);
+                VirtualProtect((void*)0x5c661c,4,other,&restore);VirtualProtect((void*)0x5c65ac,4,old,&restore);}
+        }
+        if(menu_version>=13){
+            u32 old,other,restore;
+            if(!readable((void*)0x5c64d4,4)||get((void*)0x5c64d4)!=0x5595d0||
+               !readable((void*)0x5c650c,4)||get((void*)0x5c650c)!=0x5595d0||
+               !equal((void*)0x4aa800,(u8[]){0x8b,0x44,0x24,4,0x56,0x83,0xe8,0},8)||
+               !equal((void*)0x4ab750,(u8[]){0x8b,0x44,0x24,4,0x81,0xec,0,1},8))menu_retired=1;
+            else if(!VirtualProtect((void*)0x5c64d4,4,0x40,&old))menu_retired=1;
+            else if(!VirtualProtect((void*)0x5c650c,4,0x40,&other)){VirtualProtect((void*)0x5c64d4,4,old,&restore);menu_retired=1;}
+            else {put((void*)0x5c64d4,(u32)&result_tick);put((void*)0x5c650c,(u32)&result_tick);
+                VirtualProtect((void*)0x5c650c,4,other,&restore);VirtualProtect((void*)0x5c64d4,4,old,&restore);}
         }
         if(menu_version>=11){
             u32 old,restore;const u8 bytes[]={0x56,0x8b,0xf1,0xe8,0x68,0x2d,0x0e,0};
@@ -197,5 +243,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

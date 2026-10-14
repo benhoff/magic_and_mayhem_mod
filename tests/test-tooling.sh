@@ -19,6 +19,7 @@ python3 -m py_compile \
 python3 "$REPO_DIR/tests/test-decompile-game.py"
 python3 "$REPO_DIR/tests/test-re-coverage.py"
 python3 "$REPO_DIR/tests/test-coverage-gate.py"
+python3 "$REPO_DIR/tests/test-coverage-merge-history.py"
 python3 "$REPO_DIR/tools/audit-re-coverage.py"
 python3 "$REPO_DIR/tools/check-re-coverage.py"
 python3 "$REPO_DIR/tools/verify-decompilation-baseline.py"

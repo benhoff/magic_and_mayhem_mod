@@ -29,20 +29,24 @@ static void campaign_record(void* object,u32 phase,u32 result){
     SetLastError(error);
 }
 static u32 THIS campaign_tick(void* object){
-    u32 error=GetLastError();campaign_record(object,1,0);SetLastError(error);
+    u32 error=GetLastError();int input=0;
+    if(menu_version>=19){menu_poll(object,1);input=realm_input_begin(object);if(input<0)menu_status=MNM_MENU_UNAVAILABLE;}
+    campaign_record(object,1,0);SetLastError(error);
     u32 result=((TickFn)0x5517a0)(object);error=GetLastError();
+    if(input>0)realm_input_end();
+    if(menu_version>=19)menu_poll(object,0);
     campaign_record(object,2,result);SetLastError(error);return result;
 }
 static int install_campaign_observe(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CAMPAIGN_OBSERVE",path,sizeof(path));
-    if(!length)return 1;
+    if(!length&&menu_version<19)return 1;
     const u8 bytes[]={0x81,0xec,0x08,0x01,0,0,0x33,0xc0};u32 old,restore;
     if(length>=sizeof(path)||!readable((void*)0x5c6a70,4)||get((void*)0x5c6a70)!=0x5517a0||
        !readable((void*)0x5517a0,8)||!equal((void*)0x5517a0,bytes,8)||
        !VirtualProtect((void*)0x5c6a70,4,0x40,&old))return 0;
-    campaign_log=CreateFileA(path,0x40000000,1,0,1,0x80,0);
-    if(campaign_log==(HANDLE)-1)campaign_log=0;
+    if(length){campaign_log=CreateFileA(path,0x40000000,1,0,1,0x80,0);if(campaign_log==(HANDLE)-1)campaign_log=0;}
     int ok=0;
+    if(!length){put((void*)0x5c6a70,(u32)&campaign_tick);ok=1;}
     if(campaign_log){
         const u8 header[16]={'M','N','M','C','A','M','P','2',2,0,0,0,128,0,0,0};u32 wrote=0;
         if(WriteFile(campaign_log,header,16,&wrote,0)&&wrote==16){put((void*)0x5c6a70,(u32)&campaign_tick);ok=1;}

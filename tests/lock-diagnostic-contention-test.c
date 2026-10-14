@@ -53,6 +53,12 @@ struct GameCopyLease {u32 held,observe;};
 static u32* history_current(void){return &history_invalid;}
 static void game_pixel_missed(void* p){(void)p;__atomic_add_fetch(&misses,1,__ATOMIC_RELAXED);}
 static void game_metadata_invalidate(void){}
+static u32 command_channel_session;
+static void zero(void* p,u32 n){memset(p,0,n);}
+static u32 GetEnvironmentVariableA(const char* name,char* value,u32 size){(void)name;(void)value;(void)size;return 0;}
+int WIN QueryPerformanceCounter(unsigned long long* value){struct timespec t;clock_gettime(CLOCK_MONOTONIC,&t);*value=(unsigned long long)t.tv_sec*1000000000+t.tv_nsec;return 1;}
+int WIN QueryPerformanceFrequency(unsigned long long* value){*value=1000000000;return 1;}
+#include "../runtime/render/copy_timing.h"
 #include "../runtime/render/copy_order.h"
 #ifdef MNM_LOCK_DIAGNOSTICS_DEFERRED
 #include "../runtime/render/lock_diagnostic_worker.h"

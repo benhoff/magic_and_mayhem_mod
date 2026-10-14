@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "entries": [
+    5011600,
+    5011744,
+    5022464,
+    5022496,
+    5007632,
+    5008816,
+    5004320
+  ],
+  "anchors": {
+    "0x4c7890": "568bf18b461e85c08a460c740a84c075",
+    "0x4c7920": "8b442408563d000100008bf17513837c",
+    "0x4ca300": "568bf1e83897ffffc7461e000000005e",
+    "0x4ca320": "e9bbb9ffff9090909090909090909090",
+    "0x4c6910": "83ec085355568bf133ed578b46523bc5",
+    "0x4c6db0": "515355568bf1578b464a83f8010f8e8f",
+    "0x4c5c20": "8b44240453555683f808578be97d5d33"
+  },
+  "command": [
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/toolchain/ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_/support/analyzeHeadless",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/decompiled/nocd-nn0_667n/project",
+    "MagicMayhem",
+    "-process",
+    "Chaos.exe",
+    "-readOnly",
+    "-noanalysis",
+    "-scriptPath",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/tools/ghidra",
+    "-postScript",
+    "ExportPersistenceProgression.java",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/decompiled/grimoire-controls-qaqam86i/c",
+    "4c5c20",
+    "4c6910",
+    "4c6db0",
+    "4c7890",
+    "4c7920",
+    "4ca300",
+    "4ca320",
+    "-max-cpu",
+    "2"
+  ],
+  "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+  "tables": {
+    "0x5c6b70": [
+      "0x4ca300",
+      "0x4ca320",
+      "0x4ca330",
+      "0x4ca340",
+      "0x4c7890",
+      "0x4c7920",
+      "0x4732d0",
+      "0x4ca2a0",
+      "0x4ca2b0",
+      "0x0",
+      "0xffffffff",
+      "0xffffffff",
+      "0x59b823",
+      "0x464320"
+    ]
+  },
+  "texts": {},
+  "installed_inputs": {},
+  "sources": {
+    "tools/export-grimoire-menu.py": "0cd5d4ef625b1a849d1e5edae6ebec77a79c4ae356b6134f5e641cf271f6bc8f",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/audit-file-apis.py": "c516ca9e40c3f68685501fb20d3348808d813a78e87207a9ea95fc18b6b8aa8e",
+    "tools/decompile-game.py": "6200c741f514398f4256e2255cdf05041859c99eeb4f3a9430c4c09a33d221d9",
+    "tools/ghidra/ExportPersistenceProgression.java": "c11ace07ee8e512656dc50fd7fb56a461b57ce4dee63348ac7c304c9845f24f5"
+  },
+  "artifacts": {
+    "original.asm": "25733004af7ed9654cbbb009d28c9a474e85cbce7c4dad1b7a3192700263c683",
+    "references.json": "1eddffa4755e2731338ac2ac9cc5f6f1ed96d4ed39b98fb83a3e248235e2fef9",
+    "c/004ca300.refs": "d588dcbcc29442197641e4e7252cb6a3e2989bd78f6c682a7bf85047b317e3c0",
+    "c/004ca300.c": "76c3edc22a193a5de2a0beaaba5f2d973cf130f508a3a76b8b5de98395acb456",
+    "c/004c6db0.refs": "142f2e5a4e72fdef36dcbed8dcf3fd56dfb58c1093c0b10c5abefa39c767e976",
+    "c/004c6db0.c": "51cb2be35d88d741655d25a59d115c6234220d94f8bea9fda0bc20ba03a51870",
+    "c/004ca320.refs": "df60271e22ef344f5c9180da54898289a506947362cb9e06b6a386fdf865076b",
+    "c/004c7890.c": "ae001535c2b335d10880aabcc23aa80be789bf4f4c6d39ce1382bfdcefee0e74",
+    "c/004c7920.refs": "f77361a68ab3a380453e87b3e75654096e9663be4aeb652f5e205b8d26867142",
+    "c/004c5c20.c": "2bbf1690bd83d93298a233630ea60c6e9dd05f4bbf78f39485d539c9792bd8f8",
+    "c/004c5c20.refs": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "c/004c6910.refs": "ff76907fdfd91ccc4b214f4c1445c1e11eb849209741cf9da6e6564181ec1849",
+    "c/004c7920.c": "6e833ade7c839f433360076ad1b74009030518e90c54c42de19d6245a731c089",
+    "c/004c6910.c": "318c89d609d1da1f75d8a9fdb2f29e672a3b6912baa23a2b1f757c8f8f873ad5",
+    "c/004ca320.c": "3731492ef4b6de0b74bfc7ffe2df3ad1c81090a4f1001d0dc4c1a0ec808f518c",
+    "c/004c7890.refs": "c579d499254ac7d1abcdbb9833dd161cb5e5f450c9032f5b75555209ad91203e"
+  }
+}

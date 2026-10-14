@@ -1,0 +1,618 @@
+{
+  "schema": 1,
+  "reviewed_range": "82f9bffa9fffe13ef82568008e059eef35f46322..122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+  "scope": "Committed parent/current file SHA-256 receipt chains only; uncommitted menu work separate; no retrospective gate pass or new engine validation",
+  "files": [
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "apps/combat-sandbox/README.md",
+      "before_sha256": null,
+      "after_sha256": "4c562d926bcdb0e403910e911249bbe774bfd57c63a92b3e51a512833a699770",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "apps/combat-sandbox/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "f7951d864bcdecf5d05b9c21feedf31cd0c48ee77505f7d9d6962a4be4fb4074",
+      "receipt_chain": [
+        "ns21-native-combat-reviewed-execution-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "docs/architecture.md",
+      "before_sha256": "0094de87ba7a482c68846591739bcde09fce172795a8350d76fa6bb5bc891bb4",
+      "after_sha256": "32de96b927267d177c61736d8c0cea78eaf16cfcffc0fbdaecda9049575ac247",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "0ff7d1b41d7b9f8abfb3c655f2568be406b85d8003473e27dda9be117d10111b",
+      "after_sha256": "d283b2a044cfe172ab872c72efd7ddc0831c7d0315cd2f37937d36c1a1251b70",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "game/README.md",
+      "before_sha256": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+      "after_sha256": "647a2df4fe3c8cfee197e0e6674869ab57666885aecf6a5786abda94ddff74e8",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "game/simulation/combat.cpp",
+      "before_sha256": null,
+      "after_sha256": "a587561a03bcf9b530db983b9d55ff12dcdf9a042f4f511df58a415433658965",
+      "receipt_chain": [
+        "ns21-native-combat-reviewed-execution-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "game/simulation/combat.hpp",
+      "before_sha256": null,
+      "after_sha256": "b79858ade42e58c10a0975054b8e0c5812d5ecf566061d5ecf260cae532564ae",
+      "receipt_chain": [
+        "ns21-native-combat-reviewed-execution-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "game/simulation/movement.cpp",
+      "before_sha256": "f88bed21394f2a4bcfe30010a95db29835e1cd26afe93413b3c6c46799853975",
+      "after_sha256": "8880e491dbd23e55378cd155366fa46c8cedd603c0ce5aaf7d7950f6ae3c4cba",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/formats/native-combat-subsystem.md",
+      "before_sha256": null,
+      "after_sha256": "d90f645b5a83bc18324511211ecf4697884f228aec394123ed92dd07bf57efd2",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "720162569f26ba3917b09827669ee41851f8cad8c909669fefe1d8a765d20a70",
+      "after_sha256": "906c02f5d56d68b3d561f8f9fb7fd0fc2909a8e5b6b41e2d9441024435650635",
+      "receipt_chain": [
+        "ns21-combat-only-staged-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/native-combat-committed-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a956f86a2913a67868f6d0c04a51e59cc618c47ed64b9bb2fc393f15d159adc7",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "cbb6d5e8b6d2e6ec310eac1ea58a3119b4558e8a6501aef8b42b12e718cfb22f",
+      "after_sha256": "65ac660014e8b352d7b015450070b2d5269563ef4234ffe4a663e4b13e249d19",
+      "receipt_chain": [
+        "ns21-combat-only-staged-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/source-index-native-combat-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "982067dbc02472d07c264fa868e237cbef08e8de7448a15c05010e32b8d31d1d",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/source-index-native-combat-commit-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "8296a6b7b181dd3643b408b122fef6af6d9f39f3e0158b6f5c7274f4700b2025",
+      "receipt_chain": [
+        "ns21-combat-only-staged-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/source-index-native-combat-current-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e2e5acc74c71544c1acd5e5f62720433851949b504d8a82ffc1b305e7c21e822",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/source-index-native-combat-reviewed-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "291848a7401ef64037a47b6e1f9f48762912239d9018a1c2bfacaed935a2214f",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/coverage/summary-native-combat-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "f809c3d698a1aa4e996a2e4a3390b364754c1748c8b779478205ee48454aaba9",
+      "receipt_chain": [
+        "ns21-combat-only-staged-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/native-combat-encounter.md",
+      "before_sha256": null,
+      "after_sha256": "0de509e9f1f790172b0a13b55fcf1b1c3ef58c57d88f7700f11ada786fea182e",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/native-combat-fine-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "18295ac0114bd9edbf5f5d024f74b1a22797c95f36841d645882cd7b848a240e",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/native-combat-normal-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4d01d8dda0a65f6b62cefe58509b6d86238987145e1d77c25c37621c247a924f",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/native-combat-provenance-gap-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "cbb63f749b64d9ae4ba711c9867217a0c5021bd5a353bc6e1845e72476de5c2d",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "research/runtime/native-combat-sanitized-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "492092e08bf8c16e9c148195887fe03a3a7bb146ef310d1ca503fa9bf49b085e",
+      "receipt_chain": [
+        "ns21-native-combat-support-and-historical-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "tests/native-combat-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "6f00b01264b3b426b34e25fbe70e278e0a5f1fe5c88fe09a7ccc2f406ef105b7",
+      "receipt_chain": [
+        "ns21-native-combat-reviewed-execution-20261012"
+      ]
+    },
+    {
+      "commit": "98259649583915de539d08683ddfd3cc02135f47",
+      "parent": "82f9bffa9fffe13ef82568008e059eef35f46322",
+      "path": "tests/test-native-combat.py",
+      "before_sha256": null,
+      "after_sha256": "8cff8366c3154eafb87047fae5ff194c03340ce0ab1d26a1bc5fdbbb80f12ac9",
+      "receipt_chain": [
+        "ns21-native-combat-reviewed-execution-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "76fe42988dc6e9db0bc3675c07a5634db52aab67efecc321f991c29f2b913370",
+      "after_sha256": "0c6008e11d17032665ff8e0fa9ee8f80ae226fc502515dbffff2d76454505519",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "523969eb948199d9d6eb6098259a7c2675b709c38cb94f9a72d3ff5f13aacfff",
+      "after_sha256": "46f4b15c0ddda6b9fb9a6ff6e07035c82494980e2c02450a2d1a3b6d24c9dad3",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "cb0aa1c227cf230b5187f6d1e23b37b2cf7f48efb9477cc3e09d5a489781fdd5",
+      "after_sha256": "a157e77a9d90a30d64e217913675bd92558257c49643014966182671f37840ea",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "2a71dbb54e405201548d9c0fec980bc977b033d6fd0a0ee9cdddefea015f900a",
+      "after_sha256": "6c57f10b12cacc099816abd80d7ee1ce9f4b594247bcac516174cb236415288c",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "audio/voice_bridge.cpp",
+      "before_sha256": "78ef0997ed557eff18a93c5c43dacfd2ea48d1f056ec318b53dc6a01ce1bfc8f",
+      "after_sha256": "1b8fbbed6556772018a85b01c026c869cf4f4bc0a998b759b207641c4482989a",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "audio/voice_bridge.hpp",
+      "before_sha256": "025b50e8a003de2806dc1c68aeff71ff3f473465d08475eddb33edac12bb39aa",
+      "after_sha256": "1f35728aa83903f5da4a68f3c31b6335a59d1e4e1d748dfe3e291c2142cf6a4b",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "906c02f5d56d68b3d561f8f9fb7fd0fc2909a8e5b6b41e2d9441024435650635",
+      "after_sha256": "2b25e9f4d0967207715583a997e81c1b96ffe83a86475b24aa5dc08327832526",
+      "receipt_chain": [
+        "native-audio-default-merged-index-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/native-menu-audio-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3e76ecccacd1e51424603156ce96352491a500d76bf45635cc9fc2bd4b682b6e",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/native-menu-audio-incoming-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "73b6f3a7bcebc27f6940a7c8c85b89eccc74c5158ba93bb539e77687806a9b9f",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "65ac660014e8b352d7b015450070b2d5269563ef4234ffe4a663e4b13e249d19",
+      "after_sha256": "fcb42db949a2ae55c837bc141533710f574762c85ee31f6d1b0137a2f51b05dc",
+      "receipt_chain": [
+        "native-audio-default-merged-index-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/source-index-native-audio-default-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1e48cfdca90193d0f8853c317d00a51eee46a5cb0dc0387e836c9eba63f153b5",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/source-index-native-audio-default-shared-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "b94b134db081c9c545de7bab18fc024e80982fd518256abbd843f20a04b545eb",
+      "receipt_chain": [
+        "native-audio-default-merged-index-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/source-index-native-menu-audio-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fca346577f5897a7a5bb5c523c0f1b5f2726274b55545a73aedf4179db415af9",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/source-index-native-menu-audio-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "60e15edb0b71cb8277019ddc77647f7db9cb52ce22a0d8af84a7b632f9dc36b6",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/source-index-native-menu-audio-merged-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1ebc977dfe1b49629e3d860994089fef99acd4cc2b61c08614c32f2db2819b93",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/summary-native-audio-default-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "77f8ac7585c0728d26d5b31bae4f0e9ef3d149d5577f0a89f7d75e6693651a6d",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/coverage/summary-native-menu-audio-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "3e6e594e92d29ff8bad6bcb4ef043834ea1b3a54ac6873a7fe66409adbb6edd8",
+      "receipt_chain": [
+        "native-menu-audio-summary-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-audio-default-gui-timeout-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "233c56fb0a11143d22ddd93339e270eec5ef4ee652a16a9054d6113bae95e5ef",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-audio-default-worker-graphics-shutdown-failure-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "484b3b2d0ef75738ae4f61aa71e99161b2a5daf4958293216b40e2e94513e189",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-audio-default-worker-public-pass-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "33e98771edc3f54fd282c36512bac48fa37b9dee86c566ae0b953da45d36732a",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-audio-voice-bridge.md",
+      "before_sha256": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+      "after_sha256": "ddc7b1f75815f94096a263fed771806f1f38a514cc52f5115947112742204245",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-menu-audio-declaration-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "81899fb8573409892aef18503032abf9f7a3dcd5095fc3d6e892fcd20784f5ab",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-menu-audio-executable-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "40bdc63aa31547a5991c2cfd64be55ad8296815d53eed5d884051a61a815ff43",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-menu-audio-public-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ab62ab56602c9d63f77202e5d774e4d5601b2c07cd2b6f34cce73026fa04f351",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-menu-audio-source-drift-timeout-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "71ae7376c25c83f968f5ef05fcb84b276ec512ed92a637527b9a8ddc6cc15935",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "research/runtime/native-menu-audio.md",
+      "before_sha256": null,
+      "after_sha256": "916f8edc1219429b6e3c7c17eb0ef32db58efeda736b1e48e9dce2b0272bea1a",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tests/audio-voice-bridge-test.cpp",
+      "before_sha256": "fec43c097960561847f7a1aa57a3d5e87f3ee5762a8f4ca0a62a951394d96e28",
+      "after_sha256": "7f5f5f715ad2698341c4401bbd91ea5f7bd7af0f6b39ed0f0fbeeefd27e79c9f",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tests/menu-native-audio-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "48fbe23f82ff6c16cef07e13c1389cbd59a6f01adb434f5e815fe7d2f82121ca",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tests/test-native-audio-launch.py",
+      "before_sha256": null,
+      "after_sha256": "0be62d917abfc245f1ae146b5579cac3bd19017e7604bb7ab6a955690b05c154",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tests/test-native-audio-policy.py",
+      "before_sha256": null,
+      "after_sha256": "af22473305e936250076a2766e9cfa091a9c08c24a1071158f22862e1015633c",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/build-audio-bridge.py",
+      "before_sha256": "21deff24481643584bf36fcd180fc4ce0cc1104b4fe6e3371f6d2ed22fc36653",
+      "after_sha256": "5697d873c350676e33b89d87591e6f76d04869a005c79a838ba4c957d28095da",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "1d63efbb6cdf630a90dd0847a97423dc8d69398b54e9c283b806e6546cd940a9",
+      "after_sha256": "e7e534f9e04bf2e5475383a79fc3dda871efa55e6e4efbbb6414903206bff47e",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/native_audio_launch.py",
+      "before_sha256": null,
+      "after_sha256": "186197ef9a158f9b49aa95ecec9aaf2ffb3b9abfbc329d6b4dc7b8c403a99742",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "b72503117140d2f7b85a48a7b822c95a862790984fde29d33bbc3ac6aa4e4665",
+      "after_sha256": "226ccecd02ce180a32fcc67f6aa9918ea4d3b6a039759272f3fef9da723d71f9",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/run-game.sh",
+      "before_sha256": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983",
+      "after_sha256": "073ed34678f0fdd5032f30133d329f48931eb61e40541b65960017cc975b890f",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "9071fd188dd069355678b66d4423863cdf442a59bb67647f0f356e8d1e86a4f9",
+      "after_sha256": "25a2b9a0d276b1bd796608c8d34e99089ac2da38c90665cef99fa3252396d6ad",
+      "receipt_chain": [
+        "native-menu-audio-scoped-index-review-20261011"
+      ]
+    },
+    {
+      "commit": "122f5c8cf63588b8fe150f6ff922e2eb2d20bd92",
+      "parent": "98259649583915de539d08683ddfd3cc02135f47",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "e7c01b922da79ba183853893dd8b519e73ca7cec7ddf6d8ee57e326fd5978980",
+      "after_sha256": "9bbcdc3def8e9415c7de0c561b61048076e841320735c91361eb24302dc78981",
+      "receipt_chain": [
+        "native-audio-default-worker-scope-review-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

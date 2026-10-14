@@ -1,11 +1,18 @@
 #include "drawing_action.h"
 #include "battle.h"
+#include "storage.h"
 #include "spells.h"
 #include "mini.h"
 #include "results.h"
 #include "preferences.h"
 #include "region_entry.h"
+#include "grimoire.h"
+#include "multiplayer.h"
+#include "sessions.h"
+#include "lobby.h"
 #include "campaign_defeat.h"
+#include "character.h"
+#include "realm.h"
 #include "../../protocols/include/mnm/menu_v12.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
@@ -20,12 +27,14 @@ static int menu_retired;
 static u32 menu_handoff;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
-static int menu_header(void){return equal(menu_words,menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_version==22?MNM_MENU_V22_MAGIC:menu_version==21?MNM_MENU_V21_MAGIC:menu_version==20?MNM_MENU_V20_MAGIC:menu_version==19?MNM_MENU_V19_MAGIC:menu_version==18?MNM_MENU_V18_MAGIC:menu_version==17?MNM_MENU_V17_MAGIC:menu_version==16?MNM_MENU_V16_MAGIC:menu_version==15?MNM_MENU_V15_MAGIC:menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
     if(menu_version>=3)for(u32 i=0;i<63;++i)out[23+i]=menu_load(menu_words+MNM_MENU_V3_HOST_SLOTS/4+i);
     if(menu_version>=6)for(u32 i=0;i<7;++i)out[86+i]=menu_load(menu_words+MNM_MENU_V6_HOST_PREFERENCES/4+i);
+    if(menu_version>=13)for(u32 i=0;i<32;++i)out[93+i]=menu_load(menu_words+MNM_MENU_V13_HOST_NAME/4+i);
+    if(menu_version>=15)for(u32 i=0;i<20;++i)out[125+i]=menu_load(menu_words+MNM_MENU_V15_HOST_NAMES/4+i);
     __atomic_thread_fence(__ATOMIC_ACQUIRE);return seq==menu_load(p);
 }
 static void menu_publish(void){
@@ -34,6 +43,15 @@ static void menu_publish(void){
     u32 fields[6]={menu_generation,menu_screen,menu_retired?0:menu_ready,menu_request,menu_status,menu_thread};
     for(u32 i=0;i<6;++i)menu_store(p+1+i,fields[i]);
     if(menu_version>=2)menu_store(p+7,menu_handoff);
+    if(menu_version>=18)copy((u8*)menu_words+MNM_MENU_V18_CHARACTER,character_payload,sizeof(character_payload));
+    if(menu_version>=22)copy((u8*)menu_words+MNM_MENU_V22_GRIMOIRE,grimoire_campaign_payload,sizeof(grimoire_campaign_payload));
+    if(menu_version>=21)copy((u8*)menu_words+MNM_MENU_V21_SPELL_CONTEXT,spell_context_payload,sizeof(spell_context_payload));
+    if(menu_version>=19)copy((u8*)menu_words+MNM_MENU_V19_REALM,realm_payload,sizeof(realm_payload));
+    if(menu_version>=17)copy((u8*)menu_words+MNM_MENU_V17_LOBBY,lobby_payload,sizeof(lobby_payload));
+    if(menu_version>=16)copy((u8*)menu_words+MNM_MENU_V16_SESSIONS,sessions_payload,sizeof(sessions_payload));
+    if(menu_version>=15)copy((u8*)menu_words+MNM_MENU_V15_MULTIPLAYER,multiplayer_payload,sizeof(multiplayer_payload));
+    if(menu_version>=14)copy((u8*)menu_words+MNM_MENU_V14_GRIMOIRE,grimoire_payload,sizeof(grimoire_payload));
+    if(menu_version>=13)copy((u8*)menu_words+MNM_MENU_V13_STORAGE,storage_payload,sizeof(storage_payload));
     if(menu_version>=2)copy((u8*)menu_words+MNM_MENU_V2_MAP,battle_payload,sizeof(battle_payload));
     if(menu_version>=3)copy((u8*)menu_words+MNM_MENU_V3_SPELL,spell_payload,sizeof(spell_payload));
     if(menu_version>=11)copy((u8*)menu_words+MNM_MENU_V11_DEFEAT,defeat_payload,sizeof(defeat_payload));
@@ -47,12 +65,12 @@ static void menu_init(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE){CloseHandle(file);return;}
-    menu_version=menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
-    campaign_preferences_enabled=menu_version>=12;
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE&&menu_size!=MNM_MENU_V18_SIZE&&menu_size!=MNM_MENU_V19_SIZE&&menu_size!=MNM_MENU_V20_SIZE&&menu_size!=MNM_MENU_V21_SIZE&&menu_size!=MNM_MENU_V22_SIZE){CloseHandle(file);return;}
+    menu_version=menu_size==MNM_MENU_V22_SIZE?22:menu_size==MNM_MENU_V21_SIZE?21:menu_size==MNM_MENU_V20_SIZE?20:menu_size==MNM_MENU_V19_SIZE?19:menu_size==MNM_MENU_V18_SIZE?18:menu_size==MNM_MENU_V17_SIZE?17:menu_size==MNM_MENU_V16_SIZE?16:menu_size==MNM_MENU_V15_SIZE?15:menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
+    grimoire_campaign_enabled=menu_version>=22;spell_campaign_enabled=menu_version>=21;region_campaign_enabled=menu_version>=20;character_campaign_enabled=menu_version>=20;campaign_reports_enabled=menu_version>=20;campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
-    u32 host[93];
+    u32 host[145];
     if(!menu_header()||!menu_host(host)||!host[0]||host[2]||menu_load(menu_words+(menu_version>=2?32:16))){
         UnmapViewOfFile(menu_words);menu_words=0;return;
     }
@@ -61,6 +79,14 @@ static void menu_init(void){
 }
 static void menu_state(void* object){
     u32 owner=get((void*)0x6f34e0),screen=0,ready=0;
+    if(owner!=0x659408)realm_map_object=0;
+    if(menu_version>=19&&owner==(u32)object){
+        u8 next[MNM_MENU_V19_REALM_SIZE];if(realm_snapshot(object,next)){
+            screen=4;ready=!realm_activation;
+            if(!equal(next,realm_payload,sizeof(next)))++menu_generation;
+            copy(realm_payload,next,sizeof(next));
+        }
+    }
     // Only the currently ticking initialized object can authorize a command.
     if(owner==(u32)object&&readable(object,0x47)){
         u8* p=object;u32 table=get(p),id=get(p+4);
@@ -70,12 +96,12 @@ static void menu_state(void* object){
     }
     if(menu_version>=3&&owner==(u32)object&&readable(object,0x26a)&&get(object)==0x5c775c&&get((u8*)object+4)==7){
         u8* p=object;screen=7;ready=get(p+8)==1&&!p[0xc]&&!get(p+0x12)&&!get(p+0x3e);
-        if(ready){static u8 next[MNM_MENU_V3_SPELL_SIZE];if(!spell_snapshot(object,next))ready=0;
-            else {if(!spell_valid||!equal(next,spell_payload,4)||!equal(next+8,spell_payload+8,sizeof(next)-8))++menu_generation;copy(spell_payload,next,sizeof(next));spell_valid=1;}}
+        if(ready){static u8 next[MNM_MENU_V3_SPELL_SIZE];u8 previous[MNM_MENU_V21_SPELL_CONTEXT_SIZE];copy(previous,spell_context_payload,sizeof(previous));if(!spell_snapshot(object,next))ready=0;
+            else {if(!equal(previous,spell_context_payload,sizeof(previous))||!spell_valid||!equal(next,spell_payload,4)||!equal(next+8,spell_payload+8,sizeof(next)-8))++menu_generation;copy(spell_payload,next,sizeof(next));spell_valid=1;}}
     }
     if((menu_version>=9||(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL))&&owner==(u32)object&&readable(object,0x5b)&&get(object)==0x5c6644&&get((u8*)object+4)==MNM_MENU_MINI_SCREEN){
         u8 next[MNM_MENU_V4_MINI_SIZE];
-        if(mini_snapshot(object,next,menu_version>=12?3:menu_version>=10?2:menu_version>=9)){
+        if(mini_snapshot(object,next,menu_version>=13?4:menu_version>=12?3:menu_version>=10?2:menu_version>=9)){
             screen=MNM_MENU_MINI_SCREEN;
             if(!equal(next,mini_payload,sizeof(next)))++menu_generation;
             copy(mini_payload,next,sizeof(next));u8* p=object;
@@ -110,11 +136,47 @@ static void menu_state(void* object){
             u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43);
         }
     }
-    if(menu_version>=3&&menu_screen==7&&screen==0&&owner!=menu_owner)menu_handoff=2;
+    if(menu_version>=3&&menu_screen==7&&screen==0&&owner!=menu_owner)menu_handoff=menu_version>=21&&!get(spell_context_payload)?MNM_MENU_HANDOFF_CAMPAIGN_RETURN:2;
     if(menu_version>=2&&ready&&(screen==14||screen==25)){
         static u8 next[MNM_MENU_V2_PAYLOAD_SIZE];
         if(!battle_snapshot(next))ready=0;
         else if(!battle_valid||!equal(next,battle_payload,sizeof(next))){copy(battle_payload,next,sizeof(next));battle_valid=1;++menu_generation;}
+    }
+    if(menu_version>=13&&owner==(u32)object){
+        static u8 next[MNM_MENU_V13_STORAGE_SIZE];
+        if(storage_snapshot(object,next)){
+            screen=get(next);if(!equal(next,storage_payload,sizeof(next)))++menu_generation;copy(storage_payload,next,sizeof(next));
+            u8* p=object;ready=get(p+8)==1&&!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43)&&!get(next+16)&&!get(next+20);
+        }
+    }
+    if(menu_version>=14&&owner==(u32)object){
+        u8 next[MNM_MENU_V14_GRIMOIRE_SIZE];static u8 previous[MNM_MENU_V22_GRIMOIRE_SIZE];copy(previous,grimoire_campaign_payload,sizeof(previous));if(grimoire_snapshot(object,next)){
+            screen=MNM_MENU_GRIMOIRE_SCREEN;if(!equal(previous,grimoire_campaign_payload,sizeof(previous))||!equal(next,grimoire_payload,sizeof(next)))++menu_generation;copy(grimoire_payload,next,sizeof(next));
+            u8* p=object;ready=!p[0xc]&&!get(p+0x1e)&&!get(p+0x3a)&&!get(p+0x3e)&&!get(p+0x1a2e);
+        }
+    }
+    if(menu_version>=18&&owner==(u32)object){
+        u8 next[MNM_MENU_V18_CHARACTER_SIZE];if(character_snapshot(object,next)){
+            screen=20;ready=1;if(!equal(next,character_payload,sizeof(next)))++menu_generation;copy(character_payload,next,sizeof(next));
+        }
+    }
+    if(menu_version>=17&&owner==(u32)object){
+        u8 next[MNM_MENU_V17_LOBBY_SIZE];if(lobby_snapshot(object,next)){
+            screen=24;if(!equal(next,lobby_payload,sizeof(next)))++menu_generation;copy(lobby_payload,next,sizeof(next));
+            u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x3b)&&!get(p+0x43);
+        }
+    }
+    if(menu_version>=16&&owner==(u32)object){
+        static u8 next[MNM_MENU_V16_SESSIONS_SIZE];if(sessions_snapshot(object,next)){
+            screen=21;if(!equal(next,sessions_payload,sizeof(next)))++menu_generation;copy(sessions_payload,next,sizeof(next));
+            u8* p=object;ready=!p[0xc]&&!p[0x12]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x3b)&&!get(p+0x43)&&!get(next+24)&&!get(next+28);
+        }
+    }
+    if(menu_version>=15&&owner==(u32)object){
+        u8 next[MNM_MENU_V15_MULTIPLAYER_SIZE];if(multiplayer_snapshot(object,next)){
+            screen=get((u8*)object+4);if(!equal(next,multiplayer_payload,sizeof(next)))++menu_generation;copy(multiplayer_payload,next,sizeof(next));
+            u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43)&&!get(next+24)&&!get(next+28);
+        }
     }
     if(menu_version>=11&&screen==3&&ready)defeat_quit_pending=0;
     if(owner!=menu_owner||screen!=menu_screen||ready!=menu_ready){
@@ -128,8 +190,8 @@ static void menu_poll(void* object,int execute){
     if(thread!=menu_thread){SetLastError(error);return;}
     if(!menu_header()){menu_retired=1;SetLastError(error);return;}
     menu_state(object);
-    if(menu_version>=2&&menu_handoff&&menu_ready&&(menu_screen==3||menu_screen==22))menu_handoff=0;
-    u32 host[93],now=GetTickCount();
+    if(menu_version>=2&&menu_handoff&&menu_ready&&(menu_screen==3||menu_screen==22||(menu_version>=20&&(menu_screen==4||menu_screen==18))))menu_handoff=0;
+    u32 host[145],now=GetTickCount();
     if(menu_host(host)){
         if(host[1]!=menu_heartbeat){menu_heartbeat=host[1];menu_seen=now;}
         if(!host[0]||now-menu_seen>MNM_MENU_V1_LEASE_MS)menu_retired=1;
@@ -142,7 +204,16 @@ static void menu_poll(void* object,int execute){
             else if(host[4]!=menu_generation)menu_status=MNM_MENU_STALE;
             else if(!menu_ready)menu_status=MNM_MENU_UNAVAILABLE;
             else if(host[3]==MNM_MENU_OPEN_QUICK&&menu_screen==3)main_action(object,2);
+            else if(menu_version>=13&&host[3]==MNM_MENU_OPEN_LOAD&&menu_screen==3)main_action(object,1);
+            else if(menu_version>=15&&menu_screen==22&&(host[3]==MNM_MENU_OPEN_CREATE||host[3]==MNM_MENU_OPEN_JOIN))quick_action(object,host[3]==MNM_MENU_OPEN_CREATE?0:1);
+            else if(menu_version>=19&&menu_screen==4)menu_status=realm_dispatch(object,host[3],host[5]);
+            else if(menu_version>=18&&menu_screen==20)menu_status=character_dispatch(object,host[3],host[5]);
+            else if(menu_version>=17&&menu_screen==24)menu_status=lobby_dispatch(object,host[3],host[5]);
+            else if(menu_version>=16&&menu_screen==21)menu_status=sessions_dispatch(object,host[3],host[5]);
+            else if(menu_version>=15&&(menu_screen==15||menu_screen==16))menu_status=multiplayer_dispatch(object,host[3],host[5],(const u8*)(host+125));
+            else if(menu_version>=13&&(menu_screen==MNM_MENU_LOAD_SCREEN||menu_screen==13))menu_status=storage_dispatch(object,host[3],host[5],(const u8*)(host+93));
             else if(menu_version>=7&&host[3]==MNM_MENU_NEW_GAME&&menu_screen==3)main_action(object,0);
+            else if(menu_version>=14&&menu_screen==MNM_MENU_GRIMOIRE_SCREEN)menu_status=grimoire_dispatch(object,host[3],host[5]);
             else if(menu_version>=7&&menu_screen==18)menu_status=region_dispatch(object,host[3],host[5],menu_version>=8);
             else if(menu_version>=6&&host[3]==MNM_MENU_OPEN_PREFERENCES&&menu_screen==3)main_action(object,3);
             else if(menu_version>=6&&menu_screen==10)menu_status=preferences_dispatch(object,host[3],host[5],host+86);
@@ -151,15 +222,15 @@ static void menu_poll(void* object,int execute){
             else if(menu_version>=3&&menu_screen==7&&host[3]==MNM_MENU_SPELL_FINISH)menu_status=spell_finish(object,host+23);
             else if(menu_version>=11&&menu_screen==6)menu_status=defeat_dispatch(object,host[3]);
             else if(menu_version>=5&&menu_screen==26)menu_status=result_dispatch(object,host[3]);
-            else if((menu_version>=9||(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL))&&menu_screen==MNM_MENU_MINI_SCREEN)menu_status=mini_dispatch(object,host[3],menu_version>=12?3:menu_version>=10?2:menu_version>=9);
+            else if((menu_version>=9||(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL))&&menu_screen==MNM_MENU_MINI_SCREEN)menu_status=mini_dispatch(object,host[3],menu_version>=13?4:menu_version>=12?3:menu_version>=10?2:menu_version>=9);
             else if(menu_version>=2)menu_status=battle_dispatch(object,host,menu_screen);
             else menu_status=MNM_MENU_UNSUPPORTED;
             if(menu_version>=8&&host[3]==MNM_MENU_REGION_ENTER&&menu_status==MNM_MENU_OK)
-                menu_handoff=*(u8*)0x659e50&&get((void*)0x659e33)==4?3:0;
+                menu_handoff=menu_version>=20?region_enter_handoff:(*(u8*)0x659e50&&get((void*)0x659e33)==4?3:0);
             if(menu_version>=2&&host[3]==MNM_MENU_SETUP_START&&menu_status==MNM_MENU_OK){
                 u32 next=get((u8*)object+0x33);menu_handoff=next==0x6f2aa0?1:next==0x6903b8?2:0;
             }
-            if(menu_version>=3&&host[3]==MNM_MENU_SPELL_FINISH&&menu_status==MNM_MENU_OK)menu_handoff=2;
+            if(menu_version>=3&&host[3]==MNM_MENU_SPELL_FINISH&&menu_status==MNM_MENU_OK)menu_handoff=menu_version>=21&&!get(spell_context_payload)?MNM_MENU_HANDOFF_CAMPAIGN_RETURN:2;
             drawing_action_record(host[2],host[3],action_screen,action_generation,host[5],2,menu_status);
             menu_state(object);
         }

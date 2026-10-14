@@ -1,0 +1,421 @@
+{
+  "range": "cf23c406..ed4d70ed",
+  "scope": "Committed exact receipt accounting only; no retrospective gate pass or new validation.",
+  "versions": [
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "be2ba537e7c21c65011c29bdc58ec8f6cabe5d66209afb5b5c53d058005c7c3e",
+      "after_sha256": "198bcc2caa9cd512edfac8018902dbaaa5a2c8b62a4a2ab62855bc40dcdcd2a2",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/grimoire_widget.cpp",
+      "before_sha256": "a30cf42799ad7ac7757080ca037f135c3d0cd0c4cffbcc3a182cb966e27993be",
+      "after_sha256": "1cf19407878a96b3782b7fec71ad223568d28e91b76e588fb32f6a103995b564",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/grimoire_widget.hpp",
+      "before_sha256": "5e12fc632c1ad69b17271cf366096c07a61b38e475953c34c2ceedf87740e919",
+      "after_sha256": "89dc9ad9e4ba4e723bc361deb7b7eae6aeec5a71b9cc56106197c7866e38b553",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_grimoire_controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "fae0c2c1e44b5e35a9056cd0debe29864f677ed704ac62a05a9d3adc6eba2a47",
+      "receipts": [
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_grimoire_controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "76b73dfa3d0695afba492575b35e1b4e3d88d2225d1e6a117e3e63093ffb8098",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_grimoire_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c4f6ab6cf0eb4edb7471df186e882d4d06ec577fd9d03b3ec8743c741d9c4db1",
+      "receipts": [
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "2c48cb831cb169999e71367cc0086d864be9a69e88d8f35943fdd4a0cc54f693",
+      "after_sha256": "67b75b1da265aab120a6d399c5d99d5f6be049b8805286e87ee09748b14dfe19",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "f1f502cb4839681c76f2e29718ec2ef05e9105775ee2d3763765c97cd2335018",
+      "after_sha256": "c547c06078219820aecad3c2b25500444e56bf97f7960687418a252b73a4e2ca",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "048c84b6f676178a018af6047d7af09339699b05792756451f352d1cc612e8d5",
+      "after_sha256": "670757eb271719ea0b0f4a6961075e7b2d97712cb3c9432cb9786a52f360e4f1",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "5cd9eb87a66e2a7af90683bf0c31f40dcb6a15af05c2f913f0339e2c866953a1",
+      "after_sha256": "db2080096b44e73b1dca144d7830fcf413a9bcdb8dee8db47e0b290c0a3be308",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/live_region_entry_controller.cpp",
+      "before_sha256": "5896b9cd45241a96be44ae78ff1ccad3a2b04bf9d040a42bb6eab81ae4161528",
+      "after_sha256": "15809a41c86051c9cac0baaedb5db928567d740d1da39d934377559c05ba181e",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "5c6b1a3d980520ea84bdc75adfd91b80d433d0fa093d14a685e136ec3701073b",
+      "after_sha256": "7a6aa0685668ca2317a6c75792e624723d792add182c82bc1c202c8b14b979e1",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "d8d67e2a82fc1fa8a359e7c2450253b65bc8135727787ba0f6032047773bd71f",
+      "after_sha256": "5796aae5b492d15e8312aecaec9fad82e187497abff0e5c5c477d506aa4c1053",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "2879df4644e6a40074baa5581b48b09e13fa822674847220c0311b9954ed7b05",
+      "after_sha256": "1170218680b2df109b32c779a676506f7f527a7a91a0a4a6a96173ae63098061",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "protocols/include/mnm/menu_v14.h",
+      "before_sha256": null,
+      "after_sha256": "e1289bafe3015b57527ad68b81bb8f06cd232e0f4cd323ebf567528dd0737c22",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f21805a02825e4502952a6f9fac9e24c58f718734fa1ad155002dd5dddf043b1",
+      "after_sha256": "679717a98b1983bf249d436e862d297702e8c833a01244b0b9d04195286a2bd0",
+      "receipts": [
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/coverage/grimoire-integration-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "461bbe337fe255e43ab403ef7c659344ecd1e2a4ed6a567b1cbe6fb1f666321d",
+      "receipts": [
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "afdec9b409586d6d141a5514ceb21029b91418c750281171bd23b2df24288680",
+      "after_sha256": "c36781f5818dd37a8d81eaeb6bba019ab6454ef2ba9f0d3fe078da9c0d0cec4f",
+      "receipts": [
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/coverage/summary-grimoire-integration-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "2955f5c686003cc8946c985bf5b4a88dfbb0ec665bd3f3b230a156c3c54d3af9",
+      "receipts": [
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/grimoire-live-integration.md",
+      "before_sha256": null,
+      "after_sha256": "32871ac0e7d71144ccf817b836267906cdf5448023f75eddeef5d1401132f92e",
+      "receipts": [
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/grimoire-reader-adapter-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "9c02a0e3cf996a2f074ec788305cd95f523a7053e26c3b6d3379981c72ea737c",
+      "receipts": [
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/grimoire-reader-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "5fca60d3f976318f7f16a0291cb17ed15ea15beedea3fe104129b6edc32dd465",
+      "receipts": [
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/grimoire-reader-probe-fixture-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "77197328421bc9dd271c46f331db7c89670acc46e701d6ca0e4943ad69344953",
+      "receipts": [
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "research/runtime/grimoire-reader-scroll-live-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "4217342c079c82e488187c3eee377a29a76c3f2a64f9ab2231b0e36a0ffebb69",
+      "receipts": [
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "41a6e42e6be46ac9f7f08405f99cb25fed986eb01d4e9a01b14ee5dd20c5a470",
+      "after_sha256": "e0da61064f2a106031611590aaf2ef795f8b71dfee37f3fcf6cb39a807d17f58",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "runtime/menu/grimoire.h",
+      "before_sha256": null,
+      "after_sha256": "5209a9be7cae1db008b54ab0e59f2c037a8df86ae4875a6c3807317a1fe5b84f",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "runtime/menu/grimoire_observe.h",
+      "before_sha256": "bded7938f4c982f192dab3792e8f6b66565801071dc08b40a3d7d3e7a8049f0a",
+      "after_sha256": "f2c617cd0bbce1ca77861714eb7b5860a67bdeca143f0a16ea6b00631218b777",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "runtime/menu/region_entry.h",
+      "before_sha256": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+      "after_sha256": "e16e21093ee2da8b50b278004e538bae9bba149b00afa11a0f5f85686a33934f",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "tests/grimoire-bridge-reference.c",
+      "before_sha256": null,
+      "after_sha256": "f88407d8121d3c432a22264b13dbd9bf709cb04c3f2cacf8376782c4037dc00c",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "tests/menu-grimoire-bridge-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "a80f8cc36b8f584bc8d4e487a7ac385b2b5ea14041334d648e561714a94bfb81",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "9e991d98d8ed7b197990b10a0763b867f47613d89b94d0d1256cf0d6dff83e68",
+      "after_sha256": "b0a58d7b2b783eb3ccbfd4584eea5c1eb19c0aff11d78021d1f95d5ae31d8bf6",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "tools/test-grimoire-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "44114782ca6877edc982a477d88dbb60c6e53e3274dbe7e3398b770c664c3708",
+      "receipts": [
+        "grimoire-contextual-reader-live-20261012",
+        "grimoire-reader-accounting-and-historical-limits-20261012",
+        "grimoire-contextual-reader-bound-live-20261012",
+        "grimoire-reader-bound-accounting-and-historical-limits-20261012",
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    },
+    {
+      "commit": "ed4d70ed17c151ad8a92c116d1155e4a2ee2845d",
+      "path": "tools/test-live-grimoire.py",
+      "before_sha256": null,
+      "after_sha256": "409b48650f4116e62b05484ef90a885a30d603e8f22a25589751870ce0de27dc",
+      "receipts": [
+        "grimoire-reader-scroll-live-final-20261012",
+        "grimoire-reader-scroll-accounting-final-20261012"
+      ]
+    }
+  ],
+  "unresolved": []
+}

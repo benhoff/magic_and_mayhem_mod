@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "calculator_cases": 1643,
+  "price_comparisons": 19716,
+  "refusals": 12,
+  "calculator_and_math_unchanged": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "installed_config_sha256": "c3b479b7a888afcd9089626f1552004eb4e6e29fb4063c84205031bbd8283f27",
+  "coefficients": [
+    [
+      5,
+      0.0,
+      0.6,
+      1.3
+    ],
+    [
+      20,
+      0.0,
+      0.6,
+      1.3
+    ],
+    [
+      1,
+      0.0,
+      0.5,
+      1.4
+    ],
+    [
+      1,
+      0.0,
+      22.0,
+      1.1
+    ]
+  ],
+  "scope": "1643 original six-row calculator executions/19716 costs using installed coefficients, positive fractional synthetic coefficients, zero/constant and power-of-two cases; 12 intentional native input/output refusals. Calculator and original x87 pow/truncation helpers unchanged; no private code stubs. Original runtime math mode configured explicitly. No live Character control admission, complete math error/overflow ABI, original input failure equivalence, save persistence or replacement.",
+  "sources": {
+    "tools/test-character-cost.py": "983145b6e1cc7a1e1aa6d14e22eea9420e4b9869d9356f49db70b17890e22494",
+    "tests/character-cost-reference.cpp": "c2f1ef1f6f9deb7800b44edc98ce87ccd6d9a2397714539e0fe6e7c0ff2ecec0",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "reconstruction/campaign/character_cost.hpp": "cae62fc89f4124188ce0d18f8a08f8ac1bd47eb55b7620055535504baa475750",
+    "reconstruction/campaign/character_cost.cpp": "5ec71481e91d8d5aad9e53c0e51e8d06df05493eedb25427eccf62ef8bb58dd9",
+    "reconstruction/campaign/CMakeLists.txt": "8495201ac2c3e8431d46c821ef5129199214c3bf5abe49d762f6bbcef75ad4e7"
+  },
+  "anchors": {
+    "0x4b5d10": "5153568bf1578b7e7f8b9eab0000008b",
+    "0x59bcc0": "83ec10d9c9dd1c24dd5424088b44240c",
+    "0x59bee0": "558bec83c4f49bd97dfe9b668b45fe80"
+  },
+  "real_game_launched": false,
+  "artifacts": {
+    "character_cost_fixture.h": "92dcb2212635e61fa37e86813bcd072981db1b4a058e1d630915daa4a8351efb",
+    "original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference": "2e23fe2253bc1ddb334be64e271fc60bca43541dc21adde2ad30f2ab1d69ede0",
+    "claims.json": "f9da4223af977c9fd3ee8ffa8641b7acbc5d33eaf8fac4991c7609f9221a96a1",
+    "reference.log": "d930a86945fb739a025b6b9ef25e78b9561ce8237326f6d18e539c0263a7bfe3"
+  },
+  "execution_claims": [
+    {
+      "behavior": "CP.character-pricing",
+      "contract_sha256": "7282b654c6edf50c79b2016ffdaf90e5555ff937ab980c5fb326e8446e41da6f",
+      "scenarios": {}
+    },
+    {
+      "behavior": "NP.character-price-admission",
+      "contract_sha256": "9aee775d81f5c0ab74ab7133a8aa6c44dc5a432a0e2e999f97ce59eac2663516",
+      "scenarios": {}
+    }
+  ]
+}

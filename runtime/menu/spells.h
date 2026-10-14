@@ -1,4 +1,4 @@
-#include "../../protocols/include/mnm/menu_v3.h"
+#include "spell_campaign.h"
 static u8 spell_payload[MNM_MENU_V3_SPELL_SIZE];
 static u32 spell_valid;
 typedef char* (THIS *SpellTextFn)(void*,u32);
@@ -8,10 +8,10 @@ static int spell_cell(u8* cell,u32 callback,void* owner){
     return readable(cb,16)&&get(cb)==0x5c77b4&&get(cb+4)==callback&&get(cb+12)==(u32)owner;
 }
 static int spell_snapshot(void* object,u8* out){
-    u8* p=object;if(!readable(p,0x26a)||get(p)!=0x5c775c||get(p+0x250)!=1||get(p+0x264)||get(p+0x94)!=0xffffffff||get(p+0x42))return 0;
-    u32 player=get(p+0x90);if(player<0x65b250||player>=0x65b250+4*0x93a||(player-0x65b250)%0x93a)return 0;
+    u8* p=(u8*)object;u8 context[MNM_MENU_V21_SPELL_CONTEXT_SIZE];if(!spell_context(object,context)||get(p)!=0x5c775c||get(p+0x264)||get(p+0x94)!=0xffffffff||get(p+0x42))return 0;
+    u32 player=get(p+0x90);if(player<0x65b250||player>=0x65b250+(get(context)==0?80u:4u)*0x93a||(player-0x65b250)%0x93a)return 0;
     for(u32 i=0;i<MNM_MENU_V3_SPELL_SIZE;++i)out[i]=0;
-    put(out,(player-0x65b250)/0x93a);put(out+4,get((void*)0x6f5284));
+    put(out,(player-0x65b250)/0x93a);put(out+4,get(context)==0?0xffffffff:get((void*)0x6f5284));
     if(!readable((void*)0x6f4c08,63*4))return 0;
     copy(out+MNM_MENU_V3_RECIPES,(void*)0x6f4c08,63*4);
     u32 seen=0;
@@ -39,13 +39,14 @@ static int spell_snapshot(void* object,u8* out){
             if(!battle_string(out+MNM_MENU_V3_SPELL_NAMES+(i*3+a)*128,128,((SpellTextFn)0x58a680)((void*)0x6f4f60,id+5),128))return 0;
         }
     }
-    return 1;
+    copy(spell_context_payload,context,sizeof(context));return 1;
 }
 static void spell_click(void* object,u32 address,u32 index){
     record(2,object,index,0);u32 result=((ActionFn)address)(object,index);record(3,object,index,result);
 }
 static u32 spell_finish(void* object,const u32* slots){
-    u8* p=object;u32 seen=0,counts[3];
+    u8* p=(u8*)object;u32 seen=0,counts[3];
+    if(!spell_snapshot(object,spell_payload))return MNM_MENU_UNAVAILABLE;
     for(u32 a=0;a<3;++a){counts[a]=get(spell_payload+MNM_MENU_V3_COUNTS+a*4);
         for(u32 i=0;i<21;++i){u32 v=slots[a*21+i];
             if(i>=counts[a]&&v!=0xffffffff)return MNM_MENU_INVALID;
@@ -60,7 +61,7 @@ static u32 spell_finish(void* object,const u32* slots){
         u32 shelf=0;u8* shelves=(u8*)get(p+0x214);
         while(shelf<25&&get(shelves+shelf*0x82+0x7a)!=0xffffffff)++shelf;
         if(shelf==25)return MNM_MENU_INVALID; // Prevalidated <=21 unique items in 25 shelves.
-        put((void*)0x6f5288,1);spell_click(object,0x576380,0x7fe+a*7+i);
+        put((void*)0x6f5288,1);spell_click(object,0x576380,0x7fe + a*7+i);
         put((void*)0x6f5288,0);spell_click(object,0x5765d0,0x7d3+shelf);
     }
     for(u32 a=0;a<3;++a)for(u32 i=0;i<counts[a];++i){u32 v=slots[a*21+i];if(v==0xffffffff)continue;
@@ -68,10 +69,10 @@ static u32 spell_finish(void* object,const u32* slots){
         while(shelf<25&&get(shelves+shelf*0x82+0x7a)!=v)++shelf;
         if(shelf==25)return MNM_MENU_INVALID;
         put((void*)0x6f5288,1);spell_click(object,0x5765d0,0x7d3+shelf);
-        put((void*)0x6f5288,0);spell_click(object,0x576380,0x7fe+a*7+i);
+        put((void*)0x6f5288,0);spell_click(object,0x576380,0x7fe + a*7+i);
     }
     if(!spell_snapshot(object,spell_payload))return MNM_MENU_UNAVAILABLE;
-    // Original OK/Escape callback returns to setup; its original resume loads battle.
+    // Original OK/Escape owns return; mode1 resumes setup/battle, mode0 its campaign caller.
     record(2,object,MNM_MENU_SPELL_FINISH,0);u32 result=((ActionFn)0x576810)(object,0);record(3,object,MNM_MENU_SPELL_FINISH,result);
     return MNM_MENU_OK;
 }

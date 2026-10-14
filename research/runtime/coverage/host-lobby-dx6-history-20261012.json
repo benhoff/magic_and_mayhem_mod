@@ -1,0 +1,61 @@
+{
+  "range": "d7f73255..799688cc",
+  "scope": "Committed exact receipt accounting only; no retrospective gate pass or new validation.",
+  "versions": [
+    {
+      "commit": "799688cc5cf308904a3b8615ec18483ed3788c35",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bcebfd72fe09906d2cb1c9af9d10e07dc1961a148d1b8048fe9a1de00932686f",
+      "after_sha256": "6b29792a8f730d9724a73d50e1d57295f44172943bf415504978803fe1794ae7",
+      "receipts": [
+        "host-lobby-failed-tcp-create-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "799688cc5cf308904a3b8615ec18483ed3788c35",
+      "path": "research/runtime/coverage/host-lobby-activation-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "444d6c4ecbd06a8f8c51b34b20fbd4143785b3a9221bf15fde786aa76a2947bb",
+      "receipts": [
+        "host-lobby-failed-tcp-create-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "799688cc5cf308904a3b8615ec18483ed3788c35",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "ee67bd73a53f8709c484844d9b759a96854f6c4f38f947f06e5fc5c479998d66",
+      "after_sha256": "85220de999b7a867c285f8caac10672728b6aff21f114b883f2fdc1073e016c2",
+      "receipts": [
+        "host-lobby-failed-tcp-create-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "799688cc5cf308904a3b8615ec18483ed3788c35",
+      "path": "research/runtime/coverage/summary-host-lobby-failure-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "b908cee292da35b1f9f7a9480b11740de301b0fceeb23792a3786bf61ac00f90",
+      "receipts": [
+        "host-lobby-failed-tcp-create-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "799688cc5cf308904a3b8615ec18483ed3788c35",
+      "path": "research/runtime/host-lobby-create-failure-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "557a457b1cc2d98b587ce8647ab334fc467f5f413376513c3393e115156ef32d",
+      "receipts": [
+        "host-lobby-failed-tcp-create-accounting-20261012"
+      ]
+    },
+    {
+      "commit": "799688cc5cf308904a3b8615ec18483ed3788c35",
+      "path": "research/runtime/multiplayer-lobby-engine-contract.md",
+      "before_sha256": "10f50b772e6898e98238d2c6d34a77a1dc6520d7bedd71bba49eac8c96b4f2f3",
+      "after_sha256": "2903bd46cbcd522ed186f8ad1d4e96fc3e7cf41312ce39db5f93c7ec95181531",
+      "receipts": [
+        "host-lobby-failed-tcp-create-accounting-20261012"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

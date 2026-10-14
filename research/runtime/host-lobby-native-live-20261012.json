@@ -1,0 +1,346 @@
+{
+  "error": "",
+  "handoffs": 2,
+  "scope": "Original TCP Create to native one-local-player host view twice, rules/roster/name projection, disabled unsupported controls and Cancel/window-close to normal Quit; no peer/chat/rule/map/start/gameplay validation.",
+  "states": [
+    {
+      "ack": 0,
+      "game_name": "",
+      "generation": 1,
+      "player": "",
+      "screen": 3,
+      "thread": 492,
+      "transport": 0
+    },
+    {
+      "ack": 1,
+      "game_name": "",
+      "generation": 4,
+      "player": "",
+      "screen": 22,
+      "thread": 492,
+      "transport": 0
+    },
+    {
+      "ack": 2,
+      "game_name": "",
+      "generation": 8,
+      "player": "",
+      "screen": 15,
+      "thread": 492,
+      "transport": 0
+    },
+    {
+      "ack": 3,
+      "game_name": "NativeRoom2",
+      "generation": 14,
+      "player": "NativeHost",
+      "screen": 24,
+      "thread": 492,
+      "transport": 2
+    },
+    {
+      "ack": 4,
+      "game_name": "",
+      "generation": 19,
+      "player": "",
+      "screen": 22,
+      "thread": 492,
+      "transport": 0
+    },
+    {
+      "ack": 5,
+      "game_name": "",
+      "generation": 23,
+      "player": "",
+      "screen": 15,
+      "thread": 492,
+      "transport": 0
+    },
+    {
+      "ack": 6,
+      "game_name": "NativeRoom5",
+      "generation": 29,
+      "player": "NativeHost",
+      "screen": 24,
+      "thread": 492,
+      "transport": 2
+    }
+  ],
+  "success": true,
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "41feb3487050ac45eff78bfccbe25a5bb1eb23b7af59268106c33fb30d5ca723",
+    "apps/qt-shell/live_host_lobby_controller.cpp": "e0adf770b933c48b7191c69e8f435a169d5ac98be54652e4ddb973c4696b3060",
+    "apps/qt-shell/live_host_lobby_controller.hpp": "23047823fd456889a31196b8cf490d3608fee8da5b6d186635aeb64b30249feb",
+    "apps/qt-shell/live_host_lobby_test.cpp": "b2cd6156b9df806f80dfc35cad3804ab33da785ef21bda1548ec381a69057fc4",
+    "apps/qt-shell/live_menu_session.cpp": "d32bd2a4ee41bb474a3ab3bbe16875295d49f4264c80329f403e2603c4b79325",
+    "apps/qt-shell/live_menu_session.hpp": "9384d7c73153b3ac93ee5f35b9f42139558d074327da00a88040d709924c3145",
+    "apps/qt-shell/live_menu_test.cpp": "53b35ea62ef2476c5c73b35dacb8d515be106c74ea9f29413e8e31b59db6fd8a",
+    "apps/qt-shell/live_menu_test.hpp": "0baf25446dda1c1d630026ecf9e151d143c96f76bdfb1c66b25ea42da93d1e00",
+    "apps/qt-shell/main.cpp": "eb0a6b4ccf2e536a8594c83e1b9f55249ce82280ec5b162734f8cac6054ff170",
+    "apps/qt-shell/menu_bridge.cpp": "68b2bf4170a99712bcaf1c934751724979fb088101ec14947585fcf60b8235bb",
+    "apps/qt-shell/menu_bridge.hpp": "94ad468a1399be077c638026fccf5c8f864cc7a8dbcb50bb91da719552fa76ac",
+    "apps/qt-shell/multiplayer_lobby_widget.cpp": "a1abdce4aead7b3889308a22ca460f00c65d9ae06c439d8269df90c1fdbf0e43",
+    "apps/qt-shell/multiplayer_lobby_widget.hpp": "ec12eef489146513ce02e23887ef4f6da6aa91f128f50212194eec156344f833",
+    "apps/qt-shell/multiplayer_setup_widget.cpp": "ee57fd426196868395dd7baf2fc4e5ffb89eab753ddeae3361bbb89c98b99b01",
+    "apps/qt-shell/multiplayer_setup_widget.hpp": "40de68cbce6a9a532b4138c9f6160dee048f24b242dc6dd35c03fe308c0dad9b",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+    "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "protocols/include/mnm/menu_v13.h": "c62b8bc68d223c18341f88339d57738dc8fa13ab99b33bda42778c468ae130a5",
+    "protocols/include/mnm/menu_v14.h": "e1289bafe3015b57527ad68b81bb8f06cd232e0f4cd323ebf567528dd0737c22",
+    "protocols/include/mnm/menu_v15.h": "b6787e786e5c6cb4b5997f5ce8df77a5f2b0ea7ec38d846369131cf8496f8d19",
+    "protocols/include/mnm/menu_v16.h": "1ab47b771eda03a625dde951d5aae62604fcbe416ba2f3db304cd09fbec0c74a",
+    "protocols/include/mnm/menu_v17.h": "be293c6c1edcec7982c0281ce4becf74b806102d0c3ce239f91d25ed67127bb9",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+    "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+    "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+    "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+    "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+    "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+    "research/runtime/coverage/planned-host-lobby-dx6-owned-scenario-20261012.json": "deaf823cbe35f48af2bd648a111ac20ae9d0b7993df1affd90b125139872b7a9",
+    "research/runtime/coverage/planned-host-lobby-dx6-prefix-scenario-20261012.json": "39417463b267f83b8007e7d54752b34877ccb936731c6f5ced3816802b500760",
+    "research/runtime/coverage/planned-host-lobby-dx6-provider-scenario-20261012.json": "9e94ecff6bce4e8864fe2a47c6460d587af07675b3e3e723c9525087b6616b7d",
+    "research/runtime/coverage/planned-host-lobby-dx6-scenario-20261012.json": "873a924fd1184f4f0e6ea2c37317eef51915ffbf2c44be4523357d07bd73fc0a",
+    "research/runtime/coverage/planned-host-lobby-scenario-20261012.json": "5bcebbb1aa2cfde81b84271db61878cd3d0007654f304ca283300751a34c09ee",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "c9baa5fdd27d00ac64c6a2a9280e280f33e134efc0cd4e8a6840ff4b129761e2",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/drawing_action.h": "9d75c9ac70f01cb2a90d8b25897e134681c0e0f7c9a34b7563bcd36f9375d5c5",
+    "runtime/menu/grimoire.h": "5209a9be7cae1db008b54ab0e59f2c037a8df86ae4875a6c3807317a1fe5b84f",
+    "runtime/menu/grimoire_observe.h": "f2c617cd0bbce1ca77861714eb7b5860a67bdeca143f0a16ea6b00631218b777",
+    "runtime/menu/lobby.h": "a133e8fa4ce4084fe268f2bc12ccef852d2b7907cc785ab8f63784d3e53dd1eb",
+    "runtime/menu/mini.h": "feb3305d85c77856a0da52931bdabd6646b6e28727196b7eda90b7222abba50f",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/multiplayer.h": "d07556a96ee331106b6891e82dbdd327ec965a435a19f82f3b8d0b9ba141a6c8",
+    "runtime/menu/observer.c": "6bdaac4ac27d7cbbd116a58f4164945d446f1c0fe03d18263d2bfc1dd849d57f",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "e16e21093ee2da8b50b278004e538bae9bba149b00afa11a0f5f85686a33934f",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/sessions.h": "754cae3d6dbd9766c67f2c31e4eee99956941f7422354b6d0547ec9ced4aecfc",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/menu-host-lobby-bridge-test.cpp": "b6d7d2fececb73bfd2293a188cee148bbd06ca9ddb643746477fb177bbd47113",
+    "tests/multiplayer-lobby-contract.c": "35c26cf3712c187b91cf1654c57b405aab24b3d5c4442014dfb327fee8545d02",
+    "tools/build-menu-observer.py": "ba79b2808aaea146faf5e82bb2db5981f5a6999e22f3c5d36808f7e80c5effd6",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/directplay_dx6_launch.py": "49daf3245de9dc5528b50082ab9ba0103e46c2a4f30a89cb8e22bc5d38cef2a6",
+    "tools/menu-game-runner.py": "ed449bf329926f78f8ee3eda6138ffb7c1634a49e71ac43c88c2f8ac78b472ee",
+    "tools/prepare-menu-observer.py": "875fa1d02ec5b1122aa7c45f96b8c71413193d015e05ce50d0a349d8a8581b7b",
+    "tools/run-game.sh": "073ed34678f0fdd5032f30133d329f48931eb61e40541b65960017cc975b890f",
+    "tools/run-menu-observer.py": "cf5a37fdb9f9fc74c1cb6eb170b8e062e46278f933c8567999bd3c1a60667e6a",
+    "tools/test-directplay-dx6-launch.py": "4965a8ad5d18c2d85230f49f8e734f5831ee821d09e4ce5411ea3aed227cd6f1",
+    "tools/test-live-host-lobby.py": "d3e945fef298a78d2359187ffa9cc70de0866ba824285367015ec07600de9c51",
+    "tools/test-live-menus.py": "a8b411e156840f4645bc9b242aa811435fefbd708fb0ca1d7d3953b05064258c",
+    "tools/test-multiplayer-lobby-contract.py": "00f9cdb23aad6a5b70c2b04c10fd738b0293244ca0df614b4a743673dd3dff8a"
+  },
+  "claims": [
+    {
+      "behavior": "NP.host-lobby-view-ownership",
+      "contract_sha256": "6ab0666a5bf1bc31ecf1154d1810670f48ed799c246522bf63f7af0546f0a4d8",
+      "scenarios": {
+        "UI.host-lobby-dx6-owned-native": "9bb37faead320684995c97f7d3f55adfe426475d7053e80d71e12b98dd7e7aef"
+      }
+    },
+    {
+      "behavior": "HOST.native-host-lobby-view",
+      "contract_sha256": "07e360014afbc17dde6b80033d0c1d2d62c7bb890f3d83067b43355cb4f78370",
+      "scenarios": {
+        "UI.host-lobby-dx6-owned-native": "9bb37faead320684995c97f7d3f55adfe426475d7053e80d71e12b98dd7e7aef"
+      }
+    },
+    {
+      "behavior": "HOST.original-directplay-dx6-launch",
+      "contract_sha256": "c3f672b2370d455e881c8c59fd97537bb0184139cd749170a2a995da8bd1bfac",
+      "scenarios": {
+        "UI.host-lobby-dx6-owned-native": "9bb37faead320684995c97f7d3f55adfe426475d7053e80d71e12b98dd7e7aef"
+      }
+    }
+  ],
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/experiments/menu-observer/run-kjnzy2xg",
+  "original_callback_trace": [
+    [
+      3,
+      2
+    ],
+    [
+      22,
+      0
+    ],
+    [
+      15,
+      0
+    ],
+    [
+      24,
+      0
+    ],
+    [
+      22,
+      0
+    ],
+    [
+      15,
+      0
+    ],
+    [
+      24,
+      0
+    ],
+    [
+      22,
+      3
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "normal_quit": true,
+  "source_stable": true,
+  "original_work_bypassed": false,
+  "native_host_view": true,
+  "live_submission": true,
+  "networking_executed": true,
+  "peer_join": false,
+  "original_graphics_audio": true,
+  "directplay_dx6": {
+    "source": "original/MagicMayhem_CD/DirectX6/Win95/Dx6eng.exe",
+    "source_sha256": "a9daa6ec591514337ccfa3df83e363bfa29010ffccf654c0e14ff55dabf98f81",
+    "files": {
+      "DPLAYX.DLL": "230a761372d6974d144aac75f77a01ee4aa970647221e8dd4b2c88d9331f692d",
+      "DPWSOCKX.DLL": "bb0c9be765fe037874514a2c18b39ae56ada288c09eceafac8fb9bac6d081977",
+      "DPLAYSVR.EXE": "5b1a5758c65a09ffbb1aa594e56b3e9c72cc904398a4d37cf1147961a3f4154c",
+      "DPLAY.DLL": "7f3978149dd401c33ab0cf34bf776d794005dccf8307cce5006710976c6df545"
+    }
+  },
+  "directplay_prefix_result": {
+    "schema": 1,
+    "prefix": "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/tests/live-menus/run-6zffaxnr/wineprefix",
+    "source_sha256": "a9daa6ec591514337ccfa3df83e363bfa29010ffccf654c0e14ff55dabf98f81",
+    "files": {
+      "DPLAYX.DLL": "230a761372d6974d144aac75f77a01ee4aa970647221e8dd4b2c88d9331f692d",
+      "DPLAY.DLL": "7f3978149dd401c33ab0cf34bf776d794005dccf8307cce5006710976c6df545",
+      "DPLAYSVR.EXE": "5b1a5758c65a09ffbb1aa594e56b3e9c72cc904398a4d37cf1147961a3f4154c"
+    }
+  },
+  "original_process_result": {
+    "schema": 1,
+    "original_exit_code": 0,
+    "desktop_exit_code": 0,
+    "helper_cleanup_returncode": 0,
+    "cleanup_after_original_exit": true,
+    "prefix": "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/tests/live-menus/run-6zffaxnr/wineprefix",
+    "prefix_session_lease": true
+  },
+  "module_loads_on_original_thread": true,
+  "native_module_loads": [
+    {
+      "thread": 492,
+      "line": "01ec:trace:loaddll:build_module Loaded L\"C:\\\\windows\\\\system32\\\\dplayx.dll\" at 5E080000: native"
+    },
+    {
+      "thread": 492,
+      "line": "01ec:trace:loaddll:build_module Loaded L\"Z:\\\\home\\\\hoff\\\\swdev\\\\magic_and_mayhem_mod\\\\working\\\\worktrees\\\\menus-live-integration\\\\working\\\\experiments\\\\menu-observer\\\\run-kjnzy2xg\\\\game\\\\dpwsockx.dll\" at 5DF00000: native"
+    },
+    {
+      "thread": 492,
+      "line": "01ec:trace:loaddll:build_module Loaded L\"Z:\\\\home\\\\hoff\\\\swdev\\\\magic_and_mayhem_mod\\\\working\\\\worktrees\\\\menus-live-integration\\\\working\\\\experiments\\\\menu-observer\\\\run-kjnzy2xg\\\\game\\\\dpwsockx.dll\" at 5DF00000: native"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/report.json",
+      "sha256": "d0e7d4b28a008d5f301fec4364018bf2c5acce131d51f5e1e21cc30e246d32e6"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/prospective.json",
+      "sha256": "1cc3a856dccbebc64989000ed12cc4de771ca69dac0e11486ad29d221b3f009a"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/shell.log",
+      "sha256": "57de6f408478687b5b0da8c5d39acc7ecbe4a82f021bfbe8d837b69865b1d1fc"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/manifest.json",
+      "sha256": "bf11ae292eda3fe1a2534f25a811e89fb0df21946abea2f599e2bfd254527217"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/channel.bin",
+      "sha256": "0b8265f8dc4218fb15aedf08bf74965385b7bf4768c4d7edfec6446891aab460"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/events.bin",
+      "sha256": "5220075b5db5d5d474cc261c76ad304315d19a15dfab8a9543cb201220af5b1b"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/original-process-result.json",
+      "sha256": "efd91ca9c0e9112b99684ff5346ba60e7ba90e5f466dc654caff2c043b2e7ae2"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/original-process-exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/original-process-wait.cmd",
+      "sha256": "c86e9184d0eeb2649c4df5ca175f1a919ad67c2955d5daf98250738ec8f4fa57"
+    },
+    {
+      "path": "working/experiments/menu-observer/run-kjnzy2xg/directplay-helper-cleanup.log",
+      "sha256": "42501ec8c87378e0324ddddfa3dd2516fb8a91f84e54083aa76002151cf82d2c"
+    },
+    {
+      "path": "working/retention/host-lobby-approved-90gib-20261012.json",
+      "sha256": "caab35beafba447a5ea785918dee68079d9cd3623d0ccf45635a7e96da6d5898"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-0.png",
+      "sha256": "8fb0c71028bde1cc6d185caba8d52b560066bd9dc0560a9a93e627ad8614805b"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-1.png",
+      "sha256": "42eebf4bb3c12186314dc63965fb2398be28188d73223fc3394f5089526895b4"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-2.png",
+      "sha256": "7d9cbf0657cbe6966e180ab1374456f59f0b36b679278e97d775276a9f5175f1"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-3.png",
+      "sha256": "5daa44687ba5467c6c0db5e08ef7dc50ada967d44e245941518cb9f26161936b"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-4.png",
+      "sha256": "f4cea2ad3eb0d3eceab2083d56222ffb09e4da7f4210d2cc08e7b186508c4939"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-5.png",
+      "sha256": "87e2ae16d58e55f6d36571328ee27f9f59bdc6bc82073d95d04363a4dc64de2e"
+    },
+    {
+      "path": "working/tests/live-menus/run-6zffaxnr/qt-session-6.png",
+      "sha256": "462c6be191dc6cd5eadba3d5c451dc6fb66a39cbcc2293f5ac3de70cb0c029d5"
+    }
+  ],
+  "storage_policy": "User-approved temporary90GiB reserve for host commit/validation; permanent policy unchanged."
+}

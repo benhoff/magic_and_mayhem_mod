@@ -192,7 +192,7 @@ def immutable_errors(before, after):
     return errors
 
 
-def review_errors(review, delta, before, after, audit_report):
+def review_errors(review, delta, before, after, audit_report, historical=False):
     errors = []
     label = review.get('id', '(missing ID)')
     if not isinstance(label, str) or not label.strip():
@@ -214,6 +214,10 @@ def review_errors(review, delta, before, after, audit_report):
                 value = item[prop]
                 if value is not None and (not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value)):
                     errors.append(f'{label}: malformed {prop} for {name}')
+    # Exact receipts imported from a verified merge parent stay historical.
+    # Check their shape, but grant no final-file, behavior, gap or validation credit.
+    if historical:
+        return errors, [], []
     current_files = {f['path']: f for f in delta['files']}
     current_behaviors = {b['id']: b for b in delta['behaviors']}
     matched_files = [current_files[f['path']] for f in review.get('files', [])
@@ -341,13 +345,15 @@ def receipt_chains(delta, reviews, before, after, audit_report):
     return adapted
 
 
-def check(before, after, reviews, audit_report):
+def check(before, after, reviews, audit_report, merge_history=None):
     validate_baseline(before)
     delta = changes(before, after)
     errors = immutable_errors(before, after)
     covered_files, covered_behaviors, covered_gaps, validated_behaviors = set(), set(), set(), set()
     if reviews.get('schema') != SCHEMA:
         raise ValueError('Unsupported change-review schema')
+    merge_history = merge_history or {'statuses': {}, 'reviews': [], 'parents': []}
+    historical_ids = set(merge_history['reviews'])
     current_reviews = {r['id']: r for r in reviews['reviews']}
     for old in before['historical_reviews']:
         if current_reviews.get(old['id']) != old:
@@ -360,7 +366,8 @@ def check(before, after, reviews, audit_report):
         if rid in seen:
             errors.append(f'Duplicate change-review ID: {rid}')
         seen.add(rid)
-        problems, files, behaviors = review_errors(review, delta, before, after, audit_report)
+        problems, files, behaviors = review_errors(review, delta, before, after, audit_report,
+                                                   historical=rid in historical_ids)
         errors.extend(problems)
         if problems:
             continue
@@ -389,7 +396,7 @@ def check(before, after, reviews, audit_report):
                  'replacement': {'none': 0, 'scoped_live': 1}}
         promoted = any(ranks[stage].get(new.get(stage), 0) > ranks[stage].get(old.get(stage), 0)
                        and (stage != 'implementation' or new.get(stage) == 'scoped') for stage in ranks)
-        if promoted and b['id'] not in validated_behaviors:
+        if promoted and b['id'] not in validated_behaviors and b['id'] not in merge_history['statuses']:
             errors.append(f'Status promotion requires fresh recorded validation: {b["id"]}')
     for key in delta['new_gaps']:
         if key not in covered_gaps:
@@ -398,6 +405,7 @@ def check(before, after, reviews, audit_report):
     # hash-bound receipt. No blanket acknowledgement exempts future edits.
     return {'schema': SCHEMA, 'scope': 'Change accounting; no whole-engine completeness claim',
             'baseline_sha256': digest(before), 'errors': sorted(set(errors)),
+            'merge_history': merge_history,
             'warnings': audit_report['warnings'], 'changes': delta, 'receipt_chains': used_chains,
             'counts': {'changed_files': len(delta['files']), 'affected_behaviors': len(delta['behaviors']),
                        'new_gaps': len(delta['new_gaps']), 'existing_gaps': len(set(before['gaps']) & set(after['gaps']))}}

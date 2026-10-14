@@ -13,6 +13,7 @@ void installLivePreferencesRestoreTest(QApplication&,QMainWindow&,LiveMenuSessio
 
 void installLivePreferencesDisplayTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
+void installLiveGrimoireTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 void installLiveRegionEntryTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveRegionEnterTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
@@ -23,3 +24,13 @@ void installLiveCampaignDefeatTest(QApplication&,QMainWindow&,LiveMenuSession&,c
 void installLiveCampaignQuitTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveCampaignPreferencesTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveStorageMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveMultiplayerTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveMultiplayerSessionsTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveHostLobbyTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveCampaignGrimoireTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

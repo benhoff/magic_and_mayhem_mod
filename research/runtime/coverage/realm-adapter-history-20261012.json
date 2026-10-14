@@ -1,0 +1,187 @@
+{
+  "range": "597cab09..57182647df0b7059d28a2aecde05ec8a353ad36a",
+  "scope": "Exact prior committed renderer-diagnostic receipts reviewed; journal self-excluded. Source/behavior links and retained headless/live boundaries reviewed; no retrospective gate or execution assertion.",
+  "versions": [
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/formats/copy-timing-v1.md",
+      "before_sha256": null,
+      "after_sha256": "2a38f6739a75ef6e93de2e4fa7320776a5b732c6b99f85f5a9a69ef566999511",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/copy-contention-timing-private-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3103ee67057363cfd394a62d7db5d1299741dcef080e4a1ce7016087f56875ce",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/copy-contention-timing.md",
+      "before_sha256": null,
+      "after_sha256": "1b878ee3bec095aed4bffbb26e512b0dad151f93227d198974160925d0a9c9b0",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "22c95a197805357441dc53c79d27b241c173fdf02fa5b4efa9e442c94bf8c9be",
+      "after_sha256": "d4ea6d102984646320a565a506e54238bb0b08368b96560453537b0cb0c32ba0",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/coverage/copy-timing-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d9a973468dc7cb14b4db577cee6f6e1cddd20f1fab3b5ee154a8bc3e2e19404c",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2be435bbdc8aeef77d8232a1100ca174aaad3000d1167345eac84710b6096b49",
+      "after_sha256": "093121bbe9e924346c9a9bceab8b37470d7e548bfe767f314118164c6fea0c35",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/coverage/source-index-copy-timing-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "e44ac5ba15f23324f279ca10707b17f5710d21edf1a4cd30f3964d9e82a850aa",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "research/runtime/coverage/summary-copy-timing-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "eb622dbf53e4cc7329e9422af271f90c5bf71b974c2088854130ef0e131a448d",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "44ea78287afc585691e5805ca5158a2a23602870133fda328d0eaf3d0fe26acb",
+      "after_sha256": "b41a1c99b82041959de3f0857e31325736fc12d7dd0fd7fed030664e1610f97a",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": "6fb515b02faffb12afec48d08cc231675068f091e73307d22997e7a68408684a",
+      "after_sha256": "5c2665c4e7dab3c0e3b5793194317f5f34ae08735bece5b91829a1c32970dfca",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/command_scheduler.h",
+      "before_sha256": "edd60759d2761aef17b7cf55d059ecb611621c33b52fe3b2e2260c1b7c1c10df",
+      "after_sha256": "b2fe75e74483c48195edd966ce252dd1e36769e6ae874293a2f18c55cfdde57b",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/copy_order.h",
+      "before_sha256": "84242fd54a621508a839d9a1a8aed3039f8e95e188bcc55c77f6273a72d5debf",
+      "after_sha256": "0574f31b91f4c7500e66d15801d971e50e8a5febe8040e50f055aa4391fbf7ec",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/copy_timing.h",
+      "before_sha256": null,
+      "after_sha256": "b233c8b5f19c83d61f8a8ee04165ff8b05f4347bd95082e380ddd9d9db5435e1",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/lock_lifecycle.h",
+      "before_sha256": "ef9fa7ba201e76be73e090c7c60e59a73aee91e57ba1e0a9b0a48b2c93c0519f",
+      "after_sha256": "9dae20ed10ba09a0a2d824ca16372a961ad021d4713bd9e8cb7b7d36181fd26b",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "runtime/render/lock_surfaces.h",
+      "before_sha256": "87c7a2b50a78f4f4dd479ec88e8ed629c069e3f174081f224e3a9b6fd35e2cd3",
+      "after_sha256": "7e1cf3b18b297568f15c29e7ca93fd6bcf1df548202875093e8d5e3d60765577",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "tests/copy-timing-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ea7bb0f33a76c4a26519e0481dc3d888e4cc998a734a10d1e887ded0c64f0af6",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "tools/copy_timing.py",
+      "before_sha256": null,
+      "after_sha256": "e41f0d8ddddf2b8a2b8f4e5fe26acb41cfccfa09b07e37fefdba0aeed9f7b1b3",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    },
+    {
+      "commit": "57182647df0b7059d28a2aecde05ec8a353ad36a",
+      "path": "tools/test-copy-timing.py",
+      "before_sha256": null,
+      "after_sha256": "9dfbd61a26dd1cb8622d8e424e787e1bb577299b96600cb9af59d2efd06b6571",
+      "receipts": [
+        "copy-contention-timing-headless-20261012",
+        "copy-contention-timing-shared-source-boundaries-20261012"
+      ]
+    }
+  ],
+  "unresolved": []
+}

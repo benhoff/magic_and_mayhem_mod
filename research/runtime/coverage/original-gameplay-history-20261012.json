@@ -1,0 +1,277 @@
+{
+  "range": "427dda22..9016ee9a",
+  "scope": "Exact committed hash/receipt-chain review; journal self-excluded. No retrospective gate-pass or new behavior validation claim.",
+  "versions": [
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "41feb3487050ac45eff78bfccbe25a5bb1eb23b7af59268106c33fb30d5ca723",
+      "after_sha256": "cd8c607d9df36d2abe03e4717f40d78439d03f7fb085c58301f0547793653a48",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/character_screen_widget.cpp",
+      "before_sha256": "25e0df2dbee263e6fb5eb0e6e36fb2cee65d70daae43776d0dbde71cc816ec5b",
+      "after_sha256": "ffb616e8afcac67d81fe0464f6096cacfb738b34499d2fc6a6b3e5630e6be504",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/character_screen_widget.hpp",
+      "before_sha256": "ffd20a9fe15c7d2413c9e3bc69ad264af421cd51d676a933a567c54834d66063",
+      "after_sha256": "4ec1486a2ee356fd97cf55992116099cc6334254c2a83e6f795e3773f0970143",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/live_character_controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "cc18b5e9e394dde43d864ce9e87d4f38a44029b55745c1c46307f2fd4a7939ee",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/live_character_controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "e70665d9aef5fe11514122a643bdaaa442fda8092a13f99a8478ac6a38ba587f",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "d32bd2a4ee41bb474a3ab3bbe16875295d49f4264c80329f403e2603c4b79325",
+      "after_sha256": "f6476f7441640c7d8eec33ad8c17f7be0a13955f3cf25918d23a86e06c298ef4",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "9384d7c73153b3ac93ee5f35b9f42139558d074327da00a88040d709924c3145",
+      "after_sha256": "05e788f087f4961534f0ca7b1b2591a21eb0dd0a6e2ddf68b4893342524d888c",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "eb0a6b4ccf2e536a8594c83e1b9f55249ce82280ec5b162734f8cac6054ff170",
+      "after_sha256": "8f2da91ea26c764df75df2594f314dc19d56fee8885e1966f6dfa7b064046977",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "68b2bf4170a99712bcaf1c934751724979fb088101ec14947585fcf60b8235bb",
+      "after_sha256": "5f3960800c4b69474db5d189412b40ea66b57bb8dd73b9d2fc5bec90aa05fcf9",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "94ad468a1399be077c638026fccf5c8f864cc7a8dbcb50bb91da719552fa76ac",
+      "after_sha256": "154d22aa28272d087d888fc8e87f7d750f8615d04cada0741512f39bdb7ea536",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "protocols/include/mnm/menu_v18.h",
+      "before_sha256": null,
+      "after_sha256": "c6501ea87e8b7f2871a852b8b47f702a0f5251db359c9101b37b2d641e324368",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "11713072ede05d3ee0b6ef2a7aa3fbb3cb89bc80eb60c87a7f416c419c369b94",
+      "after_sha256": "975852bdad31186648379a7f1c20a5fde6dcf99c1738c81a2636c3faeb130dbe",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/character-adapter-private-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "7b6ddaac5b66eefd54a38036e5993c6f9df74e0062a808621af82fc4dfc528ca",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/character-live-adapter.md",
+      "before_sha256": null,
+      "after_sha256": "20a9054cbcad896fe205700dbbee4a8a70fae4fc279f497726ef7bb239335e16",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d4f6afa0dfa44feab57adedf420019ceb9cf28d8f90842094e2b202f8133b983",
+      "after_sha256": "5bd5779720e98b2cbec0fc4598274b05a153062457a9d596e4aed752715de731",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/character-adapter-history-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3ad07d99b7d12935985dafd0b610668e9efc4db34244883351d28040118ecccd",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/planned-character-adapter-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "2c8add8ab9d30835bd625ee9a9a755b6e2dd1acef3f3afc901398843718fb2ef",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/planned-character-adapter-full-wizard-range-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "a05800fc469a9644f018e139b0d9e1606b5cf031aabd3660edcab6c0bbcc9392",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/planned-character-adapter-reference-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "1f9c5f7b25a402a72f23e61efc42608d83e7ea8d8efc099c759384ef1658bcb3",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "64d6ea4ad087e84012a3d2af4421d409b98fb2b988743cb8cb1e6d21af47fbbd",
+      "after_sha256": "862961dd01c4cb2e11ef164e5f149dd458def040b08b99a9c06cd4e96b5fc63e",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/source-index-character-adapter-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "bc601180b510981369992edec451eaedd37c82c56ca2730507997f1fe6129bc4",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "research/runtime/coverage/summary-character-adapter-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "d20aede0b130cefe2a628b4815d2267ff666502dc29f1b3385efc3a9a8eef2ba",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "c9baa5fdd27d00ac64c6a2a9280e280f33e134efc0cd4e8a6840ff4b129761e2",
+      "after_sha256": "41d4b53cad580f413fd24dacf75f0497d87729963d1a1142470a7c86ba9d3557",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "runtime/menu/character.h",
+      "before_sha256": null,
+      "after_sha256": "f5bf7516b62e8bf0f278150714519f822299bad0d3228cf98b7c28abf6c3a433",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "6bdaac4ac27d7cbbd116a58f4164945d446f1c0fe03d18263d2bfc1dd849d57f",
+      "after_sha256": "3ce46114197c00eec8e4919cfd08eb3a9e25db4a17aee97f466ed25b0a45ec66",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "tests/character-adapter-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "b8166b09a6e0c2f3451086c5434df602acfb2e93207a92aa2055053d8d94cac9",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "tests/menu-character-bridge-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1a2a3c99e324959335d20bc7d239efe0a09bcc0c1936738ef21f560616e533f1",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "ba79b2808aaea146faf5e82bb2db5981f5a6999e22f3c5d36808f7e80c5effd6",
+      "after_sha256": "a2cfac77e343fd2a2d3055f0fe0de5f4f29c5f42a2d42bc830ef2a29ee629ae6",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "cf5a37fdb9f9fc74c1cb6eb170b8e062e46278f933c8567999bd3c1a60667e6a",
+      "after_sha256": "51cdf2aeb66cf7e2efccf8f6f9f9ea59c824c1cf85de1407dcf9690f20abedaf",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    },
+    {
+      "commit": "9016ee9aaef20efd1193e7843e95b4d91299511d",
+      "path": "tools/test-character-adapter.py",
+      "before_sha256": null,
+      "after_sha256": "cd6cbdc85df6d93f3b44bab4fd4a89e74f1678df865e5813f2bbb14f092d406d",
+      "receipts": [
+        "character-adapter-headless-20261012"
+      ]
+    }
+  ],
+  "unresolved": []
+}

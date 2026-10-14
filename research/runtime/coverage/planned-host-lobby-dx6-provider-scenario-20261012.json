@@ -1,0 +1,16 @@
+{
+  "id": "UI.host-lobby-dx6-provider-native",
+  "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending. Supplied DirectX6 native-only TCP provider is independently hash checked and its actual module load observed alongside Wine DirectPlay.",
+  "level": "live_observation",
+  "behaviors": [
+    "NP.host-lobby-view-ownership",
+    "HOST.native-host-lobby-view",
+    "HOST.original-directplay-dx6-launch"
+  ],
+  "evidence": [],
+  "tests": [
+    "tools/test-live-host-lobby.py",
+    "apps/qt-shell/live_host_lobby_test.cpp",
+    "tools/directplay_dx6_launch.py"
+  ]
+}

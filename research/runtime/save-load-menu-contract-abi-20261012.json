@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "cases": 13,
+  "real_game_launched": false,
+  "save_io_stubbed": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "scope": "Original Load pending/Cancel/caller flags, Save Cancel/success/overwrite admission/overwrite modal, edit setter, list toggle/reset/get. Serializers, fade and modal resource helpers privately stubbed; no actual save I/O, live menu ownership, failure rollback or replacement.",
+  "sources": {
+    "tools/test-save-load-menu-contract.py": "c737df8c5b936e676e3412cda31c21dd307507e5062854bebd44d35c400f982d",
+    "tests/save-load-menu-contract.c": "7fed99a099cb446e9d82e4c91cbccc191c36724485cfb345813d8b68519785c3",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c"
+  },
+  "anchors": {
+    "0x4aa800": "8b4424045683e800",
+    "0x4aa5d0": "6aff681b075c0064",
+    "0x4ab750": "8b44240481ec0001",
+    "0x4abd00": "64a1000000006aff",
+    "0x4cd0e0": "578b7c240885ff8b",
+    "0x4d1060": "51535556578b7c24",
+    "0x4d1df0": "53568b71495785f6"
+  }
+}

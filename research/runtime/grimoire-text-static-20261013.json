@@ -1,0 +1,61 @@
+{
+  "success": true,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "entries": [
+    5011808,
+    5020624,
+    5021648,
+    5021888
+  ],
+  "anchors": {
+    "0x4c7960": "53568bf133db5783c8ff89b604080000",
+    "0x4c9bd0": "83ec085355568bf133db578b86080800",
+    "0x4c9fd0": "568bf18b864808000085c00f84a60000",
+    "0x4ca0c0": "53558b6c240c565733ff85ed8bf10f84"
+  },
+  "command": [
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/toolchain/ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_/support/analyzeHeadless",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/decompiled/nocd-nn0_667n/project",
+    "MagicMayhem",
+    "-process",
+    "Chaos.exe",
+    "-readOnly",
+    "-noanalysis",
+    "-scriptPath",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/tools/ghidra",
+    "-postScript",
+    "ExportPersistenceProgression.java",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/menus-live-integration/working/decompiled/grimoire-controls-dzgwwcna/c",
+    "4c7960",
+    "4c9bd0",
+    "4c9fd0",
+    "4ca0c0",
+    "-max-cpu",
+    "2"
+  ],
+  "scope": "Static receiver/path references and selected read-only pseudocode; no original execution, live menu admission, native presentation or replacement.",
+  "tables": {},
+  "texts": {},
+  "installed_inputs": {},
+  "sources": {
+    "tools/export-grimoire-menu.py": "0cd5d4ef625b1a849d1e5edae6ebec77a79c4ae356b6134f5e641cf271f6bc8f",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/audit-file-apis.py": "c516ca9e40c3f68685501fb20d3348808d813a78e87207a9ea95fc18b6b8aa8e",
+    "tools/decompile-game.py": "6200c741f514398f4256e2255cdf05041859c99eeb4f3a9430c4c09a33d221d9",
+    "tools/ghidra/ExportPersistenceProgression.java": "c11ace07ee8e512656dc50fd7fb56a461b57ce4dee63348ac7c304c9845f24f5"
+  },
+  "artifacts": {
+    "original.asm": "25733004af7ed9654cbbb009d28c9a474e85cbce7c4dad1b7a3192700263c683",
+    "references.json": "38fce292c61c347f7eb198b3671cc4c1576b55bbbd7373ecf379d0ea0ab909b6",
+    "c/004ca0c0.c": "50f3e1fe4f7b8cb9d5db75ac6e7455624a615074a21bf04c55a2047a6d842eb3",
+    "c/004c9bd0.refs": "4105a9b9c999a72a2afc0115a31fb694d77ee69e1713e69fc04bcb060dea48bf",
+    "c/004c7960.c": "5f9b4f0069db193b3cce81ba884e62b5be9b0577722e4866f289190ed08f01d7",
+    "c/004c9bd0.c": "1ae4dd4c295977c4eb2693b71391ddb3b2e498e40add11fc4900114a9a8b594b",
+    "c/004ca0c0.refs": "adf6d4756184cf2c9af55332d0164fde2d66c33b6e5b8d4357b6f68b2b6ae6c1",
+    "c/004c9fd0.refs": "815572fcf20866c48ce4d9c046742424d8520e30efb5effb12b380ddac690384",
+    "c/004c9fd0.c": "7b9b8b7dabd12a397ae5065cd628bc50a49c72c5690e72651b19fc937e434caf",
+    "c/004c7960.refs": "64c5c047cb8c8bc581360731b6553caca0363f2ba2e645477da7c293357c5fe3"
+  },
+  "raw_directory": "working/decompiled/grimoire-controls-dzgwwcna"
+}

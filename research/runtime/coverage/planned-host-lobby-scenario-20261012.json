@@ -1,0 +1,14 @@
+{
+  "id": "UI.host-lobby-view-native",
+  "scope": "V17 one-local-player host lobby view and Cancel only, from normal Create15/Main/Quick depth5 and original TCP room creation; original map label, rules/roster projected, full-object callback receiver validated. Other controls are disabled in this bounded native view and remain available through original controls. Guest/peer admission, chat/rules/map/start actions and gameplay/replacement remain pending.",
+  "level": "live_observation",
+  "behaviors": [
+    "NP.host-lobby-view-ownership",
+    "HOST.native-host-lobby-view"
+  ],
+  "evidence": [],
+  "tests": [
+    "tools/test-live-host-lobby.py",
+    "apps/qt-shell/live_host_lobby_test.cpp"
+  ]
+}

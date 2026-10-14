@@ -163,6 +163,7 @@ bool MultiplayerLobbyWidget::setLobby(const Lobby& value,QString* error) {
     lobby_=value;populate();arrange();return true;
 }
 MultiplayerLobbyWidget::Lobby MultiplayerLobbyWidget::lobby() const { return lobby_; }
+void MultiplayerLobbyWidget::setLiveViewOnly(bool enabled) {liveViewOnly_=enabled;populate();}
 void MultiplayerLobbyWidget::populate() {
     for (int i=0;i<4;++i) {
         const auto& player=lobby_.players[i];labels_[i]->setText(player.active?player.name:noPlayer_);
@@ -189,6 +190,8 @@ void MultiplayerLobbyWidget::populate() {
     start_->setEnabled(!lobby_.sessionId.isEmpty() && local && (mode_==Mode::Join || (!lobby_.mapId.isEmpty() && opponent)));
     start_->setChecked(mode_==Mode::Join && lobby_.localReady);
     composer_->setEnabled(!lobby_.sessionId.isEmpty() && local);
+    if(liveViewOnly_){start_->setEnabled(false);map_->setEnabled(false);composer_->setEnabled(false);chat_->setVisible(false);for(auto* s:sliders_)s->setEnabled(false);for(auto* b:portraits_)b->setEnabled(false);for(auto* b:colours_)b->setEnabled(false);for(auto* b:remove_)b->setEnabled(false);}
+
 }
 void MultiplayerLobbyWidget::start() {
     if (!start_->isEnabled()) return;

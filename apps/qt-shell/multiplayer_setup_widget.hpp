@@ -30,6 +30,7 @@ public:
     bool loadAssets(const QString& root, QString* error = nullptr);
     bool setForm(const Form& form, QString* error = nullptr);
     Form form() const;
+    void setLiveAvailability(quint32 transports,quint32 actions);
     Mode mode() const { return mode_; }
     QRect contentRect() const;
     void focusFirstField();
@@ -46,6 +47,8 @@ private:
     void submit();
     void arrange();
     const Mode mode_;
+    bool live_=false;
+    quint32 liveTransports_=7,liveActions_=3;
     QImage background_;
     std::array<QLabel*,4> labels_{};
     std::array<QRect,4> labelRectangles_{};

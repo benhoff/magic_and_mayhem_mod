@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Prospective scope/source declaration only. Execute the experiment and verify source stability before registering its result.",
+  "claims": [
+    {
+      "behavior": "CP.character-pricing",
+      "contract_sha256": "7282b654c6edf50c79b2016ffdaf90e5555ff937ab980c5fb326e8446e41da6f",
+      "scenarios": {}
+    },
+    {
+      "behavior": "NP.character-price-admission",
+      "contract_sha256": "9aee775d81f5c0ab74ab7133a8aa6c44dc5a432a0e2e999f97ce59eac2663516",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "reconstruction/campaign/CMakeLists.txt": "8495201ac2c3e8431d46c821ef5129199214c3bf5abe49d762f6bbcef75ad4e7",
+    "reconstruction/campaign/character_cost.cpp": "5ec71481e91d8d5aad9e53c0e51e8d06df05493eedb25427eccf62ef8bb58dd9",
+    "reconstruction/campaign/character_cost.hpp": "cae62fc89f4124188ce0d18f8a08f8ac1bd47eb55b7620055535504baa475750",
+    "tests/character-cost-reference.cpp": "c2f1ef1f6f9deb7800b44edc98ce87ccd6d9a2397714539e0fe6e7c0ff2ecec0",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/test-character-cost.py": "983145b6e1cc7a1e1aa6d14e22eea9420e4b9869d9356f49db70b17890e22494"
+  }
+}

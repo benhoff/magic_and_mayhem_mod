@@ -143,6 +143,63 @@ automatic-melee fresh-process continuations; Qt/window sanitizing remains exclud
 The committed-history review82f9bff..122f5c8 finds61 exact file and536 affected
 behavior transitions with no missing receipts; it asserts no retrospective gate pass.
 
+## Original Character pricing reconstruction — 2026-10-12
+
+`CP.character-pricing` now reconstructs the positive-domain original indexed
+formula, with[19,716 matching original prices](character-pricing-original-20261012.json)
+from1,643 six-row calculator runs. Original calculator,x87 power and integer
+truncation helpers remain unchanged; installed coefficients,bounded synthetic
+fractions/constant powers and full pre-execution sources/claims pass, as do
+both immutable-original manifests. `NP.character-price-admission` separately
+records12 intentional native refusals, without original failed-input equivalence.
+[Formula and boundaries](character-pricing.md). Scoped implementation/comparison
+advance independently of live ownership,menu actions,persistence and replacement.
+Wrong-key/reversed-operand attempts retain unique working logs/declarations.
+The shared campaign build definition changes earlier Realm source fingerprints;
+its historical proof is retained, not refreshed. Exact01c4518a committed file
+receipt review has no missing chains; no retrospective execution/gate is inferred.
+
+## Campaign Character draft/commit recovery — 2026-10-12
+
+`CP.character-actions` has [329 private original callback cases](character-actions-original-20261012.json):
+288 six-row edits,10 OK,6 Cancel and25 ignored actions. Two selected wizard
+identities,opening/max/budget bounds,draft-only edits,commit/rollback and
+negative/above-opening experience pass. Callback bytes remain unchanged in the
+private complete PE32 mapping; expected dependency bytes, prospective contract,
+complete sources and both immutable-original manifests pass. Wizard selection,
+fade and price/UI refresh are privately stubbed with supplied7/11cached prices.
+[Contract and remaining pricing/live boundary](character-menu-engine-contract.md).
+
+Only recovered understanding advances. Original pricing/rounding/refund schedule,
+native Character commands,disk persistence and genuine progressed caller/return
+validation remain pending; no first-region controls are unlocked. Static
+initializer/input/control exports retain separate provenance. The
+[6da291d6..83a42743 history review](coverage/character-menu-history-20261012.json)
+covers17 exact file versions with zero missing receipts, without retrospective
+execution or gate claims.
+
+## Campaign menu focus: settled Realm selection — 2026-10-12
+
+`CP.realm-region-selection` now has a separate Qt-independent reconstruction
+and [scope-bound isolated-original comparison](realm-selection-bound-original-20261012.json):
+15,360 state0 selection combinations,54 owned-adjacency/count boundaries and14
+low/high-resolution canvas bounds. Complete original tick/occupancy-counter
+bytes remain unchanged in the private mapping; dependency bytes are checked
+before private stubbing, source hashes stay stable and both original manifests
+pass. Native policy is not substituted for the recovered ownership, capacity,
+release-latch or auxiliary/tutorial branches. See [contract and campaign work
+order](realm-selection-contract.md).
+
+Scoped understanding/implementation/comparison advance independently. Live
+Realm readiness/commands, campaign Character pricing/persistence, Portmanteau/
+research identities and broader Grimoire callers remain pending. Fresh New
+Game still enters Forest of Pain before Realm resource initialization and
+Cancel returns Main; no progression, control unlock or gameplay balance changes
+are made. Earlier sandbox/fixture failures retain unique working paths.
+[History review](coverage/campaign-menu-focus-history-20261012.json) covers
+799688cc..6da291d6:27 exact file receipt chains,zero missing receipts; no
+retrospective execution or gate pass is inferred.
+
 ## Other pixel producers: byte text and live glyph shadow — 2026-10-10
 
 `RS.font-byte-consumer` now has isolated-original proof for contour-based byte
@@ -746,6 +803,149 @@ contract do not advance coverage.
 | TH01 Threading and modern scheduling | Static No-CD message-loop/world-update/pacing recovery; worker architecture proposed only | Reviewed 2026-10-04: high for static dispatch, creature passes and timer separation; live thread ownership unknown. [Threading](threading.md), [world loop](world-tick-loop.md) | Observe thread IDs, cadence, pause/alternate-screen behavior and scheduler budget before changing concurrency or result timing |
 
 ## Native menus and original menu observation
+
+2026-10-12 UI45 prepares an opt-in V17 one-local-player host lobby view/Cancel.
+Original host/guest full versus primary receiver identities and16-byte callback
+layout are recovered;7 private original Cancel/adapter cases/35 guard rejections
+and two host wire/widget checks pass. [Contract](multiplayer-lobby-engine-contract.md).
+The6GiB live reservation was refused at102.5306GiB free by the required100GiB
+floor. The host view remains disabled by default; no live integration, peer,
+guest, chat/rules/map/start/gameplay or replacement status is promoted. The exact
+planned live scenario is preserved separately before any future run; refusing
+preflight is storage provenance, not execution evidence. Shared older menu
+proofs retain their exact source hashes/current-source limitations. History
+`1f7032ba..acab86fa` reviews27 committed file versions with no missing receipts,
+without asserting a retrospective gate pass or validation.
+
+
+2026-10-12 UI44 connects native multiplayer session selection21 above normal
+Join16. V16 retains original500ms enumeration, bounded displayed-name rows,
+original deferred Join and Cancel's Quick destination. Original TCP Join reaches
+the native empty session list twice; Cancel/window-close and normal Quit pass
+with nine ready states/eleven original callback ACKs.15 private original callback
+and adapter cases/35 rejection checks and three targeted Qt checks pass.
+[Contract](multiplayer-session-menu-contract.md). No remote peer was selected or
+joined; populated peer discovery/join, host/guest lobby and gameplay remain
+pending. Shared V15 form sources retain their older exact evidence hashes and
+current-source limitations. The `ed4d70ed..1f7032ba` history report reviews30
+committed file versions with no missing receipts; no retrospective gate claim.
+
+
+2026-10-12 UI43 connects native Create15 and Join16 forms from Quick Battle.
+V15 projects the original names/default provider and availability; guarded
+printable ASCII game63/user15 submissions call original edit/radio setters and
+original OK, leaving deferred networking and its viewport original. Live
+admission/defaults/availability, draft retention across eight engine refreshes,
+Cancel/Escape/window-close unwind and normal Quit pass. Private original callback
+and setter execution covers20 cases and50 transactional rejection checks;14
+related Qt protocol/lifecycle/widget checks pass. [Contract and limitations](multiplayer-menu-engine-contract.md).
+Live submission, network/error return, session list and lobby remain pending;
+original networking/graphics/audio/lifecycle are not replaced. Older shared
+menu evidence retains its historical hashes and current-source limitations.
+Exact-history review `cf23c406..ed4d70ed` finds33 committed file versions and no
+missing receipts; this is accounting, not a retrospective gate pass.
+
+
+2026-10-12 UI42 adds bounded V14 native Introduction book wiring. Region
+Grimoire entry requires the final standard-button vtable5c6bd0; the constructor's
+base5c5f24 is explicitly rejected. Semantic screen27, current section and
+availability are copied into pointer-free host state. Native requests wait for
+original selector/Close and settled original state; resource/tick/render/fade
+work remains original. Introduction and contextual Forest of Pain static level0 text use native wrapping
+and scrolling, with original leaf pagination/knowledge, other entries/chapters/callers,
+Character/Realm/results/multiplayer and renderer replacement still pending.
+[Contract and retained validation](grimoire-live-integration.md). The committed
+`556ded9..cf23c406` review finds17 exact versions and no missing receipts; this is
+hash accounting only. Shared edits retain older Save/Load/probe evidence and
+explicit current-source validation limitations. Current scoped live reader and
+caller returns pass on original graphics/audio; 17 targeted Qt tests and both
+private adapter/probe regressions pass. The final scoped reader rerun also
+verifies user scrolling survives unchanged engine refreshes; prior reader proof
+retains its older source hashes. Original replacement remains none.
+
+2026-10-12 UI41 validates an isolated original Grimoire tick probe and fresh
+Region/settled introductory book/Escape/Region twice, Region Cancel/Main and
+normal Quit, on one original thread with original graphics/audio. [Evidence and
+remaining scope](grimoire-observation.md). The book owns depth5 above Region18;
+screen and initialized fields remain zero while readable, so standard readiness
+rules are invalid. Original fade/pop cleans allocated catalog/display/callbacks
+and restores Region. Synthetic guards/forwarding/LastError/dedup/bounds pass;
+the original tick is stubbed only in that private fixture. The earlier live
+during-animation close and failed fixture attempts stay retained. No native
+reader ownership, original work bypass, page/knowledge/stats equivalence or
+cadence claim is made. Current native book commands/presentation and remaining
+campaign/multiplayer menus still require implementation and validation. The
+committed `b49bc43..556ded9` audit has14 exact versions and no missing receipts.
+
+2026-10-12 UI40 starts Grimoire control recovery. Static constructors/resource
+consumers correct earlier reversed names: Grimoire is `0x6e0088`/vtable5c6b70,
+Region action2/Realm auxiliary3; Character is `0x6c5148`/vtable5c66b4/ID20,
+Region action4/Realm auxiliary2. [Contract and evidence](grimoire-engine-contract.md).
+Thirty-two private original callback cases check animation-surface swaps, Close
+3999, Previous1999/Next2999 and packed chapter/section selectors, including
+unbounded original forwarding, with full argument returns and register/stack
+checks. Helpers are stubbed; no original resource/drawing/caller-return or native
+book integration is promoted. The book uses custom return `+0x1e`, transition
+state and tick, so standard menu readiness offsets do not apply. Character's
+initialization candidate stays outside discovered bodies/unassigned; its vtable
+link establishes only static identity. Old wire field names and evidence hashes
+are retained with address-based label corrections. Live open/close, formatted
+dynamic values, catalog availability and native reader ownership remain pending.
+The committed `596d6a4..b49bc43` review has 22 exact versions and zero missing
+receipt chains; it does not infer a retrospective gate or new execution result.
+
+2026-10-12 UI39 validates campaign Save overwrite No/Yes, native Delete No/Yes,
+original/native row refresh, Save/Load Cancel, deleted-row exclusion and normal
+Quit/exit0 on Wine-window embedding. All pre-existing owned saves stay unchanged;
+only a unique test-created save is deleted. [Result and policy](storage-confirmations-live.md).
+The first live attempt exposed original confirmation `0x4abb20`: No closes its
+modal while retaining admission `+0x5f`, so another Save can bypass confirmation.
+Sixteen private original cases and a private adapter fixture pass. Each fresh
+native Save now clears retained admission after guards, preserving original Yes
+continuation; this is intentional native policy, not baseline equivalence.
+Negative evidence and historical hashes remain retained. Persistent-baseline
+deletion, write/load failures, crash durability, more callers, native-command
+startup and remaining campaign/multiplayer menu integration remain outstanding.
+The committed `8e18162..596d6a4` audit has zero missing required exact receipts,
+separate from current source changes.
+
+2026-10-12 UI38 validates native Qt campaign Save/Load on the Wine-window
+embedding route: an actual 351,734-byte original save, original list-row load,
+World/Mini return, original confirmation/report and normal Quit/exit0; owned
+store bytes match. A fresh process restores the earlier persisted save and
+completes World/Mini/Quit without rewriting it. Main Load/Cancel is refreshed
+with persistent rows. [Evidence and exact limitations](campaign-save-load-live.md).
+Original Save/Load is Mini's depth6 child, correcting the earlier assumed
+World/depth5 fixture. Actual serialization, graphics, audio and simulation stay
+original-owned. Explicit native-command attempts stall before menu actions;
+they remain negative startup evidence and do not promote that route. Overwrite,
+delete, failures, full restored-state comparison, other callers and the remaining
+campaign/multiplayer menus remain outstanding. Earlier immutable records and
+their source staleness remain visible.
+
+2026-10-12 UI37 adds V13 Save/Load adapter preparation and fresh native Main
+Load/Cancel navigation: two ID12 parent3/depth3 returns, one original engine
+thread, exact callback/ACK trace and normal Quit pass on the Wine-window
+embedding route; native command/audio presentation is separate. [Result and boundaries](save-load-menu-engine-contract.md).
+This does not validate actual loading, campaign Save, loaded World or durability.
+The first fixture's truncated return operands and the adapter's assumed ID11
+were corrected from pinned instructions; historical reports/hashes are retained
+with explicit limitations. New private ABI/adapter fixtures and seven focused
+Qt checks pass. Shared historical evidence becomes stale after the controller,
+protocol and observer edits; only the new bounded Main Load scenario has fresh
+live support. A separately tested owned save-copying service is groundwork and
+is not yet connected to launch/exit.
+
+2026-10-12 UI36 starts the remaining live-menu work with Save/Load control
+recovery. The new [contract](save-load-menu-engine-contract.md) separates
+original callback/list/edit behavior from pending live screen admission,
+serializer I/O, delete/failure branches, confirmation and loaded-world returns.
+The everyday-use work order is Save/Load, Realm navigation and campaign
+auxiliary screens, remaining results, then multiplayer; it is not measured
+usage or completion evidence. Historical menu statuses/hashes are preserved.
+The [committed-history audit](coverage/save-load-menu-history-20261012.json)
+reviews 61 exact file versions in `82f9bff..122f5c8` with zero missing receipt
+chains, separately from this uncommitted menu work.
 
 Reconciled 2026-10-05 through UI35. Native preview behavior and recovered engine
 transitions have separate evidence. Bounded adapters delegate original actions;
@@ -8755,3 +8955,348 @@ limits are not refreshed. Current policy implementation support remains partial;
 all previous integration/comparison/replacement statuses remain independent.
 First mission victory and progressed Realm/Character/save-load validation still
 require a real game run; this is not proof of the historical65ms wait's cause.
+
+2026-10-12 UI45.host-create-failure records the subsequently authorized bounded
+live host attempt under a temporary90GiB reserve. Native Main/Quick/Create and
+the original Create OK callback execute, but original TCP creation displays
+**Could not create game session** before entering the host lobby; the180-second
+deadline expires. [Failure record](host-lobby-create-failure-20261012.json).
+The installed Wine TCP provider's unsupported-host diagnostic and upstream
+create branch are consistent with this failure; HRESULT/module tracing remains
+unconfirmed. No successful host scenario or integration/replacement status is
+registered. Host ownership remains opt-in/disabled by default. No originals,
+permanent storage policy, networking implementation or retained evidence were
+modified. History`acab86fa..d7f73255` reviews30 exact committed file versions
+with no missing receipts, without asserting retrospective gate/validation.
+
+2026-10-12 UI46.host-lobby-live enables the V17 one-local-player host view/Cancel
+by default. [Live record](host-lobby-native-live-20261012.json):7 ready states,
+9 original callback ACKs on one thread,2 real TCP room creations/host visits,
+2 viewport handoffs, Cancel/window-close unwind and original game/desktop exit0.
+A supplied hash-guarded DirectX6 stack in a fresh or previously owned private
+Wine11.16 WOW64 prefix supplies real host creation. All builtin hashes are
+checked before scripted replacement; original bytes are retained. Native module
+loads are bound to the original observed thread. Game process waiting precedes
+private-prefix helper cleanup, with an exclusive session lease.
+[Contract](multiplayer-lobby-engine-contract.md). NP.directplay-prefix-installation-guards
+has independent headless2-case/6-refusal file safety evidence. Prior object,
+room, prefix-initialization, helper-lifetime and Cancel-handoff failures retain
+unique raw evidence/source snapshots and assert no successful frozen scenario.
+Host view ownership, Qt host presentation and the supplied launch profile have
+scoped live-observation status only; comparison/replacement remain none.
+Recovered MP lobby contracts keep their independent private/static status.
+Rules/chat/map/start/player editing, peer/guest admission and gameplay remain
+original/pending; other menu proofs keep exact historical hashes and current
+source limitations. `d7f73255..799688cc` reviews6 exact committed versions with
+no missing receipts, without retrospective gate/validation claims. Temporary90GiB
+reserve was authorized for this host commit/validation; permanent policy and
+retained evidence were not changed and no cleanup occurred.
+
+## Experimental campaign Character adapter — 2026-10-12
+
+UI50 adds opt-in V18 Character projection and guarded original adjustment/OK/Cancel dispatch. The private original callback/getter/price-refresh test passed 16 admission guards, slot79 selection and three Qt bridge/controller/widget checks. Native state updates only after engine acknowledgement. This is headless integration; genuine campaign progress, live caller/return, Realm navigation, window-close unwind, pause and persistence remain pending. Shared menu/Qt sources changed; previous evidence hashes and statuses remain historical and may be stale. Pricing UI49 remains separate from this adapter, which uses original cached prices.
+
+2026-10-12 original-display campaign preparation retains normal original Fireball casting, the conversation objective and original-writer bridge/encounter saves, followed by defeat; no mission completion or live Character claim. Native preparation's command-history GAP2, copied-prefix refusal, unstaged diagnostic refusal and100GiB storage stop remain negative results. The user approved a temporary90GiB reserve only for campaign tests/commit checks, retaining1280GiB and the repository default100GiB policy. The separately admitted passive original-display diagnostic profile has7 guard test methods passing; live observation is pending. UI52 reruns Character's16 private guards/original getter/price refresh/actions and3 Qt tests on current launch sources. Genuine progressed Realm/Character, native Realm navigation, window-close, pause/persistence and campaign Spellbox/broader Grimoire remain pending. Other historical shared-launch evidence retains its hashes/statuses and may be stale.
+
+The first separately admitted original-display diagnostic run retained stable-source creature/spell observations but ended at its1800-second bound, without normal Quit or mission completion. The planned live scenario remains a prospective declaration until a fresh completed run is registered. A bounded ordinary-input pursuit driver is preparation, not a native gameplay or menu milestone. UI52 retains current Character headless support; the other affected shared-launch evidence remains historical/pending.
+
+UI53 now records a fresh separately admitted original-display passive creature/spell session with stable declared sources and normal original Quit. The pursuit helper hit its health retreat bound, so mission completion and live Character remain pending. This promotes only the bounded observation policy, not combat automation, hook ABI equivalence, native menus or replacement. UI52 keeps current Character headless support.
+
+## Character fixture transaction lifecycle — 2026-10-12
+
+Character controls now disable while an engine request is pending. Exact request/thread acknowledgement checks protect adjustment, OK and Cancel before state changes or parent handoff. Expanded synthetic Qt peers exercise all six adjustment/refund rows, both Realm/Region caller identities, Cancel rollback and OK baseline retention across reopen, duplicate/stale/malformed requests and incorrect/missing acknowledgements. UI54 records fresh current-source private original getter/pricing/callbacks with16 guards and all3 Qt tests passing; immutable-original checks passed before and after. Genuine campaign progression, live caller ownership, actual Realm navigation, disk persistence, window-close and full pause remain pending; historical evidence is preserved.
+
+## Connected campaign menu fixture — 2026-10-12
+
+UI55 completes a bounded synthetic Realm/Region/Character presentation journey with six acknowledged parent returns and two caller identities. Production Character controls cross the actual V18 channel/session/controller; synthetic host navigation preserves realm,region,difficulty and focus through Cancel/OK/reopen and disabled actions. The journey and3 companion Qt tests pass on stable declared sources. `campaign-menu-fixture --interactive` permits review without Wine or original media; synthetic layout/art and readable text fallbacks are deliberate fixture policies. UI56 refreshes the separate private original getter/pricing/callbacks,16 admission guards and3 Qt tests after the build-target addition; original manifest checks pass before/after. Historical evidence is retained. Actual Realm projection/dispatch,progression,tutorials/resource ownership,disk persistence,window-close,pause,campaign Portmanteau/research and broader Grimoire remain pending; no live integration/replacement is promoted.
+
+## Character readiness keyboard focus — 2026-10-12
+
+UI57 restores native focus to the first enabled stat control when Character readiness returns after a pending request. Synthetic Qt transactions assert24 purchase/refund focus returns across both callers; private original getter/pricing/callbacks and16 admission guards plus3 Qt tests pass on prospectively declared current sources,with original manifest checks before/after. UI58 refreshes the connected synthetic campaign journey and3 companion Qt tests against the focus correction. A failed preparation at `working/tests/character-adapter/run-pu44scwy` initially expected OK focus; the widget policy is the first enabled stat control,the assertion was corrected,and raw claims/logs remain pinned. That test expectation failure is not an original engine finding. Earlier evidence is retained. Actual Realm dispatch,progression,disk persistence,window-close,pause and live ownership/replacement remain pending.
+
+## Copy contention and recovery diagnostics — 2026-10-12
+
+The user-reported sessions1516015097/1516015098 identify a65ms copy admission
+timeout followed by incomplete300×128 surface pixels and failed fresh recovery.
+This is supplied evidence, not an independently reproduced first-victory failure;
+a bounded search of328 retained lifecycle logs across registered worktrees did
+not identify the exact launch. The earlier buffer-padding crash remains separate.
+
+`NP.copy-contention-timing-observation` adds exact opt-in, bounded producer
+records with publication-worker draining. The [controlled result](copy-contention-timing-private-20261012.json)
+passes trace-off/on admission, reentry/refusal/invalidation and LastError checks,
+65ms wait/three intervening acquisitions/16ms final owner publication age,
+coherent/unavailable samples, concurrent512-slot bounds, failure arming and
+pixel-discard reservation, four decoder refusals and two PE32 builds.
+Fresh headless integration applies only to this diagnostic policy. Existing
+50ms admission, conservative invalidation and recovery policies are unchanged.
+Historical renderer evidence is preserved; current shared-source validation,
+real Wine scheduling, driver equivalence, actual recovery surface provenance
+and first-victory reproduction/fix remain pending. See [scope and live capture](copy-contention-timing.md).
+
+Raw current preparation is retained at
+`working/tests/copy-timing/run-68_eft3a`; the initial compile-warning failure
+and earlier superseded passing run retain their separate pins and hashes.
+No original artifacts were consumed. The [committed-history review](coverage/copy-timing-history-20261012.json)
+accounts for12 exact prior file versions with no missing receipts and makes
+no retrospective execution/gate assertion.
+
+## Experimental settled Realm projection and ingress — 2026-10-12
+
+`NP.realm-menu-dispatch` adds default-off V19 original-owned Realm state and
+semantic activation/auxiliary ingress, with a native Qt controller. Availability
+comes from actual ownership/adjacency, and visible regions from the loaded
+hit map/count rather than the preview's8/12/16 catalog. Existing preview limits
+remain defaults; explicit bounded display capacities can admit19 regions.
+[Contract and exclusions](realm-live-adapter.md).
+
+[UI59](realm-adapter-private-20261012.json) passes four private unchanged-original
+tick travel/Region-request cases in both resolutions, three original auxiliary
+callbacks,23 invalid admission/input/map cases, eleven synthetic Qt wire/session
+cases, three companion Qt regressions and PE32/Qt builds. Current declared
+compiler sources and immutable-original manifests pass. Raw evidence is retained
+at `working/tests/realm-adapter/run-r8lpg4u4`; each earlier preparation failure
+has a separate pin. Only scoped implementation/headless integration advances.
+
+Progressed live Realm, actual polling/input concurrency, travel/tutorial/resource
+cleanup, broader Region Entry and auxiliary destinations, victory and disk
+persistence remain pending. V19 is explicitly experimental. Shared menu/Qt
+changes and the reusable reference's macro restoration stale earlier evidence;
+historical hashes/statuses remain unchanged, including Character, Realm-model
+comparison, Grimoire, storage and rendering. The last renderer-diagnostic commit
+is accounted for in[18 exact committed versions](coverage/realm-adapter-history-20261012.json),
+with no missing receipts or retrospective validation/gate claim. Campaign task
+items2–4 remain ongoing; this first chunk does not claim they are complete.
+
+## Experimental loaded-Realm Region Entry — 2026-10-12
+
+`NP.loaded-region-menu-dispatch` introduces separately opted-in V20. Original
+three-realm loaded caller4/depth4,region/different/control and resource guards
+extend the retained fresh first-region scope. Original callbacks own difficulty,
+Cancel and auxiliary entry. Enter explicitly separates colocated-opponent battle
+from an ordinary destination return and checks the original resulting fields.
+Native capacity refusal and command admission are policies; no extra tick or
+native progression/ownership/destination write is added.
+
+[UI60](region-campaign-adapter-private-20261012.json) has18 unchanged-original
+Enter cases,15 refusals,nine original auxiliary callbacks,two Cancel outcomes,
+thirteen synthetic Qt wire/session/controller cases,five compatibility tests
+and PE32/Qt builds. Declared sources/compiler closure and immutable originals
+pass. [Contract and boundaries](region-campaign-live-adapter.md). Raw current
+evidence is `working/tests/region-campaign-adapter/run-45wllhbe`; earlier compile
+preparation failures retain independent pins. Scoped implementation/headless
+integration only advances for the new policy.
+
+Actual progressed campaign resources, original input/World travel, broader
+auxiliary ownership, victory/report/persistence and driver equivalence remain
+pending. Existing Realm/Character/menu/renderer evidence retains historical
+hashes and statuses after shared-source changes; UI59 now describes its exact
+earlier source version. [28 prior committed versions](coverage/region-campaign-history-20261012.json)
+have exact matching receipts and no retrospective execution/gate assertion.
+Campaign items2–4 remain ongoing.
+
+## Character three-realm experimental admission — 2026-10-12
+
+V20 separately permits original settled Celtic/Greek/Medieval Character callers
+from Realm and Region. Earlier V18 keeps Celtic-only admission; Celtic's original
+first-region Character restriction remains. Existing original getter/price/stat
+callback and authoritative ACK/budget guards are retained.
+[UI61](character-three-realms-20261012.json) passes six private original
+purchase/refund/Cancel caller cases,16 existing private guards/slot79/commit
+checks and three Qt transaction/focus tests on stable declared sources,with
+immutable originals verified before/after. Current headless support is scoped
+to these synthetic resources and callbacks. [Details](character-live-adapter.md).
+
+Genuine progressed campaign/Character return,save/reload persistence,full pause
+and portrait/art fidelity remain pending. No campaign flags or balance values
+are edited. Older evidence hashes/statuses remain retained after shared source
+changes. The previous Region commit has[23 exact receipt versions](coverage/character-three-realms-history-20261012.json)
+and no retrospective execution/gate assertion. Mission-end/native rendering
+and remaining campaign auxiliary menus continue as separate chunks.
+
+### Experimental natural campaign reports (2026-10-12)
+
+V20 opt-in report admission now supports original outcome 0/1 in the exact
+Main/Realm/World/report caller, copies original title and all 21 fields, and
+delegates original OK/fade. `UI62.campaign-natural-report` records two private
+original outcomes, 13 guards, eight synthetic Qt cases and four regressions.
+Acknowledgement identity is checked before original cleanup; a fresh Realm
+state restores native ownership. Earlier versions retain Quit-only admission.
+No actual victory, natural defeat, score/reward comparison, save/reload, installed
+artwork comparison or World cleanup has been validated here. The drawing-lock
+timeout/recovery failure remains unresolved and separate. Shared source changes
+leave earlier menu evidence historical; none of its hashes was refreshed.
+
+### Experimental campaign Portmanteau (2026-10-12)
+
+V21 retains Quick Battle mode1 and adds mode0 with exact loaded campaign
+callers,three Realm names,active wizard0..79 and original inventory/control
+guards. A separate context lane distinguishes original campaign return from
+battle start. Native Done/Escape preserve the draft; original callbacks and
+teardown own inventory/spell-list writes. `UI63.campaign-spellbox` records 12
+private original assignment/OK/snapshot cases,11 refusals,12 Qt cases,four
+regressions and builds. Full initialization,teardown/rebuild,live loaded caller
+and save/reload remain pending. Broader Grimoire/research and the mission-end
+renderer failure are separate boundaries. Earlier shared-source evidence stays
+historical; no old hashes or validation claims were refreshed.
+
+### Experimental broader static campaign Grimoire (2026-10-12)
+
+V22 admits original static single pages in eight chapters,with stable original
+section IDs and first active primary wizard knowledge/nullable table/override.
+Loaded three-Realm callers and separate unloaded fresh Celtic first Region
+are bounded independently. `UI64.campaign-grimoire` records162 unchanged
+original knowledge/getter cases,13 private caller/dispatcher cases,11 refusals,
+10 Qt cases,four regressions and builds. Native filtered navigation delegates
+checked original section IDs;original Close and fresh caller retain cleanup.
+Dynamic ~D values,multiple ~NP pages,full original selector/renderer,artwork,
+real caller/persistence and research cost/progression remain pending. Research
+sprite lettering has no established purchase callback;no resources or knowledge
+are granted. Historical shared-source fingerprints remain unchanged.
+
+### Genuine V22 first-region native book round trip (2026-10-13)
+
+`UI65.campaign-grimoire-first` records original New Game -> fresh Celtic Region
+-> native Forest/Intro contents/Intro2/Celtic contents/Forest -> original Close
+-> native Region -> Main -> original Quit. All nine states/callbacks,thread,
+channel retirement and normal exit matched;2927 original files verified before
+and after. Original graphics/audio stayed active in isolated Xvfb;this is a
+narrow caller integration observation,not native rendering or paired visual
+equivalence. `UI66.campaign-grimoire-typed` supplies fresh headless execution
+after typed widget permissions moved wire packing wholly into the controller.
+The startup-harness rejection and compile preparation failure remain retained.
+Realm/Character live purchases/save-reload,actual victory,native rendering
+contention/recovery,loaded other-Realm callers,dynamic pages and original
+research costs/progression still have no new live proof from this scenario.
+
+Coverage review corrected the first-caller scenario level to live_observation.
+A fresh prospective genuine rerun is recorded under
+`UI67.campaign-grimoire-first-reviewed`;it supersedes UI65's retired scenario
+claim without rewriting that record or its hashes. Both runs passed actual
+menu behavior;only the new result supports the corrected current declaration.
+
+### Genuine fresh campaign static book catalog (2026-10-13)
+
+`UI68.campaign-grimoire-catalog` validates every engine-admitted first-region
+static destination through native visible tabs/contents:22 locations,41 ACK
+states/original callbacks,same engine thread,nonempty article presentation,
+original Close/Region Cancel/Main Quit41,retired V22 channel and unchanged2927
+original files. Original graphics/audio remain active. This supports only
+`HOST.native-campaign-grimoire-catalog` live observation;loaded Realm/Character,
+research,dynamic/multipage content,persistence,mission-end native rendering and
+paired visual equivalence remain pending. Earlier compiler-closure evidence
+retains historical hashes after adding this test branch.
+
+`UI69.original-gameplay-progress-followup` records a separate unchanged-checkpoint
+original-display attempt with4619 creature/36 spell records and normal Quit. The
+pursuit stopped at its health threshold before Camulos defeat;dialogue completed
+through ordinary clicks and Quit awarded no experience. No mission completion,
+progressed Realm,Character or persistence claim is made. The declared older observer
+source pins remained stable,but actual build review found omitted newer adapter
+compiler dependencies. The register now includes them;UI69 retains its narrower
+historical declaration and full-closure observer revalidation remains pending. See [catalog validation](campaign-grimoire-catalog-live.md)
+for retained run paths and remaining boundaries.
+
+### Genuine V22 campaign Quit report round trip (2026-10-13)
+
+`UI70.campaign-report-quit-v22` records fresh Celtic Region/Adept/Enter,three
+original World ticks,native Mini Quit twice,original No/World resume then Yes,
+native defeat title/all21 original labels,original OK21/fresh Main ACK6 and
+normal Main Quit7. Seven callbacks retain one engine thread and the V22 channel
+retires;2927 immutable original files pass before/after checks. Original graphics
+and audio remain active. The initial harness refused valid V22 Mini mask31
+because it expected legacy V11 mask5;the corrected test checks negotiated
+capabilities and actual session per-control permissions. No engine or wire
+behavior was changed.
+
+This validates the existing Quit outcome with all experimental campaign menus
+negotiated. Natural victory/defeat,rewards,updated Realm/Character callers,
+persistence,research,dynamic/multipage book content and native mission-end
+rendering remain pending. Shared-closure historical evidence retains original
+hashes. See [V22 report validation](campaign-report-quit-v22-live.md).
+
+`UI71.campaign-grimoire-catalog-report-closure` supplies a fresh complete
+22-location/41-state native catalog traversal after the shared report-test
+correction,with prospective full compiler inputs,one engine thread,normal
+Quit41,retired V22 channel and2927 before/after immutable checks. UI68's historical
+hashes remain unchanged;UI71 supports current catalog integration.
+
+### Original Grimoire dynamic descriptors and text flow (2026-10-13)
+
+UI72/UI73/UI75 retain bounded static discovery of text-helper reset/tokenizer,
+page/region consumption and dynamic bar construction/literal identities. Dynamic
+`~D` is a bar descriptor;`~NP` stops the current original text-region flow and
+Next advances two leaves,so native preview pages do not establish original
+spread layout. Full font wrapping,drawing and live integration remain pending.
+
+`UI74.grimoire-dynamic-comparison` validates the recovered pure C++ descriptor
+model against468 unchanged original parser/constructor cases,18 omissions,
+constructor defaults,legacy unknown-property behavior and original ABI/SEH
+restoration. Allocator/CRT/combat backends are explicit fixture stubs;template
+values/maxima are authored. `UI76.grimoire-dynamic-guards` separately validates
+ten intentional native refusals,including unknown properties rather than the
+legacy default200/400 bar. No dynamic native menu path or V23 wire is enabled.
+
+Native capture/projection,actual loaded campaign table comparison,full pagination,
+research actions and real post-win Realm/Character/Spellbox/persistence remain
+pending. The read-only model performs no gameplay changes;drawing-lock/recovery
+remains a separate unresolved failure. See [dynamic descriptors](grimoire-dynamic-fields.md)
+and [text/page flow](grimoire-text-pages.md) for exact scope and retained runs.
+
+### Full-closure original campaign observation (2026-10-13)
+
+`UI77.original-campaign-manual-observation` adds fresh passive original-display
+observation with all76 current adapter/launcher/test source fingerprints,2150
+creature records,157 spell records,normal original report/Main/Quit and2927
+immutable-file checks. Historical UI53/UI69 fingerprints are preserved. Raw
+manual actions/captures remain in working/tests/original-campaign-manual-20261013;
+[the note](original-campaign-manual-observation.md) records their limits. A genuine
+checkpoint was loaded and reloaded unchanged. Fireball/summon attempts did not
+win; original Quit awarded zero experience. This restores current observer
+support only. Post-win Realm/Character/Portmanteau/persistence,dynamic/multipage
+book integration,research mutation and native renderer crash resolution remain
+pending; no balance/progression writes or new native menu admission occurred.
+
+
+## Native menu and renderer master integration — 2026-10-14
+
+The requested integration combines `menus-live-integration` at059c54b5,
+free-space guard3f15be2c and deferred rendering diagnostics2eed2af2 with
+mastere529af2f. Conflicts retain both the native menu adapters and master
+audio/music/media, independent rendering-worker and launcher safeguards.
+Menu staging forwards explicit keyword intent for original gameplay/book
+observation alongside the retained positional media/music interface. The
+contention fixture now includes the actual optional copy-timing header with
+tracing disabled; that source dependency is explicitly registered. No drawing
+deadline, gameplay rule or experimental progressed-menu default is widened.
+
+The preserved committed-history report reviews74 commits/1867 exact
+parent/current file SHA-256 transitions with zero missing receipts. It asserts
+no retrospective gate passage or new engine validation. Source census and
+merge reviews describe the combined tree independently of earlier branch proofs.
+Historical evidence files/hashes and status scopes remain unchanged.
+
+Fresh merged32-bit production-header controls pass all10 cases; production
+render/menu PE32 bridges compile. Seven original-display admission guards,
+17 free-space tests and11 archive-safety tests pass on synthetic inputs.
+The complete merged Qt shell builds and all71 Qt regressions pass,including
+campaign adapters,storage,menu/media/session and audio controls. Raw results
+are retained under `working/tests/menu-master-merge/` in the isolated checkout.
+Only the diagnostic controls are registered as fresh partial native-policy
+support; merged genuine campaign, first-victory/Realm/Character/Portmanteau,
+post-win persistence, driver/pixel/input equivalence and broad replacement
+remain pending. Earlier14 Wine/Qt controls retain their pre-merge fingerprints.
+Main-checkout uncommitted restart/creature work is preserved separately and
+does not become validated or committed as part of this merge.
+
+
+Merge accounting keeps the actual staged/PR/push base. A verified actual Git
+merge-parent reader distinguishes identical inherited behavior contracts,
+original builds,evidence links/definitions and statuses from new promotions.
+Imported receipts grant no final file,gap or current-validation credit;new
+combined-tree hash reviews remain mandatory. Changed scopes/higher stages,
+unmerged branches and altered evidence/builds refuse inheritance. Historical
+statuses remain intact while current validation stays independently pending.
+The12 actual-Git provenance controls,53 gate tests and60 audit tests pass.
+CI and the local tooling runner include the new tests. This addresses merge
+accounting only; it supplies no engine/gameplay or old gate-passage evidence.

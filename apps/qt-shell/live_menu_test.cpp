@@ -14,6 +14,16 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_HOST_LOBBY")){installLiveHostLobbyTest(app,window,session,path);return;}
+    session.hostLobbyEnabled=false;
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_MULTIPLAYER_SESSIONS")){installLiveMultiplayerSessionsTest(app,window,session,path);return;}
+    session.sessionMenusEnabled=false;
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_MULTIPLAYER")){installLiveMultiplayerTest(app,window,session,path);return;}
+    session.multiplayerMenusEnabled=false;
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_GRIMOIRE")){installLiveCampaignGrimoireTest(app,window,session,path);return;}
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_GRIMOIRE")){installLiveGrimoireTest(app,window,session,path);return;}
+    session.grimoireMenusEnabled=false;
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_STORAGE")){installLiveStorageMenuTest(app,window,session,path);return;}
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_PREFERENCES")){installLiveCampaignPreferencesTest(app,window,session,path);return;}
     session.campaignPreferencesEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_QUIT")){installLiveCampaignQuitTest(app,window,session,path);return;}

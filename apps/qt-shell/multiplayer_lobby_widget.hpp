@@ -43,6 +43,7 @@ public:
     bool loadAssets(const QString& root, QString* error = nullptr);
     bool setLobby(const Lobby& setup, QString* error = nullptr);
     Lobby lobby() const;
+    void setLiveViewOnly(bool enabled);
     QRect contentRect() const;
     void focusFirstControl();
 signals:
@@ -66,6 +67,7 @@ private:
     void start();
     void arrange();
     const Mode mode_;
+    bool liveViewOnly_=false;
     Lobby lobby_;
     QVector<Message> messages_;
     QPlainTextEdit* chat_ = nullptr;
