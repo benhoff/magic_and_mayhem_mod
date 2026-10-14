@@ -9265,3 +9265,17 @@ verified cold archive, under the existing100GiB primary reserve guard.
 Static510480 corpse-flight and4f3260 four-cell height findings are mapped as
 provisional partial behaviors with explicit pending helper comparisons and native
 profile tests; the passing width1/living-actor corpus does not cover those branches.
+
+
+## NS67 — installed encounter support (2026-10-14)
+
+Whole pinned50e400 attack selection,4f3260 four-cell height and510480 corpse-flight
+predicate match native across82,176 original/native/sanitized cases. Actor, tables,
+configuration and unchanged body guards passed. Ordinary width2/height2 target
+selection is integrated with owned ANI and native geometry;24 additional resumed
+ticks pass alongside the five native session suites. Installed crocodile CFG has
+width2,height2,swimming3,acceleration10 and health360; the prior one-cell fixture
+was synthetic. Original helpers, headless synthetic provider integration and full
+installed encounter remain independent. Special attack attachment/visual effects,
+health/effects/World/profile construction and live replacement are pending. The
+incoming NS66 exact receipts were reviewed with zero missing transitions.

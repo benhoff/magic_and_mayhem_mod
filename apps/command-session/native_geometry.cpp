@@ -1,4 +1,5 @@
 #include "native_geometry.hpp"
+#include "../../reconstruction/pathfinding/route_footprint_height.hpp"
 #include "../../reconstruction/pathfinding/route_world.hpp"
 #include "../../reconstruction/pathfinding/route_boundary.hpp"
 #include "../../reconstruction/pathfinding/route_cell_support.hpp"
@@ -42,11 +43,11 @@ bool NativeCreatureGeometry::legal(const model::AutonomousCreature &a,model::Cel
 bool NativeCreatureGeometry::ground(const model::AutonomousCreature &a,model::Cell p){(void)index(state_,p);return reconstruction::test_cell_support(coordinates(p),reconstruction::creature_movement_parameters(actor(a.ai.slot)),view())!=0;}
 bool NativeCreatureGeometry::move(const model::AutonomousCreature &a,model::Cell from,model::Cell to,unsigned &category){int out=int(category);const auto ok=reconstruction::accept_creature_move(a.ai.slot+1,coordinates(from),coordinates(to),false,out,acceptance());category=unsigned(out);return ok;}
 int NativeCreatureGeometry::height(model::Cell p,unsigned width){
-  auto value=[&](model::Cell point){const auto kind=state_.native.cells.at(index(state_,point)).kind;return kind?profile_.terrain.at(kind).classification_94:16;};
+
   if(width!=2){const auto kind=state_.native.cells.at(index(state_,p)).kind;return kind?profile_.terrain.at(kind).classification_94:0;}
-  const auto d=state_.world.dimensions;int result=16;
-  for(int y=0;y<2;++y)for(int x=0;x<2;++x){auto q=p;q.x=(q.x+x)%d.x;q.y=(q.y+y)%d.y;const auto v=value(q);if(!state_.native.cells.at(index(state_,q)).kind)return 0;if(unsigned(v)<unsigned(result))result=v;}
-  return result;
+  const auto d=state_.world.dimensions;std::array<std::uint16_t,4> kinds{};unsigned cursor=0;
+  for(int y=0;y<2;++y)for(int x=0;x<2;++x){auto q=p;q.x=(q.x+x)%d.x;q.y=(q.y+y)%d.y;kinds[cursor++]=state_.native.cells.at(index(state_,q)).kind;}
+  return reconstruction::large_footprint_height(kinds,[this](auto kind){return profile_.terrain.at(kind).classification_94;});
 }
 bool NativeCreatureGeometry::reach(const model::AutonomousCreature &a,const model::AutonomousCreature &b,model::Cell source){
   auto projection=[&](const auto &v){model::ReachActor r{v.ai.position,v.finePosition.z,int(v.width),int(v.height),{},0};if(v.ai.motion){const auto &route=state_.actions.segments.at(v.ai.slot);if(route.cursor>=route.count)throw std::invalid_argument("native reach endpoint missing");r.endpoint=route.route.at(route.cursor).position;r.endpointTerrainHeight=height(*r.endpoint,v.width);}return r;};

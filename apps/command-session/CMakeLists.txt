@@ -4,6 +4,8 @@ add_subdirectory(../../game native-game)
 add_subdirectory(../../reconstruction/creature-ai/transfer-commands-owned command-core)
 add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
   native_providers.cpp native_geometry.cpp
+  ../../reconstruction/creature-ai/attack_selection.cpp
+  ../../reconstruction/pathfinding/route_footprint_height.cpp
   ../../reconstruction/animation/controller.cpp
   ../../reconstruction/pathfinding/route_line.cpp
   ../../reconstruction/creature-ai/maintenance.cpp

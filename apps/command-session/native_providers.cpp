@@ -1,4 +1,5 @@
 #include "native_geometry.hpp"
+#include "../../reconstruction/creature-ai/attack_selection.hpp"
 #include "../../reconstruction/pathfinding/route_world.hpp"
 #include <algorithm>
 #include <cmath>
@@ -135,8 +136,13 @@ public:
   model::CommandActionProviders selection(){model::CommandActionProviders p;
     p.selection=[this](unsigned){model::ActionExecutionServices s;s.random=[this]{return random();};s.animation=[this](auto &a,unsigned seq,unsigned rev){play(a,seq,rev);};
       s.overlay=[this](auto &a,unsigned asset){channel(a,true).asset=asset;};s.overlayAnimation=[this](auto &a,unsigned seq,unsigned rev){auto &v=channel(a,true);start(v,v.asset,seq,rev);};
-      s.attackAnimation=[this](auto &a,const auto *){need(a.width==1,"native large attack-selection profile unavailable");auto &e=c_.execution.at(a.ai.slot);e.animationOffset=24;play(a,24+e.animationFacing,0);};
-      s.flightAnimation=[](auto &a){return !a.ai.health&&(a.ai.corpseA||a.ai.corpseB);};
+      s.attackAnimation=[this](auto &a,const auto *target){auto &e=c_.execution.at(a.ai.slot);auto &motion=c_.actions.motion.at(a.ai.slot);
+        model::AttackSelectionState state{a.ai.position,a.width,motion.direction,e.animationFacing,a.animationKind,e.animationOffset,e.block722!=0,false,e.block855!=0};
+        std::optional<model::AttackSelectionTarget> other;if(target)other=model::AttackSelectionTarget{target->ai.position,target->width};
+        const auto result=model::selectAttackAnimation(state,c_.world.dimensions,p_->cameraTurn,other);
+        motion.direction=result.state.direction;e.animationFacing=result.state.facing;e.animationOffset=result.state.offset;
+        for(auto effect:result.events){need(effect.kind==model::AttackSelectionEffect::play,"native special attack attachment provider unavailable");play(a,effect.argument,0);}};
+      s.flightAnimation=[](auto &a){return model::corpseFlightAnimation(a.ai.health,a.ai.corpseA,a.ai.corpseB);};
       s.repairOverlay=[](auto &a){need(a.animationKind!=1,"native configured repair-overlay profile unavailable");};return s;};
     p.animation=[this](unsigned){model::AnimationActionServices s;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.animation=[this](auto &a,unsigned seq,unsigned rev){play(a,seq,rev);};s.cast=fx_.callbacks.interactionHit;s.restoreForm=fx_.behavior.restoreForm;return s;};return p;
   }

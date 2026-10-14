@@ -58281,6 +58281,8 @@
         "reconstruction/creature-ai/action_execution.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
         "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
         "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
@@ -58387,6 +58389,8 @@
         "reconstruction/pathfinding/route_clearance.hpp",
         "reconstruction/pathfinding/route_creature_acceptance.cpp",
         "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
         "reconstruction/pathfinding/route_line.cpp",
         "reconstruction/pathfinding/route_line.hpp",
         "reconstruction/pathfinding/route_movement.cpp",
@@ -58426,7 +58430,8 @@
         "NS65.action-bodies-native",
         "NS65.action-bodies-native-v2",
         "NS66.native-creature-providers",
-        "NS66.native-creature-providers-v2"
+        "NS66.native-creature-providers-v2",
+        "NS67.encounter-support-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -58534,6 +58539,8 @@
         "reconstruction/creature-ai/action_execution.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
         "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
         "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
@@ -58640,6 +58647,8 @@
         "reconstruction/pathfinding/route_clearance.hpp",
         "reconstruction/pathfinding/route_creature_acceptance.cpp",
         "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
         "reconstruction/pathfinding/route_line.cpp",
         "reconstruction/pathfinding/route_line.hpp",
         "reconstruction/pathfinding/route_movement.cpp",
@@ -58679,7 +58688,8 @@
         "NS65.action-bodies-native",
         "NS65.action-bodies-native-v2",
         "NS66.native-creature-providers",
-        "NS66.native-creature-providers-v2"
+        "NS66.native-creature-providers-v2",
+        "NS67.encounter-support-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -59401,6 +59411,8 @@
         "reconstruction/creature-ai/action_execution.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
         "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
         "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
@@ -59507,6 +59519,8 @@
         "reconstruction/pathfinding/route_clearance.hpp",
         "reconstruction/pathfinding/route_creature_acceptance.cpp",
         "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
         "reconstruction/pathfinding/route_line.cpp",
         "reconstruction/pathfinding/route_line.hpp",
         "reconstruction/pathfinding/route_movement.cpp",
@@ -59542,7 +59556,8 @@
         "NS65.action-bodies-native",
         "NS65.action-bodies-native-v2",
         "NS66.native-creature-providers",
-        "NS66.native-creature-providers-v2"
+        "NS66.native-creature-providers-v2",
+        "NS67.encounter-support-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -59645,6 +59660,8 @@
         "reconstruction/creature-ai/action_execution.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
         "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
         "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
@@ -59751,6 +59768,8 @@
         "reconstruction/pathfinding/route_clearance.hpp",
         "reconstruction/pathfinding/route_creature_acceptance.cpp",
         "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
         "reconstruction/pathfinding/route_line.cpp",
         "reconstruction/pathfinding/route_line.hpp",
         "reconstruction/pathfinding/route_movement.cpp",
@@ -59786,7 +59805,8 @@
         "NS65.action-bodies-native",
         "NS65.action-bodies-native-v2",
         "NS66.native-creature-providers",
-        "NS66.native-creature-providers-v2"
+        "NS66.native-creature-providers-v2",
+        "NS67.encounter-support-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -59938,7 +59958,7 @@
       "subsystem": "native-simulation",
       "kind": "native_policy",
       "title": "Owned ANI, geometry and creature-frame providers",
-      "scope": "Fixed native actor-pool profile owns decoded forward/reverse ANI, original RNG, canonical wrapped movement/clearance/support/occupancy/reach, saved budgeted searches and segment motion. Maintenance, eight world ANI channels, recovered scheduler and environment execute the inspected normal creature-core order; alternate increments sequence only. Typed lower health/effect/region/owner/hazard/ranged/special-profile services remain explicit. Whole World/campaign/dynamic actors/live replacement excluded.",
+      "scope": "Fixed native actor-pool profile owns decoded forward/reverse ANI, original RNG, canonical wrapped movement/clearance/support/occupancy/reach, saved budgeted searches and segment motion. Maintenance, eight world ANI channels, recovered scheduler and environment execute the inspected normal creature-core order; alternate increments sequence only. Typed lower health/effect/region/owner/hazard/ranged/special-profile services remain explicit. Whole World/campaign/dynamic actors/live replacement excluded. Ordinary width2 target attack selection and four-cell footprint heights use the recovered support models; special visual/attachment/secondary attack effects remain refused.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -59961,7 +59981,8 @@
       ],
       "evidence": [
         "NS66.native-creature-providers",
-        "NS66.native-creature-providers-v2"
+        "NS66.native-creature-providers-v2",
+        "NS67.encounter-support-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -60028,6 +60049,8 @@
         "reconstruction/creature-ai/action_execution.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
         "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
         "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
@@ -60134,6 +60157,8 @@
         "reconstruction/pathfinding/route_clearance.hpp",
         "reconstruction/pathfinding/route_creature_acceptance.cpp",
         "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
         "reconstruction/pathfinding/route_line.cpp",
         "reconstruction/pathfinding/route_line.hpp",
         "reconstruction/pathfinding/route_movement.cpp",
@@ -60179,8 +60204,8 @@
       "kind": "recovered",
       "subsystem": "animation",
       "title": "Death/corpse flight-animation admission",
-      "scope": "Static510480 predicate admits only zero health and either corpse flag. Native selector uses that projection; full helper execution comparison and special-profile integration remain pending.",
-      "confidence": "provisional",
+      "scope": "Whole510480 admits zero health and either nonzero corpse flag; typed DWORD inputs and complete actor-write guard. No world/controller effects or special profile integration claim.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -60189,27 +60214,44 @@
         }
       ],
       "documents": [
-        "research/runtime/native-creature-providers.md"
+        "research/runtime/native-encounter-support.md"
       ],
       "implementation": [
-        "apps/command-session/native_providers.cpp"
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp"
       ],
-      "tests": [],
-      "validation_dependencies": [],
-      "evidence": [],
+      "tests": [
+        "tests/encounter-support-reference.cpp",
+        "tools/test-encounter-support.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "tests/encounter-support-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-encounter-support.py"
+      ],
+      "evidence": [
+        "NS67.encounter-support-original"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_domain": {
         "included": [
-          "Static pinned NoCD disassembly and candidate native projection"
+          "65536 controlled attack selectors,16384 footprint-height cases and256 corpse predicates; complete compared actor projection and original body/table/config guards",
+          "Declared visual/attachment/secondary/controller consequences; canonical positive dimensions and valid pools"
         ],
         "excluded": [
-          "Direct original helper comparison and exhaustive native width2/corpse profile execution"
+          "Invalid original pointers, full World effects/ownership and live replacement",
+          "Installed full encounter integration is the subsequent milestone"
         ]
       }
     },
@@ -60218,8 +60260,8 @@
       "kind": "recovered",
       "subsystem": "pathfinding",
       "title": "Four-cell large-footprint terrain height",
-      "scope": "Static4f3260 takes the unsigned minimum terrain classification across a2x2 footprint, initially capped at16, with zero for absent tile kind. Canonical native interior-cell projection follows this; wrapped-edge policy and paired helper comparison remain separate pending boundaries.",
-      "confidence": "provisional",
+      "scope": "Whole4f3260 unsigned minimum of NW/NE/SW/SE classifications, initial16 cap, kind0 and early zero return. Typed valid classification records; native wrapped-edge sampling is separately an adapter policy, invalid pointers/indices excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -60228,27 +60270,100 @@
         }
       ],
       "documents": [
-        "research/runtime/native-creature-providers.md"
+        "research/runtime/native-encounter-support.md"
       ],
       "implementation": [
-        "apps/command-session/native_geometry.cpp"
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp"
       ],
-      "tests": [],
-      "validation_dependencies": [],
-      "evidence": [],
+      "tests": [
+        "tests/encounter-support-reference.cpp",
+        "tools/test-encounter-support.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "tests/encounter-support-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-encounter-support.py"
+      ],
+      "evidence": [
+        "NS67.encounter-support-original"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       },
       "validation_domain": {
         "included": [
-          "Static pinned NoCD disassembly and candidate native projection"
+          "65536 controlled attack selectors,16384 footprint-height cases and256 corpse predicates; complete compared actor projection and original body/table/config guards",
+          "Declared visual/attachment/secondary/controller consequences; canonical positive dimensions and valid pools"
         ],
         "excluded": [
-          "Direct original helper comparison and exhaustive native width2/corpse profile execution"
+          "Invalid original pointers, full World effects/ownership and live replacement",
+          "Installed full encounter integration is the subsequent milestone"
+        ]
+      }
+    },
+    {
+      "id": "AI.attack-animation-selection-50e400",
+      "kind": "recovered",
+      "subsystem": "animation",
+      "title": "Original large-creature attack sequence selection",
+      "scope": "Whole50e400 bounded selector: default24, wrapped XY and all three25-DWORD tables; width1/2 target variants, odd-facing fallback and route-cell object26 lookup. Object supplies kind only, coordinates come from route cell; camera/reverse facing and ordered declared visual/attachment/secondary/ANI endpoints. Invalid pointers, object lifetime and complete controller/World effects excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5301248,
+          "scope": "Whole bounded selector and table branches with declared ANI/visual/object endpoints."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-encounter-support.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp"
+      ],
+      "tests": [
+        "tests/encounter-support-reference.cpp",
+        "tools/test-encounter-support.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "tests/encounter-support-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-encounter-support.py"
+      ],
+      "evidence": [
+        "NS67.encounter-support-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "65536 controlled attack selectors,16384 footprint-height cases and256 corpse predicates; complete compared actor projection and original body/table/config guards",
+          "Declared visual/attachment/secondary/controller consequences; canonical positive dimensions and valid pools"
+        ],
+        "excluded": [
+          "Invalid original pointers, full World effects/ownership and live replacement",
+          "Installed full encounter integration is the subsequent milestone"
         ]
       }
     }
@@ -123160,6 +123275,162 @@
           "equals": "9e0071f2ffd3b726ae01590836a4dee306f88a25556e66654510bac1353e2fef"
         }
       ]
+    },
+    {
+      "id": "NS67.encounter-support-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Bounded whole attack selector, unsigned four-cell height and corpse-flight predicate: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Actor selector projection, ordered ANI/visual endpoints and helper returns compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/native-encounter-support-bound-ns67-20261014.json",
+      "sha256": "e7713d5102ea1ed7d7a3797744236ca437c3705ba51b84b29fb7954d78d6f33c",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 82176
+        },
+        {
+          "pointer": "/functions",
+          "equals": 3
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS67.encounter-support-native",
+      "kind": "native_integration",
+      "scope": "Native CreatureRuleSession with owned ANI, canonical geometry and recovered creature-pass scheduling; explicit staged effect/world providers, no whole original frame or campaign equivalence.",
+      "record": "research/runtime/native-encounter-support-native-bound-ns67-20261014.json",
+      "sha256": "8841bace20425b22f8b86928a7e0bbd7a176cf25a7aa3120e05194c378b12088",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_providers_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/provider_ticks",
+          "equals": 120
+        },
+        {
+          "pointer": "/provider_digest",
+          "equals": 16477920502498486288
+        },
+        {
+          "pointer": "/provider_motion",
+          "equals": true
+        },
+        {
+          "pointer": "/provider_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/provider_budget_resume",
+          "equals": true
+        },
+        {
+          "pointer": "/provider_geometry",
+          "equals": true
+        },
+        {
+          "pointer": "/provider_alternate",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_ani",
+          "equals": true
+        },
+        {
+          "pointer": "/provider_v3_migration",
+          "equals": true
+        },
+        {
+          "pointer": "/action_body_handlers",
+          "equals": 14
+        },
+        {
+          "pointer": "/action_body_ticks",
+          "equals": 336
+        },
+        {
+          "pointer": "/action_body_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_ticks",
+          "equals": 80
+        },
+        {
+          "pointer": "/unsafe_queue_rollbacks",
+          "equals": 3
+        },
+        {
+          "pointer": "/installed_ani_input/sha256",
+          "equals": "9e0071f2ffd3b726ae01590836a4dee306f88a25556e66654510bac1353e2fef"
+        },
+        {
+          "pointer": "/provider_large_attack",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -136693,7 +136964,7 @@
     {
       "id": "native-creature-providers-20261014",
       "level": "headless",
-      "scope": "Actual installed crocodile ANI with canonical native geometry, saved route motion and creature-core scheduling. Controlled headless fixed pool with explicit synthetic lower consequences and transaction/resume tests; whole original frame/campaign/live equivalence excluded.",
+      "scope": "Actual installed crocodile ANI with canonical native geometry, saved route motion and creature-core scheduling. Controlled headless fixed pool with explicit synthetic lower consequences and transaction/resume tests; whole original frame/campaign/live equivalence excluded. Width2/height2 synthetic binding additionally resumes24 ticks with large attack selection; full installed CFG/MAP encounter remains separate.",
       "behaviors": [
         "NP.native-creature-providers",
         "AI.native-command-session",
@@ -136707,7 +136978,8 @@
       ],
       "evidence": [
         "NS66.native-creature-providers",
-        "NS66.native-creature-providers-v2"
+        "NS66.native-creature-providers-v2",
+        "NS67.encounter-support-native"
       ]
     }
   ],
@@ -137244,8 +137516,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-native-creature-providers-clean-20261014-v4.json",
-    "sha256": "8d216490fa32e9ef034d897e1302ebdac1d0503faf44893a298f4d992bd48c24"
+    "path": "research/runtime/coverage/source-index-original-native-encounter-support-20261014-v1.json",
+    "sha256": "cc696d6cbb12cd095a12010268a95244d04c0e3ec0e7fd0598c0226def19420c"
   },
   "claim_bindings_required": true
 }
