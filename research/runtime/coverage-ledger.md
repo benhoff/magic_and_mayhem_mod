@@ -8708,3 +8708,31 @@ Explicitly requested storage cleanup verifies51841cold payloads and releases
 current app inputs remain local. Main-checkout retention reports/catalogs and
 the verified `/var` archive preserve storage provenance without refreshing
 engine evidence. Restore catalogued archived inputs before consuming them.
+
+### 2026-10-14 DRAW-02 production Results readiness
+
+The bounded Results timing gap now has a production native intent policy,
+`NR.qt-results-action-readiness`, and `DRAW02.qt-results-readiness` scenario.
+It reads fresh readiness before publishing, coalesces duplicates and issues a
+new once-only ID only after an exact same-thread explicit pre-callback
+STALE/UNAVAILABLE rejection in the same observed Results context/depth/action.
+Accepted callbacks are not replayed; identity changes, other rejection statuses,
+retirement and total timeout fail closed. Other menus retain their rejection
+policy; original behavior and wire layout are unchanged.
+
+`draw02-results-readiness-synthetic-02.json` passes thirteen mapped-peer Qt/session
+cases; five focused Qt checks pass. `draw02-qt-results-readiness-02.json` passes
+two actual World/Results visits with immediate duplicate Continue/Quit actions,
+600ms Escape holds and two observed stale rejections. Each original Results
+callback runs once, normal Quit retires the menu/input channels, and native
+command presentation has 402 frames/326 paints with no fallback/recovery/error.
+Sources/binaries and 2927 immutable originals stay unchanged during execution.
+The prior App04 status2 was stale, not unavailable; its raw report remains
+unchanged and the metadata/prose correction is explicit. App05 is historical
+after changed source; the new result supplies fresh bounded operational support.
+
+The 7314333e..38e6539a history review matches seventeen changed files to exact
+receipts and preserves the append-only journal with no gaps. Shared-source
+evidence outside this bounded path remains historical/pending. This fixes a
+native UI timing boundary; it does not promote complete DRAW-02 replacement,
+independent live parity, hardware or unseen leave/reenter ownership equivalence.

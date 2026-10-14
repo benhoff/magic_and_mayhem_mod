@@ -22,7 +22,7 @@
 
 void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,
     const QString& path,std::function<CampaignPresentationProbe()> probe){
-    struct Evidence {unsigned stage=0;quint32 thread=0;bool valid=true,world=false,actions=false,focusReleased=false,resized=false,escape=false;quint64 initialFrames=0,initialPaints=0;QElapsedTimer worldClock;QJsonArray states,inputs,probes;};
+    struct Evidence {unsigned stage=0;unsigned worldVisits=0;quint32 thread=0;bool valid=true,world=false,actions=false,focusReleased=false,resized=false,escape=false;quint64 initialFrames=0,initialPaints=0;QElapsedTimer worldClock;QJsonArray states,inputs,probes;};
     auto e=std::make_shared<Evidence>();
     session.resultMenusEnabled=true;session.preferencesMenusEnabled=false;session.regionMenusEnabled=false;
     auto failure=session.failed;
@@ -47,23 +47,29 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
     session.stateChanged=[e,presentation,&window,path](const MenuBridge::State& state){
         if(presentation)presentation(state);
         if(!state.ready)return;
-        const unsigned screens[]={3,22,14,25,14,7,26,22,3};
-        if(e->stage>=9||state.screen!=screens[e->stage]||state.ack!=e->stage)return;
+        const unsigned screens[]={3,22,14,25,14,7,26,26,22,3};
+        if(e->stage>=10||state.screen!=screens[e->stage]||(e->stage<=6&&state.ack!=e->stage))return;
         if(e->thread&&e->thread!=state.thread)e->valid=false;
         e->thread=state.thread;
         QJsonObject row{{"screen",int(state.screen)},{"ack",int(state.ack)},{"thread",int(state.thread)},{"map",int(state.battle.map)}};
         if(state.screen==26){e->escape=true;QJsonArray players;for(const auto& p:state.results.players)players.append(QJsonObject{{"active",p.active},{"name",p.name},{"kills",p.kills},{"deaths",p.deaths},{"handicap",p.handicap},{"score",p.score}});row["results"]=players;}
         e->states.append(row);const unsigned stage=e->stage++;
-        QTimer::singleShot(stage==6?750:0,&window,[e,&window,path,stage]{
+        QTimer::singleShot(0,&window,[e,&window,path,stage]{
 
-            const char* buttons[]={"mainMenuAction2","quickBattleAction2","singlePlayerMap","mapSelectionOk","singlePlayerStart","spellboxOK","quickResultAction2","quickBattleAction3","mainMenuAction4"};
+            const char* buttons[]={"mainMenuAction2","quickBattleAction2","singlePlayerMap","mapSelectionOk","singlePlayerStart","spellboxOK","quickResultAction1","quickResultAction2","quickBattleAction3","mainMenuAction4"};
             if(stage==3){auto* list=window.findChild<QListWidget*>("mapSelectionList");if(!list||list->count()<2){e->valid=false;return;}list->setCurrentRow(1);}
             auto* button=window.findChild<QPushButton*>(buttons[stage]);if(!button||!button->isEnabled()){e->valid=false;return;}button->click();
+            if(stage==6||stage==7){button->click();button->click();} // Rapid duplicate actions.
             QTimer::singleShot(100,&window,[&window,path,stage]{window.grab().save(QFileInfo(path).dir().filePath(QString("qt-journey-%1.png").arg(stage)));});
         });
     };
     auto handoff=session.battleStarted;
-    session.battleStarted=[e,handoff,probe](quint32 target){if(handoff)handoff(target);if(target==1)return;e->world=target==2;e->valid&=e->world;const auto p=probe();e->initialFrames=p.frames;e->initialPaints=p.paints;e->worldClock.start();};
+    session.battleStarted=[e,handoff,probe](quint32 target){if(handoff)handoff(target);if(target==1)return;e->world=target==2;e->valid&=e->world;const auto p=probe();e->initialFrames=p.frames;e->initialPaints=p.paints;e->worldClock.start();++e->worldVisits;};
+    auto returned=session.originalViewportRequested;
+    session.originalViewportRequested=[e,returned,probe]{
+        if(returned)returned();
+        if(e->stage==7){const auto p=probe();e->actions=false;e->escape=false;e->initialFrames=p.frames;e->initialPaints=p.paints;e->worldClock.restart();++e->worldVisits;}
+    };
     auto* timer=new QTimer(&window);timer->setInterval(50);
     QObject::connect(timer,&QTimer::timeout,&window,[e,probe,&window,path,key,input]{
         if(!e->world||e->actions||e->escape)return;
@@ -87,15 +93,15 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
             auto* v=dynamic_cast<GlViewport*>(window.findChild<QWidget*>("nativeGameViewport"));if(!v){e->valid=false;return;}v->clearFocus();e->focusReleased=input("focus-release");e->valid&=e->focusReleased;v->setFocus(Qt::OtherFocusReason);window.resize(1180,900);e->resized=window.size()==QSize(1180,900);
         });
         QTimer::singleShot(1800,&window,[e,&window,path,key]{window.grab().save(QFileInfo(path).dir().filePath("qt-native-world.png"));e->valid&=key(QEvent::KeyPress,Qt::Key_Escape,9);});
-        QTimer::singleShot(1920,&window,[key]{key(QEvent::KeyRelease,Qt::Key_Escape,9);});
+        QTimer::singleShot(2400,&window,[key]{key(QEvent::KeyRelease,Qt::Key_Escape,9);});
     });timer->start();
     auto finished=session.finished;
     session.finished=[e,finished,probe,path,&app]{
         if(finished)finished();
         const auto p=probe();
-        const bool success=e->valid&&e->stage==9&&e->world&&e->actions&&e->focusReleased&&e->resized&&e->escape&&!p.fallback&&p.error.isEmpty()&&p.recoveries==0;
+        const bool success=e->valid&&e->stage==10&&e->worldVisits==2&&e->world&&e->actions&&e->focusReleased&&e->resized&&e->escape&&!p.fallback&&p.error.isEmpty()&&p.recoveries==0;
         QFile file(path);bool saved=file.open(QIODevice::WriteOnly|QIODevice::NewOnly);
-        if(saved)saved=file.write(QJsonDocument(QJsonObject{{"success",success},{"states",e->states},{"inputs",e->inputs},{"world_presentation",e->probes},{"native_frames",double(p.frames)},{"native_paints",double(p.paints)},{"native_fallback",p.fallback},{"native_error",p.error},{"recoveries",int(p.recoveries)},{"focus_release",e->focusReleased},{"resize",e->resized},{"escape_results",e->escape},{"input_via_qt_viewport",true},{"scope","Bounded native Qt menu/command Quick Battle journey with Qt-forwarded input, focus-release, viewport resize, Results and normal Quit; original CPU raster remains active, no independent pixel comparison or complete replacement claim"}}).toJson())>0&&file.flush();
+        if(saved)saved=file.write(QJsonDocument(QJsonObject{{"success",success},{"states",e->states},{"inputs",e->inputs},{"world_presentation",e->probes},{"native_frames",double(p.frames)},{"native_paints",double(p.paints)},{"native_fallback",p.fallback},{"native_error",p.error},{"recoveries",int(p.recoveries)},{"focus_release",e->focusReleased},{"resize",e->resized},{"escape_results",e->escape},{"input_via_qt_viewport",true},{"world_visits",int(e->worldVisits)},{"results_delay_ms",0},{"escape_hold_ms",600},{"rapid_duplicate_clicks",true},{"scope","Bounded native Qt menu/command Quick Battle journey with Qt-forwarded input, focus-release, viewport resize, Results and normal Quit; original CPU raster remains active, no independent pixel comparison or complete replacement claim"}}).toJson())>0&&file.flush();
         app.exit(success&&saved?0:1);
     };
     session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");session.smokeSeconds=0;

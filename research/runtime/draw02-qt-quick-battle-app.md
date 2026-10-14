@@ -7,7 +7,7 @@ callbacks and normal Quit are separate operational checks. Original CPU surface
 writers remain active; source-owned live drawing takeover and new independent
 pixel parity are outside this test. Outcomes and limitations are recorded below.
 
-## Current execution
+## Earlier completed execution
 
 [App05](draw02-qt-quick-battle-app-05.json) passes the actual compiled Qt app:
 Main → Quick Battle → setup/map2 → default spell selection → World → Results →
@@ -38,15 +38,15 @@ derives failed-run execution from retained actual menu events.
 App03 reached World and Results but its first synthetic key preceded actual Qt
 host activation. The input word showed Right down while active was false.
 App04 corrects that boundary but captures an immediate Results action rejected
-as unavailable during the held-Escape/fade transition; no original Quit callback
+as stale generation (status 2) during the held-Escape/fade transition; no original Quit callback
 was dispatched. App05 uses a120ms Escape hold and750ms settled Results delay.
 No consumed request is retried. The test no longer blocks on a screenshot between
-reading a fresh menu state and clicking its action. These fixes are confined to
-the opt-in validation harness; rapid-action rejection remains an explicit app
-boundary rather than being relabeled complete UI/driver equivalence.
+reading a fresh menu state and clicking its action. At App05 these fixes were confined to
+the opt-in validation harness; rapid-action rejection remained an explicit app
+boundary.
 
 The source helper is selected only with `--live-menu-test` and its explicit
-validation environment. Ordinary session rendering, input and menu behavior are
+validation environment. At App05 ordinary session rendering, input and menu behavior were
 unchanged. Original CPU surface writers remain active in the public native
 command mode. Independent live pixel equivalence, full native producer takeover,
 hardware timing, semantic camera/picking and universal resource teardown remain
@@ -64,3 +64,15 @@ provenance only. Every pruned payload has durable local and remote receipts in
 `/var/local/magic-and-mayhem-archive`; use `tools/working-retention.py restore
 <catalogued working path>` before reading archived inputs. Historical engine
 hashes remain unchanged, and this storage operation does not grant validation.
+
+## Production Results readiness follow-up
+
+[The Results action policy](draw02-results-action-readiness.md) now retains one
+intent using fresh engine readiness, coalesces duplicate input, and safely issues
+a new ID only after an exact explicit pre-callback rejection within the same
+observed Results visit. Accepted callbacks are never replayed. The new live run
+passes immediate Continue and Quit over two World visits with 600ms Escape holds,
+two actual stale rejections, each original callback exactly once and normal Quit.
+This replaces the harness-only timing workaround for the bounded tested path.
+App05 remains immutable historical evidence; other transitions, hardware timing
+and complete rendering replacement retain their separate boundaries.
