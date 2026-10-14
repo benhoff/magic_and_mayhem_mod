@@ -576146,6 +576146,219 @@
           "DRAW02.integrated-original32-03-20261014"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e1f2a6167c4ef5dc309a3924b779f611da0c0362e8b9a14af62bdcd0661f428a",
+          "before_sha256": "2a5df01a070a75cc7a9aeb3f108ab3275f4b9d0339022c60d574ec3d2274e256",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "8725b21ed835498eab6dfc8bd8a4108a038c008194c18cfb06408796ad898c2b",
+          "before_sha256": "14406850d32d3d33ee2a0699fdbbce8104c50e044341fb6096e8a55acc39df4f",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "0f4bec7fa5464f13652ae9cf4b510217a9e5248f9df076d7396e6076747d0490",
+          "before_sha256": "0872b253708580a3124295a8b465d93b712a3f83dd2794d78cf1aa39044b261c",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "ed13440edd4241cc02be97ecaec1b5cd701e67875a67d22923dde230a7c41966",
+          "before_sha256": "8526246119d8e32a984ab16ecdfa62423f7e0a754eefa915d012febd2e74f34a",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "b93bde9242b053f1ca766d0f21ec16b55b1313b34184d0e773318ef73042e5fc",
+          "before_sha256": "3503ad9382d355029c525536a5a88a5803169c3f715bb405b9885c63b7685495",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "c5b35745bb024c415fa823c88974e05c532ae2e49b859ebec10e50ec98113b88",
+          "before_sha256": "76b1e63753b09558d353eb343a60ca89c57def734642bd3eb14d6c0e7d727f92",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "120d45a2d252474ab3396f4daf0661a1bcfb01c981dccd5b014f3ae771e79cf5",
+          "before_sha256": "32c4668d3ebf7ac56ad89ff8c641ee52b1628d83caf55997db40baed0209bbe1",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "8dff278ccb63538f72248b550a501e06ce6f92844455b029c21e5f84a4866940",
+          "before_sha256": "fb2d66b8d611d400072e9129d6b69947e796da7fc45d4865436c8bd8bef00af6",
+          "id": "NR.drawing-backing-provenance"
+        },
+        {
+          "after_sha256": "d5021c5a5f1ef9327f44059ff1fe73e5a8751f2bec7d602f2e020aee81505b83",
+          "before_sha256": "5718e29a420d29300e27b8ed919f29642a1c018ca5e55b81a36730c9c01973fe",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "565ef91a9aa785b35e109f286e1861ff17d1782c9c6cd862c6730394114d62f9",
+          "before_sha256": "5ec2e3b1cfd364bc439e759783f0f501da9a68bea718ad741859a809e5bed2fa",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "b6ba766b4abde7d01d84015a4e8ad5fe74c754346cb7aae515cc67384a5592ec",
+          "before_sha256": "7d22797bd03a98e273422f355e72298692aebeb9a177b4318e4160a386ab370e",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "f42ddbf3cb93e6088e574ad77ab077e9e43291030b4c7d38aab1fc562b6595d8",
+          "before_sha256": "f416dcf44a32b31ca4ee91f885fbad8f6b10aa59e126edf3c7576eeed6f9ad52",
+          "id": "NR.drawing-gpu-completion"
+        },
+        {
+          "after_sha256": "1e81b55970b027f6f3a579bd9ebd59d00e9f37955b1bf811632ce00dbe33f081",
+          "before_sha256": "e23608c862fbc27f0cb1d9b4ef819b9047c2582ee9d4ce35545bac646abfb07c",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "3306202e254a48233e68a32724a3768321025ed0caeb0427b9b2bc1c3a6c88ea",
+          "before_sha256": "14f188d58dbc5b5448a386140fd6bbe98c3f6dd81346d8fdeb62bb6d98bb9da8",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "8b360f3307a8f2695c5b22151500f5e1b691483f51ae10a15332f54788377dc1",
+          "before_sha256": "17b1c6c5d578f08fd5579309e7f691c69a71126a4678929b6ab3fa1be589d183",
+          "id": "NR.drawing-mutator-alias-exposure"
+        },
+        {
+          "after_sha256": "5e2aee96146149345bcc29db0d62af5f8b71a28b2f7e5dd0932819aa42d74aef",
+          "before_sha256": "4892fbbf9a8f45d8d47a04749dbf1294ed65011a80323b6e79d7fb065d6010ce",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "ed38d41ae078a813c2448ece3dd91628601762ef4828683d28ba788150bf52aa",
+          "before_sha256": "92edc7acc91fe05836d623ca1a65e8ecc15542cb31fa874de0e26e6dfeedb5fd",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "208ced2dffb0e46680b52f4a360d2cab95769887053a884285a6a820120a8ec3",
+          "before_sha256": "7ad4273514d2aa0c2bc833e4484991c5c3735a65d8e27b8893244d17fcc92277",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "96c767871ebf1e5b293cb16a21026b2c62bad0f1f919cce66a7c6c0a5ca5dd6a",
+          "before_sha256": "c0b32b50f82ad099e4a8df36d64ee959943ad172361245bc6d2a726240756503",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "5a89b36ec62ff4dcf24e7e3b1528cdcd283c5175a36b1a3e3d743f237823baf3",
+          "before_sha256": "20a90408706f85294b0ecea9c96a75f6907fddb2055cadb7d9441e96266f2865",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "73ca7de08363c7bd58f5b6646c697bc3c48e7ae24b2af47dfded40d60cb7c96f",
+          "before_sha256": "310ad63de897cb765230fe3e9e8b811d4262be7137269f84a3bdd777385c0c64",
+          "id": "NR.drawing-session-api"
+        },
+        {
+          "after_sha256": "f9371ec5bfbcf13aab86c81d9628379d7f082a0cfda4ff8800e5559dc4b2736a",
+          "before_sha256": "ce04395a6b07fd7c7b423c8c209ec9acbcfaddeff7b544355a1144d1b9f169cb",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "01460e10b7766229b6f8ec380f910e3884a10d9e2b534474977ec77d8514dcfa",
+          "before_sha256": "ac97cc55afaee3697022cac81e2f5b33c3cccdddf21cb04604b78be5f8def99a",
+          "id": "NR.drawing-source-worker-egl-binding"
+        },
+        {
+          "after_sha256": "13d04a0bb634b98ecdf8ab595716aea96280ded79ed93f6c85ae4e6b8067ca45",
+          "before_sha256": "b49e5157d182fc1e179a1cb199a132b1e82374d084fa0d3aa28856decca082e9",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "af434b486648408ee16a0357b2f79b22f50bdfb442ee64820b80b367b544ae90",
+          "before_sha256": "71a5821bd8c264cf8ca6ab8b6e6c7b791d03adf450b79862cb57ab30a3696540",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "73b08da0fec328bb038c393dc723175b44bc4eb297653fcae72304dda3668126",
+          "before_sha256": "f3d7f728104596c2aee0b1160cc59d9f4c395528deeb1fe03e4f08e835cc68ef",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f1806e585ac8af9b8689afe2ab354d9c52cc673197825aad9e50d149bbc71a2d",
+          "before_sha256": "cb1a75f97db76dec4c9513e538f1a83362f6817d42fc5faa69bedaa59a780e79",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1bb5c46dbcfd219952d131656d80b8e394beb876c363d2b0cac321cef303d467",
+          "before_sha256": "a2167ec53dae168790aa7a6c75f8bb7a7e3e957b0a58a135efda8a0313aa874f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4fd7372581019ee753c420cfba71a979a5168436106cd181f99a41d926b8249d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-current-association-20261014.json"
+        },
+        {
+          "after_sha256": "d680925c838f7995a0cf1309587705097f2a84d2db1cd0d3e38fd7871180b932",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-current-association-20261014.md"
+        },
+        {
+          "after_sha256": "f74fc2ec56d3d579122acf8e8cc463992826fbad26afb2b9b0ee3416d394c3b5",
+          "before_sha256": "fe519577805157438ec8086c0fa8b74d8ce2e1096214a3648a72c0141aef0718",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "853e3f6435601887e593c3e065cc98ff57d144db60682b43d7aad8d5f2936e37",
+          "before_sha256": "b482a0b44d3719209e6fb58d018348277dde2390a80abb6de25d7d2eff74246d",
+          "path": "research/runtime/draw02-gpu-backing-provenance.md"
+        },
+        {
+          "after_sha256": "dad607570423afcc070d4493c5e0c32e7e9421c615a830e795944a9c68d8c169",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-gpu-teardown-committed-history-01.json"
+        },
+        {
+          "after_sha256": "a458dbc1e1afaf430b9b18c19287443082d4e41846009ef69058cca1e417fdaf",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-integrated-backing-01.json"
+        },
+        {
+          "after_sha256": "8340510025a706741dab62ce8c35c747d116e4deac2f4a171462c5ecb9832342",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-integrated-lifetimes-01.json"
+        },
+        {
+          "after_sha256": "98a8952ee99fe5e7480b2f2562f279248d5f307d354946f026b59e28424b9c8c",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-integrated-source-egl-01.json"
+        },
+        {
+          "after_sha256": "bf693af9026f9b84d0c9e9e79d6a9f5c074403ae1e1c6483f93c95f9dec69f9c",
+          "before_sha256": "961af20a60bcf528cb5377f6893687522a52c65ab4074e6c8e70c491feba057a",
+          "path": "research/runtime/draw02-mutator-alias-exposure.md"
+        },
+        {
+          "after_sha256": "9bcd1ab451ebe7b0fadff8023b5b3d8b173316b644a703c0e3244c2a63a4c13e",
+          "before_sha256": "ee4af8db7fe9e49117841f585d01a9071ceee39921185cac158400433ba5983d",
+          "path": "research/runtime/draw02-source-worker-egl-binding.md"
+        },
+        {
+          "after_sha256": "9e87423a1b005d08fc7558f1209f15371714f9c52087b4f22e6b8bc8b3b3040c",
+          "before_sha256": "9755a540fc8cd1ebe2b224ccd20e664e147ac73ee6f6c51b36bd01a74193e675",
+          "path": "tools/analyze-drawing-backing-provenance.py"
+        }
+      ],
+      "id": "DRAW02.current-source-delivery-lifetime-review-01-20261014",
+      "pending_gaps": [
+        "stale_evidence:1ded805c307383af19e264d756bad53714aec07f0c19c263fe60216c4306e4f3",
+        "stale_evidence:2a724176e3596b3523b688bbae32f0032955854a76dae231ccd09085838d49aa",
+        "stale_evidence:3cf2eae35d7bcc22ce5899e034369e20507aa02ebfd1cc55fb93160e3f526a2b"
+      ],
+      "reason": "Reviewed current original32pilot03 raw source/submission/packet/worker/context/physical identities and whole/copy-region comparisons, temporal Query alias and CPU/DC lifetime classifications, and unknown cache Lock lifecycle classes. The sole tool edit removes an incorrect original02-specific output label without changing classifier semantics. Preserve historical raw reports/hashes,15 exact receipts for the preceding committed increment, unchanged native status axes and all47/21closures. Reindex the one changed tool and reconcile all affected central links; focused registers remain unchanged.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh static analyses revalidate2108source-worker bindings and355matching eligible whole images/copy regions,2179unknown backing entries with4classifier tests, and70query links/1504leases/zero gaps with16lifetime+8interval tests. Offline reference replay is not new original execution or native equivalence. Alternate views, direct writers, allocation ownership, all routes/contexts,120whole-update source/action/frame identity and semantic/native closure remain pending; older execution records keep their original fingerprints.",
+        "evidence": []
+      }
     }
   ],
   "schema": 1

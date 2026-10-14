@@ -33,7 +33,7 @@ def main():
         if not observed['closed']:raise ValueError('Unclosed transition cohort')
         binding=bind_producer(observed,records);result=classify(t['leases'],observed)
         tests=subprocess.run(['python3',str(ROOT/'tests/test-drawing-backing-provenance.py')],capture_output=True,text=True,check=True)
-        stable();result.update(sources=sources,sources_stable=True,claims=claims['claims'],reference=dict(path=str(a.reference.resolve().relative_to(ROOT)),sha256=sha(raw)),transition_journal_sha256=sha(transition),producer_journal_sha256=sha(producer),producer_binding=binding,decoder_tests=tests.stderr,original_game_executed=False,scope='Fresh offline replay of retained original02 trace/cache lifecycle. No new original execution, physical allocation ownership or GPU completion claim.')
+        stable();result.update(sources=sources,sources_stable=True,claims=claims['claims'],reference=dict(path=str(a.reference.resolve().relative_to(ROOT)),sha256=sha(raw)),transition_journal_sha256=sha(transition),producer_journal_sha256=sha(producer),producer_binding=binding,decoder_tests=tests.stderr,original_game_executed=False,scope='Fresh offline replay of the retained completed original capture trace/cache lifecycle. No new original execution, physical allocation ownership or GPU completion claim.')
         with a.report.open('x') as f:json.dump(result,f,indent=2);f.write('\n')
         print(json.dumps({k:result[k] for k in ('unknown_entries','unknown_canvas_identities','classifications')}))
     finally:subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
