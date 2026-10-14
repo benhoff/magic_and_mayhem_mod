@@ -13540,7 +13540,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Acknowledged bounded reusable command-byte transport",
-      "scope": "Version2 single writer/reader ring with monotonic published/acknowledged cursors, finite32-bit lifetime, owned copies before acknowledgement and nonblocking backpressure. Foundation only; legacy hook integration, queues, shutdown scheduling and sustained rendering not yet claimed.",
+      "scope": "Version2 single writer/reader ring with monotonic published/acknowledged cursors, finite32-bit lifetime, owned copies before acknowledgement and nonblocking backpressure. Foundation only; legacy hook integration, queues, shutdown scheduling and sustained rendering not yet claimed. Little-endian x86 and AArch64 hosts are admitted only with always-lock-free 32-bit integer atomics; native ARM cross-process checks do not establish mixed-architecture Wine channel integration or live game equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -13559,7 +13559,8 @@
         "renderer/CMakeLists.txt"
       ],
       "evidence": [
-        "NR.command-ring.native"
+        "NR.command-ring.native",
+        "NR.command-ring.origin-master-x86-20261014"
       ],
       "status": {
         "understanding": "scoped",
@@ -43179,7 +43180,8 @@
         "tests/test-cd-audio.py"
       ],
       "evidence": [
-        "HOST.native-cd-assets.installed-20261012"
+        "HOST.native-cd-assets.installed-20261012",
+        "HOST.native-cd-assets.installed-arm-20261013"
       ],
       "status": {
         "understanding": "scoped",
@@ -117992,6 +117994,71 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "HOST.native-cd-assets.installed-arm-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh read-only extraction on ARM64 of all12 supplied CD audio tracks,438057648 PCM bytes, with immutable original manifest and source/input hash checks before/after. Asset preparation only; no playback/MCI equivalence.",
+      "record": "research/runtime/native-cd-assets-installed-arm-20261013.json",
+      "sha256": "ec234bb510fd45ceb215b4ded3fbf00f85c924ffb2874b48613014ddb647836a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-ring.origin-master-x86-20261014",
+      "kind": "native_integration",
+      "record": "research/runtime/origin-master-command-ring-x86-20261014.json",
+      "sha256": "616502e1eb587ff10658dea669cba31a53763ff0155a2e7037588282a1fd96f0",
+      "sources_pointer": "/sources",
+      "scope": "Current merged x86 native/sanitized16-case cross-process ring and four GPU-frame regression. Legacy runner captures stable sources but no prospective scope claims; retained as unbound regression evidence only. No ARM rerun,mixed-architecture/live game,current bound milestone or replacement promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/gpu/frames",
+          "equals": 4
+        },
+        {
+          "pointer": "/gpu/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu/viewport_uploads",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -132055,8 +132122,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-menu-master-merge-final-20261014.json",
-    "sha256": "9d6cf9221a854c7f96ed16fc3d941d2e3ebb3660063bae0f4fd410a012844a72"
+    "path": "research/runtime/coverage/source-index-origin-native-menu-merge-20261014.json",
+    "sha256": "df97ecd510b97a3ef26acc6fb2d2859d470c6984d74614d5e024e9b9bfed6893"
   },
   "claim_bindings_required": true
 }

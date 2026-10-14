@@ -12,6 +12,29 @@ the incremental build still regenerates it when build inputs change. Changing
 the tests before launching, run `MNM_QT_BUILD_TESTS=ON ./tools/run-qt-shell.sh`.
 Set `MNM_QT_RECONFIGURE=1` to force configuration.
 
+The shell also builds natively on little-endian ARM64 with Qt 6.8 or newer,
+Qt Widgets/OpenGL/Multimedia development packages and XCB. On ARM64,
+`./tools/run-qt-shell.sh --main-menu` opens the installed native menu preview
+without starting Wine. Shell smoke, OpenGL pixel checks and the command-ring
+cross-process regression passed on AArch64 with Qt 6.11.2; mixed x86/ARM live
+game channels remain unvalidated. The original game and injected adapters
+still target x86: adapter builds require Clang, `lld-link`, `llvm-dlltool` and
+`llvm-readobj`. Native shell support does not establish ARM game execution.
+
+Native CD music needs a prepared catalog before a live session. On a new
+checkout, run the read-only extraction once (inside the storage guard):
+
+```bash
+python3 tools/extract-cd-audio.py --output working/assets/native-cd-audio-20261012
+```
+
+This is the launcher's current default catalog path. The script verifies the
+original manifest before and after, writes all 12 audio tracks and refuses
+overwrite. Use `--music-assets DIRECTORY` with a different prepared catalog.
+The ARM64 PCM probe/tone and native CD music decode/pause/resume checks passed
+on this machine through the MacBook speaker endpoint. These checks exclude
+the x86 Wine producer and listening confirmation.
+
 Ordinary Qt launches skip the full `original/` manifest scan. Opt in with
 `MNM_VERIFY_ORIGINALS=1 ./tools/run-qt-shell.sh` to verify before and after
 staging and execution. Working executable and adapter hash checks still run.
