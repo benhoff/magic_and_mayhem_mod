@@ -25,6 +25,7 @@ def sha(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--hitch-capture', action='store_true')
     parser.add_argument('--corpus', type=Path, required=True)
     parser.add_argument('--game', type=Path, required=True)
     parser.add_argument('--worlds', type=int, default=128, choices=range(64, 513))
@@ -33,18 +34,20 @@ def main():
     parent.mkdir(parents=True, exist_ok=True)
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print('World GPU production evidence:', out, flush=True)
-    subprocess.run(['python3', ROOT / 'tools/draft-coverage-claims.py',
+    claims_command=['python3', ROOT / 'tools/draft-coverage-claims.py',
                     '--behavior', 'HOST.native-world-gpu-production',
                     '--scenario', 'HOST.native-world-gpu-production.controls',
-                    '--output', out / 'claims.json'], cwd=ROOT, check=True,
-                   stdout=subprocess.DEVNULL)
+                    '--output', out / 'claims.json']
+    if args.hitch_capture:claims_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.controls'])
+    subprocess.run(claims_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     declared = json.loads((out / 'claims.json').read_text())
     report = dict(success=False, scope=__doc__, sources=declared['sources'],
                   claims=declared['claims'], live_gameplay_executed=False)
     env = dict(os.environ, TMPDIR=str(ROOT / 'working/coverage-hook-tmp'),
                QT_QPA_PLATFORM='xcb', MNM_PROFILE_PUBLIC_BACKEND='1',
                MNM_NATIVE_FRAME_TRACE='1', MNM_WORKER_STATUS_CADENCE='1',
-               MNM_WORLD_IMAGE_REUSE='1', MNM_PROFILE_CHECKPOINTS='1')
+               MNM_WORLD_IMAGE_REUSE='1', MNM_PROFILE_CHECKPOINTS='1',
+               MNM_ASYNC_WORLD_GPU='0', MNM_NATIVE_HITCH_CAPTURE='1' if args.hitch_capture else '0')
     server = None
     inputs = {}
 
@@ -83,7 +86,7 @@ def main():
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo', '-DBUILD_TESTING=ON'])
         run('build', ['cmake', '--build', build, '--target', 'gpu-production-queue-test',
                       'async-world-replay-test', 'native-render-worker-test',
-                      'gpu-presentation-test', 'menu-resident-quit-test', 'mnm-qt-shell', '-j4'])
+                      'gpu-presentation-test', 'menu-resident-quit-test', 'native-hitch-capture-test', 'mnm-qt-shell', '-j4'])
         spec = importlib.util.spec_from_file_location('native_campaign', ROOT / 'tools/test-native-campaign.py')
         campaign = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(campaign)
@@ -95,6 +98,7 @@ def main():
             ('worker', [build / 'native-render-worker-test']),
             ('retirement', [build / 'menu-resident-quit-test']),
             ('presentation', [build / 'gpu-presentation-test'])]
+        if args.hitch_capture:commands.append(('hitch', [build / 'native-hitch-capture-test']))
         for label, command in commands:
             env['MNM_WORLD_IMAGE_REUSE'] = '0' if label == 'retirement' else '1'
             run(label, command)

@@ -8851,3 +8851,20 @@ is unresolved. Early bounded trace overwrite/absent absolute host origin prevent
 precise cause attribution; targeted hitch retention/UI-gate/lease/GUI-driver
 correlation is the next render experiment. New policy gains current bounded
 live-observation support only. Original equivalence/replacement remain none.
+
+### Bounded native hitch capture — 2026-10-13
+
+[Hitch windows](native-hitch-capture.md) preserve warm paint gaps, surrounding
+owner/GUI records and source/GPU/UI/lease state, with one exported host origin
+and matching campaign rate spans. TITAN `run-0cgd9vjo` passes bounded/reset/
+wrap controls and128 exact captured World comparisons. Outer live runner
+`run-4aowab2c` is storage-interrupted, not a successful full-run result; native
+host nevertheless retains5154 balanced Worlds and27 observed hitches.
+1008.957ms worst gap has869 pending-import owner polls with old sealed2435
+and ready/pending2436, no export refusals and short CPU phases. Prior imported
+World redraw is suppressed until original command import: confirmed native
+display gating shortcoming. Original publication latency, safe old-generation
+carry, complete runner validation and60FPS remain separate pending milestones.
+History `ee3a1e42..ea97c742` verifies29 exact transitions/no missing receipts.
+Original manifests/private cleanup pass; reviewed archival plans are not executed
+and no data is pruned after free space recovers to127GiB.

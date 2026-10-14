@@ -2,6 +2,7 @@
 #include "live_menu_session.hpp"
 #include "gl_viewport.hpp"
 #include "frame_stream.hpp"
+#include "native_frame_trace.hpp"
 #include "../../protocols/include/mnm/menu_v11.h"
 #include <QApplication>
 #include <QMainWindow>
@@ -33,7 +34,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool normalQuit=qEnvironmentVariableIntValue("MNM_CAMPAIGN_NORMAL_QUIT")==1;
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
-    struct Run {QString renderer;std::future<void> captureJob,diagnosticJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {QString renderer;std::future<void> captureJob,diagnosticJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit](bool success,const QString& reason){
         if(run->done)return;
@@ -211,13 +212,14 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->sampleClock.isValid()){
             const auto elapsed=run->sampleClock.elapsed();
             if(elapsed>=1000){
-                run->rates.append(QJsonObject{{"cycle",run->cycle},{"monotonic_start_seconds",double(run->sampleClock.msecsSinceReference())/1000},{"monotonic_end_seconds",double(run->sampleClock.msecsSinceReference()+elapsed)/1000},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
-                run->sampleClock.restart();run->sampleFrames=p.frames;run->samplePaints=p.paints;
+                const auto hostUs=NativeFrameTrace::now();
+                run->rates.append(QJsonObject{{"host_begin_us",QString::number(run->sampleHostUs)},{"host_end_us",QString::number(hostUs)},{"cycle",run->cycle},{"monotonic_start_seconds",double(run->sampleClock.msecsSinceReference())/1000},{"monotonic_end_seconds",double(run->sampleClock.msecsSinceReference()+elapsed)/1000},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
+                run->sampleClock.restart();run->sampleHostUs=hostUs;run->sampleFrames=p.frames;run->samplePaints=p.paints;
             }
         }
         if(stressSeconds&&!run->stressDone){
             if(!run->stressRunning){
-                run->stressRunning=true;run->sampleClock.start();run->sampleFrames=p.frames;run->samplePaints=p.paints;
+                run->stressRunning=true;run->sampleClock.start();run->sampleHostUs=NativeFrameTrace::now();run->sampleFrames=p.frames;run->samplePaints=p.paints;
                 window.activateWindow();window.raise();
                 auto* viewport=window.findChild<QOpenGLWidget*>("nativeGameViewport");
                 if(!viewport||!viewport->isVisible()){finish(false,"Native stress viewport unavailable");return;}

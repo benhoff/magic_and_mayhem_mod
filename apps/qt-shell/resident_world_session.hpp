@@ -35,6 +35,11 @@ public:
     void noteIndependentPresentation(double uiMilliseconds);
     std::uint64_t nativeFrames() const{return completed_+extraFrames_;}
     NativeFrameSourceTiming lastSourceTiming() const{return lastSourceTiming_;}
+    std::array<std::uint64_t,8> traceDeliveryState() const {
+        const auto s=snapshotQueue_?snapshotQueue_->stats():mnm::legacy::WorldSnapshotQueue::Stats{};
+        const auto p=gpuProduction_?gpuProduction_->stats():mnm::render::GpuProductionQueue::Stats{};
+        return {s.accepted,s.returned,s.outstanding,s.ready,p.submitted,p.produced,p.taken,p.outstanding};
+    }
     void saveReport(const QString&);
 private:
     static bool productionRetired(bool asynchronous,std::uint64_t completed,const mnm::render::GpuProductionQueue::Stats& p){

@@ -158,6 +158,10 @@ void NativeRenderWorker::run(){
                 trace.presents=presents;trace.commandEnd=frameTrace_.stamp();
                 const auto uiState=commands_->displayState();
                 const auto strictGeneration=commands_->preparedGeneration();
+                if(frameTrace_.capturesHitches()){
+                    trace.uiGeneration=uiState.generation;trace.preparedGeneration=strictGeneration;trace.sealedSource=uiState.sealedSourceGeneration;
+                    trace.uiSealed=uiState.sealed;trace.worldOutput=uiState.worldOutput;
+                }
                 generation=baselineUiClock_?strictGeneration:commands_->sealedGeneration();
                 const auto state=world_->displayState();const auto now=std::chrono::steady_clock::now();
                 const bool sourceCompleted=state.generation!=beforeWorld || (commands_->result()&&commands_->result()->residentWorldImports!=importsBefore);
@@ -191,11 +195,12 @@ void NativeRenderWorker::run(){
                         highWater_=std::max(highWater_,std::uint64_t(leases.size()));++exports_;
                         trace.exportSerial=exports_;
                         std::lock_guard<std::mutex> lock(mutex_);trace.published=frameTrace_.stamp();readyFrame_=std::move(frozen);readySerial_=exports_;readyGeneration_=uiState.worldOutput?uiState.generation:0;
-                    }else ++skipped_;
+                    }else{++skipped_;trace.exportBlocked=true;}
                     frameChanged_=false;
                 }
             }
             exportMs=stageClock.nsecsElapsed()/1000000.;if(exportMs>0.1)exportTiming_.add(exportMs);
+            if(frameTrace_.capturesHitches())trace.delivery=world_->traceDeliveryState();
             trace.exportEnd=frameTrace_.stamp();trace.framesAfter=world_->nativeFrames();trace.pending=world_->displayState().pending;trace.reason=reason;
             const auto totalMs=turnClock.nsecsElapsed()/1000000.;turnTiming_.add(totalMs);
             if(totalMs>33.334 && slowTurns_.size()<256)slowTurns_.append(QJsonObject{{"turn",QString::number(turns_)},{"source_generation",QString::number(world_->displayState().generation)},{"prepared_generation",QString::number(generation)},{"command_presents",int(presents)},{"reason",reason},{"world_ms",worldMs},{"command_ms",commandMs},{"extra_ms",extraMs},{"export_ms",exportMs},{"total_ms",totalMs}});

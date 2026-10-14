@@ -55025,6 +55025,7 @@
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_frame_trace.hpp",
         "apps/qt-shell/world_rolling_main.cpp",
         "assets/CMakeLists.txt",
         "assets/animation.cpp",
@@ -55203,6 +55204,239 @@
       "remaining_gaps": [
         "Fresh final128-World TITAN pixel/ownership/mode-specific retirement controls and full public run-435f6o9s pass:5250 balanced source/GPU counts, two-credit/two-slot bounds, zero ordinary readbacks, engine19.27881Hz. Corrected same-binary synchronous baseline retires5393 balanced Worlds but fails19FPS gate at17.78094. Native World47.31881\u219256.25228 across distinct live states is observational, not causal FPS percentage. Total World work remains13.74ms; presentation-owner poll0.007889ms removes that owner pause.",
         "Final candidate worst gameplaypaint17.27273FPS remains a rendering hitch; earlier historical52.89421 worst is not current. Sustained60FPS and exact hitch cause are unresolved. Early owner/GUI tail overwrite and absent absolute host origin limit precise correlation; preserve targeted hitch windows and inspect UI/source/completion/output-lease/GUI-driver gates next. Broader inputs, original equivalence, interpolation/scanout, arbitrary callback/driver stalls and lease-misusing callers remain pending/excluded."
+      ]
+    },
+    {
+      "id": "HOST.native-hitch-capture",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded native paint hitch windows and delivery-gate correlation",
+      "scope": "Opt-in preallocated eight-window reservoir around warm active native completed-paint gaps >=50ms,100ms before previous paint and250ms after trigger, bounded2048 owner polls/512 GUI events each with clipping/post completeness and replacement counters. Preserve source/GPU delivery, UI/seal generations and immutable export refusal; native host origin and campaign host-clock rate spans enable exact same-clock correlation. Hidden/movie/nonworld paints reset continuity; largest completed windows replace weaker ones, overlapping windows permitted. No live JSON/pixel capture, FIFO/credit/lease/engine clock/balance change. Controlled wrap/retirement/pixel/ownership checks and full TITAN gameplay correlation separate from rendering fixes, causal attribution, GPU busy, scanout, original equivalence or sustained60FPS.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-hitch-capture.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/native-hitch-capture-test.cpp",
+        "tools/test-native-world-gpu-production.py",
+        "tests/native-render-worker-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/native_worker_status_gate.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_preparation.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "tests/async-world-replay-test.cpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/gpu-production-queue-test.cpp",
+        "tests/menu-resident-quit-test.cpp",
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-prepared-world-test.cpp",
+        "tests/native-shell-provenance-test.py",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/render-resident-world-test.cpp",
+        "tests/resident-leaf-abi.S",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-deferred-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/glyph_backend_launch.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/native_music_launch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/profile-native-world-owner.py",
+        "tools/profile_native_resident_helpers.py",
+        "tools/test-native-world-rolling-hardware.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-resident-leaf-abi.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-hitch-capture.controls-20261013",
+        "HOST.native-hitch-capture.storage-interrupted-20261013",
+        "HOST.native-hitch-capture.pending-import-analysis-20261013"
+      ],
+      "remaining_gaps": [
+        "Fresh TITAN controls pass128 native-word comparisons, bounded hitch windows/tail-wrap/clock/reset, worker/ownership/retirement/presentation checks. Storage guard interrupted outer run-4aowab2c below100GiB; native host independently completed5154 balanced Worlds with19.01482engine/55.06962native FPS and27 observed hitches. Runner final checks were not executed; no successful live integration credit.",
+        "Retained strongest1008.957ms paint gap contains898 owner polls,869 pending-import reason2 polls, old sealed UI/World2435, native-completed/pending2436 and two source credits held. Only one frame/export, no export refusals; owner phases remain short. Pending import suppresses old-world display: confirmed native gating shortcoming. Original command-publication delay cause and a safe display fix, validated full runner result and sustained60FPS remain pending."
       ]
     }
   ],
@@ -111863,6 +112097,49 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "HOST.native-hitch-capture.controls-20261013",
+      "kind": "native_integration",
+      "scope": "Native bounded hitch/host-clock/gate capture controls or public TITAN outcome, with preserved raw data hash. Observations do not assert root cause, original equivalence, scanout or stable60FPS.",
+      "record": "research/runtime/native-hitch-capture-controls-20261013.json",
+      "sha256": "7b69cc8218dc1cdf54f3fd3fee7f973beaf9bfb53342ec581bf090c9aafc00a7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-hitch-capture.storage-interrupted-20261013",
+      "kind": "live_observation",
+      "scope": "Native bounded hitch/host-clock/gate capture controls or public TITAN outcome, with preserved raw data hash. Observations do not assert root cause, original equivalence, scanout or stable60FPS.",
+      "record": "research/runtime/native-hitch-capture-storage-interrupted-20261013.json",
+      "sha256": "47634aed3f65bb0cfce6f9c7f190aad9b2da9d538202ab373a88de4bad138bea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-hitch-capture.pending-import-analysis-20261013",
+      "kind": "static",
+      "scope": "Same-host-clock retained interrupted trace classification: warm native World awaits command import while prior World/UI remain sealed; no full runner pass, root cause of original command latency or fix claim.",
+      "record": "research/runtime/native-hitch-capture-pending-import-analysis-20261013.json",
+      "sha256": "9b6e54a44636f92cd783a723fa88cab58225c0ab1076145ca7ffe5edf3e65b0f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -125081,6 +125358,36 @@
         "HOST.native-world-gpu-production.public-20261013",
         "HOST.native-world-gpu-production.final-public-20261013"
       ]
+    },
+    {
+      "id": "HOST.native-hitch-capture.controls",
+      "level": "headless",
+      "scope": "Synthetic warm156ms gap pre/post/delivery records survives tail wrap; bounded strongest-gap reservoir, hidden/movie/nonworld reset, disabled admission and host origin, plus TITAN128 captured native-word/generic GPU/worker/retirement/presentation controls. No live FPS or causal attribution.",
+      "behaviors": [
+        "HOST.native-hitch-capture"
+      ],
+      "tests": [
+        "tests/native-hitch-capture-test.cpp",
+        "tools/test-native-world-gpu-production.py",
+        "tests/native-render-worker-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-hitch-capture.controls-20261013"
+      ]
+    },
+    {
+      "id": "HOST.native-hitch-capture.public",
+      "level": "live_observation",
+      "scope": "Private TITAN full native async World casting/combat/spell/portrait/three-menu/Quit-No/normal-Quit journey with bounded hitch capture, shared native host-clock rate windows, source/GPU/import/return balances and ordinary zero readbacks. Correlation supports observed gate classification only, not causal fix, original equivalence, stable60FPS or scanout.",
+      "behaviors": [
+        "HOST.native-hitch-capture"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-hitch-capture.storage-interrupted-20261013"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -125607,8 +125914,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-world-gpu-production-final-20261013.json",
-    "sha256": "c8facbf15acefa5c7213f153b0124ed60d0b7a29422fc199f2c83ffd7c254fa9"
+    "path": "research/runtime/coverage/source-index-native-hitch-capture-controls-20261013.json",
+    "sha256": "79c4719f5f7920dcfbb9cccca94d64011041b7e0d800c320d714a3adf548914e"
   },
   "claim_bindings_required": true
 }
