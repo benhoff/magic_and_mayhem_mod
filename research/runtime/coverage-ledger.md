@@ -9279,3 +9279,47 @@ was synthetic. Original helpers, headless synthetic provider integration and ful
 installed encounter remain independent. Special attack attachment/visual effects,
 health/effects/World/profile construction and live replacement are pending. The
 incoming NS66 exact receipts were reviewed with zero missing transitions.
+
+
+## NS68 — installed ordinary native encounter (2026-10-14)
+
+Selected encrypted creature/HTH CFG, Crocodile ANI and Celtic Plains CPsec01
+MAP/Terrain TTD now construct an owned two-actor native encounter. Real2x2 shape,
+swimming3,acceleration10,HP360,HTH18/stun9 and AI matrix/bravery/wander fields are
+used. Native routing/geometry/ANI/creature-core ordering and recovered AI/action
+flow bind actual ordinary health, synchronous melee, stun/knockback and physical
+death. The previous-move charge branch50c4ea is recovered and compared, including
+strict threshold ties, wrapping interpolation and charge>200 optional effect.
+Canonical context binding and autonomous facing/move/route/immediate services are
+completed. Portable profile and280-byte health/counter backend complement CMD1/v4;
+no host pointers are saved. Physical removal releases occupancy and retains the
+fixed dead identity; peer repair and empty World/owner/effect services are explicit
+native policies. Full original construction, other crops/species, water/flying,
+dynamic actors, World/campaign/save and live replacement remain independent gaps.
+
+Fresh prospectively bound native/sanitized execution agrees on3,072 one-tick
+snapshot resumes across three seeds:76 hits,three stuns,two knockbacks,103 fine
+movement samples,six acquisitions and one completed death/removal. Injected
+post-damage/control failure rolls back the whole snapshot; retry agrees. Pause,
+profile refusal and dead occupancy checks pass. Ten fresh processes resume without
+installation/PE/Wine/Qt to a byte-identical uninterrupted checkpoint. Five native
+core CTests also pass. The headless runtime has no Wine or Qt linkage; this does
+not remove Wine from the remaining original-backed full campaign.
+
+The source-bound published-state trace independently agrees with unchanged pinned
+original bodies across499 main-action polls,15 hit events,13 ready events,
+484 full ANI timing states,2,048 target/home selectors,1,024 reach/direction cases
+and15 nonterminal motion cases including10 changed positions. Native64/original32/
+ASan+UBSan+LSan64 results match, with actor/buffer/body and original manifest guards.
+Declared admission/line/height/stun/transition/audio/World endpoints remain
+explicit. Whole original frame/decision/stun/death/terminal segment/campaign
+composition and live replacement are not promoted. Primitive comparisons,
+headless installed integration and original replay have separate behavior IDs.
+
+Fresh neighboring original regressions retain historical hashes and compare10,240
+melee formula,4,368 main-action,18,432 ANI timing,8,622 health,29,178 reach,1,454
+stun and57,344 complete motion cases. Macro hygiene supports reused isolated
+fixtures without changing their original helper scope. Incoming NS67 hashes and
+exact receipts were reviewed with zero unresolved committed-history transitions.
+Source census and exact staged reviews accompany this change; unrelated historical
+staleness remains visible and is not rewritten as current execution evidence.

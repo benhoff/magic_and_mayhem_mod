@@ -18,6 +18,7 @@ public:
   bool cell(const model::AutonomousCreature &,model::Cell);
   bool legal(const model::AutonomousCreature &,model::Cell);
   bool ground(const model::AutonomousCreature &,model::Cell);
+  bool line(const model::AutonomousCreature &,model::Cell,model::Cell);
   bool reach(const model::AutonomousCreature &,const model::AutonomousCreature &,model::Cell);
   bool move(const model::AutonomousCreature &,model::Cell,model::Cell,unsigned &);
   int height(model::Cell,unsigned width=1);

@@ -17,9 +17,10 @@ RandomState seedRandom(std::uint32_t);
 std::uint32_t nextRandom(RandomState &);
 struct MeleeInputs {
   std::int32_t base = 18, power = 0, height = 0, heightBonus = 0,
-               responseModifier = 0, rankBonus = 0, stunThreshold = 9;
+               responseModifier = 0, rankBonus = 0, stunThreshold = 9,
+               chargeScalar = 0, chargeBonus = 0;
   bool attackerPhysical = true, targetPhysical = true, bloodLust = false,
-       quarterFlag = false, targetResponse = false;
+       quarterFlag = false, targetResponse = false, charge = false;
   std::uint32_t rank = 0;
   // Supplied helper 521160 result; effects of stun/response helpers excluded.
   bool stunHandled = true;
@@ -46,11 +47,18 @@ struct MeleeResult {
   std::vector<std::uint32_t> draws;
   std::vector<MeleeEvent> events;
 };
+// Consequences run at the original call sites: damage precedes the stun draw,
+// and stun admission can consume its own RNG word before the fallback draw.
+struct MeleeDispatch {
+  std::function<void(const MeleeEvent &)> event;
+  std::function<bool(std::int32_t)> tryStun;
+};
 // Type17 -> type17, rank0/1/2, no evasion/charge/cached contributions,
 // hostile distinct slots, null optional effect admission, supplied response.
 // Draw words are masked exactly at the original call sites.
 MeleeResult resolveMelee(const MeleeInputs &,
-                         const std::function<std::uint32_t()> &);
+                         const std::function<std::uint32_t()> &,
+                         const MeleeDispatch & = {});
 struct MeleeActionState {
   std::uint32_t engaged = 1, incoming = 1, recentAttacker = 0, cooldown = 0;
   bool ready = false;

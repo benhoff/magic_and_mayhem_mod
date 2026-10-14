@@ -37,6 +37,7 @@ class NativeContext {
   std::shared_ptr<const NativeCreatureProfile> p_;
   NativeConsequences fx_;
   NativeCreatureGeometry geometry_;
+  void bind(model::OwnedCreatureCommands &commands){if(fx_.bindCommands)fx_.bindCommands(commands);}
   NativeAnimationChannel &channel(model::AutonomousCreature &a,bool overlay){auto &v=c_.native.animation.at(a.ai.slot);return overlay?v.overlay:v.body;}
   void start(NativeAnimationChannel &v,unsigned asset,unsigned sequence,unsigned reverse){
     need(reverse<=1,"native ANI reverse mode");r::NoCdAnimationController player(records(*p_,asset,sequence));
@@ -116,8 +117,15 @@ class NativeContext {
     a.ai.marker=route.count;
     saved.initialized=false;return route.count?1:0;
   }
+  model::AutonomousServices autonomy(model::OwnedCreatureCommands &commands){
+    auto s=fx_.autonomy;s.geometry=aiGeometry();s.random=[this]{return random();};
+    s.action=[&commands](auto &a,unsigned n){commands.action(a,n);};s.behavior=[&commands](auto &a,unsigned n){commands.transition(a,n);};s.reset=[&commands](auto &a){commands.reset(a);};
+    s.beginMotion=[this,&commands](auto &a){begin(a,commands);};s.faceTarget=[this](auto &a,const auto &b){facing(a,b.ai.position);};s.move=[&commands](auto &a,model::Cell p){commands.move(a,p);};
+    s.routeMove=[this](auto &a,model::Cell p){return request(a,p)==1;};return s;
+  }
   model::BehaviorExecutionServices behavior(model::OwnedCreatureCommands &commands){
     auto s=fx_.behavior;
+    s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.interaction=[this](auto &a){return model::chooseInteraction(a,c_.world,fx_.autonomy.objects,aiGeometry());};
     s.action=[&commands](auto &a,unsigned n){commands.action(a,n);};s.behavior=[&commands](auto &a,unsigned n){commands.transition(a,n);};s.reset=[&commands](auto &a){commands.reset(a);};
     s.beginMotion=[this,&commands](auto &a){begin(a,commands);};s.reach=[this](const auto &a,const auto &b,model::Cell p){return geometry_.reach(a,b,p);};
     s.face=[this](auto &a,const auto &b){facing(a,b.ai.position);};s.coordinateFace=[this](auto &a,model::Cell p){facing(a,p);};
@@ -146,15 +154,15 @@ public:
       s.repairOverlay=[](auto &a){need(a.animationKind!=1,"native configured repair-overlay profile unavailable");};return s;};
     p.animation=[this](unsigned){model::AnimationActionServices s;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.animation=[this](auto &a,unsigned seq,unsigned rev){play(a,seq,rev);};s.cast=fx_.callbacks.interactionHit;s.restoreForm=fx_.behavior.restoreForm;return s;};return p;
   }
-  void action(model::AutonomousCreature &a,unsigned kind,model::OwnedCreatureCommands &commands){auto p=selection();const auto &t=p_->types.at(a.ai.type);model::OwnedCommandActions actions(c_.world,c_.execution,commands,{{t.regularOverlayAsset,64,t.meleeOverlayAsset,32},c_.native.tick,p_->recovery,p_->maintenance.restoreMode},p);actions.transition(a,kind);}
-  void tickAction(model::AutonomousCreature &a,model::OwnedCreatureCommands &commands){auto p=selection();p.remaining=[this](auto &actor,unsigned handler,auto &context){auto body=bodyProviders(context);model::OwnedCommandActionBodies bodies(c_.world,c_.execution,c_.maintenance,c_.movement,c_.actions,context,{{0,false},{c_.world.dimensions,unsigned(p_->environment.waterline),false}},body);bodies.tick(actor,handler);};const auto &t=p_->types.at(a.ai.type);model::OwnedCommandActions actions(c_.world,c_.execution,commands,{{t.regularOverlayAsset,64,t.meleeOverlayAsset,32},c_.native.tick,p_->recovery,p_->maintenance.restoreMode},p);actions.tick(a);}
+  void action(model::AutonomousCreature &a,unsigned kind,model::OwnedCreatureCommands &commands){bind(commands);auto p=selection();const auto &t=p_->types.at(a.ai.type);model::OwnedCommandActions actions(c_.world,c_.execution,commands,{{t.regularOverlayAsset,64,t.meleeOverlayAsset,32},c_.native.tick,p_->recovery,p_->maintenance.restoreMode},p);actions.transition(a,kind);}
+  void tickAction(model::AutonomousCreature &a,model::OwnedCreatureCommands &commands){bind(commands);auto p=selection();p.remaining=[this](auto &actor,unsigned handler,auto &context){auto body=bodyProviders(context);model::OwnedCommandActionBodies bodies(c_.world,c_.execution,c_.maintenance,c_.movement,c_.actions,context,{{0,false},{c_.world.dimensions,unsigned(p_->environment.waterline),false}},body);bodies.tick(actor,handler);};const auto &t=p_->types.at(a.ai.type);model::OwnedCommandActions actions(c_.world,c_.execution,commands,{{t.regularOverlayAsset,64,t.meleeOverlayAsset,32},c_.native.tick,p_->recovery,p_->maintenance.restoreMode},p);actions.tick(a);}
   model::CommandActionBodyProviders bodyProviders(model::OwnedCreatureCommands &commands){model::CommandActionBodyProviders p;
     p.callbacks=[this](unsigned){auto s=fx_.callbacks;s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.random=[this]{return random();};s.rewind=[this](auto &a){rewind(a);};return s;};
     p.motion=[this,&commands](unsigned){auto s=fx_.motion;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.rewind=[this](auto &a){rewind(a);};s.completeSegment=[this,&commands](auto &a){complete(a,commands);};s.updateOrders=fx_.callbacks.updateOrders;s.legal=[this](const auto &a,model::Cell p){return geometry_.legal(a,normalized(p));};s.stun=fx_.callbacks.stun;s.effect=fx_.callbacks.effect;s.releaseEffect=fx_.callbacks.releaseEffect;s.cameraTurn=p_->cameraTurn;return s;};
     p.flight=[this,&commands](unsigned){auto s=fx_.flight;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.rewind=[this](auto &a){rewind(a);};s.completeSegment=[this,&commands](auto &a){complete(a,commands);};s.animation=[this](auto &a,unsigned seq,unsigned rev){play(a,seq,rev);};s.occupied=[this](const auto &a,model::Cell p){return !geometry_.cell(a,normalized(p));};s.passable=[this](const auto &a,model::Cell p){return geometry_.legal(a,normalized(p));};s.ground=[this](const auto &a,model::Cell p){return geometry_.ground(a,normalized(p));};s.random=[this]{return random();};s.release=[this](auto &a,model::Cell p){geometry_.reserve(a,normalized(p),false);};s.reserve=[this](auto &a,model::Cell p){geometry_.reserve(a,normalized(p),true);};s.snap=[this](auto &a,model::Cell p,unsigned){geometry_.snap(a,normalized(p));};s.relocateDead=[this](auto &a,model::Cell p){geometry_.snap(a,normalized(p));};return s;};
     p.objects=[this](unsigned slot){model::ObjectActionServices s;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.cue=[this,slot](unsigned cue,model::Cell p){auto &a=c_.world.creatures.at(slot);fx_.callbacks.effect(a,cue,p);};return s;};return p;
   }
-  void body(model::AutonomousCreature &a,unsigned kind,model::OwnedCreatureCommands &commands){
+  void body(model::AutonomousCreature &a,unsigned kind,model::OwnedCreatureCommands &commands){bind(commands);
     auto s=behavior(commands);model::CommandBehaviorProviders p;
     p.behavior=[s](unsigned){return s;};
     p.ranged=[this,s,&commands](unsigned){auto out=fx_.ranged;out.orient=[this](auto &actor,model::Cell point){facing(actor,{int(unsigned(point.x)>>5),int(unsigned(point.y)>>5),actor.ai.position.z});};out.action=[&commands](auto &actor,unsigned n){commands.action(actor,n);};out.maintainTarget=[this,s](auto &actor){model::maintainTargetBehavior(actor,c_.execution.at(actor.ai.slot),c_.world,p_->maintenance.restoreMode,s);};return out;};
@@ -164,10 +172,11 @@ public:
     else if(kind==9)model::immediateAttackBehavior(a,c_.world,s);
     else if(kind==10)model::standingRangedBehavior(a,c_.execution.at(a.ai.slot),c_.world,c_.native.tick,s);
     else if(kind==13)model::displacementBehavior(a,c_.execution.at(a.ai.slot),s);
-    else if(kind==11){auto autonomy=fx_.autonomy;autonomy.geometry=aiGeometry();autonomy.action=s.action;autonomy.behavior=s.behavior;autonomy.reset=s.reset;autonomy.beginMotion=s.beginMotion;autonomy.random=[this]{return random();};model::autonomousBehavior(a,c_.world,autonomy);}
+    else if(kind==11){auto services=autonomy(commands);services.orient=[this,&a](model::Cell point){facing(a,{int(unsigned(point.x)>>5),int(unsigned(point.y)>>5),a.ai.position.z});};model::autonomousBehavior(a,c_.world,services);}
     else model::specialBehavior(a,c_.execution.at(a.ai.slot),kind,s);
   }
   std::vector<game::CreatureRuleEvent> frame(model::OwnedCreatureCommands &commands){
+    bind(commands);
     ++c_.native.sequence;if(c_.native.alternate)return {};++c_.native.tick;
     for(auto &a:c_.world.creatures)if(a.ai.active){if(!channel(a,false).bound&&c_.execution.at(a.ai.slot).actionCallback)commands.action(a,a.ai.action);
       auto s=fx_.maintenance;s.random=[this]{return random();};s.action=[&commands](auto &actor){commands.tickAction(actor);};s.poll=[this](auto &actor,model::MaintenanceAnimation which){return poll(c_.native.animation.at(actor.ai.slot).auxiliary.at(unsigned(which)));};
@@ -177,7 +186,7 @@ public:
     model::SchedulerServices schedule;
     schedule.route=[this,&commands](unsigned slot,auto &scheduler){auto &a=c_.world.creatures.at(slot);model::RouteExecutionServices s;s.request=[this](auto &actor,model::Cell point,unsigned,unsigned){return request(actor,point);};s.resumeDisplacement=[](auto &){return false;};s.queueFallback=[&commands](auto &actor){return commands.queue(actor);};s.reach=[this](const auto &actor,const auto &target,model::Cell point){return geometry_.reach(actor,target,point);};s.adjust=[this](const auto &actor,const auto &,model::Cell &point){point=normalized(point);return geometry_.legal(actor,point);};s.legal=[this](const auto &actor,model::Cell point){return geometry_.legal(actor,normalized(point));};s.localReach=s.legal;s.beginMotion=[this,&commands](auto &actor){begin(actor,commands);};s.reset=[&commands](auto &actor){commands.reset(actor);};s.action=[&commands](auto &actor,unsigned n){commands.action(actor,n);};const auto yielded=model::continueCreatureRoute(a,c_.execution.at(slot),c_.world,s);scheduler.continuation=a.routePhase&&c_.native.search.at(slot).initialized;return yielded;};
     schedule.preDecision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);model::periodicTerrain(a,c_.execution.at(slot),p_->types.at(a.ai.type).periodicResistance,p_->periodic,{[this,slot](model::Cell p){return geometry_.ground(c_.world.creatures.at(slot),normalized(p));},[this]{return random();},[&commands](auto &actor){commands.reset(actor);},[&commands](auto &actor,model::Cell p){commands.move(actor,p);}});if(fx_.preDecision)fx_.preDecision(a);};
-    schedule.decision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);auto autonomy=fx_.autonomy;autonomy.geometry=aiGeometry();autonomy.random=[this]{return random();};autonomy.action=[&commands](auto &actor,unsigned n){commands.action(actor,n);};autonomy.behavior=[&commands](auto &actor,unsigned n){commands.transition(actor,n);};autonomy.reset=[&commands](auto &actor){commands.reset(actor);};model::autonomousDecision(a,c_.world,autonomy);};
+    schedule.decision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);auto services=autonomy(commands);model::autonomousDecision(a,c_.world,services);};
     schedule.valuation=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);model::updateCreatureValue(a,c_.execution.at(slot),p_->valuation);};schedule.region=[this](unsigned slot){need(bool(fx_.region),"native region service unavailable");return fx_.region(c_.world.creatures.at(slot));};schedule.ownerWork=[this](unsigned slot){need(bool(fx_.ownerWork),"native owner service unavailable");fx_.ownerWork(c_.world.creatures.at(slot));};
     model::scheduleCreatures(c_.world,c_.scheduler,c_.environment,schedule);
     model::creatureEnvironmentPass(c_.world,c_.native.environment,p_->environment,{[this](const auto &,model::Cell p){auto point=normalized(p);const auto d=c_.world.dimensions;auto kind=c_.native.cells.at((std::size_t(point.z)*d.y+point.y)*d.x+point.x).kind;return kind&&(p_->terrain.at(kind).flags_b0&2);},fx_.maintenance.health});

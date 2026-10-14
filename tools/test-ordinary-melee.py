@@ -26,6 +26,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--claims', type=Path)
+    p.add_argument('--ani', type=Path)
     args = p.parse_args()
     args.output = args.output.resolve()
     if args.output.exists():
@@ -36,7 +37,7 @@ def main():
     args.output.mkdir(parents=True)
     report = dict(success=False, claims=claims['claims'], source_sha256=claims['sources'],
                   source_executable_sha256=HASH, original_target_text_unchanged=False,
-                  scope='Type17 vs type17 no-evasion/no-charge melee arithmetic and draw ordering, main action events, installed Crocodile ANI24..31 forward timing, composed ordinary health. Supplied response/stun/audio/effect endpoints; not full stun effects, reach/selection/AI, special creatures or live replacement.',
+                  scope='Type17 vs type17 no-evasion melee arithmetic including charge and synchronous endpoint draw ordering, main action events, installed Crocodile ANI24..31 forward timing, composed ordinary health. Supplied response/stun/audio/effect endpoints; not full stun effects, reach/selection/AI, special creatures or live replacement.',
                   endpoint_addresses=[hex(a) for a in ENDPOINTS], wine_required=False,
                   live_replacement=False, commands=[])
 
@@ -87,7 +88,7 @@ def main():
         report['compiler_dependencies'] = sorted(dependencies)
         if args.claims and dependencies - claims['sources'].keys():
             raise ValueError('Unbound compiler inputs: ' + str(sorted(dependencies - claims['sources'].keys())))
-        animation = ROOT / 'working/game-clean/Creatures/crocodile.ani'
+        animation = args.ani.resolve() if args.ani else ROOT / 'working/game-clean/Creatures/crocodile.ani'
         animation_hash = sha(animation)
         report['animation_sha256'] = animation_hash
         native = json.loads(run('native', [args.output / 'native', animation]))

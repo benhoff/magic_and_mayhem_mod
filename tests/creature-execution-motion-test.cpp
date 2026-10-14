@@ -1,6 +1,9 @@
+#pragma push_macro("main")
+#undef main
 #define main unused_execution_fixture_main
 #include "creature-execution-test.cpp"
 #undef main
+#pragma pop_macro("main")
 #include "../reconstruction/creature-ai/full_motion_action.hpp"
 #include <map>
 namespace {

@@ -49,10 +49,14 @@ int NativeCreatureGeometry::height(model::Cell p,unsigned width){
   for(int y=0;y<2;++y)for(int x=0;x<2;++x){auto q=p;q.x=(q.x+x)%d.x;q.y=(q.y+y)%d.y;kinds[cursor++]=state_.native.cells.at(index(state_,q)).kind;}
   return reconstruction::large_footprint_height(kinds,[this](auto kind){return profile_.terrain.at(kind).classification_94;});
 }
+bool NativeCreatureGeometry::line(const model::AutonomousCreature &a,model::Cell from,model::Cell to){
+  auto h=movement();auto p=reconstruction::creature_movement_parameters(actor(a.ai.slot));
+  return reconstruction::test_creature_line(coordinates(from),coordinates(to),p,{h.dimensions,[h](auto x,auto y,const auto &parameters,int &category,int original){return reconstruction::test_movement(x,y,parameters,category,original,h);}});
+}
 bool NativeCreatureGeometry::reach(const model::AutonomousCreature &a,const model::AutonomousCreature &b,model::Cell source){
   auto projection=[&](const auto &v){model::ReachActor r{v.ai.position,v.finePosition.z,int(v.width),int(v.height),{},0};if(v.ai.motion){const auto &route=state_.actions.segments.at(v.ai.slot);if(route.cursor>=route.count)throw std::invalid_argument("native reach endpoint missing");r.endpoint=route.route.at(route.cursor).position;r.endpointTerrainHeight=height(*r.endpoint,v.width);}return r;};
-  auto attacker=projection(a);attacker.position=source;auto target=projection(b);auto h=movement();auto p=reconstruction::creature_movement_parameters(actor(a.ai.slot));
-  return model::meleeReach(attacker,target,state_.world.dimensions,[&](auto from,auto to){return reconstruction::test_creature_line(coordinates(from),coordinates(to),p,{h.dimensions,[h](auto x,auto y,const auto &parameters,int &category,int original){return reconstruction::test_movement(x,y,parameters,category,original,h);}});}).admitted;
+  auto attacker=projection(a);attacker.position=source;auto target=projection(b);
+  return model::meleeReach(attacker,target,state_.world.dimensions,[&](auto from,auto to){return line(a,from,to);}).admitted;
 }
 void NativeCreatureGeometry::reserve(const model::AutonomousCreature &a,model::Cell p,bool add){auto d=state_.world.dimensions;for(unsigned y=0;y<a.width;++y)for(unsigned x=0;x<a.width;++x)for(unsigned z=0;z<a.height&&p.z+int(z)<d.z;++z){auto q=p;q.x=(p.x+int(x))%d.x;q.y=(p.y+int(y))%d.y;q.z+=z;auto &c=state_.native.cells.at(index(state_,q));if(add){if((c.flags&3)&&c.occupant!=0xffff&&c.occupant!=a.ai.slot+1)throw std::invalid_argument("native occupancy reservation conflicts");c.flags|=3;c.occupant=a.ai.slot+1;}else if(c.occupant==a.ai.slot+1){c.flags&=std::uint16_t(~3u);c.occupant=0xffff;}}}
 void NativeCreatureGeometry::snap(model::AutonomousCreature &a,model::Cell p){model::snapCreaturePosition(a,p,unsigned(profile_.types.at(a.ai.type).width),{[this](auto q){return state_.native.cells.at(index(state_,q)).kind;},[this](unsigned kind){return profile_.terrain.at(kind).classification_94;},[this](auto q){return height(q,2);}});}

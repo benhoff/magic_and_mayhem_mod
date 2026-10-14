@@ -5,9 +5,12 @@
 #include <iostream>
 #include <stdexcept>
 #ifdef MNM_CONTROL_REFERENCE
+#pragma push_macro("main")
+#undef main
 #define main unused_sprite_reference_main
 #include "sprite-binary-reference.cpp"
 #undef main
+#pragma pop_macro("main")
 #endif
 using namespace mnm::reconstruction::combat;
 namespace {

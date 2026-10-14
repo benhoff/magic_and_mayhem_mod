@@ -31,6 +31,8 @@ struct NativeCreatureProfile {
 // geometry, route motion, action dispatch and creature pass ordering are
 // supplied by nativeProviders, never by a synthetic frame callback.
 struct NativeConsequences {
+  // Operation-local context. No address enters the continuation.
+  std::function<void(model::OwnedCreatureCommands &)> bindCommands;
   model::ActionCallbackServices callbacks;
   model::ExecutionServices execution;
   model::SegmentInitializationServices segment;
