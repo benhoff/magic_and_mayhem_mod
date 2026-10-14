@@ -164,15 +164,17 @@ void NativeRenderWorker::run(){
                 }
                 generation=baselineUiClock_?strictGeneration:commands_->sealedGeneration();
                 const auto state=world_->displayState();const auto now=std::chrono::steady_clock::now();
-                const bool sourceCompleted=state.generation!=beforeWorld || (commands_->result()&&commands_->result()->residentWorldImports!=importsBefore);
+                const bool imported=commands_->result()&&commands_->result()->residentWorldImports!=importsBefore;
+                const bool sourceCompleted=state.generation!=beforeWorld || imported;
+                const bool displayedCompleted=world_->displaysPendingWorld()?imported:sourceCompleted;
                 if(state.active && now>=state.deadline){
-                    reason=(!draw || pause)?RenderDeadlineProbe::Hidden:state.pending?RenderDeadlineProbe::PendingWorldImport:
-                        sourceCompleted?RenderDeadlineProbe::SourceCompleted:
-                        nativeUiBlockReason(uiState,state.generation)!=RenderDeadlineProbe::RenderAttempt?nativeUiBlockReason(uiState,state.generation):
+                    reason=(!draw || pause)?RenderDeadlineProbe::Hidden:state.replayPending?RenderDeadlineProbe::PendingWorldImport:
+                        displayedCompleted?RenderDeadlineProbe::SourceCompleted:
+                        nativeUiBlockReason(uiState,state.replayGeneration)!=RenderDeadlineProbe::RenderAttempt?nativeUiBlockReason(uiState,state.replayGeneration):
                         !generation?RenderDeadlineProbe::IncompleteUi:(baselineUiClock_&&presents)?RenderDeadlineProbe::UiPublication:RenderDeadlineProbe::RenderAttempt;
                     deadlineProbe_.observe(state.deadline,now,RenderDeadlineProbe::Reason(reason));
                 }
-                if(!pause && (baselineUiClock_?(before==after && draw):nativeDisplayEligible(draw,state.pending,sourceCompleted,generation,state.generation))){
+                if(!pause && (baselineUiClock_?(before==after && draw):nativeDisplayEligible(draw,state.replayPending,displayedCompleted,generation,state.replayGeneration))){
                     if(generation){auto frame=world_->drawIndependent(generation);if(frame.valid()){
                         QElapsedTimer clock;clock.start();
                         if(!(baselineUiClock_?commands_->presentPrepared(frame,generation):commands_->presentSealed(frame,generation)))throw std::runtime_error(commands_->error().toStdString());

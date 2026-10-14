@@ -25,6 +25,7 @@ def sha(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--display-while-pending', action='store_true')
     parser.add_argument('--hitch-capture', action='store_true')
     parser.add_argument('--corpus', type=Path, required=True)
     parser.add_argument('--game', type=Path, required=True)
@@ -39,6 +40,7 @@ def main():
                     '--scenario', 'HOST.native-world-gpu-production.controls',
                     '--output', out / 'claims.json']
     if args.hitch_capture:claims_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.controls'])
+    if args.display_while_pending:claims_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.controls'])
     subprocess.run(claims_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     declared = json.loads((out / 'claims.json').read_text())
     report = dict(success=False, scope=__doc__, sources=declared['sources'],
@@ -47,7 +49,7 @@ def main():
                QT_QPA_PLATFORM='xcb', MNM_PROFILE_PUBLIC_BACKEND='1',
                MNM_NATIVE_FRAME_TRACE='1', MNM_WORKER_STATUS_CADENCE='1',
                MNM_WORLD_IMAGE_REUSE='1', MNM_PROFILE_CHECKPOINTS='1',
-               MNM_ASYNC_WORLD_GPU='0', MNM_NATIVE_HITCH_CAPTURE='1' if args.hitch_capture else '0')
+               MNM_ASYNC_WORLD_GPU='0', MNM_DISPLAY_WHILE_PENDING='0', MNM_NATIVE_HITCH_CAPTURE='1' if args.hitch_capture else '0')
     server = None
     inputs = {}
 
@@ -86,7 +88,7 @@ def main():
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo', '-DBUILD_TESTING=ON'])
         run('build', ['cmake', '--build', build, '--target', 'gpu-production-queue-test',
                       'async-world-replay-test', 'native-render-worker-test',
-                      'gpu-presentation-test', 'menu-resident-quit-test', 'native-hitch-capture-test', 'mnm-qt-shell', '-j4'])
+                      'gpu-presentation-test', 'menu-resident-quit-test', 'native-hitch-capture-test', 'pending-world-display-test', 'mnm-qt-shell', '-j4'])
         spec = importlib.util.spec_from_file_location('native_campaign', ROOT / 'tools/test-native-campaign.py')
         campaign = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(campaign)
@@ -98,6 +100,7 @@ def main():
             ('worker', [build / 'native-render-worker-test']),
             ('retirement', [build / 'menu-resident-quit-test']),
             ('presentation', [build / 'gpu-presentation-test'])]
+        if args.display_while_pending:commands.append(('pending', [build / 'pending-world-display-test']))
         if args.hitch_capture:commands.append(('hitch', [build / 'native-hitch-capture-test']))
         for label, command in commands:
             env['MNM_WORLD_IMAGE_REUSE'] = '0' if label == 'retirement' else '1'

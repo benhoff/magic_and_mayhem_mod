@@ -29,11 +29,12 @@ public:
     bool ready(std::uint64_t generation,std::uint64_t nonce) const;
     bool independent() const{return independent_;}
     mnm::render::GpuFrame drawIndependent(std::uint64_t generation);
-    struct DisplayState {std::chrono::steady_clock::time_point deadline;std::uint64_t generation;bool active,pending;};
-    DisplayState displayState() const{return {nextFrame_,completed_,independent_&&(bool(world_)||(asynchronous_&&completed_))&&!normalQuitRetired_&&error_.isEmpty(),bool(ownedPending_)};}
+    struct DisplayState {std::chrono::steady_clock::time_point deadline;std::uint64_t generation;bool active,pending;std::uint64_t replayGeneration;bool replayPending;};
+    DisplayState displayState() const{return {nextFrame_,completed_,independent_&&(bool(world_)||(asynchronous_&&completed_))&&!normalQuitRetired_&&error_.isEmpty(),bool(ownedPending_),displayWhilePending_?imports_:completed_,bool(ownedPending_)&&!displayWhilePending_};}
     void pollOwned(bool);
     void noteIndependentPresentation(double uiMilliseconds);
-    std::uint64_t nativeFrames() const{return completed_+extraFrames_;}
+    std::uint64_t nativeFrames() const{return (displayWhilePending_?imports_:completed_)+extraFrames_;}
+    bool displaysPendingWorld() const{return displayWhilePending_;}
     NativeFrameSourceTiming lastSourceTiming() const{return lastSourceTiming_;}
     std::array<std::uint64_t,8> traceDeliveryState() const {
         const auto s=snapshotQueue_?snapshotQueue_->stats():mnm::legacy::WorldSnapshotQueue::Stats{};
@@ -68,6 +69,9 @@ private:
     bool independent_=false;
     bool retainCompletedImage_=false;
     bool asynchronous_=false;
+    bool displayWhilePending_=false;
+    mnm::render::GpuFrame displayedFrame_;
+    std::uint64_t pendingRedraws_=0;
     std::shared_ptr<ResidentWorldGpuBackend> gpuBackend_;
     std::unique_ptr<mnm::render::GpuProductionQueue> gpuProduction_;
     mnm::render::RenderStats producerStats_;

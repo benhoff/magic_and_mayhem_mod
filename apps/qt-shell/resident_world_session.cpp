@@ -42,6 +42,8 @@ ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QStri
     asynchronous_=qEnvironmentVariableIntValue("MNM_ASYNC_WORLD_GPU")==1;
     if(asynchronous_ && (!independent_||!retainCompletedImage_||!target_.worldOffscreen||stageProfile_))
         throw std::invalid_argument("Async World requires independent retained images and a dedicated platform target; stage capture profiling is separate");
+    displayWhilePending_=qEnvironmentVariableIntValue("MNM_DISPLAY_WHILE_PENDING")==1;
+    if(displayWhilePending_ && !asynchronous_)throw std::invalid_argument("Pending World display requires async native production");
     if(independent_)snapshotQueue_=std::make_unique<WorldSnapshotQueue>(channel_,bool(capture_),frameTrace_);
 }
 void ResidentWorldSession::collectGpuTimings(){
@@ -55,7 +57,7 @@ void ResidentWorldSession::collectGpuTimings(){
         row["gpu_timeline_ms"]=timing.timelineMs;stageSamples_[int(timing.sequence-1)]=row;
     }
 }
-ResidentWorldSession::~ResidentWorldSession(){if(snapshotQueue_)snapshotQueue_->stop();ownedFrame_={};ownedPending_.reset();if(gpuProduction_)gpuProduction_->join();channel_.cancel();if(reportWork_.valid())reportWork_.wait();}
+ResidentWorldSession::~ResidentWorldSession(){if(snapshotQueue_)snapshotQueue_->stop();displayedFrame_={};ownedFrame_={};ownedPending_.reset();if(gpuProduction_)gpuProduction_->join();channel_.cancel();if(reportWork_.valid())reportWork_.wait();}
 void ResidentWorldSession::abort(const QString& error){error_=error;channel_.cancel();}
 void ResidentWorldSession::poll(bool acceptedNormalQuit){
     if(independent_){pollOwned(acceptedNormalQuit);return;}
@@ -242,7 +244,7 @@ void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
         }
         if(ownedPending_)return;
         const auto now=std::chrono::steady_clock::now();
-        if(nextFrame_.time_since_epoch().count()&&now<nextFrame_)return;
+        if(!displayWhilePending_ && nextFrame_.time_since_epoch().count()&&now<nextFrame_)return;
         mnm::render::GpuProductionQueue::Completion result;if(!gpuProduction_->take(result))return;
         if(result.sequence!=completed_+1)throw std::runtime_error("Async World completion sequence gap");
         auto job=std::static_pointer_cast<WorldGpuJob>(result.metadata);auto& source=job->source;
@@ -253,19 +255,21 @@ void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
         decodeMs_+=source.decodeMs;handoffMs_+=source.prepareMs;producerMs_+=job->producerMs;prepareMs_+=job->profile.prepareMs;submitMs_+=job->profile.submitMs;++profiled_;
         if(frameTrace_)lastSourceTiming_={std::chrono::duration<double,std::milli>(result.started-source.readyAt).count(),std::chrono::duration<double,std::milli>(source.readyAt-source.acquiredAt).count(),source.decodeMs,source.prepareMs,job->producerMs,job->profile.prepareMs,job->profile.submitMs,source.ticks};
         regionQueries_+=source.ticks[9];rasters_+=source.handoff.batch.header[14];completed_=result.sequence;ownedFrame_=std::move(result.frame);ownedPending_=std::move(source);
+        if(!displayWhilePending_){
         if(completed_==64){renderRate_.start();renderRateBase_=completed_+extraFrames_;}
         if(!nextFrame_.time_since_epoch().count())nextFrame_=now;
         const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
         if(late>=16667){frameMisses_+=std::uint64_t(late/16667);nextFrame_=now;}nextFrame_+=std::chrono::microseconds(16667);
+        }
     }catch(const std::exception& e){error_=e.what();channel_.cancel();snapshotQueue_->stop();throw;}
 }
 mnm::render::GpuFrame ResidentWorldSession::drawIndependent(std::uint64_t generation){
-    if(!independent_ || normalQuitRetired_ || !error_.isEmpty() || ownedPending_ || (!world_&&!asynchronous_) || generation!=completed_ || channel_.cancelled())return {};
+    if(!independent_ || normalQuitRetired_ || !error_.isEmpty() || (ownedPending_&&!displayWhilePending_) || (!world_&&!asynchronous_) || generation!=(displayWhilePending_?imports_:completed_) || (displayWhilePending_&&!displayedFrame_.valid()) || channel_.cancelled())return {};
     const auto now=std::chrono::steady_clock::now();if(now<nextFrame_)return {};
     const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
     if(late>=16667){frameMisses_+=std::uint64_t(late/16667);nextFrame_=now;}
     nextFrame_+=std::chrono::microseconds(16667);
-    try{QElapsedTimer timing;timing.start();auto frame=asynchronous_?ownedFrame_:world_->replayPrepared();extraWorldMs_+=timing.nsecsElapsed()/1000000.0;++extraFrames_;return frame;}
+    try{QElapsedTimer timing;timing.start();auto frame=displayWhilePending_?displayedFrame_:asynchronous_?ownedFrame_:world_->replayPrepared();if(displayWhilePending_&&ownedPending_)++pendingRedraws_;extraWorldMs_+=timing.nsecsElapsed()/1000000.0;++extraFrames_;return frame;}
     catch(const std::exception& e){error_=e.what();channel_.cancel();snapshotQueue_->stop();throw;}
 }
 void ResidentWorldSession::noteIndependentPresentation(double milliseconds){
@@ -276,6 +280,16 @@ mnm::render::GpuFrame ResidentWorldSession::import(std::uint64_t generation,std:
     if(independent_){
         if(!ready(generation,nonce))throw std::runtime_error("Owned World command/import identity");
         auto frame=ownedFrame_;snapshotQueue_->imported(generation);++imports_;ownedPending_.reset();
+        if(displayWhilePending_){
+            displayedFrame_=frame;
+            if(generation==64){renderRate_.start();renderRateBase_=nativeFrames();}
+            const auto now=std::chrono::steady_clock::now();
+            if(nextFrame_.time_since_epoch().count()){
+                const auto late=std::chrono::duration_cast<std::chrono::microseconds>(now-nextFrame_).count();
+                if(late>=16667)frameMisses_+=std::uint64_t(late/16667);
+            }
+            nextFrame_=now+std::chrono::microseconds(16667);
+        }
         if(completed_%64==0)queueReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));
         return frame;
     }
@@ -299,6 +313,7 @@ QJsonObject ResidentWorldSession::report() const {
         {"producer_ms_per_world",profiled_?producerMs_/profiled_:0.},{"prepare_ms_per_world",profiled_?prepareMs_/profiled_:0.},{"submit_ms_per_world",profiled_?submitMs_/profiled_:0.},{"max_native_ms",maxNativeMs_},
         {"engine_fps",returns_>64 && lastTick_!=firstTick_?double(returns_-64)*1000/double(std::uint32_t(lastTick_-firstTick_)):0.}};
     if(independent_){
+        result["pending_world_display"]=QJsonObject{{"enabled",displayWhilePending_},{"policy","last-imported-native-world"},{"generation",QString::number(imports_)},{"redraws",QString::number(pendingRedraws_)},{"scope","Redraw only last imported immutable World with matching sealed UI while newer completed generation awaits command import. No source credit/import/return/order or simulation advance."}};
         if(asynchronous_){const auto p=gpuProduction_?gpuProduction_->stats():mnm::render::GpuProductionQueue::Stats{};
             result["world_gpu_production"]=QJsonObject{{"policy","dedicated-native-owner"},{"submitted",QString::number(p.submitted)},{"produced",QString::number(p.produced)},{"taken",QString::number(p.taken)},{"outstanding",int(p.outstanding)},{"high_water",int(p.highWater)},{"immutable_allocations",QString::number(p.allocations)},{"error",QString::fromStdString(p.error)},{"mean_cpu_ms",profiled_?productionMs_/profiled_:0.},{"max_cpu_ms",maxProductionMs_},{"scope","Completed native World snapshots; two source credits and two immutable GPU slots. Repeated cached images do not advance simulation. CPU wall includes driver waits; presentation owner is separate."}};
         }
@@ -312,7 +327,7 @@ QJsonObject ResidentWorldSession::report() const {
         result["mean_extra_ui_cpu_ms"]=extraPresented_?extraUiMs_/extraPresented_:0;
         result["max_extra_ui_cpu_ms"]=maxExtraUiMs_;result["native_total_world_frames"]=QString::number(completed_+extraFrames_);
         result["native_frame_deadlines_missed"]=QString::number(frameMisses_);
-        result["native_render_fps"]=renderRate_.isValid()&&renderRate_.elapsed()>0?double(completed_+extraFrames_-renderRateBase_)*1000./renderRate_.elapsed():0.;
+        result["native_render_fps"]=renderRate_.isValid()&&renderRate_.elapsed()>0?double(nativeFrames()-renderRateBase_)*1000./renderRate_.elapsed():0.;
         result["engine_fps"]=owned.returned>64 && owned.lastTick!=owned.firstTick?double(owned.returned-64)*1000./double(std::uint32_t(owned.lastTick-owned.firstTick)):0.;
         result["scope"]="Owned source rate and independent native drawing are separate; repeated frames do not interpolate simulation state.";
     }

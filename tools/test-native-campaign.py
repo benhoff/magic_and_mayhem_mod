@@ -402,6 +402,7 @@ def main():
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--worker-status-cadence',action='store_true',help='Experimental16ms owned-worker status construction')
     parser.add_argument('--worker-status-every-turn',action='store_true',help='Diagnostic baseline: construct owned-worker status on every turn')
+    parser.add_argument('--display-while-pending',action='store_true',help='Keep last imported native World displayable while new async generation waits for command import')
     parser.add_argument('--hitch-capture',action='store_true',help='Bounded warm active paint-hitch windows with queue/UI/lease state; requires frame trace')
     parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
     parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
@@ -422,6 +423,7 @@ def main():
     if args.disable_wine_dsound and not args.native_factory:parser.error('Module-disable diagnostic requires native factory verification')
     if args.worker_status_cadence and not args.independent_world:parser.error('Worker status cadence requires independent World')
     if args.worker_status_every_turn and not args.independent_world:parser.error('Worker status baseline requires independent World')
+    if args.display_while_pending and not args.async_world:parser.error('Display while pending requires --async-world')
     if args.hitch_capture and not args.frame_trace:parser.error('Hitch capture requires --frame-trace')
     if args.frame_trace and not args.independent_world:parser.error('Frame trace requires independent resident World')
     if args.reuse_world_image and not args.independent_world:parser.error('World image reuse requires independent resident World')
@@ -479,6 +481,7 @@ def main():
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
+        if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
         if args.hitch_capture:declaration_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.public'])
         if args.async_world:declaration_command.extend(['--behavior','HOST.native-world-gpu-production','--scenario','HOST.native-world-gpu-production.public'])
         if args.native_voices:declaration_command.extend(['--behavior','HOST.native-menu-audio','--scenario','native-menu-audio-campaign-20261011'])
@@ -541,6 +544,7 @@ def main():
     env = clean_environment(out)
     # Regression proof requires fingerprints even when the normal launcher uses fast asset staging.
     if args.native_draw:env['MNM_VERIFY_ASSETS']='1'
+    env['MNM_DISPLAY_WHILE_PENDING']='1' if args.display_while_pending else '0'
     env['MNM_NATIVE_HITCH_CAPTURE']='1' if args.hitch_capture else '0'
     if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
     # Make the comparison independent of an inherited experiment setting.

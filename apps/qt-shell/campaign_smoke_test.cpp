@@ -34,7 +34,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool normalQuit=qEnvironmentVariableIntValue("MNM_CAMPAIGN_NORMAL_QUIT")==1;
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
-    struct Run {QString renderer;std::future<void> captureJob,diagnosticJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {QString renderer;std::future<void> captureJob,diagnosticJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit](bool success,const QString& reason){
         if(run->done)return;
@@ -128,9 +128,9 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
             auto* input=new QProcess(&window);
             QObject::connect(input,&QProcess::errorOccurred,&window,[finish](QProcess::ProcessError e){if(e==QProcess::FailedToStart)finish(false,"Could not start native Quit input");});
-            QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[input,run,finish](int code,QProcess::ExitStatus status){
+            QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[input,run,finish,probe](int code,QProcess::ExitStatus status){
                 if(code||status!=QProcess::NormalExit)finish(false,"Native Quit input failed: "+QString::fromLocal8Bit(input->readAllStandardError()));
-                else run->quitAnswered=true;
+                else{run->resumeSourceBase=probe().sourceGeneration;run->quitAnswered=true;}
                 input->deleteLater();
             });
             input->start("python3",{QDir::current().filePath("tools/campaign-quit-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--answer",run->quitPass?"yes":"no","--experiment",session.evidenceDirectory(),"--output",QFileInfo(path).dir().filePath(QString("quit-input-%1.json").arg(run->quitPass))});
@@ -194,7 +194,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             }
         }
         if(p.fallback){finish(false,"Native rendering fell back to the original window");return;}
-        if(normalQuit&&run->stage==9&&run->quitPass==0&&run->quitAnswered&&p.active&&p.frames>=run->frameBase+3){
+        if(normalQuit&&run->stage==9&&run->quitPass==0&&run->quitAnswered&&campaignResumeConfirmed(p,run->frameBase,run->resumeSourceBase,qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1")){
             if(!snapshot("quit-no-resumed"))return;
             run->quitPass=1;run->stage=7;
             window.activateWindow();window.raise();

@@ -78,7 +78,7 @@ public:
         const auto* result=renderWorker_?renderWorker_->result():commands_?commands_->result():nullptr;
         return {nativeCommandFrames_,nativeActive(),nativeFallback_,nativePaintedFrames_,renderWorker_?renderWorker_->recoveries():commands_?commands_->recoveries():0,
             !residentWorldError_.isEmpty()?residentWorldError_:renderWorker_?renderWorker_->error():commands_?commands_->error():QString(),
-            result?QString::fromStdString(result->driver.renderer):QString(),result?result->stats.presentationPixels:0};
+            result?QString::fromStdString(result->driver.renderer):QString(),result?result->stats.presentationPixels:0,result?result->residentWorldImports:0};
     }
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={},bool nativeMusic=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {

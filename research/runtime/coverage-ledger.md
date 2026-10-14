@@ -8868,3 +8868,31 @@ carry, complete runner validation and60FPS remain separate pending milestones.
 History `ee3a1e42..ea97c742` verifies29 exact transitions/no missing receipts.
 Original manifests/private cleanup pass; reviewed archival plans are not executed
 and no data is pruned after free space recovers to127GiB.
+
+### Imported World display during pending delivery — 2026-10-13
+
+[Pending World display](pending-world-display.md) separates the last imported
+immutable World from the next completed source. Opt-in async presentation keeps
+matching sealed UI/World displayable while ordered command import waits; source
+FIFO, verified returns, two credits, simulation, and the comparison mode remain
+unchanged. Source admission no longer waits for the display deadline. Resident
+Quit-No tests require three new source imports beyond the post-answer base.
+
+Current TITAN controls `run-q3vumvu1` pass authored delayed-import red/blue pixels,
+clock/credit and resume checks, 128 actual World native-word comparisons, plus
+worker, presentation, lease/retirement and hitch-capture checks. First live
+`run-666f2v5_` menu retirement and final-source `run-23a79onx` 18.61690 Hz
+performance failure remain preserved. The unchanged-source `run-s_dutjcz` passes
+the complete casting/combat/spell/portrait/menu/Quit journey at 19.16361 engine
+Hz and 58.77168 native World FPS, with 5200 balanced generations and 60 pending
+redraws, no native error or ordinary readbacks, stable inputs/sources and verified
+original manifests. This is scoped native live observation, not equivalence,
+full replacement, stable source throughput, scanout, interpolation, or 60 FPS.
+
+Largest retained 352.023 ms paint gap contains 22 native World frames and 27
+export refusals; GUI pickup/output leases stall while native rendering continues.
+All four retained gaps are outside sampled gameplay-rate spans; non-world/cold/
+hidden/movie paint continuity is excluded. Exact GUI and original command-delay
+causes remain pending. Historical shared-source evidence stays historical; no
+old hashes were refreshed. History `ea97c742..75170b38` reviews 18 exact committed
+transitions with zero missing receipts, independently of this uncommitted delta.
