@@ -33,6 +33,64 @@ def lifetime_fixture(methods,objects,related=None,failures=(),timeline=None,fram
 
 
 class Lifetimes(unittest.TestCase):
+    def exposure(self, raw, journal):
+        return analyze_lifetimes(raw, journal)['mutator_alias_exposure']
+
+    def test_prior_successful_query_classifies_shared_competitor(self):
+        timeline=((1,1),(1,2),(1,3),(2,1),(2,2),(3,1),(3,2),(3,3),(2,3))
+        for failures, expected in (((),1),((1,),0)):
+            r=self.exposure(*lifetime_fixture((0,5,5),(11,11,12),{1:12},
+                            failures=failures,timeline=timeline,frame_entry=2))
+            f=r['frames'][0]
+            self.assertEqual(f['known_shared_competing_mutation_count'],expected)
+            self.assertEqual(len(f['unresolved_listed_competing_entries']),1-expected)
+            self.assertFalse(r['disjoint_backing_storage_proved'])
+            self.assertFalse(r['actual_writes_proved'])
+            self.assertFalse(r['exclusive_frame_ownership_proved'])
+
+    def test_future_query_does_not_reclassify_returned_competitor(self):
+        for timeline in (
+            ((1,1),(1,2),(2,1),(2,2),(2,3),(1,3),(3,1),(3,2),(3,3)),
+            ((1,1),(1,2),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3),(1,3))):
+            r=self.exposure(*lifetime_fixture((5,5,0),(11,12,11),{3:12},timeline=timeline))
+            f=r['frames'][0]
+            self.assertEqual(f['known_shared_competing_mutation_count'],0)
+            self.assertEqual(f['unresolved_listed_competing_entries'],[2])
+
+    def test_query_return_during_overlap_can_establish_shared_identity(self):
+        timeline=((1,1),(2,1),(3,1),(3,2),(1,2),(2,2),(3,3),(2,3),(1,3))
+        r=self.exposure(*lifetime_fixture((5,5,0),(11,12,11),{3:12},timeline=timeline))
+        shared=r['frames'][0]['known_shared_relations']
+        self.assertEqual(len(shared),1)
+        self.assertEqual(shared[0]['observed_event'],4)
+        self.assertEqual(shared[0]['entry'],2)
+
+    def test_shared_read_source_does_not_assert_actual_writes(self):
+        timeline=((1,1),(1,2),(2,1),(2,2),(2,3),(1,3))
+        r=self.exposure(*lifetime_fixture((5,5),(11,12),{1:77,2:77},timeline=timeline))
+        f=r['frames'][0]
+        self.assertEqual(f['known_shared_competing_mutation_count'],1)
+        self.assertEqual(f['known_shared_relations'][0]['shared_owner_groups'],[77])
+        self.assertFalse(r['actual_writes_proved'])
+
+    def test_attached_surface_and_unrelated_generation_stay_unresolved(self):
+        timeline=((1,1),(1,2),(1,3),(2,1),(2,2),(3,1),(3,2),(3,3),(2,3))
+        r=self.exposure(*lifetime_fixture((12,5,5),(11,11,12),{1:12},
+                                        timeline=timeline,frame_entry=2))
+        self.assertEqual(r['frames'][0]['unresolved_listed_competing_entries'],[3])
+        self.assertEqual(r['frames_with_known_shared_competitors'],0)
+
+    def test_competitor_listing_cap_preserves_unclassified_denominator(self):
+        timeline=((1,1),(1,2))+tuple((entry,phase) for entry in range(2,259)
+                                   for phase in (1,2,3))+((1,3),)
+        r=self.exposure(*lifetime_fixture((5,)*258,(11,)*258,timeline=timeline))
+        f=r['frames'][0]
+        self.assertEqual(f['competing_mutation_count'],257)
+        self.assertEqual(f['known_shared_competing_mutation_count'],256)
+        self.assertEqual(f['unlisted_competing_mutation_count'],1)
+        self.assertFalse(f['competitor_listing_complete'])
+        self.assertEqual(r['frames_with_unlisted_competitors'],1)
+
     def test_successful_query_pairs_lock_and_unlock_on_distinct_interfaces(self):
         r=analyze_lifetimes(*lifetime_fixture((5,0,25,32),(1,11,12,11),{2:12}))
         self.assertEqual(r['lease_gaps'],[]);self.assertEqual(r['remaining_leases'],[])

@@ -9507,3 +9507,37 @@ accounting. Next inspect temporal QueryInterface aliases and CPU/DC lease exposu
 in the retained 120-update original capture using the existing guarded analyzer.
 All 47 journey requirements, 21 operations and steps 3–7 remain open. No engine
 status promotion, gameplay change, further cleanup or historical hash refresh.
+
+
+## Step 2 temporal mutator relationships (2026-10-14)
+
+Commit 0107fe2c applies the authorized worktree1392 GiB cap and retains the four-run
+120-interval cadence comparison. Its twelve exact parent/current receipts review
+with zero history gaps. Physical free-space protection remains independent.
+
+Offline lifetime analysis of the pinned current auxiliary-disabled120-update
+original capture retains74 successful query links,1804 matched CPU/DC leases,
+zero lease gaps/remaining leases and139 observed zero-reference retirements.
+Of859 physical witnesses,468 overlap another observed open lease and none overlap
+a lease on a query-linked source/destination.570 overlap a conservative mutator.
+These are observed interface lifetimes, not complete backing-storage ownership.
+
+The refined analyzer classifies local generations/query aliases only while each
+listed competitor's original body overlaps the witness interval. Queries after
+that body returns cannot repair its classification; failed queries, attachment
+acquisition and unrelated generations remain unresolved. The256-entry listing
+limit retains its full unlisted denominator. Common read sources cannot prove
+writes, disjoint storage or exclusive frame ownership. Six added alias guards,
+ten existing lifetime guards and eight interval guards pass.
+
+Fresh analysis02 preserves every pre-change lifetime result field.139 witnesses
+have217 known-shared BltFast competitors;515 have2052 unresolved competitors,
+including84 witnesses with both categories. No competitors are unlisted here.
+Pre-change analysis01 preserves its older source hashes rather than refreshing
+them. Both results are static pinned-journal analyses; original code is not rerun.
+
+Reassessment: temporal alias classification makes570 observed overlapping
+witnesses more explicit but cannot close unknown aliases/raw writers, whole
+source lifetimes, source-frame ownership, all output routes or semantic actions.
+Step2 remains active and all47/21closures plus steps3–7 remain open. No native
+pixel parity, driver completion, new PE32 forwarding or live replacement claim.

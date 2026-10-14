@@ -37725,7 +37725,9 @@
         "DRAW02.draw02-source-points-api-legacy-fixture-01-20261012",
         "DRAW02.draw02-source-points-api-physical-fixture-01-20261012",
         "DRAW02.draw02-input-point-api-baseline-01-20261012",
-        "DRAW02.draw02-aux-default-api-physical-02-20261013"
+        "DRAW02.draw02-aux-default-api-physical-02-20261013",
+        "DRAW02.current120-lifetime-01-20261014",
+        "DRAW02.current120-mutator-alias-02-20261014"
       ],
       "status": {
         "understanding": "scoped",
@@ -37739,7 +37741,8 @@
         "New physical API mode is a bounded reference-only increment. Synthetic ACK tests do not acquire original frames; actual X11 witnesses, source input bindings, all presentation/GDI/movie routes, semantic input/lifetime and full journey admission remain pending. Historical forwarding/original capture hashes are preserved and shared changes require new comparisons.",
         "Shared producer depth/surface state requires concurrency-safe ownership before source binding; call intervals do not make API physical witnesses complete presented frames.",
         "Temporal QueryInterface grouping explains local-interface mismatches in the pinned585witness capture; this offline reanalysis does not rerun original code or establish immutable producers, physical causality or all backing aliases.",
-        "New auxiliary readback is explicit opt-in and adds driver calls; default metadata/physical behavior remains independently tested. Header dependency requires fresh source accounting; historical fixtures remain with original hashes and scope contracts. No baseline observer noninterference or GPU/CPU ownership promotion."
+        "New auxiliary readback is explicit opt-in and adds driver calls; default metadata/physical behavior remains independently tested. Header dependency requires fresh source accounting; historical fixtures remain with original hashes and scope contracts. No baseline observer noninterference or GPU/CPU ownership promotion.",
+        "Offline temporal mutator surface relationships add source changes to lifetime analyzer/tests; pre-change lifetime01remains historical. Fresh02passes24synthetic guards and preserves all earlier lifetime fields, but classifies only observed local-generation/QueryInterface relationships. No fresh PE32 forwarding, original reexecution, native pixel parity, driver ordering or full ownership validation is asserted."
       ]
     },
     {
@@ -47613,6 +47616,44 @@
       "remaining_gaps": [
         "Fresh denominator guard passes missing/duplicate/changedcanvas/malformedhash refusals and preserves mismatch pixelcountunknown. Current defaultoff policy comparison matches all2406checkpoint hashes. Prior refusal01is retained. Fresh policy02matches all2400checkpoint hashes, including the two historically failed1600pixel checkpoints; historical default reports remain failed and unchanged. Need further independent cohorts, mismatch localization when needed, original all-writer/view/GPUCPU, cadence/semantic controls and all47/21closures.",
         "Fresh current policy validates7209checkpoint identities across2403/2406/2400cohorts plus67Auxbuffers, while preserving all original reports/hashes and three separate default CPU failures. This is scoped offline execution only; remaining source/all-writer/view/GPUCPU/route/cadence/semantic boundaries and all47/21closures remain open."
+      ]
+    },
+    {
+      "id": "NR.drawing-mutator-alias-exposure",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Temporal known-surface relationships for competing observed mutators",
+      "scope": "Classify the bounded listed competing original surface calls at physical API witnesses using local generations and only successful QueryInterface links already observed while the competitor body overlaps the witness interval. Retain unlinked backing relationships and unlisted competitors as unresolved. A common source may be read by both calls; shared identity is not proof of a write, disjointness, exclusive ownership, driver ordering or complete physical presentation.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-mutator-alias-exposure.md"
+      ],
+      "implementation": [
+        "tools/drawing_surface_lifetimes.py",
+        "tools/analyze-drawing-lifetimes.py"
+      ],
+      "tests": [
+        "tests/test-drawing-surface-lifetimes.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_call_intervals.py",
+        "tools/drawing_api_session.py",
+        "tests/test-drawing-call-intervals.py"
+      ],
+      "evidence": [
+        "DRAW02.current120-mutator-alias-02-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Temporal shared-generation classification is pending synthetic guards and pinned original-journal analysis. Unknown backing aliases, raw CPU writes, all output routes, driver completion and complete source/frame/lifetime or47/21journey closure remain unproved.",
+        "Six added alias-exposure tests plus ten lifetime and eight interval guards pass. Fresh pinned original120journal analysis02retains859witnesses;139have217known-shared BltFast competitors,515have2052unresolved competitors,84both,0unlisted. All pre-change lifetime result fields remain identical, including1804matched leases and0known source/destination lease exposure. Unknown aliases/raw CPU writers/actual writes/disjointness/driver ordering/exclusive source-frame ownership/all routes/full47/21closure remain open."
       ]
     }
   ],
@@ -102485,6 +102526,42 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.current120-lifetime-01-20261014",
+      "kind": "static",
+      "scope": "Pre-change offline lifetime analysis of pinned original120-update capture:74successful QueryInterface links/1804CPU-DCleases/0gaps/0remaining,859witnesses/468with global lease exposure/0with known source-destination lease exposure/570with competing mutators. Earlier source hashes retained; no current-code, all-backing-alias, raw-write, driver or ownership claim.",
+      "record": "research/runtime/draw02-current120-lifetime-01.json",
+      "sha256": "c6038436046c7cb4906a5633660b54b5df8594db44b6b607a11c8a5135ecc70a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.current120-mutator-alias-02-20261014",
+      "kind": "static",
+      "scope": "Fresh source-stable offline temporal alias classification and24synthetic guards.859witnesses preserve all earlier lifetime fields;139have217known shared competing BltFast calls,515have2052unresolved listed competitors,84have both.0unlisted competitors. Query links observed only during competing body overlap; no disjointness, actual-write, exclusive ownership, native parity or complete journey proof.",
+      "record": "research/runtime/draw02-current120-mutator-alias-02.json",
+      "sha256": "2a0409ebd70d6b302064168e88813d21b7cfd64da68991c481d27527502a0f08",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -114646,8 +114723,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-approved-budget-05-20261014.json",
-    "sha256": "2779df7d420d8025b459b761fbce02050e9c9717777aacf35e05527fc560a516"
+    "path": "research/runtime/coverage/source-index-draw02-mutator-alias-20261014.json",
+    "sha256": "5258b2d7104baaab30216190ebe322f9f0521ea4034b85c4cac07c7f95501eb3"
   },
   "claim_bindings_required": true
 }
