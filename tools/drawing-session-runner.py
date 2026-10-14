@@ -30,6 +30,10 @@ if metadata.get('wine_worker_context'):os.environ['MNM_DRAW_WINE_WORKER_CONTEXT'
 else:os.environ.pop('MNM_DRAW_WINE_WORKER_CONTEXT',None)
 if metadata.get('source_byte_witness'):os.environ['MNM_DRAW_SOURCE_BYTES']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_BYTES',None)
+if metadata.get('source_pending_copy'):os.environ['MNM_DRAW_SOURCE_PENDING_COPY']='1'
+else:os.environ.pop('MNM_DRAW_SOURCE_PENDING_COPY',None)
+if metadata.get('source_write_trace'):os.environ['MNM_DRAW_SOURCE_WRITE_TRACE']='1'
+else:os.environ.pop('MNM_DRAW_SOURCE_WRITE_TRACE',None)
 if metadata.get('source_readonly_lease'):os.environ['MNM_DRAW_SOURCE_LEASE']='1'
 else:os.environ.pop('MNM_DRAW_SOURCE_LEASE',None)
 if metadata.get('source_worker_lease'):os.environ['MNM_DRAW_SOURCE_WORKER_LEASE']='1'
@@ -40,6 +44,7 @@ if metadata.get('hud_input_point'):os.environ.update(MNM_DRAW_INPUT_POINT='1',MN
 if metadata.get('hud_state'):os.environ['MNM_DRAW_HUD_STATE_FILE']='Z:'+str(root/'capture/hud-state.bin').replace('/','\\')
 if metadata.get('copy_order'):os.environ['MNM_DRAW_COPY_ORDER']='1'
 else:os.environ.pop('MNM_DRAW_COPY_ORDER',None)
+if metadata.get('actor_latches'):os.environ['MNM_DRAW_ACTOR_LATCH_FILE']='Z:'+str(root/'capture/actor-latches.bin').replace('/','\\')
 if metadata.get('region_input'):os.environ['MNM_DRAW_REGION_INPUT_FILE']='Z:'+str(root/'capture/region-input.bin').replace('/','\\')
 if metadata.get('region_track_slot') is not None:os.environ['MNM_DRAW_REGION_TRACK_SLOT']=str(metadata['region_track_slot'])
 else:os.environ.pop('MNM_DRAW_REGION_TRACK_SLOT',None)
@@ -64,6 +69,18 @@ if metadata.get('wine_map_storage_point'):os.environ['MNM_DRAW_WINE_MAP_STORAGE'
 else:os.environ.pop('MNM_DRAW_WINE_MAP_STORAGE',None)
 if metadata.get('wine_resource_copy'):os.environ['MNM_DRAW_WINE_RESOURCE_COPY']='1'
 else:os.environ.pop('MNM_DRAW_WINE_RESOURCE_COPY',None)
+os.environ.pop('MNM_DRAW_WINE_SOURCE_MAP_ATTEMPTS',None)
+os.environ.pop('MNM_DRAW_WINE_SOURCE_MAP_BYTES',None)
+if metadata.get('wine_gpu_completion'):
+    if hashlib.sha256(Path('/usr/lib/wine/i386-windows/opengl32.dll').read_bytes()).hexdigest()!=metadata['opengl32_sha256']:raise ValueError('Installed OpenGL module changed')
+    os.environ['MNM_DRAW_WINE_GPU_COMPLETION']='1'
+else:os.environ.pop('MNM_DRAW_WINE_GPU_COMPLETION',None)
+if metadata.get('wine_source_version'):os.environ['MNM_DRAW_WINE_SOURCE_VERSION']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_VERSION',None)
+if metadata.get('wine_source_map'):os.environ['MNM_DRAW_WINE_SOURCE_MAP']='2' if metadata.get('wine_source_map_bounded') else '1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_MAP',None)
+if metadata.get('wine_source_descriptor'):os.environ['MNM_DRAW_WINE_SOURCE_DESCRIPTOR']='1'
+else:os.environ.pop('MNM_DRAW_WINE_SOURCE_DESCRIPTOR',None)
 if metadata.get('wine_resource_map'):os.environ['MNM_DRAW_WINE_RESOURCE_MAP']='1'
 else:os.environ.pop('MNM_DRAW_WINE_RESOURCE_MAP',None)
 os.environ['MNM_DRAW_SESSION_MODE']=metadata['observer_mode']

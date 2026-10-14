@@ -1,4 +1,7 @@
 /* External snapshots only, taken between accepted protection and restoration. */
+typedef u32(WIN* SourceAdmission)(const u32*,u32);
+static SourceAdmission source_admission_getter;
+static u32 source_held_pending_copy;
 static u32 source_held_enabled,source_held_records,source_held_planes,source_held_total;
 static HANDLE source_held_file;
 static u8* source_held_first;
@@ -6,7 +9,8 @@ static u32 source_held_lease,source_held_api,source_held_canvas;
 static int source_held_open(void){
  char flag[2];u32 n=GetEnvironmentVariableA("MNM_DRAW_SOURCE_HELD_SNAPSHOT",flag,2);if(!n)return 1;if(n!=1||flag[0]!='1'||!source_worker_lease_enabled)return 0;
  char name[600];path(name,"source-held-snapshot.bin");source_held_file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(source_held_file==(HANDLE)-1)return 0;
- u32 h[16]={0};copy(h,"MNMSHB01",8);h[2]=1;h[3]=192;h[4]=0x40209ca7;h[5]=2048;h[6]=1024;h[7]=1024u*1024u*1024u;if(!write(source_held_file,h,64))return 0;source_held_enabled=1;return 1;
+ char pending_flag[2];u32 pending_n=GetEnvironmentVariableA("MNM_DRAW_SOURCE_PENDING_COPY",pending_flag,2);if(pending_n&&(pending_n!=1||pending_flag[0]!='1'))return 0;source_held_pending_copy=pending_n!=0;
+ u32 h[16]={0};copy(h,"MNMSHB01",8);h[2]=source_held_pending_copy?2:1;h[3]=192;h[4]=0x40209ca7;h[5]=2048;h[6]=1024;h[7]=1024u*1024u*1024u;if(!write(source_held_file,h,64))return 0;source_held_enabled=1;return 1;
 }
 /* One independent failure record; accepted journal format remains unchanged. */
 static void source_held_refuse(struct Context* c,u32 phase,u32 reason,const u32* snapshot){
@@ -23,7 +27,11 @@ static void source_held_capture(struct Context* c,u32 phase){
  u8* pixels=VirtualAlloc(0,960000,0x3000,4);if(!pixels)source_held_refuse(c,phase,9,0);u32 r[48]={0};r[1]=phase;r[2]=c->r[29];r[3]=GetCurrentThreadId();r[4]=GetTickCount();r[5]=c->r[4];r[6]=c->r[3];r[10]=c->source_lease;
  r[7]=source_bytes_getter((void*)c->args[2],r+16,r+32,pixels,960000);
  if(r[7])source_held_refuse(c,phase,1,r);
- if(!equal(r+16,r+32,64)||r[16]!=64||r[17]!=1||r[18]!=19||!r[22]||r[23]!=800||r[24]!=600||r[25]!=800||r[21]||r[28]>1||r[29])source_held_refuse(c,phase,2,r);
+ if(!equal(r+16,r+32,64)||r[16]!=64||r[17]!=1||r[18]!=19||!r[22]||r[23]!=800||r[24]!=600||r[25]!=800||r[21]||(!source_held_pending_copy&&r[28]>1)||r[29])source_held_refuse(c,phase,2,r);
+ if(r[28]>1){
+  if(!source_admission_getter){void* scene=GetModuleHandleA("MnmScene.dll");source_admission_getter=scene?(SourceAdmission)GetProcAddress(scene,"SceneDrawingSourceAdmissionV1"):0;}
+  if(!source_held_pending_copy||!source_admission_getter||!(r[13]=source_admission_getter(r+16,64)))source_held_refuse(c,phase,11,r);
+ }
  if(c->args[0]||c->args[1]||!readable((void*)c->args[3],16)||((u32*)c->args[3])[0]||((u32*)c->args[3])[1]||((u32*)c->args[3])[2]!=800||((u32*)c->args[3])[3]!=600)source_held_refuse(c,phase,3,r);
  if(phase==1){source_held_first=pixels;source_held_lease=c->source_lease;source_held_api=c->r[29];source_held_canvas=r[22];}
  else{if(source_held_canvas!=r[22])source_held_refuse(c,phase,4,r);if(!equal(source_held_first,pixels,960000))source_held_refuse(c,phase,5,r);if(source_worker_lease.count!=source_worker_lease.completed||!source_worker_lease.count)source_held_refuse(c,phase,6,r);}

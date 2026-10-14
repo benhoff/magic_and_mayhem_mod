@@ -5,17 +5,46 @@ import json
 from pathlib import Path
 from drawing_api_session import BUILD,sha
 from drawing_engine_windows import analyze
-from drawing_diagnostic_cadence import compare
+from drawing_diagnostic_cadence import compare,results_action
 from drawing_process_exit import decode as decode_process_exit
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def executed_schedule(record,raw,name):
-    if record['sources'].get(name)!=sha(raw):raise ValueError('Declared input schedule fingerprint missing/different')
-    expected=json.loads(raw)['actions'];actual=record['input_schedule']['actions']
-    if len(expected)!=len(actual) or any(any(observed.get(k)!=v for k,v in wanted.items()) for wanted,observed in zip(expected,actual)):
-        raise ValueError('Executed input actions differ from declared schedule')
-    return sha(raw)
+def executed_schedule(report, raw=None, name=None):
+    """Verify a selected declaration, or discover its unique executed schedule."""
+    root=ROOT
+    if isinstance(raw,Path) and name is None:
+        root=raw;raw=None
+    observed=report.get('input_schedule',{})
+    if observed.get('success') is not True or observed.get('error') or not observed.get('actions'):
+        raise ValueError('Successful executed input schedule required')
+    metadata={'ordinal','start_ms','end_ms','journal_bytes_before_image','journal_bytes_after_image',
+              'presentation_file','synchronized_original_frame'}
+    actions=[];previous=0
+    for ordinal,row in enumerate(observed['actions'],1):
+        start,end=row.get('start_ms'),row.get('end_ms')
+        if type(row.get('ordinal')) is not int or row['ordinal']!=ordinal or type(start) is not int or type(end) is not int or start<previous or end<start:
+            raise ValueError('Executed input action order/timing')
+        actions.append({k:v for k,v in row.items() if k not in metadata});previous=end
+    encode=lambda value:json.dumps(value,sort_keys=True,separators=(',',':'))
+    if name is not None:
+        if not isinstance(raw,bytes) or report['sources'].get(name)!=sha(raw):
+            raise ValueError('Declared input schedule fingerprint missing/different')
+        if encode(json.loads(raw).get('actions'))!=encode(actions):
+            raise ValueError('Executed input actions differ from declared schedule')
+        return sha(raw)
+    if raw is not None:raise ValueError('Explicit schedule bytes require a declared name')
+    matches=[]
+    for declared,digest in report['sources'].items():
+        path=Path(declared)
+        if not declared.startswith('tests/fixtures/drawing-journeys/') or not path.name.endswith('-schedule.json'):
+            continue
+        if path.is_absolute() or '..' in path.parts:raise ValueError('Unsafe declared input schedule')
+        data=(root/path).read_bytes()
+        if sha(data)!=digest:raise ValueError('Declared input schedule changed')
+        if encode(json.loads(data).get('actions'))==encode(actions):matches.append(dict(path=declared,sha256=digest))
+    if len(matches)!=1:raise ValueError('Executed input schedule missing/ambiguous in declared sources')
+    return matches[0]
 
 def read(path,schedule,scheduled_bytes):
     raw=path.read_bytes();r=json.loads(raw)
@@ -45,6 +74,7 @@ def main():
     for path in a.diagnostic:
         r,identity=read(path,schedule,scheduled_bytes)
         if r.get('cadence_control') or not r['staging']['api_observer_enabled']:raise ValueError('Diagnostic drawing capture required')
+        if results_action(r['staging'].get('results_key_hold_ms',60))!=results_action(s.get('results_key_hold_ms',60)):raise ValueError('Control Results key policy mismatch')
         if identity['schedule_sha256']!=control_id['schedule_sha256'] or r['staging']['preferences']!=s['preferences'] or r['input_binary_sha256']!=control['input_binary_sha256'] or r['staging']['binaries']['MnmEngineCadence.dll']!=s['binaries']['MnmEngineCadence.dll']:
             raise ValueError('Control schedule/settings/counter/input executable mismatch')
         comparisons.append(dict(reference=identity,measurement=compare(control['engine_update_observation'],r['engine_update_observation'])))

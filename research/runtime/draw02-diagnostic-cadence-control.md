@@ -44,3 +44,43 @@ The control median is 56.24155 ms. These are descriptive distributions for
 retained runs; they do not isolate instrumentation cost or prove equal workload,
 unobtrusive gameplay, source/frame ownership, semantic completion or 60 FPS.
 Two storage refusals remain separate from the admitted comparison result.
+
+The pending-copy continuation corrects comparison input provenance: each successful
+input runner action row must match exactly one hash-matched declared schedule,
+including ordinal/timing order and every action parameter. A fixed short schedule
+name in a source declaration cannot establish the executed inputs. Eight offline
+methods pass in `draw02-pending-policy-cadence-fixture-01.json`; previous reports
+and their fingerprints remain immutable. New original control/comparison evidence
+is required for the corrected comparator. Timing remains an instrumentation
+measurement, with randomized workload and unobtrusive behavior unproved.
+
+
+Fresh counter-only control01 now passes after an unchanged3GiB reservation finds
+104.155GiB free. Normal original Quit, current source fingerprints and manifest
+checks pass. Corrected comparison01 independently verifies actual long interactive
+schedule/actions, settings, input/counter binary and both raw cadence traces.
+It compares the first 120 queued updates: diagnostic/control median 7.6751x and
+p95 16.2093x. This distinguishes costly diagnostics from counter-only observation;
+randomized workload and uninstrumented gameplay remain unproved. No acquisition,
+journey/native-parity, source ownership or replacement milestone is promoted.
+
+Current main free space is102.64GiB after the control, below the3GiB exact-review
+and5GiB staged/hook reservations. The still-local remainder of the five previously
+reviewed older completed runs is9248files/7.642GiB. Cold backup verification is
+being prepared with no local deletion; previous cleanup approval does not extend
+to this remainder. Current original02/control01 raw references remain hot.
+
+The fresh source-descriptor control/comparison01 uses the same actual short
+schedule and current binaries, comparing120common queued updates at
+median1.216344×/p951.900047×. Both original runs verify unchanged originals and
+normal Quit. This scoped combined diagnostic timing result retains randomized
+workload and unobtrusive-capture limitations. See the source-descriptor checkpoint
+and explicit user storage override; no historical fingerprints are refreshed.
+
+Fresh mapped-source control/comparison01 uses the current code, intact pinned
+local prefix and actual short schedule/settings/input/counter binaries/raw trace.
+It compares120common queued updates at median1.266315×/p952.161535× combined
+diagnostic timing. Both originals exit normally with unchanged manifests.
+Randomized-work, unobtrusive-capture and whole acquisition limitations remain.
+
+The matching control05retry from original05's intact prefix completes834windows/normalQuit. Strict comparison02 covers120commonqueuedupdates: combined median2.132696×/p9532.359558×. Same executed schedule,600ms Results policy, preferences and input/counter binaries; randomized workload and unobtrusive/global equivalence remain unproved.

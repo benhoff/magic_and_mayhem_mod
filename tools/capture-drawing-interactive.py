@@ -21,8 +21,15 @@ def inspect_copy_order(report,capture,failure):
     return failure
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=[*range(1,17),32,120],help='Bind original-active producer metadata through the first1..16or32World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--campaign-pause',action='store_true',help='Acquire fresh campaign Mini/Preferences/resume route');p.add_argument('--campaign-guidance',action='store_true',help='Allow at most six original guidance page attempts, requiring actual Mini state');p.add_argument('--cursor-source-gate',action='store_true',help='Added diagnostic zero-timeout cursor mutex gate; partial snapshot only');p.add_argument('--cursor-mutex',action='store_true',help='Observe original cursor mutex import calls without adding waits');p.add_argument('--region-input',action='store_true',help='Observe bounded original Region mouse callback entry/return');p.add_argument('--hud-input-point',action='store_true',help='Bind HUD samples to exact completed original cursor journal records');p.add_argument('--hud-state',action='store_true',help='Observe read-only original hit candidates and actual camera fields');p.add_argument('--semantic-state',action='store_true',help='Record bounded original menu-thread world/mode/animation scalar state');p.add_argument('--canvas-storage-transitions',action='store_true',help='Retain every observed wrapper create/release/Lock entry and return');p.add_argument('--whole-updates',action='store_true',help='Retain source postlude through following accepted update');p.add_argument('--producer-update-binding',action='store_true',help='Bind source queue entries/returns to exact observed engine updates');p.add_argument('--engine-cadence',action='store_true',help='Retain actual original update identities, flush on normal original Quit');p.add_argument('--source-held-snapshot',action='store_true',help='Copy external source oracles while diagnostic worker lease holds protection');p.add_argument('--source-worker-lease',action='store_true',help='Retain diagnostic source lease until exact emitted worker returns');p.add_argument('--source-readonly-lease',action='store_true',help='Diagnosticread-onlysourcepagesduringAPIbodyonly');p.add_argument('--source-byte-witness',action='store_true',help='Retain originalCPUsourceoraclesatAPIentry/return');p.add_argument('--wine-worker-context',action='store_true',help='Sample portable activeworkercontextaroundEGLswaps');p.add_argument('--wine-blit-packet',action='store_true',help='Bind selected emitted command objects to worker IDs');p.add_argument('--wine-blit-worker',action='store_true',help='Observe pinned opcode42Wineworker metadata');p.add_argument('--wine-worker-producer-points',action='store_true',help='Observe source prefix bounds around actual Wine worker bodies');p.add_argument('--wine-texture-entry',action='store_true',help='Observe pinned internal Wine texture entry lifetimes');p.add_argument('--wine-retained-map-source',action='store_true',help='Query a last observed map address at exact source submission without claiming post-unmap ownership');p.add_argument('--wine-client-memory',action='store_true',help='Observe public client-memory binding and exact submitted source cache point');p.add_argument('--wine-map-storage-point',action='store_true',help='Associate successful public map buffers with known live recorder canvas storage');p.add_argument('--wine-resource-copy',action='store_true',help='Observe pinned public Wine resource-copy transfer boundaries');p.add_argument('--wine-resource-map',action='store_true',help='Observe pinned public Wine resource map/unmap metadata');p.add_argument('--wine-submission',action='store_true',help='Observe pinned Wine11.16DirectDraw submission metadata');p.add_argument('--cadence-control',action='store_true',help='Explicit counter/menu/input-only control; no drawing/source/Wine/display observer');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');p.add_argument('--copy-order',action='store_true',help='Observe copy request entry/return IDs without driver order inference');p.add_argument('--close-physical-on-source-complete',action='store_true',help='End the bounded EGL physical interval when requested whole-source completion is observed');p.add_argument('--region-track-slot',type=int,choices=range(256),help='Optional read-only requested actor slot independent of current hit');p.add_argument('--aux-save-readback',action='store_true',help='Opt-in extra read-only Lock/Unlock auxiliary pixels; changes diagnostic cache/timing');a=p.parse_args()
-    from drawing_diagnostic_cadence import validate_control
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--source-game',type=Path,required=True);p.add_argument('--prefix-template',type=Path,required=True);p.add_argument('--schedule',type=Path,default=ROOT/'tests/fixtures/drawing-journeys/interactive-schedule.json');p.add_argument('--report',type=Path,required=True);p.add_argument('--claims',type=Path);p.add_argument('--observer-mode',choices=['full','metadata','inputs','physical'],default='metadata');p.add_argument('--physical-peer',type=Path,help='Reference-only X11 peer; required for physical mode');p.add_argument('--physical-oracle-mib',type=int,choices=range(1,3073),default=1024);p.add_argument('--physical-transient-mib',type=int,choices=range(1,2049),default=256);p.add_argument('--producer-samples',type=int,choices=[*range(1,17),32,120],help='Bind original-active producer metadata through the first1..16or32World returns');p.add_argument('--egl-physical',action='store_true',help='Opt-in separate post-EGL physical viewport witnesses');p.add_argument('--x11-delivery-library',type=Path,help='Optional64-bit Unix metadata observer; no complete display-route claim');p.add_argument('--campaign-pause',action='store_true',help='Acquire fresh campaign Mini/Preferences/resume route');p.add_argument('--campaign-guidance',action='store_true',help='Allow at most six original guidance page attempts, requiring actual Mini state');p.add_argument('--cursor-source-gate',action='store_true',help='Added diagnostic zero-timeout cursor mutex gate; partial snapshot only');p.add_argument('--cursor-mutex',action='store_true',help='Observe original cursor mutex import calls without adding waits');p.add_argument('--region-input',action='store_true',help='Observe bounded original Region mouse callback entry/return');p.add_argument('--hud-input-point',action='store_true',help='Bind HUD samples to exact completed original cursor journal records');p.add_argument('--hud-state',action='store_true',help='Observe read-only original hit candidates and actual camera fields');p.add_argument('--semantic-state',action='store_true',help='Record bounded original menu-thread world/mode/animation scalar state');p.add_argument('--canvas-storage-transitions',action='store_true',help='Retain every observed wrapper create/release/Lock entry and return');p.add_argument('--whole-updates',action='store_true',help='Retain source postlude through following accepted update');p.add_argument('--producer-update-binding',action='store_true',help='Bind source queue entries/returns to exact observed engine updates');p.add_argument('--engine-cadence',action='store_true',help='Retain actual original update identities, flush on normal original Quit');p.add_argument('--source-held-snapshot',action='store_true',help='Copy external source oracles while diagnostic worker lease holds protection');p.add_argument('--source-worker-lease',action='store_true',help='Retain diagnostic source lease until exact emitted worker returns');p.add_argument('--source-readonly-lease',action='store_true',help='Diagnosticread-onlysourcepagesduringAPIbodyonly');p.add_argument('--source-byte-witness',action='store_true',help='Retain originalCPUsourceoraclesatAPIentry/return');p.add_argument('--wine-worker-context',action='store_true',help='Sample portable activeworkercontextaroundEGLswaps');p.add_argument('--wine-blit-packet',action='store_true',help='Bind selected emitted command objects to worker IDs');p.add_argument('--wine-blit-worker',action='store_true',help='Observe pinned opcode42Wineworker metadata');p.add_argument('--wine-worker-producer-points',action='store_true',help='Observe source prefix bounds around actual Wine worker bodies');p.add_argument('--wine-texture-entry',action='store_true',help='Observe pinned internal Wine texture entry lifetimes');p.add_argument('--wine-retained-map-source',action='store_true',help='Query a last observed map address at exact source submission without claiming post-unmap ownership');p.add_argument('--wine-client-memory',action='store_true',help='Observe public client-memory binding and exact submitted source cache point');p.add_argument('--wine-map-storage-point',action='store_true',help='Associate successful public map buffers with known live recorder canvas storage');p.add_argument('--wine-resource-copy',action='store_true',help='Observe pinned public Wine resource-copy transfer boundaries');p.add_argument('--wine-resource-map',action='store_true',help='Observe pinned public Wine resource map/unmap metadata');p.add_argument('--wine-submission',action='store_true',help='Observe pinned Wine11.16DirectDraw submission metadata');p.add_argument('--cadence-control',action='store_true',help='Explicit counter/menu/input-only control; no drawing/source/Wine/display observer');p.add_argument('--control',action='store_true',help='Run the same original menus/inputs with the API observer disabled');p.add_argument('--copy-order',action='store_true',help='Observe copy request entry/return IDs without driver order inference');p.add_argument('--close-physical-on-source-complete',action='store_true',help='End the bounded EGL physical interval when requested whole-source completion is observed');p.add_argument('--region-track-slot',type=int,choices=range(256),help='Optional read-only requested actor slot independent of current hit');p.add_argument('--aux-save-readback',action='store_true',help='Opt-in extra read-only Lock/Unlock auxiliary pixels; changes diagnostic cache/timing');p.add_argument('--results-key-hold-ms',type=int,choices=[60,600],default=60,help='Declared Results Escape duration; actual original state still required');p.add_argument('--actor-latches',action='store_true',help='Observe whole-pool raw latches independently of the current hit');p.add_argument('--source-pending-copy',action='store_true',help='Diagnostic protected-source admission of exact foreign tag32 copy metadata; alias writes still reject');p.add_argument('--wine-source-map-bounded',action='store_true',help='Diagnostic read mapping for every eligible RGB565 source up to800x600, bounded8192attempts/2GiB');p.add_argument('--wine-source-map',action='store_true',help='Bounded diagnostic read mapping of40x40/400x280RGB565 sources');p.add_argument('--wine-source-descriptor',action='store_true',help='Diagnostic extra public source format/access/geometry queries');p.add_argument('--wine-source-version',action='store_true',help='Reject observed resource writes or generation reuse between snapshot and selected worker');p.add_argument('--source-write-trace',action='store_true',help='Trace protected-page CPU writers and recorded canvas overlap during selected worker leases');p.add_argument('--wine-gpu-completion',action='store_true',help='Wait at most one second for a current-context GL fence before selected worker return');a=p.parse_args()
+    if a.campaign_pause and a.results_key_hold_ms!=60:p.error('Results key policy applies to Quick Battle only')
+    if a.wine_gpu_completion and not a.wine_blit_packet:p.error('GPU completion requires selected worker packet observation')
+    if a.wine_source_version and (not a.wine_source_map_bounded or not a.wine_blit_packet or not a.wine_resource_copy or a.wine_client_memory):p.error('Source version guard requires bounded maps, packets and resource copy; client point mode is separate')
+    if a.wine_source_map_bounded and not a.wine_source_map:p.error('Bounded source maps require source-map observation')
+    if a.wine_source_map and not a.wine_source_descriptor:p.error('Source map requires source descriptors')
+    if a.wine_source_descriptor and not (a.wine_submission and a.wine_texture_entry and a.wine_resource_map):p.error('Source descriptor requires Wine submission, internal texture lifetimes and public resource observation')
+    if a.source_pending_copy and not (a.source_readonly_lease and a.source_worker_lease and a.source_held_snapshot and a.producer_samples and a.canvas_storage_transitions):p.error("Pending-copy diagnostic requires source readonly/worker/held leases, producer capture and storage transitions")
+    from drawing_diagnostic_cadence import validate_control,results_action
     try:validate_control(a)
     except ValueError as error:p.error(str(error))
     if (a.observer_mode=='physical') != (a.physical_peer is not None):p.error('Physical mode requires exactly one physical peer')
@@ -30,6 +37,7 @@ def main():
     if a.hud_input_point and not a.hud_state:p.error('HUD input point requires HUD observation')
     if a.campaign_guidance and (not a.campaign_pause or not a.hud_state):p.error('Campaign guidance requires campaign HUD observation')
     if a.hud_state and (a.control or not a.semantic_state):p.error('HUD state requires semantic state and original observation, never control')
+    if a.actor_latches and (not a.region_input or not a.hud_input_point):p.error('Actor latches require Region callbacks and exact HUD input points')
     if a.region_input and (a.control or not a.hud_state or not a.semantic_state):p.error('Region input requires original HUD/semantic observation, never control')
     if a.region_track_slot is not None and not a.region_input:p.error('Region tracked slot requires Region observation')
     if a.cursor_source_gate and (a.control or a.cadence_control or a.cursor_mutex or not a.source_held_snapshot):p.error('Cursor source gate requires protected held snapshot diagnostic, never controls or observation-only cursor mutex hook')
@@ -47,6 +55,7 @@ def main():
     from drawing_input_point import validate_cadence_mode
     try:validate_cadence_mode(a)
     except ValueError as error:p.error(str(error))
+    if a.source_write_trace and not (a.source_readonly_lease and a.source_worker_lease and a.source_held_snapshot):p.error('Source write tracing requires read-only, worker and held snapshot leases')
     if a.source_held_snapshot and not a.source_worker_lease:p.error('Protected snapshots require worker lease')
     if a.source_worker_lease and (not a.source_readonly_lease or not a.wine_blit_packet):p.error('Worker lease requires read-only lease and exact packet binding')
     if a.source_readonly_lease and not a.source_byte_witness:p.error('Sourcelease requires sourcebytewitness')
@@ -65,7 +74,7 @@ def main():
     if a.egl_physical and (a.observer_mode!='physical' or not a.x11_delivery_library):p.error('EGL physical witnesses require physical/API mode and an EGL delivery library')
     if a.report.exists():p.error('Refusing evidence overwrite')
     if a.aux_save_readback and (a.observer_mode!='physical' or not a.producer_samples or not a.copy_order or not a.wine_blit_worker or not a.wine_blit_packet or a.control or a.cadence_control):p.error('Auxiliary readback requires explicit physical producer/copy/worker diagnostics')
-    names=['tools/drawing_input_point.py','tools/capture-drawing-interactive.py','tools/drawing-session-runner.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/build-drawing-session.py','tools/build-drawing-session-input.py','tools/build-menu-observer.py','tools/build-shadow-bridge.py','tools/prepare-shadow-experiment.py','tools/prepare-scene-observer.py','tools/run-game.sh','tools/run-opengl-game.py','tools/campaign_gameplay.py','runtime/drawing/session.c','runtime/drawing/source_points.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','tools/drawing_api_physical.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','runtime/shadow/win32_min.h','tests/drawing-session-input.cpp','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']
+    names=['tools/drawing_diagnostic_cadence.py','tools/drawing_input_point.py','tools/capture-drawing-interactive.py','tools/drawing-session-runner.py','tools/drawing_call_intervals.py','tools/drawing_api_session.py','tools/build-drawing-session.py','tools/build-drawing-session-input.py','tools/build-menu-observer.py','tools/build-shadow-bridge.py','tools/prepare-shadow-experiment.py','tools/prepare-scene-observer.py','tools/run-game.sh','tools/run-opengl-game.py','tools/campaign_gameplay.py','runtime/drawing/session.c','runtime/drawing/source_points.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/drawing/call_intervals.h','runtime/drawing/physical_fence.h','tools/drawing_api_physical.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','runtime/shadow/win32_min.h','tests/drawing-session-input.cpp','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'runtime/menu').glob('*') if x.suffix in ('.h','.c','.S')]
     names += [str(x.relative_to(ROOT)) for x in (ROOT/'protocols/include/mnm').glob('menu_v*.h')]
     if a.x11_delivery_library:names += ['runtime/display/x11_delivery.c','tools/build-drawing-x11-delivery.py','tools/drawing_x11_delivery.py','tools/drawing_process_snapshot.py','runtime/display/egl_physical.h','tools/drawing_egl_physical.py']
@@ -85,6 +94,7 @@ def main():
     if a.hud_input_point:names += ['runtime/drawing/input_point.h','protocols/include/mnm/drawing_input_point_v1.h','tools/drawing_input_point.py']
     if a.campaign_guidance:names += ['tools/drawing_campaign_guidance.py']
     if a.hud_state:names += ['runtime/menu/drawing_hud_state.h','tools/drawing_hud_state.py']
+    if a.actor_latches:names += ['runtime/menu/drawing_actor_latches.h','tools/drawing_actor_latches.py']
     if a.region_input:names += ['runtime/menu/drawing_region_input.h','tools/drawing_region_input.py']
     if a.cursor_source_gate:
         names += list(load('tools/build-cursor-source-gate.py').SOURCES)
@@ -95,9 +105,11 @@ def main():
     if a.wine_map_storage_point or a.wine_client_memory or a.wine_retained_map_source:names += ['runtime/drawing/storage_point_exports.h','tools/drawing_storage_point.py']
     if a.canvas_storage_transitions:names += ['runtime/scene/drawing_storage_transitions.h','tools/drawing_storage_transitions.py','protocols/include/mnm/drawing_storage_point_v2.h']
     if a.aux_save_readback:names += ['runtime/drawing/aux_save_readback.h','protocols/include/mnm/drawing_aux_save_readback_v1.h','tools/drawing_aux_save_readback.py']
+    if a.wine_gpu_completion:names += ['runtime/drawing/wine_gpu_completion.h','tools/drawing_gpu_completion.py']
+    if a.source_write_trace:names += ['runtime/scene/source_write_trace.h','tools/drawing_source_write_trace.py']
     if a.source_held_snapshot:names += ['runtime/drawing/source_held_snapshot.h','tools/drawing_source_held_snapshot.py','tools/drawing_source_held_refusal.py']
     if a.source_worker_lease:names += ['runtime/drawing/source_worker_lease.h','tools/drawing_source_worker_lease.py']
-    if a.source_readonly_lease:names += ['runtime/scene/drawing_source_lease.h','runtime/scene/source_pending_refusal.h','tools/drawing_source_pending_refusal.py','runtime/drawing/source_readonly_lease.h','tools/drawing_source_lease.py']
+    if a.source_readonly_lease:names += ['runtime/scene/source_pending_policy.h','tools/drawing_source_pending_admission.py','runtime/scene/drawing_source_lease.h','runtime/scene/source_pending_refusal.h','tools/drawing_source_pending_refusal.py','runtime/drawing/source_readonly_lease.h','tools/drawing_source_lease.py']
     if a.source_byte_witness:names += ['runtime/scene/drawing_source_bytes.h','runtime/drawing/source_byte_witness.h','tools/drawing_source_byte_witness.py']
     if a.wine_worker_context:names += ['runtime/drawing/wine_worker_context.h','runtime/display/egl_worker_context.h','protocols/include/mnm/drawing_worker_context_v1.h','tools/drawing_worker_context.py']
     if a.wine_blit_packet:names += ['runtime/drawing/wine_blit_packet.h','runtime/drawing/wine_blit_packet.S','tools/drawing_wine_blit_packet.py']
@@ -107,8 +119,11 @@ def main():
     if a.wine_retained_map_source:names += ['runtime/drawing/wine_retained_map_source.h','tools/drawing_wine_retained_map_source.py','runtime/scene/drawing_storage_point.h','protocols/include/mnm/drawing_storage_point_v1.h']
     if a.wine_client_memory:names += ['runtime/drawing/wine_client_memory.h','tools/drawing_wine_client_memory.py','tools/inspect-drawing-wine-client-memory.py','runtime/scene/drawing_storage_point.h','protocols/include/mnm/drawing_storage_point_v1.h']
     if a.wine_map_storage_point:names += ['runtime/drawing/wine_map_storage_point.h','runtime/scene/drawing_storage_point.h','protocols/include/mnm/drawing_storage_point_v1.h','tools/drawing_wine_map_storage_point.py']
+    if a.wine_source_map:names += ['runtime/drawing/wine_source_map.h','tools/drawing_wine_source_map.py']
+    if a.wine_source_descriptor:names += ['runtime/drawing/wine_source_descriptor.h','tools/drawing_wine_source_descriptor.py']
     if a.wine_resource_map:names += ['runtime/drawing/wine_resource_mapping.h','tools/drawing_wine_resource_mapping.py','tools/inspect-drawing-wine-resource-imports.py']
-    if a.wine_submission:names += ['runtime/drawing/wine_submission.h','runtime/drawing/wine_lifetime.h','runtime/drawing/wine_buffer.h','tools/drawing_wine_buffer.py','tools/inspect-drawing-wine-imports.py','tools/drawing_wine_submission.py','tools/drawing_wine_lifetime.py']
+    if a.wine_source_version:names += ['tools/drawing_source_version.py','tools/inspect-drawing-wine-client-memory.py']
+    if a.wine_submission:names += ['runtime/drawing/wine_source_version.h','runtime/drawing/wine_submission.h','runtime/drawing/wine_lifetime.h','runtime/drawing/wine_buffer.h','tools/drawing_wine_buffer.py','tools/inspect-drawing-wine-imports.py','tools/drawing_wine_submission.py','tools/drawing_wine_lifetime.py']
     sources={n:sha((ROOT/n).read_bytes()) for n in names};sources[str(a.schedule.resolve().relative_to(ROOT))]=sha(a.schedule.read_bytes())
     claims=json.loads(a.claims.read_text()) if a.claims else None
     if claims:sources.update(claims['sources'])
@@ -117,7 +132,9 @@ def main():
     if sha(original)!=BUILD:raise ValueError('Unsupported original executable; no staging writes')
     parent=ROOT/'working/experiments/drawing-api-session';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     game=run/'game';capture=run/'capture';capture.mkdir();x11_library=None;wine_submission=None
-    if a.wine_client_memory:load('tools/inspect-drawing-wine-client-memory.py').inspect(Path('/usr/lib/wine/i386-windows/ddraw.dll').read_bytes(),Path('/usr/lib/wine/i386-windows/wined3d.dll').read_bytes())
+    opengl_hash=sha(Path('/usr/lib/wine/i386-windows/opengl32.dll').read_bytes()) if a.wine_gpu_completion else None
+    if a.wine_gpu_completion and opengl_hash!='ea5c57f46e2bfe10e8ffdcbd1fba317c689b88b1bc25c3c7bb720b28ca7649d6':raise ValueError('Unsupported OpenGL module; no staging writes')
+    if a.wine_client_memory or a.wine_source_version:load('tools/inspect-drawing-wine-client-memory.py').inspect(Path('/usr/lib/wine/i386-windows/ddraw.dll').read_bytes(),Path('/usr/lib/wine/i386-windows/wined3d.dll').read_bytes())
     if a.wine_resource_map:load('tools/inspect-drawing-wine-resource-imports.py').inspect(Path('/usr/lib/wine/i386-windows/ddraw.dll').read_bytes(),Path('/usr/lib/wine/i386-windows/wined3d.dll').read_bytes())
     if a.wine_submission:
         pin=load('tools/inspect-drawing-wine-imports.py');wine_submission=pin.inspect(Path('/usr/lib/wine/i386-windows/ddraw.dll').read_bytes(),Path('/usr/lib/wine/i386-windows/wined3d.dll').read_bytes())
@@ -152,7 +169,7 @@ def main():
         binaries=([menu] if a.control else [drawing,menu])+([scene] if scene else [])+([cadence] if cadence else [])+([cursor_mutex] if cursor_mutex else [])+([cursor_gate] if cursor_gate else [])
         for binary in binaries:shutil.copy2(binary,game/binary.name)
         settings=load('tools/run-opengl-game.py');preferences=settings.disable_cd_music(game)+settings.skip_movies(game)
-        manifest={'aux_save_readback':a.aux_save_readback,'wine_worker_producer_points':a.wine_worker_producer_points,'copy_order':a.copy_order,'close_physical_on_source_complete':a.close_physical_on_source_complete,'region_track_slot':a.region_track_slot,'requested_environment':{'LIBGL_ALWAYS_SOFTWARE':env.get('LIBGL_ALWAYS_SOFTWARE')},'cursor_source_gate':a.cursor_source_gate,'cursor_mutex':a.cursor_mutex,'region_input':a.region_input,'hud_input_point':a.hud_input_point,'campaign_guidance':a.campaign_guidance,'hud_state':a.hud_state,'campaign_pause':a.campaign_pause,'semantic_state':a.semantic_state,'wine_resource_copy':a.wine_resource_copy,'canvas_storage_transitions':a.canvas_storage_transitions,'cadence_control':a.cadence_control,'wine_retained_map_source':a.wine_retained_map_source,'wine_client_memory':a.wine_client_memory,'wine_map_storage_point':a.wine_map_storage_point,'wine_resource_map':a.wine_resource_map,'whole_updates':a.whole_updates,'producer_update_binding':a.producer_update_binding,'engine_cadence':a.engine_cadence,'source_held_snapshot':a.source_held_snapshot,'source_worker_lease':a.source_worker_lease,'source_readonly_lease':a.source_readonly_lease,'source_byte_witness':a.source_byte_witness,'wine_worker_context':a.wine_worker_context,'wine_blit_packet':a.wine_blit_packet,'wine_blit_worker':a.wine_blit_worker,'wine_texture_entry':a.wine_texture_entry,'wine_submission':wine_submission,'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.'};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+        manifest={'aux_save_readback':a.aux_save_readback,'wine_worker_producer_points':a.wine_worker_producer_points,'copy_order':a.copy_order,'close_physical_on_source_complete':a.close_physical_on_source_complete,'region_track_slot':a.region_track_slot,'requested_environment':{'LIBGL_ALWAYS_SOFTWARE':env.get('LIBGL_ALWAYS_SOFTWARE')},'cursor_source_gate':a.cursor_source_gate,'cursor_mutex':a.cursor_mutex,'region_input':a.region_input,'hud_input_point':a.hud_input_point,'campaign_guidance':a.campaign_guidance,'hud_state':a.hud_state,'campaign_pause':a.campaign_pause,'semantic_state':a.semantic_state,'wine_resource_copy':a.wine_resource_copy,'canvas_storage_transitions':a.canvas_storage_transitions,'cadence_control':a.cadence_control,'wine_retained_map_source':a.wine_retained_map_source,'wine_client_memory':a.wine_client_memory,'wine_map_storage_point':a.wine_map_storage_point,'wine_resource_map':a.wine_resource_map,'whole_updates':a.whole_updates,'producer_update_binding':a.producer_update_binding,'engine_cadence':a.engine_cadence,'source_held_snapshot':a.source_held_snapshot,'source_worker_lease':a.source_worker_lease,'source_readonly_lease':a.source_readonly_lease,'source_byte_witness':a.source_byte_witness,'wine_worker_context':a.wine_worker_context,'wine_blit_packet':a.wine_blit_packet,'wine_blit_worker':a.wine_blit_worker,'wine_texture_entry':a.wine_texture_entry,'wine_submission':wine_submission,'egl_physical':a.egl_physical,'x11_delivery_library':x11_library,'schema':1,'source_sha256':BUILD,'binaries':{n:sha((game/n).read_bytes()) for n in ['Chaos.exe']+[b.name for b in binaries]},'producer_samples':a.producer_samples,'original_sections_unchanged':True,'preferences':preferences,'api_observer_enabled':not a.control,'observer_mode':a.observer_mode,'scope':'Original active stock Quick Battle; API/readback observation and XTest. No original simulation/raster body suppression.','wine_gpu_completion':a.wine_gpu_completion,'opengl32_sha256':opengl_hash,'source_write_trace':a.source_write_trace,'results_key_hold_ms':a.results_key_hold_ms,'wine_source_version':a.wine_source_version,'wine_source_map_bounded':a.wine_source_map_bounded,'wine_source_map':a.wine_source_map,'wine_source_descriptor':a.wine_source_descriptor,'source_pending_copy':a.source_pending_copy,'actor_latches':a.actor_latches};(run/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         raw=bytearray(106496);raw[:8]=b'MNMMCM12';struct.pack_into('<II',raw,8,12,len(raw));struct.pack_into('<III',raw,16,2,1,1);(run/'channel.bin').write_bytes(raw)
@@ -248,17 +265,18 @@ def main():
                 else:physical_action('campaign-mini-open',{'kind':'tap','key':'Escape','after_ms':1000});wait(17)
                 physical_action('campaign-mini-dwell',{'kind':'wait','after_ms':1500})
                 send(17,14);wait(10);physical_action('campaign-preferences-dwell',{'kind':'wait','after_ms':1500})
-                send(10,20);physical_action('campaign-resume',{'kind':'wait','after_ms':1500})
-                physical_action('campaign-mini-reopen',{'kind':'tap','key':'Escape','after_ms':600});wait(17);send(17,15)
+                send(10,20);physical_action('campaign-resume',{'kind':'wait','after_ms':4000})
+                physical_action('campaign-mini-reopen',{'kind':'tap','key':'Escape','after_ms':600});wait(17)
+                physical_action('campaign-mini-second-dwell',{'kind':'wait','after_ms':1500});send(17,15)
                 physical_action('campaign-confirm-yes',{'kind':'click','button':1,'x':265,'y':395,'after_ms':600})
                 wait(6);result_payload=bytes(channel[94208:99856]);send(6,26);returned_main=wait(3)
             else:
                 # Quick Battle Escape opens the original results screen, not the
                 # admitted campaign Mini. Validate that actual route explicitly.
-                physical_action('results-open',{'kind':'tap','key':'Escape','after_ms':600})
+                physical_action('results-open',results_action(a.results_key_hold_ms))
                 wait(26);result_payload=bytes(channel[42100:44708])
                 send(26,16);physical_action('results-continue',{'kind':'wait','after_ms':600})
-                physical_action('results-reopen',{'kind':'tap','key':'Escape','after_ms':600})
+                physical_action('results-reopen',results_action(a.results_key_hold_ms))
                 wait(26);send(26,17);wait(22);send(22,2);returned_main=wait(3)
             physical_action('exit-main',{'kind':'wait','after_ms':200})
             quit_observation=None
@@ -341,6 +359,14 @@ def main():
         from drawing_source_pending_refusal import decode as decode_pending_frames
         try:
             report['source_pending_frame_refusals']=[dict(path=p.name,**decode_pending_frames(p.read_bytes())) for p in pending_paths]
+        except Exception as error:
+            failure=error;report.update(success=False,admitted=False,error=str(error))
+    admission_paths=sorted(capture.glob('source-pending-admission-*.bin'))
+    if admission_paths:
+        from drawing_source_pending_admission import decode as decode_pending_admission
+        try:
+            if not a.source_pending_copy:raise ValueError('Unexpected pending-copy diagnostic')
+            report['source_pending_copy_admissions']=[dict(path=p.name,**decode_pending_admission(p.read_bytes())) for p in admission_paths]
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
     rejection_path=capture/'source-held-refusal.bin'
@@ -447,6 +473,14 @@ def main():
             report['region_input_observation']=decode_region_input(region_raw)
             report['region_input_sha256']=sha(region_raw)
         except (ValueError,OSError) as error:report.update(success=False,error='Region callback decoding failed: '+str(error))
+    if a.actor_latches and report.get('success'):
+        try:
+            from drawing_actor_latches import decode as decode_latches, bind_callbacks
+            latch_raw=(capture/'actor-latches.bin').read_bytes()
+            report['actor_latch_observation']=decode_latches(latch_raw)
+            report['actor_latch_callback_binding']=bind_callbacks(report['actor_latch_observation'],report['region_input_observation'])
+            report['actor_latch_sha256']=sha(latch_raw)
+        except (ValueError,OSError) as error:report.update(success=False,error='Actor latch decoding/binding failed: '+str(error))
     if a.semantic_state and report.get('success'):
         try:
             from drawing_semantic_state import decode as decode_semantic_state
@@ -458,6 +492,29 @@ def main():
             report['canvas_storage_transition_observation']=decode_storage_transitions((capture/'canvas-storage-transitions-0000.bin').read_bytes())
             if not report['canvas_storage_transition_observation']['closed']:raise ValueError('Storage transition calls remain open')
         except (ValueError,OSError) as error:report.update(success=False,error='Storage transition decoding failed: '+str(error))
+    if a.wine_source_descriptor and report.get('success'):
+        try:
+            from drawing_wine_source_descriptor import analyze as analyze_source_descriptor
+            report['wine_source_descriptor_observation']=analyze_source_descriptor(capture)
+        except (ValueError,OSError) as error:report.update(success=False,error='Source descriptor decoding failed: '+str(error))
+    if a.wine_source_map and report.get('success'):
+        try:
+            from drawing_wine_source_map import analyze as analyze_source_map
+            report['wine_source_map_observation']=analyze_source_map(capture)
+        except (ValueError,OSError) as error:report.update(success=False,error='Source map decoding failed: '+str(error))
+    if a.wine_gpu_completion and not a.wine_blit_packet:p.error('GPU completion requires selected worker packet observation')
+    if a.wine_source_version and report.get('success'):
+        try:
+            from drawing_source_version import analyze as analyze_versions
+            report['wine_source_version_observation']=analyze_versions(capture,report)
+        except Exception as error:
+            failure=error;report.update(success=False,admitted=False,error=str(error))
+    if a.wine_gpu_completion and report.get('success'):
+        try:
+            from drawing_gpu_completion import analyze as analyze_gpu
+            report['wine_gpu_completion_observation']=analyze_gpu(capture)
+        except Exception as error:
+            failure=error;report.update(success=False,admitted=False,error=str(error))
     if a.engine_cadence and report.get('success'):
         try:
             from drawing_engine_windows import analyze as analyze_windows
@@ -482,6 +539,9 @@ def main():
                     if a.source_held_snapshot:
                         from drawing_source_held_snapshot import analyze as analyze_held
                         report['source_held_snapshot_observation']=analyze_held(capture)
+                if a.source_write_trace:
+                    from drawing_source_write_trace import analyze as analyze_writes
+                    report['source_write_trace_observation']=analyze_writes(capture)
         except Exception as error:
             failure=error;report.update(success=False,admitted=False,error=str(error))
     a.report.parent.mkdir(parents=True,exist_ok=True)

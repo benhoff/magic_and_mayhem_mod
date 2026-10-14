@@ -43,3 +43,25 @@ were manually inspected: the green wizard bracket remains visible. Exact
 image/report/action hashes are retained in`draw02-selection-bracket-visual-01.json`.
 This is bounded visual corroboration, not exact frame/source synchronization,
 allselection/tooltip semantics, generation ownership or native pixel parity.
+
+
+The step-2 selection continuation introduces a separate whole-pool raw latch
+recorder (`drawing-actor-latches.md`). Its independent original campaign run
+`draw02-actor-latches-original-02.json` and immutable reanalysis
+`draw02-actor-latches-analysis-01.json` observe callback 2 setting wizard slot 0
+raw +68 from 0 to 1 and count 0 to 1. The first qualifying subsequent sample
+103 has the exact completed original cursor at (450,350), no current hit and
+slot 0 still latched. 457 qualifying hover-away samples occur before the first
+observed pool/flag/identity boundary. All 674 samples join to exact cursor
+journal prefixes. This proves bounded sampled raw-latch persistence independent
+of hover for this run, with visual corroboration in
+`draw02-actor-latches-visual-01.json`. It does not prove uninterrupted state,
+actor generations, all selection/tooltip semantics or exact source/frame parity.
+
+The single-owner recorder now claims its first numeric thread atomically and
+counts foreign calls atomically. Earlier reports precede that source change and
+remain historical. The current contract also removes an unsupported file-backed
+data anchor for the runtime-only pool address: the address remains documented,
+while the register anchors the reviewed setter/resetter functions. No inventory
+boundaries or historical hashes are changed. Fresh final-source and corrected-
+contract execution is recorded separately in the continuation checkpoint.

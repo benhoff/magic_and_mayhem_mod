@@ -22,6 +22,7 @@ static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
 #include "drawing_semantic_state.h"
 #include "drawing_hud_state.h"
+#include "drawing_actor_latches.h"
 static int menu_header(void){return equal(menu_words,menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
@@ -167,5 +168,5 @@ static void menu_poll(void* object,int execute){
         }
     }else if(now-menu_seen>MNM_MENU_V1_LEASE_MS)menu_retired=1;
     if(menu_retired)menu_status=MNM_MENU_RETIRED;
-    menu_publish();semantic_state_sample();hud_state_sample();SetLastError(error);
+    menu_publish();semantic_state_sample();hud_state_sample();latch_sample(0,0,0);SetLastError(error);
 }

@@ -2,7 +2,7 @@
 from statistics import median
 
 DISABLED = ('producer_samples','source_byte_witness','source_readonly_lease','source_worker_lease',
-            'source_held_snapshot','cursor_source_gate','cursor_mutex','region_input','hud_state','hud_input_point','campaign_guidance','semantic_state','campaign_pause','canvas_storage_transitions','whole_updates','producer_update_binding','wine_submission',
+            'wine_gpu_completion','source_write_trace','wine_source_version','wine_source_map_bounded','wine_source_map','wine_source_descriptor','source_pending_copy','copy_order','aux_save_readback','close_physical_on_source_complete','source_held_snapshot','cursor_source_gate','cursor_mutex','actor_latches','region_input','hud_state','hud_input_point','campaign_guidance','semantic_state','campaign_pause','canvas_storage_transitions','whole_updates','producer_update_binding','wine_submission',
             'wine_texture_entry','wine_blit_worker','wine_worker_producer_points','wine_blit_packet','wine_worker_context',
             'wine_resource_copy','wine_resource_map','wine_map_storage_point','wine_client_memory','wine_retained_map_source',
             'egl_physical','x11_delivery_library','physical_peer')
@@ -47,3 +47,10 @@ def compare(control,diagnostic,limit=120):
                 median_ratio=b['median_ms']/a['median_ms'],p95_ratio=b['p95_ms']/a['p95_ms'],
                 source_ownership_proved=False,identical_gameplay_work_proved=False,
                 unobtrusive_capture_proved=False,complete_presented_journey=False)
+
+
+def results_action(duration):
+    """Declared diagnostic key policy; actual menu state must still be observed."""
+    if type(duration) is not int or duration not in (60,600):
+        raise ValueError('Results key hold must be60or600ms')
+    return dict(kind='tap',key='Escape',after_ms=600) if duration==60 else dict(kind='hold',key='Escape',duration_ms=duration,after_ms=600)

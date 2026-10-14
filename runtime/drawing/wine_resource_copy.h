@@ -12,12 +12,12 @@ static u32 __attribute__((cdecl)) wine_copy_region(void* context,void* dst,u32 d
  if(wine_copy_enabled){EnterCriticalSection(journal_lock);r[1]=1;r[2]=++wine_copy_calls;r[3]=GetCurrentThreadId();u32 slot=wine_submission_slot(),depth=wine_submission_parents[slot].depth;r[4]=depth?wine_submission_parents[slot].entry[depth-1]:0;r[5]=depth;r[6]=GetTickCount();
   wine_copy_resource(r,10,dst);wine_copy_resource(r,13,src);r[16]=dstsub;r[17]=srcsub;r[18]=x;r[19]=y;r[20]=z;r[21]=flags;r[22]=box!=0;
   if(box){if(readable(box,24))copy(r+23,box,24);else r[22]=2;}
-  r[29]=wine_resource_records;r[30]=wine_lifetime_records;wine_copy_emit(r);LeaveCriticalSection(journal_lock);
+  r[29]=wine_resource_records;r[30]=wine_lifetime_records;wine_copy_emit(r);wine_source_version_write(dst,dstsub,2,1);LeaveCriticalSection(journal_lock);
  }
  restore_fp(fp);SetLastError(error);
  u32 result=((u32(__attribute__((cdecl))*)(void*,void*,u32,u32,u32,u32,void*,u32,const u32*,u32))wine_copy_original)(context,dst,dstsub,x,y,z,src,srcsub,box,flags);
  error=GetLastError();snapshot_fp(fp);
- if(wine_copy_enabled){EnterCriticalSection(journal_lock);r[1]=2;r[6]=GetTickCount();r[7]=result;r[8]=error;r[31]=wine_resource_records;r[32]=wine_lifetime_records;wine_copy_emit(r);LeaveCriticalSection(journal_lock);}
+ if(wine_copy_enabled){EnterCriticalSection(journal_lock);r[1]=2;r[6]=GetTickCount();r[7]=result;r[8]=error;r[31]=wine_resource_records;r[32]=wine_lifetime_records;wine_copy_emit(r);wine_source_version_write(dst,dstsub,2,2);LeaveCriticalSection(journal_lock);}
  restore_fp(fp);SetLastError(error);return result;
 }
 static int wine_copy_open(void){

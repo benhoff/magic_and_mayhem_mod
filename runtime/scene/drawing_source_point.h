@@ -29,6 +29,10 @@ u32 WIN SceneDrawingSourcePairV1(void* destination,void* source,u32* out,u32 siz
  SetLastError(error);return okay;
 }
 
+static u32 source_lease_active,source_lease_next,source_lease_id,source_lease_canvas;
+static u32 source_lease_base,source_lease_extent,source_lease_old,source_lease_owner,source_lease_pixels,source_lease_object;
+
+#include "source_pending_policy.h"
 #include "drawing_source_bytes.h"
 
 #include "drawing_source_lease.h"

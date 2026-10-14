@@ -8,7 +8,7 @@ spec=importlib.util.spec_from_file_location('cadence_compare',ROOT/'tools/compar
 class DeclaredSchedule(unittest.TestCase):
  def test_actions_bind_the_selected_source(self):
   name='tests/fixtures/drawing-journeys/interactive-schedule.json';raw=(ROOT/name).read_bytes();actions=json.loads(raw)['actions']
-  report={'sources':{name:module.sha(raw)},'input_schedule':{'actions':[dict(x,start_ms=i,end_ms=i+1) for i,x in enumerate(actions)]}}
+  report={'sources':{name:module.sha(raw)},'input_schedule':{'success':True,'error':'','actions':[dict(x,ordinal=i+1,start_ms=i,end_ms=i+1) for i,x in enumerate(actions)]}}
   self.assertEqual(module.executed_schedule(report,raw,name),module.sha(raw))
   report['input_schedule']['actions'][-1]['after_ms']=800
   with self.assertRaisesRegex(ValueError,'Executed input'):module.executed_schedule(report,raw,name)
