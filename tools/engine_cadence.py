@@ -7,6 +7,8 @@ import struct
 EVENTS={1:'pacer-enter',11:'pacer-return',2:'accepted-update',3:'world-tick',
         5:'animation-enter',15:'animation-return',6:'scheduler-enter',16:'scheduler-return',
         7:'maintenance-enter',17:'maintenance-return',8:'world-queue-enter'}
+ROUTE_EVENTS={9:'draw-suppression-gate',10:'draw-transition-gate',18:'world-scene-enter',20:'results-push',21:'scene-target-gate'}
+EVENTS.update(ROUTE_EVENTS)
 
 def distribution(values):
     if not values:return None
@@ -19,14 +21,14 @@ def decode(path):
     raw=path.read_bytes()
     if len(raw)<64 or raw[:8]!=b'MNMCAD01':raise ValueError('Engine trace header')
     h=struct.unpack_from('<16I',raw)
-    if h[2:4]!=(1,96) or h[10]!=262144 or any(h[11:]):raise ValueError('Engine trace version/bounds')
+    if h[2] not in (1,2) or h[3]!=96 or h[10]!=262144 or any(h[11:]):raise ValueError('Engine trace version/bounds')
     frequency=h[4]|h[5]<<32
     if not frequency or not 1<=h[6]<=h[10] or h[7] or h[8] or not h[9]:raise ValueError('Engine trace incomplete/foreign-thread')
     if len(raw)!=64+h[6]*96:raise ValueError('Engine trace length')
     rows=list(struct.iter_unpack('<24I',raw[64:]));previous=0
     for index,r in enumerate(rows):
         qpc=r[3]|r[4]<<32
-        if r[0]!=index+1 or r[1] not in EVENTS or r[2]!=h[9] or qpc<previous:raise ValueError('Engine trace identity/time')
+        if r[0]!=index+1 or r[1] not in EVENTS or h[2]==1 and r[1] in ROUTE_EVENTS or r[2]!=h[9] or qpc<previous:raise ValueError('Engine trace identity/time')
         previous=qpc
     return frequency,rows
 

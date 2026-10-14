@@ -53,6 +53,8 @@ else:os.environ.pop('MNM_DRAW_CURSOR_SOURCE_GATE',None);os.environ.pop('MNM_DRAW
 if metadata.get('cursor_mutex'):os.environ['MNM_DRAW_CURSOR_MUTEX_FILE']='Z:'+str(root/'capture/cursor-mutex.bin').replace('/','\\')
 if metadata.get('semantic_state'):os.environ['MNM_DRAW_SEMANTIC_STATE_FILE']='Z:'+str(root/'capture/semantic-state.bin').replace('/','\\')
 else:os.environ.pop('MNM_DRAW_SEMANTIC_STATE_FILE',None)
+if metadata.get('update_routes'):os.environ['MNM_DRAW_UPDATE_ROUTES']='1'
+else:os.environ.pop('MNM_DRAW_UPDATE_ROUTES',None)
 if metadata.get('engine_cadence'):os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(root/'capture/engine-cadence.bin').replace('/','\\')
 else:os.environ.pop('MNM_ENGINE_CADENCE_FILE',None)
 if metadata.get('canvas_storage_transitions'):os.environ['MNM_DRAW_STORAGE_TRANSITIONS']='1'

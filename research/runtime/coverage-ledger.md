@@ -10343,3 +10343,26 @@ Whole120acquisition is committed as2181f6b2; all15first-parent file versions hav
 exact receipts with zero gaps. The normal staged gate/hook passes. No archival
 record refreshes historical engine hashes or grants new validation; step2,
 all47journey/21operation closures and steps3–7 remain open.
+
+
+### 2026-10-14: DRAW-02 actual queue-free transition branches
+
+Fresh opt-in original acquisition records actual World suppression/transition
+comparisons, scene/Results tail calls, default target branches, same-QPC API/input/
+action intervals and every accepted source callback prefix. Accepted117/118take
+original transition-byte1branch and skip selected World production;117pushes
+Quick Battle Results and119returns to World production. Counter advancement is
+preserved. Historical96lacks these flags and retains its retrospective uncertainty.
+
+Original03closes120source queues across122advancing accepted updates,123prefixes,
+7782timed calls,468API/401EGLwitnesses and2340signaled current-context fences, then
+original MainQuit/exit0.32callback boundaries have pending frames. Owned13-path
+branch and13-case boundary checks plus15new decoder methods pass; previous
+source-read containment remains unchanged. Two startup failures are retained;
+source-journal directory initialization is corrected and retested.
+
+See [scope and wire](draw02-update-interval-accounting.md) and
+[execution record](draw02-end-to-end.md). Complete120-window source/frame/action
+admission, global routes/backing writers, hardware/scanout, semantics and native
+parity remain open. Step2 and all47journey/21operation closures remain open;
+no understanding/implementation/comparison/integration/replacement promotion.

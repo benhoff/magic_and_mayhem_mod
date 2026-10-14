@@ -16,6 +16,33 @@ _fixture_sequence:
 _fixture_tick:
     movl %eax,0x6c4830
     ret
+.globl _fixture_suppression
+_fixture_suppression:
+    cmpl %ebx,0x6e1f00
+    ret
+.globl _fixture_transition
+_fixture_transition:
+    cmpb %bl,0x100b2(%esi)
+    ret
+.globl _fixture_target
+_fixture_target:
+    movl %eax,%ebx
+    testl %ebx,%ebx
+    jz 1f
+    jmp *target_available
+1:  jmp *target_missing
+.globl _fixture_target_zero
+_fixture_target_zero:
+    xorl %eax,%eax
+    jmp _fixture_target
+.globl _fixture_observed_target_zero
+_fixture_observed_target_zero:
+    xorl %eax,%eax
+    jmp _cadence_target
+.data
+target_available: .long 0x4fd53c
+target_missing: .long 0x4fd5ad
+.text
 .globl _fixture_invoke
 _fixture_invoke:
     pushl %ebp

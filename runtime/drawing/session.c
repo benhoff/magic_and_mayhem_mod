@@ -26,6 +26,7 @@ static int write(HANDLE f,const void* data,u32 n){u32 count;return WriteFile(f,d
 static u32 physical_enabled,physical_byte_limit=1024u*1024u*1024u;
 #include "call_intervals.h"
 #include "source_points.h"
+#include "update_timing.h"
 static struct Table* table(void* object){void** vt=*(void***)object;for(u32 i=0;i<table_count;++i)if(tables[i].vt==vt)return tables+i;return 0;}
 static u32 identity(void* object){if(!object)return 0;for(u32 i=0;i<1024;++i)if(identities[i].object==object)return identities[i].id;for(u32 i=0;i<1024;++i)if(!identities[i].object){identities[i].object=object;return identities[i].id=++next_identity;}++gaps;return 0;}
 static void emit(u32* r){if(!journal)return;r[0]=++records;if(records>262144||!write(journal,r,128)){++drops;enabled=0;}}
@@ -37,7 +38,7 @@ static void aux_save_close(u32);
 static u32 wine_blit_worker_pending;
 static u32 wine_resource_pending;
 static void source_worker_lease_packet(u32,u32,u32,u32);
-static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);aux_save_close(reason);producer_points_close(reason);source_lease_close(reason);drawing_cursor_gate_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
+static void finish(u32 reason){if(!journal)return;u32 r[32]={0};r[1]=4;r[2]=reason;r[6]=GetCurrentThreadId();r[11]=GetTickCount();r[21]=records;r[22]=planes;r[23]=drops;r[24]=gaps;r[25]=bytes;emit(r);interval_close(reason);aux_save_close(reason);producer_points_close(reason);update_timing_close(reason);source_lease_close(reason);drawing_cursor_gate_close(reason);source_bytes_close(reason);wine_submission_close(reason);CloseHandle(journal);journal=0;enabled=0;char name[600];path(name,"session.done");HANDLE f=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(f!=(HANDLE)-1){write(f,r,128);CloseHandle(f);}}
 static void install(void*,u32);
 /* Observer APIs preserve the application's result LastError and x87/SSE state. */
 static void snapshot_fp(void* p){__asm__ volatile("fxsave (%0)"::"r"(p):"memory");}
@@ -67,7 +68,7 @@ static struct Context begin(void* object,u32 method,u32* args,u32 count,u32 call
   else if(method==13||method==18||method==34||method==35)c.r[21]=args[0];
  }else if(type==2){c.r[21]=args[0];if(count>1)c.r[22]=args[1];}
  else if(type==5)for(u32 i=0;i<count&&i<6;++i)c.r[21+i]=args[i];
- c.interval_related=c.r[4];interval_event(&c,1);LeaveCriticalSection(journal_lock);if(c.cursor_gate_requested)drawing_cursor_gate_emit(&c,1);wine_submission_parent(&c,1);producer_points_capture(&c,object,1);source_bytes_capture(&c,1);source_lease_capture(&c,1);restore_fp(fp);SetLastError(c.r[7]);return c;
+ c.interval_related=c.r[4];interval_event(&c,1);LeaveCriticalSection(journal_lock);if(c.cursor_gate_requested)drawing_cursor_gate_emit(&c,1);wine_submission_parent(&c,1);producer_points_capture(&c,object,1);source_bytes_capture(&c,1);source_lease_capture(&c,1);update_timing_capture(&c,1);restore_fp(fp);SetLastError(c.r[7]);return c;
 }
 struct Pixels {void* data;u32 size;};
 /* Never hold the journal mutex across a driver call: Lock/GetDesc can
@@ -110,7 +111,7 @@ static void acquired(void* alias,u32 k,const void* guid){
  ++gaps;
 }
 static u32 end(struct Context* c,void* object,u32 result){
- u32 error=GetLastError();if(!c->observed||!enabled){if(c->cursor_gate_token){u8 gate_fp[512]__attribute__((aligned(16)));snapshot_fp(gate_fp);if(c->source_lease)source_lease_capture(c,2);drawing_cursor_gate_release(c);restore_fp(gate_fp);}SetLastError(error);return result;}u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);source_lease_capture(c,2);wine_submission_parent(c,2);
+ u32 error=GetLastError();if(!c->observed||!enabled){if(c->cursor_gate_token){u8 gate_fp[512]__attribute__((aligned(16)));snapshot_fp(gate_fp);if(c->source_lease)source_lease_capture(c,2);drawing_cursor_gate_release(c);restore_fp(gate_fp);}SetLastError(error);return result;}u8 fp[512] __attribute__((aligned(16)));snapshot_fp(fp);c->r[8]=result;c->r[9]=error;update_timing_capture(c,2);source_lease_capture(c,2);wine_submission_parent(c,2);
  struct Pixels pixels={0};struct Table* capture_table=0;EnterCriticalSection(journal_lock);
  c->r[8]=result;c->r[9]=error;c->r[11]=GetTickCount();
  interval_event(c,2);
@@ -127,7 +128,7 @@ static u32 end(struct Context* c,void* object,u32 result){
   if(planes>=1024||bytes>physical_byte_limit||size>physical_byte_limit-bytes){++drops;}else{c->r[12]=++planes;bytes+=size;}
  }
  c->r[30]=planes;emit(c->r);input_point_record(c);
- LeaveCriticalSection(journal_lock);physical_fence(c);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
+ LeaveCriticalSection(journal_lock);physical_fence(c);update_timing_capture(c,3);producer_points_capture(c,object,3);EnterCriticalSection(journal_lock);interval_event(c,3);--pending;
  char name[600];path(name,"stop.flag");HANDLE stop=CreateFileA(name,0x80000000,3,0,3,0x80,0);if(stop!=(HANDLE)-1){CloseHandle(stop);if(!pending&&!wine_blit_worker_pending&&!wine_resource_pending)finish(2);}
  LeaveCriticalSection(journal_lock);if(pixels.data)VirtualFree(pixels.data,0,0x8000);restore_fp(fp);SetLastError(error);return result;
 }
@@ -213,7 +214,7 @@ static int initialize(void){
  char mode[16];u32 mode_length=GetEnvironmentVariableA("MNM_DRAW_SESSION_MODE",mode,sizeof(mode));int inputs_only=mode_length==6&&equal(mode,"inputs",6);(void)inputs_only;physical_enabled=mode_length==8&&equal(mode,"physical",8);readbacks_enabled=!(mode_length==8&&equal(mode,"metadata",8));
  if(!physical_budget()||!input_point_open())return 0;
  u32 n=GetEnvironmentVariableA("MNM_DRAW_SESSION_DIRECTORY",directory,sizeof(directory));if(!n)return 1;if(n>=sizeof(directory))return 0;
- char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!producer_points_open()||!aux_save_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open()||!drawing_cursor_gate_open())return 0;enabled=1;
+ char name[600];path(name,"session.bin");journal=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}u32 header[16]={0};copy(header,"MNMDAPI1",8);header[2]=1;header[3]=128;header[4]=0x40209ca7;header[5]=262144;header[6]=1024;header[7]=physical_enabled?physical_byte_limit:1024u*1024u*1024u;header[8]=physical_enabled?3:inputs_only?2:readbacks_enabled?0:1;if(!write(journal,header,64)||(physical_enabled&&!interval_open())||!update_timing_open()||!producer_points_open()||!aux_save_open()||!wine_submission_open()||!source_bytes_open()||!source_lease_open()||!drawing_cursor_gate_open())return 0;enabled=1;
 #ifndef MNM_DRAWING_SELFTEST
  u32 base=(u32)GetModuleHandleA(0);const u8 thunk[]={0xff,0x25,0x14,0x50,0x5c,0};if(base!=0x400000||!readable((void*)0x59755a,6)||!equal((void*)0x59755a,thunk,6))return 0;
  void* user=GetModuleHandleA("user32.dll");original_async=GetProcAddress(user,"GetAsyncKeyState");original_key=GetProcAddress(user,"GetKeyState");original_cursor=GetProcAddress(user,"GetCursorPos");original_map=GetProcAddress(user,"MapVirtualKeyA");

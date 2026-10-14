@@ -9,6 +9,7 @@ API int WIN QueryPerformanceFrequency(void*);
 static u32 rows[LIMIT][WORDS],count,dropped,owner,foreign,enabled;
 static HANDLE file;
 static u32 frequency[2];
+static u32 route_enabled;
 static u32 get(u32 at){const u8* p=(void*)at;return p[0]|(u32)p[1]<<8|(u32)p[2]<<16|(u32)p[3]<<24;}
 static void put(void* out,u32 v){u8* p=out;p[0]=v;p[1]=v>>8;p[2]=v>>16;p[3]=v>>24;}
 static int same(u32 at,const u8* bytes,u32 n){while(n--)if(*(u8*)at++!=*bytes++)return 0;return 1;}
@@ -32,6 +33,14 @@ static struct Patch patches[]={
  {0x4fd4ab,5,cadence_queue,{0xe8,0xf0,0x2d,0,0}},
  {0x4fd554,5,cadence_queue,{0xe8,0x47,0x2d,0,0}}
 };
+extern void cadence_draw_suppression(void),cadence_draw_transition(void),cadence_scene(void),cadence_results(void),cadence_target(void);
+static struct Patch route_patches[]={
+ {0x46bb9d,6,cadence_draw_suppression,{0x39,0x1d,0,0x1f,0x6e,0}},
+ {0x46bba5,6,cadence_draw_transition,{0x38,0x9e,0xb2,0,1,0}},
+ {0x46bbd3,5,cadence_scene,{0xe8,0xa8,0x16,9,0}},
+ {0x46bc14,5,cadence_results,{0xe8,0x27,0xb4,0x0e,0}},
+ {0x4fd536,6,cadence_target,{0x8b,0xd8,0x85,0xdb,0x74,0x71}}
+};
 #include "update_boundary.h"
 void cadence_record(u32* registers,u32 event){
  if(!enabled)return;
@@ -45,6 +54,12 @@ void cadence_record(u32* registers,u32 event){
  r[6]=get(0x6cbb78+0xfd62);r[7]=get(0x6dbe95);r[8]=get(0x6dbe99);
  r[9]=get(0x6e1f00);r[10]=*(u8*)(0x6cbb78+0xfd5a);r[11]=get(0x6f34e0);
  r[12]=registers[6];r[13]=event==2?0x46b45f:event==3?0x46b496:registers[9];r[14]=registers[7];
+ if(event==9||event==10||event==18||event==20||event==21){
+  if(event==9)r[13]=0x46bb9d;else if(event==10)r[13]=0x46bba5;else if(event==21)r[13]=0x4fd536;
+  r[15]=registers[8]; /* exact flags after the replayed original comparison */
+  r[16]=*(u8*)(0x6cbb78+0x100b2);r[17]=*(u8*)(0x6cbb78+0x10326);
+  r[18]=get(0x6cbb78+0xfd5a);r[19]=event==21?!!registers[7]:0;
+ }
  if(event==5||event==15){ /* eight static global ANI controllers, never retained pointers */
   u32 caller=registers[9],p=0;
   if(caller>=0x46b754&&caller<=0x46b79a&&(caller-0x46b754)%10==0)
@@ -60,17 +75,22 @@ static int install(void){
  char path[2048];u32 n=GetEnvironmentVariableA("MNM_ENGINE_CADENCE_FILE",path,sizeof(path));
  if(!n)return 1;
  if(n>=sizeof(path)||(u32)GetModuleHandleA(0)!=0x400000||!update_boundary_configure())return 0;
+ char flag[2];SetLastError(0);u32 flag_n=GetEnvironmentVariableA("MNM_DRAW_UPDATE_ROUTES",flag,2);
+ if(flag_n){if(flag_n!=1||flag[0]!='1')return 0;route_enabled=1;}else if(GetLastError()!=203)return 0;
  /* Pinned .text/.data and CPUID FXSR guards precede every mutation. */
  u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));
  if(!(d&(1u<<24)))return 0;
  for(u32 i=0;i<sizeof(patches)/sizeof(*patches);++i)
   if(!same(patches[i].site,patches[i].bytes,patches[i].length))return 0;
+ if(route_enabled)for(u32 i=0;i<sizeof(route_patches)/sizeof(*route_patches);++i)
+  if(!same(route_patches[i].site,route_patches[i].bytes,route_patches[i].length))return 0;
  if(!QueryPerformanceFrequency(frequency)||(!frequency[0]&&!frequency[1]))return 0;
  file=CreateFileA(path,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}
- for(u32 i=0;i<sizeof(patches)/sizeof(*patches);++i){
-  struct Patch* p=patches+i;u32 old,restore;
+ u32 base_count=sizeof(patches)/sizeof(*patches),route_count=route_enabled?sizeof(route_patches)/sizeof(*route_patches):0;
+ for(u32 i=0;i<base_count+route_count;++i){
+  struct Patch* p=i<base_count?patches+i:route_patches+i-base_count;u32 old,restore;
   if(!VirtualProtect((void*)p->site,p->length,0x40,&old))return 0;
-  u8 bytes[6]={p->entry==cadence_sequence||p->entry==cadence_tick?0xe9:0xe8,0,0,0,0,0x90};
+  u8 bytes[6]={p->entry==cadence_sequence||p->entry==cadence_tick||p->entry==cadence_draw_suppression||p->entry==cadence_draw_transition||p->entry==cadence_target?0xe9:0xe8,0,0,0,0,0x90};
   put(bytes+1,(u32)p->entry-p->site-5);
   for(u32 j=0;j<p->length;++j)*(u8*)(p->site+j)=bytes[j];
   if(!FlushInstructionCache(GetCurrentProcess(),(void*)p->site,p->length)||
@@ -82,7 +102,7 @@ static void finish(void){
  if(!file)return;enabled=0;
  u32 header[16]={0};const u8 magic[8]={'M','N','M','C','A','D','0','1'};
  for(u32 i=0;i<8;++i)((u8*)header)[i]=magic[i];
- header[2]=1;header[3]=WORDS*4;header[4]=frequency[0];header[5]=frequency[1];
+ header[2]=route_enabled?2:1;header[3]=WORDS*4;header[4]=frequency[0];header[5]=frequency[1];
  header[6]=count;header[7]=dropped;header[8]=foreign;header[9]=owner;header[10]=LIMIT;
  u32 wrote=0;
  if(WriteFile(file,header,sizeof(header),&wrote,0)&&wrote==sizeof(header)){

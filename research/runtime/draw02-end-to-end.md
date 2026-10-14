@@ -3674,3 +3674,57 @@ Whole120acquisition is committed as2181f6b2; all15first-parent file versions hav
 exact receipts with zero gaps. The normal staged gate/hook passes. No archival
 record refreshes historical engine hashes or grants new validation; step2,
 all47journey/21operation closures and steps3–7 remain open.
+
+
+## Step 2 original draw-transition branches and per-update acquisition (2026-10-14)
+
+The reviewed2181f6b2..07d11f52 range has4exact receipts and zero gaps, retained
+in coverage/draw02-update-accounting-start-history-20261014.json. No retrospective
+execution claim. The old source-read containment decoder/tests remain unchanged;
+a separate callback-prefix decoder handles the new journal.
+
+The opt-in [update interval recorder](draw02-update-interval-accounting.md) adds
+five byte-guarded original branch sites, cadenceV2, QPC surface/input/action call
+boundaries and source prefixes at every accepted callback. Comparison thunks
+replay original flags/branches, and scene/Results calls tail-forward once.
+Thirteen final owned PE32 paths pass14original forwards/state preservation and
+104single-byte guards; thirteen source boundary/refusal cases pass, including
+opening the journal only after directory configuration. Six route, five timing,
+four callback-prefix and six existing engine-window methods pass. The API fixture
+retains all42admitted surface/action intervals with32callback/eight-plane and
+competing-thread forwarding/state controls; its pixels/ACKs remain synthetic.
+The earlier timing declaration is historical after later callback additions.
+
+[Fresh original03](draw02-update-accounting-original120-03.json) executes on an
+isolated virtual X11 display with explicit softwareGL. Original MainQuit dispatch
+and child exit0 complete; both2927-file manifests and unchanged original sections
+verify. It retains120queues/494412source records/2202checkpoints,123accepted source
+callback prefixes,7782timed admitted calls,468API/401post-EGL witnesses and2340
+signaled current-context fences. Whole-source closure is ataccepted123 afterlast
+queue-bound122. The separate advancing-counter run is130, not complete source or
+presentation ownership. There are32callbacks with pending primitive frames.
+
+Accepted117/118advance simulation but do not select a World queue. Original
+suppression comparison passes; transition byte+100b2 is1 and its actual comparison
+is unequal, taking the original branch pastscene0046bbd3.117then tail-forwards the
+late Results push;119restores transition0, enters the scene, gets a nonzero target
+and selects its queue. High confidence within these observed instructions/windows.
+The earlier queue-free96samples World/Results/World and is consistent with this
+route; its absent comparison flags cannot be supplied retrospectively. No claim
+that queue-free updates produce no drawing or that all alternate routes are known.
+
+[Preserved startup negatives](draw02-update-accounting-startup-negative-01.json):
+01stops before Wine for absent graphical display;02never reaches Main after the
+new source journal opens before its recorder directory is initialized. The open
+is deferred to configured-directory installation and owned regression checks
+precede successful03. The104guard-count label is corrected after original03;
+its original source/claim fingerprints remain immutable and compiled observers
+are unchanged by that label correction.
+
+Reassessment: branch observation resolves the freshly encountered queue-free
+World path and retains every source prefix/input/API interval. Exact120-window
+physical/source accounting still needs its independent join and admission result;
+32pending-frame boundaries must stay explicit. Step2 remains active, all47/21
+closures and steps3–7 remain open. All backing aliases/direct writers, global
+presentation routes, hardware/scanout, semantic outcomes and native parity remain
+separate pending limits. No historical fingerprint refresh or status promotion.
