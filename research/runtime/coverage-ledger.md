@@ -9422,3 +9422,37 @@ checkpoint identities. Source/frame ownership and all47/21closures remain open;
 step2 stays active. Resume the older failed cohort's compact replay under this
 explicit1376GiBpolicy, preserving its historical two1600pixel failures until
 fresh execution establishes this policy's result.
+
+
+## Step2 third-cohort correction and repeated-input cadence control (2026-10-13)
+
+Approved worktree1376GiBpolicy is committed asd73e41d8;its eight exact receipts
+review with0gaps. Explicit main-guard `--policy` preflight admits the previously
+refused older cohort's0.5GiBcompact replay. Fresh policy02matches all2400
+checkpoint hashes, including CP1352and1437's two historical1600pixel failures.
+It admits35metadata triples/5refusals, preserves every original plane/identity,
+rechecks original manifests and does not use expected pixels as native input.
+The three policy cohorts now match7209CPU checkpoints and67admitted Auxbuffers.
+Historical default failures and the request-ID-free legacy failure stay immutable.
+
+A fresh original counter/menu/input-only control runs the same31action Results
+schedule, with drawing/source/Wine/display observers disabled. It retains619
+complete advancing windows, originalquit0 and verified source/manifests. Four
+cadence guard methods pass. Gameplay2157records/109snapshot ticks include1689
+movement/287health-reduction/36melee-return records and14finalactive actors; those
+are passive samples, not semantic selection/tooltip/pause or exact-work proof.
+The four-diagnostic timing comparison is refused before execution at
+1376.5434GiBworking/106.6323GiBfree/reserve0.01GiB. No timing result is inferred
+from the completed control alone. Shared writers and finite policy remain explicit.
+
+Reassessment: the bounded metadata transfer correction validates a third cohort;
+step2still needs all-writer/view/lifetime/source-frame/route closure and
+independent diagnostic timing and semantic controls. All47/21closures and
+steps3–7remain open. No status promotion, gameplay change or old-hash refresh.
+Read-only cleanup review identifies a2.714GiB orphaned temporary Git-base
+checkout:6914files all match immutable d40cd9efblobs, no tracked files/pins/
+research references. Unprivileged host lsof finds no matching handles but warns
+about inaccessible Docker mounts; privileged inspection requires a password.
+The exact hash-bound candidate/script is prepared, not permission to delete.
+No cleanup occurred. Required temporary Git accounting now uses conventional
+/var/tmp on the second NVMe; the cold archive and main100GiBreserve are preserved.

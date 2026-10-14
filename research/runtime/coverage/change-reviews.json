@@ -559422,6 +559422,183 @@
         "evidence": [],
         "reason": "All12WTretention guards pass in working/draw02-approved-budget-retention-tests-04.log; exact proposal before/after hashes and main preservation verified. Coverage audit04 haszero errors. Budget-only update adds no engine equivalence or status promotion; queued older-cohort execution is accounted separately."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "00e786375fecf58987f5caac30772a448608366520894c12884c96f21492b900",
+          "before_sha256": "8881252091a1e11315e602205416203bac68c3118cd0d534411a5df7a65ba6ed",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "be1b79702837b0f049462e5b8aa2feba701b6f4a5a4a2d30075e613d04c5846a",
+          "before_sha256": "9827188810c6d470759f303affef9b2bc4250537ab6d26f1f3fa1ed073655807",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "a13cf1d61788a8058728a83970889c3ed8c1c6fa2dedc08168a9d199aeb03bd0",
+          "before_sha256": "e996a3676839bedd25dea29f185181065e5db29f9eb44d8bb6107dc3164e3be7",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "94ae652ef910720c73d1c9cdd40a0d7f0f5337ff50aa91f6ab85b2ce07d36cef",
+          "before_sha256": "ed7d45f4f20e9a004672df62cccaa0cef432e5fa4c592f53362e32ffd1012a2b",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "9129f9115fee42a7d1e2e2688283793e00752ba1a708ebf1cdb4e4bba0f8ffb4",
+          "before_sha256": "d36771bb6f52a150f9ffa1342c6c6d1915aa49dc123b84d8addfbc74e8193631",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "40fceea9accb038f01bb1a4971eb290970f98020f49142db31a68452aafed315",
+          "before_sha256": "9b23eb8e01e59ce9468e3106151aa04aee8533e2ce9a072f164fef49dabae1d6",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "cd5113f45ee716474d4bff8e0d425eac8c606de8275d6bd2a982a3396e78db4c",
+          "before_sha256": "be847f945518ae71c4a27b43576cff5d8ae612118b952c5b53feb4def06c2cf1",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "9c7edf8e8cd52293f1d7500eb39ced5c7b9bd4e16d636a82ddda731aaf20737f",
+          "before_sha256": "5079d6811c373cccc456ec6d2ed9ae27c2e8924d769b9983cedafaf561064d80",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "49c94fca499869a7cc0a580b4c68bd5439dbee019a0126599b173419a5d527db",
+          "before_sha256": "15b2e2810ae648cefda16e2b26d78dfcba983f65c2e58aa0f8fcd826fe38617b",
+          "id": "NR.drawing-copy-phase-hash-comparison"
+        },
+        {
+          "after_sha256": "5a1bd1e6a67040af2c7c139649b9b26837a22ab0cbfdcc5e4e1cf89c532ef6c2",
+          "before_sha256": "e1ee410e88dd81420684843c85e39f0c8310b71c2ca297212bce497361db03db",
+          "id": "NR.drawing-copy-phase-transposition"
+        },
+        {
+          "after_sha256": "b75a7165b188a6af9cf4b4f06253faa6447c59ee13455af8cbed4aa8a2acb22c",
+          "before_sha256": "18fcffe1153e531df7e7f0ac59cbb350447eddb810fb39e9fd33a393f283ff4d",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "9d9aadc52dfee1121669a24920a3bc1685b8191291053516a956807d35b123f5",
+          "before_sha256": "262bd7a46633457718b26620b3ff736efdc8eb31db8040ab1efae5b36d8abeaf",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "7ee17a82bb3c85e9e7066114406a208f9eab3a7f78278bfb8235c586bcb04f5b",
+          "before_sha256": "c736574c116f2167b081fa57965d048f44f5823523972b93ea61295147c4ad74",
+          "id": "NR.drawing-diagnostic-cadence-control"
+        },
+        {
+          "after_sha256": "d554799f2cd4f2d41efaba09902fc42090a75345ccfa2d919e94a6cd65019435",
+          "before_sha256": "b8691c0f33c9e240c619046365c8d841f72c9d71c51626701b776db51dd66a9e",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "9a42c3a932f38d5fffa4f4e93e1ce07e809901cb31a8489d5cd9be55045da6ed",
+          "before_sha256": "7132cf647f015369be2d0a0eff02b5465086b8c820bdb9d411b5f4d0a74cd1d8",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "632e466fb320f4a22e9ab7a09da4ff9c36ab62d8ebb94988e63f661bfe61810b",
+          "before_sha256": "2c54cb1f999de38964e0e3f8ec04c816954410688856c29751154ba7e840d72d",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "2b13951e8842ddd6e7fb50971ac291273749067b9a6e2c4c711fa5bfe4fd1efa",
+          "before_sha256": "8153eddd73b06066d9479b34530e9beea872187048d78b708e46272a81ab0542",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "70d7b3b31076697e6744e78c43a16f23f9a175cc5d03b6bfbfea1ccbaf6bece5",
+          "before_sha256": "559fbafebd7d8e6ddbbbfe1dcd0761f1b0d53e9244a412474e165570e976977e",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "9ec9a10d363d041d53ef4175a4bc493b92c12459fd4fef4989bbfeeeefd818c2",
+          "before_sha256": "ea2b4c7424dc6da949b4d888b6d2937af03f0c2b5cd21194514f3423ceb32653",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "6ac6e21fed24f3e57a8bac10d9a83e4c0d4d5f040b038e7c9689c4862394201b",
+          "before_sha256": "e7a99073f5303794b3b97f21435e9b2a94abc9ab2f2fb05c27a92a28df31133c",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "bc9ffaaa6e981bd291ae5acfc5f66b364be71369afe2514c6a3379c280b26de6",
+          "before_sha256": "782787573b2036525429dc37e7749be97d30f9cb251e0995d5e0768162ed94ef",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "38a82b5bbd8e1f3b91fb2f46a282c86e03b0c314285b028391d2f84be5bc89b7",
+          "before_sha256": "0015585b737513c981af531fac2cb33f733dade1f3c605f8ab40dda348dc20da",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "73d7c6795372a6a70ffbf682613f3be304e2514876e1e022b8da80ba4184e083",
+          "before_sha256": "07288f2a636a9a111d4089bcc3debc2b326b72dfb87d414aaa2c13fe945a2fef",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "a6e53dea2bf53ff9fc6c2b1f908115e29673e790f3270b742f2665df12834737",
+          "before_sha256": "3d9c9863078c8a2cc3cec9dbfd24578ac376edd578b424133d90f6cd8597fd9c",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "2552d9bd00243260fc8a2e87c1b0078d1c11b836b5f37a05916b627d06be1e2c",
+          "before_sha256": "4405e0de76515a3a0ec1643188f3163c185f0c29657696dffea8ec8b2937c585",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "3a62d50338ef0239b10153f7419a7c3051a431cc10c84498286afd53c4c9662e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw02-approved-budget-history-20261013-04.json"
+        },
+        {
+          "after_sha256": "0fb72c76e444232dd42d2354011dcb29a9ce1aeaecee5557c19767d414bf39e9",
+          "before_sha256": "fc3abba94c0befa4cc2cb1790c6f75cbe0f020c9f3ebcef5b500ed02dd1dc5f9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "bcdae35b662ec8fb2a97346fa171fc3854afb97bcc0cae43be2f686a110b41ce",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-third-cohort-20261013.md"
+        },
+        {
+          "after_sha256": "c2961c087a5bc3bd48cf63869874a81b9569a40675c0a97b9075c272ce0292a4",
+          "before_sha256": "c8f902a45a9f0107b682c016850cf16be89bfb2722376c4eb383278be0585bd8",
+          "path": "research/runtime/draw02-copy-phase-policy.md"
+        },
+        {
+          "after_sha256": "b44d46501b73ecfe69b4616c6e26d69d281b1e1a57a7403f4f2460cc4fdfd63d",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-copy-phase-prior-control-hashes-02.json"
+        },
+        {
+          "after_sha256": "91a02cb5c66a18df8c55bbeb558e83a6845bd079796ca1a252229b74660ce31a",
+          "before_sha256": "10fae0a2fc70613f060c29004d6369ae08419635bf5728fe5680caab86f853e8",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "440073bbb4d4646c75a6b1f2b19472779408b54bf59815f41fc94e818b6f2c5c",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-results-repeat-cadence-control-original-01.json"
+        }
+      ],
+      "id": "DRAW02.third-cohort-policy-and-repeated-input-control-20261013",
+      "pending_gaps": [],
+      "reason": "Review fresh35-triple metadata-only offline policy result matching all2400older-cohort checkpoint identities and hashes, including historical default failures1352/1437. Preserve old source fingerprints, default failures, legacy request-ID-free limitation and all stages. Register the exact31action counter/menu/input-only original control and619advancing/466World-queued windows, with drawing/source/Wine/display observers absent and originalquit0. Update scoped gaps/ledger/plan without inferring timing from control alone; retain the preflight-refused comparison. Review eight exact d73e41d8history receipts withzero gaps. Temporary Git accounting is on second-NVMe /var/tmp; no cold-archive or original modifications. Cleanup candidate is only a reviewed/pending proposal, not executed.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "DRAW02.draw02-copy-phase-prior-control-hashes-02-20261013",
+          "DRAW02.draw02-results-repeat-cadence-control-original-01-20261013"
+        ],
+        "reason": "Fresh source/contract-bound compact replay exits0 and matches every one of2400original full-plane SHA256values after rehashing external originals; old reports stayfailed and input oracle separation/manifests verify. Across three cohorts7209checkpoint identities and67Auxbuffers match within the explicit policy scope. Four cadence guard methods and fresh original control pass source stability,619advancing windows and actualQuit dispatch/process exit0. The four-diagnostic timing comparison was refused before execution at1376.5434GiBworking/reserve0.01GiB; no timing/equivalence/unobtrusive/semantic promotion. Audit02 haszero errors and no source-census drift. All-writer/view/GPUCPU/source-frame/route/cadence/semantic boundaries and all47/21closures remain pending; cleanup hasnotbeen authorized or performed."
+      }
     }
   ]
 }

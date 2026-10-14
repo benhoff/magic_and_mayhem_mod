@@ -46,3 +46,9 @@ compact control hashes01matches2406/2406, including defaultfailedcheckpoint1459.
 Older control plan01admits35triples/5refusals, but native execution did not launch
 because the shared1360GiBpreflight refused its measured0.5GiBreservation.
 Historical failures and scope boundaries remain unchanged; no status promotion.
+
+Fresh prior-control policy02 now matches all2400checkpoint hashes under the
+approved1376GiBworktree budget, including historical CP1352and1437failures.
+Across three independent captured cohorts, policy7209checkpoints and67Aux
+buffers match; default and legacy reports remain unchanged. This result does
+not extend scope to unbound/nonadjacent/World/all-writer/view/route cases.
