@@ -1,0 +1,1376 @@
+{
+  "schema": 1,
+  "range": "2ece99d5ff4327e380499733519a2ec0a459fe89..e529af2f41707247b70b01040e5ceb52e49f69ef",
+  "scope": "First-parent committed file byte transitions checked against retained exact receipts. This is retrospective accounting review, not a past gate or validation assertion.",
+  "commits": [
+    {
+      "commit": "78e1bf87866bcc9749575ad1ce252e1fe5c609c5",
+      "parent": "0280403c0bae8f6cb6a6f08f0f80db1e5112b931",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "897236f8f90f7b9f423cb6bc7944ac70f53022adf1b9c86f29fae2bd6faa6f6e",
+          "after_sha256": "c42e844596f1f0dff9d180b8a1cb8b1c3b1fc6f7bfe0822a152868f06df6b8c9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "1eeee2c9e3576a54cd36ffb1bc1ac6c84c4392bd4d21ba3476d0ead1d5356a9f",
+          "after_sha256": "8c50806edad493cb1b0e64d3674cb7596d55ad7b765aedf29cbfae1265dc3212",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-public-context-cost-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "0b23d6daea9d684bb75aa4eb16d5f89eb5b77e977d2dda7ce1ac780f074ebf98",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-draw-cost-profiling.md",
+          "before_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+          "after_sha256": "32156c1ba91831ddf655e27e8a13834020d5cfdd42b25eeb7ef252379b0756af",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-checkpoints-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-pixels-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "c3890c6314be6ce8e589e7cc060b8268e7d45d5cce6851d14afd2b4a157ce1ab",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-relative-path-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5c777d567ee140286fe4ceec4d9b33227f31bd4e14cbf1ac4c6f13c9bde3c0ea",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-vendor-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a51b7611f6ec96486efbf1f6c0bac4df239d728577b85789a9fa54bcb8c9549b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-xcb-egl-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "efd568c38e0264f50ba0b83caaa81ca88e056474c4b29f018e7c94347ad0ea77",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/resident_profile.cpp",
+          "before_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+          "after_sha256": "e17491b53b674e836d36ec3a473088a69b6f18161dc6b81633d1a9e9162062d8",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/profile-native-draw-costs.py",
+          "before_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+          "after_sha256": "c4cafa3329dcab5fedaf21ebcecda9bc8acef62ad7de73940ec5308cd2113818",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "1db238261fd0da98dae74564b80697d7eb0827fd",
+      "parent": "78e1bf87866bcc9749575ad1ce252e1fe5c609c5",
+      "files": [
+        {
+          "path": "compat/legacy/canvas_world.hpp",
+          "before_sha256": "dc00af8e558485c4227cb2f7aee31630341bf725d79e1b5084f13704c568a760",
+          "after_sha256": "6800f0a46a575a1073a7cb5750947357c6f34b5ca45d70d17257ca49be8b39dc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "compat/legacy/world_rolling_session.hpp",
+          "before_sha256": "ac6757a39e3300737c515aefe5bb34f8a2c53a3d23c1fdd93a7c96e48ff4cbfb",
+          "after_sha256": "f3415b5873ad97bdb38e876e29ff7b2b22b02773b28693e1395371ff9365c234",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+          "after_sha256": "fd4aa3afe86019039b5ae1c8af8d52c30de903332033078bc82750e07d828a8c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "2002b434e57d472db18115e251eee034125eede184cc8466f4f7de3abc9a6858",
+          "after_sha256": "bade811f3c720344578160c194187cbf61181a3ee8c465156324cb1d300b7ff9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "dcbd27afcfa5c446a96052270f5b3c4c06290faea77a1f646645ab956a274fea",
+          "after_sha256": "5c77676a3c06c23fe2388a345d85d6015825cbc2f475b15deb66e29fbcfd1e8a",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "c42e844596f1f0dff9d180b8a1cb8b1c3b1fc6f7bfe0822a152868f06df6b8c9",
+          "after_sha256": "6d736fe6a293af0dcf396097618e2bca2c015b07fbdfd98724e7ef550f9358a0",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "8c50806edad493cb1b0e64d3674cb7596d55ad7b765aedf29cbfae1265dc3212",
+          "after_sha256": "34092d9e387d90e43e54a49d4e2d2fc4d4811478d563c39d2f1b3673f7aaa489",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-headless-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-headless-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "2e281135d2b6a86a515df43b35371ad2dc3ca96ce4e36c78bb25059bb2bd8fb5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-colour-capacity-neutral-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "ca4c71da7b5bddbba7501dfb9b76068ef19836d84689d53816b3b34425f268f1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-cache-paired-public-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "c222d62fe16c3d380d2460173420420d624d42c7b4d92cd0fe3452688c342871",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-cache.md",
+          "before_sha256": null,
+          "after_sha256": "c948bb835b3f30b8266744f3fbbd00849b901ce46832780fb9be093e0e0f9207",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-guard-build-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "fc6098c1d46964c1d25bd5d4b9fe5f9f4379cd2b4d55a22db9427a75007aeec3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-storage-contract-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "83a736322647216ddd082b3f830eb756d7c736b1561108475fb4a8fe578d74d3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/palette-row-cache-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "0f95f47a49f4f2348be972931704cdffeb0664b53037a2633fd0ae9433097768",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/CMakeLists.txt",
+          "before_sha256": "8e0c2426a17cdb0b98227c319ee9150b21639eb6c6f284726d4d21865b83983d",
+          "after_sha256": "912597c83528d40bb631d22c366bc874e762fa7e8f2c154b1a9772a4dd38116b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/resident_profile.cpp",
+          "before_sha256": "e17491b53b674e836d36ec3a473088a69b6f18161dc6b81633d1a9e9162062d8",
+          "after_sha256": "a6fdb3a025f7ae7b072dca34580ad81054391648bc3b1ee2eede529e3b33ec39",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/profile-native-draw-costs.py",
+          "before_sha256": "c4cafa3329dcab5fedaf21ebcecda9bc8acef62ad7de73940ec5308cd2113818",
+          "after_sha256": "59a372ecce944b68b3ece184001399a1f97170bb4bbec7a9480517e32828a6b8",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "fa88cb3aec49b9d2adf21bc76f0a0b456b4702f5",
+      "parent": "1db238261fd0da98dae74564b80697d7eb0827fd",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "6d736fe6a293af0dcf396097618e2bca2c015b07fbdfd98724e7ef550f9358a0",
+          "after_sha256": "87334e4c1dd555bba77227cd07d9d294e04214d51cd4b8dfc001e29845646f26",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "34092d9e387d90e43e54a49d4e2d2fc4d4811478d563c39d2f1b3673f7aaa489",
+          "after_sha256": "0ca1911520bf5b3530b26613010c8de8b10bf534304aa418571e940747628d1c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-live-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-live-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "0fc0e51fb97b57abe487f1ca791efcbcc8327efcffa4020b47b7a1d16c66db7b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-combat-deadline-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5dc148ca92e8b313be7f1765e8d2c3748923e89d9e76901d535bfddcdfa05ee4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-full-performance-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "917b98504afeaaaa4a305dab9c573cc44c706aa9a25ff51aea8a5e70c414cd29",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-wizard-death-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "91937f7c2b6fc4f4ce71946d450bc590da1afb2aa35dbe2492f4a8b80ea9fc29",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "5a69c7154e288b3285c76ff30e5dc58d89cb9fd6",
+      "parent": "c9d19a923d34a8923bf0638b90dd815148f4477c",
+      "files": [
+        {
+          "path": "compat/legacy/canvas_world.hpp",
+          "before_sha256": "dc00af8e558485c4227cb2f7aee31630341bf725d79e1b5084f13704c568a760",
+          "after_sha256": "6800f0a46a575a1073a7cb5750947357c6f34b5ca45d70d17257ca49be8b39dc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "compat/legacy/world_rolling_session.hpp",
+          "before_sha256": "ac6757a39e3300737c515aefe5bb34f8a2c53a3d23c1fdd93a7c96e48ff4cbfb",
+          "after_sha256": "f3415b5873ad97bdb38e876e29ff7b2b22b02773b28693e1395371ff9365c234",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+          "after_sha256": "fd4aa3afe86019039b5ae1c8af8d52c30de903332033078bc82750e07d828a8c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "2002b434e57d472db18115e251eee034125eede184cc8466f4f7de3abc9a6858",
+          "after_sha256": "bade811f3c720344578160c194187cbf61181a3ee8c465156324cb1d300b7ff9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "dcbd27afcfa5c446a96052270f5b3c4c06290faea77a1f646645ab956a274fea",
+          "after_sha256": "5c77676a3c06c23fe2388a345d85d6015825cbc2f475b15deb66e29fbcfd1e8a",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "3169c2e47c5d2805737923c953d58c2fb798f5d7265b32e5766aa6d4935986bd",
+          "after_sha256": "fc7b39a8aef7e2bebf17ac35b3b610a0c4c006a8d909a2461e5bbd0d219e54d0",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-campaign-history-review-0280403c-c9d19a92.json",
+          "before_sha256": null,
+          "after_sha256": "fed622d094731eabb7c63aa7d1583f71cf68a4b2c22dc8aa26d4f99022914181",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-campaign-history-review-0280403c-fa88cb3a.json",
+          "before_sha256": null,
+          "after_sha256": "54323299cca2e51cd89e97476264a1d0526a6f7a71e768604204b4c83aa03db3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "579bdb1c33ba6caf3c1e9a52f31f58b1221ecc1673c7272e02f8760d9bded125",
+          "after_sha256": "32ae8ff356aa804211c1ab5f7e22641e1bb4e4ce77a6943f428263afb327fa84",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-headless-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-live-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-master-current-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a27eb0b42bb1880fd7edd3ada02006ddade0749f34b6dfb9702d03a64eb1a44b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-headless-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "2e281135d2b6a86a515df43b35371ad2dc3ca96ce4e36c78bb25059bb2bd8fb5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-live-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "0fc0e51fb97b57abe487f1ca791efcbcc8327efcffa4020b47b7a1d16c66db7b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-master-current-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "549993d62665de4996c568c945ce0e007b7916bc2db2327874983be32f4fb891",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-public-context-cost-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "0b23d6daea9d684bb75aa4eb16d5f89eb5b77e977d2dda7ce1ac780f074ebf98",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-colour-capacity-neutral-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "ca4c71da7b5bddbba7501dfb9b76068ef19836d84689d53816b3b34425f268f1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-draw-cost-profiling.md",
+          "before_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+          "after_sha256": "32156c1ba91831ddf655e27e8a13834020d5cfdd42b25eeb7ef252379b0756af",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-cache-paired-public-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "c222d62fe16c3d380d2460173420420d624d42c7b4d92cd0fe3452688c342871",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-cache.md",
+          "before_sha256": null,
+          "after_sha256": "c948bb835b3f30b8266744f3fbbd00849b901ce46832780fb9be093e0e0f9207",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-combat-deadline-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5dc148ca92e8b313be7f1765e8d2c3748923e89d9e76901d535bfddcdfa05ee4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-full-performance-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "917b98504afeaaaa4a305dab9c573cc44c706aa9a25ff51aea8a5e70c414cd29",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-guard-build-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "fc6098c1d46964c1d25bd5d4b9fe5f9f4379cd2b4d55a22db9427a75007aeec3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-storage-contract-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "83a736322647216ddd082b3f830eb756d7c736b1561108475fb4a8fe578d74d3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-wizard-death-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "91937f7c2b6fc4f4ce71946d450bc590da1afb2aa35dbe2492f4a8b80ea9fc29",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-checkpoints-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-pixels-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "c3890c6314be6ce8e589e7cc060b8268e7d45d5cce6851d14afd2b4a157ce1ab",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-relative-path-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5c777d567ee140286fe4ceec4d9b33227f31bd4e14cbf1ac4c6f13c9bde3c0ea",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-vendor-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a51b7611f6ec96486efbf1f6c0bac4df239d728577b85789a9fa54bcb8c9549b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-xcb-egl-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "efd568c38e0264f50ba0b83caaa81ca88e056474c4b29f018e7c94347ad0ea77",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/palette-row-cache-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "0f95f47a49f4f2348be972931704cdffeb0664b53037a2633fd0ae9433097768",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/CMakeLists.txt",
+          "before_sha256": "8e0c2426a17cdb0b98227c319ee9150b21639eb6c6f284726d4d21865b83983d",
+          "after_sha256": "912597c83528d40bb631d22c366bc874e762fa7e8f2c154b1a9772a4dd38116b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/resident_profile.cpp",
+          "before_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+          "after_sha256": "a6fdb3a025f7ae7b072dca34580ad81054391648bc3b1ee2eede529e3b33ec39",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/profile-native-draw-costs.py",
+          "before_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+          "after_sha256": "59a372ecce944b68b3ece184001399a1f97170bb4bbec7a9480517e32828a6b8",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "parent": "e67c00dffe3b325875cd02a90d26a58776b51277",
+      "files": [
+        {
+          "path": "compat/legacy/canvas_world.hpp",
+          "before_sha256": "dc00af8e558485c4227cb2f7aee31630341bf725d79e1b5084f13704c568a760",
+          "after_sha256": "6800f0a46a575a1073a7cb5750947357c6f34b5ca45d70d17257ca49be8b39dc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "compat/legacy/world_rolling_session.hpp",
+          "before_sha256": "ac6757a39e3300737c515aefe5bb34f8a2c53a3d23c1fdd93a7c96e48ff4cbfb",
+          "after_sha256": "f3415b5873ad97bdb38e876e29ff7b2b22b02773b28693e1395371ff9365c234",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "a8d8c9841c6212c04766a8def7754b982ee68fa99e05f08b9878fa64c725f35e",
+          "after_sha256": "fd4aa3afe86019039b5ae1c8af8d52c30de903332033078bc82750e07d828a8c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "2002b434e57d472db18115e251eee034125eede184cc8466f4f7de3abc9a6858",
+          "after_sha256": "bade811f3c720344578160c194187cbf61181a3ee8c465156324cb1d300b7ff9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "dcbd27afcfa5c446a96052270f5b3c4c06290faea77a1f646645ab956a274fea",
+          "after_sha256": "5c77676a3c06c23fe2388a345d85d6015825cbc2f475b15deb66e29fbcfd1e8a",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "9c8d977b424f814b9c3f9a0547f4eae778dc5a9bf95f604e7e7864a82745595f",
+          "after_sha256": "1626340e834f49a202e2d491cef2c98a157c2fcc862a23b0f6616ddc16a84ba2",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-campaign-history-review-0280403c-c9d19a92.json",
+          "before_sha256": null,
+          "after_sha256": "fed622d094731eabb7c63aa7d1583f71cf68a4b2c22dc8aa26d4f99022914181",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-campaign-history-review-0280403c-fa88cb3a.json",
+          "before_sha256": null,
+          "after_sha256": "54323299cca2e51cd89e97476264a1d0526a6f7a71e768604204b4c83aa03db3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-campaign-history-review-c9d19a92-e67c00df.json",
+          "before_sha256": null,
+          "after_sha256": "e620aea4c652f9a2f91b2263a4a9b682d67a4e17b93bbb6fedfb766617072644",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-campaign-history-review-fa88cb3a-5a69c715.json",
+          "before_sha256": null,
+          "after_sha256": "c3ea0725b9a94299367a19587c749f7623dfafef7948f5a762ae295813fb6c34",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-c9d19a92-e67c00df.json",
+          "before_sha256": null,
+          "after_sha256": "e620aea4c652f9a2f91b2263a4a9b682d67a4e17b93bbb6fedfb766617072644",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-fa88cb3a-5a69c715.json",
+          "before_sha256": null,
+          "after_sha256": "4d6968fc2df9970cf6407a0fa83d057bd1b1d7c027d226fcc5ff1184958f0aec",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "4c6ba7b4394647132c6219f61f75928e53cfc4df97d3aa91f4c417c3afeff6fb",
+          "after_sha256": "e994e5b2d9ec7918a66111d5433ed0961e7e3d8ec15219ab8ab167a64eb5fe17",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-headless-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-live-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "48896f4d349a1bbff1e241775d926707d0a599f069aa2bbc3e04c7c430e1ecb9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-master-current-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a27eb0b42bb1880fd7edd3ada02006ddade0749f34b6dfb9702d03a64eb1a44b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-row-master-final-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5c65573a8be49f16f9de5a97b093b8cad10970180366a14f4fbb620f03d01a26",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-public-context-cost-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "06826ba93926f7a471d825fe743a849bccae7c45966ffe8aec8bfd7ff016cd1d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-headless-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "2e281135d2b6a86a515df43b35371ad2dc3ca96ce4e36c78bb25059bb2bd8fb5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-live-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "0fc0e51fb97b57abe487f1ca791efcbcc8327efcffa4020b47b7a1d16c66db7b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-master-current-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "549993d62665de4996c568c945ce0e007b7916bc2db2327874983be32f4fb891",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-row-master-final-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "4cce2447de62f4da0acc4561e6a0dfcdf669a5186a82b67151512867735f83e5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-public-context-cost-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "0b23d6daea9d684bb75aa4eb16d5f89eb5b77e977d2dda7ce1ac780f074ebf98",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-colour-capacity-neutral-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "ca4c71da7b5bddbba7501dfb9b76068ef19836d84689d53816b3b34425f268f1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-draw-cost-profiling.md",
+          "before_sha256": "fb46f54c26c0906331b9c57b5816f9e519792d428592a92f6af650204fdedce4",
+          "after_sha256": "32156c1ba91831ddf655e27e8a13834020d5cfdd42b25eeb7ef252379b0756af",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-cache-paired-public-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "c222d62fe16c3d380d2460173420420d624d42c7b4d92cd0fe3452688c342871",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-cache.md",
+          "before_sha256": null,
+          "after_sha256": "c948bb835b3f30b8266744f3fbbd00849b901ce46832780fb9be093e0e0f9207",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-combat-deadline-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5dc148ca92e8b313be7f1765e8d2c3748923e89d9e76901d535bfddcdfa05ee4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-full-performance-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "917b98504afeaaaa4a305dab9c573cc44c706aa9a25ff51aea8a5e70c414cd29",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-guard-build-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "fc6098c1d46964c1d25bd5d4b9fe5f9f4379cd2b4d55a22db9427a75007aeec3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-storage-contract-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "83a736322647216ddd082b3f830eb756d7c736b1561108475fb4a8fe578d74d3",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-row-wizard-death-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "91937f7c2b6fc4f4ce71946d450bc590da1afb2aa35dbe2492f4a8b80ea9fc29",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-checkpoints-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "29120469d8df25f57c39ecb293405720bbb90bd68d565463eff4123cbc9462dc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-pixels-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "c3890c6314be6ce8e589e7cc060b8268e7d45d5cce6851d14afd2b4a157ce1ab",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-relative-path-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5c777d567ee140286fe4ceec4d9b33227f31bd4e14cbf1ac4c6f13c9bde3c0ea",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-vendor-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a51b7611f6ec96486efbf1f6c0bac4df239d728577b85789a9fa54bcb8c9549b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-public-context-xcb-egl-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "efd568c38e0264f50ba0b83caaa81ca88e056474c4b29f018e7c94347ad0ea77",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/palette-row-cache-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "0f95f47a49f4f2348be972931704cdffeb0664b53037a2633fd0ae9433097768",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/CMakeLists.txt",
+          "before_sha256": "8e0c2426a17cdb0b98227c319ee9150b21639eb6c6f284726d4d21865b83983d",
+          "after_sha256": "912597c83528d40bb631d22c366bc874e762fa7e8f2c154b1a9772a4dd38116b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native-render-profile/resident_profile.cpp",
+          "before_sha256": "8d8c69fb10a9a7ee641a80d2bcd8097be4f09e4281e4b0358def187b93b9ee51",
+          "after_sha256": "a6fdb3a025f7ae7b072dca34580ad81054391648bc3b1ee2eede529e3b33ec39",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/profile-native-draw-costs.py",
+          "before_sha256": "01a63ad96012bd50db2aef329aea28e1a74ad318f3d30ab2da25bfbc07202cf9",
+          "after_sha256": "59a372ecce944b68b3ece184001399a1f97170bb4bbec7a9480517e32828a6b8",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "205e1659b41a0dc421c88f332c6cfecf69583fac",
+      "parent": "9df412fc3db7ec7ce13349fb022c914762a13d19",
+      "files": [
+        {
+          "path": "apps/qt-shell/README.md",
+          "before_sha256": "6f5c1da296ee4bcdc3eac3697a7821440a2ef835731cfbc591dc0dc8b6692215",
+          "after_sha256": "4b4d5af1d543b9a85e9a64b35aac44abbbe1df35e19078795e867e4860601941",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "apps/qt-shell/main.cpp",
+          "before_sha256": "efe5bc5f97729f1d16fa7b6bcfdb18aaef23a9a598f7374742e0188c0a9dd6b2",
+          "after_sha256": "590593261148eb333dfb69f836113ded6d45e6b68c92b5c2ab3482b8deab3458",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/admission.cpp",
+          "before_sha256": null,
+          "after_sha256": "bf95868569fca2a0efd9d0de91c743f1d7df3829bdf5a0b76110ae83a48015c4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/admission.hpp",
+          "before_sha256": null,
+          "after_sha256": "9b21d17a7f9b3580870d4b9ffb88d40212ceaa047ab2090261e6295964b30ea6",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/admission/CMakeLists.txt",
+          "before_sha256": null,
+          "after_sha256": "307d7e730faf67d32c0a6eb219c51924e3b917efaf4ce94082b9f891c23aac4b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/admission_tables.hpp",
+          "before_sha256": null,
+          "after_sha256": "849ba9046ce40ae34d9145c90ca8a53365389820c50f94876b43af3de2383bac",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/descriptor.cpp",
+          "before_sha256": null,
+          "after_sha256": "a3e43468c0f65ef66f72c934e71518ee9a8738292d8ab0b9d20bd41303511dba",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/descriptor.hpp",
+          "before_sha256": null,
+          "after_sha256": "3d0146b803e61c834abdf8e2fdc87dbf292a8107a0cda99102c624fec5529457",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "reconstruction/casting/descriptor/CMakeLists.txt",
+          "before_sha256": null,
+          "after_sha256": "24b14f8b87e2cfb005c9f0f24f587f650894aa8a3cbdc2aa17478558fb6ea32e",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/formats/packed-cast-command.md",
+          "before_sha256": null,
+          "after_sha256": "8a781c7808b9be8955da96d029a21d1c07e747cd749a27037375bc711ade208f",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/cast-admission.md",
+          "before_sha256": null,
+          "after_sha256": "c1e4c70ae0acb8aa21a56936f2ed3934e6fb206a0d1e0b0ee38e607a704c4664",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/cast-descriptor-expansion.md",
+          "before_sha256": null,
+          "after_sha256": "0f9289cd8fda61e74463d4727af652cc623e17598dda8f622ded3c613cef8ef0",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "1626340e834f49a202e2d491cef2c98a157c2fcc862a23b0f6616ddc16a84ba2",
+          "after_sha256": "aad57e0d1f0abe5c2436525120a8f8d8062977e3cd1c91be2b630640ddad5df4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/cast-descriptor-qt-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a45046d3c09dd962dab197711fa033f8a43c5758ce8a49d57f1af161f76e0a08",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-5a69c715-9df412fc.json",
+          "before_sha256": null,
+          "after_sha256": "23e5d31f2eaecefbe12be7796a46171a714324c57e1f25d6f83126736197d2c1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-e67c00df-9e074d4e.json",
+          "before_sha256": null,
+          "after_sha256": "5aaa30071d7e68d4f9fbfd658dd7bfee4bc25a7b3b3e5e5884940e8fa0bb8c24",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/original-cast-admission-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "7f3f429a0016f6ebd6dca77b1ae2810d97a04b1ab646bb1e99b722ef78dec892",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/original-cast-descriptor-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "f6a528a1f7102426676e42ca1687627308718b86ef1584870ba4eb73b457498a",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/original-control-actions-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "2650364984f4b524be7d1157309d936ffff516a3d167d8871f3e8b30fba3869d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/original-remaining-contracts-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "111ccf6a13a68d37c7e32a749153ac3506c13c0553beb49414c6a45b7f9a1a49",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/public-launch-startup-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "8ef802063d0de14fee8621572aeba3e6d14f153b438e001e338068a5e36230d0",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "e994e5b2d9ec7918a66111d5433ed0961e7e3d8ec15219ab8ab167a64eb5fe17",
+          "after_sha256": "0d45613858eff04510cfce1aa7b91573c1ba05c3c722eafb4e6591c662719981",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-launch-original-verification-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "1180d63a902c8de4f7bba4b4d15c867fb9714c6a7716265d482cad334d09ba74",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-startup-integration-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d022ed27156e5fdd054062989c8fd6ec6fd1a2a65a82a832e5040668e249781f",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-cast-admission-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "bb0eb84d3eb8932b8097b90f4f97c52b098b76a6a53e376b12116a0ed8b72c89",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-cast-descriptor-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "128e575fd5f41ba5183570fc1cf1dc92148d048cc0b35dd94d7b1c5e4a1caec0",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-cast-descriptor-rebased-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "0030aea41550f248acecf411ab9e8546f7934a7f237c201246366bd83f5c5d5e",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-control-actions-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "df04680ba11c25b33967a8221f58a2ccc3f7919dd8ac80221faee2833c4af939",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-control-actions-v2-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "df04680ba11c25b33967a8221f58a2ccc3f7919dd8ac80221faee2833c4af939",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-remaining-contracts-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "0086448ea8730d527a0a2d19f2c1956429f79e052ec26d42d01a7b0f29cc4b81",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-public-launch-startup-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "8d9edc4fb696029a9c2bd0b67f9d7c1fd85852544b75f894a1b5fe88e5de3c8d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-public-launch-startup-final-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "53879a4e990549922b4e28e22f4a18fc8c78ade7cb79d99d38e42ec736875cff",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-startup-commit-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d91298a122c80aa8a694610ad12f46995394af247f35242718d53350bbcd6d60",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-startup-commit-fae75a9e-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "fd4c91d0446b1a1531dab6a469626c1287a414e9d435f2a177f91ee009d66c87",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-startup-commit-rebased-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "f743b12fd57c5d45806bb6fb0b3824918d5b1270c73005d6455d6e68d08aeedc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/startup-commit-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "3b9803184099601881f35b5848540d9e2373682373610336d295c403f157158c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-startup-integration-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "1236d17551591425ae2774dff7bc84bd238f63dfa7e642eb357a39abe0629e07",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-cast-admission-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "cf57bb50abdff901e452b259bc4d44473ec525d544a71e28a1a70b19dfb37189",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-cast-descriptor-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "a15680ca934e8acff8cb5ea8ef2ebde54ccbea46b19d7b1573c9e72efb10fbae",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-cast-descriptor-rebased-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "8f71871a8688021ccc88014ae6aee84fef28621bcd829e42a6c3807aa981ea11",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-control-actions-v2-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "55508945457706d5ded5b6af923bae3f56e26552917a5af6967eb62e678e2d67",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-remaining-contracts-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "d8934401bc5ff3100a593b4e54eb770604a47ff0dcfbe596b26a8c863f05f638",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-public-launch-startup-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "7ed09589ad1437809e4a937afcaceadd18f6b48a7c4f1151431723ad9e2ba9cc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/creature-control-actions-validation.md",
+          "before_sha256": null,
+          "after_sha256": "50cf7f2df2266bb09ba3894ffed1cd5cdf6d8a481aa09f1a9d3b5f8b177ad6d1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/creature-remaining-contracts-validation.md",
+          "before_sha256": null,
+          "after_sha256": "2fa6655730b1c98d9e6b25377ab40624a166a6d8b843215617f7e31e07689377",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-cast-admission-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b395722ab4f892d2c9745ef32406f486161200cce36f286f69e05baed8284a93",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-cast-admission-static-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "16a51486e3850a3106b0bdd559961e7de431e9ef391a78719f27b60bc964f55d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-cast-admission-static-v2-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "60f8248859edfee1cd57a9221fa23ebbbaa49577cbc7ada16fb2043872d97531",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-cast-descriptor-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "9522749201263dad3874de88bf72a255afc8aa538f8413cb7c7b368a75a81e90",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-actions-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "1665c547cea1319aae87a3944eae15b86ce458b54199cf32df058a29db8c65dd",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-behaviors-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "e928ca9f5a123eb6418bacab9e6cee2c79ecb5bc00c078f13c5ff81e8ad272e8",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-callbacks-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "97749d08f804e5445d76d45b49fc4341eab8e76e0569071a67ef5f3ccddaeab6",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-control-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "0b8ca9858a99c282dcb33d2f042da490a6be0ffd706bb67bc22485e24e25172b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-control-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "24118ff52131ee877b47d22328c8dd35619a6a90fedcf6463ba95da066739b9d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-follow-joint-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "4b8b432c436b9d3cf87bb0346221f42991f5c336ea0882b580c16d7f547d3953",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-lifecycle-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "5fc8ccca58bae44907941cff39f5611a8f09cf1a22f4afe29bb343c5f0eea00b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-orders-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d5d7fedcbd12e88551a786173bc797d044b124072d5f4c4b273ccec6ced0e056",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-strategy-remaining-bound-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b95262f139b21d246d233a4fd8ed57c13fc0814ffb0fdce75bef36b1b0cd3ef2",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/original-creature-transitions-joint-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "b58f3ce1ac6d3bcf2e129e167dcc17c5f91820a3d8f80052a20515f34f30f7e9",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/public-launch-startup-ui-final-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "474f99f008db1affa2136f8e6770ed0f5fcf1e5fc337e474567ab2ca074f9cca",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/public-launch-startup-validation-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "4d7b727e2d4de0d67698a7aa9764ae36079bec9beb92e5b2bb0623ae70dab724",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/public-launch-startup.md",
+          "before_sha256": null,
+          "after_sha256": "901126648b89c46585b114a58724d32f7e075ae2bd56131cc38b5855a29e1c18",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/cast-admission-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "b15892a7fc01bc9a74f61086f049c7c4519ea9dbd4e800c707fba065cae12452",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/cast-descriptor-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "b4f237b67381678fba6ecc54e7ec645ee6867c049bf2bd7e77cbecb888cd5ab7",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/test-launch-build-cache.py",
+          "before_sha256": null,
+          "after_sha256": "c33bfdf7f99b58354136b656c959d563323e4996c3cfbeadd724084c59c1996e",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/test-native-music-launch.py",
+          "before_sha256": "4500551a9a5d7a22ce5ef0220ced44ac42398cc6a4426e2427e1f2821760180f",
+          "after_sha256": "6c5c1a9ffc5a762c2338d2ae23fc3633dd4be6432010e8d69da9f0df11126c42",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/test-qt-launcher-startup.py",
+          "before_sha256": null,
+          "after_sha256": "b557578d0f06667f88dc81947aae3e8a910f802187ce436c23498d5248da4c16",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/export-cast-admission.py",
+          "before_sha256": null,
+          "after_sha256": "c5df1423ba09255fa663251a527297346aa8b8c53079d8174e2fb27054ee12b1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/glyph_backend_launch.py",
+          "before_sha256": "94cb37af6021d5b6be038ab7e2a797ecd40ec8cb7dd34909488de528c035868e",
+          "after_sha256": "8a05a2b6b5df244c956ef2676ec700bfc87553119de003e188480fecb14f3ccc",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/launch_asset_checks.py",
+          "before_sha256": null,
+          "after_sha256": "42907172036456fecfaeba751bf87c0203a3d7971789962d8a5a3c45ef284edd",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/launch_build_cache.py",
+          "before_sha256": null,
+          "after_sha256": "0662abaa2c70a0ca32b53062c3cbfb9e6545ff9d6fce770c85fcae4d4e84a7c6",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/menu-game-runner.py",
+          "before_sha256": "e5076585647a5d3287b0b1c2da5850faa9e099369cf30eb8dc4b1e64f31d0898",
+          "after_sha256": "d7a40f2130a55b6d532e57ee66cdbcbac72ff26570cfb7c62e1a4d34e2ecde22",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/native_music_launch.py",
+          "before_sha256": "a263acad932b90d70cc2a8d01d082c8237f991f315dad00b27a84bbd1b0d4dcf",
+          "after_sha256": "f2369a37145f71f22ca5a0a73432eca9383371d41e893685ab1414cc218a5bf6",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/prepare-menu-observer.py",
+          "before_sha256": "4072d4c135e88c9bb7b8621ea550ac539734a01450cc17fe71787695facea30e",
+          "after_sha256": "96bebe3b9874596d57099051d8249f90208a5681a61b68f16dcf54ac9e93bd45",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/render-game-runner.py",
+          "before_sha256": "58f02bc3164d0a704d0356933de977e533f8e1fcbb9fb2934d8439661de036cc",
+          "after_sha256": "ed2485fa40ddbdae52f79b72c597612640d98d201cfec7aa3f9c55435061507c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/run-menu-observer.py",
+          "before_sha256": "ef3caca4c16b0f4faf730a4e2ac55645464c305b0b2227069da91421e902f34d",
+          "after_sha256": "714360b7ebb1589bea5e974d98d04646c655ce2534034d16fb52268ee7f12da5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/run-opengl-game.py",
+          "before_sha256": "d8ab79b7301e059f263543b753b94b87f14ce78764e7618b850a7483bf1aaa5f",
+          "after_sha256": "07507a6b5298e380fe269bb4a1f359ed662b90a118e98afb2184e3c4f09481cd",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/run-qt-shell.sh",
+          "before_sha256": "53290e652a3444c03f8bf05a18b6cb92d97c160a544e9eace711360cb022590f",
+          "after_sha256": "80c0bc450508cf31de737543909dd231f7430c5d2548f0071d6d25a55189f739",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/test-cast-admission.py",
+          "before_sha256": null,
+          "after_sha256": "f4ea57ffe27d4bd1e3263a471e32ebae499b019e7ea5736b7b40348d6ba7aed4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/test-cast-descriptor.py",
+          "before_sha256": null,
+          "after_sha256": "c37d8d9eb665ffe1ae3cf236db52bf95daee58755d9420db1bc0c9233f6ddb54",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "parent": "205e1659b41a0dc421c88f332c6cfecf69583fac",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "aad57e0d1f0abe5c2436525120a8f8d8062977e3cd1c91be2b630640ddad5df4",
+          "after_sha256": "fe540b6edf096d9280a2cefa8adf38c40bcee8db4fce9506419296b670dcdecb",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "0d45613858eff04510cfce1aa7b91573c1ba05c3c722eafb4e6591c662719981",
+          "after_sha256": "09fe4fac6e5d570a829035d35f2a3fa20cc8b18ca8c65169298bfbfdfd52efdb",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-startup-observation-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d022ed27156e5fdd054062989c8fd6ec6fd1a2a65a82a832e5040668e249781f",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-startup-observation-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "6997dff7377d475af198da5dbab85b95dfbfafade20d6713633deb0f549f38f0",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-startup-public-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "50cf45ba98f1e5b579435f980a329b83f88f141c5bbc7b90b4b50ec3ed6c777b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-startup-sandbox-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "bdadc0a87615451240f8409ddc3f3ffc0d4919365b5b7abfb070cbd3e2792047",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-palette-startup-storage-negative-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "3fa2bd3b57c59705f1aa198401337b7ea531439e59bdff5efe3e6f7ff54eba4b",
+          "exact_receipt_present": true
+        }
+      ]
+    },
+    {
+      "commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+      "parent": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "files": [
+        {
+          "path": "research/runtime/battle-pause-distortion-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "a7ba8d57089c6d0379406ea9b7e676b7bc7a744e941e59ff3222f12f52f76628",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "fe540b6edf096d9280a2cefa8adf38c40bcee8db4fce9506419296b670dcdecb",
+          "after_sha256": "8598b96c465dad347df5d4fddcae54af790d46115328e69a52e477b43e971fc8",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-205e1659-81fdaf63.json",
+          "before_sha256": null,
+          "after_sha256": "496cd513adbe48690a51d58fa1cebc8a40e70579c8b40ee5220714cdad03f31a",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/native-palette-first-parent-history-review-9e074d4e-2ece99d5.json",
+          "before_sha256": null,
+          "after_sha256": "e7191f5e7a878676e903a2fb09301473a475fabe092b0063abc72db1ef278b72",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/origin-reconcile-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "05189d1ff1364728e6566195d7a7597c3eab969bb60556b2f995fcd726e925b6",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "09fe4fac6e5d570a829035d35f2a3fa20cc8b18ca8c65169298bfbfdfd52efdb",
+          "after_sha256": "fe4890649c8ed4c36e1a3c368c7656bb340524737b64b7e56c461da49277b2f4",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-palette-master-merge-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "59e3996c77aca0cfc71ec6eaa7ce69fa60c3929f33a932216fea094dc63d75a1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-origin-reconcile-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "7722c0cce0bb77d3b70d5d7cb341c2c476f9a9e1114857e8786839315d05709e",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-tail-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "ac728ccba3a1e7d586f11710423576bf05f431f17408a39d283a52cd888f2080",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-tail-merge-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "3fd6f04ba5efb43c28eb6e2113ce5a96753aebca869c52ca2558187bd3be036c",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-palette-master-merge-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "76c3ce61b1303f4c43c9f7435ab8bb32dfc6fd9664caf0cf9af2c6eb1994f34b",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-origin-reconcile-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "99eb8acd4f3f891de141b7ba40d91809b05f3a88ffb80af69f034a7110740c2d",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-tail-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "b0d561c68be949f52532117508fab065f96e198ce13e8bcceb253f1719c4b8a5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-tail-merge-20261012.md",
+          "before_sha256": null,
+          "after_sha256": "f471791572006d173b39c767c1062fa6350ba1347268b008d0c10476b75ae136",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/coverage/surface-tail-merge-incoming-history-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "e0493fc1058ccf38ae58dd39d30e63fb0f0b739e7fd5ae9a85c1d52e03e936b1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/native-surface-tail-20261012.json",
+          "before_sha256": null,
+          "after_sha256": "d9e87795a610759a55f243eb3aed9999d15393d7964a014847ad478fe449827a",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "research/runtime/surface-final-word-read.md",
+          "before_sha256": null,
+          "after_sha256": "67d511bc6f90314144877be3088390da33d42fde377ee25e417b6e361bd2b3d5",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "runtime/native-draw/surfaces.h",
+          "before_sha256": "9793380dff3185e961d0fa6bfd18888453de54be92fdf730bbc45c91c36a4042",
+          "after_sha256": "f6c5d9fa7368a6f23645f8e91d87f27f9930e4d24055e403524ab165e0f2fb84",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tests/native-draw-surface-probe.c",
+          "before_sha256": "dabd50e1cf7972a845b432ea7decc8fcc02ea6e04a989e76280f825acd96adac",
+          "after_sha256": "4565d44857411d0c631c6886870855231fe0ca3e4bf5574dd957dbd72e8686d1",
+          "exact_receipt_present": true
+        },
+        {
+          "path": "tools/test-native-draw-surfaces.py",
+          "before_sha256": "fd71ee06713dbede7b29e8f6963e87b9a4a4c02c0e9f149b737f451a2cb2347f",
+          "after_sha256": "0a27f428536116846ba2f393b31f27f4f5c8d48018d28cf65c49c688bc90cc75",
+          "exact_receipt_present": true
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

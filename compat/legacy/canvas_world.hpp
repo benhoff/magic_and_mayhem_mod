@@ -40,6 +40,7 @@ public:
   std::uint64_t draws() const { return totalDraws_; }
   std::uint64_t readbacks() const { return readbacks_; }
   const Profile &profile() const { return profile_; }
+  render::ColourRectangleCacheStats colourCacheStats() const { return scene_?scene_->colourCacheStats():render::ColourRectangleCacheStats{}; }
 private:
   render::GlBlitter &renderer_;
   assets::AssetStore store_;

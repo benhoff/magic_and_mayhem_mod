@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new validation claim.",
+  "range": "205e1659..81fdaf63",
+  "transitions": [
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "aad57e0d1f0abe5c2436525120a8f8d8062977e3cd1c91be2b630640ddad5df4",
+      "after_sha256": "fe540b6edf096d9280a2cefa8adf38c40bcee8db4fce9506419296b670dcdecb",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live"
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0d45613858eff04510cfce1aa7b91573c1ba05c3c722eafb4e6591c662719981",
+      "after_sha256": "09fe4fac6e5d570a829035d35f2a3fa20cc8b18ca8c65169298bfbfdfd52efdb",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live"
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/coverage/source-index-native-palette-startup-observation-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "d022ed27156e5fdd054062989c8fd6ec6fd1a2a65a82a832e5040668e249781f",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live",
+        "native-palette-startup-observation-master-20261012-exact",
+        "native-palette-startup-observation-master-20261012-scoped-live"
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/coverage/summary-native-palette-startup-observation-20261012.md",
+      "before_sha256": null,
+      "after_sha256": "6997dff7377d475af198da5dbab85b95dfbfafade20d6713633deb0f549f38f0",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live",
+        "native-palette-startup-observation-master-20261012-exact",
+        "native-palette-startup-observation-master-20261012-scoped-live"
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/native-palette-startup-public-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "50cf45ba98f1e5b579435f980a329b83f88f141c5bbc7b90b4b50ec3ed6c777b",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live",
+        "native-palette-startup-observation-master-20261012-exact",
+        "native-palette-startup-observation-master-20261012-scoped-live"
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/native-palette-startup-sandbox-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "bdadc0a87615451240f8409ddc3f3ffc0d4919365b5b7abfb070cbd3e2792047",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live",
+        "native-palette-startup-observation-master-20261012-exact",
+        "native-palette-startup-observation-master-20261012-scoped-live"
+      ]
+    },
+    {
+      "commit": "81fdaf634aab49f1027880b1a93a0641c43865e8",
+      "path": "research/runtime/native-palette-startup-storage-negative-20261012.json",
+      "before_sha256": null,
+      "after_sha256": "3fa2bd3b57c59705f1aa198401337b7ea531439e59bdff5efe3e6f7ff54eba4b",
+      "exact_receipts": [
+        "native-palette-startup-observation-head-20261012-exact",
+        "native-palette-startup-observation-head-20261012-scoped-live",
+        "native-palette-startup-observation-master-20261012-exact",
+        "native-palette-startup-observation-master-20261012-scoped-live"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

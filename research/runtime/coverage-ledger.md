@@ -27,6 +27,16 @@ original MCI equivalence, device-loss recovery or speaker audibility. The
 installed ARM Wine prefix already selects FEX WoW64; game compatibility
 remains a separate check. Historical stage statuses are unchanged.
 
+The subsequent merge of `origin/master` retains its palette reuse implementation
+and all prior review/evidence records. The combined ARM shell rebuild and OpenGL
+pixel self-test pass. The incoming palette-cache regression passes six independent
+pixel checks, zero warm palette uploads and bounded 1024-row eviction; the native
+and ASan/UBSan ring checks remain passing. These host regressions do not rerun the
+incoming TITAN/gameplay experiments or establish original-game equivalence on ARM.
+The eight incoming commits' first-parent file hashes match exact retained
+receipts; [the incoming history report](coverage/qt-arm-master-incoming-history-20261013.json)
+records this accounting review without asserting a past gate pass.
+
 ## NS26 — original autonomous decision producers and behavior handlers
 
 Native reconstruction now includes the original controller, target-admission,
@@ -8609,3 +8619,105 @@ Only this reconciliation uses the private policy in
 `working/retention/origin-reconcile-authorized-policy-20261012.json`; temporary
 Git checkouts use RAM and automatic archiving remains disabled. The repository
 default policy and original artifacts are unchanged.
+
+
+## Public native context costs — 2026-10-12
+
+Identical compiled native World inputs now run on verified TITAN EGL and
+the public xcb/zink backend, with bounded timestamps, ordinary-readback
+refusal and separate exact diagnostic pixel checks. The optional xcb/NVIDIA
+EGL route cannot create desktop OpenGL3.3; backend policy stays unchanged.
+Early128World redraw medians are1.48ms EGL/2.24ms zink. Extended2423World
+throughput observations average1.75ms/5.65ms; later redraws submit median
+189uploads and271draws, versus12/75early. These observations belong to an
+overall failed comparison: public checkpoint redraw pixels changed once.
+A fresh public diagnostic repeat matches everyWorld/redraw and every prior
+EGL primary hash; intermittent pixel instability remains an explicit gap.
+
+`NR.native-draw-cost-profiling.public-context-checkpoints-20261012` records
+only that successful diagnostic repeat. Failure reports retain original
+source hashes. A partial CPU sample has2046samples/no loss;299redraw-ancestry
+samples include153copy-submission samples. Diagnostic hashing/readback and
+unwind/inlining gaps prevent treating overall sample percentages as normal
+rendering cost. No live gameplay, repaired pixels, original replacement or
+60FPS promotion. Bounded source-cache pressure and public sharing/UI/export
+remain next measurements.
+
+
+## Native palette-row transfer reuse — 2026-10-12
+
+The512slot colour-source experiment is retained but discarded: median189
+palette-bank uploads remain. Exact transfer-category counters identify those
+uploads separately from colour cache hits/misses. Native colour capacity stays64.
+The bounded native palette-row cache instead owns1024exact256word keys and a
+private256x1024R32UI bank. Row eviction flushes queued readers before replacement.
+
+`NR.native-palette-row-cache.paired-public-20261012` passes2423ordered public
+TITAN Worlds and4846native redraws for old/current consumers; every primary
+and prepared hash agrees. Timestamp/throughput final hashes, original/source/
+input checks, ordinary-readback refusal and query/surface/display retirement
+pass. Six independent32word scalar checks include warm reuse,1200-row pressure,
+241evictions, mutable owned keys, coverage and refusal/last-frame preservation.
+
+Timestamp-disabled warm public redraw mean5.17535→3.92946ms (24.1%less),
+median189→0uploads and271draw calls unchanged. The earlier intermittent public
+pixel failure remains unresolved and is not declared repaired. Full live flow,
+engine19FPS and native/visible60FPS still require separate current execution.
+Two disk-guard stops and two fixture preflights remain negative records; original
+manifest verification after the guard stop is retained. No gameplay/clock/
+source-order/native drawing policy is removed or original equivalence promoted.
+
+
+## Native palette rows — full public observation, 2026-10-12
+
+`NR.native-palette-row-cache.full-performance-negative-20261012` passes
+casting, player Zombie lethal combat, spell refusals/ranged damage, portrait
+recenter/retreat, native menus/resume and ordinary Quit.4603completions/imports/
+verified returns balance, source outstanding0, all ordinary World/native/RGBA
+readbacks/pixel replies0; original/source/private cleanup pass. Engine19.2932FPS
+passes the19floor. NativeWorld49.3965FPS fails60; visible cycles64.6508/59.0043
+paintFPS are not distinct simulation updates. Paired captured-input gains
+remain valid; this different live journey does not supply a causal old/newFPS
+comparison. Live extraWorld CPU4.55772ms and source submit3.43316ms are lower
+observations than the prior7.07750/6.89511ms but full native frame rate remains
+below target. Source polling12.3749ms, active commands2.64219ms, extraWorld+UI
+5.44399ms and immutable export0.16424ms localize remaining work; timings include
+driver waits. No original UI roundtrip or GPU busy-time attribution is inferred.
+
+The first current journey fails its Zombie melee deadline; the second observes
+melee but loses the wizard before lethal completion. Both reports preserve
+original/source checks and empty renderer errors. The unchanged third retry
+passes; neither earlier failure is overwritten. Historical intermittent
+public checkpoint pixels remain an open gap. No gameplay values, source order,
+clock, native drawing or original renderer replacement status changes.
+
+
+Combined committed masterc9d19a92 with renderingfa88cb3a: reviewed exact
+history0280403c..c9d19a92(76transitions) and0280403c..fa88cb3a(37transitions),
+with0missing receipts. Both journals/status histories are preserved; the sole
+semantic conflicts are source-index path/hash, replaced by a reviewed combined
+census. All paired/live rendering fingerprints still match. This retrospective
+accounting does not assert a past gate pass or new validation.
+
+
+Final publication parent e67c00df preserves the latest direction/previous-motion
+field-layout commit. First-parent history checks review c9d19a92..e67c00df
+(13transitions) andfa88cb3a..5a69c715(111transitions, including merge changes),
+with0missing exact receipts. Rendering execution fingerprints remain unchanged;
+original/layout/launcher histories and staged-work preservation are independent
+from the native renderer proof. Source-index metadata is regenerated for the
+combined tree; this review is not new gameplay validation.
+
+### Palette row integration with current startup changes (2026-10-12)
+
+The paired TITAN replay and full gameplay records retain their original source hashes. Master startup changes to `apps/qt-shell/main.cpp`, `tools/menu-game-runner.py`, and `tools/prepare-menu-observer.py` now make those full source closures stale. Renderer implementation and palette fixture sources remain unchanged. Current merged launcher/gameplay validation is pending; historical integration observations and the measured 49.4 native FPS are not fresh current-code or 60 FPS claims. The intermittent late-scene pixel mismatch remains unresolved. No gameplay balance or draw-order change is introduced by this merge.
+
+### Palette startup validation retry (2026-10-12)
+
+NR.native-palette-row-cache.startup-public-negative-20261012 records the current merged startup tree; success=False. The first sandbox retry could not access nvidia-smi and stopped before original artifacts or gameplay. Its raw report remains at working/tests/native-display-deadlines/run-e4nrtezm/report.json. The hardware retry uses a private TITAN display, unchanged gameplay/thresholds, prospective source claims and source stability checks. Current source-bound gameplay observation only; no paired old/new live FPS causality, original renderer equivalence, 60 FPS or repair of the intermittent checkpoint pixel failure is inferred. Preserve all previous source-bound failures and successes.
+
+The unchanged next retry reached gameplay but was terminated by the storage guard at 99.12 GiB free. Its final campaign/wrapper report is unavailable; no performance or functional success is inferred. Exact owned shell/monitor/Xorg groups and private Wine prefix were stopped and original manifest verified manually afterward. Durable sandbox/storage negative records retain these boundaries. New startup Fireball failure observes 1920 balanced World completions and no renderer error; full-flow launcher validation remains pending despite current scoped live observation.
+
+### Native palette integration into master (2026-10-12)
+
+Merge the palette work with master `2ece99d5`, retaining its final-word native surface read fix and all historical coverage receipts. Incoming source edits do not overlap the palette observation or replay declared source closures. Renderer implementation is unchanged. Latest startup full gameplay remains failed at Fireball damage, and the next retry remains storage-interrupted; neither is promoted to full success. The earlier paired CPU improvement and full native gameplay observation retain their original source hashes and historical limits. The intermittent pixel gap and 60 FPS target remain open.
