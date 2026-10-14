@@ -35,3 +35,40 @@ Retained preflights: run-7_1w4_a3 refuses six undeclared compiler inputs;
 run-93omo32v's diagnostic mode incorrectly required cumulative readbacks to stay
 zero after deliberate hashes. The fresh run uses per-operation readback deltas,
 keeps diagnostics separate and does not weaken any rendering/pixel/FPS gate.
+
+## Public backend comparison
+
+`tools/profile-native-draw-costs.py --compare-public --scenario
+native-public-context-cost-20261012` runs the same frozen compiled renderer,
+assets and ordered captured prefix on NVIDIA EGL and the public xcb/zink
+backend, plus Qt xcb with NVIDIA EGL. It creates and cleans up an owned private NVIDIA Xorg, verifies the
+actual renderer, and refuses platform/backend mismatches or software fallback.
+Every primary native pixel hash must agree across backends; each prepared
+redraw must equal its corresponding primary output. Timestamp-enabled and
+disabled trials remain separate. The existing 5.4 GB corpus is reused by hash.
+
+This test isolates offscreen context/backend capacity. It excludes the public
+worker's sharing topology, command UI composition, immutable shared exports,
+Qt widget painting and scanout. A backend difference does not establish their
+cost or successful gameplay at 60 FPS. Results and next bottleneck attribution
+remain pending until the source-bound experiment completes.
+
+The first comparison preflight retained under `run-7o8cey_u` refused the
+public zink context because its GL vendor is Mesa. The corrected check requires
+Mesa plus zink/NVIDIA_PROPRIETARY/TITAN identity for that route and NVIDIA
+vendor plus TITAN for EGL. It keeps the fallback refusal and original/input
+checks. The failed record is retained without a performance claim.
+
+The optional `--compare-xcb-egl` route failed context creation in
+`run-s_uyhojr` (Desktop OpenGL 3.3 unavailable). Its EGL/zink128World trials
+completed before that failure; the overall run remains failed. Default
+`--compare-public` compares the two working routes. Extending the ordered
+prefix to2423Worlds measures later captured gameplay as well as startup; it
+still does not validate the historical failed journey or live sharing/UI cost.
+
+The extended2423World comparison retained in `run-27qs2xvq` fails its
+public checkpoint mode: a prepared redraw changes native pixels. EGL checkpoints
+pass; the overall experiment and performance interpretation remain negative.
+`--diagnostic-public-only` isolates that checkpoint run without a throughput
+or cross-backend claim and retains generation/phase, hashes, differing-word
+count and first32pixel differences before refusal. No pixel check is relaxed.
