@@ -3,6 +3,11 @@ project(mnm_native_command_session LANGUAGES CXX)
 add_subdirectory(../../game native-game)
 add_subdirectory(../../reconstruction/creature-ai/transfer-commands-owned command-core)
 add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
+  ../../reconstruction/creature-ai/command_action_bodies.cpp
+  ../../reconstruction/creature-ai/action_callbacks.cpp
+  ../../reconstruction/creature-ai/full_motion_action.cpp
+  ../../reconstruction/creature-ai/special_flight_actions.cpp
+  ../../reconstruction/creature-ai/object_action.cpp
   ../../reconstruction/creature-ai/command_actions_owned.cpp
   ../../reconstruction/creature-ai/action_execution.cpp
   ../../reconstruction/creature-ai/command_behaviors_owned.cpp
@@ -25,3 +30,8 @@ add_executable(native-command-action-session-test ../../tests/native-command-act
 target_link_libraries(native-command-action-session-test PRIVATE mnm-native-command-session)
 target_compile_options(native-command-action-session-test PRIVATE -Wall -Wextra -Werror -pedantic)
 add_test(NAME native-command-action-session COMMAND native-command-action-session-test)
+
+add_executable(native-command-action-bodies-session-test ../../tests/native-command-action-bodies-session-test.cpp)
+target_link_libraries(native-command-action-bodies-session-test PRIVATE mnm-native-command-session)
+target_compile_options(native-command-action-bodies-session-test PRIVATE -Wall -Wextra -Werror -pedantic)
+add_test(NAME native-command-action-bodies-session COMMAND native-command-action-bodies-session-test)

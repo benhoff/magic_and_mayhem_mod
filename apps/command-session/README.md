@@ -81,3 +81,20 @@ checks move/target/coordinate selection, two event/cast rollback cases, nine
 context refusals and80 byte-identical snapshot-resumed ticks. Its event/RNG/cast
 state lives in opaque backend bytes. CMD1/version2 already contains the needed
 model state and installed callback token; this milestone changes no wire fields.
+
+
+Full action profiles use `OwnedCommandActionBodies` for every remaining installed
+handler: idle, corpse, motion, both melee variants, object interaction, stun,
+interaction, finishing, ascent and descent. The existing ranged/ready layer
+handles8/9/15. Callback/action/reset/transition consequences share the same staged
+context. Typed ANI/geometry/segment/health/effect services remain explicit.
+`Hooks.originalBehaviorBindings` opts into original descriptors1..16, including
+null12 and binding without immediate invocation during motion completion.
+Applications must provide their matching original behavior bodies.
+
+CMD1/version3 appends all callback/motion/segment/object action roots and this
+profile flag. Legacy readers invent no state; required-root profiles refuse old
+checkpoints. The native corpus runs all14 handler tokens through24 resumed ticks
+per profile, checks melee failure rollback and null/deferred descriptor behavior,
+and retains the prior command/behavior/action session corpora. These are native
+integration tests, separate from the primitive original body comparisons.

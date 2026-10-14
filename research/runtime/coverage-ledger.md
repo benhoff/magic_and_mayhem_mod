@@ -9195,3 +9195,33 @@ Historical evidence and failed development attempts remain immutable; unrelated
 staleness is retained. Fresh records, staged census and exact review receipts
 are included with the implementation. The authorized private1408GiB storage cap
 and100GiB free reserve protect final builds/checks; no original media is changed.
+
+
+## NS65 — complete installed action dispatcher and checkpoints (2026-10-13)
+
+Every50da50 logical handler now has a native shared-context path. The remaining
+idle/corpse/motion/main and alternate melee/object/stun/interaction/finishing/
+ascent/descent bodies use existing recovered models; ranged/ready retain NS64.
+Action/reset/transition/installed behavior calls share the command context.
+Original descriptor mode permits1..16/null12, preserves deferred/health-rejected
+bindings and supports motion's bind-without-invocation branch. Other original
+behavior bodies and ANI/geometry/health/effect/segment providers stay explicit.
+
+CMD1/v3 appends complete callback, motion/sample, segment/contribution/region and
+object-action roots. Legacy reads retain absence; full profiles reject missing
+roots, and explicit legacy writes refuse dropping required state. Native normal/
+sanitizer execution and four CTests pass14 handler profiles x24 resumed ticks,
+melee failure rollback, null/deferred descriptors and v1/v2 absence migration,
+plus all previous command/behavior/action session corpora. Primitive original
+comparisons remain separate; no full composed original frame/campaign/live claim.
+
+NS64 history review accounts for102 file transitions/204 behavior transitions
+with no missing receipts. Source-current evidence, census and exact reviews are
+included; historical proofs and failed development attempts remain unchanged.
+Second-NVMe build/snapshot output preserves the cold archive and uses the existing
+100GiB primary reserve guard. No original media or balance changes are made.
+
+Next within the authorized scope: owned ANI/RNG, native geometry/motion and the
+recovered maintenance/budget/environment creature-frame order. Full World effects,
+installed profile/campaign/save rebinding, dynamic actor lifecycle and visible
+live replacement remain independent contracts.

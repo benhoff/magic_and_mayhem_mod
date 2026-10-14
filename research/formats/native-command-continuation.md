@@ -1,10 +1,10 @@
-# Native command continuation versions1 and2
+# Native command continuation versions1,2 and3
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version2 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version3 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -57,3 +57,23 @@ movement carry, route counters, readiness and ranged deadline. Callback identity
 is independent of the current action word. No wire fields or version change.
 The profile's ANI/RNG/cast provider state must be saved in staged backend bytes;
 its schema is profile-specific, not an original save/ANI/RNG format claim.
+
+
+Version3 appends an original-behavior-descriptor flag and complete action-body
+state after the version2 prefix. Per-actor callback state stores sequence,
+contributors and animation-break state. Motion stores all interpolation/sample
+cursors,48 samples, residuals and flags. Segment state stores16 route points,
+contribution graph/totals,50 region entries, cursors and overlay/landing fields.
+The object-action world stores dimensions, WORD heads and logical object links.
+Every field follows the same explicit word/vector encoding; no pointers or
+providers are serialized. The three per-actor vectors are absent together or
+match the dense pool; present state requires maintenance/movement and a complete
+bounded object grid. Original descriptor profiles permit logical tags0..16,
+including null12; supplied command profiles retain tags0..4.
+
+Version1/version2 readers leave the appended state absent. Full action profiles
+reject restoration without required roots or descriptor mode. Explicit legacy
+writes refuse losing action or maintenance state; normal writes use version3.
+Motion division/sample and cyclic object/contribution semantics are checked by
+the recovered bodies at execution, with the outer session retaining rollback.
+Original-save rebinding and dynamic actor lifecycle remain separate.

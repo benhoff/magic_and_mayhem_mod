@@ -1,6 +1,9 @@
+#pragma push_macro("main")
+#undef main
 #define main unused_behavior_session_main
 #include "native-command-behavior-session-test.cpp"
 #undef main
+#pragma pop_macro("main")
 namespace {
 m::CommandActionProviders actionProviders(command_session::Continuation &c,
                                          std::shared_ptr<Faults> faults) {

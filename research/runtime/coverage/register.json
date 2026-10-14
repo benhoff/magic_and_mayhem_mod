@@ -58215,6 +58215,7 @@
         "apps/command-session/codec.cpp"
       ],
       "tests": [
+        "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
         "tests/native-command-session-test.cpp",
@@ -58222,6 +58223,9 @@
       ],
       "validation_dependencies": [
         "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
         "game/CMakeLists.txt",
         "game/persistence/snapshot.cpp",
         "game/persistence/snapshot.hpp",
@@ -58239,19 +58243,36 @@
         "reconstruction/animation/CMakeLists.txt",
         "reconstruction/combat/ai.hpp",
         "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
         "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
         "reconstruction/creature-ai/command_actions_owned.cpp",
         "reconstruction/creature-ai/command_actions_owned.hpp",
         "reconstruction/creature-ai/command_behaviors_owned.cpp",
         "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
         "reconstruction/creature-ai/maintenance.hpp",
         "reconstruction/creature-ai/movement_behavior.cpp",
         "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
         "reconstruction/creature-ai/orders.cpp",
         "reconstruction/creature-ai/owner_conversion.hpp",
         "reconstruction/creature-ai/owner_counts.cpp",
@@ -58262,11 +58283,18 @@
         "reconstruction/creature-ai/owner_transfer.hpp",
         "reconstruction/creature-ai/ownership_helpers.cpp",
         "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
         "reconstruction/creature-ai/ranged_execution.cpp",
         "reconstruction/creature-ai/resource.cpp",
         "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
         "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
         "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-delivery-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
         "reconstruction/creature-ai/transfer_commands_owned.cpp",
         "reconstruction/creature-ai/transfer_commands_owned.hpp",
         "reconstruction/creature-ai/transfer_delivery_owned.cpp",
@@ -58285,13 +58313,22 @@
         "reconstruction/creature-ai/transfer_targets_owned.hpp",
         "reconstruction/motion/CMakeLists.txt",
         "reconstruction/pathfinding/CMakeLists.txt",
-        "tests/native-command-action-session-test.cpp"
+        "tests/creature-execution-actions-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
         "NS62.command-session-native",
         "NS62.command-session-policy-native",
         "NS63.command-session-native",
-        "NS64.command-session-native"
+        "NS64.command-session-native",
+        "NS65.action-bodies-native",
+        "NS65.action-bodies-native-v2"
       ],
       "status": {
         "understanding": "scoped",
@@ -58332,6 +58369,7 @@
         "apps/command-session/codec.cpp"
       ],
       "tests": [
+        "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
         "tests/native-command-session-test.cpp",
@@ -58339,6 +58377,9 @@
       ],
       "validation_dependencies": [
         "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
         "game/CMakeLists.txt",
         "game/persistence/snapshot.cpp",
         "game/persistence/snapshot.hpp",
@@ -58356,19 +58397,36 @@
         "reconstruction/animation/CMakeLists.txt",
         "reconstruction/combat/ai.hpp",
         "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
         "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
         "reconstruction/creature-ai/command_actions_owned.cpp",
         "reconstruction/creature-ai/command_actions_owned.hpp",
         "reconstruction/creature-ai/command_behaviors_owned.cpp",
         "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
         "reconstruction/creature-ai/maintenance.hpp",
         "reconstruction/creature-ai/movement_behavior.cpp",
         "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
         "reconstruction/creature-ai/orders.cpp",
         "reconstruction/creature-ai/owner_conversion.hpp",
         "reconstruction/creature-ai/owner_counts.cpp",
@@ -58379,11 +58437,18 @@
         "reconstruction/creature-ai/owner_transfer.hpp",
         "reconstruction/creature-ai/ownership_helpers.cpp",
         "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
         "reconstruction/creature-ai/ranged_execution.cpp",
         "reconstruction/creature-ai/resource.cpp",
         "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
         "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
         "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-delivery-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
         "reconstruction/creature-ai/transfer_commands_owned.cpp",
         "reconstruction/creature-ai/transfer_commands_owned.hpp",
         "reconstruction/creature-ai/transfer_delivery_owned.cpp",
@@ -58402,13 +58467,22 @@
         "reconstruction/creature-ai/transfer_targets_owned.hpp",
         "reconstruction/motion/CMakeLists.txt",
         "reconstruction/pathfinding/CMakeLists.txt",
-        "tests/native-command-action-session-test.cpp"
+        "tests/creature-execution-actions-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
         "NS62.command-session-native",
         "NS62.command-session-policy-native",
         "NS63.command-session-native",
-        "NS64.command-session-native"
+        "NS64.command-session-native",
+        "NS65.action-bodies-native",
+        "NS65.action-bodies-native-v2"
       ],
       "status": {
         "understanding": "scoped",
@@ -58982,6 +59056,354 @@
         "excluded": [
           "Other action bodies remain supplied or refuse; original ANI timing/RNG/profile/cast-effect/full motion ownership and complete installed campaign/frame/lifecycle/live replacement.",
           "Malformed callback tokens, foreign roots/actors and missing providers are separate native admission policy, with no original invalid-pointer comparison."
+        ]
+      }
+    },
+    {
+      "id": "AI.owned-action-bodies",
+      "kind": "recovered",
+      "subsystem": "creature-ai",
+      "title": "Owned remaining original action body dispatch",
+      "scope": "Logical remaining handlers1/2/3/10/13/14/18/20/21/23/24 invoke recovered idle/corpse/motion/melee/object/stun/interaction/finishing/ascent/descent bodies on shared canonical action/maintenance/movement/callback/segment roots. Control action/reset/transition/installed behavior dispatch stays in the operation command context; geometry, ANI/cast/health/effect/segment and special behavior providers explicit. Native fixed-pool integration; isolated primitive comparisons remain independent, no composed whole original frame/campaign/live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5304464,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5309616,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "motion-action"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305184,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5302176,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "combat-main-melee-action-50e7a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305264,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "creature-object-action-50f3b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305744,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "creature-stun-action-50f590"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5303200,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5337312,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "creature-execution-5170e0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5379984,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5380064,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "creature-ascent-action-5217e0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5381584,
+          "scope": "Recovered logical action body entry with explicit lower services; original primitive comparisons remain separate from new native composition.",
+          "recovered_range": "creature-descent-action-521dd0"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md",
+        "apps/command-session/README.md",
+        "research/formats/native-command-continuation.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_action_bodies.cpp"
+      ],
+      "tests": [
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tools/test-native-command-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-delivery-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "tests/creature-execution-actions-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS65.action-bodies-native",
+        "NS65.action-bodies-native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Finite fixed3-actor native profiles, all14 installed logical action callbacks including the NS64 ranged/ready family;24 snapshot-resumed ticks per profile, melee callback rollback and original full/null/deferred behavior descriptors."
+        ],
+        "excluded": [
+          "Complete composed original whole frame/campaign comparison, installed ANI/geometry/World/effects and dynamic actor lifecycle; lower services remain supplied."
+        ]
+      }
+    },
+    {
+      "id": "NP.full-action-continuation",
+      "kind": "native_policy",
+      "subsystem": "native-simulation",
+      "title": "Portable full action and original descriptor continuation",
+      "scope": "CMD1/v3 saves complete action callback/motion/segment/object roots and opt-in original behavior descriptor tags0..16. Once-installed original body profiles admit null12, deferred/health-rejected transitions retain old descriptors and motion can bind without invoking behavior. v1/v2 decode absent roots and profiles requiring them reject restoration; explicit legacy writes refuse dropping required state. No malformed original pointer or full campaign equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md",
+        "apps/command-session/README.md",
+        "research/formats/native-command-continuation.md"
+      ],
+      "implementation": [
+        "apps/command-session/runtime.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/codec.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp"
+      ],
+      "tests": [
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tools/test-native-command-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/CMakeLists.txt",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/command-behaviors-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/execution/CMakeLists.txt",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-delivery-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer-queue-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "tests/creature-execution-actions-test.cpp",
+        "tests/creature-execution-test.cpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NS65.action-bodies-native",
+        "NS65.action-bodies-native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Finite fixed3-actor native profiles, all14 installed logical action callbacks including the NS64 ranged/ready family;24 snapshot-resumed ticks per profile, melee callback rollback and original full/null/deferred behavior descriptors."
+        ],
+        "excluded": [
+          "Complete composed original whole frame/campaign comparison, installed ANI/geometry/World/effects and dynamic actor lifecycle; lower services remain supplied."
         ]
       }
     }
@@ -121447,6 +121869,148 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS65.action-bodies-native",
+      "kind": "native_integration",
+      "scope": "Native CreatureRuleSession integrated with canonical recovered commands and explicit staged lower providers; synthetic backend frame semantics, no complete campaign/original frame/live replacement equivalence.",
+      "record": "research/runtime/native-all-action-bodies-bound-ns65-20261013.json",
+      "sha256": "b8a893647bb1fffee4bd1930eedee0e4efb9f463346988dc99c61ce5fb349e98",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/action_body_handlers",
+          "equals": 14
+        },
+        {
+          "pointer": "/action_body_ticks",
+          "equals": 336
+        },
+        {
+          "pointer": "/action_body_digest",
+          "equals": 7652494965786407516
+        },
+        {
+          "pointer": "/action_body_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/v2_action_migration",
+          "equals": true
+        },
+        {
+          "pointer": "/action_session_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/behavior_session_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_ticks",
+          "equals": 80
+        },
+        {
+          "pointer": "/unsafe_queue_rollbacks",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "NS65.action-bodies-native-v2",
+      "kind": "native_integration",
+      "scope": "Native CreatureRuleSession integrated with canonical recovered commands and explicit staged lower providers; synthetic backend frame semantics, no complete campaign/original frame/live replacement equivalence.",
+      "record": "research/runtime/native-all-action-bodies-bound-ns65-20261013-v2.json",
+      "sha256": "f786d20a637b681be27a14c1eb3b18784d6795cfd151ab8966eb00616a9e49d3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/action_body_handlers",
+          "equals": 14
+        },
+        {
+          "pointer": "/action_body_ticks",
+          "equals": 336
+        },
+        {
+          "pointer": "/action_body_digest",
+          "equals": 7652494965786407516
+        },
+        {
+          "pointer": "/action_body_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/v2_action_migration",
+          "equals": true
+        },
+        {
+          "pointer": "/action_session_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/behavior_session_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_ticks",
+          "equals": 80
+        },
+        {
+          "pointer": "/unsafe_queue_rollbacks",
+          "equals": 3
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -134881,7 +135445,9 @@
         "NS62.command-session-native",
         "NS62.command-session-policy-native",
         "NS63.command-session-native",
-        "NS64.command-session-native"
+        "NS64.command-session-native",
+        "NS65.action-bodies-native",
+        "NS65.action-bodies-native-v2"
       ]
     },
     {
@@ -134954,6 +135520,25 @@
       ],
       "evidence": [
         "NS64.command-session-native"
+      ]
+    },
+    {
+      "id": "native-all-action-bodies-20261013",
+      "level": "headless",
+      "scope": "Logical remaining handlers1/2/3/10/13/14/18/20/21/23/24 invoke recovered idle/corpse/motion/melee/object/stun/interaction/finishing/ascent/descent bodies on shared canonical action/maintenance/movement/callback/segment roots. Control action/reset/transition/installed behavior dispatch stays in the operation command context; geometry, ANI/cast/health/effect/segment and special behavior providers explicit. Native fixed-pool integration; isolated primitive comparisons remain independent, no composed whole original frame/campaign/live equivalence.",
+      "behaviors": [
+        "AI.owned-action-bodies",
+        "NP.full-action-continuation",
+        "AI.native-command-session",
+        "NP.command-continuation"
+      ],
+      "tests": [
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tools/test-native-command-session.py"
+      ],
+      "evidence": [
+        "NS65.action-bodies-native",
+        "NS65.action-bodies-native-v2"
       ]
     }
   ],
@@ -135490,8 +136075,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-command-actions-owned-20261013.json",
-    "sha256": "7766214ba9745502895a1887e9110d6f54f40c12aa759e0c08ca8c431f2605c8"
+    "path": "research/runtime/coverage/source-index-original-full-action-bodies-20261013-v2.json",
+    "sha256": "f0a6f959b24afbed8aa077de774193d5e723e4322226ec31d6e59eaceeed0025"
   },
   "claim_bindings_required": true
 }

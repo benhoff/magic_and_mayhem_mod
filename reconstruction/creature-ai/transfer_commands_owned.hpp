@@ -1,7 +1,10 @@
 #pragma once
 #include "transfer_delivery_owned.hpp"
 namespace mnm::reconstruction::combat {
-enum class CommandBehaviorBinding { supplied, idle, move, target, coordinate };
+enum class CommandBehaviorBinding {
+  supplied, idle, move, target, coordinate, death, state6, state7, state8,
+  immediate, standingRanged, autonomous, none, displacement, state14, state15, state16
+};
 using CommandBehaviorBindings = std::vector<CommandBehaviorBinding>;
 // Canonical actor/execution storage and callback identity are borrowed for one
 // staged operation. Lower bodies preserve backing/topology; callers publish only
@@ -20,6 +23,7 @@ class OwnedCreatureCommands {
   std::function<void(unsigned)> release_;
   std::function<void(AutonomousCreature &, bool)> peer_;
   std::vector<unsigned char> queueActive_;
+  bool originalBodies_ = false;
   std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> actionTransition_;
   std::function<void(AutonomousCreature &, OwnedCreatureCommands &)> actionTick_;
   ExecutionServices services(unsigned);
@@ -41,8 +45,9 @@ public:
   // Install once before execution; the callback receives this operation's
   // context, preserving its queue recursion/topology admission.
   void installBodies(std::function<void(AutonomousCreature &, unsigned,
-                                       OwnedCreatureCommands &)>);
+                                       OwnedCreatureCommands &)>, bool original = false);
   void transition(AutonomousCreature &, unsigned);
+  void bindOriginal(AutonomousCreature &, unsigned);
   void installActions(
       std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)>,
       std::function<void(AutonomousCreature &, OwnedCreatureCommands &)>);

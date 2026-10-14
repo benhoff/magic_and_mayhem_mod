@@ -31,7 +31,7 @@ ExecutionServices OwnedCreatureCommands::services(unsigned slot) {
   return result;
 }
 void OwnedCreatureCommands::bind(AutonomousCreature &a, unsigned kind) {
-  if (kind < 1 || kind > 4)
+  if (kind < 1 || kind > (originalBodies_ ? 16u : 4u))
     throw std::invalid_argument("command behavior selector");
   bindings_.at(a.ai.slot) = static_cast<CommandBehaviorBinding>(kind);
   if (kind == 1)
@@ -52,27 +52,60 @@ void OwnedCreatureCommands::dispatch(AutonomousCreature &a) {
   case CommandBehaviorBinding::move:
   case CommandBehaviorBinding::target:
   case CommandBehaviorBinding::coordinate:
+  case CommandBehaviorBinding::death:
+  case CommandBehaviorBinding::state6:
+  case CommandBehaviorBinding::state7:
+  case CommandBehaviorBinding::state8:
+  case CommandBehaviorBinding::immediate:
+  case CommandBehaviorBinding::standingRanged:
+  case CommandBehaviorBinding::autonomous:
+  case CommandBehaviorBinding::displacement:
+  case CommandBehaviorBinding::state14:
+  case CommandBehaviorBinding::state15:
+  case CommandBehaviorBinding::state16:
+    if (unsigned(bindings_.at(a.ai.slot)) > 4 && !originalBodies_)
+      throw std::invalid_argument("original behavior provider is missing");
     if (ownedBody_)
       ownedBody_(a, unsigned(bindings_.at(a.ai.slot)), *this);
     else
       body_(a, unsigned(bindings_.at(a.ai.slot)));
+    break;
+  case CommandBehaviorBinding::none:
+    if (!originalBodies_) throw std::invalid_argument("original null behavior is not enabled");
     break;
   default:
     throw std::invalid_argument("command behavior binding");
   }
 }
 void OwnedCreatureCommands::installBodies(
-    std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> body) {
+    std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> body,
+    bool original) {
   if (!body || ownedBody_)
     throw std::invalid_argument("command bodies must be installed once");
   for (auto active : queueActive_)
     if (active) throw std::invalid_argument("cannot install bodies during queue execution");
   ownedBody_ = std::move(body);
+  originalBodies_ = original;
 }
 void OwnedCreatureCommands::transition(AutonomousCreature &a, unsigned kind) {
-  if (kind < 1 || kind > 4)
+  if (kind < 1 || kind > (originalBodies_ ? 16u : 4u))
     throw std::invalid_argument("owned command transition selector");
-  changeBehavior(a, execution_.at(a.ai.slot), kind, services(a.ai.slot));
+  auto s = services(a.ai.slot);
+  if (kind == 12) {
+    // The original installs a null descriptor but does not invoke it. A
+    // deferred or health-rejected request must retain its prior descriptor.
+    auto &e = execution_.at(a.ai.slot);
+    const bool admitted = a.ai.health && !a.ai.motion;
+    changeBehavior(a, e, kind, s);
+    if (admitted) bindings_.at(a.ai.slot) = CommandBehaviorBinding::none;
+  } else changeBehavior(a, execution_.at(a.ai.slot), kind, s);
+}
+void OwnedCreatureCommands::bindOriginal(AutonomousCreature &a, unsigned kind) {
+  if (!originalBodies_ || kind < 1 || kind > 16 ||
+      a.ai.slot >= world_.creatures.size() || &a != &world_.creatures[a.ai.slot])
+    throw std::invalid_argument("original command binding context differs");
+  bindings_.at(a.ai.slot) = kind == 12 ? CommandBehaviorBinding::none :
+                                      static_cast<CommandBehaviorBinding>(kind);
 }
 bool OwnedCreatureCommands::owns(const AutonomousWorld &world,
                                  const std::vector<CreatureExecution> &execution) const {

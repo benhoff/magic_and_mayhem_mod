@@ -20,8 +20,17 @@ auto fields(model::CreatureScheduler &v){return std::tie(v.budget,v.cursor,v.pha
 auto fields(model::SchedulerEnvironment &v){return std::tie(v.suppressRoutes,v.updateRegions,v.network,v.localOwner,v.ownerController);}
 auto fields(model::CreatureMaintenance &v){return std::tie(v.random98,v.upkeepDeadline,v.status114,v.status118,v.status744,v.status748,v.status74c,v.flight110,v.status778,v.status77c,v.status780,v.animation7cc,v.status821,v.status8c5,v.status78c,v.status790,v.status819,v.status81d,v.status8d5,v.status8d9,v.status8dd,v.powerDeadline,v.animation889,v.animation8bd,v.flight809,v.timer94,v.marker750,v.block71d,v.timer660,v.recent6b0,v.lifespan,v.suspension,v.status8cd,v.visibilityAge,v.statusEffect,v.damageEffect,v.flightEffect);}
 auto fields(model::MovementBehaviorState &v){return std::tie(v.renewedOrder,v.landingKind,v.nextRouteCell);}
+auto fields(model::ActionCallbackState &v){return std::tie(v.sequence,v.contributors,v.animationBreak);}
+auto fields(model::MotionActionState &v){return std::tie(v.accumulator,v.duration,v.progress,v.travelX,v.travelY,v.heightDelta,v.heightStep,v.heightOrigin,v.step,v.deltaX,v.deltaY,v.direction,v.sampleCursor,v.initialCursor,v.samples,v.initialResidualX,v.initialResidualY,v.vertical,v.displacementPause,v.visualSprite);}
+auto fields(model::SegmentRoutePoint &v){return std::tie(v.position,v.remainder);}
+auto fields(model::SegmentContributionNode &v){return std::tie(v.parent,v.owner);}
+auto fields(model::SegmentCompletionState &v){return std::tie(v.route,v.cursor,v.count,v.landing110,v.overlayFrame809,v.landingOverlay71d,v.scorePendingFc,v.regionPending,v.overlayLink805,v.contributionRoots,v.contributionNodes,v.contributionTotals,v.regionPath,v.regionCursor);}
+auto fields(model::ActionObject &v){return std::tie(v.kind,v.next);}
+auto fields(model::ObjectActionWorld &v){return std::tie(v.dimensions,v.heads,v.objects);}
+auto fields(model::CommandActionBodyState &v){return std::tie(v.callbacks,v.motion,v.segments,v.objects);}
 auto fieldsV1(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend);}
-auto fields(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement);}
+auto fieldsV2(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement);}
+auto fields(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement,v.originalBehaviorBindings,v.actions);}
 template<class T>struct optional_type:std::false_type{};
 template<class T>struct optional_type<std::optional<T>>:std::true_type{};
 template<class T>struct vector_type:std::false_type{};
@@ -55,6 +64,7 @@ struct Reader {
     else if constexpr(vector_type<T>::value){
       auto count=word();
       constexpr unsigned limit=std::is_same_v<typename T::value_type,std::uint8_t>?65536:
+          std::is_same_v<typename T::value_type,std::uint16_t>?65536:
           std::is_same_v<typename T::value_type,model::CreatureOrder>?15:128;
       need(count<=limit,"native command continuation vector limit");v.resize(count);for(auto &x:v)value(x);
     }else if constexpr(array_type<T>::value){for(auto &x:v)value(x);}
@@ -70,12 +80,24 @@ void validate(const Continuation &c){
        "native command behavior continuation pool differs");
   const auto d=c.world.dimensions;
   need(d.x>0&&d.x<=4096&&d.y>0&&d.y<=4096&&d.z>0&&d.z<=256,"native command dimensions out of bounds");
+  const auto &a=c.actions;
+  need((a.callbacks.empty()&&a.motion.empty()&&a.segments.empty()&&a.objects.heads.empty()&&a.objects.objects.empty()) ||
+       (a.callbacks.size()==n&&a.motion.size()==n&&a.segments.size()==n&&c.maintenance.size()==n),
+       "native command action continuation pool differs");
+  if(!a.callbacks.empty()) {
+    need(a.objects.dimensions.x==d.x&&a.objects.dimensions.y==d.y&&a.objects.dimensions.z==d.z&&
+         a.objects.heads.size()==std::uint64_t(d.x)*d.y*d.z&&a.objects.heads.size()<=65536&&a.objects.objects.size()<=128,
+         "native command object action world differs");
+    for(auto h:a.objects.heads)need(h==0xffff||h<a.objects.objects.size(),"native command object head differs");
+    for(const auto &o:a.objects.objects)need(o.next==0xffff||o.next<a.objects.objects.size(),"native command object link differs");
+    for(const auto &s:a.segments)need(s.count<=s.route.size()&&s.cursor<=s.count&&s.regionCursor<s.regionPath.size(),"native command segment cursor differs");
+  }
   need(c.scheduler.cursor>=0&&unsigned(c.scheduler.cursor)<n&&c.scheduler.phase20>=0&&c.scheduler.phase20<20&&c.scheduler.phase90>=0&&c.scheduler.phase90<90,"native command scheduler out of bounds");
   need(c.backend.size()<=65536,"native command backend continuation limit");
   auto reference=[&](int v){need(v==-1||(v>=0&&unsigned(v)<n),"native command actor reference out of bounds");};
   for(unsigned i=0;i<n;++i){
     const auto &a=c.world.creatures[i];const auto &e=c.execution[i];
-    need(a.ai.slot==i&&c.generations[i]!=0&&a.ai.owner>=0&&a.ai.owner<8&&unsigned(c.bindings[i])<=4,"native command actor identity out of bounds");
+    need(a.ai.slot==i&&c.generations[i]!=0&&a.ai.owner>=0&&a.ai.owner<8&&unsigned(c.bindings[i])<=(c.originalBehaviorBindings?16u:4u),"native command actor identity out of bounds");
     need(a.ai.position.x>=0&&a.ai.position.x<d.x&&a.ai.position.y>=0&&a.ai.position.y<d.y&&a.ai.position.z>=0&&a.ai.position.z<d.z,"native command actor position out of bounds");
     reference(a.ai.target);reference(a.alternateTarget);reference(a.castSource);reference(a.castTarget);reference(e.follow);
     need(e.orders.size()<=15&&e.queuedCount==e.orders.size(),"native command queue count differs");
@@ -88,14 +110,21 @@ void validate(const Continuation &c){
     if(!e.orders.empty())need((e.orderCursor&&serials.count(*e.orderCursor))||(!e.orderCursor&&e.queuedFlag),"unsafe native command queue continuation");
   }
 }
-game::Bytes encode(const Continuation &input){
-  validate(input);auto c=input;Writer w;w.bytes={'C','M','D','1'};w.word(2);w.value(c);
+game::Bytes encode(const Continuation &input, unsigned version){
+  validate(input);need(version>=1&&version<=3,"unsupported native command write version");
+  if(version<3)need(!input.originalBehaviorBindings&&input.actions.callbacks.empty(),"legacy command write loses action state");
+  if(version==1)need(input.maintenance.empty()&&input.movement.empty(),"legacy command write loses behavior state");
+  auto c=input;Writer w;w.bytes={'C','M','D','1'};w.word(version);
+  if(version==1)std::apply([&](auto &...x){(w.value(x),...);},fieldsV1(c));
+  else if(version==2)std::apply([&](auto &...x){(w.value(x),...);},fieldsV2(c));
+  else w.value(c);
   need(w.bytes.size()<=1024*1024,"native command encoded continuation limit");return w.bytes;
 }
 Continuation decode(const game::Bytes &bytes){
   need(bytes.size()>=8&&bytes.size()<=1024*1024&&game::Bytes(bytes.begin(),bytes.begin()+4)==game::Bytes{'C','M','D','1'},"unknown native command continuation");
-  Reader r{bytes,4};const auto version=r.word();need(version==1||version==2,"unsupported native command continuation version");Continuation c;
+  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=3,"unsupported native command continuation version");Continuation c;
   if(version==1)std::apply([&](auto &...x){(r.value(x),...);},fieldsV1(c));
+  else if(version==2)std::apply([&](auto &...x){(r.value(x),...);},fieldsV2(c));
   else r.value(c);
   need(r.pos==bytes.size(),"trailing native command continuation");validate(c);return c;
 }

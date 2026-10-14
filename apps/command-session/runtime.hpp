@@ -3,6 +3,7 @@
 #include "../../reconstruction/creature-ai/transfer_commands_owned.hpp"
 #include "../../reconstruction/creature-ai/command_behaviors_owned.hpp"
 #include "../../reconstruction/creature-ai/command_actions_owned.hpp"
+#include "../../reconstruction/creature-ai/command_action_bodies.hpp"
 namespace mnm::command_session {
 namespace model = reconstruction::combat;
 struct Continuation {
@@ -17,10 +18,14 @@ struct Continuation {
   // v2 continuation; empty for profiles retaining explicitly supplied bodies.
   std::vector<model::CreatureMaintenance> maintenance;
   std::vector<model::MovementBehaviorState> movement;
+  // v3: full original behavior descriptors and action-body continuation.
+  bool originalBehaviorBindings = false;
+  model::CommandActionBodyState actions;
 };
 // Providers operate only on this operation's staged continuation. They must not
 // publish external effects; publish returned events only after session success.
 struct Hooks {
+  bool originalBehaviorBindings = false;
   std::function<model::ExecutionServices(unsigned)> execution, queue;
   std::function<model::BehaviorExecutionServices(unsigned)> idle;
   std::function<model::FollowServices(unsigned)> follow;
@@ -37,7 +42,7 @@ struct Hooks {
       Continuation &, model::OwnedCreatureCommands &, game::TickInput)> advance;
 };
 using HookFactory = std::function<Hooks(Continuation &)>;
-game::Bytes encode(const Continuation &);
+game::Bytes encode(const Continuation &, unsigned version = 3);
 Continuation decode(const game::Bytes &);
 void validate(const Continuation &);
 class Runtime final : public game::CreatureRuleRuntime {

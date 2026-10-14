@@ -81,7 +81,7 @@ int main()try{
  actor.ai.target=1;auto &target=staged.world.creatures[1];auto fine=target.finePosition;auto aim=target.aimXY;
  target.finePosition.x=std::numeric_limits<int>::max();target.aimXY=1;arithmeticRefuses([&]{bodies.dispatch(actor,3);});
  target.finePosition=fine;target.finePosition.y=std::numeric_limits<int>::min();target.aimXY=-1;arithmeticRefuses([&]{bodies.dispatch(actor,3);});target.finePosition=fine;target.aimXY=aim;
- auto simple=initial();auto bytes=command_session::encode(simple);bytes.resize(bytes.size()-8);bytes[4]=1;auto legacy=command_session::decode(bytes);need(legacy.maintenance.empty()&&legacy.movement.empty()&&command_session::encode(legacy)==command_session::encode(simple),"v1 continuation migration changed old state");
+ auto simple=initial();auto bytes=command_session::encode(simple,1);auto legacy=command_session::decode(bytes);need(legacy.maintenance.empty()&&legacy.movement.empty()&&command_session::encode(legacy)==command_session::encode(simple),"v1 continuation migration changed old state");
  auto mismatch=restored.world().state();auto missing=c;missing.maintenance.clear();missing.movement.clear();mismatch.systems=command_session::encode(missing);game::World rejected(0);rejected.restore(mismatch);refuses([&]{game::CreatureRuleSession wrong(std::move(rejected),runtime);});
  auto malformed=c;malformed.movement.pop_back();refuses([&]{command_session::encode(malformed);});
  std::uint64_t digest=1469598103934665603ull;for(auto byte:snapshot(restored))digest=(digest^byte)*1099511628211ull;

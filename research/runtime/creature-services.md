@@ -1014,3 +1014,31 @@ The NS63 incoming-history review checks89 file transitions/202 behaviors against
 exact receipts with no missing accounting. Historical evidence/source hashes
 remain unchanged, including failed development attempts and stale unrelated
 contracts. Fresh NS64 records are separate evidence IDs.
+
+
+## NS65: complete installed action-body dispatch
+
+All logical callbacks returned by50da50 now have a native shared-context path.
+NS64 retains8/9/15; `OwnedCommandActionBodies` routes1/2/3/10/13/14/18/20/21/23/24
+to the existing recovered idle/motion/corpse/main-melee/object/stun/interaction/
+alternate-melee/finishing/ascent/descent bodies. Their action, behavior transition,
+reset and installed behavior-call consequences share the operation command
+context. Motion's descriptor-only binding uses `bindOriginal` without invoking
+a new behavior. Original full behavior descriptors are opt-in; unsupported
+profiles retain the existing command-only admission. Null12 is installed only
+after an admitted transition, while motion/health gates preserve the old binding.
+
+CMD1/v3 preserves complete callback, motion/sample, segment/region/contribution
+and object action roots and descriptor mode. Legacy writes reject state loss;
+v1/v2 reads retain absence, and required-root profiles refuse such restoration.
+Native integration uses14 handler profiles,24 exact resumed ticks each and staged
+melee failure rollback. Existing primitive original comparisons remain separate
+from this new composed native dispatcher; no paired whole-frame equivalence is
+inferred. Lower ANI/RNG, geometry, segment completion, health/effects and original
+special/autonomous behavior providers remain explicit at this milestone.
+
+NS64 committed history review checks102 file transitions/204 behaviors with no
+missing exact receipts. Final native build outputs and temporary accounting
+snapshots use an isolated directory on the second NVMe outside the cold archive,
+with the existing100GiB primary reserve guard. Original media and historical
+failed/execution records are preserved; no cleanup or balance changes occur.

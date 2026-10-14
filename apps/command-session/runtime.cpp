@@ -26,7 +26,9 @@ model::OwnedCreatureCommands context(Continuation &s, const Hooks &h) {
   };
   model::OwnedCreatureCommands commands{s.world, s.execution, s.bindings,
       execution, h.idle, h.follow, h.queue, h.body, h.supplied, h.release, h.peer};
-  if (h.commandBodies) commands.installBodies(h.commandBodies);
+  need(h.originalBehaviorBindings == s.originalBehaviorBindings,
+       "native command behavior descriptor profile differs");
+  if (h.commandBodies) commands.installBodies(h.commandBodies,h.originalBehaviorBindings);
   if (h.actionTransition || h.actionTick) commands.installActions(h.actionTransition, h.actionTick);
   return commands;
 }
@@ -60,6 +62,11 @@ Continuation Runtime::read(const game::State &s) const {
   need(c.maintenance.size() == initial_.maintenance.size() &&
        c.movement.size() == initial_.movement.size(),
        "native command behavior profile differs");
+  need(c.originalBehaviorBindings==initial_.originalBehaviorBindings &&
+       c.actions.callbacks.size()==initial_.actions.callbacks.size() &&
+       c.actions.motion.size()==initial_.actions.motion.size() &&
+       c.actions.segments.size()==initial_.actions.segments.size(),
+       "native command action profile differs");
   for (unsigned i = 0; i < s.slots.size(); ++i) {
     const auto &slot = s.slots[i]; const auto &a = c.world.creatures[i];
     need(slot.generation == c.generations[i] && slot.entity.has_value(), "native command actor generation differs");
