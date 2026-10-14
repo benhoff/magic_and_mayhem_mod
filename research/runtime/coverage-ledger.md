@@ -8609,3 +8609,38 @@ full 47-journey/21-operation acceptance and steps 3–7 are not promoted.
 The b030d7fc..9a5f14b6 committed range was reviewed against 38 exact file
 receipts with zero gaps. Source census, preserved evidence fingerprints and
 exact current review accounting accompany this increment.
+
+
+## Source backing classification and GL fences — 2026-10-13
+
+The [new provenance increment](draw02-gpu-backing-provenance.md) classifies the
+49 unlocated canvas identities in the prior protected-source capture.
+[Fresh offline analysis02](draw02-backing-provenance-analysis-02.json) accounts
+for all2,154entries:2,144entries on46identities have no observed Lock return
+anywhere in that window;10entries on canvases2/21/53 precede later Lock returns.
+Absence of an observed Lock does not establish absence of backing or GPU-only
+storage. Interface/address IDs do not identify physical allocations.
+
+The opt-in current-context GL fence diagnostic executes after each original
+opcode42 callback and before publishing its return or releasing selected source
+leases. Public GL calls run outside the journal mutex. Positive signal results
+admit a witnessed stream; missing contexts remain explicitly unwitnessed.
+[Owned fixture01](draw02-gpu-completion-fixture-01.json) passes11PE32cases and
+6decoder tests; six failures stop before return publication, and forwarding,
+stack, x87 and LastError checks pass. The path and linker failures remain separate
+negative records.
+
+[Original01](draw02-gpu-completion-original-01.json) records1,918signaled fences
+and zero unwitnessed workers. [Exact identity review](draw02-gpu-completion-lease-review-01.json)
+joins266protected commands across140stable source leases to those witnesses.
+There are115complete advancing updates, normal original Quit and unchanged
+original manifests/sections. The nominal120-window target was not reached.
+The forced llvmpipe software backend supplies GL stream completion evidence,
+not hardware GPU validation or native parity.
+
+Backing allocation paths, alternate mappings, source identity inside driver
+operations, all-context completion and unobtrusive capture remain open. Step2
+and full DRAW-02 remain partial; steps3–7 and full47-journey/21-operation admission
+are not promoted. The9a5f14b6..f56822f6history range has24exact file receipts and
+zero unresolved gaps. Source census, immutable evidence and current exact review
+accounting accompany this increment.

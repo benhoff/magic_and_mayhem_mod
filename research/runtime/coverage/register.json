@@ -46229,6 +46229,104 @@
         "Original02 closes139 protected source leases/264 worker commands with stable source pairs across136 complete advancing updates and normal Quit. All six observed source canvases report MEM_PRIVATE and48-byte first-page offsets; known cached pixel ranges and reservations do not overlap during those leases.2154 entries across49 cache IDs have no recorded pixel pointer, and remain unknown.",
         "Owned separate file-mapping views demonstrably change protected source bytes without faulting. Complete original backing provenance, other virtual mappings, GPU reads/completion, current cache identity at fault and unobtrusive acquisition remain open. No native parity, live replacement or complete DRAW-02 promotion."
       ]
+    },
+    {
+      "id": "NR.drawing-gpu-completion",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Selected worker current-context GL fence completion",
+      "scope": "Opt-in bounded public GL fence after the original opcode42 worker callback and before publishing its return or releasing selected source leases. Resolve extension functions on the current context per call; record no-current-context as unwitnessed and fail-stop missing functions, fence/wait failures and changed contexts. A signaled fence covers earlier commands in that current stream, not all contexts, pixel backing ownership, scanout, original timing or native replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-gpu-backing-provenance.md"
+      ],
+      "implementation": [
+        "runtime/drawing/wine_gpu_completion.h",
+        "tools/drawing_gpu_completion.py"
+      ],
+      "tests": [
+        "tests/drawing-gpu-completion-test.c",
+        "tests/test-drawing-gpu-completion.py",
+        "tools/test-drawing-gpu-completion.py",
+        "tools/capture-drawing-interactive.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/wine_blit_worker.h",
+        "runtime/drawing/wine_blit_packet.h",
+        "runtime/drawing/wine_submission.h",
+        "runtime/drawing/session.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-drawing-session.py",
+        "tools/drawing-session-runner.py",
+        "tools/drawing_diagnostic_cadence.py",
+        "tools/drawing_wine_blit_packet.py",
+        "tools/drawing_fixture_prefix.py"
+      ],
+      "evidence": [
+        "DRAW02.gpu-completion-build-negative-01-20261013",
+        "DRAW02.gpu-completion-fixture-01-20261013",
+        "DRAW02.gpu-completion-original-01-20261013",
+        "DRAW02.gpu-completion-lease-review-01-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Owned fixture01 passes11 actual PE32 cases and6 decoder tests, with fake GL responses through the actual worker wrapper. Original callback forwards once; stack, x87 control and LastError are preserved. Six fence failures stop before worker return publication. Default-off and no-context paths pass.",
+        "Original01 observes1918 selected worker completions with signaled current-context GL fences and zero unwitnessed contexts. Static identity review joins266 protected commands across140 stable source leases to those witnesses.115 complete advancing updates and normal original Quit are verified; the nominal120-window schedule target was not reached.",
+        "The original run forces llvmpipe software rendering. Signaled current-stream fences do not prove hardware completion, the identity of source backing consumed by the driver, alternate mappings, all contexts, unobtrusive acquisition, native parity or complete DRAW-02."
+      ]
+    },
+    {
+      "id": "NR.drawing-backing-provenance",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Observed Lock lifecycle of unlocated cached canvases",
+      "scope": "Offline classification of retained protected-lease cache entries by observed wrapper create/release/Lock events and recorded returned address identities. Distinguish no Lock observed in the captured window, earlier/equal-prefix/later Lock observations; equal producer prefixes do not establish an event order. Wrapper interface identities and virtual reservation overlap do not prove physical backing ownership or other mappings.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-gpu-backing-provenance.md"
+      ],
+      "implementation": [
+        "tools/drawing_backing_provenance.py",
+        "tools/analyze-drawing-backing-provenance.py"
+      ],
+      "tests": [
+        "tests/test-drawing-backing-provenance.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_source_write_trace.py",
+        "tools/drawing_storage_transitions.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/drawing_source_lease.py",
+        "tools/drawing_source_worker_lease.py",
+        "tools/drawing_source_held_snapshot.py",
+        "tools/drawing_storage_point.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "DRAW02.backing-provenance-negative-01-20261013",
+        "DRAW02.backing-provenance-analysis-01-20261013",
+        "DRAW02.backing-provenance-analysis-02-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Fresh offline analysis02 fingerprints all replay dependencies and classifies2154 unlocated entries across49 identities:2144 entries on46 identities have no observed Lock return in the capture;10 entries on canvases2/21/53 precede later Lock returns. Four classification tests pass.",
+        "Analysis01 retains its earlier narrower dependency contract; analysis02 supersedes it for current provenance. The CLI path failure is retained separately. No observed Lock is not a GPU-only or no-backing classification; equal prefixes cannot establish event order.",
+        "Physical allocations, alternate views, all-call Lock observation and original backing lifetimes remain unproved. Original source atomicity, native parity and full DRAW-02 are not promoted."
+      ]
     }
   ],
   "evidence": [
@@ -100489,6 +100587,136 @@
           "equals": 352
         }
       ]
+    },
+    {
+      "id": "DRAW02.backing-provenance-negative-01-20261013",
+      "kind": "static",
+      "scope": "Offline CLI path handling failure; original manifests verified before and after. Not engine validation.",
+      "record": "research/runtime/draw02-backing-provenance-negative-01.json",
+      "sha256": "546e32dbbbe123dca00a06ca5dd587f3527c2280270855ecf95f7cdfffe9760d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.backing-provenance-analysis-01-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh offline replay of retained original02 trace/cache lifecycle. No new original execution, physical allocation ownership or GPU completion claim.",
+      "record": "research/runtime/draw02-backing-provenance-analysis-01.json",
+      "sha256": "9b98046ecd4b287deecf2711dd938093a2a6cdffd2e4ccdcc6a697267cb9e447",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.gpu-completion-build-negative-01-20261013",
+      "kind": "static",
+      "scope": "Retained build failure only.",
+      "record": "research/runtime/draw02-gpu-completion-build-negative-01.json",
+      "sha256": "79ebb647b734df851124a3425e6432d82ab33d33c05bcc05524833482701aed4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.gpu-completion-fixture-01-20261013",
+      "kind": "native_integration",
+      "scope": "Owned PE32 fake GL public ABI responses through the actual worker wrapper. Signal/no-context/default-off accepted, six failures stop before lease-return publication. Not hardware or original GPU proof.",
+      "record": "research/runtime/draw02-gpu-completion-fixture-01.json",
+      "sha256": "47b0995c77cac76d34ecaf11875f54504f555973ba5a16a25d7221af395bac81",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.backing-provenance-analysis-02-20261013",
+      "kind": "native_integration",
+      "scope": "Fresh offline replay of retained original02 trace/cache lifecycle. No new original execution, physical allocation ownership or GPU completion claim.",
+      "record": "research/runtime/draw02-backing-provenance-analysis-02.json",
+      "sha256": "d1289333ce553f8189e28e76ed1d0621e7d7dde5500e09ec1416819dc16f0233",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.gpu-completion-original-01-20261013",
+      "kind": "live_observation",
+      "scope": "Bounded original-active current-context GL fence capture; source identities and completion remain separate from backing ownership and native replacement.",
+      "record": "research/runtime/draw02-gpu-completion-original-01.json",
+      "sha256": "64a8889e436cc43678b55c4d7279b53f58ff1090214797c79a8eb756c8c0b2e3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_original_quit_verified",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.gpu-completion-lease-review-01-20261013",
+      "kind": "static",
+      "scope": "Static identity review of the fresh original01 execution record: join every protected command to its recorded worker/thread and a signaled fence. No separate engine execution or status promotion.",
+      "record": "research/runtime/draw02-gpu-completion-lease-review-01.json",
+      "sha256": "5134701c178a6f6a51c464f418883085a04845bdd62d952988ae6eeffd5858d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -112744,6 +112972,53 @@
         "tools/capture-drawing-interactive.py",
         "tests/fixtures/drawing-journeys/wine-source-map-world120-schedule.json"
       ]
+    },
+    {
+      "id": "DRAW02.gpu-completion-owned",
+      "title": "DRAW02.gpu-completion-owned",
+      "scope": "Bounded diagnostic evidence; ownership and replacement remain separate.",
+      "behaviors": [
+        "NR.drawing-gpu-completion"
+      ],
+      "evidence": [
+        "DRAW02.gpu-completion-fixture-01-20261013"
+      ],
+      "level": "headless",
+      "tests": [
+        "tools/test-drawing-gpu-completion.py"
+      ]
+    },
+    {
+      "id": "DRAW02.gpu-completion-original",
+      "title": "DRAW02.gpu-completion-original",
+      "scope": "Bounded diagnostic evidence; ownership and replacement remain separate.",
+      "behaviors": [
+        "NR.drawing-gpu-completion"
+      ],
+      "evidence": [
+        "DRAW02.gpu-completion-original-01-20261013"
+      ],
+      "level": "live_observation",
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/fixtures/drawing-journeys/wine-source-map-world120-schedule.json"
+      ]
+    },
+    {
+      "id": "DRAW02.backing-provenance-offline",
+      "title": "DRAW02.backing-provenance-offline",
+      "scope": "Bounded diagnostic evidence; ownership and replacement remain separate.",
+      "behaviors": [
+        "NR.drawing-backing-provenance"
+      ],
+      "evidence": [
+        "DRAW02.backing-provenance-analysis-01-20261013",
+        "DRAW02.backing-provenance-analysis-02-20261013"
+      ],
+      "level": "headless",
+      "tests": [
+        "tools/analyze-drawing-backing-provenance.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -113117,8 +113392,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-source-write-trace-20261013.json",
-    "sha256": "e7c383ac033bd9ceac74ceef5ae48b2224c1bb1a2de224a7107bd9f0de433fe5"
+    "path": "research/runtime/coverage/source-index-draw02-gpu-provenance-final-20261013.json",
+    "sha256": "39bba00ed6d2ff7c5e5c17e2c16c7c3ed0d062f65636a3d630ac53ff83f3cea5"
   },
   "claim_bindings_required": true
 }
