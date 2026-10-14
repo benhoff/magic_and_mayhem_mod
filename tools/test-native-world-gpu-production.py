@@ -41,6 +41,7 @@ def main():
                     '--output', out / 'claims.json']
     if args.hitch_capture:claims_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.controls','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.controls'])
     if args.display_while_pending:claims_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.controls'])
+    claims_command.extend(['--behavior','HOST.native-route-capture','--scenario','HOST.native-route-capture.controls'])
     subprocess.run(claims_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     declared = json.loads((out / 'claims.json').read_text())
     report = dict(success=False, scope=__doc__, sources=declared['sources'],
@@ -88,7 +89,7 @@ def main():
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo', '-DBUILD_TESTING=ON'])
         run('build', ['cmake', '--build', build, '--target', 'gpu-production-queue-test',
                       'async-world-replay-test', 'native-render-worker-test',
-                      'gpu-presentation-test', 'menu-resident-quit-test', 'native-hitch-capture-test', 'pending-world-display-test', 'mnm-qt-shell', '-j4'])
+                      'gpu-presentation-test', 'menu-resident-quit-test', 'native-hitch-capture-test', 'pending-world-display-test', 'native-image-encoder-test', 'mnm-qt-shell', '-j4'])
         spec = importlib.util.spec_from_file_location('native_campaign', ROOT / 'tools/test-native-campaign.py')
         campaign = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(campaign)
@@ -96,6 +97,7 @@ def main():
         report['hardware_driver'] = (out / 'hardware-driver.log').read_text()
         commands = [
             ('queue', [build / 'renderer/gpu-production-queue-test']),
+            ('encoder', [build / 'native-image-encoder-test']),
             ('captured', [build / 'world-rolling/async-world-replay-test', corpus, args.game]),
             ('worker', [build / 'native-render-worker-test']),
             ('retirement', [build / 'menu-resident-quit-test']),

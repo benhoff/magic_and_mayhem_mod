@@ -8916,3 +8916,30 @@ with full casting/combat validation still pending. Source-rate variance, exact
 non-capture stutters, original equivalence and sustained60FPS remain open.
 History `75170b38..693c7602` reviews 23 exact committed transitions / zero missing
 receipts, independently of this delta.
+
+### Bounded persistent image encoding — 2026-10-13
+
+[Native route capture](native-route-capture.md) preserves screenshot artifacts
+while GUI-owned reads feed a persistent bounded encoder. One image task runs at
+a time, with at most two queued tasks; route actions await polled completion.
+No GUI/GL objects cross into encoding. Diagnostic request deletion occurs on
+encoder before acknowledgement, and GUI future release does not join per-capture
+threads. Explicit synchronous/omitted route comparisons remain available.
+
+Transient-thread full casting `run-ek1nbb6y` passes but retains a 632.919 ms
+diagnostic capture wait after readback and 55 ms presentation callback; preserve
+its intermediate source hashes and unknown exact wait cause. Current persistent
+controls `run-cwgxy8t9` validate queue bounds, GUI progress during blocked encoding,
+exact PNG pixels, exception recovery, 128 native World word comparisons and
+worker/retirement/lease/hitch checks. `run-98mfpjv9` passes casting/combat/spells/
+portrait/three-menu-cycle/Quit at 19.37173 engine Hz / 59.28694 global native World
+FPS / 60.01656 visible native World FPS, 5265 balanced generations, no ordinary
+readbacks, stable sources/inputs and original manifests. All 14 route captures
+are retained; GUI route/diagnostic maxima 20.248/18.801 ms versus background PNG
+encoding up to 621.652 ms. No GUI PNG encoding remains.
+
+One clipped 144.164 ms eligible gap remains unclassified; its diagnostic overlap
+is only 1.121 ms. No sustained 60 FPS, source-rate gain, scanout or equivalence
+promotion. Defensive route failure branches and non-world/cold/hidden continuity
+remain partial. Historical shared-source evidence remains unchanged. History
+`693c7602..bd928081` reviews 20 exact committed transitions / zero missing receipts.

@@ -54181,7 +54181,9 @@
         "apps/qt-shell/live_command_session.cpp",
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/native_worker_status_gate.hpp",
         "apps/qt-shell/render_control.cpp",
         "apps/qt-shell/render_control.hpp",
         "apps/qt-shell/render_deadline_probe.hpp",
@@ -54204,6 +54206,7 @@
         "renderer/native_frame_recipe.hpp",
         "renderer/surface_copy.cpp",
         "renderer/surface_copy.hpp",
+        "tests/native-image-encoder-test.cpp",
         "tools/coverage_claims.py",
         "tools/draft-coverage-claims.py",
         "tools/glyph_backend_launch.py",
@@ -54211,8 +54214,7 @@
         "tools/launch_build_cache.py",
         "tools/menu-game-runner.py",
         "tools/native_music_launch.py",
-        "tools/prepare-menu-observer.py",
-        "apps/qt-shell/native_worker_status_gate.hpp"
+        "tools/prepare-menu-observer.py"
       ],
       "status": {
         "understanding": "partial",
@@ -55026,6 +55028,7 @@
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/main.cpp",
         "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/world_rolling_main.cpp",
         "assets/CMakeLists.txt",
         "assets/animation.cpp",
@@ -55147,6 +55150,7 @@
         "tests/gpu-presentation-test.cpp",
         "tests/minimap-candidates-test.cpp",
         "tests/minimap-producer-test.cpp",
+        "tests/native-image-encoder-test.cpp",
         "tests/native-prepared-world-test.cpp",
         "tests/native-render-worker-test.cpp",
         "tests/native-shell-provenance-test.py",
@@ -55242,6 +55246,7 @@
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
         "apps/qt-shell/native_worker_status_gate.hpp",
         "apps/qt-shell/render_control.cpp",
@@ -55383,6 +55388,7 @@
         "tests/menu-resident-quit-test.cpp",
         "tests/minimap-candidates-test.cpp",
         "tests/minimap-producer-test.cpp",
+        "tests/native-image-encoder-test.cpp",
         "tests/native-prepared-world-test.cpp",
         "tests/native-shell-provenance-test.py",
         "tests/native-world-rolling.cpp",
@@ -55437,7 +55443,12 @@
         "HOST.pending-import-display.final-public-20261013",
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.route-baseline-20261013",
-        "HOST.native-gui-delivery-diagnostics.route-free-20261013"
+        "HOST.native-gui-delivery-diagnostics.route-free-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
       ],
       "remaining_gaps": [
         "Historical interrupted capture and1008.957ms pending-import gating diagnosis retained unchanged. Current final controls and full public run-s_dutjcz support bounded capture/source-clock correlation; later policy keeps last imported World displayable. Scope excludes cold/hidden/movie/non-world continuity.",
@@ -55480,6 +55491,7 @@
         "apps/qt-shell/live_command_session.hpp",
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_image_encoder.hpp",
         "apps/qt-shell/native_render_target.hpp",
         "apps/qt-shell/native_render_worker.hpp",
         "apps/qt-shell/native_worker_status_gate.hpp",
@@ -55622,6 +55634,7 @@
         "tests/minimap-candidates-test.cpp",
         "tests/minimap-producer-test.cpp",
         "tests/native-hitch-capture-test.cpp",
+        "tests/native-image-encoder-test.cpp",
         "tests/native-prepared-world-test.cpp",
         "tests/native-render-worker-test.cpp",
         "tests/native-shell-provenance-test.py",
@@ -55679,7 +55692,12 @@
         "HOST.pending-import-display.final-public-hitch-analysis-20261013",
         "HOST.native-gui-delivery-diagnostics.controls-20261013",
         "HOST.native-gui-delivery-diagnostics.route-baseline-20261013",
-        "HOST.native-gui-delivery-diagnostics.route-free-20261013"
+        "HOST.native-gui-delivery-diagnostics.route-free-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
       ],
       "remaining_gaps": [
         "Final unchanged-source TITAN run-s_dutjcz passes complete casting/combat/spell/portrait/menu/Quit journey at19.16361engineHz/58.77168nativeWorldFPS with5200 balanced sources/imports/returns and60 pending redraws. Same final source previously failed unchanged19FPS floor at18.61690; source-rate variability remains unresolved.",
@@ -55901,7 +55919,9 @@
         "tools/test-native-world-rolling-hardware.py",
         "tools/test-native-world-rolling.py",
         "tools/test-public-resident-fixtures.py",
-        "tools/test-resident-leaf-abi.py"
+        "tools/test-resident-leaf-abi.py",
+        "apps/qt-shell/native_image_encoder.hpp",
+        "tests/native-image-encoder-test.cpp"
       ],
       "status": {
         "understanding": "partial",
@@ -55916,11 +55936,256 @@
         "HOST.native-gui-delivery-diagnostics.route-baseline-20261013",
         "HOST.native-gui-delivery-diagnostics.route-free-20261013",
         "HOST.native-gui-delivery-diagnostics.route-baseline-analysis-20261013",
-        "HOST.native-gui-delivery-diagnostics.route-free-analysis-20261013"
+        "HOST.native-gui-delivery-diagnostics.route-free-analysis-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-analysis-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-analysis-20261013"
       ],
       "remaining_gaps": [
-        "Current TITAN controls and paired movement/menu public runs pass. Baseline375.322ms paint gap contains366.462ms synchronous PNG encoding; native readback7.26ms and presentation callback max0.644ms. Route-screenshot-free comparison omits route pixel artifacts explicitly and retains source/order/19FPS performance gates; capture-free means route-only, diagnostic captures still occur.",
-        "Initial casting/combat run ended in wizard death and lacks final native frame trace; preserve failed report and do not infer GUI cause from it. GUI event rings/hitch windows are bounded and may clip; cold/all-GUI heartbeat timings differ from eligible warm World gaps. Original equivalence/scanout and stable60FPS remain outstanding. Moving route encoding off GUI and full casting/combat validation are next."
+        "Current persistent controls/public validate scoped native GUI tracing with full casting/combat. Historical first wizard-death failure and earlier transient-async632.919ms diagnostic gap are preserved; no new original equivalence or causal engine-rate claim.",
+        "Final run has one144.164ms clipped eligible warm paint gap; visibleWorld60.01656FPS, global59.28694 and engine19.37173. Captured diagnostic activity overlaps only1.121ms of that gap, full diagnostic callback max18.801ms. Cause remains unknown; callback/event-loop/system scheduling attribution and non-world/cold/hidden gaps are incomplete. Sustained60FPS remains pending."
+      ]
+    },
+    {
+      "id": "HOST.native-route-capture",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded off-GUI route PNG encoding with retained artifact validation",
+      "scope": "Campaign smoke automation captures owned screen/native/reference QImages on GUI, then encodes/saves route PNGs in at most one background job. GUI polls completion without waiting, route step/action advances only after result, identity overlap/write failures/deadline refuse; normal Quit follows completed artifact. Explicit synchronous comparison and route-omission diagnostic remain available; diagnostic combat/portrait captures, source/import/credit/clock/order and19FPS gates unchanged. No QWidget/QPixmap/GL context or frame leases cross into encoder. This removes measured smoke harness GUI encoding stalls, not engine/raster work or physical scanout. Complete TITAN artifacts/casting/combat/menu/Quit and failure paths remain separate; no original equivalence or sustained60FPS assertion. A single persistent image encoder owns one active task and at most two queued tasks; route/diagnostic future destruction does not join async threads on GUI, and valid diagnostic request removal occurs on encoder before acknowledgement. Bounded queue/GUI responsiveness/PNG pixels and error continuation controls separate from live validation.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-route-capture.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/native_image_encoder.hpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/native-image-encoder-test.cpp",
+        "tools/test-native-world-gpu-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_worker_status_gate.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_preparation.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/owned_session.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "tests/async-world-replay-test.cpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/gpu-production-queue-test.cpp",
+        "tests/menu-resident-quit-test.cpp",
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-hitch-capture-test.cpp",
+        "tests/native-prepared-world-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/native-shell-provenance-test.py",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/render-resident-world-test.cpp",
+        "tests/resident-leaf-abi.S",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-deferred-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/draft-coverage-claims.py",
+        "tools/glyph_backend_launch.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/native-render-profile/resident_profile.cpp",
+        "tools/native_music_launch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/profile-native-world-owner.py",
+        "tools/profile_native_resident_helpers.py",
+        "tools/test-native-world-rolling-hardware.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-resident-leaf-abi.py"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+      ],
+      "remaining_gaps": [
+        "Final persistent encoder controls validate bounded2-task queue, GUI heartbeat through blocked encoding, PNG pixel roundtrip, failure propagation and continued work. run-98mfpjv9 passes complete casting/combat/spell/portrait/three-menu-cycle/Quit journey with14 route captures,5265 balanced sources/imports/returns, no ordinary readbacks, stable source/input and verified originals.",
+        "GUI route capture max20.248ms, diagnostic capture max18.801ms; PNG saving up to621.652ms runs on persistent background encoder. Defensive route identity/write/deadline branches are not exhaustively live exercised. One clipped144.164ms eligible paint gap remains unclassified; global nativeWorld59.28694FPS/visible60.01656/engine19.37173 do not establish sustained60FPS or source-rate optimization."
       ]
     }
   ],
@@ -112812,6 +113077,109 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+      "kind": "native_integration",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-async-controls-20261013.json",
+      "sha256": "96591b468115f1779036e8dd53c65205ee76e924bf98c003d602380af087ba12",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+      "kind": "live_observation",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-async-public-20261013.json",
+      "sha256": "e4b7734d4c43a33d4bb5f9786bfb35f2739990351d4d5c7459b946ebcc23f415",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+      "kind": "live_observation",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-transient-async-public-20261013.json",
+      "sha256": "e4b7734d4c43a33d4bb5f9786bfb35f2739990351d4d5c7459b946ebcc23f415",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013",
+      "kind": "native_integration",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-persistent-controls-20261013.json",
+      "sha256": "fd6877eb66bb312867172baa6674d981f2837f6bff5731e4a58becbeb646a171",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.persistent-public-20261013",
+      "kind": "live_observation",
+      "scope": "Bounded native GUI delivery/capture attribution controls or public TITAN outcome; preserve raw hash and skipped route artifact boundary. No GPU busy/scanout, original equivalence or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-persistent-public-20261013.json",
+      "sha256": "356d09a4ef5db0d93a8459f17fa2a6e044d1b8a796da0c3a5148ffd8fa714a23",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.async-public-analysis-20261013",
+      "kind": "static",
+      "scope": "Derived same-host-clock native GUI/capture attribution with embedded reproduction and preserved raw hash. Clipped windows do not establish complete cause; no scanout, causal FPS gain or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-async-public-analysis-20261013.json",
+      "sha256": "a5378d7be495dca364558ad490c9bf32336478309eb22fba1e29ddccdd03b96d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.persistent-public-analysis-20261013",
+      "kind": "static",
+      "scope": "Derived same-host-clock native GUI/capture attribution with embedded reproduction and preserved raw hash. Clipped windows do not establish complete cause; no scanout, causal FPS gain or stable60FPS claim.",
+      "record": "research/runtime/native-gui-delivery-persistent-public-analysis-20261013.json",
+      "sha256": "6c29f019c09671bbc3823a61f335b2e877923b6c5c0ef335ba211531c110353d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -126046,7 +126414,9 @@
       "evidence": [
         "HOST.native-hitch-capture.controls-20261013",
         "HOST.pending-import-display.final-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
       ]
     },
     {
@@ -126063,7 +126433,10 @@
         "HOST.native-hitch-capture.storage-interrupted-20261013",
         "HOST.pending-import-display.final-public-20261013",
         "HOST.native-gui-delivery-diagnostics.route-baseline-20261013",
-        "HOST.native-gui-delivery-diagnostics.route-free-20261013"
+        "HOST.native-gui-delivery-diagnostics.route-free-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
       ]
     },
     {
@@ -126080,7 +126453,9 @@
       "evidence": [
         "HOST.pending-import-display.controls-20261013",
         "HOST.pending-import-display.final-controls-20261013",
-        "HOST.native-gui-delivery-diagnostics.controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
       ]
     },
     {
@@ -126098,7 +126473,10 @@
         "HOST.pending-import-display.second-public-performance-negative-20261013",
         "HOST.pending-import-display.final-public-20261013",
         "HOST.native-gui-delivery-diagnostics.route-baseline-20261013",
-        "HOST.native-gui-delivery-diagnostics.route-free-20261013"
+        "HOST.native-gui-delivery-diagnostics.route-free-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
       ]
     },
     {
@@ -126114,7 +126492,9 @@
         "tests/native-render-worker-test.cpp"
       ],
       "evidence": [
-        "HOST.native-gui-delivery-diagnostics.controls-20261013"
+        "HOST.native-gui-delivery-diagnostics.controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-controls-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
       ]
     },
     {
@@ -126130,7 +126510,42 @@
       "evidence": [
         "HOST.native-gui-delivery-diagnostics.first-public-negative-20261013",
         "HOST.native-gui-delivery-diagnostics.route-baseline-20261013",
-        "HOST.native-gui-delivery-diagnostics.route-free-20261013"
+        "HOST.native-gui-delivery-diagnostics.route-free-20261013",
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+      ]
+    },
+    {
+      "id": "HOST.native-route-capture.public",
+      "level": "live_observation",
+      "scope": "Campaign smoke automation captures owned screen/native/reference QImages on GUI, then encodes/saves route PNGs in at most one background job. GUI polls completion without waiting, route step/action advances only after result, identity overlap/write failures/deadline refuse; normal Quit follows completed artifact. Explicit synchronous comparison and route-omission diagnostic remain available; diagnostic combat/portrait captures, source/import/credit/clock/order and19FPS gates unchanged. No QWidget/QPixmap/GL context or frame leases cross into encoder. This removes measured smoke harness GUI encoding stalls, not engine/raster work or physical scanout. Complete TITAN artifacts/casting/combat/menu/Quit and failure paths remain separate; no original equivalence or sustained60FPS assertion.",
+      "behaviors": [
+        "HOST.native-route-capture"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-gui-delivery-diagnostics.async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.transient-async-public-20261013",
+        "HOST.native-gui-delivery-diagnostics.persistent-public-20261013"
+      ]
+    },
+    {
+      "id": "HOST.native-route-capture.controls",
+      "level": "headless",
+      "scope": "Persistent encoder queue bounds, GUI heartbeat while active task is blocked, exact PNG pixel roundtrip, failed encoding task propagation and continued work; no public or original-equivalence claim.",
+      "behaviors": [
+        "HOST.native-route-capture"
+      ],
+      "tests": [
+        "tests/native-hitch-capture-test.cpp",
+        "tools/test-native-world-gpu-production.py",
+        "tests/native-render-worker-test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-gui-delivery-diagnostics.persistent-controls-20261013"
       ]
     }
   ],
@@ -126658,8 +127073,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-gui-delivery-diagnostics-20261013.json",
-    "sha256": "e96b38376e4d15ee998023144991be9e76cc07cc247ed33ca745e06a5bf531e0"
+    "path": "research/runtime/coverage/source-index-native-persistent-image-encoder-20261013.json",
+    "sha256": "63079a0c696168570d5c58630020c8b8ee542592d85c5506d202e40dd1ea4193"
   },
   "claim_bindings_required": true
 }

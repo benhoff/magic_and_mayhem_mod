@@ -40,3 +40,16 @@ embedded-script analysis for rates and remaining hitches. This is a diagnostic
 comparison, not equivalent route pixel coverage or a statistically established
 FPS gain. Both runs preserve the 19 Hz engine floor. The next change will retain
 route artifacts while moving their PNG encoding off the GUI thread.
+
+## Retained screenshots after the fix
+
+[Persistent background capture](native-route-capture.md) now validates retained
+route/diagnostic artifacts with current controls and a full casting journey.
+The route-screenshot-free baseline had zero eligible gaps at 61.56323 native
+World FPS / 19.67746 engine Hz; its omission remains explicit. Final retained-
+artifact casting run observes 60.01656 visible native World FPS, with one clipped
+144.164 ms unclassified gap. Capture GUI maxima are below 21 ms, with no GUI PNG
+encoding. The exact diagnostic wait after the earlier readback was not separately
+attributed; persistent task reuse and off-GUI cleanup address that boundary.
+Current statuses remain scoped live observation, not original equivalence,
+engine-rate improvement, scanout or sustained 60 FPS.
