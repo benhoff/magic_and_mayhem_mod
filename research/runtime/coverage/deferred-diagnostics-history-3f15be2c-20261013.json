@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed storage-policy history only; no past gate pass or new engine validation claim. Uncommitted renderer draft is excluded.",
+  "range": "e529af2f41707247b70b01040e5ceb52e49f69ef..3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+  "transitions": [
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "AGENTS.md",
+      "before_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+      "after_sha256": "788c5419f27eb9621af6627dc1419b5f4dfe77050fd8a103894284c5f45a9bcd",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "docs/working-retention.md",
+      "before_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+      "after_sha256": "0ea8f0f6cdaa8240420f5841e6ad652bda9a58470039a2854ed80ff7c9d90e94",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "fe4890649c8ed4c36e1a3c368c7656bb340524737b64b7e56c461da49277b2f4",
+      "after_sha256": "01b773b5a5f5bcfc842ab9939bbac25285bf9ee7bd507a1a6e739b5c0580aab3",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "research/runtime/coverage/source-index-storage-free-space-20261013.json",
+      "before_sha256": null,
+      "after_sha256": "7b25458eb70db22e688fc3c94716a7514191f542312096b7f30e119954d96139",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "research/runtime/coverage/storage-free-space-history-e529af2f-20261013.json",
+      "before_sha256": null,
+      "after_sha256": "a91348af577656aee8a33f1fa8ec7570413e0ad60f762e4fcda2269d21087c4d",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "tests/test-working-archive.py",
+      "before_sha256": "78355a9e9aefc64f87dfb5d2d98d82f24b67997ca55568ee03bdd0f0a6e2808a",
+      "after_sha256": "819bbcdefdc7faa3030700d35f9538b371eff6a6b85ed6d1495a3bf053e2d2a8",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "tests/test-working-retention.py",
+      "before_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+      "after_sha256": "c99459e0b7badb5c372da28701eec416b15b153dd5aebbb0cec1efc6725f18ba",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "tools/working-retention.json",
+      "before_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+      "after_sha256": "c5cc59797661ed095294a50f5309d8bfbb2c1cbcc4457b19511cc7df85735cde",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "tools/working-retention.py",
+      "before_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+      "after_sha256": "d67bb18afd2a495cecebe0d06e86cce877e6bfc7176e6235dd07a29769fa5015",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    },
+    {
+      "commit": "3f15be2c3142c17a68a6636c037c8c412b14fcaa",
+      "path": "tools/working_archive.py",
+      "before_sha256": "a8d0c4325a0dcea6467643ec0237eabb106cc8a7bda71e6945ee0b9dfb1ef145",
+      "after_sha256": "ba94325a810689ff0e4899cb30a5afe214df80eec1766f3ab38076b35969a3fc",
+      "exact_receipts": [
+        "storage-free-space-policy-20261013"
+      ]
+    }
+  ],
+  "missing_exact_receipts": []
+}

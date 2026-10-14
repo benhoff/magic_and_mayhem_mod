@@ -251,6 +251,7 @@ int main(int argc,char** argv){
                 qToLittleEndian<quint32>(color,pixels.data()+(y*size.width()+x)*4);
             }
             frames.append(QString::fromLatin1(QCryptographicHash::hash(pixels,QCryptographicHash::Sha256).toHex()));
+            if(frames.size()==1){QFile first(QString::fromLocal8Bit(argv[3])+".first-frame");check(first.open(QIODevice::WriteOnly),"first frame marker");first.close();}
         };
         QObject::connect(&timer,&QTimer::timeout,[&]{
             if(!live.poll(65536) || live.ended() || elapsed.elapsed()>30000){

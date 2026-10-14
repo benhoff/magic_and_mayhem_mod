@@ -12,6 +12,7 @@ static void WIN command_exit(u32 code){
      * interrupts publication while retaining live storage for OS teardown. */
     if(!complete){command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_GAP);command_channel_pump();}
     lock_diagnostic("command_lifecycle_shutdown",0,0,complete,code,0,0,0);
+    lock_diagnostic_worker_finish(50);
     SetLastError(error);command_original_exit(code);
 }
 static int command_image_range(u8* base,u32 size,u32 rva,u32 bytes){
@@ -70,6 +71,7 @@ __declspec(dllexport) u32 WIN RenderStartup(void){
     game_tracker_release();
     if(ready)ready=command_scheduler_start_locked();
     if(!command_control_start())ready=0;
+    if(ready)lock_diagnostic_worker_start();
     SetLastError(error);return ready;
 }
 #ifdef MNM_RENDER_SELFTEST

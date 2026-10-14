@@ -203,6 +203,19 @@ static void mu_palette_change(u32 flags_only,u32 retry,u32 flags){
     SetLastError(0x77);if(retry){mu_failed=5;u8 failed[8];copy_bytes(failed,colors,8);if(((i32 (WIN *)(void*,u32,u32,u32,void*))mu_palette[6])(&mu_palette,0,5,2,failed)!=-1 || GetLastError()!=0x88)ExitProcess(361);SetLastError(0x77);}
     if(((i32 (WIN *)(void*,u32,u32,u32,void*))mu_palette[6])(&mu_palette,flags,5,2,colors)!=23 || GetLastError()!=0x88)ExitProcess(362);mu_record();
 }
+/* Fixture-only semantic barrier: preserve the valid prefix before deliberately
+ * failing the next finite layout. No waits are added to original callbacks. */
+static void mu_wait_first_frame(void){
+    char path[512];u32 n=GetEnvironmentVariableA("MNM_MUTATION_FIRST_FRAME_FOR_TEST",path,sizeof(path));
+    if(!n || n>=sizeof(path))ExitProcess(511);
+    u32 saved=GetLastError(),start=GetTickCount();
+    while(GetTickCount()-start<5000){
+        HANDLE file=CreateFileA(path,0x80000000,3,0,3,0x80,0);
+        if(file!=(HANDLE)-1){CloseHandle(file);SetLastError(saved);return;}
+        Sleep(1);
+    }
+    ExitProcess(512);
+}
 static void test_mutations(const char* mode){
     u32 bits=mode[0]=='i' || mode[0]=='p'?8:mode[0]=='r' || mode[0]=='b' || mode[0]=='u'?32:(u32)(mode[2]-'0')*10+(u32)(mode[3]-'0');
     u32 dc=mode[0]=='d' && mode[1]=='c' && !rs_mode(mode,"dc-timeout"),reshape=rs_mode(mode,"reshape"),bounded=rs_mode(mode,"bounded"),partial=rs_mode(mode,"partial");
@@ -233,6 +246,7 @@ static void test_mutations(const char* mode){
     if(palette_resources && bits==8){mu_palette_alias=pal;mu_palette_refs=3;SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[31])(&mu_back,&mu_palette)!=23 || GetLastError()!=0x88)ExitProcess(376);}
     mu_output=CreateFileA("mutation-frames.bin",0x40000000,1,0,1,0x80,0);if(mu_output==(HANDLE)-1)ExitProcess(366);
     mu_cycle(&mu_front,0,5,0);
+    if(bounded)mu_wait_first_frame();
     if(mu_gate_dc){
         u32 info[13]={40,6,(u32)-4,(bits<<16)|1,3,0,0,0,0,0,mu_mask(bits,0),mu_mask(bits,1),mu_mask(bits,2)};
         mu_dc=CreateCompatibleDC(0);mu_bitmap=CreateDIBSection(mu_dc,info,0,(void**)&mu_dib,0,0);

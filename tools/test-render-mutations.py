@@ -67,8 +67,11 @@ def archive(data):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=CASES);parser.add_argument('--palette-resources',action='store_true');parser.add_argument('--claims',type=Path,help='Prospective coverage/source declaration');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=CASES);parser.add_argument('--palette-resources',action='store_true');parser.add_argument('--claims',type=Path,help='Prospective coverage/source declaration');parser.add_argument('--wine-prefix',type=Path,help='Reuse an initialized private prefix under this checkout working/tests; invocation owns its wineserver shutdown');args=parser.parse_args()
     if not os.environ.get('DISPLAY'):parser.error('Run under xvfb-run -a')
+    selected_prefix=args.wine_prefix.resolve() if args.wine_prefix else None
+    if selected_prefix and (not selected_prefix.is_dir() or not selected_prefix.is_relative_to(ROOT/'working/tests')):
+        parser.error('--wine-prefix must be an existing private directory under this checkout working/tests')
     paths=sorted((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in [
         'tools/test-render-mutations.py','tools/test-render-resource-lifecycle.py','tools/test-render-continuous-producer.py',
         'tools/test-live-render-channel.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py',
@@ -95,8 +98,9 @@ def main():
     dll=live.load('mutation_build','tools/build-render-bridge.py').build(True)
     stage=live.load('mutation_stage','tools/prepare-shadow-experiment.py')
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
-    env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(run/'wineprefix'))
+    env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(selected_prefix or run/'wineprefix'))
     report=dict(schema=1,sources=fingerprints,cases=[],scope='Actual synthetic PE32 full/partial negative-pitch unlock, fill, keyed/unkeyed copy, two-buffer flip, palette RGB/flags and real Wine DIB ReleaseDC through continuous v2 GPU. Successful full layout replacement via fresh IDs; failed calls/retries, bounded/partial/unsupported refusal. Independent engine native pixels/palettes generate complete frame hashes; no original game/driver equivalence or recovery.')
+    report['wine_prefix_reused']=selected_prefix is not None
     if declaration:report['claims']=declaration['claims']
     report.update(success=False,status='running')
     (run/'report.json').write_text(json.dumps(report,indent=2)+'\n')
@@ -109,6 +113,7 @@ def main():
             (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
             output,active=case/'qt.json',case/'producer.active'
             child=dict(env,MNM_RENDER_ORDERED_COPIES='1' if mode in METADATA_CASES or mode in ['cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout', 'indexed','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key','dc32','mx16'] else '0',MNM_RENDER_PALETTE_RESOURCES='1' if args.palette_resources else '0',MNM_MUTATION_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
+            if mode=="bounded":child["MNM_MUTATION_FIRST_FRAME_FOR_TEST"]="Z:"+str(output).replace("/", "\\")+".first-frame"
             valid=(mode not in METADATA_CASES or mode in ['cross-desc','cross-attached']) and mode not in ['bounded','partial','unsupported','palette-flags','meta-change','source-write','source-key','copy-timeout','lock-timeout','dc-timeout','flip-timeout','key-timeout','clipper-timeout','palette-timeout']
             with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
                 qt=subprocess.Popen([str(args.build.resolve()/'live-render-channel-test'),str(channel),str(active),str(output)],env=env,stdout=qlog,stderr=qlog);wine=None
@@ -185,7 +190,8 @@ def main():
         report.update(sources_unchanged=True,status='passed',palette_resources=args.palette_resources,success=True,full_frame_comparisons=sum(c['presentations'] for c in report['cases']),valid_sessions=sum(c['valid_session'] for c in report['cases']),refused_sessions=sum(not c['valid_session'] for c in report['cases']))
         (run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
     finally:
-        # This exact private prefix belongs only to this fixture invocation.
+        # The default fresh prefix or explicitly selected private test prefix
+        # belongs only to this invocation for the duration of the run.
         subprocess.run(['wineserver','-k'],env=env,stdout=subprocess.DEVNULL,
                        stderr=subprocess.DEVNULL,timeout=15,check=False)
 

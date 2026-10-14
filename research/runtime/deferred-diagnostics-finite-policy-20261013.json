@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "scope": "Reproduce callback-side logging contention using production C admission code.\n\nLinux pthread/Win32 API stubs exercise native policy, not original gameplay.\nThe pinned previous logger deliberately blocks in WriteFile; both versions must\nforward original drawing exactly once. Output and scope declarations are owned.\n",
+  "live_validated": false,
+  "baseline_commit": "e529af2f41707247b70b01040e5ceb52e49f69ef",
+  "baseline_header_sha256": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+  "sources": {
+    "runtime/render/bridge.c": "b70f1f66ae0d48e62126a53fcf32918ae87d40179ba97e56a89348d2cd1f1e7c",
+    "runtime/render/command_lifecycle.h": "c7ad966b1a9fc8fb7428bd3ac559a746749f5cfd6701c22acde11ffc2bc43bb2",
+    "runtime/render/command_scheduler.h": "baaa37a654aaa15a0c844bea7337776c7dcce4e9e71c1a34b3aaaccdb506cfe2",
+    "runtime/render/copy_order.h": "84242fd54a621508a839d9a1a8aed3039f8e95e188bcc55c77f6273a72d5debf",
+    "runtime/render/lock_diagnostic_worker.h": "7d850d36436f1d40f651dd8fa39665f4015fd400b07f0dec7358c6c2bba498e1",
+    "runtime/render/lock_diagnostics.h": "a6fdc206462512b1509422d24cace1d735db42fac9e0b1b37c2f1e07e18379b9",
+    "tests/lock-diagnostic-contention-test.c": "5ed38e5929368237c8a894b58f993cdc4b94cec3ce4ec981c60d6cb215a2211b",
+    "tools/build-render-bridge.py": "dea919101db686d200c543bb5c381d0983d941c13d0e5fa2efa6143ec8571321",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/test-lock-diagnostics.py": "90b55e6f01f2a9b434c82edef58f1c1e65ed4f9e74097bad98c5db09ca7712c8"
+  },
+  "claims": [
+    {
+      "behavior": "NP.deferred-drawing-diagnostics",
+      "contract_sha256": "d62bb329a11a9f17c250015924c3effb500027f7e7696ecb59a0d8107eb36ad4",
+      "scenarios": {}
+    }
+  ],
+  "compiler": "gcc (GCC) 16.2.1 20260810",
+  "runs": {
+    "baseline-baseline": {
+      "success": true,
+      "unsafe": 1,
+      "misses": 2,
+      "inside_owner_io": 2,
+      "original_once": true,
+      "pixel_words": 38400,
+      "live_validated": false
+    },
+    "baseline-finite": {
+      "success": true,
+      "finite": true,
+      "live_validated": false
+    },
+    "baseline-finite-concurrent": {
+      "success": true,
+      "finite_concurrent": true,
+      "live_validated": false
+    },
+    "current-stall": {
+      "success": true,
+      "unsafe": 0,
+      "misses": 0,
+      "inside_owner_io": 0,
+      "original_once": true,
+      "pixel_words": 38400,
+      "live_validated": false
+    },
+    "current-guards": {
+      "success": true,
+      "guards": 6,
+      "live_validated": false
+    },
+    "current-limits": {
+      "success": true,
+      "records": 128,
+      "live_validated": false
+    },
+    "current-thread-failure": {
+      "success": true,
+      "failure_guard": true,
+      "live_validated": false
+    },
+    "current-file-failure": {
+      "success": true,
+      "failure_guard": true,
+      "live_validated": false
+    },
+    "current-finite": {
+      "success": true,
+      "finite": true,
+      "live_validated": false
+    },
+    "current-finite-concurrent": {
+      "success": true,
+      "finite_concurrent": true,
+      "live_validated": false
+    }
+  }
+}

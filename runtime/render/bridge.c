@@ -67,8 +67,10 @@ static void game_copy_leave(struct GameCopyLease*);
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
 #include "lock_dc.h"
+static void lock_diagnostic_worker_start(void);
 #include "command_scheduler.h"
 #include "copy_order.h"
+#include "lock_diagnostic_worker.h"
 static int command_control_start(void);
 #include "command_lifecycle.h"
 #include "command_recovery.h"
@@ -569,7 +571,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){command_control_detach();command_scheduler_detach();return 1;}
+    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);command_control_detach();command_scheduler_detach();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;
