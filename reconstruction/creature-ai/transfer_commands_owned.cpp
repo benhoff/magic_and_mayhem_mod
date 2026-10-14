@@ -35,6 +35,8 @@ void OwnedCreatureCommands::bind(AutonomousCreature &a, unsigned kind) {
   bindings_.at(a.ai.slot) = static_cast<CommandBehaviorBinding>(kind);
   if (kind == 1)
     idle(a);
+  else if (ownedBody_)
+    ownedBody_(a, kind, *this);
   else
     body_(a, kind);
 }
@@ -49,11 +51,31 @@ void OwnedCreatureCommands::dispatch(AutonomousCreature &a) {
   case CommandBehaviorBinding::move:
   case CommandBehaviorBinding::target:
   case CommandBehaviorBinding::coordinate:
-    body_(a, unsigned(bindings_.at(a.ai.slot)));
+    if (ownedBody_)
+      ownedBody_(a, unsigned(bindings_.at(a.ai.slot)), *this);
+    else
+      body_(a, unsigned(bindings_.at(a.ai.slot)));
     break;
   default:
     throw std::invalid_argument("command behavior binding");
   }
+}
+void OwnedCreatureCommands::installBodies(
+    std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> body) {
+  if (!body || ownedBody_)
+    throw std::invalid_argument("command bodies must be installed once");
+  for (auto active : queueActive_)
+    if (active) throw std::invalid_argument("cannot install bodies during queue execution");
+  ownedBody_ = std::move(body);
+}
+void OwnedCreatureCommands::transition(AutonomousCreature &a, unsigned kind) {
+  if (kind < 1 || kind > 4)
+    throw std::invalid_argument("owned command transition selector");
+  changeBehavior(a, execution_.at(a.ai.slot), kind, services(a.ai.slot));
+}
+bool OwnedCreatureCommands::owns(const AutonomousWorld &world,
+                                 const std::vector<CreatureExecution> &execution) const {
+  return &world == &world_ && &execution == &execution_;
 }
 void OwnedCreatureCommands::reset(AutonomousCreature &a) {
   resetBehavior(a, execution_.at(a.ai.slot), world_, services(a.ai.slot));

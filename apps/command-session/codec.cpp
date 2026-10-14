@@ -18,7 +18,10 @@ auto fields(model::CreatureExecution &v){return std::tie(v.orders,v.orderCursor,
 auto fields(model::AutonomousWorld &v){return std::tie(v.dimensions,v.creatures,v.relation,v.human,v.ownerEligible,v.localOwner);}
 auto fields(model::CreatureScheduler &v){return std::tie(v.budget,v.cursor,v.phase20,v.phase90,v.continuation);}
 auto fields(model::SchedulerEnvironment &v){return std::tie(v.suppressRoutes,v.updateRegions,v.network,v.localOwner,v.ownerController);}
-auto fields(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend);}
+auto fields(model::CreatureMaintenance &v){return std::tie(v.random98,v.upkeepDeadline,v.status114,v.status118,v.status744,v.status748,v.status74c,v.flight110,v.status778,v.status77c,v.status780,v.animation7cc,v.status821,v.status8c5,v.status78c,v.status790,v.status819,v.status81d,v.status8d5,v.status8d9,v.status8dd,v.powerDeadline,v.animation889,v.animation8bd,v.flight809,v.timer94,v.marker750,v.block71d,v.timer660,v.recent6b0,v.lifespan,v.suspension,v.status8cd,v.visibilityAge,v.statusEffect,v.damageEffect,v.flightEffect);}
+auto fields(model::MovementBehaviorState &v){return std::tie(v.renewedOrder,v.landingKind,v.nextRouteCell);}
+auto fieldsV1(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend);}
+auto fields(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement);}
 template<class T>struct optional_type:std::false_type{};
 template<class T>struct optional_type<std::optional<T>>:std::true_type{};
 template<class T>struct vector_type:std::false_type{};
@@ -62,6 +65,9 @@ struct Reader {
 void validate(const Continuation &c){
   const auto n=c.world.creatures.size();
   need(n>0&&n<=128&&c.execution.size()==n&&c.bindings.size()==n&&c.generations.size()==n,"native command continuation pool differs");
+  need((c.maintenance.empty()&&c.movement.empty()) ||
+       (c.maintenance.size()==n&&c.movement.size()==n),
+       "native command behavior continuation pool differs");
   const auto d=c.world.dimensions;
   need(d.x>0&&d.x<=4096&&d.y>0&&d.y<=4096&&d.z>0&&d.z<=256,"native command dimensions out of bounds");
   need(c.scheduler.cursor>=0&&unsigned(c.scheduler.cursor)<n&&c.scheduler.phase20>=0&&c.scheduler.phase20<20&&c.scheduler.phase90>=0&&c.scheduler.phase90<90,"native command scheduler out of bounds");
@@ -83,11 +89,14 @@ void validate(const Continuation &c){
   }
 }
 game::Bytes encode(const Continuation &input){
-  validate(input);auto c=input;Writer w;w.bytes={'C','M','D','1'};w.word(1);w.value(c);
+  validate(input);auto c=input;Writer w;w.bytes={'C','M','D','1'};w.word(2);w.value(c);
   need(w.bytes.size()<=1024*1024,"native command encoded continuation limit");return w.bytes;
 }
 Continuation decode(const game::Bytes &bytes){
   need(bytes.size()>=8&&bytes.size()<=1024*1024&&game::Bytes(bytes.begin(),bytes.begin()+4)==game::Bytes{'C','M','D','1'},"unknown native command continuation");
-  Reader r{bytes,4};need(r.word()==1,"unsupported native command continuation version");Continuation c;r.value(c);need(r.pos==bytes.size(),"trailing native command continuation");validate(c);return c;
+  Reader r{bytes,4};const auto version=r.word();need(version==1||version==2,"unsupported native command continuation version");Continuation c;
+  if(version==1)std::apply([&](auto &...x){(r.value(x),...);},fieldsV1(c));
+  else r.value(c);
+  need(r.pos==bytes.size(),"trailing native command continuation");validate(c);return c;
 }
 } // namespace mnm::command_session

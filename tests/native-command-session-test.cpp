@@ -140,7 +140,7 @@ int main() try {
   auto wrongProfile=resumed.world().state();wrongProfile.campaign[0]^=1;
   game::World wrong(0);wrong.restore(wrongProfile);refuses([&]{game::CreatureRuleSession rejected(std::move(wrong),rules);});
   auto trailing=bytes;trailing.push_back(0);refuses([&]{command_session::decode(trailing);});
-  auto version=bytes;version[4]=2;refuses([&]{command_session::decode(version);});
+  auto version=bytes;version[4]=3;refuses([&]{command_session::decode(version);});
   for(unsigned n:{0u,4u,8u,unsigned(bytes.size()-1)}){auto cut=bytes;cut.resize(n);refuses([&]{command_session::decode(cut);});}
   // Stage unsafe native continuations; the public session must preserve every byte.
   for(unsigned mode=0;mode<3;++mode){

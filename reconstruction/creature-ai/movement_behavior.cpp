@@ -24,7 +24,8 @@ void movementBehavior(AutonomousCreature &a, CreatureExecution &e,
       if (a.block723)
         return;
     } else {
-      s.move(a, a.destination);
+      if (s.renewMove) s.renewMove(a, a.destination);
+      else s.move(a, a.destination);
       a.block71c = saved71c;
       a.form = savedForm;
       a.blockDE3 = savedBlock;

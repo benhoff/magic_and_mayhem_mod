@@ -9123,3 +9123,37 @@ prospective recovered classification and reran the native proof under the policy
 The earlier result is preserved. NS62 current original ingress/commands/queue
 records and native-command-session-policy-bound-ns62-20261013.json keep execution,
 headless integration and replacement independent.
+
+
+### NS63 — owned command behavior callbacks and complete native continuation (2026-10-13)
+
+Move510010, target50afa0 and coordinate50ccd0 callbacks now execute recovered
+bodies on the shared command context, including target-maintenance50b0c0,
+ranged50b2c0/505cf0 and nested reset/move/transition/idle/queue consequences.
+6144 bounded original32/native64/sanitized64 steps cover six direct/transition
+entries and30 unchanged declared bodies with full actor/map/config/callback/list/
+padding guards. Route-renew50fae0 and landing509230 are distinct contracts;
+renewMove is owned, landing remains supplied. Separate invalidation stack ABIs
+are preserved. The legacy one-endpoint movement projection remains supported and
+its8192-case lifecycle comparison is rerun. CMake/CTest pass.
+
+Real native sessions now install owned bodies on their existing operation context
+and retain full maintenance/movement vectors in CMD1/version2. Version1 decoding
+leaves missing vectors absent; supplied-body profiles can migrate, while recovered
+body profiles refuse missing state. Native/sanitized execution exercises three
+owned command bodies, failed callback rollback,80 byte-identical resumed ticks,
+eight installation/root/actor/selector/arithmetic refusals and complete state retention. The
+previous native-session rollback/decoder/semantic command corpus also passes.
+Fresh command20480, queue2048 and ingress1536 comparisons preserve current scoped
+support after shared source changes. NS62 committed-history review covers77 file
+transitions/132 behaviors with no receipt gaps, adding no retrospective execution
+or gate claim. Earlier failed/debug/source-change runs and hashes are retained.
+
+Action/geometry/form/ANI/renewal/landing/health/occupancy/removal/effect and original
+complete-frame/World/campaign services remain explicit. The native route/frame
+fixture is synthetic; dynamic actor lifecycle, original-save/profile rebinding,
+installed sentinel, visible campaign integration and live replacement remain
+outstanding. This owns command callback behavior and bounded native continuation;
+it does not establish complete campaign Wine removal. Final guarded executions
+and accounting retain100GiB free under the previously authorized private1408GiB
+cap; earlier private90GiB development provenance is preserved without cleanup here.

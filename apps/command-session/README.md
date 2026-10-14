@@ -17,8 +17,8 @@ of later behavior-word edits. Returned events are published only after success.
 
 The adapter publishes actor position/type/owner/target projections to native
 entities and saves the complete canonical continuation in `State.systems`.
-`CMD1` version1 stores all actor/execution fields, logical order serials, callback
-selectors, scheduler/environment, seed, generations and opaque backend bytes.
+`CMD1` version2 stores all actor/execution fields, logical order serials, callback
+selectors, scheduler/environment, seed, generations and opaque backend bytes, plus complete maintenance and movement roots for recovered bodies.
 See [the format](../../research/formats/native-command-continuation.md).
 Restore rejects profile/geometry/actor-generation/projection differences, malformed
 or excessive data and unsafe queue continuation. Failed commands/ticks/terrain
@@ -46,3 +46,22 @@ input and exact rollback, decoder and restore failures, three unsafe queue
 rollbacks/recovery and80 ticks of byte-identical snapshot-resumed execution.
 These are real native session/application operations with explicit synthetic
 lower providers, not full original encounter equivalence.
+
+Recovered callbacks can be installed with `Hooks.commandBodies`. The callback
+receives the existing operation context; `OwnedCommandBehaviors` borrows its same
+world/execution roots and the continuation's maintenance/movement vectors. Move,
+target and coordinate callbacks, target maintenance and class-specific ranged
+continuation use recovered bodies. Their lower action/geometry/animation/landing/
+occupancy/health/removal and frame services remain explicit.
+
+Version2 appends maintenance/movement vectors to the previous schema. Version1
+checkpoints decode with absent vectors and can be restored only by profiles
+without those roots. A profile using recovered bodies rejects missing vectors.
+The integration fixture uses explicit synthetic route and frame services, checks
+three command bodies and callback rollback, and compares80 resumed ticks exactly.
+It also checks eight provider/context/arithmetic admission refusals and complete state retention.
+
+Lower callbacks must preserve canonical backing and their admitted arithmetic
+domain throughout invocation. Unsafe saved movement differences or fine-aim sums
+refuse before dispatch; these native policies do not compare original overflow
+or malformed-pointer behavior.

@@ -896,3 +896,74 @@ claim under that policy; the earlier native result remains historical evidence.
 The current native integration record is
 native-command-session-policy-bound-ns62-20261013.json. Older scope/source claims
 retain their limitations rather than receiving updated fingerprints.
+
+## Owned move/target/coordinate behavior continuation (NS63)
+
+The command context can now install recovered callback bodies once before a
+staged operation. It passes its own context to the body, so movement's nested
+move/reset, dead-target transition, target maintenance and ranged maintenance
+use the original canonical world/execution roots and queue recursion/topology
+admission. The body adapter requires matching maintenance and movement roots;
+foreign command roots, actors, unsupported selectors and duplicate/empty provider
+installation are native admission policies, not original malformed-pointer proofs.
+
+The composed scope contains whole510010,50afa0,50ccd0,50b0c0,50b2c0 and505cf0
+alongside the existing command/transition/reset/idle/follow/queue path. Action,
+geometry, form/animation, renewal, landing/health/occupancy/removal and full frame
+services remain explicit. Movement retains temporary form/block restoration,
+arrival/reset/type27 removal, adjacency/fallback and landing ordering. Target
+retains reach/incoming/moving-target gates and nested class-specific ranged or
+maintenance work; coordinate retains readiness/deadline/range/motion routing.
+Understanding of these bodies and integration of this composition remain separate
+from owning their lower providers and complete original campaign execution.
+
+The finite comparison has1024 seeds x6 callback/transition entries,1..32 actors,
+28 types/classes, bounded16x16x4 actor coordinates and empty queues.30 unchanged
+bodies and full actor/map/config/callback/order/padding guards are declared.
+Extra fixture import/pack hooks preserve the shared actor projection without
+redirecting the six added body entries. The native session exercises all three
+owned command bodies, callback failure rollback and80 byte-identical restored
+ticks with explicit synthetic route/frame/geometry/action providers. Complete
+original frame timing, movement physics, campaign and live replacement remain
+excluded. Historical shared-fixture and session results are preserved; affected
+command/queue/ingress/session proofs must be rerun before current validation.
+
+CMD1/version2 appends complete CreatureMaintenance and MovementBehaviorState
+vectors to the previous schema. All scalar/array/effect-token fields are explicit;
+no provider, object pointer or transient guard is serialized. Version1 decodes
+with absent vectors and is admitted only for profiles retaining supplied bodies.
+Recovered-body profiles require matching vectors and reject missing state at
+restore. The outer application map/profile identity is independent of this schema
+version. New native continuation behavior is documented in the format and app
+README; original save/profile rebinding and dynamic actor lifecycle remain pending.
+
+Composition exposed a distinction hidden by the earlier observation adapter:
+51010a calls50fae0 for route-renew movement, while5103ca calls509230 after landing
+relocation. These are distinct lower contracts. MovementBehaviorServices now has
+an explicit renewMove slot; the owned adapter wires only that slot to the shared
+move command and leaves landing movement supplied. Existing one-endpoint
+observation callers retain their old mapping when renewMove is absent. Static
+movement_behavior.asm from the retained static-v10 export provides instruction
+and call evidence; the new comparison separately exercises the composed mapping.
+Likewise landing invalidation51aa30 has no stack argument, while type27 completion
+uses51f5e0 with zero. Both supplied ABIs must retain their own stack contract.
+Initial development failures, debugger traces and source-change refusals are
+preserved and do not constitute current equivalence evidence.
+
+Native body admission also rejects unrepresentable signed movement subtraction/
+absolute value and ranged fine-position plus aim arithmetic. These refusals
+precede lower provider calls; ranged continuation rechecks fine aim after the supplied
+target-reach query. The finite original comparison does not execute unsafe arithmetic inputs.
+Native tests distinguish this exact refusal from a missing-provider exception and
+retain atomic session rollback coverage. The context corpus therefore has eight
+installation/root/actor/selector/arithmetic refusals.
+
+Current NS63 immutable proofs are original-command-behaviors-owned-bound-ns63-
+20261013.json and native-command-behavior-session-bound-ns63-20261013.json.
+Source-current command/queue/ingress/lifecycle results have their own new NS63
+records and evidence IDs; earlier hashes remain historical. Normal and sanitized
+native continuations match, including the existing session corpus and new owned
+behavior corpus. NS62 history review covers77 file transitions/132 behaviors with
+no missing exact receipts; it does not infer new original comparison or live
+replacement. Final builds, snapshots and checks use the authorized private1408GiB
+cap with100GiB free reserve; prior90GiB development guard records remain retained.

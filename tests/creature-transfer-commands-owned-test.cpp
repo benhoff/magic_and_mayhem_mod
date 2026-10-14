@@ -40,6 +40,7 @@ Bytes actor, definition, effects, nodes, displays, container, sentinel, orders,
     relations;
 std::map<unsigned, Bytes> retiredNodes;
 Bytes mapCells, mapTiles;
+std::function<void()> fixtureImportExtra, fixtureSyncExtra;
 void syncQueues();
 void importQueues();
 unsigned get(const void *p, unsigned off) {
@@ -141,6 +142,7 @@ void syncActor() {
   put(actor.data(), 0x5f0, current->relations.creatures[0].ai.pending);
   put(actor.data(), 0x7cd, current->relations.creatures[0].animationKind);
   put(definition.data(), 0, current->relations.creatures[0].ai.kind);
+  if (fixtureSyncExtra) fixtureSyncExtra();
 }
 void importActor() {
   auto word = [](unsigned v) {
@@ -221,6 +223,7 @@ void importActor() {
         : CommandBehaviorBinding::supplied;
   }
   importQueues();
+  if (fixtureImportExtra) fixtureImportExtra();
 }
 #endif
 void event(unsigned kind, unsigned argument = 0) {
@@ -916,7 +919,7 @@ void redirect(unsigned address, void *target) {
   p[0] = 0xe9;
   put(p, 1, unsigned(reinterpret_cast<std::uintptr_t>(target) - address - 5));
 }
-void install(const char *path) {
+void install(const char *path, bool ownedBodies = false) {
   map_image(read(path));
   dispatchTable = Bytes(reinterpret_cast<unsigned char *>(0x50a9e4),
                         reinterpret_cast<unsigned char *>(0x50aa24));
@@ -970,7 +973,16 @@ void install(const char *path) {
                  {0x5178c0, reinterpret_cast<void *>(prepareRepairStub)},
                  {0x50eb60, reinterpret_cast<void *>(repairPeerStub)},
                  {0x416590, reinterpret_cast<void *>(memberStub)}})
-    redirect(v.first, v.second);
+    if (!ownedBodies || (v.first != 0x510010 && v.first != 0x50afa0 &&
+                         v.first != 0x50ccd0))
+      redirect(v.first, v.second);
+  if (ownedBodies)
+    for (auto r : {std::pair<unsigned, unsigned>{0x510010,0x510480},
+                   {0x50afa0,0x50b0b1},{0x50ccd0,0x50cdb4},
+                   {0x50b0c0,0x50b1e3},{0x50b2c0,0x50b643},
+                   {0x505cf0,0x505d18}})
+      bodies.push_back({r.first, Bytes(reinterpret_cast<unsigned char *>(r.first),
+                                     reinterpret_cast<unsigned char *>(r.second))});
 }
 void pack(void *p, const Fixture &f) {
   put(p, 0x174, unsigned(f.relations.creatures[0].ai.owner));
@@ -1033,7 +1045,8 @@ void compare(Fixture input, const Fixture &expected,
              const std::vector<unsigned> &trace,
              const CreatureOrder *directDelivery = nullptr,
              const std::function<void(void *)> &operation = {},
-             bool zeroSentinelPayload = false) {
+             bool zeroSentinelPayload = false,
+             const std::function<void(Bytes &, Bytes &, bool)> &extraPack = {}) {
   current = &input;
   original = true;
   events.clear();
@@ -1127,6 +1140,7 @@ void compare(Fixture input, const Fixture &expected,
   for (unsigned i = 0; i < 4; ++i)
     put(nodes.data() + i * 141, 0x89, input.graph[i].activity);
   put(displays.data(), 0x212, unsigned(input.world.displayOwners[0]));
+  if (extraPack) extraPack(actor, definition, false);
   auto before = actor, definitionBefore = definition, effectsBefore = effects,
        nodesExpected = nodes, displaysExpected = displays,
        ordersExpected = orders, containerBefore = container,
@@ -1189,6 +1203,7 @@ void compare(Fixture input, const Fixture &expected,
   if (actualRetired != expectedRetired)
     throw std::runtime_error("queue retirement identity");
   put(definitionBefore.data(), 0, expected.relations.creatures[0].ai.kind);
+  if (extraPack) extraPack(before, definitionBefore, true);
   for (unsigned i = 0; i < expected.idleBindings.size(); ++i) {
     put(before.data() + i * 0xe4b, 0x5f4,
         expected.idleBindings[i] == CommandBehaviorBinding::idle ? 0x50acb0

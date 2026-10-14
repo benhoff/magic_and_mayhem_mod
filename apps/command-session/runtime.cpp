@@ -8,7 +8,7 @@ void need(bool ok, const char *why) {
 }
 model::OwnedCreatureCommands context(Continuation &s, const Hooks &h) {
   need(bool(h.execution) && bool(h.idle) && bool(h.follow) && bool(h.queue) &&
-       bool(h.body) && bool(h.supplied) && bool(h.release) && bool(h.peer),
+       (bool(h.body) || bool(h.commandBodies)) && bool(h.supplied) && bool(h.release) && bool(h.peer),
        "native command providers are incomplete");
   auto execution = [factory = h.execution](unsigned slot) {
     auto result = factory(slot);
@@ -24,8 +24,10 @@ model::OwnedCreatureCommands context(Continuation &s, const Hooks &h) {
     };
     return result;
   };
-  return {s.world, s.execution, s.bindings, execution, h.idle, h.follow,
-          h.queue, h.body, h.supplied, h.release, h.peer};
+  model::OwnedCreatureCommands commands{s.world, s.execution, s.bindings,
+      execution, h.idle, h.follow, h.queue, h.body, h.supplied, h.release, h.peer};
+  if (h.commandBodies) commands.installBodies(h.commandBodies);
+  return commands;
 }
 } // namespace
 Runtime::Runtime(Continuation initial, game::Bytes profile, HookFactory hooks)
@@ -54,6 +56,9 @@ Continuation Runtime::read(const game::State &s) const {
        c.world.dimensions.z == initial_.world.dimensions.z,
        "native command profile geometry differs");
   need(c.world.creatures.size() == s.slots.size(), "native command actor pool differs");
+  need(c.maintenance.size() == initial_.maintenance.size() &&
+       c.movement.size() == initial_.movement.size(),
+       "native command behavior profile differs");
   for (unsigned i = 0; i < s.slots.size(); ++i) {
     const auto &slot = s.slots[i]; const auto &a = c.world.creatures[i];
     need(slot.generation == c.generations[i] && slot.entity.has_value(), "native command actor generation differs");

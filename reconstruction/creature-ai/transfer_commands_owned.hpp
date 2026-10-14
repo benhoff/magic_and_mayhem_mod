@@ -15,6 +15,7 @@ class OwnedCreatureCommands {
   std::function<FollowServices(unsigned)> followServices_;
   std::function<ExecutionServices(unsigned)> queueServices_;
   std::function<void(AutonomousCreature &, unsigned)> body_;
+  std::function<void(AutonomousCreature &, unsigned, OwnedCreatureCommands &)> ownedBody_;
   std::function<void(AutonomousCreature &)> supplied_;
   std::function<void(unsigned)> release_;
   std::function<void(AutonomousCreature &, bool)> peer_;
@@ -35,6 +36,12 @@ public:
       std::function<void(unsigned)> release,
       std::function<void(AutonomousCreature &, bool)> peer);
   void reset(AutonomousCreature &);
+  // Install once before execution; the callback receives this operation's
+  // context, preserving its queue recursion/topology admission.
+  void installBodies(std::function<void(AutonomousCreature &, unsigned,
+                                       OwnedCreatureCommands &)>);
+  void transition(AutonomousCreature &, unsigned);
+  bool owns(const AutonomousWorld &, const std::vector<CreatureExecution> &) const;
   void idle(AutonomousCreature &);
   void dispatch(AutonomousCreature &);
   bool queue(AutonomousCreature &);
