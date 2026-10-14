@@ -559758,6 +559758,210 @@
         "reason": "Coverage audit reports0errors and0new/removed/changed indexed sources; existing2290source census retained. Cleanup result validates only authorized storage provenance; preflight is static refusal rather than fresh timing or engine execution. Complete cadence comparison, source/frame/all-writer/lifetime/route/semantic coverage and full DRAW-02 reference/native parity remain pending; no status promotion.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1d71ace94811e232f3d9e0998a5febd1a9cc90b0ff85f191a9844688b4e2a770",
+          "before_sha256": "a6cbf148456de40de54e9b2d34e14c162a448fb1931706b7b1ab9e0631e85569",
+          "id": "DRAW.actor-control-latch-fields"
+        },
+        {
+          "after_sha256": "fb0ef119d5e6d4a0e5feae5a237a8dd1c9ed55919606777e6a2fa8526ed05e86",
+          "before_sha256": "ac20cf8f9e5381cb45fc89bbb62faf9c7f0ebe600f2c30028ce50e791487f3d9",
+          "id": "DRAW.cursor-mutex-clients"
+        },
+        {
+          "after_sha256": "888840e6cdddc3ac08b91b3d588299f78b221c56a39b5210aab9ad85221796b1",
+          "before_sha256": "f0341957096e6bf70932d674d273bb19e5f764a549bba1f32af4121055b28143",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "c3f8e346aa4bf1d08185ef157ea6076d1538268f90cf292c2e7a4b4e097ec415",
+          "before_sha256": "4e49c1d9ddfef5705f10b9839e03db13e38a8dce3d6260de295b572d155a1bca",
+          "id": "DRAW.mouse-ring-input"
+        },
+        {
+          "after_sha256": "15d6bd3c3457880be87d0e21e76b705efc785f4fc8fe68cd39f175e5d698b7fc",
+          "before_sha256": "3d8de1a1c8959c75882c75d4fac978fd34500adae7b6742add924388b66fbd72",
+          "id": "DRAW.region-mouse-callback"
+        },
+        {
+          "after_sha256": "eaf0cd1a9f3d45f874d4f2a8cca4b586229f452b49e7889b2a143e4d360672e8",
+          "before_sha256": "e7f90f2ef84582ee3a2d16d553ca42d13718ece68523173cbbc41858f992eda5",
+          "id": "DRAW.software-cursor-copy-clients"
+        },
+        {
+          "after_sha256": "602e28d857d309b956020bb0da25131e736170f19d876fde2d6a4537812b39d7",
+          "before_sha256": "c451c64a5baabb05e775a956f3d89ce1c22b6dc1c89a4ec8f7376c4dca21cc10",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "eb2a55ad69d12839cfc8b12a62efdecabccfd889e5c349aa4da8d63252de3ce0",
+          "before_sha256": "379aaa4a2cffd6d7632f4941bf419dd4942862b73e6c788d97c2dfff79d5b4f9",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "df6069f904d5641ad732ee15d1922ebe2a8825d7b698da85ce80ce4077cd768e",
+          "before_sha256": "0b03600f006ef0b2598a735bd83334902241ed581a7dbf23e14327b6bc9325c2",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "9467496e775a863d276552d47483defc140d0bd07f37690a5066962091a24be5",
+          "before_sha256": "600e5b1ab6c262e000f5ec1c3bed3ff8ec886c15b0c4839a0deae9c606fe72ed",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "bd04a8eaa72520e7365839770a0f6761038eceb17cb369c6e99710751d4c66d0",
+          "before_sha256": "b1b34f8bf71e048794391f2fe6c28bd322beb126e5b362bf88778a765e58f577",
+          "id": "NR.drawing-campaign-guidance-handshake"
+        },
+        {
+          "after_sha256": "42ecad4d04f66d98c6b3c2321a512ded8ea2927f8a92961c36907185d36c32e3",
+          "before_sha256": "cc7d33c4efcf567d84b8c686cae27b8bec454297be7b12c79b6b0039fe594160",
+          "id": "NR.drawing-cursor-mutex-observation"
+        },
+        {
+          "after_sha256": "3a6d937d643f5aa4bd650c3381e2e6f067476f871c3fd5ced778b261176ba271",
+          "before_sha256": "c90bbd3916ba02dcfac56581907ebf1d522655a28ebc60230ff853ca7d312280",
+          "id": "NR.drawing-cursor-mutex-prefix-binding"
+        },
+        {
+          "after_sha256": "9671f20b7687ec6e6256acf68e238e07ebabe34431756baaa9f579101b537a1b",
+          "before_sha256": "1e8069a53a52da1e17de9430ee4f8de2b42e176d2d7adde9d2e5567f70eb303b",
+          "id": "NR.drawing-diagnostic-cadence-control"
+        },
+        {
+          "after_sha256": "4d5aaf253176fa07cb44582510f00cfe16699a739b7689cee6a0b83f2dad3bbc",
+          "before_sha256": "5b7b7330a3f96ea81aa6020c44b35a95d88fcf56d3b1806d70fcc59a5beeb29f",
+          "id": "NR.drawing-hud-cursor-binding"
+        },
+        {
+          "after_sha256": "4f0511bf565211a00eb0ed1af03ae1e41e558f1a6d76596b32ca2d81f3e0e574",
+          "before_sha256": "733cd7017228894abef7576e3aa3b830d8000b27bee91f4df29fe9dff187a7fc",
+          "id": "NR.drawing-hud-state-observation"
+        },
+        {
+          "after_sha256": "939699c47067cfef2ccb4f77e87d4fb99b6156c7d7641715d50d369d50573f12",
+          "before_sha256": "1337666b39e422b92a70424c76475779b82bcb1b37b16001f0c2e08d1766692e",
+          "id": "NR.drawing-original-cursor-point"
+        },
+        {
+          "after_sha256": "196f0a140f3a5a0c69c3d251a299cd0d36469fa2f409c4238baa32a565410718",
+          "before_sha256": "a0c25f3ca031e3389c7a06230894872ff40e9691af2dc002acf26e2ae3d3f31a",
+          "id": "NR.drawing-producer-update-binding"
+        },
+        {
+          "after_sha256": "cf995092282aa76f8efa35d6a081df1b0493abd8662393a442386f56896c208b",
+          "before_sha256": "3b1a4a679fa2ed7892f549dbb9ca5c73535599beb5ea1094bc2c7750bfd5e7fd",
+          "id": "NR.drawing-region-click-latch-observation"
+        },
+        {
+          "after_sha256": "a3df72e2176b4da31242ed90de294a3a53c7d45d11df5e50261cfc6f9af33005",
+          "before_sha256": "8aab4270a88295d294118a096144399ecfb467fd5c2fa4110a8e701bdbffbb30",
+          "id": "NR.drawing-region-mouse-observation"
+        },
+        {
+          "after_sha256": "6de35f5378a5e98d52e83b0bd32a6aee6dfa7620cd3bd4c0e20a8387c6a58242",
+          "before_sha256": "3f97d25713718f1a58ca7c47554a47fb320cf3ccfbdb4fdebfd01a4731978293",
+          "id": "NR.drawing-semantic-state-observation"
+        },
+        {
+          "after_sha256": "49fa2f58c9ebda913dda2810577e2179cd8beabad5cf7f737de399f10cf29ad3",
+          "before_sha256": "d6b3c310ac8f9963aae8c14fbd50be38f81f356b72e4d3386053e16ee6f4a6c8",
+          "id": "NR.drawing-source-point-native-prediction"
+        },
+        {
+          "after_sha256": "3e430ee9ee9fbe183b0b258d107b6ee3916e0e06ccd8207f2bff47e926599dc2",
+          "before_sha256": "73910000d493cc6b295bc1242c0a6cedf677404a52bc82a1abbd84da5af73f53",
+          "id": "NR.producer-recorder-thread-policy"
+        },
+        {
+          "after_sha256": "de826752169955533701338bb175a8a3ab943028e5447dd5521cd8f80fb56221",
+          "before_sha256": "34bede0e51cf56a476f6f47724735a3e404a1bb10e7fa2f0bc4cdf684041d6e7",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "9b96272477e039cdf9a3ef18ebb1b1a51d8c2144acf0092446372cb174167ca4",
+          "before_sha256": "a89af1fda78cbc7b2304a9356dbf12824c44179ee3717db5767bd27ff68c9c5d",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "e23432fc8c93e53a1d78436734768bbf276f95f51ec34a61a7748d26b4c9731f",
+          "before_sha256": "c32517860e4e2d7249e84104d0e5c7e28df25ca70b9dc0be2b8ebbee165ee0de",
+          "id": "TOOL.drawing-journeys"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f8768f88359c0b9563f39c8eed7207aec6d25d79d36a7650d7dc1d5c2708f814",
+          "before_sha256": "bfaa13d26b8e1feba35850637b83049bd06d0b535fa708a119c5d857d43e961b",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "8951bbb8aae52edeb74853454b5b42be2b2ea40599f370574f22337b2e834fa5",
+          "before_sha256": "1230d5ca9a1c10d3e14cb12ff017130141ed9728bd6f46f676b295db754c4c44",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e389f39ca75772037a15805541618d4a77e316702ebf0b0a6964b8a0b7b53561",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw02-approved-orphan-history-20261014-01.json"
+        },
+        {
+          "after_sha256": "1ec7c152775fa3142396b383221b8618047bdf08d64e12d7f5dc0b6c8065a045",
+          "before_sha256": "78effd0bcdd73ee74d95112282d0c4bb5d751dde74b58c287b8f331ce979b9da",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "2779df7d420d8025b459b761fbce02050e9c9717777aacf35e05527fc560a516",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-approved-budget-05-20261014.json"
+        },
+        {
+          "after_sha256": "5f7e110c8670a5c1974bf925c8063f77b66079b7c44d318ccd7f3238248eb1bd",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-draw02-budget05-cadence-20261014.md"
+        },
+        {
+          "after_sha256": "bfe226878a3a24cf3e4789d903114d54b2c2786c8e4496c3d3e6bb2dac9e6043",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-approved-storage-budget-20261014-05.json"
+        },
+        {
+          "after_sha256": "db74476c0809e7b20e8fd36b3555e470eeb18ba24a126bbf8af7367ad7bd7630",
+          "before_sha256": "6b69fee105a164eff0c62a05d7c0fad8640024d7ced60c6170712172a2680219",
+          "path": "research/runtime/draw02-diagnostic-cadence-control.md"
+        },
+        {
+          "after_sha256": "898708bd47edebd33396bf9ab8752642459aed6f108cae61699970ea4936c464",
+          "before_sha256": "8f4ee2f8cd852ff98f1bbd5c70f042704ec3ff620063be7bebbf5800c7a07824",
+          "path": "research/runtime/draw02-end-to-end.md"
+        },
+        {
+          "after_sha256": "62dbac6ec01299d9b1b89a5381449b4134251e1ec3989fd2de733a1f7467edfc",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-results-repeat-cadence-comparison-04.json"
+        },
+        {
+          "after_sha256": "40a857ad1c78aeaadd5a16dafe87e60db967fc8dc4dd50bf444f17d89979ab00",
+          "before_sha256": null,
+          "path": "research/runtime/draw02-results-repeat-cadence-preflight-03.json"
+        },
+        {
+          "after_sha256": "5cd55a590c39538cd3b853e5c5b8fb68cc259aceac67bae70ef3c5918e49b50d",
+          "before_sha256": "ca6104e334807f0c9b6c6e3a5f67d839ad10156b1b90203be5265d69e16e35ff",
+          "path": "tools/working-retention.json"
+        }
+      ],
+      "id": "DRAW02.approved-budget05-and-repeat-cadence-20261014-01",
+      "pending_gaps": [],
+      "reason": "Review exact approved worktree1376to1392GiBpolicy patch, preserve100GiBphysicalreserve and main concurrent policy, retain seven exact580..5dcommit receipts, and register fresh static raw-journal cadence comparison04plus refused preflight03. All four120interval diagnostic distributions use actual31executedaction schedule/settings/counter/input binary equality. Review source census delta: only tools/working-retention.json changed,2290files2089linked201existingunlinked. No status promotion, engine/gameplay change, further cleanup or historical result refresh.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "New static cadence comparison04revalidates raw cadence/direct original process exits and actual executed schedule; medians8.0889/7.5769/8.1704/7.6898x counter-onlycontrol. Guard enforces physical reserve by refusing99.2326GiBfree before later admitted retry. Audit0errors and no sourcecensus drift. No identical workload/exclusive cost/unobtrusive/60FPS, complete source/frame/lifetime/route/semantic or full47/21reference/native parity claim. Historical engine status remains independent."
+      }
     }
   ]
 }

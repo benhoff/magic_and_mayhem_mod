@@ -2845,3 +2845,31 @@ matches across three cohorts, while complete all-writer/view/lifetime/source-fra
 route accounting and independent timing/semantic controls remain open. Step1is
 complete; all47/21closures and steps3–7remain open. This storage-provenance update
 does not promote engine status, change gameplay or refresh historical hashes.
+
+
+## Step 2 repeated-input timing comparison and next lifetime review (2026-10-14)
+
+The user instructed continued execution after the prepared worktree-only cap
+change. The exact patch raises 1376 to 1392 GiB, preserves the 100 GiB free-space
+reserve and disabled automatic archiving, and leaves concurrent main files
+unchanged. Applied provenance is retained in
+`draw02-approved-storage-budget-20261014-05.json`. The preceding cleanup commit
+5d495793 has seven exact parent/current receipts and zero history gaps.
+
+Preflight 03 refuses at 99.2326 GiB free before launch. After shared storage
+pressure falls, retry 04 admits 1377.6518 GiB working / 106.5616 GiB free with
+a 0.01 GiB reservation. It revalidates raw cadence and process-exit journals,
+all 31 executed schedule actions, preferences and counter/input binary hashes.
+Each of four diagnostic comparisons retains 120 queued update intervals. The
+control median is 56.24155 ms; diagnostic medians are 454.9322, 426.1348,
+459.51535 and 432.4888 ms, with ratios 8.0889, 7.5769, 8.1704 and 7.6898.
+These descriptive run measurements show expensive diagnostics; randomized
+workload and capture duration differ, so identical work, exclusive instrumentation
+cost, unobtrusive gameplay and 60 FPS remain unproved. No original game is rerun.
+
+Reassessment: the pending bounded timing comparison now has a retained result.
+Step 2 still needs complete writer/view/lifetime/source-frame/route and semantic
+accounting. Next inspect temporal QueryInterface aliases and CPU/DC lease exposure
+in the retained 120-update original capture using the existing guarded analyzer.
+All 47 journey requirements, 21 operations and steps 3–7 remain open. No engine
+status promotion, gameplay change, further cleanup or historical hash refresh.

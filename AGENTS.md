@@ -50,7 +50,7 @@ changes.
 
 ## Working storage budget
 
-- Target at most 1376 GiB (1.34375 TiB) under the main checkout's `working/`, including nested
+- Target at most 1392 GiB (1.359375 TiB) under the main checkout's `working/`, including nested
   worktree output, and retain at least 100 GiB of filesystem free space.
 - When this checkout's policy differs from the main policy, pass
   `--policy <this-checkout>/tools/working-retention.json` to the main guard.

@@ -27,3 +27,20 @@ diagnostics, not evidence of unobtrusive gameplay or60FPS.
 
 Step2 continues with whole-source lifetime/version and route/action accounting.
 All47journey requirements/21operations remain open; no status promotion.
+
+
+The repeated Results schedule comparison04 (2026-10-14) revalidates all 31
+executed actions, direct original exits, raw cadence journals, preferences and
+counter/input binaries. Each diagnostic contributes 120 queued intervals.
+
+| Diagnostic run | Median ms | Median / control | p95 / control |
+| --- | ---: | ---: | ---: |
+| Worker producer prefix enabled | 454.9322 | 8.0889 | 14.4129 |
+| Worker producer prefix disabled | 426.1348 | 7.5769 | 12.3524 |
+| Auxiliary save readback enabled | 459.51535 | 8.1704 | 21.3607 |
+| Current auxiliary readback disabled | 432.4888 | 7.6898 | 15.9774 |
+
+The control median is 56.24155 ms. These are descriptive distributions for
+retained runs; they do not isolate instrumentation cost or prove equal workload,
+unobtrusive gameplay, source/frame ownership, semantic completion or 60 FPS.
+Two storage refusals remain separate from the admitted comparison result.
