@@ -3636,3 +3636,41 @@ configuration/installations/source and latest successful captures. The proposal'
 generic pin label was inaccurate; its explicit inventories correctly show neither
 failed run has a root pin. The approved file list is unchanged. Archival is storage
 provenance, not new engine validation; restore exact paths before future analysis.
+
+
+## Approved failed-pixel cold relocation completed (2026-10-14)
+
+[Completed storage provenance02](draw02-approved-pixel-archive-provenance-02.json)
+records the exact user-approved9,475RGB565/RGBA payloads from failed
+run-xzz9u077/run-uu724zzl:7,717,289,984bytes (7.1873GiB) released. All source
+bytes/hashes survive in verified content-addressed cold objects and matching
+durable catalogs. Global lock attempts01/02/03move zero files; scoped attempt04
+moves3,262files then refuses a detected reader. Resume05first verifies those
+receipts/decompressed objects, then safely moves the remaining6,213files.
+Independent final verification checks all9,475approved paths/hash/size/pruned
+receipts and every unique object; both original manifests verify.
+
+The namespace is `/var/local/magic-and-mayhem-archive/scoped/
+draw02-failed-pixels-729b818e`. Its restore policy and preserved reports/scripts
+are under main `working/retention/draw02-failed-pixel-cold-archive-20261014-01/`.
+The existing global archive job and catalogs are not modified by this scoped
+relocation. Exact restore command from the main checkout:
+
+```sh
+python3 tools/working-retention.py --policy working/retention/draw02-failed-pixel-cold-archive-20261014-01/restore-policy.json restore <catalog-working-path>
+```
+
+Use the full catalog path beginning `working/worktrees/draw02-end-to-end/working/
+experiments/drawing-api-session/<failed-run>/capture/`; restore before reading
+archived inputs. This operation moves only the approved pixel files. Journals,
+logs, reports, configuration, installations, source and latest successful captures
+are preserved by this action. The original proposal's generic pin label was
+inaccurate; explicit inventories correctly show no root pins on these failed runs.
+The approved manifest itself is retained unchanged. The1392/100GiBguard remains
+in force and automatic archive stays disabled. Final verification preflight
+observes1357.2990GiBworking/125.3596GiBfree; this is a timestamped storage measure.
+
+Whole120acquisition is committed as2181f6b2; all15first-parent file versions have
+exact receipts with zero gaps. The normal staged gate/hook passes. No archival
+record refreshes historical engine hashes or grants new validation; step2,
+all47journey/21operation closures and steps3–7 remain open.
