@@ -14333,7 +14333,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. The synthetic finite bounded case explicitly waits for the first independently captured Qt frame before intentionally changing to an unsupported layout; this fixture synchronization replaces an8ms timing assumption without changing native admission deadlines, frame oracles or refusal policy. Current scoped subsets do not refresh the entire historical corpus.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -54133,6 +54133,49 @@
         "replacement": "none"
       },
       "confidence": "high_within_scope"
+    },
+    {
+      "id": "NP.deferred-drawing-diagnostics",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Bounded diagnostic delivery independent of drawing and publication",
+      "scope": "Continuous-mode lifecycle diagnostics copy immutable owned names and nineteen values into128 bounded slots with duplicate suppression/four records per reason; separate process-lifetime logger performs file I/O without drawing/tracker ownership or renderer publication/recovery work. Native drawing admission50ms deadline,original-once forwarding and conservative invalidation retained. Worker creation failure has no callback I/O fallback;normal-exit joins are bounded/reentrant-refusing/idempotent and retain storage on timeout;DllMain only signals. Real pthread fixture with Win32 clock/wait/thread/file stubs compares slow diagnostic contention against pinned e529af2f header and tests caps,errors,owned labels and finite synchronous policy. Production/selftest PE32 compilation;actual Win32/Qt continuity and real first-victory/root-cause validation pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/deferred-drawing-diagnostics.md"
+      ],
+      "implementation": [
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_diagnostic_worker.h",
+        "runtime/render/bridge.c",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/command_lifecycle.h"
+      ],
+      "tests": [
+        "tests/lock-diagnostic-contention-test.c",
+        "tools/test-lock-diagnostics.py"
+      ],
+      "validation_dependencies": [
+        "runtime/render/copy_order.h",
+        "tools/coverage_claims.py",
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "evidence": [
+        "NP.deferred-drawing-diagnostics.controlled-20261013",
+        "NP.deferred-drawing-diagnostics.source-closure-20261013",
+        "NP.deferred-drawing-diagnostics.finite-policy-20261013",
+        "NP.deferred-drawing-diagnostics.final-controls-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -109828,6 +109871,174 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NP.deferred-drawing-diagnostics.controlled-20261013",
+      "kind": "native_integration",
+      "scope": "Eight controlled32-bit production-header pthread/Win32-stub cases against a pinned previous-native logger, plus13 separate actual synthetic PE32/Wine/Qt drawing, recovery/checkpoint and application-exit controls. Prospective scope/source declaration predates all execution. The bound policy implementation remains partial; no original drawing/game comparison, real Win32 slow-I/O reproduction or first-victory/live replacement claim.",
+      "record": "research/runtime/deferred-diagnostics-controlled-20261013.json",
+      "sha256": "41206da217657aa6f7972e63c5a7878495b27d2454f76e564f57ac736887c06e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controlled_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/wine_qt_cases",
+          "equals": 13
+        },
+        {
+          "pointer": "/controlled/runs/baseline-baseline/unsafe",
+          "equals": 1
+        },
+        {
+          "pointer": "/controlled/runs/current-stall/unsafe",
+          "equals": 0
+        },
+        {
+          "pointer": "/controlled/runs/current-stall/inside_owner_io",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.deferred-drawing-diagnostics.source-closure-20261013",
+      "kind": "native_integration",
+      "scope": "Eight controlled32-bit production-header pthread/Win32-stub cases, prospective declaration includes the actual declaration/helper inputs. Supersedes current partial policy implementation support only; earlier13 Wine/Qt controls and original claims remain unchanged. No real game/driver or live integration/replacement claim.",
+      "record": "research/runtime/deferred-diagnostics-source-closure-20261013.json",
+      "sha256": "080f80a2457831eeb4f9eb60076546689fec9b6b55802e27056a3ab980fa5395",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/baseline-baseline/unsafe",
+          "equals": 1
+        },
+        {
+          "pointer": "/runs/current-stall/unsafe",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/current-stall/inside_owner_io",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/current-stall/original_once",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.deferred-drawing-diagnostics.finite-policy-20261013",
+      "kind": "native_integration",
+      "scope": "Ten controlled32-bit production-header pthread/Win32-stub cases, including paired finite concurrent-producer refusal and synchronous delivery. Expanded prospective sources include the declaration helper. Current partial policy implementation only; final Wine/Qt fixture synchronization is pending. No original game/driver or live integration/replacement claim.",
+      "record": "research/runtime/deferred-diagnostics-finite-policy-20261013.json",
+      "sha256": "c2379c342ea0e1e51de11a609e88b7b1b470086b291510edcbbff05284a95dc3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/baseline-baseline/unsafe",
+          "equals": 1
+        },
+        {
+          "pointer": "/runs/current-stall/unsafe",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/current-stall/inside_owner_io",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/baseline-finite-concurrent/finite_concurrent",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/current-finite-concurrent/finite_concurrent",
+          "equals": true
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.deferred-drawing-diagnostics.final-controls-20261013",
+      "kind": "native_integration",
+      "scope": "Ten source-bound32-bit policy cases and14 actual synthetic Wine/Qt checks on final producer/consumer/fixture source. First-frame synchronization preserves the independent first-frame, original-once and expected finite failure assertions. Partial native implementation support only: no original game/driver comparison, actual Win32 slow-I/O reproduction, first-victory or live replacement claim.",
+      "record": "research/runtime/deferred-diagnostics-final-controls-20261013.json",
+      "sha256": "ca85eac889924a9113b89ef81f8dfeccaa03ea3317a03a9cb9aeefb43f7593d6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controlled_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/wine_qt_cases",
+          "equals": 14
+        },
+        {
+          "pointer": "/controlled/runs/baseline-baseline/unsafe",
+          "equals": 1
+        },
+        {
+          "pointer": "/controlled/runs/current-stall/unsafe",
+          "equals": 0
+        },
+        {
+          "pointer": "/controlled/runs/current-stall/inside_owner_io",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -123398,8 +123609,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-storage-free-space-20261013.json",
-    "sha256": "7b25458eb70db22e688fc3c94716a7514191f542312096b7f30e119954d96139"
+    "path": "research/runtime/coverage/source-index-deferred-diagnostics-complete-20261013.json",
+    "sha256": "223ddd25aa833098385d5a1b415c81ed1c9b266d41f2558258df2a8dba0fc92f"
   },
   "claim_bindings_required": true
 }

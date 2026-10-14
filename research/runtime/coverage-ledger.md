@@ -8684,3 +8684,74 @@ The unchanged next retry reached gameplay but was terminated by the storage guar
 ### Native palette integration into master (2026-10-12)
 
 Merge the palette work with master `2ece99d5`, retaining its final-word native surface read fix and all historical coverage receipts. Incoming source edits do not overlap the palette observation or replay declared source closures. Renderer implementation is unchanged. Latest startup full gameplay remains failed at Fireball damage, and the next retry remains storage-interrupted; neither is promoted to full success. The earlier paired CPU improvement and full native gameplay observation retain their original source hashes and historical limits. The intermittent pixel gap and 60 FPS target remain open.
+
+
+## Drawing diagnostics independent of admission — 2026-10-13
+
+`NP.deferred-drawing-diagnostics.controlled-20261013` reproduces a concrete
+previous-native failure mechanism: synchronous diagnostic file I/O while owning
+drawing admission makes a second BltFast exceed the unchanged50ms bound and lose
+tracking. The new bounded owned queue and separate process-lifetime logging
+worker preserve the300×128 native mirror while the writer is stalled. Eight
+32-bit production-header pthread/Win32-stub cases pass, including exactly-once
+original forwarding, return/LastError preservation, queue bounds, owned labels,
+creation/write failure, join refusal/retry/idempotence and finite synchronous
+delivery. The previous logger is pinned native source, not an original oracle.
+
+Both PE32 builds and thirteen separate Wine/Qt synthetic drawing, session/alias
+recovery, application exit and checkpoint controls pass with unchanged frame,
+original-call, ownership and retired-stream assertions. Complete checkpoints
+continue; incomplete ones require fresh observations; failed claimed checkpoints
+still refuse. The initial cold-prefix recovery failure is retained separately.
+The prospective declaration existed before the controlled and synthetic runs;
+source fingerprints remain stable through the separately committed free-space
+policy. Current support is for partial native implementation only. Prior engine
+evidence remains historical/stale where shared source changed, and no original
+comparison, real-game integration or live replacement status is promoted.
+
+This demonstrates a preventable contention mechanism, not the proven cause of
+the reported65ms first-victory wait or a repair of that launch's missing pixels.
+The sampled16ms owner age still does not account for the entire wait. A real
+first-mission victory, Realm/Character progression and post-victory save/load
+remain unvalidated. No drawing deadline, fallback/invalidation policy or gameplay
+balance changes. See [deferred drawing diagnostics](deferred-drawing-diagnostics.md).
+
+`NP.deferred-drawing-diagnostics.source-closure-20261013` adds the actual
+declaration helper to prospective validation inputs and reruns all eight
+controlled cases successfully with unchanged rendering code. This supplies
+current partial implementation support after that source-contract expansion.
+The earlier combined record and13 synthetic Qt controls remain unchanged; its
+old scope binding is retained as historical. No integration or live stage changes.
+
+`NP.deferred-drawing-diagnostics.finite-policy-20261013` records ten current
+controlled cases after restoring previous finite concurrent-producer refusal.
+The earlier source-closure and combined records remain unchanged and historical.
+A final finite Wine/Qt control failed before displaying the valid initial prefix;
+its8ms timing assumption motivates an explicit independent first-frame fixture
+barrier. That corrected isolated fixture has not run: the main free-space guard
+refused at99.8405GiB, and the next read-only check measured98.1189GiB. No timeout
+or oracle is relaxed. Final fixture compilation/execution, staged gate and
+renderer commit are pending; renderer work remains a draft. The separately
+committed3f15be2c storage policy keeps100GiB free and has no fixed working-size
+cap. No cleanup is authorized or performed. See deferred-drawing-diagnostics.md
+for retained failures and current validation boundaries.
+
+## Final deferred-diagnostics controls — 2026-10-13
+
+`NP.deferred-drawing-diagnostics.final-controls-20261013` retains ten current
+controlled cases and fourteen current actual synthetic PE32/Wine/Qt controls,
+with the prospective declaration and stable source fingerprints. Production and
+self-test DLLs compile. Cross-thread Blt/BltFast, genuine timeout fallback,
+finite layout refusal, session/alias guards, original exit/held ownership/refused
+publication join, and complete/incomplete/failed checkpoint assertions pass.
+
+The finite fixture now waits for an independent first-frame marker before
+intentionally invalidating its next layout, replacing its8ms scheduling assumption.
+No original callback wait, admission deadline or frame/refusal oracle changes.
+The initialized private prefix is reused explicitly for bounded storage and
+startup. Earlier failed attempts, free-space refusals, records, source hashes and
+intermediate census/summary snapshots are preserved. Their historical source/scope
+limits are not refreshed. Current policy implementation support remains partial;
+all previous integration/comparison/replacement statuses remain independent.
+First mission victory and progressed Realm/Character/save-load validation still
+require a real game run; this is not proof of the historical65ms wait's cause.

@@ -45,7 +45,7 @@ static int command_scheduler_launch(void){
     if(command_file_count>1 && n==6 && same(fault,"worker",6)){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();return 0;}
 #endif
     command_worker=CreateThread(0,0,command_worker_run,0,0,0);
-    if(command_worker)__atomic_store_n(&command_publication_worker_active,1,__ATOMIC_RELEASE);
+    if(command_worker){__atomic_store_n(&command_publication_worker_active,1,__ATOMIC_RELEASE);lock_diagnostic_worker_start();}
     if(!command_worker){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();}
     int ready=command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
     return ready;
