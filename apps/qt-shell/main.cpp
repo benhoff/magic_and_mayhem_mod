@@ -708,7 +708,8 @@ int main(int argc,char** argv){
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
     if(parser.isSet("live-menu-test")){
-        if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        if(qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_QT_JOURNEY"))installQuickBattleAppTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        else if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     }
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);

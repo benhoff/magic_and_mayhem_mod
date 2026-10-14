@@ -23,3 +23,6 @@ void installLiveCampaignDefeatTest(QApplication&,QMainWindow&,LiveMenuSession&,c
 void installLiveCampaignQuitTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveCampaignPreferencesTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+#include "campaign_smoke_test.hpp"
+void installQuickBattleAppTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);

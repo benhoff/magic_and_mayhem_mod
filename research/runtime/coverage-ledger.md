@@ -8680,3 +8680,31 @@ Native scene/session checks pass3/3, final CLI snapshot/refusal checks pass, and
 relevant Python checks pass. The f56822f6..7976a431history review records28exact
 file receipts with zero gaps. Current source census/reviews retain all historical
 evidence and explicitly account for shared-code staleness.
+
+
+## Actual Qt Quick Battle journey — 2026-10-14
+
+[App05](draw02-qt-quick-battle-app-05.json) completes Main/Quick/setup/map2/default
+spell selection/World/Results/Quick/Main and original normal Quit through native
+Qt menus and command presentation. Qt viewport input is active before Right;
+focus loss clears its held key, resizing succeeds, and Escape reaches Results.
+The final input map is inactive with all keys clear and the menu channel retires
+its ninth callback acknowledgement. Default owned graphics are staged with real
+ddraw disabled/absent; native paints occur without fallback/recovery/refusal.
+Staged inputs/source claims are stable and original manifests verify. Existing
+Results/Quit and normal/HiDPI input checks pass5/5.
+
+[The execution record](draw02-qt-quick-battle-app.md) preserves parser, spell-screen,
+focus and immediate Results availability failures and their exact fingerprints.
+The settled test does not retry rejected/consumed commands. Rapid input during
+transitions remains a boundary. Original CPU surface writers still supply this
+public command mode; no source-owned live takeover, new independent pixel parity,
+hardware, semantic camera/picking or full DRAW-02 completion is asserted. The
+previous323-frame owned offline replay remains separate and current. The
+7976a431..7314333ehistory review has45exact file receipts and zero gaps.
+
+Explicitly requested storage cleanup verifies51841cold payloads and releases
+35.830GiB from17older unpinned DRAW-02 runs. Pins, source trees, recent runs and
+current app inputs remain local. Main-checkout retention reports/catalogs and
+the verified `/var` archive preserve storage provenance without refreshing
+engine evidence. Restore catalogued archived inputs before consuming them.
