@@ -215,6 +215,7 @@ public:
         const auto pollFrame=[this]{
             if(!stream_)return;
             if(renderWorker_){
+                GlViewport::ActivityScope guiActivity(gl_,GlViewport::Activity::PresentationPoll);
                 if(liveMenus_)liveMenus_->renderingProgress();
                 if(!renderWorker_->poll(liveMenus_&&liveMenus_->normalQuitAccepted(),gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_),media_&&media_->movieActive()) || !gl_->error().isEmpty()){
                     residentWorldError_=!gl_->error().isEmpty()?gl_->error():renderWorker_->error();

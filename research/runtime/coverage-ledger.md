@@ -8896,3 +8896,23 @@ hidden/movie paint continuity is excluded. Exact GUI and original command-delay
 causes remain pending. Historical shared-source evidence stays historical; no
 old hashes were refreshed. History `ea97c742..75170b38` reviews 18 exact committed
 transitions with zero missing receipts, independently of this uncommitted delta.
+
+### GUI presentation and capture attribution — 2026-10-13
+
+[GUI delivery diagnostics](native-gui-delivery.md) add bounded activity markers
+and aggregate presentation/paint/compose/heartbeat timing without extra pixel
+reads or live serialization. Current TITAN controls `run-wl2mlqc1` pass native
+128-World word comparisons and worker/retirement/lease controls. Casting attempt
+`run-52xntuxp` ends in wizard death, with no final trace; retain the negative.
+
+Movement/menu `run-rxh86c6c` passes at 19.55089 engine Hz / 61.19480 native World
+FPS, with 2972 balanced sources. The largest 375.322 ms gap contains 366.462 ms
+of synchronous PNG encoding on the GUI and about 7 ms native readback. The
+renderer continues 23 Worlds; normal presentation callbacks remain under 1 ms.
+Unchanged-source `run-d4chsl24` passes the same workload with route screenshots
+explicitly omitted. Diagnostic capture checks remain separate; omission does
+not assert their route pixels. The measured fix is async bounded route encoding,
+with full casting/combat validation still pending. Source-rate variance, exact
+non-capture stutters, original equivalence and sustained60FPS remain open.
+History `75170b38..693c7602` reviews 23 exact committed transitions / zero missing
+receipts, independently of this delta.

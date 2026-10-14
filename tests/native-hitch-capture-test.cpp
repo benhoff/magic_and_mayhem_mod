@@ -25,5 +25,16 @@ int main(int argc,char** argv)try{
  auto h=trace.report()["hitch_capture"].toObject();require(h["windows"].toArray().size()==8&&h["replaced_windows"].toString().toUInt()>0,"Hitch reservoir not bounded or did not retain stronger gaps");
  for(const auto& v:h["windows"].toArray()){auto w=v.toObject();require(w["rows"].toArray().size()<=2048&&w["gui_rows"].toArray().size()<=512,"Hitch capacity exceeded");}
  NativeFrameTrace disabled(false,true);disabled.recordGui({1,65,origin,3,true,false});require(!disabled.report()["enabled"].toBool(),"Disabled trace admitted hitches");
+ NativeFrameTrace guiTrace(true,true);const auto guiOrigin=guiTrace.report()["host_origin_us"].toString().toLongLong();
+ auto activity=[&](int kind,int id,int ms){guiTrace.recordGui({1,65,guiOrigin+ms*1000,kind,true,false,id});};
+ activity(4,1,0);activity(4,1,10);activity(4,5,20);activity(5,5,220);activity(5,1,230);activity(5,1,240);
+ guiTrace.recordGui({1,65,guiOrigin+250000,2,true,false});guiTrace.recordGui({1,65,guiOrigin+252000,3,true,false});
+ guiTrace.recordGui({1,65,guiOrigin+253000,8,true,false});guiTrace.recordGui({1,65,guiOrigin+256000,1,true,false});
+ guiTrace.recordGui({1,65,guiOrigin+260000,6,true,false,0,220000});activity(5,0,261);
+ const auto delivery=guiTrace.report()["gui_delivery"].toObject(),activities=delivery["activities"].toObject();
+ require(activities["route_capture"].toObject()["samples"].toString()=="1"&&activities["route_capture"].toObject()["max_ms"].toDouble()==240,"Nested outer GUI span miscounted");
+ require(activities["image_encoding"].toObject()["max_ms"].toDouble()==200&&activities["route_capture"].toObject()["open_depth"].toInt()==0,"Nested capture phase timing missing");
+ require(delivery["paint_cpu"].toObject()["max_ms"].toDouble()==2&&delivery["compose_to_swap"].toObject()["max_ms"].toDouble()==3&&delivery["heartbeat_lateness"].toObject()["max_ms"].toDouble()==220,"GUI paint/compose/heartbeat boundaries collapsed");
+ require(delivery["unmatched_activity_ends"].toString()=="1"&&guiTrace.report()["gui_columns"].toArray().size()==8,"GUI marker validation/schema missing");
  std::cout<<"{\"success\":true,\"early_hitch_preserved_after_tail_wrap\":true,\"pre_post_state_recorded\":true,\"hidden_movie_nonworld_reset\":true,\"bounded_largest_gap_reservoir\":true,\"host_origin_exported\":true,\"window_limit\":8,\"ordinary_readbacks\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

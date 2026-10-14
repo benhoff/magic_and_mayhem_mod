@@ -34,13 +34,14 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool normalQuit=qEnvironmentVariableIntValue("MNM_CAMPAIGN_NORMAL_QUIT")==1;
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
+    const bool noRouteScreenshots=qEnvironmentVariableIntValue("MNM_NO_ROUTE_SCREENSHOTS")==1;
     struct Run {QString renderer;std::future<void> captureJob,diagnosticJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
-    auto finish=[run,path,probe,&app,normalQuit](bool success,const QString& reason){
+    auto finish=[run,path,probe,&app,normalQuit,noRouteScreenshots](bool success,const QString& reason){
         if(run->done)return;
         run->done=true;const auto p=probe();
         QSaveFile file(path);
-        const QJsonObject result{{"success",success},{"normal_quit",normalQuit&&success&&run->stage==11},{"error",reason},{"steps",run->steps},
+        const QJsonObject result{{"route_screenshots",!noRouteScreenshots},{"success",success},{"normal_quit",normalQuit&&success&&run->stage==11},{"error",reason},{"steps",run->steps},
             {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_presentation_pixels",qint64(p.presentationPixels)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",p.renderer.isEmpty()?run->renderer:p.renderer},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
             {"movement_verified",false},{"original_drawing_retained",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")!="1"},{"original_ui_drawing_retained",true},{"original_simulation_retained",true},{"resident_world_requested",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1"},
             {"scope","Native Qt New Game/Enter, native command presentation, Escape/Mini/Cancel and resumed presentation; no movement, pixel equivalence or complete drawing replacement claim"}};
@@ -50,9 +51,13 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(!saved)app.exit(1);
         else if(normalQuit&&success&&run->stage==11)app.exit(0);
     };
-    auto snapshot=[run,&window,path,&session](const QString& name){
+    auto snapshot=[run,&window,path,&session,noRouteScreenshots](const QString& name){
+        auto* activityViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+        if(noRouteScreenshots){run->steps.append(QJsonObject{{"step",name},{"route_capture_skipped",true}});return true;}
+        GlViewport::ActivityScope capture(activityViewport,GlViewport::Activity::RouteCapture);
         QImage originalImage;
         if(name=="gameplay"||name=="gameplay-resumed"||name=="quit-no-resumed"){
+            GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::ReferenceRead);
             FrameStream reference;
             if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
             // A busy seqlock is normal. Retry on the next UI poll before
@@ -61,7 +66,9 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         }
         window.raise();
         const auto file=QFileInfo(path).dir().filePath(name+QString("-%1.png").arg(run->cycle));
-        bool saved=false;if(auto* screen=window.screen())saved=screen->grabWindow(window.winId()).save(file);
+        bool saved=false;QPixmap screenImage;
+        {GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::ScreenCapture);if(auto* screen=window.screen())screenImage=screen->grabWindow(window.winId());}
+        {GlViewport::ActivityScope encode(activityViewport,GlViewport::Activity::ImageEncoding);saved=screenImage.save(file);}
         QString nativeFile,originalFile;bool nativeSaved=false,originalSaved=false;
         if(name=="gameplay"||name=="gameplay-resumed"||name=="quit-no-resumed"){
             auto* widget=window.findChild<QOpenGLWidget*>("nativeGameViewport");
@@ -69,10 +76,12 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             if(viewport&&viewport->isVisible()){
                 const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
                 nativeFile=QFileInfo(path).dir().filePath(name+QString("-native-%1.png").arg(run->cycle));
-                nativeSaved=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation).save(nativeFile);
+                QImage image;
+                {GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::NativeReadback);image=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation);}
+                {GlViewport::ActivityScope encode(activityViewport,GlViewport::Activity::ImageEncoding);nativeSaved=image.save(nativeFile);}
             }
             originalFile=QFileInfo(path).dir().filePath(name+QString("-original-%1.png").arg(run->cycle));
-            originalSaved=originalImage.save(originalFile);
+            GlViewport::ActivityScope encode(activityViewport,GlViewport::Activity::ImageEncoding);originalSaved=originalImage.save(originalFile);
         }
         run->steps.append(QJsonObject{{"native_image",nativeFile},{"native_image_saved",nativeSaved},{"original_image",originalFile},{"original_image_saved",originalSaved},{"step",name},{"screenshot",file},{"screenshot_saved",saved}});
         return true;
@@ -166,16 +175,19 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             if(file.open(QIODevice::ReadOnly)){
                 const auto request=QJsonDocument::fromJson(file.readAll()).object();const auto name=request.value("name").toString();file.close();
                 if(!name.isEmpty()&&name.size()<80&&!name.contains('/')&&!name.contains('\\')&&!name.contains("..")){
+                    auto* activityViewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
+                    GlViewport::ActivityScope capture(activityViewport,GlViewport::Activity::DiagnosticCapture);
                     QElapsedTimer captureClock;captureClock.start();
                     FrameStream reference;
                     QImage originalImage;
-                    if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
+                    {GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::ReferenceRead);if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();}
                     const double originalCopyMs=captureClock.nsecsElapsed()/1000000.0;
                     if(!originalImage.isNull()){
                     auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
                     QImage nativeImage;
                     if(viewport&&viewport->isVisible()){
                         const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
+                        GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::NativeReadback);
                         nativeImage=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation);
                     }
                     const double captureOwnerMs=captureClock.nsecsElapsed()/1000000.0;

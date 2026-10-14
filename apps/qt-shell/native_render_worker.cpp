@@ -3,6 +3,7 @@
 #include <QOpenGLContext>
 #include <QSaveFile>
 #include <QJsonDocument>
+#include <QTimer>
 #include <algorithm>
 #include <chrono>
 #include <vector>
@@ -25,8 +26,24 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
         if(complete){paintedSerial_=guiSerial_;paintedGeneration_=guiGeneration_;}
         frameTrace_.recordGui({guiSerial_,guiGeneration_,NativeFrameTrace::now(),complete?3:2,drawAllowed_,paused_});
     };
+    if(frameTrace_.enabled()){
+        viewport_.activityTiming=[this](GlViewport::Activity activity,bool complete){
+            std::lock_guard<std::mutex> lock(mutex_);
+            frameTrace_.recordGui({guiSerial_,guiGeneration_,NativeFrameTrace::now(),complete?5:4,drawAllowed_,paused_,int(activity)});
+        };
+        QObject::connect(&viewport_,&QOpenGLWidget::aboutToCompose,this,[this]{
+            std::lock_guard<std::mutex> lock(mutex_);
+            frameTrace_.recordGui({paintedSerial_,paintedGeneration_,NativeFrameTrace::now(),8,drawAllowed_,paused_});
+        });
+        auto* heartbeat=new QTimer(this);heartbeat->setTimerType(Qt::PreciseTimer);heartbeat->setInterval(16);
+        QObject::connect(heartbeat,&QTimer::timeout,this,[this,last=NativeFrameTrace::now()]() mutable {
+            const auto now=NativeFrameTrace::now();const auto late=std::max<std::int64_t>(0,now-last-16000);last=now;
+            std::lock_guard<std::mutex> lock(mutex_);
+            frameTrace_.recordGui({guiSerial_,guiGeneration_,now,6,drawAllowed_,paused_,0,late});
+        });heartbeat->start();
+    }
 }
-NativeRenderWorker::~NativeRenderWorker(){if(frameTrace_.enabled())viewport_.framePaintTiming={};join(false);}
+NativeRenderWorker::~NativeRenderWorker(){if(frameTrace_.enabled()){viewport_.framePaintTiming={};viewport_.activityTiming={};}join(false);}
 bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 version,int timeout){
     if(version!=2){status_.error="Render worker requires streaming owned World commands";return false;}
     if(!commands_->create(path,session,version,timeout)){status_.error=commands_->error();return false;}
