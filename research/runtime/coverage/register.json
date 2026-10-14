@@ -49059,7 +49059,9 @@
         "tools/drawing_update_timing.py",
         "tools/drawing_update_routes.py",
         "runtime/scene/whole_update_capture.h",
-        "tools/drawing_source_callback_windows.py"
+        "tools/drawing_source_callback_windows.py",
+        "tools/drawing_update_accounting.py",
+        "tools/analyze-drawing-update-accounting.py"
       ],
       "tests": [
         "tests/engine-cadence-reference.c",
@@ -49070,7 +49072,8 @@
         "tests/test-drawing-update-routes.py",
         "tools/test-drawing-whole-update-boundary.py",
         "tests/drawing-whole-update-boundary-test.c",
-        "tests/test-drawing-source-callback-windows.py"
+        "tests/test-drawing-source-callback-windows.py",
+        "tests/test-drawing-update-accounting.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v4.h",
@@ -49085,14 +49088,18 @@
         "tools/drawing_fixture_prefix.py",
         "tools/drawing_producer_updates.py",
         "tools/inspect-canvas-producers.py",
-        "runtime/scene/canvas_producers.c"
+        "runtime/scene/canvas_producers.c",
+        "tools/drawing_producer_points.py",
+        "tools/drawing_api_physical.py"
       ],
       "evidence": [
         "DRAW02.update-routes-fixture-05-20261014",
         "DRAW02.update-timing-fixture-01-20261014",
         "DRAW02.update-source-boundary-fixture-03-20261014",
         "DRAW02.update-accounting-original120-03-20261014",
-        "DRAW02.update-accounting-startup-negative-02-20261014"
+        "DRAW02.update-accounting-startup-negative-02-20261014",
+        "DRAW02.update-accounting-analysis-01-20261014",
+        "DRAW02.update-accounting-fixture-01-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -49103,7 +49110,9 @@
       },
       "remaining_gaps": [
         "Historical queue-free accepted96 sampled World to Quick Battle Results with suppression0; actual mid-update compare flags/default target are absent from V1. Fresh V2 observation and complete120-source/action/API/EGL association are pending. All alternate routes/backing aliases/writers, physical scanout and semantics remain open.",
-        "Fresh original03demonstrates suppression-zero plus transition-byte1/unequal flags skipping selected scene at117/118, late Results push117, later restored World queue119. The older96exact flag cannot be recovered retrospectively.123callbacks cover120queues/122advancing windows;32callbacks retain pending frames. QPC intervals and raw prefixes are retained, not immutable original backing ownership. Full120per-update source/action/physical accounting remains pending; test guard-count report label corrected104after original acquisition leaves its recorded provenance historical."
+        "Fresh original03demonstrates suppression-zero plus transition-byte1/unequal flags skipping selected scene at117/118, late Results push117, later restored World queue119. The older96exact flag cannot be recovered retrospectively.123callbacks cover120queues/122advancing windows;32callbacks retain pending frames. QPC intervals and raw prefixes are retained, not immutable original backing ownership. Full120per-update source/action/physical accounting remains pending; test guard-count report label corrected104after original acquisition leaves its recorded provenance historical.",
+        "Per-update join revalidates raw original cadence/source/QPC/API observations and retains all120windows including queue-free updates; unknown or cross-update source points and pending frames remain unresolved ownership, not omitted witnesses. Full global route/backing ownership and native/semantic parity remain open.",
+        "First120accepted updates are1..120with118source queues and transition-skipped117/118; all4304admitted call intervals and2086inputs retained. All289primary witnesses bind to actualsource/worker/EGLand matching pixels.19known/live source point sets cross callback prefixes; pending-frame boundaries and globalroutes/aliases forbid complete presented admission. Actual complete interval gate is next; accounting success is not interval acceptance."
       ]
     }
   ],
@@ -107379,6 +107388,51 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW02.update-accounting-analysis-01-20261014",
+      "kind": "static",
+      "scope": "Fresh raw first120accepted-window join:118queues,2086consumed input calls,4304original admitted intervals,289primary/source-worker-EGLwitnesses with matching reference pixels.19cross-prefix source snapshots and pending boundary frames remain explicit. No complete presented interval/global ownership/native parity.",
+      "record": "research/runtime/draw02-update-accounting-analysis-01.json",
+      "sha256": "82d381a35143011479a0e2c0fd07585c9ae5afc7a9bbfb1b4fdff0101acb998a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.update-accounting-fixture-01-20261014",
+      "kind": "native_integration",
+      "scope": "Seven authored Python interval accounting controls; queue-free96counts toward120and crossing input belongs to both windows. Missing source/EGL/pending/pixel/route and malformed clock/counter/prefix/duplicate/orphan controls retained. No engine or actual pixel proof.",
+      "record": "research/runtime/draw02-update-accounting-fixture-01.json",
+      "sha256": "c195890964d6b2433586b776bcf4c721ad2d65fa4e234587ffa8b3aa505aa701",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -120073,8 +120127,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-update-routes-20261014.json",
-    "sha256": "5d87ce8b2819ae01355ad7bc68c1aa309225eadf1e7ab89ad41f779b0f23cfe2"
+    "path": "research/runtime/coverage/source-index-draw02-update-accounting-20261014.json",
+    "sha256": "30c8241e9ff84d69374448994486c60eb8c1212d053be7dadee8bb0cbbe29aae"
   },
   "claim_bindings_required": true
 }

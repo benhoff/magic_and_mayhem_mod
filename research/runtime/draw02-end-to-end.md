@@ -3728,3 +3728,36 @@ physical/source accounting still needs its independent join and admission result
 closures and steps3–7 remain open. All backing aliases/direct writers, global
 presentation routes, hardware/scanout, semantic outcomes and native parity remain
 separate pending limits. No historical fingerprint refresh or status promotion.
+
+
+## Step 2 independent first120 accepted-window ledger (2026-10-14)
+
+Acquisition is committed ascdae27f0after the staged gate and normal hook.
+07d11f52..cdae27f0has37exact first-parent receipts and zero gaps, retained in
+coverage/draw02-update-routes-committed-history-20261014.json; no retrospective
+execution claim. This increment adds the independent interval join and seven
+controlled Python tests, preserving every source/read/physical ambiguity.
+
+[Raw interval analysis01](draw02-update-accounting-analysis-01.json) revalidates
+unchanged original API/physical/cadence/route/timing/producer/callback journals
+and current compiled observer hashes, and binds the independent pixel analysis.
+The fixed first120advancing windows are1..120, with118World queues and the two
+original transition skips117/118. All4304admitted original intervals and2086
+consumed input calls remain accounted for; a crossing call is listed in every
+overlapping window.289primary physical witnesses have actual source/worker/EGL
+links and matching copy regions/whole source images. No witness or queue-free
+update disappears from the denominator. Expected pixels remain reference-only.
+
+Every window retains source prefix boundaries, primitive opcode counts, queue
+IDs, input/menu observations, original call identities/results/time, primary
+frame paths/hashes, source point sets and exact worker/EGL witness provenance.
+19known/live source point sets cross the callback prefixes associated with their
+completed witness, so single-update ownership is not inferred. All their points
+remain in the result. Pending primitive frames at source boundaries remain
+explicit; input polls do not prove semantic action outcomes.
+
+Reassessment: the first120observed intervals are independently accounted for,
+while immutable per-update source/frame ownership, global routes/backing writers
+and semantic/native parity are unproved. The complete interval gate must refuse
+these gaps. Step2, all47journey/21operation closures and steps3–7 remain open;
+no historical result hashes or status axes change.

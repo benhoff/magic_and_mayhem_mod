@@ -10366,3 +10366,17 @@ See [scope and wire](draw02-update-interval-accounting.md) and
 admission, global routes/backing writers, hardware/scanout, semantics and native
 parity remain open. Step2 and all47journey/21operation closures remain open;
 no understanding/implementation/comparison/integration/replacement promotion.
+
+
+### 2026-10-14: DRAW-02 independent per-update interval ledger
+
+[Raw accounting01](draw02-update-accounting-analysis-01.json) revalidates first
+120advancing accepted windows1..120without excluding transition skips117/118.
+118queues,4304admitted original call intervals,2086consumed inputs and289primary
+witnesses remain accounted for. Every primary witness binds to source/worker/EGL
+and matching reference regions/whole images. Seven controlled join methods pass.
+All19cross-prefix source snapshots and pending primitive boundaries stay explicit;
+source-frame ownership and global routes/backing writers remain unproved. Success
+means the accounting executed, not full interval admission or native parity.
+The actual full interval gate remains pending; DRAW02/step2and47/21closure/status
+axes remain open and historical fingerprints unchanged.
