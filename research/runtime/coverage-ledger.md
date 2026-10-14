@@ -10380,3 +10380,20 @@ source-frame ownership and global routes/backing writers remain unproved. Succes
 means the accounting executed, not full interval admission or native parity.
 The actual full interval gate remains pending; DRAW02/step2and47/21closure/status
 axes remain open and historical fingerprints unchanged.
+
+
+### 2026-10-14: DRAW-02 full120 interval admission refuses ownership gaps
+
+[Strict admission01](draw02-update-interval-gate-01.json) independently rejoins
+unchanged raw observations and the first120accepted-window accounting. The actual
+valid result refuses four gates: nonquiescent source boundaries,19known/live source
+sets crossing their associated callback prefixes, global presentation routes and
+all original backing aliases/writers. Pending boundaries affect34of the first120
+updates;32callbacks were pending across the full123callback capture. All289primary
+source/worker/EGLassociations and matching pixels remain retained. Six admission
+controls pass; command exit2records rejection rather than complete reference.
+No complete owned/presented120interval, semantic/native parity or47/21closure is
+asserted. Step2remains active. Next work must identify spanning primitive inputs/
+source acquisition lifetimes and close encountered route/backing boundaries;
+additional counter/queue counts do not satisfy those limits. Historical96exact
+branch flags remain unavailable and historical fingerprints/statuses stay intact.

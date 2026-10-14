@@ -49061,7 +49061,8 @@
         "runtime/scene/whole_update_capture.h",
         "tools/drawing_source_callback_windows.py",
         "tools/drawing_update_accounting.py",
-        "tools/analyze-drawing-update-accounting.py"
+        "tools/analyze-drawing-update-accounting.py",
+        "tools/check-drawing-update-interval.py"
       ],
       "tests": [
         "tests/engine-cadence-reference.c",
@@ -49073,7 +49074,8 @@
         "tools/test-drawing-whole-update-boundary.py",
         "tests/drawing-whole-update-boundary-test.c",
         "tests/test-drawing-source-callback-windows.py",
-        "tests/test-drawing-update-accounting.py"
+        "tests/test-drawing-update-accounting.py",
+        "tests/test-drawing-update-interval-gate.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v4.h",
@@ -49099,7 +49101,9 @@
         "DRAW02.update-accounting-original120-03-20261014",
         "DRAW02.update-accounting-startup-negative-02-20261014",
         "DRAW02.update-accounting-analysis-01-20261014",
-        "DRAW02.update-accounting-fixture-01-20261014"
+        "DRAW02.update-accounting-fixture-01-20261014",
+        "DRAW02.update-interval-gate-01-20261014",
+        "DRAW02.update-interval-gate-fixture-01-20261014"
       ],
       "status": {
         "understanding": "partial",
@@ -49112,7 +49116,9 @@
         "Historical queue-free accepted96 sampled World to Quick Battle Results with suppression0; actual mid-update compare flags/default target are absent from V1. Fresh V2 observation and complete120-source/action/API/EGL association are pending. All alternate routes/backing aliases/writers, physical scanout and semantics remain open.",
         "Fresh original03demonstrates suppression-zero plus transition-byte1/unequal flags skipping selected scene at117/118, late Results push117, later restored World queue119. The older96exact flag cannot be recovered retrospectively.123callbacks cover120queues/122advancing windows;32callbacks retain pending frames. QPC intervals and raw prefixes are retained, not immutable original backing ownership. Full120per-update source/action/physical accounting remains pending; test guard-count report label corrected104after original acquisition leaves its recorded provenance historical.",
         "Per-update join revalidates raw original cadence/source/QPC/API observations and retains all120windows including queue-free updates; unknown or cross-update source points and pending frames remain unresolved ownership, not omitted witnesses. Full global route/backing ownership and native/semantic parity remain open.",
-        "First120accepted updates are1..120with118source queues and transition-skipped117/118; all4304admitted call intervals and2086inputs retained. All289primary witnesses bind to actualsource/worker/EGLand matching pixels.19known/live source point sets cross callback prefixes; pending-frame boundaries and globalroutes/aliases forbid complete presented admission. Actual complete interval gate is next; accounting success is not interval acceptance."
+        "First120accepted updates are1..120with118source queues and transition-skipped117/118; all4304admitted call intervals and2086inputs retained. All289primary witnesses bind to actualsource/worker/EGLand matching pixels.19known/live source point sets cross callback prefixes; pending-frame boundaries and globalroutes/aliases forbid complete presented admission. Actual complete interval gate is next; accounting success is not interval acceptance.",
+        "Full interval admission rechecks the unchanged raw observations and independently rejoins the first120records, then requires every ownership gate; unsupported global-route/backing promotions, pending-frame/source-point gaps and removed queue-free updates cannot pass. Current actual first120cohort is expected to refuse, without promoting any47/21closure or statuses.",
+        "Actual full first120interval admission01 refuses pending source-boundary frames (34affected updates),19known/live source sets crossing associated callback prefixes, globalpresentationrouteclosure and alloriginalbackingaliaswriters. All289primary witnesses still bind tosource/worker/EGLand matchpixels. Refusal does not invalidate bounded reference association or close complete owned/presented acquisition; Step2/47/21remain open."
       ]
     }
   ],
@@ -107433,6 +107439,55 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW02.update-interval-gate-01-20261014",
+      "kind": "static",
+      "scope": "Independently rejoined raw first120accepted updates, retaining118queues/289source-worker-EGLwitnesses. Valid admission result refuses four original-source/route ownership gates; no complete interval/parity claim.",
+      "record": "research/runtime/draw02-update-interval-gate-01.json",
+      "sha256": "29883ffedc971a4afc0b73a94425ddfb0f0bda61135fb043e253363eb2f64fdf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/admitted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW02.update-interval-gate-fixture-01-20261014",
+      "kind": "native_integration",
+      "scope": "Six authored Python admission controls refuse changed120denominator,source/frame/call/counter/time/prefix mismatches,pending/source/EGL/pixel contradictions and unsupported global/complete promotions. No original engine or ownership validation.",
+      "record": "research/runtime/draw02-update-interval-gate-fixture-01.json",
+      "sha256": "4177d0deaad46422876ba14e9014d2865b7ee22fda4650c3a08fe549edca671a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -120127,8 +120182,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-update-accounting-20261014.json",
-    "sha256": "30c8241e9ff84d69374448994486c60eb8c1212d053be7dadee8bb0cbbe29aae"
+    "path": "research/runtime/coverage/source-index-draw02-update-interval-gate-20261014.json",
+    "sha256": "f8351818b792f80d020d5171004b2acd0861531d728eed7e41880d33b6b70797"
   },
   "claim_bindings_required": true
 }

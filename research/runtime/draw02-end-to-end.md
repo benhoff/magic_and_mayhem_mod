@@ -3761,3 +3761,40 @@ while immutable per-update source/frame ownership, global routes/backing writers
 and semantic/native parity are unproved. The complete interval gate must refuse
 these gaps. Step2, all47journey/21operation closures and steps3–7 remain open;
 no historical result hashes or status axes change.
+
+
+## Step 2 complete120 interval admission and reassessment (2026-10-14)
+
+The interval ledger is committed as6f1fd306after the staged gate and normal hook.
+cdae27f0..6f1fd306has10exact first-parent receipts and zero gaps, retained in
+coverage/draw02-update-accounting-committed-history-20261014.json. No retrospective
+execution claim. This increment adds a strict admission command and six controlled
+methods; no boolean option can manufacture absent original ownership evidence.
+
+[Actual interval admission01](draw02-update-interval-gate-01.json) independently
+rejoins the unchanged raw first120accepted update observations and verifies the
+accounting result, current source fingerprints and immutable original/pixel report
+hashes. Both2927-file manifests pass. The command returns2for a valid rejected
+interval, retaining the result and every failure; it does not mark a failed
+admission as complete. Six controls cover denominator/queue-free preservation,
+pending/source/EGL/pixel contradictions, source/counter/time/frame/call mutations,
+unsupported global proof/complete promotion and unknown/missing/nonboolean gates.
+
+Four admission gates remain open: source callback boundaries are not quiescent,
+19known/live source point sets cross their associated update prefixes, global
+presentation routes are not closed, and all original backing aliases/writers are
+not established. There are34affected first120updates from pending boundary frames;
+this differs from32pending callbacks across the full123callback source capture.
+The successful289primary/source-worker/EGLpixel associations remain intact.
+A metadata snapshot crossing a callback prefix is not a missing or dead canvas,
+and a queue-free transition update is not an excluded interval.
+
+Reassessment: the three requested work items now have concrete branch findings,
+a complete accounting of the observed120-window records and an executed full
+admission result. **A complete owned/presented120-update interval is not achieved.**
+Before that milestone, identify and retain the primitive calls spanning accepted
+boundaries and their source acquisition times/lifetimes, then establish the
+encountered alternate presentation and backing-writer boundaries. Additional
+counter-only/queue-only captures cannot close those gates. Historical96still lacks
+its exact branch flags. Step2, all47/21closures and steps3–7 stay open, with no
+replacement/integration/comparison or broader status promotion.
