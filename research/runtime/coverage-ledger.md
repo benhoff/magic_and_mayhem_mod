@@ -9087,3 +9087,39 @@ hashes/statuses remain; other affected stale-source evidence is explicit.
 
 NS60 incoming history reviews51 files/172 behaviors with no gaps and no new
 execution/retrospective gate assertion. See NS61 in creature-services.md.
+
+
+### NS62 — composed ingress and transactional native command session (2026-10-13)
+
+Canonical append/clear/follow ingress has1536 prospective original32/native64/
+sanitized64 cases through28 declared unchanged bodies and full actor/map/body/
+callback/list/retirement guards. New allocated payloads use stable serials and
+append's index ABI is distinct from dispatcher's pointer ABI. CMake/CTest pass;
+failed fixture versions and prior evidence hashes remain retained. Affected
+full-command and repeated-queue evidence is freshly rerun.
+
+The native command Runtime now implements CreatureRuleRuntime and integrates
+with the real CreatureRuleSession generation/transaction/checkpoint boundary.
+CMD1/v1 explicitly owns every actor/execution/callback/order/scheduler/backend
+field without pointers/layout assumptions. Bound native/sanitized/CMake execution
+covers five commands, queued ingress, invalid/malformed/stale/profile/arithmetic/
+publication refusal and three unsafe queue rollback/recovery cases. Normal and
+snapshot-restored sessions remain byte-identical for80 ticks. Headless integration
+is bounded; original complete-frame/campaign/live equivalence is not promoted.
+See NS62 in creature-services.md, apps/command-session/README.md and the native
+command continuation format document.
+
+Lower behavior/geometry/effect/frame providers remain explicit and staged-only;
+the test frame provider is synthetic. Dynamic actor lifecycle, original save/
+profile rebinding, installed sentinel and complete original World/strategic/
+renderer/motion/effect/controller campaign integration remain outstanding. No
+full campaign Wine-removal or live replacement claim. NS61 incoming review covers
+53 files/174 behaviors with no accounting gaps or new execution assertion.
+Authorized final snapshot/check reserve is90GiB under a private1408GiB cap after
+the100GiB guard interrupted accounting; reports/originals/archives are retained.
+
+The native adapter is explicitly a native policy; accounting corrected its initial
+prospective recovered classification and reran the native proof under the policy.
+The earlier result is preserved. NS62 current original ingress/commands/queue
+records and native-command-session-policy-bound-ns62-20261013.json keep execution,
+headless integration and replacement independent.

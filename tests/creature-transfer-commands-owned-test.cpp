@@ -754,10 +754,8 @@ void importQueues() {
       if (id / 16 != slot || !seen.insert(id).second || retiredNodes.count(id))
         throw std::runtime_error("live queue topology");
       auto *node = reinterpret_cast<unsigned char *>(address);
-      const auto &initial=current->initialOrders.at(slot);
-      auto source=std::find_if(initial.begin(),initial.end(),[&](const auto &o){return o.serial==id%16+1;});
-      if(source==initial.end())throw std::runtime_error("unknown live queue serial");
-      auto o=*source;
+      CreatureOrder o;
+      o.serial=id%16+1;
       o.kind = get(node, 8);
       o.destination = {signedQueueWord(get(node, 12)),
                        signedQueueWord(get(node, 16)),

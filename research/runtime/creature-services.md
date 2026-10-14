@@ -816,3 +816,83 @@ or retrospective gate assertion. Other source-affected historical results retain
 explicit stale-source limits; the fresh components above cover only their scopes.
 The user-authorized private1408GiB cap retains100GiB filesystem free after the
 1376GiB guard refused at1376.34GiB; retained storage records are provenance only.
+
+
+## Owned command ingress and native rule-session publication (NS62)
+
+Append523be0, clear5243b0 and follow524460 now have a new composed original
+comparison through the owned command context. The finite1536 corpus contains512
+cases per operation,1..32 actors,0..3 initial slots,16x16x4 bounded positions,
+valid targets and fixed16-slot allocation backing. Full actor/cast/route/map/
+body/callback/live-list/retirement/padding guards compare28 declared unchanged
+bodies. Original append receives an integer target index; dispatcher520ad0 receives
+a target pointer. The new supplied48-byte allocator initializes45 known bytes,
+preserving the three trailing padding bytes, and native serials identify every
+new live node. Clear retains the original logical cursor even when storage becomes
+empty. Follow reset/idle/command effects execute through the same canonical context.
+Broad duplicate geometry, original allocator lifetime and installed construction
+remain excluded. Fresh prospective original32/native64/sanitized64 and native
+CMake/CTest are recorded by the NS62 ingress proof.
+
+The original-only allocation counter caused an initial native warning failure;
+it is now compiled only in reference mode. The second development run supplied
+the wrong append target-pointer ABI, exposing a guarded raw payload mismatch.
+The corrected index ABI passes the third run. Original live payload import now
+reconstructs all fields from node bytes plus stable serials, allowing freshly
+allocated nodes rather than requiring them in the initial vector. Failed reports
+and source fingerprints remain retained. Affected full-command and repeated-queue
+proofs are rerun prospectively; earlier hashes/statuses are never refreshed.
+
+apps/command-session/Runtime implements the existing independent native
+CreatureRuleRuntime interface. CreatureRuleSession owns generation-checked semantic
+commands, candidate ticks and atomic publication. The adapter owns canonical
+actor/execution/installed callback state and a complete pointer-free CMD1/v1
+continuation; native entities receive position/type/owner/target projections.
+The codec explicitly preserves every current actor/execution field, coefficient
+and inventory array, order payload/serial, scheduler/environment, seed, generation
+and opaque staged backend bytes. Exact profile/pool/geometry/projection validation,
+checked lengths/versions/types/references and bounded coordinates reject malformed
+or unsupported continuation. Terrain aim uses checked wider arithmetic before
+calling the original-style signed32 expression.
+
+Fresh bound native/sanitized execution and CMake/CTest exercise all five semantic
+commands, queued delivery, invalid targets/positions, failed command/tick/terrain
+arithmetic/event publication, malformed/truncated/excessive/version/profile/stale
+restore input and three unsafe queue refusal/recovery cases. Two snapshot-restored
+sessions produce byte-identical state for80 subsequent ticks. Normal/sanitized
+final snapshot digests agree. Recursive/topology/noncycling end refusals now
+preserve actor/order/backend/entity/tick state at the real session boundary;
+clear recovers those queues. No Wine, PE image, Qt widget or original media is
+needed to execute these native session tests. Source closure is pinned before
+compilation and checked afterwards, including normalized compiler dependencies
+and actual configured CMake inputs. See apps/command-session/README.md and
+research/formats/native-command-continuation.md.
+
+This promotes bounded headless integration, not complete original frame/campaign
+or live equivalence. Applications still supply behavior/geometry/effect/frame
+providers operating only on staged continuation; the test frame provider is
+synthetic. There is no implicit substitute when a provider is missing. External
+side effects cannot be rolled back and must wait until successful publication.
+The dense1..128-actor adapter does not claim actor creation/removal or original
+save/profile rebinding. Installed/uninitialized sentinel semantics, complete
+original lower World/strategic/animation/geometry/effect/controller ownership,
+visible campaign integration and live replacement remain separate outstanding
+engine contracts. Full campaign Wine removal is not established by this milestone.
+
+NS61 56bc5ac1 exact committed-history review covers53 files/174 behaviors with no
+accounting gaps against receipts and its actual successful staged gate. That
+history review adds no execution or retrospective gate assertion. The100GiB
+reserve interrupted NS61 accounting before the final gate; the already authorized
+private90GiB reserve allowed the final reviewed check and normal hook to complete.
+Private1408GiB/90GiB final-check storage provenance remains under working/retention;
+originals, raw evidence and archives are preserved.
+
+NS62 immutable records are original-command-ingress-bound-ns62-20261013.json,
+original-commands-current-bound-ns62-20261013.json and
+original-queue-current-bound-ns62-20261013.json. The native adapter is a native
+policy, not an original function without a binary anchor. The accounting review
+corrected its initial prospective classification and required a fresh execution
+claim under that policy; the earlier native result remains historical evidence.
+The current native integration record is
+native-command-session-policy-bound-ns62-20261013.json. Older scope/source claims
+retain their limitations rather than receiving updated fingerprints.

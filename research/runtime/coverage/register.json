@@ -57646,7 +57646,9 @@
         "NS60.transfer-commands-owned-original",
         "NS60.transfer-commands-owned-native",
         "NS61.commands-current-original",
-        "NS61.commands-current-native"
+        "NS61.commands-current-native",
+        "NS62.commands-current-original",
+        "NS62.commands-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57733,7 +57735,8 @@
       ],
       "evidence": [
         "NS60.transfer-commands-owned-native",
-        "NS61.commands-current-native"
+        "NS61.commands-current-native",
+        "NS62.commands-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57814,7 +57817,8 @@
       ],
       "evidence": [
         "NS60.transfer-commands-owned-native",
-        "NS61.commands-current-native"
+        "NS61.commands-current-native",
+        "NS62.commands-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -57839,23 +57843,23 @@
       "subsystem": "creature-execution",
       "kind": "recovered",
       "title": "Owned append, clear and follow command ingress",
-      "scope": "Canonical wrappers over523be0 append,5243b0 clear and524460 follow with owned dispatcher/transition consequences. Added API surface only; new composed original comparison and native session integration pending.",
-      "confidence": "provisional",
+      "scope": "Whole523be0 append,5243b0 clear and524460 follow composed with owned command/reset/dispatcher consequences; bounded fixed-slot allocation and explicit visual/geometry/lower behavior endpoints. Newly allocated and retired serials, full actor/cast/route/list/body guards. Finite composed original ingress comparison and transactional headless native session; complete campaign and live replacement excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5389280,
-          "scope": "Existing recovered primitive composed through the new command context; composed validation pending."
+          "scope": "Whole523be0 append,5243b0 clear and524460 follow composed with owned command/reset/dispatcher consequences; bounded fixed-slot allocation and explicit visual/geometry/lower behavior endpoints. Newly allocated and retired serials, full actor/cast/route/list/body guards. Finite composed original ingress comparison and transactional headless native session; complete campaign and live replacement excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5391280,
-          "scope": "Existing recovered primitive composed through the new command context; composed validation pending."
+          "scope": "Whole523be0 append,5243b0 clear and524460 follow composed with owned command/reset/dispatcher consequences; bounded fixed-slot allocation and explicit visual/geometry/lower behavior endpoints. Newly allocated and retired serials, full actor/cast/route/list/body guards. Finite composed original ingress comparison and transactional headless native session; complete campaign and live replacement excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5391456,
-          "scope": "Existing recovered primitive composed through the new command context; composed validation pending."
+          "scope": "Whole523be0 append,5243b0 clear and524460 follow composed with owned command/reset/dispatcher consequences; bounded fixed-slot allocation and explicit visual/geometry/lower behavior endpoints. Newly allocated and retired serials, full actor/cast/route/list/body guards. Finite composed original ingress comparison and transactional headless native session; complete campaign and live replacement excluded."
         }
       ],
       "documents": [
@@ -57865,13 +57869,17 @@
         "reconstruction/creature-ai/transfer_commands_owned.hpp",
         "reconstruction/creature-ai/transfer_commands_owned.cpp"
       ],
-      "tests": [],
+      "tests": [
+        "tests/creature-command-ingress-test.cpp",
+        "tools/test-creature-command-ingress.py"
+      ],
       "validation_dependencies": [
         "reconstruction/combat/ai.hpp",
         "reconstruction/combat/autonomy.hpp",
         "reconstruction/combat/control.cpp",
         "reconstruction/combat/control.hpp",
         "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/command-ingress/CMakeLists.txt",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
         "reconstruction/creature-ai/orders.cpp",
@@ -57904,22 +57912,33 @@
         "reconstruction/creature-ai/transfer_reset_owned.hpp",
         "reconstruction/creature-ai/transfer_targets_owned.cpp",
         "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "tests/creature-transfer-commands-owned-test.cpp",
         "tests/sprite-binary-reference.cpp"
       ],
-      "evidence": [],
+      "evidence": [
+        "NS62.ingress-original",
+        "NS62.ingress-native",
+        "NS62.command-session-native",
+        "NS62.command-session-policy-native"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       },
       "validation_domain": {
         "included": [
-          "Owned wrappers reuse shared command/reset/release consequences"
+          "Finite1536 fixtures:512 append/512 clear/512 follow,1..32 actors,0..3 initial slots, valid targets and16x16x4 positions",
+          "Fixed16-slot allocation backing, initialized payload and supplied48-byte allocator; cached raw body/callback guards",
+          "Composed reset/idle/queue/command transitions with lower visual queue callbacks and first/last move anchors",
+          "Append receives target indices while dispatcher receives target pointers; these ABIs are distinct",
+          "All live/newly allocated nodes import complete payload by stable serial; supplied allocator zero-initializes45 bytes and preserves three padding bytes"
         ],
         "excluded": [
-          "New composed original execution, session integration and live replacement pending"
+          "Original allocator lifetime and broad duplicate geometry/marker rendering",
+          "Invalid pointers/serials, type27 recursive queues and broad installed/campaign/live scope"
         ]
       }
     },
@@ -58038,7 +58057,9 @@
       ],
       "evidence": [
         "NS61.queue-continuation-original",
-        "NS61.queue-continuation-native"
+        "NS61.queue-continuation-native",
+        "NS62.queue-current-original",
+        "NS62.queue-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -58122,7 +58143,8 @@
         "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
-        "NS61.queue-continuation-native"
+        "NS61.queue-continuation-native",
+        "NS62.queue-current-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -58139,6 +58161,210 @@
         "excluded": [
           "Original uninitialized/installed sentinel contents and unsafe noncycling reentry",
           "Atomic native session publication pending"
+        ]
+      }
+    },
+    {
+      "id": "AI.native-command-session",
+      "kind": "native_policy",
+      "subsystem": "native-simulation",
+      "title": "Transactional native command rule session adapter",
+      "scope": "Owned canonical command context integrated through independent native CreatureRuleSession; portable actor/execution/callback/backend continuation, generation-checked semantic move/target/coordinate/follow/clear and queued ingress. Lower behavior/geometry/frame providers explicit; finite synthetic headless native session integration, full campaign and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md",
+        "apps/command-session/README.md",
+        "research/formats/native-command-continuation.md"
+      ],
+      "implementation": [
+        "apps/command-session/runtime.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/codec.cpp"
+      ],
+      "tests": [
+        "tests/native-command-session-test.cpp",
+        "tools/test-native-command-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/command-session/CMakeLists.txt",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/pathfinding/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NS62.command-session-native",
+        "NS62.command-session-policy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Native generation-safe semantic command ingress, staged rules and complete owned continuation",
+          "Lower providers are explicit and mutate staged continuation only; no external side effects during publication",
+          "Finite synthetic3-actor16x16x4 profile, five semantic commands,80 resumed ticks, three unsafe queue rollback/recovery scenarios; larger pool bounds are implementation admission, not exhaustive simulation validation"
+        ],
+        "excluded": [
+          "Complete original frame scheduling/geometry/behavior/provider ownership and installed campaign equivalence",
+          "Native actor creation/removal/profile rebinding and live replacement pending"
+        ]
+      }
+    },
+    {
+      "id": "NP.command-continuation",
+      "kind": "native_policy",
+      "subsystem": "native-simulation",
+      "title": "Portable command continuation and staged publication",
+      "scope": "NativeCMD1/v1 full actor/execution/callback/scheduler/backend continuation, exact profile and generational entity projections, bounded decode/semantic input/arithmetic/event admission and staged native rule-session publication. No original save/layout/malformed-pointer equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md",
+        "apps/command-session/README.md",
+        "research/formats/native-command-continuation.md"
+      ],
+      "implementation": [
+        "apps/command-session/runtime.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/codec.cpp"
+      ],
+      "tests": [
+        "tests/native-command-session-test.cpp",
+        "tools/test-native-command-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/command-session/CMakeLists.txt",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/pathfinding/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NS62.command-session-native",
+        "NS62.command-session-policy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "included": [
+          "Native generation-safe semantic command ingress, staged rules and complete owned continuation",
+          "Lower providers are explicit and mutate staged continuation only; no external side effects during publication",
+          "Finite synthetic3-actor16x16x4 profile, five semantic commands,80 resumed ticks, three unsafe queue rollback/recovery scenarios; larger pool bounds are implementation admission, not exhaustive simulation validation"
+        ],
+        "excluded": [
+          "Complete original frame scheduling/geometry/behavior/provider ownership and installed campaign equivalence",
+          "Native actor creation/removal/profile rebinding and live replacement pending"
         ]
       }
     }
@@ -118592,6 +118818,468 @@
           "equals": 8
         }
       ]
+    },
+    {
+      "id": "NS62.ingress-original",
+      "kind": "isolated_original",
+      "scope": "Bounded owned append/clear/follow ingress and full command consequences: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-command-ingress-bound-ns62-20261013.json",
+      "sha256": "49b0d6cacff665ef56cd1ec615f66fec6f8115017d40d9e10865505ed312a187",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/functions",
+          "equals": 28
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS62.ingress-native",
+      "kind": "native_integration",
+      "scope": "Bounded owned append/clear/follow ingress and full command consequences: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-command-ingress-bound-ns62-20261013.json",
+      "sha256": "49b0d6cacff665ef56cd1ec615f66fec6f8115017d40d9e10865505ed312a187",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/functions",
+          "equals": 28
+        }
+      ]
+    },
+    {
+      "id": "NS62.commands-current-original",
+      "kind": "isolated_original",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle/follow/queue/delivery/command admission behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-commands-current-bound-ns62-20261013.json",
+      "sha256": "a1039c62d14f402665dc02434489da7e7be35271416b6fe6ef3a45f09f36bb7b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 20480
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS62.commands-current-native",
+      "kind": "native_integration",
+      "scope": "Whole ownership transfer with owned recount and associated-owner lookup, visibility, wizard classification, marker clearing root activity, owner-target repair reset/behavior transition idle/follow/queue/delivery/command admission behavior: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-commands-current-bound-ns62-20261013.json",
+      "sha256": "a1039c62d14f402665dc02434489da7e7be35271416b6fe6ef3a45f09f36bb7b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 20480
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "NS62.queue-current-original",
+      "kind": "isolated_original",
+      "scope": "Bounded queue continuation with owned command admission and zeroed sentinel payload: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-queue-current-bound-ns62-20261013.json",
+      "sha256": "49b4244249c26d92b3cdcbf2a80984666eaa518a321d2cd7057c03ab1a9be79b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2048
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS62.queue-current-native",
+      "kind": "native_integration",
+      "scope": "Bounded queue continuation with owned command admission and zeroed sentinel payload: unchanged pinned original bodies listed in original_target_sha256, with declared helper services listed in endpoint_addresses. Full actor bytes and ordered consequences compared within the fixture domain; complete lower world services, native application integration and live replacement remain separate pending boundaries.",
+      "record": "research/runtime/original-queue-current-bound-ns62-20261013.json",
+      "sha256": "49b4244249c26d92b3cdcbf2a80984666eaa518a321d2cd7057c03ab1a9be79b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2048
+        },
+        {
+          "pointer": "/functions",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "NS62.command-session-native",
+      "kind": "native_integration",
+      "scope": "Native CreatureRuleSession integrated with canonical recovered commands and explicit staged lower providers; synthetic backend frame semantics, no complete campaign/original frame/live replacement equivalence.",
+      "record": "research/runtime/native-command-session-bound-ns62-20261013.json",
+      "sha256": "be0e1e55d7e8c361b79047be6735be774f20772f937f79a117fb567aa0b6c666",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_ticks",
+          "equals": 80
+        },
+        {
+          "pointer": "/semantic_commands",
+          "equals": 5
+        },
+        {
+          "pointer": "/unsafe_queue_rollbacks",
+          "equals": 3
+        },
+        {
+          "pointer": "/generation_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/portable_continuation",
+          "equals": true
+        },
+        {
+          "pointer": "/no_wine",
+          "equals": true
+        },
+        {
+          "pointer": "/snapshot_digest",
+          "equals": 2589687915510877144
+        }
+      ]
+    },
+    {
+      "id": "NS62.command-session-policy-native",
+      "kind": "native_integration",
+      "scope": "Native CreatureRuleSession integrated with canonical recovered commands and explicit staged lower providers; synthetic backend frame semantics, no complete campaign/original frame/live replacement equivalence.",
+      "record": "research/runtime/native-command-session-policy-bound-ns62-20261013.json",
+      "sha256": "52918e7a071601fff735d23b3af002c70f5d12794372aab00c767ce09a54d5fc",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_ticks",
+          "equals": 80
+        },
+        {
+          "pointer": "/semantic_commands",
+          "equals": 5
+        },
+        {
+          "pointer": "/unsafe_queue_rollbacks",
+          "equals": 3
+        },
+        {
+          "pointer": "/generation_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/portable_continuation",
+          "equals": true
+        },
+        {
+          "pointer": "/no_wine",
+          "equals": true
+        },
+        {
+          "pointer": "/snapshot_digest",
+          "equals": 2589687915510877144
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -131762,7 +132450,9 @@
         "NS60.transfer-commands-owned-original",
         "NS60.transfer-commands-owned-native",
         "NS61.commands-current-original",
-        "NS61.commands-current-native"
+        "NS61.commands-current-native",
+        "NS62.commands-current-original",
+        "NS62.commands-current-native"
       ]
     },
     {
@@ -131778,7 +132468,43 @@
       ],
       "evidence": [
         "NS61.queue-continuation-original",
-        "NS61.queue-continuation-native"
+        "NS61.queue-continuation-native",
+        "NS62.queue-current-original",
+        "NS62.queue-current-native"
+      ]
+    },
+    {
+      "id": "owned-command-ingress-20261013",
+      "level": "headless",
+      "scope": "Whole523be0 append,5243b0 clear and524460 follow composed with owned command/reset/dispatcher consequences; bounded fixed-slot allocation and explicit visual/geometry/lower behavior endpoints. Newly allocated and retired serials, full actor/cast/route/list/body guards. Finite composed original ingress comparison; complete campaign and live replacement excluded.",
+      "behaviors": [
+        "AI.owned-command-ingress"
+      ],
+      "tests": [
+        "tests/creature-command-ingress-test.cpp",
+        "tools/test-creature-command-ingress.py"
+      ],
+      "evidence": [
+        "NS62.ingress-original",
+        "NS62.ingress-native"
+      ]
+    },
+    {
+      "id": "native-command-session-20261013",
+      "level": "headless",
+      "scope": "Generation-safe semantic commands, exact failed-operation rollback, three unsafe queue recovery cases, complete portable continuation and80-tick snapshot resume with explicit synthetic lower providers. No whole original frame/campaign/live equivalence.",
+      "behaviors": [
+        "AI.native-command-session",
+        "NP.command-continuation",
+        "AI.owned-command-ingress"
+      ],
+      "tests": [
+        "tests/native-command-session-test.cpp",
+        "tools/test-native-command-session.py"
+      ],
+      "evidence": [
+        "NS62.command-session-native",
+        "NS62.command-session-policy-native"
       ]
     }
   ],
@@ -132315,8 +133041,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-queue-continuation-20261013.json",
-    "sha256": "98f221fec0130267a1e7815388d7176aac7eff1d963329b1b6eddd82f141e7a9"
+    "path": "research/runtime/coverage/source-index-original-command-ingress-native-session-20261013.json",
+    "sha256": "12a3cdd69942080d44656deeea3a00bfb92cac817e838df5234f373f4b054f39"
   },
   "claim_bindings_required": true
 }
