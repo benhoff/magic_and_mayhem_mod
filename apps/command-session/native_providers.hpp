@@ -11,6 +11,7 @@ struct NativeCreatureType {
   unsigned periodicResistance=0;
   int routeCostFactor=1;
   bool routeFlagPenalty=false;
+  std::array<int,28> gestureScores{};
   reconstruction::CreatureScalarState scalar;
 };
 // Immutable decoded inputs. Applications may load actual ANI/CFG/MAP assets;

@@ -21,6 +21,7 @@ public:
   bool line(const model::AutonomousCreature &,model::Cell,model::Cell);
   bool reach(const model::AutonomousCreature &,const model::AutonomousCreature &,model::Cell);
   bool move(const model::AutonomousCreature &,model::Cell,model::Cell,unsigned &);
+  bool terrainMove(const model::AutonomousCreature &,model::Cell,model::Cell,unsigned &);
   int height(model::Cell,unsigned width=1);
   void reserve(const model::AutonomousCreature &,model::Cell,bool);
   void snap(model::AutonomousCreature &,model::Cell);

@@ -28,3 +28,10 @@ producer report. The original32 oracle build is an offline Linux/i386 research
 tool; it is separate from the runtime executable. Neither application imports a
 campaign, allocates dynamic actors, implements original World services or changes
 creature balance.
+
+`tools/test-paired-encounter.py` runs a persistent independent original32 creature
+core beside native32, then checks native64 and sanitizer replay, fresh-process
+checkpoints and a reproducible first divergence. See
+[`paired-native-encounter.md`](../../research/runtime/paired-native-encounter.md)
+for the exact projection and empty World boundaries. The oracle reconstructs its
+checkpoint prefix by replay; native snapshots restore directly.

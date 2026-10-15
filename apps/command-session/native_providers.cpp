@@ -1,4 +1,7 @@
 #include "native_geometry.hpp"
+#include "../../reconstruction/creature-ai/idle_gesture.hpp"
+#include "../../reconstruction/creature-ai/motion_response.hpp"
+#include "../../reconstruction/creature-ai/coarse_route.hpp"
 #include "../../reconstruction/creature-ai/attack_selection.hpp"
 #include "../../reconstruction/pathfinding/route_world.hpp"
 #include <algorithm>
@@ -15,7 +18,7 @@ std::array<unsigned,2> stamp(const NativeCreatureProfile &p){
   word(p.cameraTurn);word(p.defaultScalar);word(p.boundary);word(p.recovery);
   word(p.animation.size());word(p.terrain.size());word(p.terrainPropertyA0.size());for(bool v:p.terrainPropertyA0)word(v);
   for(const auto &a:p.animation){word(a.version);word(a.opaqueHeader);for(auto v:a.spriteName)word(v);word(a.starts.size());word(a.records.size());for(auto v:a.starts)word(v);for(const auto &v:a.records){word(v.opcode);word(v.argument);for(auto m:v.metadata)word(m);}}
-  for(const auto &t:p.types){word(t.bodyAsset);word(t.regularOverlayAsset);word(t.meleeOverlayAsset);word(t.width);word(t.height);word(t.movementKind);word(t.scalar.type_3c);word(t.scalar.type_10);word(t.periodicResistance);word(t.routeCostFactor);word(t.routeFlagPenalty);for(auto v:t.scalar.type_d8)word(v);unsigned bits;std::memcpy(&bits,&t.scalar.slope_global,4);word(bits);}
+  for(const auto &t:p.types){word(t.bodyAsset);word(t.regularOverlayAsset);word(t.meleeOverlayAsset);word(t.width);word(t.height);word(t.movementKind);word(t.scalar.type_3c);word(t.scalar.type_10);word(t.periodicResistance);word(t.routeCostFactor);word(t.routeFlagPenalty);for(auto v:t.gestureScores)word(v);for(auto v:t.scalar.type_d8)word(v);unsigned bits;std::memcpy(&bits,&t.scalar.slope_global,4);word(bits);}
   for(const auto &v:p.terrain){for(auto b:v.unknown_00)word(std::to_integer<unsigned>(b));word(v.classification_94);for(auto b:v.unknown_98)word(std::to_integer<unsigned>(b));word(v.flags_b0);for(auto b:v.unknown_b1)word(std::to_integer<unsigned>(b));}
   const auto &m=p.maintenance;
   for(auto v:{m.tick,m.upkeepInterval,m.upkeepCost,m.statusDamage,m.statusInterval,m.poisonInterval,m.powerInterval,m.powerMaximum,m.restoreMode,m.drainQuantity,unsigned(m.localOwner),unsigned(m.drainDivisor),unsigned(m.effectDamage),unsigned(m.diagnostic)})word(v);
@@ -50,7 +53,7 @@ class NativeContext {
     const auto event=player.tick();v.state=player.state();return event;
   }
   int poll(model::AutonomousCreature &a,bool overlay){auto &v=channel(a,overlay);auto &state=c_.actions.callbacks.at(a.ai.slot);const auto event=poll(v,!overlay&&state.animationBreak);if(!overlay){state.animationBreak=v.state.forward.breakFlag!=0;state.sequence=v.sequence;}return event;}
-  void play(model::AutonomousCreature &a,unsigned sequence,unsigned reverse){start(channel(a,false),p_->types.at(a.ai.type).bodyAsset,sequence,reverse);c_.actions.callbacks.at(a.ai.slot).sequence=sequence;}
+  void play(model::AutonomousCreature &a,unsigned sequence,unsigned reverse){start(channel(a,false),p_->types.at(a.ai.type).bodyAsset,sequence,reverse);c_.actions.callbacks.at(a.ai.slot).sequence=sequence;c_.actions.callbacks.at(a.ai.slot).animationBreak=false;}
   void rewind(model::AutonomousCreature &a){auto &v=channel(a,false);if(!v.bound)return;r::NoCdAnimationController player(records(*p_,v.asset,v.sequence));player.restore(v.state);player.rewind();v.state=player.state();}
   unsigned random(){return model::nextRandom(c_.native.random);}
   model::AiGeometry aiGeometry(){auto g=fx_.autonomy.geometry;
@@ -82,7 +85,7 @@ class NativeContext {
   void begin(model::AutonomousCreature &a,model::OwnedCreatureCommands &commands){
     const auto slot=a.ai.slot;auto &initial=c_.native.initialization.at(slot);auto &motion=c_.actions.motion.at(slot);
     initial.slow778=int(c_.maintenance.at(slot).status778);initial.fast77c=int(c_.maintenance.at(slot).status77c);
-    auto s=fx_.segment;
+    auto s=fx_.segment;s.precheck=[this](auto &a){return model::cachedMotionOpponent(a,c_.world,aiGeometry());};
     s.base=[this](const auto &actor,unsigned mode,model::Cell delta){return r::base_movement_scalar(int(mode),{delta.x,delta.y,delta.z},scalar(actor));};
     s.scalar=[this](const auto &actor,unsigned argument,unsigned mode,model::Cell delta,int,unsigned &rate,int &length){auto value=r::creature_movement_scalar(int(argument),int(mode),{delta.x,delta.y,delta.z},rate,scalar(actor));rate=value.scalar;length=12;};
     s.accept=[this](auto &actor,model::Cell from,model::Cell to,unsigned &mode){return geometry_.move(actor,normalized(from),normalized(to),mode);};
@@ -101,6 +104,12 @@ class NativeContext {
     else {need(initial.sampleBank>=0xd8&&initial.sampleBank<0xd8+48*4,"native sample bank unavailable");const auto base=(initial.sampleBank-0xd8)/4;auto values=scalar(a).type_d8;motion.samples.fill(0);for(unsigned i=0;i<48-base;++i)motion.samples[i]=int(values[base+i]);}
   }
   unsigned request(model::AutonomousCreature &a,model::Cell target){
+    target=normalized(target);
+    auto &pending=c_.native.search.at(a.ai.slot);
+    if(a.routeMode&&!pending.initialized){
+      auto &route=c_.actions.segments.at(a.ai.slot);model::ActorRouteSnapshot result;result.points=route.route;
+      if(model::coarseCreatureRoute(a,c_.actions.motion.at(a.ai.slot).direction,c_.world.dimensions,target,result,[this,&a](auto from,auto to,unsigned &category){return geometry_.terrainMove(a,from,to,category);},[this,&a](auto point){return fx_.autonomy.geometry.hazardous(a,point);})){a.destination=result.destination;route.cursor=result.cursor;route.count=result.count;route.route=result.points;a.ai.marker=route.count?1:0;return a.ai.marker;}
+    }
     target=normalized(target);auto &saved=c_.native.search.at(a.ai.slot);r::SearchState search;r::RouteContextPrefix context{};
     if(saved.initialized&&saved.destination==target){for(auto v:saved.open)search.open.emplace(v.priority,v.node);for(auto v:saved.records)search.records.emplace(v.node,v.record);search.best_node=saved.bestNode;search.best_heuristic=saved.bestHeuristic;search.initialized=true;std::memcpy(&context,saved.context.data(),sizeof(context));}
     else {saved={};saved.destination=target;context.unknown_route_flag=1;}
@@ -125,7 +134,7 @@ class NativeContext {
   }
   model::BehaviorExecutionServices behavior(model::OwnedCreatureCommands &commands){
     auto s=fx_.behavior;
-    s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.interaction=[this](auto &a){return model::chooseInteraction(a,c_.world,fx_.autonomy.objects,aiGeometry());};
+    s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.interaction=[this](auto &a){return model::idleGesture(a,c_.world,aiGeometry(),p_->types.at(a.ai.type).gestureScores,[this]{return random();},[this](auto &actor,model::Cell point){facing(actor,{int(unsigned(point.x)>>5),int(unsigned(point.y)>>5),actor.ai.position.z});});};
     s.action=[&commands](auto &a,unsigned n){commands.action(a,n);};s.behavior=[&commands](auto &a,unsigned n){commands.transition(a,n);};s.reset=[&commands](auto &a){commands.reset(a);};
     s.beginMotion=[this,&commands](auto &a){begin(a,commands);};s.reach=[this](const auto &a,const auto &b,model::Cell p){return geometry_.reach(a,b,p);};
     s.face=[this](auto &a,const auto &b){facing(a,b.ai.position);};s.coordinateFace=[this](auto &a,model::Cell p){facing(a,p);};
@@ -139,7 +148,7 @@ public:
   }
   void release(unsigned value){need(bool(fx_.callbacks.releaseEffect),"native release service unavailable");fx_.callbacks.releaseEffect(value);}
   model::ExecutionServices execution(){auto s=fx_.execution;s.orient=[this](auto &a,model::Cell p){facing(a,{int(unsigned(p.x)>>5),int(unsigned(p.y)>>5),a.ai.position.z});};s.terrainHeight=[this](model::Cell p){return geometry_.height(normalized(p));};return s;}
-  model::BehaviorExecutionServices idle(){auto s=fx_.behavior;s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.interaction=[this](auto &a){return model::chooseInteraction(a,c_.world,fx_.autonomy.objects,aiGeometry());};return s;}
+  model::BehaviorExecutionServices idle(){auto s=fx_.behavior;s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.interaction=[this](auto &a){return model::idleGesture(a,c_.world,aiGeometry(),p_->types.at(a.ai.type).gestureScores,[this]{return random();},[this](auto &actor,model::Cell point){facing(actor,{int(unsigned(point.x)>>5),int(unsigned(point.y)>>5),actor.ai.position.z});});};return s;}
   model::FollowServices follow(){return {[this](const auto &a,model::Cell &p){p=normalized(p);return geometry_.legal(a,p);},{}};}
   model::CommandActionProviders selection(){model::CommandActionProviders p;
     p.selection=[this](unsigned){model::ActionExecutionServices s;s.random=[this]{return random();};s.animation=[this](auto &a,unsigned seq,unsigned rev){play(a,seq,rev);};
@@ -158,7 +167,7 @@ public:
   void tickAction(model::AutonomousCreature &a,model::OwnedCreatureCommands &commands){bind(commands);auto p=selection();p.remaining=[this](auto &actor,unsigned handler,auto &context){auto body=bodyProviders(context);model::OwnedCommandActionBodies bodies(c_.world,c_.execution,c_.maintenance,c_.movement,c_.actions,context,{{0,false},{c_.world.dimensions,unsigned(p_->environment.waterline),false}},body);bodies.tick(actor,handler);};const auto &t=p_->types.at(a.ai.type);model::OwnedCommandActions actions(c_.world,c_.execution,commands,{{t.regularOverlayAsset,64,t.meleeOverlayAsset,32},c_.native.tick,p_->recovery,p_->maintenance.restoreMode},p);actions.tick(a);}
   model::CommandActionBodyProviders bodyProviders(model::OwnedCreatureCommands &commands){model::CommandActionBodyProviders p;
     p.callbacks=[this](unsigned){auto s=fx_.callbacks;s.immediate=[this](auto &a){return model::immediateOpponent(a,c_.world,aiGeometry(),[this]{return random();});};s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.random=[this]{return random();};s.rewind=[this](auto &a){rewind(a);};return s;};
-    p.motion=[this,&commands](unsigned){auto s=fx_.motion;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.rewind=[this](auto &a){rewind(a);};s.completeSegment=[this,&commands](auto &a){complete(a,commands);};s.updateOrders=fx_.callbacks.updateOrders;s.legal=[this](const auto &a,model::Cell p){return geometry_.legal(a,normalized(p));};s.stun=fx_.callbacks.stun;s.effect=fx_.callbacks.effect;s.releaseEffect=fx_.callbacks.releaseEffect;s.cameraTurn=p_->cameraTurn;return s;};
+    p.motion=[this,&commands](unsigned){auto s=fx_.motion;s.response=[this](auto &a){return model::motionOpponentResponse(a,c_.world,aiGeometry());};s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.rewind=[this](auto &a){rewind(a);};s.completeSegment=[this,&commands](auto &a){complete(a,commands);};s.updateOrders=fx_.callbacks.updateOrders;s.legal=[this](const auto &a,model::Cell p){return geometry_.legal(a,normalized(p));};s.stun=fx_.callbacks.stun;s.effect=fx_.callbacks.effect;s.releaseEffect=fx_.callbacks.releaseEffect;s.cameraTurn=p_->cameraTurn;return s;};
     p.flight=[this,&commands](unsigned){auto s=fx_.flight;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.rewind=[this](auto &a){rewind(a);};s.completeSegment=[this,&commands](auto &a){complete(a,commands);};s.animation=[this](auto &a,unsigned seq,unsigned rev){play(a,seq,rev);};s.occupied=[this](const auto &a,model::Cell p){return !geometry_.cell(a,normalized(p));};s.passable=[this](const auto &a,model::Cell p){return geometry_.legal(a,normalized(p));};s.ground=[this](const auto &a,model::Cell p){return geometry_.ground(a,normalized(p));};s.random=[this]{return random();};s.release=[this](auto &a,model::Cell p){geometry_.reserve(a,normalized(p),false);};s.reserve=[this](auto &a,model::Cell p){geometry_.reserve(a,normalized(p),true);};s.snap=[this](auto &a,model::Cell p,unsigned){geometry_.snap(a,normalized(p));};s.relocateDead=[this](auto &a,model::Cell p){geometry_.snap(a,normalized(p));};return s;};
     p.objects=[this](unsigned slot){model::ObjectActionServices s;s.poll=[this](auto &a,bool overlay){return poll(a,overlay);};s.cue=[this,slot](unsigned cue,model::Cell p){auto &a=c_.world.creatures.at(slot);fx_.callbacks.effect(a,cue,p);};return s;};return p;
   }

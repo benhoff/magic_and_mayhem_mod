@@ -92,7 +92,7 @@ int main(int argc, char **argv) try {
     p.chargeBonus = 62;
     p.bloodLust = a.ai.bloodLust;
     p.targetResponse =
-        b.targetMovingAttacker || before.maintenance[1].recent6b0;
+        before.execution[1].routeRenewal || before.maintenance[1].recent6b0;
     constexpr int response[8] = {0, 0, 25, 50, 75, 50, 25, 0};
     p.responseModifier = response[relativeDirection(
         a.ai.position, b.ai.position, before.actions.motion[1].direction,

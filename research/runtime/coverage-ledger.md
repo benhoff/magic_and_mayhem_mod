@@ -9323,3 +9323,53 @@ fixtures without changing their original helper scope. Incoming NS67 hashes and
 exact receipts were reviewed with zero unresolved committed-history transitions.
 Source census and exact staged reviews accompany this change; unrelated historical
 staleness remains visible and is not rewritten as current execution evidence.
+
+## NS69 — persistent original/native encounters (2026-10-15)
+
+The original two-actor pool, terrain/occupancy, ANI, routes/search containers,
+scheduler and R250 state now persist independently beside the normal native
+command session. After a common bounded installed initialization, original
+maintenance/action509e50, scheduler52a780 and environment52a9f0 run without native
+post-state inputs. This compares composed creature-core behavior beyond the NS68
+per-poll supplied-helper trace. Original World/owner/inventory/effect services are
+explicitly empty; dynamic removal remains a retained-identity boundary. Full
+World/campaign construction, other species/crops, generic region/shared routes,
+cached-attack516d60, water/flying and live replacement remain separate gaps.
+
+The composed encounter exposed and corrected idle516800 RNG admission, direct
+terrain route513370, motion opponent response/cache517580/516ee0, anchor/volume
+occupancy flags509230/5093e0, canonical health aliases, melee response-field
+selection, repeated-stun ANI-break reset, lethal peer repair ordering and one-hop
+knockback destination publication. Reverse ANI state is included in the expanded
+comparison; the forward-only development projection refusal is retained. The
+separate helper corpus supplies lower geometry and matrix services. Selected
+native integrations do not assert full generic function coverage or change
+creature balance.
+
+Native checkpoints restore their actual portable state in fresh processes. The
+original rebuilds its prefix from immutable inputs/seed and verifies its saved
+projection before continuing; this is replay-backed oracle recovery, not an
+original save/heap loader. First-divergence artifacts retain before/after native
+snapshots and oracle projections plus a tick/field diagnostic. Historical NS68
+hashes are unchanged; changed shared sources leave older comparisons pending
+until independently refreshed. Incoming NS68 history was reviewed across37 file
+transitions and35 affected behavior transitions, with no missing exact receipts.
+
+Fresh prospective source-bound original32/native64/ASan+UBSan+LSan64 execution
+matches3,072 composed ticks:90 hits, six stun/recovery cycles, one knockback,
+eight route completions and two deaths/removals. All65,536 helper cases agree.
+Six fresh processes restore native continuations and reconstruct original oracle
+prefixes to identical final artifacts. The intentional native health divergence
+at tick137/+e4 reproduces byte-for-byte from the saved preceding checkpoint;
+corrupt oracle input is refused. Text/media/installed-input and214-source guards
+pass. The existing native encounter continuation/rollback/profile/cleanup corpus
+and five core CTests also pass. Original comparison, native headless integration
+and live replacement remain independent statuses; the new fixture claims only its
+explicit bounded projection. See the
+[NS69 execution report](paired-native-encounter-bound-ns69-20261015.json).
+
+The reviewed [coverage snapshot](coverage/summary-paired-encounter-20261015.md)
+and [committed-history review](coverage/history-review-ns68-to-ns69-20261015.json)
+retain the independent current/pending boundaries. Coverage audit reports no
+errors or census drift; the five new behavior contracts have fresh implementation,
+original comparison and headless integration support, with no replacement claim.

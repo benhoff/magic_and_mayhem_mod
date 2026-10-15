@@ -149,7 +149,7 @@ Profile decodeInputs(game::Bytes bytes) {
   type.scalar.type_3c =
       reconstruction::groundMovementMaximum(type.scalar.type_d8);
   type.scalar.default_scalar = p.native.defaultScalar;
-  p.native.maintenance.localOwner = -1;
+  p.native.maintenance.localOwner = 0;
   p.native.maintenance.drainDivisor = 1;
   p.melee.base = row(hth, "HTH_Matrix")[17];
   p.melee.stunThreshold = row(hth, "Stun_Matrix")[17];

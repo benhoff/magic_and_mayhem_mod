@@ -5,6 +5,10 @@ add_subdirectory(../../reconstruction/creature-ai/transfer-commands-owned comman
 add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
   native_providers.cpp native_geometry.cpp
   ../../reconstruction/creature-ai/attack_selection.cpp
+  ../../reconstruction/creature-ai/idle_gesture.cpp
+  ../../reconstruction/creature-ai/coarse_route.cpp
+  ../../reconstruction/creature-ai/motion_response.cpp
+  ../../reconstruction/rendering/effect_trajectory.cpp
   ../../reconstruction/pathfinding/route_footprint_height.cpp
   ../../reconstruction/animation/controller.cpp
   ../../reconstruction/pathfinding/route_line.cpp

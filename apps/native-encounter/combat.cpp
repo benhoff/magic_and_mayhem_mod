@@ -63,6 +63,9 @@ class Combat {
     const auto &e = c.execution.at(a.ai.slot);
     const auto &m = c.maintenance.at(a.ai.slot);
     s.health = a.ai.health;
+    s.dirty = e.dirtyValue;
+    s.marker = a.ai.marker;
+    s.ages = m.visibilityAge;
     s.gate9c = e.absorptionTimer;
     s.cooldown = m.timer660;
     s.target = unsigned(a.ai.target);
@@ -102,6 +105,9 @@ class Combat {
     a.flag104 = s.flag104;
     e.bonusMode124 = s.rank;
     e.absorptionTimer = s.gate9c;
+    e.dirtyValue = s.dirty;
+    a.ai.marker = s.marker;
+    m.visibilityAge = s.ages;
   }
   void remove(m::AutonomousCreature &a) {
     cs::NativeCreatureGeometry g(c, p->native);
@@ -118,6 +124,27 @@ class Combat {
     for (auto &peer : c.world.creatures)
       if (peer.ai.active && peer.ai.target == int(a.ai.slot))
         commands->reset(peer);
+  }
+  void repairPeers(unsigned removed) {
+    m::ExecutionServices services;
+    services.action = [this](auto &a, unsigned kind) {
+      commands->action(a, kind);
+    };
+    services.behavior = [this](auto &a, unsigned kind) {
+      commands->bindOriginal(a, kind);
+      commands->dispatch(a);
+    };
+    services.releaseEffect = [](unsigned) {
+      throw std::invalid_argument("encounter cleanup effect unavailable");
+    };
+    services.peerEngagement = [](auto &a, unsigned) {
+      if (a.ai.incoming)
+        --a.ai.incoming;
+    };
+    for (auto &peer : c.world.creatures)
+      if (peer.ai.active && peer.ai.slot != removed)
+        m::repairCreatureReference(peer, c.execution.at(peer.ai.slot), c.world,
+                                   int(removed), services);
   }
   m::StunState controlState(const m::AutonomousCreature &a) {
     m::StunState s;
@@ -212,6 +239,7 @@ class Combat {
                             {direction, q.z - a.ai.position.z,
                              int(category >= 1 && category <= 3),
                              int(category)}};
+          a.destination = q;
           a.ai.marker = 1;
           return true;
         });
@@ -252,6 +280,8 @@ public:
     auto before = a.ai.health;
     auto r = m::apply(healthState(a), input, entry, amount);
     store(a, r.state);
+    if (before && !a.ai.health)
+      repairPeers(a.ai.slot);
     count(1, before >= a.ai.health ? before - a.ai.health : 0);
     for (auto event : r.events) {
       if (event.kind == m::Effect::behavior) {
@@ -290,7 +320,7 @@ public:
     parameters.responseModifier = response[m::relativeDirection(
         a.ai.position, b.ai.position, c.actions.motion.at(b.ai.slot).direction,
         c.world.dimensions)];
-    parameters.targetResponse = b.targetMovingAttacker != 0 ||
+    parameters.targetResponse = c.execution.at(b.ai.slot).routeRenewal != 0 ||
                                 c.maintenance.at(b.ai.slot).recent6b0 != 0;
     parameters.bloodLust = a.ai.bloodLust;
     parameters.attackerPhysical = a.ai.physical != 0;
