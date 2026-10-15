@@ -337,6 +337,36 @@ class GateTests(unittest.TestCase):
         self.write('AGENTS.md', 'Changed workflow\n')
         self.assert_error(self.result(), 'Unreviewed source change: AGENTS.md')
 
+    def test_artifact_only_recorded_receipt_requires_later_exact_pending_review(self):
+        self.json('research/new-record.json', self.record)
+        new = {**self.register['evidence'][0], 'id': 'new-original',
+               'record': 'research/new-record.json', 'sha256': self.sha('research/new-record.json')}
+        self.register['evidence'].append(new)
+        self.register['behaviors'][0]['evidence'].append(new['id'])
+        older = self.receipt()
+        entry = older['reviews'][0]
+        entry['id'] = 'artifact-recorded'
+        entry['files'] = [f for f in entry['files'] if f['path'] == new['record']]
+        entry['behaviors'] = []
+        entry['validation'].update(status='recorded', evidence=[new['id']])
+        self.write('assets/model.cpp', 'Later source closure\n')
+        self.assert_error(self.result(older), 'validation evidence missing, static or stale')
+        latest = self.receipt()
+        latest['reviews'][0]['id'] = 'exact-current-pending'
+        latest['reviews'] = older['reviews'] + latest['reviews']
+        self.assertEqual(self.result(latest)['errors'], [])
+        self.assertTrue(any(g['kind'] == 'stale_evidence' for g in self.result(latest)['changes']['new_gaps'].values()))
+        # A prior pending receipt cannot retire a subsequent recorded claim.
+        reversed_reviews = {**latest, 'reviews': list(reversed(latest['reviews']))}
+        self.assert_error(self.result(reversed_reviews), 'validation evidence missing, static or stale')
+        # Code and current contract claims still require fresh execution proof.
+        code_claim = copy.deepcopy(latest)
+        code_claim['reviews'][0]['files'].extend(f for f in latest['reviews'][1]['files'] if f['path'] == 'assets/model.cpp')
+        self.assert_error(self.result(code_claim), 'validation evidence missing, static or stale')
+        contract_claim = copy.deepcopy(latest)
+        contract_claim['reviews'][0]['behaviors'] = latest['reviews'][1]['behaviors']
+        self.assert_error(self.result(contract_claim), 'validation evidence missing, static or stale')
+
     def test_root_build_and_dependency_files_are_watched(self):
         self.write('CMakeLists.txt', 'add_subdirectory(assets)\n')
         self.write('Makefile', 'all:\n\tfalse\n')

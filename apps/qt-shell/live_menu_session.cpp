@@ -20,9 +20,11 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
         if(output)output(QString::fromLocal8Bit(bytes));
     });
     connect(&process_,&QProcess::errorOccurred,this,[this](QProcess::ProcessError error){
+        if(process_.hardStopping())return;
         if(error==QProcess::FailedToStart){preparing_=false;fallback(process_.errorString());if(finished)finished();}
     });
     connect(&process_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this](int code,QProcess::ExitStatus status){
+        if(process_.hardStopping())return;
         if(preparing_){
             preparation_+=process_.readAllStandardOutput();preparing_=false;
             for(const auto& line:preparation_.split('\n'))if(line.startsWith("Evidence directory: "))root_=QString::fromLocal8Bit(line.mid(20)).trimmed();
@@ -88,7 +90,16 @@ bool LiveMenuSession::normalQuitAccepted(){
     if(quitting_ && pending_)poll();
     return normalQuitAccepted_;
 }
-bool LiveMenuSession::running() const{return preparing_||process_.state()!=QProcess::NotRunning;}
+bool LiveMenuSession::running() const{return preparing_||process_.hardStopping()||process_.state()!=QProcess::NotRunning;}
+void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> completed){
+    const bool staged=preparing_;
+    timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;
+    if(bridge_)bridge_->retire();
+    process_.forceStop(staged?QString{}:winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix,
+        [this,completed=std::move(completed)](bool ok,const QString& error){
+            preparing_=false;bridge_.reset();completed(ok,error);
+        });
+}
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
     if(mediaActive_||!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_,argument,rules))return false;
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;

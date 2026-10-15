@@ -46,8 +46,8 @@ static int valid(const MnmGlyphStateInput *in,uint32_t width,uint32_t height,int
     }
     return 1;
 }
-int mnm_glyph_backend_state(const MnmGlyphStateInput *in,MnmGlyphState *out){
-    if(!in||!out||!in->frame||in->frame_bytes<40||in->frame_bytes>1048576||
+int mnm_glyph_backend_state_format(const MnmGlyphStateInput *in,MnmGlyphState *out,uint32_t format){
+    if(format>1||!in||!out||!in->frame||in->frame_bytes<40||in->frame_bytes>1048576||
        word(in->frame)!=in->frame_bytes||word(in->frame+28)==UINT32_MAX||
        in->frame_address>UINT32_MAX-in->frame_bytes||in->coverage_address>UINT32_MAX-256||
        !in->entry_sp||in->red>255||in->green>255||in->blue>255||in->cold>1||in->rounding>3||
@@ -57,8 +57,8 @@ int mnm_glyph_backend_state(const MnmGlyphStateInput *in,MnmGlyphState *out){
     int opaque[128];if(!valid(in,width,height,opaque))return 1;
     int64_t x=(int64_t)in->x-(int32_t)word(in->frame+12),y=(int64_t)in->y-(int32_t)word(in->frame+16);
     if(x<-4096||x>4096||y<-4096||y>4096)return 1;
-    MnmGlyphState s={0};s.ecx=11;s.edx=height;
-    s.arguments[0]=(uint32_t)in->y;s.arguments[1]=in->red/8;s.arguments[2]=in->green/4;s.arguments[3]=in->blue/8;
+    MnmGlyphState s={0};s.ecx=format?10:11;s.edx=height;
+    s.arguments[0]=(uint32_t)in->y;s.arguments[1]=in->red/8;s.arguments[2]=in->green/(format?8:4);s.arguments[3]=in->blue/8;
     s.flags=return_flags(in->entry_sp,in->incoming_flags);
     if(!width&&!height){s.eax=in->cold?(in->coverage_address+256)&0xffff0000u:0;s.branch=MNM_GLYPH_EMPTY;goto done;}
     s.eax=(uint32_t)y&0xffff0000u;
@@ -75,4 +75,7 @@ int mnm_glyph_backend_state(const MnmGlyphStateInput *in,MnmGlyphState *out){
     for(uint32_t row=start;row<end;++row){s.opaque_pixels+=(uint32_t)opaque[row];if(opaque[row])s.arguments[0]=0;}
  done:
     *out=s;return 0;
+}
+int mnm_glyph_backend_state(const MnmGlyphStateInput *in,MnmGlyphState *out){
+    return mnm_glyph_backend_state_format(in,out,0);
 }

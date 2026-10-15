@@ -88,6 +88,14 @@ gap identities, or evidence overwrites. Human review still determines whether a
 scope, test or pending reason adequately describes the work. The gate establishes
 accounting, not scientific completeness or the identity of every indirect caller.
 
+An older recorded receipt naming no behavior can become inactive when its only
+matching files are unchanged registered execution reports and a later exact
+pending receipt re-accounts those same file hash pairs. The older receipt then
+grants no file, behavior, gap or validation credit. Its evidence remains immutable
+and stale when its sources changed. Code files, current behavior claims and status
+promotions still require their normal current receipts and execution support;
+an earlier pending review cannot retire a later recorded claim.
+
 For actual Git merges, the gate reads incoming parent registers and receipts
 without executing historical code. Identical behavior contracts, original build
 hashes, evidence definitions/links and status dimensions can retain their parent

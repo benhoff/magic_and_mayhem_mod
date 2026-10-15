@@ -276,6 +276,14 @@ Exit the game and wait for the launcher to finish before closing the shell;
 closure is blocked while the launcher runs. The default persistent prefix is
 `working/wineprefix-x86_64`.
 
+If the game freezes, click **Hard restart** in the Game toolbar or press
+**Ctrl+Shift+R** (also available in fullscreen). This force-stops the current
+session and starts a fresh game with the same launch options. Unsaved progress
+is lost. Wine shutdown affects all processes in the game's selected prefix;
+use a separate prefix for unrelated Wine applications. Restart waits for Wine
+shutdown, and a failure or ten-second timeout cancels the relaunch and appears
+in Details. A restart during preparation cancels that preparation first.
+
 For the original embedding backend:
 
 ```bash
@@ -307,6 +315,9 @@ ctest --test-dir working/build/qt-shell --output-on-failure
 CTest checks pixel conversion (palette, RGB565, RGB24, RGB32, negative pitch,
 padding and invalid masks), frame-stream guards, headless shell startup, external
 window embedding/detachment and known-pixel OpenGL framebuffer readback.
+`qt-game-hard-restart` checks frozen launcher descendants, asynchronous Wine
+kill/wait ordering and prefix selection, failure/timeout refusal, staging
+cancellation and menu-session reuse without launching the original game.
 The GUI tests use isolated Xvfb displays; OpenGL readback uses Mesa software
 rendering when requested by the test. Local X server sockets must be permitted.
 

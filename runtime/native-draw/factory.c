@@ -2,6 +2,7 @@
  * Selected identity, device and owned RGB565 services are admitted. Unknown
  * method invocation terminates rather than silently forwarding to a driver. */
 #include "../shadow/win32_min.h"
+#include "../../reconstruction/rendering/pixel_kernel.h"
 #define ND_INVALID ((i32)0x80070057u)
 #define ND_NOINTERFACE ((i32)0x80004002u)
 struct NdState;
@@ -66,7 +67,51 @@ __declspec(dllexport) i32 WIN NativeDrawEnumerateA(NdEnumCallback callback,void*
 }
 __declspec(dllexport) u32 WIN NativeDrawClippers(void) {return nc_objects;}
 __declspec(dllexport) u32 WIN NativeDrawDCs(void) {return ns_dcs;}
+/* Process-local versioned call boundary. A lease cannot escape its owning
+ * surface or survive ReleaseDC. INT_MIN means refusal before any mutation. */
+__declspec(dllexport) i32 WIN NativeDrawDibWordsV1(void* dc,i32 x,i32 y,i32 w,i32 h,
+ i32 sx,i32 sy,i32 sw,i32 sh,const u8* bits,const u8* info,u32 usage,u32 rop) {
+ struct NsState* s=ns_dc_owner(dc);
+ if(!s || !info || !bits || w<1 || w>2048 || h<1 || h>2048 || sx || sy || sw!=w || sh!=h || rop!=0xcc0020)return (i32)0x80000000u;
+ /* Producer adapter proves these source spans readable before this call. */
+ u32 depth=(u32)info[14]|(u32)info[15]<<8;
+ if(depth!=1 && depth!=4 && depth!=8 && depth!=24)return (i32)0x80000000u;
+ struct MnmDibInput in={info,bits,40+(depth==24?0:(1u<<depth)*4),((w*depth+31)/32)*4*(u32)h,usage};
+ struct MnmPixelPlane p={(u16*)s->dc_bits,s->width,s->height,((s->width*2+3)&~3u)/2,0};
+ if(!ns_dc_plain(dc)||!GdiFlush()||!mnm_dib_words(&p,&in,x,y))return (i32)0x80000000u;
+ return h;
+}
+/* SRCCOPY between current owned top-down RGB565 DC leases. Negative source
+ * extents, custom transforms/clip/ROP and unknown handles refuse atomically. */
+__declspec(dllexport) i32 WIN NativeDrawBitBltV1(void* dc,i32 x,i32 y,i32 w,i32 h,void* source,i32 sx,i32 sy,u32 rop){
+ const u32 error=GetLastError();i32 result=(i32)0x80000000u;
+ struct NsState *d=ns_dc_owner(dc),*s=ns_dc_owner(source);
+ if(!d||!s||w<0||w>2048||h<0||h>2048||rop!=0xcc0020||!ns_dc_plain(dc)||!ns_dc_plain(source))goto done;
+ long long left=x,top=y,right=(long long)x+w,bottom=(long long)y+h;
+ if(left<0)left=0;if(top<0)top=0;if(right>d->width)right=d->width;if(bottom>d->height)bottom=d->height;
+ if(right<=left||bottom<=top){result=1;goto done;}
+ const long long a=(long long)sx+left-x,b=(long long)sy+top-y;
+ if(a<0||b<0||a+right-left>s->width||b+bottom-top>s->height||!GdiFlush())goto done;
+ const u32 dp=(d->width+1)&~1u,sp=(s->width+1)&~1u,cols=(u32)(right-left),rows=(u32)(bottom-top);
+ const int backwards=d==s&&top>b;
+ for(u32 i=0;i<rows;++i){const u32 row=backwards?rows-1-i:i;
+  u16* out=(u16*)d->dc_bits+((u32)top+row)*dp+(u32)left;const u16* in=(u16*)s->dc_bits+((u32)b+row)*sp+(u32)a;
+  if(d==s&&top==b&&left>a){for(u32 j=cols;j;--j)out[j-1]=in[j-1];}
+  else {for(u32 j=0;j<cols;++j)out[j]=in[j];}}
+ result=1;
+done:SetLastError(error);return result;
+}
 __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
+/* Process-local synchronous storage lookup. No pointer survives this call's
+ * owner-thread operation; retired surfaces and active DC leases refuse. */
+__declspec(dllexport) i32 WIN NativeDrawPlaneV1(const void* pixels,u32* fields,u32 bytes){
+ if(!pixels || !fields || bytes!=24)return ND_INVALID;
+ for(struct NsState* s=ns_owned;s;s=s->next_owned)if(s->pixels==pixels){
+  if(s->dc)return NS_BUSY;
+  fields[0]=1;fields[1]=s->width;fields[2]=s->height;fields[3]=s->pitch/2;fields[4]=s->locked;fields[5]=0;return 0;
+ }
+ return ND_INVALID;
+}
 __declspec(dllexport) void WIN NativeDrawAnchor(void) {}
 /* Read-only launch-local diagnostic; never takes loader or drawing locks. */
 __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_n(&nd_status_phase,__ATOMIC_RELAXED);}

@@ -48,11 +48,49 @@ remains unverified. The recurring Mesa/pixel-format/Quartz diagnostics coexist
 with the reported success. This evidence concerns native foreign-window hosting;
 it does not validate OpenGL frame streaming or replace original engine drawing.
 
-The first version blocks shell closure while its launcher is running. It does
-not terminate Wine or use broad process-kill commands. Application instructions
-and current limitations are in [the shell README](../../apps/qt-shell/README.md).
+Shell closure follows the original Quit path while its launcher runs. Since
+2026-10-12, the explicit Hard restart toolbar action / Ctrl+Shift+R also provides
+forced recovery. `game_process.hpp` gives each launcher a new Unix session and
+kills its process group with SIGKILL. For an active game, it runs `wineserver -k`
+then `wineserver -w` with the exact selected WINEPREFIX. Wine processes outside
+that prefix are outside the shutdown scope; other processes sharing it stop too.
+Staging cancellation kills only its launcher group. Shutdown is asynchronous,
+has a ten-second deadline, and refuses relaunch after errors or timeout.
+
+The shell suspends input and presentation polling, stops native playback, retires
+the menu bridge, cancels render consumers, discards displayed frames and creates
+fresh channels through the existing launch path. Forced termination does not
+claim producer END or graceful engine cleanup. Unsaved progress is lost; accepted
+preferences keep the existing persistence policy. Launch options remain selected,
+and any pending close-after-Quit is cleared. The action is disabled while checking
+the installation or waiting for shutdown. It assumes the Qt event loop remains
+responsive; a frozen shell itself cannot dispatch the action.
+
+`game_restart_action.hpp` reserves the restart chord in an application event
+filter before the viewport forwards input, including when fullscreen hides the
+toolbar. The synthetic widget test checks input-filter priority, disabled state,
+auto-repeat refusal, hidden-button activation and unrelated-window isolation.
+
+`tests/game-hard-restart-test.cpp` exercises frozen Unix descendants, continued
+Qt timer progress, exact prefix kill/wait ordering, unrelated-process survival,
+duplicate requests, launcher reuse, missing/failed/hung wineserver refusal, and
+both staging and active menu-session cancellation. These are synthetic host
+checks; actual-game freeze recovery, foreign-window cleanup on force-stop and
+current rendering/media/input equivalence after relaunch remain pending. Historical
+execution fingerprints remain unchanged. Application instructions are in
+[the shell README](../../apps/qt-shell/README.md).
 
 Related layout change: the unchanged logging bridge moved from
 `reconstruction/shadow/` to `runtime/shadow/`. Rebuilding from the new path
 produced the same SHA-256 as the already staged DLL, and the three offline
 shadow staging/comparison tests passed. No staged game files were rewritten.
+
+Validation, 2026-10-12: the new recovery test and six host regressions passed.
+The [immutable synthetic result](qt-hard-restart-synthetic-retry-20261012.json)
+records prospective scope claims and verified stable source hashes. The initial
+[result](qt-hard-restart-synthetic-20261012.json) preserves the sandbox-only Xvfb
+socket failure; permitting local display sockets passed the same fixture. The
+repository storage guard interrupted the first test link below its free-space
+reserve, so the final test executable was linked in RAM-backed `/tmp` under
+the same guard. The updated public shell executable was built successfully.
+No historical hashes or original artifacts were changed.

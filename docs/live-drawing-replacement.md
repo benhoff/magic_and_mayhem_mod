@@ -147,16 +147,38 @@ minimap history now preflight their dependencies before mutation. A fresh
 all 954 original checkpoints and GPU mirrors after these changes. Live image/
 panel suppression, broader HUD/cursor journeys and unknown writers remain open.
 
+The [native panel loop adapter](../research/runtime/panel-loop-takeover.md)
+adds optional bevel/highlight/whitewash suppression at post-Lock splices, retaining
+original Lock/Unlock and wrapper origin translation. Current isolated production
+installer/resolver/entry comparisons pass 22,272 cases in both RGB565/RGB555,
+including nonzero bevel origins, full physical pixels and caller state. Native
+session staging is wired behind explicit `MNM_PANEL_TAKEOVER=1`; eight synthetic
+activation guards pass. Real integrated panel suppression remains pending. This
+closes that bounded implementation gap without closing the live/session gates.
+
+The [other mapped pixel producers](../research/runtime/native-pixel-producers.md)
+now have guarded native routes: RGB565/555 glyphs with unlimited production
+admission, PCX byte/WORD/surface sinks, JPEG decoder-call replacement, owned
+BMP/DIB painting, RGB-add/brighten/copy/fade, four-view minimap with outer border,
+four-mode colour rectangles,17 outside-World raster entries and owned-DC copies.
+Original/native fixtures and real public source staging cover these declared
+routes. `MNM_OTHER_PIXEL_PRODUCERS=1` selects them for native menu/drawing staging;
+individual flags can disable a route. Original preparation, admission forwards,
+unknown writers, source-history coherence and integrated presented journeys
+remain independent boundaries. This closes the mapped pixel-kernel/route
+implementation backlog; it does not promote whole-renderer live replacement.
+
+
 | Area | Current boundary | Work required for complete replacement |
 | --- | --- | --- |
-| Copies and fills | Native surface operations have selected original/driver comparisons. Producer-history replay composes selected fills and opaque/keyed copies from owned inputs; original live copy/fill bodies remain active. | Admit live suppression with clipping, keys, flags, partial writes, failures and caller-visible results preserved; cover stretched and alternate routes. |
-| CPU pixel writes | Selected startup/HUD writers are attributed and replayed from owned inputs. Word and World raster experiments bypass admitted bodies; broader Lock/Unlock writers and alternate paths remain unresolved. | Attribute remaining active writers, preserve destination dependencies and provide owned access/readbacks before extending bypass. |
-| GDI, images and text | Source BMP/JPEG/PCX and SFT glyphs compose native canvases in bounded original-active shadow. Higher text layout has isolated original comparisons; guarded glyph entry shadow/takeover now has bounded live proof; DIB/BMP cropping uses frozen driver/placement references. | Validate font/DC lifetime, wrapper ABI and failure semantics; admit live text/image suppression and complete remaining callers. |
+| Copies and fills | Native surface operations have selected original/driver comparisons. Producer-history replay composes selected fills and opaque/keyed copies from owned inputs; native DirectDraw operations and owned-DC SRCCOPY routes retain original preparation/lifecycle. | Admit live suppression with clipping, keys, flags, partial writes, failures and caller-visible results preserved; cover stretched and alternate routes. |
+| CPU pixel writes | Selected startup/HUD writers are attributed and replayed from owned inputs. Word and World raster experiments bypass admitted bodies; mapped image/effect/panel/minimap/rectangle and17 alternate raster entries now have native production pixel routes; unknown writers remain unresolved. | Attribute remaining active writers, preserve destination dependencies and provide owned access/readbacks before extending bypass. |
+| GDI, images and text | Source BMP/JPEG/PCX and SFT glyphs compose native canvases in bounded original-active shadow. Higher text layout has isolated original comparisons; guarded glyph entry has bounded live proof and unbounded production admission; JPEG wrapper, PCX, owned DIB and DC-copy routes now have native pixel comparisons. | Validate font/DC lifetime, wrapper ABI and failure semantics; admit live text/image suppression and complete remaining callers. |
 | Scene input and resources | Owned World inputs carry effective order, colours, clips and complete admitted resource bindings. Guarded batch comparison/suppression reaches startup queues 1..32. | Cover alternate dispatch, resource lifetimes, camera/viewport transitions and complete consumer side effects beyond the admitted prefix. |
 | Terrain and background | Ordinary/generated terrain contracts and selected World rasters have native implementations. Producer history reconstructs selected menu/loading/HUD background pixels without destination seeds. | Cover general live map/background, objects, overlays, water, visibility and camera behavior; close manual/history gaps. |
-| Sprites and palettes | Native SPR modes use owned colours/effect tables. Direct-word interior/clipped takeover and selected World raster bypass have bounded evidence; caller auxiliary passes remain original. | Cover indexed/auxiliary routes, live animation/attachments, palette remaps/cycling and all required sprite backends and caller state. |
+| Sprites and palettes | Native SPR modes use owned colours/effect tables. Direct-word interior/clipped takeover and selected World raster bypass have bounded evidence; 17 selected generic/fast/slow raster entries now have native pixel splices, including three blends, displacement, projected shadow and conditional grayscale. Caller source/auxiliary preparation remains original. | Cover indexed/auxiliary routes, live animation/attachments, palette remaps/cycling and all required sprite backends and caller state. |
 | Effects and lighting | Selected effect state, animation and lighting contracts are reconstructed offline; admitted World rasters consume effective shading/blend inputs. | Complete effect-to-pixel attribution, live inputs, dispatch and ordered output across active battles. |
-| HUD and cursor | Producer shadow reproduces selected startup HUD/cursor rasters and minimap/markers. The finite owned minimap viewer compares four orientations and camera pan. Original drawing/input remain active. | Cover broader HUD, tooltip and cursor journeys, hotspots, picking and source-state generation; validate producer suppression. |
+| HUD and cursor | Producer shadow reproduces selected startup HUD/cursor rasters and minimap/markers. The finite owned minimap viewer compares four orientations and camera pan. Minimap terrain/markers/corners/border now have guarded native pixel splices; original source/input preparation remains. | Cover broader HUD, tooltip and cursor journeys, hotspots, picking and source-state generation; validate producer suppression. |
 | Movies and transitions | Owned native decoding compares all 3,868 frames in the installed/synthetic corpus. Both enabled intros complete natively; 25 installed native fade loops match independent original replay under original Lock/Unlock. | Validate legacy controls/placement, active World return and complete screen ownership across transitions. |
 | Surface lifecycle and recovery | Native ownership/storage and transport recovery have scoped tests. | Integrate aliases, palettes, clip state, borrowed intervals, reads, flips, loss/Restore, transitions and coherent recovery while original raster work is bypassed. |
 

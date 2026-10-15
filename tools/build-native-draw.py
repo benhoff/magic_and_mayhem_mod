@@ -18,7 +18,8 @@ IMPORTS = {
     'user32': {'IsWindow': 4, 'GetClientRect': 8, 'MapWindowPoints': 16,
                'GetSystemMetrics': 4},
     'gdi32': {'CreateCompatibleDC': 4, 'CreateDIBSection': 24, 'SelectObject': 8,
-              'DeleteObject': 4, 'DeleteDC': 4, 'GdiFlush': 0},
+              'DeleteObject': 4, 'DeleteDC': 4, 'GdiFlush': 0, 'GetMapMode': 4, 'GetGraphicsMode': 4,
+              'GetViewportOrgEx': 8, 'GetWindowOrgEx': 8, 'CreateRectRgn': 16, 'GetClipRgn': 8},
 }
 
 
@@ -32,14 +33,18 @@ def build(output, declared=None):
         library = output/(dll+'.lib')
         subprocess.run(['llvm-dlltool', '-m', 'i386', '--kill-at', '-d', definition, '-l', library], check=True)
         libraries.append(library)
-    obj = output/'native-draw.obj'
-    dep = output/'native-draw.d'
-    subprocess.run([*FLAGS, '-MD', '-MF', dep, '-c', ROOT/'runtime/native-draw/factory.c', '-o', obj], check=True)
+    objects = []
+    for name in ['runtime/native-draw/factory.c', 'reconstruction/rendering/pixel_kernel.c']:
+        obj = output/(Path(name).stem+'.obj')
+        dep = output/(Path(name).stem+'.d')
+        subprocess.run([*FLAGS, '-MD', '-MF', dep, '-c', ROOT/name, '-o', obj], check=True)
+        objects.append(obj)
     closure = set()
-    for token in dep.read_text().replace('\\\n', ' ').split():
-        path = Path(token).resolve()
-        if path.is_file() and path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'working'):
-            closure.add(path.relative_to(ROOT).as_posix())
+    for dep in [p.with_suffix('.d') for p in objects]:
+        for token in dep.read_text().replace('\\\n', ' ').split():
+            path = Path(token).resolve()
+            if path.is_file() and path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'working'):
+                closure.add(path.relative_to(ROOT).as_posix())
     closure.add('tools/build-native-draw.py')
     if declared is not None and closure-set(declared):
         raise ValueError('Undeclared native DLL compiler/builder inputs: '+repr(sorted(closure-set(declared))))
@@ -51,14 +56,17 @@ def build(output, declared=None):
                'NativeDrawObjects': ('NativeDrawObjects', 0),
                'NativeDrawClippers': ('NativeDrawClippers', 0),
                'NativeDrawDCs': ('NativeDrawDCs', 0),
+               'NativeDrawDibWordsV1': ('NativeDrawDibWordsV1', 52),
+               'NativeDrawBitBltV1': ('NativeDrawBitBltV1', 36),
                'NativeDrawSurfaces': ('NativeDrawSurfaces', 0),
+               'NativeDrawPlaneV1': ('NativeDrawPlaneV1', 12),
                'NativeDrawAnchor': ('NativeDrawAnchor', 0),
                'NativeDrawStatusStage': ('NativeDrawStatusStage', 0),
                'NativeDrawStatusDeferV1': ('NativeDrawStatusDeferV1', 4)}
     subprocess.run(['lld-link', '/dll', '/machine:x86', '/entry:DllMain@12', '/nodefaultlib',
                     '/safeseh:no', '/timestamp:0', '/out:'+str(dll),
                     *[f'/export:{alias}=_{symbol}@{size}' for alias, (symbol, size) in exports.items()],
-                    obj, *libraries], check=True)
+                    *objects, *libraries], check=True)
     inspection = subprocess.check_output(['llvm-readobj', '--coff-imports', dll], text=True)
     if 'ddraw.dll' in inspection.lower():
         raise ValueError('Native DLL imports DirectDraw')

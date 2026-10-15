@@ -24,6 +24,7 @@ int mnm_glyph_coverage_bits(uint32_t rounding,uint32_t out[64]);
 /* Atomic refusal; distinct, nonaliasing input/frame/output is a precondition.
  * Caller FP status and pixels are deliberately not emulated by this model. */
 int mnm_glyph_backend_state(const MnmGlyphStateInput *,MnmGlyphState *);
+int mnm_glyph_backend_state_format(const MnmGlyphStateInput *,MnmGlyphState *,uint32_t format);
 #ifdef __cplusplus
 }
 #endif

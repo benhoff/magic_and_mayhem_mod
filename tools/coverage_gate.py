@@ -360,14 +360,39 @@ def check(before, after, reviews, audit_report, merge_history=None):
             errors.append(f'Historical change review removed or rewritten: {old["id"]}; append a new receipt')
     seen = set()
     composed = receipt_chains(delta, reviews['reviews'], before, after, audit_report)
+    # A later exact pending review can re-account an immutable execution report
+    # without claiming its old source closure is current. Artifact-only recorded
+    # receipts have no behavior hashes to retire through the usual contract rule.
+    # Grant the older receipt no file/behavior/gap/validation credit; current
+    # changes still need the independently checked pending review below.
+    pending_artifacts = set()
+    current_files = {f['path']: f for f in delta['files']}
+    for position, (review, _) in enumerate(composed):
+        if review.get('validation', {}).get('status') != 'pending':
+            continue
+        problems, files, _ = review_errors(review, delta, before, after, audit_report)
+        if not problems:
+            pending_artifacts.update((position, f['path'], f['before_sha256'], f['after_sha256'])
+                                     for f in files if f['role'] == 'research')
     used_chains = {}
-    for review, prefixes in composed:
+    for position, (review, prefixes) in enumerate(composed):
         rid = review['id']
         if rid in seen:
             errors.append(f'Duplicate change-review ID: {rid}')
         seen.add(rid)
+        artifact_paths = {after['evidence'][eid]['record'] for eid in review.get('validation', {}).get('evidence', [])
+                          if eid in after['evidence'] and after['evidence'][eid]['kind'] != 'static'}
+        matches = [current_files[f['path']] for f in review.get('files', []) if f['path'] in current_files
+                   and all(f[k] == current_files[f['path']][k] for k in ('before_sha256', 'after_sha256'))]
+        retired_artifacts = (review.get('validation', {}).get('status') == 'recorded'
+                             and not review.get('behaviors') and bool(matches)
+                             and all(f['role'] == 'research' and f['path'] in artifact_paths
+                                     and any(later > position and (path, pre, post) ==
+                                             (f['path'], f['before_sha256'], f['after_sha256'])
+                                             for later, path, pre, post in pending_artifacts)
+                                     for f in matches))
         problems, files, behaviors = review_errors(review, delta, before, after, audit_report,
-                                                   historical=rid in historical_ids)
+                                                   historical=rid in historical_ids or retired_artifacts)
         errors.extend(problems)
         if problems:
             continue

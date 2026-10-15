@@ -18,6 +18,31 @@ HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False,native_music=False,music_assets=None,skip_movies=False,grimoire_observe=False,original_gameplay=False):
+    from rts_controls_launch import enabled_from_environment as rts_enabled,stage as stage_rts
+    rts_controls=rts_enabled(os.environ)
+    if rts_controls and original_gameplay:
+        raise ValueError('Controls enhancements cannot be combined with passive original-gameplay evidence')
+    from borrowed_pixel_backend_launch import FEATURES,selection,enabled as borrowed_enabled,stage as stage_borrowed
+    pixel_environment=selection(os.environ)
+    borrowed={name:borrowed_enabled(pixel_environment,name) for name in FEATURES}
+    if any(borrowed.values()) and not (native_draw and native_render and actions):
+        raise ValueError('Native pixel producers require native menu/drawing staging')
+    from panel_backend_launch import enabled_from_environment as panels_enabled,stage as stage_panels
+    panel_takeover=panels_enabled(pixel_environment)
+    from pixel_backend_launch import enabled_from_environment as pixels_enabled,stage as stage_pixels
+    pixel_takeover=pixels_enabled(pixel_environment)
+    from jpeg_backend_launch import enabled_from_environment as jpeg_enabled,stage as stage_jpeg
+    jpeg_takeover=jpeg_enabled(pixel_environment)
+    from minimap_backend_launch import enabled_from_environment as minimap_enabled,stage as stage_minimap
+    minimap_takeover=minimap_enabled(pixel_environment)
+    if minimap_takeover and not (native_draw and native_render and actions):
+        raise ValueError('Native minimap pixels require native menu/drawing staging')
+    if jpeg_takeover and not (native_draw and native_render and actions):
+        raise ValueError('Native JPEG pixels require native menu/drawing staging')
+    if pixel_takeover and not (native_draw and native_render and actions):
+        raise ValueError('Native pixel writers require native menu/drawing staging')
+    if panel_takeover and not (native_draw and native_render and actions):
+        raise ValueError('Native panels require native menu/drawing staging')
     if type(original_gameplay) is not bool:raise ValueError('Invalid original gameplay observation policy')
     if original_gameplay and (not campaign_observe or actions or native_render or native_draw or resident_world or native_voices):
         raise ValueError('Original gameplay observation requires campaign observation without native rendering or actions')
@@ -37,7 +62,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
-    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','MnmApiCensus.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmPanelWriters.dll','MnmPixelWriters.dll','MnmJpegPixels.dll','MnmMinimapWriters.dll','MnmColourRect.dll','MnmRasterWriters.dll','MnmDcCopy.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','MnmApiCensus.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Copy hash mismatch')
@@ -63,7 +88,17 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         shutil.copy2(audio_dll,game/'MnmAudio.dll')
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
-    patched,glyph_metadata=stage_glyph(root,data,patched,None if resident_world else mode_from_environment())
+    glyph_mode=mode_from_environment()
+    patched,glyph_metadata=stage_glyph(root,data,patched,None if resident_world else glyph_mode,
+        capture=not (native_draw and native_render and glyph_mode=='takeover'))
+    patched,panel_metadata=stage_panels(root,data,patched,panel_takeover)
+    patched,pixel_metadata=stage_pixels(root,data,patched,pixel_takeover)
+    patched,jpeg_metadata=stage_jpeg(root,data,patched,jpeg_takeover)
+    patched,minimap_metadata=stage_minimap(root,data,patched,minimap_takeover)
+    borrowed_metadata={}
+    for name,active in borrowed.items():
+        patched,fields=stage_borrowed(root,data,patched,name,active)
+        borrowed_metadata.update(fields)
     resident_metadata={}
     if resident_world:
         scene=build_adapter('tools/build-scene-observer.py',lambda: module('public_world_scene_build','tools/build-scene-observer.py').build())
@@ -71,6 +106,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         shutil.copy2(scene,game/'MnmScene.dll');shutil.copy2(scene.parent/'manifest.json',root/'scene-bridge-build.json')
         (root/'resident-world').mkdir()
         resident_metadata=dict(resident_world=True,owned_world_snapshot=os.environ.get('MNM_WORLD_SNAPSHOT')=='1',resident_scene_sha256=hashlib.sha256(scene.read_bytes()).hexdigest())
+        patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment(),scene_imported=True,capture=False)
     cadence_metadata={}
     cadence=os.environ.get('MNM_ENGINE_CADENCE_TRACE')
     if cadence is not None:
@@ -100,6 +136,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         patched=module('census_import_stage','tools/prepare-shadow-experiment.py').add_import(patched,'MnmApiCensus.dll','ApiCensusAnchor',b'.mnapi')
         shutil.copy2(census_dll,game/census_dll.name);shutil.copy2(census_dll.parent/'manifest.json',root/'api-census-build.json')
         census_metadata=dict(wine_import_census=True,wine_import_census_file=str(root/'wine-import-census.bin'),wine_import_census_dll_sha256=hashlib.sha256(census_dll.read_bytes()).hexdigest())
+    patched,rts_metadata=stage_rts(root,data,patched,rts_controls,os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'))
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None
@@ -126,6 +163,12 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata);metadata.update(census_metadata)
+    metadata.update(panel_metadata)
+    metadata.update(pixel_metadata)
+    metadata.update(jpeg_metadata)
+    metadata.update(minimap_metadata)
+    metadata.update(borrowed_metadata)
+    metadata.update(rts_metadata)
     metadata.update(native_voices=native_voices,native_initial_silence=native_voices,native_audio_profiles=native_voices,native_audio_file_sizes=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     native_wave_loading=native_voices,
                     native_audio_factory=native_voices,

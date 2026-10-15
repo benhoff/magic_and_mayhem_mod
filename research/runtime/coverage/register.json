@@ -5813,7 +5813,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Qt host and session orchestration",
-      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Hard restart is an intentional host policy: isolate launcher process groups, force-stop and wait for Wine in the selected prefix, cancel menu staging without relaunching its exit branch, retire channels, discard presentation and launch a fresh session with the existing options. Synthetic process/lifecycle coverage is separate from actual-game freeze recovery, which remains pending; prefix shutdown also stops other processes sharing that prefix.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -5826,10 +5826,13 @@
         "apps/qt-shell/frame_stream.cpp",
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
-        "apps/qt-shell/gl_viewport.hpp"
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/game_process.hpp",
+        "apps/qt-shell/game_restart_action.hpp"
       ],
       "tests": [
-        "tests/frame-stream-test.cpp"
+        "tests/frame-stream-test.cpp",
+        "tests/game-hard-restart-test.cpp"
       ],
       "evidence": [
         "REVIEW.HOST.session",
@@ -5840,7 +5843,8 @@
         "HOST.native-command-default.synthetic-20261006",
         "HOST.command-refusal.native-20261006",
         "HOST.fullscreen-native-commit.native-20261007",
-        "HOST.fullscreen-native-commit.final-native-20261007"
+        "HOST.fullscreen-native-commit.final-native-20261007",
+        "HOST.hard-restart.synthetic-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -5848,7 +5852,16 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp"
+      ]
     },
     {
       "id": "HOST.input",
@@ -53890,7 +53903,8 @@
         "tests/test-native-audio-policy.py"
       ],
       "evidence": [
-        "HOST.startup-preparation.support-20261012"
+        "HOST.startup-preparation.support-20261012",
+        "HOST.startup-preparation.ui-final-20261012"
       ],
       "status": {
         "understanding": "partial",
@@ -62262,6 +62276,1782 @@
         "Current controls run-hj3chstj pass missing/valid/invalid/oversized packet handling, valid-file retention, opportunistic full-queue skip, blocked-worker GUI heartbeat, PNG pixels and128 native World words. Full run-rnwjsprp passes casting/combat/spells/portrait/menu/Quit with14 retained route captures,5407 balanced source/import/returns, stable source/input and original manifests, zero ordinary readbacks.",
         "Measured request-intake GUI max falls from224.411ms to17.594ms including diagnostic readback; zero eligible>=50ms warm paint gaps in final run. Exact old144ms event/syscall remains unproved; later230.309ms reproduced intake boundary is fixed structurally. Missing/unopenable retries and original JSON file guard are intentional native policies. Non-world/cold/hidden continuity, exact scanout and sustained60FPS remain excluded. VisibleWorld59.78562/global59.05049/engine19.36550 means no causal engine-rate gain claim."
       ]
+    },
+    {
+      "id": "AI.object-action",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original object interaction action13",
+      "scope": "Whole50f3b0 object interaction action13: kind1 overlay before main event, event1 behavior callback, type9/event3 cue62, current definition-width1/four-corner footprint, signed bounds without wrapping, finite WORD-linked558-byte object chain search for kinds26/62/65, no-match reset. Owned canonical head grid/object pool and supplied animation/behavior/cue/reset services. Valid finite pools plus signed32 coordinate/extreme/width fixtures; cycles/raw pointers, broader backend layouts, installed assets and native World/session integration excluded.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5305264,
+          "scope": "Whole50f3b0 object interaction action13: kind1 overlay before main event, event1 behavior callback, type9/event3 cue62, current definition-width1/four-corner footprint, signed bounds without wrapping, finite WORD-linked558-byte object chain search for kinds26/62/65, no-match reset. Owned canonical head grid/object pool and supplied animation/behavior/cue/reset services. Valid finite pools plus signed32 coordinate/extreme/width fixtures; cycles/raw pointers, broader backend layouts, installed assets and native World/session integration excluded.",
+          "recovered_range": "creature-object-action-50f3b0"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/object_action.cpp"
+      ],
+      "tests": [
+        "tests/creature-object-action-test.cpp",
+        "tools/test-creature-object-action.py"
+      ],
+      "evidence": [
+        "NS38.services-static",
+        "AI.object-action.range-original-20261013"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/creature-ai/object-action/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole unchanged480-byte body, full actor/config/map/pool/body guards and ordered callback/cue/poll/reset calls",
+          "Owned finite canonical8/16by8/16by4 grids, pool0..16, acyclic valid/out-of-range WORD links",
+          "All animation events0..6, types0..27, definition widths0/1/2/3/ffffffff, bounds/seams and extreme signed32 positions",
+          "Behavior reentry changes profile width and position before footprint lookup"
+        ],
+        "excluded": [
+          "Cyclic nonmatching chains and invalid raw pointers/backend layouts",
+          "Real ANI, reset/behavior/cue World consequences, installed assets and native session integration",
+          "Incidental EAX return meaning"
+        ]
+      }
+    },
+    {
+      "id": "AI.queue-delivery",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original queued command delivery512220",
+      "scope": "Pinned512220..512335 entry; semantic branches and lower ownership in recovery. Existing AI.queued-orders still supplies this boundary. Whole body comparison and native session integration pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317152,
+          "scope": "Pinned512220..512335 entry; semantic branches and lower ownership in recovery. Existing AI.queued-orders still supplies this boundary. Whole body comparison and native session integration pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.upkeep-admission",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature upkeep514c60",
+      "scope": "Pinned514c60..514e33 entry; original owner/resource admission and consequences in recovery. Maintenance upkeep branch and complete World composition remain pending; no balance change.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5327968,
+          "scope": "Pinned514c60..514e33 entry; original owner/resource admission and consequences in recovery. Maintenance upkeep branch and complete World composition remain pending; no balance change."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AI.environment-pass",
+      "subsystem": "creature-execution",
+      "kind": "recovered",
+      "title": "Original creature environment pass52a9f0",
+      "scope": "Pinned52a9f0..52ab17 post-scheduler environment pass in recovery. Type/terrain/health branches, current original comparison and native World composition pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5417456,
+          "scope": "Pinned52a9f0..52ab17 post-scheduler environment pass in recovery. Type/terrain/health branches, current original comparison and native World composition pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.creature-services-export",
+      "subsystem": "coverage-tooling",
+      "kind": "native_policy",
+      "title": "Read-only remaining creature service export",
+      "scope": "Pinned original hash/body/anchor exports and bounded disassembly with original manifest checks and new-output refusal; static research only.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "tools/export-creature-services.py"
+      ],
+      "tests": [],
+      "evidence": [
+        "NS38.services-static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.object-action-admission",
+      "subsystem": "creature-execution",
+      "kind": "native_policy",
+      "title": "Native object action grid and chain refusals",
+      "scope": "Owned canonical grid/pool shape checks and bounded object-chain traversal refuse malformed dimensions/storage and nonmatching cycles. Three separate native refusal cases; caller-staged state/events required. Original malformed pointer/cycle semantics and native session admission excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/creature-services.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/object_action.cpp"
+      ],
+      "tests": [
+        "tests/creature-object-action-test.cpp",
+        "tools/test-creature-object-action.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/creature-ai/object-action/CMakeLists.txt",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/control.hpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "AI.object-action.range-original-20261013"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.panel-loop-state",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Original panel loop pixels and preserved wrapper caller state",
+      "scope": "Positive bounded RGB565/RGB555 bevel/highlight/whitewash post-Lock native pixel splices under original wrappers. Ordered physical pixels including padding/guards and nonzero bevel origins, percentage0..1000 and both booleans, caller GPR/defined flags/DF/selected full FX, original Unlock argument/count/volatile-register and LastError equality. Supplied external Lock/Unlock and Linux-hosted Win32 memory/API adapters. No intermediate private-loop scratch equivalence, original Lock failure/recovery, real DirectDraw/Wine/game integration or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5823984,
+          "scope": "Admitted panel pixel loop under original Lock/Unlock wrapper"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822656,
+          "scope": "Admitted panel pixel loop under original Lock/Unlock wrapper"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5825216,
+          "scope": "Admitted panel pixel loop under original Lock/Unlock wrapper"
+        }
+      ],
+      "documents": [
+        "research/runtime/panel-loop-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/panel_kernel.c",
+        "reconstruction/rendering/panel_kernel.h",
+        "runtime/canvas-writers/panel_route.c",
+        "runtime/canvas-writers/panel_route.h",
+        "runtime/canvas-writers/panel_entry.S",
+        "runtime/canvas-writers/panel_bridge.c"
+      ],
+      "tests": [
+        "tests/panel-kernel-test.c",
+        "tests/panel-splice-reference.cpp",
+        "tests/panel-splice-state-probe.S",
+        "tools/test-panel-splice.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-panel-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.panel-loop-state.original-20261013",
+        "NP.panel-loop-controls.native-20261013",
+        "RS.panel-loop-state.staging-original-20261013",
+        "NP.panel-loop-controls.staging-native-20261013",
+        "RS.panel-loop-state.pixel-launchers-original-20261014"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.panel-loop-admission",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Guarded atomic native panel loop admission",
+      "scope": "Explicit optional fixed-build post-Lock panel installer/resolver: all splice/tail signatures checked before any patch, initialized bounded RGB565/RGB555 footprint, writable full memory spans and single thread owner, no retained pixel pointers or synchronous drawing diagnostics. Refusal precedes native writes and forwards original loop once; installation idempotent. Linux-hosted API adapters only. Real shared-surface concurrency, DirectDraw/Wine/game integration and complete replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/panel-loop-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/panel_kernel.c",
+        "reconstruction/rendering/panel_kernel.h",
+        "runtime/canvas-writers/panel_route.c",
+        "runtime/canvas-writers/panel_route.h",
+        "runtime/canvas-writers/panel_entry.S",
+        "runtime/canvas-writers/panel_bridge.c"
+      ],
+      "tests": [
+        "tests/panel-kernel-test.c",
+        "tests/panel-splice-reference.cpp",
+        "tests/panel-splice-state-probe.S",
+        "tools/test-panel-splice.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-panel-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.panel-loop-state.original-20261013",
+        "NP.panel-loop-controls.native-20261013",
+        "RS.panel-loop-state.staging-original-20261013",
+        "NP.panel-loop-controls.staging-native-20261013",
+        "RS.panel-loop-state.pixel-launchers-original-20261014"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.panel-loop-launch",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Explicit native panel producer session staging",
+      "scope": "Optional admitted panel DLL staging and session activation with native menu/render/drawing hosting, source/signature/DLL hash identity, owned paths and cleared inherited environment activation. Disabled mode unchanged; bad modes, unpinned source, changed/unbound DLL, incompatible hosting and redirected game/DLL refused. Synthetic session guards only. Real public Wine/game integration and complete replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/panel-loop-takeover.md"
+      ],
+      "implementation": [
+        "tools/panel_backend_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/test-panel-backend-launch.py",
+        "tools/test-panel-splice.py"
+      ],
+      "validation_dependencies": [
+        "tools/launch_build_cache.py",
+        "tools/build-panel-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/prepare-shadow-experiment.py"
+      ],
+      "evidence": [
+        "RS.panel-loop-state.original-20261013",
+        "NP.panel-loop-controls.native-20261013",
+        "RS.panel-loop-state.staging-original-20261013",
+        "NP.panel-loop-controls.staging-native-20261013",
+        "NP.panel-loop-launch.pixel-launchers-native-20261014"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.image-effect-pixel-state",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Image/effect native pixel loops under retained wrappers",
+      "scope": "Selected bounded positive PCX surface/index/raw WORD, RGB-add, brighten, original row-copy and fade loop splices; effective palettes and both formats, physical padding, caller GPR/defined flags/FX and supplied Lock/Unlock order, atomic native admission and other-thread forwarding. Original external resource preparation, OS/driver behavior, original malformed inputs, real game integration and live replacement excluded.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5550800,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5551376,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5551600,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded",
+          "recovered_range": "pixel-producer-54b5f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5528592,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822320,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded",
+          "recovered_range": "pixel-producer-58d770"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821360,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded",
+          "recovered_range": "pixel-producer-58d3b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5827968,
+          "scope": "Bounded pixel loop under retained preparation/lifecycle; external APIs excluded"
+        }
+      ],
+      "documents": [
+        "research/runtime/image-effect-pixel-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/pixel_entry.S",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/fade_entry.S",
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c"
+      ],
+      "tests": [
+        "tests/pixel-kernel-test.c",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tools/test-pixel-splice.py"
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-native-draw.py",
+        "tools/build-pixel-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/launch_build_cache.py",
+        "tools/original-manifest.sh",
+        "tools/pixel_backend_launch.py"
+      ],
+      "evidence": [
+        "RS.image-effect-pixel-state.original-20261014",
+        "NP.image-effect-controls.native-20261014",
+        "RS.image-effect-pixel-state.range-original-20261014",
+        "RS.image-effect-pixel-state.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.image-effect-admission",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Atomic image/effect pixel memory and thread admission",
+      "scope": "Fixed-build process-local single-thread admission, checked readable/writable spans, bounded unpadded PCX RLE rows/effective palette, source disjointness, positive prepared clipped RGB rectangle, forward-before-write on invalid geometry/DF/caller inputs; signature-checked independent DLL splices with no call budget or diagnostic drawing I/O. No malformed original equivalence or full producer closure.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/image-effect-pixel-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/pixel_entry.S",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/fade_entry.S",
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c"
+      ],
+      "tests": [
+        "tests/pixel-kernel-test.c",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tools/test-pixel-splice.py"
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-native-draw.py",
+        "tools/build-pixel-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/launch_build_cache.py",
+        "tools/original-manifest.sh",
+        "tools/pixel_backend_launch.py"
+      ],
+      "evidence": [
+        "RS.image-effect-pixel-state.original-20261014",
+        "NP.image-effect-controls.native-20261014",
+        "RS.image-effect-pixel-state.range-original-20261014",
+        "RS.image-effect-pixel-state.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.owned-dib-paint",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Canonical DIB native painting in current owned HDC lease",
+      "scope": "Versioned process-local current owned DC lease operation: canonical BI_RGB positive bottom-up 1/4/8-bit full palettes or24 BGR, unscaled SRCCOPY/source0, clipped signed destination and RGB565 conversion, atomic refusal. Retained GDI lease creation/flush/disposal. Adapter span checks and fallback to original GDI outside admission. Synthetic layout/pixel/refusal controls; real owned DC/Wine integration and caller return/driver equivalence remain pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/image-effect-pixel-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/pixel_entry.S",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/fade_entry.S",
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c"
+      ],
+      "tests": [
+        "tests/pixel-kernel-test.c",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tools/test-pixel-splice.py",
+        "tests/native-dib-pixels-probe.c",
+        "tools/test-native-dib-pixels.py"
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-native-draw.py",
+        "tools/build-pixel-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/launch_build_cache.py",
+        "tools/original-manifest.sh",
+        "tools/pixel_backend_launch.py"
+      ],
+      "evidence": [
+        "RS.image-effect-pixel-state.original-20261014",
+        "NP.image-effect-controls.native-20261014",
+        "NP.owned-dib-paint.gdi-20261014",
+        "RS.image-effect-pixel-state.original-final-20261014",
+        "NP.owned-dib-paint.gdi-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.jpeg-source-pixels",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Original JPEG row sink versus source-only native static pixels",
+      "scope": "Installed static JPEG source corpus, RGB565/555 clipped/padded target row sink under native prepared RGB source cache; exact original DLL fastcall pixel comparison pending. Runtime bounded canonical owned path/target span/thread admission and source-only cache, fixed-build guarded call site retaining original Lock/Unlock. Actual original EXE wrapper state, malformed/dynamic JPEG behavior, real game integration and live replacement excluded.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821216,
+          "scope": "Original wrapper and imported fastcall decoder boundary; external JPEG.DLL body is separately pinned input"
+        }
+      ],
+      "documents": [
+        "research/runtime/native-jpeg-pixels.md"
+      ],
+      "implementation": [
+        "assets/jpeg_word_cache_main.cpp",
+        "reconstruction/rendering/jpeg_pixels.c",
+        "reconstruction/rendering/jpeg_pixels.h",
+        "runtime/canvas-writers/jpeg_bridge.c",
+        "tools/jpeg_pixel_cache.py"
+      ],
+      "tests": [
+        "tests/jpeg-pixels-probe.c",
+        "tools/test-jpeg-pixels.py"
+      ],
+      "validation_dependencies": [
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-jpeg-pixels.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.jpeg-source-pixels.original-20261014",
+        "RS.jpeg-wrapper-route.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.jpeg-pixel-cache",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Bounded source-only mapped static JPEG pixel cache",
+      "scope": "Installed static JPEG source corpus, RGB565/555 clipped/padded target row sink under native prepared RGB source cache; exact original DLL fastcall pixel comparison pending. Runtime bounded canonical owned path/target span/thread admission and source-only cache, fixed-build guarded call site retaining original Lock/Unlock. Actual original EXE wrapper state, malformed/dynamic JPEG behavior, real game integration and live replacement excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/native-jpeg-pixels-cache.md",
+        "research/runtime/native-jpeg-pixels.md"
+      ],
+      "implementation": [
+        "assets/jpeg_word_cache_main.cpp",
+        "reconstruction/rendering/jpeg_pixels.c",
+        "reconstruction/rendering/jpeg_pixels.h",
+        "runtime/canvas-writers/jpeg_bridge.c",
+        "tools/jpeg_pixel_cache.py"
+      ],
+      "tests": [
+        "tests/jpeg-pixels-probe.c",
+        "tools/test-jpeg-pixels.py"
+      ],
+      "validation_dependencies": [
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-jpeg-pixels.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.jpeg-source-pixels.original-20261014",
+        "RS.jpeg-wrapper-route.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.glyph-format-pixels",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Native RGB565/RGB555 glyph pixels and caller state",
+      "scope": "Selected bounded synthetic RLE glyphs, both RGB565 and RGB555 masks and format-dependent tint division/red shift, twelve masked precision/rounding seeds, zero/one occupied finite x87 value, cold/warm table and original-once refusal for two occupied values or unsupported state. Actual native route/RET16 entry physical pixels/table/GPR/defined flags/DF/selected FX versus pinned original. No integrated resident glyph, arbitrary FP/input, font layout or live replacement claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Bounded format-dependent glyph pixel/state branches"
+        }
+      ],
+      "documents": [
+        "research/runtime/image-effect-pixel-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/glyph_entry.S"
+      ],
+      "tests": [
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-test.c",
+        "tools/test-glyph-formats.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-font-glyph-raster.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.glyph-format-pixels.original-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.glyph-production-route",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Uncaptured unbounded borrowed glyph route and resident staging",
+      "scope": "Capture-disabled RGB565/555 native glyph owner-thread checked borrowed frame/canvas/coverage admission, no diagnostic65536-call cap, no per-call WriteFile or snapshot/trial allocation; actual kernel atomic preflight before commit. Controlled fake-globals process-memory tests and resident launch guards. Source concurrency, installed original hook/return publication, protected World batch glyph admission, live gameplay equivalence and higher text layout excluded; resident stream integration remains pending. Native-draw standalone menu staging also selects capture0 for takeover; explicit shadow keeps diagnostics.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-production-takeover.md"
+      ],
+      "implementation": [
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/canvas_producers.c",
+        "tools/glyph_backend_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/glyph_live_capture.py"
+      ],
+      "tests": [
+        "tests/glyph-production-probe.c",
+        "tools/test-glyph-production.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.S",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/readable_extent.h",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_continuous_clock.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_source_regions.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/glyph-production-probe.c",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/glyph_backend_launch.py",
+        "tools/glyph_live_capture.py",
+        "tools/launch_build_cache.py",
+        "tools/test-glyph-production.py"
+      ],
+      "evidence": [
+        "NP.glyph-production-route.native-20261014",
+        "NP.glyph-production-route.native-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.pixel-producer-launch",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Owned combined pixel producer staging and launch admission",
+      "scope": "Pinned native menu/owned drawing source staging for panel/image/JPEG/minimap/colour-rectangle/raster/DC-copy/glyph adapters, original signatures and nine combined imports, source/cache/owned DLL hashes, group/individual policy and inherited-mode clearing. Production glyph capture0 in native-draw standalone/resident modes. Actual isolated staging/authorization only; installed runtime hook composition and live presented gameplay remain pending. Optional full-source fixture exercises actual public resident preparation using an isolated pristine EXE copy and installed static source assets; process launch excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-production-takeover.md",
+        "research/runtime/image-effect-pixel-takeover.md",
+        "research/runtime/native-jpeg-pixels.md",
+        "research/runtime/native-pixel-producers.md",
+        "research/runtime/coverage/pixel-producers-incoming-history-20261014.json"
+      ],
+      "implementation": [
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/glyph_backend_launch.py",
+        "tools/jpeg_backend_launch.py",
+        "tools/jpeg_pixel_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/minimap_backend_launch.py",
+        "tools/panel_backend_launch.py",
+        "tools/pixel_backend_launch.py",
+        "tools/prepare-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-pixel-staging.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_word_cache_main.cpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "reconstruction/rendering/jpeg_pixels.c",
+        "reconstruction/rendering/jpeg_pixels.h",
+        "reconstruction/rendering/minimap_pixels.c",
+        "reconstruction/rendering/minimap_pixels.h",
+        "reconstruction/rendering/panel_kernel.c",
+        "reconstruction/rendering/panel_kernel.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/colour_rect_entry.S",
+        "runtime/canvas-writers/dc_copy_bridge.c",
+        "runtime/canvas-writers/fade_entry.S",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/jpeg_bridge.c",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/canvas-writers/minimap_entry.S",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/minimap_route.h",
+        "runtime/canvas-writers/panel_bridge.c",
+        "runtime/canvas-writers/panel_entry.S",
+        "runtime/canvas-writers/panel_route.c",
+        "runtime/canvas-writers/panel_route.h",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/pixel_entry.S",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/canvas-writers/raster_entry.S",
+        "runtime/canvas-writers/raster_sites.h",
+        "runtime/canvas-writers/raster_workspace.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.S",
+        "runtime/scene/drawing_publication.h",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/readable_extent.h",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_continuous_clock.c",
+        "runtime/scene/world_deferred.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_source_regions.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/minimap-fixture.hpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-colour-rect.py",
+        "tools/build-dc-copy.py",
+        "tools/build-jpeg-pixels.py",
+        "tools/build-menu-observer.py",
+        "tools/build-minimap-writers.py",
+        "tools/build-native-draw.py",
+        "tools/build-panel-writers.py",
+        "tools/build-pixel-writers.py",
+        "tools/build-raster-writers.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/glyph_backend_launch.py",
+        "tools/jpeg_pixel_cache.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu_preferences_store.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/pixel_backend_launch.py",
+        "tools/prepare-native-draw.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/rts_controls_config.py",
+        "tools/rts_controls_launch.py",
+        "tools/rts_controls_source.py",
+        "tools/run-opengl-game.py"
+      ],
+      "evidence": [
+        "NP.pixel-producer-launch.staging-20261014",
+        "NP.pixel-producer-launch.public-staging-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.jpeg-wrapper-route",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Guarded native JPEG decoder call under original Lock/Unlock wrapper",
+      "scope": "All752 installed JPEG sources through unchanged pinned58d320 wrapper and actual production58d34b CALL patch, native source-only RGB cache versus JPEG.DLL; exact supplied Lock/Unlock receiver/pointer/count and Boolean wrapper result, full guarded RGB565/555 padded/clipped pixels and native3008/original0 call counters. Original external-decoder volatile GPR/FX history, real driver/game integration, malformed/dynamic inputs and live replacement excluded.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821216,
+          "scope": "Original wrapper and imported fastcall decoder boundary; external JPEG.DLL body is separately pinned input"
+        }
+      ],
+      "documents": [
+        "research/runtime/native-jpeg-pixels.md"
+      ],
+      "implementation": [
+        "assets/jpeg_word_cache_main.cpp",
+        "reconstruction/rendering/jpeg_pixels.c",
+        "reconstruction/rendering/jpeg_pixels.h",
+        "runtime/canvas-writers/jpeg_bridge.c",
+        "tools/jpeg_pixel_cache.py"
+      ],
+      "tests": [
+        "tests/jpeg-pixels-probe.c",
+        "tools/test-jpeg-pixels.py"
+      ],
+      "validation_dependencies": [
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-jpeg-pixels.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh",
+        "tools/export-menu-support.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/launch_build_cache.py",
+        "tools/pixel_backend_launch.py"
+      ],
+      "evidence": [
+        "RS.jpeg-wrapper-route.original-20261014",
+        "RS.jpeg-wrapper-route.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.rts-selection-policy",
+      "subsystem": "native_input",
+      "kind": "native_policy",
+      "title": "Owned RTS selection and team shortcut policy",
+      "scope": "Bounded owned snapshots of0..256 actors with explicit session/owner/lifetime identity: selection/team save,recall,append/remove,wizard/focus,idle/ungrouped cycling/all,type selection and retained mixed-type cycling; repeat and double-tap policy. Empty searches retain selection; only living owned actors selected or regrouped. Supplied wizard/idle classifications; no original UI/command equivalence, gameplay simulation or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rts-controls.md"
+      ],
+      "implementation": [
+        "game/input/rts_controls.c",
+        "game/input/rts_controls.h"
+      ],
+      "tests": [
+        "tests/rts-controls-test.c",
+        "tools/test-rts-controls.py"
+      ],
+      "validation_dependencies": [],
+      "evidence": [
+        "RTS.controls.synthetic-20261014",
+        "RTS.controls.final-synthetic-20261014",
+        "RTS.controls.ready-synthetic-20261014",
+        "RTS.controls.current-launchers-synthetic-20261014",
+        "RTS.controls.pixel-launchers-synthetic-20261014",
+        "RTS.controls.pixel-launchers-scenario-synthetic-20261014"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.rts-controls",
+      "subsystem": "native_input",
+      "kind": "native_policy",
+      "title": "Configured campaign RTS shortcut adapter without new UI",
+      "scope": "Opt-in pinned No-CD campaign screen2/mode5 owner/thread admission: configured key/system-key routing,repeat suppression,existing selection/camera/spell helpers,exclusive team edits,Ctrl-left additive extension,slot-reset generations,four camera bookmarks and ordinary move-to-current-cell Stop command production. Full hash/entry/table guards,preflight selection/producer dependencies,DLL lifetime on restore failure and staged numeric mouse preference/config/hash admission and isolated canonical source derivation from an import-extended working install whose original sections remain byte-identical. Synthetic32 API/service peers and PE32/staging checks only; no original body execution,full mouse/target/idle semantics,Quick Battle/multiplayer,transformed wizard,Hold Position,attack-move,live playtest or replacement claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/rts-controls.md"
+      ],
+      "implementation": [
+        "runtime/rts-controls/bridge.c",
+        "tools/rts_controls_config.py",
+        "tools/build-rts-controls.py",
+        "tools/rts_controls_launch.py",
+        "tools/run-rts-controls.sh"
+      ],
+      "tests": [
+        "tests/rts-controls-bridge-test.c",
+        "tests/test-rts-controls-config.py",
+        "tools/test-rts-controls.py"
+      ],
+      "validation_dependencies": [
+        "game/input/rts_controls.c",
+        "game/input/rts_controls.h",
+        "runtime/shadow/win32_min.h",
+        "patches/rts-controls.json",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/run-opengl-game.py",
+        "tools/render-game-runner.py",
+        "tools/run-qt-shell.sh",
+        "tools/working-retention.py",
+        "tools/launch_build_cache.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/export-menu-support.py",
+        "tools/encode-cfg.py",
+        "tools/decode-cfg.py",
+        "tools/original-manifest.sh",
+        "tools/rts_controls_source.py",
+        "tools/run-rts-controls.py"
+      ],
+      "evidence": [
+        "RTS.controls.synthetic-20261014",
+        "RTS.controls.final-synthetic-20261014",
+        "RTS.controls.ready-synthetic-20261014",
+        "RTS.controls.current-launchers-synthetic-20261014",
+        "RTS.controls.pixel-launchers-synthetic-20261014",
+        "RTS.controls.pixel-launchers-scenario-synthetic-20261014"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "INPUT.rts-original-interface-map",
+      "subsystem": "original_input",
+      "kind": "recovered",
+      "title": "Scoped original selection,team,camera,spell and command interface map",
+      "scope": "Static packed actor selection68/70 and single-team8e9 accesses,slot reset lifetime boundary,actor/camera focus/setter and original spell-bar icon/command producer ingress. Function links cover these call/data interfaces only. Original keyboard46c070/view4fdad0 remain unassigned inventory boundaries; full input semantics,visible-type filter,universal idle/Power guards,Stop/Hold/attack-move and original execution comparison pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5272528,
+          "scope": "Selected actor admission and helper ingress; no full selection effect ownership recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5272816,
+          "scope": "Selected actor deselection/helper ingress; no complete highlight ownership recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5267616,
+          "scope": "Slot reset ingress; adapter lifetime tracking is native policy."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5417920,
+          "scope": "Original single team number8e9 and save/recall selection branches; no full GUI comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5208800,
+          "scope": "Actor focus call interface; full visibility/camera generation unclaimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5208608,
+          "scope": "Fine camera coordinate setter interface; no full camera scheduling recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5066080,
+          "scope": "Spell-bar slot icon callback and inventory distinction; full casting/targeting recovery unclaimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5471184,
+          "scope": "Length-tagged command producer ingress; no complete network/session ownership recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/rts-controls.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/export-rts-controls.py"
+      ],
+      "evidence": [
+        "RTS.interfaces.static-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.minimap-pixel-passes",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Native minimap pixel passes under retained original preparation",
+      "scope": "Bounded four-view terrain/cell/creature/camera native pixel passes, including physical padding, ordered outer border/corners, marker return pointer, original cache/dimension/origin mutation and Lock/Unlock/list preparation. Actual production installer/resolver/entry/kernel versus pinned original under supplied owned-plane/Win32/callback adapters and selected full caller state. Invalid source/plane/geometry/thread forwards before writes. Camera terrain separately stubbed in isolated camera fixtures; no combined real driver/game/World integration or live replacement. Current owned-plane format must match engine format; original object/cell/state aliases with destination refuse before copying/painting.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5585472,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5589008,
+          "relation": "data",
+          "scope": "Four fog-enabled orientation dispatch entries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5589024,
+          "relation": "data",
+          "scope": "Four fog-disabled orientation dispatch entries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5584576,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5584976,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5580704,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5581648,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5582624,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5583600,
+          "scope": "Selected native minimap pixel passes under retained original preparation; terrain/cell/ring/creature/camera corners and outer border, physical padding and stated full caller/callback state in isolated original fixtures. Combined game/driver/publication integration excluded.",
+          "recovered_range": "minimap-outline-view3-5532f0"
+        }
+      ],
+      "documents": [
+        "research/runtime/minimap-pixel-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/minimap_pixels.c",
+        "reconstruction/rendering/minimap_pixels.h",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/minimap_route.h",
+        "runtime/canvas-writers/minimap_entry.S",
+        "runtime/canvas-writers/minimap_bridge.c"
+      ],
+      "tests": [
+        "tests/minimap-splice-reference.cpp",
+        "tools/test-minimap-splice.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/shadow/win32_min.h",
+        "tests/minimap-fixture.hpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-minimap-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.minimap-pixel-passes.original-20261014",
+        "RS.minimap-pixel-passes.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.minimap-pixel-admission",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Current owned minimap CPU storage and atomic pixel admission",
+      "scope": "Bounded four-view terrain/cell/creature/camera native pixel passes, including physical padding, ordered outer border/corners, marker return pointer, original cache/dimension/origin mutation and Lock/Unlock/list preparation. Actual production installer/resolver/entry/kernel versus pinned original under supplied owned-plane/Win32/callback adapters and selected full caller state. Invalid source/plane/geometry/thread forwards before writes. Camera terrain separately stubbed in isolated camera fixtures; no combined real driver/game/World integration or live replacement. Current owned-plane format must match engine format; original object/cell/state aliases with destination refuse before copying/painting.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/minimap-pixel-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/minimap_pixels.c",
+        "reconstruction/rendering/minimap_pixels.h",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/minimap_route.h",
+        "runtime/canvas-writers/minimap_entry.S",
+        "runtime/canvas-writers/minimap_bridge.c"
+      ],
+      "tests": [
+        "tests/minimap-splice-reference.cpp",
+        "tools/test-minimap-splice.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/shadow/win32_min.h",
+        "tests/minimap-fixture.hpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-minimap-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.minimap-pixel-passes.original-20261014",
+        "RS.minimap-pixel-passes.original-final-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.colour-rectangle-pixels",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Native colour rectangle pixels under original preparation",
+      "scope": "Canonical constant or triple-WORD channel source, bounded positive dimensions and clipped nonempty RGB565/555 rectangles, four modes0copy/1source75/2half/3destination75 under retained original547d80 preparation/footer. Production interior splice and full caller machine state under supplied owned-plane/Win32 adapters; malformed/channel alias/geometry/other-thread calls forward before writes. No real game/driver integration or live replacement. Current owned-plane format must match; aliased constant shape sources and DF-set constant REP STOS forward.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548896,
+          "recovered_range": "kind8-colour-wrapper-54ab60",
+          "scope": "Selected shape wrapper, no upstream writer reconstruction."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5537152,
+          "scope": "Selected bounded RGB565 channel rectangle cases only, not entire raster or RGB555."
+        }
+      ],
+      "documents": [
+        "research/runtime/colour-rectangle-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/colour_rect_entry.S"
+      ],
+      "tests": [
+        "tests/colour-rect-splice-reference.cpp",
+        "tools/test-colour-rect-splice.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/shadow/win32_min.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-colour-rect.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.colour-rectangle-pixels.original-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.colour-rectangle-admission",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Native colour rectangle pixels under original preparation",
+      "scope": "Canonical constant or triple-WORD channel source, bounded positive dimensions and clipped nonempty RGB565/555 rectangles, four modes0copy/1source75/2half/3destination75 under retained original547d80 preparation/footer. Production interior splice and full caller machine state under supplied owned-plane/Win32 adapters; malformed/channel alias/geometry/other-thread calls forward before writes. No real game/driver integration or live replacement. Current owned-plane format must match; aliased constant shape sources and DF-set constant REP STOS forward.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/colour-rectangle-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/colour_rect_entry.S"
+      ],
+      "tests": [
+        "tests/colour-rect-splice-reference.cpp",
+        "tools/test-colour-rect-splice.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/shadow/win32_min.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-colour-rect.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.colour-rectangle-pixels.original-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.outside-world-raster-pixels",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Native raster pixels outside protected World batches",
+      "scope": "Bounded positive RLE frames in17 selected generic/fast/slow entries through23 production interior splices: indexed WORD/DWORD palettes, direct WORD, black silhouette, opaque/three blends, displacement, projected shadow and grayscale in physical padded RGB565/555 planes. Original palette/coordinate/x87/lazy-wave preparation retained; native C owns admitted pixel arithmetic and stores. Generic full caller/workspace state versus supplied owned-plane/Win32 adapters; private fast/slow ABI nonvolatile registers/WORD result/defined flags/DF/selected FX only, volatile ECX/EDX/upper AX and cdecl scratch argument mutation excluded. Single-thread checked geometry/VM/alias/DWORD paired high-WORD OR behavior; unsupported input forwards before native writes. No game/driver/World integration or live replacement. Original byte-register generic indexed/black families admit width1..255; other dimensions bounded2048. Current owned-plane format must match; original clipped-wave whole-run skips and clipped grayscale raw-copy branches preserved. Nonzero original fast/slow diagnostic clipping validation and direct-WORD DF-set string copies forward.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5851058,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5853722,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5856071,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5857342,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5859492,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5759408,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim.",
+          "recovered_range": "world-copy-reference-entry-57e1b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5762192,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5763312,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5764592,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5768944,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5760320,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5807248,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Selected original raster pixel loops under retained palette/coordinate/x87 preparation and original footers. Bounded RLE pixels/declared caller/workspace contract in isolated production-splice fixtures, including stated clipped branches; no game/driver/live replacement claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/outside-world-raster-pixels.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/canvas-writers/raster_entry.S",
+        "runtime/canvas-writers/raster_sites.h",
+        "runtime/canvas-writers/raster_workspace.h"
+      ],
+      "tests": [
+        "tests/raster-splice-reference.cpp",
+        "tests/raster-splice-state-probe.S",
+        "tools/test-raster-splice.py",
+        "tests/raster-kernel-test.c"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/shadow/win32_min.h",
+        "tests/pixel-splice-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-raster-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.outside-world-raster-pixels.original-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.outside-world-raster-admission",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Native raster pixels outside protected World batches",
+      "scope": "Bounded positive RLE frames in17 selected generic/fast/slow entries through23 production interior splices: indexed WORD/DWORD palettes, direct WORD, black silhouette, opaque/three blends, displacement, projected shadow and grayscale in physical padded RGB565/555 planes. Original palette/coordinate/x87/lazy-wave preparation retained; native C owns admitted pixel arithmetic and stores. Generic full caller/workspace state versus supplied owned-plane/Win32 adapters; private fast/slow ABI nonvolatile registers/WORD result/defined flags/DF/selected FX only, volatile ECX/EDX/upper AX and cdecl scratch argument mutation excluded. Single-thread checked geometry/VM/alias/DWORD paired high-WORD OR behavior; unsupported input forwards before native writes. No game/driver/World integration or live replacement. Original byte-register generic indexed/black families admit width1..255; other dimensions bounded2048. Current owned-plane format must match; original clipped-wave whole-run skips and clipped grayscale raw-copy branches preserved. Nonzero original fast/slow diagnostic clipping validation and direct-WORD DF-set string copies forward.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/outside-world-raster-pixels.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/canvas-writers/raster_entry.S",
+        "runtime/canvas-writers/raster_sites.h",
+        "runtime/canvas-writers/raster_workspace.h"
+      ],
+      "tests": [
+        "tests/raster-splice-reference.cpp",
+        "tests/raster-splice-state-probe.S",
+        "tools/test-raster-splice.py",
+        "tests/raster-kernel-test.c"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/colour_rect.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/shadow/win32_min.h",
+        "tests/pixel-splice-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-raster-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.outside-world-raster-pixels.original-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.owned-dc-copy",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Native owned DC copy pixels and refusal",
+      "scope": "Canonical SRCCOPY between current owned RGB565 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-dc-copy.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/canvas-writers/dc_copy_bridge.c"
+      ],
+      "tests": [
+        "tests/native-dc-copy-probe.c",
+        "tools/test-native-dc-copy.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/build-dc-copy.py",
+        "tools/build-shadow-bridge.py"
+      ],
+      "evidence": [
+        "NP.owned-dc-copy.gdi-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.owned-plane-lookup",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Current native owned CPU plane lifetime lookup",
+      "scope": "Canonical SRCCOPY between current owned RGB565 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-dc-copy.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/canvas-writers/dc_copy_bridge.c"
+      ],
+      "tests": [
+        "tests/native-dc-copy-probe.c",
+        "tools/test-native-dc-copy.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/build-dc-copy.py",
+        "tools/build-shadow-bridge.py"
+      ],
+      "evidence": [
+        "NP.owned-dc-copy.gdi-20261014"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -121959,6 +123749,911 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.hard-restart.synthetic-20261012",
+      "kind": "native_integration",
+      "scope": "Synthetic Qt toolbar/shortcut priority and fullscreen-hidden-button checks; frozen Unix launcher descendant termination, prefix-scoped Wine kill/wait fixtures, asynchronous heartbeat, duplicate stop, reuse, failure and timeout refusal, live-menu staging/active-session cancellation. Existing frame-stream, native-audio, resident-Quit, shell startup/help and Xvfb embedding fixture regressions passed. No original game, actual-game freeze or live engine comparison.",
+      "record": "research/runtime/qt-hard-restart-synthetic-retry-20261012.json",
+      "sha256": "9bf726c925c0394c49e2455a961b8564ec8c1de51b405a748a5eeb9c478ec2d5",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.startup-preparation.ui-final-20261012",
+      "kind": "native_integration",
+      "scope": "Guarded combined Qt build and fresh CLI/shell construction smoke after space recovered; stable recorded UI sources. No live engine, hard-restart lifecycle, rendering equivalence or stage promotion.",
+      "record": "research/runtime/public-launch-startup-ui-final-20261012.json",
+      "sha256": "474f99f008db1affa2136f8e6770ed0f5fcf1e5fc337e474567ab2ca074f9cca",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stability_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS38.services-static",
+      "kind": "static",
+      "scope": "Pinned50f3b0/512220/514c60/52a9f0 byte ranges/anchors and disassembly with immutable manifest checks. Static only; no semantic or execution equivalence.",
+      "record": "research/runtime/original-creature-services-static-20261012.json",
+      "sha256": "e7c42487e15a6319825040b4e2a14d4e123ccc11a7ae806930d25f913e972cee",
+      "sources_pointer": "/source_sha256",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.panel-loop-state.original-20261013",
+      "kind": "isolated_original",
+      "record": "research/runtime/panel-splice-comparison-20261013.json",
+      "sha256": "9ab85a2a1612df19613d173bcc99a874ca615decdb06ad53841ddb51bc84f546",
+      "scope": "Isolated original panel wrapper/production native splice comparison with external Lock/Unlock and Linux-hosted Win32 API adapters; both formats, physical pixels/caller state and synthetic session activation controls. No real Wine/game integration or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/cases",
+          "equals": 22272
+        },
+        {
+          "pointer": "/comparison/original_once_refusals",
+          "equals": 1392
+        },
+        {
+          "pointer": "/comparison/gpr_fx_flags_unlock_error_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/kernel/atomic_refusals",
+          "equals": 34
+        },
+        {
+          "pointer": "/launch_admission_tests",
+          "equals": 8
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.panel-loop-controls.native-20261013",
+      "kind": "native_integration",
+      "record": "research/runtime/panel-splice-comparison-20261013.json",
+      "sha256": "9ab85a2a1612df19613d173bcc99a874ca615decdb06ad53841ddb51bc84f546",
+      "scope": "Isolated original panel wrapper/production native splice comparison with external Lock/Unlock and Linux-hosted Win32 API adapters; both formats, physical pixels/caller state and synthetic session activation controls. No real Wine/game integration or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/cases",
+          "equals": 22272
+        },
+        {
+          "pointer": "/comparison/original_once_refusals",
+          "equals": 1392
+        },
+        {
+          "pointer": "/comparison/gpr_fx_flags_unlock_error_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/kernel/atomic_refusals",
+          "equals": 34
+        },
+        {
+          "pointer": "/launch_admission_tests",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "RS.panel-loop-state.staging-original-20261013",
+      "kind": "isolated_original",
+      "record": "research/runtime/panel-splice-staging-comparison-20261013.json",
+      "sha256": "c48fb1c6d289622790b9c513f9800faf37e0fc7d9553a4cc7632edb938a21299",
+      "scope": "Isolated original panel wrapper/production native splice comparison with external Lock/Unlock and Linux-hosted Win32 API adapters; both formats, physical pixels/caller state and synthetic session activation controls. No real Wine/game integration or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/cases",
+          "equals": 22272
+        },
+        {
+          "pointer": "/comparison/original_once_refusals",
+          "equals": 1392
+        },
+        {
+          "pointer": "/comparison/gpr_fx_flags_unlock_error_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/kernel/atomic_refusals",
+          "equals": 34
+        },
+        {
+          "pointer": "/launch_admission_tests",
+          "equals": 8
+        },
+        {
+          "pointer": "/source_staging_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.panel-loop-controls.staging-native-20261013",
+      "kind": "native_integration",
+      "record": "research/runtime/panel-splice-staging-comparison-20261013.json",
+      "sha256": "c48fb1c6d289622790b9c513f9800faf37e0fc7d9553a4cc7632edb938a21299",
+      "scope": "Isolated original panel wrapper/production native splice comparison with external Lock/Unlock and Linux-hosted Win32 API adapters; both formats, physical pixels/caller state and synthetic session activation controls. No real Wine/game integration or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/cases",
+          "equals": 22272
+        },
+        {
+          "pointer": "/comparison/original_once_refusals",
+          "equals": 1392
+        },
+        {
+          "pointer": "/comparison/gpr_fx_flags_unlock_error_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/kernel/atomic_refusals",
+          "equals": 34
+        },
+        {
+          "pointer": "/launch_admission_tests",
+          "equals": 8
+        },
+        {
+          "pointer": "/source_staging_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AI.object-action.range-original-20261013",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/panel-accounting-creature-original-20261013.json",
+      "sha256": "2667bb42e89e031605367942f7867b7f205b573b750a3ceff19fa5e1351a0601",
+      "scope": "Existing whole50f3b0 fixture supplies the pinned unchanged480-byte range anchors and isolated12288-case actor/map/object/callback comparison under supplied lower services. Native64/reference32/sanitized64 match. This corrects the range evidence binding only; no original World/game integration or live replacement.",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 12288
+        },
+        {
+          "pointer": "/functions",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RS.image-effect-pixel-state.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded seven-route production splice comparison and synthetic DIB/admission controls; retained external Lock/Unlock and Linux Win32 adapters. No native DC/Wine/game integration or full producer closure.",
+      "record": "research/runtime/image-effect-splice-comparison-20261014.json",
+      "sha256": "25202a39c838577f119ade96a4b53c06337b82fe59727097a4e1bde25f5e1f29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.image-effect-controls.native-20261014",
+      "kind": "native_integration",
+      "scope": "Bounded seven-route production splice comparison and synthetic DIB/admission controls; retained external Lock/Unlock and Linux Win32 adapters. No native DC/Wine/game integration or full producer closure.",
+      "record": "research/runtime/image-effect-splice-comparison-20261014.json",
+      "sha256": "25202a39c838577f119ade96a4b53c06337b82fe59727097a4e1bde25f5e1f29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.owned-dib-paint.gdi-20261014",
+      "kind": "native_integration",
+      "scope": "Bounded independent original/GDI pixel comparison and admitted native controls; no live game replacement.",
+      "record": "research/runtime/native-dib-pixels-comparison-20261014.json",
+      "sha256": "63b1e0db6d03d7c59473df237de5b2f78882f227ae6b692439daf2e434256dc2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.jpeg-source-pixels.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded independent original/GDI pixel comparison and admitted native controls; no live game replacement.",
+      "record": "research/runtime/native-jpeg-pixels-comparison-20261014.json",
+      "sha256": "57ea552dcd2fa41c3e0a8648399c022291e7a6d9f22ac26000ce9b4cab8a8623",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.glyph-format-pixels.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded actual native RGB565/555 glyph route/RET16 against pinned original; synthetic source inputs and selected caller FX only, no live integration.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/glyph-formats-comparison-20261014.json",
+      "sha256": "c64bf2729be936617bae44ce14d570c7b875bf661d366752ded678e69e1568f1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.glyph-production-route.native-20261014",
+      "kind": "native_integration",
+      "scope": "Bounded production native glyph admission or combined source staging/launch guards only; no real game/stream integration.",
+      "record": "research/runtime/glyph-production-admission-20261014.json",
+      "sha256": "a98182e50669347bb5e8fae05c958f654310d85e0a5c391f012a164716d557d0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.pixel-producer-launch.staging-20261014",
+      "kind": "native_integration",
+      "scope": "Bounded production native glyph admission or combined source staging/launch guards only; no real game/stream integration.",
+      "record": "research/runtime/pixel-producer-staging-20261014.json",
+      "sha256": "ddf108b9c5f631b1fc8cd320d35ed68e1ae8a55405bbc982687748659628ec01",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.image-effect-pixel-state.range-original-20261014",
+      "kind": "isolated_original",
+      "scope": "Pinned original PCX surface/index/raw WORD, RGB-add, brighten, row-copy and fade wrappers versus production installer/resolver/entry/kernel, with supplied Lock/Unlock and Wine-independent Win32 memory/API adapters. Physical pixels, caller state and thread refusal. DIB kernel synthetic controls only; owned DC integration and native JPEG/minimap/glyph/raster closure remain separate.",
+      "record": "research/runtime/image-effect-splice-range-comparison-20261014.json",
+      "sha256": "56964eee2649c2384f9c4b62c941fbeb6ece0837e674f557900ac41525b40e52",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.jpeg-wrapper-route.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Installed static JPEG corpus: native source-only RGB cache and production PE32 decoder-call patch versus original JPEG.DLL through unchanged mapped original58d320 wrapper bytes; supplied Lock/Unlock exact counts/receivers/pointers, both RGB565/555 and padded larger/clipped targets, full physical guards and native3008/original0 bypass counters. Caller volatile external-decoder GPR/FX history, actual game/driver integration, malformed/dynamic JPEG and live replacement excluded.",
+      "record": "research/runtime/native-jpeg-wrapper-comparison-20261014.json",
+      "sha256": "007f36b3b4759b8dae491a68ba3c37f803369ade93e245610c2fcb32631b44b5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RTS.controls.synthetic-20261014",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-synthetic-20261014.json",
+      "sha256": "1b1b53ff9e2d57f4a85323f81be5372bd731250874c65a49fc39a91386ea5010",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_playtest",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RTS.interfaces.static-20261014",
+      "kind": "static",
+      "scope": "Pinned source entry/table bytes and documented bounded interface accesses; no command execution or full keyboard/view handler recovery.",
+      "record": "research/runtime/rts-controls-static-20261014.json",
+      "sha256": "73f1766fb4a6509ca4f1755622f655b999a93c63bd317e48d07c8626f9ee2321",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RTS.controls.final-synthetic-20261014",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-final-synthetic-20261014.json",
+      "sha256": "59b45b5f03b565e3bf31484adf0c88649c39cea5d2a5a89869e46292a03787bb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_playtest",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RTS.controls.ready-synthetic-20261014",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-ready-synthetic-20261014.json",
+      "sha256": "e54cfe695291d1cca72831bfe0674eec941a32f0b5019534cecd3dfa298c82bb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_playtest",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-pixel-passes.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded mapped original minimap terrain/cell/creature/four camera pixel bodies versus actual production installer/resolver/assembly/kernel; supplied owned-plane, Win32 and Lock/Unlock adapters, full physical words/padding/guards, source/object effects and caller GPR/defined flags/DF/selected full FX. Camera fixtures retain original origin/colour/list preparation with terrain separately stubbed; no combined real driver/game/World integration or live replacement.",
+      "record": "research/runtime/minimap-splice-comparison-20261014.json",
+      "sha256": "2ec66656b6276af3659c4e26afd24820f6556a505f81700cbd072316ee376e45",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RTS.controls.current-launchers-synthetic-20261014",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-current-launchers-synthetic-20261014.json",
+      "sha256": "83d046faf99ad9396ebaa71747963f044c82ebfd27eddb93fe63887ba31b619e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_playtest",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.outside-world-raster-pixels.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded canonical RLE pixels across generic indexed/WORD, black silhouette, opaque/three blends, displacement, projected shadow and grayscale production interior splices versus pinned original bytes, padded RGB565/555, ABI nonvolatile registers/WORD result/defined flags/DF/selected full FX; original preparation retained. Private fast body volatile ECX/EDX/upper EAX and cdecl scratch argument mutation excluded; generic workspace separately checked. No real game/driver/World integration or live replacement",
+      "record": "research/runtime/outside-world-raster-comparison-20261014.json",
+      "sha256": "8246fa8fcc86025a33e923154bae7e3ffa45ef6bdc75081d318b707371966710",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.colour-rectangle-pixels.original-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded actual 547d80 original rectangle wrapper/preparation and production interior splice, canonical constant/triple-WORD channels, modes0..3, clipped/padded physical RGB565/555 and caller machine state under supplied current owned-plane and Win32 adapters. No real game/driver integration or live replacement",
+      "record": "research/runtime/colour-rectangle-comparison-20261014.json",
+      "sha256": "db60c9b46d69a20971727d4e3f2b1ef2e237668fccd1461827068e43d7c9bd33",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.minimap-pixel-passes.original-final-20261014",
+      "kind": "isolated_original",
+      "scope": "Bounded mapped original minimap terrain/cell/creature/four camera pixel bodies versus actual production installer/resolver/assembly/kernel; supplied owned-plane, Win32 and Lock/Unlock adapters, full physical words/padding/guards, source/object effects and caller GPR/defined flags/DF/selected full FX. Camera fixtures retain original origin/colour/list preparation with terrain separately stubbed; no combined real driver/game/World integration or live replacement.",
+      "record": "research/runtime/minimap-splice-final-comparison-20261014.json",
+      "sha256": "76792717f0eff420a6356112075a534788cff7e05a1380aaa6d578fb762c5b98",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.image-effect-pixel-state.original-final-20261014",
+      "kind": "isolated_original",
+      "scope": "Pinned original PCX surface/index/raw WORD, RGB-add, brighten, row-copy and fade wrappers versus production installer/resolver/entry/kernel, with supplied Lock/Unlock and Wine-independent Win32 memory/API adapters. Physical pixels, caller state and thread refusal. DIB kernel synthetic controls only; owned DC integration and native JPEG/minimap/glyph/raster closure remain separate.",
+      "record": "research/runtime/image-effect-splice-final-comparison-20261014.json",
+      "sha256": "134cf80afe8756767602279ea1c9cdcf86f393189368d648b6ed980c051976c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.owned-dib-paint.gdi-final-20261014",
+      "kind": "native_integration",
+      "scope": "128 canonical1/4/8/24 BI_RGB source cases, signed clipped destinations and current native owned HDC leases: GDI painting versus native painting and ReleaseDC/Lock pixels, invalid handles/ROP/source offset and retired lease refusals, complete teardown. No original EXE wrapper execution, physical DirectDraw driver equivalence or live game replacement.",
+      "record": "research/runtime/native-dib-pixels-final-comparison-20261014.json",
+      "sha256": "7eb259c9673e1169f36d875ea300ac8fcbc89b182af85492244febb90ba3b166",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.owned-dc-copy.gdi-20261014",
+      "kind": "native_integration",
+      "scope": "512 real native owned-DC SRCCOPY comparisons versus GDI, both separate source and overlapping self-copies, signed clipping, production native thunk admitted512/original0, unknown handles/ROP/retired/custom-clip atomic refusals, current locked/unlocked/DC-busy/retired CPU plane lookup and complete teardown. Original EXE installer/wrappers, unusual mappings/source clipping and real gameplay excluded",
+      "record": "research/runtime/native-dc-copy-comparison-20261014.json",
+      "sha256": "fcc12494ee025b583161ffaf572fa6ccdebf9c2f930673945499b0f176af2846",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.glyph-production-route.native-final-20261014",
+      "kind": "native_integration",
+      "scope": "Controlled fake process globals, valid disjoint two-pixel RLE/frame/table/canvas leases: actual production memory resolver and capture-disabled borrowed kernel,65545 admitted RGB565/555 requests past prior65536 diagnostic budget, no drawing-path WriteFile calls, statsV2 and resident authorization guards. No original EXE execution, installed hook/frame-return stream, World synchronization or live gameplay equivalence.",
+      "record": "research/runtime/glyph-production-final-admission-20261014.json",
+      "sha256": "7b8925ed64a14a1edfc0f42fbcadde48ee7f3d6ee861083c91a378a3a17806fe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.pixel-producer-launch.public-staging-20261014",
+      "kind": "native_integration",
+      "scope": "Actual pinned source guard, PE imports/build/copy/native JPEG preparation and all eight pixel/glyph authorization policies, four installed JPEG sizes and denied modes/ownership/hashes/changed sources. No process launch, installed in-memory hooks, renderer stream completion or live gameplay replacement.",
+      "record": "research/runtime/pixel-producer-public-staging-20261014.json",
+      "sha256": "9d3eb26599391f5ecf68b26dbfe794edecb89f37a44792829fb4eb1b9badd5a7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.jpeg-wrapper-route.original-final-20261014",
+      "kind": "isolated_original",
+      "scope": "Installed static JPEG corpus: native source-only RGB cache and production PE32 decoder-call patch versus original JPEG.DLL through unchanged mapped original58d320 wrapper bytes; supplied Lock/Unlock exact counts/receivers/pointers, both RGB565/555 and padded larger/clipped targets, full physical guards and native3008/original0 bypass counters. Caller volatile external-decoder GPR/FX history, actual game/driver integration, malformed/dynamic JPEG and live replacement excluded.",
+      "record": "research/runtime/native-jpeg-wrapper-final-comparison-20261014.json",
+      "sha256": "ff24d7c1b65b5dd7dc7aa75e9246153451729a8cd5102e40bbecb2818ea69e45",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.panel-loop-state.pixel-launchers-original-20261014",
+      "kind": "isolated_original",
+      "scope": "Isolated pinned original panel wrappers and actual production installer/resolver/entry/kernel. Supplied external Lock/Unlock and Linux-hosted Win32 memory/API adapters; complete physical pixels, caller GPR/defined flags/DF/FX, Unlock arguments/count/volatile GPR and LastError. No real DirectDraw, Wine/game integration, live replacement or full renderer claim.",
+      "record": "research/runtime/panel-splice-pixel-launchers-comparison-20261014.json",
+      "sha256": "dbb654035054717760e7fd0a2f86e45690f29289781ccdb40edfface60569465",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.panel-loop-launch.pixel-launchers-native-20261014",
+      "kind": "native_integration",
+      "scope": "Isolated pinned original panel wrappers and actual production installer/resolver/entry/kernel. Supplied external Lock/Unlock and Linux-hosted Win32 memory/API adapters; complete physical pixels, caller GPR/defined flags/DF/FX, Unlock arguments/count/volatile GPR and LastError. No real DirectDraw, Wine/game integration, live replacement or full renderer claim.",
+      "record": "research/runtime/panel-splice-pixel-launchers-comparison-20261014.json",
+      "sha256": "dbb654035054717760e7fd0a2f86e45690f29289781ccdb40edfface60569465",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RTS.controls.pixel-launchers-synthetic-20261014",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-pixel-launchers-synthetic-20261014.json",
+      "sha256": "cd4e7d02017e61c2dea9d26541e739c84e102e478b185707030ca5634ffe6c8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RTS.controls.pixel-launchers-scenario-synthetic-20261014",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-pixel-launchers-scenario-synthetic-20261014.json",
+      "sha256": "8b430c950ffa252afa3eac198587de46f891307b78e0a06bf0503c5184725ec4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -126157,6 +128852,251 @@
           "behaviors": []
         }
       ]
+    },
+    {
+      "id": "native-other-pixel-producer-routes-20261014",
+      "document": "research/runtime/native-pixel-producers.md",
+      "scope": "Source-level guarded pixel ownership routes selected by the scoped launch group, separate from protected World GPU dispatch. Original preparation/nonpixel wrappers retained, current native admissions only; unknown producers and refusal paths remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": "0x581ec0",
+          "behaviors": [
+            "RS.glyph-format-pixels"
+          ]
+        },
+        {
+          "value": "0x58ddf0",
+          "behaviors": [
+            "RS.panel-loop-state"
+          ]
+        },
+        {
+          "value": "0x58d8c0",
+          "behaviors": [
+            "RS.panel-loop-state"
+          ]
+        },
+        {
+          "value": "0x58e2c0",
+          "behaviors": [
+            "RS.panel-loop-state"
+          ]
+        },
+        {
+          "value": "0x54b2d0",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x54b510",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x54b5f0",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x545c10",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x58d770",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x58d3b0",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x58ed80",
+          "behaviors": [
+            "RS.image-effect-pixel-state"
+          ]
+        },
+        {
+          "value": "0x58d320",
+          "behaviors": [
+            "RS.jpeg-wrapper-route"
+          ]
+        },
+        {
+          "value": "0x553a40",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x5536c0",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x553850",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x5527a0",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x552b50",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x552f20",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x5532f0",
+          "behaviors": [
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": "0x54ab60",
+          "behaviors": [
+            "RS.colour-rectangle-pixels"
+          ]
+        },
+        {
+          "value": "0x547d80",
+          "behaviors": [
+            "RS.colour-rectangle-pixels"
+          ]
+        },
+        {
+          "value": "0x5947b2",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x59521a",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x595b47",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x59603e",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x595677",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x596cb8",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x597086",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x596490",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x5968a4",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x57e1b0",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x57ec90",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x57f0f0",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x57f5f0",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x5806f0",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x57e540",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x589c90",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "0x57de00",
+          "behaviors": [
+            "RS.outside-world-raster-pixels"
+          ]
+        },
+        {
+          "value": "unregistered writer / unsupported native admission",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5851058,
+        "scope": "Representative original raster entry anchoring this source-level ownership checklist; it is not a recovered binary jump table."
+      }
     }
   ],
   "scenarios": [
@@ -135847,6 +138787,25 @@
         "HOST.native-gui-delivery-diagnostics.intake-public-20261014",
         "HOST.native-gui-delivery-diagnostics.merge-final-public-20261014"
       ]
+    },
+    {
+      "id": "input.rts-controls-synthetic",
+      "level": "headless",
+      "scope": "Owned64/32/sanitized policy and actual configured32 adapter with synthetic fixed-address API/service peers,production PE32 build,strict config and disposable original-source import/CFG round trip. No original commands or gameplay execution and no live replacement. Derived canonical source copy leaves the incoming import-extended installation unchanged; altered original text refuses.",
+      "behaviors": [
+        "NP.rts-selection-policy",
+        "HOST.rts-controls"
+      ],
+      "tests": [
+        "tools/test-rts-controls.py"
+      ],
+      "evidence": [
+        "RTS.controls.synthetic-20261014",
+        "RTS.controls.final-synthetic-20261014",
+        "RTS.controls.ready-synthetic-20261014",
+        "RTS.controls.current-launchers-synthetic-20261014",
+        "RTS.controls.pixel-launchers-scenario-synthetic-20261014"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -136308,6 +139267,42 @@
       "document": "research/runtime/multiplayer-lobby-engine-contract.md",
       "evidence": "UI45.original-lobby-fixture",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "creature-object-action-50f3b0",
+      "build": "nocd-40209ca7",
+      "start": 5305264,
+      "end": 5305744,
+      "document": "research/runtime/creature-services.md",
+      "evidence": "AI.object-action.range-original-20261013",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "pixel-producer-54b5f0",
+      "build": "nocd-40209ca7",
+      "start": 5551600,
+      "end": 5552123,
+      "document": "research/runtime/image-effect-pixel-takeover.md",
+      "evidence": "RS.image-effect-pixel-state.range-original-20261014",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "pixel-producer-58d770",
+      "build": "nocd-40209ca7",
+      "start": 5822320,
+      "end": 5822646,
+      "document": "research/runtime/image-effect-pixel-takeover.md",
+      "evidence": "RS.image-effect-pixel-state.range-original-20261014",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "pixel-producer-58d3b0",
+      "build": "nocd-40209ca7",
+      "start": 5821360,
+      "end": 5821607,
+      "document": "research/runtime/image-effect-pixel-takeover.md",
+      "evidence": "RS.image-effect-pixel-state.range-original-20261014",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -136418,8 +139413,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-render-master-integration-20261014.json",
-    "sha256": "408d7b32fc2c526bf08ccb5a55ae3f0203c71c651fcd79bafe06f7e31160c25d"
+    "path": "research/runtime/coverage/source-index-native-pixel-producers-reviewed-20261014.json",
+    "sha256": "990aaf3cd2343a5daae4852b54e9c212837f846f3c585ab10954c15487aa61cb"
   },
   "claim_bindings_required": true
 }

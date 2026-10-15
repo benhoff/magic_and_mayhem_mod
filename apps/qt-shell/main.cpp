@@ -54,6 +54,7 @@
 #include <QRandomGenerator>
 #include <memory>
 #include <QApplication>
+#include "game_restart_action.hpp"
 #include <QCloseEvent>
 #include <QCommandLineParser>
 #include <QDir>
@@ -209,6 +210,8 @@ public:
         if(opengl_){gl_=new GlViewport(viewport_);gl_->setObjectName("nativeGameViewport");connect(gl_,&QOpenGLWidget::frameSwapped,this,[this]{if(nativeActive()&&gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_))++nativePaintedFrames_;});layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
         auto* toolbar=addToolBar("Game");toolbar->setMovable(false);
         launch_=new QPushButton("Launch game",this);launch_->setObjectName("launchGame");toolbar->addWidget(launch_);
+        restart_=new QPushButton("Hard restart",this);toolbar->addWidget(restart_);
+        restartAction_=std::make_unique<GameRestartAction>(*this,*restart_,[this]{hardRestart();});
         check_=new QPushButton("Check installation",this);toolbar->addWidget(check_);
         detach_=new QPushButton("Detach game",this);toolbar->addWidget(detach_);detach_->setEnabled(false);
         retry_=new QPushButton("Attach game",this);toolbar->addWidget(retry_);retry_->setEnabled(false);
@@ -236,10 +239,12 @@ public:
             cursor.insertText(QString::fromLocal8Bit(process_.readAllStandardOutput()));log_->setTextCursor(cursor);
         });
         connect(&process_,&QProcess::errorOccurred,this,[this](QProcess::ProcessError error){
+            if(restarting_)return;
             statusBar()->showMessage("Launcher error: "+process_.errorString());
             if(error==QProcess::FailedToStart)finished();
         });
         connect(&process_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this](int code,QProcess::ExitStatus){
+            if(restarting_)return;
             finished();statusBar()->showMessage(QString("Launcher exited with status %1.").arg(code));
         });
         poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::WindowDiscovery);discover();});
@@ -342,6 +347,7 @@ public:
     LiveMenuSession* liveMenuSession(){return liveMenus_.get();}
 protected:
     void closeEvent(QCloseEvent* event) override {
+        if(restarting_){event->ignore();return;}
         if(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running())){
             if(closeAfterGame_){event->ignore();return;}
             if(renderWorker_)renderWorker_->requestStop();
@@ -415,11 +421,13 @@ private:
         return true;
     }
     void start(bool check){
-        if(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()))return;
+        if(restarting_||process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()))return;
+        closeAfterGame_=false;
         nativeFallback_=false;residentWorldError_.clear();
         if(opengl_){detach_->hide();retry_->hide();}
         if(liveMenus_&&!check){
             excluded_=host_.windows();launch_->setEnabled(false);check_->setEnabled(false);fallback_->setEnabled(true);
+            restart_->setEnabled(true);
             placeholder_->setText("Preparing the game…");
             log_->appendPlainText("Starting menu session: staging a disposable installation, then checking launch files. This may take a few minutes.");
             liveMenus_->start();statusBar()->showMessage("Preparing the game…");return;
@@ -427,6 +435,7 @@ private:
         const QString launcher=QDir(repo_).filePath(opengl_ && !check?"tools/run-opengl-game.py":"tools/run-game.sh");
         if(!QFileInfo(launcher).isExecutable()){statusBar()->showMessage("Cannot find tools/run-game.sh. Set --repo to the repository directory.");return;}
         checking_=check;excluded_=host_.windows();launch_->setEnabled(false);check_->setEnabled(false);
+        restart_->setEnabled(!check);
         auto env=QProcessEnvironment::systemEnvironment();
         // An inherited custom runner could bypass the windowed Wine launch.
         env.remove("MNM_RUNNER");env.insert("WINEDEBUG",env.value("WINEDEBUG","fixme-all"));
@@ -463,6 +472,29 @@ private:
         }
         process_.start(launcher,arguments);
         if(!check){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
+    }
+    void hardRestart(){
+        if(restarting_||checking_||!(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running())))return;
+        restarting_=true;closeAfterGame_=false;restart_->setEnabled(false);
+        launch_->setEnabled(false);check_->setEnabled(false);
+        if(fallback_)fallback_->setEnabled(false);
+        poll_.stop();frames_.stop();commandDrain_.stop();inputTimer_.stop();
+        if(input_)input_->suspend(true);
+        if(media_)media_->stop();
+        if(voices_)voices_->stop();
+        if(music_)music_->stop();
+        if(menuStack_)menuStack_->setCurrentWidget(viewport_);
+        detach();retry_->setEnabled(false);
+        statusBar()->showMessage("Force-stopping the game…");
+        log_->appendPlainText("Hard restart requested. Unsaved progress is lost.");
+        const auto stopped=[this](bool ok,const QString& error){
+            finished();stream_.reset();if(gl_){gl_->setGpuFrame({});gl_->setFrame(QImage{});gl_->hide();}
+            placeholder_->show();restarting_=false;
+            if(ok){log_->appendPlainText("Game stopped. Launching a fresh session…");start(false);}
+            else{placeholder_->setText(error+"\nOpen Details for the launch log.");log_->appendPlainText(error);statusBar()->showMessage(error);restart_->setEnabled(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()));}
+        };
+        if(liveMenus_&&liveMenus_->running())liveMenus_->forceStop(stopped);
+        else process_.forceStop(QDir(repo_).filePath("working/wineprefix-x86_64"),stopped);
     }
     void discover(){
         const auto candidates=host_.desktops(excluded_);
@@ -511,9 +543,10 @@ private:
             if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native music session evidence.");
         }
         music_.reset();
-        if(renderWorker_){if(!renderWorker_->finishProducer())log_->appendPlainText("Native render owner stopped: "+renderWorker_->error());renderWorker_.reset();}
+        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer())log_->appendPlainText("Native render owner stopped: "+renderWorker_->error());renderWorker_.reset();}
+        if(restarting_&&residentWorld_)residentWorld_->abort("Game force-stopped for hard restart");
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
-        if(commands_){if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
+        if(commands_){if(restarting_)commands_->abort();else if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
         residentWorld_.reset();
         voices_.reset();media_.reset();if(input_)input_->suspend(false);
         if(input_)input_->setTarget(0);
@@ -523,6 +556,7 @@ private:
             placeholder_->setText((noReadback_ && !captureLocks_)?"Diagnostic game launcher stopped. Qt frame capture was disabled.":"Game launcher stopped before a frame was captured. Last state:\n"+stream_->diagnostic());
         detach();poll_.stop();frames_.stop();commandDrain_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
+        restart_->setEnabled(false);
     }
     SinglePlayerBattleWidget* liveSetup_=nullptr;MapSelectionWidget* liveMap_=nullptr;
     MultiplayerLobbyWidget* liveHostLobby_=nullptr;std::unique_ptr<LiveHostLobbyController> hostLobby_;
@@ -540,13 +574,14 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<NativeRenderWorker> renderWorker_;LiveCommandSession::State lastRenderState_=LiveCommandSession::State::WaitingFrame;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool restarting_=false;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<NativeRenderWorker> renderWorker_;LiveCommandSession::State lastRenderState_=LiveCommandSession::State::WaitingFrame;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;GameProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
-    QPushButton *launch_=nullptr,*check_=nullptr,*detach_=nullptr,*retry_=nullptr;
+    QPushButton *launch_=nullptr,*restart_=nullptr,*check_=nullptr,*detach_=nullptr,*retry_=nullptr;
     QPlainTextEdit* log_=nullptr;
     std::unique_ptr<ViewportPresentation> presentation_;
+    std::unique_ptr<GameRestartAction> restartAction_;
 };
 
 int main(int argc,char** argv){

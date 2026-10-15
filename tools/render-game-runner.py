@@ -38,6 +38,8 @@ if metadata.get('word_dll_sha256'):
     os.environ['MNM_WORD_DIRECTORY']='Z:'+str(directory).replace('/','\\')
 from glyph_backend_launch import authorize as authorize_glyph
 authorize_glyph(root,metadata,os.environ)
+from rts_controls_launch import authorize as authorize_rts
+authorize_rts(root,metadata,os.environ)
 os.environ.pop('MNM_SCENE_DIR',None)
 os.chdir(game)
 if metadata.get('capture_locks'):

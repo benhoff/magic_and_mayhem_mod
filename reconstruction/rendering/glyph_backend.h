@@ -14,6 +14,7 @@ typedef struct MnmGlyphBackend {
     const uint8_t *incoming_fx;
     uint8_t *outgoing_fx;
     MnmGlyphState result;
+    uint32_t format; /* 0 RGB565, 1 RGB555; explicit native storage contract. */
 } MnmGlyphBackend;
 /* Atomic preflight: on refusal pixels, coverage, outgoing_fx and result retain
  * their contents. On success only selected x87 state is contracted; saved

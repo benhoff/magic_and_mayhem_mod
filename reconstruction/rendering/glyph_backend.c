@@ -9,7 +9,7 @@ static uint32_t half(const uint8_t *p){return p[0]|(uint32_t)p[1]<<8;}
  * host environment before returning. Integer traversal never uses host FP. */
 void mnm_glyph_fp_execute(MnmGlyphBackend *);
 void mnm_glyph_fp_begin(uint32_t *,uint32_t);
-void mnm_glyph_fp_run(uint16_t *,const uint8_t *,uint32_t,const uint32_t *,const uint32_t *);
+void mnm_glyph_fp_run(uint16_t *,const uint8_t *,uint32_t,const uint32_t *,const uint32_t *,uint32_t);
 int mnm_glyph_backend(MnmGlyphBackend *b){
     MnmGlyphState result;
     if(!b||!b->pixels||!b->coverage||!b->incoming_fx||!b->outgoing_fx||
@@ -17,7 +17,7 @@ int mnm_glyph_backend(MnmGlyphBackend *b){
        !b->width||!b->height||b->width>2048||b->height>2048||
        b->stride<b->width||b->stride>2048||
        b->state.right>(int32_t)b->width||b->state.bottom>(int32_t)b->height||
-       mnm_glyph_backend_state(&b->state,&result))return 1;
+       mnm_glyph_backend_state_format(&b->state,&result,b->format))return 1;
     const uint8_t *fx=b->incoming_fx;
     uint32_t cw=half(fx),status=half(fx+2),top=(status>>11)&7;
     if((cw&63)!=63||((cw>>8)&3)==1||((cw>>10)&3)!=b->state.rounding||
@@ -52,7 +52,7 @@ void mnm_glyph_backend_execute(MnmGlyphBackend *b){
         uint16_t *destination=b->pixels+(uint32_t)(y+(int32_t)row)*b->stride+(uint32_t)x;
         while(at<width){
             uint32_t count=frame[control++];
-            if(on){mnm_glyph_fp_run(destination+at,frame+colour,count,b->coverage,b->result.arguments+1);colour+=count;}
+            if(on){mnm_glyph_fp_run(destination+at,frame+colour,count,b->coverage,b->result.arguments+1,b->format);colour+=count;}
             at+=count;on=!on;
         }
     }

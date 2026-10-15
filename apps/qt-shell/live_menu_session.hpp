@@ -3,6 +3,7 @@
 #include "engine_preferences_store.hpp"
 #include "../../protocols/include/mnm/menu_v4.h"
 #include <QProcess>
+#include "game_process.hpp"
 #include <QTimer>
 #include <QElapsedTimer>
 #include <functional>
@@ -43,6 +44,7 @@ public:
     QString winePrefix; // Empty selects the normal menu prefix; tests isolate each run.
     int smokeSeconds=0; // Bounded live validation only; normal sessions have no limit.
     bool start();
+    void forceStop(std::function<void(bool,const QString&)> completed);
     void setMediaActive(bool active);
     bool running() const;
     bool normalQuitAccepted();
@@ -74,7 +76,7 @@ private:
     EnginePreferencesStore preferencesStore_;
     bool preferencesToSave_=false;
     std::array<int,7> acceptedPreferences_{};
-    QProcess process_;
+    GameProcess process_;
     QTimer timer_;
     QElapsedTimer clock_;
     QByteArray preparation_;

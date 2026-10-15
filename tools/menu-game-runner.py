@@ -23,6 +23,19 @@ from wine_import_census import authorize as authorize_census
 authorize_census(root,metadata,os.environ)
 from directplay_dx6_launch import authorize as authorize_directplay
 authorize_directplay(root,metadata,os.environ)
+from panel_backend_launch import authorize as authorize_panels
+authorize_panels(root,metadata,os.environ)
+from pixel_backend_launch import authorize as authorize_pixels
+authorize_pixels(root,metadata,os.environ)
+from rts_controls_launch import authorize as authorize_rts
+authorize_rts(root,metadata,os.environ)
+from jpeg_backend_launch import authorize as authorize_jpeg
+authorize_jpeg(root,metadata,os.environ)
+from minimap_backend_launch import authorize as authorize_minimap
+authorize_minimap(root,metadata,os.environ)
+from borrowed_pixel_backend_launch import FEATURES,authorize as authorize_borrowed
+for name in FEATURES:authorize_borrowed(root,metadata,os.environ,name)
+os.environ.pop('MNM_OTHER_PIXEL_PRODUCERS',None)
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')
@@ -123,8 +136,8 @@ if metadata.get('resident_world'):
     if len(header)!=128 or header[:8]!=(b'MNMCON05' if snapshot else b'MNMCON04') or struct.unpack_from('<I',header,8)[0]!=(5 if snapshot else 4) or struct.unpack_from('<I',header,20)[0]!=(2 if snapshot else 1) or any(header[36:]):raise ValueError('Resident World channel must be fresh negotiated V4/V5')
     def winepath(path):return 'Z:'+str(path).replace('/',chr(92))
     os.environ.update(MNM_PUBLIC_RESIDENT_WORLD='1',MNM_CANVAS_PRODUCERS='1',MNM_SCENE_SAMPLES='32',MNM_WORLD_RASTER_PREFIX='32',MNM_WORLD_RASTER_BATCH='1',MNM_WORLD_CONTINUOUS=winepath(world),MNM_SCENE_DIR=winepath(directory))
-    # Keep post-World hooks distinct from the finite legacy glyph observer.
-    os.environ.pop('MNM_GLYPH_BACKEND',None);os.environ.pop('MNM_GLYPH_DIR',None)
+    # Native glyphs share the resident producer entry and publish through its
+    # normal return hook. Capture-disabled takeover has no finite call budget.
 else:
     os.environ.pop('MNM_PUBLIC_RESIDENT_WORLD',None)
 from native_audio_launch import directsound_disabled

@@ -33,7 +33,7 @@ def build(selftest=False):
     dll = output/'MnmScene.dll'
     exports = ['/export:SceneDrawingActionV1=_SceneDrawingActionV1@28','/export:ScenePacerObservationV1=_ScenePacerObservationV1@8']
     if selftest:
-        exports += ['/export:SceneInstallForTest=_SceneInstallForTest@4','/export:GlyphAdmissionForTest=_GlyphAdmissionForTest@0']
+        exports += ['/export:SceneInstallForTest=_SceneInstallForTest@4','/export:GlyphAdmissionForTest=_GlyphAdmissionForTest@0','/export:GlyphProductionForTest=_GlyphProductionForTest@0']
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',
                     '/timestamp:0',f'/out:{dll}',*[str(output/(name+'.obj')) for name in (*names,*backend_names)],str(output/'kernel32.lib')],check=True)
     paths = [*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'runtime/shadow/win32_min.h',

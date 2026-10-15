@@ -168,6 +168,8 @@ def main():
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
     patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
+    from rts_controls_launch import stage as stage_rts,enabled_from_environment as rts_enabled,authorize as authorize_rts
+    patched,rts_metadata=stage_rts(root,data,patched,rts_enabled(os.environ),os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'))
     (game/'Chaos.exe').write_bytes(patched)
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     movie_edits=skip_movies(game) if args.skip_movies else []
@@ -206,9 +208,11 @@ def main():
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)
         print(f'Draw capture: {capture}',flush=True)
     metadata.update(glyph_metadata)
+    metadata.update(rts_metadata)
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)
+    authorize_rts(root,metadata,env)
     env.pop('MNM_WORD_DIRECTORY',None)
     if word_mode:env['MNM_WORD_DIRECTORY']='Z:'+metadata['word_directory'].replace('/','\\')
     env.pop('MNM_AUDIO_CHANNEL',None)

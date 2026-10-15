@@ -12,7 +12,9 @@ struct NsState {
   u32 width,height,pitch,caps;u16* pixels;u32 locked;void* lock_pointer;
   u32 key_set,key_low,key_high;struct NsState* back;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
+  struct NsState *previous_owned,*next_owned;
 };
+static struct NsState* ns_owned;
 static void* ns_tables[5][45];
 static u32 ns_bytes,ns_creates,ns_locks,ns_copies,ns_flips;
 static void ns_dc_drop(struct NsState*);
@@ -35,6 +37,8 @@ static u32 WIN ns_retain(struct NsObject* o){if(!o->state->refs[o->kind]++)++o->
 static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError(),refs=--s->refs[o->kind];
  if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);VirtualFree(s->pixels,0,0x8000);
+  if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else ns_owned=s->next_owned;
+  if(s->next_owned)s->next_owned->previous_owned=s->previous_owned;
   nd_release(s->device);HeapFree(GetProcessHeap(),0,s);--nd_surfaces;}
  nd_status();SetLastError(error);return refs;
 }
@@ -135,7 +139,9 @@ static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,
  s->pitch=(width*2+7)&~7u;s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);
  if(!s->pixels){HeapFree(GetProcessHeap(),0,s);return 0;}
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
- s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;++nd_surfaces;++ns_creates;ns_bytes+=s->pitch*height;nd_status();return s;
+ s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;
+ s->next_owned=ns_owned;if(ns_owned)ns_owned->previous_owned=s;ns_owned=s;
+ ++nd_surfaces;++ns_creates;ns_bytes+=s->pitch*height;nd_status();return s;
 }
 /* First failed descriptor per owned launch, preserving the HRESULT policy.
  * This diagnostic is local bytes, not a pointer-bearing shared wire contract. */

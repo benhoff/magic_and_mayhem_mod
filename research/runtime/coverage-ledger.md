@@ -1,5 +1,41 @@
 # Engine modernization coverage ledger
 
+## Native panel pixel-loop adapter — 2026-10-13
+
+`RS.panel-loop-state`, `NP.panel-loop-admission` and `NP.panel-loop-launch`
+add optional native bevel/highlight/whitewash pixel loops under unchanged original
+Lock/Unlock wrappers. Post-Lock splices preserve origin translation and wrapper
+ABI, check all splice/tail signatures before mutation, admit bounded initialized
+RGB565/RGB555 spans, and forward refused calls once before native writes. No
+drawing-thread diagnostic I/O or cached live pixel pointers are introduced.
+
+The actual production installer/resolver/entry/kernel matches isolated pinned
+original execution in22,272 cases/5,066,880 physical WORDs, including nonzero
+bevel origins, both formats, padded rows, corner overlap and percentage branches.
+Caller GPR/defined flags/DF/selected FX, Unlock arguments/count/volatile state and
+LastError agree;1,392 different-thread original-once refusals pass. Sanitizers
+check131,072 independently expected words and34 atomic refusals. Production PE32
+build and eight synthetic native-session activation guards pass. See
+[panel splices](panel-loop-takeover.md). This is isolated comparison and scoped
+implementation support, not real Wine/game integration or live replacement.
+
+Native menu staging exposes explicit `MNM_PANEL_TAKEOVER=1` only for a hash-pinned
+owned native menu/render/drawing session. The default remains unchanged. Historical
+shared-launch evidence keeps its fingerprints and may be stale after these source
+edits; full current gameplay, concurrent shared-surface leases and original failed
+Lock/Restore remain pending. Other text/image/CPU writers, full scene/HUD source
+ownership, uninterrupted drawing history, transitions/recovery and complete
+launcher release remain open. No gameplay policy or60FPS status changes.
+
+The existing unfinished creature-action register previously bound a recovered
+range exception to static evidence, blocking the repository audit. Its unchanged
+fixture now passes12,288 isolated original/native/sanitized cases under supplied
+lower services. A new immutable result supplies the pinned execution anchors;
+only the range evidence binding and result links are corrected. Creature sources,
+historical static evidence and partial statuses are preserved. This accounting
+repair does not replace a rendering validation or promote original AI/session
+ownership. See [creature services](creature-services.md).
+
 ## ARM64 Qt host support — 2026-10-13
 
 The shared V2 command ring now admits little-endian AArch64 with compile-time
@@ -8646,6 +8682,29 @@ Committed range9d2ad1d5..2976cdd6 has33 source/link and103 behavior transitions
 with exact parent/current receipts and no unresolved gaps. Private authorized
 90GiB reserve policy is used; no cleanup is performed by this workstream.
 
+Public Qt launch policy (2026-10-12): `HOST.launch-original-verification` skips
+the full original-media manifest scan by default through
+`MNM_VERIFY_ORIGINALS=0`. Set `MNM_VERIFY_ORIGINALS=1` when launching to restore
+before/after verification. Direct experiment helpers still verify by default;
+experiments consuming original artifacts require the checks. Working executable,
+DLL, installation and callback-byte admission remain in place. Synthetic
+orchestration and syntax checks cover the selection; live engine validation
+remains pending. This changes startup policy, with no engine comparison or
+replacement milestone promotion. Historical evidence retains its recorded hashes
+and may become stale for the shared launcher/UI files.
+
+Public startup preparation (2026-10-12), `HOST.startup-preparation`: the Qt
+launcher reuses matching CMake configuration and verifies cached production
+adapter DLL/manifest pairs. Source content, options or toolchain file identity
+changes invalidate cache entries. Full installed-asset and repeated Python music
+scans are opt-in; native music catalog validation, executable/DLL/callback/config
+and fresh channel admission remain mandatory. Details exposes the initially
+collapsed launch log. Synthetic boundary tests, real adapter reuse and Qt
+build/smoke cover preparation; offline staging uses a preserved pinned input.
+No live comparison or replacement stage is promoted. See
+[policy and retained reports](public-launch-startup.md). Shared source changes
+retain historical evidence and can leave earlier fingerprints stale.
+
 ## NS32 — Whole special finishing, ascent and descent callbacks (2026-10-12)
 
 Whole521790/5217e0/521dd0 projections pass24576 prospectively bound
@@ -8670,6 +8729,38 @@ transitions; the incoming Qt opt-in commitb6cc497b..6458a16f reviews four source
 link and33 behavior transitions, including evidence/scenario links. Both retain
 exact receipts with no unresolved gaps and assert no retrospective execution.
 Builds use the private authorized90GiB reserve policy; no cleanup is performed.
+
+## Qt hard restart host policy (2026-10-12)
+
+The Game toolbar now exposes Hard restart / Ctrl+Shift+R. It kills the isolated
+launcher process group, stops and waits for Wine in the selected prefix, cancels
+menu staging without taking its normal launch-on-exit branch, retires channels
+and starts a fresh session with the same options. Unsaved progress is lost.
+Prefix shutdown also stops other processes sharing that prefix. Missing/failed
+Wine shutdown or a ten-second timeout refuses relaunch. This requires a
+responsive Qt event loop.
+
+`HOST.session` links the process adapter and bounded synthetic test. Frozen
+Unix descendants, toolbar/shortcut dispatch ahead of game input, fullscreen
+shortcut availability, timer responsiveness, exact Wine kill/wait prefix selection,
+failure and timeout refusal, staging cancellation and active menu reuse are
+the synthetic validation scope. Actual-game freeze recovery and rendering,
+media, input and foreign-window behavior after relaunch remain pending; no
+original comparison, integration or live replacement status is promoted.
+Shared shell/session edits leave historical fingerprints historical. See
+[host lifecycle](qt-shell-hosting.md) for ownership and failure boundaries.
+
+Startup final boundary: concurrent hard-restart edits changed the shared UI
+after its recorded build/smoke result. Retention preflight refused the combined
+rebuild (about100.24GiB free; 0.5GiB reservation would cross the100GiB reserve).
+The existing result remains bound to its earlier hash; current combined UI
+validation and whole-tree accounting are pending. No cleanup or budget override.
+
+Startup UI follow-up: after free space recovered, the guarded combined Qt build
+and fresh CLI/shell smoke checks passed for stable source hashes, retained in
+`public-launch-startup-ui-final-20261012.json`. Earlier storage refusals and
+source versions remain historical. Live engine validation and independent
+whole-tree accounting remain pending; no engine milestone promotion.
 
 ## NS33 — Separate previous direction and previous motion state (2026-10-12)
 
@@ -8716,41 +8807,6 @@ still supplied;509e50 upkeep admission is deliberately excluded. Lower World,
 ANI/geometry/health/effect/resource/RNG ownership, full wizard/scenario policy,
 installed construction and native session integration remain pending. No live
 replacement or balance change. See [scope details](creature-remaining-contracts-validation.md).
-
-Public Qt launch policy (2026-10-12): `HOST.launch-original-verification` skips
-the full original-media manifest scan by default through
-`MNM_VERIFY_ORIGINALS=0`. Set `MNM_VERIFY_ORIGINALS=1` when launching to restore
-before/after verification. Direct experiment helpers still verify by default;
-experiments consuming original artifacts require the checks. Working executable,
-DLL, installation and callback-byte admission remain in place. Synthetic
-orchestration and syntax checks cover the selection; live engine validation
-remains pending. This changes startup policy, with no engine comparison or
-replacement milestone promotion. Historical evidence retains its recorded hashes
-and may become stale for the shared launcher/UI files.
-
-Public startup preparation (2026-10-12), `HOST.startup-preparation`: the Qt
-launcher reuses matching CMake configuration and verifies cached production
-adapter DLL/manifest pairs. Source content, options or toolchain file identity
-changes invalidate cache entries. Full installed-asset and repeated Python music
-scans are opt-in; native music catalog validation, executable/DLL/callback/config
-and fresh channel admission remain mandatory. Details exposes the initially
-collapsed launch log. Synthetic boundary tests, real adapter reuse and Qt
-build/smoke cover preparation; offline staging uses a preserved pinned input.
-No live comparison or replacement stage is promoted. See
-[policy and retained reports](public-launch-startup.md). Shared source changes
-retain historical evidence and can leave earlier fingerprints stale.
-
-Startup final boundary: concurrent hard-restart edits changed the shared UI
-after its recorded build/smoke result. Retention preflight refused the combined
-rebuild (about100.24GiB free; 0.5GiB reservation would cross the100GiB reserve).
-The existing result remains bound to its earlier hash; current combined UI
-validation and whole-tree accounting are pending. No cleanup or budget override.
-
-Startup UI follow-up: after free space recovered, the guarded combined Qt build
-and fresh CLI/shell smoke checks passed for stable source hashes, retained in
-`public-launch-startup-ui-final-20261012.json`. Earlier storage refusals and
-source versions remain historical. Live engine validation and independent
-whole-tree accounting remain pending; no engine milestone promotion.
 
 ## NS36: original packed cast descriptor decoding
 
@@ -9364,320 +9420,137 @@ and append-only reviews;new census/merge reviews account for the combined
 tree against actual locala8e14531. Unrelated main-checkout changes remain
 backed up and separate from the committed integration.
 
-## Public native frame tracing (2026-10-12)
 
-Seed HOST.native-frame-trace before execution. Native bounded owner/source/GUI observation measures previously excluded status publication and actual sleep, preserving original clock domains and ordered two-credit delivery. Per-frame delay attribution, tracing overhead, current gameplay and a measured fix remain pending; diagnostic events alone do not prove60FPS or engine/GPU CPU equivalence.
 
-Native frame trace synthetic controls pass: disabled/order refusal, bounded16384/8192tail rings, independent active-frame/status clock accounting and native immutable pixels/GUI/pause/lease/teardown. Offline analyzer has three authored clock/export/paint/visibility/refusal controls. The first sandbox display attempt is retained as an environment admission failure, not a native test pass. Current public source readiness, TITAN trace and a measured scheduling fix remain pending.
+## RTS controls without new UI — 2026-10-14
 
-Public TITAN frame trace now completes the functional casting/combat/spell/portrait/menu/Quit journey,4343balanced returns, original/source/cleanup checks and zero ordinary readbacks.19/60FPSfail at18.739/48.913FPS; visible native49.438FPS. Status construction consumes19.873s of230.551s visible owner work at0.250ms/poll. Target a bounded status cadence while preserving immediate lifecycle/error and independent output handoff; outcome and tracing overhead remain pending.
+`NP.rts-selection-policy` and `HOST.rts-controls` implement an opt-in native
+campaign shortcut policy: selection/team editing, wizard/focus, idle/ungrouped
+searches, retained mixed-type cycling, spell-slot keys, four camera bookmarks,
+file-based bindings, existing mouse-speed preference and move-to-current-cell
+Stop requests. Existing rendering, cursors, simulation/admission and original
+artifacts remain. No widget/overlay, balance rule or commander AI is added.
+[Contract, bindings and pending live protocol](rts-controls.md).
 
-Seed HOST.native-worker-status-cadence before testing. The16ms reporting policy removes repeated diagnostic construction while source/command execution and output handoff remain independent, with urgent lifecycle/status events unconditional. Original clocks and gameplay are unchanged. Source-bound pixel comparisons and19/60FPS outcome remain pending.
+Fresh prospectively bound normal64,normal32 and ASan/UBSan policy runs each pass
+102,850 checks; the actual configured32 adapter passes56 synthetic API/service
+checks, eight configuration/admission tests pass, and the production PE32 DLL
+builds. Pinned-source staging preserves every original executable section,
+round-trips both synthetic preference representations, and derives a canonical
+source copy without changing its incoming import-extended installation. The
+[immutable execution record](rts-controls-synthetic-20261014.json) binds the new
+behavior/scenario contracts and all declared sources. Earlier failed development
+trials remain under `working/tests/rts-controls-20261014/`. The sandbox's32-bit
+system-call refusal is distinct from the subsequent passing execution outside
+that restriction. The original manifest passes before and after artifact use.
 
-## Status-cadence experiment retained, default adoption deferred
+`INPUT.rts-original-interface-map` records only the selected original call/data
+interfaces with [static source evidence](rts-controls-static-20261014.json).
+Keyboard/view handlers remain unassigned; no complete command policy or original
+execution equivalence is inferred. Native implementation is scoped and integration
+is headless/synthetic; original comparison, live integration and replacement are
+none. Actual Ctrl/Shift click/drag, Power-guard idle exclusion, settled spell
+bar/target/mana behavior, queued movement interruption, camera orientations,
+focus loss, menu/save/load/new mission and long-session play remain pending.
+Quick Battle/multiplayer and transformed wizards are outside current admission.
+Original double-click team behavior remains; Ctrl+T supplies type selection.
+Hold Position and attack-move remain pending distinct command/AI work; existing
+coordinate attack is not presented as attack-move.
 
-Final opt-in HOST.native-worker-status-cadence native controls pass with25full native framebuffer hashes identical to every-turn reporting; cadence/urgent/clock-refusal and lease/pause/teardown controls pass. Historical full traced gameplay balances4498sources at19.3018engine/50.6438nativeFPS,with status wall work3.511s versus19.873s in the baseline (about82%less). Overall asset-fingerprint validation fails; regression env now requires full fingerprints. No causal FPS increase from distinct live journeys is asserted. Subsequent current tests retain startup timeout,drawing-history GAP,covered-displacement bounds refusal and wizard-death failures. Full current successful regression and60FPS remain pending; experimental flag only,unchanged default every-turn reporting. Original/source checks and isolated cleanup pass for all these attempts. No native rendering reduction,clock/gameplay modification,screenshot substitution or relaxed bounds. Historical records retain their original claims/hashes without current status credit.
+Shared launch-source edits can stale historical menu/render/panel/glyph evidence.
+Their hashes/statuses are preserved; this controls result supplies no fresh
+equivalence for those subsystems. The incoming `HEAD^1..HEAD` merge receipt audit
+reviewed19 committed files with no unresolved exact receipts, independently of
+these uncommitted controls changes; its retained report is
+[the history inspection](coverage/rts-controls-incoming-history-20261014.json).
 
-### Native displacement final-row failure (2026-10-13)
+Final ABI review preserves the original slot-reset return word as well as
+LastError and the existing `thiscall` argument/stack contract. The new
+[final execution record](rts-controls-final-synthetic-20261014.json) repeats all
+three102,850-check policy runs,57 synthetic adapter checks,eight configuration
+checks and isolated staging/source preparation. The prior successful56-check
+record remains historical with its original hashes; it is not refreshed.
 
-`NR.displacement-finite-edge` records an explicit native finite-storage policy:
-retain destination words for displacement taps beyond the logical canvas,
-while generic renderer admission remains strict. Retained World2354 draw1592
-reproduces one opaque overflow; both pinned original leaves read an authored
-backing guard word in isolation. Fresh14 native controls, two captured480000-word
-atlas/nonatlas comparisons andtwo renderer regressions pass withzero ordinary
-readbacks/leaks. No original equivalence for that tap, current public reliability
-or60FPS claim; drawing-history GAP remains under investigation. Historical
-source fingerprints and failures stay intact.
+The ready configuration uses F4 for selection focus, avoiding the desktop
+Alt+Space window-menu shortcut. Its additional real adapter dispatch/LastError
+check brings the synthetic adapter total to59; all three102,850-check policy
+runs,eight configuration checks,PE32 build and staging/source preparation pass
+again in the [ready source-bound record](rts-controls-ready-synthetic-20261014.json).
+Prior56/57-check records retain their hashes and narrower configurations.
+Sixteen rendering/GUI commits arrived during this task. Their530 exact
+parent/current file transitions have no missing receipts in the
+[separate final history inspection](coverage/rts-controls-incoming-history-final-20261014.json).
+This retrospective check asserts no past gate pass or new rendering validation.
 
-### Read-only description false history GAP (2026-10-13)
+The shared launchers subsequently gained unrelated minimap/colour-rectangle
+staging. A fresh prospective [current-launcher controls run](rts-controls-current-launchers-synthetic-20261014.json)
+repeats the59 adapter,eight config and all three102,850 policy checks against
+those exact versions,with stable sources. Earlier records remain historical.
+Whole-tree change-gate accounting remains blocked by ongoing unrelated source
+census/renderer receipts; the controls source/config and scoped receipts are
+retained independently. No commit or live-game validation is asserted.
 
-`NR.readonly-description-continuity` separates GetSurfaceDesc observation from
-pixel/metadata mutation. A pre-fix PE32 concurrency fixture proves a false native
-GAP on two read-only queries. Current three admission-layer refusal controls and
-ordinary cross-thread observation preserve both native frames and epochs; four
-actual-change/write/unsupported-mutation controls still refuse. Eightcases and12
-full-frame comparisons pass withzero ordinaryreadbacks/viewportuploads andzero
-terminalsurfaces. Bounded failure site tags remain diagnostic only. No original
-API/wire/cadence/balance changes or unsafe history recovery are enabled.
 
-The first displacement fix's pre-readonly full TITAN run completed4476balanced
-Worlds, successfulcasting/combat/spells/portrait/menu/resume/Quit and19.12engine /
-50.11nativeFPS. Preserve its historical source fingerprints after this repair.
-Short repeats retain a19FPSfloor miss and a menu timeout without a renderererror;
-a cold-cache fullfunctional run misses19FPSat18.99486. No current60FPSor every-GAP
-repair claim follows. Final-source full public validation remains pending.
+## Native remaining mapped pixel producers — 2026-10-14
 
-### Native mapped status stall and final rendering regression (2026-10-13)
+The [scoped pixel producer route inventory](native-pixel-producers.md) now owns
+native pixels for the mapped image/effect, JPEG/BMP/DIB, panel, glyph, minimap,
+colour-rectangle, outside-World raster and owned-DC copy families. Original
+source/palette/coordinate preparation, wrappers and surface lifecycle remain
+where documented. Kernels preflight native output before writes; unsupported
+inputs still forward. Unknown producers remain in the binary inventory.
 
-The next three-cycle test catches a real final-quit GAP: a drawing waiter exceeds
-50ms while CreateSurface owns drawing167ms, sampled atnative status phase3 mapped
-stores. `NR.native-status-outside-drawing` adds balanced local deferral andpublishes
-status/module checks after drawing ownership releases. Allocation/lifetime/order,
-LastError,96-byte status layout andgenuine-write deadlines/refusal remain intact.
-Native status assertions/ASan/UBSan and actualPE32 injected125ms publication-stall
-plusreadonly/mutation controls pass: sixcases/tenfull-frame comparisons, zeroordinary
-readbacks/uploads/terminalsurfaces. The earlier5528Worldfinal-quit failure remains.
+Fresh independent records preserve these distinct milestones:
 
-Final TITAN code completes5284balancedWorlds, three native menu/resume cycles,
-casting/lethalcombat/spells/portrait/QuitNo-resume andnormalQuit, withno renderererror
-or historyadmissionfault andzeroordinaryreadbacks. The failed public observation is retained; formalintegration remainsheadless
-until successfulpublic evidence. The run stillfails performance:18.98168engineFPSbelow19,50.23648native
-FPSbelow60, andretained worst-window native/paint checks. Offline source-matched
-artifact postcheck verifies gameplay outcomes without clearing those failures.
-No originalequivalence, fullnativeengine, every-GAPrepair or60FPSclaim is made.
+- [Raster splices](outside-world-raster-comparison-20261014.json):17 original
+  entries/23 production splices,9,323 native cases,4,467 full workspace checks,
+  111,702,784 physical WORDs, both formats, DF variants and129/255-column inputs.
+  Nonzero DWORD palette high halves preserve both original pairing policies;
+  clipped-wave whole-run skips and clipped grayscale raw-copy are recovered.
+  Eight sanitized malformed/alias/last-row/channel cases refuse atomically.
+- [Minimap](minimap-splice-final-comparison-20261014.json):486 terrain and2,054
+  overlay native cases,756 outer-border cases,133,986,384 physical WORDs and
+  source/object/callback/full stated caller-state equality. Camera fixtures
+  isolate terrain; combined live composition is pending.
+- [Colour rectangles](colour-rectangle-comparison-20261014.json):2,585 native
+  cases in both formats/all four modes,11,984,896 physical WORDs and full caller
+  state. DF-set constant REP STOS and unsupported/hidden cases remain original.
+- [Image/effect loops](image-effect-splice-final-comparison-20261014.json):5,004
+  native and372 forwarded/early-return cases,5,765,312 physical WORDs, retained
+  wrapper callbacks and stated machine state. Prior range anchors/results keep
+  their original hashes.
+- [Owned DIB](native-dib-pixels-final-comparison-20261014.json):128 GDI/native
+  pixel comparisons and512 atomic lease/layout refusals; complete teardown.
+- [Owned DC copy/plane lifetime](native-dc-copy-comparison-20261014.json):512
+  separate/self-overlap GDI comparisons,2,560 paint refusals, native512/original0
+  thunk counts and locked/unlocked/DC-busy/retired lookup; zero remaining leases.
+- [JPEG wrapper](native-jpeg-wrapper-final-comparison-20261014.json):all752
+  installed JPEGs,3,008 cases and515,100,744 physical WORDs through the unchanged
+  original wrapper/production decoder CALL patch. Decoder counts3,008/0,
+  boolean/Lock/Unlock/guards match. External decoder volatile GPR/FX history
+  and dynamic/malformed sources are excluded.
+- [Production glyph](glyph-production-final-admission-20261014.json):65,545
+  admitted/handled requests,zero forwards/errors/drawing writes/full-canvas
+  trial copies, no finite rendering budget. RGB565/555 arithmetic/caller state
+  also has the separate18,760-execution format comparison. Public native-draw
+  takeover staging uses capture0 in standalone and resident sessions.
+- [Public source staging](pixel-producer-public-staging-20261014.json):all nine
+  combined drawing/pixel/glyph imports,27 refusal checks and actual public
+  resident menu preparation from an isolated full game copy with all752 JPEGs.
+  Code/source/cache/owned-DLL hashes and capture0 activation pass. No process
+  launch or combined installed-hook/stream equivalence is asserted.
 
-### Retained native World image controls — 2026-10-13
+`MNM_OTHER_PIXEL_PRODUCERS=1` selects these scoped writers for native menu/draw
+staging; individual0 overrides the group. It is not a complete renderer flag.
+CPU consumers use stated current borrowed compatibility storage, without GPU
+World readback. Closed native history, integrated gameplay/transitions, every
+source/caller/failure path and full live replacement remain pending independently
+of these pixel implementations and isolated comparisons. Existing historical
+reports and negative results are preserved.
 
-Opt-in `MNM_WORLD_IMAGE_REUSE=1`/`test-native-campaign.py --reuse-world-image`
-freezes one completed native GPU World per source and restores it for repeat
-presentation before existing sealed UI composition. Full native drawing remains
-required for every source; prepared draw replay stays the default/stress control.
-[Policy and evidence](native-retained-world-image.md): TITAN controls pass80
-authored repeats, eight captured full-frame comparisons and worker/immutable UI
-ownership/teardown with zero ordinary readbacks. Same-input synchronized repeat
-cost falls2.24324→0.178185ms; this does not establish live60FPS or extra simulation
-updates. Initial assertion and incomplete-history input failures are retained.
-Public gameplay/performance, broad input coverage and original equivalence remain
-pending. Committed-history review `cc9248c0..b43b0bd1` checks24 exact source
-transitions with zero missing receipts; no retrospective execution claim.
-
-The first retained-image public TITAN attempt (`run-l57e71fc`) has3837 matching
-World/image captures/imports/verified returns and zero ordinary readbacks, but
-fails at first campaign menu with genuine65ms BltFast phase4 copy ownership
-against the unchanged50ms mutation budget. Native statusstage0 distinguishes
-it from prior deferred-status failure; suboperation/OS attribution is pending.
-Partial49.933native/18.964engineFPS do not demonstrate live throughput gain.
-The immutable negative report and bounded timeline analysis remain linked;
-formal new-policy integration remains headless, with full reuse/baseline
-regression, deadline scheduling and60FPS pending.
-
-### Retained native World image: complete paired TITAN journeys — 2026-10-13
-
-Current prepared replay `run-5r0ezlxe` and image reuse `run-v71bzxl6` both pass
-casting/combat/movement/spells/portraits, three menu resumes and normal Quit at
-the unchanged 19 FPS gate. They balance 5,353 and 5,230 Worlds respectively,
-with zero ordinary readbacks; reuse has exactly 5,230 image captures and no
-copy-order timeout/GAP in the successful lifecycle log. Source/shell identity,
-original manifests and private cleanup pass. [Evidence and comparison](native-retained-world-image.md)
-retain the earlier genuine GAP and separate distinct live inputs from identical
-captured-input controls. New-policy integration advances to bounded live
-observation; original comparison/replacement remain none.
-
-Live repeat-World CPU falls 4.57529→0.59140 ms (87.07%); engine FPS is
-19.45945→19.33535, World-specific native FPS 49.97270→50.80452, and gameplay
-GUI paint averages 62.64872→65.07059. The worst reuse window is 40.90909 FPS,
-so this is not sustained 60 FPS or scanout proof. New-source native processing
-remains about 13 ms and is the next render-side profiling/scheduling target.
-Reuse remains opt-in; prepared drawing stress is available by default. Exact
-phase4 stall/OS attribution, broader auxiliary inputs, interpolation and original
-equivalence remain pending. Committed-history review `b43b0bd1..835d2c0c`
-checks 22 exact transitions with zero missing receipts.
-
-### Native World owner phase costs — 2026-10-13
-
-[Bounded diagnostics](native-world-owner-costs.md) split native validation,
-producer opcodes, entry, append, completion, return snapshot and presentation,
-with nested binding/scene phases. TITAN `run-tljqzhls` passes 128 exact full-frame
-profile-off/on comparisons with stable sources/inputs/original manifests and
-zero ordinary readbacks. The quieter captured prefix averages 7.59 ms versus
-approximately 13 ms in prior busy live journeys; completion, producer replay and
-admission span several costs. These are native host wall times, not original
-simulation CPU or GPU busy time. Native World/UI owner separation is the next
-structural experiment; FIFO, two credits, guards and original pacing stay fixed.
-History review `835d2c0c..13f27e3e` verifies 11 exact transitions with zero missing
-receipts. Native diagnostics gain headless support only; live60FPS is pending.
-
-### Separate native World GPU production controls — 2026-10-13
-
-[Native GPU producer](native-world-gpu-production.md) is experimental and opt-in.
-TITAN `run-cfe19qzn` passes128 captured native-word comparisons, presentation
-during a blocked producer, two-job/two-lease bounds, ordered completion, exception
-refusal, worker/movie-pause/presentation controls and joined cleanup. Producer
-ordinary readbacks remain zero. Same native World work and original two-credit
-return protocol now have a separate owner; simulation clock and balance remain
-fixed. Full public journey/cadence proof is pending. First runner trace omission
-is preserved independently. History review `13f27e3e..ee3a1e42` finds15 exact
-committed transitions and zero missing receipts; it asserts no new validation.
-
-Public candidate `run-q5jyiyuf` now passes the full TITAN casting/combat/spell/
-portrait/three-menu/normal-Quit journey. All5268 World/image/import/return/GPU
-counts balance, source/GPU bounds remain two and ordinary readbacks zero; source/
-original manifests and private cleanup pass. Native World presentation57.18977
-FPS (visible trace57.72239), engine19.58158Hz and worst gameplay paint52.89421
-FPS are not sustained60FPS. Native World production remains13.84ms but its
-render-owner completion poll is0.0075ms. New-policy integration advances to
-bounded live observation only; same-build baseline remains pending.
-
-The first paired synchronous baseline `run-5352r9gj` exposes an experimental
-retirement regression:5108 balanced completed Worlds were compared with an
-absent GPU queue's zero counts. Its normal-Quit gate fails; it is retained as
-negative evidence, not successful comparison. The corrected predicate applies
-GPU checks only in async mode and retains all source/Quit checks in both. Fresh
-TITAN `run-5glxwuyn` passes128 pixel comparisons and mode-specific retirement
-controls. Both complete public paths must rerun before current-code live claims.
-
-Final-source TITAN controls `run-5glxwuyn` and complete async public candidate
-`run-435f6o9s` now pass. All5250 World/image/source/GPU counts balance, source/
-GPU bounds are two and ordinary readbacks zero; casting/combat/spells/portraits/
-three menu resumes/normal Quit, original/source checks and private cleanup pass.
-The same-binary final synchronous baseline `run-l4egvl9q` retires5393 balanced
-Worlds but fails the unchanged19FPS gate at17.78094Hz; candidate passes19.27881.
-Native World47.31881→56.25228FPS and UI-owner World poll12.917→0.007889ms
-are observed across distinct game states; total World production remains13.74ms.
-Final worst gameplaypaint17.27273FPS is retained as a hitch, so sustained60FPS
-is unresolved. Early bounded trace overwrite/absent absolute host origin prevent
-precise cause attribution; targeted hitch retention/UI-gate/lease/GUI-driver
-correlation is the next render experiment. New policy gains current bounded
-live-observation support only. Original equivalence/replacement remain none.
-
-### Bounded native hitch capture — 2026-10-13
-
-[Hitch windows](native-hitch-capture.md) preserve warm paint gaps, surrounding
-owner/GUI records and source/GPU/UI/lease state, with one exported host origin
-and matching campaign rate spans. TITAN `run-0cgd9vjo` passes bounded/reset/
-wrap controls and128 exact captured World comparisons. Outer live runner
-`run-4aowab2c` is storage-interrupted, not a successful full-run result; native
-host nevertheless retains5154 balanced Worlds and27 observed hitches.
-1008.957ms worst gap has869 pending-import owner polls with old sealed2435
-and ready/pending2436, no export refusals and short CPU phases. Prior imported
-World redraw is suppressed until original command import: confirmed native
-display gating shortcoming. Original publication latency, safe old-generation
-carry, complete runner validation and60FPS remain separate pending milestones.
-History `ee3a1e42..ea97c742` verifies29 exact transitions/no missing receipts.
-Original manifests/private cleanup pass; reviewed archival plans are not executed
-and no data is pruned after free space recovers to127GiB.
-
-### Imported World display during pending delivery — 2026-10-13
-
-[Pending World display](pending-world-display.md) separates the last imported
-immutable World from the next completed source. Opt-in async presentation keeps
-matching sealed UI/World displayable while ordered command import waits; source
-FIFO, verified returns, two credits, simulation, and the comparison mode remain
-unchanged. Source admission no longer waits for the display deadline. Resident
-Quit-No tests require three new source imports beyond the post-answer base.
-
-Current TITAN controls `run-q3vumvu1` pass authored delayed-import red/blue pixels,
-clock/credit and resume checks, 128 actual World native-word comparisons, plus
-worker, presentation, lease/retirement and hitch-capture checks. First live
-`run-666f2v5_` menu retirement and final-source `run-23a79onx` 18.61690 Hz
-performance failure remain preserved. The unchanged-source `run-s_dutjcz` passes
-the complete casting/combat/spell/portrait/menu/Quit journey at 19.16361 engine
-Hz and 58.77168 native World FPS, with 5200 balanced generations and 60 pending
-redraws, no native error or ordinary readbacks, stable inputs/sources and verified
-original manifests. This is scoped native live observation, not equivalence,
-full replacement, stable source throughput, scanout, interpolation, or 60 FPS.
-
-Largest retained 352.023 ms paint gap contains 22 native World frames and 27
-export refusals; GUI pickup/output leases stall while native rendering continues.
-All four retained gaps are outside sampled gameplay-rate spans; non-world/cold/
-hidden/movie paint continuity is excluded. Exact GUI and original command-delay
-causes remain pending. Historical shared-source evidence stays historical; no
-old hashes were refreshed. History `ea97c742..75170b38` reviews 18 exact committed
-transitions with zero missing receipts, independently of this uncommitted delta.
-
-### GUI presentation and capture attribution — 2026-10-13
-
-[GUI delivery diagnostics](native-gui-delivery.md) add bounded activity markers
-and aggregate presentation/paint/compose/heartbeat timing without extra pixel
-reads or live serialization. Current TITAN controls `run-wl2mlqc1` pass native
-128-World word comparisons and worker/retirement/lease controls. Casting attempt
-`run-52xntuxp` ends in wizard death, with no final trace; retain the negative.
-
-Movement/menu `run-rxh86c6c` passes at 19.55089 engine Hz / 61.19480 native World
-FPS, with 2972 balanced sources. The largest 375.322 ms gap contains 366.462 ms
-of synchronous PNG encoding on the GUI and about 7 ms native readback. The
-renderer continues 23 Worlds; normal presentation callbacks remain under 1 ms.
-Unchanged-source `run-d4chsl24` passes the same workload with route screenshots
-explicitly omitted. Diagnostic capture checks remain separate; omission does
-not assert their route pixels. The measured fix is async bounded route encoding,
-with full casting/combat validation still pending. Source-rate variance, exact
-non-capture stutters, original equivalence and sustained60FPS remain open.
-History `75170b38..693c7602` reviews 23 exact committed transitions / zero missing
-receipts, independently of this delta.
-
-### Bounded persistent image encoding — 2026-10-13
-
-[Native route capture](native-route-capture.md) preserves screenshot artifacts
-while GUI-owned reads feed a persistent bounded encoder. One image task runs at
-a time, with at most two queued tasks; route actions await polled completion.
-No GUI/GL objects cross into encoding. Diagnostic request deletion occurs on
-encoder before acknowledgement, and GUI future release does not join per-capture
-threads. Explicit synchronous/omitted route comparisons remain available.
-
-Transient-thread full casting `run-ek1nbb6y` passes but retains a 632.919 ms
-diagnostic capture wait after readback and 55 ms presentation callback; preserve
-its intermediate source hashes and unknown exact wait cause. Current persistent
-controls `run-cwgxy8t9` validate queue bounds, GUI progress during blocked encoding,
-exact PNG pixels, exception recovery, 128 native World word comparisons and
-worker/retirement/lease/hitch checks. `run-98mfpjv9` passes casting/combat/spells/
-portrait/three-menu-cycle/Quit at 19.37173 engine Hz / 59.28694 global native World
-FPS / 60.01656 visible native World FPS, 5265 balanced generations, no ordinary
-readbacks, stable sources/inputs and original manifests. All 14 route captures
-are retained; GUI route/diagnostic maxima 20.248/18.801 ms versus background PNG
-encoding up to 621.652 ms. No GUI PNG encoding remains.
-
-One clipped 144.164 ms eligible gap remains unclassified; its diagnostic overlap
-is only 1.121 ms. No sustained 60 FPS, source-rate gain, scanout or equivalence
-promotion. Defensive route failure branches and non-world/cold/hidden continuity
-remain partial. Historical shared-source evidence remains unchanged. History
-`693c7602..bd928081` reviews 20 exact committed transitions / zero missing receipts.
-
-### Remaining GUI gap phase attribution — 2026-10-14
-
-[GUI diagnostics](native-gui-delivery.md) now isolate campaign/progress/request/
-discovery/input/status work, sampling only fast facade/status records while
-aggregating every call. Current TITAN controls `run-yowhbyub` validate an unclipped
-authored 144 ms window, 128 native pixel comparisons and ownership/retirement.
-Failed `run-t764kwik` producer cancellation is preserved with unknown cause.
-Unchanged `run-acopfvr_` passes the full casting journey at 19.54621 engine Hz,
-58.75104 global World / 59.56581 visible World FPS. A complete, unclipped
-230.309 ms gap contains 216.818 ms request-intake overlap, only 0.988 ms diagnostic
-capture overlap and 15 ongoing native Worlds. Progress max 0.605 ms refutes that
-operation as the cause of this reproduced gap. Exact file operation and original
-144 ms cause remain unproved; asynchronous request intake is the next fix.
-Historical hashes and independent status dimensions remain unchanged; no original
-equivalence, source-rate gain, scanout or sustained 60 FPS claim. History
-`bd928081..6392f6d3` reviews 20 exact transitions with zero missing receipts.
-
-### Capture request intake off GUI — 2026-10-14
-
-[Worker request intake](native-capture-request-intake.md) replaces per-poll GUI
-file existence/open/read/parse with one polled future and an owned pending name.
-A persistent bounded worker validates <=4096-byte JSON/name constraints, retries
-missing/unopenable files, removes invalid requests and preserves valid request
-until copied images queue. No duplicate read while image job pending; optional
-full-queue submissions skip, mandatory encoding still refuses overflow. No GUI/GL
-objects cross into worker. Native readback and all performance/source gates stay.
-
-Current controls `run-hj3chstj` pass request bounds/names/cleanup/backpressure,
-blocked-worker GUI responsiveness, PNG pixels,128 native World words and resource
-ownership. Final full `run-rnwjsprp` passes casting/combat/spells/portraits/menus/
-Quit with14 retained artifacts and5407 balanced source/import/returns, stable
-source/assets/originals, zero ordinary readbacks. GUI request max17.594ms versus
-224.411ms baseline, zero eligible warm>=50ms gaps; global nativeWorld59.05049/
-visible59.78562/engine19.36550FPS are recorded without stable60FPS or causal mean
-gain. Old144ms exact syscall remains unproved; complete230ms intake boundary is
-removed. Preserve cancellation negative and cold/hidden/nonworld/scanout limits.
-History `6392f6d3..b023fa98` reviews17 exact committed transitions / zero gaps.
-
-### Rendering master integration — 2026-10-14
-
-[Integration review](native-render-master-integration-20261014.md) combines all15
-rendering commits with master66c2ad73, preserving copy-wait tracing plus release-
-before-status flush, storage declarations and bounded-stream synchronization.
-Master ordinary menus areV17; the old V12-only campaign validator is corrected
-to exactV17 magic/version/extent without relaxing engine/callback/ack/quit gates.
-Twenty authored unit checks, actual32-bit admission controls, both PE32 builds,
-optimized/ASan/UBSan status checks and five Wine/Qt mutation cases pass. TITAN
-controlsrun-2k2g3o51 pass128 exact World word/ownership/capture comparisons.
-
-Full finalrun-9sxumhht passes casting/combat/spells/portraits/three-menu/Quit,
-14 retained artifacts and5719 balanced World/import/return/GPU counts, zero
-ordinary readbacks/outstanding work and stable source/input/original manifests.
-Engine19.36803Hz/global nativeWorld56.75706/visible59.40394FPS, zero eligible
-warm>=50ms paint gaps and request GUImax21.973ms are bounded observations, not
-sustained60FPS, original equivalence, interpolation or scanout. Keep two staging
-negatives and the completed native journey rejected by the obsolete validator
-separate from the fresh final success. Incoming history296 exact transitions/
-zero missing receipts; all historical hashes and independent statuses remain.
+Sixteen commits arrived during this work. The [separate incoming-history
+reinspection](coverage/pixel-producers-incoming-history-20261014.json) verifies
+all530 parent/current file hashes and exact receipts with no unresolved matches.
+It infers no historical gate pass or execution validation. Unrelated Qt restart,
+creature and controls work is retained; shared-launcher edits may leave its
+historical evidence stale until its own current closure is rerun.

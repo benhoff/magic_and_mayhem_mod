@@ -368,7 +368,14 @@ static void producer_source_region_end(void){
 #include "drawing_publication.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
- if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
+ if(tag==10 && glyph_live_active()){
+  if(enabled && !stopped && !batch_guard_open){
+   /* The normal observer return hook still publishes this glyph request and
+    * completion after native RET16, preserving the resident stream ordering. */
+   frame_enter(registers,tag);int handled=glyph_live_enter(registers,fx);SetLastError(error);return handled;
+  }
+  if(!batch_guard_open){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
+ }
  if(tag==52 && !(continuous_public_bind && batch_guard_open)){SetLastError(error);return 0;}
  if(enabled&&!stopped){
   if(batch_guard_open && continuous_public_bind && GetCurrentThreadId()!=batch_owner){
@@ -448,7 +455,13 @@ void producer_leave_observe(u32* registers){
 }
 int canvas_producers_install(void){
  int glyph=glyph_live_configure();if(glyph<0)return 0;
+ char producer_flag[2];const int glyph_resident=glyph && GetEnvironmentVariableA("MNM_CANVAS_PRODUCERS",producer_flag,sizeof producer_flag);
  if(glyph){
+  /* The same constants guard applies to standalone and resident routing. */
+  if(!readable(0x5c7860,4)||get((void*)0x5c7860)!=0x3c820821||!readable(0x59bee0,6))return 0;
+  const u8 truncation[6]={0x55,0x8b,0xec,0x83,0xc4,0xf4};for(u32 j=0;j<6;++j)if(*(u8*)(0x59bee0+j)!=truncation[j])return 0;
+ }
+ if(glyph && !glyph_resident){
   if((u32)GetModuleHandleA(0)!=0x400000)return 0;
   struct Hook* h=hooks+10;if(!readable(h->address,h->length))return 0;
   for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;
@@ -482,5 +495,5 @@ int canvas_producers_install(void){
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}
  u32 header[16]={0};copy(header,limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;header[6]=limit;if(!continuous_map&&!write(file,header,64))return 0;bytes=64;
  for(u32 j=0;j<HOOKS;++j){struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
- if(!publication_install())return 0;enabled=1;return 1;
+ if(!publication_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
 }

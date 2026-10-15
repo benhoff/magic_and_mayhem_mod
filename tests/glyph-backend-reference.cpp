@@ -41,12 +41,17 @@ int main(int argc,char **argv)try{
     std::ofstream output(argv[3],std::ios::binary);output.write("MNMGLBK1",8);std::uint32_t recordBytes=64;output.write(reinterpret_cast<char*>(&recordBytes),4);
     std::size_t at=12;std::uint64_t words=0;
     for(unsigned n=0;n<u32(input,8);++n){
+#ifdef MNM_GLYPH_FORMATS_TEST
+    for(unsigned format=0;format<2;++format){
+#else
+    const unsigned format=0;
+#endif
         const auto bytes=u32(input,at),size=u32(input,at+4),w=u32(input,at+8),h=u32(input,at+12),stride=u32(input,at+16);
         if(bytes!=328+size||bytes>input.size()-at||!w||!h||w>256||h>256||stride<w||stride>260)throw std::runtime_error("corpus extent");
         Bytes frame(input.begin()+at+328,input.begin()+at+bytes);const auto source=frame;
         std::vector<std::uint16_t> pixels(64+stride*h,0xa55a);for(unsigned y=0;y<h;++y)for(unsigned x=0;x<w;++x)pixels[32+y*stride+x]=std::uint16_t((y*w+x)*1273+113);const auto before=pixels;
-        global(0x658174,reinterpret_cast<std::uintptr_t>(pixels.data()+32));global(0x6a2dc8,stride);global(0x6e1f88,0);
-        *reinterpret_cast<std::uint16_t*>(0x6e1f7c)=0xf800;*reinterpret_cast<std::uint16_t*>(0x6e1f7e)=0x07e0;*reinterpret_cast<std::uint16_t*>(0x6e1f80)=0x001f;
+        global(0x658174,reinterpret_cast<std::uintptr_t>(pixels.data()+32));global(0x6a2dc8,stride);global(0x6e1f88,format);
+        *reinterpret_cast<std::uint16_t*>(0x6e1f7c)=format?0x7c00:0xf800;*reinterpret_cast<std::uint16_t*>(0x6e1f7e)=format?0x3e0:0x07e0;*reinterpret_cast<std::uint16_t*>(0x6e1f80)=0x001f;
         for(unsigned i=0;i<4;++i)global(i==0?0x6e0008:i==1?0x6cbb6c:i==2?0x6a49b8:0x656618,u32(input,at+28+i*4));
         const auto cold=u32(input,at+60),variant=u32(input,at+64),active=u32(input,at+68);
         if(cold>1||variant>11||active>2)throw std::runtime_error("state seeds");
@@ -56,6 +61,9 @@ int main(int argc,char **argv)try{
         };
         for(unsigned mode=0;mode<(n<48?5u:1u);++mode){
         if(mode==4&&cold)continue;
+        /* Two incoming values overflow the original seven-push inner path.
+         * Do not combine that diagnostic with unmasked invalid exceptions. */
+        if(mode==3&&active>1)continue;
         pixels=before;
         seed(variant,active);
         if(mode==3)mnm_glyph_seed_fx[0]&=0xfe; // finite draws are safe with IE unmasked
@@ -72,6 +80,7 @@ int main(int argc,char **argv)try{
         MnmGlyphRouteContext context{};
         context.backend.state={frame.data(),size,std::uint32_t(reinterpret_cast<std::uintptr_t>(frame.data())),0x6f5dac,1,mnm_glyph_seed_flags,std::int32_t(u32(input,at+28)),std::int32_t(u32(input,at+32)),std::int32_t(u32(input,at+36)),std::int32_t(u32(input,at+40)),0,0,0,0,0,cold,variant%4};
         context.backend.pixels=pixels.data()+32;context.backend.width=w;context.backend.height=h;context.backend.stride=stride;context.backend.coverage=reinterpret_cast<std::uint32_t*>(0x6f5dac);
+        context.backend.format=format;
         if(mode==2)context.backend.state.frame=nullptr;
         mnm_glyph_route_context=mode==1?nullptr:&context;mnm_glyph_original_calls=0;
         #ifdef MNM_GLYPH_PRODUCER_TEST
@@ -95,7 +104,12 @@ int main(int argc,char **argv)try{
         row[14]=mode;row[15]=n;
         output.write(reinterpret_cast<char*>(row),sizeof(row));words+=stride*h;
         }
+#ifdef MNM_GLYPH_FORMATS_TEST
+        if(format==1)at+=bytes;
+    }
+#else
         at+=bytes;
+#endif
     }
     mnm_glyph_route_context=nullptr;
     if(at!=input.size()||!output)throw std::runtime_error("output extent");

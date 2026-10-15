@@ -76,7 +76,13 @@ C(mnm_glyph_fp_run):
     fld %st(0)
     fsubrl glyph_one
     movl %ebx,%eax
+    cmpl $0,28(%ebp)
+    jne 6f
     shrl $11,%eax
+    jmp 7f
+6:  shrl $10,%eax
+    andl $31,%eax
+7:
     movl %eax,-16(%ebp)
     fildl -16(%ebp)
     fmul %st(1),%st(0)
@@ -84,11 +90,21 @@ C(mnm_glyph_fp_run):
     fmul %st(3),%st(0)
     faddp %st(0),%st(1)
     call glyph_truncate
+    cmpl $0,28(%ebp)
+    jne 8f
     shll $11,%eax
+    jmp 9f
+8:  shll $10,%eax
+9:
     movl %eax,-20(%ebp)
     movl %ebx,%eax
     shrl $5,%eax
+    cmpl $0,28(%ebp)
+    jne 6f
     andl $63,%eax
+    jmp 7f
+6:  andl $31,%eax
+7:
     movl %eax,-16(%ebp)
     fildl -16(%ebp)
     fmul %st(1),%st(0)
