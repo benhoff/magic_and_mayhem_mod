@@ -3,9 +3,11 @@ project(mnm_native_command_session LANGUAGES CXX)
 add_subdirectory(../../game native-game)
 add_subdirectory(../../reconstruction/creature-ai/transfer-commands-owned command-core)
 add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
-  native_providers.cpp native_geometry.cpp
+  native_providers.cpp native_geometry.cpp native_route.cpp
   ../../reconstruction/creature-ai/attack_selection.cpp
   ../../reconstruction/creature-ai/idle_gesture.cpp
+  ../../reconstruction/creature-ai/cached_attack.cpp
+  ../../reconstruction/creature-ai/actor_route_request.cpp
   ../../reconstruction/creature-ai/coarse_route.cpp
   ../../reconstruction/creature-ai/motion_response.cpp
   ../../reconstruction/rendering/effect_trajectory.cpp

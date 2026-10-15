@@ -9373,3 +9373,54 @@ and [committed-history review](coverage/history-review-ns68-to-ns69-20261015.jso
 retain the independent current/pending boundaries. Coverage audit reports no
 errors or census drift; the five new behavior contracts have fresh implementation,
 original comparison and headless integration support, with no replacement claim.
+
+## NS70 — crowded obstructed native encounters (2026-10-15)
+
+Four/eight retained hostile actors now exercise the existing native creature
+session beside independent original32 state. The declared installed12x12 type17
+fixture adds a sealed column and common move into an occupied destination.
+Recovered516d60 cached attacks/51b130 footprint obstacles and508810 footprint
+facing bind actual native providers. Scheduler5128a0 now owns a shared native
+search and signed frame/request budgets, exact request identity and131-word route
+scratch. Independent512800 immediate/knockback requests use the original250-budget
+search rather than the old one-hop shortcut. Directional diagonal reach uses the
+original one-cell parameter block and source-to-target order. Complete48-word
+sample ordinals permit reverse motion across a sample-bank boundary; empty-anchor
+cleanup restores link0x80 within the declared absent-object-column domain.
+
+Fresh prospectively bound original32/native64/ASan+UBSan+LSan64 execution compares
+9,216 ticks across nine2/4/8-actor encounters and three seeds. It records
+506 hits, 47 stuns, 45 stun recoveries,
+3 knockbacks, 28 route completions,
+16 deaths/removals, 10 search budget yields,
+3 blocked-route transitions and 3 replans,
+42 target changes and 43 cached-attack transitions.
+The65,536 prior helper,65,536 attack/obstacle,32,768 facing and420 actual
+reach/selection/immediate-route cases agree across architectures/sanitizers.
+All221 compiler/configure/test source fingerprints, installed inputs, original
+text and media manifests verify unchanged.
+
+Twenty-four fresh processes restore native snapshots directly and rebuild oracle
+prefixes independently, including unfinished shared search. Final snapshots and
+per-tick digests match. An injected native health fault at137 reproduces exactly
+from its preceding checkpoint, and a corrupt oracle checkpoint is rejected.
+Five native command-session CTests pass on native64 and sanitizers, including
+mid-search rollback, CMD1/v5 roundtrip and quiescent-v4 migration/refusal guards.
+The installed native continuation/rollback/profile/cleanup corpus also passes.
+
+Fixture policy, recovered original comparison and headless integration have
+separate contracts and statuses; no live replacement is claimed. Original search
+heap internals are not projected or serialized. Friendly displacement, region
+graphs, auxiliary cell/object columns, general species/water/flying, dynamic
+actors, complete World/constructor/campaign and original saves remain pending.
+The full original-backed game still has its Wine runtime boundary. No gameplay
+balance coefficients change. See [findings](crowded-native-encounter.md) and the
+[NS70 execution report](crowded-native-encounter-bound-ns70-20261015.json).
+
+The incoming NS69 commit range was reviewed across30 file and20 behavior
+transitions with no missing exact receipts; the
+[history report](coverage/history-review-ns69-to-ns70-20261015.json) asserts neither
+past gate execution nor new engine validation. Historical evidence hashes remain
+unchanged. Broader shared-source contracts retain explicit pending limitations;
+the fresh report supports only its twelve declared bounded contracts. The new
+census, generated summary and exact staged review receipts accompany this commit.

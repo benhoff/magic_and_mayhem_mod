@@ -9,11 +9,12 @@ struct Profile {
   cs::NativeCreatureProfile native;
   cs::Continuation initial;
   reconstruction::combat::MeleeInputs melee;
-  unsigned maximum = 0;
+  unsigned maximum = 0, scenario = 0;
   unsigned projectedObjects = 0, projectedReferences = 0;
 };
 // Portable immutable inputs: encrypted CFG/HTH, ANI, MAP, TTD and crop.
-game::Bytes loadInputs(const std::filesystem::path &, scene::MapCrop);
+game::Bytes loadInputs(const std::filesystem::path &, scene::MapCrop,
+                       unsigned scenario = 0);
 Profile decodeInputs(game::Bytes);
 cs::NativeConsequenceFactory consequences(const Profile &);
 std::shared_ptr<const cs::Runtime> runtime(const Profile &);

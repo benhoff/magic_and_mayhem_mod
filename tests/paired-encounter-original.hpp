@@ -19,11 +19,11 @@ namespace cs = command_session;
 namespace model = cs::model;
 struct Original {
   encounter::Profile profile;
-  Bytes actors = Bytes(2 * 0xe4b), config = Bytes(0x5c9), terrain, types;
+  Bytes actors, config = Bytes(0x5c9), terrain, types;
   std::array<unsigned, 3> ani{};
-  std::array<Bytes, 2> lists;
+  std::vector<Bytes> lists;
   unsigned tick = 0;
-  explicit Original(encounter::Profile p) : profile(std::move(p)) {}
+  explicit Original(encounter::Profile p) : profile(std::move(p)),actors(profile.initial.world.creatures.size()*0xe4b),lists(profile.initial.world.creatures.size()) {}
 };
 Original *original = nullptr;
 std::array<unsigned, 1024> exceptionThread{};
@@ -129,7 +129,7 @@ extern "C" void __attribute__((thiscall)) retainRemove(void *a) {
   }
   put(a, 4, 0);
   put(a, 0x618, 0);
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < original->profile.initial.world.creatures.size(); ++i) {
     auto *peer = original->actors.data() + i * 0xe4b;
     if (get(peer, 4) && get(peer, 0x64c) == get(a, 0))
       call(0x50ab30, peer);
@@ -216,6 +216,7 @@ inline void checkText() {
 }
 void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
   original = &o;
+  std::fill(o.actors.begin(),o.actors.end(),0);
   const auto &p = o.profile;
   const auto d = initial.world.dimensions;
   auto &ani = p.native.animation[0];
@@ -230,6 +231,7 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
   put(cfg, 0x18, p.maximum);
   put(cfg, 0x3c, type.scalar.type_3c);
   put(cfg, 0x44, type.movementKind);
+  put(cfg,0x589,unsigned(type.routeCostFactor));put(cfg,0x5ad,type.routeFlagPenalty);
   std::memcpy(cfg + 0xd8, type.scalar.type_d8.data(), 48 * 4);
   const auto &a = initial.world.creatures[0];
   for (unsigned i = 0; i < 28; ++i) {
@@ -241,14 +243,14 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
   }
   put(cfg, 0x198, a.aimXY);
   put(cfg, 0x19c, a.aimZ);
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < o.profile.initial.world.creatures.size(); ++i) {
     auto *raw = o.actors.data() + i * 0xe4b;
     for (const auto &[offset, f] : encounter::paired::fields(initial, i))
       put(raw, offset, f.value, f.size);
     put(raw, 0xac, address(cfg));
     put(raw, 0xb0 + 28, 0);
     put(raw, 0x6c, 14);
-    put(raw, 0x5f4, 0x50acb0);
+    put(raw, 0x5f4, initial.world.creatures[i].ai.behavior == 2 ? 0x510010 : 0x50acb0);
     put(raw, 0x600, 0x50f7c0);
     o.lists[i].assign(16, 0);
     put(o.lists[i].data(), 0, address(o.lists[i].data()));
@@ -259,8 +261,8 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
     put(raw, 0xdeb + 4 * 0, 0);
   }
   global(0x6def58, address(o.actors.data()));
-  global(0x6def5c, 2);
-  global(0x6df180, 2);
+  global(0x6def5c, unsigned(initial.world.creatures.size()));
+  global(0x6df180, unsigned(initial.world.creatures.size()));
   for (auto v : std::vector<std::pair<unsigned, unsigned>>{
            {0x6c5494, unsigned(d.x)},
            {0x6c5498, unsigned(d.y)},
@@ -318,12 +320,14 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
   // The pool manager's independent scheduling continuation.
   for (unsigned at : {0x22cu, 0x230u, 0x258u, 0x25cu, 0x264u})
     global(0x6def58 + at, 0);
-  global(0x6def58 + 0x228, 2);
+  for(unsigned at=0x6df184;at<=0x6df1ac;at+=4)global(at,0);
+  global(0x6e1f3c,0);
+  global(0x6def58 + 0x228, unsigned(initial.world.creatures.size()));
 }
 inline void step(Original &o) {
   ++o.tick;
   global(0x6c4830, o.tick);
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < o.profile.initial.world.creatures.size(); ++i) {
     auto *a = o.actors.data() + i * 0xe4b;
     if (get(a, 4)) {
       if (!get(a, 0xb0 + 28)) {
@@ -342,7 +346,7 @@ inline encounter::paired::Projection projectOriginal(const Original &o) {
     out.push_back({std::move(key), value});
   };
   add("tick", o.tick);
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < o.profile.initial.world.creatures.size(); ++i) {
     auto *raw = o.actors.data() + i * 0xe4b;
     const auto prefix = "actor[" + std::to_string(i) + "].";
     for (const auto &[offset, f] :
@@ -373,6 +377,18 @@ inline encounter::paired::Projection projectOriginal(const Original &o) {
     add(prefix + "ani.reverse", get(raw, 0xd4));
     add(prefix + "ani.reverseCursor", get(raw, 0xd8));
     add(prefix + "ani.reverseLength", get(raw, 0xdc));
+    const bool moving=get(raw,0x618)!=0;
+    const bool inlineSamples=moving && get(raw,0xb93)==address(raw)+0x71e;
+    auto sampleOrdinal=[&](unsigned at){
+      if(!moving)return 0u;
+      const unsigned base=inlineSamples?address(raw)+0x71e:get(raw,0xac)+0xd8;
+      const unsigned delta=get(raw,at)-base;
+      if(delta%4 || delta/4>=48)throw std::runtime_error("original sample pointer domain");
+      return delta/4;
+    };
+    add(prefix+"samples.inline",inlineSamples);
+    add(prefix+"samples.current",sampleOrdinal(0xb8f));
+    add(prefix+"samples.initial",sampleOrdinal(0xb93));
     auto count = get(raw, 0x97b);
     if (count > 16)
       throw std::runtime_error("original route count");
@@ -412,6 +428,10 @@ inline encounter::paired::Projection projectOriginal(const Original &o) {
                                                       {"continuation", 0x22c}})
     add(std::string("scheduler.") + name,
         get(reinterpret_cast<void *>(0x6def58 + at)));
+  add("request.active",get(reinterpret_cast<void*>(0x6df184)));
+  for(auto [name,at]:std::vector<std::pair<const char*,unsigned>>{{"requestBudget",0x6df18c},{"mode",0x6df19c},{"destination.x",0x6df190},{"destination.y",0x6df194},{"destination.z",0x6df198},{"origin.x",0x6df1a4},{"origin.y",0x6df1a8},{"origin.z",0x6df1ac}})add(std::string("request.")+name,get(reinterpret_cast<void*>(at)));
+  add("request.dirty",get(reinterpret_cast<void*>(0x6c4ddc),0,1));
+  for(unsigned i=0;i<o.profile.initial.world.creatures.size();++i)add("request.marker69c["+std::to_string(i)+"]",get(o.actors.data()+i*0xe4b,0x69c));
   return out;
 }
 inline void compare(const Original &o, const cs::Continuation &native) {

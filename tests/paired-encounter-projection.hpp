@@ -14,7 +14,7 @@ inline Projection project(const cs::Continuation &c, const Profile &p) {
     out.push_back({std::move(key), value});
   };
   add("tick", c.native.tick);
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < c.world.creatures.size(); ++i) {
     const auto prefix = "actor[" + std::to_string(i) + "].";
     for (const auto &[offset, f] : fields(c, i)) {
       std::ostringstream key;
@@ -40,6 +40,10 @@ inline Projection project(const cs::Continuation &c, const Profile &p) {
     add(prefix + "ani.reverse", ch.state.reverse);
     add(prefix + "ani.reverseCursor", ch.state.reverseCursor);
     add(prefix + "ani.reverseLength", ch.state.reverseLength);
+    const auto &motion = c.actions.motion.at(i);
+    add(prefix + "samples.inline", c.world.creatures[i].ai.motion && c.native.initialization.at(i).initialSampleBank == 0x71e);
+    add(prefix + "samples.current", c.world.creatures[i].ai.motion ? motion.sampleCursor : 0);
+    add(prefix + "samples.initial", c.world.creatures[i].ai.motion ? motion.initialCursor : 0);
     const auto &route = c.actions.segments.at(i);
     for (unsigned j = 0; j < route.count; ++j) {
       const auto &q = route.route.at(j);
@@ -81,6 +85,22 @@ inline Projection project(const cs::Continuation &c, const Profile &p) {
   add("scheduler.phase90", unsigned(c.scheduler.phase90));
   add("scheduler.budget", unsigned(c.scheduler.budget));
   add("scheduler.continuation", c.scheduler.continuation);
+  const auto &q = c.native.route;
+  add("request.active", q.active);
+  add("request.requestBudget", unsigned(q.requestBudget));
+  add("request.mode", q.mode);
+  add("request.destination.x", unsigned(q.destination.x));
+  add("request.destination.y", unsigned(q.destination.y));
+  add("request.destination.z", unsigned(q.destination.z));
+  add("request.origin.x", unsigned(q.origin.x));
+  add("request.origin.y", unsigned(q.origin.y));
+  add("request.origin.z", unsigned(q.origin.z));
+  add("request.dirty", q.scratchDirty);
+  for (unsigned i = 0; i < c.world.creatures.size(); ++i)
+    add("request.marker69c[" + std::to_string(i) + "]",
+        c.native.routeMetadata.empty()
+            ? 0
+            : c.native.routeMetadata.at(i).marker69c);
   return out;
 }
 inline game::Bytes values(const Projection &p) {
@@ -92,16 +112,21 @@ inline game::Bytes values(const Projection &p) {
 }
 inline std::string difference(const Projection &native,
                               const Projection &original) {
+  std::string report;
+  unsigned count = 0;
   for (unsigned i = 0; i < native.size() && i < original.size(); ++i) {
     if (native[i].name != original[i].name)
       return "projection field order differs";
-    if (native[i].value != original[i].value)
-      return native[i].name + " native=" + std::to_string(native[i].value) +
-             " original=" + std::to_string(original[i].value);
+    if (native[i].value != original[i].value) {
+      report += native[i].name + " native=" + std::to_string(native[i].value) +
+                " original=" + std::to_string(original[i].value) + "\n";
+      if (++count == 16)
+        return report;
+    }
   }
   if (native.size() != original.size())
     return "projection shape differs";
-  return {};
+  return report;
 }
 inline std::uint64_t digest(std::uint64_t h, const Projection &p) {
   for (const auto &v : p)

@@ -1,10 +1,10 @@
-# Native command continuation versions1,2 and3
+# Native command continuation versions1–5
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version3 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version5 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -73,7 +73,7 @@ including null12; supplied command profiles retain tags0..4.
 
 Version1/version2 readers leave the appended state absent. Full action profiles
 reject restoration without required roots or descriptor mode. Explicit legacy
-writes refuse losing action or maintenance state; normal writes use version3.
+writes refuse losing action or maintenance state; that schema writes version3.
 Motion division/sample and cyclic object/contribution semantics are checked by
 the recovered bodies at execution, with the outer session retaining rollback.
 Original-save rebinding and dynamic actor lifecycle remain separate.
@@ -94,5 +94,34 @@ providers rejects such state. Explicit legacy writers reject dropping a present
 version4 payload. Fixed actor roots, channel bounds, RNG cursors and occupancy
 references are checked; the1MiB envelope and65536-cell/search bounds are native
 admission policies, not original save compatibility or exhaustive campaign scale
-validation. Persisted searches retain multimap ordering and node records so a
-budget-exhausted search can resume without restarting.
+validation. This schema originally persisted per-actor searches with multimap
+ordering and node records. The version5 reader's migration restrictions follow.
+
+## Version 5: shared actor request and sample ordinals
+
+Version5 retains the version4 prefix, then appends the shared actor-route context
+and per-actor route metadata after the environment-pass state. Context order is
+active, displacement continuation, mode, signed shared budget, signed request
+budget, destination, origin, complete route scratch, dirty/region/diagnostic
+booleans. Scratch contains destination, cursor/count, sixteen seven-word points
+and fourteen motion words. Metadata is a vector of region destinations and
+marker69c words, absent or exactly the actor count. Region-enabled and displacement
+continuations remain unsupported by this native binding and refuse validation.
+
+Shared request active and scheduler continuation represent the same original
+word at6df184. The binding synchronizes them at scheduling boundaries; conflicting
+saved values refuse validation.
+
+The existing search vector retains its actor-count shape; slot0 now holds the
+single scheduler search, matching the original shared request. Immediate512800
+requests have an independent250-expansion budget and finish synchronously. They
+do not change scheduler continuation or consume its budget.
+
+Native motion sample cursors now index the complete48-word type table, allowing
+reverse playback to cross into the preceding sample bank. Inline samples retain
+their existing representation. Version4 reads/writes are admitted only with no
+initialized searches or active motion; such old state lacks shared request
+identity and uses relative sample cursors. A version4 write additionally refuses
+non-default request scratch or metadata. Quiescent state migrates without
+inventing active search state. Unknown versions and malformed route counts,
+cursors, active flags and metadata extents refuse before publication.

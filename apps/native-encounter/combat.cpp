@@ -1,13 +1,15 @@
 #include "../../reconstruction/combat/autonomy_tables.hpp"
 #include "../../reconstruction/combat/health.hpp"
 #include "../command-session/native_geometry.hpp"
+#include "../command-session/native_route.hpp"
 #include "encounter.hpp"
 #include <algorithm>
 #include <stdexcept>
 namespace mnm::encounter {
 namespace {
 namespace m = cs::model;
-constexpr unsigned healthWords = 31, statsOffset = 8 + 2 * healthWords * 4;
+constexpr unsigned healthWords = 31;
+unsigned statsOffset(const cs::Continuation &c){return 8+unsigned(c.world.creatures.size())*healthWords*4;}
 void need(bool b, const char *s) {
   if (!b)
     throw std::invalid_argument(s);
@@ -29,9 +31,9 @@ class Combat {
   std::shared_ptr<const Profile> p;
   m::OwnedCreatureCommands *commands = nullptr;
   void count(unsigned i, unsigned n = 1) {
-    auto before = get(c.backend, statsOffset + 4 * i);
+    auto before = get(c.backend, statsOffset(c) + 4 * i);
     need(n <= 0xffffffffu - before, "encounter statistic overflow");
-    put(c.backend, statsOffset + 4 * i, before + n);
+    put(c.backend, statsOffset(c) + 4 * i, before + n);
   }
   m::State healthState(const m::AutonomousCreature &a) {
     m::State s;
@@ -219,29 +221,7 @@ class Combat {
         input, m::nextRandom(c.native.random),
         [&](auto q) { return g.legal(a, q); },
         [&](auto q) {
-          unsigned category = 5;
-          if (!g.move(a, a.ai.position, q, category))
-            return false;
-          auto &route = c.actions.segments.at(a.ai.slot);
-          route.cursor = 0;
-          route.count = 1;
-          int direction = 0;
-          for (unsigned i = 0; i < 8; ++i) {
-            auto off = m::originalRouteOffsets[i];
-            auto d = c.world.dimensions;
-            if ((a.ai.position.x + off.x + d.x) % d.x == q.x &&
-                (a.ai.position.y + off.y + d.y) % d.y == q.y) {
-              direction = int(i);
-              break;
-            }
-          }
-          route.route[0] = {q,
-                            {direction, q.z - a.ai.position.z,
-                             int(category >= 1 && category <= 3),
-                             int(category)}};
-          a.destination = q;
-          a.ai.marker = 1;
-          return true;
+          return cs::immediateNativeRoute(c,p->native,a,q,a.routeMode);
         });
     return r.admitted;
   }
@@ -249,10 +229,10 @@ class Combat {
 public:
   Combat(cs::Continuation &state, std::shared_ptr<const Profile> profile)
       : c(state), p(std::move(profile)) {
-    need(c.backend.size() == statsOffset + 24 &&
+    need(c.backend.size() == statsOffset(c) + 24 &&
              std::equal(c.backend.begin(), c.backend.begin() + 8, "MNMECB01"),
          "encounter backend version");
-    need(c.world.creatures.size() == 2, "encounter fixed actor pool");
+    need(c.world.creatures.size() == p->initial.world.creatures.size() && c.world.creatures.size()<=8, "encounter fixed actor pool");
     for (const auto &a : c.world.creatures)
       need(a.ai.type == 17 && a.ai.kind == 1 && a.width == 2 && a.height == 2 &&
                !a.form && !a.mode && !a.ai.flying &&
@@ -443,7 +423,7 @@ Statistics statistics(const cs::Continuation &c) {
   unsigned *out[] = {&s.hits,       &s.damage, &s.stuns,
                      &s.knockbacks, &s.deaths, &s.cues};
   for (unsigned i = 0; i < 6; ++i)
-    *out[i] = get(c.backend, statsOffset + 4 * i);
+    *out[i] = get(c.backend, statsOffset(c) + 4 * i);
   return s;
 }
 cs::NativeConsequenceFactory consequences(const Profile &p) {
@@ -458,6 +438,6 @@ std::shared_ptr<const cs::Runtime> runtime(const Profile &p) {
       p.initial, p.bytes, cs::nativeProviders(p.native, consequences(p)));
 }
 game::CreatureRuleSession create(const Profile &p, unsigned seed) {
-  return {runtime(p), p.bytes, seed, 2};
+  return {runtime(p), p.bytes, seed, unsigned(p.initial.world.creatures.size())};
 }
 } // namespace mnm::encounter

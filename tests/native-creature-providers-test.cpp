@@ -48,6 +48,12 @@ int main(int argc,char **argv)try {
   for(auto &row:c.world.relation)row.fill(1);
   for(auto &a:c.world.creatures)c.world.human[a.ai.owner]=true;
   command_session::prepareNativeContinuation(c,p);auto faults=std::make_shared<Faults>();game::Bytes identity{66,17};
+  auto v4=command_session::encode(c,4);auto migrated=command_session::decode(v4);
+  need(command_session::encode(migrated)==command_session::encode(c),"idle v4 migration differs");
+  auto unsupported=c;unsupported.native.route.mode=1;refuses([&]{command_session::encode(unsupported,4);});
+  unsupported=c;unsupported.native.route.scratch.count=17;refuses([&]{command_session::encode(unsupported);});
+  unsupported=c;unsupported.native.route.active=2;refuses([&]{command_session::encode(unsupported);});
+  unsupported=c;unsupported.native.route.active=1;refuses([&]{command_session::encode(unsupported);});
   auto runtime=std::make_shared<command_session::Runtime>(c,identity,command_session::nativeProviders(p,lower(faults)));
   game::CreatureRuleSession s(runtime,identity,17,3);intent(s,game::CreatureOrderKind::move,{6,3,0});
   auto prior=snapshot(s);faults->tick=true;refuses([&]{s.step();});need(snapshot(s)==prior,"failed native frame published state");faults->tick=false;
@@ -68,6 +74,22 @@ int main(int argc,char **argv)try {
   for(auto &row:budget.world.relation)row.fill(1);
   command_session::prepareNativeContinuation(budget,p);auto budgetRuntime=std::make_shared<command_session::Runtime>(budget,identity,command_session::nativeProviders(p,lower(faults)));game::CreatureRuleSession pending(budgetRuntime,identity,17,3);intent(pending,game::CreatureOrderKind::move,{64,64,0});pending.step();auto pendingState=command_session::decode(pending.world().state().systems);
   need(pendingState.native.search[0].initialized&&!pendingState.native.search[0].open.empty()&&pendingState.scheduler.continuation,"route did not preserve exhausted search");
+  need(pendingState.native.route.active&&pendingState.native.route.requestBudget>0&&!pendingState.native.routeMetadata.empty(),"shared request did not retain budget/metadata");
+  need(command_session::encode(command_session::decode(command_session::encode(pendingState)))==command_session::encode(pendingState),"v5 shared search roundtrip differs");
+  auto pendingBefore=snapshot(pending);faults->tick=true;refuses([&]{pending.step();});faults->tick=false;need(snapshot(pending)==pendingBefore,"failed shared-search frame published state");
+  refuses([&]{command_session::encode(pendingState,4);});
+  // Forge a structurally valid old per-actor search payload. Its missing shared
+  // request identity must be rejected rather than silently rebound on read.
+  auto oldSearch=c;oldSearch.native.search[0].initialized=true;
+  auto oldBytes=command_session::encode(oldSearch);
+  const auto appended=command_session::encode(c).size()-v4.size();
+  need(oldBytes.size()>=8+appended,"legacy fixture extent");
+  oldBytes.resize(oldBytes.size()-appended);oldBytes[4]=4;
+  refuses([&]{command_session::decode(oldBytes);});
+  unsupported=c;unsupported.world.creatures[0].ai.motion=true;
+  refuses([&]{command_session::encode(unsupported,4);});
+  auto oldMotion=command_session::encode(unsupported);oldMotion.resize(oldMotion.size()-appended);oldMotion[4]=4;
+  refuses([&]{command_session::decode(oldMotion);});
   game::World resumedBudgetWorld(0);resumedBudgetWorld.restore(game::decodeSnapshot(snapshot(pending)));game::CreatureRuleSession resumedBudget(std::move(resumedBudgetWorld),budgetRuntime);
   for(unsigned i=0;i<30;++i){pending.step();resumedBudget.step();need(snapshot(pending)==snapshot(resumedBudget),"budgeted search resume diverged");}
   auto largeProfile=p;for(auto &type:largeProfile.types){type.width=2;type.height=2;}

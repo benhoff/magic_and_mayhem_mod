@@ -71,8 +71,14 @@ std::array<int, 28> row(const assets::Config &c, const char *section) {
   return out;
 }
 } // namespace
-game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop) {
+game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
+                       unsigned scenario) {
   game::Bytes b{'M', 'N', 'M', 'E', 'N', 'C', '0', '1'};
+  need(scenario <= 2, "encounter scenario");
+  if (scenario) {
+    b[7] = '2';
+    word(b, scenario);
+  }
   for (auto v : {crop.x, crop.y, crop.width, crop.height})
     word(b, v);
   for (const char *p :
@@ -87,9 +93,13 @@ game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop) {
 }
 Profile decodeInputs(game::Bytes bytes) {
   need(bytes.size() >= 24 &&
-           std::equal(bytes.begin(), bytes.begin() + 8, "MNMENC01"),
+           std::equal(bytes.begin(), bytes.begin() + 7, "MNMENC0") &&
+           (bytes[7] == '1' || bytes[7] == '2'),
        "encounter input version");
   std::size_t at = 8;
+  const unsigned scenario = bytes[7] == '2' ? take(bytes, at) : 0;
+  need(scenario <= 2, "encounter scenario");
+  const unsigned actors = scenario == 1 ? 4 : scenario == 2 ? 8 : 2;
   scene::MapCrop crop;
   crop.x = take(bytes, at);
   crop.y = take(bytes, at);
@@ -153,13 +163,14 @@ Profile decodeInputs(game::Bytes bytes) {
   p.native.maintenance.drainDivisor = 1;
   p.melee.base = row(hth, "HTH_Matrix")[17];
   p.melee.stunThreshold = row(hth, "Stun_Matrix")[17];
+  p.scenario = scenario;
   auto &c = p.initial;
   c.world.dimensions = {int(map.geometry.width), int(map.geometry.height),
                         int(map.geometry.layers)};
-  c.world.creatures.resize(2);
-  c.execution.resize(2);
-  c.bindings.assign(2, cs::model::CommandBehaviorBinding::idle);
-  c.generations.assign(2, 1);
+  c.world.creatures.resize(actors);
+  c.execution.resize(actors);
+  c.bindings.assign(actors, cs::model::CommandBehaviorBinding::idle);
+  c.generations.assign(actors, 1);
   c.native.cells.resize(map.geometry.cells.size());
   for (unsigned i = 0; i < c.native.cells.size(); ++i) {
     const auto &v = map.geometry.cells[i];
@@ -169,7 +180,7 @@ Profile decodeInputs(game::Bytes bytes) {
     r.fill(0);
   for (unsigned i = 0; i < 8; ++i)
     c.world.relation[i][i] = 1;
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < actors; ++i) {
     auto &actor = c.world.creatures[i];
     actor.ai.slot = i;
     actor.ai.owner = int(i);
@@ -187,6 +198,13 @@ Profile decodeInputs(game::Bytes bytes) {
     c.execution[i].roamInterval =
         integer(field(cfg, "CREATURE_17", "WanderDelay"));
   }
+  if (scenario) {
+    need(c.world.dimensions.x == 12 && c.world.dimensions.y == 12,
+         "crowded crop domain");
+    for (int z = 0; z < c.world.dimensions.z; ++z)
+      for (int y = 1; y <= 6; ++y)
+        c.native.cells[(z * 12 + y) * 12 + 5].flags |= 0x4000;
+  }
   cs::NativeCreatureGeometry g(c, p.native);
   std::vector<cs::model::Cell> standing;
   for (int z = 1; z < c.world.dimensions.z - 1; ++z)
@@ -198,26 +216,74 @@ Profile decodeInputs(game::Bytes bytes) {
           standing.push_back(q);
       }
   bool found = false;
-  for (auto x : standing) {
-    if (found)
-      break;
-    for (auto y : standing)
-      if (x.z == y.z && std::abs(x.x - y.x) >= 4 && std::abs(x.y - y.y) <= 1) {
-        c.world.creatures[0].ai.position = x;
-        c.world.creatures[1].ai.position = y;
-        found = true;
+  if (!scenario) {
+    for (auto x : standing) {
+      if (found)
         break;
+      for (auto y : standing)
+        if (x.z == y.z && std::abs(x.x - y.x) >= 4 &&
+            std::abs(x.y - y.y) <= 1) {
+          c.world.creatures[0].ai.position = x;
+          c.world.creatures[1].ai.position = y;
+          found = true;
+          break;
+        }
+    }
+    need(found, "encounter crop has no separated crocodile stands");
+  } else {
+    const std::vector<cs::model::Cell> positions =
+        scenario == 1
+            ? std::vector<cs::model::Cell>{{1, 1, 3},
+                                           {8, 1, 3},
+                                           {1, 7, 3},
+                                           {8, 7, 3}}
+            : std::vector<cs::model::Cell>{{1, 1, 3}, {3, 1, 3}, {7, 1, 3},
+                                           {9, 1, 3}, {1, 7, 3}, {3, 7, 3},
+                                           {7, 7, 3}, {9, 7, 3}};
+    for (unsigned i = 0; i < actors; ++i) {
+      bool selected = false;
+      long best = 0;
+      cs::model::Cell chosen;
+      for (auto q : standing) {
+        bool overlaps = false;
+        for (unsigned j = 0; j < i; ++j) {
+          auto old = c.world.creatures[j].ai.position;
+          if (std::abs(q.x - old.x) < 2 && std::abs(q.y - old.y) < 2 &&
+              std::abs(q.z - old.z) < 2)
+            overlaps = true;
+        }
+        if (overlaps)
+          continue;
+        long cost = (q.x - positions[i].x) * (q.x - positions[i].x) +
+                    (q.y - positions[i].y) * (q.y - positions[i].y) +
+                    20 * (q.z - 3) * (q.z - 3);
+        if (!selected || cost < best) {
+          selected = true;
+          best = cost;
+          chosen = q;
+        }
       }
+      need(selected, "crowded stand domain");
+      c.world.creatures[i].ai.position = chosen;
+    }
   }
-  need(found, "encounter crop has no separated crocodile stands");
   for (auto &actor : c.world.creatures) {
     actor.ai.home = actor.ai.position;
     c.execution[actor.ai.slot].roamHome = actor.ai.position;
   }
   cs::prepareNativeContinuation(c, p.native);
-  c.backend.assign(8 + 2 * 31 * 4 + 6 * 4, 0);
+  if (scenario) {
+    // A common initial move request makes the scheduler encounter the sealed
+    // column and another actor's occupied footprint before autonomous combat.
+    auto &actor = c.world.creatures[0];
+    actor.destination = c.world.creatures[1].ai.position;
+    actor.ai.behavior = 2;
+    actor.routePhase = 1;
+    c.bindings[0] = cs::model::CommandBehaviorBinding::move;
+  }
+  c.backend.assign(8 + actors * 31 * 4 + 6 * 4, 0);
   std::copy_n("MNMECB01", 8, c.backend.begin());
-  for (unsigned i = 0; i < 2; ++i) {
+  for (unsigned i = 0; i < actors; ++i) {
     const auto pos = 8 + i * 31 * 4;
     for (unsigned j = 0; j < 4; ++j) {
       c.backend[pos + j] = std::uint8_t(p.maximum >> (j * 8));

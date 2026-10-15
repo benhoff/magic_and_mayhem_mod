@@ -24,7 +24,7 @@ unsigned number(const char *s) {
 }
 } // namespace
 int main(int argc, char **argv) try {
-  if (argc != 8)
+  if (argc != 8 && argc != 9)
     throw std::runtime_error(
         "PE run INSTALL SEED TICKS NEW_OUTPUT FAULT_TICK | PE resume SNAPSHOT "
         "ORACLE TICKS NEW_OUTPUT FAULT_TICK");
@@ -41,7 +41,8 @@ int main(int argc, char **argv) try {
     throw std::runtime_error("tick limit");
   auto profile = encounter::decodeInputs(
       resume ? game::readSnapshot(argv[3]).campaign
-             : encounter::loadInputs(argv[3], {0, 0, 12, 12}));
+             : encounter::loadInputs(argv[3], {0, 0, 12, 12},
+                                     argc == 9 ? number(argv[8]) : 0));
   auto saved =
       resume ? game::readSnapshot(argv[3])
              : encounter::create(profile, number(argv[4])).world().state();
@@ -73,6 +74,9 @@ int main(int argc, char **argv) try {
     throw std::runtime_error("existing output directory");
   checkpoint(out, "initial", native.world().state(), oracle);
   unsigned routeCompletions = 0, stunRecoveries = 0, removals = 0;
+  unsigned budgetYields = 0, blockedRoutes = 0, replans = 0, targetChanges = 0,
+           cachedAttacks = 0, maxSearchRecords = 0;
+  std::vector<int> lastTarget(continuation.world.creatures.size(), -1);
   std::ofstream trace(out / "trace.txt");
   std::uint64_t digest = 1469598103934665603ull;
   for (unsigned i = 0; i < ticks; ++i) {
@@ -92,7 +96,20 @@ int main(int argc, char **argv) try {
     }
     auto now = cs::decode(native.world().state().systems);
     auto prev = cs::decode(before.systems);
-    for (unsigned actor = 0; actor < 2; ++actor) {
+    budgetYields += now.native.route.active != 0;
+    maxSearchRecords = std::max(
+        maxSearchRecords, unsigned(now.native.search.at(0).records.size()));
+    for (unsigned actor = 0; actor < now.world.creatures.size(); ++actor) {
+      const auto &a = now.world.creatures[actor];
+      const auto &prior = prev.world.creatures[actor];
+      blockedRoutes += a.routePhase == 2 && prior.routePhase != 2;
+      replans += prior.routePhase == 2 && a.routePhase != 2;
+      cachedAttacks += a.ai.action == 20 && prior.ai.action != 20;
+      if (a.ai.target >= 0) {
+        targetChanges +=
+            lastTarget[actor] >= 0 && lastTarget[actor] != a.ai.target;
+        lastTarget[actor] = a.ai.target;
+      }
       if (prev.world.creatures[actor].ai.motion &&
           !now.world.creatures[actor].ai.motion)
         ++routeCompletions;
@@ -127,6 +144,14 @@ int main(int argc, char **argv) try {
   auto stats =
       encounter::statistics(cs::decode(native.world().state().systems));
   std::cout << "{\"success\":true,\"ticks\":" << original.tick
+            << ",\"actors\":" << continuation.world.creatures.size()
+            << ",\"scenario\":" << profile.scenario
+            << ",\"budget_yields\":" << budgetYields
+            << ",\"blocked_routes\":" << blockedRoutes
+            << ",\"replans\":" << replans
+            << ",\"target_changes\":" << targetChanges
+            << ",\"cached_attacks\":" << cachedAttacks
+            << ",\"max_search_records\":" << maxSearchRecords
             << ",\"digest\":" << digest << ",\"hits\":" << stats.hits
             << ",\"stuns\":" << stats.stuns
             << ",\"knockbacks\":" << stats.knockbacks

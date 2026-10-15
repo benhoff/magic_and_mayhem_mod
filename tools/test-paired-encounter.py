@@ -25,13 +25,11 @@ def main():
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     pe = ROOT / 'original/Arcane_Nocd/Chaos.exe'
-    if sha(pe) != PIN:
-        raise ValueError('Pinned original SHA-256 differs')
     claim = json.loads(args.claims.read_text()) if args.claims else {'sources': {}, 'claims': []}
     if any(sha(ROOT / k) != v for k, v in claim['sources'].items()):
         raise ValueError('Declared source changed')
     report = dict(success=False, source_executable_sha256=PIN, source_sha256=claim['sources'], claims=claim['claims'], commands=[], wine_required=False, live_replacement=False,
-        scope='Independent persistent original PE32 and native encounter: two ordinary type17 actors on sealed12x12 installed Celtic Plains crop; empty World owner, inventory, presentation and effects, fixed retained identities. Original checkpoints replay the prefix; native snapshots restore directly. Full original World/campaign/live replacement excluded.')
+        scope='Independent persistent original PE32 and native encounter: two/four/eight ordinary type17 actors on sealed12x12 installed Celtic Plains crop; empty World owner, inventory, presentation and effects, fixed retained identities. Original checkpoints replay the prefix; native snapshots restore directly. Crowded fixtures add a sealed column and common initial move request; all actors have distinct hostile owners. Friendly displacement, object columns, full original World/campaign/live replacement excluded.')
     def run(name, command, expected=0, env=None):
         command = [str(x) for x in command]
         report['commands'].append(command)
@@ -46,6 +44,8 @@ def main():
     builds = {}
     try:
         run('original-before', [ROOT/'tools/original-manifest.sh', 'verify'])
+        if sha(pe) != PIN:
+            raise ValueError('Pinned original SHA-256 differs')
         image = pe.read_bytes()
         pe_at = struct.unpack_from('<I', image, 0x3c)[0]
         section_at = pe_at + 24 + struct.unpack_from('<H', image, pe_at+20)[0]
@@ -57,7 +57,7 @@ def main():
                 if 0 <= offset and offset+size <= row[3]:
                     return image[row[4]+offset:row[4]+offset+size]
             raise ValueError('Original address outside file-backed sections')
-        addresses = [0x516800,0x517580,0x516ee0,0x513370,0x4df6e0,0x4df260,0x4df500,0x509230,0x5093e0,0x509e50,0x52a780,0x52a9f0,0x50acb0,0x51f5e0,0x508b00,0x512800,0x4bf070,0x4bef60]
+        addresses = [0x516800,0x517580,0x516ee0,0x513370,0x4df6e0,0x4df260,0x4df500,0x509230,0x5093e0,0x509e50,0x52a780,0x52a9f0,0x50acb0,0x51f5e0,0x508b00,0x512800,0x4bf070,0x4bef60,0x516d60,0x51b130,0x508810,0x5128a0,0x54b800,0x50bd60,0x4f4ba0]
         report['entry_anchors'] = {hex(at):original_bytes(at,16).hex() for at in addresses}
         inputs = ['CFG/Encrypted/creature.cfg', 'CFG/Encrypted/HTH.cfg', 'Creatures/crocodile.ani', 'Realms/Celtic/Plains/CPsec01.map', 'Realms/Celtic/Plains/Terrain.ttd']
         report['installed_inputs'] = {p: sha(args.install/p) for p in inputs}
@@ -68,7 +68,7 @@ def main():
             build = (args.build_root.resolve() if args.build_root else out)/tag
             builds[tag] = build
             run(tag+'-configure', ['cmake','-S',ROOT/'apps/native-encounter','-B',build,'-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',*options])
-            closure = deps.dependencies(build,run,tag,extra={'paired-encounter-reference.cpp','paired-encounter-helper-test.cpp','paired-encounter-native.cpp'})
+            closure = deps.dependencies(build,run,tag,extra={'paired-encounter-reference.cpp','paired-encounter-helper-test.cpp','paired-encounter-native.cpp','cached-attack-test.cpp','crowded-selection-test.cpp'})
             closure.add('tools/test-paired-encounter.py')
             if sources is None:
                 sources = {k: sha(ROOT/k) for k in sorted(closure)}
@@ -77,6 +77,7 @@ def main():
             if args.claims and closure-claim['sources'].keys():
                 raise ValueError('Unbound compiler/configure inputs: '+str(sorted(closure-claim['sources'].keys())))
             targets = ['paired-encounter-helper-test', 'paired-encounter-reference'] if tag=='original32' else ['paired-encounter-helper-test', 'paired-encounter-native','native-creature-providers-test','native-encounter-test']
+            targets += ['cached-attack-test','crowded-selection-test','native-command-session-test','native-command-behavior-session-test','native-command-action-session-test','native-command-action-bodies-session-test','native-creature-providers-test']
             run(tag+'-build',['cmake','--build',build,'--target',*targets,'-j2'])
         report['build_inputs_sha256'] = sources
         env = {**os.environ,'ASAN_OPTIONS':'detect_leaks=1:halt_on_error=1','UBSAN_OPTIONS':'halt_on_error=1:print_stacktrace=1'}
@@ -86,32 +87,45 @@ def main():
         if not all(x==helpers[0] for x in helpers):
             raise ValueError('Helper architecture/sanitizer mismatch')
         report['helper_result'] = helpers[0]
+        for suite, target, extra in [('cached_attack','cached-attack-test',[]),('footprint_facing','cached-attack-test',['facing']),('crowded_selection_route','crowded-selection-test',[])]:
+            rows=[]
+            for tag,build in builds.items():
+                rows.append(json.loads(run(tag+'-'+suite,[build/target,*([pe] if tag=='original32' else []),args.install,*extra],env=env)))
+            if not all(x==rows[0] for x in rows):
+                raise ValueError(suite+' architecture/sanitizer mismatch')
+            report[suite+'_result']=rows[0]
         reference = builds['original32']/'paired-encounter-reference'
         results = []
-        for seed in [17,42,91]:
-            directory = out/('seed-'+str(seed))
-            results.append(json.loads(run('seed-'+str(seed),[reference,pe,'run',args.install,seed,1024,directory,0])))
-            for tag in ['native64','sanitized']:
-                target = out/(tag+'-'+str(seed)+'.snapshot');trace = out/(tag+'-'+str(seed)+'.trace')
-                run(tag+'-'+str(seed),[builds[tag]/'paired-encounter-native',directory/'initial.snapshot',1024,target,trace],env=env)
-                if target.read_bytes()!=(directory/'final.snapshot').read_bytes() or trace.read_bytes()!=(directory/'trace.txt').read_bytes():
-                    raise ValueError('Native64/sanitized persistent encounter differs')
-        report['encounters'] = results
-        if not all(sum(r[k] for r in results)>0 for k in ['hits','stuns','knockbacks','deaths','route_completions','stun_recoveries','removals']):
+        resumes=0
+        yielded_checkpoints=0
+        for scenario in [0,1,2]:
+            for seed in [17,42,91]:
+                name='scenario-'+str(scenario)+'-seed-'+str(seed)
+                directory=out/name
+                results.append(json.loads(run(name,[reference,pe,'run',args.install,seed,1024,directory,0,scenario])))
+                for tag in ['native64','sanitized']:
+                    target=out/(tag+'-'+name+'.snapshot');trace=out/(tag+'-'+name+'.trace')
+                    run(tag+'-'+name,[builds[tag]/'paired-encounter-native',directory/'initial.snapshot',1024,target,trace],env=env)
+                    if target.read_bytes()!=(directory/'final.snapshot').read_bytes() or trace.read_bytes()!=(directory/'trace.txt').read_bytes():
+                        raise ValueError('Native64/sanitized persistent encounter differs: '+name)
+            first=out/('scenario-'+str(scenario)+'-seed-17')
+            previous=first/'initial.snapshot';oracle=first/'initial.oracle';last=0
+            for end in [1,2,4,24,128,512,768,1024]:
+                name='resume-'+str(scenario)+'-'+str(end);directory=out/name
+                resumed=json.loads(run(name,[reference,pe,'resume',previous,oracle,end-last,directory,0],env={**env,'PATH':'/nonexistent'}))
+                yielded_checkpoints += resumed['budget_yields']>0
+                previous=directory/'final.snapshot';oracle=directory/'final.oracle';last=end;resumes+=1
+            if previous.read_bytes()!=(first/'final.snapshot').read_bytes() or oracle.read_bytes()!=(first/'final.oracle').read_bytes():
+                raise ValueError('Checkpoint replay/restore differs')
+        report['encounters']=results
+        if not yielded_checkpoints:
+            raise ValueError('No budget-exhausted checkpoint exercised')
+        if not all(sum(r[k] for r in results)>0 for k in ['hits','stuns','knockbacks','deaths','route_completions','stun_recoveries','removals','budget_yields','blocked_routes','replans','target_changes','cached_attacks']):
             raise ValueError('Encounter branch coverage absent')
-        # Restart both sides at bounded checkpoints. The original rebuilds its
-        # own prefix while native32 restores its actual portable continuation.
-        previous = out/'seed-17/initial.snapshot';oracle = out/'seed-17/initial.oracle';last = 0
-        for end in [1,24,128,512,768,1024]:
-            directory = out/('resume-'+str(end))
-            run('resume-'+str(end),[reference,pe,'resume',previous,oracle,end-last,directory,0],env={**env,'PATH':'/nonexistent'})
-            previous = directory/'final.snapshot';oracle = directory/'final.oracle';last=end
-        if previous.read_bytes()!=(out/'seed-17/final.snapshot').read_bytes() or oracle.read_bytes()!=(out/'seed-17/final.oracle').read_bytes():
-            raise ValueError('Checkpoint replay/restore differs')
         # An intentional native-only fault must be detected and reproduce at
         # exactly the same field/tick from the saved state before the divergence.
         fault = out/'injected-fault'
-        run('injected-fault',[reference,pe,'run',args.install,17,160,fault,137],expected=3)
+        run('injected-fault',[reference,pe,'run',args.install,17,160,fault,137,2],expected=3)
         replay = out/'reproduced-fault'
         run('reproduced-fault',[reference,pe,'resume',fault/'before.snapshot',fault/'before.oracle',1,replay,137],expected=3)
         for name in ['divergence.txt','after.snapshot','after.oracle']:
@@ -123,9 +137,9 @@ def main():
             raise ValueError('Corrupt oracle was published')
         for tag in ['native64','sanitized']:
             build = builds[tag]
-            run(tag+'-providers',[build/'command-session/native-creature-providers-test'],env=env)
+            run(tag+'-core',['ctest','--test-dir',build/'command-session','-R','^(native-command-((behavior|action|action-bodies)-)?session|native-creature-providers)$','--output-on-failure'],env=env)
             run(tag+'-installed',[build/'native-encounter-test',args.install],env=env)
-        report.update(success=True, native_passed=True, sanitizer_passed=True, original_target_text_unchanged=True, process_resumes=6, process_resume_identical=True, first_divergence_reproduced=True, corrupt_oracle_rejected=True, compared_ticks=3072)
+        report.update(success=True, native_passed=True, sanitizer_passed=True, original_target_text_unchanged=True, process_resumes=resumes, yielded_checkpoints=yielded_checkpoints, process_resume_identical=True, first_divergence_reproduced=True, corrupt_oracle_rejected=True, compared_ticks=9216)
     finally:
         run('original-after',[ROOT/'tools/original-manifest.sh','verify'])
         report['original_manifest_verified_before_after']=True

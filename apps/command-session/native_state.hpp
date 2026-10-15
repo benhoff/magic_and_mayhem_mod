@@ -1,5 +1,6 @@
 #pragma once
 #include "../../reconstruction/animation/controller.hpp"
+#include "../../reconstruction/creature-ai/actor_route_request.hpp"
 #include "../../reconstruction/combat/melee.hpp"
 #include "../../reconstruction/creature-ai/full_segment_setup.hpp"
 #include "../../reconstruction/creature-ai/environment_pass.hpp"
@@ -41,5 +42,7 @@ struct NativeProviderState {
   std::vector<NativeSearchContinuation> search;
   std::vector<reconstruction::combat::SegmentInitializationState> initialization;
   reconstruction::combat::EnvironmentPassState environment;
+  reconstruction::combat::ActorRouteContext route;
+  std::vector<reconstruction::combat::ActorRouteMetadata> routeMetadata;
 };
 } // namespace mnm::command_session
