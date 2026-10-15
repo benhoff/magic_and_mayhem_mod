@@ -31,7 +31,7 @@ def main():
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(out, flush=True)
     report = dict(schema=1, success=False, sources=claims['sources'], claims=claims['claims'],
-        scope='128 canonical1/4/8/24 BI_RGB source cases, signed clipped destinations and current native owned HDC leases: GDI painting versus native painting and ReleaseDC/Lock pixels, invalid handles/ROP/source offset and retired lease refusals, complete teardown. No original EXE wrapper execution, physical DirectDraw driver equivalence or live game replacement.',
+        scope='256 canonical1/4/8/24 BI_RGB source cases in RGB565/RGB555, signed clipped destinations and current native owned HDC leases: GDI painting versus native painting and ReleaseDC/Lock pixels, invalid handles/ROP/source offset and retired lease refusals, complete teardown. No original EXE wrapper execution, physical DirectDraw driver equivalence or live game replacement.',
         experiment=str(out.relative_to(ROOT)), live_replacement=False)
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEDEBUG='-all', LIBGL_ALWAYS_SOFTWARE='1', WINEPREFIX=str(out/'wineprefix'), WINEDLLOVERRIDES='ddraw=')
@@ -70,14 +70,14 @@ def main():
             '/timestamp:0', '/out:'+str(out/'probe.exe'), out/'probe.obj', *libraries])
         run('gdi-native-lease', ['xvfb-run', '-a', 'wine', out/'probe.exe'], cwd=out)
         raw = (out/'dib-pixels-results.bin').read_bytes()
-        if len(raw)!=128*12*4:
+        if len(raw)!=256*12*4:
             raise ValueError('Incomplete owned lease cases')
         mismatch = []
-        for i in range(128):
+        for i in range(256):
             row = struct.unpack_from('<12I', raw, i*48)
             if row[1]!=5 or row[2] or any(v!=0x80000000 for v in row[3:7]) or any(row[7:9]):
                 mismatch.append(dict(case=i, words=list(row)))
-        report.update(cases=128, physical_visible_words=128*117, lease_refusals=128*4, mismatches=mismatch,
+        report.update(cases=256, physical_visible_words=256*117, lease_refusals=256*4, mismatches=mismatch,
                       results_sha256=sha(out/'dib-pixels-results.bin'), native_ddraw_disabled=True,
                       remaining_dcs=0 if not mismatch else None, remaining_surfaces=0 if not mismatch else None)
         report['success'] = not mismatch

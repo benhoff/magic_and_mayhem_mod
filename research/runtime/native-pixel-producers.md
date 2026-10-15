@@ -53,3 +53,10 @@ See [image/effect](image-effect-pixel-takeover.md), [JPEG](native-jpeg-pixels.md
 [glyph](glyph-production-takeover.md), [minimap](minimap-pixel-takeover.md),
 [colour rectangles](colour-rectangle-takeover.md), [raster](outside-world-raster-pixels.md)
 and [DC copy](native-dc-copy.md) contracts and their immutable evidence records.
+
+The [native resource/state extension](native-resource-state.md) now supplies
+five-format CPU storage, retained8-bit palettes, canonical/static and current HWND
+clip lists, ordered clipped Blt effects and owned-bitmap DC admission. Native DIB
+painting and DC copies additionally compare both565/555. This replaces the former
+blanket clipper refusal while preserving each pixel producer's own admission;
+it does not close resident GPU/CPU history or complete live renderer retirement.

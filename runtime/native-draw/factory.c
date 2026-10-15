@@ -40,6 +40,7 @@ static u32 WIN nd_release(struct NdObject* self) {
   nd_status();SetLastError(error);return refs;
 }
 #include "refusal.h"
+#include "palette.h"
 #include "clipper.h"
 #include "surfaces.h"
 #include "status.h"
@@ -72,12 +73,12 @@ __declspec(dllexport) u32 WIN NativeDrawDCs(void) {return ns_dcs;}
 __declspec(dllexport) i32 WIN NativeDrawDibWordsV1(void* dc,i32 x,i32 y,i32 w,i32 h,
  i32 sx,i32 sy,i32 sw,i32 sh,const u8* bits,const u8* info,u32 usage,u32 rop) {
  struct NsState* s=ns_dc_owner(dc);
- if(!s || !info || !bits || w<1 || w>2048 || h<1 || h>2048 || sx || sy || sw!=w || sh!=h || rop!=0xcc0020)return (i32)0x80000000u;
+ if(!s || s->bits!=16 || !info || !bits || w<1 || w>2048 || h<1 || h>2048 || sx || sy || sw!=w || sh!=h || rop!=0xcc0020)return (i32)0x80000000u;
  /* Producer adapter proves these source spans readable before this call. */
  u32 depth=(u32)info[14]|(u32)info[15]<<8;
  if(depth!=1 && depth!=4 && depth!=8 && depth!=24)return (i32)0x80000000u;
  struct MnmDibInput in={info,bits,40+(depth==24?0:(1u<<depth)*4),((w*depth+31)/32)*4*(u32)h,usage};
- struct MnmPixelPlane p={(u16*)s->dc_bits,s->width,s->height,((s->width*2+3)&~3u)/2,0};
+ struct MnmPixelPlane p={(u16*)s->dc_bits,s->width,s->height,((s->width*2+3)&~3u)/2,s->masks[0]==0x7c00};
  if(!ns_dc_plain(dc)||!GdiFlush()||!mnm_dib_words(&p,&in,x,y))return (i32)0x80000000u;
  return h;
 }
@@ -86,7 +87,7 @@ __declspec(dllexport) i32 WIN NativeDrawDibWordsV1(void* dc,i32 x,i32 y,i32 w,i3
 __declspec(dllexport) i32 WIN NativeDrawBitBltV1(void* dc,i32 x,i32 y,i32 w,i32 h,void* source,i32 sx,i32 sy,u32 rop){
  const u32 error=GetLastError();i32 result=(i32)0x80000000u;
  struct NsState *d=ns_dc_owner(dc),*s=ns_dc_owner(source);
- if(!d||!s||w<0||w>2048||h<0||h>2048||rop!=0xcc0020||!ns_dc_plain(dc)||!ns_dc_plain(source))goto done;
+ if(!d||!s||d->bits!=16||s->bits!=16||d->masks[0]!=s->masks[0]||w<0||w>2048||h<0||h>2048||rop!=0xcc0020||!ns_dc_plain(dc)||!ns_dc_plain(source))goto done;
  long long left=x,top=y,right=(long long)x+w,bottom=(long long)y+h;
  if(left<0)left=0;if(top<0)top=0;if(right>d->width)right=d->width;if(bottom>d->height)bottom=d->height;
  if(right<=left||bottom<=top){result=1;goto done;}
@@ -107,8 +108,8 @@ __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 __declspec(dllexport) i32 WIN NativeDrawPlaneV1(const void* pixels,u32* fields,u32 bytes){
  if(!pixels || !fields || bytes!=24)return ND_INVALID;
  for(struct NsState* s=ns_owned;s;s=s->next_owned)if(s->pixels==pixels){
-  if(s->dc)return NS_BUSY;
-  fields[0]=1;fields[1]=s->width;fields[2]=s->height;fields[3]=s->pitch/2;fields[4]=s->locked;fields[5]=0;return 0;
+  if(s->dc)return NS_BUSY;if(s->bits!=16)return NS_UNSUPPORTED;
+  fields[0]=1;fields[1]=s->width;fields[2]=s->height;fields[3]=s->pitch/2;fields[4]=s->locked;fields[5]=s->masks[0]==0x7c00;return 0;
  }
  return ND_INVALID;
 }
@@ -117,4 +118,5 @@ __declspec(dllexport) void WIN NativeDrawAnchor(void) {}
 __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_n(&nd_status_phase,__ATOMIC_RELAXED);}
 __declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
+__declspec(dllexport) u32 WIN NativeDrawPalettes(void) {return np_objects;}
 i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();}else if(reason==0)nd_status_finish();return 1;}

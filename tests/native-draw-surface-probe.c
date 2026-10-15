@@ -83,7 +83,7 @@ static void policies(Create create,void* module){
  if(((Blt)table(b)[5])(b,target,a,source,0x1000000,0)!=(i32)0x80004001u)ExitProcess(142);
  if(((Blt)table(b)[5])(b,invalid,a,source,0x1000000,0)!=(i32)0x88760096u)ExitProcess(143);
  if(((Fast)table(b)[7])(b,0xffffffffu,0,a,source,0x10)!=(i32)0x88760096u)ExitProcess(144);
- if(((Blt)table(b)[5])(b,0,a,0,0x1008000,0)!=(i32)0x887600d7u)ExitProcess(145);
+ if(((Blt)table(b)[5])(b,0,a,0,0x1008000,0)!=(i32)0x80070057u)ExitProcess(145);
  if(((Blt)table(b)[5])(b,0,a,0,0x200,0)!=(i32)0x80004001u)ExitProcess(146);
  describe(d,0);d[0]=107;if(((Lock)table(b)[25])(b,0,d,1,0)!=(i32)0x80070057u)ExitProcess(147);
  describe(d,0);if(((Lock)table(b)[25])(b,0,d,1,0))ExitProcess(148);

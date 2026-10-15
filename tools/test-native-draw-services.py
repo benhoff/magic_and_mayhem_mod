@@ -87,7 +87,7 @@ def main():
         if stats[:5]!=(0x444d4e4d,0x31305752,2,96,0) or any(stats[5:9]) or not stats[20] or stats[22] or stats[23]:raise ValueError('Invalid module/resource diagnostic teardown')
         report['startup_policy']=dict(original_compared_cases=16,original_compared_words=256,caller_sha256=sha(out/'native/startup-results.bin'),logical_mode_callbacks=3,host_storage_budget_bytes=256*1024*1024,allocation_accounting_bytes=32*9,original_mode_memory_equivalence=False,status_sha256=sha(out/'status.bin'),status_words=list(stats))
         refusals=[]
-        for letter,family,kind,slot in [('D',1,1,3),('S',2,1,8),('C',3,0,3)]:
+        for letter,family,kind,slot in [('D',1,1,3),('S',2,1,8),('C',3,0,5)]:
             dest=out/('refusal-'+letter);dest.mkdir()
             result=run('refusal-'+letter,['wine',out/'probe.exe'],{'WINEDLLOVERRIDES':'ddraw=','MNM_FACTORY_NATIVE':'1','MNM_REFUSE':letter},cwd=dest,check=False)
             words=struct.unpack('<8I',(dest/'native-draw-refusal.bin').read_bytes())

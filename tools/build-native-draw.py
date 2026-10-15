@@ -16,10 +16,12 @@ IMPORTS = {
                  'WriteFile': 20, 'CloseHandle': 4, 'CreateFileMappingA': 24,
                  'MapViewOfFile': 20, 'FlushViewOfFile': 8, 'UnmapViewOfFile': 4},
     'user32': {'IsWindow': 4, 'GetClientRect': 8, 'MapWindowPoints': 16,
-               'GetSystemMetrics': 4},
+               'GetSystemMetrics': 4, 'GetDC': 4, 'ReleaseDC': 8},
     'gdi32': {'CreateCompatibleDC': 4, 'CreateDIBSection': 24, 'SelectObject': 8,
               'DeleteObject': 4, 'DeleteDC': 4, 'GdiFlush': 0, 'GetMapMode': 4, 'GetGraphicsMode': 4,
-              'GetViewportOrgEx': 8, 'GetWindowOrgEx': 8, 'CreateRectRgn': 16, 'GetClipRgn': 8},
+              'GetViewportOrgEx': 8, 'GetWindowOrgEx': 8, 'CreateRectRgn': 16, 'GetClipRgn': 8,
+              'ExtCreateRegion': 12, 'GetRegionData': 12, 'CombineRgn': 16, 'GetRandomRgn': 12,
+              'GetCurrentObject': 8, 'EqualRgn': 8},
 }
 
 
@@ -55,6 +57,7 @@ def build(output, declared=None):
                'DirectDrawEnumerateA': ('NativeDrawEnumerateA', 8),
                'NativeDrawObjects': ('NativeDrawObjects', 0),
                'NativeDrawClippers': ('NativeDrawClippers', 0),
+               'NativeDrawPalettes': ('NativeDrawPalettes', 0),
                'NativeDrawDCs': ('NativeDrawDCs', 0),
                'NativeDrawDibWordsV1': ('NativeDrawDibWordsV1', 52),
                'NativeDrawBitBltV1': ('NativeDrawBitBltV1', 36),

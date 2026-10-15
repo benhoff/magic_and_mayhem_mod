@@ -7,3 +7,9 @@ and overlapping self sources,2,560 atomic paint refusals and locked/unlocked/
 DC-busy/retired plane lookups. Its native thunk counts512 admissions and0
 original forwards; teardown leaves0 DCs and0 surfaces. Pinned original wrapper
 installation and live integration remain separate from these comparisons.
+
+The [resource/state extension](native-resource-state.md) additionally admits
+RGB555 and proves 1,024 GDI/native copies plus 5,120 refusals. CPU plane lookup
+reports the actual 555/565 format and rejects non-WORD storage. Native painting
+verifies that the owned bitmap remains selected; replacing it preserves the
+lease and refuses native writes until the caller restores it.

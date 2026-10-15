@@ -31,7 +31,7 @@ def main():
     out = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(out, flush=True)
     report = dict(schema=1, success=False, sources=claims['sources'], claims=claims['claims'],
-        scope='512 real native owned-DC SRCCOPY comparisons versus GDI, both separate source and overlapping self-copies, signed clipping, production native thunk admitted512/original0, unknown handles/ROP/retired/custom-clip atomic refusals, current locked/unlocked/DC-busy/retired CPU plane lookup and complete teardown. Original EXE installer/wrappers, unusual mappings/source clipping and real gameplay excluded',
+        scope='1024 real native owned-DC RGB565/RGB555 SRCCOPY comparisons versus GDI, both separate source and overlapping self-copies, signed clipping, production native thunk admitted1024/original0, unknown handles/ROP/retired/custom-clip atomic refusals, current locked/unlocked/DC-busy/retired CPU plane lookup and complete teardown. Original EXE installer/wrappers, unusual mappings/source clipping and real gameplay excluded',
         experiment=str(out.relative_to(ROOT)), live_replacement=False)
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEDEBUG='-all', LIBGL_ALWAYS_SOFTWARE='1', WINEPREFIX=str(out/'wineprefix'), WINEDLLOVERRIDES='ddraw=')
@@ -75,14 +75,14 @@ def main():
             '/timestamp:0', '/out:'+str(out/'probe.exe'), out/'probe.obj', *libraries])
         run('gdi-native-lease', ['xvfb-run', '-a', 'wine', out/'probe.exe'], cwd=out)
         raw = (out/'dc-copy-results.bin').read_bytes()
-        if len(raw)!=512*16*4:
+        if len(raw)!=1024*16*4:
             raise ValueError('Incomplete owned lease cases')
         mismatch = []
-        for i in range(512):
+        for i in range(1024):
             row = struct.unpack_from('<16I', raw, i*64)
             if row[0]!=1 or row[1]!=1 or row[2] or any(v!=0x80000000 for v in row[3:8]) or any(row[8:10]) or row[10]!=i+1 or row[11] or row[12]!=0x80070057 or row[13] or row[14]!=0x887601ae:
                 mismatch.append(dict(case=i, words=list(row)))
-        report.update(cases=512, physical_visible_words=512*117, lease_refusals=512*5, mismatches=mismatch,
+        report.update(cases=1024, physical_visible_words=1024*117, lease_refusals=1024*5, mismatches=mismatch,
                       results_sha256=sha(out/'dc-copy-results.bin'), native_ddraw_disabled=True,
                       remaining_dcs=0 if not mismatch else None, remaining_surfaces=0 if not mismatch else None)
         report['success'] = not mismatch

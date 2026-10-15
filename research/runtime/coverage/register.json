@@ -17947,22 +17947,33 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete live drawing replacement scope and release gates",
-      "scope": "Planned No-CD single-player drawing takeover retaining original simulation. The authoritative roadmap defines drawing coverage, independent comparison, complete native scenes, continuous versioned delivery, actual original-raster bypass, supported session validation and capability-checked launcher release. Capture/replay, bounded snapshots and surface primitives do not establish replacement. Implementation, tests, original comparison, continuous integration, actual bypass and scenario execution remain pending; no launcher option enables this target today. This entry records planning policy only, not recovered rendering equivalence.",
+      "scope": "Planned complete No-CD single-player drawing takeover retaining original simulation. Scoped continuous resident World delivery, native graphics, producer staging and combat/menu integration already exist under their separate contracts. This policy owns complete drawing coverage, independent full-session comparison, complete native history, original-pixel bypass, supported session/failure validation and capability-checked launcher release. The 2026-10-15 static review pins positive code witnesses and six concrete remaining integration work packages to commit76a75c0c; concurrent uncommitted native surface work is excluded. Complete-target implementation/comparison/integration/replacement remain pending; no launcher option enables this complete target. This entry records planning/review policy, not recovered rendering equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-rendering-integration-gaps-20261015.md"
       ],
       "implementation": [],
       "tests": [],
-      "evidence": [],
+      "evidence": [
+        "REVIEW.NR.integration-gaps-20261015"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "RENDER-INT-01: Campaign harness strips inherited producer settings and lacks explicit combined-producer execution/counter acceptance; staging already exists.",
+        "RENDER-INT-02: CPU compatibility planes do not contain completed resident GPU World pixels; dependency-sensitive readers/writers and combined history require admission and independent comparison.",
+        "RENDER-INT-03: Partial pixel routes retain original continuations; complete capability/forwarding accounting and encountered unresolved dispatch need a strict session outcome.",
+        "RENDER-INT-04: Combined save/load, later-map, results, movie/World and broader cursor/HUD/scene transitions need generation/lifetime and output/input acceptance evidence.",
+        "RENDER-INT-05: Resident command recovery explicitly requires a fresh producer; validate advertised terminal/restart or recovery behavior while drawing is bypassed.",
+        "RENDER-INT-06: Shipped journey suite has no full-session adapters; independent presented-session corpus, exact-source comparisons and historical intermittent-pixel-failure diagnosis remain pending. Static review does not establish a current reproduced defect."
+      ]
     },
     {
       "id": "RS.word-raster",
@@ -35755,7 +35766,10 @@
         "runtime/scene/drawing_publication.h",
         "runtime/scene/drawing_publication.S",
         "runtime/menu/drawing_actor_latches.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/native-draw/palette.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
@@ -35802,7 +35816,9 @@
         "NR.directdraw-retirement.master-current-recovery128-20261011",
         "NR.directdraw-retirement.master-current-world4096-20261011",
         "NR.directdraw-retirement.default-offscreen-20261011",
-        "NR.public-resident-world.surface-refusal-20261011"
+        "NR.public-resident-world.surface-refusal-20261011",
+        "NR.directdraw-retirement.resource-services-20261015",
+        "NR.directdraw-retirement.resource-surfaces-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -36966,7 +36982,10 @@
         "protocols/schemas/render_stream-v2.json",
         "runtime/menu/drawing_action.h",
         "runtime/menu/drawing_actor_latches.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/native-draw/palette.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
@@ -37764,7 +37783,10 @@
         "protocols/schemas/render_commands-v2.json",
         "protocols/schemas/render_stream-v2.json",
         "runtime/menu/drawing_actor_latches.h",
-        "runtime/scene/source_pending_policy.h"
+        "runtime/scene/source_pending_policy.h",
+        "runtime/native-draw/palette.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
@@ -37883,7 +37905,10 @@
         "runtime/shadow/win32_min.h",
         "runtime/menu/drawing_action.h",
         "tools/glyph_backend_launch.py",
-        "tools/run-qt-shell.sh"
+        "tools/run-qt-shell.sh",
+        "runtime/native-draw/palette.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
       ],
       "evidence": [
         "NR.native-draw-status-session-file.fixtures-20261011",
@@ -54597,7 +54622,10 @@
         "runtime/shadow/win32_min.h",
         "tools/build-native-draw.py",
         "tools/capture-original-surface-keys.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/native-draw/palette.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
       ],
       "evidence": [
         "NP.surface-final-word-read.native-20261012"
@@ -60943,7 +60971,10 @@
         "tools/build-native-draw.py",
         "tools/build-render-bridge.py",
         "tools/glyph_backend_launch.py",
-        "tools/run-qt-shell.sh"
+        "tools/run-qt-shell.sh",
+        "runtime/native-draw/palette.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
       ],
       "evidence": [
         "NR.native-status-outside-drawing.controls-20261013",
@@ -69359,7 +69390,8 @@
         "tools/export-menu-support.py",
         "tools/launch_build_cache.py",
         "tools/original-manifest.sh",
-        "tools/pixel_backend_launch.py"
+        "tools/pixel_backend_launch.py",
+        "runtime/native-draw/palette.h"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
@@ -69422,7 +69454,8 @@
         "tools/export-menu-support.py",
         "tools/launch_build_cache.py",
         "tools/original-manifest.sh",
-        "tools/pixel_backend_launch.py"
+        "tools/pixel_backend_launch.py",
+        "runtime/native-draw/palette.h"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
@@ -69443,7 +69476,7 @@
       "subsystem": "rendering",
       "kind": "native_policy",
       "title": "Canonical DIB native painting in current owned HDC lease",
-      "scope": "Versioned process-local current owned DC lease operation: canonical BI_RGB positive bottom-up 1/4/8-bit full palettes or24 BGR, unscaled SRCCOPY/source0, clipped signed destination and RGB565 conversion, atomic refusal. Retained GDI lease creation/flush/disposal. Adapter span checks and fallback to original GDI outside admission. Synthetic layout/pixel/refusal controls; real owned DC/Wine integration and caller return/driver equivalence remain pending.",
+      "scope": "Versioned process-local current owned DC lease operation: canonical BI_RGB positive bottom-up 1/4/8-bit full palettes or24 BGR, unscaled SRCCOPY/source0, clipped signed destination and RGB565/RGB555 conversion, atomic refusal. Retained GDI lease creation/flush/disposal. Adapter span checks and fallback to original GDI outside admission. Synthetic layout/pixel/refusal controls; real owned DC/Wine integration and caller return/driver equivalence remain pending. Resource/state extension keeps selected-bitmap admission and format identity explicit; new scope requires fresh comparison records and makes no live claim.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -69487,14 +69520,16 @@
         "tools/export-menu-support.py",
         "tools/launch_build_cache.py",
         "tools/original-manifest.sh",
-        "tools/pixel_backend_launch.py"
+        "tools/pixel_backend_launch.py",
+        "runtime/native-draw/palette.h"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
         "NP.image-effect-controls.native-20261014",
         "NP.owned-dib-paint.gdi-20261014",
         "RS.image-effect-pixel-state.original-final-20261014",
-        "NP.owned-dib-paint.gdi-final-20261014"
+        "NP.owned-dib-paint.gdi-final-20261014",
+        "NP.owned-dib-paint.resource-state-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -69927,7 +69962,8 @@
         "tools/rts_controls_config.py",
         "tools/rts_controls_launch.py",
         "tools/rts_controls_source.py",
-        "tools/run-opengl-game.py"
+        "tools/run-opengl-game.py",
+        "runtime/native-draw/palette.h"
       ],
       "evidence": [
         "NP.pixel-producer-launch.staging-20261014",
@@ -70607,7 +70643,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Native owned DC copy pixels and refusal",
-      "scope": "Canonical SRCCOPY between current owned RGB565 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim.",
+      "scope": "Canonical SRCCOPY between current owned RGB565/RGB555 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim. Resource/state extension keeps selected-bitmap admission and format identity explicit; new scope requires fresh comparison records and makes no live claim.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -70632,10 +70668,12 @@
         "runtime/shadow/win32_min.h",
         "tools/build-native-draw.py",
         "tools/build-dc-copy.py",
-        "tools/build-shadow-bridge.py"
+        "tools/build-shadow-bridge.py",
+        "runtime/native-draw/palette.h"
       ],
       "evidence": [
-        "NP.owned-dc-copy.gdi-20261014"
+        "NP.owned-dc-copy.gdi-20261014",
+        "NP.owned-dc-copy.resource-state-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70650,7 +70688,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Current native owned CPU plane lifetime lookup",
-      "scope": "Canonical SRCCOPY between current owned RGB565 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim.",
+      "scope": "Synchronous lookup of the current registered owned CPU base pointer, dimensions, physical WORD stride, lock flag and RGB565/RGB555 identity. Active DC leases and non-WORD planes refuse without output mutation; final release retires the lookup and idle flips follow current backing. The caller may not cache a pointer proof, assume pointer stability or use this as GPU history/readback admission. Real facade/thunk fixtures cover current locked/unlocked/DC-busy/retired lookups, with separate five-format/alias/flip lifecycle policies.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -70675,16 +70713,66 @@
         "runtime/shadow/win32_min.h",
         "tools/build-native-draw.py",
         "tools/build-dc-copy.py",
-        "tools/build-shadow-bridge.py"
+        "tools/build-shadow-bridge.py",
+        "runtime/native-draw/palette.h"
       ],
       "evidence": [
-        "NP.owned-dc-copy.gdi-20261014"
+        "NP.owned-dc-copy.gdi-20261014",
+        "NP.owned-dc-copy.resource-state-20261015"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.native-resource-state",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Native facade resource ownership, clip state and palette/DC lifetimes",
+      "scope": "Owned canonical indexed8/RGB555/RGB565/BGR24/BGR32 CPU storage, 8BIT|ALLOW256 flagged palette objects and retained bindings, current DC snapshots/selected bitmap admission, independent interface aliases, canonical explicit and dynamic HWND clip snapshots, ordered partial clipped Blt failures and BltFast clip rejection. Idle two-buffer flip and host-memory healthy Restore are native policies. No stretched copies, indexed primary, reserved-endpoint palettes, physical device loss, arbitrary concurrency or resident GPU history closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-resource-state.md",
+        "research/runtime/surface-driver-clipping.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/palette.h"
+      ],
+      "tests": [
+        "tests/native-draw-resource-probe.c",
+        "tests/native-draw-clip-reference.c",
+        "tools/test-native-resource-state.py",
+        "tests/native-draw-window-clip-probe.c"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/shadow/win32_min.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "tests/test-surface-driver.py",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz",
+        "tools/capture-original-surface-keys.py"
+      ],
+      "evidence": [
+        "NP.native-resource-state.headless-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -140542,6 +140630,123 @@
           "equals": 14
         }
       ]
+    },
+    {
+      "id": "REVIEW.NR.integration-gaps-20261015",
+      "kind": "static",
+      "scope": "Pinned76a75c0c control-flow review, positive source excerpts, unchanged acceptance/deferred-write guard execution and exact committed-history receipt reinspection. Concurrent uncommitted native surface work is excluded. No live engine execution, current original-pixel equivalence, status promotion or replacement proof.",
+      "record": "research/runtime/native-rendering-integration-review-20261015.json",
+      "sha256": "44c9f973f5595ce699cfad0ca113e6e395a4451f177f553cd459d93127cf3e9d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.owned-dib-paint.resource-state-20261015",
+      "kind": "native_integration",
+      "scope": "256 canonical1/4/8/24 BI_RGB source cases in RGB565/RGB555, signed clipped destinations and current native owned HDC leases: GDI painting versus native painting and ReleaseDC/Lock pixels, invalid handles/ROP/source offset and retired lease refusals, complete teardown. No original EXE wrapper execution, physical DirectDraw driver equivalence or live game replacement.",
+      "record": "research/runtime/native-resource-dib-comparison-20261015.json",
+      "sha256": "dab45cdf291791355ddc1b210d91705a345ea3beff8f52ce1aae691a9d7c4831",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.owned-dc-copy.resource-state-20261015",
+      "kind": "native_integration",
+      "scope": "1024 real native owned-DC RGB565/RGB555 SRCCOPY comparisons versus GDI, both separate source and overlapping self-copies, signed clipping, production native thunk admitted1024/original0, unknown handles/ROP/retired/custom-clip atomic refusals, current locked/unlocked/DC-busy/retired CPU plane lookup and complete teardown. Original EXE installer/wrappers, unusual mappings/source clipping and real gameplay excluded",
+      "record": "research/runtime/native-resource-dc-comparison-20261015.json",
+      "sha256": "c92fc85942c2fba62c23fee0ca1fbab13d61a476294afb73c188b13699e2886f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.resource-services-20261015",
+      "kind": "native_integration",
+      "scope": "64 unchanged clipper/DC caller cases and complete RGB565/COLORREF outputs against Wine DirectDraw, including DC-during-lock, repeated DC/refusals, GDI writes and teardown. Native ddraw disabled/module absent. Native logical primary/attached flip lifecycle is a separate policy; no driver presentation, clipped blit, palette or real game replacement claim.",
+      "record": "research/runtime/native-resource-services-comparison-20261015.json",
+      "sha256": "9e4fd21cb8605c62c0953e41bc1ecd18f566f2730def3fcdb92f3c4ed112792f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-resource-state.headless-20261015",
+      "kind": "native_integration",
+      "scope": "Native PE32 CPU facade versus retained independent 408-case Wine Surface2 clipping corpus; supplied five-format/alias/palette/DC/healthy Restore policies. No game, live GPU history, stretched drawing, physical loss or original Windows driver equivalence.",
+      "record": "research/runtime/native-resource-state-comparison-20261015.json",
+      "sha256": "7648f3f8b09aefbe1219d2f18b500c466b8d3a897bf28ef52fe6d2b7a1f4cea7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.resource-surfaces-20261015",
+      "kind": "native_integration",
+      "scope": "Four native default-placement 510x180 RGB565 policies on108/124-byte descriptors and two malformed-cap/format refusals, separately from64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+      "record": "research/runtime/native-resource-surfaces-comparison-20261015.json",
+      "sha256": "78ca09dcc44994fed5ef2a9840ed70a0eab8e69390963427ce31d5a908676b0c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -156550,6 +156755,23 @@
         "RTS.controls.pixel-launchers-scenario-synthetic-20261014",
         "RTS.controls.commit-synthetic-20261015"
       ]
+    },
+    {
+      "id": "rendering.native-resource-state",
+      "level": "headless",
+      "scope": "Native PE32 facade replay of retained independent clipping outputs plus format/palette/DC alias and healthy Restore lifecycle with zero final owners. Separate from whole game, physical driver loss and GPU CPU history.",
+      "behaviors": [
+        "NP.native-resource-state"
+      ],
+      "evidence": [
+        "NP.native-resource-state.headless-20261015"
+      ],
+      "tests": [
+        "tests/native-draw-resource-probe.c",
+        "tests/native-draw-clip-reference.c",
+        "tools/test-native-resource-state.py",
+        "tests/native-draw-window-clip-probe.c"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -157157,8 +157379,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-master-final-20261015.json",
-    "sha256": "7469a0a5e9e172393aaeabce7ec880277e8d3199a4a9580ed84e5c8824a0dbde"
+    "path": "research/runtime/coverage/source-index-native-resource-state-20261015.json",
+    "sha256": "2c736209e24f0c1a8939900ae484b8c0c3c6c3a328b193f62fec2eceec325d0c"
   },
   "claim_bindings_required": true
 }

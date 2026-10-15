@@ -298,3 +298,16 @@ policy cases on108/124-byte descriptors. Unsupported extra caps and RGB555
 remain refused. The policy has no physical driver placement or original-game
 pixel-equivalence claim. Public resident throughput and bounded concurrent
 primary-screen cursor-copy traffic remain pending.
+
+## Resource/state extension — 2026-10-15
+
+The [resource/state contract](native-resource-state.md) adds owned indexed8,
+RGB555, RGB565, BGR24 and BGR32 storage; retained flagged8BIT|ALLOW256 palettes;
+DC color snapshots and selected-bitmap admission; canonical clip lists and current
+HWND visibility; and ordered clipped Blt failure effects. WORD producer lookup
+admits565/555 only and never reinterprets indexed or wider pixels. Palette and
+index ownership remain distinct. Idle flips, healthy host-memory Restore and
+strict borrowed access retain their explicit native policies. No in-place
+resident GPU recovery or held-lease physical driver flip equivalence is claimed.
+Fresh resource/clip/DC/format and existing surface/services comparison records
+are linked from that contract. Earlier paragraphs retain their historical scopes.

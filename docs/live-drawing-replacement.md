@@ -1,6 +1,6 @@
 # Complete live drawing replacement
 
-Reviewed 2026-10-11. **Complete live drawing replacement is not available.**
+Reviewed 2026-10-15. **Complete live drawing replacement is not available.**
 `./tools/run-qt-shell.sh` selects native capture/replay presentation while the
 original game continues its simulation and drawing. No current launcher flag
 enables complete drawing replacement.
@@ -13,6 +13,17 @@ behavior links and independent validation statuses; the
 milestones. Subsystem research owns build-specific facts and evidence. Update
 this plan when those results change the replacement scope or next step; retain
 historical evidence at its recorded hashes.
+
+The [current code review and concrete integration backlog](../research/runtime/native-rendering-integration-gaps-20261015.md)
+pins exact source witnesses to `76a75c0c`, corrects earlier overbroad claims and
+defines six remaining work packages with acceptance conditions. Combined producer
+selection/staging and continuous resident World gameplay already exist. Remaining
+work concerns combined installed-hook execution, CPU/GPU history dependencies,
+strict forwarding policy, broader transitions, resident restart/failure behavior
+and independent complete-session comparison. Concurrent uncommitted native
+surface work is excluded from that pinned review. Older finite queue counts below
+describe their original comparison experiments, not a current limit on all World
+delivery.
 
 The [binary/API coverage reconciliation](../research/runtime/rendering-coverage.md)
 and `python3 tools/report-rendering-coverage.py` report scoped implementation,
@@ -180,7 +191,7 @@ implementation backlog; it does not promote whole-renderer live replacement.
 | Effects and lighting | Selected effect state, animation and lighting contracts are reconstructed offline; admitted World rasters consume effective shading/blend inputs. | Complete effect-to-pixel attribution, live inputs, dispatch and ordered output across active battles. |
 | HUD and cursor | Producer shadow reproduces selected startup HUD/cursor rasters and minimap/markers. The finite owned minimap viewer compares four orientations and camera pan. Minimap terrain/markers/corners/border now have guarded native pixel splices; original source/input preparation remains. | Cover broader HUD, tooltip and cursor journeys, hotspots, picking and source-state generation; validate producer suppression. |
 | Movies and transitions | Owned native decoding compares all 3,868 frames in the installed/synthetic corpus. Both enabled intros complete natively; 25 installed native fade loops match independent original replay under original Lock/Unlock. | Validate legacy controls/placement, active World return and complete screen ownership across transitions. |
-| Surface lifecycle and recovery | Native ownership/storage and transport recovery have scoped tests. | Integrate aliases, palettes, clip state, borrowed intervals, reads, flips, loss/Restore, transitions and coherent recovery while original raster work is bypassed. |
+| Surface lifecycle and recovery | Native ownership/storage and transport recovery have scoped tests. The [CPU facade resource/state extension](../research/runtime/native-resource-state.md) adds five formats, palette/DC lifetimes, canonical and HWND clips, ordered clipped failures, aliases and idle flips. | Integrate these states across combined live sessions; retain held-lease facade flips, physical loss, resident restart and coherent GPU/CPU history as separate boundaries. |
 
 The [owned minimap viewer](../research/runtime/native-minimap-interactive.md)
 adds opt-in V2 terrain, marker and camera-corner composition to the finite public
@@ -207,7 +218,7 @@ research's historical milestone numbers retain their local meaning.
 | DRAW-01 Drawing coverage | Scenario-tagged inventory of active producers, consumers and graphics side effects. | [Route accounting and original-active observation](../research/runtime/draw01-inventory.md) now cover 636 reviewed routes, including 128 exact CPU CALL sites and five opt-in terminal entries. Graphics accounting separately retains 380 sites, 141 reviewed client contracts and 101 observed sites. Bounded menu/campaign, dispatch, ABI and lifecycle evidence exists. All 14 scenario closures and four dispatch gates remain open. | Every encountered route has a behavior ID, owner, classification and explicit support decision; unresolved indirect flows remain visible. |
 | DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | The portable suite includes five original-driver surfaces, four World canvases, six composed startup checkpoints and all 1,062 checkpoints through 16 World returns. Original API/input acquisition reaches a bounded Quick Battle/results/Main journey. Synchronized original/native X11 comparison matches 103 guarded startup frames: 49.44 million pixels, zero mismatches. All 14 complete presented-journey and 21 operation/failure requirements remain open. | Independent original references and reproducible passing native comparisons cover every declared journey and operation/failure requirement; oracle pixels never drive native rendering. Component/pre-display passes cannot close presented journeys. |
 | DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | [Source-only composition](../research/runtime/draw03-native-scene.md) now extends from six startup checkpoints to [17 complete frame publications](../research/runtime/draw03-native-journeys.md), full retained startup-sequence replay and [native session orchestration](../research/runtime/draw03-native-session.md). The bounded startup renderer also supplies the 103-frame physical comparison. General campaign/battle scenes, alternate producers, source-state generation and whole-consumer side effects remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
-| DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Owned two-slot World shadow delivery and finite producer-history startup through 16 queues exist; guarded batch experiments reach 32. Unbounded contiguous history, transitions and real-time delivery remain open. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
+| DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Continuous resident/owned V5 World delivery and native render ownership already support a retained combat/menu journey with5,719balanced completions. Older16/32queue limits describe separate finite comparison experiments. Combined producer history, broader transitions and complete independent session equivalence remain open; see the current integration backlog. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
 | DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word interior/clipped takeover and admitted raster-body suppression across startup World queues 1..32 have bounded independent proof at recorded hashes. Guarded glyph takeover has bounded four-queue proof. Higher text/image/fade bypass, broader glyph inputs, whole-session and complete consumer takeover remain outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
 | DRAW-06 Supported session coverage | Expand takeover to every required drawing route and scenario. | Outstanding. | Full-session corpus, failure/recovery and supported physical-driver checks pass; every fallback or unsupported route is reported as a separate outcome. |
 | DRAW-07 Complete launcher mode | Expose a capability-checked complete-replacement option. | Unavailable. | All completion criteria below pass for the declared build/scenario scope, and the register records the appropriate replacement evidence. |

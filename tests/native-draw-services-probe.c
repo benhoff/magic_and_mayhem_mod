@@ -91,7 +91,7 @@ static void refusal(Create create,char family){
  void *draw=0,*object=0;u32 d[31];if(create(0,&draw,0))ExitProcess(204);
  if(family=='D')((i32 (WIN *)(void*))table(draw)[3])(draw);
  if(family=='S'){desc(d);if(((Surface)table(draw)[6])(draw,d,&object,0))ExitProcess(205);((i32 (WIN *)(void*))table(object)[8])(object);}
- if(family=='C'){if(((i32 (WIN *)(void*,u32,void**,void*))table(draw)[4])(draw,0,&object,0))ExitProcess(206);((i32 (WIN *)(void*))table(object)[3])(object);}
+ if(family=='C'){if(((i32 (WIN *)(void*,u32,void**,void*))table(draw)[4])(draw,0,&object,0))ExitProcess(206);((i32 (WIN *)(void*))table(object)[5])(object);}
  ExitProcess(207);
 }
 void start(void){

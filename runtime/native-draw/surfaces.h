@@ -9,10 +9,10 @@ struct NsState;
 struct NsObject {void** table;struct NsState* state;u32 kind;};
 struct NsState {
   struct NsObject aliases[5];u32 refs[5],interfaces;struct NdObject* device;
-  u32 width,height,pitch,caps;u16* pixels;u32 locked;void* lock_pointer;
+  u32 width,height,pitch,caps,bits,masks[3];u16* pixels;u32 locked;void* lock_pointer;
   u32 key_set,key_low,key_high;struct NsState* back;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
-  struct NsState *previous_owned,*next_owned;
+  struct NsState *previous_owned,*next_owned;struct NpPalette* palette;
 };
 static struct NsState* ns_owned;
 static void* ns_tables[5][45];
@@ -36,16 +36,30 @@ static i32 WIN ns_query(struct NsObject* o,const u8* iid,void** out){
 static u32 WIN ns_retain(struct NsObject* o){if(!o->state->refs[o->kind]++)++o->state->interfaces;return o->state->refs[o->kind];}
 static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError(),refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);VirtualFree(s->pixels,0,0x8000);
+ if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);VirtualFree(s->pixels,0,0x8000);
   if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else ns_owned=s->next_owned;
   if(s->next_owned)s->next_owned->previous_owned=s->previous_owned;
   nd_release(s->device);HeapFree(GetProcessHeap(),0,s);--nd_surfaces;}
  nd_status();SetLastError(error);return refs;
 }
+static void ns_surface_format(struct NsState* s,u32* p){
+ ns_zero(p,8);p[0]=32;p[1]=s->bits==8?0x60:0x40;p[3]=s->bits;
+ for(u32 i=0;i<3;++i)p[4+i]=s->masks[i];
+}
+static u32 ns_read(const struct NsState* s,u32 x,u32 y){
+ const u8* p=(const u8*)s->pixels+y*s->pitch+x*(s->bits/8);
+ if(s->bits==16)return *(const u16*)p;if(s->bits==8)return *p;
+ if(s->bits==32)return *(const u32*)p;return (u32)p[0]|(u32)p[1]<<8|(u32)p[2]<<16;
+}
+static void ns_write(struct NsState* s,u32 x,u32 y,u32 value){
+ u8* p=(u8*)s->pixels+y*s->pitch+x*(s->bits/8);
+ if(s->bits==16)*(u16*)p=(u16)value;else if(s->bits==8)*p=(u8)value;
+ else if(s->bits==32)*(u32*)p=value;else {p[0]=(u8)value;p[1]=(u8)(value>>8);p[2]=(u8)(value>>16);}
+}
 static i32 WIN ns_desc(struct NsObject* o,u32* d){
  u32 size=o->kind==3?124:108;if(!d || d[0]!=size)return ND_INVALID;
  struct NsState* s=o->state;ns_zero(d,size/4);d[0]=size;d[1]=0x100f;
- d[2]=s->height;d[3]=s->width;d[4]=s->pitch;ns_format(d+18);d[26]=s->caps;
+ d[2]=s->height;d[3]=s->width;d[4]=s->pitch;ns_surface_format(s,d+18);d[26]=s->caps;
  if(s->key_set){d[1]|=0x10000;d[16]=s->key_low;d[17]=s->key_high;}return 0;
 }
 static int ns_rectangle(struct NsState* s,const i32* input,i32* r){
@@ -58,7 +72,7 @@ static i32 WIN ns_lock(struct NsObject* o,const i32* rect,u32* d,u32 flags,HANDL
  if(!d || d[0]!=(o->kind==3?124u:108u) || event || (flags&~0x7831u))return ND_INVALID;
  if(s->locked || s->dc)return NS_BUSY;if(!ns_rectangle(s,rect,r))return NS_RECT;
  i32 result=ns_desc(o,d);if(result)return result;
- d[1]|=0x800;d[9]=(u32)s->pixels+(u32)r[1]*s->pitch+(u32)r[0]*2;
+ d[1]|=0x800;d[9]=(u32)s->pixels+(u32)r[1]*s->pitch+(u32)r[0]*(s->bits/8);
  s->locked=1;s->lock_pointer=(void*)d[9];if(!(++ns_locks&255))nd_status();return 0;
 }
 static i32 WIN ns_unlock(struct NsObject* o,void* argument){
@@ -69,40 +83,65 @@ static i32 WIN ns_unlock(struct NsObject* o,void* argument){
 }
 static i32 WIN ns_key(struct NsObject* o,u32 flags,const u32* key){
  if(flags!=8)return NS_UNSUPPORTED;
- struct NsState* s=o->state;if(key){if(key[0]>key[1] || key[1]>65535)return ND_INVALID;
+ struct NsState* s=o->state;if(key){if(key[0]>key[1] || (s->bits<32 && key[1]>((1u<<s->bits)-1)))return ND_INVALID;
   s->key_low=key[0];s->key_high=key[1];s->key_set=1;}else s->key_set=0;return 0;
 }
 static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
  if(!key || flags!=8)return ND_INVALID;if(!o->state->key_set)return (i32)0x887600d7u;
  key[0]=o->state->key_low;key[1]=o->state->key_high;return 0;
 }
+static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
+ struct NsState *d=dst->state,*s=src?src->state:0;i32 rd[4],rs[4];
+ for(u32 i=0;i<4;++i){rd[i]=dr?dr[i]:(i<2?0:(i==2?(i32)d->width:(i32)d->height));
+  rs[i]=sr?sr[i]:(i<2?0:(s?(i==2?(i32)s->width:(i32)s->height):0));}
+ long long width=(long long)rd[2]-rd[0],height=(long long)rd[3]-rd[1];
+ if(width<=0 || height<=0 || (s && (rs[2]<=rs[0] || rs[3]<=rs[1])))return NS_RECT;
+ if(!d->clipper && (!ns_rectangle(d,rd,rd) || (s && !ns_rectangle(s,rs,rs))))return NS_RECT;
+ if(s && ((long long)rs[2]-rs[0]!=width || (long long)rs[3]-rs[1]!=height))return NS_UNSUPPORTED;
+ u32* clips=0;i32 result=0;
+ if(d->clipper){result=nc_snapshot(d->clipper,&clips);if(result)return result;}
+ if(d->locked || d->dc || (s && (s->locked || s->dc))){result=NS_BUSY;goto done;}
+ if(flags&~(0x1000000u|0x8000u|0x400u)){result=NS_UNSUPPORTED;goto done;}
+ if(flags&0x400){if(s || !fx || fx[0]!=100 || (flags&0x8000)){result=ND_INVALID;goto done;}}
+ else if(!s || fx){result=ND_INVALID;goto done;}
+ if(s && (s->bits!=d->bits || s->masks[0]!=d->masks[0] || s->masks[1]!=d->masks[1] || s->masks[2]!=d->masks[2])){result=NS_UNSUPPORTED;goto done;}
+ if((flags&0x8000) && !s->key_set){result=ND_INVALID;goto done;}
+ /* Freeze the whole aliased backing, including samples outside a clipped first
+  * piece. Earlier regions may remain written when a later source piece fails. */
+ u8* frozen=0;struct NsState snapshot;
+ if(d==s){frozen=HeapAlloc(GetProcessHeap(),0,s->pitch*s->height);if(!frozen){result=(i32)0x8007000eu;goto done;}
+  for(u32 i=0;i<s->pitch*s->height;++i)frozen[i]=((u8*)s->pixels)[i];snapshot.bits=s->bits;snapshot.pitch=s->pitch;snapshot.width=s->width;snapshot.height=s->height;snapshot.key_low=s->key_low;snapshot.key_high=s->key_high;snapshot.pixels=(u16*)frozen;s=&snapshot;}
+ for(u32 region=0;region<(clips?clips[2]:1u);++region){
+  const i32* clip=clips?(const i32*)(clips+8+4*region):0;
+  i32 left=rd[0],top=rd[1],right=rd[2],bottom=rd[3];
+  if(left<0)left=0;if(top<0)top=0;if(right>(i32)d->width)right=d->width;if(bottom>(i32)d->height)bottom=d->height;
+  if(clip){if(left<clip[0])left=clip[0];if(top<clip[1])top=clip[1];if(right>clip[2])right=clip[2];if(bottom>clip[3])bottom=clip[3];}
+  if(left>=right || top>=bottom)continue;
+  long long sx=(long long)rs[0]+left-rd[0],sy=(long long)rs[1]+top-rd[1];
+  if(s && (sx<0 || sy<0 || sx+right-left>s->width || sy+bottom-top>s->height)){result=NS_RECT;break;}
+  for(i32 y=top;y<bottom;++y)for(i32 x=left;x<right;++x){
+   u32 value=s?ns_read(s,(u32)(sx+x-left),(u32)(sy+y-top)):fx[20];
+   if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,value);
+  }
+ }
+ if(frozen)HeapFree(GetProcessHeap(),0,frozen);
+ if(!(++ns_copies&255))nd_status();
+done:if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
+}
 static i32 WIN ns_blt(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
- struct NsState* d=dst->state;i32 rd[4],rs[4];
- if(flags&~(0x1000000u|0x8000u|0x400u) || d->clipper)return NS_UNSUPPORTED;
- if(d->locked || d->dc || (src && (src->state->locked || src->state->dc)))return NS_BUSY;
- if(!ns_rectangle(d,dr,rd))return NS_RECT;
- u32 width=(u32)(rd[2]-rd[0]),height=(u32)(rd[3]-rd[1]);
- if(flags&0x400){if(src || !fx || fx[0]!=100 || (flags&0x8000))return ND_INVALID;
-  for(u32 y=0;y<height;++y){u16* row=(u16*)((u8*)d->pixels+((u32)rd[1]+y)*d->pitch);
-   for(u32 x=0;x<width;++x)row[(u32)rd[0]+x]=(u16)fx[20];}if(!(++ns_copies&255))nd_status();return 0;}
- if(!src || fx)return ND_INVALID;struct NsState* s=src->state;
- if(!ns_rectangle(s,sr,rs))return NS_RECT;
- if((u32)(rs[2]-rs[0])!=width || (u32)(rs[3]-rs[1])!=height)return NS_UNSUPPORTED;
- if((flags&0x8000) && !s->key_set)return (i32)0x887600d7u;
- /* Freeze aliasing input. Allocation occurs before any destination mutation. */
- u16* frozen=0;if(d==s){frozen=HeapAlloc(GetProcessHeap(),0,width*height*2);if(!frozen)return (i32)0x8007000eu;
-  for(u32 y=0;y<height;++y){const u16* row=(const u16*)((const u8*)s->pixels+((u32)rs[1]+y)*s->pitch);
-   for(u32 x=0;x<width;++x)frozen[y*width+x]=row[(u32)rs[0]+x];}}
- for(u32 y=0;y<height;++y){u16* target=(u16*)((u8*)d->pixels+((u32)rd[1]+y)*d->pitch);
-  const u16* source=frozen?frozen+y*width:(const u16*)((const u8*)s->pixels+((u32)rs[1]+y)*s->pitch)+(u32)rs[0];
-  for(u32 x=0;x<width;++x){u16 value=source[x];if(!(flags&0x8000) || value<s->key_low || value>s->key_high)target[(u32)rd[0]+x]=value;}}
- if(frozen)HeapFree(GetProcessHeap(),0,frozen);if(!(++ns_copies&255))nd_status();return 0;
+ return ns_draw(dst,dr,src,sr,flags,fx);
 }
 static i32 WIN ns_fast(struct NsObject* dst,u32 x,u32 y,struct NsObject* src,const i32* rect,u32 flags){
- if(!src || (flags&~0x11u))return NS_UNSUPPORTED;i32 r[4];if(!ns_rectangle(src->state,rect,r))return NS_RECT;
- if(x>0x7fffffffu || y>0x7fffffffu || x+(u32)(r[2]-r[0])>dst->state->width || y+(u32)(r[3]-r[1])>dst->state->height)return NS_RECT;
- i32 d[4]={(i32)x,(i32)y,(i32)(x+(u32)(r[2]-r[0])),(i32)(y+(u32)(r[3]-r[1]))};
- return ns_blt(dst,d,src,r,(flags&1)?0x8000:0,0);
+ if(!src)return ND_INVALID;i32 r[4];
+ for(u32 i=0;i<4;++i)r[i]=rect?rect[i]:(i<2?0:(i==2?(i32)src->state->width:(i32)src->state->height));
+ long long w=(long long)r[2]-r[0],h=(long long)r[3]-r[1];
+ if(w<0 || h<0 || x>0x7fffffffu || y>0x7fffffffu || x+w>dst->state->width || y+h>dst->state->height)return NS_RECT;
+ if(dst->state->clipper)return (i32)0x8876023eu;
+ if(!ns_rectangle(src->state,r,r))return NS_RECT;
+ /* Wine's selected missing-key and unsupported-flag Fast calls copy opaque. */
+ if(flags&~0x80000011u)return NS_UNSUPPORTED;
+ i32 d[4]={(i32)x,(i32)y,(i32)(x+w),(i32)(y+h)};
+ return ns_draw(dst,d,src,r,(flags&1) && src->state->key_set?0x8000:0,0);
 }
 static i32 WIN ns_caps(struct NsObject* o,u32* caps){if(!caps)return ND_INVALID;caps[0]=o->state->caps;if(o->kind==3)ns_zero(caps+1,3);return 0;}
 static i32 WIN ns_attached(struct NsObject* o,const u32* caps,void** out){
@@ -125,18 +164,27 @@ static i32 WIN ns_set_clipper(struct NsObject* o,struct NcClipper* c){
  if(c && c->table!=nc_table)return ND_INVALID;if(c)nc_retain(c);
  if(o->state->clipper)nc_release(o->state->clipper);o->state->clipper=c;return 0;
 }
-static i32 WIN ns_pixel_format(struct NsObject* o,u32* p){(void)o;if(!p || p[0]!=32)return ND_INVALID;ns_format(p);return 0;}
+static i32 WIN ns_pixel_format(struct NsObject* o,u32* p){(void)o;if(!p || p[0]!=32)return ND_INVALID;ns_surface_format(o->state,p);return 0;}
 #include "dc.h"
+static i32 WIN ns_get_palette(struct NsObject* o,void** out){
+ if(!out)return ND_INVALID;*out=0;if(!o->state->palette)return (i32)0x8876023cu;
+ np_retain(o->state->palette);*out=o->state->palette;return 0;
+}
+static i32 WIN ns_set_palette(struct NsObject* o,struct NpPalette* p){
+ if(o->state->bits!=8)return (i32)0x8876024du;
+ if(p && p->table!=np_table)return ND_INVALID;if(p)np_retain(p);
+ if(o->state->palette)np_release(o->state->palette);o->state->palette=p;return 0;
+}
 static i32 WIN ns_lost(struct NsObject* o){(void)o;return 0;}
 static i32 WIN ns_restore(struct NsObject* o){return (o->state->locked || o->state->dc)?NS_BUSY:0;}
 static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return (o->state->locked || o->state->dc)?NS_BUSY:0;}
-static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps){
- if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*2+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
+static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps,u32 bits,const u32* masks){
+ if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*(bits/8)+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
  struct NsState* s=HeapAlloc(GetProcessHeap(),8,sizeof(*s));if(!s)return 0;
  /* Original distortion 005965f7 reads a DWORD but uses only its low WORD.
   * Keep that read valid at the last logical pixel without changing pitch or
   * exposing another row. This does not admit a source pixel past the surface. */
- s->pitch=(width*2+7)&~7u;s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);
+ s->bits=bits;for(u32 i=0;i<3;++i)s->masks[i]=masks[i];s->pitch=(width*(bits/8)+7)&~7u;s->pixels=VirtualAlloc(0,s->pitch*height+sizeof(u16),0x3000,4);
  if(!s->pixels){HeapFree(GetProcessHeap(),0,s);return 0;}
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
  s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;
@@ -155,7 +203,7 @@ static i32 ns_surface_refusal(struct NdObject* o,const u32* d,u32 reason,void* c
 static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer){
  if(!out)return ND_INVALID;*out=0;if(outer)return (i32)0x80040110u;
  if(!d || d[0]!=(o->kind==3?124u:108u))return ND_INVALID;
- u32 flags=d[1],caps=d[26],w=d[3],h=d[2];
+ u32 flags=d[1],caps=d[26],w=d[3],h=d[2],bits=16,masks[3]={0xf800,0x7e0,0x1f};
  if(caps==0x200 || caps==0x218){
   if(o->state->primary)return (i32)0x88760234u;
   if(!o->state->coop)return (i32)0x88760212u;
@@ -163,11 +211,15 @@ static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer
   w=o->state->width;h=o->state->height;
  }else {
   if((flags!=7 && flags!=0x1007) || (caps!=0x840 && caps!=0x40 && caps!=0x800))return ns_surface_refusal(o,d,1,__builtin_return_address(0));
-  if(flags==0x1007 && (d[18]!=32 || d[19]!=0x40 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f || d[25]))return ns_surface_refusal(o,d,2,__builtin_return_address(0));
+  if(flags==0x1007){bits=d[21];for(u32 i=0;i<3;++i)masks[i]=d[22+i];
+   int valid=bits==8?d[19]==0x60 && !masks[0] && !masks[1] && !masks[2]:
+    bits==16?d[19]==0x40 && masks[2]==31 && ((masks[0]==0xf800 && masks[1]==0x7e0)||(masks[0]==0x7c00 && masks[1]==0x3e0)):
+    (bits==24 || bits==32) && d[19]==0x40 && masks[0]==0xff0000 && masks[1]==0xff00 && masks[2]==0xff;
+   if(d[18]!=32 || !valid || d[25])return ns_surface_refusal(o,d,2,__builtin_return_address(0));}
  }
- struct NsState* s=ns_allocate(o,w,h,caps==0x40?0x10004040:(caps==0x800?0x840:caps));
+ struct NsState* s=ns_allocate(o,w,h,caps==0x40?0x10004040:(caps==0x800?0x840:caps),bits,masks);
  if(!s)return (i32)0x8007000eu;
- if(caps==0x218){s->back=ns_allocate(o,w,h,0x14);if(!s->back){ns_release(&s->aliases[o->kind==3?3:1]);return (i32)0x8007000eu;}}
+ if(caps==0x218){s->back=ns_allocate(o,w,h,0x14,bits,masks);if(!s->back){ns_release(&s->aliases[o->kind==3?3:1]);return (i32)0x8007000eu;}}
  if(caps==0x200 || caps==0x218)o->state->primary=s;
  *out=&s->aliases[o->kind==3?3:1];return 0;
 }
@@ -195,12 +247,12 @@ static i32 WIN nd_mode(struct NdObject* o,u32 w,u32 h,u32 depth,u32 refresh,u32 
 static i32 WIN nd_mode1(struct NdObject* o,u32 w,u32 h,u32 depth){return nd_mode(o,w,h,depth,0,0);}
 static i32 WIN nd_restore_mode(struct NdObject* o){o->state->width=800;o->state->height=600;o->state->depth=16;return 0;}
 static void nd_init(void){
- nc_init();
+ nc_init();np_init();
  for(u32 k=0;k<4;++k){
   for(u32 slot=0;slot<28;++slot)nd_tables[k][slot]=nd_refusals_1[slot];
   nd_tables[k][0]=(void*)&nd_query;nd_tables[k][1]=(void*)&nd_retain;nd_tables[k][2]=(void*)&nd_release;
   nd_tables[k][8]=(void*)&nd_enum_modes;nd_tables[k][23]=(void*)&nd_memory;
-  nd_tables[k][4]=(void*)&nd_clipper;nd_tables[k][6]=(void*)&nd_surface;nd_tables[k][19]=(void*)&nd_restore_mode;nd_tables[k][20]=(void*)&nd_cooperate;
+  nd_tables[k][5]=(void*)&nd_palette;nd_tables[k][4]=(void*)&nd_clipper;nd_tables[k][6]=(void*)&nd_surface;nd_tables[k][19]=(void*)&nd_restore_mode;nd_tables[k][20]=(void*)&nd_cooperate;
   nd_tables[k][21]=k==1?(void*)&nd_mode1:(void*)&nd_mode;
  }
  for(u32 k=0;k<5;++k){
@@ -210,6 +262,7 @@ static void nd_init(void){
   ns_tables[k][5]=(void*)&ns_blt;ns_tables[k][7]=(void*)&ns_fast;ns_tables[k][13]=(void*)&ns_status;
   ns_tables[k][14]=(void*)&ns_caps;ns_tables[k][16]=(void*)&ns_get_key;ns_tables[k][18]=(void*)&ns_status;
   ns_tables[k][15]=(void*)&ns_get_clipper;ns_tables[k][28]=(void*)&ns_set_clipper;
+  ns_tables[k][20]=(void*)&ns_get_palette;ns_tables[k][31]=(void*)&ns_set_palette;
   ns_tables[k][21]=(void*)&ns_pixel_format;ns_tables[k][22]=(void*)&ns_desc;ns_tables[k][24]=(void*)&ns_lost;
   ns_tables[k][17]=(void*)&ns_get_dc;ns_tables[k][26]=(void*)&ns_release_dc;
   ns_tables[k][25]=(void*)&ns_lock;ns_tables[k][27]=(void*)&ns_restore;ns_tables[k][29]=(void*)&ns_key;ns_tables[k][32]=(void*)&ns_unlock;

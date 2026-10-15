@@ -11934,3 +11934,63 @@ Three staging/movie-deadline attempts remain failed evidence with explicit flags
 and scope limitations. Existing modified main game source is preserved; the
 smoke uses the supported hash-pinned No-CD copy. Broader original comparison,
 rendering replacement and historical shared-source freshness remain independent.
+
+
+## Native rendering integration backlog review — 2026-10-15
+
+[The concrete backlog](native-rendering-integration-gaps-20261015.md) and
+[pinned code review](native-rendering-integration-review-20261015.json) correct
+the earlier broad integration assessment against committed76a75c0c. Combined
+producer selection/staging and continuous resident World combat/menu delivery
+already exist. Six named work packages cover the campaign harness producer-mode
+gap, CPU/GPU history dependencies, strict original-forwarding admission, wider
+transitions, resident failure/restart policy and complete independent comparisons.
+The campaign harness removes inheritedMNM_*settings and has no group-selection
+option; the shipped journey suite has zero full-session adapters. Resident
+recovery explicitly requires a fresh producer. Positive source witnesses retain
+exact excerpts/hashes; the historical intermittent pixel failure is not asserted
+to reproduce on current code. Concurrent uncommitted native surface/palette/
+clipper work is excluded and identified separately.
+
+Existing journey/session guards and the compiled deferred-ownership test pass,
+including immutable payloads, World-access refusals and512record/exact byte bounds.
+The reviewedb30ff77f..76a75c0c history has209verified parent/current file
+transitions with no missing receipts; this is retrospective content accounting,
+not a past gate or engine execution claim. The replacement plan now distinguishes
+older finite16/32queue comparisons from continuous resident integration.
+NR.live-drawing-replacement retains all status dimensions. Static review adds no
+original execution, visual-equivalence or replacement evidence, and preserves
+all historical hashes. Current combined-route gameplay and independent complete
+session acceptance remain pending.
+
+
+## Native CPU facade resource and state handling — 2026-10-15
+
+Mapped pixel-producer work is committed on master as5284209e; subsequent RTS
+accounting is76a75c0c. The resource-state incoming-history reports inspect exact
+content transitions and receipts independently of execution or past gate claims.
+
+`NP.native-resource-state` now records canonical indexed8/RGB555/RGB565/BGR24/
+BGR32 storage, palette references and DC snapshots, aliases, clip-list ownership,
+current HWND visibility and ordered clipped Blt effects. WORD lookup rejects
+non-WORD planes and identifies555. A changed DC bitmap refuses native painting
+and ReleaseDC until restored. Idle flip and busy/healthy Restore policies remain
+explicit; host memory never acquires physical driver-loss semantics by assumption.
+
+Fresh execution passes408 independent retained clipping cases/78,336 WORDs,
+six fresh Wine HWND states/6,216 words,76,362 native resource checks,80 format
+lifetimes,32 clip and32 flip lifetimes,256 palettes plus capacity refusal and
+zero final owners.256 native DIB cases and1,024 DC copies match GDI across565/555.
+Existing64-surface and64-services comparisons plus16 startup cases pass with
+original manifests verified before/after. The concurrent DRAW-02 merge changes
+broader scene sources after those broad retirement declarations; preserve their
+fingerprints and pending whole-contract freshness. Focused resource/DIB/DC proof
+remains current. Records are linked from[native-resource-state.md](native-resource-state.md).
+
+Implementation remains partial across the broad facade contract; only the bounded
+resource scenario advances to headless integration. No original-game comparison,
+live equivalence or replacement status is promoted. Physical loss, reserved-endpoint/
+non8-bit palettes, indexed primary modes, stretched copies, held-lease facade flip
+equivalence, arbitrary concurrency, resident recovery and closed GPU/CPU history
+remain explicit separate boundaries. Existing renderer recovery/held-flip proofs
+remain independent of this facade's conservative busy policy.

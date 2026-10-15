@@ -7,10 +7,11 @@ typedef i32 (WIN *Dib)(void*,i32,i32,i32,i32,i32,i32,i32,i32,const u8*,const u8*
 typedef i32 (WIN *Create)(void*,void**,void*);
 typedef u32 (WIN *Count)(void);
 typedef u32 (WIN *Ref)(void*);
-static u32 results[128][12];
+static u32 results[256][12];
 static void** table(void* p){return *(void***)p;}
+static u32 selected_format;
 static void desc(u32* d){for(u32 i=0;i<31;++i)d[i]=0;d[0]=108;d[1]=0x1007;d[2]=9;d[3]=13;
- d[18]=32;d[19]=0x40;d[21]=16;d[22]=0xf800;d[23]=0x7e0;d[24]=0x1f;d[26]=0x840;}
+ d[18]=32;d[19]=0x40;d[21]=16;d[22]=selected_format?0x7c00:0xf800;d[23]=selected_format?0x3e0:0x7e0;d[24]=0x1f;d[26]=0x840;}
 static void words(void* surface,u16* pixels,u32 write){
  u32 d[31];desc(d);if(((i32 (WIN *)(void*,void*,u32*,u32,HANDLE))table(surface)[25])(surface,0,d,1,0))ExitProcess(172);
  for(u32 y=0;y<9;++y)for(u32 x=0;x<13;++x){u16* p=(u16*)(d[9]+y*d[4])+x;
@@ -21,7 +22,7 @@ void start(void){
  void* module=LoadLibraryA("MnmDraw.dll");if(!module)ExitProcess(170);
  Create create=(Create)GetProcAddress(module,"NativeDrawCreate");Dib paint=(Dib)GetProcAddress(module,"NativeDrawDibWordsV1");
  Count dcs=(Count)GetProcAddress(module,"NativeDrawDCs"),surfaces=(Count)GetProcAddress(module,"NativeDrawSurfaces");if(!create || !paint || !dcs || !surfaces)ExitProcess(171);
- for(u32 cell=0;cell<128;++cell){u32* r=results[cell];const u32 bits=cell%4==0?1:cell%4==1?4:cell%4==2?8:24,w=7,h=5,stride=((w*bits+31)/32)*4,usage=bits==24?1:0;
+ for(u32 cell=0;cell<256;++cell){selected_format=cell/128;u32* r=results[cell];const u32 bits=cell%4==0?1:cell%4==1?4:cell%4==2?8:24,w=7,h=5,stride=((w*bits+31)/32)*4,usage=bits==24?1:0;
   u32 info[266];u8 source[160];for(u32 i=0;i<10;++i)((volatile u32*)info)[i]=0;
   info[0]=40;info[1]=w;info[2]=h;info[3]=1|(bits<<16);
   for(u32 i=0;i<256;++i){u8* c=(u8*)(info+10+i);c[0]=(u8)(i*71+cell*29);c[1]=(u8)(i*137+cell*43);c[2]=(u8)(i*97+cell*13);c[3]=0;}
