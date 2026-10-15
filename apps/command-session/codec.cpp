@@ -45,7 +45,8 @@ auto fieldsV4(NativeProviderState &v){return std::tie(v.randomSeeded,v.alternate
 auto fields(model::ActorRouteSnapshot &v){return std::tie(v.destination,v.cursor,v.count,v.points,v.motionWords);}
 auto fields(model::ActorRouteMetadata &v){return std::tie(v.regionDestination,v.marker69c);}
 auto fields(model::ActorRouteContext &v){return std::tie(v.active,v.displacementContinuation,v.mode,v.budget,v.requestBudget,v.destination,v.origin,v.scratch,v.scratchDirty,v.useRegions,v.diagnostic);}
-auto fields(NativeProviderState &v){return std::tie(v.randomSeeded,v.alternate,v.profileStamp,v.tick,v.sequence,v.random,v.animation,v.worldAnimation,v.cells,v.search,v.initialization,v.environment,v.route,v.routeMetadata);}
+auto fieldsV5(NativeProviderState &v){return std::tie(v.randomSeeded,v.alternate,v.profileStamp,v.tick,v.sequence,v.random,v.animation,v.worldAnimation,v.cells,v.search,v.initialization,v.environment,v.route,v.routeMetadata);}
+auto fields(NativeProviderState &v){return std::tie(v.randomSeeded,v.alternate,v.profileStamp,v.tick,v.sequence,v.random,v.animation,v.worldAnimation,v.cells,v.search,v.initialization,v.environment,v.route,v.routeMetadata,v.displacementOwners);}
 auto fieldsV1(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend);}
 auto fieldsV2(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement);}
 auto fieldsV3(Continuation &v){return std::tie(v.world,v.execution,v.bindings,v.generations,v.scheduler,v.environment,v.seed,v.backend,v.maintenance,v.movement,v.originalBehaviorBindings,v.actions);}
@@ -57,11 +58,11 @@ template<class T,class A>struct vector_type<std::vector<T,A>>:std::true_type{};
 template<class T>struct array_type:std::false_type{};
 template<class T,std::size_t N>struct array_type<std::array<T,N>>:std::true_type{};
 struct Writer {
-  unsigned version=5;
+  unsigned version=6;
   game::Bytes bytes;
   void word(std::uint32_t v){for(unsigned i=0;i<4;++i)bytes.push_back(std::uint8_t(v>>(8*i)));}
   template<class T>void value(T &v){
-    if constexpr(std::is_same_v<T,NativeProviderState>){word(v.present);if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
+    if constexpr(std::is_same_v<T,NativeProviderState>){word(v.present);if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else if(version==5)std::apply([&](auto &...x){(value(x),...);},fieldsV5(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
     else if constexpr(std::is_integral_v<T> || std::is_enum_v<T>){
       if constexpr(std::is_integral_v<T> && std::is_unsigned_v<T> && sizeof(T)>4)need(v<=UINT32_MAX,"native command word overflow");
       word(std::uint32_t(v));
@@ -73,10 +74,10 @@ struct Writer {
   }
 };
 struct Reader {
-  const game::Bytes &bytes;std::size_t pos=0;unsigned version=5;
+  const game::Bytes &bytes;std::size_t pos=0;unsigned version=6;
   std::uint32_t word(){need(bytes.size()-pos>=4,"truncated native command continuation");std::uint32_t v=0;for(unsigned i=0;i<4;++i)v|=std::uint32_t(bytes[pos++])<<(8*i);return v;}
   template<class T>void value(T &v){
-    if constexpr(std::is_same_v<T,NativeProviderState>){auto tag=word();need(tag<=1,"invalid native provider tag");v.present=tag!=0;if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
+    if constexpr(std::is_same_v<T,NativeProviderState>){auto tag=word();need(tag<=1,"invalid native provider tag");v.present=tag!=0;if(v.present){if(version<5)std::apply([&](auto &...x){(value(x),...);},fieldsV4(v));else if(version==5)std::apply([&](auto &...x){(value(x),...);},fieldsV5(v));else std::apply([&](auto &...x){(value(x),...);},fields(v));}}
     else if constexpr(std::is_same_v<T,bool>){auto w=word();need(w<=1,"invalid native command boolean");v=w!=0;}
     else if constexpr(std::is_same_v<T,std::byte>){auto w=word();need(w<=255,"native command opaque byte overflow");v=std::byte(w);}
     else if constexpr(std::is_enum_v<T>) v=static_cast<T>(word());
@@ -125,8 +126,9 @@ void validate(const Continuation &c){
          "native provider actor roots differ");
     need(native.cells.size()==std::uint64_t(d.x)*d.y*d.z&&native.cells.size()<=65536&&native.random.left<250&&native.random.right<250,
          "native provider geometry/random roots differ");
+    need(native.displacementOwners.size()==n,"native displacement owner storage differs");for(auto owner:native.displacementOwners)need(owner>=0&&unsigned(owner)<n,"native displacement owner reference differs");
     need(native.routeMetadata.empty()||native.routeMetadata.size()==n,"native actor route metadata differs");
-    need(native.route.scratch.count<=16&&native.route.scratch.cursor<=native.route.scratch.count&&!native.route.useRegions&&native.route.active<=1&&native.route.mode<=1&&!native.route.displacementContinuation,"native actor route context differs");
+    need(native.route.scratch.count<=16&&native.route.scratch.cursor<=native.route.scratch.count&&!native.route.useRegions&&native.route.active<=1&&native.route.mode<=1&&native.route.displacementContinuation<=1,"native actor route context differs");
     need((native.route.active!=0)==c.scheduler.continuation,"native shared request continuation alias differs");
     for(const auto &cell:native.cells)need(cell.occupant==0xffff||(cell.occupant>=1&&cell.occupant<=n),"native provider occupant differs");
     auto channel=[](const NativeAnimationChannel &ch){const auto &s=ch.state;need(s.forward.pc<=65536&&s.forward.elapsed<=s.forward.delay&&s.forward.breakFlag<=1&&s.reverseCursor<=s.reverseLength&&s.reverseLength<=65536,"native ANI continuation differs");};
@@ -152,10 +154,11 @@ void validate(const Continuation &c){
   }
 }
 game::Bytes encode(const Continuation &input, unsigned version){
-  validate(input);need(version>=1&&version<=5,"unsupported native command write version");
+  validate(input);need(version>=1&&version<=6,"unsupported native command write version");
   if(version<4)need(!input.native.present,"legacy command write loses native providers");
   if(version<3)need(!input.originalBehaviorBindings&&input.actions.callbacks.empty(),"legacy command write loses action state");
   if(version==1)need(input.maintenance.empty()&&input.movement.empty(),"legacy command write loses behavior state");
+  if(version<6&&input.native.present){need(!input.native.route.displacementContinuation,"legacy command write loses displacement continuation");for(auto owner:input.native.displacementOwners)need(!owner,"legacy command write loses displacement owners");}
   if(version<5&&input.native.present){auto q=input.native.route;model::ActorRouteContext empty;Writer actual,zero;actual.value(q);zero.value(empty);need(actual.bytes==zero.bytes&&input.native.routeMetadata.empty(),"legacy command write loses actor request");for(const auto &s:input.native.search)need(!s.initialized&&s.open.empty()&&s.records.empty(),"legacy actor search cannot migrate to shared request");for(const auto &a:input.world.creatures)need(!a.ai.motion,"legacy relative sample cursor cannot migrate during motion");}
   auto c=input;Writer w;w.version=version;w.bytes={'C','M','D','1'};w.word(version);
   if(version==1)std::apply([&](auto &...x){(w.value(x),...);},fieldsV1(c));
@@ -166,12 +169,13 @@ game::Bytes encode(const Continuation &input, unsigned version){
 }
 Continuation decode(const game::Bytes &bytes){
   need(bytes.size()>=8&&bytes.size()<=1024*1024&&game::Bytes(bytes.begin(),bytes.begin()+4)==game::Bytes{'C','M','D','1'},"unknown native command continuation");
-  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=5,"unsupported native command continuation version");Continuation c;r.version=version;
+  Reader r{bytes,4};const auto version=r.word();need(version>=1&&version<=6,"unsupported native command continuation version");Continuation c;r.version=version;
   if(version==1)std::apply([&](auto &...x){(r.value(x),...);},fieldsV1(c));
   else if(version==2)std::apply([&](auto &...x){(r.value(x),...);},fieldsV2(c));
   else if(version==3)std::apply([&](auto &...x){(r.value(x),...);},fieldsV3(c));
   else r.value(c);
   need(r.pos==bytes.size(),"trailing native command continuation");
+  if(version<6&&c.native.present)c.native.displacementOwners.resize(c.world.creatures.size());
   if(version==4&&c.native.present){for(const auto &s:c.native.search)need(!s.initialized&&s.open.empty()&&s.records.empty(),"legacy actor search cannot migrate to shared request");for(const auto &a:c.world.creatures)need(!a.ai.motion,"legacy relative sample cursor cannot migrate during motion");}
   validate(c);return c;
 }

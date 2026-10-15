@@ -2,6 +2,23 @@
 #include "../apps/native-encounter/encounter.hpp"
 #include <map>
 namespace mnm::encounter::paired {
+// Test-only scheduled interruptions; the application profile is unchanged.
+inline std::shared_ptr<const cs::Runtime> runtime(const Profile &p){
+  auto lower=consequences(p);auto providers=cs::nativeProviders(p.native,lower);
+  const auto scenario=p.scenario;
+  return std::make_shared<const cs::Runtime>(p.initial,p.bytes,[providers,lower,scenario](cs::Continuation &c){
+    auto hooks=providers(c);auto advance=hooks.advance;
+    hooks.advance=[&c,lower,scenario,advance](auto &state,auto &commands,auto input){
+      if(scenario==7){auto fx=lower(c);fx.bindCommands(commands);
+        if(c.native.tick==2)fx.callbacks.stun(c.world.creatures[1],8,0);
+        if(c.native.tick==4)commands.move(c.world.creatures[0],c.execution[0].roamHome);
+        if(c.native.tick==12)fx.maintenance.health(c.world.creatures[1],-10000,-1,false);
+        if(c.native.tick==64)commands.move(c.world.creatures[5],c.execution[6].roamHome);
+      }
+      return advance(state,commands,input);
+    };return hooks;
+  });
+}
 struct Field {
   unsigned value, size;
   const char *name;
@@ -88,6 +105,12 @@ inline std::map<unsigned, Field> fields(const cs::Continuation &c, unsigned i) {
   out[0x6a8] = {unsigned(a.alternateTarget), 4, "a.alternateTarget"};
   out[0x6ac] = {unsigned(e.routeRenewal), 4, "e.routeRenewal"};
   out[0x6b0] = {unsigned(m.recent6b0), 4, "m.recent6b0"};
+  out[0x6ec]={unsigned(c.native.displacementOwners.empty()?0:c.native.displacementOwners.at(i)),4,"displacement.owner"};
+  out[0x6f0]={unsigned(motion.displacementPause),4,"displacement.pause"};
+  out[0x6f4]={e.displacementActive,4,"displacement.priority"};
+  out[0x6f8]={unsigned(e.displacementDestination.x),4,"displacement.destination.x"};
+  out[0x6fc]={unsigned(e.displacementDestination.y),4,"displacement.destination.y"};
+  out[0x700]={unsigned(e.displacementDestination.z),4,"displacement.destination.z"};
   out[0x704] = {unsigned(a.ai.flag704), 4, "a.ai.flag704"};
   out[0x71c] = {unsigned(std::uint8_t(a.block71c)), 1,
                 "std::uint8_t(a.block71c)"};

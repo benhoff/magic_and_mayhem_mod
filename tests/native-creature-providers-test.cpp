@@ -76,6 +76,22 @@ int main(int argc,char **argv)try {
   need(pendingState.native.search[0].initialized&&!pendingState.native.search[0].open.empty()&&pendingState.scheduler.continuation,"route did not preserve exhausted search");
   need(pendingState.native.route.active&&pendingState.native.route.requestBudget>0&&!pendingState.native.routeMetadata.empty(),"shared request did not retain budget/metadata");
   need(command_session::encode(command_session::decode(command_session::encode(pendingState)))==command_session::encode(pendingState),"v5 shared search roundtrip differs");
+  auto friendlyBudget=budget;friendlyBudget.world.creatures[1].ai.position={1,1,0};
+  for(auto &cell:friendlyBudget.native.cells){cell.flags&=std::uint16_t(~3u);cell.occupant=0xffff;}
+  command_session::prepareNativeContinuation(friendlyBudget,p);
+  auto &blocked=friendlyBudget.world.creatures[0];blocked.ai.behavior=2;blocked.ai.action=15;blocked.routePhase=2;blocked.ai.marker=0;blocked.destination={64,64,0};friendlyBudget.bindings[0]=m::CommandBehaviorBinding::move;
+  friendlyBudget.actions.segments[0].count=1;friendlyBudget.actions.segments[0].route[0].position={1,1,0};friendlyBudget.actions.segments[0].route[0].remainder={2,0,0,0};
+  auto friendlyRuntime=std::make_shared<command_session::Runtime>(friendlyBudget,identity,command_session::nativeProviders(p,lower(faults)));game::CreatureRuleSession yielding(friendlyRuntime,identity,17,3);yielding.step();
+  auto yieldingState=command_session::decode(yielding.world().state().systems);
+  need(yieldingState.native.route.active&&yieldingState.native.route.displacementContinuation,"friendly route probe did not yield");
+  need(command_session::encode(command_session::decode(command_session::encode(yieldingState)))==command_session::encode(yieldingState),"v6 displacement continuation roundtrip differs");
+  refuses([&]{command_session::encode(yieldingState,5);});
+  auto badOwner=yieldingState;badOwner.native.displacementOwners[1]=3;refuses([&]{command_session::encode(badOwner);});
+  badOwner=yieldingState;badOwner.native.displacementOwners[1]=1;refuses([&]{command_session::encode(badOwner,5);});
+  auto v5=command_session::encode(c,5);need(command_session::encode(command_session::decode(v5))==command_session::encode(c),"v5 migration differs");
+  game::World yieldingWorld(0);yieldingWorld.restore(game::decodeSnapshot(snapshot(yielding)));game::CreatureRuleSession yieldingResume(std::move(yieldingWorld),friendlyRuntime);
+  auto yieldBefore=snapshot(yielding);faults->tick=true;refuses([&]{yielding.step();});faults->tick=false;need(snapshot(yielding)==yieldBefore,"failed displacement frame published state");
+  for(unsigned i=0;i<16;++i){yielding.step();yieldingResume.step();need(snapshot(yielding)==snapshot(yieldingResume),"unfinished displacement probe resumed differently");}
   auto pendingBefore=snapshot(pending);faults->tick=true;refuses([&]{pending.step();});faults->tick=false;need(snapshot(pending)==pendingBefore,"failed shared-search frame published state");
   refuses([&]{command_session::encode(pendingState,4);});
   // Forge a structurally valid old per-actor search payload. Its missing shared

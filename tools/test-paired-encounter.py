@@ -29,7 +29,7 @@ def main():
     if any(sha(ROOT / k) != v for k, v in claim['sources'].items()):
         raise ValueError('Declared source changed')
     report = dict(success=False, source_executable_sha256=PIN, source_sha256=claim['sources'], claims=claim['claims'], commands=[], wine_required=False, live_replacement=False,
-        scope='Independent persistent original PE32 and native encounter: two/four/eight ordinary type17 actors on sealed12x12 installed Celtic Plains crop; empty World owner, inventory, presentation and effects, fixed retained identities. Original checkpoints replay the prefix; native snapshots restore directly. Crowded fixtures add a sealed column and common initial move request; all actors have distinct hostile owners. Friendly displacement, object columns, full original World/campaign/live replacement excluded.')
+        scope='Independent persistent original PE32 and native encounter: two/four/eight ordinary type17 actors on sealed12x12 installed Celtic Plains crop; empty World owner, inventory, presentation and effects, fixed retained identities. Original checkpoints replay the prefix; native snapshots restore directly. Crowded fixtures add a sealed column and common initial move request; scenarios0-2 have hostile owners,3-4 mix allied pairs and hostiles,5-6 share an owner;7 adds scheduled stun, new orders and death. Native friendly yielding/waiting, no-region temporary route probes and continuation are bound. Region graphs, object columns and full World/campaign/live replacement excluded.')
     def run(name, command, expected=0, env=None):
         command = [str(x) for x in command]
         report['commands'].append(command)
@@ -57,7 +57,7 @@ def main():
                 if 0 <= offset and offset+size <= row[3]:
                     return image[row[4]+offset:row[4]+offset+size]
             raise ValueError('Original address outside file-backed sections')
-        addresses = [0x516800,0x517580,0x516ee0,0x513370,0x4df6e0,0x4df260,0x4df500,0x509230,0x5093e0,0x509e50,0x52a780,0x52a9f0,0x50acb0,0x51f5e0,0x508b00,0x512800,0x4bf070,0x4bef60,0x516d60,0x51b130,0x508810,0x5128a0,0x54b800,0x50bd60,0x4f4ba0]
+        addresses = [0x516800,0x517580,0x516ee0,0x513370,0x4df6e0,0x4df260,0x4df500,0x509230,0x5093e0,0x509e50,0x52a780,0x52a9f0,0x50acb0,0x51f5e0,0x508b00,0x512800,0x4bf070,0x4bef60,0x516d60,0x51b130,0x508810,0x5128a0,0x54b800,0x50bd60,0x4f4ba0,0x511c40,0x511f60,0x512390,0x51ae60,0x51b300,0x51b710,0x51b7f0,0x51bc40,0x51bcb0,0x51be30,0x51c050,0x522f50]
         report['entry_anchors'] = {hex(at):original_bytes(at,16).hex() for at in addresses}
         inputs = ['CFG/Encrypted/creature.cfg', 'CFG/Encrypted/HTH.cfg', 'Creatures/crocodile.ani', 'Realms/Celtic/Plains/CPsec01.map', 'Realms/Celtic/Plains/Terrain.ttd']
         report['installed_inputs'] = {p: sha(args.install/p) for p in inputs}
@@ -68,8 +68,8 @@ def main():
             build = (args.build_root.resolve() if args.build_root else out)/tag
             builds[tag] = build
             run(tag+'-configure', ['cmake','-S',ROOT/'apps/native-encounter','-B',build,'-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',*options])
-            closure = deps.dependencies(build,run,tag,extra={'paired-encounter-reference.cpp','paired-encounter-helper-test.cpp','paired-encounter-native.cpp','cached-attack-test.cpp','crowded-selection-test.cpp'})
-            closure.add('tools/test-paired-encounter.py')
+            closure = deps.dependencies(build,run,tag,extra={'paired-encounter-reference.cpp','paired-encounter-helper-test.cpp','paired-encounter-native.cpp','cached-attack-test.cpp','crowded-selection-test.cpp','friendly-displacement-test.cpp'})
+            closure.update({'tools/test-paired-encounter.py','tools/export-creature-routing.py'})
             if sources is None:
                 sources = {k: sha(ROOT/k) for k in sorted(closure)}
             else:
@@ -77,7 +77,7 @@ def main():
             if args.claims and closure-claim['sources'].keys():
                 raise ValueError('Unbound compiler/configure inputs: '+str(sorted(closure-claim['sources'].keys())))
             targets = ['paired-encounter-helper-test', 'paired-encounter-reference'] if tag=='original32' else ['paired-encounter-helper-test', 'paired-encounter-native','native-creature-providers-test','native-encounter-test']
-            targets += ['cached-attack-test','crowded-selection-test','native-command-session-test','native-command-behavior-session-test','native-command-action-session-test','native-command-action-bodies-session-test','native-creature-providers-test']
+            targets += ['friendly-displacement-test','cached-attack-test','crowded-selection-test','native-command-session-test','native-command-behavior-session-test','native-command-action-session-test','native-command-action-bodies-session-test','native-creature-providers-test']
             run(tag+'-build',['cmake','--build',build,'--target',*targets,'-j2'])
         report['build_inputs_sha256'] = sources
         env = {**os.environ,'ASAN_OPTIONS':'detect_leaks=1:halt_on_error=1','UBSAN_OPTIONS':'halt_on_error=1:print_stacktrace=1'}
@@ -87,18 +87,19 @@ def main():
         if not all(x==helpers[0] for x in helpers):
             raise ValueError('Helper architecture/sanitizer mismatch')
         report['helper_result'] = helpers[0]
-        for suite, target, extra in [('cached_attack','cached-attack-test',[]),('footprint_facing','cached-attack-test',['facing']),('crowded_selection_route','crowded-selection-test',[])]:
+        for suite, target, extra in [('cached_attack','cached-attack-test',[]),('footprint_facing','cached-attack-test',['facing']),('crowded_selection_route','crowded-selection-test',[]),('friendly_displacement','friendly-displacement-test',[])]:
             rows=[]
             for tag,build in builds.items():
                 rows.append(json.loads(run(tag+'-'+suite,[build/target,*([pe] if tag=='original32' else []),args.install,*extra],env=env)))
             if not all(x==rows[0] for x in rows):
                 raise ValueError(suite+' architecture/sanitizer mismatch')
             report[suite+'_result']=rows[0]
+        run('static-routing',[sys.executable,ROOT/'tools/export-creature-routing.py','--output',out/'static-routing'])
         reference = builds['original32']/'paired-encounter-reference'
         results = []
         resumes=0
         yielded_checkpoints=0
-        for scenario in [0,1,2]:
+        for scenario in range(8):
             for seed in [17,42,91]:
                 name='scenario-'+str(scenario)+'-seed-'+str(seed)
                 directory=out/name
@@ -122,6 +123,8 @@ def main():
             raise ValueError('No budget-exhausted checkpoint exercised')
         if not all(sum(r[k] for r in results)>0 for k in ['hits','stuns','knockbacks','deaths','route_completions','stun_recoveries','removals','budget_yields','blocked_routes','replans','target_changes','cached_attacks']):
             raise ValueError('Encounter branch coverage absent')
+        if not all(sum(r[k] for r in results)>0 for k in ['displacement_orders','displacement_pauses','displacement_resumes']):
+            raise ValueError('Friendly displacement branches absent')
         # An intentional native-only fault must be detected and reproduce at
         # exactly the same field/tick from the saved state before the divergence.
         fault = out/'injected-fault'
@@ -139,7 +142,7 @@ def main():
             build = builds[tag]
             run(tag+'-core',['ctest','--test-dir',build/'command-session','-R','^(native-command-((behavior|action|action-bodies)-)?session|native-creature-providers)$','--output-on-failure'],env=env)
             run(tag+'-installed',[build/'native-encounter-test',args.install],env=env)
-        report.update(success=True, native_passed=True, sanitizer_passed=True, original_target_text_unchanged=True, process_resumes=resumes, yielded_checkpoints=yielded_checkpoints, process_resume_identical=True, first_divergence_reproduced=True, corrupt_oracle_rejected=True, compared_ticks=9216)
+        report.update(success=True, native_passed=True, sanitizer_passed=True, original_target_text_unchanged=True, process_resumes=resumes, yielded_checkpoints=yielded_checkpoints, process_resume_identical=True, first_divergence_reproduced=True, corrupt_oracle_rejected=True, compared_ticks=24576)
     finally:
         run('original-after',[ROOT/'tools/original-manifest.sh','verify'])
         report['original_manifest_verified_before_after']=True

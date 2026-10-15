@@ -49,3 +49,14 @@ The original encounter comparison separately checks bar/damage projections.
 Malformed backend magic, extent or profile/pool mismatch refuses. Counter overflow
 also refuses the staged operation. Profile identity, native CMD1/version bounds
 and outer snapshot integrity checks remain independent.
+
+## NS71 traffic fixture scenarios
+
+MNMENC02 scenario words3/4 select four/eight actors with allied owner pairs;5/6/7
+select eight actors sharing an owner. Goals start at each actor's stand before
+the common actor0 move request. A retained one-point blocked route starts phase2
+for these traffic fixtures; scenario6 instead targets the sealed column. Scenario7
+uses test-only original/native interruption adapters; the application does not
+inject those events. The installed profile carries the pinned original initial
+slope coefficient0x3f781062. These are explicit common fixture inputs, not a
+recovered complete original constructor or CFG importer.

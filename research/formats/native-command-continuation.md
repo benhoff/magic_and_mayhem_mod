@@ -1,10 +1,10 @@
-# Native command continuation versions1–5
+# Native command continuation versions1–6
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version5 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version6 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -125,3 +125,17 @@ identity and uses relative sample cursors. A version4 write additionally refuses
 non-default request scratch or metadata. Quiescent state migrates without
 inventing active search state. Unknown versions and malformed route counts,
 cursors, active flags and metadata extents refuse before publication.
+
+## Version6 friendly displacement
+
+Version6 appends an actor-count vector of displacement-owner slot indices after
+the version5 native route metadata. Priority, saved goal and one-segment pause
+already live in the execution/motion entries. The shared route displacement flag
+is now admitted as0/1. Owner roots match the actor count and references remain in
+range; shared active still aliases scheduler continuation. Native failed-frame
+publication is atomic, including temporary displacement search and owner state.
+
+Version5 reads seed zero owner entries. Writes to versions4/5 refuse a nonzero
+owner or displacement continuation rather than discard it. Existing version4
+search/motion restrictions remain; no old heap pointer is rebound. Native version6
+is independent of original game saves.

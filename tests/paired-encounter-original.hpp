@@ -247,6 +247,8 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
     auto *raw = o.actors.data() + i * 0xe4b;
     for (const auto &[offset, f] : encounter::paired::fields(initial, i))
       put(raw, offset, f.value, f.size);
+    const auto &route=initial.actions.segments.at(i);
+    for(unsigned j=0;j<16;++j){const auto &q=route.route[j];put(raw,0x97f+28*j,unsigned(q.position.x));put(raw,0x983+28*j,unsigned(q.position.y));put(raw,0x987+28*j,unsigned(q.position.z));for(unsigned k=0;k<4;++k)put(raw,0x98b+28*j+4*k,unsigned(q.remainder[k]));}
     put(raw, 0xac, address(cfg));
     put(raw, 0xb0 + 28, 0);
     put(raw, 0x6c, 14);
@@ -313,6 +315,7 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
     put(raw, 10, v.flags, 2);
   }
   global(0x6c54dc, address(o.terrain.data()));
+  unsigned slope;std::memcpy(&slope,&p.native.types[17].scalar.slope_global,4);global(0x5e15f0,slope);
   auto random = model::seedRandom(seed);
   global(0x6e1ac8, random.left);
   global(0x6e1acc, random.right);
@@ -325,6 +328,11 @@ void setup(Original &o, const cs::Continuation &initial, unsigned seed) {
   global(0x6def58 + 0x228, unsigned(initial.world.creatures.size()));
 }
 inline void step(Original &o) {
+  if(o.profile.scenario==7){
+    if(o.tick==2){using Stun=void(__attribute__((thiscall)) *)(void *,int,unsigned,unsigned);reinterpret_cast<Stun>(0x50d060)(o.actors.data()+0xe4b,8,0,0);}
+    if(o.tick==4||o.tick==64){auto slot=o.tick==4?0u:5u;auto p=o.profile.initial.execution[o.tick==4?0:6].roamHome;using Move=void(__attribute__((thiscall)) *)(void *,int,int,int);reinterpret_cast<Move>(0x50fae0)(o.actors.data()+slot*0xe4b,p.x,p.y,p.z);}
+    if(o.tick==12){using Health=void(__attribute__((thiscall)) *)(void *,int,int,void *,int);reinterpret_cast<Health>(0x5076f0)(o.actors.data()+0xe4b,-10000,-1,nullptr,1);}
+  }
   ++o.tick;
   global(0x6c4830, o.tick);
   for (unsigned i = 0; i < o.profile.initial.world.creatures.size(); ++i) {
@@ -429,6 +437,7 @@ inline encounter::paired::Projection projectOriginal(const Original &o) {
     add(std::string("scheduler.") + name,
         get(reinterpret_cast<void *>(0x6def58 + at)));
   add("request.active",get(reinterpret_cast<void*>(0x6df184)));
+  add("request.displacement",get(reinterpret_cast<void*>(0x6df1a0)));
   for(auto [name,at]:std::vector<std::pair<const char*,unsigned>>{{"requestBudget",0x6df18c},{"mode",0x6df19c},{"destination.x",0x6df190},{"destination.y",0x6df194},{"destination.z",0x6df198},{"origin.x",0x6df1a4},{"origin.y",0x6df1a8},{"origin.z",0x6df1ac}})add(std::string("request.")+name,get(reinterpret_cast<void*>(at)));
   add("request.dirty",get(reinterpret_cast<void*>(0x6c4ddc),0,1));
   for(unsigned i=0;i<o.profile.initial.world.creatures.size();++i)add("request.marker69c["+std::to_string(i)+"]",get(o.actors.data()+i*0xe4b,0x69c));

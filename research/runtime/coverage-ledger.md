@@ -9424,3 +9424,54 @@ past gate execution nor new engine validation. Historical evidence hashes remain
 unchanged. Broader shared-source contracts retain explicit pending limitations;
 the fresh report supports only its twelve declared bounded contracts. The new
 census, generated summary and exact staged review receipts accompany this commit.
+
+## NS71 — native friendly traffic and displacement (2026-10-15)
+
+Native providers now bind the recovered51a600 displacement controller, blocker
+permission/priority and ranked yielding candidates, moving-blocker wait and
+bounded dependency-chain refusal, yielding order and no-region temporary route
+probe. Shared search/budget progresses while the probe restores all131 actor
+route/motion words. Its old-goal membership/result branch is separately retained.
+AI geometry now honors ignore-occupancy queries, and the common installed fixture
+carries original initial slope float0x3f781062; neither is a gameplay balance policy.
+
+Twenty-four1024-tick independent original32/native32 encounters cover hostile,
+mixed-team and all-allied cases on the actual installed type17 CFG/HTH/ANI and
+12x12x23 Celtic Plains terrain, seeds17/42/91. Scenarios3/4 use allied pairs;5
+exercises shared-owner traffic;6 an unreachable destination;7 test-only stun, new
+orders and signed-health death. Native64 and ASan/UBSan/LSan64 snapshots and every
+projection digest agree. All64 fresh-process checkpoint restores pass;27 yielding
+actor states occur across those checkpoint starts. Original continuation replays
+the immutable prefix; native restores directly. First-divergence reproduction and
+corrupt-oracle refusal pass. Original text/media and installed inputs remain unchanged.
+
+Observed totals: 40 displacement orders, 38 displacement pauses, 40 displacement resumes, 867 hits, 77 stuns, 74 stun recoveries, 7 knockbacks, 32 deaths, 32 removals, 106 route completions, 13 budget yields, 88 blocked routes, 103 replans.
+
+The new102400 helper checks compare blocker/permission/moving/chain-wait/overlap
+queries and yielding decisions with supplied order/action endpoints. The coupled
+encounters execute actual order/action bodies. Together with the retained helper
+regressions,266660 helper checks agree across original32/native64/sanitizer. Both
+native64 and sanitized runs pass five command-session CTests and the installed
+continuation/rollback/profile/cleanup regression. All226 prospective source
+fingerprints remain unchanged.
+
+CMD1/v6 appends validated displacement-owner indices, retaining priority, prior
+goal, pause and shared displacement continuation. v5 zero-owner migration and
+lossy-write refusal are checked. A separate native128x128 fixture restores and
+rolls back an unfinished displacement search; it is not an original large-map
+comparison. Regional graph probe branches explicitly refuse.
+
+See [findings](friendly-native-displacement.md), the
+[NS71 execution report](friendly-native-displacement-bound-ns71-20261015.json),
+and [committed-history review](coverage/history-review-ns70-to-ns71-20261015.json).
+The incoming NS70 commit has32 exact file and76 behavior transitions with no
+missing receipts. This history review asserts no past gate execution or new
+engine validation. Historical evidence hashes remain unchanged; broader shared
+source contracts retain pending limitations. New source census, summary and exact
+staged review receipts accompany this milestone.
+
+This is scoped headless integration. Region graphs, object columns, generic
+species/forms/water/flight, full constructor/CFG import, World/campaign, dynamic
+pool release, original saves and live replacement remain pending. The full
+original-backed game still has its Wine runtime boundary. Commander-order
+features, veterancy and mana-economy changes remain separate outstanding work.

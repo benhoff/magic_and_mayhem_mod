@@ -61786,7 +61786,9 @@
         "NS69.paired-encounter-original",
         "NS69.paired-encounter-native",
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -61879,6 +61881,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -61901,6 +61904,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -62002,6 +62007,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -62015,6 +62021,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ],
@@ -62033,23 +62040,23 @@
       "subsystem": "creature-ai",
       "kind": "recovered",
       "title": "Persistent original/native encounter comparison",
-      "scope": "Independent persistent original PE32 actor/ANI/RNG/terrain/route/search/scheduler state and native session from identical installed bounded type17 profile/seed. Nine1024-tick two/four/eight-actor encounters compare actor/ANI/active-sample-cursor/valid-route/health/full-cell/control/RNG projections through obstacles, search budget yields, blocked movement/replans, target changes, cached attacks, stun/recovery, knockback and retained death/removal. Native64/sanitizer snapshot/digest replay,24 oracle-prefix/native-direct checkpoints and reproducible first divergence. Original heap internals, constructor/full World/dynamic lifecycle/campaign/save/live equivalence excluded.",
+      "scope": "Independent persistent original32 and native32/64/sanitizer encounters with actual installed CFG/HTH/ANI/MAP/TTD, owned actor/ANI/valid-route/motion/health/cell/shared-control/R250 projections. Twenty-four1024-tick hostile, mixed-team and all-allied cases for seeds17/42/91, friendly yielding/waiting/resumption and scripted stun/order/death interruptions;64 fresh-process oracle-prefix/native-direct checkpoints plus native mid-displacement-search rollback/restore. Original heap internals, complete actor bytes, regional graph, constructor/full World/campaign/save/live equivalence excluded.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5283408,
-          "scope": "Independent persistent original PE32 actor/ANI/RNG/terrain/route/search/scheduler state and native session from identical installed bounded type17 profile/seed. Nine1024-tick two/four/eight-actor encounters compare actor/ANI/active-sample-cursor/valid-route/health/full-cell/control/RNG projections through obstacles, search budget yields, blocked movement/replans, target changes, cached attacks, stun/recovery, knockback and retained death/removal. Native64/sanitizer snapshot/digest replay,24 oracle-prefix/native-direct checkpoints and reproducible first divergence. Original heap internals, constructor/full World/dynamic lifecycle/campaign/save/live equivalence excluded."
+          "scope": "Independent persistent original32 and native32/64/sanitizer encounters with actual installed CFG/HTH/ANI/MAP/TTD, owned actor/ANI/valid-route/motion/health/cell/shared-control/R250 projections. Twenty-four1024-tick hostile, mixed-team and all-allied cases for seeds17/42/91, friendly yielding/waiting/resumption and scripted stun/order/death interruptions;64 fresh-process oracle-prefix/native-direct checkpoints plus native mid-displacement-search rollback/restore. Original heap internals, complete actor bytes, regional graph, constructor/full World/campaign/save/live equivalence excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5416832,
-          "scope": "Independent persistent original PE32 actor/ANI/RNG/terrain/route/search/scheduler state and native session from identical installed bounded type17 profile/seed. Nine1024-tick two/four/eight-actor encounters compare actor/ANI/active-sample-cursor/valid-route/health/full-cell/control/RNG projections through obstacles, search budget yields, blocked movement/replans, target changes, cached attacks, stun/recovery, knockback and retained death/removal. Native64/sanitizer snapshot/digest replay,24 oracle-prefix/native-direct checkpoints and reproducible first divergence. Original heap internals, constructor/full World/dynamic lifecycle/campaign/save/live equivalence excluded."
+          "scope": "Independent persistent original32 and native32/64/sanitizer encounters with actual installed CFG/HTH/ANI/MAP/TTD, owned actor/ANI/valid-route/motion/health/cell/shared-control/R250 projections. Twenty-four1024-tick hostile, mixed-team and all-allied cases for seeds17/42/91, friendly yielding/waiting/resumption and scripted stun/order/death interruptions;64 fresh-process oracle-prefix/native-direct checkpoints plus native mid-displacement-search rollback/restore. Original heap internals, complete actor bytes, regional graph, constructor/full World/campaign/save/live equivalence excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5417456,
-          "scope": "Independent persistent original PE32 actor/ANI/RNG/terrain/route/search/scheduler state and native session from identical installed bounded type17 profile/seed. Nine1024-tick two/four/eight-actor encounters compare actor/ANI/active-sample-cursor/valid-route/health/full-cell/control/RNG projections through obstacles, search budget yields, blocked movement/replans, target changes, cached attacks, stun/recovery, knockback and retained death/removal. Native64/sanitizer snapshot/digest replay,24 oracle-prefix/native-direct checkpoints and reproducible first divergence. Original heap internals, constructor/full World/dynamic lifecycle/campaign/save/live equivalence excluded."
+          "scope": "Independent persistent original32 and native32/64/sanitizer encounters with actual installed CFG/HTH/ANI/MAP/TTD, owned actor/ANI/valid-route/motion/health/cell/shared-control/R250 projections. Twenty-four1024-tick hostile, mixed-team and all-allied cases for seeds17/42/91, friendly yielding/waiting/resumption and scripted stun/order/death interruptions;64 fresh-process oracle-prefix/native-direct checkpoints plus native mid-displacement-search rollback/restore. Original heap internals, complete actor bytes, regional graph, constructor/full World/campaign/save/live equivalence excluded."
         }
       ],
       "documents": [
@@ -62070,7 +62077,9 @@
         "NS69.paired-encounter-original",
         "NS69.paired-encounter-native",
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -62163,6 +62172,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -62185,6 +62195,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -62286,6 +62298,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -62299,16 +62312,17 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ],
       "validation_domain": {
-        "inputs": "Actual installed CFG/HTH/ANI/CPsec01 MAP/TTD, sealed12x12x23,2/4/8 ordinary type17 width2/height2 actors, unique hostile owners, all-visible, seeds17/42/91. Crowded fixtures add columnx5/y1..6 and initial move into occupied destination.",
+        "inputs": "Actual installed type17 width2/height2 actors on12x12x23 terrain, scenarios0..7 and seeds17/42/91. Explicit shared initial blocked route and current captured slope coefficient. Scripted test-only interruptions at native/original elapsed ticks2,4,12,64.",
         "exclusions": [
-          "Friendly creature displacement and region graph",
-          "Original full search heap projection/serialization",
-          "Full World/constructor/campaign/dynamic pool release",
-          "Water/flying/general-species encounters",
+          "Regional graph and object columns",
+          "Original complete search heap and actor bytes",
+          "Full World/campaign/constructor/dynamic pool lifecycle",
+          "General species/water/flight",
           "Original saves and live replacement"
         ]
       }
@@ -62348,7 +62362,9 @@
         "NS69.paired-encounter-original",
         "NS69.paired-encounter-native",
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -62441,6 +62457,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -62463,6 +62480,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -62564,6 +62583,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -62577,6 +62597,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ],
@@ -62625,7 +62646,9 @@
         "NS69.paired-encounter-original",
         "NS69.paired-encounter-native",
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -62718,6 +62741,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -62740,6 +62764,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -62841,6 +62867,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -62854,6 +62881,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ],
@@ -62902,7 +62930,9 @@
         "NS69.paired-encounter-original",
         "NS69.paired-encounter-native",
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -62995,6 +63025,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -63017,6 +63048,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -63118,6 +63151,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -63131,6 +63165,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ],
@@ -63177,7 +63212,9 @@
       ],
       "evidence": [
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -63270,6 +63307,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -63292,6 +63330,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -63393,6 +63433,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -63406,6 +63447,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -63415,18 +63457,18 @@
       "title": "Owned actor request with shared native search",
       "subsystem": "creature-ai",
       "kind": "recovered",
-      "scope": "Recovered5128a0 wrapper composed with native513370 direct route and54b800 search: signed shared/per-request budgets, destination/mode/origin identity, complete131-word scratch, marker publication and portable search continuation. Compared control/actor/valid-route projections and replay; original search heap internals are not projected. Empty regional graph; friendly displacement and generic region graph excluded.",
+      "scope": "Recovered5128a0 wrapper composed with native513370 direct route and54b800 search: signed shared/per-request budgets, destination/mode/origin identity, complete131-word scratch, marker publication and portable search continuation. Compared control/actor/valid-route projections and replay; original search heap internals are not projected. Empty regional graph; generic region graph excluded. Friendly displacement route probes now compose this request in a separately scoped traffic contract.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5318816,
-          "scope": "Recovered5128a0 wrapper composed with native513370 direct route and54b800 search: signed shared/per-request budgets, destination/mode/origin identity, complete131-word scratch, marker publication and portable search continuation. Compared control/actor/valid-route projections and replay; original search heap internals are not projected. Empty regional graph; friendly displacement and generic region graph excluded."
+          "scope": "Recovered5128a0 wrapper composed with native513370 direct route and54b800 search: signed shared/per-request budgets, destination/mode/origin identity, complete131-word scratch, marker publication and portable search continuation. Compared control/actor/valid-route projections and replay; original search heap internals are not projected. Empty regional graph; generic region graph excluded. Friendly displacement route probes now compose this request in a separately scoped traffic contract."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5552128,
-          "scope": "Recovered5128a0 wrapper composed with native513370 direct route and54b800 search: signed shared/per-request budgets, destination/mode/origin identity, complete131-word scratch, marker publication and portable search continuation. Compared control/actor/valid-route projections and replay; original search heap internals are not projected. Empty regional graph; friendly displacement and generic region graph excluded."
+          "scope": "Recovered5128a0 wrapper composed with native513370 direct route and54b800 search: signed shared/per-request budgets, destination/mode/origin identity, complete131-word scratch, marker publication and portable search continuation. Compared control/actor/valid-route projections and replay; original search heap internals are not projected. Empty regional graph; generic region graph excluded. Friendly displacement route probes now compose this request in a separately scoped traffic contract."
         }
       ],
       "implementation": [
@@ -63445,7 +63487,9 @@
       ],
       "evidence": [
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -63538,6 +63582,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -63560,6 +63605,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -63661,6 +63708,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -63674,6 +63722,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -63683,7 +63732,7 @@
       "title": "Crowded obstructed native encounter fixtures",
       "subsystem": "native-simulation",
       "kind": "native_policy",
-      "scope": "Portable common installed type17 fixture construction for four/eight fixed hostile actors, declared sealed-cell obstacle column and initial move request over installed12x12 Celtic Plains terrain. Nine two/four/eight-actor seed runs, checkpoint/direct native restore and native64/sanitizer replay. Native fixture policy; original constructor/full World/dynamic lifecycle/campaign excluded.",
+      "scope": "Portable common installed type17 two/four/eight fixed-actor fixtures0..7: hostile owners, allied pairs, shared-owner traffic, sealed-cell obstacle and retained blocked move route; pinned original initial slope coefficient. Scripted interruptions are test-only adapters. Native fixture policy excludes complete original constructor/CFG import, World/campaign/dynamic pool ownership.",
       "confidence": "high_within_scope",
       "original": [],
       "implementation": [
@@ -63700,7 +63749,8 @@
         "research/formats/native-encounter-bundles.md"
       ],
       "evidence": [
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -63793,6 +63843,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -63815,6 +63866,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -63916,6 +63969,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -63929,6 +63983,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -63962,7 +64017,9 @@
       ],
       "evidence": [
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -64055,6 +64112,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -64077,6 +64135,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -64178,6 +64238,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -64191,6 +64252,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -64213,7 +64275,9 @@
       ],
       "evidence": [
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -64319,6 +64383,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -64341,6 +64406,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -64442,6 +64509,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -64455,6 +64523,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -64477,7 +64546,9 @@
       ],
       "evidence": [
         "NS70.crowded-encounter-original",
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -64583,6 +64654,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -64605,6 +64677,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -64706,6 +64780,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -64719,6 +64794,7 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -64744,7 +64820,8 @@
         "research/formats/native-command-continuation.md"
       ],
       "evidence": [
-        "NS70.crowded-encounter-native"
+        "NS70.crowded-encounter-native",
+        "NS71.friendly-displacement-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -64839,6 +64916,7 @@
         "reconstruction/creature-ai/action_callbacks.cpp",
         "reconstruction/creature-ai/action_callbacks.hpp",
         "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
         "reconstruction/creature-ai/actor_route_request.cpp",
         "reconstruction/creature-ai/actor_route_request.hpp",
         "reconstruction/creature-ai/actor_routing.hpp",
@@ -64861,6 +64939,8 @@
         "reconstruction/creature-ai/environment_pass.hpp",
         "reconstruction/creature-ai/execution.cpp",
         "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
         "reconstruction/creature-ai/full_motion_action.cpp",
         "reconstruction/creature-ai/full_motion_action.hpp",
         "reconstruction/creature-ai/full_segment_setup.cpp",
@@ -64962,6 +65042,7 @@
         "reconstruction/rendering/terrain_map.hpp",
         "tests/cached-attack-test.cpp",
         "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
         "tests/native-command-action-bodies-session-test.cpp",
         "tests/native-command-action-session-test.cpp",
         "tests/native-command-behavior-session-test.cpp",
@@ -64975,6 +65056,597 @@
         "tests/paired-encounter-reference.cpp",
         "tests/paired-encounter-state.hpp",
         "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
+        "tools/test-installed-encounter.py",
+        "tools/test-paired-encounter.py"
+      ]
+    },
+    {
+      "id": "AI.friendly-displacement",
+      "title": "Friendly blocker admission and yielding composition",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5353056,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5355280,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5355504,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5354240,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5356608,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5356720,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5357104,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5357648,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5317520,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5386064,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5315648,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5316448,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5350912,
+          "scope": "Ordinary no-region friendly traffic:51ae60 blocker probes;511c40/511f60 moving blocker waits with512390 bounded dependency-chain cycle refusal;51b710 permission,51b7f0 priority and ranked26-cell yielding candidates with route membership, swept wrap overlap, source obstruction and hazard scoring;51c050 ordinary yielding order;51a600 controller and51b300 temporary131-word route probe preserving actor state while shared search/budget progresses. Width1/2 helper admission and width2 installed type17 coupled encounters; regional graph probe branches, invalid raw pointers/owners, arbitrary species/World/live replacement excluded."
+        }
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
+        "apps/command-session/native_providers.cpp"
+      ],
+      "tests": [
+        "tests/friendly-displacement-test.cpp",
+        "tests/paired-encounter-reference.cpp",
+        "tools/test-paired-encounter.py"
+      ],
+      "documents": [
+        "research/runtime/friendly-native-displacement.md"
+      ],
+      "evidence": [
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/native_geometry.cpp",
+        "apps/command-session/native_geometry.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/native_providers.hpp",
+        "apps/command-session/native_route.cpp",
+        "apps/command-session/native_route.hpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
+        "apps/native-encounter/CMakeLists.txt",
+        "apps/native-encounter/combat.cpp",
+        "apps/native-encounter/encounter.hpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/profile.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/map_navigation.cpp",
+        "apps/world-scene/map_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/controller.cpp",
+        "reconstruction/animation/controller.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
+        "reconstruction/creature-ai/actor_route_request.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/cached_attack.cpp",
+        "reconstruction/creature-ai/cached_attack.hpp",
+        "reconstruction/creature-ai/coarse_route.cpp",
+        "reconstruction/creature-ai/coarse_route.hpp",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp",
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/idle_gesture.cpp",
+        "reconstruction/creature-ai/idle_gesture.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/motion_response.cpp",
+        "reconstruction/creature-ai/motion_response.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.cpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/terrain_map.cpp",
+        "reconstruction/rendering/terrain_map.hpp",
+        "tests/cached-attack-test.cpp",
+        "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/native-creature-providers-test.cpp",
+        "tests/native-encounter-test.cpp",
+        "tests/paired-encounter-helper-test.cpp",
+        "tests/paired-encounter-native.cpp",
+        "tests/paired-encounter-original.hpp",
+        "tests/paired-encounter-projection.hpp",
+        "tests/paired-encounter-reference.cpp",
+        "tests/paired-encounter-state.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
+        "tools/test-installed-encounter.py",
+        "tools/test-paired-encounter.py"
+      ]
+    },
+    {
+      "id": "NP.friendly-route-continuation",
+      "title": "Native friendly displacement continuation v6",
+      "subsystem": "native-simulation",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "scope": "CMD1/v6 appends actor-indexed displacement owners, retains yielding priorities/goals/motion pauses and shared displacement continuation. Validate owner roots/reference ranges and flag bounds; v5 zero-owner migration and refusal of lossy v5 writes. Restore/rollback an unfinished native displacement search and fresh-process allied motion; no original-save compatibility or original search heap serialization.",
+      "original": [],
+      "implementation": [
+        "apps/command-session/codec.cpp",
+        "apps/command-session/runtime.hpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/native_providers.cpp"
+      ],
+      "tests": [
+        "tests/native-creature-providers-test.cpp",
+        "tests/paired-encounter-reference.cpp",
+        "tools/test-paired-encounter.py"
+      ],
+      "documents": [
+        "research/formats/native-command-continuation.md",
+        "research/runtime/friendly-native-displacement.md"
+      ],
+      "evidence": [
+        "NS71.friendly-displacement-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/native_geometry.cpp",
+        "apps/command-session/native_geometry.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/native_providers.hpp",
+        "apps/command-session/native_route.cpp",
+        "apps/command-session/native_route.hpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
+        "apps/native-encounter/CMakeLists.txt",
+        "apps/native-encounter/combat.cpp",
+        "apps/native-encounter/encounter.hpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/profile.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/map_navigation.cpp",
+        "apps/world-scene/map_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/controller.cpp",
+        "reconstruction/animation/controller.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
+        "reconstruction/creature-ai/actor_route_request.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/cached_attack.cpp",
+        "reconstruction/creature-ai/cached_attack.hpp",
+        "reconstruction/creature-ai/coarse_route.cpp",
+        "reconstruction/creature-ai/coarse_route.hpp",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp",
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/idle_gesture.cpp",
+        "reconstruction/creature-ai/idle_gesture.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/motion_response.cpp",
+        "reconstruction/creature-ai/motion_response.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.cpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/terrain_map.cpp",
+        "reconstruction/rendering/terrain_map.hpp",
+        "tests/cached-attack-test.cpp",
+        "tests/crowded-selection-test.cpp",
+        "tests/friendly-displacement-test.cpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/native-creature-providers-test.cpp",
+        "tests/native-encounter-test.cpp",
+        "tests/paired-encounter-helper-test.cpp",
+        "tests/paired-encounter-native.cpp",
+        "tests/paired-encounter-original.hpp",
+        "tests/paired-encounter-projection.hpp",
+        "tests/paired-encounter-reference.cpp",
+        "tests/paired-encounter-state.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-creature-routing.py",
         "tools/test-installed-encounter.py",
         "tools/test-paired-encounter.py"
       ]
@@ -128728,6 +129400,142 @@
           "equals": 4
         }
       ]
+    },
+    {
+      "id": "NS71.friendly-displacement-original",
+      "kind": "isolated_original",
+      "scope": "Independent persistent original PE32 and native encounter: two/four/eight ordinary type17 actors on sealed12x12 installed Celtic Plains crop; empty World owner, inventory, presentation and effects, fixed retained identities. Original checkpoints replay the prefix; native snapshots restore directly. Crowded fixtures add a sealed column and common initial move request; scenarios0-2 have hostile owners,3-4 mix allied pairs and hostiles,5-6 share an owner;7 adds scheduled stun, new orders and death. Native friendly yielding/waiting, no-region temporary route probes and continuation are bound. Region graphs, object columns and full World/campaign/live replacement excluded. Friendly helper issue uses supplied order/action endpoints; coupled encounters use actual original/native bodies. Native128x128 displacement-search rollback/restore is a separate synthetic check, not a large-map original comparison.",
+      "record": "research/runtime/friendly-native-displacement-bound-ns71-20261015.json",
+      "sha256": "3c8f6924e0b6552b01f80952351fd9b71ba3b343d1fe84cb42c13dfd4eb7b25f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/process_resume_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/first_divergence_reproduced",
+          "equals": true
+        },
+        {
+          "pointer": "/corrupt_oracle_rejected",
+          "equals": true
+        },
+        {
+          "pointer": "/friendly_displacement_result/cases",
+          "equals": 102400
+        },
+        {
+          "pointer": "/compared_ticks",
+          "equals": 24576
+        },
+        {
+          "pointer": "/process_resumes",
+          "equals": 64
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NS71.friendly-displacement-native",
+      "kind": "native_integration",
+      "scope": "Independent persistent original PE32 and native encounter: two/four/eight ordinary type17 actors on sealed12x12 installed Celtic Plains crop; empty World owner, inventory, presentation and effects, fixed retained identities. Original checkpoints replay the prefix; native snapshots restore directly. Crowded fixtures add a sealed column and common initial move request; scenarios0-2 have hostile owners,3-4 mix allied pairs and hostiles,5-6 share an owner;7 adds scheduled stun, new orders and death. Native friendly yielding/waiting, no-region temporary route probes and continuation are bound. Region graphs, object columns and full World/campaign/live replacement excluded. Friendly helper issue uses supplied order/action endpoints; coupled encounters use actual original/native bodies. Native128x128 displacement-search rollback/restore is a separate synthetic check, not a large-map original comparison.",
+      "record": "research/runtime/friendly-native-displacement-bound-ns71-20261015.json",
+      "sha256": "3c8f6924e0b6552b01f80952351fd9b71ba3b343d1fe84cb42c13dfd4eb7b25f",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/process_resume_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/first_divergence_reproduced",
+          "equals": true
+        },
+        {
+          "pointer": "/corrupt_oracle_rejected",
+          "equals": true
+        },
+        {
+          "pointer": "/friendly_displacement_result/cases",
+          "equals": 102400
+        },
+        {
+          "pointer": "/compared_ticks",
+          "equals": 24576
+        },
+        {
+          "pointer": "/process_resumes",
+          "equals": 64
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -142348,6 +143156,39 @@
         "NS70.crowded-encounter-original",
         "NS70.crowded-encounter-native"
       ]
+    },
+    {
+      "id": "friendly-displacement-ns71-20261015",
+      "level": "headless",
+      "scope": "Twenty-four1024-tick independent original32/native32 encounters0..7: hostile, mixed allied pairs, all-allied yielding and scripted stun/new-order/death interruptions. Native64/sanitizer replay,64 fresh-process checkpoints including allied motion,102400 friendly helper cases plus prior helper regressions; native unfinished-displacement-search restore/rollback and v6 protocol checks. No regional graph/World/live replacement.",
+      "behaviors": [
+        "AI.paired-encounter-core",
+        "AI.encounter-occupancy-production",
+        "AI.idle-gesture-516800",
+        "AI.coarse-route-513370",
+        "AI.motion-opponent-response",
+        "AI.cached-opponent-attack",
+        "AI.native-actor-route-request",
+        "NP.crowded-native-encounter",
+        "AI.footprint-opponent-facing",
+        "AI.native-immediate-route",
+        "AI.native-diagonal-melee-reach",
+        "NP.shared-route-continuation",
+        "AI.friendly-displacement",
+        "NP.friendly-route-continuation"
+      ],
+      "tests": [
+        "tools/test-paired-encounter.py",
+        "tools/export-creature-routing.py",
+        "tests/friendly-displacement-test.cpp",
+        "tests/paired-encounter-reference.cpp",
+        "tests/paired-encounter-native.cpp",
+        "tests/native-creature-providers-test.cpp"
+      ],
+      "evidence": [
+        "NS71.friendly-displacement-original",
+        "NS71.friendly-displacement-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -142883,8 +143724,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-crowded-encounter-20261015-v4.json",
-    "sha256": "c8dec605c65d1036600e87a83e174bc67ae2c6f95c2ec66a32439d9286fb27bd"
+    "path": "research/runtime/coverage/source-index-friendly-displacement-20261015-v1.json",
+    "sha256": "565e2daee5dfe257a5ca1000efa03a330bc9bbd8baf0227357af3d42b08fbc7e"
   },
   "claim_bindings_required": true
 }

@@ -15,7 +15,7 @@ int main(int argc, char **argv) try {
   mnm::game::World world(0);
   world.restore(std::move(saved));
   mnm::game::CreatureRuleSession session(std::move(world),
-                                         mnm::encounter::runtime(profile));
+                                         mnm::encounter::paired::runtime(profile));
   std::ofstream trace(argv[4]);
   std::uint64_t digest = 1469598103934665603ull;
   for (unsigned i = 0; i < ticks; ++i) {

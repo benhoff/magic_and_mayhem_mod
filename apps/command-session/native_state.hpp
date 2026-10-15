@@ -44,5 +44,6 @@ struct NativeProviderState {
   reconstruction::combat::EnvironmentPassState environment;
   reconstruction::combat::ActorRouteContext route;
   std::vector<reconstruction::combat::ActorRouteMetadata> routeMetadata;
+  std::vector<int> displacementOwners;
 };
 } // namespace mnm::command_session

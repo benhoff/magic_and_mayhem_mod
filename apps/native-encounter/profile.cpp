@@ -74,7 +74,7 @@ std::array<int, 28> row(const assets::Config &c, const char *section) {
 game::Bytes loadInputs(const std::filesystem::path &root, scene::MapCrop crop,
                        unsigned scenario) {
   game::Bytes b{'M', 'N', 'M', 'E', 'N', 'C', '0', '1'};
-  need(scenario <= 2, "encounter scenario");
+  need(scenario <= 7, "encounter scenario");
   if (scenario) {
     b[7] = '2';
     word(b, scenario);
@@ -98,8 +98,8 @@ Profile decodeInputs(game::Bytes bytes) {
        "encounter input version");
   std::size_t at = 8;
   const unsigned scenario = bytes[7] == '2' ? take(bytes, at) : 0;
-  need(scenario <= 2, "encounter scenario");
-  const unsigned actors = scenario == 1 ? 4 : scenario == 2 ? 8 : 2;
+  need(scenario <= 7, "encounter scenario");
+  const unsigned actors = scenario == 1 || scenario == 3 ? 4 : scenario >= 2 ? 8 : 2;
   scene::MapCrop crop;
   crop.x = take(bytes, at);
   crop.y = take(bytes, at);
@@ -154,6 +154,8 @@ Profile decodeInputs(game::Bytes bytes) {
   type.height = movement.height;
   type.movementKind = movement.swimming;
   type.scalar.type_10 = movement.acceleration;
+  // Pinned original initial slope coefficient at5e15f0 (float bits).
+  const unsigned slope=0x3f781062;std::memcpy(&type.scalar.slope_global,&slope,4);
   type.scalar.type_d8 =
       reconstruction::groundMovementSamples(p.native.animation[0]);
   type.scalar.type_3c =
@@ -183,7 +185,7 @@ Profile decodeInputs(game::Bytes bytes) {
   for (unsigned i = 0; i < actors; ++i) {
     auto &actor = c.world.creatures[i];
     actor.ai.slot = i;
-    actor.ai.owner = int(i);
+    actor.ai.owner = int(scenario >= 5 ? 0 : scenario >= 3 ? i / 2 : i);
     actor.width = movement.width;
     actor.height = movement.height;
     actor.movementKind = movement.swimming;
@@ -268,6 +270,7 @@ Profile decodeInputs(game::Bytes bytes) {
     }
   }
   for (auto &actor : c.world.creatures) {
+    if(scenario>=3)actor.destination=actor.ai.position;
     actor.ai.home = actor.ai.position;
     c.execution[actor.ai.slot].roamHome = actor.ai.position;
   }
@@ -280,6 +283,15 @@ Profile decodeInputs(game::Bytes bytes) {
     actor.ai.behavior = 2;
     actor.routePhase = 1;
     c.bindings[0] = cs::model::CommandBehaviorBinding::move;
+  }
+  if(scenario>=3){
+    auto &a=c.world.creatures[0];auto &b=c.world.creatures[1];
+    a.routePhase=2;a.ai.marker=0;
+    if(scenario==6)a.destination={5,3,3};
+    auto &route=c.actions.segments[0];route.count=1;route.cursor=0;
+    // A retained coarse route steps into the neighboring ally's footprint.
+    route.route[0].position={b.ai.position.x-1,b.ai.position.y,b.ai.position.z};
+    route.route[0].remainder={2,0,0,0};
   }
   c.backend.assign(8 + actors * 31 * 4 + 6 * 4, 0);
   std::copy_n("MNMECB01", 8, c.backend.begin());

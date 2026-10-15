@@ -6,6 +6,8 @@ add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
   native_providers.cpp native_geometry.cpp native_route.cpp
   ../../reconstruction/creature-ai/attack_selection.cpp
   ../../reconstruction/creature-ai/idle_gesture.cpp
+  ../../reconstruction/creature-ai/actor_displacement.cpp
+  ../../reconstruction/creature-ai/friendly_displacement.cpp
   ../../reconstruction/creature-ai/cached_attack.cpp
   ../../reconstruction/creature-ai/actor_route_request.cpp
   ../../reconstruction/creature-ai/coarse_route.cpp

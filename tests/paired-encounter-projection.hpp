@@ -87,6 +87,7 @@ inline Projection project(const cs::Continuation &c, const Profile &p) {
   add("scheduler.continuation", c.scheduler.continuation);
   const auto &q = c.native.route;
   add("request.active", q.active);
+  add("request.displacement",q.displacementContinuation);
   add("request.requestBudget", unsigned(q.requestBudget));
   add("request.mode", q.mode);
   add("request.destination.x", unsigned(q.destination.x));

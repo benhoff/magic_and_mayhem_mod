@@ -1,5 +1,6 @@
 #include "paired-encounter-original.hpp"
 #include <filesystem>
+#include <algorithm>
 namespace {
 void writeBytes(const std::filesystem::path &p, const Bytes &b) {
   if (std::filesystem::exists(p))
@@ -53,7 +54,7 @@ int main(int argc, char **argv) try {
   game::World world(0);
   world.restore(saved);
   game::CreatureRuleSession native(std::move(world),
-                                   encounter::runtime(profile));
+                                   encounter::paired::runtime(profile));
   Original original(profile);
   setup(original,
         cs::decode(encounter::create(profile, seed).world().state().systems),
@@ -76,6 +77,7 @@ int main(int argc, char **argv) try {
   unsigned routeCompletions = 0, stunRecoveries = 0, removals = 0;
   unsigned budgetYields = 0, blockedRoutes = 0, replans = 0, targetChanges = 0,
            cachedAttacks = 0, maxSearchRecords = 0;
+  unsigned displacementOrders=0,displacementPauses=0,displacementResumes=0,displacementYields=0;
   std::vector<int> lastTarget(continuation.world.creatures.size(), -1);
   std::ofstream trace(out / "trace.txt");
   std::uint64_t digest = 1469598103934665603ull;
@@ -92,16 +94,20 @@ int main(int argc, char **argv) try {
       game::World faulty(0);
       faulty.restore(std::move(s));
       native = game::CreatureRuleSession(std::move(faulty),
-                                         encounter::runtime(profile));
+                                         encounter::paired::runtime(profile));
     }
     auto now = cs::decode(native.world().state().systems);
     auto prev = cs::decode(before.systems);
     budgetYields += now.native.route.active != 0;
+    displacementYields+=now.native.route.active&&now.native.route.displacementContinuation;
     maxSearchRecords = std::max(
         maxSearchRecords, unsigned(now.native.search.at(0).records.size()));
     for (unsigned actor = 0; actor < now.world.creatures.size(); ++actor) {
       const auto &a = now.world.creatures[actor];
       const auto &prior = prev.world.creatures[actor];
+      displacementOrders += a.ai.behavior==13&&prior.ai.behavior!=13;
+      displacementPauses += prev.actions.motion[actor].displacementPause&&!now.actions.motion[actor].displacementPause;
+      displacementResumes += prior.ai.behavior==13&&a.ai.behavior!=13;
       blockedRoutes += a.routePhase == 2 && prior.routePhase != 2;
       replans += prior.routePhase == 2 && a.routePhase != 2;
       cachedAttacks += a.ai.action == 20 && prior.ai.action != 20;
@@ -146,6 +152,11 @@ int main(int argc, char **argv) try {
   std::cout << "{\"success\":true,\"ticks\":" << original.tick
             << ",\"actors\":" << continuation.world.creatures.size()
             << ",\"scenario\":" << profile.scenario
+            << ",\"displacement_initial\":" << std::count_if(continuation.world.creatures.begin(),continuation.world.creatures.end(),[](const auto &a){return a.ai.behavior==13;})
+            << ",\"displacement_orders\":" << displacementOrders
+            << ",\"displacement_pauses\":" << displacementPauses
+            << ",\"displacement_resumes\":" << displacementResumes
+            << ",\"displacement_yields\":" << displacementYields
             << ",\"budget_yields\":" << budgetYields
             << ",\"blocked_routes\":" << blockedRoutes
             << ",\"replans\":" << replans
