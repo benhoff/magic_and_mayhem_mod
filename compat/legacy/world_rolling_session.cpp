@@ -152,6 +152,11 @@ render::Image WorldRollingSession::consumeStream(
     nativeMs_ = cpuMs + p.adoptMs + p.prepareMs + p.submitMs + p.readbackMs +
                 p.compareMs;
     auto result = resident_ ? render::Image{} : producer_.read(canvas);
+    if(resident_){
+      if(!firstWorldCanvas_)firstWorldCanvas_=canvas;
+      if(lastWorldCanvas_&&lastWorldCanvas_!=canvas)++worldCanvasChanges_;
+      lastWorldCanvas_=canvas;
+    }
     completed_ = sequence;
     return result;
   } catch (...) {

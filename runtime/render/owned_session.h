@@ -179,6 +179,36 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
 }
 static i32 (WIN *game_cpu_history)(const void*,u32,u32,u32,u32,u32);
 static i32 (WIN *game_native_cpu_transfer)(void*,u32*,const u16*,u32);
+#include "../native-draw/initial_history.h"
+/* Called exactly at successful CreateSurface return, before the fresh result
+ * escapes the ordered copy lease. Driver-backed surfaces have no such service. */
+static void game_native_primary_initial(struct GameSurface* surface,const u32* descriptor){
+    if(!game_resident_world||!game_native_cpu_transfer||!descriptor||
+       !readable(descriptor,108)||(descriptor[0]!=108&&descriptor[0]!=124)||
+       !(descriptor[1]&1)||descriptor[26]!=0x200||(descriptor[1]&0x20)||
+       surface->pixels.data||surface->gpu_history)return;
+    u32 identity[8];
+    if(game_native_cpu_transfer(surface->object,identity,0,0)!=1||
+       !mnm_owned_initial_identity(identity,identity[1],identity[2])||
+       !readable((void*)identity[0],identity[3]*identity[2])||
+       !mnm_owned_initial_zero((const u8*)identity[0],identity[1],identity[2],identity[3]))return;
+    /* Primary CreateSurface descriptors normally omit shape and format. The
+     * owned identity service validates tight RGB565 authority independently. */
+    if(surface->layout_known&&(surface->pixels.width!=identity[1]||
+       surface->pixels.height!=identity[2]||surface->pixels.bits!=16||
+       surface->pixels.r!=0xf800||surface->pixels.g!=0x7e0||surface->pixels.b!=31))return;
+    surface->pixels.width=identity[1];surface->pixels.height=identity[2];
+    surface->pixels.bits=16;surface->pixels.flags=0x40;
+    surface->pixels.r=0xf800;surface->pixels.g=0x7e0;surface->pixels.b=31;
+    surface->pixels.length=identity[1]*identity[2]*2;
+    surface->layout_known=1;surface->primary=1;surface->caps=0x200;
+    surface->back_count_known=surface->back_count=0;
+    struct Snapshot initial;
+    if(!game_surface_blank(&initial,&surface->pixels))return;
+    surface->pixels.data=initial.data;game_surface_bytes+=initial.length;
+    __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);
+    lock_diagnostic("native_primary_initial_zero",surface->object,0,identity[1],identity[2],0,initial.length,0);
+}
 static i32 (WIN *game_native_gpu_copy)(void*,const i32*,void*,const i32*,u32,u16*,u32);
 /* Called by the fixed-build scene adapter after its validated ACK restores the
  * original page guard, before any post-World UI drawing. Only the already-owned

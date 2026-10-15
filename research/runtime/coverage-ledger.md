@@ -12208,3 +12208,39 @@ remains unknown; all three fresh launches admitted without a transient retry.
 Changed-World-canvas/map transitions, complete presented pixels, hardware timing
 and broader reader/route coverage remain separate. Historical evidence is not
 refingerprinted after shared menu source edits.
+
+## Resident World canvas continuation and fresh native initialization — 2026-10-15
+
+`NR.resident-world-canvas-transition` rebuilds a borrowed native scene only between
+closed queues when canvas ID, physical GPU surface or extent changes, preserving
+global source ordinals. Old prepared/retained baselines retire; released physical
+allocations remain alive for existing GPU leases. Undefined target history and
+sequence gaps remain terminal. Three-mode21-queue CPU-verified controls, existing
+512-queue/prepared/retained regressions and33 portable checks pass. No original
+comparison/replacement stage is promoted.
+
+`NP.native-primary-initial-history` records the owned facade's already-established
+fresh RGB565 zero allocation policy in the command and source lanes, with exact
+current ownership, zero generation/nonce, format/dimension/word checks and marked
+native-policy FILL records. It does not import driver pixels or stale CPU write-mask
+baselines. The bounded original Preferences800→640→800/Main Load journey now passes
+with a genuinely changed World/context, four fresh checkpoints, initialization
+witnesses, balanced ownership, zero forwards/history refusals and normal Quit.
+See [scope, attempts and current evidence](native-world-canvas-transition.md).
+
+This acceptance declares a5FPS functional floor. A completed earlier journey
+failed its10FPS aggregate session target; another attempt exhausted131,072 source
+records in a menu/loading prefix. Both failures remain recorded. Other maps,
+unbounded churn/loading, hardware performance, full restored simulation and
+presented-session original pixels remain open. The startup and storage scopes have
+fresh support from the final journey; unrelated shared-source evidence stays
+historical/pending rather than receiving new hashes.
+
+The final serialized-query code passes the bounded Apprentice rebuild/reload
+journey with canvas2→90,463 balanced Worlds and16,709 optional native calls,
+zero forwards/history refusals and normal exit0. The current111-input controls
+also verify marked native NS_RECT no-op replay and a valid wire round trip.
+`NP.native-source-copy-refusal` stays at partial/headless: no such refusal occurred
+in the final live capture, so accepted live refusal-consumption coverage remains pending.
+This models the facade's preflight no-write result without relaxing ordinary
+source rectangles. See the [initialization/refusal format](../formats/owned-initial-history-v1.md).

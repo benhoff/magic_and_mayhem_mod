@@ -42,6 +42,7 @@ public:
   std::uint64_t completedSequence() const {return rolling_?rollingCompleted_:completed_;}
   std::uint64_t draws() const { return totalDraws_; }
   std::uint64_t readbacks() const { return readbacks_; }
+  std::uint64_t residentContextChanges() const { return residentContextChanges_; }
   const Profile &profile() const { return profile_; }
   render::ColourRectangleCacheStats colourCacheStats() const { return scene_?scene_->colourCacheStats():render::ColourRectangleCacheStats{}; }
 private:
@@ -56,6 +57,7 @@ private:
   unsigned queue_=0,canvas_=0,completed_=0,queueDraws_=0;
   std::uint64_t rollingSequence_=0,rollingCompleted_=0,totalDraws_=0,readbacks_=0;
   render::SurfaceId residentSurface_=0;
+  std::uint64_t residentContextChanges_=0;
   bool rolling_=false, resident_=false;
   bool active_=false,checked_=false;
   Profile profile_;

@@ -41,6 +41,11 @@ public:
     return producer_.frameCacheStats();
   }
   std::uint64_t completed() const { return completed_; }
+  unsigned firstWorldCanvas() const { return firstWorldCanvas_; }
+  unsigned worldCanvas() const { return world_.canvas(); }
+  std::uint64_t worldCanvasChanges() const { return worldCanvasChanges_; }
+  std::uint64_t worldContextChanges() const { return world_.residentContextChanges(); }
+  std::uint64_t copyRectRefusals() const { return producer_.copyRectRefusals(); }
   double nativeWorkMs() const { return nativeMs_; }
   double producerWorkMs() const { return producerMs_; }
   double checkpointAssertionMs() const { return assertionMs_; }
@@ -64,6 +69,8 @@ private:
   CanvasProducerReplay producer_;
   CanvasWorld world_;
   std::uint64_t completed_ = 0;
+  unsigned firstWorldCanvas_=0,lastWorldCanvas_=0;
+  std::uint64_t worldCanvasChanges_=0;
   bool failed_ = false, verify_ = true, resident_ = false;
   bool ownerProfile_=false;
   OwnerCosts ownerCosts_;

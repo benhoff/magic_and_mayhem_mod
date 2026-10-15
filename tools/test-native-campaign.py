@@ -378,6 +378,7 @@ def main():
     parser.add_argument('--crowded-case',action='store_true',help='Four-player native Quick Battle with ordinary 200 mana/800 health/30 control settings, eight Zombie summon attempts and 180..240 seconds of observed crowded combat')
     parser.add_argument('--healing-case',action='store_true',help='Separate native Quick Battle Cure loadout and injured human-wizard healing case')
     parser.add_argument('--save-load',action='store_true',help='Native campaign Save/resume/Load/resume/normal Quit with fresh World checkpoints')
+    parser.add_argument('--recreate-world',action='store_true',help='After Save/Load, leave the map, apply original 640/800 display rebuilds, then Main Load the saved map into a new owned canvas')
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
@@ -421,6 +422,8 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.recreate_world:args.save_load=True
+    if args.recreate_world and (args.independent_world or args.async_world):parser.error('Canvas recreation uses the synchronous public resident route')
     if args.save_load:
         if not (args.resident_world and args.other_pixel_producers) or args.difficulty not in (0,1) or args.stress_seconds or args.require_casting_combat or args.pixel_camera_scenarios or args.healing_case or args.crowded_case or args.menu_cycles!=1:
             parser.error('Save/Load requires resident World, combined producers, Initiate or Apprentice difficulty and no other journey')
@@ -486,6 +489,7 @@ def main():
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'other_pixel_producers_required':args.other_pixel_producers,'save_load_required':args.save_load,
+              'recreate_world_required':args.recreate_world,
               'required_pixel_routes':args.require_pixel_route,'pixel_camera_scenarios_required':args.pixel_camera_scenarios,
               'native_wave_loading_required':args.native_loading,
               'native_audio_factory_required':args.native_factory,
@@ -505,6 +509,9 @@ def main():
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign'])
+        if args.recreate_world:declaration_command.extend(['--behavior','NR.resident-world-canvas-transition','--scenario','NR.resident-world-canvas-transition.reload'])
+        if args.recreate_world:declaration_command.extend(['--behavior','NP.native-primary-initial-history'])
+        if args.recreate_world:declaration_command.extend(['--behavior','NP.native-source-copy-refusal'])
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
@@ -573,6 +580,8 @@ def main():
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
     env['MNM_CAMPAIGN_STORAGE']='1' if args.save_load else '0'
+    env['MNM_CAMPAIGN_RECREATE_WORLD']='1' if args.recreate_world else '0'
+    if args.recreate_world:env['MNM_MENU_DISPLAY_OBSERVE']='1'
     if args.save_load:env['MNM_CAMPAIGN_STORAGE_NAME']='native-render-'+secrets.token_hex(6)
     env['MNM_PIXEL_CAMERA_SCENARIOS']='1' if args.pixel_camera_scenarios else '0'
     if args.other_pixel_producers:
@@ -899,7 +908,24 @@ def main():
                 report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),crowded_flow,out,args.stress_seconds,args.min_fps)
                 report['crowded']=validate_crowded(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
                 report['crowded_verified']=True
-            elif args.save_load:report['storage']=validate_storage(roots[0],flow,args.difficulty,out)
+            elif args.save_load:
+                if bool(flow.get('recreate_world'))!=args.recreate_world:raise ValueError('Requested canvas transition was not executed')
+                report['storage']=validate_storage(roots[0],flow,args.difficulty,out)
+                if args.recreate_world:
+                    world=report['resident_world']
+                    if world.get('first_world_canvas',0)==0 or world.get('world_canvas',0)==world['first_world_canvas'] or int(world.get('world_canvas_changes',0))<1 or int(world.get('world_context_changes',0))<1:
+                        raise ValueError('Map reload retained the previous World canvas')
+                    report['world_canvas_transition_verified']=True
+                    traces=list(roots[0].rglob('owned-initial-history-0000.bin'))
+                    if len(traces)!=1:raise ValueError('Missing owned initial-history trace')
+                    data=traces[0].read_bytes()
+                    if len(data)<16 or data[:8]!=b'MNMINIT1':raise ValueError('Invalid owned initial-history header')
+                    version,count=struct.unpack_from('<II',data,8)
+                    if version!=1 or not 0<count<=512 or len(data)!=16+count*16:raise ValueError('Invalid initial-history extent')
+                    rows=list(struct.iter_unpack('<4I',data[16:]))
+                    if len({r[0] for r in rows})!=count or any(not r[0] or not 0<r[1]<=2048 or not 0<r[2]<=2048 or r[3]!=0x4e495a31 for r in rows):raise ValueError('Invalid owned initial-history records')
+                    if not {world['first_world_canvas'],world['world_canvas']}<={r[0] for r in rows}:raise ValueError('World canvases lack owned initial history')
+                    report['owned_initial_history']={'verified':True,'canvases':rows,'sha256':hashlib.sha256(data).hexdigest()}
             else:report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
             if args.normal_quit:
                 for n in (() if args.save_load else (0,1)):

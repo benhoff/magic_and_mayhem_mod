@@ -14,7 +14,12 @@ def validate_storage_flow(flow):
             or flow.get('native_command_frames', 0) < 30):
         raise ValueError('Incomplete resident Save/Load flow')
     checkpoints = flow.get('checkpoints', [])
-    if [c.get('phase') for c in checkpoints] != ['before-save', 'after-save', 'after-load']:
+    phases=['before-save', 'after-save', 'after-load']
+    if flow.get('recreate_world'):
+        phases.append('after-recreate-load')
+        if flow.get('display_rebuilds')!=2 or flow.get('reloaded_from_main') is not True:
+            raise ValueError('Missing original display rebuild and Main Load')
+    if [c.get('phase') for c in checkpoints] != phases:
         raise ValueError('Missing ordered Save/Load World checkpoints')
     previous = 0
     for c in checkpoints:
@@ -65,19 +70,35 @@ def validate_storage(experiment, flow, difficulty=1, input_directory=None):
     callbacks = [r for r in rows if r[1] == 3]
     actions = [(r[3], r[9]) for r in callbacks]
     expected = [(3, 0)] + ([(18, 65536+difficulty)] if difficulty else []) + [(18, 0), (17, 1), (13, 0), (17, 0), (12, 0), (17, 3), (6, 21), (3, 4)]
+    if flow.get('recreate_world'):
+        expected=expected[:-1]+[(3,3),(10,0),(3,3),(10,0),(3,1),(12,0),(17,3),(6,21),(3,4)]
+        display=[r for r in rows if r[1] in (6,7,8)]
+        if [r[1] for r in display]!=[6,7,8]*2 or [(r[9],r[10]) for r in display if r[1]==7]!=[(640,480),(800,600)]:
+            raise ValueError('Original display rebuild dimensions were not observed')
     if actions != expected or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
         raise ValueError('Unexpected original Save/Load callback/thread trace: ' + repr(actions))
     # A returned storage callback and new original World event must precede
     # the next Mini action. Merely seeing either event somewhere cannot pass.
     offset = int(bool(difficulty))
-    for index, screen in ((3+offset, 13), (5+offset, 12)):
+    storage_actions=[(3+offset, 13), (5+offset, 12)]
+    if flow.get('recreate_world'):storage_actions.append((len(callbacks)-4,12))
+    for index, screen in storage_actions:
         begin, end = callbacks[index][0], callbacks[index+1][0]
         if not any(r[1] == 4 and r[3] == screen and r[8] == 1 and begin < r[0] < end for r in rows):
             raise ValueError('Original storage callback did not return successfully')
-        if not any(r[1] in (12, 20) and r[3] == 2 and r[6] == 1 and begin < r[0] < end for r in rows):
+        if flow.get('recreate_world') and index==len(callbacks)-4:
+            # Main Load initializes World; it does not call the Mini resume
+            # method. Require its Main parent and a subsequent original active
+            # campaign Mini in addition to the fresh fourth World checkpoint.
+            if callbacks[index][12]!=3 or not any(s.get('stage')==8 and s.get('screen')==12 and s.get('reloaded') is True and s.get('parent')==3 and s.get('depth')==3 for s in flow.get('states',[])):
+                raise ValueError('Main Load did not have its original Main parent')
+            if not any(r[1] in (13,16) and r[3]==17 and r[4]==0x6a5088 and r[5]==0x5c6644 and r[6]==1 and r[9]==2 and r[10]==5 and r[11]==r[4] and r[12]==5 and begin<r[0]<end for r in rows):
+                raise ValueError('Original campaign Mini did not reopen after Main Load')
+        elif not any(r[1] in (12, 20) and r[3] == 2 and r[6] == 1 and begin < r[0] < end for r in rows):
             raise ValueError('Original World did not resume after storage action')
     answers = [r for r in rows if r[1] == 22]
-    if len(answers) != 1 or answers[0][9] != 0 or not callbacks[6+offset][0] < answers[0][0] < callbacks[7+offset][0]:
+    quits=[6+offset]+([len(callbacks)-3] if flow.get('recreate_world') else [])
+    if len(answers) != len(quits) or any(answer[9]!=0 or not callbacks[index][0]<answer[0]<callbacks[index+1][0] for answer,index in zip(answers,quits)):
         raise ValueError('Missing original Quit Yes confirmation')
     name = flow['saved_name']
     if not re.fullmatch(r'native-render-[a-f0-9]{12}', name):

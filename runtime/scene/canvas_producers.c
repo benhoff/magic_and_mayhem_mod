@@ -150,7 +150,8 @@ int canvas_producers_continuous(void){return continuous_map!=0;}
 static void publication_close(void);
 static void drawing_update_points_close(void);
 static void storage_transitions_close(void);
-void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;storage_transitions_close();drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+static void producer_initial_history_close(void);
+void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;producer_initial_history_close();storage_transitions_close();drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=producer_record_budget()||bytes>producer_byte_budget()-96||n>producer_byte_budget()-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
@@ -405,6 +406,7 @@ static void producer_source_region_end(void){
 #include "drawing_storage_point.h"
 #include "drawing_update_points.h"
 #include "whole_update_capture.h"
+#include "owned_initial_history.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10 && glyph_live_active()){
@@ -472,18 +474,21 @@ void producer_leave_observe(u32* registers){
   u32* nesting=producer_trace_depth(f.owner);if(f.primitive&&*nesting)--*nesting;
   if(!stopped){
    if(producer_trace_mode&&(f.tag==53||f.tag==55))bar_source_return(&f);
-   if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
+   if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);producer_initial_history(s);break;}}
    else if(f.tag==1){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}}
    else if(f.tag==2){struct Surface* s=object(f.ecx);if(s){s->pixels=registers[7];s->stride=get((void*)(f.ecx+24))/2;checkpoint(s,3);}}
    else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=continuous_map&&continuous_resident?2:1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}drawing_update_point(2,f.ecx,f.caller);if(!continuous_map)raster_world_open=0;if(continuous_map){if(!continuous_return()){continuous_cancel();ExitProcess(95);}}else if(queue>=limit&&!publication_enabled&&!whole_update_capture&&!session_producers){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
    if(f.tag<=2)storage_transition_record(&f,2,registers[7]);
    if(f.record){u32* r=(u32*)f.record;r[21]=registers[7];
+    if(continuous_public_bind&&r[2]==MNM_PRODUCER_COPY&&
+       r[21]==MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT&&GetModuleHandleA("MnmDraw.dll"))
+        r[23]=MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED;
     if(minimap_owned&&f.tag==45)r[19]=get((void*)(f.ecx+0xff));
     if(minimap_owned&&f.tag==47){struct Surface* d=map_destination(f.ecx);if(!d||registers[7]<d->pixels||(registers[7]-d->pixels)%2){fail(35,f.tag);}else r[21]=(registers[7]-d->pixels)/2;}
     if(minimap_owned&&f.tag==48){r[19]=get((void*)(f.ecx+0x6199));r[20]=get((void*)(f.ecx+0x619d));}
     if(r[2]==MNM_PRODUCER_FONT){u8* data=f.record+96+r[19];put(data,get((void*)0x6e1f88));for(u32 j=0;j<3;++j)put(data+4+j*4,*(u16*)(0x6e1f7c+j*2));copy(data+16,(void*)0x6f5dac,256);}
     else if(r[2]==MNM_PRODUCER_RASTER)raster_state(f.record,f.tag);
-    emit(r,f.record+96,r[18]);for(u32 j=0;j<MAX_SURFACES;++j)if(surfaces[j].id==r[3]){struct Surface* s=surfaces+j;if((r[2]>=MNM_PRODUCER_FILL&&r[2]<=MNM_PRODUCER_RASTER)||r[2]>=MNM_PRODUCER_RGB_ADD){++s->dirty;if(r[2]==MNM_PRODUCER_FILL||r[2]==MNM_PRODUCER_JPEG||r[2]==MNM_PRODUCER_COPY||r[2]==MNM_PRODUCER_FADE||r[2]==MNM_PRODUCER_MINIMAP)checkpoint(s,5);}break;}
+    emit(r,f.record+96,r[18]);for(u32 j=0;j<MAX_SURFACES;++j)if(surfaces[j].id==r[3]){struct Surface* s=surfaces+j;if(!(r[2]==MNM_PRODUCER_COPY&&r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED)&&((r[2]>=MNM_PRODUCER_FILL&&r[2]<=MNM_PRODUCER_RASTER)||r[2]>=MNM_PRODUCER_RGB_ADD)){++s->dirty;if(r[2]==MNM_PRODUCER_FILL||r[2]==MNM_PRODUCER_JPEG||r[2]==MNM_PRODUCER_COPY||r[2]==MNM_PRODUCER_FADE||r[2]==MNM_PRODUCER_MINIMAP)checkpoint(s,5);}break;}
    }
   }
   if(publication_terminal&&!stopped){

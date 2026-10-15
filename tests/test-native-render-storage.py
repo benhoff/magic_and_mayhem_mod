@@ -37,7 +37,7 @@ class StorageTests(unittest.TestCase):
         flow = self.flow(); flow['resident_world_requested'] = False
         with self.assertRaises(ValueError): m.validate_storage_flow(flow)
 
-    def fixture(self, root, difficulty=1):
+    def fixture(self, root, difficulty=1, recreate=False):
         flow = self.flow(); flow['saved_name'] = 'native-render-123456abcdef'
         saved = root/'game/Save'/ (flow['saved_name']+'.sav')
         saved.parent.mkdir(parents=True); saved.write_bytes(b'original serialized fixture')
@@ -50,10 +50,27 @@ class StorageTests(unittest.TestCase):
         def add(event, screen, argument=0):
             r=[0]*16;r[0]=len(rows)+1;r[1]=event;r[2]=23;r[3]=screen;r[6]=1;r[8]=1;r[9]=argument;rows.append(r)
         actions=[(3,0)]+([(18,65537)] if difficulty else [])+[(18,0),(17,1),(13,0),(17,0),(12,0),(17,3),(6,21),(3,4)]
-        for screen, arg in actions:
+        if recreate:
+            flow.update(recreate_world=True,display_rebuilds=2,reloaded_from_main=True)
+            flow['states']=[dict(stage=8,screen=12,reloaded=True,parent=3,depth=3)]
+            checkpoint=dict(flow['checkpoints'][-1],phase='after-recreate-load',source_generation='400',source_base='300',frames=400,frame_base=300)
+            flow['checkpoints'].append(checkpoint)
+            actions=actions[:-1]+[(3,3),(10,0),(3,3),(10,0),(3,1),(12,0),(17,3),(6,21),(3,4)]
+        rebuild=0
+        for index,(screen, arg) in enumerate(actions):
             add(3,screen,arg)
-            if screen in (12,13):add(4,screen);add(20,2)
+            main_load=recreate and index==len(actions)-4
+            if main_load:rows[-1][12]=3
+            if screen in (12,13):
+                add(4,screen)
+                if main_load:
+                    add(13,17,2);rows[-1][4]=rows[-1][11]=0x6a5088;rows[-1][5]=0x5c6644;rows[-1][10]=rows[-1][12]=5
+                else:add(20,2)
             if (screen,arg)==(17,3):add(22,screen,0)
+            if recreate and screen==10:
+                add(6,screen);add(7,screen,640 if not rebuild else 800)
+                rows[-1][10]=480 if not rebuild else 600
+                add(8,screen);rebuild+=1
         def write(): (root/'events.bin').write_bytes(b'MNMMENU1'+struct.pack('<II',1,64)+b''.join(struct.pack('<16I',*r) for r in rows))
         write()
         if difficulty==0:
@@ -65,6 +82,30 @@ class StorageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             flow,_,_=self.fixture(Path(d))
             self.assertTrue(m.validate_storage(Path(d),flow)['verified'])
+
+    def test_original_display_rebuild_and_main_load(self):
+        with tempfile.TemporaryDirectory() as d:
+            flow,_,_=self.fixture(Path(d),recreate=True)
+            self.assertEqual(len(m.validate_storage(Path(d),flow)['checkpoints']),4)
+
+    def test_recreated_flow_cannot_reuse_old_checkpoint(self):
+        with tempfile.TemporaryDirectory() as d:
+            flow,_,_=self.fixture(Path(d),recreate=True)
+            flow['checkpoints'][-1]['source_generation']='300'
+            with self.assertRaises(ValueError):m.validate_storage(Path(d),flow)
+
+    def test_display_dimensions_and_second_quit_are_required(self):
+        for mutate in ('display','quit','rebuilds','reload','mini','main_parent'):
+            with tempfile.TemporaryDirectory() as d:
+                flow,rows,write=self.fixture(Path(d),recreate=True)
+                if mutate=='display':next(r for r in rows if r[1]==7)[9]=800
+                elif mutate=='quit':next(r for r in reversed(rows) if r[1]==22)[9]=1
+                elif mutate=='rebuilds':flow['display_rebuilds']=1
+                elif mutate=='reload':flow['reloaded_from_main']=False
+                elif mutate=='mini':next(r for r in rows if r[1]==13)[10]=4
+                else:flow['states'][0]['parent']=17
+                write()
+                with self.assertRaises(ValueError):m.validate_storage(Path(d),flow)
 
     def test_requested_difficulty_is_authoritative(self):
         for actual in (0,1):

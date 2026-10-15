@@ -18,5 +18,9 @@
 // word15 mode0..3, words19/20 width/height1..64; tight WORD pixels.
 // No source pointers cross the channel. V1/V2 continue to refuse this operation.
 #define MNM_PRODUCER_COLOUR_RECT 26u
+/* Native-owned COPY metadata: word23 marker plus exact word21 NS_RECT.
+ * Records the failed call; it never authorizes an out-of-bounds pixel write. */
+#define MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED 0x4e435231u
+#define MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT 0x88760096u
 #define MNM_PRODUCER_V3_SOURCES 2048u
 #define MNM_PRODUCER_V3_SOURCE_BYTES (16u*1024u*1024u)

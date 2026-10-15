@@ -12,6 +12,7 @@ static int game_surface_publish(struct GameSurface*);
 static int game_surface_publish_region(struct GameSurface*,u32,u32,u32,u32,u32);
 static int game_surface_colors(struct GameSurface*,u8*);
 static void game_pixel_misses_sync(void);
+static void game_native_primary_initial(struct GameSurface*,const u32*);
 /* Identity/generation/count of the complete frame currently in the stream.
  * A partial upload is permitted only when it advances this exact checkpoint. */
 static void* game_presented_object;
@@ -167,6 +168,7 @@ static void game_surface_created(void* object,u32 kind,const u32* d){
     game_alias_retire(object);
     struct GameSurface* s=game_surface_find(object,1);if(s){s->clip_known=1;s->clip=0;}
     if(d)game_surface_describe_locked(object,kind,d);
+    if(s)game_native_primary_initial(s,d);
     game_tracker_release();
 }
 static void game_surface_invalidate(void* object){

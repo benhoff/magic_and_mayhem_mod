@@ -303,6 +303,9 @@ QJsonObject ResidentWorldSession::report() const {
     const auto cpuSnapshots=!asynchronous_&&world_?world_->cpuReaderSnapshots():0;
     const auto owned=snapshotQueue_?snapshotQueue_->stats():WorldSnapshotQueue::Stats{};
     QJsonObject result{{"completed",QString::number(completed_)},{"imports",QString::number(imports_)},{"verified_returns",QString::number(returns_)},{"rasters",QString::number(rasters_)},
+        {"first_world_canvas",int(world_?world_->firstWorldCanvas():0)},{"world_canvas",int(world_?world_->worldCanvas():0)},{"world_canvas_changes",QString::number(world_?world_->worldCanvasChanges():0)},
+        {"world_context_changes",QString::number(world_?world_->worldContextChanges():0)},
+        {"source_copy_rect_refusals",QString::number(world_?world_->copyRectRefusals():0)},
         {"world_readbacks",double(asynchronous_?producerReadbacks_:world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks-cpuSnapshots)},{"explicit_producer_cpu_readbacks",double(cpuSnapshots)},{"total_native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
         {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)||bool(ownedPending_)||(independent_&&owned.outstanding!=0)},{"normal_quit_retired",normalQuitRetired_},{"renderer",asynchronous_?producerDriver_:renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},
         {"draw_calls",QString::number(stats.drawCalls)},{"draw_instances",QString::number(stats.drawInstances)},

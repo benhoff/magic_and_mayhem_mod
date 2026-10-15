@@ -8,6 +8,7 @@
 #include "../../protocols/include/mnm/canvas_producers_v4.h"
 #include <algorithm>
 #include <cstring>
+#include <limits>
 #include <stdexcept>
 namespace mnm::legacy {
 namespace {
@@ -134,7 +135,8 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
     if (result.operations.size() >= word(b, 20) ||
         r[18] > byteBudget - 96 || r[0] != 96 + r[18] ||
         r[0] > b.size() - at || r[1] != result.operations.size() + 1 ||
-        r[2] < 1 || r[2] > (wholeUpdate?27u:extendedWorld ? 26u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap && !extendedWorld) || r[23])
+        r[2] < 1 || r[2] > (wholeUpdate?27u:extendedWorld ? 26u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap && !extendedWorld) ||
+        (r[23]&&!(extendedWorld&&r[2]==MNM_PRODUCER_COPY&&r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED&&r[21]==MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT&&!r[18])))
       throw std::invalid_argument("Invalid producer record");
     c.payload.assign(b.begin() + at + 96, b.begin() + at + r[0]);
     const auto wireSize = r[0];
@@ -211,6 +213,9 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       if(!wholeUpdate||entered!=returned||returned!=result.queues||r[14]!=result.queues||r[17]!=r[15]+1u||!r[19]||r[20]>255||!r[21]||r[22]!=3||r[18]||reserve)throw std::invalid_argument("Invalid whole-update closure");
       ++ended;
     }
+    if(r[2]==MNM_PRODUCER_COPY&&r[23]&&(!extendedWorld||
+       r[23]!=MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED||r[21]!=MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT))
+      throw std::invalid_argument("Unproven native COPY refusal");
     result.operations.push_back(std::move(c));
     at += wireSize;
   }
@@ -245,6 +250,12 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     canvases_.fill(id, rect(c), r[14]);
     break;
   case 6:
+    if(r[23]){
+      if(r[23]!=MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED||r[21]!=MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT||r[18]||!c.bytes().empty()||
+         copyRectRefusals_==std::numeric_limits<std::uint64_t>::max())
+        throw std::invalid_argument("Unproven native COPY refusal");
+      ++copyRectRefusals_;break;
+    }
     canvases_.copy(r[4], id, rect(c), signedWord(r[8]), signedWord(r[9]),
                    r[14] == 0xffffffff ? std::nullopt
                                        : std::optional<std::uint16_t>(r[14]));

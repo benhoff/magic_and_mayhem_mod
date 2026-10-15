@@ -138,21 +138,28 @@ void CanvasWorld::beginRolling(const CanvasProducer &c,
 void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native,
                                  std::uint64_t sequence) {
   const auto &r=c.fields;
-  if(active_ || (scene_ && (!resident_ || residentSurface_!=native || pending_.width!=r[5] || pending_.height!=r[6])) || !sequence ||
+  if(active_ || (scene_ && !resident_) || !sequence ||
      rollingCompleted_==std::numeric_limits<std::uint64_t>::max() ||
      sequence!=rollingCompleted_+1 || r[2]!=MNM_PRODUCER_QUEUE_ENTRY ||
-     r[14]!=1 || !r[3] || (canvas_ && canvas_!=r[3]))
+     r[14]!=1 || !r[3])
     throw std::invalid_argument("Resident World identity or sequence");
   profile_={};
   if(preparedReplay_){replayDraws_.clear();baselineCaptured_=false;}
-  if(!scene_) {
-    residentSurface_=native;
+  const bool replace=scene_&&(residentSurface_!=native||canvas_!=r[3]||
+      pending_.width!=r[5]||pending_.height!=r[6]);
+  if(!scene_||replace) {
     render::SceneLimits limits;
     const auto baseline=std::getenv("MNM_WORLD_COLOUR_CACHE_BASELINE");
     limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
     limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
-    scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,
+    // Validate the new owned surface, extent and defined history before
+    // retiring the old borrowed scene. Global source ordinals stay contiguous.
+    auto next=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,
                                                     int(r[5]),int(r[6]),limits);
+    scene_=std::move(next);residentSurface_=native;
+    if(replayBaseline_){renderer_.destroy(replayBaseline_);replayBaseline_=0;}
+    baselineCaptured_=false;replayDraws_.clear();
+    if(replace)++residentContextChanges_;
   }
   pending_={r[14],r[5],r[6],r[5],{}};
   queue_=1;canvas_=r[3];queueDraws_=0;checked_=false;active_=true;

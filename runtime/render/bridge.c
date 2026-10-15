@@ -503,6 +503,23 @@ __declspec(dllexport) void RenderAnchor(void){}
 /* Save/Load menus draw destination-dependent panels before their first GetDC.
  * Synchronize at this explicit quiescent application boundary, before their
  * original callbacks acquire Lock. Never materialize ordinary World locks. */
+/* Fresh source-wrapper allocation query. Serialize the facade registry and
+ * physical zero scan with every intercepted creation/release/copy operation.
+ * Only scalar proof leaves this call; no pixel pointer escapes the lease. */
+__declspec(dllexport) u32 WIN RenderOwnedInitialZeroV1(void* object,u32 width,u32 height){
+    u32 error=GetLastError(),ok=0;
+    struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
+    if(!callback.observe){SetLastError(error);return 0;}
+    struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(lease.observe&&game_copy_order_enabled&&game_resident_world&&game_native_cpu_transfer){
+        u32 identity[8];
+        if(game_native_cpu_transfer(object,identity,0,0)==1&&
+           mnm_owned_initial_identity(identity,width,height)&&
+           readable((void*)identity[0],identity[3]*identity[2])&&
+           mnm_owned_initial_zero((const u8*)identity[0],width,height,identity[3]))ok=1;
+    }
+    SetLastError(error);return ok;
+}
 __declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
     u32 error=GetLastError(),ok=0;void* objects[32];u32 count=0;
     if(action>1)return 0;

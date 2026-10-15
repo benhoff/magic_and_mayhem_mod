@@ -74,6 +74,7 @@ public:
   void invalidateWorld(const CanvasProducer &);
   void discardCpuWorld(std::uint32_t id) { canvases_.discardCpu(id); }
   CanvasFrameCacheStats frameCacheStats() const { return frames_.stats(); }
+  std::uint64_t copyRectRefusals() const { return copyRectRefusals_; }
   mnm::render::Image read(std::uint32_t id) const { return canvases_.read(id); }
   void commitNativeWorld(std::uint32_t id, const mnm::render::Image &image) {
     const auto prior = canvases_.read(id);
@@ -85,6 +86,7 @@ public:
 private:
   mnm::render::CanvasSequence canvases_;
   CanvasFrameCache frames_;
+  std::uint64_t copyRectRefusals_=0;
   bool mirrored_ = false, invalidate_ = false;
   std::function<std::vector<std::uint8_t>(const std::string &)> source_;
 };
