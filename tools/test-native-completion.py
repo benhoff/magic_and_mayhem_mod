@@ -75,7 +75,7 @@ def main():
             library = out/(name+'.lib')
             run(name, ['llvm-dlltool', '-m', 'i386', '--kill-at', '-d', definition, '-l', library])
             libraries.append(library)
-        for name, source in [('history', 'tests/native-history-probe.c'), ('flip', 'tests/native-held-flip-probe.c')]:
+        for name, source in [('history', 'tests/native-history-probe.c'), ('flip', 'tests/native-held-flip-probe.c'), ('gpu-copy', 'tests/native-gpu-copy-probe.c')]:
             obj = out/(name+'.obj')
             run(name+'-compile', [*builder.FLAGS, '-c', ROOT/source, '-o', obj])
             run(name+'-link', ['lld-link', '/machine:x86', '/entry:start', '/subsystem:console',
@@ -88,9 +88,11 @@ def main():
             shutil.copyfile(dll, dest/'MnmDraw.dll')
             run(name, ['xvfb-run', '-a', 'wine', out/'history.exe'], dest, extra, expected)
             if expected:
-                q = struct.unpack('<8I', (dest/'native-cpu-history-refusal.bin').read_bytes())
-                if q[0:2] != (0x484d4e4d, 1) or q[3:] != (2, 0, 5, 6, 1):
+                q = struct.unpack('<11I', (dest/'native-cpu-history-refusal.bin').read_bytes())
+                if q[0:2] != (0x484d4e4d, 2) or q[3:8] != (2, 0, 5, 6, 1):
                     raise ValueError('Wrong history authority refusal')
+        run('gpu-copy', ['xvfb-run', '-a', 'wine', out/'gpu-copy.exe'], out)
+        report['gpu_copy'] = dict(success=True, cpu_storage_untouched=True, authority_inherited=True, invalid_geometry_lease_key_self_refused=True, full_cpu_copy_restores=True)
         report['history'] = dict(success=True, refusal_cases=3, stale_identity=[2, 0, 5, 6],
                                  interior_pointer=True, partial_write_stays_stale=True,
                                  full_fill_establishes_history=True, retired_pointer_refused=True)
@@ -107,6 +109,16 @@ def main():
                                    driver_sha256=sha(prefix/'drive_c/windows/syswow64/ddraw.dll'),
                                    wine_version=subprocess.check_output(['wine', '--version'], text=True).strip(),
                                    native_sha256=sha(out/'native/held-flips.bin'), original_sha256=sha(out/'driver/held-flips.bin'))
+        report['compatibility']={}
+        for label in ['render-resident-world-test','render-command-consumer-test','native-frame-recipe-test']:
+            binary=ROOT/'working/build/qt-shell/renderer'/label
+            run(label,['xvfb-run','-a',binary])
+            report['compatibility'][label]=dict(success=True,sha256=sha(binary))
+        run('menu-cpu-read-lease',['xvfb-run','-a',ROOT/'working/build/qt-shell/menu-resident-quit-test'])
+        report['menu_cpu_read_lease']=dict(success=True,bounded=True,same_ticket_cannot_renew=True,request_and_state_unchanged=True)
+        report['cpu_materialization_binary_sha256']=sha(ROOT/'working/build/qt-shell/native-cpu-materialization-test')
+        run('native-cpu-materialization', ['xvfb-run', '-a', ROOT/'working/build/qt-shell/native-cpu-materialization-test'])
+        report['cpu_materialization']=json.loads((out/'native-cpu-materialization.log').read_text().splitlines()[-1])
         run('resident-restart', ['xvfb-run', '-a', ROOT/'working/build/qt-shell/resident-terminal-restart-test'])
         report['resident_restart'] = json.loads((out/'resident-restart.log').read_text().splitlines()[-1])
         run('original-after', [ROOT/'tools/original-manifest.sh', 'verify'])

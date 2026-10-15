@@ -94,7 +94,7 @@ static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
  if(!key || flags!=8)return ND_INVALID;if(!o->state->key_set)return (i32)0x887600d7u;
  key[0]=o->state->key_low;key[1]=o->state->key_high;return 0;
 }
-static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
+static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx,u32 gpu){
  struct NsState *d=dst->state,*s=src?src->state:0;i32 rd[4],rs[4];
  for(u32 i=0;i<4;++i){rd[i]=dr?dr[i]:(i<2?0:(i==2?(i32)d->width:(i32)d->height));
   rs[i]=sr?sr[i]:(i<2?0:(s?(i==2?(i32)s->width:(i32)s->height):0));}
@@ -110,6 +110,16 @@ static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const
  else if(!s || fx){result=ND_INVALID;goto done;}
  if(s && (s->bits!=d->bits || s->masks[0]!=d->masks[0] || s->masks[1]!=d->masks[1] || s->masks[2]!=d->masks[2])){result=NS_UNSUPPORTED;goto done;}
  if((flags&0x8000) && !s->key_set){result=ND_INVALID;goto done;}
+ /* The ordered native bridge owns GPU execution. This explicit route validates
+  * the same COM geometry/leases before propagating physical authority, and
+  * leaves both CPU allocations untouched. It cannot handle clipped/self copies. */
+ if(gpu){
+  if(!s || s==d || !s->history_stale || clips || d->bits!=16 ||
+     !ns_rectangle(d,rd,rd) || !ns_rectangle(s,rs,rs)){result=NS_UNSUPPORTED;goto done;}
+  d->history_stale=1;
+  for(u32 i=0;i<2;++i){d->history_generation[i]=s->history_generation[i];d->history_nonce[i]=s->history_nonce[i];}
+  ++ns_copies;goto done;
+ }
  if(s)ns_cpu_require(s);
  /* Freeze the whole aliased backing, including samples outside a clipped first
   * piece. Earlier regions may remain written when a later source piece fails. */
@@ -130,9 +140,27 @@ static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const
   }
  }
  if(frozen)HeapFree(GetProcessHeap(),0,frozen);
- if(!s && !d->clipper && rd[0]==0 && rd[1]==0 && rd[2]==(i32)d->width && rd[3]==(i32)d->height)d->history_stale=0;
+ if(!(flags&0x8000) && !d->clipper && rd[0]==0 && rd[1]==0 && rd[2]==(i32)d->width && rd[3]==(i32)d->height)d->history_stale=0;
  if(!(++ns_copies&255))nd_status();
 done:if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
+}
+static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
+ return ns_draw_route(dst,dr,src,sr,flags,fx,0);
+}
+/* Process-local service, not a standalone pixel copy. The caller must hold its
+ * ordered session admission and commit the matching native COPY before return. */
+__declspec(dllexport) i32 WIN NativeDrawGpuCopyV1(void* dst,const i32* dr,void* src,const i32* sr,u32 flags,u16* baseline,u32 bytes){
+ struct NsObject *d=0,*s=0;
+ for(struct NsState* state=ns_owned;state;state=state->next_owned)for(u32 i=0;i<5;++i){
+  if(dst==&state->aliases[i])d=&state->aliases[i];if(src==&state->aliases[i])s=&state->aliases[i];}
+ if(!d || !s || !dr || !sr || (flags&~0x8000u))return ND_INVALID;
+ if(baseline?bytes!=d->state->width*d->state->height*2:bytes!=0)return ND_INVALID;
+ i32 result=ns_draw_route(d,dr,s,sr,flags,0,1);
+ /* Private write-mask baseline only: these bytes are explicitly not current
+  * image pixels and must never initialize a native image or satisfy a reader. */
+ if(result>=0 && baseline)for(u32 y=0;y<d->state->height;++y)for(u32 x=0;x<d->state->width;++x)
+  baseline[y*d->state->width+x]=d->state->pixels[y*(d->state->pitch/2)+x];
+ return result;
 }
 static i32 WIN ns_blt(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
  return ns_draw(dst,dr,src,sr,flags,fx);

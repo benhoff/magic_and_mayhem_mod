@@ -12029,7 +12029,49 @@ longer chains and held-lock live command-adapter integration remain excluded.
 Fresh clipping/resource and panel/image/minimap/rectangle/raster regressions pass;
 historical evidence fingerprints are preserved. These controls advance only their
 scoped headless contracts. Full renderer replacement, normal-Quit combined-session
-equivalence and strict zero-forward admission are not promoted. The real combined
-run reaches gameplay and demonstrates the intended stale-history refusal; matching
-CPU World history remains necessary for that operation to continue. See the
-completion record for source-bound positive controls and the failed live journey.
+equivalence and strict zero-forward admission are not promoted. The first combined
+run reaches gameplay and demonstrates the intended stale-history refusal. The
+subsequent reader-routing change below admits the encountered native GPU copy and
+explicit CPU readers; the first failed live journey remains historical.
+
+## Native reader routing and physical CPU materialization — 2026-10-15
+
+`NP.native-history-reader-routing` separates the observed facade BltFast reader
+from optional CPU pixel adapters. The bridge commits matching GPU COPY operations
+without consuming stale CPU image words, propagates physical authority across
+copies/flips and pins GPU-owned resources against stale checkpoint re-creation.
+A full opaque copy can initialize a new destination using synthetic blank native
+storage and a separate private CPU write-mask baseline. Full known CPU overwrites
+restore complete CPU authority.
+
+The six original WORD-splice forwards were caused by a logical clip ending one
+pixel beyond its physical plane. The native kernel now admits by its actual
+atomic write footprint. The original/native canonical regression and the captured
+40x40 WORD/grayscale source frame agree; unknown rows/aliases/footprints retain
+admission checks. All original source hashes and historical reports are retained.
+
+`NP.explicit-native-cpu-materialization` adds stream-v5 CPU_READ and a bounded
+atomic native RGB565 reply for actual GetDC readers. Session, request, surface,
+extent, generation/nonce and physical backing checks precede CPU restoration.
+Explicit reader snapshots are counted separately from the unchanged no-pixel
+per-World return. The native menu lease recognizes a decoded pending reader ticket
+for at most ten seconds and permits its ordinary two-second state-publication
+window after completion. Same-ticket progress cannot renew the bound, certify an
+old menu state or resend an action. The prior live run exposed the two-second
+menu lease while CPU request21 was queued and reply20 remained current.
+
+Fresh scoped controls pass exact native GPU words, malformed/session reply
+rejection, authority restoration, held flips, version4/consumer/frame compatibility
+and terminal restart. The final combined normal-Quit result and current source
+accounting are recorded in [native-history-readers.md](native-history-readers.md).
+Whole-session original pixels, unexercised producer routes, arbitrary stale CPU
+readers, clipped/self GPU copies and hardware performance remain separate.
+
+
+The final combined run passes normal Quit/exit0:17209 native producer calls,
+zero original forwards/history refusals,34 unexercised routes and1241 balanced
+World completions/imports/returns.34 explicit native GetDC snapshots are separate
+from the unchanged zero-readback ordinary World path. This is llvmpipe software
+execution at a declared10FPS functional floor, not hardware or full original-pixel
+proof. New reader policies reach scoped live observation; comparison/replacement
+milestones remain independent and broad replacement is not promoted.

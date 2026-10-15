@@ -1,4 +1,4 @@
-#include "../../protocols/include/mnm/render_stream_v4.h"
+#include "../../protocols/include/mnm/render_stream_v5.h"
 #include "dirty_region.h"
 #include "../../protocols/include/mnm/resident_frame_budget.h"
 /* Ordered opt-in production, independent of bounded diagnostic archives.
@@ -85,7 +85,7 @@ static int session_start(void){
         command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
         lock_diagnostic("session_continuous_requires_v2",0,0,0,0,0,0,0);return 0;
     }
-    u32 header[4];copy(header,game_resident_world?MNM_RENDER_STREAM_V4_MAGIC:game_session_palette_resources?MNM_RENDER_STREAM_V2_MAGIC:"MNMCMD01",8);header[2]=game_resident_world?4:game_session_palette_resources?2:1;header[3]=16;
+    u32 header[4];copy(header,game_resident_world?MNM_RENDER_STREAM_V5_MAGIC:game_session_palette_resources?MNM_RENDER_STREAM_V2_MAGIC:"MNMCMD01",8);header[2]=game_resident_world?5:game_session_palette_resources?2:1;header[3]=16;
     if(game_session_archive){
         char path[544];copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,"\\session-00000001.bin",22);failure_hex(path+lock_capture_path_length+9,session_archive_id);
         session_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
@@ -139,7 +139,7 @@ static struct SessionSurface* session_victim(void* keep){
     for(u32 i=0;i<32;++i){struct SessionSurface* s=session_surfaces+i;
         if(!s->id || s->dc_pending || (keep && game_alias_same(keep,s->object)))continue;
         struct GameSurface* owned=game_surface_find(s->object,0);
-        if(!owned || owned->primary || owned->dc)continue;
+        if(!owned || owned->primary || owned->dc || owned->gpu_history)continue;
         u32 borrowed=0;
         for(u32 j=0;j<32;++j)if(game_locks[j].active && game_alias_same(s->object,game_locks[j].object)){borrowed=1;break;}
         if(!borrowed && (!victim || s->used<victim->used))victim=s;
@@ -156,6 +156,8 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
            s->r!=pixels->r || s->g!=pixels->g || s->b!=pixels->b){game_session_gap(3);return 0;}
         return s;
     }
+    struct GameSurface* owned=game_surface_find(object,0);
+    if(owned && owned->gpu_history){game_session_gap(4);return 0;}
     const u32 pixel_limit=mnm_resident_source_pixel_limit(game_prepared_world);
     u32 count=pixels->width*pixels->height;
     if(count>pixel_limit || (game_session_continuous && session_last_id==0xffffffffu)){game_session_gap(2);return 0;}
@@ -176,6 +178,8 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
     if(!session_record(1,fields,28,pixels->data,pixels->length))return 0;return s;
 }
 static i32 (WIN *game_cpu_history)(const void*,u32,u32,u32,u32,u32);
+static i32 (WIN *game_native_cpu_transfer)(void*,u32*,const u16*,u32);
+static i32 (WIN *game_native_gpu_copy)(void*,const i32*,void*,const i32*,u32,u16*,u32);
 /* Called by the fixed-build scene adapter after its validated ACK restores the
  * original page guard, before any post-World UI drawing. Only the already-owned
  * current-thread full Lock may supply the opaque identity and private baseline.
@@ -218,7 +222,9 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     u32 fields[5]={surface->id,generation_low,generation_high,nonce_low,nonce_high};
     if(!session_record(MNM_RENDER_STREAM_V4_OPERATION_WORLD,fields,20,0,0))goto done;
     if(!game_cpu_history || game_cpu_history((void*)pixels,1,generation_low,generation_high,nonce_low,nonce_high))goto done;
-    lock->resident=1;ok=1;lock_diagnostic("resident_world_bound",lock->object,lock->kind,generation_low,generation_high,0,0,0);
+    lock->resident=1;lock->gpu_history=1;
+    struct GameSurface* owned=game_surface_find(lock->object,0);if(owned)owned->gpu_history=1;
+    ok=1;lock_diagnostic("resident_world_bound",lock->object,lock->kind,generation_low,generation_high,0,0,0);
  done:
     if(!ok)game_session_gap(4);game_tracker_release();SetLastError(error);return ok;
 }
@@ -340,6 +346,114 @@ static void session_done(void){
      * separate 64-operation ceiling never relaxes record/byte/ownership caps. */
     if(session_operations>=16 && (session_presented || session_operations>=64))session_finish_owned();
 }
+/* Use the already admitted command inputs, never a stale CPU source checkpoint.
+ * The physical facade copy and FIFO COPY commit share ordered-copy admission.
+ * Any lost session after physical admission is terminal, before another caller
+ * could consume a successful copy without its native command. */
+static void game_gpu_refuse(u32 stage,const struct GameBlit* p){
+    u32 record[20]={0x474d4e4d,1,stage,(u32)p->target,(u32)p->source,p->valid,p->bootstrap,
+        p->source_generation,p->target_generation,p->epoch},done=0;
+    for(u32 i=0;i<10;++i)record[10+i]=p->fields[i];
+    HANDLE file=CreateFileA("native-gpu-copy-refusal.bin",0x40000000,0,0,1,0x80,0);
+    if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
+    ExitProcess(124);
+}
+static i32 game_gpu_blit(struct GameBlit* p){
+    u32 error=GetLastError();
+    if(!p->valid || !p->gpu || !game_resident_world || !game_copy_order_enabled ||
+       !game_native_gpu_copy || !game_surface_pixels_enter(p->target))game_gpu_refuse(1,p);
+    struct GameSurface *src=game_surface_find(p->source,0),*dst=game_surface_find(p->target,0);
+    struct SessionSurface *a=session_find(p->source),*b=0;
+    if(!session_active || !a || !src || !dst || !src->gpu_history || !p->source_generation ||
+       p->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) ||
+       src->generation!=p->source_generation || dst->generation!=p->target_generation)game_gpu_refuse(2,p);
+    if(p->bootstrap){
+        /* A full opaque COPY overwrites this synthetic initial image before
+         * any PRESENT. Keep its zeros separate from the facade's private CPU
+         * baseline, which is never CREATE input. */
+        if(!game_surface_blank(&p->src,&dst->pixels) || !game_surface_blank(&p->dst,&dst->pixels))game_gpu_refuse(3,p);
+    }
+    i32 sr[4]={(i32)p->fields[2],(i32)p->fields[3],(i32)p->fields[4],(i32)p->fields[5]};
+    i32 dr[4]={(i32)p->fields[6],(i32)p->fields[7],(i32)(p->fields[6]+p->fields[4]-p->fields[2]),(i32)(p->fields[7]+p->fields[5]-p->fields[3])};
+    SetLastError(error);
+    i32 result=game_native_gpu_copy(p->target,dr,p->source,sr,p->fields[8]?0x8000:0,
+        p->bootstrap?(u16*)p->dst.data:0,p->bootstrap?p->dst.length:0);
+    error=GetLastError();
+    if(result>=0){
+        b=session_surface(p->target,p->bootstrap?&p->src:&dst->pixels,p->source);if(!b || a==b)game_gpu_refuse(4,p);
+        u32 fields[10];copy(fields,p->fields,40);fields[0]=a->id;fields[1]=b->id;
+        if(!session_record(3,fields,40,0,0) || (dst->primary && !session_present(b)))game_gpu_refuse(5,p);
+        /* The private CPU baseline remains unchanged, matching facade storage.
+         * It is usable only for later CPU write masks, never CREATE/readback. */
+        dst->gpu_history=1;dst->generation=++game_surface_generation;dst->generation_origin=8;
+        dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();
+        if(p->bootstrap){
+            copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;
+            game_surface_bytes+=dst->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
+        }
+        session_done();lock_diagnostic("resident_gpu_copy",p->target,0,(u32)p->source,0,0,0,0);
+    }
+    game_blit_free(p);p->gpu=2;game_tracker_release();SetLastError(error);return result;
+}
+/* Explicit CPU reader only. FIFO execution fixes the image boundary; physical
+ * identity is rechecked after waiting without holding the tracker. The ordered
+ * copy lease remains held by surface_dc. No per-World pixel return is enabled. */
+#include "../../protocols/include/mnm/native_cpu_read_v1.h"
+static u32 game_cpu_read_ticket,game_cpu_transfer_wait;
+static void game_cpu_read_refuse(u32 stage,void* object,u32 detail){
+    u32 record[8]={0x434d4e4d,1,stage,(u32)object,detail,game_cpu_read_ticket,game_lock_epoch,command_channel_session},done=0;
+    HANDLE file=CreateFileA("native-cpu-transfer-refusal.bin",0x40000000,0,0,1,0x80,0);
+    if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
+    ExitProcess(124);
+}
+static void game_materialize_dc(void* object){
+    if(!game_resident_world)return;
+    u32 error=GetLastError();
+    if(!game_surface_pixels_enter(object))game_cpu_read_refuse(1,object,0);
+    struct GameSurface* source=game_surface_find(object,0);
+    if(!source || !source->gpu_history){game_tracker_release();SetLastError(error);return;}
+    u32 identity[8];
+    if(!game_native_cpu_transfer)game_cpu_read_refuse(2,object,0);
+    i32 query=game_native_cpu_transfer(object,identity,0,0);
+    if(query==1){source->gpu_history=0;game_tracker_release();SetLastError(error);return;}
+    struct SessionSurface* surface=session_find(object);
+    if(query || !surface || !session_active || game_cpu_read_ticket==0xffffffffu ||
+       source->pixels.bits!=16 || identity[1]!=surface->width || identity[2]!=surface->height)game_cpu_read_refuse(3,object,(u32)query);
+    struct Snapshot result;
+    if(!game_surface_blank(&result,&source->pixels))game_cpu_read_refuse(4,object,0);
+    const u32 ticket=++game_cpu_read_ticket,generation=source->generation,epoch=game_lock_epoch;
+    u32 fields[10]={surface->id,ticket,0,command_channel_session,identity[1],identity[2],identity[4],identity[5],identity[6],identity[7]};
+    __atomic_store_n(&game_cpu_transfer_wait,1,__ATOMIC_RELEASE);
+    if(!session_record(MNM_RENDER_STREAM_V5_OPERATION_CPU_READ,fields,40,0,0))game_cpu_read_refuse(5,object,0);
+    game_tracker_release();
+    char path[544];u32 n=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,512);
+    if(!n || n>=512)game_cpu_read_refuse(6,object,n);copy(path+n,".cpu-reply",11);
+    u32 start=GetTickCount(),ready=0;
+    while(GetTickCount()-start<MNM_NATIVE_CPU_READ_V1_TIMEOUT_MS){
+        if(!command_channel_identity() || command_channel_refused ||
+           __atomic_load_n(command_channel+6,__ATOMIC_ACQUIRE)>=2 ||
+           __atomic_load_n(command_channel+8,__ATOMIC_ACQUIRE))break;
+        HANDLE file=CreateFileA(path,0x80000000,7,0,3,0x80,0);
+        if(file!=(HANDLE)-1){
+            u32 h[16],read=0;
+            const u32 file_bytes=GetFileSize(file,0);
+            if(ReadFile(file,h,64,&read,0) && read==64 && mnm_native_cpu_read_reply(h,file_bytes,fields) &&
+               ReadFile(file,result.data,result.length,&read,0) && read==result.length)ready=1;
+            CloseHandle(file);if(ready)break;
+        }
+        Sleep(1);
+    }
+    if(!ready || !game_surface_pixels_enter(object))game_cpu_read_refuse(7,object,GetTickCount()-start);
+    source=game_surface_find(object,0);
+    if(!source || source->generation!=generation || game_lock_epoch!=epoch ||
+       game_native_cpu_transfer(object,identity,(const u16*)result.data,result.length))game_cpu_read_refuse(8,object,0);
+    game_surface_drop_at(source,0);source->gpu_history=0;
+    copy(&source->pixels,&result,sizeof(result));result.data=0;
+    game_surface_bytes+=source->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,source->pixels.length,__ATOMIC_RELAXED);
+    __atomic_store_n(&game_cpu_transfer_wait,0,__ATOMIC_RELEASE);
+    lock_diagnostic("resident_cpu_materialized",object,0,ticket,fields[0],0,source->pixels.length,0);
+    game_tracker_release();SetLastError(error);
+}
 static void game_session_dc_checkpoint(struct GameSurface* surface){
     if(!game_session_enabled || (session_started && !session_active))return;
     struct SessionSurface* s=session_find(surface->object);int existing=s!=0;
@@ -420,7 +534,7 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
         game_session_retire(lock->object);existing=0;
     }
     s=session_surface(lock->object,lock->rectangle?&lock->base:after,0);if(!s)return;
-    if(lock->resident){if(!existing || !session_resident_unlock(s,&lock->base,after))return;goto present;}
+    if(lock->resident || lock->gpu_history){if(!existing || !session_resident_unlock(s,&lock->base,after))return;goto present;}
     if(lock->rectangle || existing){
         struct Rect r={0,0,(i32)after->width,(i32)after->height};if(lock->rectangle)copy(&r,&lock->region,16);
         if(lock->rectangle && !session_check(s,&lock->base))return;

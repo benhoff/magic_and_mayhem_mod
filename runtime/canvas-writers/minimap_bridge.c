@@ -4,6 +4,7 @@
 #include "minimap_route.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#define MNM_HISTORY_FAMILY 4
 #include "history.h"
 extern void mnm_map_terrain_enter(void),mnm_map_cell_enter(void),mnm_map_creature_enter(void),
  mnm_map_camera0_enter(void),mnm_map_camera1_enter(void),mnm_map_camera2_enter(void),mnm_map_camera3_enter(void);

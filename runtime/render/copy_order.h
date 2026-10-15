@@ -21,7 +21,8 @@ static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 ori
             if(!original_call)lease.observe=0;
             lock_diagnostic(original_call?"copy_order_reentrant":"resident_bind_reentrant",target,0,owner,0,0,0,0);break;
         }
-        if(GetTickCount()-start>=GAME_COPY_WAIT_MS){
+        u32 budget=__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE)?10000u+GAME_COPY_WAIT_MS:GAME_COPY_WAIT_MS;
+        if(GetTickCount()-start>=budget){
             lease.observe=0;
             copy_wait_timeout(&timing,&game_copy_owner,command_channel_session,target,site);
             /* Binding has no original fallback or unobserved pixel mutation.
@@ -36,8 +37,8 @@ static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 ori
         /* Wait only while this observed owner remains unchanged. Release wakes
          * waiters without relying on Sleep timer granularity; no lost wakeup. */
         u32 elapsed=GetTickCount()-start;
-        if(elapsed<GAME_COPY_WAIT_MS){waited=1;u32 before=copy_trace_enabled?GetTickCount():0;copy_wait_before(&timing);
-            u32 returned=WaitOnAddress(&game_copy_owner,&owner,4,GAME_COPY_WAIT_MS-elapsed);copy_wait_after(&timing,before,returned);}
+        if(elapsed<budget){waited=1;u32 before=copy_trace_enabled?GetTickCount():0;copy_wait_before(&timing);
+            u32 returned=WaitOnAddress(&game_copy_owner,&owner,4,budget-elapsed);copy_wait_after(&timing,before,returned);}
     }
  done:if(lease.held && game_copy_native_defer){game_copy_native_defer(1);lease.deferred=1;}
     SetLastError(error);return lease;
@@ -83,7 +84,8 @@ static struct GameCopyLease game_copy_shutdown_enter(void){
     for(;;){
         if(__sync_bool_compare_and_swap(&game_copy_owner,0,thread)){lease.held=1;break;}
         if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==thread){lease.observe=0;lock_diagnostic("command_shutdown_reentrant",0,0,thread,0,0,0,0);break;}
-        if(GetTickCount()-start>=GAME_COPY_WAIT_MS){lease.observe=0;lock_diagnostic("command_shutdown_admission_timeout",0,0,thread,0,0,0,0);break;}
+        u32 budget=__atomic_load_n(&game_cpu_transfer_wait,__ATOMIC_ACQUIRE)?10000u+GAME_COPY_WAIT_MS:GAME_COPY_WAIT_MS;
+        if(GetTickCount()-start>=budget){lease.observe=0;lock_diagnostic("command_shutdown_admission_timeout",0,0,thread,0,0,0,0);break;}
         Sleep(0);
     }
  done:SetLastError(error);return lease;

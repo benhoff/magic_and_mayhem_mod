@@ -255,13 +255,13 @@ public:
             if(!stream_)return;
             if(renderWorker_){
                 GlViewport::ActivityScope guiActivity(gl_,GlViewport::Activity::PresentationPoll);
-                if(liveMenus_)liveMenus_->renderingProgress();
+                if(liveMenus_)liveMenus_->renderingProgress(renderWorker_->pendingCpuRead());
                 if(!renderWorker_->poll(liveMenus_&&liveMenus_->normalQuitAccepted(),gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_),media_&&media_->movieActive()) || !gl_->error().isEmpty()){
                     residentWorldError_=!gl_->error().isEmpty()?gl_->error():renderWorker_->error();
                     log_->appendPlainText("Native render owner refused: "+residentWorldError_);
                     residentFailed(residentWorldError_);
                 }
-                if(liveMenus_)liveMenus_->renderingProgress();
+                if(liveMenus_)liveMenus_->renderingProgress(renderWorker_->pendingCpuRead());
                 return;
             }
             if(media_ && media_->movieActive() && !commands_)return;
@@ -406,6 +406,7 @@ private:
                     frames_.setInterval(1);
                 }else{
                     commands_=std::make_unique<LiveCommandSession>(*gl_);
+                    commands_->cpuReadPending=[this](auto ticket){if(liveMenus_)liveMenus_->renderingProgress(ticket);};
                     if(resident){
                         try{residentWorld_=std::make_unique<ResidentWorldSession>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"),false);}
                         catch(const std::exception& e){statusBar()->showMessage(e.what());return false;}

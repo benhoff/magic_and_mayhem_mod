@@ -1,15 +1,20 @@
 #include "live_command_renderer.hpp"
 #include "gl_viewport.hpp"
-#include "../../protocols/include/mnm/render_stream_v4.h"
+#include "../../protocols/include/mnm/render_stream_v5.h"
 #include <stdexcept>
+#include <QSaveFile>
+#include <QtEndian>
+#include <cstring>
+#include "../../protocols/include/mnm/native_cpu_read_v1.h"
 #include <algorithm>
 LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):LiveCommandRenderer(viewportRenderTarget(viewport),verify){}
 LiveCommandRenderer::LiveCommandRenderer(NativeRenderTarget target,bool verify):target_(std::move(target)),verify_(verify){}
 LiveCommandRenderer::~LiveCommandRenderer(){abort();}
-bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
+bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}cpuReplyPath_=path+".cpu-reply";cpuReplySession_=session;decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();target_.present({});}
 void LiveCommandRenderer::abort(){
+    if(cpuReadPending)cpuReadPending(0);
     channel_.cancel();if(decoder_)decoder_->abort();pending_.clear();cursor_=0;
     if(consumer_ && consumer_->state()==mnm::render::CommandConsumerState::Active)consumer_->abort();
     deferredPresentation_={};closed_=true;
@@ -35,7 +40,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 // and composes the latest lease after this bounded poll yields.
                 target_.present(std::move(frame));
                 if(framePresented)framePresented();
-            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi});
+            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi,[this](const auto& command,const auto& image){publishCpuRead(command,image);},cpuReplySession_});
         }
         // Retain the finite byte budget and the32 ordinary-command budget.
         // A split UPDATE of <=16,384 pixels costs one eighth of an ordinary
@@ -49,6 +54,9 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 const auto bytes=channel_.poll(remaining);
                 remaining-=quint32(bytes.size());
                 pending_=decoder_->append(bytes);cursor_=0;
+                if(cpuReadPending)for(const auto& command:pending_)if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){
+                    cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));break;
+                }
                 if(bytes.isEmpty())break;
             }
             const auto first=cursor_;
@@ -108,3 +116,22 @@ bool LiveCommandRenderer::presentSealed(const mnm::render::GpuFrame& frame,std::
 }
 
 mnm::render::CommandDisplayState LiveCommandRenderer::displayState() const{return consumer_ && !closed_ && !ended_?consumer_->displayState():mnm::render::CommandDisplayState{};}
+
+void LiveCommandRenderer::publishCpuRead(const mnm::render::SurfaceCommand& c,const mnm::render::Image& image){
+    const auto& w=c.words;
+    if(cpuReplyPath_.isEmpty() || !cpuReplySession_ || w[3]!=cpuReplySession_ ||
+       image.width!=int(w[4]) || image.height!=int(w[5]) || image.pixels.size()>MNM_NATIVE_CPU_READ_V1_MAX_PIXELS)
+        throw std::runtime_error("Explicit CPU reply session/extent mismatch");
+    QByteArray reply(MNM_NATIVE_CPU_READ_V1_HEADER+qsizetype(image.pixels.size())*2,0);
+    std::memcpy(reply.data(),MNM_NATIVE_CPU_READ_V1_MAGIC,8);
+    const quint32 header[]={1,64,w[3],w[1],w[2],w[0],w[4],w[5],quint32(image.pixels.size()*2),w[6],w[7],w[8],w[9],1};
+    for(unsigned i=0;i<14;++i)qToLittleEndian(header[i],reply.data()+8+i*4);
+    for(std::size_t i=0;i<image.pixels.size();++i){
+        if(image.pixels[i]>65535)throw std::runtime_error("Non-WORD explicit CPU reply");
+        qToLittleEndian(quint16(image.pixels[i]),reply.data()+64+i*2);
+    }
+    QSaveFile file(cpuReplyPath_);
+    if(!file.open(QIODevice::WriteOnly) || file.write(reply)!=reply.size() || !file.commit())
+        throw std::runtime_error("Explicit CPU reply publication failed");
+    if(cpuReadPending)cpuReadPending(0);
+}

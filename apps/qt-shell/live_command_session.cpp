@@ -5,6 +5,7 @@ LiveCommandSession::~LiveCommandSession(){abort();}
 void LiveCommandSession::change(State state){state_=state;if(stateChanged)stateChanged(state);}
 bool LiveCommandSession::fresh(const QString& path,quint32 session){
     renderer_=std::make_unique<LiveCommandRenderer>(target_);
+    renderer_->cpuReadPending=cpuReadPending;
     renderer_->residentWorld=residentWorld;renderer_->residentReady=residentReady;renderer_->prepareResidentFrames=prepareResidentFrames;renderer_->reuseSealedUi=reuseSealedUi;
     renderer_->framePresented=[this]{if(state_==State::WaitingFrame)change(State::Active);if(state_!=State::Stopping && framePresented)framePresented();};
     if(!renderer_->create(path,session,version_))return fail(renderer_->error());

@@ -12,7 +12,7 @@ def build(selftest=False):
     subprocess.run([sys.executable, str(REPO/"protocols/generate.py"), "--check"], check=True)
     spec=importlib.util.spec_from_file_location('shadow_build',REPO/'tools/build-shadow-bridge.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    imports=dict(module.IMPORTS,FreeLibrary=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetFileSize=8,GetFileInformationByHandle=8,GetTickCount=0,GetCurrentThreadId=0,GetProcAddress=8,Sleep=4,CreateThread=24,WaitForSingleObject=8,QueryPerformanceCounter=4,QueryPerformanceFrequency=4)
+    imports=dict(module.IMPORTS,ReadFile=20,FreeLibrary=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetFileSize=8,GetFileInformationByHandle=8,GetTickCount=0,GetCurrentThreadId=0,GetProcAddress=8,Sleep=4,CreateThread=24,WaitForSingleObject=8,QueryPerformanceCounter=4,QueryPerformanceFrequency=4)
     root=REPO/('working/build/render-selftest' if selftest else 'working/build/render');root.mkdir(parents=True,exist_ok=True)
     definition=root/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{name}@{size}\n' for name,size in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'kernel32.lib')],check=True)
@@ -38,7 +38,7 @@ def build(selftest=False):
         path=Path(token).resolve()
         if path.is_file() and path.is_relative_to(REPO) and not path.is_relative_to(REPO/'working'):
             closure.add(path.relative_to(REPO).as_posix())
-    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_stream_v3.h',REPO/'protocols/include/mnm/render_stream_v4.h',REPO/'protocols/include/mnm/render_command_ring.h']
+    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_stream_v3.h',REPO/'protocols/include/mnm/render_stream_v4.h',REPO/'protocols/include/mnm/render_stream_v5.h',REPO/'protocols/include/mnm/native_cpu_read_v1.h',REPO/'protocols/include/mnm/render_command_ring.h']
     protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+sorted((REPO/'protocols/schemas').glob('*-v2.json'))+[REPO/'protocols/generate.py']
     (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},

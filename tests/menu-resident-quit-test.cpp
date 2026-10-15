@@ -15,6 +15,15 @@ template<class F> void refuses(F f){bool caught=false;try{f();}catch(const std::
 struct LiveMenuSessionTestAccess {
  static void initialize(LiveMenuSession& s,const QString& path){s.bridge_=std::make_unique<MenuBridge>();check(s.bridge_->create(path));s.active_=true;s.clock_.start();}
  static void poll(LiveMenuSession& s){s.poll();}
+ static void cpuRead(LiveMenuSession& s){
+  const auto state=s.lastState_,request=s.requestedAt_;
+  s.renderingProgress(7);const auto start=s.cpuReadStarted_;
+  check(s.cpuReadWaiting(start+9999)&&!s.cpuReadWaiting(start+10001));
+  s.renderingProgress(7);check(s.cpuReadStarted_==start); // Same ticket cannot renew its budget.
+  s.renderingProgress(0);check(s.cpuReadWaiting(s.cpuReadGrace_-1)&&!s.cpuReadWaiting(s.cpuReadGrace_));
+  check(s.lastState_==state&&s.requestedAt_==request); // Progress cannot certify an old snapshot or resend.
+  s.cpuReadGrace_=0;
+ }
 };
 struct ResidentWorldSessionTestAccess {
  static bool production(bool asynchronous,unsigned complete,const mnm::render::GpuProductionQueue::Stats& p){return ResidentWorldSession::productionRetired(asynchronous,complete,p);}
@@ -50,6 +59,8 @@ int main(int argc,char** argv) try {
   std::array<quint32,3> request{};for(unsigned i=0;i<3;++i)request[i]=qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+3+i)*4);
   const auto heartbeat=qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4);session.renderingProgress();session.renderingProgress();
   check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+2)*4)==heartbeat+2);
+  for(unsigned i=0;i<3;++i)check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+3+i)*4)==request[i]);
+  LiveMenuSessionTestAccess::cpuRead(session);
   for(unsigned i=0;i<3;++i)check(qFromLittleEndian<quint32>(words+(MNM_MENU_V1_HOST_WORD+3+i)*4)==request[i]);
   state(4,variant==1?2:1,variant==2?MNM_MENU_UNAVAILABLE:MNM_MENU_OK,variant==3?124:123);
   check(session.normalQuitAccepted()==(variant==0));check(session.normalQuitAccepted()==(variant==0));++ackCases;

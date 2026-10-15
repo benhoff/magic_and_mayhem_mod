@@ -3,6 +3,7 @@
 #include "../../reconstruction/rendering/colour_rect.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#define MNM_HISTORY_FAMILY 5
 #include "history.h"
 typedef i32 (WIN *Plane)(const void*,u32*,u32);
 extern void mnm_colour_rect_enter(void);

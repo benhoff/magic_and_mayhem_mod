@@ -488,7 +488,7 @@ def main():
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
-        if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign'])
+        if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
@@ -756,6 +756,17 @@ def main():
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
             if args.resident_world:
+                # Explicit GetDC snapshots are synchronization for CPU readers,
+                # separate from the unchanged no-pixel ordinary World return.
+                reply=roots[0]/'render-commands.bin.cpu-reply'
+                if reply.exists():
+                    raw=reply.read_bytes()
+                    if len(raw)<64:raise ValueError('Truncated native CPU reply')
+                    h=struct.unpack_from('<16I',raw)
+                    if raw[:8]!=b'MNMCREAD' or h[2:4]!=(1,64) or not h[4] or not h[5] or h[6] or not h[7] or not 1<=h[8]<=2048 or not 1<=h[9]<=2048 or h[10]!=h[8]*h[9]*2 or len(raw)!=64+h[10] or not (h[11]|h[12]) or not (h[13]|h[14]) or h[15]!=1:
+                        raise ValueError('Invalid completed native CPU reply')
+                    report['native_cpu_materialization']=dict(count=h[5],last_surface=h[7],command_session=h[4],width=h[8],height=h[9],last_bytes=h[10],generation=h[11]|h[12]<<32,nonce=h[13]|h[14]<<32,sha256=sha(reply),scope='Explicit ordered native GPU snapshot for CPU GetDC readers; not ordinary World returns or original pixels')
+                if args.other_pixel_producers and args.normal_quit and not reply.exists():raise ValueError('Combined normal Quit did not exercise native CPU materialization')
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
                 if resident['error'] or min(int(resident[k]) for k in ('completed','imports','verified_returns'))<64 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
                     raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))

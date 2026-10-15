@@ -1,5 +1,5 @@
 /* Observe game-owned writable locks. Never Lock, Unlock, Query or retain COM objects. */
-struct GameLock {void* object;u32 owner,generation,epoch,active,kind,flags,resident,desc[31];void* rectangle;struct Rect region;struct Snapshot base;};
+struct GameLock {void* object;u32 owner,generation,epoch,active,kind,flags,resident,gpu_history,desc[31];void* rectangle;struct Rect region;struct Snapshot base;};
 static struct GameLock game_locks[32];
 static volatile i32 game_locks_busy;
 static u32 game_locks_owner,game_tracker_wait_ms=8,game_tracker_wait_count;
@@ -161,6 +161,7 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
     game_surface_sync();
     struct Snapshot base;zero(&base,sizeof(base));
     struct GameSurface* surface=game_surface_find(object,0);
+    u32 gpu_history=surface?surface->gpu_history:0;
     u32 size=table->kind>=14?124:108;
     int valid=readable(desc,size) && desc[0]==size;
     int partial=rect && region && readable(rect,16) && same(rect,region,16) && valid && !(flags&0x10) && !(flags&~0x4831u) &&
@@ -189,7 +190,7 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
         if(valid)copy(diagnostic_desc,desc,size);
         reason=rect?(partial?"lock_partial_accepted":"lock_partial"):flags&0x10?"lock_readonly":flags&~0x4831u?"lock_flags":!valid || desc[0]!=size?"lock_descriptor":"lock_accepted";
         if((!rect || partial) && !(flags&0x10) && !(flags&~0x4831u) && valid && desc[0]==size){
-            slot->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);slot->owner=GetCurrentThreadId();slot->kind=table->kind;slot->flags=flags;
+            slot->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);slot->owner=GetCurrentThreadId();slot->kind=table->kind;slot->flags=flags;slot->gpu_history=gpu_history;
             copy(slot->desc,desc,size);slot->active=1;
             if(partial){slot->rectangle=rect;copy(&slot->region,region,16);}
             if(base.data){copy(&slot->base,&base,sizeof(base));base.data=0;}
@@ -278,10 +279,11 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
         game_copy_stage(30);
         game_session_unlock(slot,s,pending->primary);
         game_copy_stage(31);
-        if(pending->primary && s->bits!=8)lock_diagnostic(game_publish_pixels(s,0)?"unlock_presented":"unlock_presentation_skipped",pending->object,pending->kind,0,0,result,0,0);
+        if(pending->primary && s->bits!=8 && !slot->resident && !slot->gpu_history)lock_diagnostic(game_publish_pixels(s,0)?"unlock_presented":"unlock_presentation_skipped",pending->object,pending->kind,0,0,result,0,0);
         game_copy_stage(32);
         game_surface_sync();game_surface_store(pending->object,s,pending->primary,slot->desc);
         struct GameSurface* surface=game_surface_find(pending->object,0);
+        if(surface)surface->gpu_history=slot->resident||slot->gpu_history;
         if(surface && surface->primary && surface->pixels.bits==8)game_surface_publish(surface);
     }
     if(slot && result>=0){if(!s->data && !pending->pixels.width)game_session_invalidate(pending->object);game_lock_clear(slot);}

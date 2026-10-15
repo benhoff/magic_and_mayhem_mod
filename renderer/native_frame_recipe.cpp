@@ -1,6 +1,6 @@
 #include "native_frame_recipe.hpp"
 #include "command_state.hpp"
-#include "../protocols/include/mnm/render_stream_v4.h"
+#include "../protocols/include/mnm/render_stream_v5.h"
 #include "../protocols/include/mnm/resident_frame_budget.h"
 #include <stdexcept>
 namespace mnm::render {
@@ -32,7 +32,7 @@ void NativeFrameRecipe::copy(const SurfaceCommand& c,const std::map<unsigned,Sur
 }
 void NativeFrameRecipe::record(const SurfaceCommand& c,const std::map<unsigned,SurfaceId>& handles){
  const auto& w=c.words;
- switch(c.operation){case 5:case 8:case 10:case 12:case 15:case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK:return;
+ switch(c.operation){case MNM_RENDER_STREAM_V5_OPERATION_CPU_READ:case 5:case 8:case 10:case 12:case 15:case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK:return;
  case 7:{auto it=maps_.find(w[0]);if(it!=maps_.end()){auto id=it->second;drop(id);maps_.erase(it);}return;}
  default:break;}
  if(++recorded_>8192)throw std::runtime_error("Compiled native frame command budget");

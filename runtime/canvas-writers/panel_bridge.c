@@ -5,6 +5,7 @@
 #include "panel_route.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#define MNM_HISTORY_FAMILY 1
 #include "history.h"
 extern void mnm_panel_bevel_enter(void), mnm_panel_halo_enter(void), mnm_panel_wash_enter(void);
 static volatile u32 owner;
@@ -24,7 +25,7 @@ static int span(u32 at, u32 bytes, int writable) {
 }
 static int resolve(u32 *r, unsigned kind, struct MnmPanelPlane *p, struct MnmPanelRequest *q) {
     u32 error = GetLastError();
-    cpu_history_require((void*)r[7]);
+    cpu_history_require_route((void*)r[7],kind);
     int ok = 0;
     u32 *stack = r + 9;
     if (kind >= 3 || !span((u32)stack, 0x64, 0)) goto done;

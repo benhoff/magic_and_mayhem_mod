@@ -8,9 +8,11 @@ facade flips. These are separate policies with separate execution evidence.
 
 Resident GPU World output invalidates the matching CPU backing. Changed-byte UI
 overlays do not reconstruct World history. Destination blends, displacement,
-shadow, fades, panels, source copies and DC snapshots require current CPU history.
+shadow, fades, panels and DC snapshots require current CPU history. Source copies
+require current CPU history unless admitted through the explicit ordered GPU-copy
+service described in [native-history-readers.md](native-history-readers.md).
 A stale selected reader must terminate before either native mutation or forwarding
-to the original CPU body. Full un-clipped fills can establish complete history.
+to the original CPU body. Full un-clipped fills and opaque copies from complete CPU history can establish it.
 Independent partial writes retain stale authority. Raw arbitrary pointer reads
 outside the selected adapters remain outside this admission contract.
 
@@ -74,17 +76,21 @@ final owners. Actual original/native splice regressions pass:
 
 ## Remaining integration boundaries
 
-Safe refusal is implemented; matching CPU materialization of GPU World is not.
+The original safe-refusal milestone remains historical. The subsequent explicit
+GetDC materialization and ordered GPU-copy services are documented in
+[native-history-readers.md](native-history-readers.md). Other dependent readers
+retain admission guards until their current history is established.
 An arbitrary raw pointer read outside the selected adapters is not intercepted.
 A readable CPU allocation is not evidence of rendered World history. The facade
 held-flip schedules do not establish held-lock command-adapter integration or
 in-place recovery. The default native host-memory no-loss policy remains separate
 from physical driver loss.
 
-The combined producer option is intentionally partial: original forwards remain
-visible, unexercised routes remain open, and `complete_replacement` stays false.
-A normal-Quit combined gameplay pass, independent full-session pixels, later-map
-transitions and strict complete-mode admission remain separate acceptance work.
+The combined producer option remains partial: original forwards and unexercised
+routes stay visible, and `complete_replacement` stays false. The subsequent bounded
+normal-Quit combined pass is recorded in [native-history-readers.md](native-history-readers.md).
+Independent full-session pixels, later-map transitions and strict complete-mode
+admission remain separate acceptance work.
 Hardware performance validation is unavailable in this session because the
 installed NVIDIA stack cannot communicate with its driver. The explicit software
 run is retained independently; no software fallback is labeled hardware proof.
@@ -109,3 +115,8 @@ representation is still required to let the dependency-sensitive reader continue
 The [generated coverage snapshot](coverage/summary-native-completion-20261015.md)
 retains the independent stage/current-evidence accounting. The full audit report
 is retained under `working/tests/native-completion-audit-final-20261015.json`.
+
+The subsequent reader-routing change is documented in
+[native-history-readers.md](native-history-readers.md). Its evidence supersedes
+the first combined launch's reader identification and raster-admission limitation;
+historical reports and their source fingerprints remain unchanged.

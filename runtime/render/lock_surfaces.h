@@ -1,7 +1,7 @@
 #include "../../protocols/include/mnm/frame_v1.h"
 /* Owned native checkpoints; only application calls establish pixels and properties.
  * All access is under game_locks_busy. No observer COM calls or references. */
-struct GameSurface {void* object;u32 epoch,metadata_epoch,generation,generation_origin,generation_caller,generation_owner,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void *back,*palette,*dc,*dc_bitmap;u32 dc_owner,dc_generation;struct Snapshot pixels;};
+struct GameSurface {void* object;u32 epoch,metadata_epoch,generation,generation_origin,generation_caller,generation_owner,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void *back,*palette,*dc,*dc_bitmap;u32 dc_owner,dc_generation,gpu_history;struct Snapshot pixels;};
 #define GAME_SURFACE_COUNT 128u
 static struct GameSurface game_surfaces[GAME_SURFACE_COUNT];
 static u32 game_surface_bytes,game_surface_generation,game_blit_count,game_blit_bytes;
@@ -17,6 +17,7 @@ static void game_pixel_misses_sync(void);
 static void* game_presented_object;
 static u32 game_presented_generation,game_presented_frame;
 static int game_publish_pixels(const struct Snapshot* s,struct GameSurface* surface){
+    if(surface && surface->gpu_history)return 0;
     if(!stream || !s->data || !__sync_bool_compare_and_swap(&capture_busy,0,1))return 0;
     game_presented_object=0;
     u32 sequence=__atomic_load_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,__ATOMIC_RELAXED);
@@ -195,7 +196,7 @@ static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,
     s->back_count_known=(descriptor[1]&0x20)!=0;s->back_count=s->back_count_known?descriptor[5]:0;
     s->generation_origin=7;s->primary=primary;s->layout_known=1;copy(&s->pixels,pixels,sizeof(*pixels));pixels->data=0;game_surface_bytes+=s->pixels.length;
 }
-struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct;};
+struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu;};
 static void game_blit_free(struct GameBlit* p){
     if(p->src.data)__atomic_sub_fetch(&lock_capture_reserved,p->src.length,__ATOMIC_RELAXED);
     if(p->dst.data)__atomic_sub_fetch(&lock_capture_reserved,p->dst.length,__ATOMIC_RELAXED);
@@ -272,8 +273,9 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
         if(keyed || dr.left || dr.top || (u32)dr.right!=b->width || (u32)dr.bottom!=b->height){reason="blit_incomplete_initialization";goto done;}
         p->bootstrap=1;
     }
+    p->gpu=src->gpu_history;
     p->direct=game_blit_live_only(a->length,b->length,a->bits);
-    if(!p->direct && (!game_surface_clone(&p->src,a) || !(p->bootstrap?game_surface_blank(&p->dst,b):game_surface_clone(&p->dst,b)))){reason="blit_memory";game_blit_free(p);goto done;}
+    if(!p->gpu && !p->direct && (!game_surface_clone(&p->src,a) || !(p->bootstrap?game_surface_blank(&p->dst,b):game_surface_clone(&p->dst,b)))){reason="blit_memory";game_blit_free(p);goto done;}
     p->fields[0]=1;p->fields[1]=2;p->fields[2]=(u32)sr.left;p->fields[3]=(u32)sr.top;
     p->fields[4]=(u32)sr.right;p->fields[5]=(u32)sr.bottom;
     p->fields[6]=(u32)dr.left;p->fields[7]=(u32)dr.top;p->fields[8]=keyed;p->fields[9]=keyed?src->key:0;
@@ -303,6 +305,7 @@ static void game_blit_apply(const struct GameBlit* p,const struct Snapshot* src,
     }
 }
 static void game_blit_after(struct GameBlit* p,i32 result){
+    if(p->gpu==2)return; /* Already committed by the explicit GPU route. */
     if(!lock_capture_path_length)return;
     if(result<0){lock_diagnostic("blit_failed",p->target,0,(u32)p->source,0,result,0,0);game_blit_free(p);return;}
     if(!game_surface_pixels_enter(p->target)){game_blit_free(p);return;}
@@ -339,6 +342,8 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     game_session_blit_begin(p);
     game_blit_apply(p,&p->src,&p->dst);
     game_session_blit_end(p,dst->primary);
+    if(!p->fields[8] && !p->fields[6] && !p->fields[7] &&
+       p->fields[4]-p->fields[2]==dst->pixels.width && p->fields[5]-p->fields[3]==dst->pixels.height)dst->gpu_history=0;
     u32 source_id=1,target_id=2;
     if(ok)ok=command_record(file,&sequence,5,&target_id,4,p->dst.data,p->dst.length) && command_record(file,&sequence,6,&target_id,4,0,0) && command_record(file,&sequence,7,&source_id,4,0,0) && command_record(file,&sequence,7,&target_id,4,0,0) && command_record(file,&sequence,8,0,0,0,0);
     if(file!=(HANDLE)-1)CloseHandle(file);

@@ -1,6 +1,6 @@
 #include "commands.hpp"
 #include "command_state.hpp"
-#include "../protocols/include/mnm/render_stream_v4.h"
+#include "../protocols/include/mnm/render_stream_v5.h"
 #include <QtEndian>
 #include <stdexcept>
 
@@ -33,7 +33,7 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
             fields(5);const auto& s=state.get(c.words[0]);c.image=pixels(p,20,c.words[3],c.words[4],s.format.bits);
         }else if(c.operation==MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE){
             fields(5);const auto& s=state.get(c.words[0]);const auto count=std::size_t(c.words[3])*c.words[4];
-            require(version==4 && s.format.bits==16 && count<=2048u*2048u && length==20+count*3,"Invalid masked RGB565 patch length");
+            require(version>=4 && s.format.bits==16 && count<=2048u*2048u && length==20+count*3,"Invalid masked RGB565 patch length");
             c.image=pixels(p.first(20+qsizetype(count)*2),20,c.words[3],c.words[4],16);
             c.coverage.reserve(count);for(std::size_t i=0;i<count;++i)c.coverage.push_back(static_cast<std::uint8_t>(p[20+count*2+i]));
         }else if(c.operation==3){fields(10);require(length==40,"Invalid copy length");
@@ -58,6 +58,7 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
             fields(MNM_RENDER_STREAM_V3_SURFACE_COPY_WORDS);require(length==52,"Invalid surface copy length");
         }else if(version>=3 && c.operation==MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK){
             fields(2);require(length==8,"Invalid result check length");
+        }else if(c.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){fields(10);require(version==5 && length==40,"Invalid CPU read request length/version");
         }else if(c.operation==MNM_RENDER_STREAM_V4_OPERATION_WORLD){fields(5);require(length==20,"Invalid resident World reference length");
         }else if(c.operation==5 || c.operation==10){fields(1);c.expected=p.mid(4);
         }else if(c.operation==6 || c.operation==7 || c.operation==9){fields(1);require(length==4,"Invalid surface command length");
@@ -94,7 +95,8 @@ std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
             p.version=qFromLittleEndian<quint32>(p.pending.constData()+8);
             require(((p.pending.first(8)=="MNMCMD01" && p.version==1) || (p.pending.first(8)=="MNMCMD02" && p.version==2) ||
                     (p.pending.first(8)==MNM_RENDER_STREAM_V3_MAGIC && p.version==MNM_RENDER_STREAM_V3_VERSION) ||
-                    (p.pending.first(8)==MNM_RENDER_STREAM_V4_MAGIC && p.version==MNM_RENDER_STREAM_V4_VERSION)) &&
+                    (p.pending.first(8)==MNM_RENDER_STREAM_V4_MAGIC && p.version==MNM_RENDER_STREAM_V4_VERSION) ||
+                    (p.pending.first(8)==MNM_RENDER_STREAM_V5_MAGIC && p.version==MNM_RENDER_STREAM_V5_VERSION)) &&
                     qFromLittleEndian<quint32>(p.pending.constData()+12)==16,"Invalid command stream header");
             p.pending.remove(0,16);p.header=true;
         }

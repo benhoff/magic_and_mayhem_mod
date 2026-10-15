@@ -63,6 +63,7 @@ static void game_flip_after(struct GameFlip* pending,i32 result){
     }else{
         game_session_flip_begin(front,back);
         struct Snapshot old;copy(&old,&front->pixels,sizeof(old));copy(&front->pixels,&back->pixels,sizeof(old));copy(&back->pixels,&old,sizeof(old));
+        u32 gpu=front->gpu_history;front->gpu_history=back->gpu_history;back->gpu_history=gpu;
         front->generation=++game_surface_generation;front->generation_origin=11;back->generation=++game_surface_generation;back->generation_origin=11;++game_flip_count;
         game_flip_commands(front,back);game_session_flip_end(front,back);
         lock_diagnostic(game_surface_publish(front)?"flip_presented":"flip_presentation_skipped",pending->front,0,(u32)pending->back,0,result,0,0);

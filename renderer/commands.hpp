@@ -53,7 +53,7 @@ struct CommandResult {
     unsigned surfaceCopies=0,surfaceCopyFailures=0,resultChecks=0,skippedResultChecks=0,lastCopySequence=0;
     SurfaceCopyResult lastCopy;
     std::size_t liveSurfaces=0,livePixels=0,livePalettes=0;
-    std::uint64_t residentWorldImports=0;
+    std::uint64_t residentWorldImports=0,cpuMaterializations=0;
     // Opt-in prepared-frame CPU elapsed time, including driver waits.
     std::array<CommandCpuTiming,4> preparationTiming{}; // record, reset, seal, import
     CommandCpuTiming firstWorldSeal;
@@ -71,6 +71,8 @@ struct CommandConsumerOptions {
     std::function<GpuFrame(std::uint64_t,std::uint64_t)> residentWorld={};
     bool prepareResidentFrames=false;
     bool reuseSealedUi=false;
+    std::function<void(const SurfaceCommand&,const Image&)> cpuRead={};
+    std::uint32_t cpuReadSession=0;
 };
 // GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
 // Batches commit command by command, never transactionally. An execution or

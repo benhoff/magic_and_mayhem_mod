@@ -3,7 +3,7 @@
 #include "native_frame_recipe.hpp"
 #include <chrono>
 #include "capture.hpp"
-#include "../protocols/include/mnm/render_stream_v4.h"
+#include "../protocols/include/mnm/render_stream_v5.h"
 #include <limits>
 #include <map>
 #include <stdexcept>
@@ -35,7 +35,7 @@ const PaletteDescription& CommandState::palette(unsigned id,unsigned generation)
     const auto at=palettes.find(id);require(at!=palettes.end() && at->second.generation==generation,"Unknown or stale palette identity");return at->second;
 }
 void CommandState::accept(const SurfaceCommand& c){
-    require((c.version==1 || c.version==2 || c.version==3 || c.version==4) && (!version || version==c.version),"Changed or unknown command version");
+    require((c.version==1 || c.version==2 || c.version==3 || c.version==4 || c.version==5) && (!version || version==c.version),"Changed or unknown command version");
     require(!ended && commands<(mode==CommandStreamMode::Streaming?UINT32_MAX:4096u),"Closed or oversized command session");
     require(c.sequence==commands+1,"Command sequence gap");
     const auto& w=c.words;std::size_t payload=0;
@@ -52,7 +52,7 @@ void CommandState::accept(const SurfaceCommand& c){
         require(w[3]<=unsigned(s.width) && w[4]<=unsigned(s.height) && w[1]<=unsigned(s.width)-w[3] && w[2]<=unsigned(s.height)-w[4],"Update outside surface");
         payload=20+c.image.pixels.size()*(s.format.bits/8);break;}
     case MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE:{
-        const auto& s=get(w[0]);require(c.version==4 && s.format.bits==16 &&
+        const auto& s=get(w[0]);require(c.version>=4 && s.format.bits==16 &&
           s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Masked update requires resident RGB565 stream");
         imageValid(c.image,w[3],w[4],16);
         require(w[3]<=unsigned(s.width) && w[4]<=unsigned(s.height) && w[1]<=unsigned(s.width)-w[3] && w[2]<=unsigned(s.height)-w[4] &&
@@ -107,10 +107,17 @@ void CommandState::accept(const SurfaceCommand& c){
         planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,commandSurfaceCopy(c));payload=52;break;}
     case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK:
         require(c.version>=3 && w[0] && w[0]==lastCopySequence,"Result check does not name the latest surface copy");payload=8;break;
+    case MNM_RENDER_STREAM_V5_OPERATION_CPU_READ:{
+        const auto& s=get(w[0]);const auto ticket=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);
+        require(c.version==5 && cpuReadTicket!=UINT64_MAX && ticket==cpuReadTicket+1 && !w[2] && w[3] && w[4]==unsigned(s.width) && w[5]==unsigned(s.height) &&
+            s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31} &&
+            (std::uint64_t(w[6])|(std::uint64_t(w[7])<<32))>0 &&
+            (std::uint64_t(w[6])|(std::uint64_t(w[7])<<32))<=worldGeneration &&
+            (std::uint64_t(w[8])|(std::uint64_t(w[9])<<32))==worldNonce && worldNonce,"CPU materialization identity, format or ticket");payload=40;break;}
     case MNM_RENDER_STREAM_V4_OPERATION_WORLD:{
         const auto& s=get(w[0]);const auto gen=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);
         const auto nonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);
-        require(c.version==4 && s.width==800 && s.height==600 && s.format.bits==16 &&
+        require(c.version>=4 && s.width==800 && s.height==600 && s.format.bits==16 &&
           s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Resident World destination contract");
         require(worldGeneration!=UINT64_MAX && gen==worldGeneration+1 && nonce &&
           (!worldNonce || nonce==worldNonce),"Resident World generation/nonce");payload=20;break;}
@@ -128,6 +135,7 @@ void CommandState::accept(const SurfaceCommand& c){
     else if(c.operation==MNM_RENDER_STREAM_V3_OPERATION_CLIPPER_SET)live.at(w[0]).clipper=commandClipper(c);
     else if(c.operation==MNM_RENDER_STREAM_V3_OPERATION_SURFACE_COPY)lastCopySequence=c.sequence;
     else if(c.operation==MNM_RENDER_STREAM_V4_OPERATION_WORLD){worldGeneration=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);worldNonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);}
+    else if(c.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ)cpuReadTicket=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);
     else if(c.operation==6)presented=true;
     else if(c.operation==8)ended=true;
     if(mode==CommandStreamMode::Bounded)bytes+=payload+12;
@@ -214,6 +222,9 @@ struct CommandConsumer::Impl {
             break;
         case MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE:
             renderer.updateMasked(handles.at(w[0]),int(w[1]),int(w[2]),c.image,c.coverage);break;
+        case MNM_RENDER_STREAM_V5_OPERATION_CPU_READ:
+            require(bool(options.cpuRead) && options.cpuReadSession==w[3],"Explicit CPU reader/session unavailable");
+            options.cpuRead(c,renderer.read(handles.at(w[0])));++output.cpuMaterializations;break;
         case MNM_RENDER_STREAM_V4_OPERATION_WORLD:
             require(bool(options.residentWorld),"Resident World provider unavailable");
             if(options.prepareResidentFrames){

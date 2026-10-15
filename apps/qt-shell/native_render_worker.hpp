@@ -7,6 +7,7 @@
 #include <QThread>
 #include <QOffscreenSurface>
 #include <mutex>
+#include <atomic>
 #include <condition_variable>
 // GUI facade. Only immutable completed frames and copied reports cross threads.
 class NativeRenderWorker final:private QThread {
@@ -20,6 +21,7 @@ public:
     void abort();
     LiveCommandSession::State state() const{return status_.state;}
     bool ended() const{return state()==LiveCommandSession::State::Ended;}
+    std::uint64_t pendingCpuRead() const{return pendingCpuRead_.load(std::memory_order_acquire);}
     unsigned recoveries() const{return status_.recoveries;}
     QString error() const{return status_.error;}
     const mnm::render::CommandResult* result() const{return status_.hasResult?&status_.result:nullptr;}
@@ -27,6 +29,7 @@ public:
     std::function<void()> framePresented;
     std::function<void(LiveCommandSession::State)> stateChanged;
 private:
+    std::atomic<std::uint64_t> pendingCpuRead_{0};
     void run() override;
     void join(bool producerExited);
     struct Status {

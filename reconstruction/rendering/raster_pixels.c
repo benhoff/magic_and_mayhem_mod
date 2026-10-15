@@ -44,7 +44,7 @@ static int visit(const struct MnmPixelPlane *p,const struct MnmRasterPixels *r,i
       const uint32_t relative=(uint32_t)(dx-start);
       if(relative>=leading&&((relative-leading)&1))colour|=u16(r->palette+f[pixel+i-1]*4+2);
      }
-     const uint32_t dest=p->pixels[at];
+     const uint32_t dest=(r->mode==1||r->mode==2||r->mode==4||r->mode==5)?p->pixels[at]:0;
      if(r->mode==1)colour=((colour>>1)&mask)+((dest>>1)&mask);
      else if(r->mode==2){const uint32_t half=(dest>>1)&mask;colour=half+((half>>1)&mask)+((colour>>2)&(mask>>1)&mask);}
      else if(r->mode==4){const uint32_t half=(colour>>1)&mask;colour=half+((half>>1)&mask)+((dest>>2)&(mask>>1)&mask);}
@@ -68,8 +68,10 @@ int mnm_raster_pixels(const struct MnmPixelPlane *p,const struct MnmRasterPixels
     (r->paired_palette&&(!r->indexed||r->mode||r->palette_step!=4))||
     (r->indexed&&r->mode!=3&&r->mode!=5&&r->mode!=7&&(!r->palette||(r->palette_step!=2&&r->palette_step!=4)))||
     r->clip_left<0||r->clip_top<0||r->clip_right<r->clip_left||r->clip_bottom<r->clip_top||
-    (uint32_t)r->clip_right>p->width||(uint32_t)r->clip_bottom>p->height||
     alias((uintptr_t)r->frame,r->bytes,(uintptr_t)p->pixels,p->stride*p->height*2))return 0;
+ /* Original callers can retain a logical clip beyond the physical canvas.
+  * The atomic first visit checks every actual write against the allocation;
+  * an oversized clip alone is not an out-of-bounds write. */
  const uint32_t w=u32(r->frame+4),h=u32(r->frame+8);
  if(!w||w>2048||!h||h>2048||40+h*8>r->bytes)return 0;
  if(r->indexed&&r->palette&&alias((uintptr_t)r->palette,256*r->palette_step,(uintptr_t)p->pixels,p->stride*p->height*2))return 0;

@@ -20,7 +20,12 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims',type=Path,required=True)
+    parser.add_argument('--frame-fixture',type=Path,help='Retained source-only 40x40 SPELL frame from raster refusal')
     args = parser.parse_args()
+    fixture=args.frame_fixture.resolve() if args.frame_fixture else None
+    fixture_hash='c606edaedb6fa88fdef428809a980c0858046d03722573eb12b8c1e24b3106a0'
+    if fixture and (not fixture.is_relative_to(ROOT/'working') or sha(fixture)!=fixture_hash):
+        raise ValueError('Unsupported retained raster fixture')
     claims = json.loads(args.claims.read_text())
     if any(sha(ROOT/p)!=h for p,h in claims['sources'].items()):
         raise ValueError('Prospective sources changed')
@@ -77,6 +82,11 @@ def main():
         run('original-native-raster',[out/'reference',exe,out/'comparison.json'])
         report['comparison'] = json.loads((out/'comparison.json').read_text())
         report['success'] = report['comparison']['success']
+        if fixture:
+            run('captured-original-native-raster',[out/'reference',exe,out/'captured-comparison.json',fixture])
+            report['captured_comparison']=json.loads((out/'captured-comparison.json').read_text())
+            report['frame_fixture']=dict(path=str(fixture.relative_to(ROOT)),sha256=sha(fixture))
+            report['success']=report['success'] and report['captured_comparison']['success'] and report['captured_comparison']['captured_native_cases']>0 and sha(fixture)==fixture_hash
     except Exception as error:
         report['error'] = repr(error)
     finally:

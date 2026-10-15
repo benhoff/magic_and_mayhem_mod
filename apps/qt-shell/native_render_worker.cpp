@@ -13,6 +13,7 @@ NativeRenderWorker::NativeRenderWorker(GlViewport& v,const QString& path,const Q
         [this](auto frame){rendered_=std::move(frame);frameChanged_=rendered_.valid();},[]{return QString();},&surface_,&worldSurface_};
     world_=std::make_unique<ResidentWorldSession>(target,path,game,true);
     commands_=std::make_unique<LiveCommandSession>(target);
+    commands_->cpuReadPending=[this](auto ticket){pendingCpuRead_.store(ticket,std::memory_order_release);};
     commands_->residentWorld=[this](auto g,auto n){return world_->import(g,n);};
     commands_->residentReady=[this](auto g,auto n){return world_->ready(g,n);};
     commands_->prepareResidentFrames=true;

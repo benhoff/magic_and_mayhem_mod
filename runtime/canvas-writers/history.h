@@ -8,4 +8,5 @@ static int cpu_history_install(void){
  cpu_history=(CpuHistory)GetProcAddress(module,"NativeDrawCpuHistoryV1");
  return cpu_history!=0;
 }
-static void cpu_history_require(const void* pixels){if(cpu_history)cpu_history(pixels,0,0,0,0,0);}
+static void cpu_history_require_route(const void* pixels,u32 route){if(cpu_history)cpu_history(pixels,0,MNM_HISTORY_FAMILY,route,(u32)__builtin_return_address(0),0);}
+#define cpu_history_require(pixels) cpu_history_require_route(pixels,0)

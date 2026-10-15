@@ -21,6 +21,10 @@ int main(void){
  assert(!mnm_raster_pixels(&p,&r)&&!memcmp(pixels,before,sizeof pixels));++refusals;r.offsets[3]=0;
  r.offsets[2]=-1;assert(!mnm_raster_pixels(&p,&r)&&!memcmp(pixels,before,sizeof pixels));++refusals;r.offsets[2]=0;
  r.mode=0;r.left=0;r.top=0;r.paired_palette=1;assert(mnm_raster_pixels(&p,&r));
+ /* Logical clipping may exceed storage while the actual writes fit. Keep
+  * atomic refusal when that wider clip exposes a real out-of-bounds pixel. */
+ memcpy(pixels,before,sizeof pixels);r.clip_right=17;r.clip_bottom=5;assert(mnm_raster_pixels(&p,&r));
+ memcpy(pixels,before,sizeof pixels);r.left=12;assert(!mnm_raster_pixels(&p,&r)&&!memcmp(pixels,before,sizeof pixels));++refusals;r.left=0;
  memcpy(pixels,before,sizeof pixels);r.bytes=75;assert(!mnm_raster_pixels(&p,&r)&&!memcmp(pixels,before,sizeof pixels));++refusals;
  uint8_t triples[12]={1,0,2,0,3,0,31,0,64,0,1,0};struct MnmColourRect c={0};c.width=2;c.height=1;c.visible_width=2;c.visible_height=1;c.triples=triples;uint32_t result=0x12345678;
  assert(!mnm_colour_rect(&p,&c,&result)&&!memcmp(pixels,before,sizeof pixels)&&result==0x12345678);++refusals;

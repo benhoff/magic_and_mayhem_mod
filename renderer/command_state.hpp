@@ -32,7 +32,7 @@ public:
     std::size_t pixels=0;
     bool ended=false,presented=false;
     unsigned lastCopySequence=0;
-    std::uint64_t worldGeneration=0,worldNonce=0;
+    std::uint64_t worldGeneration=0,worldNonce=0,cpuReadTicket=0;
     std::map<unsigned,CommandDescription> live;
     std::map<unsigned,PaletteDescription> palettes;
     std::map<unsigned,unsigned> bindings;

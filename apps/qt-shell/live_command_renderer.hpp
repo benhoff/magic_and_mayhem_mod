@@ -17,6 +17,7 @@ public:
     void abort();
     void setPresentationSuspended(bool suspended);
     std::function<void()> framePresented;
+    std::function<void(std::uint64_t)> cpuReadPending;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
     bool prepareResidentFrames=false,reuseSealedUi=false;
@@ -38,7 +39,8 @@ private:
     std::unique_ptr<mnm::render::GlBlitter> renderer_;
     std::unique_ptr<mnm::render::CommandConsumer> consumer_;
     std::vector<mnm::render::SurfaceCommand> pending_;std::size_t cursor_=0;
-    QString error_;
+    QString error_,cpuReplyPath_;quint32 cpuReplySession_=0;
+    void publishCpuRead(const mnm::render::SurfaceCommand&,const mnm::render::Image&);
     bool presentationSuspended_=false;
     mnm::render::GpuFrame deferredPresentation_;
     bool waitingWorld_=false;

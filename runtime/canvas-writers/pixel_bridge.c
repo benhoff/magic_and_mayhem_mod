@@ -5,6 +5,7 @@
 #include "fade_route.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#define MNM_HISTORY_FAMILY 2
 #include "history.h"
 extern void mnm_pcx_surface_enter(void),mnm_rgb_add_enter(void),mnm_pcx_indices_enter(void),
  mnm_pcx_raw_enter(void),mnm_brighten_enter(void),mnm_row_copy_enter(void),mnm_fade_enter(void);
@@ -37,9 +38,9 @@ static int plane(u32 object,u32 pixels,struct MnmPixelPlane* p,int original_word
 }
 static int resolve(u32* r,unsigned kind,struct MnmPixelPlane* p,struct MnmPcxInput* s,u32* a) {
  const u32 error=GetLastError();int ok=0;u32* stack=r+9;
- if(kind==MNM_RGB_ADD)cpu_history_require(*(void**)0x658174);
- else if(kind==MNM_BRIGHTEN)cpu_history_require((void*)r[7]);
- else if(kind==MNM_ROW_COPY)cpu_history_require((void*)r[1]);
+ if(kind==MNM_RGB_ADD)cpu_history_require_route(*(void**)0x658174,kind);
+ else if(kind==MNM_BRIGHTEN)cpu_history_require_route((void*)r[7],kind);
+ else if(kind==MNM_ROW_COPY)cpu_history_require_route((void*)r[1],kind);
  if(kind>=MNM_PIXEL_SITES || (r[8]&0x400) || !span((u32)stack,kind==MNM_ROW_COPY?0x424:0x38,0) || !owns_thread())goto done;
  if(kind==MNM_PCX_SURFACE){
   if(!pcx(r[0],s,1) || !plane(r[4],r[6],p,0))goto done;

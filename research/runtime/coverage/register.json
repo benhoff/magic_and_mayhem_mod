@@ -38432,7 +38432,8 @@
         "NR.public-resident-world.render-bugs-short-menu-timeout-negative-20261013",
         "NR.public-resident-world.render-bugs-cold-negative-20261013",
         "NR.native-status-outside-drawing.final-public-20261013",
-        "NR.public-resident-world.retained-image-baseline-20261013"
+        "NR.public-resident-world.retained-image-baseline-20261013",
+        "NR.native-history-readers.combined-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -38721,7 +38722,8 @@
         "NR.resident-normal-shutdown.master-integration-fixtures-20261011",
         "NR.resident-normal-shutdown.master-final-campaign-20261011",
         "NR.resident-normal-shutdown.master-final-fixtures-20261011",
-        "NR.public-resident-world.budget-progress-campaign-20261012"
+        "NR.public-resident-world.budget-progress-campaign-20261012",
+        "NR.native-history-readers.combined-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -70635,7 +70637,8 @@
         "runtime/canvas-writers/history.h"
       ],
       "evidence": [
-        "RS.outside-world-raster-pixels.original-20261014"
+        "RS.outside-world-raster-pixels.original-20261014",
+        "RS.native-history-readers.raster-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70688,7 +70691,8 @@
       ],
       "evidence": [
         "RS.outside-world-raster-pixels.original-20261014",
-        "NP.native-completion.raster-20261015"
+        "NP.native-completion.raster-20261015",
+        "RS.native-history-readers.raster-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70835,7 +70839,8 @@
       ],
       "evidence": [
         "NP.native-resource-state.headless-20261015",
-        "NP.native-resource-state.completion-20261015"
+        "NP.native-resource-state.completion-20261015",
+        "NP.native-history-readers.resources-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70850,7 +70855,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "CPU history authority after resident World",
-      "scope": "Owned CPU storage carries the resident generation and nonce with its backing across flips. Selected CPU readers and original-forwarding branches must terminate before reading stale World history; independent writes do not establish complete history. Full un-clipped fills can establish complete CPU history. This is a conservative native admission policy, not GPU readback or transparent recovery.",
+      "scope": "Owned CPU storage carries the resident generation and nonce with its backing across flips. Selected CPU readers and original-forwarding branches must terminate before reading stale World history; independent writes do not establish complete history. Full un-clipped fills and full opaque copies from current CPU history can establish complete CPU history. An explicitly admitted ordered GPU copy propagates unknown CPU authority and preserves private baseline bytes without satisfying CPU readers. This is a conservative native admission policy, not GPU readback or transparent recovery.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -70866,14 +70871,19 @@
         "runtime/canvas-writers/minimap_bridge.c",
         "runtime/canvas-writers/colour_rect_bridge.c",
         "runtime/canvas-writers/panel_bridge.c",
-        "runtime/canvas-writers/raster_bridge.c"
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_flip.h"
       ],
       "tests": [
         "tests/native-history-probe.c",
-        "tools/test-native-completion.py"
+        "tools/test-native-completion.py",
+        "tests/native-gpu-copy-probe.c"
       ],
       "evidence": [
-        "NP.native-render-completion.controls-20261015"
+        "NP.native-render-completion.controls-20261015",
+        "NP.native-history-readers.controls-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70937,7 +70947,8 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NP.producer-route-counters.combined-refusal-20261015"
+        "NP.producer-route-counters.combined-refusal-20261015",
+        "NR.native-history-readers.combined-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70972,7 +70983,8 @@
         "tools/test-native-completion.py"
       ],
       "evidence": [
-        "NP.native-render-completion.controls-20261015"
+        "NP.native-render-completion.controls-20261015",
+        "NP.native-history-readers.controls-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71365,7 +71377,8 @@
         "tools/test-native-completion.py"
       ],
       "evidence": [
-        "NP.native-render-completion.controls-20261015"
+        "NP.native-render-completion.controls-20261015",
+        "NP.native-history-readers.controls-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71389,6 +71402,111 @@
         "tools/build-native-draw.py",
         "tools/capture-original-surface-keys.py",
         "tools/original-manifest.sh"
+      ]
+    },
+    {
+      "id": "NP.native-history-reader-routing",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Post-World native readers and original raster refusals",
+      "scope": "Identify reader family/site/caller and source-only raster refusal inputs before changing admission; implement an owned matching-history route for encountered post-World consumers. Keep terminal unknown-history refusal, original source provenance, per-generation/session ordering and source-only bounded diagnostics. Whole-session equivalence remains separate.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-history-readers.md",
+        "research/runtime/coverage/native-history-readers-incoming-history-20261015.json"
+      ],
+      "implementation": [
+        "runtime/native-draw/history.h",
+        "runtime/canvas-writers/history.h",
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/bridge.c",
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_flip.h",
+        "tools/build-native-draw.py",
+        "reconstruction/rendering/raster_pixels.c"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/test-native-completion.py",
+        "tests/native-gpu-copy-probe.c",
+        "tools/test-raster-splice.py",
+        "tests/raster-splice-reference.cpp",
+        "tests/raster-kernel-test.c"
+      ],
+      "evidence": [
+        "NR.native-history-readers.combined-20261015",
+        "NP.native-history-readers.controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.explicit-native-cpu-materialization",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Ordered native CPU materialization for explicit GetDC readers",
+      "scope": "A stale owned GetDC reader requests one RGB565 snapshot at an ordered stream-v5 CPU_READ boundary. A bounded atomic reply binds command session, monotonic ticket, surface identity, dimensions and physical history generation/nonce. Restore only the unchanged physical identity; reject stale, malformed, cancelled or timed-out replies. Count explicit native readbacks separately from the unchanged no-pixel World return path. No ordinary frame readback or arbitrary pointer interception. The menu lease recognizes an actually decoded pending CPU-reader ticket for at most ten seconds, plus its ordinary two-second grace after completion. Same-ticket heartbeats cannot renew that budget, certify an old menu snapshot or resend an action.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-history-readers.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/bridge.c",
+        "runtime/native-draw/history.h",
+        "tools/build-native-draw.py",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/native_frame_recipe.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/native_cpu_read_v1.h",
+        "runtime/render/copy_order.h",
+        "tools/build-render-bridge.py",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/test-native-completion.py",
+        "tests/native-gpu-copy-probe.c",
+        "tests/native-cpu-materialization-test.cpp",
+        "tests/render-resident-world-test.cpp",
+        "tests/render-command-consumer-test.cpp",
+        "tests/native-frame-recipe-test.cpp",
+        "tests/menu-resident-quit-test.cpp"
+      ],
+      "evidence": [
+        "NR.native-history-readers.combined-20261015",
+        "NP.native-history-readers.controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt"
       ]
     }
   ],
@@ -141502,6 +141620,120 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.native-history-readers.combined-20261015",
+      "kind": "live_observation",
+      "scope": "Explicit seven-family public native rendering, difficulty1, two30-second physical input phases, Mini Cancel and Quit No/Yes through normal exit0. 17209 native producer calls, zero original forwards, 34 unexercised routes; 34 explicit native CPU snapshots; 1241 matching World completions/imports/returns with no ordinary World readbacks. Software llvmpipe with declared10FPS functional floor; no hardware or full original-pixel equivalence claim.",
+      "record": "research/runtime/native-history-readers-campaign-20261015.json",
+      "sha256": "0d4d3fea73d1ef0f0b329fdaa4977fc4e8bf10feb3084d2ddbf8be52bae78c9e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-history-readers.controls-20261015",
+      "kind": "native_integration",
+      "scope": "Actual facade history/GPU-copy/private-baseline/physical restore controls; 960000 native WORDs over two explicit atomic GL replies, 36 malformed replies/five invalid requests and wrong session before readback; bounded menu wait with unchanged state/request, held flips, legacy stream/consumer/frame regressions, four terminal/fresh-worker schedules. No original-game pixels or physical GPU-loss equivalence.",
+      "record": "research/runtime/native-history-readers-controls-20261015.json",
+      "sha256": "ca325a63af5dc54b53fe0404d68d68bac9106ed520d207e487037c5fc073e5c2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_materialization/success",
+          "equals": true
+        },
+        {
+          "pointer": "/menu_cpu_read_lease/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.native-history-readers.raster-20261015",
+      "kind": "isolated_original",
+      "scope": "Original/native production splice regression: all9323 canonical native cases retained plus47 admitted captured40x40 SPELL WORD/grayscale cases on596x140 storage with logical right clip597. Atomic physical-footprint bounds, pixels, caller state, flags/FP and workspace; no live full-image or driver equivalence.",
+      "record": "research/runtime/native-history-readers-raster-20261015.json",
+      "sha256": "a0f11c806f16a41ea81a66c68989c59a33749a9c7ff498bdf20f79ce0e467b6a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/captured_comparison/captured_native_cases",
+          "equals": 47
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NP.native-history-readers.resources-20261015",
+      "kind": "native_integration",
+      "scope": "Native PE32 CPU facade versus retained independent 408-case Wine Surface2 clipping corpus; supplied five-format/alias/palette/DC/healthy Restore policies. No game, live GPU history, stretched drawing, physical loss or original Windows driver equivalence.",
+      "record": "research/runtime/native-history-readers-resources-20261015.json",
+      "sha256": "21d4a5b01641b3692a3b6757847138bc1aa9ddebd3f586017598d497ddd50e32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -151871,7 +152103,8 @@
         "NR.public-resident-world.repaired-ordinary-titan-20261011",
         "NR.public-resident-world.engine-cadence-campaign-20261011",
         "NR.public-resident-world.budget-progress-campaign-20261012",
-        "NR.public-resident-world.retained-image-baseline-20261013"
+        "NR.public-resident-world.retained-image-baseline-20261013",
+        "NR.native-history-readers.combined-20261015"
       ]
     },
     {
@@ -157558,7 +157791,57 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NP.producer-route-counters.combined-refusal-20261015"
+        "NP.producer-route-counters.combined-refusal-20261015",
+        "NR.native-history-readers.combined-20261015"
+      ]
+    },
+    {
+      "id": "NP.native-history-reader-routing.campaign",
+      "scope": "Explicit seven-family combined gameplay with resident World, GPU source-copy routing, per-route refusals and normal Quit. No pixel-equivalence or complete-route claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.native-history-reader-routing"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-history-readers.combined-20261015"
+      ]
+    },
+    {
+      "id": "NP.explicit-native-cpu-materialization.campaign",
+      "scope": "Combined gameplay, menu entry/resume and normal Quit with explicit native CPU materialization and untouched ordinary World return policy.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.explicit-native-cpu-materialization"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-history-readers.combined-20261015"
+      ]
+    },
+    {
+      "id": "NP.explicit-native-cpu-materialization.controls",
+      "scope": "Actual native facade GPU copy/private baseline/physical history restore, bound atomic native GL replies, malformed/session/ticket rejection, bounded menu waiting without retry, held flips, legacy stream/consumer/frame compatibility and fresh-worker restart. No live original pixel equivalence or hardware loss.",
+      "level": "headless",
+      "behaviors": [
+        "NP.explicit-native-cpu-materialization",
+        "NP.native-history-reader-routing",
+        "NP.cpu-history-admission",
+        "NP.held-lease-flip",
+        "HOST.resident-terminal-restart"
+      ],
+      "tests": [
+        "tools/test-native-completion.py",
+        "tests/native-gpu-copy-probe.c",
+        "tests/native-cpu-materialization-test.cpp",
+        "tests/menu-resident-quit-test.cpp"
+      ],
+      "evidence": [
+        "NP.native-history-readers.controls-20261015"
       ]
     }
   ],
@@ -158167,8 +158450,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-completion-final-20261015.json",
-    "sha256": "81bfa2fd927f775b22aea872860d7c1b6d3d75b86b0a0892e194cb8afd462287"
+    "path": "research/runtime/coverage/source-index-native-history-readers-20261015.json",
+    "sha256": "433124b6aafeec8c6bfb8c7df2b70ccf1b5b00b3b447472ce669d8df2d287e92"
   },
   "claim_bindings_required": true
 }

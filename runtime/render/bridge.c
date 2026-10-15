@@ -4,6 +4,7 @@
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API u32 WIN GetFileSize(HANDLE,u32*);
+API i32 WIN ReadFile(HANDLE,void*,u32,u32*,void*);
 API u32 WIN GetTickCount(void);
 API u32 WIN GetCurrentThreadId(void);
 API void WIN Sleep(u32);
@@ -249,7 +250,7 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
     struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);propagated.caller=caller;
-    SetLastError(error);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
+    SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
     game_blit_after(&propagated,status);
     render_failure("application_blt",status,object,t->kind,flags);
     end_draw(c,object,status);draw_event(1,caller,object,source,flags,status,dest,rect);
@@ -267,7 +268,7 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     game_copy_stage(2);
     struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);propagated.caller=caller;
     game_copy_stage(3);
-    SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
+    SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
     game_copy_stage(4);
     game_blit_after(&propagated,status);
     game_copy_stage(5);
@@ -345,6 +346,7 @@ static i32 WIN surface_dc(void* object,void** output){
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0)command_borrow_add(object,2,readable(output,4)?*output:0);game_copy_unobserved(object);SetLastError(error);return result;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    game_materialize_dc(object);SetLastError(entry);
     i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
     if(status>=0)game_dc_acquired(object,readable(output,4)?*output:0);
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
@@ -619,6 +621,8 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
         game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
         game_copy_native_defer=(void (WIN *)(u32))GetProcAddress(native_draw,"NativeDrawStatusDeferV1");
         game_cpu_history=(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(native_draw,"NativeDrawCpuHistoryV1");
+        game_native_gpu_copy=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,u16*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyV1");
+        game_native_cpu_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuTransferV1");
     }
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;

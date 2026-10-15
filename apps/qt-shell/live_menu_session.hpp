@@ -48,7 +48,7 @@ public:
     void setMediaActive(bool active);
     bool running() const;
     bool normalQuitAccepted();
-    void renderingProgress(); // GUI-thread progress; preserves requests and lease expiry.
+    void renderingProgress(std::uint64_t cpuRead=0); // GUI-thread bounded native-reader progress; never resubmits.
     QString evidenceDirectory() const {return root_;}
     bool request(quint32 action,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const std::array<int,63>& assignments);
@@ -87,6 +87,9 @@ private:
     bool preparing_=false,active_=false,pending_=false,transition_=false,bypass_=false,exitRequested_=false,quitting_=false,inBattle_=false;
     bool normalQuitAccepted_=false;
     qint64 lastState_=0,requestedAt_=0;
+    std::uint64_t cpuRead_=0;
+    qint64 cpuReadStarted_=0,cpuReadGrace_=0;
+    bool cpuReadWaiting(qint64 now) const;
     bool mediaActive_=false;
     qint64 mediaStartedAt_=0;
     quint32 sequence_=0,target_=0,action_=0;

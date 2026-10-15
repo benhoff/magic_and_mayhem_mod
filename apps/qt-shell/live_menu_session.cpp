@@ -62,6 +62,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
 bool LiveMenuSession::start(){
     if(running())return false;
     preferencesStore_.begin(preferencesStorePath,{});
+    cpuRead_=0;cpuReadStarted_=cpuReadGrace_=0;
     resultsAction_=0;preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=normalQuitAccepted_=false;
     mediaActive_=false;mediaStartedAt_=0;
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");env.remove("MNM_AUDIO_CHANNEL");env.remove("MNM_RENDER_MEDIA");
@@ -205,7 +206,18 @@ void LiveMenuSession::saveAcceptedPreferences(){
     const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
     if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
 }
-void LiveMenuSession::renderingProgress(){if(active_&&bridge_)bridge_->heartbeat();}
+bool LiveMenuSession::cpuReadWaiting(qint64 now) const{
+    return cpuRead_?(now>=cpuReadStarted_ && now-cpuReadStarted_<=10000):now<cpuReadGrace_;
+}
+void LiveMenuSession::renderingProgress(std::uint64_t ticket){
+    if(!active_||!bridge_)return;
+    const auto now=clock_.elapsed();
+    if(ticket!=cpuRead_){
+        cpuReadGrace_=cpuRead_&&cpuReadWaiting(now)?now+MNM_MENU_V1_LEASE_MS:0;
+        cpuRead_=ticket;cpuReadStarted_=now;if(ticket)cpuReadGrace_=0;
+    }
+    bridge_->heartbeat();
+}
 void LiveMenuSession::poll(){
     if(!active_||!bridge_)return;
     if(!mediaActive_&&resultsAction_&&clock_.elapsed()-resultsRequestedAt_>10000){
@@ -355,6 +367,6 @@ void LiveMenuSession::poll(){
         }
     }
     if(resultsAction_)submitResults();
-    if(!mediaActive_&&!inBattle_&&(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000)))
+    if(!mediaActive_&&!inBattle_&&!cpuReadWaiting(clock_.elapsed())&&(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000)))
         fallback("Menu adapter timed out; using original menus. Requests will not be retried.");
 }

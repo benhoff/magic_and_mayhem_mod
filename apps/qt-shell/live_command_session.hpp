@@ -25,6 +25,7 @@ public:
     const mnm::render::CommandResult* result() const{return renderer_?renderer_->result():nullptr;}
     unsigned recoveries() const{return retries_;}
     std::function<void()> framePresented;
+    std::function<void(std::uint64_t)> cpuReadPending;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
     bool prepareResidentFrames=false,reuseSealedUi=false;
