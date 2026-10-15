@@ -17,8 +17,8 @@ class ExtendedEnvelope(unittest.TestCase):
         return raw
     def test_closed_prefix_and_legacy_limits(self):
         h,rows=module.decode(self.wire());self.assertEqual(h[6],32);self.assertEqual(len(rows),64)
-        module.decode(self.wire(1,16,65536));module.decode(self.wire(2,16,262144))
-        for wire in (self.wire(1,32,65536),self.wire(2,32,262144),self.wire(3,16),self.wire(3,33),self.wire(3,32,262144),self.wire()[:-96]):
+        module.decode(self.wire(3,32,262144));module.decode(self.wire(1,16,65536));module.decode(self.wire(2,16,262144))
+        for wire in (self.wire(1,32,65536),self.wire(2,32,262144),self.wire(3,16),self.wire(3,33),self.wire(3,32,262145),self.wire(3,32,524288),self.wire()[:-96]):
             with self.assertRaises(ValueError):module.decode(wire)
     def test_raw_diagnostic_sample_extension_is_explicit(self):
         spec=importlib.util.spec_from_file_location('startup_inspector',ROOT/'tools/inspect-startup-queues.py');startup=importlib.util.module_from_spec(spec);spec.loader.exec_module(startup)

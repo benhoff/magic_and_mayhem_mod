@@ -5,6 +5,7 @@
 #include "../../reconstruction/rendering/fade_span.hpp"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
+#include "../../protocols/include/mnm/canvas_producers_v4.h"
 #include <algorithm>
 #include <cstring>
 #include <stdexcept>
@@ -100,33 +101,40 @@ std::shared_ptr<const assets::SpriteFrame> CanvasFrameCache::frame(const CanvasP
   return decoded;
 }
 void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::uint8_t> &b, bool complete) {
-  if (b.size() < 64 || b.size() > (!std::memcmp(b.data(), "MNMPRO02", 8) ? 512u : 128u) * 1024 * 1024 ||
-      (std::memcmp(b.data(), "MNMPRO01", 8) && std::memcmp(b.data(), "MNMPRO02", 8) && std::memcmp(b.data(), MNM_PRODUCER_V3_MAGIC, 8)))
-    throw std::invalid_argument("Invalid producer envelope");
-  const bool ownedMinimap = !std::memcmp(b.data(), "MNMPRO02", 8);
-  const bool extendedWorld = !std::memcmp(b.data(), MNM_PRODUCER_V3_MAGIC, 8);
-  if (word(b, 8) != (extendedWorld ? 3u : ownedMinimap ? 2u : 1u) || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
-      (extendedWorld ? word(b,20) != MNM_PRODUCER_V3_MAX_RECORDS : (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144)))) || word(b, 24) < 1 ||
+  if (b.size()<64)throw std::invalid_argument("Invalid producer envelope");
+  const bool sessionInput=!std::memcmp(b.data(),"MNMPRO05",8);
+  const bool wholeUpdate=!std::memcmp(b.data(),MNM_PRODUCER_V4_MAGIC,8);
+  const bool ownedMinimap=!std::memcmp(b.data(),"MNMPRO02",8);
+  const bool extendedWorld=sessionInput||wholeUpdate||!std::memcmp(b.data(),MNM_PRODUCER_V3_MAGIC,8);
+  const unsigned byteBudget=(sessionInput||wholeUpdate||ownedMinimap?512u:128u)*1024*1024;
+  if(b.size()>byteBudget||(!wholeUpdate&&!ownedMinimap&&!extendedWorld&&std::memcmp(b.data(),"MNMPRO01",8)))throw std::invalid_argument("Invalid producer envelope");
+  if(sessionInput){
+    if(word(b,8)!=5||word(b,12)!=64||word(b,16)!=0x40209ca7||word(b,20)!=MNM_PRODUCER_V4_MAX_RECORDS||word(b,24)!=120||word(b,28)!=2||word(b,32)!=MNM_PRODUCER_V4_MAX_BYTES)throw std::invalid_argument("Unsupported session producer envelope");
+  }else if(wholeUpdate){
+    if(word(b,8)!=4||word(b,12)!=64||word(b,16)!=0x40209ca7||word(b,20)!=MNM_PRODUCER_V4_MAX_RECORDS||word(b,24)<1||word(b,24)>120||word(b,28)!=1||word(b,32)!=MNM_PRODUCER_V4_MAX_BYTES)throw std::invalid_argument("Unsupported whole-update envelope");
+  }else if (word(b, 8) != (extendedWorld ? 3u : ownedMinimap ? 2u : 1u) || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
+      (extendedWorld ? (word(b,20) != MNM_PRODUCER_V3_MAX_RECORDS && word(b,20) != MNM_PRODUCER_V3_TRACE_MAX_RECORDS) : (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144)))) || word(b, 24) < 1 ||
       (extendedWorld ? word(b,24) != MNM_PRODUCER_V3_QUEUES : word(b,24) > 16))
     throw std::invalid_argument("Unsupported producer envelope");
   if (result.version && result.version != word(b, 8)) throw std::invalid_argument("Producer append changed wire version");
   result.version = word(b, 8);
-  for (unsigned i = 28; i < 64; i += 4)
+  for (unsigned i = (sessionInput||wholeUpdate)?36:28; i < 64; i += 4)
     if (word(b, i))
       throw std::invalid_argument("Nonzero producer header reserve");
   if(result.queues && result.queues!=word(b,24))throw std::invalid_argument("Producer append changed queue envelope");
   result.queues=word(b,24);
-  unsigned entered = 0, returned = 0;
-  for(const auto& c:result.operations){if(c.fields[2]==11)++entered;if(c.fields[2]==12)++returned;}
+  unsigned entered = 0, returned = 0,ended=0;
+  for(const auto& c:result.operations){if(c.fields[2]==11)++entered;if(c.fields[2]==12)++returned;if(c.fields[2]==27)++ended;}
   for (std::size_t at = 64; at < b.size();) {
+    if(ended)throw std::invalid_argument("Producer data after update closure");
     CanvasProducer c;
     for (unsigned k = 0; k < 24; ++k)
       c.fields[k] = word(b, at + k * 4);
     auto &r = c.fields;
     if (result.operations.size() >= word(b, 20) ||
-        r[18] > (ownedMinimap ? 512u : 128u) * 1024 * 1024 - 96 || r[0] != 96 + r[18] ||
+        r[18] > byteBudget - 96 || r[0] != 96 + r[18] ||
         r[0] > b.size() - at || r[1] != result.operations.size() + 1 ||
-        r[2] < 1 || r[2] > (extendedWorld ? 26u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap && !extendedWorld) || r[23])
+        r[2] < 1 || r[2] > (wholeUpdate?27u:extendedWorld ? 26u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap && !extendedWorld) || r[23])
       throw std::invalid_argument("Invalid producer record");
     c.payload.assign(b.begin() + at + 96, b.begin() + at + r[0]);
     const auto wireSize = r[0];
@@ -141,7 +149,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       if (!extendedWorld || (r[14]!=8 && r[14]!=9) || r[19]<40 || r[19]>1048576 ||
           r[18]!=r[19]+r[20] || word(c.bytes(),0)!=r[19] || word(c.bytes(),28) ||
           (r[14]==8 ? r[20]!=272 : r[17]>1 || (r[20]!=0 && r[20]!=64 && r[20]!=512)) ||
-          result.ownedPayloads.size()>=MNM_PRODUCER_V3_SOURCES ||
+          result.ownedPayloads.size()>=((sessionInput||wholeUpdate)?MNM_PRODUCER_V4_SOURCES:MNM_PRODUCER_V3_SOURCES) ||
           c.bytes().size()>MNM_PRODUCER_V3_SOURCE_BYTES-result.ownedPayloadBytes)
         throw std::invalid_argument("Invalid producer owned-source definition");
       c.ownedPayload=std::make_shared<const std::vector<std::uint8_t>>(std::move(c.payload));
@@ -198,11 +206,18 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
         throw std::invalid_argument("Noncontiguous producer return");
       ++returned;
     }
+    if(r[2]==MNM_PRODUCER_UPDATE_END){
+      bool reserve=false;for(unsigned i=3;i<14;++i)reserve|=r[i]!=0;
+      if(!wholeUpdate||entered!=returned||returned!=result.queues||r[14]!=result.queues||r[17]!=r[15]+1u||!r[19]||r[20]>255||!r[21]||r[22]!=3||r[18]||reserve)throw std::invalid_argument("Invalid whole-update closure");
+      ++ended;
+    }
     result.operations.push_back(std::move(c));
     at += wireSize;
   }
+  if(sessionInput&&(entered!=returned||entered>result.queues))throw std::invalid_argument("Session producer queue boundary");
+  if(sessionInput&&complete)throw std::invalid_argument("Session producer requires external closure");
   if (complete && (entered != result.queues || returned != result.queues ||
-      result.operations.empty() || result.operations.back().fields[2] != 12))
+      result.operations.empty() || result.operations.back().fields[2] != (wholeUpdate?MNM_PRODUCER_UPDATE_END:12u) || (wholeUpdate&&!ended)))
     throw std::invalid_argument("Incomplete producer queue prefix");
 }
 CanvasProducerStream decodeCanvasProducers(const std::vector<std::uint8_t> &b,bool complete){
@@ -223,6 +238,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   case 10:
   case 11:
   case 12:
+  case MNM_PRODUCER_UPDATE_END:
   case MNM_PRODUCER_PAYLOAD_SOURCE:
     break;
   case 5:

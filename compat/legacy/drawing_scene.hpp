@@ -38,6 +38,9 @@ public:
     void publish(DrawingBoundary);
     void seal(DrawingBoundary);
     render::Image read();
+    // Owned source snapshot for comparison tools; an active World canvas is
+    // unavailable until its completion. This does not publish a session frame.
+    render::Image sourceSnapshot(unsigned canvas) const;
     render::GpuFrame presentGpu();
     std::optional<DrawingRasterResult> rasterResult() const;
     unsigned sequence() const { return sequence_; }

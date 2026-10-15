@@ -32,6 +32,7 @@ static struct Patch patches[]={
  {0x4fd4ab,5,cadence_queue,{0xe8,0xf0,0x2d,0,0}},
  {0x4fd554,5,cadence_queue,{0xe8,0x47,0x2d,0,0}}
 };
+#include "update_boundary.h"
 void cadence_record(u32* registers,u32 event){
  if(!enabled)return;
  u32 error=GetLastError(),tid=GetCurrentThreadId();
@@ -52,12 +53,13 @@ void cadence_record(u32* registers,u32 event){
    for(u32 i=0;i<9;++i)r[15+i]=get(p+i*4);
  }
  if(event==6||event==16){r[15]=get(0x6df188);r[16]=get(0x6def58+0x258);r[17]=get(0x6def58+0x25c);r[18]=get(0x6def58+0x264);}
- ++count;SetLastError(error);
+ ++count;update_boundary_observe(r);SetLastError(error);
 }
+#include "queue_point.h"
 static int install(void){
  char path[2048];u32 n=GetEnvironmentVariableA("MNM_ENGINE_CADENCE_FILE",path,sizeof(path));
  if(!n)return 1;
- if(n>=sizeof(path)||(u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(n>=sizeof(path)||(u32)GetModuleHandleA(0)!=0x400000||!update_boundary_configure())return 0;
  /* Pinned .text/.data and CPUID FXSR guards precede every mutation. */
  u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));
  if(!(d&(1u<<24)))return 0;

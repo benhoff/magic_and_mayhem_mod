@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "scope": "Short bounded diagnostic submission schedule; same ordered XTest inputs with final passive wait800ms. Not full interactive/semantic/120window acceptance.",
+  "actions": [
+    {
+      "kind": "wait",
+      "after_ms": 500
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 300,
+      "button": 1,
+      "after_ms": 300
+    },
+    {
+      "kind": "hold",
+      "key": "Right",
+      "duration_ms": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 450
+    },
+    {
+      "kind": "hold",
+      "key": "Left",
+      "duration_ms": 300,
+      "after_ms": 300
+    },
+    {
+      "kind": "tap",
+      "key": "comma",
+      "after_ms": 450
+    },
+    {
+      "kind": "move",
+      "x": 744,
+      "y": 522,
+      "after_ms": 1000
+    },
+    {
+      "kind": "click",
+      "x": 744,
+      "y": 522,
+      "button": 1,
+      "after_ms": 300
+    },
+    {
+      "kind": "click",
+      "x": 440,
+      "y": 310,
+      "button": 3,
+      "after_ms": 2000
+    },
+    {
+      "kind": "tap",
+      "key": "Escape",
+      "after_ms": 600
+    },
+    {
+      "kind": "tap",
+      "key": "Escape",
+      "after_ms": 600
+    },
+    {
+      "kind": "wait",
+      "after_ms": 800
+    }
+  ]
+}

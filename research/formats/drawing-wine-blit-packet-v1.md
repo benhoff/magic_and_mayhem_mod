@@ -1,0 +1,19 @@
+# Selected Wine emitted packet identity V1
+
+`wine-blit-packet.bin`64-byteheader:magic`MNMWPK01`,version1,rowbytes64,
+build0x40209ca7,max131072rows,max2048outstandinglocalpackets,reservedzero.
+Rows16little-endianu32:ordinal0,phase1(emission1/workerentry2/workerreturn3/
+terminal4),commandID2,submissionID3,Win32thread4,tick5,emissionlifetimeprefix6,
+workerID7,flags8,reserved9..15zero.
+
+Emission binds one currentlyoutstandinglocaladdress+exact100commandbytes to a
+portablemonotonicIDandcurrentsubmissionIDor0. No pointer crosseswire. Worker
+entry/returnmustmatchlocaladdress+bytes;phase3retires that outstandingbinding.
+Phase2/3flags1withcommand/submission0retains unknownworkerpackets. Complete
+packetbinding requires no unknown/pending entries. Terminalword2reason,
+word3totalcommands,word8outstandingcount;otherunusedwordszero. Crosscheckportable
+submission/workerIDs against their independently admittedjournals.
+
+The emittershimverifiesexactoriginalsixbytesatpinnedRVA1dff8c,replays original
+register/stackinstructions and preservesflags/FP/LastError. Packetidentitydoes
+notestablishimmutabletexturepixels/sourceownershiporasyncEGLassignment.

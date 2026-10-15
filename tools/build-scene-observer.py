@@ -17,7 +17,7 @@ def build(selftest=False):
     output = ROOT/('working/build/scene-observer-selftest' if selftest else 'working/build/scene-observer')
     output.mkdir(parents=True, exist_ok=True)
     definition = output/'kernel32.def'
-    imports={**module.IMPORTS,'CreateFileMappingA':24,'MapViewOfFile':20,'GetFileSize':8,'UnmapViewOfFile':4,'ReadFile':20,'Sleep':4,'GetTickCount':0,'AddVectoredExceptionHandler':8,'HeapCreate':12,'GetProcAddress':8,'GetCurrentThreadId':0}
+    imports={**module.IMPORTS,'GetFileAttributesA':4,'CreateFileMappingA':24,'MapViewOfFile':20,'GetFileSize':8,'UnmapViewOfFile':4,'ReadFile':20,'Sleep':4,'GetTickCount':0,'AddVectoredExceptionHandler':8,'HeapCreate':12,'GetProcAddress':8,'GetCurrentThreadId':0,'InitializeCriticalSection':4,'EnterCriticalSection':4,'LeaveCriticalSection':4}
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(definition),'-l',str(output/'kernel32.lib'),'--kill-at'],check=True)
     flags = ['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin',
@@ -31,12 +31,12 @@ def build(selftest=False):
     for name in backend_names:
         subprocess.run([*flags,'-c',str(ROOT/'reconstruction/rendering'/name),'-o',str(output/(name+'.obj'))],check=True)
     dll = output/'MnmScene.dll'
-    exports = ['/export:SceneDrawingActionV1=_SceneDrawingActionV1@28','/export:ScenePacerObservationV1=_ScenePacerObservationV1@8']
+    exports = ['/export:SceneDrawingSourceAdmissionV1=_SceneDrawingSourceAdmissionV1@8','/export:SceneDrawingClientStoragePointV2=_SceneDrawingClientStoragePointV2@16','/export:SceneDrawingStoragePointV2=_SceneDrawingStoragePointV2@20','/export:SceneDrawingClientStoragePointV1=_SceneDrawingClientStoragePointV1@16','/export:SceneDrawingStoragePointV1=_SceneDrawingStoragePointV1@20','/export:SceneDrawingUpdateBoundaryV1=_SceneDrawingUpdateBoundaryV1@16','/export:SceneDrawingSourceLeaseV1=_SceneDrawingSourceLeaseV1@16','/export:SceneDrawingSourceBytesV1=_SceneDrawingSourceBytesV1@20','/export:SceneDrawingActionV1=_SceneDrawingActionV1@28','/export:ScenePacerObservationV1=_ScenePacerObservationV1@8','/export:SceneDrawingSourcePointV1=_SceneDrawingSourcePointV1@12','/export:SceneDrawingSourcePairV1=_SceneDrawingSourcePairV1@16']
     if selftest:
         exports += ['/export:SceneInstallForTest=_SceneInstallForTest@4','/export:GlyphAdmissionForTest=_GlyphAdmissionForTest@0','/export:GlyphProductionForTest=_GlyphProductionForTest@0']
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',
                     '/timestamp:0',f'/out:{dll}',*[str(output/(name+'.obj')) for name in (*names,*backend_names)],str(output/'kernel32.lib')],check=True)
-    paths = [*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'runtime/shadow/win32_min.h',
+    paths = [*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'runtime/shadow/win32_min.h',ROOT/'protocols/include/mnm/canvas_producers_v4.h',ROOT/'protocols/include/mnm/canvas_producers_v5.h',ROOT/'protocols/include/mnm/engine_cadence_queue_point_v1.h',ROOT/'protocols/include/mnm/drawing_source_point_v1.h',ROOT/'protocols/include/mnm/drawing_storage_point_v1.h',ROOT/'protocols/include/mnm/drawing_storage_point_v2.h',ROOT/'reconstruction/rendering/vertical_bar.h',
              ROOT/'protocols/include/mnm/scene_snapshot_v1.h',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v1.h',ROOT/'protocols/include/mnm/canvas_producers_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v3.h',ROOT/'protocols/include/mnm/world_continuous_v3.h',ROOT/'protocols/include/mnm/world_continuous_v4.h',ROOT/'protocols/include/mnm/world_continuous_v5.h',ROOT/'protocols/include/mnm/world_continuous_checksum.h',ROOT/'protocols/include/mnm/world_raster_batch_v3.h',ROOT/'runtime/render/pacer_yield.h',ROOT/'runtime/render/precise_clock.h',Path(__file__).resolve(),ROOT/'tools/build-shadow-bridge.py',*[ROOT/'reconstruction/rendering'/n for n in (*backend_names,'glyph_backend.h','glyph_backend_state.h')]]
     (output/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}},indent=2)+'\n')

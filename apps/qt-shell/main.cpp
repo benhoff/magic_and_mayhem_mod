@@ -919,7 +919,8 @@ int main(int argc,char** argv){
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,nativeMedia,nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation,nativeMusic);shell.showPresentation();
     if(parser.isSet("music-assets")&&shell.liveMenuSession())shell.liveMenuSession()->musicAssetsRoot=QDir(parser.value("music-assets")).absolutePath();
     if(parser.isSet("live-menu-test")){
-        if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        if(qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_QT_JOURNEY"))installQuickBattleAppTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        else if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     }
     if(parser.isSet("smoke-test")){

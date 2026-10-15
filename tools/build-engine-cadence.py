@@ -23,9 +23,9 @@ def build(output):
         subprocess.run([*flags,'-c',str(source),'-o',str(output/(source.name+'.obj'))],check=True)
     dll = output/'MnmEngineCadence.dll'
     subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',
-                    '/timestamp:0','/export:EngineCadenceAnchor',f'/out:{dll}',
+                    '/timestamp:0','/export:EngineCadenceAnchor','/export:EngineCadenceQueuePointV1=_EngineCadenceQueuePointV1@16',f'/out:{dll}',
                     *[str(output/(s.name+'.obj')) for s in sources],str(output/'kernel32.lib')],check=True)
-    sources += [ROOT/'runtime/shadow/win32_min.h', ROOT/'tools/build-menu-observer.py',Path(__file__).resolve()]
+    sources += [ROOT/'runtime/engine-cadence/update_boundary.h',ROOT/'runtime/engine-cadence/queue_point.h', ROOT/'protocols/include/mnm/engine_cadence_queue_point_v1.h', ROOT/'runtime/shadow/win32_min.h', ROOT/'tools/build-menu-observer.py',Path(__file__).resolve()]
     (output/'manifest.json').write_text(json.dumps(dict(sha256=hashlib.sha256(dll.read_bytes()).hexdigest(),
         sources={s.relative_to(ROOT).as_posix():hashlib.sha256(s.read_bytes()).hexdigest() for s in sources},
         scope='Opt-in source-guarded No-CD engine cadence observation; original clock, state and targets unchanged.'),indent=2)+'\n')

@@ -34,3 +34,5 @@ void installLiveMultiplayerSessionsTest(QApplication&,QMainWindow&,LiveMenuSessi
 void installLiveHostLobbyTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveCampaignGrimoireTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+#include "campaign_smoke_test.hpp"
+void installQuickBattleAppTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);

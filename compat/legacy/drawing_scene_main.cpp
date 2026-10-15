@@ -1,4 +1,5 @@
 #include "drawing_scene.hpp"
+#include "drawing_scene_limits.hpp"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include <QGuiApplication>
 #include <QCryptographicHash>
@@ -26,13 +27,13 @@ QByteArray pixels(const mnm::render::Image &image){
     QByteArray bytes;bytes.reserve(qsizetype(image.pixels.size()*2));
     for(auto p:image.pixels){bytes.append(char(p));bytes.append(char(p>>8));}return bytes;
 }
-unsigned number(const QJsonObject &object,const char *name,unsigned minimum=1){
+unsigned number(const QJsonObject &object,const char *name,unsigned version,unsigned minimum=1){
     const auto value=object.value(QLatin1String(name));const auto n=value.toDouble(-1);
-    if(n<minimum||n>262144||n!=unsigned(n))throw std::invalid_argument("Invalid scene identity/count");
+    if(!mnm::legacy::sceneDeclarationNumberAdmitted(n,version,minimum))throw std::invalid_argument("Invalid scene identity/count");
     return unsigned(n);
 }
-mnm::legacy::DrawingBoundary boundary(const QJsonObject &object){
-    return {number(object,"sequence"),number(object,"queues",0),number(object,"canvas"),number(object,"width"),number(object,"height")};
+mnm::legacy::DrawingBoundary boundary(const QJsonObject &object,unsigned version){
+    return {number(object,"sequence",version),number(object,"queues",version,0),number(object,"canvas",version),number(object,"width",version),number(object,"height",version)};
 }
 }
 int main(int argc,char **argv){
@@ -55,14 +56,14 @@ int main(int argc,char **argv){
         const auto schema=config.value("schema").toInt();
         if(schema!=1&&schema!=2)throw std::invalid_argument("Unsupported scene declaration");
         const auto identity=config.value("boundary").toObject();
-        const auto finalBoundary=boundary(identity);
+        const auto finalBoundary=boundary(identity,stream.version);
         const auto declaredFrames=schema==2?config.value("frames").toArray():QJsonArray{};
         unsigned priorSequence=0,priorQueues=0;
         if(schema==2&&(declaredFrames.isEmpty()||declaredFrames.size()>4096))
             throw std::invalid_argument("Journey requires bounded explicit frame boundaries");
         for(const auto &frame:declaredFrames){
             if(!frame.isObject())throw std::invalid_argument("Invalid journey frame");
-            const auto b=boundary(frame.toObject());
+            const auto b=boundary(frame.toObject(),stream.version);
             if(b.sequence<=priorSequence||b.queues<priorQueues||b.sequence>finalBoundary.sequence||
                b.width>2048||b.height>2048)throw std::invalid_argument("Unordered journey frame boundaries");
             priorSequence=b.sequence;priorQueues=b.queues;
@@ -110,9 +111,9 @@ int main(int argc,char **argv){
                         (result->ax?QByteArray::number(*result->ax):QByteArray("unknown"))+'\n';
                     ++rasterResultCount;if(!result->ax)++unknownRasterResults;
                 }
-                if(nextFrame<declaredFrames.size()&&scene.sequence()==number(declaredFrames[nextFrame].toObject(),"sequence")){
+                if(nextFrame<declaredFrames.size()&&scene.sequence()==number(declaredFrames[nextFrame].toObject(),"sequence",stream.version)){
                     const auto frame=declaredFrames[nextFrame].toObject();
-                    scene.publish(boundary(frame));
+                    scene.publish(boundary(frame,stream.version));
                     const auto bytes=pixels(scene.read());scene.presentGpu();
                     const auto name=QString("frame-%1.565").arg(++nextFrame,4,10,QChar('0'));
                     save(output.filePath(name),bytes);

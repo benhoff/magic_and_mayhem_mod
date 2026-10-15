@@ -93,7 +93,7 @@ def check(binary, run):
     declaration = dict(schema=1, session='18446744073709551615',
                        assets={n: digest(fixtures[n]) for n in ('owned.bmp', 'owned.spr', 'unused.dat')}, segments=segments)
     observed = []
-    def execute(name, config=None, change=None, existing=False):
+    def execute(name, config=None, change=None, existing=False, snapshots=False):
         source = run/name/'input'
         source.mkdir(parents=True)
         for filename, data in fixtures.items():
@@ -106,11 +106,25 @@ def check(binary, run):
         if existing:
             output.mkdir()
             (output/'sentinel').write_bytes(b'preserve')
-        result = subprocess.run(['xvfb-run', '-a', str(binary), str(source), str(output)],
+        result = subprocess.run(['xvfb-run', '-a', str(binary), str(source), str(output)]+(['--source-snapshots'] if snapshots else []),
                                 env=env, capture_output=True, timeout=30)
         (run/(name+'.log')).write_bytes(result.stdout+result.stderr)
         value = json.loads(result.stdout)
-        if name == 'complete-native-session':
+        if name == 'complete-native-snapshots':
+            assert result.returncode==0 and value['success'] and value['native_source_snapshots'],value
+            assert value['remaining_surfaces']==0 and value['terminal_state']=='source_snapshots_complete'
+            assert not value['physical_presentation'] and not value['original_oracles_read']
+            assert len(value['frames'])==len(expected)
+            for f,plane in zip(value['frames'],expected):
+                assert (output/f['path']).read_bytes()==plane and f['sha256']==digest(plane)
+        elif name == 'same-prefix-source-snapshots':
+            assert result.returncode==0 and value['success'] and value['native_source_snapshots'],value
+            assert value['remaining_surfaces']==0 and len(value['frames'])==2
+            assert [f['canvas'] for f in value['frames']]==[7,8]
+            assert [f['sequence'] for f in value['frames']]==[4,4]
+            for f,colour in zip(value['frames'],(0x1234,0xabcd)):
+                assert (output/f['path']).read_bytes()==struct.pack('<15H',*([colour]*15))
+        elif name == 'complete-native-session':
             assert result.returncode == 0 and value['success'], value
             assert value['remaining_surfaces'] == 0 and value['terminal_state'] == 'finished'
             assert value['segments'] == 6 and value['frames_published'] == 6 and value['records'] == 18
@@ -136,6 +150,14 @@ def check(binary, run):
                 assert len(list(output.iterdir())) == 1
         observed.append(dict(case=name, success=True, report=value))
     execute('complete-native-session')
+    execute('complete-native-snapshots',snapshots=True)
+    def same_prefix(config,source):
+        records=[record(1,1),record(2,5),record(3,1),record(4,5,colour=0xabcd)]
+        for i in (2,3):
+            r=bytearray(records[i]);struct.pack_into('<I',r,12,8);records[i]=bytes(r)
+        data=stream(records);(source/'sources.bin').write_bytes(data)
+        config['segments']=[dict(segment=1,stage='scene',producer=dict(path='sources.bin',sha256=digest(data)),frames=[frame(4),dict(frame(4),canvas=8)])]
+    execute('same-prefix-source-snapshots',change=same_prefix,snapshots=True)
     def mutate(name, fn):
         execute(name, change=lambda c, s: fn(c))
     mutate('segment-gap', lambda c: c['segments'][0].update(segment=2))

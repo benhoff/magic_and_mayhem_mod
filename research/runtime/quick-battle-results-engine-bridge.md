@@ -137,3 +137,15 @@ Window-close run `working/tests/live-menus/run-8tb0ynfd`, experiment
 `run-uuzr8cg2`, passed the same callback/ack/display and normal-exit checks.
 Closing the Qt window on the second results presentation dispatched original
 results Quit, then Quick Battle Back and Main Quit, with no duplicate action.
+
+## 2026-10-14 native Results intent policy
+
+The original per-ID once-only guards and wire layout are unchanged. The native
+session's [Results readiness policy](draw02-results-action-readiness.md) reads
+fresh state before publication, retains one intent across an explicitly
+acknowledged pre-callback STALE/UNAVAILABLE rejection, and may publish a new ID
+within the same observed Results context/depth/thread/action. Accepted or unknown
+outcomes are never replayed. This is an intentional native application policy
+registered separately from the recovered BR.result contract. A two-visit actual
+Qt journey observes two stale rejections, Continue/Quit once each, no native
+fallback and normal original Quit; broader BR.result recovery/status is unchanged.

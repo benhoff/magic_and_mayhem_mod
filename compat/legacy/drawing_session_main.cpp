@@ -9,6 +9,7 @@
 #include <cmath>
 #include <algorithm>
 #include <cctype>
+#include <set>
 #include <iostream>
 
 namespace {
@@ -50,7 +51,7 @@ void save(const QString &path,const QByteArray &bytes){
 }
 DrawingBoundary boundary(const QJsonObject &o){
     fields(o,{"sequence","queues","canvas","width","height"});
-    return {number(o,"sequence",1,1048576),number(o,"queues",0,16),number(o,"canvas",1,262144),
+    return {number(o,"sequence",1,1048576),number(o,"queues",0,120),number(o,"canvas",1,262144),
             number(o,"width",1,2048),number(o,"height",1,2048)};
 }
 DrawingStage stage(const QString &s){
@@ -68,7 +69,8 @@ struct Segment {
 }
 int main(int argc,char **argv){
     QGuiApplication app(argc,argv);
-    if(argc!=3){std::cerr<<"Usage: mnm-drawing-session-replay INPUT_DIRECTORY NEW_OUTPUT_DIRECTORY\n";return 2;}
+    const bool snapshots=argc==4&&std::string(argv[3])=="--source-snapshots";
+    if(argc!=3&&!snapshots){std::cerr<<"Usage: mnm-drawing-session-replay INPUT_DIRECTORY NEW_OUTPUT_DIRECTORY [--source-snapshots]\n";return 2;}
     QJsonObject report{{"schema",1},{"success",false},{"original_execution",false},
         {"original_oracles_read",false},{"original_pixels_used_as_native_inputs",false},
         {"physical_presentation",false},{"live_replacement",false}};
@@ -127,11 +129,13 @@ int main(int argc,char **argv){
             records+=s.stream.operations.size();
             for(const auto &c:s.stream.operations)if(c.fields[2]==9&&c.fields[21])
                 throw std::invalid_argument("Native raster input contains observed result");
-            unsigned previousSequence=0,previousQueues=0;
+            unsigned previousSequence=0,previousQueues=0;std::set<unsigned> snapshotCanvases;
             for(const auto &f:array(o.value("frames"))){
                 const auto b=boundary(object(f));
-                if(++frames>8192||b.sequence<=previousSequence||b.queues<previousQueues||b.sequence>s.stream.operations.size())
+                if(++frames>8192||b.sequence<previousSequence||(!snapshots&&b.sequence==previousSequence)||b.queues<previousQueues||b.sequence>s.stream.operations.size())
                     throw std::invalid_argument("Unordered native frame boundaries");
+                if(b.sequence!=previousSequence)snapshotCanvases.clear();
+                if(!snapshotCanvases.insert(b.canvas).second)throw std::invalid_argument("Duplicate native source snapshot");
                 previousSequence=b.sequence;previousQueues=b.queues;s.frames.push_back(b);
             }
             // A frame-less nonterminal segment represents explicit cancellation.
@@ -145,6 +149,36 @@ int main(int argc,char **argv){
         ownsOutput=true;report["terminal_state"]="failed";report["remaining_surfaces"]=QJsonValue::Null;
         mnm::render::GlBlitter renderer;
         try{
+            if(snapshots){
+                QJsonArray outputs;unsigned snapshotCount=0;
+                for(const auto &s:segments){
+                    DrawingScene scene(renderer,store,source);std::size_t next=0;
+                    for(const auto &c:s.stream.operations){
+                        scene.apply(c);
+                        while(next<s.frames.size()&&s.frames[next].sequence==c.fields[1]){
+                            const auto &b=s.frames[next++];
+                            if(b.queues!=scene.queues())throw std::invalid_argument("Source snapshot queue changed");
+                            const auto image=scene.sourceSnapshot(b.canvas);
+                            if(image.width!=int(b.width)||image.height!=int(b.height))throw std::invalid_argument("Source snapshot extent changed");
+                            QByteArray bytes;bytes.reserve(qsizetype(image.pixels.size()*2));
+                            for(auto p:image.pixels){bytes.append(char(p));bytes.append(char(p>>8));}
+                            const auto name=QString("source-%1.565").arg(++snapshotCount,6,10,QChar('0'));
+                            save(output.filePath(name),bytes);
+                            outputs.append(QJsonObject{{"sequence",int(b.sequence)},{"canvas",int(b.canvas)},
+                                {"width",int(b.width)},{"height",int(b.height)},
+                                {"path",name},{"sha256",QString::fromLatin1(hash(bytes))}});
+                        }
+                    }
+                    if(next!=s.frames.size())throw std::runtime_error("Native source snapshot not reached");
+                }
+                if(renderer.stats().surfaces)throw std::runtime_error("Native source snapshot resources remain");
+                if(load(store,"drawing-session.json",4*1024*1024)!=declaration)throw std::runtime_error("Native declaration changed");
+                for(const auto &s:segments)if(hash(load(store,s.path,512u*1024*1024))!=s.digest)throw std::runtime_error("Native producer changed");
+                for(auto i=assets.begin();i!=assets.end();++i)source(i.key().toStdString());
+                checkCatalogue();report["frames"]=outputs;report["native_source_snapshots"]=true;
+                report["records"]=int(records);report["terminal_state"]="source_snapshots_complete";
+                report["driver"]=QString::fromStdString(renderer.driver().renderer);report["success"]=true;
+            }else{
             DrawingSession native(renderer,store,source);native.begin(session);QJsonArray outputs;
             for(const auto &s:segments){
                 native.transition(session,s.ordinal,s.stage);std::size_t next=0;
@@ -177,6 +211,7 @@ int main(int argc,char **argv){
             checkCatalogue();
             report["native_gpu_presentation_ready"]=true;
             report["driver"]=QString::fromStdString(renderer.driver().renderer);report["success"]=true;
+            }
         }catch(...){report["remaining_surfaces"]=double(renderer.stats().surfaces);report["terminal_state"]="failed";throw;}
         report["remaining_surfaces"]=double(renderer.stats().surfaces);
     }catch(const std::exception &e){report["error"]=QString::fromUtf8(e.what());}

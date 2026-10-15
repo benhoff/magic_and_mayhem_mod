@@ -8,8 +8,10 @@ def sha(data):return hashlib.sha256(data).hexdigest()
 def decode(data,oracles=None):
     if len(data)<192 or len(data)>64+262145*128 or (len(data)-64)%128:raise ValueError('Incomplete API session envelope')
     header=struct.unpack_from('<14I',data,8)
-    if data[:8]!=b'MNMDAPI1' or header[:6]!=(1,128,0x40209ca7,262144,1024,1073741824) or header[6] not in (0,1,2) or any(header[7:]):raise ValueError('Unsupported API session header')
+    if data[:8]!=b'MNMDAPI1' or header[:5]!=(1,128,0x40209ca7,262144,1024) or header[6] not in (0,1,2,3) or any(header[7:]):raise ValueError('Unsupported API session header')
     mode=header[6]
+    budget=header[5]
+    if (mode==3 and (not 1024**2<=budget<=3072*1024**2 or budget%1024**2)) or (mode!=3 and budget!=1073741824):raise ValueError('Invalid API session byte budget')
     rows=list(struct.iter_unpack('<32I',data[64:]));frames=[];calls=[];inputs=[];actions=[];entry_ids=set();last_frames=0
     if rows[-1][1]!=4 or any(r[1]==4 for r in rows[:-1]):raise ValueError('Missing/early terminal API session record')
     for i,r in enumerate(rows,1):
@@ -28,26 +30,29 @@ def decode(data,oracles=None):
         elif r[1]==3:
             if r[2] not in (1,2) or r[26]!=r[2] or not r[21] or r[12]:raise ValueError('Invalid applied menu phase')
             actions.append({'ordinal':i,'request':r[21],'action':r[22],'screen':r[23],'generation':r[24],'argument':r[25],'phase':r[26],'status':r[27],'thread':r[6],'after_frame':r[30]})
-        if mode==0 and r[1]==1 and r[2] in PRIMARY_METHODS and not r[8]&0x80000000 and r[13]==2:raise ValueError('Unknown primary mutation classification')
+        if mode in (0,3) and r[1]==1 and r[2] in PRIMARY_METHODS and not r[8]&0x80000000 and r[13]==2:raise ValueError('Unknown primary mutation classification')
+        if mode in (0,3) and r[1]==1 and r[2] in PRIMARY_METHODS and not r[8]&0x80000000 and r[13]==1 and not r[12]:raise ValueError('Successful primary mutation lacks its complete plane')
         if r[12]:
-            if mode:raise ValueError('Readback in metadata/input-only session')
-            if r[1]!=1 or r[2] not in PRIMARY_METHODS or r[13]!=1 or r[8]&0x80000000 or r[12]!=len(frames)+1 or r[18]&0x80000000 or r[19]&0x80000000 or r[16]!=16 or not 1<=r[14]<=2048 or not 1<=r[15]<=2048:raise ValueError('Invalid primary mutation oracle')
+            if mode not in (0,3):raise ValueError('Readback in metadata/input-only session')
+            if r[1]!=1 or r[2] not in PRIMARY_METHODS or r[13]!=1 or r[8]&0x80000000 or r[12]!=len(frames)+1 or (mode==0 and (r[18]&0x80000000 or r[19]&0x80000000)) or (mode==3 and r[18:20]!=(0xffffffff,0xffffffff)) or r[16]!=16 or not 1<=r[14]<=2048 or not 1<=r[15]<=2048:raise ValueError('Invalid primary mutation oracle')
             f={'ordinal':r[12],'record':i,'method':r[2],'width':r[14],'height':r[15],'object':r[3]}
             if oracles is not None:
                 pixel=oracles(r[12]);
-                if len(pixel)!=r[14]*r[15]*2:raise ValueError('Incomplete full primary plane')
+                if len(pixel)!=r[14]*r[15]*(4 if mode==3 else 2):raise ValueError('Incomplete full primary plane')
                 f['sha256']=sha(pixel)
             frames.append(f)
         if r[1]!=4 and (r[30]<last_frames or r[30]!=len(frames)):raise ValueError('Broken input/frame sequence')
         last_frames=len(frames)
+    if len(frames)>1024 or sum(f['width']*f['height']*(4 if mode==3 else 2) for f in frames)>budget:raise ValueError('API oracle frame/byte budget exceeded')
     end=rows[-1]
-    if end[2] not in (1,2) or end[21]!=len(rows)-1 or end[22]!=len(frames) or end[23] or end[24] or end[25]!=sum(f['width']*f['height']*2 for f in frames):raise ValueError('API session loss/gap/budget or terminal accounting failure')
+    if end[2] not in (1,2) or end[21]!=len(rows)-1 or end[22]!=len(frames) or end[23] or end[24] or end[25]!=sum(f['width']*f['height']*(4 if mode==3 else 2) for f in frames):raise ValueError('API session loss/gap/budget or terminal accounting failure')
     grouped={}
     for action in actions:grouped.setdefault(action['request'],[]).append(action)
     for pair in grouped.values():
         if len(pair)!=2 or [a['phase'] for a in pair]!=[1,2] or any(pair[0][k]!=pair[1][k] for k in ('request','action','screen','generation','argument','thread')):raise ValueError('Unpaired applied original menu action')
-    return {'schema':1,'success':True,'original_sha256':BUILD,'boundary':['observed_primary_api_mutations','api_results_without_driver_readbacks','input_calls_only'][mode],'driver_readbacks_enabled':mode==0,'records':len(rows),'calls':calls,'inputs':inputs,'actions':actions,'frames':frames,'pixels_observed':sum(f['width']*f['height'] for f in frames),'drops':end[23],'unclassified_interfaces_or_routes':end[24],'all_global_presentation_routes_observed':False,'semantic_input_outcomes_complete':False,'new_native_pixel_parity':False,'original_work_bypassed':False}
+    return {'schema':1,'success':True,'original_sha256':BUILD,'boundary':['observed_primary_api_mutations','api_results_without_driver_readbacks','input_calls_only','observed_primary_api_physical'][mode],'driver_readbacks_enabled':mode==0,'physical_fence_enabled':mode==3,'oracle_byte_budget':budget,'records':len(rows),'calls':calls,'inputs':inputs,'actions':actions,'frames':frames,'pixels_observed':sum(f['width']*f['height'] for f in frames),'drops':end[23],'unclassified_interfaces_or_routes':end[24],'all_global_presentation_routes_observed':False,'semantic_input_outcomes_complete':False,'new_native_pixel_parity':False,'original_work_bypassed':False}
 def inspect(directory):
     directory=Path(directory);raw=(directory/'session.bin').read_bytes();done=(directory/'session.done').read_bytes()
     if len(done)!=128 or done!=raw[-128:]:raise ValueError('Terminal marker identity mismatch')
-    result=decode(raw,lambda n:(directory/f'api-oracle-{n:06d}.565').read_bytes());result['journal_sha256']=sha(raw);return result
+    mode=struct.unpack_from('<I',raw,32)[0]
+    result=decode(raw,lambda n:(directory/(f'api-physical-oracle-{n:06d}.rgba' if mode==3 else f'api-oracle-{n:06d}.565')).read_bytes());result['journal_sha256']=sha(raw);return result

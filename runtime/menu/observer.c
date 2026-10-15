@@ -95,11 +95,13 @@ static u32 THIS result_tick(void* object){
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
 #include "grimoire_observe.h"
+#define MNM_REGION_LATCH_OBSERVATION 1
+#include "drawing_region_input.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
     const u8 quick_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0xf1,0x0a,0x00};
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_OBSERVE",path,sizeof(path));
-    if(!length||length>=sizeof(path)||log_file)return 0;
+    if(!length||length>=sizeof(path)||log_file||!semantic_state_open()||!hud_state_open()||!latch_open())return 0;
 #ifndef MNM_MENU_SELFTEST
     if((u32)GetModuleHandleA(0)!=0x400000)return 0;
 #endif
@@ -228,7 +230,7 @@ static int install(void){
     }
     VirtualProtect((void*)0x5c63e4,0x4c,table_protect,&unused);
     VirtualProtect((void*)0x4a83a0,8,quick_protect,&unused);VirtualProtect((void*)0x4a75c0,7,main_protect,&unused);
-    return log_file!=0;
+    return log_file!=0&&region_input_open();
 }
 __declspec(dllexport) void MenuAnchor(void){}
 #ifdef MNM_MENU_SELFTEST
@@ -243,5 +245,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){semantic_state_close();hud_state_close();region_input_close();latch_close();if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

@@ -1,0 +1,1056 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "journeys": {
+    "enabled-movies": [
+      {
+        "id": "both-intros",
+        "actions": [
+          "Launch with movies enabled and allow each intro to reach its original completion"
+        ],
+        "observe": [
+          "Observed movie identities and completion events for both intros; every full presented plane through Main"
+        ],
+        "owned_inputs": [
+          "Encoded movies, decoded timing/placement/control state"
+        ],
+        "dependencies": [
+          "Movie publication and decoder-to-presenter binding"
+        ]
+      },
+      {
+        "id": "movie-skip",
+        "actions": [
+          "Skip each intro in separate bounded recordings"
+        ],
+        "observe": [
+          "Original skip handling and first Main presentation with no late movie frames"
+        ],
+        "owned_inputs": [
+          "Movie control inputs, frame/source identities"
+        ],
+        "dependencies": [
+          "Movie semantic control observation"
+        ]
+      },
+      {
+        "id": "return-to-menu",
+        "actions": [
+          "Complete and skip intros, observing Main in both paths"
+        ],
+        "observe": [
+          "Main generation and complete source-only menu output after movie teardown"
+        ],
+        "owned_inputs": [
+          "Movie/menu resource generation and transition inputs"
+        ],
+        "dependencies": [
+          "Movie/menu ownership transition"
+        ]
+      }
+    ],
+    "main-setup-menus": [
+      {
+        "id": "main-menu",
+        "actions": [
+          "Launch to Main"
+        ],
+        "observe": [
+          "Original Main identity and full client presentation including cursor and borders"
+        ],
+        "owned_inputs": [
+          "Encoded menu assets, text, cursor and composition commands"
+        ],
+        "dependencies": [
+          "All encountered menu publication routes"
+        ]
+      },
+      {
+        "id": "setup-change",
+        "actions": [
+          "Change a setup option through original controls"
+        ],
+        "observe": [
+          "Before/after option values and corresponding complete presented frames"
+        ],
+        "owned_inputs": [
+          "Setup values, text and panel producer inputs"
+        ],
+        "dependencies": [
+          "Applied callback/input outcome bindings"
+        ]
+      },
+      {
+        "id": "cancel-return",
+        "actions": [
+          "Cancel setup to its original parent"
+        ],
+        "observe": [
+          "Original cancel return, parent screen generation and complete frame"
+        ],
+        "owned_inputs": [
+          "Screen transition and resource inputs"
+        ],
+        "dependencies": [
+          "Menu cancellation and cleanup"
+        ]
+      }
+    ],
+    "campaign-entry": [
+      {
+        "id": "campaign-selection",
+        "actions": [
+          "Select a campaign region and confirm entry"
+        ],
+        "observe": [
+          "Original selected region and accepted entry outcome"
+        ],
+        "owned_inputs": [
+          "Region/map selection, menu and loading inputs"
+        ],
+        "dependencies": [
+          "Campaign semantic selection observation"
+        ]
+      },
+      {
+        "id": "loading",
+        "actions": [
+          "Observe every campaign loading publication"
+        ],
+        "observe": [
+          "Ordered loading/fade output and asset-generation transitions without omitted frames"
+        ],
+        "owned_inputs": [
+          "Loading assets, fades and generation inputs"
+        ],
+        "dependencies": [
+          "Campaign loading publication coverage"
+        ]
+      },
+      {
+        "id": "first-composed-world",
+        "actions": [
+          "Enter the campaign World"
+        ],
+        "observe": [
+          "First complete World with HUD/minimap/cursor after loading; original map identity"
+        ],
+        "owned_inputs": [
+          "Complete producer history, World resources and UI inputs"
+        ],
+        "dependencies": [
+          "General campaign producer admission"
+        ]
+      }
+    ],
+    "quick-battle-entry": [
+      {
+        "id": "setup-confirm",
+        "actions": [
+          "Confirm stock Quick Battle setup and items"
+        ],
+        "observe": [
+          "Accepted original setup values/items/map and first loading publication"
+        ],
+        "owned_inputs": [
+          "Setup, item and map identities with menu producer history"
+        ],
+        "dependencies": [
+          "Quick Battle applied-action binding"
+        ]
+      },
+      {
+        "id": "loading",
+        "actions": [
+          "Observe every Quick Battle loading publication"
+        ],
+        "observe": [
+          "Complete ordered loading/fade output and resource transitions"
+        ],
+        "owned_inputs": [
+          "Loading assets, fades and resource-generation inputs"
+        ],
+        "dependencies": [
+          "Loading publication coverage"
+        ]
+      },
+      {
+        "id": "first-composed-world",
+        "actions": [
+          "Enter Quick Battle World"
+        ],
+        "observe": [
+          "First complete World/HUD/minimap/cursor presentation with exact original map identity"
+        ],
+        "owned_inputs": [
+          "Complete producer history, World resource and UI inputs"
+        ],
+        "dependencies": [
+          "World publication after complete UI composition"
+        ]
+      }
+    ],
+    "active-world": [
+      {
+        "id": "sustained-world",
+        "actions": [
+          "Observe at least 120 consecutive advancing original update windows"
+        ],
+        "observe": [
+          "Original update identities advance through all 120 windows and every presentation in that interval is retained"
+        ],
+        "owned_inputs": [
+          "Ordered producer history and resource lifetimes for the entire interval"
+        ],
+        "dependencies": [
+          "Longer contiguous owned source capture"
+        ]
+      },
+      {
+        "id": "animation",
+        "actions": [
+          "Observe an admitted actor and animated background across advancing updates"
+        ],
+        "observe": [
+          "Original animation/frame identities change and native output matches each presentation"
+        ],
+        "owned_inputs": [
+          "Sprite frame, attachment and background animation inputs"
+        ],
+        "dependencies": [
+          "Live animation source-state binding"
+        ]
+      },
+      {
+        "id": "visibility",
+        "actions": [
+          "Move across a visibility boundary"
+        ],
+        "observe": [
+          "Observed original visibility change and its complete ordered output"
+        ],
+        "owned_inputs": [
+          "Visibility, terrain and object producer inputs"
+        ],
+        "dependencies": [
+          "Visibility branch attribution"
+        ]
+      }
+    ],
+    "camera-motion": [
+      {
+        "id": "pan",
+        "actions": [
+          "Pan away from and back to a recorded camera center"
+        ],
+        "observe": [
+          "Original camera coordinates change and corresponding frames match"
+        ],
+        "owned_inputs": [
+          "Camera state, World and minimap inputs"
+        ],
+        "dependencies": [
+          "Camera semantic observation"
+        ]
+      },
+      {
+        "id": "four-orientations",
+        "actions": [
+          "Rotate through each of the four original World orientations"
+        ],
+        "observe": [
+          "Observed original World orientation set equals 0,1,2,3; minimap orientation observed separately"
+        ],
+        "owned_inputs": [
+          "Orientation, terrain, sprite and minimap inputs"
+        ],
+        "dependencies": [
+          "World and minimap view identities"
+        ]
+      },
+      {
+        "id": "viewport-boundaries",
+        "actions": [
+          "Pan to each map/viewport boundary and draw clipped objects"
+        ],
+        "observe": [
+          "Observed camera clamp and complete edge/corner output including borders"
+        ],
+        "owned_inputs": [
+          "Viewport extent, clipping and camera-boundary state"
+        ],
+        "dependencies": [
+          "Edge/corner producers and clipping"
+        ]
+      }
+    ],
+    "creatures-effects": [
+      {
+        "id": "creature-animation",
+        "actions": [
+          "Observe moving and attacking creatures"
+        ],
+        "observe": [
+          "Original creature animation identities and movement/attack phases with full output"
+        ],
+        "owned_inputs": [
+          "Creature sprite frames, shading and ordered draw inputs"
+        ],
+        "dependencies": [
+          "Creature animation attribution"
+        ]
+      },
+      {
+        "id": "attachment",
+        "actions": [
+          "Observe a creature with an active attachment"
+        ],
+        "observe": [
+          "Original attachment identity/placement and complete output"
+        ],
+        "owned_inputs": [
+          "Attachment resource, transform, frame and ordering inputs"
+        ],
+        "dependencies": [
+          "Attachment source generation"
+        ]
+      },
+      {
+        "id": "combat",
+        "actions": [
+          "Cast and observe original melee and damage"
+        ],
+        "observe": [
+          "Original cast acceptance, melee return and target health changes bound to presented frames"
+        ],
+        "owned_inputs": [
+          "Combat/effect producer inputs and independent outcome trace"
+        ],
+        "dependencies": [
+          "Casting/melee outcome observation"
+        ]
+      },
+      {
+        "id": "lighting",
+        "actions": [
+          "Observe a lighting state change"
+        ],
+        "observe": [
+          "Original effective lighting/shading table identities and corresponding output"
+        ],
+        "owned_inputs": [
+          "Effective colours, light/remap tables and raster inputs"
+        ],
+        "dependencies": [
+          "Lighting-to-pixel attribution"
+        ]
+      },
+      {
+        "id": "effect-blending",
+        "actions": [
+          "Observe overlapping blended effects"
+        ],
+        "observe": [
+          "Original blend mode/order/destination dependencies and full output"
+        ],
+        "owned_inputs": [
+          "Blend/displacement/shadow resources and ordered producers"
+        ],
+        "dependencies": [
+          "Effect and auxiliary writer attribution"
+        ]
+      }
+    ],
+    "hud-minimap-tooltips": [
+      {
+        "id": "hud-update",
+        "actions": [
+          "Change selection and observe a health/mana change"
+        ],
+        "observe": [
+          "Original selected actor and changed HUD values with complete output"
+        ],
+        "owned_inputs": [
+          "HUD text, icons, panels and value inputs"
+        ],
+        "dependencies": [
+          "HUD source-state generation"
+        ]
+      },
+      {
+        "id": "minimap-update",
+        "actions": [
+          "Pan and rotate while minimap is visible"
+        ],
+        "observe": [
+          "Observed minimap state/update and complete output for each view"
+        ],
+        "owned_inputs": [
+          "Owned terrain, camera corners and orientation metadata"
+        ],
+        "dependencies": [
+          "Minimap source generation"
+        ]
+      },
+      {
+        "id": "markers",
+        "actions": [
+          "Observe moving creature and camera markers"
+        ],
+        "observe": [
+          "Original marker identities/positions and matching minimap output"
+        ],
+        "owned_inputs": [
+          "Marker source state and ordering inputs"
+        ],
+        "dependencies": [
+          "Marker state observation"
+        ]
+      },
+      {
+        "id": "tooltip-open-close",
+        "actions": [
+          "Hover a documented control, then move away"
+        ],
+        "observe": [
+          "Original tooltip entry/content/exit and full frames across both boundaries"
+        ],
+        "owned_inputs": [
+          "Tooltip text/font/layout/panel and cursor inputs"
+        ],
+        "dependencies": [
+          "Tooltip lifetime and publication observation"
+        ]
+      }
+    ],
+    "cursor-interaction": [
+      {
+        "id": "cursor-motion",
+        "actions": [
+          "Move cursor across World and UI"
+        ],
+        "observe": [
+          "Original cursor coordinates and every complete presentation including cursor"
+        ],
+        "owned_inputs": [
+          "Cursor image/frame, position and clipping inputs"
+        ],
+        "dependencies": [
+          "Physical cursor and UI publication accounting"
+        ]
+      },
+      {
+        "id": "hotspot",
+        "actions": [
+          "Move a cursor with a nonzero hotspot to a known target"
+        ],
+        "observe": [
+          "Original hotspot-adjusted hit and visual cursor position agree"
+        ],
+        "owned_inputs": [
+          "Cursor hotspot, position and hit-test inputs"
+        ],
+        "dependencies": [
+          "Hotspot and hit-test recovery"
+        ]
+      },
+      {
+        "id": "picking",
+        "actions": [
+          "Click a known selectable creature and an empty ground location"
+        ],
+        "observe": [
+          "Original picked object identity or no-hit result with action/frame binding"
+        ],
+        "owned_inputs": [
+          "Picking inputs, object identities and caller-result requests"
+        ],
+        "dependencies": [
+          "Independent picking outcome contract"
+        ]
+      },
+      {
+        "id": "selection",
+        "actions": [
+          "Select and deselect a known creature"
+        ],
+        "observe": [
+          "Original selection identity changes and corresponding highlight/HUD output"
+        ],
+        "owned_inputs": [
+          "Selection, highlight, HUD and cursor inputs"
+        ],
+        "dependencies": [
+          "Selection semantic observation"
+        ]
+      }
+    ],
+    "pause-preferences": [
+      {
+        "id": "pause",
+        "actions": [
+          "Enter the original pause/Preferences path"
+        ],
+        "observe": [
+          "Original mode/menu state and selected gameplay/animation state across pause"
+        ],
+        "owned_inputs": [
+          "Pause/menu state and complete producer inputs"
+        ],
+        "dependencies": [
+          "Original pause semantics beyond injected keys"
+        ]
+      },
+      {
+        "id": "preferences-change",
+        "actions": [
+          "Change a reversible preference"
+        ],
+        "observe": [
+          "Original option before/after and matching presented state"
+        ],
+        "owned_inputs": [
+          "Preference values, controls and text inputs"
+        ],
+        "dependencies": [
+          "Preference caller/result observation"
+        ]
+      },
+      {
+        "id": "cancel",
+        "actions": [
+          "Cancel an unapplied preference change"
+        ],
+        "observe": [
+          "Original cancellation result and expected option retention"
+        ],
+        "owned_inputs": [
+          "Preference/cancel and menu producer inputs"
+        ],
+        "dependencies": [
+          "Preference cancellation semantics"
+        ]
+      },
+      {
+        "id": "resume",
+        "actions": [
+          "Resume World from pause/Preferences"
+        ],
+        "observe": [
+          "Original resumed mode/update and first complete World with retained resources"
+        ],
+        "owned_inputs": [
+          "World/menu transition and generation inputs"
+        ],
+        "dependencies": [
+          "Pause-to-World ownership transition"
+        ]
+      }
+    ],
+    "save-load": [
+      {
+        "id": "save",
+        "actions": [
+          "Save through original menu to an isolated working path"
+        ],
+        "observe": [
+          "Original successful save result, saved identity/hash and complete menu output"
+        ],
+        "owned_inputs": [
+          "Save-menu state and UI producers"
+        ],
+        "dependencies": [
+          "Save action and output artifact binding"
+        ]
+      },
+      {
+        "id": "load",
+        "actions": [
+          "Select and load the independently retained original save"
+        ],
+        "observe": [
+          "Original load selection, accepted result and loading sequence"
+        ],
+        "owned_inputs": [
+          "Load-menu/loading producers and resource transitions"
+        ],
+        "dependencies": [
+          "Load semantic outcome and all loading publications"
+        ]
+      },
+      {
+        "id": "restored-world",
+        "actions": [
+          "Observe World immediately after the original load"
+        ],
+        "observe": [
+          "Restored original map/actor/selection state and complete output"
+        ],
+        "owned_inputs": [
+          "New-generation World/HUD/minimap/cursor inputs"
+        ],
+        "dependencies": [
+          "Restored source-state and resource-generation admission"
+        ]
+      }
+    ],
+    "map-transitions": [
+      {
+        "id": "leave-map",
+        "actions": [
+          "Reach and use an original map-exit path"
+        ],
+        "observe": [
+          "Original exit outcome and last map presentation"
+        ],
+        "owned_inputs": [
+          "Map-exit state and final World producers"
+        ],
+        "dependencies": [
+          "Original map-exit semantics"
+        ]
+      },
+      {
+        "id": "loading",
+        "actions": [
+          "Observe every next-map loading/fade frame"
+        ],
+        "observe": [
+          "No omitted output or lifetime event through map transition"
+        ],
+        "owned_inputs": [
+          "Loading/fade assets and resource retirement/allocation inputs"
+        ],
+        "dependencies": [
+          "Map-transition publication and lifetime accounting"
+        ]
+      },
+      {
+        "id": "next-map",
+        "actions": [
+          "Observe the first complete next-map World"
+        ],
+        "observe": [
+          "Original new map identity and source-only complete frame"
+        ],
+        "owned_inputs": [
+          "Next-map resources, terrain and UI inputs"
+        ],
+        "dependencies": [
+          "Next-map producer/source admission"
+        ]
+      }
+    ],
+    "battle-results": [
+      {
+        "id": "victory",
+        "actions": [
+          "Reach an original victory without simulation memory writes"
+        ],
+        "observe": [
+          "Original victory outcome and complete Results presentation"
+        ],
+        "owned_inputs": [
+          "Victory/results text, panels and transition inputs"
+        ],
+        "dependencies": [
+          "Original victory acquisition strategy"
+        ]
+      },
+      {
+        "id": "defeat",
+        "actions": [
+          "Reach an original defeat without simulation memory writes"
+        ],
+        "observe": [
+          "Original defeat outcome and complete Results presentation"
+        ],
+        "owned_inputs": [
+          "Defeat/results text, panels and transition inputs"
+        ],
+        "dependencies": [
+          "Original defeat acquisition strategy"
+        ]
+      },
+      {
+        "id": "return-to-menu",
+        "actions": [
+          "Use original Results continuation/quit to return to Main"
+        ],
+        "observe": [
+          "Original action results and fresh Main identity/output"
+        ],
+        "owned_inputs": [
+          "Results/Main producers and resource transitions"
+        ],
+        "dependencies": [
+          "Results semantic action and cleanup"
+        ]
+      }
+    ],
+    "shutdown": [
+      {
+        "id": "world-exit",
+        "actions": [
+          "Leave active World through original controls"
+        ],
+        "observe": [
+          "Accepted World exit, final presentation and resource retirement"
+        ],
+        "owned_inputs": [
+          "World/menu transition and lifecycle inputs"
+        ],
+        "dependencies": [
+          "World exit and ownership accounting"
+        ]
+      },
+      {
+        "id": "menu-exit",
+        "actions": [
+          "Confirm original Main Quit"
+        ],
+        "observe": [
+          "Original Quit callback acknowledgement and final presentation/termination"
+        ],
+        "owned_inputs": [
+          "Menu/quit operations and lifecycle inputs"
+        ],
+        "dependencies": [
+          "Acknowledged normal Quit observation"
+        ]
+      },
+      {
+        "id": "cleanup",
+        "actions": [
+          "Wait for original and native clean termination"
+        ],
+        "observe": [
+          "Balanced resource/borrow counts, no pending operations or native surfaces; closed terminal journals"
+        ],
+        "owned_inputs": [
+          "Resource release/borrow/terminal events"
+        ],
+        "dependencies": [
+          "Complete resource and process cleanup accounting"
+        ]
+      }
+    ]
+  },
+  "operations": {
+    "copy-opaque": {
+      "id": "copy-opaque",
+      "actions": [
+        "Copy opaque source with ordinary and empty rectangles"
+      ],
+      "observe": [
+        "Full destination, untouched borders, original result/error and input rectangles"
+      ],
+      "owned_inputs": [
+        "Source and destination-before operation inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "copy-keyed": {
+      "id": "copy-keyed",
+      "actions": [
+        "Copy a source containing key and non-key values"
+      ],
+      "observe": [
+        "Full destination, transparent retention, key state and original result/error"
+      ],
+      "owned_inputs": [
+        "Source, destination-before and independently observed key state"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "copy-clipped": {
+      "id": "copy-clipped",
+      "actions": [
+        "Copy across each destination edge/corner and empty clip"
+      ],
+      "observe": [
+        "Original clipping/offsets, full destination and original result/error"
+      ],
+      "owned_inputs": [
+        "Source/destination-before, clip and rectangle inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "copy-stretched": {
+      "id": "copy-stretched",
+      "actions": [
+        "Run encountered stretch routes with differing source/destination extents"
+      ],
+      "observe": [
+        "Original sampling, clipping, flags and complete output/results"
+      ],
+      "owned_inputs": [
+        "Encoded source, destination-before and scale/rectangle inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "copy-alias-overlap": {
+      "id": "copy-alias-overlap",
+      "actions": [
+        "Copy within aliased storage in both directions with overlap"
+      ],
+      "observe": [
+        "Original traversal/overlap outcome, alias identity and full output/results"
+      ],
+      "owned_inputs": [
+        "Owned storage/alias declarations and destination-before"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "fill-full": {
+      "id": "fill-full",
+      "actions": [
+        "Fill complete destinations with observed formats/colours"
+      ],
+      "observe": [
+        "Complete output, original colour/flags/results and borders"
+      ],
+      "owned_inputs": [
+        "Format/colour and complete destination inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "fill-clipped": {
+      "id": "fill-clipped",
+      "actions": [
+        "Fill clipped, empty and padded rectangles"
+      ],
+      "observe": [
+        "Original clipped write footprint, retained bytes and results"
+      ],
+      "owned_inputs": [
+        "Destination-before, rectangle/clip/colour inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "partial-write": {
+      "id": "partial-write",
+      "actions": [
+        "Write a subregion through observed CPU/drawing paths"
+      ],
+      "observe": [
+        "Exact written bytes, retained bytes and readability/return state"
+      ],
+      "owned_inputs": [
+        "Owned write bytes, extents, pitch and destination-before"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "cpu-write-readback": {
+      "id": "cpu-write-readback",
+      "actions": [
+        "Borrow, write, release and read through encountered access routes"
+      ],
+      "observe": [
+        "Original read bytes, pitch, borrowed interval and all results"
+      ],
+      "owned_inputs": [
+        "Owned writes and ordered access/lifetime requests"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "text-font-dc-lifetime": {
+      "id": "text-font-dc-lifetime",
+      "actions": [
+        "Create/use/reset/release font and DC across text calls and failures"
+      ],
+      "observe": [
+        "Text pixels/layout state, font/DC identities, balanced lifetimes and results"
+      ],
+      "owned_inputs": [
+        "Encoded font, text/layout/state and lifecycle requests"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "image-cropping": {
+      "id": "image-cropping",
+      "actions": [
+        "Draw cropped and positioned images including padded/odd extents"
+      ],
+      "observe": [
+        "Original image placement/crop/full output and wrapper results"
+      ],
+      "owned_inputs": [
+        "Encoded image, crop/placement/pitch and destination-before"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "sprite-indexed": {
+      "id": "sprite-indexed",
+      "actions": [
+        "Exercise encountered indexed sprite modes and clipping"
+      ],
+      "observe": [
+        "Original pixels, effective colours/remaps, workspace and results"
+      ],
+      "owned_inputs": [
+        "Encoded SPR, indexed tables, clipping and workspace inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "sprite-direct": {
+      "id": "sprite-direct",
+      "actions": [
+        "Exercise encountered direct sprite modes and clipping"
+      ],
+      "observe": [
+        "Original pixels, direct colours, workspace and results"
+      ],
+      "owned_inputs": [
+        "Encoded SPR, colours, clipping and workspace inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "sprite-auxiliary": {
+      "id": "sprite-auxiliary",
+      "actions": [
+        "Exercise caller auxiliary sprite passes"
+      ],
+      "observe": [
+        "Original auxiliary pixels, caller state/order and results"
+      ],
+      "owned_inputs": [
+        "Auxiliary pass source/colour/state and destination dependencies"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "palette-remap": {
+      "id": "palette-remap",
+      "actions": [
+        "Change an original logical palette/remap while retaining indices"
+      ],
+      "observe": [
+        "Original index-to-colour output and palette/alias state/results"
+      ],
+      "owned_inputs": [
+        "Indexed source and owned palette/remap/lifetime inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "palette-cycling": {
+      "id": "palette-cycling",
+      "actions": [
+        "Observe an original cycling palette through updates"
+      ],
+      "observe": [
+        "Original palette generation/order and each complete resulting plane"
+      ],
+      "owned_inputs": [
+        "Indexed source, palette updates and timing identities"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "destination-dependency": {
+      "id": "destination-dependency",
+      "actions": [
+        "Exercise blend/key/mask and borrowed read destination dependencies"
+      ],
+      "observe": [
+        "Original required preexisting bytes, reads, output and refusal/result behavior"
+      ],
+      "owned_inputs": [
+        "Owned prior history or explicit operation destination-before"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "flags-and-return-values": {
+      "id": "flags-and-return-values",
+      "actions": [
+        "Exercise required flag combinations and success/busy/error outcomes"
+      ],
+      "observe": [
+        "Complete original call inputs, typed HRESULT/LastError, call order and caller state"
+      ],
+      "owned_inputs": [
+        "Flags, source/destination/alias requests and driver outcome inputs"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "surface-loss-restore": {
+      "id": "surface-loss-restore",
+      "actions": [
+        "Acquire actual original-driver loss/Restore and separate scripted wrapper schedules"
+      ],
+      "observe": [
+        "Actual loss/Restore results, palettes, readability/content provenance and retries; scripted and real evidence kept distinct"
+      ],
+      "owned_inputs": [
+        "Driver/lifecycle inputs and explicit resource reload sources"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "transition-recovery": {
+      "id": "transition-recovery",
+      "actions": [
+        "Acquire failure and recovery during a screen/map transition"
+      ],
+      "observe": [
+        "Original transition outcome, generations, ordered frames and resource cleanup"
+      ],
+      "owned_inputs": [
+        "Transition, failure/recovery inputs and asset reload sources"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    },
+    "failure-cleanup": {
+      "id": "failure-cleanup",
+      "actions": [
+        "Acquire failures during creation, borrowed access, drawing and teardown"
+      ],
+      "observe": [
+        "Original returned error, no extra success, balanced lifetime/borrow state and terminal cleanup"
+      ],
+      "owned_inputs": [
+        "Fault outcome inputs, ordered lifecycle and original request arguments"
+      ],
+      "dependencies": [
+        "Independent original execution and native operation/result adapter"
+      ]
+    }
+  }
+}

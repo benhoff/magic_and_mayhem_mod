@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "scope": "Bounded original campaign pointer/click/icon dwell and camera requests. Candidate semantics and causal bindings remain separate from successful injection. Guidance pages handled separately with mandatory original Mini confirmation.",
+  "actions": [
+    {
+      "kind": "wait",
+      "after_ms": 2000
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 265,
+      "after_ms": 1000
+    },
+    {
+      "kind": "click",
+      "x": 400,
+      "y": 265,
+      "button": 1,
+      "after_ms": 1000
+    },
+    {
+      "kind": "move",
+      "x": 450,
+      "y": 350,
+      "after_ms": 1000
+    },
+    {
+      "kind": "move",
+      "x": 400,
+      "y": 265,
+      "after_ms": 1000
+    },
+    {
+      "kind": "move",
+      "x": 573,
+      "y": 575,
+      "after_ms": 1500
+    },
+    {
+      "kind": "move",
+      "x": 450,
+      "y": 350,
+      "after_ms": 1000
+    },
+    {
+      "kind": "hold",
+      "key": "Right",
+      "duration_ms": 300,
+      "after_ms": 500
+    },
+    {
+      "kind": "tap",
+      "key": "period",
+      "after_ms": 500
+    }
+  ]
+}

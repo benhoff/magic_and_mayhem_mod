@@ -5,6 +5,8 @@
 #define MNM_PRODUCER_V3_MAGIC "MNMPRO03"
 #define MNM_PRODUCER_V3_QUEUES 32u
 #define MNM_PRODUCER_V3_MAX_RECORDS 131072u
+// Recorder-only extended header budget; replacement defaults retain131072.
+#define MNM_PRODUCER_V3_TRACE_MAX_RECORDS 262144u
 // Definition25 owns the full closed font/raster payload. A V3 font/raster
 // with word4 !=0 and no wire payload references that earlier definition sequence.
 // Canonical decode restores word4=0 and full extents before batch hashing.

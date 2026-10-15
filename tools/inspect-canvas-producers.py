@@ -7,24 +7,31 @@ import json
 from pathlib import Path
 import struct
 
-NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'font',9:'raster',10:'checkpoint',11:'queue_entry',12:'queue_return',13:'failure',14:'rgb_add',15:'bevel',16:'halo',17:'wash',18:'pcx',19:'dib',20:'bmp',21:'fade',22:'minimap',23:'points',24:'minimap_owned_overlay',25:'owned_payload_source',26:'colour_rectangle'}
+NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'font',9:'raster',10:'checkpoint',11:'queue_entry',12:'queue_return',13:'failure',14:'rgb_add',15:'bevel',16:'halo',17:'wash',18:'pcx',19:'dib',20:'bmp',21:'fade',22:'minimap',23:'points',24:'minimap_owned_overlay',25:'owned_payload_source',26:'colour_rectangle',27:'update_end'}
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def decode(raw, complete=True):
-    if len(raw)<64 or raw[:8] not in (b'MNMPRO01',b'MNMPRO02',b'MNMPRO03') or len(raw)>(512 if raw[:8]==b'MNMPRO02' else 128)*1024*1024:
+    if len(raw)<64 or raw[:8] not in (b'MNMPRO01',b'MNMPRO02',b'MNMPRO03',b'MNMPRO04',b'MNMPRO05') or len(raw)>(512 if raw[:8] in (b'MNMPRO02',b'MNMPRO04',b'MNMPRO05') else 128)*1024*1024:
         raise ValueError('Invalid producer stream envelope')
     h=struct.unpack_from('<16I',raw)
     owned=raw[:8]==b'MNMPRO02'
-    extended=raw[:8]==b'MNMPRO03'
-    if h[2:5]!=((3 if extended else 2 if owned else 1),64,0x40209ca7) or h[5] not in ((131072,) if extended else (32768,65536,131072,262144) if owned else (32768,65536)) or (h[6]!=32 if extended else not 1<=h[6]<=16) or any(h[7:]):
+    whole=raw[:8]==b'MNMPRO04'
+    session=raw[:8]==b'MNMPRO05'
+    extended=raw[:8] in (b'MNMPRO03',b'MNMPRO04',b'MNMPRO05')
+    if session:
+        if h[2:9]!=(5,64,0x40209ca7,1048576,120,2,536870912) or any(h[9:]):raise ValueError('Unsupported session producer header')
+    elif whole:
+        if h[2:9]!=(4,64,0x40209ca7,1048576,h[6],1,536870912) or not 1<=h[6]<=120 or any(h[9:]):raise ValueError('Unsupported whole-update producer header')
+    elif h[2:5]!=((3 if extended else 2 if owned else 1),64,0x40209ca7) or h[5] not in ((131072,262144) if extended else (32768,65536,131072,262144) if owned else (32768,65536)) or (h[6]!=32 if extended else not 1<=h[6]<=16) or any(h[7:]):
         raise ValueError('Unsupported producer header')
-    at=64;records=[];entered=returned=0;owned_sources={};owned_bytes=0
+    at=64;records=[];entered=returned=ended=0;owned_sources={};owned_bytes=0
     while at<len(raw):
+        if ended:raise ValueError('Producer data after update closure')
         if len(records)>=h[5] or len(raw)-at<96:raise ValueError('Truncated/over-budget producer record')
         r=struct.unpack_from('<24I',raw,at)
-        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or r[23]:
+        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or (r[2]==27 and not whole) or r[23]:
             raise ValueError('Invalid producer record bounds/sequence/operation')
         payload=raw[at+96:at+r[0]]
         wire_size=r[0]
@@ -33,7 +40,7 @@ def decode(raw, complete=True):
             if r[18] or source is None or source[0][14]!=r[2] or source[0][17]!=r[17] or source[0][19:21]!=r[19:21]:raise ValueError('Invalid owned-source reference')
             payload=source[1];r=list(r);r[4]=0;r[18]=len(payload);r[0]=96+len(payload);r=tuple(r)
         if r[2]==25:
-            if r[14] not in (8,9) or not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]) or (r[20]!=272 if r[14]==8 else r[17]>1 or r[20] not in (0,64,512)) or len(owned_sources)>=2048 or len(payload)>16*1024*1024-owned_bytes:raise ValueError('Invalid owned-source definition')
+            if r[14] not in (8,9) or not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]) or (r[20]!=272 if r[14]==8 else r[17]>1 or r[20] not in (0,64,512)) or len(owned_sources)>=(4096 if whole or session else 2048) or len(payload)>16*1024*1024-owned_bytes:raise ValueError('Invalid owned-source definition')
             owned_sources[r[1]]=r,payload;owned_bytes+=len(payload)
         elif r[2] in (8,9):
             if not 40<=r[19]<=1048576 or r[18]!=r[19]+r[20] or struct.unpack_from('<I',payload,0)[0]!=r[19] or any(payload[28:32]):
@@ -65,9 +72,22 @@ def decode(raw, complete=True):
         if r[2]==12:
             if entered!=returned+1 or r[14]!=entered:raise ValueError('Noncontiguous producer queue return')
             returned+=1
+        if r[2]==27:
+            if entered!=returned or returned!=h[6] or r[14]!=h[6] or r[17]!=(r[15]+1)&0xffffffff or not r[19] or r[20]>255 or not r[21] or r[22]!=3 or payload or any(r[3:14]) or r[18]:raise ValueError('Invalid whole-update closure')
+            ended=1
         records.append((r,payload));at+=wire_size
-    if complete and (entered!=h[6] or returned!=h[6] or not records or records[-1][0][2]!=12):
+    if session and (entered!=returned or entered>h[6] or any(r[2]==13 for r,b in records)):raise ValueError('Session source queue/failure boundary')
+    if complete and session:raise ValueError('Session producers require external closure marker')
+    if complete and (entered!=h[6] or returned!=h[6] or not records or records[-1][0][2]!=(27 if whole else 12) or whole and not ended):
         raise ValueError('Incomplete producer/World prefix')
+    return h,records
+
+
+def decode_session(raw,marker):
+    h,records=decode(raw,complete=False)
+    if raw[:8]!=b'MNMPRO05' or len(marker)!=64 or marker[:8]!=b'MNMPCS01':raise ValueError('Session source closure envelope')
+    v=struct.unpack('<16I',marker);queues=sum(r[2]==12 for r,b in records);checkpoints=sum(r[2]==10 for r,b in records)
+    if v[2:9]!=(1,64,0x40209ca7,len(records),queues,len(raw),checkpoints) or not v[9] or v[10:12]!=(1,120) or any(v[12:]):raise ValueError('Session source closure accounting')
     return h,records
 
 def analyze(directory):
