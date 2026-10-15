@@ -25,6 +25,17 @@ surface work is excluded from that pinned review. Older finite queue counts belo
 describe their original comparison experiments, not a current limit on all World
 delivery.
 
+The subsequent [native Save/Load result](../research/runtime/native-render-save-load.md)
+closes a bounded Apprentice same-session journey after fixing two concrete CPU/GPU
+history failures. Three captured World outputs match unchanged original raster
+execution; normal Quit balances 310 resident Worlds with zero producer forwards
+or history refusals. Logical World canvas2 is retained through Load. Initiate
+post-Save Mini ingress, changed-canvas transitions, complete presented-session
+comparison, actual-game restart, hardware and strict complete-mode admission
+remain open. Current producer accounting has six valid families/43 routes; ten
+historical alleged BitBlt hooks actually targeted ClientToScreen and are retired.
+Older counts and open-work prose below retain their historical evidence scopes.
+
 The [binary/API coverage reconciliation](../research/runtime/rendering-coverage.md)
 and `python3 tools/report-rendering-coverage.py` report scoped implementation,
 independent original/driver comparison and actual bypass against reviewed

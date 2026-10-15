@@ -500,6 +500,35 @@ static i32 WIN create_draw(void* guid,void** result,void* outer){
 }
 #include "adapter_startup.h"
 __declspec(dllexport) void RenderAnchor(void){}
+/* Save/Load menus draw destination-dependent panels before their first GetDC.
+ * Synchronize at this explicit quiescent application boundary, before their
+ * original callbacks acquire Lock. Never materialize ordinary World locks. */
+__declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
+    u32 error=GetLastError(),ok=0;void* objects[32];u32 count=0;
+    if(action>1)return 0;
+    if(!game_resident_world){SetLastError(error);return 1;}
+    struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
+    if(!callback.observe){SetLastError(error);return 0;}
+    struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))=game_copy_bind_enter();
+    if(!admission.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
+    game_surface_sync();
+    /* Preflight every live GPU history before publishing any snapshots. The
+     * ordered lease retains identities while each bounded reply releases the
+     * tracker so command publication can continue. */
+    if(!command_borrows_quiet())goto done;
+    for(u32 i=0;i<32;++i)if(game_locks[i].active)goto done;
+    for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;
+        if(!s->object || !s->gpu_history)continue;
+        if(s->dc || !session_find(s->object) || count==32)goto done;
+        objects[count++]=s->object;
+    }
+    ok=1;
+done:
+    game_tracker_release();
+    if(ok){for(u32 i=0;i<count;++i)game_materialize_dc(objects[i]);
+        lock_diagnostic("resident_storage_materialized",0,0,action,count,0,0,0);}
+    SetLastError(error);return ok;
+}
 /* Application orchestration calls this before process exit, outside DllMain.
  * It closes capture admission while original drawing remains installed. */
 __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){

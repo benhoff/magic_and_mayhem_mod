@@ -12,11 +12,13 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import secrets
 import re
 import struct
 import subprocess
 import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
+from campaign_storage import validate_storage, validate_storage_flow
 from campaign_movement import validate_movement_probes
 from campaign_crowded import validate_crowded
 from campaign_spell import player_engaged_fireball_lethal, read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
@@ -36,7 +38,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
-SOURCES += ['tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
 def linked_compiler_sources(build, root):
@@ -375,6 +377,7 @@ def main():
     parser.set_defaults(pacer_yield=False)
     parser.add_argument('--crowded-case',action='store_true',help='Four-player native Quick Battle with ordinary 200 mana/800 health/30 control settings, eight Zombie summon attempts and 180..240 seconds of observed crowded combat')
     parser.add_argument('--healing-case',action='store_true',help='Separate native Quick Battle Cure loadout and injured human-wizard healing case')
+    parser.add_argument('--save-load',action='store_true',help='Native campaign Save/resume/Load/resume/normal Quit with fresh World checkpoints')
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
@@ -418,6 +421,10 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.save_load:
+        if not (args.resident_world and args.other_pixel_producers) or args.difficulty!=1 or args.stress_seconds or args.require_casting_combat or args.pixel_camera_scenarios or args.healing_case or args.crowded_case or args.menu_cycles!=1:
+            parser.error('Save/Load requires resident World, combined producers, Apprentice difficulty 1 and no other journey')
+        args.normal_quit=True
     explicit_native_audio=args.native_voices
     explicit_native_media=args.native_media;explicit_native_music=args.native_music
     args.native_media |= args.default_media;args.native_music |= args.default_music
@@ -478,7 +485,7 @@ def main():
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
-              'other_pixel_producers_required':args.other_pixel_producers,
+              'other_pixel_producers_required':args.other_pixel_producers,'save_load_required':args.save_load,
               'required_pixel_routes':args.require_pixel_route,'pixel_camera_scenarios_required':args.pixel_camera_scenarios,
               'native_wave_loading_required':args.native_loading,
               'native_audio_factory_required':args.native_factory,
@@ -496,6 +503,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign'])
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
@@ -563,6 +571,8 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    env['MNM_CAMPAIGN_STORAGE']='1' if args.save_load else '0'
+    if args.save_load:env['MNM_CAMPAIGN_STORAGE_NAME']='native-render-'+secrets.token_hex(6)
     env['MNM_PIXEL_CAMERA_SCENARIOS']='1' if args.pixel_camera_scenarios else '0'
     if args.other_pixel_producers:
         env['MNM_OTHER_PIXEL_PRODUCERS']='1'
@@ -744,12 +754,13 @@ def main():
                     report['resident_world']=json.loads(resident_path.read_text());report['experiment']=str(roots[0])
                     if report['resident_world']['error']:raise ValueError('Resident World rendering stopped: '+report['resident_world']['error'])
             expected_capture_policy='omitted' if args.no_route_screenshots else 'synchronous' if args.synchronous_route_capture else 'bounded-background-encoding'
-            if not (args.healing_case or args.crowded_case) and flow.get('route_capture_policy')!=expected_capture_policy:raise ValueError('Route capture policy differs from requested mode')
-            if flow.get('route_screenshots',True)!= (not args.no_route_screenshots):raise ValueError('Route screenshot mode differs from requested comparison')
+            if not (args.save_load or args.healing_case or args.crowded_case) and flow.get('route_capture_policy')!=expected_capture_policy:raise ValueError('Route capture policy differs from requested mode')
+            if not args.save_load and flow.get('route_screenshots',True)!= (not args.no_route_screenshots):raise ValueError('Route screenshot mode differs from requested comparison')
             if args.no_route_screenshots and any(not step.get('route_capture_skipped') or any(step.get(k) for k in ('screenshot_saved','native_image_saved','original_image_saved')) for step in flow['steps'] if step['step']!='campaign-handoff'):raise ValueError('Route screenshot omission not explicitly recorded')
             if flow.get('success') is not True:raise ValueError(flow.get('error') or 'Campaign flow failed')
             if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
-            if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
+            if args.save_load:validate_storage_flow(flow)
+            if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):
                     inputs=json.loads((out/f'input-{cycle}.json').read_text())
@@ -782,6 +793,10 @@ def main():
                 if resident['error'] or min(int(resident[k]) for k in ('completed','imports','verified_returns'))<64 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
                     raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
                 if args.normal_quit and (not resident.get('normal_quit_retired') or resident['pending'] or len({int(resident[k]) for k in ('completed','imports','verified_returns')})!=1):raise ValueError('Resident World normal Quit was not acknowledged and balanced')
+                if args.save_load:
+                    snapshots=int(resident.get('explicit_producer_cpu_readbacks',0))
+                    if snapshots<1 or int(resident.get('total_native_readbacks',-1))!=snapshots+int(resident['native_readbacks']):
+                        raise ValueError('Save/Load native CPU reader snapshots were not separately accounted')
                 if args.async_world:
                     production=resident.get('world_gpu_production',{})
                     if production.get('policy')!='dedicated-native-owner' or production.get('error') or production.get('high_water',3)>2 or int(production.get('immutable_allocations',3))>2:
@@ -878,9 +893,10 @@ def main():
                 report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),crowded_flow,out,args.stress_seconds,args.min_fps)
                 report['crowded']=validate_crowded(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
                 report['crowded_verified']=True
+            elif args.save_load:report['storage']=validate_storage(roots[0],flow)
             else:report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
             if args.normal_quit:
-                for n in (0,1):
+                for n in (() if args.save_load else (0,1)):
                     q=json.loads((out/f'quit-input-{n}.json').read_text())
                     if not q['success'] or q['answer']!=('no' if n==0 else 'yes'):raise ValueError('Incomplete native Quit confirmation input')
                     cap=q['capture']
@@ -899,7 +915,8 @@ def main():
                     report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))
             if args.portrait_stress_seconds:
                 report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
-            if not (args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
+            if args.save_load:validate_storage_flow(flow)
+            if not (args.save_load or args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
             exit_code = 0

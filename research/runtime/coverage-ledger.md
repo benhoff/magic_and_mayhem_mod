@@ -12115,3 +12115,45 @@ milestone is promoted.
 Incoming a7d58fcd..c74e9c5b history retains54exact file/241behavior transitions,
 with two explicit retrospective pending receipt repairs. Current source/census
 reviews are independent; prior execution hashes are never refreshed.
+
+
+## Resident native Save/Load and original World checkpoints — 2026-10-15
+
+[The Apprentice Celtic1 journey](native-render-save-load.md) passes original
+Save/resume/Load/resume/normal Quit with 310 balanced resident completions/imports/
+verified returns, 3,472 optional native producer calls and zero forwards/history
+refusals. The original 351,580-byte save remains unchanged and merges into the
+owned store after normal exit0. All 43 valid optional routes install; 17 execute
+in this journey and no new routes beyond the earlier camera/spell evidence are
+claimed. Original serialization/simulation remain active.
+
+Two observed failures are fixed: native Mini storage dispatch now synchronizes
+tracked GPU histories before original destination-dependent panel Lock, using
+the existing ordered native CPU_READ service; the native source compositor
+separately distinguishes CPU/GPU/undefined words and explicitly materializes
+established native GPU history for panel readers. Sparse writes cannot upload
+stale GPU words and keyed copies propagate conservative authority. Unknown
+pixels, other readers and async resident CPU-reader boundaries remain guarded.
+Twenty-two process-side reader snapshots and two source-compositor panel
+snapshots are separately counted; ordinary World/native/RGBA readbacks and
+per-World pixel replies remain zero. Actual GL CPU-reader and canvas regressions
+pass with zero final test owners.
+
+Source-only replay through generation257 matches unchanged pinned original
+raster/primitive code at generations50/126/257: 1,440,000 WORD comparisons,
+4,542 raster caller AX checks and 302 primitive draws, zero mismatches in the
+three-checkpoint reference set. Repetitions from authored zero/0x5aa5 baselines
+also match every selected World WORD. Native rendering reads no original
+oracle; inherited history, complete presented-session equality and complete
+restored-simulation equivalence are not inferred. The live World retains
+logical canvas2; changed-canvas handoff, other maps and physical GPU acceptance
+remain separate. Software llvmpipe records13.47 engine FPS at an explicit10FPS
+functional floor. No complete replacement promotion occurs.
+
+Initiate Save/resume succeeds but later Escape/Mini ingress fails despite active
+forwarded input and advancing key generations. The cause remains unresolved;
+the passing Apprentice journey does not close it. Negative reports and raw
+inputs remain preserved. Original manifests verify before/after consumption.
+The incoming c74e9c5b..938024ec review retains44 exact file/108 full behavior
+transitions, with one explicitly pending retrospective movie fingerprint edge;
+no past gate or movie execution claim is asserted.

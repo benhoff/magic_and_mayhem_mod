@@ -16,7 +16,10 @@ public:
   void copy(std::uint32_t, std::uint32_t, Rect, int, int,
             std::optional<std::uint16_t>) override;
   SurfaceId surface(std::uint32_t) const;
+  Image readForCpu(std::uint32_t) override;
+  std::uint64_t cpuReaderSnapshots() const { return cpuReaderSnapshots_; }
 private:
+  std::uint64_t cpuReaderSnapshots_ = 0;
   GlBlitter &renderer_;
   std::unordered_map<std::uint32_t, SurfaceId> surfaces_;
 };

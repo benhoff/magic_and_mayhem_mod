@@ -8,7 +8,7 @@ std::size_t slot(const Image &image, int x, int y) {
   return std::size_t(y) * image.width + x;
 }
 void known(const std::vector<unsigned char> &defined, std::size_t at) {
-  if (!defined.at(at))
+  if (defined.at(at)!=1)
     throw std::runtime_error("Native producer reads undefined canvas pixels");
 }
 void frame(const assets::SpriteFrame &f) {
@@ -47,7 +47,19 @@ void CanvasSequence::create(std::uint32_t id, int width, int height) {
 }
 void CanvasSequence::discardCpu(std::uint32_t id) {
   if(!mirror_)throw std::logic_error("CPU knowledge discard requires a GPU mirror");
-  auto& s=surface(id);publishWrites();std::fill(s.defined.begin(),s.defined.end(),0);
+  auto& s=surface(id);publishWrites();for(auto& state:s.defined)if(state)state=2;
+}
+void CanvasSequence::requireCpu(std::uint32_t id,Surface& s,std::size_t at) {
+  if(s.defined.at(at)==2 && mirror_){
+    publishWrites();auto image=mirror_->readForCpu(id);
+    if(image.width!=s.image.width || image.height!=s.image.height || image.pixels.size()!=s.image.pixels.size() ||
+       std::any_of(image.pixels.begin(),image.pixels.end(),[](auto p){return p>65535;}))
+      throw std::runtime_error("Invalid native CPU reader snapshot");
+    // Only previously established GPU history can become CPU authority.
+    // Reading allocation bytes must never define an unknown pixel.
+    for(std::size_t i=0;i<s.defined.size();++i)if(s.defined[i]){s.image.pixels[i]=image.pixels[i];s.defined[i]=1;}
+  }
+  known(s.defined,at);
 }
 std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
     const std::function<std::size_t(MinimapPlane &)> &draw, bool tracedServices) {
@@ -242,7 +254,7 @@ void CanvasSequence::panel(std::uint32_t id, Rect r, unsigned mode,
       }
     }
   };
-  visit([&](int x, int y, int) { known(s.defined, slot(s.image, x, y)); });
+  visit([&](int x, int y, int) { requireCpu(id,s,slot(s.image,x,y)); });
   auto pixel = [&](int x, int y, int sign) {
     const auto at = slot(s.image, x, y);
     const auto old = s.image.pixels[at];
@@ -286,7 +298,7 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
   // Validate every sampled source before any destination write. Same-ID copies
   // retain the source snapshot, matching ordered owned-storage copy semantics.
   for(int row=0;row<height;++row){const auto at=slot(original.image,sx,sy+row);const auto begin=original.defined.begin()+at;
-    if(!mirror_ && std::find(begin,begin+width,0)!=begin+width)throw std::runtime_error("Native producer reads undefined canvas pixels");}
+    if(!mirror_ && std::any_of(begin,begin+width,[](auto state){return state!=1;}))throw std::runtime_error("Native producer reads undefined canvas pixels");}
   // Distinct IDs own distinct vectors. Only same-ID copies need a snapshot;
   // preflight above still completes before allocation or any destination write.
   if (mirror_) { publishWrites(); mirror_->copy(source, destination, {sx, sy, sx+width, sy+height}, dx, dy, key); }
@@ -294,7 +306,7 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
   const auto& src=snapshot?*snapshot:original;
   for(int row=0;row<height;++row){const auto from=slot(src.image,sx,sy+row),to=slot(dst.image,dx,dy+row);
     if(!key){std::copy_n(src.image.pixels.begin()+from,width,dst.image.pixels.begin()+to);std::copy_n(src.defined.begin()+from,width,dst.defined.begin()+to);}
-    else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(!src.defined[from+col]){dst.defined[to+col]=0;}else if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
+    else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(src.defined[from+col]!=1){dst.defined[to+col]=src.defined[from+col]&&dst.defined[to+col]?2:0;}else if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
   }
 }
 void CanvasSequence::update(std::uint32_t id, int x, int y,
@@ -429,7 +441,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
       auto *defined = s.defined.data() + slot(s.image, int(left + firstX), int(top + row));
       const auto *mask = f.opaqueMask.data() + std::size_t(row) * f.width + firstX;
       for (std::size_t i = 0; i < count; ++i)
-        defined[i] &= static_cast<unsigned char>(mask[i] == 0);
+        if(mask[i])defined[i]=0;
     }
     return;
   }
@@ -532,7 +544,7 @@ void CanvasSequence::publishWrites() {
     bool full=true;
     for(int y=top;y<bottom && full;++y) {
       auto begin=s.defined.begin()+slot(s.image,left,y);
-      full=std::find(begin,begin+right-left,0)==begin+right-left;
+      full=std::all_of(begin,begin+right-left,[](auto state){return state==1;});
     }
     if(full) upload(left,top,right-left,bottom-top);
     else {
@@ -541,7 +553,7 @@ void CanvasSequence::publishWrites() {
       std::vector<std::uint8_t> coverage(patch.pixels.size());
       for(int y=top;y<bottom;++y)for(int x=s.dirtyFirst[y];x<s.dirtyEnd[y];++x) {
         const auto from=slot(s.image,x,y),to=std::size_t(y-top)*patch.width+x-left;
-        if(s.defined[from]){patch.pixels[to]=s.image.pixels[from];coverage[to]=1;}
+        if(s.defined[from]==1){patch.pixels[to]=s.image.pixels[from];coverage[to]=1;}
       }
       mirror_->updateMasked(entry.first,left,top,patch,coverage);
     }
@@ -554,7 +566,7 @@ Image CanvasSequence::read(std::uint32_t id) const {
   if (it == surfaces_.end())
     throw std::out_of_range("Unknown native producer canvas");
   const auto &s = it->second;
-  if (std::find(s.defined.begin(), s.defined.end(), 0) != s.defined.end())
+  if (std::any_of(s.defined.begin(), s.defined.end(), [](auto state){return state!=1;}))
     throw std::runtime_error(
         "Native producer canvas completion remains undefined");
   return s.image;

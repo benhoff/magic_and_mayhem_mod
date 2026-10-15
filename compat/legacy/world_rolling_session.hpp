@@ -29,6 +29,7 @@ public:
   std::uint64_t retainedImageCaptures() const { return world_.retainedImageCaptures(); }
   render::Image diagnosticReadResident(render::GlBlitter &);
   std::uint64_t worldReadbacks() const { return world_.readbacks(); }
+  std::uint64_t cpuReaderSnapshots() const { return mirror_?mirror_->cpuReaderSnapshots():0; }
   render::GpuFrame presentGpu() {
     if (failed_ || !completed_)
       throw std::logic_error("Rolling GPU presentation before completion");

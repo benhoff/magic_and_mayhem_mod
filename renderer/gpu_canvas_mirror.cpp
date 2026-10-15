@@ -9,6 +9,9 @@ GpuCanvasMirror::~GpuCanvasMirror() {
 SurfaceId GpuCanvasMirror::surface(std::uint32_t id) const {
   return surfaces_.at(id);
 }
+Image GpuCanvasMirror::readForCpu(std::uint32_t id) {
+  auto image=renderer_.read(surface(id));++cpuReaderSnapshots_;return image;
+}
 void GpuCanvasMirror::create(std::uint32_t id, int width, int height) {
   if (!id || surfaces_.count(id))
     throw std::invalid_argument("Duplicate GPU producer canvas");

@@ -316,3 +316,16 @@ casting/combat, semantic COM teardown or arbitrary-gameplay claim.
 
 
 Owned graphics is now the default for native menus plus native command presentation. `--native-draw` remains an explicit smoke-test alias; `--legacy-directdraw` is an explicit diagnostic control and does not prove retirement. The default smoke prepares its registered prospective behavior/scenario/source declaration before building or launching when `--claims` is omitted. Hardware validation uses `--hardware`, owns a private NVIDIA display, refuses software fallback, and requires the actual Qt renderer identity to survive normal Quit. Normal Quit and gameplay survival remain separate checks: the first default difficulty3 journey completed casting/combat/portrait but died before the complete flow and is retained as a failed run.
+
+
+## Native Save/Load journey
+
+Use `--save-load --difficulty 1 --resident-world --other-pixel-producers` with
+`--profile-resident --capture-resident` to retain the source prefix needed by
+`tools/test-native-storage-comparison.py --campaign <report.json>`. Save/Load
+requires normal original Quit and validates fresh World generations after both
+actions, original callback/resume intervals, unchanged save bytes, owned-store
+merge, explicit CPU snapshot accounting, zero forwards/refusals and balanced
+resident retirement. Apprentice is the declared scope; Initiate Escape ingress
+after Save remains a retained negative, not a passing case. See
+[the current result and reproduction](../research/runtime/native-render-save-load.md).

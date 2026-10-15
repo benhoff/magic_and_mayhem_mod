@@ -54,6 +54,7 @@ private:
   std::size_t pixels_ = 0;
   CanvasMirror *mirror_ = nullptr;
   Surface &surface(std::uint32_t);
+  void requireCpu(std::uint32_t, Surface &, std::size_t);
   void write(Surface &, std::size_t at, std::uint32_t);
   void dirty(Surface &, int x, int y, int width, int height);
 };

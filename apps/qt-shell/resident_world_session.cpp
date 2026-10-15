@@ -143,7 +143,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
                 {"native_prepare_ms",world_->profile().prepareMs},{"native_submit_cpu_ms",world_->profile().submitMs},
                 {"world_rasters",int(handoff.batch.header[14])},{"source_bytes",double(block.source.size())}});
             else if(stageProfile_)++samplesDropped_;
-            if(world_->completed()!=block.generation || world_->worldReadbacks() || renderer_->stats().nativeReadbacks || renderer_->stats().rgbaReadbacks)
+            if(world_->completed()!=block.generation || world_->worldReadbacks() || renderer_->stats().nativeReadbacks!=world_->cpuReaderSnapshots() || renderer_->stats().rgbaReadbacks)
                 throw std::runtime_error("Resident World completion/readback contract");
             Pending pending{std::move(block),std::move(handoff),std::move(frame),false,false,{}};pending.deadline.start();pending_=std::move(pending);
             std::vector<std::uint8_t> ack(MNM_CONT_ACK_BYTES);
@@ -188,7 +188,7 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         if(frameTrace_){
             lastSourceTiming_={std::chrono::duration<double,std::milli>(sourceTakenAt-source.readyAt).count(),std::chrono::duration<double,std::milli>(source.readyAt-source.acquiredAt).count(),source.decodeMs,source.prepareMs,world_->producerWorkMs(),world_->profile().prepareMs,world_->profile().submitMs,source.ticks};
         }
-        if(world_->completed()!=source.generation || world_->worldReadbacks() || renderer_->stats().nativeReadbacks || renderer_->stats().rgbaReadbacks)
+        if(world_->completed()!=source.generation || world_->worldReadbacks() || renderer_->stats().nativeReadbacks!=world_->cpuReaderSnapshots() || renderer_->stats().rgbaReadbacks)
             throw std::runtime_error("Owned native completion/readback contract");
         decodeMs_+=source.decodeMs;handoffMs_+=source.prepareMs;producerMs_+=world_->producerWorkMs();prepareMs_+=world_->profile().prepareMs;submitMs_+=world_->profile().submitMs;++profiled_;
         if(source.generation==64)firstTick_=source.ticks[0];
@@ -300,9 +300,10 @@ mnm::render::GpuFrame ResidentWorldSession::import(std::uint64_t generation,std:
 }
 QJsonObject ResidentWorldSession::report() const {
     const auto stats=asynchronous_?producerStats_:renderer_?renderer_->stats():mnm::render::RenderStats{};
+    const auto cpuSnapshots=!asynchronous_&&world_?world_->cpuReaderSnapshots():0;
     const auto owned=snapshotQueue_?snapshotQueue_->stats():WorldSnapshotQueue::Stats{};
     QJsonObject result{{"completed",QString::number(completed_)},{"imports",QString::number(imports_)},{"verified_returns",QString::number(returns_)},{"rasters",QString::number(rasters_)},
-        {"world_readbacks",double(asynchronous_?producerReadbacks_:world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
+        {"world_readbacks",double(asynchronous_?producerReadbacks_:world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks-cpuSnapshots)},{"explicit_producer_cpu_readbacks",double(cpuSnapshots)},{"total_native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
         {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)||bool(ownedPending_)||(independent_&&owned.outstanding!=0)},{"normal_quit_retired",normalQuitRetired_},{"renderer",asynchronous_?producerDriver_:renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},
         {"draw_calls",QString::number(stats.drawCalls)},{"draw_instances",QString::number(stats.drawInstances)},
         {"texture_upload_calls",QString::number(stats.textureUploadCalls)},{"texture_upload_bytes",QString::number(stats.textureUploadBytes)},

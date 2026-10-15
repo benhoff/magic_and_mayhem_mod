@@ -14,5 +14,7 @@ public:
                             const std::vector<std::uint8_t>&) = 0;
   virtual void copy(std::uint32_t source, std::uint32_t destination, Rect,
                     int x, int y, std::optional<std::uint16_t> key) = 0;
+  // Explicit CPU reader synchronization; ordinary World delivery does not use it.
+  virtual Image readForCpu(std::uint32_t) { throw std::logic_error("Native mirror cannot materialize CPU history"); }
 };
 }

@@ -71658,6 +71658,144 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-render-save-load",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Resident native campaign Save/Load and fresh World ownership",
+      "scope": "Bounded Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-save-load.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign_storage.py",
+        "runtime/render/bridge.c",
+        "runtime/menu/mini.h",
+        "tools/build-render-bridge.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/menu-storage-input.py",
+        "tests/test-native-render-storage.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/menu_save_store.py",
+        "apps/qt-shell/resident_world_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp"
+      ],
+      "evidence": [
+        "HOST.native-storage.panel-refusal-20261015",
+        "HOST.native-storage.source-history-refusal-20261015",
+        "HOST.native-storage.initiate-input-refusal-20261015",
+        "HOST.native-storage.save-load-passed-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.native-producer-cpu-reader",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Explicit native producer panel CPU history",
+      "scope": "Resident source composition preserves CPU/GPU/undefined pixel authority across copies. Destination-reading panels may synchronize established native GPU history through an explicit counted snapshot after publishing sparse CPU writes. Unknown pixels remain undefined, GPU-only cached bytes cannot upload or classify keyed copies, and ordinary World readback remains zero. Other CPU readers and async resident readers excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-save-load.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "apps/qt-shell/resident_world_session.cpp"
+      ],
+      "tests": [
+        "tests/canvas-native-reader-test.cpp",
+        "tools/test-native-campaign.py",
+        "tools/test-native-storage-comparison.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-raster-reference.hpp"
+      ],
+      "evidence": [
+        "NP.native-storage.cpu-reader-controls-20261015",
+        "NP.native-storage.cpu-reader-reviewed-controls-20261015",
+        "NR.native-storage.world-original-20261015",
+        "NR.native-storage.world-reviewed-original-20261015",
+        "NR.native-storage.world-replay-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.native-storage-world-comparison",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Original raster comparison around native Save/Load",
+      "scope": "Replay the exact contiguous captured native World source prefix through pre-save/post-save/post-load checkpoints. Independent private pinned original raster/primitive execution starts from a diagnostic native entry canvas and checks final World words and defined caller AX. Two authored original baselines identify baseline-insensitive pixels; equality for those two baselines alone is not a general independence proof. Oracle output never enters native rendering. Inherited native history, presented UI/session equality and complete save-state equivalence remain excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-save-load.md"
+      ],
+      "implementation": [
+        "tests/resident-storage-replay.cpp",
+        "tests/resident-storage-reference.cpp"
+      ],
+      "tests": [
+        "tools/test-native-storage-comparison.py",
+        "tests/test-native-render-storage.py",
+        "tests/test-native-storage-comparison.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-raster-reference.hpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "NR.native-storage.world-original-20261015",
+        "NR.native-storage.world-reviewed-original-20261015",
+        "NR.native-storage.world-replay-20261015",
+        "NP.native-storage.cpu-reader-controls-20261015",
+        "NP.native-storage.cpu-reader-reviewed-controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -142158,6 +142296,309 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-storage.panel-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Original Mini Save entry reaches a native bevel reader of stale World CPU history; terminal exit124 before native mutation or original fallback.",
+      "record": "research/runtime/native-storage-panel-refusal-20261015.json",
+      "sha256": "fe514e49f794d1d78aad46a5f14e97d7af92df5adc1a91368f28cf5bb8e3fee3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-storage.source-history-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Storage boundary synchronization admits original Save entry; resident source compositor then refuses destination-dependent panel history after discarded CPU World authority.",
+      "record": "research/runtime/native-storage-source-history-refusal-20261015.json",
+      "sha256": "5d3844e7b8ff97654f791b15eb5b523489fc9078a643f0456efa33f098cd4610",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-storage.initiate-input-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Initiate Save and fresh native World resume succeed with zero producer forwards/history refusals, but repeated physically delivered Escape does not reopen Mini. Input channel readiness verified; cause unresolved, not attributed to rendering or tutorial semantics.",
+      "record": "research/runtime/native-storage-initiate-input-refusal-20261015.json",
+      "sha256": "7ab36649b087d37344dc2f052fb757ad76d1d37878c333d255bcf9150b15fdd8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-storage.save-load-passed-20261015",
+      "kind": "live_observation",
+      "scope": "Apprentice Celtic1 same-session native Save/resume/Load/resume/normal Quit: 310 balanced native Worlds, 3472 optional native calls, zero forwards/history refusals, unchanged original save and owned-store persistence. Two explicit producer panel snapshots and22 ordered process CPU reads remain separate from zero ordinary World readbacks. Same logical World canvas2; no new-canvas or complete-session equivalence.",
+      "record": "research/runtime/native-storage-save-load-passed-20261015.json",
+      "sha256": "8ca34e023922eb2831a3ced9e6978ffc9798113902c3d910d09c0df531a77188",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/storage/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        },
+        {
+          "pointer": "/resident_world/explicit_producer_cpu_readbacks",
+          "equals": 2
+        },
+        {
+          "pointer": "/resident_world/native_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.native-storage.world-original-20261015",
+      "kind": "isolated_original",
+      "scope": "Native retained source replay through257Worlds, three original raster/primitive checkpoint comparisons at generations50/126/257: 1440000WORDs and4542raster caller AX checks per three-checkpoint reference set, zero mismatches. All480000words at each checkpoint also match both authored zero/0x5aa5 original baselines; this is bounded World proof, not complete presented-session or general baseline independence.",
+      "record": "research/runtime/native-storage-world-original-20261015.json",
+      "sha256": "2ef40fb56b4dde7aa299d5cebdc4552d8f847fa365251ba626ee516c8f442cdf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_binary_sha256"
+    },
+    {
+      "id": "NP.native-storage.cpu-reader-controls-20261015",
+      "kind": "native_integration",
+      "scope": "Actual GL sparse CPU writes, GPU keyed copy, explicit native CPU materialization, unknown-pixel refusal and final zero owners; existing canvas-sequence controls also pass. No original/API equivalence or asynchronous reader support.",
+      "record": "research/runtime/native-storage-world-original-20261015.json",
+      "sha256": "2ef40fb56b4dde7aa299d5cebdc4552d8f847fa365251ba626ee516c8f442cdf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-storage.world-reviewed-original-20261015",
+      "kind": "isolated_original",
+      "scope": "Current 110-compiler-input-bound original raster/primitive comparisons at native generations50/126/257;1440000WORDs and4542caller AX checks per reference set, zero mismatches. Two authored original baselines also match all selected words; World-only, no full presented-session or general history-independence claim.",
+      "record": "research/runtime/native-storage-world-reviewed-original-20261015.json",
+      "sha256": "e4ea7f7b939667381e10367e797ecdf9d0329e6a5782312d67d13831d47c59b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/replay/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_binary_sha256"
+    },
+    {
+      "id": "NR.native-storage.world-replay-20261015",
+      "kind": "native_integration",
+      "scope": "Source-only native resident replay through257Worlds, three retained World checkpoints and zero final surfaces; current independent original execution recorded separately in this same immutable report, not complete presented-session equivalence.",
+      "record": "research/runtime/native-storage-world-reviewed-original-20261015.json",
+      "sha256": "e4ea7f7b939667381e10367e797ecdf9d0329e6a5782312d67d13831d47c59b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/replay/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NP.native-storage.cpu-reader-reviewed-controls-20261015",
+      "kind": "native_integration",
+      "scope": "Current native CPU-reader actual GL controls plus canvas-sequence regression, source/compiler provenance and fresh prospective policy/scenario binding; zero final test owners, no original driver equivalence or async reader support.",
+      "record": "research/runtime/native-storage-world-reviewed-original-20261015.json",
+      "sha256": "e4ea7f7b939667381e10367e797ecdf9d0329e6a5782312d67d13831d47c59b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_reader_controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/replay/remaining_surfaces",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -158346,6 +158787,65 @@
       "evidence": [
         "NP.dc-copy-hook-retirement.controls-20261015"
       ]
+    },
+    {
+      "id": "HOST.native-render-save-load.campaign",
+      "scope": "Bounded Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-render-save-load"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/menu-storage-input.py",
+        "tests/test-native-render-storage.py"
+      ],
+      "evidence": [
+        "HOST.native-storage.save-load-passed-20261015",
+        "HOST.native-storage.panel-refusal-20261015",
+        "HOST.native-storage.source-history-refusal-20261015",
+        "HOST.native-storage.initiate-input-refusal-20261015"
+      ]
+    },
+    {
+      "id": "NP.native-producer-cpu-reader.controls",
+      "scope": "Resident source composition preserves CPU/GPU/undefined pixel authority across copies. Destination-reading panels may synchronize established native GPU history through an explicit counted snapshot after publishing sparse CPU writes. Unknown pixels remain undefined, GPU-only cached bytes cannot upload or classify keyed copies, and ordinary World readback remains zero. Other CPU readers and async resident readers excluded.",
+      "level": "headless",
+      "behaviors": [
+        "NP.native-producer-cpu-reader"
+      ],
+      "tests": [
+        "tests/canvas-native-reader-test.cpp",
+        "tools/test-native-campaign.py",
+        "tools/test-native-storage-comparison.py"
+      ],
+      "evidence": [
+        "NP.native-storage.cpu-reader-controls-20261015",
+        "NP.native-storage.cpu-reader-reviewed-controls-20261015",
+        "NR.native-storage.world-original-20261015",
+        "NR.native-storage.world-reviewed-original-20261015",
+        "NR.native-storage.world-replay-20261015"
+      ]
+    },
+    {
+      "id": "NR.native-storage-world-comparison.captured",
+      "scope": "Replay the exact contiguous captured native World source prefix through pre-save/post-save/post-load checkpoints. Independent private pinned original raster/primitive execution starts from a diagnostic native entry canvas and checks final World words and defined caller AX. Two authored original baselines identify baseline-insensitive pixels; equality for those two baselines alone is not a general independence proof. Oracle output never enters native rendering. Inherited native history, presented UI/session equality and complete save-state equivalence remain excluded.",
+      "level": "headless",
+      "behaviors": [
+        "NR.native-storage-world-comparison"
+      ],
+      "tests": [
+        "tools/test-native-storage-comparison.py",
+        "tests/test-native-render-storage.py",
+        "tests/test-native-storage-comparison.py"
+      ],
+      "evidence": [
+        "NR.native-storage.world-original-20261015",
+        "NR.native-storage.world-reviewed-original-20261015",
+        "NR.native-storage.world-replay-20261015",
+        "NP.native-storage.cpu-reader-controls-20261015",
+        "NP.native-storage.cpu-reader-reviewed-controls-20261015"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -158953,8 +159453,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-pixel-route-scenarios-final-20261015.json",
-    "sha256": "20ff58c1f6a92c560c69ce51672076c42f969578f8f92b9dcfc45ea7076e6629"
+    "path": "research/runtime/coverage/source-index-native-storage-20261015.json",
+    "sha256": "880abcdcc9a5070d0c7b3d2eff289590220e176537e71e22ba7edd3412057590"
   },
   "claim_bindings_required": true
 }

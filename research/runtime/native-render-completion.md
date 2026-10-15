@@ -125,3 +125,14 @@ The subsequent reader-routing change is documented in
 [native-history-readers.md](native-history-readers.md). Its evidence supersedes
 the first combined launch's reader identification and raster-admission limitation;
 historical reports and their source fingerprints remain unchanged.
+
+
+## Subsequent native storage journey
+
+[Native Save/Load](native-render-save-load.md) now passes the bounded Apprentice
+journey and three independently executed original World checkpoints. Storage
+entry explicitly synchronizes native CPU history before original panel Lock;
+the source compositor separately counts panel GPU snapshots. These fix observed
+failures beyond the earlier normal-Quit journey. Initiate post-Save Mini ingress,
+changed-canvas handoff, arbitrary readers, actual-game restart and complete
+presented-session/hardware acceptance remain open.
