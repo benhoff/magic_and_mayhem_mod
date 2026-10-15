@@ -6,6 +6,7 @@
 #include "../../reconstruction/creature-ai/environment_pass.hpp"
 #include "../../reconstruction/pathfinding/route_search.hpp"
 #include "../../reconstruction/creature-ai/regional_navigation.hpp"
+#include "../../reconstruction/creature-ai/regional_maintenance.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -32,6 +33,10 @@ struct NativeSearchContinuation {
   // build-specific wire projection, not a host C++ object layout/pointer.
   std::array<std::uint8_t,0x269> context{};
 };
+struct NativeRegionalMaintenance {
+  std::array<reconstruction::combat::RegionalCreatureShape,28> shapes;
+  reconstruction::combat::NavigationMaintenance state;
+};
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;
   std::array<std::uint32_t,2> profileStamp{};
@@ -49,5 +54,6 @@ struct NativeProviderState {
   std::vector<reconstruction::combat::NavigationRegion> regions;
   reconstruction::combat::RegionalSearchState regionalSearch;
   std::array<unsigned,2> regionalRiskPowers{};
+  std::optional<NativeRegionalMaintenance> regionalMaintenance;
 };
 } // namespace mnm::command_session

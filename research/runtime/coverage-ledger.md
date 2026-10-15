@@ -9584,3 +9584,49 @@ AI.regional-displacement-tail and NP.regional-graph-loading. Historical evidence
 is retained without refreshed hashes or broader equivalence claims. The reviewed
 source census is coverage/source-index-regional-graph-20261015-v2.json; earlier
 intermediate snapshots and raw development/discovery results remain preserved.
+
+## NS74 — Dynamic regional connection maintenance
+
+NS74 recovers the runtime queue behind 540140/5404a0/540820/5416d0,
+4f49e0/540430 change signatures and 53c070 local reconnection. 53f710 is confirmed
+to be a startup finalizer, not the general runtime terrain-change callback;
+its authored boundary placement/reindexing remains a separate partial contract.
+Native terrain edits stage cell kind/flags, classify/enqueue changes and retain
+unfinished repairs through optional CMD1/v8 state. Normal native frames advance
+one repair slice. Actor paths and regional searches are retained across repairs;
+a failed order does not acquire an invented automatic-retry policy.
+
+The immutable regional-maintenance-bound-ns74-20261015.json records
+198,447,618 original/native helper checks and 7,495 maintenance slices across
+four boundary 0/6/partition fixtures. Eight paired 2048-tick journeys pass
+16,384 ticks, including 32 edit events, 10 overlaps with retained actor
+routes, 836 connection-change frames and successful goal occupancy in every
+journey. The declared 1536-tick move command tests repaired graph use after a
+failed move; goal-frame counts are not automatic retries or distinct arrivals.
+Native 64-bit and ASan/UBSan/LSan64 agree through 2,112 journey restores
+(2048 in-process/64 fresh-process steps), plus helper continuation round-trips.
+A paused independent regional search and retained actor path survive repairs.
+Queue overflow/wrap/merge/decrease, invalid batch rollback, malformed state,
+older-wire admission and CLI edited-checkpoint/refusal cases pass. Eleven static
+graph fixtures, 258,440 regional helper checks, five 1024-tick generated static
+journeys, both five-test command suites and both installed encounter regressions
+pass. All 254 declared sources, 246 compiler/configure inputs, installed
+inputs and 2927 immutable originals remain unchanged; original text is guarded.
+
+Fresh scope-bound validation belongs only to AI.regional-graph-maintenance,
+NP.native-terrain-edits and NP.regional-maintenance-checkpoint. The reviewed
+census is coverage/source-index-regional-maintenance-20261015-v2.json (2453 files,
+2259 linked). Historical NS72/NS73 hashes/statuses remain intact and independently
+stale where shared sources changed. The incoming f00213b9..45f64f41 range reviews
+28 file/457 behavior transitions with exact receipts and no unresolved gaps;
+this is not a past gate pass or new execution. Three category dispatch tables
+and the authored startup orientation table remain incomplete, retaining their
+unmapped categories/defaults and all prior binary unknown ranges/flows.
+
+The interrupted v1 run and superseded fixture source are retained separately;
+only v2 supplies execution proof. Validation survived a daemon restart, and the
+existing process group received a replacement 100 GiB free-space monitor. Storage
+and recovery records remain under the main checkout's working/retention. Full
+World scheduling, authored startup finalization, unused helper category 3, nonzero
+probe adjustment, general species/forms, World danger, campaign and live
+replacement remain outside this milestone. See regional-graph-maintenance.md.

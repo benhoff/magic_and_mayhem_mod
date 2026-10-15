@@ -1,12 +1,12 @@
-# Native command continuation versions1–7
+# Native command continuation versions 1–8
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version7 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version8 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
-values reject overflow. Booleans are exactly0 or1. An optional is a0/1 word and,
+values reject overflow. Booleans are exactly0 or 1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
 no length and retains declaration order. No padding, address, native pointer,
 function or C++ object representation is written.
@@ -16,7 +16,7 @@ generation vector, scheduler, scheduler environment, seed, backend byte vector. 
 Nested field order is explicitly listed by the `fields` functions in
 [codec.cpp](../../apps/command-session/codec.cpp); these are the explicit schema,
 not automatic host layout reflection. Changes require an explicit version/migration
-review. Arrays include all AI coefficient tables and42 inventory entries; orders
+review. Arrays include all AI coefficient tables and 42 inventory entries; orders
 include serial, kind, destination, target, optional effect token, reference
 position and repeat flag. Backend bytes are owned continuation, not handles to
 external mutable services. Transient operation-local recursion guards are not
@@ -82,17 +82,17 @@ Original-save rebinding and dynamic actor lifecycle remain separate.
 
 Version4 preserves the complete version3 prefix and appends a presence boolean.
 If present, explicit little-endian words encode the immutable profile stamp,
-sequence/tick/alternate flags, original250-word RNG and cursors, actor/body/overlay/
+sequence/tick/alternate flags, original 250-word RNG and cursors, actor/body/overlay/
 auxiliary and eight World ANI channels, terrain/occupancy cells, open searches and
 node records, known packed route context bytes, segment initialization and
 environment pass state. ANI record positions are checked32-bit ordinals rather
 than host pointers. The profile stamp is two32-bit words on both i386 and amd64;
 execution records separately retain SHA-256 provenance. It is not a security hash.
 
-Readers admit versions1–3 with absent native state. A profile requiring native
+Readers admit versions 1–3 with absent native state. A profile requiring native
 providers rejects such state. Explicit legacy writers reject dropping a present
 version4 payload. Fixed actor roots, channel bounds, RNG cursors and occupancy
-references are checked; the1MiB envelope and65536-cell/search bounds are native
+references are checked; the 1MiB envelope and 65536-cell/search bounds are native
 admission policies, not original save compatibility or exhaustive campaign scale
 validation. This schema originally persisted per-actor searches with multimap
 ordering and node records. The version5 reader's migration restrictions follow.
@@ -109,7 +109,7 @@ marker69c words, absent or exactly the actor count. Region-enabled and displacem
 continuations remain unsupported by this native binding and refuse validation.
 
 Shared request active and scheduler continuation represent the same original
-word at6df184. The binding synchronizes them at scheduling boundaries; conflicting
+word at 6df184. The binding synchronizes them at scheduling boundaries; conflicting
 saved values refuse validation.
 
 The existing search vector retains its actor-count shape; slot0 now holds the
@@ -135,7 +135,7 @@ is now admitted as0/1. Owner roots match the actor count and references remain i
 range; shared active still aliases scheduler continuation. Native failed-frame
 publication is atomic, including temporary displacement search and owner state.
 
-Version5 reads seed zero owner entries. Writes to versions4/5 refuse a nonzero
+Version5 reads seed zero owner entries. Writes to versions 4/5 refuse a nonzero
 owner or displacement continuation rather than discard it. Existing version4
 search/motion restrictions remain; no old heap pointer is rebound. Native version6
 is independent of original game saves.
@@ -152,7 +152,7 @@ Version7 appends owned regional navigation after the version6 provider prefix:
 3. Two unsigned danger power inputs, corresponding to the explicitly supplied
    original regional danger coefficients.
 
-Each regional vector is bounded to4096 entries, subject to the independent total
+Each regional vector is bounded to 4096 entries, subject to the independent total
 one-MiB wire bound. Nonzero edge costs must be positive and name a region;
 positions are canonical and sorted by X. Initialized search roots, unique node
 records and open references are checked. Pending actor regional paths must name
@@ -165,3 +165,23 @@ power input. An enabled empty graph can still use the original local-routing
 fallback under v7. Failed staging or malformed restoration publishes no state.
 Graph construction/import and dynamic World danger production remain separate
 from this portable continuation policy.
+
+## CMD1 version8: regional graph maintenance (NS74)
+
+Version8 appends an optional maintenance record after the version7 provider fields.
+When present, it contains28 normalized `{height,width,movementKind}` triples;
+1345 `{node,mode,priority}` ring entries; unsigned read/write positions; signed
+active/other/stage/height/probe-budget cursors; opening/closing booleans; working
+and previous connection descriptors; and a generic probe continuation. The probe
+stores FIFO ordered `{priority,canonicalCellId}` open entries, unique cell records
+with predecessor/movement payload, best cell/heuristic and initialized flag.
+Canonical cell IDs are one-based indices into the owned terrain array.
+
+Every scalar follows the existing explicit DWORD wire encoding. No C++ layout,
+legacy pointer, tree node or borrowed geometry view is serialized. The decoder
+checks queue/cursor/domain/reference limits and the existing1MiB encoded limit.
+Older versions still decode with absent maintenance. Explicit writes of versions
+1..7 refuse a present maintenance record. Native startup retains the 28 shape
+triples needed by later repairs; an older graph is not silently reconfigured.
+See [regional graph maintenance](../runtime/regional-graph-maintenance.md) for
+recovered semantics, native edit policies and execution boundaries.

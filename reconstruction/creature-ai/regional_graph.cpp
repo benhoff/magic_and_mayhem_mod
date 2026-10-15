@@ -416,4 +416,38 @@ void buildNavigationConnections(
       }
     }
 }
+void reconnectNavigationNode(std::vector<NavigationRegion> &g, unsigned index,
+                             const std::array<RegionalCreatureShape, 28> &types,
+                             const RegionalGraphServices &s) {
+  const auto a = g.at(index).position;
+  for (unsigned j = 0; j < g.size(); ++j) {
+    if (j == index)
+      continue;
+    const auto b = g[j].position;
+    const int x = std::abs(wrapped_difference(a.x, b.x, s.dimensions.x));
+    const int y = std::abs(wrapped_difference(a.y, b.y, s.dimensions.y));
+    const int distance = (2 * std::max(x, y) + std::min(x, y)) / 2;
+    const auto p = parameters(1, 1);
+    if (distance >= 9 || (distance > 5 && s.legal(a, p) != s.legal(b, p)))
+      continue;
+    auto e = connection(a, b, types, int(j), 0, s);
+    if (!e.cost)
+      continue;
+    auto slot = [](auto &v, int to) -> RegionConnection * {
+      for (auto &c : v.connections)
+        if (c.cost && c.destination == to)
+          return &c;
+      for (auto &c : v.connections)
+        if (!c.cost)
+          return &c;
+      return nullptr;
+    };
+    auto *left = slot(g[index], int(j)), *right = slot(g[j], int(index));
+    if (left && right) {
+      *left = e;
+      e.destination = int(index);
+      *right = e;
+    }
+  }
+}
 } // namespace mnm::reconstruction::combat

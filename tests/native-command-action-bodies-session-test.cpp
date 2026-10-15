@@ -121,7 +121,7 @@ int main()try {
   commands.dispatch(a);a.ai.motion=1;commands.transition(a,6);
   need(a.ai.pending==6&&staged.bindings[0]==m::CommandBehaviorBinding::none,"deferred behavior changed callback");
   a.ai.motion=0;commands.transition(a,6);need(staged.bindings[0]==m::CommandBehaviorBinding::state6,"special binding not installed");
-  auto bytes=command_session::encode(seed);need(bytes[4]==7,"full action wire version missing");
+  auto bytes=command_session::encode(seed);need(bytes[4]==8,"full action wire version missing");
   auto simple=initial();auto v2=command_session::encode(simple,2);
   auto old=command_session::decode(v2);need(old.actions.motion.empty()&&!old.originalBehaviorBindings,"v2 migration invented action state");
   auto missing=seed;missing.actions={};auto wrong=s.world().state();wrong.systems=command_session::encode(missing);

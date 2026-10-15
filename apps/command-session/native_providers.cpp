@@ -1,6 +1,7 @@
 #include "native_geometry.hpp"
 #include "native_route.hpp"
 #include "native_regional.hpp"
+#include "native_regional_graph.hpp"
 #include "../../reconstruction/creature-ai/friendly_displacement.hpp"
 #include "../../reconstruction/creature-ai/cached_attack.hpp"
 #include "../../reconstruction/creature-ai/actor_route_request.hpp"
@@ -298,6 +299,7 @@ public:
     // Scheduling may clear it after a non-yielding or removed actor.
     c_.native.route.active=c_.scheduler.continuation?1u:0u;
     model::creatureEnvironmentPass(c_.world,c_.native.environment,p_->environment,{[this](const auto &,model::Cell p){auto point=normalized(p);const auto d=c_.world.dimensions;auto kind=c_.native.cells.at((std::size_t(point.z)*d.y+point.y)*d.x+point.x).kind;return kind&&(p_->terrain.at(kind).flags_b0&2);},fx_.maintenance.health});
+    maintainNativeRegionalGraph(c_, *p_);
     return {{{0,c_.generations[0]},"native-creature-frame",{},std::int32_t(c_.native.tick)}};
   }
 };

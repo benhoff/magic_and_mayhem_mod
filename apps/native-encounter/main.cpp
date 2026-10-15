@@ -69,10 +69,31 @@ int main(int argc, char **argv) try {
     result(s);
     return 0;
   }
+  if (argc == 10 && std::string(argv[1]) == "edit-terrain") {
+    auto saved = game::readSnapshot(argv[2]);
+    auto p = encounter::decodeInputs(saved.campaign);
+    game::World world(0);
+    world.restore(std::move(saved));
+    game::CreatureRuleSession s(std::move(world), encounter::runtime(p));
+    const auto kind = number(argv[6]), mask = number(argv[7]),
+               value = number(argv[8]);
+    if (kind > 65535 || mask > 65535 || value > 65535)
+      throw std::invalid_argument("terrain edit word bound");
+    encounter::editTerrain(
+        s, p,
+        {{{int(number(argv[3])), int(number(argv[4])), int(number(argv[5]))},
+          std::uint16_t(kind),
+          std::uint16_t(mask),
+          std::uint16_t(value)}});
+    game::writeSnapshot(argv[9], s.world().state());
+    result(s);
+    return 0;
+  }
   std::cerr << "Usage: native-encounter run|run-regional INSTALL X Y WIDTH "
                "HEIGHT SEED "
                "TICKS NEW_SNAPSHOT\n       native-encounter resume SNAPSHOT "
-               "TICKS NEW_SNAPSHOT\n";
+               "TICKS NEW_SNAPSHOT\n       native-encounter edit-terrain "
+               "SNAPSHOT X Y Z KIND MASK VALUE NEW_SNAPSHOT\n";
   return 2;
 } catch (const std::exception &e) {
   std::cerr << e.what() << '\n';

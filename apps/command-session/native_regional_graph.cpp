@@ -43,7 +43,8 @@ nativeRegionalGraphServices(Continuation &c, const NativeCreatureProfile &p,
            return r::test_movement(a, b, v, category, record, h);
          }});
   };
-  s.route = [h](auto from, auto to, const auto &parameters, int &budget) {
+  s.resumeRoute = [h](auto from, auto to, const auto &parameters, int &budget,
+                      bool reset, model::NavigationProbeState &saved) {
     const auto d = h.dimensions;
     r::NeighborHelpers n;
     n.dimensions = d;
@@ -75,14 +76,34 @@ nativeRegionalGraphServices(Continuation &c, const NativeCreatureProfile &p,
     const auto start = xyz(from);
     std::memcpy(reinterpret_cast<unsigned char *>(&object) + 8, &start, 12);
     r::RouteContextPrefix context{};
-    context.unknown_route_flag = 1;
+    context.unknown_route_flag = reset ? 1 : 0;
     r::SearchState state;
+    state.best_node = saved.best;
+    state.best_heuristic = saved.heuristic;
+    state.initialized = saved.initialized;
+    for (const auto &v : saved.open)
+      state.open.emplace(v.priority, v.node);
+    for (const auto &v : saved.records)
+      state.records.emplace(v.node, v.record);
     auto result =
         r::route_search(context, object, 0, xyz(to), budget, state, world);
+    saved = {};
+    saved.best = state.best_node;
+    saved.heuristic = state.best_heuristic;
+    saved.initialized = state.initialized;
+    for (const auto &v : state.open)
+      saved.open.push_back({v.first, v.second});
+    for (const auto &v : state.records)
+      saved.records.push_back({v.first, v.second});
     std::vector<model::Cell> path;
     for (auto node : result.path)
       path.push_back(cell(n.coordinates(node)));
     return path;
+  };
+  s.route = [search = s.resumeRoute](auto from, auto to, const auto &parameters,
+                                     int &budget) {
+    model::NavigationProbeState state;
+    return search(from, to, parameters, budget, true, state);
   };
   return s;
 }
@@ -90,6 +111,10 @@ void prepareNativeRegionalGraph(
     Continuation &c, const NativeCreatureProfile &p,
     const std::array<model::RegionalCreatureShape, 28> &types,
     unsigned capacity) {
+  for (const auto &shape : types)
+    if (shape.height < 1 || shape.height > 5 || shape.width < 1 ||
+        shape.width > 2 || shape.movementKind < 0 || shape.movementKind > 3)
+      throw std::invalid_argument("native graph shape domain");
   if (!c.native.regions.empty() || c.native.regionalSearch.initialized)
     throw std::invalid_argument("regional construction needs an empty graph");
   for (const auto &route : c.actions.segments)
@@ -102,7 +127,59 @@ void prepareNativeRegionalGraph(
   model::sortNavigationNodes(graph, capacity, c.world.dimensions);
   model::buildNavigationConnections(graph, types, true, services);
   c.native.regions = std::move(graph);
+  c.native.regionalMaintenance.emplace();
+  c.native.regionalMaintenance->shapes = types;
   c.native.regionalSearch = {};
   c.native.route.useRegions = true;
+}
+void maintainNativeRegionalGraph(Continuation &c,
+                                 const NativeCreatureProfile &p, bool blocked) {
+  if (!c.native.regionalMaintenance)
+    return;
+  auto &m = *c.native.regionalMaintenance;
+  if (!model::navigationMaintenancePending(m.state) || blocked)
+    return;
+  NativeCreatureGeometry geometry(c, p);
+  auto services = nativeRegionalGraphServices(c, p, geometry);
+  model::maintainNavigationGraph(c.native.regions, m.shapes, m.state, false,
+                                 services);
+}
+void editNativeTerrain(Continuation &c, const NativeCreatureProfile &p,
+                       const std::vector<NativeTerrainEdit> &edits) {
+  if (!c.native.present || !c.native.regionalMaintenance ||
+      !c.native.route.useRegions)
+    throw std::invalid_argument(
+        "terrain edit requires configured native regional graph");
+  if (edits.size() > 4096)
+    throw std::invalid_argument("native terrain edit bound");
+  auto staged = c;
+  const auto d = staged.world.dimensions;
+  const auto index = [&](model::Cell q) {
+    if (q.x < 0 || q.x >= d.x || q.y < 0 || q.y >= d.y || q.z < 0 || q.z >= d.z)
+      throw std::invalid_argument("terrain edit coordinate");
+    return unsigned((q.z * d.y + q.y) * d.x + q.x);
+  };
+  const auto signature = [&](model::Cell q) {
+    NativeCreatureGeometry geometry(staged, p);
+    auto services = nativeRegionalGraphServices(staged, p, geometry);
+    return model::navigationChangeSignature(q, services);
+  };
+  for (const auto &edit : edits) {
+    const auto at = index(edit.position);
+    if (edit.kind >= p.terrain.size() || (edit.flagsMask & 3) ||
+        (edit.flagsValue & ~edit.flagsMask))
+      throw std::invalid_argument("terrain edit descriptor");
+    const auto before = signature(edit.position);
+    auto &cell = staged.native.cells.at(at);
+    cell.kind = edit.kind;
+    cell.flags =
+        std::uint16_t((cell.flags & ~edit.flagsMask) | edit.flagsValue);
+    const auto after = signature(edit.position);
+    model::enqueueNavigationRepair(staged.native.regions, edit.position,
+                                   model::navigationChangeMode(before, after),
+                                   d, staged.native.regionalMaintenance->state);
+  }
+  validate(staged);
+  c = std::move(staged);
 }
 } // namespace mnm::command_session

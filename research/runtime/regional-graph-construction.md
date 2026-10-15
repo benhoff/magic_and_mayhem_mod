@@ -157,3 +157,12 @@ configure inputs and installed artifacts stay unchanged. Original executable
 text is guarded and all2927 immutable originals verify before/after execution.
 Only the three declared NS73 contracts receive current scope-bound validation;
 broader historical contracts retain their independent pending boundaries.
+
+## Subsequent maintenance milestone
+
+[NS74 regional maintenance](regional-graph-maintenance.md) owns the separate
+runtime connection queue and portable unfinished repairs. Its discovery corrects
+the earlier53f710 lead:53f710 is a startup finalizer, while5404a0 performs runtime
+maintenance. Authored startup node adjustment/reindexing remains partial. The
+NS73 static-construction evidence above retains its historical source hashes and
+scope; it is not refreshed or extended by this cross-reference.

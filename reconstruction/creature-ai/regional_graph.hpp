@@ -4,6 +4,21 @@ namespace mnm::reconstruction::combat {
 struct RegionalCreatureShape {
   int height = 0, width = 0, movementKind = 0;
 };
+struct NavigationProbeOpen {
+  int priority = 0;
+  unsigned node = 0;
+};
+struct NavigationProbeNode {
+  unsigned node = 0;
+  NodeRecord record;
+};
+struct NavigationProbeState {
+  std::vector<NavigationProbeOpen> open;
+  std::vector<NavigationProbeNode> records;
+  unsigned best = 0;
+  int heuristic = 0;
+  bool initialized = false;
+};
 struct RegionalGraphServices {
   Extent dimensions;
   int boundary = 0;
@@ -15,6 +30,10 @@ struct RegionalGraphServices {
   std::function<std::vector<Cell>(Cell, Cell,
                                   const CreatureMovementParameters &, int &)>
       route;
+  std::function<std::vector<Cell>(Cell, Cell,
+                                  const CreatureMovementParameters &, int &,
+                                  bool, NavigationProbeState &)>
+      resumeRoute;
 };
 // Original53b600: prefer a two-cell footprint without changing selected
 // height/kind.
@@ -34,4 +53,8 @@ void buildNavigationConnections(std::vector<NavigationRegion> &,
                                 const std::array<RegionalCreatureShape, 28> &,
                                 bool wrap, const RegionalGraphServices &,
                                 int budgetAdjustment = 0);
+// 53c070: reconnect an existing node, with ground rather than kind3 admission.
+void reconnectNavigationNode(std::vector<NavigationRegion> &, unsigned,
+                             const std::array<RegionalCreatureShape, 28> &,
+                             const RegionalGraphServices &);
 } // namespace mnm::reconstruction::combat

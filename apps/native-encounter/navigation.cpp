@@ -36,4 +36,15 @@ void enableRegionalNavigation(Profile &p, unsigned capacity) {
                                  capacity);
   cs::prepareNativeContinuation(p.initial, p.native);
 }
+void editTerrain(game::CreatureRuleSession &session, const Profile &p,
+                 const std::vector<cs::NativeTerrainEdit> &edits) {
+  auto state = session.world().state();
+  auto c = cs::decode(state.systems);
+  cs::editNativeTerrain(c, p.native, edits);
+  state.systems = cs::encode(c);
+  game::World world(0);
+  world.restore(std::move(state));
+  auto staged = game::CreatureRuleSession(std::move(world), runtime(p));
+  session = std::move(staged);
+}
 } // namespace mnm::encounter

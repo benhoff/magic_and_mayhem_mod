@@ -103,3 +103,17 @@ target_compile_definitions(regional-graph-encounter-test PRIVATE MNM_GENERATED_G
 if(MNM_ENCOUNTER_ORIGINAL_REFERENCE)
  target_compile_definitions(regional-graph-encounter-test PRIVATE MNM_PAIRED_REFERENCE)
 endif()
+
+add_executable(regional-maintenance-test ../../tests/regional-maintenance-test.cpp)
+target_link_libraries(regional-maintenance-test PRIVATE mnm-native-encounter)
+target_compile_options(regional-maintenance-test PRIVATE -Wall -Wextra -Werror)
+if(MNM_ENCOUNTER_ORIGINAL_REFERENCE)
+ target_compile_definitions(regional-maintenance-test PRIVATE MNM_PAIRED_REFERENCE)
+endif()
+
+add_executable(regional-maintenance-encounter-test ../../tests/regional-maintenance-encounter-test.cpp)
+target_link_libraries(regional-maintenance-encounter-test PRIVATE mnm-native-encounter)
+target_compile_options(regional-maintenance-encounter-test PRIVATE -Wall -Wextra -Werror)
+if(MNM_ENCOUNTER_ORIGINAL_REFERENCE)
+ target_compile_definitions(regional-maintenance-encounter-test PRIVATE MNM_PAIRED_REFERENCE)
+endif()
