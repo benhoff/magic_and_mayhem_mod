@@ -3,8 +3,9 @@ project(mnm_native_command_session LANGUAGES CXX)
 add_subdirectory(../../game native-game)
 add_subdirectory(../../reconstruction/creature-ai/transfer-commands-owned command-core)
 add_library(mnm-native-command-session STATIC runtime.cpp codec.cpp
-  native_providers.cpp native_geometry.cpp native_route.cpp native_regional.cpp
+  native_providers.cpp native_geometry.cpp native_route.cpp native_regional.cpp native_regional_graph.cpp
   ../../reconstruction/creature-ai/regional_navigation.cpp
+  ../../reconstruction/creature-ai/regional_graph.cpp
   ../../reconstruction/creature-ai/attack_selection.cpp
   ../../reconstruction/creature-ai/idle_gesture.cpp
   ../../reconstruction/creature-ai/actor_displacement.cpp

@@ -118,3 +118,10 @@ regression. All238 declared source hashes remain unchanged. Original executable
 text, installed inputs and immutable originals verify unchanged. This supports
 only the two declared bounded regional contracts, preserving older evidence and
 all documented World/graph-builder/alias-tail/live boundaries.
+
+NS73 separately closes static graph construction and the active-region49
+lookahead boundary within its declared installed-terrain domain. See the
+[construction contract and execution](regional-graph-construction.md). NS72's
+supplied-graph evidence above remains historical at its original scope; dynamic
+graph repair, World danger production and full World/campaign/live integration
+remain separate.

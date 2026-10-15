@@ -22,6 +22,7 @@ void result(const mnm::game::CreatureRuleSession &s) {
   auto c = mnm::command_session::decode(s.world().state().systems);
   auto stats = mnm::encounter::statistics(c);
   std::cout << "{\"success\":true,\"ticks\":" << c.native.tick
+            << ",\"regions\":" << c.native.regions.size()
             << ",\"hits\":" << stats.hits << ",\"damage\":" << stats.damage
             << ",\"stuns\":" << stats.stuns
             << ",\"knockbacks\":" << stats.knockbacks
@@ -44,10 +45,13 @@ void result(const mnm::game::CreatureRuleSession &s) {
 } // namespace
 int main(int argc, char **argv) try {
   using namespace mnm;
-  if (argc == 10 && std::string(argv[1]) == "run") {
+  if (argc == 10 && (std::string(argv[1]) == "run" ||
+                     std::string(argv[1]) == "run-regional")) {
     auto p = encounter::decodeInputs(
         encounter::loadInputs(argv[2], {number(argv[3]), number(argv[4]),
                                         number(argv[5]), number(argv[6])}));
+    if (std::string(argv[1]) == "run-regional")
+      encounter::enableRegionalNavigation(p);
     auto s = encounter::create(p, number(argv[7]));
     advance(s, number(argv[8]));
     game::writeSnapshot(argv[9], s.world().state());
@@ -65,7 +69,8 @@ int main(int argc, char **argv) try {
     result(s);
     return 0;
   }
-  std::cerr << "Usage: native-encounter run INSTALL X Y WIDTH HEIGHT SEED "
+  std::cerr << "Usage: native-encounter run|run-regional INSTALL X Y WIDTH "
+               "HEIGHT SEED "
                "TICKS NEW_SNAPSHOT\n       native-encounter resume SNAPSHOT "
                "TICKS NEW_SNAPSHOT\n";
   return 2;

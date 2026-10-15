@@ -2,6 +2,7 @@
 #include "../command-session/native_providers.hpp"
 #include "../world-scene/map_navigation.hpp"
 #include <filesystem>
+#include "../../reconstruction/creature-ai/regional_graph.hpp"
 namespace mnm::encounter {
 namespace cs = command_session;
 struct Profile {
@@ -16,6 +17,8 @@ struct Profile {
 game::Bytes loadInputs(const std::filesystem::path &, scene::MapCrop,
                        unsigned scenario = 0);
 Profile decodeInputs(game::Bytes);
+std::array<cs::model::RegionalCreatureShape,28> navigationShapes(const Profile &);
+void enableRegionalNavigation(Profile &,unsigned capacity=512);
 cs::NativeConsequenceFactory consequences(const Profile &);
 std::shared_ptr<const cs::Runtime> runtime(const Profile &);
 game::CreatureRuleSession create(const Profile &, unsigned seed);

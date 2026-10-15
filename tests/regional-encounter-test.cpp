@@ -1,4 +1,8 @@
+#ifdef MNM_GENERATED_GRAPH
+#include "regional-graph-encounter-state.hpp"
+#else
 #include "regional-encounter-state.hpp"
+#endif
 #include "../game/persistence/snapshot.hpp"
 #ifdef MNM_PAIRED_REFERENCE
 #include "regional-navigation-original.hpp"
@@ -7,12 +11,40 @@
 #endif
 #include <fstream>
 int main(int argc,char **argv) try {
-  using namespace mnm;namespace cs=command_session;namespace reg=encounter::regional;
+  using namespace mnm;namespace cs=command_session;
+#ifdef MNM_GENERATED_GRAPH
+  namespace reg=encounter::regional_graph;
+#else
+  namespace reg=encounter::regional;
+#endif
 #ifdef MNM_PAIRED_REFERENCE
   if(argc!=7)throw std::runtime_error("PE INSTALL SCENARIO SEED TICKS NEW_OUTPUT");
-  auto pe=read(argv[1]);map_image(pe);endpoints();sealText(pe);initializeSearch();using Constructor=void *(__attribute__((thiscall)) *)(void *,unsigned);reinterpret_cast<Constructor>(0x53a660)(regionManager,512);
+  auto pe=read(argv[1]);map_image(pe);endpoints();
+#ifdef MNM_GENERATED_GRAPH
+  redirect(0x4dc5e0,reinterpret_cast<std::uintptr_t>(&noArg));
+#endif
+  sealText(pe);initializeSearch();using Constructor=void *(__attribute__((thiscall)) *)(void *,unsigned);reinterpret_cast<Constructor>(0x53a660)(regionManager,512);
   const auto scenario=unsigned(std::stoul(argv[3])),seed=unsigned(std::stoul(argv[4])),ticks=unsigned(std::stoul(argv[5]));auto p=reg::profile(argv[2],scenario);
-  auto session=encounter::create(p,seed);auto initial=cs::decode(session.world().state().systems);Original o(p);setup(o,initial,seed);publishRegions(initial.native.regions);global(0x6e1f3c,1);
+  auto session=encounter::create(p,seed);auto initial=cs::decode(session.world().state().systems);Original o(p);setup(o,initial,seed);
+#ifndef MNM_GENERATED_GRAPH
+  publishRegions(initial.native.regions);
+#endif
+
+#ifdef MNM_GENERATED_GRAPH
+  const auto shapes=encounter::navigationShapes(p);
+  for(unsigned i=0;i<28;++i){auto *cfg=reinterpret_cast<void *>(0x6a5f80+i*0x5c9);put(cfg,8,shapes[i].width);put(cfg,12,shapes[i].height);put(cfg,0x44,shapes[i].movementKind);}
+  // Build independently from the original terrain, then compare before ticking.
+  using Build=void(__attribute__((thiscall)) *)(void *,int);
+  reinterpret_cast<Build>(0x53ab20)(regionManager,1);call(0x53d710,regionManager);
+  using Connect=void(__attribute__((thiscall)) *)(void *,unsigned,unsigned);
+  reinterpret_cast<Connect>(0x53bb40)(regionManager,1,0);
+  if(get(regionManager,8)!=initial.native.regions.size())throw std::runtime_error("generated original node count");
+  for(unsigned i=0;i<initial.native.regions.size();++i){auto *raw=reinterpret_cast<unsigned char *>(get(regionManager)+660*i);const auto &v=initial.native.regions[i];
+    if(get(raw,4)!=unsigned(v.position.x)||get(raw,8)!=unsigned(v.position.y)||get(raw,12)!=unsigned(v.position.z)||get(raw,524)!=v.parameter)throw std::runtime_error("generated original node");
+    for(unsigned j=0;j<18;++j){const auto &edge=v.connections[j];auto *record=raw+16+28*j;if(get(record)!=unsigned(edge.cost)||get(record,4)!=unsigned(edge.destination)||std::memcmp(record+8,edge.clearance.data(),20))throw std::runtime_error("generated original connection");}
+  }
+#endif
+  global(0x6e1f3c,1);
   for(unsigned i=0;i<initial.world.creatures.size();++i){auto *raw=o.actors.data()+i*0xe4b;const auto &v=initial.actions.segments[i];put(raw,0xd03,v.regionPending);put(raw,0xdcf,v.regionCursor);for(unsigned j=0;j<50;++j)put(raw,0xd07+4*j,v.regionPath[j]);if(!initial.native.routeMetadata.empty()){const auto q=initial.native.routeMetadata[i].regionDestination;put(raw,0xdd3,q.x);put(raw,0xdd7,q.y);put(raw,0xddb,q.z);}}
   std::filesystem::path out=argv[6];if(!std::filesystem::create_directory(out))throw std::runtime_error("existing regional output");game::writeSnapshot(out/"initial.snapshot",session.world().state());
 #else
@@ -21,7 +53,13 @@ int main(int argc,char **argv) try {
   game::World world(0);world.restore(std::move(saved));game::CreatureRuleSession session(std::move(world),encounter::runtime(p));
   std::filesystem::path final=argv[4],tracePath=argv[5];if(std::filesystem::exists(tracePath))throw std::runtime_error("existing regional trace");const auto interval=unsigned(std::stoul(argv[6]));auto initial=cs::decode(session.world().state().systems);
 #endif
-  if(scenario>3||ticks>8192)throw std::runtime_error("regional fixture bound");
+  if(scenario>
+#ifdef MNM_GENERATED_GRAPH
+  4
+#else
+  3
+#endif
+  ||ticks>8192)throw std::runtime_error("regional fixture bound");
 #ifdef MNM_PAIRED_REFERENCE
   const auto final=out/"final.snapshot",tracePath=out/"trace.txt";
 #endif

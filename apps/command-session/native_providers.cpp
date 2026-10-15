@@ -199,7 +199,10 @@ class NativeContext {
       const auto contains=[](const auto &route,auto point){for(unsigned i=0;i<route.count;++i)if(route.route.at(i).position==point)return true;return false;};
       bool priorGoal=contains(saved,a.destination);auto target=a.destination;
       if(route.regionPending){
-        priorGoal=true;const auto candidate=[&](unsigned cursor){need(cursor<50,"native displacement region cursor");int id=route.regionPath.at(cursor);need(id>=0,"native displacement region reference");const auto &v=c_.native.regions.at(unsigned(id));auto point=v.position;nativeRegionalCandidate(c_,*p_,geometry_,a,point,v.parameter,a.destination);return point;};
+        priorGoal=true;const auto candidate=[&](unsigned cursor){need(cursor<=50,"native displacement region cursor");
+          //51b300 reads one DWORD beyond the50-entry path: actor+dcf is
+          //the saved regional cursor itself. Model that alias explicitly.
+          int id=cursor==50?int(route.regionCursor):route.regionPath.at(cursor);need(id>=0,"native displacement region reference");const auto &v=c_.native.regions.at(unsigned(id));auto point=v.position;nativeRegionalCandidate(c_,*p_,geometry_,a,point,v.parameter,a.destination);return point;};
         target=candidate(route.regionCursor);
         if(next==target||route.count<=route.cursor+2){
           if(route.regionCursor+1<50&&route.regionPath.at(route.regionCursor+1)==-1){target=a.destination;++route.regionCursor;}

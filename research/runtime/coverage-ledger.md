@@ -9528,3 +9528,59 @@ The displacement adapter's alias-derived lookahead at a truncated path tail
 remains outside coupled validation. The final census is
 coverage/source-index-regional-navigation-20261015-v3.json; intermediate snapshots
 and unsuccessful development reports retain their original hashes.
+
+## NS73 — terrain-derived regional navigation (2026-10-15)
+
+The native simulation now owns static graph construction:53ab20 two-pass node
+placement,53b600 ordered footprint adjustment,53d710/53d6f0 full-capacity sort,
+53bb40 pair admission and53c320/53cd30/53ce50 connection/clearance generation,
+including542220 greedy probes and generic mode-one tile-search fallback. Native
+and original graphs are independently generated from installed terrain and the
+normalized28-creature height/width/movement-kind table. Nodes, parameters and
+all18 cost/destination/twenty-clearance connection slots are compared before
+coupled simulation. Graph construction is no longer supplied fixture data in
+these new journeys; NS72's declared-graph fixtures remain a separate regression.
+
+The explicit native `run-regional` CLI builds and publishes an owned graph,
+enables regional scheduling and retains the existing CMD1/v7 checkpoint format.
+Native admission/refusal and shape import are separately registered policies,
+not original World construction. The51b300 cursor49 next-entry read aliases
+actor+dcf (the current regional cursor); native displacement now models that
+DWORD read explicitly and tests an active region49 without array overrun.
+
+Incoming NS72 history has31 exact file and32 behavior transitions with matching
+receipts and no unresolved gaps, retained in
+coverage/history-review-ns72-to-ns73-20261015.json. This retrospective review
+asserts neither a past gate pass nor fresh execution. A whole-image read-only
+inventory re-export identifies the23-byte comparator53d6f0..53d706. The reviewed
+inventory adds only that function, retains all previous functions/flows/imports
+and preserves the remaining unknown ranges. The raw export's unrelated55a650
+contiguous-body broadening is retained as pending discovery evidence, with
+its SHA-bound review in coverage/inventory-review-regional-graph-20261015.json.
+No semantic mapping or equivalence is inferred for that unrelated candidate.
+
+The [construction contract](regional-graph-construction.md) records bounded
+static construction and headless integration separately from dynamic repair
+53c070/53f710, World danger production, general species/forms/water/flying
+execution, full-map/World/campaign loading, original saves and live replacement.
+Those broader boundaries remain in the original objective. The original-backed
+full game still retains Wine; gameplay balance and commander/veterancy/mana
+features remain separate. Historical source/evidence fingerprints are preserved.
+
+The [final NS73 execution report](regional-graph-bound-ns73-20261015.json) passes
+250067 graph/helper checks across11 fixtures (534 nodes/3652 directed edges),
+10240 original/native comparison ticks, native64/sanitizer trace and final
+snapshot agreement, and1315 checkpoint restores (35 fresh native processes).
+Travel and chokepoint journeys arrive; the sealed partition stays unreachable;
+both ordinary and cursor49 friendly-yielding cases issue orders and arrive.
+The explicit native CLI builds52 regions and its1024-tick run matches a separate
+fresh-process resume. The258440-check existing regional suite, four1024-tick
+NS72 declared-graph comparisons, both five-test command suites and both3072-
+restored-tick installed encounter regressions pass. All247 prospective sources,
+239 build inputs, installed inputs and immutable originals remain unchanged.
+
+Fresh validation is confined to AI.regional-graph-construction,
+AI.regional-displacement-tail and NP.regional-graph-loading. Historical evidence
+is retained without refreshed hashes or broader equivalence claims. The reviewed
+source census is coverage/source-index-regional-graph-20261015-v2.json; earlier
+intermediate snapshots and raw development/discovery results remain preserved.
