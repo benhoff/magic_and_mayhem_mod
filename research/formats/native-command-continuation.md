@@ -1,10 +1,10 @@
-# Native command continuation versions1–6
+# Native command continuation versions1–7
 
 This is a native application format inside the outer native `State.systems`
 checkpoint. It is unrelated to original Magic & Mayhem save/object layouts.
 
 The byte stream starts with four ASCII bytes `CMD1`, then little-endian32-bit
-version6 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
+version7 for new writes. Every integral scalar/enum uses one little-endian32-bit word. Signed
 integers use two's-complement words with explicit checked reconstruction; narrow
 values reject overflow. Booleans are exactly0 or1. An optional is a0/1 word and,
 when present, its value. A vector begins with its word length; a fixed array has
@@ -139,3 +139,29 @@ Version5 reads seed zero owner entries. Writes to versions4/5 refuse a nonzero
 owner or displacement continuation rather than discard it. Existing version4
 search/motion restrictions remain; no old heap pointer is rebound. Native version6
 is independent of original game saves.
+
+Version7 appends owned regional navigation after the version6 provider prefix:
+
+1. Region vector: canonical position, eighteen connections (signed cost,
+   destination index, twenty signed clearance bytes), parameter and traffic
+   words, eight seven-byte danger rows and deducted rows, and the danger-base
+   byte. Narrow fields still use checked32-bit wire words.
+2. Regional search: dirty/initialized flags, start/destination/best indices,
+   best heuristic, ordered open entries (priority/index) and node records
+   (index/priority/predecessor/28-byte movement payload).
+3. Two unsigned danger power inputs, corresponding to the explicitly supplied
+   original regional danger coefficients.
+
+Each regional vector is bounded to4096 entries, subject to the independent total
+one-MiB wire bound. Nonzero edge costs must be positive and name a region;
+positions are canonical and sorted by X. Initialized search roots, unique node
+records and open references are checked. Pending actor regional paths must name
+valid graph indices or the−1 terminator. Their fifty-entry arrays, cursors and
+final-destination metadata remain in the earlier actor/request prefix.
+
+Version1..6 reads default to an empty graph/search and zero powers. Pre-v7 writes
+refuse to discard any regional graph, active search, regional mode or nonzero
+power input. An enabled empty graph can still use the original local-routing
+fallback under v7. Failed staging or malformed restoration publishes no state.
+Graph construction/import and dynamic World danger production remain separate
+from this portable continuation policy.

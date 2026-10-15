@@ -5,6 +5,7 @@
 #include "../../reconstruction/creature-ai/full_segment_setup.hpp"
 #include "../../reconstruction/creature-ai/environment_pass.hpp"
 #include "../../reconstruction/pathfinding/route_search.hpp"
+#include "../../reconstruction/creature-ai/regional_navigation.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -45,5 +46,8 @@ struct NativeProviderState {
   reconstruction::combat::ActorRouteContext route;
   std::vector<reconstruction::combat::ActorRouteMetadata> routeMetadata;
   std::vector<int> displacementOwners;
+  std::vector<reconstruction::combat::NavigationRegion> regions;
+  reconstruction::combat::RegionalSearchState regionalSearch;
+  std::array<unsigned,2> regionalRiskPowers{};
 };
 } // namespace mnm::command_session

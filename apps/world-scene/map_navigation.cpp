@@ -17,9 +17,9 @@ Bytes cellBytes(const assets::MapAsset& m){
     return b;
 }
 void bounds(const assets::MapAsset& m){
-    if(m.width<4 || m.height<4 || m.width>16 || m.height>16 || m.layers<2 || m.layers>32 ||
-       std::uint64_t(m.width)*m.height*m.layers>4096 || m.cells.size()!=std::size_t(m.width)*m.height*m.layers)
-        throw std::invalid_argument("Map navigation requires 4..16 XY, 2..32 layers and at most 4096 cells");
+    if(m.width<4 || m.height<4 || m.width>64 || m.height>64 || m.layers<2 || m.layers>32 ||
+       std::uint64_t(m.width)*m.height*m.layers>65536 || m.cells.size()!=std::size_t(m.width)*m.height*m.layers)
+        throw std::invalid_argument("Map navigation requires 4..64 XY, 2..32 layers and at most 65536 cells");
 }
 std::shared_ptr<reconstruction::RouteWorldSnapshot> decode(const Bytes& bytes){
     std::vector<std::byte> b(bytes.size());std::memcpy(b.data(),bytes.data(),bytes.size());
@@ -52,9 +52,9 @@ void validateMapGeometry(const assets::MapAsset& m,const assets::TerrainCatalog&
         throw std::invalid_argument("Visual MAP/TTD bytes differ from frozen navigation");
 }
 MapNavigation projectMapNavigation(const assets::MapAsset& source,const assets::TerrainCatalog& t,MapCrop crop){
-    if(crop.width<4 || crop.height<4 || crop.width>16 || crop.height>16 ||
+    if(crop.width<4 || crop.height<4 || crop.width>64 || crop.height>64 ||
        crop.x>=source.width || crop.y>=source.height || crop.width>source.width-crop.x || crop.height>source.height-crop.y ||
-       source.layers<2 || std::uint64_t(crop.width)*crop.height*source.layers>4096)
+       source.layers<2 || std::uint64_t(crop.width)*crop.height*source.layers>65536)
         throw std::invalid_argument("Bounded MAP crop outside source or cell budget");
     // Derive before cropping: interior geometry retains source neighbor context.
     const auto prepared=reconstruction::prepareTerrainGeometry(source,t);

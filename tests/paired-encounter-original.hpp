@@ -348,7 +348,7 @@ inline void step(Original &o) {
   call(0x52a780, reinterpret_cast<void *>(0x6def58));
   call(0x52a9f0, reinterpret_cast<void *>(0x6def58));
 }
-inline encounter::paired::Projection projectOriginal(const Original &o) {
+inline encounter::paired::Projection projectOriginal(const Original &o,bool includeCells=true) {
   encounter::paired::Projection out;
   auto add = [&](std::string key, unsigned value) {
     out.push_back({std::move(key), value});
@@ -414,7 +414,7 @@ inline encounter::paired::Projection projectOriginal(const Original &o) {
       add(prefix + "damage[" + std::to_string(j) + "]",
           get(raw, 0xdeb + 4 * j));
   }
-  for (unsigned i = 0; i < o.terrain.size() / 12; ++i) {
+  if(includeCells)for (unsigned i = 0; i < o.terrain.size() / 12; ++i) {
     auto *raw = o.terrain.data() + 12 * i;
     auto key = "cell[" + std::to_string(i) + "].";
     add(key + "kind", get(raw, 0, 2));

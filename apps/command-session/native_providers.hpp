@@ -13,6 +13,7 @@ struct NativeCreatureType {
   bool routeFlagPenalty=false;
   std::array<int,28> gestureScores{};
   reconstruction::CreatureScalarState scalar;
+  unsigned regionalFlightClearance=0;
 };
 // Immutable decoded inputs. Applications may load actual ANI/CFG/MAP assets;
 // profile construction/import and complete campaign construction are separate.

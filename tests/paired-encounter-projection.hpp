@@ -8,7 +8,7 @@ struct Word {
   unsigned value;
 };
 using Projection = std::vector<Word>;
-inline Projection project(const cs::Continuation &c, const Profile &p) {
+inline Projection project(const cs::Continuation &c, const Profile &p, bool includeCells=true) {
   Projection out;
   auto add = [&](std::string key, unsigned value) {
     out.push_back({std::move(key), value});
@@ -66,7 +66,7 @@ inline Projection project(const cs::Continuation &c, const Profile &p) {
     for (unsigned j = 0; j < 8; ++j)
       add(prefix + "damage[" + std::to_string(j) + "]", backend(13 + j));
   }
-  for (unsigned i = 0; i < c.native.cells.size(); ++i) {
+  if(includeCells)for (unsigned i = 0; i < c.native.cells.size(); ++i) {
     const auto &v = c.native.cells[i];
     const auto key = "cell[" + std::to_string(i) + "].";
     add(key + "kind", v.kind);

@@ -1,5 +1,6 @@
 #include "native_geometry.hpp"
 #include "native_route.hpp"
+#include "native_regional.hpp"
 #include "../../reconstruction/creature-ai/friendly_displacement.hpp"
 #include "../../reconstruction/creature-ai/cached_attack.hpp"
 #include "../../reconstruction/creature-ai/actor_route_request.hpp"
@@ -22,7 +23,7 @@ std::array<unsigned,2> stamp(const NativeCreatureProfile &p){
   word(p.cameraTurn);word(p.defaultScalar);word(p.boundary);word(p.recovery);
   word(p.animation.size());word(p.terrain.size());word(p.terrainPropertyA0.size());for(bool v:p.terrainPropertyA0)word(v);
   for(const auto &a:p.animation){word(a.version);word(a.opaqueHeader);for(auto v:a.spriteName)word(v);word(a.starts.size());word(a.records.size());for(auto v:a.starts)word(v);for(const auto &v:a.records){word(v.opcode);word(v.argument);for(auto m:v.metadata)word(m);}}
-  for(const auto &t:p.types){word(t.bodyAsset);word(t.regularOverlayAsset);word(t.meleeOverlayAsset);word(t.width);word(t.height);word(t.movementKind);word(t.scalar.type_3c);word(t.scalar.type_10);word(t.periodicResistance);word(t.routeCostFactor);word(t.routeFlagPenalty);for(auto v:t.gestureScores)word(v);for(auto v:t.scalar.type_d8)word(v);unsigned bits;std::memcpy(&bits,&t.scalar.slope_global,4);word(bits);}
+  for(const auto &t:p.types){if(t.regionalFlightClearance){word(0x5245474eu);word(t.regionalFlightClearance);}word(t.bodyAsset);word(t.regularOverlayAsset);word(t.meleeOverlayAsset);word(t.width);word(t.height);word(t.movementKind);word(t.scalar.type_3c);word(t.scalar.type_10);word(t.periodicResistance);word(t.routeCostFactor);word(t.routeFlagPenalty);for(auto v:t.gestureScores)word(v);for(auto v:t.scalar.type_d8)word(v);unsigned bits;std::memcpy(&bits,&t.scalar.slope_global,4);word(bits);}
   for(const auto &v:p.terrain){for(auto b:v.unknown_00)word(std::to_integer<unsigned>(b));word(v.classification_94);for(auto b:v.unknown_98)word(std::to_integer<unsigned>(b));word(v.flags_b0);for(auto b:v.unknown_b1)word(std::to_integer<unsigned>(b));}
   const auto &m=p.maintenance;
   for(auto v:{m.tick,m.upkeepInterval,m.upkeepCost,m.statusDamage,m.statusInterval,m.poisonInterval,m.powerInterval,m.powerMaximum,m.restoreMode,m.drainQuantity,unsigned(m.localOwner),unsigned(m.drainDivisor),unsigned(m.effectDamage),unsigned(m.diagnostic)})word(v);
@@ -89,7 +90,8 @@ class NativeContext {
     s.reset=[&commands](auto &actor){commands.reset(actor);};
 
     s.legal=[this](const auto &actor,model::Cell p){return geometry_.legal(actor,normalized(p));};
-    model::completeMotionSegment(a,c_.execution.at(slot),c_.actions.motion.at(slot),c_.movement.at(slot),c_.actions.segments.at(slot),{},s);
+    s.regionCandidate=[this](auto &actor,auto &candidate,unsigned parameter,auto desired){nativeRegionalCandidate(c_,*p_,geometry_,actor,candidate,parameter,desired);};
+    model::completeMotionSegment(a,c_.execution.at(slot),c_.actions.motion.at(slot),c_.movement.at(slot),c_.actions.segments.at(slot),nativeRegionalEnvironment(c_),s);
   }
   void begin(model::AutonomousCreature &a,model::OwnedCreatureCommands &commands){
     const auto slot=a.ai.slot;auto &initial=c_.native.initialization.at(slot);auto &motion=c_.actions.motion.at(slot);
@@ -136,6 +138,12 @@ class NativeContext {
     auto &shared=c_.native.route;shared.budget=c_.scheduler.budget;
     if(c_.native.routeMetadata.empty())c_.native.routeMetadata.resize(c_.world.creatures.size());
     model::ActorRouteRequestServices services;
+    services.regionAt=[this,&a](auto point,const auto &query,int dx,int dy){auto lower=nativeRegionalServices(c_,*p_,geometry_,a);return model::lookupNavigationRegion(c_.native.regions,point,nativeRegionalQuery(geometry_,a,query),c_.world.dimensions,p_->boundary,dx,dy,lower);};
+    services.regionRoute=[this,&a](int from,int to,const auto &query,auto &path,unsigned limit,bool reset){int budget=int(limit);return model::searchNavigationRegions(c_.native.regions,from,to,nativeRegionalQuery(geometry_,a,query),c_.world.dimensions,path,budget,reset,c_.native.regionalSearch,nativeRegionalServices(c_,*p_,geometry_,a));};
+    services.regionDistance=[this](int from,int to){return model::regionEdgeDistance(c_.native.regions,from,to);};
+    services.regionCandidate=[this](auto &actor,auto &candidate,unsigned parameter,auto desired){nativeRegionalCandidate(c_,*p_,geometry_,actor,candidate,parameter,desired);};
+    services.legal=[this](const auto &actor,auto point){return nativeRegionalLegal(geometry_,actor,point,p_->boundary);};
+    services.adjustLegal=[this](const auto &actor,auto &point){nativeRegionalAdjust(c_,geometry_,actor,point,p_->boundary);};
     services.coarse=[this](auto &actor,auto to,auto &out){out=actorSnapshot(actor);return model::coarseCreatureRoute(actor,c_.actions.motion.at(actor.ai.slot).direction,c_.world.dimensions,to,out,[this,&actor](auto from,auto end,unsigned &category){return geometry_.terrainMove(actor,from,end,category);},[this,&actor](auto q){return fx_.autonomy.geometry.hazardous(actor,q);});};
     services.search=[this](auto &actor,unsigned mode,auto target,auto &request,int &budget){
       auto &saved=c_.native.search.at(0);r::SearchState search;r::RouteContextPrefix context{};
@@ -147,7 +155,7 @@ class NativeContext {
       saved.open.clear();saved.records.clear();for(auto v:search.open)saved.open.push_back({v.first,v.second});for(auto v:search.records)saved.records.push_back({v.first,v.second});saved.bestNode=search.best_node;saved.bestHeuristic=search.best_heuristic;saved.initialized=search.initialized;saved.destination=target;std::memcpy(saved.context.data(),&context,sizeof(context));
       request.scratchDirty=context.unknown_route_flag!=0;request.scratch=routeSnapshot(context.route);
     };
-    auto result=model::requestCreatureRoute(a,c_.execution.at(a.ai.slot),c_.actions.motion.at(a.ai.slot),c_.actions.segments.at(a.ai.slot),c_.native.routeMetadata.at(a.ai.slot),shared,{},c_.world.dimensions,target,mode,regions!=0,services);
+    auto result=model::requestCreatureRoute(a,c_.execution.at(a.ai.slot),c_.actions.motion.at(a.ai.slot),c_.actions.segments.at(a.ai.slot),c_.native.routeMetadata.at(a.ai.slot),shared,nativeRegionalEnvironment(c_),c_.world.dimensions,target,mode,regions!=0,services);
     c_.scheduler.budget=shared.budget;c_.scheduler.continuation=shared.active!=0;return result;
   }
   unsigned obstacle(const model::AutonomousCreature &a,model::Cell point){return model::footprintObstacle(a,point,c_.world.dimensions,[this](auto q){const auto d=c_.world.dimensions;const auto &v=c_.native.cells.at((q.z*d.y+q.y)*d.x+q.x);return model::ObstacleCell{v.flags,v.occupant==0xffff?0u:unsigned(v.occupant)};});}
@@ -182,18 +190,28 @@ class NativeContext {
     s.issue=[this,&lower](auto &a,unsigned slot){return model::issueFriendlyDisplacement(a,c_.world.creatures.at(slot),c_.world,c_.execution,c_.actions.segments,c_.actions.motion,c_.native.displacementOwners,lower);};
     s.obstacle=lower.obstacle;
     s.update=[this](auto &a,auto &shared){
-      const auto slot=a.ai.slot;auto &route=c_.actions.segments.at(slot);need(!route.regionPending,"native displacement region probe unavailable");
+      const auto slot=a.ai.slot;auto &route=c_.actions.segments.at(slot);
       const auto next=route.route.at(route.cursor).position;
       if(next==a.destination&&(a.ai.position.x==a.destination.x||a.ai.position.y==a.destination.y||obstacle(a,a.destination))){shared.active=0;return 0u;}
       // 51b300 probes with a temporary route, restores all131 actor words,
       // region bookkeeping and marker; shared search/budget mutations persist.
       const auto actor=a;const auto execution=c_.execution.at(slot);const auto motion=c_.actions.motion.at(slot);const auto saved=route;
       const auto contains=[](const auto &route,auto point){for(unsigned i=0;i<route.count;++i)if(route.route.at(i).position==point)return true;return false;};
-      const bool priorGoal=contains(saved,a.destination);
-      a.routeMode=0;const auto result=request(a,a.destination,0,0);
-      const bool reached=result==1&&contains(route,actor.destination);
+      bool priorGoal=contains(saved,a.destination);auto target=a.destination;
+      if(route.regionPending){
+        priorGoal=true;const auto candidate=[&](unsigned cursor){need(cursor<50,"native displacement region cursor");int id=route.regionPath.at(cursor);need(id>=0,"native displacement region reference");const auto &v=c_.native.regions.at(unsigned(id));auto point=v.position;nativeRegionalCandidate(c_,*p_,geometry_,a,point,v.parameter,a.destination);return point;};
+        target=candidate(route.regionCursor);
+        if(next==target||route.count<=route.cursor+2){
+          if(route.regionCursor+1<50&&route.regionPath.at(route.regionCursor+1)==-1){target=a.destination;++route.regionCursor;}
+          else {target=candidate(route.regionCursor+1);route.regionPending=false;}
+        }
+      }
+      a.routeMode=0;const auto result=request(a,target,0,0);
+      const bool reached=result==1&&contains(route,target);
+      const bool pending=route.regionPending;const unsigned cursor=route.regionCursor;
       const auto mode=a.routeMode;a.destination=actor.destination;a.ai.marker=actor.ai.marker;a.routeMode=mode;
       c_.execution.at(slot)=execution;c_.actions.motion.at(slot)=motion;route=saved;
+      if(saved.regionPending&&(reached||!priorGoal)){route.regionPending=pending;route.regionCursor=cursor;}
       return reached||!priorGoal?1u:0u;
     };
     s.random=[this]{return random();};s.diagnostic=[](unsigned){throw std::invalid_argument("native displacement diagnostic unavailable");};
@@ -270,7 +288,7 @@ public:
     schedule.route=[this,&commands](unsigned slot,auto &scheduler){c_.native.route.active=scheduler.continuation?1u:0u;c_.native.route.budget=scheduler.budget;auto &a=c_.world.creatures.at(slot);model::RouteExecutionServices s;s.request=[this](auto &actor,model::Cell point,unsigned mode,unsigned regions){return request(actor,point,mode,regions);};s.resumeDisplacement=[this,&commands,&s](auto &a){const auto result=displace(a,commands);s.displacementPending=c_.native.route.displacementContinuation!=0;return result;};s.queueFallback=[&commands](auto &actor){return commands.queue(actor);};s.reach=[this](const auto &actor,const auto &target,model::Cell point){return geometry_.reach(actor,target,point);};s.adjust=[this](const auto &actor,const auto &,model::Cell &point){point=normalized(point);return geometry_.legal(actor,point);};s.legal=[this](const auto &actor,model::Cell point){return geometry_.legal(actor,normalized(point));};s.localReach=s.legal;s.beginMotion=[this,&commands](auto &actor){begin(actor,commands);};s.reset=[&commands](auto &actor){commands.reset(actor);};s.action=[&commands](auto &actor,unsigned n){commands.action(actor,n);};const auto yielded=model::continueCreatureRoute(a,c_.execution.at(slot),c_.world,s);scheduler.continuation=c_.native.route.active!=0;return yielded;};
     schedule.preDecision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);model::periodicTerrain(a,c_.execution.at(slot),p_->types.at(a.ai.type).periodicResistance,p_->periodic,{[this,slot](model::Cell p){return geometry_.ground(c_.world.creatures.at(slot),normalized(p));},[this]{return random();},[&commands](auto &actor){commands.reset(actor);},[&commands](auto &actor,model::Cell p){commands.move(actor,p);}});if(fx_.preDecision)fx_.preDecision(a);};
     schedule.decision=[this,&commands](unsigned slot){auto &a=c_.world.creatures.at(slot);auto services=autonomy(commands);model::autonomousDecision(a,c_.world,services);};
-    schedule.valuation=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);model::updateCreatureValue(a,c_.execution.at(slot),p_->valuation);};schedule.region=[this](unsigned slot){need(bool(fx_.region),"native region service unavailable");return fx_.region(c_.world.creatures.at(slot));};schedule.ownerWork=[this](unsigned slot){need(bool(fx_.ownerWork),"native owner service unavailable");fx_.ownerWork(c_.world.creatures.at(slot));};
+    schedule.valuation=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);model::updateCreatureValue(a,c_.execution.at(slot),p_->valuation);};schedule.region=[this](unsigned slot){auto &a=c_.world.creatures.at(slot);if(c_.native.route.useRegions)return model::lookupNavigationRegion(c_.native.regions,a.ai.position,nativeRegionalQuery(geometry_,a,{slot,a.ai.owner,0,0}),c_.world.dimensions,p_->boundary,0,0,nativeRegionalServices(c_,*p_,geometry_,a));need(bool(fx_.region),"native region service unavailable");return fx_.region(a);};schedule.ownerWork=[this](unsigned slot){need(bool(fx_.ownerWork),"native owner service unavailable");fx_.ownerWork(c_.world.creatures.at(slot));};
     model::scheduleCreatures(c_.world,c_.scheduler,c_.environment,schedule);
     c_.native.route.budget=c_.scheduler.budget;
     // Manager+0x22c and shared request active both name original 0x6df184.
@@ -283,6 +301,7 @@ public:
 }
 void prepareNativeContinuation(Continuation &c,const NativeCreatureProfile &p){
   need(!p.animation.empty()&&!p.terrain.empty()&&p.terrainPropertyA0.size()==p.terrain.size(),"native profile assets are missing");
+  if(c.native.route.useRegions)c.environment.updateRegions=true;
   const auto n=c.world.creatures.size();c.originalBehaviorBindings=true;c.maintenance.resize(n);c.movement.resize(n);c.actions.callbacks.resize(n);c.actions.motion.resize(n);c.actions.segments.resize(n);
   c.actions.objects.dimensions=c.world.dimensions;if(c.actions.objects.heads.empty())c.actions.objects.heads.assign(std::size_t(c.world.dimensions.x)*c.world.dimensions.y*c.world.dimensions.z,0xffff);
   c.native.present=true;c.native.profileStamp=stamp(p);c.native.animation.resize(n);c.native.search.resize(n);c.native.displacementOwners.resize(n);c.native.initialization.resize(n);

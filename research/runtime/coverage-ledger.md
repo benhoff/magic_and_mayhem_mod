@@ -9475,3 +9475,56 @@ species/forms/water/flight, full constructor/CFG import, World/campaign, dynamic
 pool release, original saves and live replacement remain pending. The full
 original-backed game still has its Wine runtime boundary. Commander-order
 features, veterancy and mana-economy changes remain separate outstanding work.
+
+## NS72 — owned regional navigation (2026-10-15)
+
+The native request now binds recovered regional lookup53d7d0, clearance/neighbor
+admission53a380, graph search53e5e0, edge distance53ea50, danger523070 and
+waypoint selection513cf0. Terrain legality/endpoint adjustment4f4900/4f4f90,
+regional scheduler lookup, segment completion and the regional51b300 friendly
+probe compose these providers. The scheduler now publishes actor region indices
+when regional mode is enabled. Original budgets, partial-path publication,
+fifty-entry truncation, danger/traffic costs and ordered tie behavior remain
+separate from native storage/admission policies.
+
+CMD1/v7 owns graph records, ordered search queues/records and risk powers;
+per-actor paths/cursors/final goals already have portable fields. Older reads
+retain empty defaults; lossy older writes refuse. The native map crop policy now
+admits4..64 XY and at most65536 cells; checkpoint encoding retains its independent
+one-MiB limit. The coupled fixtures use actual installed32x32x23 Celtic Plains
+terrain, original type17 inputs and explicitly declared graphs shared with the
+original. Their graph-building test policy does not recover original graph
+production. Dynamic World danger production, full-map World/campaign loading,
+generic species/forms/water/flight and live replacement remain outstanding.
+
+Prospectively bound execution covers clearance/danger/lookup/waypoint helpers,
+interrupted graph search and its50-entry output limit; four journeys cover long
+regional movement, a wall opening, an unreachable partition and friendly yielding
+on a regional leg. Native64 and sanitizer replay plus fresh-process checkpoints
+compare against the independent original32/native32 pair. The final immutable
+execution report, scope register and staged receipts record actual outcomes;
+source-only historical evidence remains historical. Existing native provider and
+installed encounter regressions run separately in that report.
+
+The incoming NS71 commit's exact file and behavior transitions have no missing
+receipts, as recorded in coverage/history-review-ns71-to-ns72-20261015.json.
+This retrospective review asserts neither a past gate pass nor new execution.
+The full original-backed game still retains Wine; this milestone advances the
+headless native simulation. Gameplay balance and the outstanding commander,
+veterancy and mana objectives remain separate.
+
+The [final NS72 execution report](regional-navigation-bound-ns72-20261015.json)
+passes258440 helper checks and8192 original/native comparison ticks, with all
+native64 and ASan/UBSan/LSan64 traces and final snapshots identical. There are1052
+checkpoint restores:1024 in-process restores across both native builds and28
+fresh native processes. Successful travel/chokepoint and friendly-yielding
+journeys arrive; the sealed partition stays unreachable. Both five-test command
+suites and the3072-restored-tick installed encounter regression pass. All238
+prospective sources, installed inputs and immutable originals remain unchanged.
+Original text is checked after each original-backed helper/journey process.
+Only AI.regional-navigation and NP.regional-native-continuation receive fresh
+scope-bound promotions; broader historical contracts retain pending limitations.
+The displacement adapter's alias-derived lookahead at a truncated path tail
+remains outside coupled validation. The final census is
+coverage/source-index-regional-navigation-20261015-v3.json; intermediate snapshots
+and unsuccessful development reports retain their original hashes.

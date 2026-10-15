@@ -84,7 +84,7 @@ int main(int argc,char **argv)try {
   auto friendlyRuntime=std::make_shared<command_session::Runtime>(friendlyBudget,identity,command_session::nativeProviders(p,lower(faults)));game::CreatureRuleSession yielding(friendlyRuntime,identity,17,3);yielding.step();
   auto yieldingState=command_session::decode(yielding.world().state().systems);
   need(yieldingState.native.route.active&&yieldingState.native.route.displacementContinuation,"friendly route probe did not yield");
-  need(command_session::encode(command_session::decode(command_session::encode(yieldingState)))==command_session::encode(yieldingState),"v6 displacement continuation roundtrip differs");
+  need(command_session::encode(command_session::decode(command_session::encode(yieldingState)))==command_session::encode(yieldingState),"v7 displacement continuation roundtrip differs");
   refuses([&]{command_session::encode(yieldingState,5);});
   auto badOwner=yieldingState;badOwner.native.displacementOwners[1]=3;refuses([&]{command_session::encode(badOwner);});
   badOwner=yieldingState;badOwner.native.displacementOwners[1]=1;refuses([&]{command_session::encode(badOwner,5);});
