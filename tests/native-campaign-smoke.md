@@ -72,6 +72,24 @@ Run the fail-closed report checks without Qt, Wine or game media:
 python3 -B tests/test-native-campaign.py
 ```
 
+Targeted optional pixel routes (six valid families, 43 routes):
+
+```sh
+python3 tools/test-native-campaign.py --resident-world --independent-world \
+  --other-pixel-producers --pixel-camera-scenarios --difficulty 1 \
+  --stress-seconds 30 --normal-quit --skip-movies
+python3 -B tests/test-pixel-route-requirements.py
+```
+
+The group now rejects every original producer forward or CPU-history refusal.
+Repeat `--require-pixel-route FAMILY/ROUTE` to require positive native execution
+of specific paths. The settled camera case follows the pinned original switch:
+four cases select camera0, camera2, camera0 and camera1. Camera3 remains a valid
+isolated body with unresolved live reachability. Explicitly requiring it still
+fails when it does not run. Ten former DC-copy labels were actually
+ClientToScreen calls and have been removed; obsolete enabled staging is refused.
+See [route findings and retained evidence](../research/runtime/native-pixel-route-scenarios.md).
+
 Gameplay stress and throughput checks:
 
 ```sh

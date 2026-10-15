@@ -12075,3 +12075,43 @@ from the unchanged zero-readback ordinary World path. This is llvmpipe software
 execution at a declared10FPS functional floor, not hardware or full original-pixel
 proof. New reader policies reach scoped live observation; comparison/replacement
 milestones remain independent and broad replacement is not promoted.
+
+
+## Native pixel route target corrections and bounded scenarios, 2026-10-15
+
+[Current route findings](native-pixel-route-scenarios.md) retire ten incorrect
+BitBlt hooks: pinned IAT5c51fc is two-argument ClientToScreen. Obsolete enabled
+staging/DLL loads now refuse; default/off compatibility has no patch machinery.
+Thirty actual original windowed wrapper calls retain all ten CALL bytes and
+balanced stacks under supplied endpoints, including the original58c6a0empty
+intersection return. The standalone native DC service separately compares1024
+native copies plus1024real GDI fallbacks,5120atomic refusals and zero final owners.
+
+Counter v2 accounts for six valid families/43routes. Combined runs now fail on
+any original producer forward/history refusal, and repeatable required-route
+arguments demand positive native calls. The original minimap switch555e08has
+four cases selecting camera0,2,0,1. Settled physical scenarios follow that mapping;
+no camera3 branch is invented. The full24-route static candidate inventory keeps
+unassigned entries and indirect/external reachability unresolved.
+
+The current camera and spell journeys pass native Mini/resume and normal Quit:
+14702and52120native calls respectively, zero forwards/history refusals. Camera
+phases each advance all three selected bodies over four physical turns. Spell
+checks verify actual delayed summon creation, Fireball damage, melee/kill and
+blocked-cast outcomes. Native HUD OCR and original events replace stale CPU World
+count assumptions; a retained earlier negative was rejected because its helper
+failed to record an additional summon. Historical reports are immutable.
+
+The spell run balances3516World completions/imports/returns;23explicit GetDC
+snapshots remain distinct from zero ordinary World readbacks. Both runs use
+llvmpipe and an explicit10FPS functional floor, with15.86/14.32engine FPS.
+Nineteen valid routes execute;24remain unexercised, including camera3 absent from
+this dispatcher. The prior34-gap count included ten invalid hook labels; removing
+them is correction, not validation. Other maps/load transitions, actual-game
+worker failure/restart, complete original/native session pixels, hardware and
+full replacement remain pending. No gameplay balance or comparison/replacement
+milestone is promoted.
+
+Incoming a7d58fcd..c74e9c5b history retains54exact file/241behavior transitions,
+with two explicit retrospective pending receipt repairs. Current source/census
+reviews are independent; prior execution hashes are never refreshed.

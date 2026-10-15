@@ -11,7 +11,7 @@ typedef i32 (WIN *Plane)(const void*,u32*,u32);
 typedef i32 (WIN *Create)(void*,void**,void*);
 typedef u32 (WIN *Count)(void);
 typedef u32 (WIN *Ref)(void*);
-static u32 results[1024][16];
+static u32 results[1024][18];
 static void** table(void* p){return *(void***)p;}
 static u32 selected_format;
 static void desc(u32* d){for(u32 i=0;i<31;++i)d[i]=0;d[0]=108;d[1]=0x1007;d[2]=9;d[3]=13;d[18]=32;d[19]=0x40;d[21]=16;d[22]=selected_format?0x7c00:0xf800;d[23]=selected_format?0x3e0:0x7e0;d[24]=0x1f;d[26]=0x840;}
@@ -45,6 +45,13 @@ void start(void){
   r[6]=(u32)paint(bd,x,y,7,5,sd,sx,sy,0xcc0020);SelectClipRgn(bd,0);DeleteObject(region);
   if(((i32 (WIN *)(void*,void*))table(a)[26])(a,ad)||((i32 (WIN *)(void*,void*))table(b)[26])(b,bd)||((i32 (WIN *)(void*,void*))table(s)[26])(s,sd))ExitProcess(177);
   r[7]=(u32)paint(bd,x,y,7,5,sd,sx,sy,0xcc0020);
+  words(a,expected,0,plane,r);words(b,actual,0,plane,r);for(u32 i=0;i<117;++i)if(expected[i]!=actual[i])++r[2];
+  /* Exercise the selftest thunk's real nine-argument GDI fallback separately
+   * after checking canonical native output, so it cannot hide native errors. */
+  if(((i32 (WIN *)(void*,void**))table(a)[17])(a,&ad)||((i32 (WIN *)(void*,void**))table(b)[17])(b,&bd)||((i32 (WIN *)(void*,void**))table(s)[17])(s,&sd))ExitProcess(180);
+  r[16]=(u32)BitBlt(ad,x,y,7,5,self?ad:sd,sx,sy,0x660046);
+  r[17]=(u32)copy(bd,x,y,7,5,self?bd:sd,sx,sy,0x660046);
+  if(((i32 (WIN *)(void*,void*))table(a)[26])(a,ad)||((i32 (WIN *)(void*,void*))table(b)[26])(b,bd)||((i32 (WIN *)(void*,void*))table(s)[26])(s,sd))ExitProcess(181);
   words(a,expected,0,plane,r);words(b,actual,0,plane,r);for(u32 i=0;i<117;++i)if(expected[i]!=actual[i])++r[2];
   ((Ref)table(a)[2])(a);((Ref)table(b)[2])(b);((Ref)table(s)[2])(s);((Ref)table(draw)[2])(draw);
   r[8]=dcs();r[9]=surfaces();r[10]=native();r[11]=original();r[12]=(u32)plane(retired,fields,24);r[15]=self;

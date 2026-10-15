@@ -18,10 +18,15 @@ outside the selected adapters remain outside this admission contract.
 
 ## Producer accounting
 
-The campaign harness must explicitly opt into all seven optional producer
+The campaign harness must explicitly opt into all six valid optional producer
 families after cleaning inherited overrides. Per-route installed/native/forwarded
 and history-refusal diagnostics distinguish execution from mere selection. A route
-with zero calls is unexercised; forwarded calls prevent a full replacement claim.
+with zero calls is unexercised; any producer forward now fails the combined run.
+Repeated required-route arguments require positive native execution. Counter v2
+contains43routes. The prior ten DC-copy labels were two-argument ClientToScreen
+calls and their incorrect nine-argument hooks are retired. The pinned minimap
+switch selects camera0,2,0,1; camera3 is not a required branch of that dispatcher.
+See [current scenarios and corrections](native-pixel-route-scenarios.md).
 
 ## Resident failures
 

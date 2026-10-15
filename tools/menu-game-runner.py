@@ -33,7 +33,8 @@ from jpeg_backend_launch import authorize as authorize_jpeg
 authorize_jpeg(root,metadata,os.environ)
 from minimap_backend_launch import authorize as authorize_minimap
 authorize_minimap(root,metadata,os.environ)
-from borrowed_pixel_backend_launch import FEATURES,authorize as authorize_borrowed
+from borrowed_pixel_backend_launch import FEATURES,authorize as authorize_borrowed,reject_retired_dc_hook
+reject_retired_dc_hook(os.environ,metadata)
 for name in FEATURES:authorize_borrowed(root,metadata,os.environ,name)
 os.environ.pop('MNM_OTHER_PIXEL_PRODUCERS',None)
 os.environ.pop('MNM_NATIVE_PIXEL_COUNTERS',None)

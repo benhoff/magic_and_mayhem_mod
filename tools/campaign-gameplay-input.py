@@ -71,6 +71,10 @@ def main():
     try:
         motion(.93, .87); button(1) # ordinary wizard HUD selection
         if not args.camera_only:motion(.5, .45); button(1)
+        if os.environ.get('MNM_PIXEL_CAMERA_SCENARIOS')=='1':
+            from campaign_pixel_routes import camera_scenarios
+            if not args.experiment:raise RuntimeError('Pixel camera scenarios need the production experiment')
+            camera_scenarios(args.experiment/'game',key,record)
         while time.monotonic()-start < args.seconds:
             if args.keep_moving:move_wizard()
             for sym in [0xff53, 0xff54, 0xff51, 0xff52]:key(sym, .45)

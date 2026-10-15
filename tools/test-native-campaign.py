@@ -22,6 +22,8 @@ from campaign_crowded import validate_crowded
 from campaign_spell import player_engaged_fireball_lethal, read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
 from native_audio_launch import validate_activity as validate_audio_activity, validate_retirement as validate_audio_retirement
 from native_pixel_counters import read_counters, validate_builds
+from campaign_render_oracle import oracle, validate_summon_capture
+from pixel_route_requirements import ALL_ROUTES, validate_routes
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -33,7 +35,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_menu_session.hpp', 'apps/qt-shell/live_command_session.cpp',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
-           'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
+           'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
@@ -124,7 +126,9 @@ def validate_dialogue_readiness(inputs, capture_root, resident_world=False):
                 scope=('Bounded resident Hermes heading OCR with retained CPU diagnostic images; CPU World pixels are stale and cannot classify dismissal. Original summon/cast/combat observation separately required; full UI equivalence excluded.' if resident_world else 'Bounded introductory Hermes heading OCR from independent native/original images; other dialogue speakers/layouts and internal tutorial admission excluded'))
 
 
-def validate_casting_combat(experiment, inputs, capture_root):
+def validate_casting_combat(experiment, inputs, capture_root, resident_world=False):
+    if inputs.get('summon_count_oracle','dual-draw')!=oracle(resident_world):
+        raise ValueError('Summon count oracle differs from requested rendering mode')
     rows=read_rows(experiment/'gameplay-events.bin', complete=True)
     summon=inputs['summon']; before=summon['before_sequence']; after=summon['after_sequence']; slot=summon['slot']; owner=inputs['player_owner']
     if len({r[2] for r in rows})!=1:raise ValueError('Gameplay observation thread changed')
@@ -145,11 +149,7 @@ def validate_casting_combat(experiment, inputs, capture_root):
     captures={c['name']:c for c in inputs['captures']}
     for key,count in [('before_capture','0/15'),('after_capture','1/15')]:
         capture=captures[summon[key]]
-        if not re.fullmatch(r'combat-\d{2}-[a-z-]+',capture['name']):raise ValueError('Unsafe capture name')
-        for route in ('native','original'):
-            if sha(capture_root/(capture['name']+'-'+route+'.png'))!=capture['image_sha256'][route]:raise ValueError('Capture image changed after OCR')
-        if capture['ocr']!={'native':count,'original':count} or not capture['metadata']['native_saved'] or not capture['metadata']['original_saved'] or capture['metadata']['fallback']:
-            raise ValueError('Missing independent native/original summon count')
+        validate_summon_capture(capture,capture_root,count,resident_world)
     hits=[r for r in damage_rows(rows,owner,list(created),after) if r[0]>created[r[4]]]
     if not hits:
         raise ValueError('No observed original player Zombie versus enemy melee damage')
@@ -157,7 +157,7 @@ def validate_casting_combat(experiment, inputs, capture_root):
     spell_rows=read_spell_rows(experiment/'spell-events.bin',complete=True)
     spell_lethal=player_engaged_fireball_lethal(spell_rows,rows,owner,wizards[0]['slot'],hits)
     if not lethal and not spell_lethal:raise ValueError('No observed player party lethal enemy health depletion')
-    return dict(casting_verified=True,combat_verified=True,summoned_slot=slot,player_owner=owner,
+    return dict(casting_verified=True,combat_verified=True,summoned_slot=slot,player_owner=owner,summon_count_oracle=oracle(resident_world),
                 movement=validate_movement_probes(rows,inputs),
                 spells=validate_spell_observation(spell_rows,rows,inputs),
                 spell_trace_sha256=sha(experiment/'spell-events.bin'),
@@ -400,7 +400,9 @@ def main():
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
-    parser.add_argument('--other-pixel-producers',action='store_true',help='Select all seven optional pixel families and retain installed/native/forwarded counters for each route')
+    parser.add_argument('--other-pixel-producers',action='store_true',help='Select all six optional pixel families and require zero forwards/history refusals')
+    parser.add_argument('--require-pixel-route',action='append',choices=ALL_ROUTES,default=[],help='Require this native production route to execute (repeatable)')
+    parser.add_argument('--pixel-camera-scenarios',action='store_true',help='Wait for settled rotations and require the three camera bodies selected by the original four-case switch')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--worker-status-cadence',action='store_true',help='Experimental16ms owned-worker status construction')
     parser.add_argument('--worker-status-every-turn',action='store_true',help='Diagnostic baseline: construct owned-worker status on every turn')
@@ -441,6 +443,12 @@ def main():
     explicit_native_draw=args.native_draw
     args.native_draw=not args.legacy_directdraw
     if args.other_pixel_producers and not args.native_draw:parser.error('Combined pixel producers require owned native drawing')
+    if (args.require_pixel_route or args.pixel_camera_scenarios) and not args.other_pixel_producers:parser.error('Pixel route requirements need --other-pixel-producers')
+    if args.pixel_camera_scenarios:
+        if not args.stress_seconds:args.stress_seconds=30
+        if args.require_casting_combat or args.crowded_case or args.healing_case:parser.error('Settled camera scenarios use the ordinary campaign input journey')
+        args.require_pixel_route=list(dict.fromkeys(args.require_pixel_route+[f'minimap/camera{i}' for i in range(3)]))
+    if len(set(args.require_pixel_route))!=len(args.require_pixel_route):parser.error('Duplicate required pixel route')
     if args.hardware and args.display:parser.error('--hardware and --display are separate display routes')
     if args.crowded_case:
         if args.healing_case:parser.error('Select only one Quick Battle case')
@@ -471,6 +479,7 @@ def main():
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'other_pixel_producers_required':args.other_pixel_producers,
+              'required_pixel_routes':args.require_pixel_route,'pixel_camera_scenarios_required':args.pixel_camera_scenarios,
               'native_wave_loading_required':args.native_loading,
               'native_audio_factory_required':args.native_factory,
               'native_media_required':args.native_media,
@@ -489,6 +498,7 @@ def main():
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
+        if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.pixel-route-scenarios','--scenario','NP.pixel-route-scenarios.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
@@ -553,6 +563,7 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    env['MNM_PIXEL_CAMERA_SCENARIOS']='1' if args.pixel_camera_scenarios else '0'
     if args.other_pixel_producers:
         env['MNM_OTHER_PIXEL_PRODUCERS']='1'
         producer_sources=['tools/native_pixel_counters.py','tools/borrowed_pixel_backend_launch.py']
@@ -828,8 +839,7 @@ def main():
                 if args.other_pixel_producers:
                     report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
                     report['pixel_producers']=read_counters(roots[0]/'game')
-                    if report['pixel_producers']['history_refused']:raise ValueError('Selected CPU producer refused stale resident history')
-                    if not report['pixel_producers']['native']:raise ValueError('No selected native producer executed')
+                    report['pixel_route_admission']=validate_routes(report['pixel_producers'],args.require_pixel_route)
                 native_build=json.loads((roots[0]/'native-draw-build.json').read_text())
                 if native_build.get('directdraw_imports') is not False:raise ValueError('Native graphics DLL imports DirectDraw')
                 for name,digest in native_build['sources'].items():
@@ -883,7 +893,7 @@ def main():
                 report['normal_quit_verified']=True
             if args.require_casting_combat:
                 report['dialogue']=validate_dialogue_readiness(json.loads((out/'input-0.json').read_text()),out,resident_world=args.resident_world)
-                report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
+                report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out,args.resident_world)
                 report.update(casting_verified=True,combat_verified=True,movement_verified=report['gameplay']['movement']['verified'])
                 if args.spell_cases:
                     report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))

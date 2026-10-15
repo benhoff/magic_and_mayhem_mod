@@ -12,6 +12,7 @@ import time
 
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_spell import read_spell_rows, player_fireball_damage, player_engaged_fireball_lethal
+from campaign_render_oracle import oracle, validate_summon_capture
 
 
 def main():
@@ -34,7 +35,7 @@ def main():
     if not display:raise RuntimeError('No native input display')
     start=time.monotonic(); actions=[]; captures=[]
     resident_dialogue=os.environ.get('MNM_PUBLIC_RESIDENT_WORLD')=='1'
-    result=dict(success=False,monotonic_start=start,dialogue_oracle='resident-native' if resident_dialogue else 'dual-draw')
+    result=dict(success=False,monotonic_start=start,dialogue_oracle=oracle(resident_dialogue),summon_count_oracle=oracle(resident_dialogue))
     def record(action,**values):
         actions.append(dict(action=action,seconds=time.monotonic()-start,**values))
         args.output.write_text(json.dumps(dict(result,seconds=time.monotonic()-start,actions=actions,captures=captures),indent=2)+'\n')
@@ -112,7 +113,7 @@ def main():
             click(400,300);time.sleep(.6)
         else:raise RuntimeError('Introductory Hermes dialogue did not clear after bounded native input')
         before=capture('before-summon',True)
-        if before['ocr']!={'native':'0/15','original':'0/15'}:raise RuntimeError('Missing initial native/original 0/15 controlled-creature count: '+str(before['ocr']))
+        validate_summon_capture(before,out,'0/15',resident_dialogue)
         if args.spell_cases:
             center();blocked_cast('invalid-target',owner,wizard['slot'])
         click(523,575);time.sleep(.5);cast_before=read_rows(trace)[-1][0];cast_prior=state()
@@ -125,7 +126,7 @@ def main():
             time.sleep(.25)
         if not summoned:raise RuntimeError('Native right-click did not create a living player Zombie')
         time.sleep(1);after=capture('after-summon',True)
-        if after['ocr']!={'native':'1/15','original':'1/15'}:raise RuntimeError('Missing independent native/original 1/15 summon count: '+str(after['ocr']))
+        validate_summon_capture(after,out,'1/15',resident_dialogue)
         result.update(summon=dict(before_sequence=cast_before,after_sequence=after['sequence'],slot=summoned[0]['slot'],before_capture=before['name'],after_capture=after['name']),additional_summons=[])
         record('summon-confirmed',slot=summoned[0]['slot'])
         # Permit nearby enemies to engage the actual summoned Zombie first.
@@ -204,13 +205,22 @@ def main():
                               max(100,min(430,300+16*(tx+ty-tz)+16)))
                 record('combat-summon-projection',wizard=actor,enemy=enemy,logical_point=list(summon_point))
                 click(523,575);cast_sequence=read_rows(trace)[-1][0];prior=state()
-                click(*summon_point,3);time.sleep(2)
-                current=state()
-                for a in current.values():
-                    old=prior.get(a['slot'])
-                    if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and (not old or not old['active'] or old['type']!=14 or old['owner']!=owner):
-                        result['additional_summons'].append(dict(before_sequence=cast_sequence,after_sequence=a['sequence'],slot=a['slot']))
-                extra_slots=[a['slot'] for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0]
+                click(*summon_point,3)
+                # The original effect can create its creature after the old
+                # fixed two-second sample. Retain the actual creation interval;
+                # unrelated owned Zombies cannot silently become proven casts.
+                deadline=time.monotonic()+12
+                while True:
+                    current=state();new=[]
+                    for a in current.values():
+                        old=prior.get(a['slot'])
+                        if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and (not old or not old['active'] or old['type']!=14 or old['owner']!=owner):
+                            new.append(dict(before_sequence=cast_sequence,after_sequence=a['sequence'],slot=a['slot']))
+                    if new or time.monotonic()>=deadline:break
+                    time.sleep(.25)
+                result['additional_summons'].extend(new)
+                record('combat-summon-observation',summons=new,before_sequence=cast_sequence)
+                extra_slots=[a['slot'] for a in [result['summon']]+result['additional_summons']]
                 capture('combat-approach')
                 # Keep the wizard's original engagement while the adjacent
                 # summon assists. Premature clearance can divert both actors

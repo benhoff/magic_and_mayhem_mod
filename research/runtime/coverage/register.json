@@ -24381,7 +24381,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native viewport successful summon and melee combat",
-      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, followed by player wizard or combat Zombie lethal HP depletion of that engaged enemy, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement. Optional explicit portrait stress restores repeated wizard selection/recentering during combat and adds a bounded post-combat phase with independent stable face-region pixels and unchanged 20 FPS average/10 FPS window gates. Native presentation disables fixed/adaptive legacy draw skipping in both staged DEBUG config precedence variants while retaining the selected game-speed preference; no original executable pacing patch.",
+      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, followed by player wizard or combat Zombie lethal HP depletion of that engaged enemy, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement. Optional explicit portrait stress restores repeated wizard selection/recentering during combat and adds a bounded post-combat phase with independent stable face-region pixels and unchanged 20 FPS average/10 FPS window gates. Native presentation disables fixed/adaptive legacy draw skipping in both staged DEBUG config precedence variants while retaining the selected game-speed preference; no original executable pacing patch. Resident mode requires current native HUD count OCR plus independent original newly living creature/cast/melee events; retired CPU World images remain hashed diagnostics and cannot prove current counts. The runner mode must match the count-oracle tag. Additional combat summons wait up to twelve seconds for observed creation; only independently proved summon intervals may supply combat source slots.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -24403,7 +24403,8 @@
         "research/runtime/coverage/native-campaign-history-review-52dcdf8-5c086ce.json",
         "research/runtime/native-portrait-cpu-profile-20261010.json",
         "research/runtime/native-campaign-remaining-20261010.md",
-        "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
+        "research/runtime/native-draw-public-lock-holder-failure-20261011.json",
+        "research/runtime/native-pixel-spells-passed-20261015.json"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -24452,7 +24453,8 @@
         "HOST.native-campaign.adept-party-defeat-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
         "HOST.native-integration.casting-portrait-20261010",
-        "HOST.native-campaign.remaining-gameplay-20261010"
+        "HOST.native-campaign.remaining-gameplay-20261010",
+        "NP.pixel-routes.spell-helper-negative-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -24612,7 +24614,8 @@
         "tools/prepare-shadow-experiment.py",
         "tools/profile-render-stream.py",
         "tools/test-native-clock.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "tools/campaign_render_oracle.py"
       ]
     },
     {
@@ -25426,7 +25429,8 @@
         "HOST.native-campaign.normal-quit-passed-20261010",
         "HOST.native-campaign.adept-party-defeat-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
-        "HOST.native-integration.casting-portrait-20261010"
+        "HOST.native-integration.casting-portrait-20261010",
+        "NP.pixel-routes.spells-passed-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -25602,7 +25606,8 @@
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
         "tools/test-native-clock.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "tools/campaign_render_oracle.py"
       ]
     },
     {
@@ -25633,7 +25638,8 @@
         "HOST.native-campaign.adept-party-defeat-20261010",
         "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011",
         "HOST.native-campaign-dialogue-readiness.resident-campaign-complete-20261011",
-        "HOST.native-campaign-dialogue-readiness.master-final-campaign-20261011"
+        "HOST.native-campaign-dialogue-readiness.master-final-campaign-20261011",
+        "NP.pixel-routes.spells-passed-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -25804,7 +25810,8 @@
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py",
-        "runtime/menu/drawing_actor_latches.h"
+        "runtime/menu/drawing_actor_latches.h",
+        "tools/campaign_render_oracle.py"
       ]
     },
     {
@@ -69379,7 +69386,8 @@
         }
       ],
       "documents": [
-        "research/runtime/image-effect-pixel-takeover.md"
+        "research/runtime/image-effect-pixel-takeover.md",
+        "research/runtime/native-pixel-route-scenarios.md"
       ],
       "implementation": [
         "reconstruction/rendering/pixel_kernel.c",
@@ -69428,7 +69436,8 @@
         "RS.image-effect-pixel-state.original-20261014",
         "NP.image-effect-controls.native-20261014",
         "RS.image-effect-pixel-state.range-original-20261014",
-        "RS.image-effect-pixel-state.original-final-20261014"
+        "RS.image-effect-pixel-state.original-final-20261014",
+        "RS.pixel-route-targets.reviewed-static-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70305,7 +70314,8 @@
         }
       ],
       "documents": [
-        "research/runtime/minimap-pixel-takeover.md"
+        "research/runtime/minimap-pixel-takeover.md",
+        "research/runtime/native-pixel-route-scenarios.md"
       ],
       "implementation": [
         "reconstruction/rendering/minimap_pixels.c",
@@ -70338,7 +70348,8 @@
       ],
       "evidence": [
         "RS.minimap-pixel-passes.original-20261014",
-        "RS.minimap-pixel-passes.original-final-20261014"
+        "RS.minimap-pixel-passes.original-final-20261014",
+        "RS.pixel-route-targets.reviewed-static-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70422,7 +70433,8 @@
         }
       ],
       "documents": [
-        "research/runtime/colour-rectangle-takeover.md"
+        "research/runtime/colour-rectangle-takeover.md",
+        "research/runtime/native-pixel-route-scenarios.md"
       ],
       "implementation": [
         "reconstruction/rendering/colour_rect.c",
@@ -70450,7 +70462,8 @@
         "runtime/canvas-writers/history.h"
       ],
       "evidence": [
-        "RS.colour-rectangle-pixels.original-20261014"
+        "RS.colour-rectangle-pixels.original-20261014",
+        "RS.pixel-route-targets.reviewed-static-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70604,7 +70617,8 @@
         }
       ],
       "documents": [
-        "research/runtime/outside-world-raster-pixels.md"
+        "research/runtime/outside-world-raster-pixels.md",
+        "research/runtime/native-pixel-route-scenarios.md"
       ],
       "implementation": [
         "reconstruction/rendering/raster_pixels.c",
@@ -70638,7 +70652,8 @@
       ],
       "evidence": [
         "RS.outside-world-raster-pixels.original-20261014",
-        "RS.native-history-readers.raster-20261015"
+        "RS.native-history-readers.raster-20261015",
+        "RS.pixel-route-targets.reviewed-static-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70707,7 +70722,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Native owned DC copy pixels and refusal",
-      "scope": "Canonical SRCCOPY between current owned RGB565/RGB555 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim. Resource/state extension keeps selected-bitmap admission and format identity explicit; new scope requires fresh comparison records and makes no live claim.",
+      "scope": "Canonical SRCCOPY between current owned RGB565/RGB555 top-down GDI leases, signed destination clipping, separate/self overlapping copies and original-compatible return; custom mapping/clip/ROP or unknown/retired/source-outside handles refuse before native writes. Production native thunk and real native factory versus GDI, actual registered/unlocked/locked/DC-busy/retired plane lookup and teardown. No pinned original EXE wrapper/installer execution or live gameplay claim. Resource/state extension keeps selected-bitmap admission and format identity explicit; new scope requires fresh comparison records and makes no live claim. Correction: former production installer sites were ClientToScreen, not BitBlt, and are removed. This behavior covers only the standalone native DC-copy service; no original game BitBlt target or production integration is asserted. Selftest-only thunk forwards unsupported calls through a genuine GDI BitBlt import. The renewed standalone fixture verifies native SRCCOPY before separately comparing genuine GDI SRCINVERT fallback,1024cases each, including both formats and overlapping self sources; fallback cannot hide a native pixel mismatch.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -70740,7 +70755,8 @@
       ],
       "evidence": [
         "NP.owned-dc-copy.gdi-20261014",
-        "NP.owned-dc-copy.resource-state-20261015"
+        "NP.owned-dc-copy.resource-state-20261015",
+        "NP.owned-dc-copy.standalone-fallback-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70915,11 +70931,12 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Combined pixel producer selection and route accounting",
-      "scope": "Explicit campaign option selects all seven optional producer families after environment sanitization. Launch-local mapped counters distinguish installed, native, forwarded routes, plus a separate terminal stale-history refusal diagnostic; absent and unexercised routes remain explicit. Counters are observations, not equivalence or whole renderer replacement.",
+      "scope": "Explicit campaign option selects all six valid optional producer families after environment sanitization. Launch-local v2 mapped counters distinguish installed, native, forwarded routes, plus terminal stale-history refusal; absent and unexercised routes remain explicit. The former ten dc_copy labels were misidentified ClientToScreen calls and are retired, not validated pixel producers. Counters are observations, not equivalence or whole renderer replacement.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-render-completion.md"
+        "research/runtime/native-render-completion.md",
+        "research/formats/native-pixel-counters-v2.md"
       ],
       "implementation": [
         "runtime/native-draw/producer_status.h",
@@ -70948,7 +70965,10 @@
       ],
       "evidence": [
         "NP.producer-route-counters.combined-refusal-20261015",
-        "NR.native-history-readers.combined-20261015"
+        "NR.native-history-readers.combined-20261015",
+        "NP.pixel-routes.spell-helper-negative-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71439,7 +71459,9 @@
       ],
       "evidence": [
         "NR.native-history-readers.combined-20261015",
-        "NP.native-history-readers.controls-20261015"
+        "NP.native-history-readers.controls-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71496,7 +71518,9 @@
       ],
       "evidence": [
         "NR.native-history-readers.combined-20261015",
-        "NP.native-history-readers.controls-20261015"
+        "NP.native-history-readers.controls-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71508,6 +71532,132 @@
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt"
       ]
+    },
+    {
+      "id": "NP.pixel-route-scenarios",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Required native pixel routes and settled camera scenarios",
+      "scope": "Six valid optional producer families, 43 production routes. Stream-v2 exact counter extent, installed/native/forwarded identity and totals; require positive native execution for each requested route and zero forwards/history refusal across every family. Settled physical rotations require progress in the three selected minimap camera counters over at least four and at most eight ordinary period-key turns; original switch cases 0,1,2,3 select camera0,2,0,1 and do not select camera3. Counters establish bounded execution only; World batching may bypass legacy CPU leaves. Full pixel equivalence, other maps and complete renderer replacement excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-pixel-route-scenarios.md",
+        "research/formats/native-pixel-counters-v2.md"
+      ],
+      "implementation": [
+        "tools/pixel_route_requirements.py",
+        "tools/campaign_pixel_routes.py",
+        "tools/native_pixel_counters.py",
+        "runtime/native-draw/producer_status.h",
+        "tools/borrowed_pixel_backend_launch.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/campaign-gameplay-input.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tests/test-pixel-route-requirements.py"
+      ],
+      "evidence": [
+        "NP.pixel-routes.camera-four-body-negative-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.dc-copy-hook-retirement",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Retirement of invalid ClientToScreen-to-BitBlt hooks",
+      "scope": "Remove all ten falsely identified DC-copy sites and their nine-argument thunks from production staging. Pinned import 0x5c51fc is two-argument USER32 ClientToScreen; the pinned EXE imports no BitBlt. Reject obsolete enabled environments/manifests and DLL takeover loads before patching; default/off compatibility DLL has no patch machinery. Standalone native DC-copy service remains an isolated fixture with genuine GDI fallback, no production game target. Thirty unchanged original windowed wrapper calls under supplied successful COM/ClientToScreen endpoints check coordinate translation and stack cleanup after default/off load or obsolete enabled-load refusal. Driver pixels, live windowed gameplay and arbitrary dynamic imports excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-pixel-route-scenarios.md",
+        "research/runtime/native-dc-copy.md"
+      ],
+      "implementation": [
+        "runtime/canvas-writers/dc_copy_bridge.c",
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/menu-game-runner.py",
+        "tools/build-dc-copy.py"
+      ],
+      "tests": [
+        "tools/test-dc-copy-retirement.py",
+        "tests/dc-copy-retirement-probe.c",
+        "tests/test-pixel-route-requirements.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh",
+        "tools/pixel_backend_launch.py",
+        "tools/launch_build_cache.py",
+        "tools/native_pixel_counters.py",
+        "tools/pixel_route_requirements.py",
+        "tools/campaign_pixel_routes.py"
+      ],
+      "evidence": [
+        "NP.dc-copy-hook-retirement.controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.minimap-camera-dispatch",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Pinned four-case minimap camera dispatch",
+      "scope": "Static selector at 0x555c3c reads owner+0xa4, bounds unsigned values through3 and dispatches via table0x555e08. Cases0,1,2,3 call 0x5527a0,0x552f20,0x5527a0,0x552b50 respectively: camera0,2,0,1. Camera3 body0x5532f0 is not selected by this table. This does not establish global dead code, all indirect callers, physical key-to-orientation state, or pixel equivalence; preserve aliasing baseline.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5594172,
+          "scope": "Bounded static selector/three direct CALL branches only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5594632,
+          "relation": "data",
+          "scope": "Exact four-entry jump table, including aliased cases0/2."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-pixel-route-scenarios.md",
+        "research/runtime/minimap-pixel-takeover.md"
+      ],
+      "implementation": [
+        "tools/inspect-pixel-route-targets.py"
+      ],
+      "tests": [],
+      "validation_dependencies": [
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.minimap-camera-dispatch.static-20261015",
+        "RS.pixel-route-targets.reviewed-static-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -141734,6 +141884,280 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NP.dc-copy-hook-retirement.controls-20261015",
+      "kind": "native_integration",
+      "scope": "Current-source route/legacy staging controls plus30 actual original windowed-wrapper calls under supplied COM/Win32 endpoints. No production patch machinery, enabled obsolete DLL load refused, ClientToScreen CALL bytes and stack cleanup preserved. Selected58c6a0 empty crop retained; no driver/gameplay pixel comparison.",
+      "record": "research/runtime/native-dc-hook-retirement-20261015.json",
+      "sha256": "794f54a7c96d518196518cffcbfe3bdb6bf6c6b738f0246edb478c2284071fd6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/stack_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/bitblt_imports",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-camera-dispatch.static-20261015",
+      "kind": "static",
+      "scope": "Exact pinned four-case selector/table and retired ClientToScreen CALL import identity. Camera dispatch0,2,0,1; no global dead-code or live pixel/input claim.",
+      "record": "research/runtime/native-pixel-targets-static-20261015.json",
+      "sha256": "6707410a27b7fda8ff9b0b90dabc916942941dfd220b05258d10d6b06cea39f9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.pixel-routes.spell-helper-negative-20261015",
+      "kind": "live_observation",
+      "scope": "Historical negative: physical journey completed normal Quit with zero producer forwards, but final validator rejected a second combat Zombie whose creation interval was not retained by helper. No successful casting/combat claim for this run.",
+      "record": "research/runtime/native-pixel-spells-unrecorded-summon-20261015.json",
+      "sha256": "19f9dab03a00fc6ad430617f5fd6fd0af3a6d0439d86c4336d15113de406fcb1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.pixel-routes.camera-four-body-negative-20261015",
+      "kind": "live_observation",
+      "scope": "Historical negative: original four-case dispatch did not reach camera3, so the initial four-body requirement correctly failed. No four-body execution or completed-journey claim.",
+      "record": "research/runtime/native-pixel-camera-four-body-negative-20261015.json",
+      "sha256": "3de83b40bec67f4e851ab3ed0f9e98dcc56bd3e1200f760072005e99d711cf2d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NP.pixel-routes.camera-passed-20261015",
+      "kind": "live_observation",
+      "scope": "Six-family43-route v2 native campaign; all three original-selected camera bodies advance in both four-turn settled physical phases, Mini Cancel/resume and normal Quit.14702native calls, zero forwards/history refusal;19routes exercised,24unexercised including unselected camera3. llvmpipe10FPS functional floor; no full pixels or hardware equivalence.",
+      "record": "research/runtime/native-pixel-camera-passed-20261015.json",
+      "sha256": "c451d276e27e32553b90aed2c8e9dd2ee4e4ebbc1bf248d637f29d08806801f9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/schema",
+          "equals": 2
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        },
+        {
+          "pointer": "/pixel_route_admission/required",
+          "equals": [
+            "minimap/camera0",
+            "minimap/camera1",
+            "minimap/camera2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RS.pixel-route-targets.reviewed-static-20261015",
+      "kind": "static",
+      "scope": "Pinned import and four-case camera selection plus conservative direct/data/byte-candidate inventory for all24 valid routes missing from the prior campaign. Five entries lack discovered functions and direct/stored candidates. Absence does not prove global unreachability; no native implementation, comparison or live promotion.",
+      "record": "research/runtime/native-pixel-targets-reviewed-20261015.json",
+      "sha256": "18489a3ddd255042686b0de1953e993da33e4df1af4b2820fb23e6811d2a521d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/remaining_route_reachability/23/route",
+          "equals": "raster/splice22"
+        }
+      ]
+    },
+    {
+      "id": "NP.pixel-routes.spells-passed-20261015",
+      "kind": "live_observation",
+      "scope": "Current six-family43-route resident campaign with physical summons, independently retained delayed creation interval, player Fireball damage, observed Zombie melee damage and lethal, invalid-target/insufficient-mana attempts, Mini Cancel/resume and normal Quit.52120native calls, zero forwards/history refusal;3516balanced Worlds,23explicit native CPU snapshots and zero ordinary World readbacks. llvmpipe14.32FPS at explicit10FPS functional floor; no hardware, complete-route or original session pixel equivalence.",
+      "record": "research/runtime/native-pixel-spells-passed-20261015.json",
+      "sha256": "b14ba45af731a6889a1bcfbc66ea022adf896459f324459e2dc4092b60e63b17",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/schema",
+          "equals": 2
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.owned-dc-copy.standalone-fallback-20261015",
+      "kind": "native_integration",
+      "scope": "1024 standalone native owned-DC RGB565/RGB555 SRCCOPY comparisons versus GDI, both separate source and overlapping self-copies, signed clipping; separately1024 genuine GDI SRCINVERT fallback comparisons after verifying native output. Selftest thunk native1024/fallback1024; unknown handles/ROP/retired/custom-clip atomic native refusals, current locked/unlocked/DC-busy/retired CPU plane lookup and complete teardown. No production game hook; unusual mappings/source clipping and real gameplay excluded",
+      "record": "research/runtime/native-dc-service-fallback-20261015.json",
+      "sha256": "5585684073744a740162d9405a0b778e735a65213e71433b0cd9907266dc94ba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/fallback_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": []
+        },
+        {
+          "pointer": "/remaining_dcs",
+          "equals": 0
+        },
+        {
+          "pointer": "/remaining_surfaces",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -146177,6 +146601,48 @@
         "address": 5851058,
         "scope": "Representative original raster entry anchoring this source-level ownership checklist; it is not a recovered binary jump table."
       }
+    },
+    {
+      "id": "minimap-camera-selected-four-case",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5594632,
+        "relation": "data",
+        "scope": "Four-entry table selected at555c47; bounded table only."
+      },
+      "document": "research/runtime/native-pixel-route-scenarios.md",
+      "complete": true,
+      "scope": "All four exact entries accounted for, including duplicate camera0. No global caller closure or independent key mapping claim.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.minimap-camera-dispatch",
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.minimap-camera-dispatch",
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.minimap-camera-dispatch",
+            "RS.minimap-pixel-passes"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.minimap-camera-dispatch",
+            "RS.minimap-pixel-passes"
+          ]
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -157782,7 +158248,7 @@
     },
     {
       "id": "NP.producer-route-counters.campaign",
-      "scope": "All seven optional families explicitly selected for public gameplay; installed/native/forwarded route census, unexercised routes retained; not full replacement or original pixel equivalence.",
+      "scope": "All six valid optional families explicitly selected for public gameplay; v2 census contains43routes, with installed/native/forwarded accounting and unexercised routes retained. Ten misidentified ClientToScreen labels are retired without execution credit. No full replacement or original pixel equivalence.",
       "level": "live_observation",
       "behaviors": [
         "NP.producer-route-counters"
@@ -157792,12 +158258,14 @@
       ],
       "evidence": [
         "NP.producer-route-counters.combined-refusal-20261015",
-        "NR.native-history-readers.combined-20261015"
+        "NR.native-history-readers.combined-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
       ]
     },
     {
       "id": "NP.native-history-reader-routing.campaign",
-      "scope": "Explicit seven-family combined gameplay with resident World, GPU source-copy routing, per-route refusals and normal Quit. No pixel-equivalence or complete-route claim.",
+      "scope": "Explicit six-family combined gameplay with resident World, GPU source-copy routing, per-route refusals and normal Quit. No pixel-equivalence or complete-route claim; retired ClientToScreen hook labels are excluded.",
       "level": "live_observation",
       "behaviors": [
         "NP.native-history-reader-routing"
@@ -157806,7 +158274,9 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.native-history-readers.combined-20261015"
+        "NR.native-history-readers.combined-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
       ]
     },
     {
@@ -157820,7 +158290,9 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.native-history-readers.combined-20261015"
+        "NR.native-history-readers.combined-20261015",
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
       ]
     },
     {
@@ -157842,6 +158314,37 @@
       ],
       "evidence": [
         "NP.native-history-readers.controls-20261015"
+      ]
+    },
+    {
+      "id": "NP.pixel-route-scenarios.campaign",
+      "scope": "Explicit campaign with six valid producer families, declared per-run native route requirements and zero forwards/history refusal. Optional settled camera mode additionally requires all three selected camera counters over four or more settled physical turns; camera3 is absent from the pinned four-case switch. Execution counts only; no pixel equivalence.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.pixel-route-scenarios"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tools/campaign_pixel_routes.py"
+      ],
+      "evidence": [
+        "NP.pixel-routes.camera-passed-20261015",
+        "NP.pixel-routes.spells-passed-20261015"
+      ]
+    },
+    {
+      "id": "NP.dc-copy-hook-retirement.controls",
+      "scope": "Thirty original windowed wrapper calls with supplied COM/Win32 endpoints; retired takeover refused and ClientToScreen calls, coordinate translation and stack cleanup preserved.",
+      "level": "headless",
+      "behaviors": [
+        "NP.dc-copy-hook-retirement"
+      ],
+      "tests": [
+        "tools/test-dc-copy-retirement.py",
+        "tests/dc-copy-retirement-probe.c"
+      ],
+      "evidence": [
+        "NP.dc-copy-hook-retirement.controls-20261015"
       ]
     }
   ],
@@ -158450,8 +158953,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-history-readers-20261015.json",
-    "sha256": "433124b6aafeec8c6bfb8c7df2b70ccf1b5b00b3b447472ce669d8df2d287e92"
+    "path": "research/runtime/coverage/source-index-pixel-route-scenarios-final-20261015.json",
+    "sha256": "20ff58c1f6a92c560c69ce51672076c42f969578f8f92b9dcfc45ea7076e6629"
   },
   "claim_bindings_required": true
 }

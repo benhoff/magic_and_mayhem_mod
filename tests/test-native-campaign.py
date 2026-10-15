@@ -273,6 +273,26 @@ class CombatEvidenceTests(unittest.TestCase):
             rows[-1][8]=99;self.write_trace(root,rows)
             with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
 
+    def test_resident_summon_requires_native_hud_and_original_creature_events(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);rows,inputs=self.fixture(root);self.write_trace(root,rows)
+            inputs['summon_count_oracle']='resident-native'
+            inputs['captures'][1]['ocr']['original']='0/15'
+            result=smoke.validate_casting_combat(root,inputs,root,resident_world=True)
+            self.assertEqual(result['summon_count_oracle'],'resident-native')
+            # Input metadata cannot authorize a weaker image oracle by itself.
+            with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
+            for case in ('wrong-native','wrong-owner','changed-original','missing-original','fallback'):
+                bad=copy.deepcopy(inputs);trace=copy.deepcopy(rows)
+                if case=='wrong-native':bad['captures'][1]['ocr']['native']='0/15'
+                elif case=='wrong-owner':trace[2][6]=2
+                elif case=='changed-original':bad['captures'][1]['image_sha256']['original']='0'*64
+                elif case=='missing-original':del bad['captures'][1]['ocr']['original']
+                else:bad['captures'][1]['metadata']['fallback']=True
+                self.write_trace(root,trace)
+                with self.subTest(case=case),self.assertRaises(ValueError):
+                    smoke.validate_casting_combat(root,bad,root,resident_world=True)
+
     def test_orders_script_damage_and_nonplayer_damage_cannot_pass(self):
         for mutate in [lambda r:r[-1].__setitem__(1,1),lambda r:r[-1].__setitem__(12,110),
                        lambda r:r[-1].__setitem__(12,104),

@@ -1,4 +1,4 @@
-"""Stage bounded CPU raster/rectangle/DC writers independently of World GPU ownership."""
+"""Stage bounded CPU raster/rectangle writers independently of World GPU ownership."""
 import hashlib
 import shutil
 from pixel_backend_launch import HASH, load
@@ -21,10 +21,6 @@ FEATURES = {
                    (0x57f671, '8b4b1089442410'), (0x580782, '8b790c8b542434'),
                    (0x57e57c, '8b790c8b7104'), (0x589cd3, '8d1c163bdd'),
                    (0x57de69, '8b45102bc1'))),
-    'dc_copy': ('MNM_DC_COPY_TAKEOVER', 'MnmDcCopy.dll', 'DcCopyAnchor',
-                'tools/build-dc-copy.py', b'.mndcc', tuple((a, 'ff15fc515c00') for a in
-                    (0x58bfe2, 0x58c1d6, 0x58c3f5, 0x58c534, 0x58c6f8,
-                     0x58c922, 0x58cb17, 0x58cc16, 0x58cdd1, 0x58cfa1))),
 }
 
 
@@ -34,11 +30,18 @@ def selection(environment):
     if value not in (None, '0', '1'):
         raise ValueError('MNM_OTHER_PIXEL_PRODUCERS must be 0 or 1')
     result = dict(environment)
+    reject_retired_dc_hook(result)
     if value == '1':
         for flag in ('MNM_PANEL_TAKEOVER', 'MNM_PIXEL_TAKEOVER', 'MNM_JPEG_TAKEOVER',
                      'MNM_MINIMAP_TAKEOVER', *(v[0] for v in FEATURES.values())):
             result.setdefault(flag, '1')
     return result
+
+
+def reject_retired_dc_hook(environment, metadata=None):
+    if environment.get('MNM_DC_COPY_TAKEOVER') not in (None, '0') or (metadata or {}).get('native_dc_copy_takeover') not in (None, False):
+        raise ValueError('Retired DC-copy hook targeted ClientToScreen; prepare a new installation without it')
+    environment.pop('MNM_DC_COPY_TAKEOVER', None)
 
 
 def enabled(environment, feature):

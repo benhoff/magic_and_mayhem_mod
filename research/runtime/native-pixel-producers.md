@@ -17,7 +17,7 @@ Unknown writers and fallback paths prevent a claim of closed native history.
 | Minimap | Four-view terrain, cell/ring, creature, camera corners and outer border |
 | Colour rectangles | Constant or triple-WORD sources, four modes, both formats |
 | Rasters |17 generic/fast/slow entries,23 interior splices, original loop workspace |
-| Surface copies | Native DirectDraw services plus ten native owned-DC BitBlt CALL splices |
+| Surface copies | Native DirectDraw services; owned-DC BitBlt service tested independently |
 
 Launch the scoped producer routes with:
 
@@ -29,10 +29,17 @@ The public shell’s glyph takeover defaults apply independently. Native menu
 rendering and owned native drawing are required; the launcher verifies pinned
 source code, imports, owned DLL/cache/source hashes and feature policy. Each
 individual `MNM_PANEL_TAKEOVER`, `MNM_PIXEL_TAKEOVER`, `MNM_JPEG_TAKEOVER`,
-`MNM_MINIMAP_TAKEOVER`, `MNM_COLOUR_RECT_TAKEOVER`, `MNM_RASTER_TAKEOVER` and
-`MNM_DC_COPY_TAKEOVER` flag accepts0/1; an explicit individual0 overrides the
+`MNM_MINIMAP_TAKEOVER`, `MNM_COLOUR_RECT_TAKEOVER` and `MNM_RASTER_TAKEOVER`
+flag accepts0/1; an explicit individual0 overrides the
 group. This group selects these scoped writers. It does not declare complete
 original-renderer retirement or eliminate native admission refusals.
+
+The former `MNM_DC_COPY_TAKEOVER=1` is rejected. Its ten alleged BitBlt targets
+were two-argument ClientToScreen calls; they are removed from staging and the
+v2 counter layout. There are six valid optional families and 43 routes. This
+correction does not validate the ten retired labels. Historical reports retain
+their original bytes; [targeted route work](native-pixel-route-scenarios.md)
+records current evidence and remaining paths.
 
 The source installation must contain the pinned original No-CD executable;
 existing modified working executables are rejected. Supply an isolated owned

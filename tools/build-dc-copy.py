@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build fixed-build native owned DC copies without Qt, CRT or capture I/O."""
+"""Build the retired-hook guard or standalone owned DC-copy service fixture."""
 import hashlib
 import importlib.util
 import json
@@ -31,9 +31,15 @@ def build(selftest=False):
             if p.is_file() and p.is_relative_to(ROOT) and not p.is_relative_to(ROOT/'working'):
                 closure.add(p.relative_to(ROOT).as_posix())
         objects.append(obj)
+    libraries=[out/'kernel32.lib']
+    if selftest:
+        gdi=out/'gdi32.def'
+        gdi.write_text('LIBRARY GDI32.dll\nEXPORTS\nBitBlt@36\n')
+        subprocess.run(['llvm-dlltool','-m','i386','-D','GDI32.dll','-d',gdi,'-l',out/'gdi32.lib','--kill-at'],check=True)
+        libraries.append(out/'gdi32.lib')
     dll = out/'MnmDcCopy.dll'
     subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',
-                    *(['/export:DcCopyForTest=_DcCopyForTest@36','/export:NativeDCCopiesV1=_NativeDCCopiesV1@0','/export:OriginalDCCopiesV1=_OriginalDCCopiesV1@0'] if selftest else ['/export:NativeDCCopiesV1=_NativeDCCopiesV1@0','/export:OriginalDCCopiesV1=_OriginalDCCopiesV1@0']),'/out:'+str(dll),*objects,out/'kernel32.lib'],check=True)
+                    *(['/export:DcCopyForTest=_DcCopyForTest@36','/export:NativeDCCopiesV1=_NativeDCCopiesV1@0','/export:OriginalDCCopiesV1=_OriginalDCCopiesV1@0'] if selftest else []),'/out:'+str(dll),*objects,*libraries],check=True)
     (out/'manifest.json').write_text(json.dumps(dict(architecture='PE32 i386',sha256=hashlib.sha256(dll.read_bytes()).hexdigest(),
         sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sorted(closure)}),indent=2)+'\n')
     return dll

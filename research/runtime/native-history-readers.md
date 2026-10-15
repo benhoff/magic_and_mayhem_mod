@@ -198,3 +198,11 @@ The incoming-history review covers 720c187b..a7d58fcd, all 61 exact file transit
 and receipt chains, with zero unresolved transitions. It is accounting evidence,
 not a retrospective gate pass or fresh engine validation. Current changes have
 separate exact reviews and a refreshed source census.
+
+Subsequent [route-target inspection](native-pixel-route-scenarios.md) corrects
+the old seven-family/53-route interpretation: ten alleged DC-copy CALLs actually
+target ClientToScreen and are removed. The four-case minimap switch selects
+camera0,2,0,1. Current six-family camera and spell journeys retain24unexercised
+valid routes;23are other caller/scenario gaps, while camera3 is absent from this
+reviewed dispatcher. Historical reports, fingerprints and their bounded outcomes
+remain unchanged; no retired label receives validation credit.

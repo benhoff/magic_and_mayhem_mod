@@ -10,16 +10,15 @@ ROUTES = {
     'minimap': ['terrain', 'cell', 'creature', 'camera0', 'camera1', 'camera2', 'camera3'],
     'colour_rect': ['rectangle'],
     'raster': [f'splice{i}' for i in range(23)],
-    'dc_copy': [f'call{i}' for i in range(10)],
 }
 
 
 def read_counters(game):
     raw = (game/'native-pixel-producers.bin').read_bytes()
-    if len(raw) != (4+7*32*3)*4:
+    if len(raw) != (4+6*32*3)*4:
         raise ValueError('Incomplete pixel producer counters')
     values = struct.unpack('<'+'I'*(len(raw)//4), raw)
-    if values[:4] != (0x50504e4d, 1, len(raw), 7):
+    if values[:4] != (0x50504e4d, 2, len(raw), 6):
         raise ValueError('Unsupported pixel producer counter layout')
     families = {}
     for family, (name, routes) in enumerate(ROUTES.items()):
@@ -34,7 +33,7 @@ def read_counters(game):
         if any(values[4+(family*32+len(routes))*3:4+(family+1)*32*3]):
             raise ValueError('Unexpected pixel producer counter route: '+name)
     refusal = game/'native-cpu-history-refusal.bin'
-    result = dict(schema=1, sha256=hashlib.sha256(raw).hexdigest(), families=families,
+    result = dict(schema=2, sha256=hashlib.sha256(raw).hexdigest(), families=families,
                   native=sum(r['native'] for rows in families.values() for r in rows),
                   forwarded=sum(r['forwarded'] for rows in families.values() for r in rows),
                   unexercised=[name+'/'+r['route'] for name, rows in families.items() for r in rows if not r['exercised']],
@@ -47,7 +46,7 @@ def read_counters(game):
 def validate_builds(experiment, root, declared):
     metadata=json.loads((experiment/'manifest.json').read_text())
     dlls=['MnmPanelWriters.dll','MnmPixelWriters.dll','MnmJpegPixels.dll','MnmMinimapWriters.dll',
-          'MnmColourRect.dll','MnmRasterWriters.dll','MnmDcCopy.dll']
+          'MnmColourRect.dll','MnmRasterWriters.dll']
     results={}
     for name,dll in zip(ROUTES,dlls):
         build=json.loads((experiment/(name+'-bridge-build.json')).read_text())
