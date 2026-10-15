@@ -63393,7 +63393,8 @@
         "RTS.controls.ready-synthetic-20261014",
         "RTS.controls.current-launchers-synthetic-20261014",
         "RTS.controls.pixel-launchers-synthetic-20261014",
-        "RTS.controls.pixel-launchers-scenario-synthetic-20261014"
+        "RTS.controls.pixel-launchers-scenario-synthetic-20261014",
+        "RTS.controls.commit-synthetic-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -63452,7 +63453,8 @@
         "RTS.controls.ready-synthetic-20261014",
         "RTS.controls.current-launchers-synthetic-20261014",
         "RTS.controls.pixel-launchers-synthetic-20261014",
-        "RTS.controls.pixel-launchers-scenario-synthetic-20261014"
+        "RTS.controls.pixel-launchers-scenario-synthetic-20261014",
+        "RTS.controls.commit-synthetic-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -124654,6 +124656,29 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RTS.controls.commit-synthetic-20261015",
+      "kind": "native_integration",
+      "scope": "Owned native controls policy and synthetic32 adapter/API/service peers; production PE32 build and pinned-source disposable import/config staging. No original command execution, live input, original equivalence or replacement claim.",
+      "record": "research/runtime/rts-controls-commit-synthetic-20261015.json",
+      "sha256": "22d4827b083c9b26d4039fdfadd1481c75e49dc485e25355e2f470b0f47150b3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_playtest",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -138804,7 +138829,8 @@
         "RTS.controls.final-synthetic-20261014",
         "RTS.controls.ready-synthetic-20261014",
         "RTS.controls.current-launchers-synthetic-20261014",
-        "RTS.controls.pixel-launchers-scenario-synthetic-20261014"
+        "RTS.controls.pixel-launchers-scenario-synthetic-20261014",
+        "RTS.controls.commit-synthetic-20261015"
       ]
     }
   ],

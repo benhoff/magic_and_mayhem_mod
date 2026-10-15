@@ -9554,3 +9554,30 @@ all530 parent/current file hashes and exact receipts with no unresolved matches.
 It infers no historical gate pass or execution validation. Unrelated Qt restart,
 creature and controls work is retained; shared-launcher edits may leave its
 historical evidence stale until its own current closure is rerun.
+
+
+Commit preparation — 2026-10-15: the controls changes are isolated from the
+uncommitted native pixel/Qt work. The shared launchers contain only the controls
+integration in this commit. Fresh synthetic validation is required for these
+exact versions; live campaign playtesting, Hold Position and attack-move remain
+pending. Historical renderer/menu evidence is preserved and may be stale after
+shared-source changes. No renderer equivalence is asserted by the controls run.
+
+The [exact commit-source execution record](rts-controls-commit-synthetic-20261015.json)
+passes all three102,850-check policy runs,59 adapter checks,eight configuration
+checks,production PE32 build and isolated import/CFG/source preparation,with
+stable sources and original-manifest verification before/after. The preparation
+tree and raw logs are retained under `working/tests/rts-commit-20261015/tree/`.
+This supplies scoped synthetic validation; original command execution and live
+playtesting remain pending. Historical shared menu/render results keep their
+original source hashes; this commit supplies no new equivalence for them.
+
+The concurrent combined implementation commit `5284209e` contains the controls
+policy, adapter, configuration, tests and launcher integration. Its full pixel
+launchers have their own preserved controls scenario execution result. The
+2026-10-15 isolated-source run above predates that combined commit and has
+different shared launcher bytes; retain it as historical synthetic evidence,
+without claiming validation of the combined launchers or new milestone promotion.
+The [incoming commit receipt inspection](coverage/rts-controls-commit-history-20261015.json)
+checks the exact parent/current file hashes against committed receipt edges;
+this retrospective inspection supplies no past gate-pass or new execution claim.
