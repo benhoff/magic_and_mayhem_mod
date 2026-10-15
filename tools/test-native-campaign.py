@@ -503,6 +503,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign'])
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
         if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign','--behavior','NP.native-history-reader-routing','--scenario','NP.native-history-reader-routing.campaign','--behavior','NP.explicit-native-cpu-materialization','--scenario','NP.explicit-native-cpu-materialization.campaign'])
@@ -851,6 +852,11 @@ def main():
                 report['native_music_inputs']=inputs;report['native_music_inputs_stable']=True
             if args.native_draw:
                 report['native_draw']=validate_native_draw(roots[0])
+                admission=(roots[0]/'channel.bin.admission').read_bytes()
+                if admission[:16]!=b'MNMMADM1'+struct.pack('<II',1,32) or (len(admission)-16)%32:raise ValueError('Invalid menu admission trace')
+                reasons=[row[1] for row in struct.iter_unpack('<8I',admission[16:])]
+                if reasons not in ([1],[2,1]):raise ValueError('Native menu startup was not admitted: '+repr(reasons))
+                report['menu_admission']={'verified':True,'reasons':reasons,'sha256':hashlib.sha256(admission).hexdigest()}
                 if args.other_pixel_producers:
                     report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
                     report['pixel_producers']=read_counters(roots[0]/'game')

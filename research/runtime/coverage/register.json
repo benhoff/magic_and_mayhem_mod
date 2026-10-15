@@ -71707,7 +71707,10 @@
         "HOST.native-storage.source-history-refusal-20261015",
         "HOST.native-storage.initiate-input-refusal-20261015",
         "HOST.native-storage.save-load-passed-20261015",
-        "HOST.initiate-storage-native-passed-20261015"
+        "HOST.initiate-storage-native-passed-20261015",
+        "HOST.menu-admission.cold-1-20261015",
+        "HOST.menu-admission.cold-2-20261015",
+        "HOST.menu-admission.cold-3-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71842,6 +71845,46 @@
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.menu-startup-admission",
+      "subsystem": "hosting",
+      "kind": "native_policy",
+      "title": "Bounded stable-host admission before native menu commands",
+      "scope": "V1..V22 shared menu startup: defer odd or crossed host seqlock snapshots until a later engine tick, without publishing or dispatching commands before one stable live zero-request/zero-engine-ownership snapshot. Invalid headers, dead hosts, prior requests/engine ownership and a 120-second pending deadline permanently refuse. No blocking retry under the DLL loader lock. Historical run-r0raru91 has no admission diagnostics and does not establish its exact cause; code-level one-shot race is confirmed separately. Cold-start reliability is bounded by individually recorded storage journeys; changed World canvas transitions remain separate.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/menu-startup-admission.md"
+      ],
+      "implementation": [
+        "runtime/menu/channel.h",
+        "runtime/menu/startup_admission.h"
+      ],
+      "tests": [
+        "tests/menu-startup-admission-test.c",
+        "tools/test-menu-observer.py",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.c"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py"
+      ],
+      "evidence": [
+        "HOST.menu-admission.controls-20261015",
+        "HOST.menu-admission.cold-1-20261015",
+        "HOST.menu-admission.cold-2-20261015",
+        "HOST.menu-admission.refusals-20261015",
+        "HOST.menu-admission.cold-3-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -142898,6 +142941,169 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "HOST.menu-admission.controls-20261015",
+      "kind": "native_integration",
+      "scope": "Native policy reason/deadline controls and PE32 normal or held-odd startup through 300 original ticks; recovered callback ABI guards retained, tick/helper stubbed. No live game or identification of the historical fault.",
+      "record": "research/runtime/menu-startup-admission-controls-20261015.json",
+      "sha256": "2b0d1c466e274088d6a469da5f45d12c3b52f0392ebdd128c79b2d703d1855e1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.menu-admission.cold-1-20261015",
+      "kind": "live_observation",
+      "scope": "Independent fresh-prefix native Initiate Save/resume/Load/resume/normal Quit with successful admission trace; original historical startup failure remains unidentified. No new canvas or complete pixel equivalence claim.",
+      "record": "research/runtime/menu-startup-cold-1-20261015.json",
+      "sha256": "40273b1497efb979140a371600b056793d05812c95c977d02ffc316684480aea",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/menu_admission/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/storage/verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.menu-admission.cold-2-20261015",
+      "kind": "live_observation",
+      "scope": "Independent fresh-prefix native Initiate Save/resume/Load/resume/normal Quit with successful admission trace; original historical startup failure remains unidentified. No new canvas or complete pixel equivalence claim.",
+      "record": "research/runtime/menu-startup-cold-2-20261015.json",
+      "sha256": "804d0fdad7b85d0eb8118bf50e739e079a99fd265f2a6a9124b4dfff5b109063",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/menu_admission/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/storage/verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.menu-admission.refusals-20261015",
+      "kind": "native_integration",
+      "scope": "Four intentionally invalid startup lanes retain their original engine sequence through 300 PE32 original ticks: bad header, dead host, prior request and existing engine ownership. Exit42 is an expected successful-admission assertion failure. No real game or post-repair revival test.",
+      "record": "research/runtime/menu-startup-admission-refusals-20261015.json",
+      "sha256": "e2c4944669d6189547160e6dab4aa75c1190b91d229d17e5e4fe789af847506f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/real_game_launched",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.menu-admission.cold-3-20261015",
+      "kind": "live_observation",
+      "scope": "Third independent fresh-prefix native Initiate Save/resume/Load/resume/normal Quit with successful V17 admission.741 balanced resident Worlds,8000 optional native calls,zero forwards/history refusals. No live forced-overlap, new canvas or complete pixel equivalence claim.",
+      "record": "research/runtime/menu-startup-cold-3-20261015.json",
+      "sha256": "5f88f15fb8bf5617e12e87a3153aa7935ea6371e828a1df264d5e312459d0315",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/menu_admission/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/storage/verified",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -159091,10 +159297,11 @@
     },
     {
       "id": "HOST.native-render-save-load.campaign",
-      "scope": "Bounded Initiate or Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted. Requested difficulty must match the exact original callback trace; neither difficulty can substitute for the other. Initiate completes the four opening spell-selection, summon, creature-selection and movement tutorial commands through recognized visible titles and ordinary input before the first Save. Mid-command tutorial Save/Load and later tutorial continuation remain excluded; earlier failed original-rendering/native-menu controls do not distinguish storage behavior from unclassified scene-input changes.",
+      "scope": "Bounded Initiate or Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted. Requested difficulty must match the exact original callback trace; neither difficulty can substitute for the other. Initiate completes the four opening spell-selection, summon, creature-selection and movement tutorial commands through recognized visible titles and ordinary input before the first Save. Mid-command tutorial Save/Load and later tutorial continuation remain excluded; earlier failed original-rendering/native-menu controls do not distinguish storage behavior from unclassified scene-input changes. Native startup must retain a successful bounded admission trace before the storage journey; an unstable snapshot can defer admission without invoking native callbacks.",
       "level": "live_observation",
       "behaviors": [
-        "HOST.native-render-save-load"
+        "HOST.native-render-save-load",
+        "HOST.menu-startup-admission"
       ],
       "tests": [
         "tools/test-native-campaign.py",
@@ -159109,7 +159316,10 @@
         "HOST.initiate-storage-tutorial-negatives-20261015",
         "HOST.initiate-storage-ocr-refusal-20261015",
         "HOST.initiate-storage-startup-refusal-20261015",
-        "HOST.initiate-storage-native-passed-20261015"
+        "HOST.initiate-storage-native-passed-20261015",
+        "HOST.menu-admission.cold-1-20261015",
+        "HOST.menu-admission.cold-2-20261015",
+        "HOST.menu-admission.cold-3-20261015"
       ]
     },
     {
@@ -159767,8 +159977,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-initiate-storage-reviewed-20261015.json",
-    "sha256": "7e1316f16693e0bce9173f022667b538f96c3a9699563546dea6977a9a29f83b"
+    "path": "research/runtime/coverage/source-index-menu-admission-reviewed-20261015.json",
+    "sha256": "814f877b75177d19f4860d7d1902263c82dff9f0851045a1307b2de0dca9d442"
   },
   "claim_bindings_required": true
 }

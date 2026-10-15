@@ -25,6 +25,8 @@ static u32 menu_generation,menu_screen,menu_ready,menu_owner,menu_thread;
 static u32 menu_request,menu_status,menu_heartbeat,menu_seen;
 static int menu_retired;
 static u32 menu_handoff;
+static u32 menu_admission,menu_admission_started,menu_admission_reason,menu_admission_records;
+static HANDLE menu_admission_trace;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
 #include "drawing_semantic_state.h"
@@ -39,6 +41,29 @@ static int menu_host(u32* out){
     if(menu_version>=13)for(u32 i=0;i<32;++i)out[93+i]=menu_load(menu_words+MNM_MENU_V13_HOST_NAME/4+i);
     if(menu_version>=15)for(u32 i=0;i<20;++i)out[125+i]=menu_load(menu_words+MNM_MENU_V15_HOST_NAMES/4+i);
     __atomic_thread_fence(__ATOMIC_ACQUIRE);return seq==menu_load(p);
+}
+#include "startup_admission.h"
+static void menu_admission_record(u32 reason){
+    u32 error=GetLastError(),wrote;
+    if(menu_admission_trace&&reason!=menu_admission_reason&&menu_admission_records<64){
+        u32 row[8]={++menu_admission_records,reason,GetTickCount(),
+            menu_words?menu_load(menu_words+MNM_MENU_V1_HOST_WORD):0,
+            menu_words?menu_load(menu_words+(menu_version>=2?32:16)):0,
+            error,menu_version,GetCurrentThreadId()};
+        if(!WriteFile(menu_admission_trace,row,sizeof(row),&wrote,0)||wrote!=sizeof(row)){
+            CloseHandle(menu_admission_trace);menu_admission_trace=0;
+        }
+    }
+    menu_admission_reason=reason;SetLastError(error);
+}
+static int menu_admit(void){
+    if(menu_admission)return menu_admission==1;
+    u32 host[145],now=GetTickCount();
+    u32 reason=menu_admission_check(host,now-menu_admission_started);
+    menu_admission_record(reason);
+    if(reason==MENU_ADMISSION_BUSY)return 0;
+    if(reason!=MENU_ADMISSION_OK){menu_admission=2;menu_retired=1;return 0;}
+    menu_admission=1;menu_heartbeat=host[1];menu_seen=now;return 1;
 }
 static void menu_publish(void){
     u32* p=menu_words+(menu_version>=2?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);u32 seq=menu_load(p);
@@ -65,20 +90,21 @@ static void menu_publish(void){
     menu_store(p,seq+2);
 }
 static void menu_init(void){
-    char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
-    HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
+    char path[1024],trace[1040];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
+    copy(trace,path,length);copy(trace+length,".admission",11);
+    menu_admission_trace=CreateFileA(trace,0x40000000,3,0,1,0x80,0);
+    if(menu_admission_trace==(HANDLE)-1)menu_admission_trace=0;
+    if(menu_admission_trace){const u32 header[4]={0x4d4d4e4d,0x314d4441,1,32};u32 wrote;
+        if(!WriteFile(menu_admission_trace,header,sizeof(header),&wrote,0)||wrote!=sizeof(header)){CloseHandle(menu_admission_trace);menu_admission_trace=0;}}
+    HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1){menu_admission_record(8);return;}
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE&&menu_size!=MNM_MENU_V18_SIZE&&menu_size!=MNM_MENU_V19_SIZE&&menu_size!=MNM_MENU_V20_SIZE&&menu_size!=MNM_MENU_V21_SIZE&&menu_size!=MNM_MENU_V22_SIZE){CloseHandle(file);return;}
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE&&menu_size!=MNM_MENU_V18_SIZE&&menu_size!=MNM_MENU_V19_SIZE&&menu_size!=MNM_MENU_V20_SIZE&&menu_size!=MNM_MENU_V21_SIZE&&menu_size!=MNM_MENU_V22_SIZE){menu_admission_record(9);CloseHandle(file);return;}
     menu_version=menu_size==MNM_MENU_V22_SIZE?22:menu_size==MNM_MENU_V21_SIZE?21:menu_size==MNM_MENU_V20_SIZE?20:menu_size==MNM_MENU_V19_SIZE?19:menu_size==MNM_MENU_V18_SIZE?18:menu_size==MNM_MENU_V17_SIZE?17:menu_size==MNM_MENU_V16_SIZE?16:menu_size==MNM_MENU_V15_SIZE?15:menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
     grimoire_campaign_enabled=menu_version>=22;spell_campaign_enabled=menu_version>=21;region_campaign_enabled=menu_version>=20;character_campaign_enabled=menu_version>=20;campaign_reports_enabled=menu_version>=20;campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
-    HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
-    menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
-    u32 host[145];
-    if(!menu_header()||!menu_host(host)||!host[0]||host[2]||menu_load(menu_words+(menu_version>=2?32:16))){
-        UnmapViewOfFile(menu_words);menu_words=0;return;
-    }
+    HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping){menu_admission_record(10);return;}
+    menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words){menu_admission_record(11);return;}
+    menu_admission_started=GetTickCount();menu_admit();
     if(menu_version==4&&!MNM_MENU_MINI_EXPERIMENTAL)menu_retired=1;
-    menu_heartbeat=host[1];menu_seen=GetTickCount();
 }
 static void menu_state(void* object){
     u32 owner=get((void*)0x6f34e0),screen=0,ready=0;
@@ -191,6 +217,7 @@ static void menu_poll(void* object,int execute){
     u32 error=GetLastError(),thread=GetCurrentThreadId();
     if(!menu_thread)menu_thread=thread;
     if(thread!=menu_thread){SetLastError(error);return;}
+    if(!menu_admit()){SetLastError(error);return;}
     if(!menu_header()){menu_retired=1;SetLastError(error);return;}
     menu_state(object);
     if(menu_version>=2&&menu_handoff&&menu_ready&&(menu_screen==3||menu_screen==22||(menu_version>=20&&(menu_screen==4||menu_screen==18))))menu_handoff=0;

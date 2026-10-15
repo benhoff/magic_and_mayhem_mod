@@ -1,9 +1,20 @@
 #include "../../protocols/include/mnm/menu_v1.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
+API int WIN UnmapViewOfFile(const void*);
 API void WIN Sleep(u32);
 static u32* channel;
 static u32 command_id,host_seq,beat;
+static void channel_startup_release(void){
+    char mode[16];if(!GetEnvironmentVariableA("MNM_MENU_STARTUP_BUSY_TEST",mode,sizeof(mode)))return;
+    char path[1024];require(GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path))!=0,60);
+    HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);require(file!=(HANDLE)-1,61);
+    HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);require(mapping!=0,62);
+    u32* p=MapViewOfFile(mapping,2,0,0,MNM_MENU_V1_SIZE);CloseHandle(mapping);require(p!=0,63);
+    // All 300 original ticks ran, with no premature native engine publication.
+    require((p[4]&1)&&p[16]==0&&helper_count==0,64);
+    __atomic_store_n(p+4,p[4]+1,__ATOMIC_RELEASE);UnmapViewOfFile(p);
+}
 static void host(u32 action,u32 generation,u32 alive){
     channel[4]=++host_seq;
     channel[5]=alive;channel[6]=++beat;channel[7]=command_id;channel[8]=action;channel[9]=generation;

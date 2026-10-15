@@ -12189,3 +12189,22 @@ also passes Save/resume/Load/resume/normal Quit with stable sources and all55
 menu compiler inputs. The six private original Escape-gate cases, nine storage/
 OCR evidence controls and21 campaign evidence controls pass. The current native
 journey does not rerun the historical independent World-pixel comparisons.
+
+## Native menu startup admission — 2026-10-15
+
+`HOST.menu-startup-admission` replaces the one-shot host snapshot with bounded,
+nonblocking pending admission on original engine ticks. Odd/crossed publications
+can retry; malformed/dead/already-used lanes and deadline expiry refuse before
+native publication or dispatch. A separate bounded reason trace preserves future
+startup diagnostics. See [admission policy and evidence](menu-startup-admission.md).
+
+Normal and held-odd PE32 controls pass, including300 original ticks without early
+publication and all existing callback guards; four startup refusal controls retain
+unchanged engine ownership. Three separate fresh-prefix Initiate Save/Load/Quit
+journeys pass:2,180 balanced Worlds and23,585 optional native calls in total, zero
+forwards/history refusals and normal cleanup. These are live observations, with
+comparison/replacement still none. The historical startup failure's exact cause
+remains unknown; all three fresh launches admitted without a transient retry.
+Changed-World-canvas/map transitions, complete presented pixels, hardware timing
+and broader reader/route coverage remain separate. Historical evidence is not
+refingerprinted after shared menu source edits.

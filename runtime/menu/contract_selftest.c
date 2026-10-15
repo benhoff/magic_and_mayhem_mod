@@ -71,6 +71,7 @@ void start(void){
     reset(3,0x5c63e4);SetLastError(0xabc123);
     TickFn observed_tick=(TickFn)get((void*)0x5c63f4);
     for(u32 i=0;i<300;++i)require(observed_tick(object)==0x13579bdf&&GetLastError()==0xabc123,31);
+    channel_startup_release();
     // Original code/slot checks reject repeat installation with no new writes.
     require(!MenuInstallForTest(),32);
     if(preferences_fixture_enabled())preferences_fixture_tests(observed_tick);else if(result_fixture_enabled())result_fixture_tests();else if(mini_fixture_enabled())mini_fixture_tests(observed_tick);else if(spell_fixture_enabled())spell_fixture_tests(observed_tick);else if(battle_fixture_enabled())battle_fixture_tests(observed_tick);else channel_tests(observed_tick);
