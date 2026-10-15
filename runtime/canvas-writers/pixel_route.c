@@ -2,6 +2,7 @@
 MnmPixelResolve mnm_pixel_resolve;
 uintptr_t mnm_pixel_original[MNM_PIXEL_SITES], mnm_pixel_resume[MNM_PIXEL_SITES];
 uint32_t mnm_pixel_native[MNM_PIXEL_SITES], mnm_pixel_forwarded[MNM_PIXEL_SITES];
+void (*mnm_pixel_notice)(unsigned,int);
 int mnm_pixel_route(uint32_t *r, unsigned kind) {
     if (kind >= MNM_PIXEL_SITES) return 0;
     struct MnmPixelPlane p = {0};
@@ -35,9 +36,9 @@ int mnm_pixel_route(uint32_t *r, unsigned kind) {
         struct MnmPixelPlane source = {(uint16_t *)(uintptr_t)args[0], args[1], args[2], args[3], p.format};
         if (!mnm_pixel_copy(&p, &source, args[4], args[5])) goto refuse;
     }
-    ++mnm_pixel_native[kind];
+    ++mnm_pixel_native[kind];if(mnm_pixel_notice)mnm_pixel_notice(kind,1);
     return 1;
 refuse:
-    ++mnm_pixel_forwarded[kind];
+    ++mnm_pixel_forwarded[kind];if(mnm_pixel_notice)mnm_pixel_notice(kind,0);
     return 0;
 }

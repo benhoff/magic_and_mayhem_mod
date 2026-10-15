@@ -35769,7 +35769,9 @@
         "runtime/scene/source_pending_policy.h",
         "runtime/native-draw/palette.h",
         "reconstruction/rendering/pixel_kernel.c",
-        "reconstruction/rendering/pixel_kernel.h"
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
@@ -36985,7 +36987,9 @@
         "runtime/scene/source_pending_policy.h",
         "runtime/native-draw/palette.h",
         "reconstruction/rendering/pixel_kernel.c",
-        "reconstruction/rendering/pixel_kernel.h"
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
@@ -37786,7 +37790,9 @@
         "runtime/scene/source_pending_policy.h",
         "runtime/native-draw/palette.h",
         "reconstruction/rendering/pixel_kernel.c",
-        "reconstruction/rendering/pixel_kernel.h"
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
@@ -37908,7 +37914,9 @@
         "tools/run-qt-shell.sh",
         "runtime/native-draw/palette.h",
         "reconstruction/rendering/pixel_kernel.c",
-        "reconstruction/rendering/pixel_kernel.h"
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "evidence": [
         "NR.native-draw-status-session-file.fixtures-20261011",
@@ -54625,7 +54633,9 @@
         "tools/original-manifest.sh",
         "runtime/native-draw/palette.h",
         "reconstruction/rendering/pixel_kernel.c",
-        "reconstruction/rendering/pixel_kernel.h"
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "evidence": [
         "NP.surface-final-word-read.native-20261012"
@@ -60974,7 +60984,9 @@
         "tools/run-qt-shell.sh",
         "runtime/native-draw/palette.h",
         "reconstruction/rendering/pixel_kernel.c",
-        "reconstruction/rendering/pixel_kernel.h"
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "evidence": [
         "NR.native-status-outside-drawing.controls-20261013",
@@ -67886,7 +67898,11 @@
         "tools/test-native-pacer.py",
         "tools/test-region-entry-bridge.py",
         "tools/wine_import_census.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "DRAW02.qt-quick-battle-app-01-20261014",
@@ -68919,7 +68935,11 @@
         "tools/test-qt-quick-battle-app.py",
         "tools/test-region-entry-bridge.py",
         "tools/wine_import_census.py",
-        "tools/world_channel.py"
+        "tools/world_channel.py",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "DRAW02.results-readiness-synthetic-01-20261014",
@@ -69198,7 +69218,9 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-panel-writers.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.panel-loop-state.original-20261013",
@@ -69245,14 +69267,17 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-panel-writers.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.panel-loop-state.original-20261013",
         "NP.panel-loop-controls.native-20261013",
         "RS.panel-loop-state.staging-original-20261013",
         "NP.panel-loop-controls.staging-native-20261013",
-        "RS.panel-loop-state.pixel-launchers-original-20261014"
+        "RS.panel-loop-state.pixel-launchers-original-20261014",
+        "NP.native-completion.panel-20261015"
       ],
       "status": {
         "understanding": "scoped",
@@ -69391,7 +69416,11 @@
         "tools/launch_build_cache.py",
         "tools/original-manifest.sh",
         "tools/pixel_backend_launch.py",
-        "runtime/native-draw/palette.h"
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
@@ -69455,13 +69484,18 @@
         "tools/launch_build_cache.py",
         "tools/original-manifest.sh",
         "tools/pixel_backend_launch.py",
-        "runtime/native-draw/palette.h"
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
         "NP.image-effect-controls.native-20261014",
         "RS.image-effect-pixel-state.range-original-20261014",
-        "RS.image-effect-pixel-state.original-final-20261014"
+        "RS.image-effect-pixel-state.original-final-20261014",
+        "NP.native-completion.pixel-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -69521,7 +69555,11 @@
         "tools/launch_build_cache.py",
         "tools/original-manifest.sh",
         "tools/pixel_backend_launch.py",
-        "runtime/native-draw/palette.h"
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.image-effect-pixel-state.original-20261014",
@@ -69580,7 +69618,8 @@
         "runtime/shadow/win32_min.h",
         "tools/build-jpeg-pixels.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h"
       ],
       "evidence": [
         "RS.jpeg-source-pixels.original-20261014",
@@ -69630,7 +69669,8 @@
         "runtime/shadow/win32_min.h",
         "tools/build-jpeg-pixels.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h"
       ],
       "evidence": [
         "RS.jpeg-source-pixels.original-20261014",
@@ -69963,7 +70003,11 @@
         "tools/rts_controls_launch.py",
         "tools/rts_controls_source.py",
         "tools/run-opengl-game.py",
-        "runtime/native-draw/palette.h"
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "NP.pixel-producer-launch.staging-20261014",
@@ -70022,7 +70066,8 @@
         "tools/export-menu-support.py",
         "tools/prepare-shadow-experiment.py",
         "tools/launch_build_cache.py",
-        "tools/pixel_backend_launch.py"
+        "tools/pixel_backend_launch.py",
+        "runtime/canvas-writers/producer_status.h"
       ],
       "evidence": [
         "RS.jpeg-wrapper-route.original-20261014",
@@ -70285,7 +70330,9 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-minimap-writers.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.minimap-pixel-passes.original-20261014",
@@ -70335,11 +70382,14 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-minimap-writers.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.minimap-pixel-passes.original-20261014",
-        "RS.minimap-pixel-passes.original-final-20261014"
+        "RS.minimap-pixel-passes.original-final-20261014",
+        "NP.native-completion.minimap-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70393,7 +70443,9 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-colour-rect.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.colour-rectangle-pixels.original-20261014"
@@ -70438,10 +70490,13 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-colour-rect.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
-        "RS.colour-rectangle-pixels.original-20261014"
+        "RS.colour-rectangle-pixels.original-20261014",
+        "NP.native-completion.colour-rect-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70575,7 +70630,9 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-raster-writers.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
         "RS.outside-world-raster-pixels.original-20261014"
@@ -70625,10 +70682,13 @@
         "tests/sprite-binary-reference.cpp",
         "tools/build-raster-writers.py",
         "tools/build-shadow-bridge.py",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h",
+        "runtime/canvas-writers/history.h"
       ],
       "evidence": [
-        "RS.outside-world-raster-pixels.original-20261014"
+        "RS.outside-world-raster-pixels.original-20261014",
+        "NP.native-completion.raster-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70669,7 +70729,10 @@
         "tools/build-native-draw.py",
         "tools/build-dc-copy.py",
         "tools/build-shadow-bridge.py",
-        "runtime/native-draw/palette.h"
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h"
       ],
       "evidence": [
         "NP.owned-dc-copy.gdi-20261014",
@@ -70714,7 +70777,10 @@
         "tools/build-native-draw.py",
         "tools/build-dc-copy.py",
         "tools/build-shadow-bridge.py",
-        "runtime/native-draw/palette.h"
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h"
       ],
       "evidence": [
         "NP.owned-dc-copy.gdi-20261014",
@@ -70763,10 +70829,13 @@
         "tests/test-surface-driver.py",
         "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
         "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz",
-        "tools/capture-original-surface-keys.py"
+        "tools/capture-original-surface-keys.py",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/producer_status.h"
       ],
       "evidence": [
-        "NP.native-resource-state.headless-20261015"
+        "NP.native-resource-state.headless-20261015",
+        "NP.native-resource-state.completion-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -70775,6 +70844,552 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.cpu-history-admission",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "CPU history authority after resident World",
+      "scope": "Owned CPU storage carries the resident generation and nonce with its backing across flips. Selected CPU readers and original-forwarding branches must terminate before reading stale World history; independent writes do not establish complete history. Full un-clipped fills can establish complete CPU history. This is a conservative native admission policy, not GPU readback or transparent recovery.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-completion.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/factory.c",
+        "runtime/render/owned_session.h",
+        "runtime/canvas-writers/history.h",
+        "runtime/render/bridge.c",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/panel_bridge.c",
+        "runtime/canvas-writers/raster_bridge.c"
+      ],
+      "tests": [
+        "tests/native-history-probe.c",
+        "tools/test-native-completion.py"
+      ],
+      "evidence": [
+        "NP.native-render-completion.controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tests/native-draw-resource-probe.c",
+        "tools/build-native-draw.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/original-manifest.sh",
+        "runtime/canvas-writers/producer_status.h"
+      ]
+    },
+    {
+      "id": "NP.producer-route-counters",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Combined pixel producer selection and route accounting",
+      "scope": "Explicit campaign option selects all seven optional producer families after environment sanitization. Launch-local mapped counters distinguish installed, native, forwarded routes, plus a separate terminal stale-history refusal diagnostic; absent and unexercised routes remain explicit. Counters are observations, not equivalence or whole renderer replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-completion.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/producer_status.h",
+        "runtime/canvas-writers/producer_status.h",
+        "tools/test-native-campaign.py",
+        "tools/native_pixel_counters.py",
+        "tools/menu-game-runner.py",
+        "runtime/canvas-writers/minimap_route.h",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/panel_route.h",
+        "runtime/canvas-writers/pixel_route.h",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/panel_route.c",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/canvas-writers/dc_copy_bridge.c",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/jpeg_bridge.c",
+        "runtime/canvas-writers/panel_bridge.c",
+        "runtime/canvas-writers/raster_bridge.c"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NP.producer-route-counters.combined-refusal-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/borrowed_pixel_backend_launch.py",
+        "runtime/canvas-writers/history.h"
+      ]
+    },
+    {
+      "id": "HOST.resident-terminal-restart",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Resident terminal failure and fresh-session restart",
+      "scope": "Resident failures cancel producer channels, suspend input, discard displayed frames and retire renderer-owned leases. The existing semantic hard restart stops the producer and creates fresh channels and session identities. No in-place replay or original presentation recovery is asserted.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-completion.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/live_command_session.cpp"
+      ],
+      "tests": [
+        "tests/resident-terminal-restart-test.cpp",
+        "tools/test-native-completion.py"
+      ],
+      "evidence": [
+        "NP.native-render-completion.controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/audio_cli.cpp",
+        "apps/qt-shell/audio_cli.hpp",
+        "apps/qt-shell/audio_session.cpp",
+        "apps/qt-shell/audio_session.hpp",
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/campaign_storage_boundary_test.cpp",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/character_screen_widget.cpp",
+        "apps/qt-shell/character_screen_widget.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/command_replay.cpp",
+        "apps/qt-shell/command_replay.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/game_process.hpp",
+        "apps/qt-shell/game_restart_action.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/grimoire_assets.cpp",
+        "apps/qt-shell/grimoire_assets.hpp",
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/grimoire_widget.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/live_battle_menu_controller.cpp",
+        "apps/qt-shell/live_battle_menu_controller.hpp",
+        "apps/qt-shell/live_battle_menu_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.hpp",
+        "apps/qt-shell/live_campaign_defeat_test.cpp",
+        "apps/qt-shell/live_campaign_grimoire_test.cpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "apps/qt-shell/live_character_controller.cpp",
+        "apps/qt-shell/live_character_controller.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_grimoire_controller.cpp",
+        "apps/qt-shell/live_grimoire_controller.hpp",
+        "apps/qt-shell/live_grimoire_test.cpp",
+        "apps/qt-shell/live_host_lobby_controller.cpp",
+        "apps/qt-shell/live_host_lobby_controller.hpp",
+        "apps/qt-shell/live_host_lobby_test.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_mini_menu_controller.hpp",
+        "apps/qt-shell/live_multiplayer_controller.cpp",
+        "apps/qt-shell/live_multiplayer_controller.hpp",
+        "apps/qt-shell/live_multiplayer_sessions_test.cpp",
+        "apps/qt-shell/live_multiplayer_test.cpp",
+        "apps/qt-shell/live_preferences_display_test.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.hpp",
+        "apps/qt-shell/live_preferences_menu_test.cpp",
+        "apps/qt-shell/live_preferences_restore_test.cpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "apps/qt-shell/live_realm_controller.cpp",
+        "apps/qt-shell/live_realm_controller.hpp",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_result_menu_controller.cpp",
+        "apps/qt-shell/live_result_menu_controller.hpp",
+        "apps/qt-shell/live_session_selection_controller.cpp",
+        "apps/qt-shell/live_session_selection_controller.hpp",
+        "apps/qt-shell/live_spell_menu_controller.cpp",
+        "apps/qt-shell/live_spell_menu_controller.hpp",
+        "apps/qt-shell/live_storage_menu_controller.cpp",
+        "apps/qt-shell/live_storage_menu_controller.hpp",
+        "apps/qt-shell/live_storage_menu_test.cpp",
+        "apps/qt-shell/load_game_widget.cpp",
+        "apps/qt-shell/load_game_widget.hpp",
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/main_menu_widget.hpp",
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/map_selection_widget.hpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "apps/qt-shell/media_cli.cpp",
+        "apps/qt-shell/media_cli.hpp",
+        "apps/qt-shell/menu_assets.cpp",
+        "apps/qt-shell/menu_assets.hpp",
+        "apps/qt-shell/menu_audio_controller.cpp",
+        "apps/qt-shell/menu_audio_controller.hpp",
+        "apps/qt-shell/menu_audio_preferences.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/menu_fonts.hpp",
+        "apps/qt-shell/menu_music_controller.cpp",
+        "apps/qt-shell/menu_music_controller.hpp",
+        "apps/qt-shell/menu_music_devices.hpp",
+        "apps/qt-shell/menu_music_output.cpp",
+        "apps/qt-shell/menu_preview.cpp",
+        "apps/qt-shell/menu_preview.hpp",
+        "apps/qt-shell/menu_sprites.cpp",
+        "apps/qt-shell/menu_sprites.hpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.cpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.hpp",
+        "apps/qt-shell/multiplayer_lobby_widget.cpp",
+        "apps/qt-shell/multiplayer_lobby_widget.hpp",
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp",
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/native_frame_trace.hpp",
+        "apps/qt-shell/native_image_encoder.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/native_worker_status_gate.hpp",
+        "apps/qt-shell/playback_audio_devices.cpp",
+        "apps/qt-shell/playback_audio_devices.hpp",
+        "apps/qt-shell/preferences_widget.cpp",
+        "apps/qt-shell/preferences_widget.hpp",
+        "apps/qt-shell/quick_battle_menu_widget.cpp",
+        "apps/qt-shell/quick_battle_menu_widget.hpp",
+        "apps/qt-shell/quick_battle_result_widget.cpp",
+        "apps/qt-shell/quick_battle_result_widget.hpp",
+        "apps/qt-shell/realm_viewer_assets.cpp",
+        "apps/qt-shell/realm_viewer_assets.hpp",
+        "apps/qt-shell/realm_viewer_visuals.cpp",
+        "apps/qt-shell/realm_viewer_visuals.hpp",
+        "apps/qt-shell/realm_viewer_widget.cpp",
+        "apps/qt-shell/realm_viewer_widget.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/render_deadline_probe.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp",
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.hpp",
+        "apps/qt-shell/spell_research_widget.cpp",
+        "apps/qt-shell/spell_research_widget.hpp",
+        "apps/qt-shell/spellbox_widget.cpp",
+        "apps/qt-shell/spellbox_widget.hpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/music_bridge.cpp",
+        "audio/music_bridge.hpp",
+        "audio/music_catalog.cpp",
+        "audio/music_catalog.hpp",
+        "audio/music_output.cpp",
+        "audio/music_service.cpp",
+        "audio/music_service.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/profile_source.cpp",
+        "audio/profile_source.hpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "audio/wave_source.cpp",
+        "audio/wave_source.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/canvas_producers_v4.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v19.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_continuous_v5.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/audio/attenuation_map.cpp",
+        "reconstruction/audio/attenuation_map.hpp",
+        "reconstruction/audio/camera_projection.cpp",
+        "reconstruction/audio/camera_projection.hpp",
+        "reconstruction/audio/catalog_preflight.cpp",
+        "reconstruction/audio/catalog_preflight.hpp",
+        "reconstruction/audio/cd_stop_controls.cpp",
+        "reconstruction/audio/cd_stop_controls.hpp",
+        "reconstruction/audio/cd_track_controls.cpp",
+        "reconstruction/audio/cd_track_controls.hpp",
+        "reconstruction/audio/dsound_setup.cpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/manager_configuration.cpp",
+        "reconstruction/audio/manager_configuration.hpp",
+        "reconstruction/audio/manager_contract.cpp",
+        "reconstruction/audio/manager_contract.hpp",
+        "reconstruction/audio/manager_lifecycle.cpp",
+        "reconstruction/audio/manager_lifecycle.hpp",
+        "reconstruction/audio/native_manager_backend.cpp",
+        "reconstruction/audio/native_manager_backend.hpp",
+        "reconstruction/audio/positional_audio.cpp",
+        "reconstruction/audio/positional_audio.hpp",
+        "reconstruction/audio/source_cache.cpp",
+        "reconstruction/audio/source_cache.hpp",
+        "reconstruction/audio/voice_admission.cpp",
+        "reconstruction/audio/voice_admission.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/audio/voice_scheduler.cpp",
+        "reconstruction/audio/voice_scheduler.hpp",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/audio/protocol.h"
+      ]
+    },
+    {
+      "id": "NP.held-lease-flip",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Facade physical storage leases across flip",
+      "scope": "For a focused exclusive 640x480 RGB565 primary double buffer on Wine11.16, the facade exchanges physical backing and CPU balance/DC storage ownership before reporting busy on the new front. Logical cached DC handles remain on their original objects. Four front/back CPU Lock/DC schedules compare with independent real-driver processes, including successful eventual DC release after flip-back and backing pixel identity. Scope excludes unfocused windows, mixed/debt/interleaved leases, longer chains and physical device loss. Native memory bookkeeping retires cached and physical ownership separately; history authority follows backing.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-render-completion.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/dc.h"
+      ],
+      "tests": [
+        "tests/native-held-flip-probe.c",
+        "tools/test-native-completion.py"
+      ],
+      "evidence": [
+        "NP.native-render-completion.controls-20261015"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "runtime/shadow/win32_min.h",
+        "tests/native-draw-resource-probe.c",
+        "tools/build-native-draw.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/original-manifest.sh"
+      ]
     }
   ],
   "evidence": [
@@ -140747,6 +141362,146 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NP.native-render-completion.controls-20261015",
+      "kind": "native_integration",
+      "scope": "Source-bound CPU history authority/refusal and held-flip transfer; four focused RGB565 Wine Surface2 held-lease schedules; four synthetic actual-GL terminal/fresh-worker schedules. No actual-game freeze or physical GPU-loss equivalence.",
+      "record": "research/runtime/native-render-completion-controls-20261015.json",
+      "sha256": "994f1e24f3d099c7e86ccd83b8781be0a9b22da39e83543adf3571ac3518119c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-resource-state.completion-20261015",
+      "kind": "native_integration",
+      "scope": "Fresh five-format, clipping, palette/DC and resource-retirement regression after physical held-lease transfer; retained historical evidence is unchanged.",
+      "record": "research/runtime/native-render-completion-resources-20261015.json",
+      "sha256": "dadcdcf6b29375469d99a02856c20d2a153a8197cd89e98b11839e256e2f762f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-completion.raster-20261015",
+      "kind": "native_integration",
+      "scope": "Bounded canonical RLE pixels across generic indexed/WORD, black silhouette, opaque/three blends, displacement, projected shadow and grayscale production interior splices versus pinned original bytes, padded RGB565/555, ABI nonvolatile registers/WORD result/defined flags/DF/selected full FX; original preparation retained. Private fast body volatile ECX/EDX/upper EAX and cdecl scratch argument mutation excluded; generic workspace separately checked. No real game/driver/World integration or live replacement",
+      "record": "research/runtime/native-render-completion-raster-20261015.json",
+      "sha256": "202f971df009e0117d135e83acf8af96c2565159e8eddacd854dce1d60b3bfed",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-completion.panel-20261015",
+      "kind": "native_integration",
+      "scope": "Isolated pinned original panel wrappers and actual production installer/resolver/entry/kernel. Supplied external Lock/Unlock and Linux-hosted Win32 memory/API adapters; complete physical pixels, caller GPR/defined flags/DF/FX, Unlock arguments/count/volatile GPR and LastError. No real DirectDraw, Wine/game integration, live replacement or full renderer claim.",
+      "record": "research/runtime/native-render-completion-panel-20261015.json",
+      "sha256": "14bd8def13751e1370bb8509374a0ebbecc8b5830cdf5eb74a36ea6a6484c5fb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-completion.pixel-20261015",
+      "kind": "native_integration",
+      "scope": "Pinned original PCX surface/index/raw WORD, RGB-add, brighten, row-copy and fade wrappers versus production installer/resolver/entry/kernel, with supplied Lock/Unlock and Wine-independent Win32 memory/API adapters. Physical pixels, caller state and thread refusal. DIB kernel synthetic controls only; owned DC integration and native JPEG/minimap/glyph/raster closure remain separate.",
+      "record": "research/runtime/native-render-completion-pixel-20261015.json",
+      "sha256": "a4041583828a06b3d5e9ae91ae6e8161372a288e4fb65b5f46484c13b3a6e30c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-completion.minimap-20261015",
+      "kind": "native_integration",
+      "scope": "Bounded mapped original minimap terrain/cell/creature/four camera pixel bodies versus actual production installer/resolver/assembly/kernel; supplied owned-plane, Win32 and Lock/Unlock adapters, full physical words/padding/guards, source/object effects and caller GPR/defined flags/DF/selected full FX. Camera fixtures retain original origin/colour/list preparation with terrain separately stubbed; no combined real driver/game/World integration or live replacement.",
+      "record": "research/runtime/native-render-completion-minimap-20261015.json",
+      "sha256": "334595a22326f9b7295aaa8d5ba617852cc02bb19ad54d1cd8ba029dae973e44",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.native-completion.colour-rect-20261015",
+      "kind": "native_integration",
+      "scope": "Bounded actual 547d80 original rectangle wrapper/preparation and production interior splice, canonical constant/triple-WORD channels, modes0..3, clipped/padded physical RGB565/555 and caller machine state under supplied current owned-plane and Win32 adapters. No real game/driver integration or live replacement",
+      "record": "research/runtime/native-render-completion-colour-rect-20261015.json",
+      "sha256": "a5384fc75899492e6d961b36cb33ad752baedb77ad6dca5dbf07a8214a4c8fbf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.producer-route-counters.combined-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Actual public resident gameplay selected all seven optional families and verified staged DLL/compiler inputs. All route installations are present; native/forwarded/unexercised counters and a generation1 stale-history terminal refusal are retained. This is an expected refusal observation, NOT a successful campaign journey, normal Quit, full replacement or pixel equivalence.",
+      "record": "research/runtime/native-render-completion-combined-refusal-20261015.json",
+      "sha256": "8024ca5832b6f45acc5fe316c6e5ce865aba2d0aaf8e22f74c99007eec7995b0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -156772,6 +157527,39 @@
         "tools/test-native-resource-state.py",
         "tests/native-draw-window-clip-probe.c"
       ]
+    },
+    {
+      "id": "NP.native-completion.fixture",
+      "scope": "CPU authority refusal, independent Wine held-flip schedules and synthetic native GL owner teardown/fresh-session controls; no actual game freeze or physical context-loss equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NP.cpu-history-admission",
+        "NP.held-lease-flip",
+        "HOST.resident-terminal-restart"
+      ],
+      "tests": [
+        "tools/test-native-completion.py",
+        "tests/native-history-probe.c",
+        "tests/native-held-flip-probe.c",
+        "tests/resident-terminal-restart-test.cpp"
+      ],
+      "evidence": [
+        "NP.native-render-completion.controls-20261015"
+      ]
+    },
+    {
+      "id": "NP.producer-route-counters.campaign",
+      "scope": "All seven optional families explicitly selected for public gameplay; installed/native/forwarded route census, unexercised routes retained; not full replacement or original pixel equivalence.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.producer-route-counters"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NP.producer-route-counters.combined-refusal-20261015"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -157379,8 +158167,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-resource-state-20261015.json",
-    "sha256": "2c736209e24f0c1a8939900ae484b8c0c3c6c3a328b193f62fec2eceec325d0c"
+    "path": "research/runtime/coverage/source-index-native-completion-final-20261015.json",
+    "sha256": "81bfa2fd927f775b22aea872860d7c1b6d3d75b86b0a0892e194cb8afd462287"
   },
   "claim_bindings_required": true
 }

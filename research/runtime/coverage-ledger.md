@@ -11994,3 +11994,42 @@ non8-bit palettes, indexed primary modes, stretched copies, held-lease facade fl
 equivalence, arbitrary concurrency, resident recovery and closed GPU/CPU history
 remain explicit separate boundaries. Existing renderer recovery/held-flip proofs
 remain independent of this facade's conservative busy policy.
+
+## Native render admission, counters, failure handling and held flips — 2026-10-15
+
+Four scoped contracts are added in [native-render-completion.md](native-render-completion.md):
+`NP.cpu-history-admission`, `NP.producer-route-counters`,
+`HOST.resident-terminal-restart` and `NP.held-lease-flip`. CPU authority carries
+resident generation/nonce with physical backing. Selected dependent readers
+terminate before native mutation or original fallback on stale history. Partial
+writes retain stale authority; complete un-clipped fills can establish it.
+This guard does not materialize GPU World pixels or intercept arbitrary pointer
+reads outside the selected adapters.
+
+The explicit campaign `--other-pixel-producers` option restores only the selected
+group after environment cleanup. Seven families report per-route installation,
+native calls and original forwards through a versioned launch-local mapping.
+The harness verifies their staged DLL/compiler inputs and retains unexercised
+routes. A terminal history refusal ends the run explicitly; it cannot be reported
+as complete replacement. Actual original forwarding remains visible.
+
+Resident terminal failures latch input suspension across menu/media callbacks,
+clear presentation, retire renderer owners and expose the existing semantic hard
+restart; an exited producer can be relaunched through Launch. Four synthetic actual
+GL failures each permit a fresh native session and frame, without in-place retry.
+Physical context loss and actual-game freeze/restart acceptance remain pending.
+
+The facade now transfers CPU balance and DC physical ownership with storage while
+cached DC identity stays on its logical object. Four focused exclusive RGB565
+Surface2 schedules independently match Wine11.16, including post-swap busy results
+and eventual DC release after flip-back. This supersedes the earlier facade idle/
+pre-mutation busy policy. Unfocused windows, arbitrary interleaved/debt leases,
+longer chains and held-lock live command-adapter integration remain excluded.
+
+Fresh clipping/resource and panel/image/minimap/rectangle/raster regressions pass;
+historical evidence fingerprints are preserved. These controls advance only their
+scoped headless contracts. Full renderer replacement, normal-Quit combined-session
+equivalence and strict zero-forward admission are not promoted. The real combined
+run reaches gameplay and demonstrates the intended stale-history refusal; matching
+CPU World history remains necessary for that operation to continue. See the
+completion record for source-bound positive controls and the failed live journey.

@@ -1,8 +1,10 @@
 /* Native minimap pixel passes; original clipping/projection/order/lifecycle. */
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 #include "minimap_route.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#include "history.h"
 extern void mnm_map_terrain_enter(void),mnm_map_cell_enter(void),mnm_map_creature_enter(void),
  mnm_map_camera0_enter(void),mnm_map_camera1_enter(void),mnm_map_camera2_enter(void),mnm_map_camera3_enter(void);
 typedef i32 (WIN *Plane)(const void*,u32*,u32);
@@ -27,6 +29,7 @@ static void release(const struct MnmMinimapTerrain* t){
 static int resolve(u32* r,unsigned kind,struct MnmPixelPlane* p,struct MnmPixelPlane* history,struct MnmMinimapTerrain* t,
  struct MnmMinimapView* v,struct MnmMinimapCamera* c,u32* a){
  const u32 error=GetLastError();int ok=0;u32* stack=r+9;
+ if(kind==MNM_MAP_TERRAIN && span((u32)stack,0x20,0))cpu_history_require((void*)stack[0x1c/4]);
  if(kind>=MNM_MAP_SITES || !span((u32)stack,0x40,0) || word(0x6e1f88)>1)goto done;
  const u32 object=kind==MNM_MAP_TERRAIN?r[1]:kind==MNM_MAP_CELL || kind==MNM_MAP_CREATURE?r[6]:r[1];
  if(!span(object,0x6210,0) || !plane(word(object+0xdf),p,1) || word(object+0xeb)!=p->stride)goto done;
@@ -79,6 +82,8 @@ static void jump(u8* at,void* target,u32 n){at[0]=0xe9;*(u32*)(at+1)=(u32)target
 static int install(void){
  if(installed)return 1;char flag[4];const u32 n=GetEnvironmentVariableA("MNM_MINIMAP_TAKEOVER",flag,sizeof(flag));if(!n)return 1;
  if(n!=1 || flag[0]!='1' || (u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(!cpu_history_install())return 0;
+ if(!producer_start(3,7))return 0;
  for(u32 i=0;i<MNM_MAP_SITES;++i)if(!span(sites[i].at,sites[i].length,0) || !same((u8*)sites[i].at,sites[i].bytes,sites[i].length) ||
   !span(sites[i].tail,8,0) || !same((u8*)sites[i].tail,sites[i].tail_bytes,8))return 0;
  owned_plane=(Plane)GetProcAddress(GetModuleHandleA("MnmDraw.dll"),"NativeDrawPlaneV1");if(!owned_plane)return 0;
@@ -88,7 +93,7 @@ static int install(void){
  u32 pages[7],protection[7],count=0;
  for(u32 i=0;i<MNM_MAP_SITES;++i){const u32 page=sites[i].at&~4095u;u32 j=0;while(j<count && pages[j]!=page)++j;if(j<count)continue;
   if(!VirtualProtect((void*)page,4096,0x40,protection+count)){while(count){--count;u32 ignored;if(!VirtualProtect((void*)pages[count],4096,protection[count],&ignored))ExitProcess(123);}return 0;}pages[count++]=page;}
- mnm_map_resolve=resolve;mnm_map_release=release;
+ mnm_map_resolve=resolve;mnm_map_notice=producer_notice;mnm_map_release=release;
  for(u32 i=0;i<MNM_MAP_SITES;++i)jump((u8*)sites[i].at,(void*)sites[i].entry,sites[i].length);
  while(count){--count;u32 ignored;if(!VirtualProtect((void*)pages[count],4096,protection[count],&ignored) || !FlushInstructionCache(GetCurrentProcess(),(void*)pages[count],4096))ExitProcess(123);}
  installed=1;return 1;

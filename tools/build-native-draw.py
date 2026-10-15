@@ -63,6 +63,8 @@ def build(output, declared=None):
                'NativeDrawBitBltV1': ('NativeDrawBitBltV1', 36),
                'NativeDrawSurfaces': ('NativeDrawSurfaces', 0),
                'NativeDrawPlaneV1': ('NativeDrawPlaneV1', 12),
+               'NativeDrawCpuHistoryV1': ('NativeDrawCpuHistoryV1', 24),
+               'NativeDrawProducerCountV1': ('NativeDrawProducerCountV1', 12),
                'NativeDrawAnchor': ('NativeDrawAnchor', 0),
                'NativeDrawStatusStage': ('NativeDrawStatusStage', 0),
                'NativeDrawStatusDeferV1': ('NativeDrawStatusDeferV1', 4)}

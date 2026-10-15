@@ -1,6 +1,7 @@
 /* Source-only native JPEG cache. Pixels are decoded on the native host before
  * launch, then mapped read-only here. No original destination or capture seed. */
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 #include "../../reconstruction/rendering/jpeg_pixels.h"
 API u32 WIN GetCurrentThreadId(void);
 API u32 WIN GetFileSize(HANDLE,u32*);
@@ -42,8 +43,8 @@ __declspec(dllexport) u32 __attribute__((fastcall)) NativeJpegPixelsV1(const cha
 done:SetLastError(error);return result;
 }
 static u32 __attribute__((fastcall)) decode(const char* name,u16* p,i32 w,i32 pitch,i32 h,i32 format){
- if(NativeJpegPixelsV1(name,p,w,pitch,h,format)){++native_calls;return 1;}
- ++forwarded_calls;return (*(Jpeg*)0x5c5308)(name,p,w,pitch,h,format);
+ if(NativeJpegPixelsV1(name,p,w,pitch,h,format)){++native_calls;producer_notice(0,1);return 1;}
+ ++forwarded_calls;producer_notice(0,0);return (*(Jpeg*)0x5c5308)(name,p,w,pitch,h,format);
 }
 static int load(void){
  char path[1024];const u32 n=GetEnvironmentVariableA("MNM_JPEG_PIXELS",path,sizeof(path));
@@ -60,6 +61,7 @@ static int load(void){
 static int install(void){
  char flag[4];const u32 n=GetEnvironmentVariableA("MNM_JPEG_TAKEOVER",flag,sizeof(flag));if(!n)return 1;
  if(n!=1 || flag[0]!='1' || !catalog || (u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(!producer_start(2,1))return 0;
  const u8 original[6]={0xff,0x15,8,0x53,0x5c,0};if(!span(0x58d34b,6,0))return 0;
  for(u32 i=0;i<6;++i)if(((const u8*)0x58d34b)[i]!=original[i])return 0;
  u32 old,ignored;if(!VirtualProtect((void*)0x58d34b,6,0x40,&old))return 0;

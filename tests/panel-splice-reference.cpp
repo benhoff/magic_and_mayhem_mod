@@ -43,6 +43,9 @@ u32 WIN GetLastError(){return lastError;}
 void WIN SetLastError(u32 v){lastError=v;}
 u32 WIN GetCurrentThreadId(){lastError=998;return threadId;}
 void *WIN GetModuleHandleA(const char *){return reinterpret_cast<void *>(0x400000);}
+static int WIN panelCurrentHistory(const void*,u32,u32,u32,u32,u32){return 0;}
+static void WIN panelCountProducer(u32,u32,u32){}
+void* WIN GetProcAddress(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(panelCurrentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(panelCountProducer);throw std::runtime_error("Unexpected panel helper");}
 u32 WIN GetEnvironmentVariableA(const char *,char *out,u32 size) {
     if(!selection)return 0;const auto n=std::strlen(selection);if(n>=size)return n+1;
     std::memcpy(out,selection,n+1);return n;

@@ -618,6 +618,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(native_draw){
         game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
         game_copy_native_defer=(void (WIN *)(u32))GetProcAddress(native_draw,"NativeDrawStatusDeferV1");
+        game_cpu_history=(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(native_draw,"NativeDrawCpuHistoryV1");
     }
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;

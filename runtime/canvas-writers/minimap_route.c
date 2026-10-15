@@ -9,6 +9,7 @@ static uint32_t add_flags(uint32_t a,uint32_t n,uint32_t flags){
  if(!r)out|=64;if(r&0x80000000u)out|=128;if((~(a^n)&(a^r))&0x80000000u)out|=0x800;
  return (flags&~0x8d5u)|out;
 }
+void (*mnm_map_notice)(unsigned,int);
 int mnm_map_route(uint32_t *r,unsigned kind){
  if(kind>=MNM_MAP_SITES)return 0;
  struct MnmPixelPlane p={0},history={0};struct MnmMinimapTerrain t={0};struct MnmMinimapView v={0};struct MnmMinimapCamera c={0};uint32_t a[8]={0},returned=0;int ok=0;
@@ -29,5 +30,5 @@ int mnm_map_route(uint32_t *r,unsigned kind){
  }
 done:
  if(mnm_map_release)mnm_map_release(&t);
- if(ok)++mnm_map_native[kind];else ++mnm_map_forwarded[kind];return ok;
+ if(ok)++mnm_map_native[kind];else ++mnm_map_forwarded[kind];if(mnm_map_notice)mnm_map_notice(kind,ok);return ok;
 }

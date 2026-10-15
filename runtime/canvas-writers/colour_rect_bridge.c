@@ -1,7 +1,9 @@
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 #include "../../reconstruction/rendering/colour_rect.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#include "history.h"
 typedef i32 (WIN *Plane)(const void*,u32*,u32);
 extern void mnm_colour_rect_enter(void);
 uintptr_t mnm_colour_rect_original,mnm_colour_rect_resume;
@@ -16,6 +18,7 @@ static int span(u32 at,u32 n,int write){
 int mnm_colour_rect_route(u32 *r){
  const u32 error=GetLastError();int ok=0;u32 *stack=r+9;struct MnmColourRect c={0};u32 d[6],blue=0;
  const u32 shape=r[0],base=word(0x658174),format=word(0x6e1f88);
+ if(!span(shape,4,0) || word(shape))cpu_history_require((void*)base);
  if(!owned_plane||!span(shape,22,0)||!span((u32)stack,0x40,0)||format>1||owned_plane((void*)base,d,24)||d[0]!=1||d[3]!=word(0x6a2dc8)||d[5]!=format)goto done;
  struct MnmPixelPlane p={(u16*)base,d[1],d[2],d[3],format};
  if(!mnm_pixel_plane(&p)||!span(base,p.stride*p.height*2,1)||r[5]<base||((r[5]-base)&1))goto done;
@@ -34,12 +37,14 @@ int mnm_colour_rect_route(u32 *r){
  else {r[7]=c.mode?0:((u32)c.red<<(format?10:11)|(u32)c.green<<5|c.blue);
        r[6]=c.mode==0?0:c.mode==3?blue>>2:c.mode==1?(stack[0x2c/4]&0xffff0000u)|(c.blue>>1):c.blue>>1;}
  ++mnm_colour_rect_native;ok=1;
-done:if(!ok)++mnm_colour_rect_forwarded;SetLastError(error);return ok;
+done:producer_notice(0,ok);if(!ok)++mnm_colour_rect_forwarded;SetLastError(error);return ok;
 }
 static int install(void){
  char flag[4];const u32 n=GetEnvironmentVariableA("MNM_COLOUR_RECT_TAKEOVER",flag,4);if(!n)return 1;
  const u8 expected[5]={0x8b,0x47,0x12,0x85,0xc0},tail[8]={0x5f,0x5e,0x5d,0x66,0x33,0xc0,0x5b,0x83};
  if(n!=1||flag[0]!='1'||(u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(!cpu_history_install())return 0;
+ if(!producer_start(4,1))return 0;
  for(u32 i=0;i<5;++i)if(*(const u8*)(0x547e53+i)!=expected[i])return 0;
  for(u32 i=0;i<8;++i)if(*(const u8*)(0x54852f+i)!=tail[i])return 0;
  owned_plane=(Plane)GetProcAddress(GetModuleHandleA("MnmDraw.dll"),"NativeDrawPlaneV1");if(!owned_plane)return 0;

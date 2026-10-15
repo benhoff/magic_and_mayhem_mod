@@ -159,8 +159,8 @@ public:
             liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path,QFileInfo(path).dir().filePath("game/Sounds"));};
             liveMenus_->prepareNativeMedia=[this](const QString& path){
                 media_=std::make_unique<MediaBroker>(*gl_,QFileInfo(path).dir().filePath("game"));
-                media_->frame=[this](QImage frame){menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
-                media_->movieChanged=[this](bool playing){input_->suspend(playing || (commands_&&commands_->state()!=LiveCommandSession::State::Active));
+                media_->frame=[this](QImage frame){if(residentTerminal_)return;menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
+                media_->movieChanged=[this](bool playing){input_->suspend(residentTerminal_ || playing || (commands_&&commands_->state()!=LiveCommandSession::State::Active));
                     if(liveMenus_)liveMenus_->setMediaActive(playing);
                     if(commands_)commands_->setMediaActive(playing);
                     if(playing){if(media_->moviePresentationRequested())menuStack_->setCurrentWidget(viewport_);statusBar()->showMessage("Playing media. Press Escape to skip.");}
@@ -174,10 +174,11 @@ public:
             liveMenus_->launched=[this]{elapsed_.restart();if(nativeCommands_){frames_.start();inputTimer_.start();}poll_.start();placeholder_->setText("Starting the game…");statusBar()->showMessage("Starting the game…");};
             liveMenus_->output=[this](const QString& text){log_->appendPlainText(text.trimmed());};
             liveMenus_->failed=[this](const QString& error){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(!foreign_)placeholder_->setText(error+"\nOpen Details for the launch log.");statusBar()->showMessage(error);};
-            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!nativeActive());activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
-            liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!nativeActive());activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
+            liveMenus_->battleStarted=[this](quint32 destination){if(residentTerminal_)return;menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(residentTerminal_ || !nativeActive());activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
+            liveMenus_->originalViewportRequested=[this]{if(residentTerminal_)return;menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(residentTerminal_ || !nativeActive());activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
+                if(residentTerminal_)return;
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
                     if((liveMenus_->realmMenusEnabled&&!realmMenus_->loadAssets(root,&error))||(liveMenus_->characterMenusEnabled&&!liveCharacter_->loadAssets(root,&error))||!liveHostLobby_->loadAssets(root,&error)||!liveSessions_->loadAssets(root,&error)||!liveCreate_->loadAssets(root,&error)||!liveJoin_->loadAssets(root,&error)||!liveGrimoire_->loadAssets(root,&error)||!liveLoad_->loadAssets(root,&error)||!liveSave_->loadAssets(root,&error)||!defeatMenus_->loadAssets(root,&error)||!liveRegion_->loadAssets(root,&error)||!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
                     if(liveMini_&&!liveMini_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
@@ -188,7 +189,7 @@ public:
                 }
                 QString error;if(!realmMenus_->present(state,&error)||!characterMenus_->present(state,&error)||!hostLobby_->present(state,&error)||!sessionMenus_->present(state,&error)||!multiplayerMenus_->present(state,&error)||!grimoireMenus_->present(state,&error)||!storageMenus_->present(state,&error)||!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
                 QWidget* screen=state.screen==4?static_cast<QWidget*>(liveRealm_):state.screen==20?static_cast<QWidget*>(liveCharacter_):state.screen==24?static_cast<QWidget*>(liveHostLobby_):state.screen==21?static_cast<QWidget*>(liveSessions_):state.screen==15?static_cast<QWidget*>(liveCreate_):state.screen==16?static_cast<QWidget*>(liveJoin_):state.screen==MNM_MENU_GRIMOIRE_SCREEN?static_cast<QWidget*>(liveGrimoire_):state.screen==MNM_MENU_LOAD_SCREEN?static_cast<QWidget*>(liveLoad_):state.screen==13?static_cast<QWidget*>(liveSave_):state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
-                if(input_)input_->suspend(screen!=viewport_);
+                if(input_)input_->suspend(residentTerminal_ || screen!=viewport_);
                 fallback_->setEnabled(true);const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
                 liveSpells_->setEnabled(state.ready&&state.screen==7);liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
                 liveLoad_->setEnabled(state.ready&&state.screen==MNM_MENU_LOAD_SCREEN);liveSave_->setEnabled(state.ready&&state.screen==13);
@@ -258,13 +259,13 @@ public:
                 if(!renderWorker_->poll(liveMenus_&&liveMenus_->normalQuitAccepted(),gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_),media_&&media_->movieActive()) || !gl_->error().isEmpty()){
                     residentWorldError_=!gl_->error().isEmpty()?gl_->error():renderWorker_->error();
                     log_->appendPlainText("Native render owner refused: "+residentWorldError_);
-                    renderWorker_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;
+                    residentFailed(residentWorldError_);
                 }
                 if(liveMenus_)liveMenus_->renderingProgress();
                 return;
             }
             if(media_ && media_->movieActive() && !commands_)return;
-            if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
+            if(!gl_->error().isEmpty()){if(residentWorld_)residentFailed("OpenGL failed: "+gl_->error());else{frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());}return;}
             if(commands_){
                 if(liveMenus_)liveMenus_->renderingProgress();
                 QElapsedTimer workClock;workClock.start();
@@ -273,13 +274,13 @@ public:
                 const auto beforeFrames=nativeCommandFrames_,beforePaints=nativePaintedFrames_;
                 if(residentWorld_){try{residentWorld_->poll(liveMenus_&&liveMenus_->normalQuitAccepted());}catch(const std::exception& e){
                     residentWorldError_=e.what();log_->appendPlainText(QString("Resident World refused: ")+e.what());
-                    residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;return;
+                    residentFailed(residentWorldError_);return;
                 }}
                 const double worldMs=workClock.nsecsElapsed()/1000000.0;
                 if(!commands_->ended() && commands_->error().isEmpty()){
                     if(!commands_->poll()){
                         log_->appendPlainText("Native command session refused: "+commands_->error());
-                        if(residentWorld_){residentWorldError_=commands_->error();residentWorld_->abort(residentWorldError_);residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;}
+                        if(residentWorld_){residentFailed(commands_->error());}
                         else useOriginalPresentation();
                     }else if(commands_->ended()){
                         input_->suspend(true);statusBar()->showMessage("Native preview finished. Continue in the original game window.");
@@ -297,7 +298,7 @@ public:
                             if(!commands_->presentPrepared(frame,generation))throw std::runtime_error(commands_->error().toStdString());
                             residentWorld_->noteIndependentPresentation(uiTiming.nsecsElapsed()/1000000.0);
                         }}
-                    }catch(const std::exception& e){residentWorldError_=e.what();residentWorld_->abort(residentWorldError_);residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();input_->suspend(true);nativeFallback_=true;return;}
+                    }catch(const std::exception& e){residentFailed(QString::fromUtf8(e.what()));return;}
                 }
                 if(liveMenus_)liveMenus_->renderingProgress();
                 const double totalMs=workClock.nsecsElapsed()/1000000.0;
@@ -388,7 +389,7 @@ private:
             input_->setState(inputState_.get());inputTimer_.start();
             arguments={"--stream",path,"--input",inputPath};elapsed_.restart();
             if(nativeCommands_){
-                const auto presented=[this]{++nativeCommandFrames_;input_->suspend((media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage((residentWorld_||renderWorker_)?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
+                const auto presented=[this]{++nativeCommandFrames_;input_->suspend(residentTerminal_ || (media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage((residentWorld_||renderWorker_)?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
                 const auto stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 const auto session=(QRandomGenerator::global()->generate()&0x7fffffffu)|1u;
                 const bool resident=liveMenus_ && qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1";
@@ -423,7 +424,7 @@ private:
     void start(bool check){
         if(restarting_||process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()))return;
         closeAfterGame_=false;
-        nativeFallback_=false;residentWorldError_.clear();
+        residentTerminal_=false;nativeFallback_=false;residentWorldError_.clear();
         if(opengl_){detach_->hide();retry_->hide();}
         if(liveMenus_&&!check){
             excluded_=host_.windows();launch_->setEnabled(false);check_->setEnabled(false);fallback_->setEnabled(true);
@@ -457,8 +458,8 @@ private:
             }
             if(nativeMedia_){
                 media_=std::make_unique<MediaBroker>(*gl_,QDir(repo_).filePath("working/game-nocd"));
-                media_->frame=[this](QImage image){gl_->setFrame(std::move(image));placeholder_->hide();gl_->show();gl_->setFocus();};
-                media_->movieChanged=[this](bool playing){input_->suspend(playing || ((commands_||renderWorker_) && !nativeActive()));statusBar()->showMessage(playing?"Playing movie in Qt. Press Escape to skip.":"Movie finished; resuming game frames.");};
+                media_->frame=[this](QImage image){if(residentTerminal_)return;gl_->setFrame(std::move(image));placeholder_->hide();gl_->show();gl_->setFocus();};
+                media_->movieChanged=[this](bool playing){input_->suspend(residentTerminal_ || playing || ((commands_||renderWorker_) && !nativeActive()));statusBar()->showMessage(playing?"Playing movie in Qt. Press Escape to skip.":"Movie finished; resuming game frames.");};
                 if(!media_->create(path+".media")){finished();statusBar()->showMessage("Cannot create native media channel.");return;}
                 arguments.append({"--media-channel",path+".media"});
             }
@@ -473,6 +474,24 @@ private:
         process_.start(launcher,arguments);
         if(!check){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
     }
+    void residentFailed(const QString& message){
+        // Retire the GUI lease before renderer-owned GL resources. No later
+        // menu/media callback may re-enable input into this failed generation.
+        residentWorldError_=message;residentTerminal_=true;nativeFallback_=true;
+        frames_.stop();commandDrain_.stop();poll_.stop();inputTimer_.stop();
+        if(media_)media_->stop();
+        if(input_){input_->suspend(true);input_->setTarget(0);}
+        if(gl_){gl_->setGpuFrame({});gl_->setFrame({});gl_->hide();}
+        if(renderWorker_){renderWorker_->abort();renderWorker_.reset();}
+        if(commands_){commands_->abort();commands_.reset();}
+        if(residentWorld_){residentWorld_->abort(message);residentWorld_->saveReport(residentWorldReport_);residentWorld_.reset();}
+        retry_->setEnabled(false);fallback_->setEnabled(false);
+        restart_->setEnabled(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()));
+        if(menuStack_)menuStack_->setCurrentWidget(viewport_);
+        placeholder_->setText("Native rendering stopped. Use Hard restart (Ctrl+Shift+R) to start a fresh game session.\n"+message);
+        placeholder_->show();statusBar()->showMessage("Native rendering stopped. Hard restart is available.");
+    }
+    bool residentTerminal_=false;
     void hardRestart(){
         if(restarting_||checking_||!(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running())))return;
         restarting_=true;closeAfterGame_=false;restart_->setEnabled(false);
@@ -543,12 +562,12 @@ private:
             if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native music session evidence.");
         }
         music_.reset();
-        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer())log_->appendPlainText("Native render owner stopped: "+renderWorker_->error());renderWorker_.reset();}
+        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+residentWorldError_);}renderWorker_.reset();}
         if(restarting_&&residentWorld_)residentWorld_->abort("Game force-stopped for hard restart");
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(restarting_)commands_->abort();else if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
         residentWorld_.reset();
-        voices_.reset();media_.reset();if(input_)input_->suspend(false);
+        voices_.reset();media_.reset();if(input_)input_->suspend(residentTerminal_);
         if(input_)input_->setTarget(0);
         if(input_)input_->setState(nullptr);
         inputTimer_.stop();inputState_.reset();
@@ -557,6 +576,10 @@ private:
         detach();poll_.stop();frames_.stop();commandDrain_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
         restart_->setEnabled(false);
+        if(residentTerminal_){
+            if(gl_){gl_->setGpuFrame({});gl_->setFrame({});gl_->hide();}
+            placeholder_->setText("Native rendering stopped. Use Launch to start a fresh game session.\n"+residentWorldError_);placeholder_->show();
+        }
     }
     SinglePlayerBattleWidget* liveSetup_=nullptr;MapSelectionWidget* liveMap_=nullptr;
     MultiplayerLobbyWidget* liveHostLobby_=nullptr;std::unique_ptr<LiveHostLobbyController> hostLobby_;

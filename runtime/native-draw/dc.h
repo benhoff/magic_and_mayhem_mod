@@ -25,6 +25,9 @@ static int ns_dc_plain(void* dc){
  void* region=CreateRectRgn(0,0,0,0);if(!region)return 0;const i32 result=GetClipRgn(dc,region);DeleteObject(region);return result==0;
 }
 static void ns_dc_drop(struct NsState* s){
+ /* The cached DC belongs to this logical object; its physical lease may have
+  * moved to another object, including a retained attached back surface. */
+ for(struct NsState* p=ns_owned;p;p=p->next_owned)if(p->storage_dc==s){p->storage_dc=0;if(p->locked>0)--p->locked;}
  if(s->dc){for(u32 i=0;i<128;++i)if(ns_dc_owners[i]==s)ns_dc_owners[i]=0;
   SelectObject(s->dc,s->old_bitmap);DeleteObject(s->bitmap);DeleteDC(s->dc);--ns_dcs;}
  s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;nd_status();
@@ -32,6 +35,8 @@ static void ns_dc_drop(struct NsState* s){
 static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  if(!out)return ND_INVALID;struct NsState* s=o->state;
  if(s->dc)return (i32)0x8876026cu;
+ if(s->storage_dc || s->locked<0)return NS_BUSY;
+ ns_cpu_require(s);
  if(ns_dcs>=128)return (i32)0x88760249u;
  void* dc=CreateCompatibleDC(0);if(!dc)return (i32)0x88760249u;
  u32 info[266];ns_zero(info,266);info[0]=40;info[3]=1|(s->bits<<16);info[4]=s->bits==16?3:0;
@@ -47,15 +52,18 @@ static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  for(u32 y=0;y<s->height;++y){u8* target=(u8*)bits+y*pitch;const u8* source=(const u8*)s->pixels+y*s->pitch;
   for(u32 x=0;x<row_bytes;++x)target[x]=source[x];}
  s->dc=dc;s->bitmap=bitmap;s->old_bitmap=old;s->dc_bits=bits;
+ s->storage_dc=s;++s->locked;
  for(u32 i=0;i<128;++i)if(!ns_dc_owners[i]){ns_dc_owners[i]=s;break;}
  ++ns_dcs;*out=dc;nd_status();return 0;
 }
 static i32 WIN ns_release_dc(struct NsObject* o,void* dc){
- struct NsState* s=o->state;if(!s->dc || s->dc!=dc)return (i32)0x8876024au;
+ struct NsState* s=o->state;if(!s->dc)return (i32)0x8876024au;
+ if(s->dc!=dc || s->storage_dc!=s)return (i32)0x8876086cu;
  if(GetCurrentObject(dc,7)!=s->bitmap)return ND_INVALID;
  if(!GdiFlush())return (i32)0x80004005u;
  u32 row_bytes=s->width*(s->bits/8),pitch=(row_bytes+3)&~3u;
  for(u32 y=0;y<s->height;++y){u8* target=(u8*)s->pixels+y*s->pitch;const u8* source=(const u8*)s->dc_bits+y*pitch;
   for(u32 x=0;x<row_bytes;++x)target[x]=source[x];}
+ if(s->locked<=0){s->locked=-1;s->storage_dc=0;} /* Explicit unsupported debt. */
  ns_dc_drop(s);return 0;
 }

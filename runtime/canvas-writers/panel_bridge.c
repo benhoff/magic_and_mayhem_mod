@@ -1,8 +1,11 @@
 /* Optional post-Lock panel splice, independently admitted from fade/glyph/World.
  * No diagnostic file I/O, original output seeds or retained live pixel pointers. */
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 #include "panel_route.h"
 API u32 WIN GetCurrentThreadId(void);
+API void* WIN GetProcAddress(void*,const char*);
+#include "history.h"
 extern void mnm_panel_bevel_enter(void), mnm_panel_halo_enter(void), mnm_panel_wash_enter(void);
 static volatile u32 owner;
 static int installed;
@@ -21,6 +24,7 @@ static int span(u32 at, u32 bytes, int writable) {
 }
 static int resolve(u32 *r, unsigned kind, struct MnmPanelPlane *p, struct MnmPanelRequest *q) {
     u32 error = GetLastError();
+    cpu_history_require((void*)r[7]);
     int ok = 0;
     u32 *stack = r + 9;
     if (kind >= 3 || !span((u32)stack, 0x64, 0)) goto done;
@@ -80,6 +84,8 @@ static int install(void) {
     char value[4]; const u32 n = GetEnvironmentVariableA("MNM_PANEL_TAKEOVER", value, sizeof(value));
     if (!n) return 1;
     if (n != 1 || value[0] != '1' || (u32)GetModuleHandleA(0) != 0x400000) return 0;
+ if(!cpu_history_install())return 0;
+ if(!producer_start(0,3))return 0;
     /* Validate every site before mutating any. These are interior hooks; they
      * compose with entry observers and preserve the original surface wrappers. */
     for (u32 k = 0; k < 3; ++k)
@@ -98,7 +104,7 @@ static int install(void) {
     if (!VirtualProtect(trampoline, 4096, 0x20, &old) ||
         !FlushInstructionCache(GetCurrentProcess(), trampoline, 4096)) return 0;
     if (!VirtualProtect((void *)0x58d000, 8192, 0x40, &old)) return 0;
-    mnm_panel_resolve = resolve;
+    mnm_panel_resolve = resolve;mnm_panel_notice=producer_notice;
     for (u32 k = 0; k < 3; ++k) jump((u8 *)sites[k].at, (void *)sites[k].entry, sites[k].length);
     u32 ignored;
     if (!VirtualProtect((void *)0x58d000, 8192, old, &ignored) ||

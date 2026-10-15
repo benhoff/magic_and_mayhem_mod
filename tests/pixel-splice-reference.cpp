@@ -33,11 +33,13 @@ void WIN SetLastError(u32 v){lastError=v;}
 u32 WIN GetCurrentThreadId(){lastError=998;return threadId;}
 void* WIN GetModuleHandleA(const char*){return reinterpret_cast<void*>(0x400000);}
 [[maybe_unused]] static int WIN nativeDib(void*,int,int,int,int,int,int,int,int,const unsigned char*,const unsigned char*,unsigned,unsigned){return INT32_MIN;}
+[[maybe_unused]] static int WIN pixelCurrentHistory(const void*,u32,u32,u32,u32,u32){return 0;}
+[[maybe_unused]] static void WIN pixelCountProducer(u32,u32,u32){}
 void* WIN GetProcAddress(void* module,const char* name){
 #ifdef MNM_PIXEL_TEST_GETPROC
  return MNM_PIXEL_TEST_GETPROC(module,name);
 #else
- (void)module;(void)name;return reinterpret_cast<void*>(nativeDib);
+ (void)module;if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(pixelCurrentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(pixelCountProducer);return reinterpret_cast<void*>(nativeDib);
 #endif
 }
 u32 WIN GetEnvironmentVariableA(const char*,char* out,u32 size){if(size<2)return 2;out[0]='1';out[1]=0;return 1;}

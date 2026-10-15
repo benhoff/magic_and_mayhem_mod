@@ -22,9 +22,12 @@ Native DC painting checks its owned bitmap is still selected before using its
 stored DIB pointer. A foreign selected bitmap refuses without native writes;
 reselecting the owned bitmap permits release. DC-to-surface commit copies logical
 row bytes and preserves physical surface padding. Aliases share all this state.
-A flip exchanges storage only while both buffers are idle; keys, clips and palette
-bindings belong to surfaces. These are native policies; driver flips with held
-leases have separate recovered semantics in the native renderer backend.
+A flip exchanges physical storage, CPU balance, DC storage ownership and history
+authority before returning busy when the new front remains borrowed. Keys, clips,
+palette bindings and cached logical DC identity stay with their objects. The
+focused RGB565 held-lease schedules are recorded in
+[native-render-completion.md](native-render-completion.md); arbitrary interleaved
+leases and unfocused driver behavior remain outside that comparison.
 
 Owned host storage has no physical display-loss event. IsLost is healthy and
 Restore preserves bytes, refusing while borrowed. This does not claim GPU history
@@ -77,3 +80,10 @@ The subsequent DRAW-02 merge changes broader scene dependencies in the monolithi
 retirement declaration: its64-surface/services results retain their recorded
 hashes and are not new current-code proof for the complete retirement contract.
 The focused resource, DIB and DC source declarations remain current.
+
+## Follow-up ownership result
+
+The historical report above exercised the earlier pre-mutation busy policy. The
+completion change supersedes that policy with the independently compared held-lease
+transfer. Its fresh resource regression retains the five-format/clipping corpus
+and zero final owners. Historical evidence hashes are unchanged.

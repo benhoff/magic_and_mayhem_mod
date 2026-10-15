@@ -1,9 +1,11 @@
 /* Independent post-preparation pixel splices. No capture I/O or call budget. */
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 #include "pixel_route.h"
 #include "fade_route.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#include "history.h"
 extern void mnm_pcx_surface_enter(void),mnm_rgb_add_enter(void),mnm_pcx_indices_enter(void),
  mnm_pcx_raw_enter(void),mnm_brighten_enter(void),mnm_row_copy_enter(void),mnm_fade_enter(void);
 static volatile u32 owner;
@@ -35,6 +37,9 @@ static int plane(u32 object,u32 pixels,struct MnmPixelPlane* p,int original_word
 }
 static int resolve(u32* r,unsigned kind,struct MnmPixelPlane* p,struct MnmPcxInput* s,u32* a) {
  const u32 error=GetLastError();int ok=0;u32* stack=r+9;
+ if(kind==MNM_RGB_ADD)cpu_history_require(*(void**)0x658174);
+ else if(kind==MNM_BRIGHTEN)cpu_history_require((void*)r[7]);
+ else if(kind==MNM_ROW_COPY)cpu_history_require((void*)r[1]);
  if(kind>=MNM_PIXEL_SITES || (r[8]&0x400) || !span((u32)stack,kind==MNM_ROW_COPY?0x424:0x38,0) || !owns_thread())goto done;
  if(kind==MNM_PCX_SURFACE){
   if(!pcx(r[0],s,1) || !plane(r[4],r[6],p,0))goto done;
@@ -70,6 +75,7 @@ done:SetLastError(error);return ok;
 }
 static int fade_resolve(const u32* r,struct MnmFadePlane* f) {
  const u32 error=GetLastError();struct MnmPixelPlane p;int ok=0;
+ cpu_history_require((void*)r[7]);
  if(!(r[8]&0x400) && span((u32)(r+9),16,0) && r[12]==r[7] && owns_thread() && plane(r[0],r[7],&p,0)){
   *f=(struct MnmFadePlane){p.pixels,p.width,p.height,p.stride,p.format};ok=1;}
  SetLastError(error);return ok;
@@ -85,7 +91,8 @@ static i32 WIN dib(void* dc,i32 x,i32 y,i32 w,i32 h,i32 sx,i32 sy,i32 sw,i32 sh,
     result=native_dib(dc,x,y,w,h,sx,sy,sw,sh,bits,info,usage,rop);
  }
  SetLastError(error);
- if(result!=(i32)0x80000000u)return result;
+ if(result!=(i32)0x80000000u){producer_notice(7,1);return result;}
+ producer_notice(7,0);
  return (*(DibCall*)0x5c5034)(dc,x,y,w,h,sx,sy,sw,sh,bits,info,usage,rop);
 }
 static const struct Site {u32 at,length,tail;u8 bytes[8],tail_bytes[8];void(*entry)(void);} sites[MNM_PIXEL_SITES]={
@@ -101,6 +108,8 @@ static void branch(u8* at,void* target,u32 n,u8 opcode){at[0]=opcode;*(u32*)(at+
 static int install(void) {
  if(installed)return 1;char value[4];const u32 n=GetEnvironmentVariableA("MNM_PIXEL_TAKEOVER",value,sizeof(value));
  if(!n)return 1;if(n!=1 || value[0]!='1' || (u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(!cpu_history_install())return 0;
+ if(!producer_start(1,8))return 0;
  for(u32 i=0;i<MNM_PIXEL_SITES;++i)if(!span(sites[i].at,sites[i].length,0) || !same((u8*)sites[i].at,sites[i].bytes,sites[i].length) ||
   !span(sites[i].tail,8,0) || !same((u8*)sites[i].tail,sites[i].tail_bytes,8))return 0;
  const u8 fade[]={0x53,0x8b,0x47,0x10,0x33,0xdb,0x99,0x2b,0xc2,0xd1,0xf8,0x85,0xc0,0x7e,0x19,
@@ -127,7 +136,7 @@ static int install(void) {
    while(count){--count;u32 ignored;if(!VirtualProtect((void*)pages[count],4096,protection[count],&ignored))ExitProcess(123);}return 0;}
   pages[count++]=page;
  }
- mnm_pixel_resolve=resolve;
+ mnm_pixel_resolve=resolve;mnm_pixel_notice=producer_notice;mnm_fade_notice=producer_notice;
  for(u32 i=0;i<MNM_PIXEL_SITES;++i)branch((u8*)sites[i].at,(void*)sites[i].entry,sites[i].length,0xe9);
  branch((u8*)0x58edb0,(void*)mnm_fade_enter,6,0xe9);branch((u8*)0x486aca,(void*)dib,6,0xe8);
  while(count){--count;u32 ignored;if(!VirtualProtect((void*)pages[count],4096,protection[count],&ignored) || !FlushInstructionCache(GetCurrentProcess(),(void*)pages[count],4096))ExitProcess(123);}

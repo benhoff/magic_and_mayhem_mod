@@ -175,6 +175,7 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
     u32 fields[7]={s->id,s->width,s->height,s->bits,s->r,s->g,s->b};
     if(!session_record(1,fields,28,pixels->data,pixels->length))return 0;return s;
 }
+static i32 (WIN *game_cpu_history)(const void*,u32,u32,u32,u32,u32);
 /* Called by the fixed-build scene adapter after its validated ACK restores the
  * original page guard, before any post-World UI drawing. Only the already-owned
  * current-thread full Lock may supply the opaque identity and private baseline.
@@ -216,6 +217,7 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     struct SessionSurface* surface=session_surface(lock->object,&lock->base,0);if(!surface)goto done;
     u32 fields[5]={surface->id,generation_low,generation_high,nonce_low,nonce_high};
     if(!session_record(MNM_RENDER_STREAM_V4_OPERATION_WORLD,fields,20,0,0))goto done;
+    if(!game_cpu_history || game_cpu_history((void*)pixels,1,generation_low,generation_high,nonce_low,nonce_high))goto done;
     lock->resident=1;ok=1;lock_diagnostic("resident_world_bound",lock->object,lock->kind,generation_low,generation_high,0,0,0);
  done:
     if(!ok)game_session_gap(4);game_tracker_release();SetLastError(error);return ok;

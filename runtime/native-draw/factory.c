@@ -43,7 +43,9 @@ static u32 WIN nd_release(struct NdObject* self) {
 #include "palette.h"
 #include "clipper.h"
 #include "surfaces.h"
+#include "history.h"
 #include "status.h"
+#include "producer_status.h"
 static i32 nd_create(void* guid,void** out,void* outer) {
   u32 error=GetLastError();
   if(!out)return ND_INVALID;
@@ -108,7 +110,7 @@ __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 __declspec(dllexport) i32 WIN NativeDrawPlaneV1(const void* pixels,u32* fields,u32 bytes){
  if(!pixels || !fields || bytes!=24)return ND_INVALID;
  for(struct NsState* s=ns_owned;s;s=s->next_owned)if(s->pixels==pixels){
-  if(s->dc)return NS_BUSY;if(s->bits!=16)return NS_UNSUPPORTED;
+  if(s->dc || s->storage_dc)return NS_BUSY;if(s->bits!=16)return NS_UNSUPPORTED;
   fields[0]=1;fields[1]=s->width;fields[2]=s->height;fields[3]=s->pitch/2;fields[4]=s->locked;fields[5]=s->masks[0]==0x7c00;return 0;
  }
  return ND_INVALID;
@@ -119,4 +121,4 @@ __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_
 __declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
 __declspec(dllexport) u32 WIN NativeDrawPalettes(void) {return np_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();}else if(reason==0)nd_status_finish();return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();np_status_start();}else if(reason==0){np_status_finish();nd_status_finish();}return 1;}

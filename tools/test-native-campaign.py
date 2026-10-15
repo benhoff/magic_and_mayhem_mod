@@ -21,6 +21,7 @@ from campaign_movement import validate_movement_probes
 from campaign_crowded import validate_crowded
 from campaign_spell import player_engaged_fireball_lethal, read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
 from native_audio_launch import validate_activity as validate_audio_activity, validate_retirement as validate_audio_retirement
+from native_pixel_counters import read_counters, validate_builds
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -399,6 +400,7 @@ def main():
     parser.add_argument('--legacy-audio',action='store_true',help='Select original DirectSound voices for this diagnostic run')
     parser.add_argument('--source-game',type=Path,help='Pinned source installation under working/; preserve the default working installation')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
+    parser.add_argument('--other-pixel-producers',action='store_true',help='Select all seven optional pixel families and retain installed/native/forwarded counters for each route')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--worker-status-cadence',action='store_true',help='Experimental16ms owned-worker status construction')
     parser.add_argument('--worker-status-every-turn',action='store_true',help='Diagnostic baseline: construct owned-worker status on every turn')
@@ -438,6 +440,7 @@ def main():
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
     explicit_native_draw=args.native_draw
     args.native_draw=not args.legacy_directdraw
+    if args.other_pixel_producers and not args.native_draw:parser.error('Combined pixel producers require owned native drawing')
     if args.hardware and args.display:parser.error('--hardware and --display are separate display routes')
     if args.crowded_case:
         if args.healing_case:parser.error('Select only one Quick Battle case')
@@ -467,6 +470,7 @@ def main():
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'other_pixel_producers_required':args.other_pixel_producers,
               'native_wave_loading_required':args.native_loading,
               'native_audio_factory_required':args.native_factory,
               'native_media_required':args.native_media,
@@ -484,6 +488,7 @@ def main():
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.independent_world:declaration_command.extend(['--behavior','HOST.native-worker-status-cadence'])
+        if args.other_pixel_producers:declaration_command.extend(['--behavior','NP.producer-route-counters','--scenario','NP.producer-route-counters.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
@@ -548,6 +553,12 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.other_pixel_producers:
+        env['MNM_OTHER_PIXEL_PRODUCERS']='1'
+        producer_sources=['tools/native_pixel_counters.py','tools/borrowed_pixel_backend_launch.py']
+        producer_sources += [str(p.relative_to(ROOT)) for folder in ('runtime/canvas-writers','reconstruction/rendering') for p in (ROOT/folder).iterdir() if p.is_file()]
+        producer_sources += [str(p.relative_to(ROOT)) for pattern in ('build-*-writers.py','build-colour-rect.py','build-jpeg-pixels.py','build-dc-copy.py','*_backend_launch.py') for p in (ROOT/'tools').glob(pattern)]
+        report['sources'].update({p:sha(ROOT/p) for p in producer_sources})
     # Regression proof requires fingerprints even when the normal launcher uses fast asset staging.
     if args.native_draw:env['MNM_VERIFY_ASSETS']='1'
     env['MNM_SYNC_ROUTE_CAPTURE']='1' if args.synchronous_route_capture else '0'
@@ -582,6 +593,7 @@ def main():
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None
+    roots=[]
     verified = False
     exit_code = 1
     try:
@@ -697,6 +709,11 @@ def main():
                 while time.monotonic() < deadline:
                     lines = (out / 'shell.log').read_text(errors='replace').splitlines()
                     roots = [Path(line[20:]).resolve() for line in lines if line.startswith('Evidence directory: ')]
+                    if args.other_pixel_producers and len(roots)==1 and 'pixel_producer_builds' not in report and (roots[0]/'game/native-pixel-producers.bin').exists():
+                        report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
+                    if args.other_pixel_producers and len(roots)==1 and (roots[0]/'game/native-cpu-history-refusal.bin').exists():
+                        report['pixel_producers']=read_counters(roots[0]/'game')
+                        raise RuntimeError('Combined pixel producer requires unavailable current CPU World history; native admission terminated before original fallback')
                     if monitor is None and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer') and (roots[0]/'render-frame.bin').exists():
                         monitor=subprocess.Popen(['python3',str(ROOT/'tools/profile-render-stream.py'),str(roots[0]/'render-frame.bin'),'--output',str(out/'publication-rate.jsonl'),'--seconds',str(args.timeout)],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
                     if len(roots) == 1 and roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer') and world_ready(roots[0]):
@@ -797,6 +814,11 @@ def main():
                 report['native_music_inputs']=inputs;report['native_music_inputs_stable']=True
             if args.native_draw:
                 report['native_draw']=validate_native_draw(roots[0])
+                if args.other_pixel_producers:
+                    report['pixel_producer_builds']=validate_builds(roots[0],ROOT,report['sources'])
+                    report['pixel_producers']=read_counters(roots[0]/'game')
+                    if report['pixel_producers']['history_refused']:raise ValueError('Selected CPU producer refused stale resident history')
+                    if not report['pixel_producers']['native']:raise ValueError('No selected native producer executed')
                 native_build=json.loads((roots[0]/'native-draw-build.json').read_text())
                 if native_build.get('directdraw_imports') is not False:raise ValueError('Native graphics DLL imports DirectDraw')
                 for name,digest in native_build['sources'].items():
@@ -907,6 +929,8 @@ def main():
                 report.update(success=False, status='failed', cleanup_error=str(error))
                 exit_code = 1
         try:
+            if args.other_pixel_producers and len(roots)==1 and (roots[0]/'game/native-pixel-producers.bin').is_file():
+                report['pixel_producers']=read_counters(roots[0]/'game')
             stop_group(server)
         except (OSError, subprocess.SubprocessError) as error:
             report.update(success=False, status='failed', display_cleanup_error=str(error))

@@ -310,3 +310,12 @@ for w in r["source_witnesses"]:
     assert "\n".join(lines[w["first_line"] - 1:w["last_line"]]) == w["excerpt"]
 print("Verified", len(r["source_witnesses"]), "code witnesses at", r["reviewed_head"])
 ```
+
+## Subsequent implementation
+
+The four implementation tasks selected after this review are tracked in
+[native-render-completion.md](native-render-completion.md): conservative CPU-history
+admission, explicit combined producer selection/counters, terminal resident cleanup
+and fresh restart, and facade held-lease flips. This preserves the pinned review
+above. A route census, safe refusal or synthetic restart does not close the broader
+complete-session equivalence and strict-replacement acceptance work.

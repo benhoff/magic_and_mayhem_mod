@@ -19,7 +19,7 @@ def build():
     spec.loader.exec_module(imports)
     definition = out/'kernel32.def'
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n, s in
-        {**imports.IMPORTS, 'GetCurrentThreadId': 0, 'GetFileSize': 8, 'CreateFileMappingA': 24,
+        {**imports.IMPORTS, 'GetCurrentThreadId': 0, 'GetProcAddress': 8, 'GetFileSize': 8, 'CreateFileMappingA': 24,
          'MapViewOfFile': 20, 'UnmapViewOfFile': 4}.items()))
     subprocess.run(['llvm-dlltool', '-m', 'i386', '-D', 'KERNEL32.dll', '-d', definition,
                     '-l', out/'kernel32.lib', '--kill-at'], check=True)

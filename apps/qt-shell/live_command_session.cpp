@@ -36,7 +36,7 @@ bool LiveCommandSession::attachCheckpoint(){
     return recover(true);
 }
 bool LiveCommandSession::recover(bool checkpoint){
-    if(residentWorld)return fail("Resident World session requires a fresh producer after failure: "+renderer_->error());
+    if(residentWorld){const auto cause=renderer_?renderer_->error():QString();return fail("Resident World session requires a fresh producer after failure: "+(cause.isEmpty()?QString("first frame deadline exceeded"):cause));}
     if(version_!=2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max()){
         const auto cause=renderer_?renderer_->error():QString();
         return fail("Rendering recovery unavailable or exhausted"+(cause.isEmpty()?QString():": "+cause));

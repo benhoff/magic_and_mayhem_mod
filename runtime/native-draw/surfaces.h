@@ -9,7 +9,9 @@ struct NsState;
 struct NsObject {void** table;struct NsState* state;u32 kind;};
 struct NsState {
   struct NsObject aliases[5];u32 refs[5],interfaces;struct NdObject* device;
-  u32 width,height,pitch,caps,bits,masks[3];u16* pixels;u32 locked;void* lock_pointer;
+  u32 width,height,pitch,caps,bits,masks[3];u16* pixels;i32 locked;void* lock_pointer;
+  struct NsState* storage_dc;
+  u32 history_generation[2],history_nonce[2],history_stale;
   u32 key_set,key_low,key_high;struct NsState* back;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
   struct NsState *previous_owned,*next_owned;struct NpPalette* palette;
@@ -18,6 +20,8 @@ static struct NsState* ns_owned;
 static void* ns_tables[5][45];
 static u32 ns_bytes,ns_creates,ns_locks,ns_copies,ns_flips;
 static void ns_dc_drop(struct NsState*);
+static void ns_cpu_require(struct NsState*);
+static int ns_borrowed(const struct NsState* s){return s->locked || s->dc || s->storage_dc;}
 static const u8 ns_ids[4][16]={
  {0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
  {0x85,0x58,0x80,0x57,0xec,0x6e,0xcf,0x11,0x94,0x41,0xa8,0x23,0x03,0xc1,0x0e,0x27},
@@ -70,7 +74,7 @@ static int ns_rectangle(struct NsState* s,const i32* input,i32* r){
 static i32 WIN ns_lock(struct NsObject* o,const i32* rect,u32* d,u32 flags,HANDLE event){
  struct NsState* s=o->state;i32 r[4];
  if(!d || d[0]!=(o->kind==3?124u:108u) || event || (flags&~0x7831u))return ND_INVALID;
- if(s->locked || s->dc)return NS_BUSY;if(!ns_rectangle(s,rect,r))return NS_RECT;
+ if(ns_borrowed(s))return NS_BUSY;if(!ns_rectangle(s,rect,r))return NS_RECT;
  i32 result=ns_desc(o,d);if(result)return result;
  d[1]|=0x800;d[9]=(u32)s->pixels+(u32)r[1]*s->pitch+(u32)r[0]*(s->bits/8);
  s->locked=1;s->lock_pointer=(void*)d[9];if(!(++ns_locks&255))nd_status();return 0;
@@ -79,7 +83,7 @@ static i32 WIN ns_unlock(struct NsObject* o,void* argument){
  struct NsState* s=o->state;if(!s->locked)return (i32)0x88760248u;
  /* Surface4 accepts a rectangle, older interfaces accept the returned pointer. */
  if(o->kind!=3 && argument && argument!=s->lock_pointer)return ND_INVALID;
- s->locked=0;s->lock_pointer=0;return 0;
+ if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;return 0;
 }
 static i32 WIN ns_key(struct NsObject* o,u32 flags,const u32* key){
  if(flags!=8)return NS_UNSUPPORTED;
@@ -100,12 +104,13 @@ static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const
  if(s && ((long long)rs[2]-rs[0]!=width || (long long)rs[3]-rs[1]!=height))return NS_UNSUPPORTED;
  u32* clips=0;i32 result=0;
  if(d->clipper){result=nc_snapshot(d->clipper,&clips);if(result)return result;}
- if(d->locked || d->dc || (s && (s->locked || s->dc))){result=NS_BUSY;goto done;}
+ if(ns_borrowed(d) || (s && ns_borrowed(s))){result=NS_BUSY;goto done;}
  if(flags&~(0x1000000u|0x8000u|0x400u)){result=NS_UNSUPPORTED;goto done;}
  if(flags&0x400){if(s || !fx || fx[0]!=100 || (flags&0x8000)){result=ND_INVALID;goto done;}}
  else if(!s || fx){result=ND_INVALID;goto done;}
  if(s && (s->bits!=d->bits || s->masks[0]!=d->masks[0] || s->masks[1]!=d->masks[1] || s->masks[2]!=d->masks[2])){result=NS_UNSUPPORTED;goto done;}
  if((flags&0x8000) && !s->key_set){result=ND_INVALID;goto done;}
+ if(s)ns_cpu_require(s);
  /* Freeze the whole aliased backing, including samples outside a clipped first
   * piece. Earlier regions may remain written when a later source piece fails. */
  u8* frozen=0;struct NsState snapshot;
@@ -125,6 +130,7 @@ static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const
   }
  }
  if(frozen)HeapFree(GetProcessHeap(),0,frozen);
+ if(!s && !d->clipper && rd[0]==0 && rd[1]==0 && rd[2]==(i32)d->width && rd[3]==(i32)d->height)d->history_stale=0;
  if(!(++ns_copies&255))nd_status();
 done:if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }
@@ -153,8 +159,16 @@ static i32 WIN ns_flip(struct NsObject* o,struct NsObject* target,u32 flags){
  if(!back)return (i32)0x88760246u;
  if(flags&~0x1000001u)return NS_UNSUPPORTED;
  if(target && target->state!=back)return ND_INVALID;
- if(front->locked || front->dc || back->locked || back->dc)return NS_BUSY;
- u16* temporary=front->pixels;front->pixels=back->pixels;back->pixels=temporary;++ns_flips;if(!(ns_flips&255))nd_status();return 0;
+ /* Mapping debt is an unsupported access sequence, not unsigned wraparound. */
+ if(front->locked<0 || back->locked<0)return NS_BUSY;
+ u16* temporary=front->pixels;front->pixels=back->pixels;back->pixels=temporary;
+ i32 balance=front->locked;front->locked=back->locked;back->locked=balance;
+ void* pointer=front->lock_pointer;front->lock_pointer=back->lock_pointer;back->lock_pointer=pointer;
+ struct NsState* dc=front->storage_dc;front->storage_dc=back->storage_dc;back->storage_dc=dc;
+ u32 stale=front->history_stale;front->history_stale=back->history_stale;back->history_stale=stale;
+ for(u32 i=0;i<2;++i){u32 v=front->history_generation[i];front->history_generation[i]=back->history_generation[i];back->history_generation[i]=v;
+  v=front->history_nonce[i];front->history_nonce[i]=back->history_nonce[i];back->history_nonce[i]=v;}
+ ++ns_flips;if(!(ns_flips&255))nd_status();return front->locked || front->storage_dc?NS_BUSY:0;
 }
 static i32 WIN ns_get_clipper(struct NsObject* o,void** out){
  if(!out)return ND_INVALID;*out=0;if(!o->state->clipper)return (i32)0x88760238u;
@@ -176,8 +190,8 @@ static i32 WIN ns_set_palette(struct NsObject* o,struct NpPalette* p){
  if(o->state->palette)np_release(o->state->palette);o->state->palette=p;return 0;
 }
 static i32 WIN ns_lost(struct NsObject* o){(void)o;return 0;}
-static i32 WIN ns_restore(struct NsObject* o){return (o->state->locked || o->state->dc)?NS_BUSY:0;}
-static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return (o->state->locked || o->state->dc)?NS_BUSY:0;}
+static i32 WIN ns_restore(struct NsObject* o){return ns_borrowed(o->state)?NS_BUSY:0;}
+static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return ns_borrowed(o->state)?NS_BUSY:0;}
 static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps,u32 bits,const u32* masks){
  if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*(bits/8)+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
  struct NsState* s=HeapAlloc(GetProcessHeap(),8,sizeof(*s));if(!s)return 0;

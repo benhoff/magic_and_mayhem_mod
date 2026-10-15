@@ -143,11 +143,11 @@ static void flip_lifetime(Create create){
  for(u32 side=0;side<2;++side){void* s=side?back:front;desc(d,2);if(side)d[0]=124;
   require(!((Lock)table(s)[25])(s,0,d,1,0),173);
   for(u32 y=0;y<9;++y)for(u32 x=0;x<13;++x)((u16*)(d[9]+y*d[4]))[x]=(u16)(side*4096+y*13+x);
-  require(((i32 (WIN *)(void*,void*,u32))table(front)[11])(front,0,1)==(i32)0x887601aeu,174);
   require(!((i32 (WIN *)(void*,void*))table(s)[32])(s,(void*)d[9]),175);
  }
  require(!((i32 (WIN *)(void*,void**))table(alias)[17])(alias,&dc),176);
- require(((i32 (WIN *)(void*,void*,u32))table(front)[11])(front,0,1)==(i32)0x887601aeu,177);
+ require(!((i32 (WIN *)(void*,void*,u32))table(front)[11])(front,0,1),177);
+ require(((i32 (WIN *)(void*,void*,u32))table(front)[11])(front,0,1)==(i32)0x887601aeu,174);
  require(!((i32 (WIN *)(void*,void*))table(front)[26])(front,dc),178);
  require(!((i32 (WIN *)(void*,void*,u32))table(alias)[11])(alias,back,1),179);
  for(u32 side=0;side<2;++side){void* s=side?back:front;desc(d,2);if(side)d[0]=124;

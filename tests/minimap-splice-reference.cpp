@@ -17,7 +17,9 @@ static std::vector<Owned> owned;
 static int WIN mapPlane(const void* pixels,u32* d,u32 bytes){
  if(bytes!=24)return -1;for(const auto& p:owned)if(p.pixels==pixels){d[0]=1;d[1]=p.width;d[2]=p.height;d[3]=p.stride;d[4]=1;d[5]=*reinterpret_cast<unsigned*>(0x6e1f88);return 0;}return -1;
 }
-static void* mapProc(void*,const char* name){if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected storage lookup");return reinterpret_cast<void*>(mapPlane);}
+static int WIN currentHistory(const void*,u32,u32,u32,u32,u32){return 0;}
+static void WIN countProducer(u32,u32,u32){}
+static void* mapProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected storage lookup");return reinterpret_cast<void*>(mapPlane);}
 static void equal(const State& a,const State& b,const std::string& label){
  if(a.gpr!=b.gpr || ((a.flags^b.flags)&0xcd5) || a.unlocks!=b.unlocks || a.args!=b.args || a.unlockGpr!=b.unlockGpr || a.error!=b.error){
   for(unsigned i=0;i<8;++i)if(a.gpr[i]!=b.gpr[i])std::cerr<<label<<" gpr"<<i<<" "<<std::hex<<a.gpr[i]<<" != "<<b.gpr[i]<<"\n";

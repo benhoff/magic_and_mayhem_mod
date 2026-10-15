@@ -36,6 +36,12 @@ authorize_minimap(root,metadata,os.environ)
 from borrowed_pixel_backend_launch import FEATURES,authorize as authorize_borrowed
 for name in FEATURES:authorize_borrowed(root,metadata,os.environ,name)
 os.environ.pop('MNM_OTHER_PIXEL_PRODUCERS',None)
+os.environ.pop('MNM_NATIVE_PIXEL_COUNTERS',None)
+if all(os.environ.get(flag)=='1' for flag in ('MNM_PANEL_TAKEOVER','MNM_PIXEL_TAKEOVER',
+       'MNM_JPEG_TAKEOVER','MNM_MINIMAP_TAKEOVER',*(value[0] for value in FEATURES.values()))):
+    counters=game/'native-pixel-producers.bin'
+    if counters.exists() or counters.is_symlink():raise ValueError('Stale or redirected pixel producer counters')
+    os.environ['MNM_NATIVE_PIXEL_COUNTERS']='1'
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')

@@ -10,6 +10,7 @@ typedef int (*MnmPanelResolve)(uint32_t *, unsigned, struct MnmPanelPlane *,
 extern MnmPanelResolve mnm_panel_resolve;
 extern uintptr_t mnm_panel_original[3], mnm_panel_resume[3];
 extern uint32_t mnm_panel_native[3], mnm_panel_forwarded[3];
+extern void (*mnm_panel_notice)(unsigned,int);
 int mnm_panel_route(uint32_t *, unsigned);
 #ifdef __cplusplus
 }

@@ -10,6 +10,7 @@ extern MnmMapResolve mnm_map_resolve;
 extern MnmMapRelease mnm_map_release;
 extern uintptr_t mnm_map_original[MNM_MAP_SITES],mnm_map_resume[MNM_MAP_SITES];
 extern uint32_t mnm_map_native[MNM_MAP_SITES],mnm_map_forwarded[MNM_MAP_SITES];
+extern void (*mnm_map_notice)(unsigned,int);
 int mnm_map_route(uint32_t *,unsigned);
 #ifdef __cplusplus
 }

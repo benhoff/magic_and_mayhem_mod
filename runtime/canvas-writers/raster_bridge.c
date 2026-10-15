@@ -1,8 +1,10 @@
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 #include "../../reconstruction/rendering/raster_pixels.h"
 #include "raster_workspace.h"
 API u32 WIN GetCurrentThreadId(void);
 API void* WIN GetProcAddress(void*,const char*);
+#include "history.h"
 typedef i32 (WIN *Plane)(const void*,u32*,u32);
 #include "raster_sites.h"
 uintptr_t mnm_raster_original[MNM_RASTER_SITES],mnm_raster_resume[MNM_RASTER_SITES];
@@ -16,7 +18,9 @@ static int span(u32 at,u32 n,int write){
 }
 int mnm_raster_route(u32 *r,unsigned site){
  const u32 error=GetLastError();int ok=0;if(site>=MNM_RASTER_SITES)goto done;
- const struct RasterSite *s=sites+site;const u32 base=word(0x658174),format=word(0x6e1f88);u32 d[6],frame=0,*stack=r+9;
+ const struct RasterSite *s=sites+site;
+ if(s->family==6 || s->family==8 || s->family==9 || s->family==10 || s->family==11 || s->family==12)cpu_history_require((void*)word(0x658174));
+ const u32 base=word(0x658174),format=word(0x6e1f88);u32 d[6],frame=0,*stack=r+9;
  struct MnmRasterPixels q={0};q.period=16;q.palette_step=2;
  if(!owned_plane||format>1||!span((u32)stack,0x44,0)||owned_plane((void*)base,d,24)||d[0]!=1||d[3]!=word(0x6a2dc8)||d[5]!=format)goto done;
  struct MnmPixelPlane p={(u16*)base,d[1],d[2],d[3],format};
@@ -66,13 +70,15 @@ int mnm_raster_route(u32 *r,unsigned site){
  /* Volatile ECX/EDX and upper AX bits of the fast/slow private bodies are not
   * C ABI results. Keep each original footer, nonvolatile state and WORD result. */
  ++mnm_raster_native[site];ok=1;
-done:if(site<MNM_RASTER_SITES&&!ok)++mnm_raster_forwarded[site];SetLastError(error);return ok;
+done:if(site<MNM_RASTER_SITES)producer_notice(site,ok);if(site<MNM_RASTER_SITES&&!ok)++mnm_raster_forwarded[site];SetLastError(error);return ok;
 }
 static int same(const u8 *a,const u8 *b,u32 n){for(u32 i=0;i<n;++i)if(a[i]!=b[i])return 0;return 1;}
 static void jump(u8 *at,void *target,u32 n){at[0]=0xe9;*(u32*)(at+1)=(u32)target-(u32)at-5;for(u32 i=5;i<n;++i)at[i]=0x90;}
 static int install(void){
  char flag[4];const u32 n=GetEnvironmentVariableA("MNM_RASTER_TAKEOVER",flag,4);if(!n)return 1;
  if(n!=1||flag[0]!='1'||(u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(!cpu_history_install())return 0;
+ if(!producer_start(5,23))return 0;
  for(u32 i=0;i<MNM_RASTER_SITES;++i)if(!span(sites[i].at,sites[i].length,0)||!same((u8*)sites[i].at,sites[i].bytes,sites[i].length)||!span(sites[i].tail,8,0)||!same((u8*)sites[i].tail,sites[i].tail_bytes,8))return 0;
  owned_plane=(Plane)GetProcAddress(GetModuleHandleA("MnmDraw.dll"),"NativeDrawPlaneV1");if(!owned_plane)return 0;
  u8 *tramp=VirtualAlloc(0,4096,0x3000,0x40);if(!tramp)return 0;

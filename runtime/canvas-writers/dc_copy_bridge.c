@@ -1,23 +1,27 @@
 /* Preserve original surface wrappers; replace their admitted BitBlt pixels. */
 #include "../shadow/win32_min.h"
+#include "producer_status.h"
 API void* WIN GetProcAddress(void*,const char*);
 API u32 WIN GetCurrentThreadId(void);
 typedef i32 (WIN *Copy)(void*,i32,i32,i32,i32,void*,i32,i32,u32);
 static Copy native_copy;
 static volatile u32 owner;
 static u32 native_calls,original_calls;
+static const u32 calls[]={0x58bfe2,0x58c1d6,0x58c3f5,0x58c534,0x58c6f8,0x58c922,0x58cb17,0x58cc16,0x58cdd1,0x58cfa1};
 static i32 WIN copy(void* dc,i32 x,i32 y,i32 w,i32 h,void* source,i32 sx,i32 sy,u32 rop){
+ u32 route=32;for(u32 i=0;i<10;++i)if((u32)__builtin_return_address(0)==calls[i]+5)route=i;
  const u32 error=GetLastError(),thread=GetCurrentThreadId();i32 result=(i32)0x80000000u;
  if(!owner)__sync_bool_compare_and_swap(&owner,0,thread);
  if(owner==thread&&native_copy)result=native_copy(dc,x,y,w,h,source,sx,sy,rop);
+ if(route<10)producer_notice(route,result!=(i32)0x80000000u);
  SetLastError(error);
  if(result!=(i32)0x80000000u){++native_calls;return result;}
  ++original_calls;return (*(Copy*)0x5c51fc)(dc,x,y,w,h,source,sx,sy,rop);
 }
-static const u32 calls[]={0x58bfe2,0x58c1d6,0x58c3f5,0x58c534,0x58c6f8,0x58c922,0x58cb17,0x58cc16,0x58cdd1,0x58cfa1};
 static int install(void){
  char flag[4];const u32 n=GetEnvironmentVariableA("MNM_DC_COPY_TAKEOVER",flag,4);if(!n)return 1;
  if(n!=1||flag[0]!='1'||(u32)GetModuleHandleA(0)!=0x400000)return 0;
+ if(!producer_start(6,10))return 0;
  const u8 expected[6]={0xff,0x15,0xfc,0x51,0x5c,0};
  for(u32 i=0;i<sizeof(calls)/sizeof(calls[0]);++i)for(u32 j=0;j<6;++j)if(*(const u8*)(calls[i]+j)!=expected[j])return 0;
  native_copy=(Copy)GetProcAddress(GetModuleHandleA("MnmDraw.dll"),"NativeDrawBitBltV1");if(!native_copy)return 0;

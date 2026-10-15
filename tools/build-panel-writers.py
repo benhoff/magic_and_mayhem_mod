@@ -20,7 +20,7 @@ def build(selftest=False):
     out.mkdir(parents=True, exist_ok=True)
     definition = out/'kernel32.def'
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n' + ''.join(
-        f'{name}@{size}\n' for name, size in {**imports.IMPORTS, 'GetCurrentThreadId': 0}.items()))
+        f'{name}@{size}\n' for name, size in {**imports.IMPORTS, 'GetCurrentThreadId': 0, 'GetProcAddress': 8}.items()))
     subprocess.run(['llvm-dlltool', '-m', 'i386', '-D', 'KERNEL32.dll', '-d', str(definition),
                     '-l', str(out/'kernel32.lib'), '--kill-at'], check=True)
     flags = ['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding', '-fno-builtin',

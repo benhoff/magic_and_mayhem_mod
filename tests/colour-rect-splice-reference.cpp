@@ -8,7 +8,9 @@ static unsigned ownedStride,ownedHeight;
 static int WIN rectPlane(const void* base,u32* d,u32 bytes){
  if(base!=ownedPixels||bytes!=24)return -1;d[0]=1;d[1]=ownedStride-7;d[2]=ownedHeight;d[3]=ownedStride;d[4]=1;d[5]=*reinterpret_cast<unsigned*>(0x6e1f88);return 0;
 }
-static void* rectProc(void*,const char* name){if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rectPlane);}
+static int WIN currentHistory(const void*,u32,u32,u32,u32,u32){return 0;}
+static void WIN countProducer(u32,u32,u32){}
+static void* rectProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rectPlane);}
 int main(int argc,char** argv)try{
  if(argc!=3)throw std::runtime_error("Expected pinned original PE/result");map_image(read(argv[1]));
  unsigned char original[5],patched[5];std::memcpy(original,reinterpret_cast<void*>(0x547e53),5);

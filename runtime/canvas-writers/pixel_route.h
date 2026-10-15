@@ -8,6 +8,7 @@ typedef int (*MnmPixelResolve)(uint32_t *, unsigned, struct MnmPixelPlane *, str
 extern MnmPixelResolve mnm_pixel_resolve;
 extern uintptr_t mnm_pixel_original[MNM_PIXEL_SITES], mnm_pixel_resume[MNM_PIXEL_SITES];
 extern uint32_t mnm_pixel_native[MNM_PIXEL_SITES], mnm_pixel_forwarded[MNM_PIXEL_SITES];
+extern void (*mnm_pixel_notice)(unsigned,int);
 int mnm_pixel_route(uint32_t *, unsigned);
 #ifdef __cplusplus
 }
