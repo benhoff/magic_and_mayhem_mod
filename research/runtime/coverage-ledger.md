@@ -12157,3 +12157,35 @@ inputs remain preserved. Original manifests verify before/after consumption.
 The incoming c74e9c5b..938024ec review retains44 exact file/108 full behavior
 transitions, with one explicitly pending retrospective movie fingerprint edge;
 no past gate or movie execution claim is asserted.
+
+### Initiate Mini tutorial ingress investigation (2026-10-15)
+
+Original-rendering/native-menu and resident-native storage controls reproduce
+Escape/Mini timeouts at different tutorial phases. The unchanged original
+Escape branch privately passes six context/tutorial-byte cases; it skips Mini
+while byte0x6c4859 is nonzero. The storage driver now completes the four opening
+Initiate tutorial commands through recognized presented titles, preserves
+selection between prompts and independently checks the exact requested-difficulty
+callback trace. See [the scoped diagnosis](campaign-mini-tutorial-ingress.md).
+This is driver/input sequencing work, with no tutorial or simulation-state
+bypass. Mid-command tutorial saves and full later tutorial continuation remain
+separate; early failed restored-summon controls do not isolate a save-state defect.
+Menu build provenance now records actual compiler dependencies, including the
+previously omitted intermediate protocol headers. Fresh full-journey evidence
+is recorded with the completed controls, retaining all failed results.
+
+The [final resident-native Initiate run](campaign-storage-initiate-native-passed-20261015.json)
+passes709 balanced Worlds and7,653 native optional calls,0forwards/history refusals,
+fresh post-Save/Load sources, unchanged original save/owned merge and normal Quit.
+The original-rendering control completes the same bounded tutorial-aware journey;
+its final helper-source repeat is retained separately. A failed OCR crop and a
+separate Main/menu startup-admission refusal remain immutable negative evidence.
+No native rendering implementation or original tutorial/state was changed for
+this correction. Full replacement, mid-command saves, later tutorials, changed
+World canvases and reliable repeated startup admission are not asserted.
+
+The [final-helper original-rendering repeat](campaign-storage-initiate-original-reviewed-20261015.json)
+also passes Save/resume/Load/resume/normal Quit with stable sources and all55
+menu compiler inputs. The six private original Escape-gate cases, nine storage/
+OCR evidence controls and21 campaign evidence controls pass. The current native
+journey does not rerun the historical independent World-pixel comparisons.

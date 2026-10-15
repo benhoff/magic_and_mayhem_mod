@@ -97,11 +97,14 @@ Qt/HUD/movie/session comparison or a complete restored-simulation comparison.
 An [Initiate run](native-storage-initiate-input-refusal-20261015.json) completes
 Save and fresh native World resume without forwarding/history refusal but fails
 to reopen Mini after repeated Escape. The native input channel was active and
-press generations advanced. The cause remains unresolved; tutorial gating,
-original behavior and native input integration are not distinguished by that
-evidence. Apprentice selection plus ordinary scene clicks/ Escape passes; it
-does not establish an Initiate fix. Earlier driver/radio-button failures and raw
-inputs remain retained separately.
+press generations advanced. That historical run alone did not distinguish tutorial gating,
+original behavior and native input integration. The subsequent
+[tutorial ingress investigation](campaign-mini-tutorial-ingress.md) privately
+executes the original Escape gate and reproduces the timeout with original
+rendering/native menus. Its driver completes the four opening tutorial commands
+and preserves selection between prompts. Apprentice remains an independent
+journey; the fresh Initiate controls and limitations are recorded in the follow-up.
+Earlier driver/radio-button failures and raw inputs remain retained separately.
 
 ```sh
 python3 tools/working-retention.py run --reserve-gib 5 -- \

@@ -329,3 +329,13 @@ merge, explicit CPU snapshot accounting, zero forwards/refusals and balanced
 resident retirement. Apprentice is the declared scope; Initiate Escape ingress
 after Save remains a retained negative, not a passing case. See
 [the current result and reproduction](../research/runtime/native-render-save-load.md).
+
+The resident `--save-load` journey also accepts `--difficulty 0` for Initiate.
+It requires Pillow/Tesseract for bounded recognition of the four opening tutorial
+commands. It completes those commands using ordinary viewport input before Save,
+without generic scene clicks between prompts, then requires the original callback
+trace, fresh post-Save/Load World imports and normal Quit. Difficulty1 remains the
+separate Apprentice case. Saving during an active tutorial command and the full
+later tutorial are not covered by this journey. See
+`research/runtime/campaign-mini-tutorial-ingress.md` for the original Escape gate
+and the retained negative controls.

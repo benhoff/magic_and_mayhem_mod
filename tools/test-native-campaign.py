@@ -422,8 +422,8 @@ def main():
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     if args.save_load:
-        if not (args.resident_world and args.other_pixel_producers) or args.difficulty!=1 or args.stress_seconds or args.require_casting_combat or args.pixel_camera_scenarios or args.healing_case or args.crowded_case or args.menu_cycles!=1:
-            parser.error('Save/Load requires resident World, combined producers, Apprentice difficulty 1 and no other journey')
+        if not (args.resident_world and args.other_pixel_producers) or args.difficulty not in (0,1) or args.stress_seconds or args.require_casting_combat or args.pixel_camera_scenarios or args.healing_case or args.crowded_case or args.menu_cycles!=1:
+            parser.error('Save/Load requires resident World, combined producers, Initiate or Apprentice difficulty and no other journey')
         args.normal_quit=True
     explicit_native_audio=args.native_voices
     explicit_native_media=args.native_media;explicit_native_music=args.native_music
@@ -893,7 +893,7 @@ def main():
                 report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),crowded_flow,out,args.stress_seconds,args.min_fps)
                 report['crowded']=validate_crowded(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
                 report['crowded_verified']=True
-            elif args.save_load:report['storage']=validate_storage(roots[0],flow)
+            elif args.save_load:report['storage']=validate_storage(roots[0],flow,args.difficulty,out)
             else:report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
             if args.normal_quit:
                 for n in (() if args.save_load else (0,1)):

@@ -31,9 +31,11 @@ def validate(root,args):
     current={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in PROSPECTIVE}
     if current!=PROSPECTIVE:raise ValueError('Sources changed during test')
     built=json.loads((experiment/'bridge-build.json').read_text())
+    compiled=built.get('compiled_sources',{})
+    if not compiled or any(current.get(p)!=h for p,h in compiled.items()):raise ValueError('Missing or different actual menu compiler input')
     for p,h in current.items():
         if (p.startswith('runtime/menu/') or (p.startswith('protocols/') and Path(p).name.startswith('menu_v'))) and built['sources'].get(Path(p).name)!=h:raise ValueError('Different menu compiler source: '+p)
-    report.update(restarted_process=RESTART,source_sha256=metadata['source_sha256'],sources=current,claims=CLAIMS,source_stable=True,normal_quit=True,owned_save_persisted=True,original_callbacks=actions,experiment=str(experiment),save_bytes=saved.stat().st_size,native_render=bool(metadata.get('native_render')),scope='Fresh native Qt campaign menus, original Save/new named file/original row Load/resumed World/Mini/normal Quit and owned-store merge; full restored-state, overwrite/failure and cross-process Load remain separate')
+    report.update(restarted_process=RESTART,source_sha256=metadata['source_sha256'],sources=current,claims=CLAIMS,source_stable=True,menu_compiler_sources=compiled,normal_quit=True,owned_save_persisted=True,original_callbacks=actions,experiment=str(experiment),save_bytes=saved.stat().st_size,native_render=bool(metadata.get('native_render')),scope='Fresh native Qt campaign menus, original Save/new named file/original row Load/resumed World/Mini/normal Quit and owned-store merge; full restored-state, overwrite/failure and cross-process Load remain separate')
     (root/'report.json').write_text(json.dumps(report,indent=2)+'\n');print('Native campaign Save/Load and owned save persistence passed')
 def main():
     global PROSPECTIVE,CLAIMS,RESTART

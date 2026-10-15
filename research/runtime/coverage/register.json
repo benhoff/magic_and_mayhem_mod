@@ -54909,7 +54909,9 @@
         "UI38.campaign-save-load",
         "UI38.campaign-restore",
         "UI38.save-load-embedding-scoped",
-        "UI38.restore-embedding-scoped"
+        "UI38.restore-embedding-scoped",
+        "HOST.initiate-storage-original-render-20261015",
+        "HOST.initiate-storage-original-reviewed-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -54917,7 +54919,11 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/build-menu-observer.py",
+        "runtime/shadow/win32_min.h"
+      ]
     },
     {
       "id": "HOST.native-storage-confirmations",
@@ -71664,7 +71670,7 @@
       "subsystem": "rendering",
       "kind": "native_policy",
       "title": "Resident native campaign Save/Load and fresh World ownership",
-      "scope": "Bounded Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted.",
+      "scope": "Bounded Initiate or Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted. Requested difficulty must match the exact original callback trace; neither difficulty can substitute for the other. Initiate completes the four opening spell-selection, summon, creature-selection and movement tutorial commands through recognized visible titles and ordinary input before the first Save. Mid-command tutorial Save/Load and later tutorial continuation remain excluded; earlier failed original-rendering/native-menu controls do not distinguish storage behavior from unclassified scene-input changes.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -71692,13 +71698,16 @@
         "renderer/canvas_sequence.hpp",
         "renderer/canvas_mirror.hpp",
         "renderer/gpu_canvas_mirror.cpp",
-        "renderer/gpu_canvas_mirror.hpp"
+        "renderer/gpu_canvas_mirror.hpp",
+        "tools/build-menu-observer.py",
+        "runtime/shadow/win32_min.h"
       ],
       "evidence": [
         "HOST.native-storage.panel-refusal-20261015",
         "HOST.native-storage.source-history-refusal-20261015",
         "HOST.native-storage.initiate-input-refusal-20261015",
-        "HOST.native-storage.save-load-passed-20261015"
+        "HOST.native-storage.save-load-passed-20261015",
+        "HOST.initiate-storage-native-passed-20261015"
       ],
       "status": {
         "understanding": "partial",
@@ -71794,6 +71803,45 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.gameplay-mini-tutorial-gate",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original gameplay Escape Mini tutorial gate",
+      "scope": "Pinned No-CD layout0 Escape keydown, contexts0/5 and tutorial byte0/1/255: zero admits Mini mode2/push, nonzero skips it. Private original handler execution supplies key translation and screen-stack dependencies. No complete input handler, live byte observation or complete tutorial state machine.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4637118,
+          "scope": "Selected original Escape gate and Mini push branch only",
+          "recovered_range": "gameplay-mini-tutorial-46c1af"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-mini-tutorial-ingress.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-mini-ingress-reference.cpp",
+        "tools/test-campaign-mini-ingress.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-menu-support.py"
+      ],
+      "evidence": [
+        "CP.gameplay-mini-tutorial-original-20261015",
+        "HOST.initiate-storage-tutorial-negatives-20261015"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -142599,6 +142647,257 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "CP.gameplay-mini-tutorial-original-20261015",
+      "kind": "isolated_original",
+      "scope": "Six unchanged original Escape handler cases, authored layout/context/tutorial globals; OS key translation and screen push supplied, no live/tutorial state-machine equivalence.",
+      "record": "research/runtime/campaign-mini-tutorial-original-20261015.json",
+      "sha256": "7bebdcbe5fbd81e31e5bafc82f2170c01e3f3f1b4b6c41d973a5cad89db7962f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 6
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "HOST.initiate-storage-tutorial-negatives-20261015",
+      "kind": "live_observation",
+      "scope": "Negative original-rendering/native-menu and native-resident controls reach tutorial Escape/Mini timeouts at different clock phases. Includes failed mid-command Load controls; no original save-state defect, pixel mismatch, or live gate-byte value is proven.",
+      "record": "research/runtime/campaign-mini-tutorial-negatives-20261015.json",
+      "sha256": "31bdd51fd2894feb7393fd89ff6e41585f83678c6cd3e6ea9916825d409184b9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_unassisted/stage",
+          "equals": 3
+        },
+        {
+          "pointer": "/original_unassisted/error",
+          "equals": "Original Mini ingress timed out"
+        },
+        {
+          "pointer": "/native_unassisted/error",
+          "equals": "Original Mini ingress timed out"
+        },
+        {
+          "pointer": "/native_unassisted/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/mid_command_load/stage",
+          "equals": 9
+        }
+      ]
+    },
+    {
+      "id": "HOST.initiate-storage-original-render-20261015",
+      "kind": "live_observation",
+      "scope": "Initiate Celtic1 tutorial-aware native Qt menus with original graphics/audio/simulation, original Save/new file/Load/normal Quit and owned-save merge. Actual menu compiler closure55 inputs; no native rendering or whole-state/pixel equivalence.",
+      "record": "research/runtime/campaign-storage-initiate-original-render-20261015.json",
+      "sha256": "a522ae84aea4f9051109d2e2442d0642739ea8df6a2e78cdb771dedefe7d82b3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_save_persisted",
+          "equals": true
+        },
+        {
+          "pointer": "/native_render",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.initiate-storage-ocr-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Resident-native Initiate control reaches the opening select/summon tutorial steps, then external Tesseract exits SIGFPE on a background-only title crop. Retain as helper/tool failure, no renderer failure or completed storage assertion.",
+      "record": "research/runtime/campaign-storage-initiate-ocr-failure-20261015.json",
+      "sha256": "48d10d8cb0a3aab6ddd3d4a1c08dbec96b0117b57a2f8df5ca46a83906a442f4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/stage",
+          "equals": "campaign-flow"
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.initiate-storage-startup-refusal-20261015",
+      "kind": "live_observation",
+      "scope": "Resident-native Initiate attempt never admits native Main/menu actions: observer events contain only initial Main entry, host remains driverstage0 and terminal cancellation follows without admitted actions. Native frames continue; initialization failure cause unresolved and separate from tutorial/storage work.",
+      "record": "research/runtime/campaign-storage-initiate-startup-refusal-20261015.json",
+      "sha256": "ef013d97471ffe246b99184bf46981df2625fa454e03c0b9d9b65791a1a88f9d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.initiate-storage-native-passed-20261015",
+      "kind": "live_observation",
+      "scope": "Source-bound Initiate Celtic1 completes four opening tutorial commands, native Qt Save/resume/Load/resume/normal Quit with resident World and six producer families.709 balanced Worlds,7653 native optional calls,0forwards/history refusal,22ordered CPU-reader snapshots plus2explicit source-panel readbacks; ordinary World/native/RGBA readbacks0. No whole-session pixels, mid-command save, changed-World-canvas or reliable repeated startup claim.",
+      "record": "research/runtime/campaign-storage-initiate-native-passed-20261015.json",
+      "sha256": "2fdbe2b185b5d6f73ab84e4fdad6414d6965627ca8eef7f96333e0f049130b30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/storage/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/storage/difficulty",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/tutorial/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "709"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "709"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "709"
+        },
+        {
+          "pointer": "/resident_world/pending",
+          "equals": false
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_producers/forwarded",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_producers/history_refused",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.initiate-storage-original-reviewed-20261015",
+      "kind": "live_observation",
+      "scope": "Fresh final-helper Initiate Celtic1 tutorial-aware native Qt menus with original graphics/audio/simulation, original Save/new file/Load/normal Quit and owned-save merge. All55 actual menu compiler inputs/source declarations match. No native rendering or whole-state/pixel equivalence.",
+      "record": "research/runtime/campaign-storage-initiate-original-reviewed-20261015.json",
+      "sha256": "db2012e7c84bb3e49cee8d39affe827c35a01b153e70e9600f4af9931aaa7854",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/owned_save_persisted",
+          "equals": true
+        },
+        {
+          "pointer": "/native_render",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -156059,7 +156358,9 @@
         "UI38.campaign-save-load",
         "UI38.campaign-restore",
         "UI38.save-load-embedding-scoped",
-        "UI38.restore-embedding-scoped"
+        "UI38.restore-embedding-scoped",
+        "HOST.initiate-storage-original-render-20261015",
+        "HOST.initiate-storage-original-reviewed-20261015"
       ],
       "tests": [
         "tools/test-live-campaign-storage.py",
@@ -158790,7 +159091,7 @@
     },
     {
       "id": "HOST.native-render-save-load.campaign",
-      "scope": "Bounded Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted.",
+      "scope": "Bounded Initiate or Apprentice Celtic1 same-session native Qt Save/new isolated file/resume/Load/resume/normal Quit with original serialization and simulation retained, six optional producer families, zero forwards/history refusals and balanced resident World ownership. Require new source generations after each action rather than repaint progress. Independent restored World raster comparison, whole-session original pixels, complete restored simulation, other maps, cross-process restore and physical hardware remain separate. Original Mini Save/Load callbacks first synchronize all tracked GPU histories through existing ordered native CPU_READ replies at a quiescent boundary; borrowed or unsupported identities refuse before callback dispatch. Ordinary World Lock is unchanged. Source-side panels distinguish CPU-current, GPU-current and never-defined pixels; an explicit GPU snapshot supplies only established history and is separately counted. No ordinary World readback, arbitrary reader or async-reader support is asserted. Requested difficulty must match the exact original callback trace; neither difficulty can substitute for the other. Initiate completes the four opening spell-selection, summon, creature-selection and movement tutorial commands through recognized visible titles and ordinary input before the first Save. Mid-command tutorial Save/Load and later tutorial continuation remain excluded; earlier failed original-rendering/native-menu controls do not distinguish storage behavior from unclassified scene-input changes.",
       "level": "live_observation",
       "behaviors": [
         "HOST.native-render-save-load"
@@ -158804,7 +159105,11 @@
         "HOST.native-storage.save-load-passed-20261015",
         "HOST.native-storage.panel-refusal-20261015",
         "HOST.native-storage.source-history-refusal-20261015",
-        "HOST.native-storage.initiate-input-refusal-20261015"
+        "HOST.native-storage.initiate-input-refusal-20261015",
+        "HOST.initiate-storage-tutorial-negatives-20261015",
+        "HOST.initiate-storage-ocr-refusal-20261015",
+        "HOST.initiate-storage-startup-refusal-20261015",
+        "HOST.initiate-storage-native-passed-20261015"
       ]
     },
     {
@@ -159343,6 +159648,15 @@
       "document": "research/runtime/image-effect-pixel-takeover.md",
       "evidence": "RS.image-effect-pixel-state.range-original-20261014",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "gameplay-mini-tutorial-46c1af",
+      "build": "nocd-40209ca7",
+      "start": 4637103,
+      "end": 4637163,
+      "document": "research/runtime/campaign-mini-tutorial-ingress.md",
+      "evidence": "CP.gameplay-mini-tutorial-original-20261015",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -159453,8 +159767,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-storage-20261015.json",
-    "sha256": "880abcdcc9a5070d0c7b3d2eff289590220e176537e71e22ba7edd3412057590"
+    "path": "research/runtime/coverage/source-index-initiate-storage-reviewed-20261015.json",
+    "sha256": "7e1316f16693e0bce9173f022667b538f96c3a9699563546dea6977a9a29f83b"
   },
   "claim_bindings_required": true
 }

@@ -27,7 +27,30 @@ def validate_storage_flow(flow):
     return checkpoints
 
 
-def validate_storage(experiment, flow):
+def validate_opening_inputs(directory):
+    order=['select-spell','summon','select-creature','move-creature']
+    progress=[];first_escape=False;records=[]
+    for path in sorted(directory.glob('storage-input-*.json'),key=lambda p:int(p.stem.rsplit('-',1)[1])):
+        record=json.loads(path.read_text())
+        if record.get('success') is not True:raise ValueError('Failed tutorial input helper')
+        if record.get('mode')!='mini' or first_escape:continue
+        for action in record.get('tutorial_actions',[]):
+            name=action['action']
+            if len(progress)<4 and name==order[len(progress)]:progress.append(name)
+        if record.get('escape_sent'):
+            if progress!=order or record.get('opening_progress')!=order:
+                raise ValueError('Initiate entered Mini before completing the opening commands')
+            first_escape=True
+        records.append(dict(path=path.name,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),actions=record.get('tutorial_actions',[])))
+    if not first_escape:raise ValueError('Missing Initiate opening tutorial input proof')
+    return dict(verified=True,commands=progress,records=records)
+
+
+def validate_storage(experiment, flow, difficulty=1, input_directory=None):
+    if type(difficulty) is not int or difficulty not in (0, 1):
+        raise ValueError('Unsupported storage journey difficulty')
+    tutorial=validate_opening_inputs(input_directory) if difficulty==0 and input_directory else None
+    if difficulty==0 and tutorial is None:raise ValueError('Initiate requires opening tutorial evidence')
     checkpoints = validate_storage_flow(flow)
     lines=(experiment/'lock-capture/lifecycle.log').read_text().splitlines()
     synchronization=[line.split() for line in lines if line.startswith('resident_storage_materialized ')]
@@ -41,19 +64,20 @@ def validate_storage(experiment, flow):
         raise ValueError('Invalid original storage callback sequence')
     callbacks = [r for r in rows if r[1] == 3]
     actions = [(r[3], r[9]) for r in callbacks]
-    expected = [(3, 0), (18, 65537), (18, 0), (17, 1), (13, 0), (17, 0), (12, 0), (17, 3), (6, 21), (3, 4)]
+    expected = [(3, 0)] + ([(18, 65536+difficulty)] if difficulty else []) + [(18, 0), (17, 1), (13, 0), (17, 0), (12, 0), (17, 3), (6, 21), (3, 4)]
     if actions != expected or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
         raise ValueError('Unexpected original Save/Load callback/thread trace: ' + repr(actions))
     # A returned storage callback and new original World event must precede
     # the next Mini action. Merely seeing either event somewhere cannot pass.
-    for index, screen in ((4, 13), (6, 12)):
+    offset = int(bool(difficulty))
+    for index, screen in ((3+offset, 13), (5+offset, 12)):
         begin, end = callbacks[index][0], callbacks[index+1][0]
         if not any(r[1] == 4 and r[3] == screen and r[8] == 1 and begin < r[0] < end for r in rows):
             raise ValueError('Original storage callback did not return successfully')
         if not any(r[1] in (12, 20) and r[3] == 2 and r[6] == 1 and begin < r[0] < end for r in rows):
             raise ValueError('Original World did not resume after storage action')
     answers = [r for r in rows if r[1] == 22]
-    if len(answers) != 1 or answers[0][9] != 0 or not callbacks[7][0] < answers[0][0] < callbacks[8][0]:
+    if len(answers) != 1 or answers[0][9] != 0 or not callbacks[6+offset][0] < answers[0][0] < callbacks[7+offset][0]:
         raise ValueError('Missing original Quit Yes confirmation')
     name = flow['saved_name']
     if not re.fullmatch(r'native-render-[a-f0-9]{12}', name):
@@ -67,7 +91,7 @@ def validate_storage(experiment, flow):
     owned = type(experiment)(metadata['save_store']['store']) / (name + '.sav')
     if not merged.get('merged') or hashlib.sha256(owned.read_bytes()).hexdigest() != digest:
         raise ValueError('Normal Quit did not persist the owned save')
-    return dict(verified=True, original_callbacks=actions, checkpoints=checkpoints,
+    return dict(verified=True, difficulty=difficulty, tutorial=tutorial, original_callbacks=actions, checkpoints=checkpoints,
                 saved_sha256=digest, save_bytes=saved.stat().st_size,
                 owned_save_persisted=True,
                 events_sha256=hashlib.sha256(data).hexdigest(),

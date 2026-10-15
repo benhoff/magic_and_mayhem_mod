@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import shlex
 
 REPO=Path(__file__).resolve().parents[1]
 IMPORTS={'GetProcAddress':8,'GetModuleHandleA':4,'VirtualAlloc':16,'VirtualProtect':16,'VirtualQuery':12,
@@ -20,7 +21,13 @@ def build(root=None,selftest=False,experimental_mini=False,fixture=True):
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector',
            '-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I',str(root)]
     if experimental_mini:flags.append('-DMNM_MENU_MINI_EXPERIMENTAL=1')
-    subprocess.run(flags+(['-DMNM_MENU_SELFTEST'] if selftest else [])+['-c',str(source/'observer.c'),'-o',str(root/'observer.obj')],check=True)
+    dependencies=root/'observer.d'
+    subprocess.run(flags+(['-DMNM_MENU_SELFTEST'] if selftest else [])+['-MD','-MF',str(dependencies),'-c',str(source/'observer.c'),'-o',str(root/'observer.obj')],check=True)
+    compiled={}
+    for name in shlex.split(dependencies.read_text().replace('\\\n','').split(':',1)[1]):
+        path=Path(name).resolve()
+        if not path.is_relative_to(REPO):raise ValueError('Unexpected external menu compiler input: '+name)
+        compiled[path.relative_to(REPO).as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
     user_definition=root/'user32.def'
     user_definition.write_text('LIBRARY USER32.dll\nEXPORTS\nGetClientRect@8\n')
     subprocess.run(['llvm-dlltool','-m','i386','-D','USER32.dll','-d',str(user_definition),'-l',str(root/'user32.lib'),'--kill-at'],check=True)
@@ -31,7 +38,8 @@ def build(root=None,selftest=False,experimental_mini=False,fixture=True):
                     f'/out:{dll}',*exports,str(root/'observer.obj'),str(root/'kernel32.lib'),str(root/'user32.lib')],check=True)
     (root/'manifest.json').write_text(json.dumps({'sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'architecture':'PE32 i386','scope':'Menu callback/state observation; optional V1 Main/Quick, V2 Single Player/Map, V3 pre-battle spells V5 Quick Battle results or V6 Main Preferences / V7 fresh Region Entry / V8 original campaign Enter; V4 Mini separately gated','selftest':selftest,'experimental_mini':experimental_mini,
-        'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [*source.iterdir(),REPO/'protocols/include/mnm/menu_v1.h',REPO/'protocols/include/mnm/menu_v2.h',REPO/'protocols/include/mnm/menu_v3.h',REPO/'protocols/include/mnm/menu_v4.h',REPO/'protocols/include/mnm/menu_v5.h',REPO/'protocols/include/mnm/menu_v6.h',REPO/'protocols/include/mnm/menu_v7.h',REPO/'protocols/include/mnm/menu_v8.h',REPO/'protocols/include/mnm/menu_v9.h',REPO/'protocols/include/mnm/menu_v10.h',REPO/'protocols/include/mnm/menu_v11.h',REPO/'protocols/include/mnm/menu_v12.h',REPO/'protocols/include/mnm/menu_v13.h',REPO/'protocols/include/mnm/menu_v18.h',REPO/'protocols/include/mnm/menu_v19.h',REPO/'protocols/include/mnm/menu_v20.h',REPO/'protocols/include/mnm/menu_v21.h',REPO/'protocols/include/mnm/menu_v22.h'] if p.is_file()}},indent=2)+'\n')
+        'compiled_sources':compiled,
+        'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [*source.iterdir(),*(REPO/'protocols/include/mnm').glob('menu_v*.h')] if p.is_file()}},indent=2)+'\n')
     if selftest:
         definition=root/'menu.def';definition.write_text('LIBRARY MnmMenu.dll\nEXPORTS\nMenuInstallForTest@0\nMenuCampaignInstallForTest@0\nMenuCampaignNavigationForTest@0\nMenuCampaignWorldForTest@0\nMenuCampaignMiniForTest@0\n')
         subprocess.run(['llvm-dlltool','-m','i386','-D','MnmMenu.dll','-d',str(definition),'-l',str(root/'menu.lib'),'--kill-at'],check=True)
