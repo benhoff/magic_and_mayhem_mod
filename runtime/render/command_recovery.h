@@ -176,6 +176,7 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
     next.map=0;next.queue=0;
     command_queue_written=command_queue_read=command_queue_end=command_queue_failure=0;
     command_queue_peak=command_queue_full=command_queue_blocked=0;
+    command_pressure_waits=command_pressure_resumes=command_pressure_max_ms=0;
     command_queue_timeout=command_queue_armed=command_queue_since=command_queue_ack=command_queue_timed_out=0;
     command_queue_configure();command_pressure_logged=0;
     command_worker_started=command_worker_stop=command_worker_joined=command_shutdown_complete=0;

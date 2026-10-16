@@ -1,6 +1,8 @@
 /* Optional native-owned diagnostic getter, resolved once during adapter load. */
 static u32 (WIN *game_copy_native_stage)(void);
 static void (WIN *game_copy_native_defer)(u32);
+/* Optional private-queue pacing hook; standalone/finite policies leave it null. */
+static int (*game_copy_pressure_admit)(u32,u32);
 /* Intentional opt-in native scheduling, not recovered driver ordering.
  * Never hold the tracker while waiting or calling the original. Same-thread
  * callbacks keep generation guards; timeout forwards and invalidates both sides
@@ -9,12 +11,21 @@ static void (WIN *game_copy_native_defer)(u32);
 enum { GAME_COPY_BIND=0, GAME_COPY_MUTATION=1, GAME_COPY_OBSERVATION=2 };
 static u32 game_copy_owner,game_copy_started,game_copy_site,game_copy_phase;
 static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 original_call){
-    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),waited=0;
+    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),waited=0,pressure_started=start;
     struct GameCopyLease lease={0,1,0};
     struct CopyWaitTiming timing;copy_wait_begin(&timing,start);
     if(!game_copy_order_enabled)goto done;
     for(;;){
-        if(__sync_bool_compare_and_swap(&game_copy_owner,0,thread)){lease.held=1;__atomic_store_n(&game_copy_started,GetTickCount(),__ATOMIC_RELAXED);__atomic_store_n(&game_copy_site,site,__ATOMIC_RELAXED);__atomic_store_n(&game_copy_phase,0,__ATOMIC_RELAXED);copy_trace_owner_open(target,site,thread,__atomic_load_n(&game_copy_started,__ATOMIC_RELAXED));if(waited)lock_diagnostic("copy_order_wait_acquired",target,0,thread,GetTickCount()-start,0,0,0);break;}
+        if(__sync_bool_compare_and_swap(&game_copy_owner,0,thread)){
+            if(game_copy_pressure_admit && !game_copy_pressure_admit(0,pressure_started)){
+                /* No original call, tracker or status deferral has begun.
+                 * Release admission before waiting for the independent worker. */
+                __atomic_store_n(&game_copy_owner,0,__ATOMIC_RELEASE);WakeByAddressAll(&game_copy_owner);
+                if(!game_copy_pressure_admit(1,pressure_started)){lease.observe=0;break;}
+                start=GetTickCount();copy_wait_begin(&timing,start);waited=0;continue;
+            }
+            lease.held=1;__atomic_store_n(&game_copy_started,GetTickCount(),__ATOMIC_RELAXED);__atomic_store_n(&game_copy_site,site,__ATOMIC_RELAXED);__atomic_store_n(&game_copy_phase,0,__ATOMIC_RELAXED);copy_trace_owner_open(target,site,thread,__atomic_load_n(&game_copy_started,__ATOMIC_RELAXED));if(waited)lock_diagnostic("copy_order_wait_acquired",target,0,thread,GetTickCount()-start,0,0,0);break;
+        }
         u32 owner=__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE);
         copy_wait_sample(&timing,&game_copy_owner);
         if(owner==thread){

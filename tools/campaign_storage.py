@@ -6,6 +6,35 @@ import struct
 from pathlib import Path
 
 
+def validate_command_pressure(root):
+    rows=[]
+    for line in (root/'lock-capture/lifecycle.log').read_text().splitlines():
+        name,*words=line.split()
+        if name.startswith('command_pressure_') or name in ('command_queue_refused','command_queue_overflow'):
+            rows.append((name,[int(word,16) for word in words]))
+    if any(name in ('command_pressure_timeout','command_queue_refused','command_queue_overflow') for name,_ in rows):
+        raise ValueError('Resident command pressure terminated the stream')
+    begins=[v for name,v in rows if name=='command_pressure_begin']
+    resumes=[v for name,v in rows if name=='command_pressure_resume']
+    summaries=[v for name,v in rows if name=='command_pressure_summary']
+    if not begins or not resumes or len(summaries)!=1:
+        raise ValueError('Missing balanced resident command pressure and joined shutdown')
+    summary=summaries[0]
+    # Lifecycle diagnostics retain at most four distinct rows per reason.
+    # Joined counters account for all waits, including suppressed repeat rows.
+    if (len(summary)!=19 or summary[0]!=summary[1] or summary[0]<max(len(begins),len(resumes))
+            or summary[3:5]!=[8*1024*1024,4*1024*1024]
+            or not 8*1024*1024<=summary[5]<=32*1024*1024 or summary[6:8]!=[0,1]):
+        raise ValueError('Invalid command pressure summary or incomplete stream')
+    if any(v[3]<8*1024*1024 or v[4]!=8*1024*1024 or v[6]!=4*1024*1024 for v in begins):
+        raise ValueError('Pressure did not exercise the configured high watermark')
+    if any(v[3]>4*1024*1024 or v[4]>5000 for v in resumes):
+        raise ValueError('Pressure resumed above the low watermark or exceeded its budget')
+    return dict(verified=True,waits=summary[0],resumes=summary[1],maximum_wait_ms=summary[2],
+                high_bytes=summary[3],low_bytes=summary[4],queue_peak_bytes=summary[5],
+                joined_complete=True,scope='Actual resident admission pressure and clean terminal drain; finite capacity and single-callback limits remain')
+
+
 def validate_mini_dispatch(flow, capture_delay_ms=0):
     requests=[s for s in flow.get('states',[]) if s.get('event')=='mini-request']
     expected=[29,28,15]+([15] if flow.get('recreate_world') else [])

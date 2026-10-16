@@ -21,6 +21,7 @@ wire,frame_v1=idle.wire,idle.frame_v1
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims',type=Path,help='Prospective coverage/source declaration')
+    parser.add_argument('--admission',action='store_true',help='Exercise actual resident copy admission under pressure')
     args=parser.parse_args()
     declaration=json.loads(args.claims.read_text()) if args.claims else None
     paths=sorted((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['tools/test-render-backpressure.py','tools/test-render-command-idle.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','runtime/shadow/win32_min.h','protocols/include/mnm/render_command_ring.h','protocols/python/mnm_protocols/render_commands_v2.py']]
@@ -34,7 +35,8 @@ def main():
     dll=idle.load('pressure_build','tools/build-render-bridge.py').build(True);stage=idle.load('pressure_stage','tools/prepare-shadow-experiment.py')
     report=dict(schema=1,success=True,sources=sources,cases=[],scope='Actual synthetic PE32 queue/retry scheduler and raw mapped reader. Pause/resume and slow advancing ACK beyond the deadline preserve every owned byte; idle clears demand, no-ACK stalls, cancellation, invalid ACK and hard overflow refuse with sticky reason. No original game, GPU completion, queue coalescing or recovery.')
     if declaration:report['claims']=declaration['claims']
-    for mode in ['pause','progress','idle','stall','small-stall','cancel','invalid-ack','overflow']:
+    for mode in (['admit-pause','admit-stall','admit-cancel','admit-invalid-ack'] if args.admission else ['pause','progress','idle','stall','small-stall','cancel','invalid-ack','overflow']):
+        reader_mode=mode.removeprefix('admit-')
         case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();channel=case/'commands.bin';frame=case/'frame.bin'
         for path,header,size in [(channel,wire.initial_header(),wire.SIZE),(frame,frame_v1.initial_header(),frame_v1.SIZE)]:
             with path.open('wb') as f:
@@ -43,17 +45,22 @@ def main():
                 f.write(b);f.truncate(size)
         shutil.copyfile(dll,case/dll.name);(case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
-        env.update(WINEDEBUG='-all',WINEPREFIX=str(ROOT/'working/tests/render-wine'),MNM_BACKPRESSURE_SELFTEST=mode,MNM_RENDER_CONTINUOUS='1',MNM_RENDER_STALL_TIMEOUT_MS='200' if mode not in ['pause','overflow'] else '5000',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/','\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/','\\'))
-        valid=mode in ['pause','progress','idle'];length=64 if mode in ['idle','small-stall','cancel','invalid-ack'] else 2097275
+        env.update(WINEDEBUG='-all',WINEPREFIX=str(ROOT/'working/tests/render-wine'),MNM_BACKPRESSURE_SELFTEST=mode,MNM_RENDER_CONTINUOUS='1',MNM_RENDER_STALL_TIMEOUT_MS='200' if reader_mode not in ['pause','overflow'] else '5000',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/','\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/','\\'))
+        if args.admission:env.update(MNM_PUBLIC_RESIDENT_WORLD='1',MNM_RENDER_ORDERED_COPIES='1')
+        valid=reader_mode in ['pause','progress','idle'];length=10*1024*1024+123 if args.admission else 64 if mode in ['idle','small-stall','cancel','invalid-ack'] else 2097275
         with channel.open('r+b') as f,mmap.mmap(f.fileno(),wire.SIZE) as m,(case/'wine.log').open('w') as log:
             child=subprocess.Popen(['wine',str(case/'selftest.exe')],cwd=case,env=env,stdout=log,stderr=log);consumed=0;deadline=time.monotonic()+20
             try:
                 while struct.unpack_from('<I',m,20)[0]==0:
+                    # Hard overflow may refuse before the worker publishes any
+                    # bytes. Terminal state/reason and child result below are
+                    # still required; other cases must witness publication.
+                    if mode=='overflow' and struct.unpack_from('<I',m,24)[0]==3:break
                     assert child.poll() is None and time.monotonic()<deadline,'no publication';time.sleep(.002)
                 start=time.monotonic()
-                if mode=='pause':time.sleep(.15);assert struct.unpack_from('<I',m,20)[0]==wire.CAPACITY
-                if mode=='cancel':struct.pack_into('<I',m,32,1)
-                if mode=='invalid-ack':struct.pack_into('<I',m,36,65)
+                if reader_mode=='pause':time.sleep(.15);assert struct.unpack_from('<I',m,20)[0]==wire.CAPACITY
+                if reader_mode=='cancel':struct.pack_into('<I',m,32,1)
+                if reader_mode=='invalid-ack':struct.pack_into('<I',m,36,struct.unpack_from('<I',m,20)[0]+1)
                 if valid:
                     while consumed<length:
                         assert struct.unpack_from('<I',m,24)[0]!=3,'valid reader refused'
@@ -63,19 +70,23 @@ def main():
                             data=bytes(m[64+offset:64+offset+first])+bytes(m[64:64+n-first])
                             assert data==bytes(((consumed+i)*13+31)&255 for i in range(n)),'owned byte mismatch'
                             consumed+=n;struct.pack_into('<I',m,36,consumed)
-                            if mode=='progress':time.sleep(.04)
+                            if reader_mode=='progress':time.sleep(.04)
                         else:assert time.monotonic()<deadline;time.sleep(.001)
-                if mode in ['stall','small-stall']:
+                if reader_mode in ['stall','small-stall']:
                     while struct.unpack_from('<I',m,24)[0]!=3:
                         assert child.poll() is None and time.monotonic()<deadline;time.sleep(.002)
                     elapsed=time.monotonic()-start;assert elapsed<.55,(mode,elapsed)
                 else:elapsed=time.monotonic()-start
                 assert child.wait(timeout=10)==0,(mode,(case/'wine.log').read_text())
                 state,reason=struct.unpack_from('<II',m,24);pub=struct.unpack_from('<I',m,20)[0]
-                want=(2,0) if valid else (3,3 if mode=='cancel' else 5 if mode=='invalid-ack' else 1 if mode=='overflow' else 4)
+                want=(2,0) if valid else (3,3 if reader_mode=='cancel' else 5 if reader_mode=='invalid-ack' else 1 if mode=='overflow' else 4)
                 assert (state,reason)==want,(mode,state,reason)
-                if mode in ['stall','small-stall']:assert 'command_queue_stalled' in (capture/'lifecycle.log').read_text()
-                if mode=='progress':assert elapsed>.2
+                if reader_mode in ['stall','small-stall']:assert 'command_queue_stalled' in (capture/'lifecycle.log').read_text()
+                if reader_mode=='progress':assert elapsed>.2
+                if args.admission:
+                    lifecycle=(capture/'lifecycle.log').read_text()
+                    assert 'command_pressure_begin ' in lifecycle
+                    assert ('command_pressure_resume ' in lifecycle)==valid
                 report['cases'].append(dict(mode=mode,state=state,reason=reason,published=pub,acknowledged=consumed,owned_bytes_verified=consumed,seconds=elapsed,success=True))
             finally:
                 if child.poll() is None:child.terminate();child.wait(timeout=5)

@@ -12340,3 +12340,38 @@ witnesses, image/crop hashes, host admission and independent original callbacks,
 with stable inputs/sources and verified original manifests/private-prefix stop.
 The historical Preferences cause and the distinct Initiate queue overflow remain
 explicit; no original comparison or replacement status is promoted.
+
+
+## 2026-10-16: Resident command pressure during Initiate rebuilt Main Load
+
+The documented full-ring/private32MiB Initiate OVERFLOW now has bounded native
+admission pacing. At8MiB private backlog, ordered resident callbacks release
+copy admission before waiting for4MiB; no tracker/copy lock or original callback
+is held through that wait. The independent worker retains mapped publication,
+peer guards and no-progress timeout. FIFO ownership,32MiB capacity, LastError,
+original-once refusal and terminal failures remain. Finite/nonordered paths,
+same-thread reentry and oversized individual callback bursts retain explicit
+limits. This is native scheduling, not recovered original-driver ordering.
+
+[Current source-bound controls](resident-pressure-final-controls-20261016.json)
+pass native/ASan/UBSan byte preservation beyond32MiB,12 pressure cases and the
+existing11writer/25queue controls;4PE32 pressure cases,8transport guards and
+17storage/21campaign portable checks also pass. The old raw overflow harness
+assumed publication preceded failure; it now validates reason1 even when the
+worker refuses first. Joined pressure counters account for diagnostic rows
+suppressed by the existing four-distinct-row limit. Separate bind/history/V5
+fixture corrections and copy timing regressions pass, retaining their old failed
+probes and original hashes in [the investigation](resident-command-pressure.md).
+
+Two initial cold Initiate journeys pass916 and832 balanced Worlds. The final
+frozen-source cold repeat passes962 balanced Worlds, both original display
+rebuilds, changed World canvas on Main Load, fresh native resume and normal Quit,
+with500ms GUI capture stalls and3 actual pressure waits/resumes. Private queue
+peak is9,035,414 bytes; maximum pressure wait is273ms. No recovery,
+fallback, history refusal or forwarded other-pixel path occurs. Inputs/sources,
+original manifests and private session cleanup verify. Retain the old707World
+overflow as historical negative evidence; these new results repair that bounded
+route without rewriting it. Single/nested callback capacity, sustained stalls,
+arbitrary concurrent stop/recovery and the unclassified historical Preferences
+cause remain outside this result. No original comparison or replacement status
+is promoted.

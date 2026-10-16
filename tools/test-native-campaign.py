@@ -18,7 +18,7 @@ import struct
 import subprocess
 import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
-from campaign_storage import validate_storage, validate_storage_flow, validate_mini_dispatch, validate_mini_inputs
+from campaign_storage import validate_storage, validate_storage_flow, validate_mini_dispatch, validate_mini_inputs, validate_command_pressure
 from campaign_movement import validate_movement_probes
 from campaign_crowded import validate_crowded
 from campaign_spell import player_engaged_fireball_lethal, read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
@@ -423,7 +423,9 @@ def main():
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     parser.add_argument('--loading-menu-seconds',type=int,default=0,help='Hold original Main Load before rebuilt-map reload (1..120 seconds); requires source chunk progress')
     parser.add_argument('--mini-capture-delay-ms',type=int,choices=range(0,1001),default=0,metavar='0..1000',help='Bounded GUI stall after native Mini submission, before diagnostic capture; requires Save/Load')
+    parser.add_argument('--require-command-pressure',action='store_true',help='Require actual high/low admission waits and clean joined shutdown in the rebuilt Save/Load journey')
     args = parser.parse_args()
+    if args.require_command_pressure and not (args.resident_world and args.save_load and args.recreate_world):parser.error('--require-command-pressure requires --resident-world --save-load --recreate-world')
     if args.mini_capture_delay_ms and not args.save_load:parser.error('--mini-capture-delay-ms requires --save-load')
     if args.loading_menu_seconds and (not args.recreate_world or args.independent_world or args.capture_resident or not 1<=args.loading_menu_seconds<=120):parser.error('Loading menu dwell requires synchronous uncaptured --recreate-world and 1..120 seconds')
     if args.recreate_world:args.save_load=True
@@ -493,7 +495,7 @@ def main():
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'native_voices_required':args.native_voices, 'native_audio_default_required':args.default_audio, 'legacy_audio_requested':args.legacy_audio, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'other_pixel_producers_required':args.other_pixel_producers,'save_load_required':args.save_load,
-              'recreate_world_required':args.recreate_world,'loading_menu_seconds':args.loading_menu_seconds,'mini_capture_delay_ms':args.mini_capture_delay_ms,
+              'command_pressure_required':args.require_command_pressure,'recreate_world_required':args.recreate_world,'loading_menu_seconds':args.loading_menu_seconds,'mini_capture_delay_ms':args.mini_capture_delay_ms,
               'required_pixel_routes':args.require_pixel_route,'pixel_camera_scenarios_required':args.pixel_camera_scenarios,
               'native_wave_loading_required':args.native_loading,
               'native_audio_factory_required':args.native_factory,
@@ -512,6 +514,7 @@ def main():
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         declaration_command.extend(['--behavior','HOST.menu-startup-admission'])
+        if args.require_command_pressure:declaration_command.extend(['--behavior','NR.resident-command-pressure','--scenario','NR.resident-command-pressure.initiate-reload'])
         if args.save_load:declaration_command.extend(['--behavior','HOST.native-render-save-load','--scenario','HOST.native-render-save-load.campaign','--behavior','HOST.mini-dispatch-admission','--scenario','HOST.mini-dispatch-admission.storage'])
         if args.recreate_world:declaration_command.extend(['--behavior','NR.resident-world-canvas-transition','--scenario','NR.resident-world-canvas-transition.reload'])
         if args.recreate_world:declaration_command.extend(['--behavior','NP.native-primary-initial-history'])
@@ -917,6 +920,7 @@ def main():
                 report['crowded_verified']=True
             elif args.save_load:
                 if bool(flow.get('recreate_world'))!=args.recreate_world:raise ValueError('Requested canvas transition was not executed')
+                if args.require_command_pressure:report['command_pressure']=validate_command_pressure(roots[0])
                 report['storage']=validate_storage(roots[0],flow,args.difficulty,out)
                 report['mini_dispatch']=validate_mini_dispatch(flow,args.mini_capture_delay_ms)
                 report['mini_inputs']=validate_mini_inputs(out,flow)

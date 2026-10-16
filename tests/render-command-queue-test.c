@@ -9,7 +9,10 @@ static void ring_reset(void){
     command_queue_peak=command_queue_full=command_queue_blocked=clock_ms=0;
     command_channel_init();check(command_channel==storage && command_queue && storage[6]==1);
 }
-int main(void){
+#ifndef QUEUE_TEST_MAIN
+#define QUEUE_TEST_MAIN main
+#endif
+int QUEUE_TEST_MAIN(void){
     legacy_writer_main();ring_reset();u32 length=2*1024*1024+123;
     u8* input=malloc(COMMAND_QUEUE_CAPACITY);check(input!=0);
     for(u32 i=0;i<length;++i)input[i]=(u8)(i*13+31);

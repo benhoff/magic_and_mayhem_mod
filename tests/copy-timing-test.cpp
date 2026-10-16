@@ -24,7 +24,7 @@ static int write_all(HANDLE,const void* p,u32 n){++ioCalls;const auto* bytes=sta
 #include "../runtime/render/copy_timing.h"
 int QueryPerformanceCounter(unsigned long long* out){__atomic_add_fetch(&qpcCalls,1,__ATOMIC_RELAXED);*out=1000000+static_cast<unsigned long long>(tick)*1000;lastError=0xaa;return 1;}
 int QueryPerformanceFrequency(unsigned long long* out){*out=1000000;lastError=0xaa;return 1;}
-static u32 game_copy_order_enabled=1,game_lock_epoch,historyInvalid,command_channel_session=1516015097;
+static u32 game_copy_order_enabled=1,game_lock_epoch,historyInvalid,game_cpu_transfer_wait,command_channel_session=1516015097;
 struct GameCopyLease {u32 held,observe,deferred;};
 static u32* history_current(){return &historyInvalid;}
 #define history_invalid historyInvalid

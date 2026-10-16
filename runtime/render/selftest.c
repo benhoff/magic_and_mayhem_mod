@@ -2,6 +2,7 @@
 API void WIN RenderInstallForTest(void*,u32);
 API void WIN RenderCaptureGuardForTest(u32);
 API u32 WIN RenderCaptureWaitsForTest(void);
+API u32 WIN RenderCommandAdmissionForTest(void);
 API void WIN Sleep(u32);
 API HANDLE WIN CreateThread(void*,u32,u32 (WIN *)(void*),void*,u32,u32*);
 API u32 WIN WaitForSingleObject(HANDLE,u32);

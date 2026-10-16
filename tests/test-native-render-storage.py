@@ -17,6 +17,19 @@ spec.loader.exec_module(m)
 
 
 class StorageTests(unittest.TestCase):
+    def test_pressure_requires_real_wait_resume_and_complete_shutdown(self):
+        high,low=8*1024*1024,4*1024*1024
+        def row(name,values):return name+' '+' '.join(f'{v:08x}' for v in values+[0]*(19-len(values)))+'\n'
+        good=row('command_pressure_begin',[0,17,0,high,high,0,low])+row('command_pressure_resume',[0,17,0,low,123])+row('command_pressure_summary',[1,1,123,high,low,high+4096,0,1])
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);(root/'lock-capture').mkdir();path=root/'lock-capture/lifecycle.log'
+            path.write_text(good);self.assertTrue(m.validate_command_pressure(root)['verified'])
+            path.write_text(good.replace('00000001 00000001 0000007b','00000006 00000006 0000007b'))
+            self.assertEqual(m.validate_command_pressure(root)['waits'],6)
+            for bad in ('',good.splitlines()[0]+'\n',good.replace('command_pressure_resume','other'),good+row('command_queue_overflow',[1]),good.replace('0000007b','00001389'),good.replace('00801000','02000001'),good.replace('00000000 00000001','00000001 00000000')):
+                path.write_text(bad)
+                with self.assertRaises(ValueError):m.validate_command_pressure(root)
+
     def test_mini_acceptance_before_capture_is_required(self):
         states=[]
         for action,control in [(29,'2'),(28,'1'),(15,'4')]:

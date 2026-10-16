@@ -69,6 +69,7 @@ static void game_copy_leave(struct GameCopyLease*);
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
 #include "lock_dc.h"
+#include "command_pressure.h"
 static void lock_diagnostic_worker_start(void);
 #include "command_scheduler.h"
 #include "copy_order.h"
@@ -591,6 +592,16 @@ __declspec(dllexport) u32 WIN RenderQueueForTest(const void* bytes,u32 length,u3
     int ok=command_channel_append(bytes,length,0,0,0,0);if(end)command_channel_end();
     game_tracker_release();SetLastError(error);return ok;
 }
+__declspec(dllexport) u32 WIN RenderCommandAdmissionForTest(void){
+    u32 error=GetLastError();
+    struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
+    if(!callback.counted){SetLastError(error);return 0;}
+    struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))=game_copy_bind_enter();
+    u32 ready=lease.held && lease.observe;SetLastError(error);return ready;
+}
+__declspec(dllexport) void WIN RenderResidentHistoryForTest(void* callback){
+    game_cpu_history=(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))callback;
+}
 __declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){u32 error=GetLastError();command_scheduler_start();install_table(surface,kind);SetLastError(error);}
 __declspec(dllexport) u32 WIN RenderCallbackPublicationProbeForTest(u32 arm){
     u32 error=GetLastError(),calls=__atomic_load_n(&command_publication_probe_calls,__ATOMIC_RELAXED);
@@ -673,6 +684,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
+    if(game_resident_world && game_copy_order_enabled)game_copy_pressure_admit=&command_pressure_admit;
     if(lock_capture_path_length)readback_disabled=1;
     init_failure_diagnostics();init_draw_capture();command_control_init();
     if(command_control_invalid){command_channel_refused=1;command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_INVALID);}

@@ -44,7 +44,7 @@ def main():
     negative_control = args.expect_refusal or args.expect_inline_publication
     report = dict(success=False, sources=sources, claims=declaration['claims'], expected_refusal=args.expect_refusal,
                   publication_probe=args.publication_probe, expected_inline_publication=args.expect_inline_publication,
-                  scope='Synthetic actual PE32 exported resident binding, delayed copy/tracker ownership, original Lock/Unlock results and LastError, poisoned borrowed pixels and ordered owned V4 bytes. No original game, GPU execution, public cadence or pixel equivalence.')
+                  scope='Synthetic actual PE32 exported resident binding, delayed copy/tracker ownership, original Lock/Unlock results and LastError, poisoned borrowed pixels and ordered owned V5 bytes. No original game, GPU execution, public cadence or pixel equivalence.')
     env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEPREFIX=str(out/'wineprefix'), WINEDEBUG='-all')
     child = None
@@ -103,7 +103,7 @@ def main():
         assert result[:6] == (int(not args.expect_refusal), 0x77, 1, 1, 1, 1), result
         assert (result[10] >= 1 if args.expect_inline_publication else result[10] == 0), result
         archive = (capture/'session-00000001.bin').read_bytes()
-        assert archive == collected and archive[:16] == b'MNMCMD04'+struct.pack('<II', 4, 16)
+        assert archive == collected and archive[:16] == b'MNMCMD05'+struct.pack('<II', 5, 16)
         at, records = 16, []
         while at < len(archive):
             op, sequence, size = struct.unpack_from('<III', archive, at)

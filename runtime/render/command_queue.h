@@ -10,6 +10,8 @@ static volatile i32 command_queue_draining;
  * Keep ownership through failed/timed-out joins; teardown retains storage. */
 static u32 command_publication_worker_active;
 static u32 command_queue_peak,command_queue_full,command_queue_blocked;
+/* First refused append, published with the sticky failure for worker logging. */
+static u32 command_queue_overflow[6];
 /* Only the drain guard owns deadline state. No clock or peer wait in append. */
 static u32 command_queue_timeout,command_queue_armed,command_queue_since,command_queue_ack,command_queue_timed_out;
 static void command_queue_configure(void){
@@ -39,6 +41,8 @@ static int command_queue_append(const void* a,u32 an,const void* b,u32 bn,const 
     u32 read=__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE),written=command_queue_written;
     u32 remaining=COMMAND_QUEUE_CAPACITY-(written-read);
     if(an>remaining || bn>remaining-an || cn>remaining-an-bn || an+bn+cn>0xffffffffu-written){
+        command_queue_overflow[0]=an;command_queue_overflow[1]=bn;command_queue_overflow[2]=cn;
+        command_queue_overflow[3]=written-read;command_queue_overflow[4]=written;command_queue_overflow[5]=read;
         command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW);return 0;
     }
     const void* parts[3]={a,b,c};u32 sizes[3]={an,bn,cn};

@@ -2,6 +2,7 @@
 API void WIN RenderInstallForTest(void*,u32);
 API u32 WIN RenderResidentBindHoldForTest(void);
 API u32 WIN RenderCallbackPublicationProbeForTest(u32);
+API void WIN RenderResidentHistoryForTest(void*);
 API u32 WIN RenderResidentWorldV1(u32,u32,u32,u32,u32,u32,u32,u32);
 API u32 WIN RenderShutdown(u32);
 API void WIN Sleep(u32);
@@ -11,7 +12,11 @@ API u32 WIN WaitForSingleObject(HANDLE,u32);
 API int WIN QueryPerformanceCounter(unsigned long long*);
 API int WIN QueryPerformanceFrequency(unsigned long long*);
 static u16 pixels[800*600];
-static u32 locks,unlocks,holder;
+static u32 locks,unlocks,holder,histories;
+static i32 WIN history(const void* data,u32 operation,u32 low,u32 high,u32 nonce_low,u32 nonce_high){
+    if(data!=pixels || operation!=1 || low!=1 || high || nonce_low!=17 || nonce_high!=34)ExitProcess(24);
+    ++histories;return 0;
+}
 static void output(const char* name,const void* data,u32 size){
     u32 written;HANDLE f=CreateFileA(name,0x40000000,1,0,1,0x80,0);
     if(f==(HANDLE)-1 || !WriteFile(f,data,size,&written,0) || written!=size)ExitProcess(11);
@@ -44,6 +49,7 @@ static u32 WIN release(void* unused){
     output("bind-release.bin",&value,4);return 0;
 }
 void start(void){
+    RenderResidentHistoryForTest((void*)history);
     static void* table[33];table[25]=(void*)lock;table[32]=(void*)unlock;void** object=table;
     RenderInstallForTest(&object,14);u32 d[31]={124};SetLastError(0x77);
     if(((i32(WIN*)(void*,void*,u32*,u32,HANDLE))table[25])(&object,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(16);
@@ -53,6 +59,7 @@ void start(void){
     unsigned long long begin,end,frequency;QueryPerformanceFrequency(&frequency);QueryPerformanceCounter(&begin);
     SetLastError(0x77);u32 bound=RenderResidentWorldV1((u32)pixels,800,600,800,1,0,17,34);
     u32 error=GetLastError();QueryPerformanceCounter(&end);
+    if(histories!=bound)ExitProcess(25);
     if(WaitForSingleObject(owner,2000) || WaitForSingleObject(releaser,2000))ExitProcess(19);
     CloseHandle(owner);CloseHandle(releaser);
     char probe[8];u32 publication_probe=GetEnvironmentVariableA("MNM_BIND_PUBLICATION_PROBE",probe,sizeof(probe))==1 && probe[0]=='1';
