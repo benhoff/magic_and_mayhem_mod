@@ -143,6 +143,12 @@ std::optional<Point> approach(const State &s, const Navigation &nav, Handle h,
     return candidates.front(); // Unreachable endpoints remain explicitly blocked.
 }
 } // namespace
+void stopCombatMotion(Entity &e) { stopMotion(e); }
+void damageCombat(State &s, CombatState &c, Handle victim, std::uint32_t amount,
+                  Handle source, std::vector<CombatEvent> &events, const HealthRules &rules) {
+    require(amount <= 1000000 && fighter(c, victim) && fighter(c, source), "invalid rule damage");
+    if (amount) applyDamage(s, c, *fighter(c, victim), amount, source, events, rules);
+}
 Bytes encodeCombat(const CombatState &c) {
     require(c.acquisitionRange >= 1 && c.acquisitionRange <= 64 && c.fighters.size() <= 32,
             "invalid combat bounds");
@@ -370,9 +376,10 @@ void validateCombat(const State &state, const CombatState &c) {
     }
 }
 CombatSession::CombatSession(World world, std::shared_ptr<const Navigation> nav,
-                             std::shared_ptr<const HealthRules> rules)
+                             std::shared_ptr<const HealthRules> rules,
+                             std::shared_ptr<const CombatDriver> driver)
     : movement_(std::move(world), nav), navigation_(std::move(nav)),
-      healthRules_(rules ? std::move(rules) : nativeFixtureHealthRules()) {
+      healthRules_(rules ? std::move(rules) : nativeFixtureHealthRules()), driver_(std::move(driver)) {
     require(navigation_->maxMovingCreatures() > 1 && navigation_->creatureFootprint().x == 1 &&
                 navigation_->creatureFootprint().y == 1,
             "combat requires bounded same-profile multi-creature navigation");
@@ -380,8 +387,9 @@ CombatSession::CombatSession(World world, std::shared_ptr<const Navigation> nav,
     if (state.systems.empty()) {
         CombatState initial;
         initial.healthRulesIdentity = healthRules_->identity();
-        state.systems = encodeCombat(initial);
+        state.systems = encodeBattleSystems({encodeCombat(initial), {}, driver_ ? BattleRulesState{driver_->identity(), driver_->initial()} : BattleRulesState{}});
     }
+    require(decodeBattleSystems(state.systems).rules.identity == (driver_ ? driver_->identity() : 0), "combat driver binding mismatch");
     const auto c = decodeCombat(state.systems);
     require(c.healthRulesIdentity == healthRules_->identity(),
             "combat health rules binding mismatch");
@@ -389,6 +397,7 @@ CombatSession::CombatSession(World world, std::shared_ptr<const Navigation> nav,
     World initialized(0, movement_.world().limits());
     initialized.restore(std::move(state));
     movement_ = MovementSession(std::move(initialized), navigation_);
+    if (driver_) driver_->validate(*this);
 }
 void CombatSession::publish(MovementSession candidate, CombatState c) {
     auto state = candidate.world().state();
@@ -399,7 +408,10 @@ void CombatSession::publish(MovementSession candidate, CombatState c) {
     World world(0, candidate.world().limits());
     world.restore(std::move(state));
     MovementSession complete(std::move(world), navigation_);
-    movement_ = std::move(complete);
+    auto staged = *this;
+    staged.movement_ = std::move(complete);
+    if (driver_) { driver_->synchronize(staged); driver_->validate(staged); }
+    *this = std::move(staged);
 }
 Handle CombatSession::spawn(Entity e, CombatStats stats, bool fineMotion, CombatControl control) {
     statsValid(stats);
@@ -455,11 +467,49 @@ void CombatSession::releaseEffect(Handle h) {
     candidate.release(h);auto state=candidate.state();state.systems=encodeBattleSystems(sections);
     validateCombat(state,combat());candidate.restore(std::move(state));movement_=MovementSession(std::move(candidate),navigation_);
 }
+void CombatSession::updateRules(Bytes data) {
+    auto sections = decodeBattleSystems(world().state().systems);
+    require(driver_ && sections.rules.identity == driver_->identity(), "unbound combat driver");
+    sections.rules.data = std::move(data);
+    auto state = world().state(); state.systems = encodeBattleSystems(sections);
+    World candidate(0, world().limits()); candidate.restore(std::move(state));
+    movement_ = MovementSession(std::move(candidate), navigation_);
+}
+CombatReport CombatSession::controlledStep(TickInput input,
+    const std::function<void(MovementSession &, CombatState &, CombatReport &)> &decide,
+    const std::function<void(State &, CombatState &, CombatReport &, const HealthRules &)> &resolve,
+    const std::function<Bytes()> &continuation) {
+    require(bool(driver_), "controlled combat requires bound rules");
+    CombatReport report;
+    if (!input.admitted) return report;
+    auto c = combat(); auto plain = world().state(); plain.systems.clear();
+    World w(0, world().limits()); w.restore(std::move(plain));
+    MovementSession movement(std::move(w), navigation_);
+    if (!input.alternateMode) decide(movement, c, report);
+    report.movement = movement.step(input);
+    auto state = movement.world().state();
+    if (!input.alternateMode) resolve(state, c, report, *healthRules_);
+    World result(0, world().limits()); result.restore(std::move(state));
+    auto staged = *this;
+    if (continuation) staged.updateRules(continuation());
+    staged.publish(MovementSession(std::move(result), navigation_), std::move(c));
+    *this = std::move(staged);
+    return report;
+}
 CombatReport CombatSession::step(TickInput input) {
     require(!effects().identity, "Use the composed battle session to advance effects");
     return stepBattle(input);
 }
 CombatReport CombatSession::stepBattle(TickInput input) {
+    if (driver_) {
+        if (!input.admitted) return {};
+        auto candidate = *this;
+        auto report = driver_->step(candidate, input);
+        driver_->validate(candidate);
+        validateCombat(candidate.world().state(), candidate.combat());
+        *this = std::move(candidate);
+        return report;
+    }
     CombatReport report;
     if (!input.admitted)
         return report;
@@ -706,7 +756,7 @@ void CombatSession::restore(const std::filesystem::path &path, const NavigationR
     require(bool(nav), "combat restore resource unavailable");
     World world(0, this->world().limits());
     world.restore(std::move(state));
-    CombatSession candidate(std::move(world), std::move(nav), healthRules_);
+    CombatSession candidate(std::move(world), std::move(nav), healthRules_, driver_);
     *this = std::move(candidate);
 }
 } // namespace mnm::game

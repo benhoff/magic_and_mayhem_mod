@@ -7,6 +7,7 @@ namespace {
 constexpr std::array<unsigned char, 8> tag{'M', 'N', 'M', 'B',
                                            'A', 'T', '0', '1'};
 constexpr unsigned limit = 4 * 1024 * 1024;
+constexpr std::array<unsigned char, 8> tag2{'M','N','M','B','A','T','0','2'};
 void require(bool value) {
   if (!value)
     throw std::invalid_argument("invalid native battle sections");
@@ -15,6 +16,9 @@ void validate(const BattleSystems &s) {
   require(s.combat.size() >= 8 && s.combat.size() <= 8192 &&
           !isBattleSystems(s.combat) && s.effects.data.size() <= limit &&
           s.effects.entities.size() <= 32);
+  require(s.rules.data.size() <= limit &&
+          (s.rules.identity || s.rules.data.empty()) &&
+          s.rules.data.size() + s.effects.data.size() <= limit);
   require(s.effects.identity ||
           (s.effects.data.empty() && s.effects.entities.empty()));
   for (unsigned i = 0; i < s.effects.entities.size(); ++i) {
@@ -26,13 +30,15 @@ void validate(const BattleSystems &s) {
 } // namespace
 bool isBattleSystems(const Bytes &b) {
   return b.size() >= tag.size() &&
-         std::equal(tag.begin(), tag.end(), b.begin());
+         (std::equal(tag.begin(), tag.end(), b.begin()) ||
+          std::equal(tag2.begin(), tag2.end(), b.begin()));
 }
 Bytes encodeBattleSystems(const BattleSystems &s) {
   validate(s);
-  if (!s.effects.identity)
+  if (!s.effects.identity && !s.rules.identity)
     return s.combat;
-  Bytes b(tag.begin(), tag.end());
+  const auto &version = s.rules.identity ? tag2 : tag;
+  Bytes b(version.begin(), version.end());
   const auto word = [&](unsigned n) {
     for (unsigned i = 0; i < 4; ++i)
       b.push_back(std::uint8_t(n >> (8 * i)));
@@ -50,6 +56,11 @@ Bytes encodeBattleSystems(const BattleSystems &s) {
     word(h.generation);
   }
   blob(s.effects.data);
+  if (s.rules.identity) {
+    word(unsigned(s.rules.identity));
+    word(unsigned(s.rules.identity >> 32));
+    blob(s.rules.data);
+  }
   return b;
 }
 BattleSystems decodeBattleSystems(const Bytes &b) {
@@ -59,6 +70,7 @@ BattleSystems decodeBattleSystems(const Bytes &b) {
     return s;
   }
   require(b.size() <= limit + 16384);
+  const bool extended = std::equal(tag2.begin(), tag2.end(), b.begin());
   std::size_t at = 8;
   const auto word = [&]() {
     require(at <= b.size() && b.size() - at >= 4);
@@ -77,13 +89,19 @@ BattleSystems decodeBattleSystems(const Bytes &b) {
   BattleSystems s;
   const auto low = word(), high = word();
   s.effects.identity = std::uint64_t(high) << 32 | low;
-  require(s.effects.identity != 0);
+  require(extended || s.effects.identity != 0);
   s.combat = blob(8192);
   const auto count = word();
   require(count <= 32 && std::uint64_t(count) * 8 <= b.size() - at);
   for (unsigned i = 0; i < count; ++i)
     s.effects.entities.push_back({word(), word()});
   s.effects.data = blob(limit);
+  if (extended) {
+    const auto lo = word(), hi = word();
+    s.rules.identity = std::uint64_t(hi) << 32 | lo;
+    require(s.rules.identity != 0);
+    s.rules.data = blob(limit);
+  }
   require(at == b.size());
   validate(s);
   return s;

@@ -12922,3 +12922,38 @@ operation requirements and no generic presented-frame acceptance credit. See
 original/native JSON reports. Native Qt menu layout policy, optional source-page
 ownership, global display routes, hardware/performance and live replacement remain
 separate. No comparison/replacement status is promoted from this failed result.
+
+
+## Installed creature rules in shared native battles (2026-10-16)
+
+CREATUREB01 binds the existing installed type17 Crocodile rule adapter to a
+separate native battle-rule section. It reuses authoritative health/death and
+full-generation actors alongside Cure/Sphere, with saved250-word RNG/cursors,
+ANI attack/stun clocks, targets, recent-attacker ages and interruption state.
+Unbound combat/v1 envelope bytes remain exact. A staged publication prevents
+rule validation failure from leaking movement, health, mana or pending orders.
+
+Fresh406-source native/sanitized execution agrees on8 melee hits,39 observed
+interrupted phases and recovery, one mixed-fixture Sphere impact and one Cure.
+Moving-target pursuit, death/retarget, removal/reuse, installed360-health summon,
+footprint/stop/malformed/missing-binding refusal and per-tick reconstruction pass.
+All58 existing CTests, six other sanitizer contracts and installed Cure ANI checks
+pass;17 installed inputs and original manifests match before/after. The new native
+creature integration milestone is headless. Campaign/UI profile selection and its
+real-window continuation remain the next integration chunk.
+
+Same-type17-only melee excludes wizards; their authored AI/spells remain. Native
+2x2 standing/edge checks supplement point navigation, four-tick route requests,
+all-visible hostility/bravery30 and attack24/stun112 are supplied policies. Sphere
+retains its earlier collision fixture. Complete installed map/profile geometry,
+original scheduling/AI/movement, special species/wizard melee, physical sprites/
+audio and live original campaign replacement remain pending. See
+[scope](native-creature-battle.md), [wire](../formats/native-battle-systems.md), and
+[execution](creature-battle-bound-20261016.json).
+
+The incomingc57e6fa7..77b3f0a5 review checks exact committed source and behavior
+transitions.81fd4a39 needs no retrospective receipt;385 compressed drawing-fixture
+additions in77b3f0a5 gain pending hash receipts. The remaining committed source and
+behavior transitions already have exact receipts. No past gate pass or engine
+validation is inferred; [history](coverage/creature-battle-incoming-history-20261016.json)
+is separate from this new execution and retains zero unresolved accounting gaps.

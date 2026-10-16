@@ -251,7 +251,7 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
                         f->stats.damage == 1 && f->stats.windupTicks == 2 &&
                         f->stats.recoveryTicks == 3,
                     "invalid stationary wizard");
-        else
+        else if (!decodeBattleSystems(world.systems).rules.identity)
             require(f->stats.maximumHealth == SkirmishRules::creatureHealth &&
                         f->stats.damage == SkirmishRules::creatureDamage &&
                         f->stats.windupTicks == 2 && f->stats.recoveryTicks == 3,
@@ -336,7 +336,8 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
 }
 SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
                                  std::shared_ptr<const HealthRules> rules,
-                                 std::shared_ptr<const SkirmishEffects> effects)
+                                 std::shared_ptr<const SkirmishEffects> effects,
+                                 std::shared_ptr<const CombatDriver> driver)
     : combat_(
           [&] {
               require(bool(nav), "arena navigation required");
@@ -347,7 +348,7 @@ SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
               w.restore(state);
               return w;
           }(),
-          nav, std::move(rules)),
+          nav, std::move(rules), std::move(driver)),
       navigation_(std::move(nav)), effects_(std::move(effects)) {
     if (effects_) combat_.bindEffects(effects_->identity(), effects_->initial());
     SkirmishState s;
@@ -369,8 +370,9 @@ SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
 }
 SkirmishSession::SkirmishSession(World world, std::shared_ptr<const Navigation> nav,
                                  std::shared_ptr<const HealthRules> rules,
-                                 std::shared_ptr<const SkirmishEffects> effects)
-    : combat_(std::move(world), nav, std::move(rules)), navigation_(std::move(nav)), effects_(std::move(effects)) {
+                                 std::shared_ptr<const SkirmishEffects> effects,
+                                 std::shared_ptr<const CombatDriver> driver)
+    : combat_(std::move(world), nav, std::move(rules), std::move(driver)), navigation_(std::move(nav)), effects_(std::move(effects)) {
     require(combat_.effects().identity == (effects_ ? effects_->identity() : 0), "battle effect runtime binding mismatch");
     if (effects_) effects_->validate(combat_, state());
     validateSkirmish(this->world().state(), combat_.combat(), state());
@@ -383,7 +385,7 @@ void SkirmishSession::publish(CombatSession combat, SkirmishState s) {
     if (effects_) effects_->validate(combat, s);
     World w(0, combat.world().limits());
     w.restore(std::move(world));
-    CombatSession complete(std::move(w), navigation_, combat.healthRules());
+    CombatSession complete(std::move(w), navigation_, combat.healthRules(), combat.driver());
     combat_ = std::move(complete);
 }
 void SkirmishSession::enqueue(SkirmishOrder o) {
@@ -475,7 +477,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
                 s.units.size() >= 32)
                 refusal = SkirmishRefusal::capacity;
             else if (distance(point(*combat.world().find(w.actor)), aim) > 2 ||
-                     !placement(combat, *navigation_, aim))
+                     (!placement(combat, *navigation_, aim) || (combat.driver() && !combat.driver()->canSpawn(combat, aim))))
                 refusal = SkirmishRefusal::placement;
         }
         if (refusal == SkirmishRefusal::none && spell == Spell::bolt) {
@@ -540,7 +542,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             if (creatures(combat, s, 1) < 1 && w.mana >= SkirmishRules::summonCost) {
                 bool found = false;
                 for (Point p : std::array<Point, 4>{{{5, 2, 1}, {5, 1, 1}, {6, 2, 1}, {4, 2, 1}}})
-                    if (placement(combat, *navigation_, p)) {
+                    if (placement(combat, *navigation_, p) && (!combat.driver() || combat.driver()->canSpawn(combat, p))) {
                         cast(1, Spell::summon, p, {});
                         found = true;
                         break;
@@ -564,7 +566,8 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             continue;
         if (w.spell == Spell::summon) {
             if (creatures(combat, s, owner) < SkirmishRules::livingCreatures &&
-                s.units.size() < 32 && placement(combat, *navigation_, w.aim)) {
+                s.units.size() < 32 && placement(combat, *navigation_, w.aim) &&
+                (!combat.driver() || combat.driver()->canSpawn(combat, w.aim))) {
                 Entity e;
                 e.type = navigation_->creatureType();
                 e.owner = owner;
@@ -572,7 +575,8 @@ SkirmishReport SkirmishSession::step(TickInput input) {
                 e.y = w.aim.y;
                 e.z = w.aim.z;
                 const auto h = combat.spawn(
-                    e, {SkirmishRules::creatureHealth, SkirmishRules::creatureDamage, 2, 3});
+                    e, combat.driver() ? combat.driver()->creatureStats() :
+                       CombatStats{SkirmishRules::creatureHealth, SkirmishRules::creatureDamage, 2, 3});
                 s.units.push_back({h, UnitRole::sentinel});
                 std::sort(s.units.begin(),s.units.end(),[](const auto &a,const auto &b){return a.actor.slot<b.actor.slot;});
                 emit(SkirmishEventKind::summoned, w.actor, h, w.spell);
@@ -635,7 +639,7 @@ void SkirmishSession::restore(const std::filesystem::path &path,
     require(bool(nav), "arena resources unavailable");
     World w(0, world().limits());
     w.restore(std::move(state));
-    SkirmishSession candidate(std::move(w), std::move(nav), combat_.healthRules(), effects_);
+    SkirmishSession candidate(std::move(w), std::move(nav), combat_.healthRules(), effects_, combat_.driver());
     *this = std::move(candidate);
 }
 } // namespace mnm::game

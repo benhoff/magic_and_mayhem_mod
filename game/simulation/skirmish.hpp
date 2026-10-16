@@ -92,10 +92,12 @@ class SkirmishSession {
   public:
     explicit SkirmishSession(std::shared_ptr<const Navigation>,
                              std::shared_ptr<const HealthRules> = {},
-                             std::shared_ptr<const SkirmishEffects> = {});
+                             std::shared_ptr<const SkirmishEffects> = {},
+                             std::shared_ptr<const CombatDriver> = {});
     SkirmishSession(World, std::shared_ptr<const Navigation>,
                     std::shared_ptr<const HealthRules> = {},
-                             std::shared_ptr<const SkirmishEffects> = {});
+                             std::shared_ptr<const SkirmishEffects> = {},
+                             std::shared_ptr<const CombatDriver> = {});
     const std::shared_ptr<const SkirmishEffects> &effectsRuntime() const { return effects_; }
     const World &world() const { return combat_.world(); }
     const CombatSession &combat() const { return combat_; }

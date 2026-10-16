@@ -49,18 +49,48 @@ struct CombatReport {
     std::vector<CombatEvent> events;
     std::uint32_t rejectedOrders = 0;
 };
+class CombatSession;
+// Immutable application rules; all mutable continuation belongs to the wire
+// section. Implementations must stage external side effects separately.
+class CombatDriver {
+  public:
+    virtual ~CombatDriver() = default;
+    virtual std::uint64_t identity() const = 0;
+    virtual Bytes initial() const = 0;
+    virtual void validate(const CombatSession &) const = 0;
+    virtual void synchronize(CombatSession &) const = 0;
+    virtual CombatReport step(CombatSession &, TickInput) const = 0;
+    virtual CombatStats creatureStats() const = 0;
+    virtual bool canSpawn(const CombatSession &, Point) const = 0;
+};
+// Shared health/death and motion mutation used by supplied rule phases.
+void stopCombatMotion(Entity &);
+void damageCombat(State &, CombatState &, Handle victim, std::uint32_t amount,
+                  Handle source, std::vector<CombatEvent> &, const HealthRules &);
 
 class CombatSession {
     MovementSession movement_;
     std::shared_ptr<const Navigation> navigation_;
     std::shared_ptr<const HealthRules> healthRules_;
+    std::shared_ptr<const CombatDriver> driver_;
     void publish(MovementSession, CombatState);
     CombatReport stepBattle(TickInput);
     friend class SkirmishSession;
 
   public:
     CombatSession(World, std::shared_ptr<const Navigation>,
-                  std::shared_ptr<const HealthRules> = {});
+                  std::shared_ptr<const HealthRules> = {},
+                  std::shared_ptr<const CombatDriver> = {});
+    const std::shared_ptr<const CombatDriver> &driver() const { return driver_; }
+    const std::shared_ptr<const Navigation> &navigation() const { return navigation_; }
+    BattleRulesState rules() const { return decodeBattleSystems(world().state().systems).rules; }
+    void updateRules(Bytes);
+    // One movement admission between supplied decisions and resolution; final
+    // publication uses the same combat/effect transaction and validators.
+    CombatReport controlledStep(TickInput,
+        const std::function<void(MovementSession &, CombatState &, CombatReport &)> &,
+        const std::function<void(State &, CombatState &, CombatReport &, const HealthRules &)> &,
+        const std::function<Bytes()> &continuation = {});
     const std::shared_ptr<const HealthRules> &healthRules() const { return healthRules_; }
     const World &world() const { return movement_.world(); }
     const MovementSession &movement() const { return movement_; }

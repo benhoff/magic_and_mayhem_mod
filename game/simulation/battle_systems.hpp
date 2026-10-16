@@ -8,9 +8,14 @@ struct BattleEffectsState {
   Bytes data;
   std::vector<Handle> entities;
 };
+struct BattleRulesState {
+  std::uint64_t identity = 0;
+  Bytes data;
+};
 struct BattleSystems {
   Bytes combat;
   BattleEffectsState effects;
+  BattleRulesState rules = {};
 };
 bool isBattleSystems(const Bytes &);
 BattleSystems decodeBattleSystems(const Bytes &);
