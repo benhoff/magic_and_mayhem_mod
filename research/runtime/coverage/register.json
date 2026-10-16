@@ -7481,7 +7481,7 @@
       "subsystem": "spell_dispatch",
       "kind": "recovered",
       "title": "Spell 41: Cure",
-      "scope": "Cure initial map; cleansing/refund pending. Cast label: Case; effect label: Case. Resistance, stacking, duration, cleanup, failure and indirect paths need validation. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Cure selected effect dispatch is implemented under CAST.cure-effect with explicit lower services: deferred delivery, target/health/cleanse/feedback gates, conditional failure refund and release. Complete lower cleansing/visual/resource/health effects, creation/delivery, installed profiles, full native World lifecycle and live replacement remain pending; cast/effect labels alone do not establish whole-spell equivalence.",
       "confidence": "provisional",
       "original": [
         {
@@ -7492,18 +7492,33 @@
       ],
       "documents": [
         "research/runtime/spell-dispatch-inventory.md",
-        "research/runtime/creature-ai-combat-spells.md"
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/cure-effect.md",
+        "reconstruction/casting/README.md"
       ],
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "implementation": [
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp"
+      ],
+      "tests": [
+        "tests/cure-effect-test.cpp",
+        "tools/test-cure-effect.py"
+      ],
+      "evidence": [
+        "CURE01.effect-original",
+        "CURE01.effect-native"
+      ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "reconstruction/casting/cure/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ]
     },
     {
       "id": "SP.042",
@@ -72225,6 +72240,98 @@
       },
       "remaining_gaps": [
         "Single/nested callback bursts can still exceed remaining32MiB capacity; hard refusal remains explicit. Sustained no-progress and expired pressure budgets remain terminal. Arbitrary concurrent callback fairness, shutdown/recovery during pressure and original-driver ordering/equivalence are not established."
+      ]
+    },
+    {
+      "id": "CAST.cure-effect",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original Cure effect dispatch",
+      "scope": "Spell41 selected whole-entry effect-dispatch projection: target/type gates, cached lookup, health/cleanse calls, ongoing-damage clear, visible feedback, failure cue, conditional shifted-cost refund and release. Explicit supplied lower services; no other spell arms, delivery lifecycle, installed profiles, native World composition or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4763888,
+          "scope": "Spell41 selected arm and shared failure tails only; supplied lower services and wider switch excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/cure-effect.md",
+        "reconstruction/casting/README.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp"
+      ],
+      "tests": [
+        "tests/cure-effect-test.cpp",
+        "tools/test-cure-effect.py"
+      ],
+      "evidence": [
+        "CURE01.effect-original",
+        "CURE01.effect-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/casting/cure/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Whole original48b0f0 entry with spell41 compressed dispatch and unchanged body/table bytes; ordinary private FS chain restoration",
+          "Three owned guarded actor/config records; arbitrary unsigned health/status/visibility/resource values, signed magnitude/position and local-owner edge values",
+          "Target sentinel, valid/invalid bounded lookup, source sentinel or valid source, source/target alias, cached logical indices, deferred types6/7/11/30, deliveryMode4 refund refusal",
+          "Ordered supplied health/cleanse/cue/feedback/transition/chargeable/resource/release services; full actor/effect/config/spell bytes and contribution-pointer ABI"
+        ],
+        "excluded": [
+          "All other spell IDs and SEH exception/unwind behavior; incidental return register",
+          "Full lower health/cleansing/visual/resource/feedback/transition/release implementations, callback-driven actor-storage resizing or out-of-band cache mutation",
+          "Nonsentinel invalid source/cache pointers and actor storage over65536; deliberate native refusals",
+          "Installed profiles, creation/delivery/projectile lifecycle, native World/app/checkpoint composition and live replacement"
+        ]
+      }
+    },
+    {
+      "id": "NP.cure-effect-admission",
+      "subsystem": "casting",
+      "kind": "native_policy",
+      "title": "Owned Cure effect domain admission",
+      "scope": "Native refusal of non-Cure spell IDs, invalid source/cache identities and excessive actor storage before execution. Logical indices replace cached pointers. Caller owns staged rollback; lower services cannot resize actor storage or mutate effect cache out of band.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/cure-effect.md",
+        "reconstruction/casting/README.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp"
+      ],
+      "tests": [
+        "tests/cure-effect-test.cpp",
+        "tools/test-cure-effect.py"
+      ],
+      "evidence": [
+        "CURE01.effect-original",
+        "CURE01.effect-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/casting/cure/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
       ]
     }
   ],
@@ -148946,6 +149053,152 @@
         "tools/panel_backend_launch.py": "tools/panel_backend_launch.py",
         "tools/jpeg_backend_launch.py": "tools/jpeg_backend_launch.py"
       }
+    },
+    {
+      "id": "CURE01.effect-original",
+      "kind": "isolated_original",
+      "scope": "Spell41 selected arm of unchanged whole-entry48b0f0: deferred delivery, target/cache/health/cleanse/feedback gates, failure/refund/release with supplied lower services. Full guarded effect/actor/config/spell bytes and ordered calls; no other spell arms, complete lower service ownership, delivery lifecycle, native World integration or live replacement.",
+      "record": "research/runtime/original-cure-effect-bound-20261016.json",
+      "sha256": "99d5b44edbc7cadce28dad8d6f361ac0bcfd8ef06b837f2837dad626494f0fa3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/service_calls",
+          "equals": [
+            4686,
+            4686,
+            17467,
+            1226,
+            14116,
+            7210,
+            4778,
+            12781
+          ]
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "CURE01.effect-native",
+      "kind": "native_integration",
+      "scope": "Spell41 selected arm of unchanged whole-entry48b0f0: deferred delivery, target/cache/health/cleanse/feedback gates, failure/refund/release with supplied lower services. Full guarded effect/actor/config/spell bytes and ordered calls; no other spell arms, complete lower service ownership, delivery lifecycle, native World integration or live replacement.",
+      "record": "research/runtime/original-cure-effect-bound-20261016.json",
+      "sha256": "99d5b44edbc7cadce28dad8d6f361ac0bcfd8ef06b837f2837dad626494f0fa3",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        },
+        {
+          "pointer": "/native_refusal_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/service_calls",
+          "equals": [
+            4686,
+            4686,
+            17467,
+            1226,
+            14116,
+            7210,
+            4778,
+            12781
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -149260,7 +149513,8 @@
         {
           "value": 41,
           "behaviors": [
-            "SP.041"
+            "SP.041",
+            "CAST.cure-effect"
           ]
         },
         {
@@ -165394,6 +165648,24 @@
         "NR.resident-command-pressure.initiate-delayed-live-20261016",
         "NR.resident-command-pressure.final-initiate-live-20261016"
       ]
+    },
+    {
+      "id": "CURE01.effect-dispatch",
+      "scope": "32768 bounded spell41 whole-entry original/native/sanitized dispatch cases with guarded owned storage and explicit lower services; four native-only admission refusals and standalone CMake test. No full delivery lifecycle or native World integration.",
+      "level": "headless",
+      "behaviors": [
+        "CAST.cure-effect",
+        "NP.cure-effect-admission",
+        "SP.041"
+      ],
+      "evidence": [
+        "CURE01.effect-original",
+        "CURE01.effect-native"
+      ],
+      "tests": [
+        "tests/cure-effect-test.cpp",
+        "tools/test-cure-effect.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -166010,8 +166282,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-pressure-commit-20261016.json",
-    "sha256": "dc8d94d885a9328f90f27ee593c06d3796d8256a6ddebf26ab5aba241cc689b0"
+    "path": "research/runtime/coverage/source-index-cure-effect-commit-20261016.json",
+    "sha256": "b1186a0a5ef686c31018228cc373cc02b4a843b285d799aca4350af448c169dd"
   },
   "claim_bindings_required": true
 }

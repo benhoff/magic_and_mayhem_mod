@@ -12375,3 +12375,33 @@ route without rewriting it. Single/nested callback capacity, sustained stalls,
 arbitrary concurrent stop/recovery and the unclassified historical Preferences
 cause remain outside this result. No original comparison or replacement status
 is promoted.
+
+
+## CURE01 — Original Cure effect dispatch (2026-10-16)
+
+`CAST.cure-effect` implements the spell41 arm of whole-entry48b0f0 with owned
+logical actors/cache and explicit lower services. Deferred types6/7/11/30,
+missing/dead/blocked targets, ordered health/cleanse calls, ongoing-damage clear,
+visible feedback, failure cue, conditional shifted-cost refund and release are
+preserved. `NP.cure-effect-admission` separately records four native refusals.
+
+The fresh prospectively bound original32/native64/sanitized64 comparison passes
+32,768 cases with identical outcome digests, complete actor/effect/config/spell
+byte guards, unchanged dispatcher/table bytes and per-call private FS restoration.
+ASan/UBSan/LeakSanitizer and standalone CMake/CTest pass. All2,927 immutable
+original files verify before/after. The failed sandbox32 development attempt is
+retained separately; only the approved final outside-sandbox comparison supplies
+current proof. See [Cure effect scope and evidence](cure-effect.md) and
+[the casting library](../../reconstruction/casting/README.md).
+
+The broader `SP.041` remains partial. Health, cleansing/visual ownership, feedback,
+resource mutation, transition and release internals remain supplied boundaries;
+creation/delivery/projectiles, installed profiles, native World/checkpoint
+composition and live replacement remain pending. No gameplay balance changes.
+
+The [pre-commit history review](coverage/cure-effect-normalized-history-20261016.json)
+checks both incoming commits3981e981..7c40c187 with normalized Git source paths:
+25file/121behavior transitions for22d038df and35file/130behavior transitions for
+7c40c187 match existing exact receipt chains. No history gap or retrospective
+receipt is needed. This is committed-history accounting, separate from current
+Cure validation and other uncommitted work; no past gate pass is asserted.
