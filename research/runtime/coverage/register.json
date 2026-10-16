@@ -72546,6 +72546,74 @@
           "Audio/UI backend internals, installed resources, complete Cure delivery/session/live replacement"
         ]
       }
+    },
+    {
+      "id": "NP.cure-owned-session",
+      "subsystem": "casting",
+      "kind": "native_policy",
+      "title": "Owned headless direct Cure session and continuation",
+      "scope": "Native headless positive Cure composition: compared admission/effect/ordinary-health/resource/status helpers with native fixed generation pool, explicit animation/audio replies and portable checkpoints. No original lifecycle execution comparison, installed profile, original creation/spatial/animation-binding/release equivalence, projectile delivery, native World/campaign embedding or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "apps/cure-lab/README.md",
+        "research/formats/native-cure-session.md",
+        "research/runtime/cure-delivery.md"
+      ],
+      "implementation": [
+        "apps/cure-lab/session.cpp",
+        "apps/cure-lab/session.hpp",
+        "apps/cure-lab/main.cpp"
+      ],
+      "tests": [
+        "tests/cure-session-test.cpp",
+        "tools/test-cure-session.py"
+      ],
+      "evidence": [
+        "CURE03.owned-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/cure-lab/CMakeLists.txt",
+        "audio/buffers.hpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission_tables.hpp",
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp",
+        "reconstruction/casting/cure_services.cpp",
+        "reconstruction/casting/cure_services.hpp",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "Native fixed first-free effect pool with generation handles; staged cast/advance publication and portable version1 checkpoints",
+          "Compared admission/effect/positive ordinary-health/resource/status helpers composed on owned actors; learning, cues, feedback and logical audio schedule ownership",
+          "Direct11-to77 deferral, explicit animation results, dead/inactive no-refund release, blocked completion, health cap and status/ongoing cleanup",
+          "4096 parameterized cases, exact state/events on admission/deferred/waiting continuation, separate process CLI checkpoint resume, malformed/stale input refusals"
+        ],
+        "excluded": [
+          "Whole original creator/follow/animation binding/release equivalence or lifecycle execution comparison",
+          "Installed spell parameters, contributor chains, negative magnitude, wizard/self/special target health, projectile types6/7/30",
+          "Physical native audio, Qt presentation, native World/campaign envelope integration and live replacement"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -149626,6 +149694,65 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "CURE03.owned-native",
+      "kind": "native_integration",
+      "scope": "Native headless positive Cure composition: compared admission/effect/ordinary-health/resource/status helpers with native fixed generation pool, explicit animation/audio replies and portable checkpoints. No original lifecycle execution comparison, installed profile, original creation/spatial/animation-binding/release equivalence, projectile delivery, native World/campaign embedding or live replacement.",
+      "record": "research/runtime/native-cure-session-bound-20261016.json",
+      "sha256": "d63eefe9270acbc2110d4314ed389af2311d48f4523222fce70052ce81e68726",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native32_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/separate_process_resume_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoint_continuation",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4096
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -166127,6 +166254,21 @@
         "CURE02.services-original",
         "CURE02.services-native"
       ]
+    },
+    {
+      "id": "CURE03.owned-session",
+      "level": "headless",
+      "scope": "4096 owned direct Cure and exact continuation cases with explicit animation/audio replies and native32/native64/sanitizers; separate-process fixture checkpoint resume.",
+      "behaviors": [
+        "NP.cure-owned-session"
+      ],
+      "tests": [
+        "tests/cure-session-test.cpp",
+        "tools/test-cure-session.py"
+      ],
+      "evidence": [
+        "CURE03.owned-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -166743,8 +166885,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cure-services-reviewed-20261016.json",
-    "sha256": "6f5edd8177a4c5dafadfdaf9f070bbc47cdc806778c7620714bd8c5e7a49abbf"
+    "path": "research/runtime/coverage/source-index-cure-owned-session-20261016.json",
+    "sha256": "7e818931ce5978d6647bc3e0304d68e650bbbbaa631c2434849c170c7f4b8a5f"
   },
   "claim_bindings_required": true
 }

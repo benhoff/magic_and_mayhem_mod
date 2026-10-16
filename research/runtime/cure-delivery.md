@@ -14,8 +14,8 @@ application/release. The status helper (`0x00516150`) clears creature status
 `+0x114` and owns an associated audio reference at `+0x120`; its backend and
 scheduler operations require explicit ownership. Resource mutation
 `0x00507f00` and type predicate `0x00411e50` are lower admission/refund services.
-Complete native session work remains pending; the resource and status helpers
-below now own their recovered state.
+The resource/status helpers and headless native composition below now own their
+bounded state; complete native World/campaign integration remains pending.
 
 ## Confirmed instruction findings
 
@@ -64,9 +64,38 @@ retirement implementation. Malformed rings and absent associated scheduler nodes
 are outside the original's safe domain; native preflight refuses them explicitly.
 
 Lower UI/audio backends are supplied. Installed assets, complete effect creation,
-animation timing, session/checkpoint integration and live replacement remain
-separate milestones. Static delivery findings are not lifecycle equivalence.
+animation timing, native World/campaign embedding and live replacement remain
+separate milestones. The owned lab is described below; static delivery findings
+are not lifecycle equivalence.
 
 Use `tools/export-cure-lifecycle.py` under the storage guard for a fresh static
 export with immutable-manifest checks. Do not infer whole-spell equivalence or
 live replacement from static dispatch targets or supplied lower services.
+
+## Owned native lab milestone
+
+`apps/cure-lab/` now composes the compared admission/effect/ordinary-positive-
+health/resource/status contracts on owned actors, effects, logical audio state
+and learning/visibility records. The headless application runs without Wine or
+original assets. Cast and update publish a staged candidate; generation handles
+refuse completion input for reused slots. The portable version1 checkpoint
+retains in-flight type11/77 state, all owned consequence state and pool identities.
+
+CURE03's native evidence covers 4,096 parameterized cases on native32/native64
+and sanitizers, standalone CMake/CTest, exact state/event continuation after
+admission/deferral/waiting, and a separate-process checkpoint/resume demonstration.
+The demo heals9→17 and debits20→17 resource units. Native refusal tests include
+stale/duplicate completion inputs, absent audio replies, invalid casts, full pool,
+insufficient resource, damaged/truncated checkpoints and valid-checksum malformed
+payloads (including invalid version/count/Boolean/reference/ring fields).
+
+The lab deliberately supplies animation results and audio replies. First-free
+allocation, empty contributor chains, logical grid following, effect disposal
+without spatial/render registration and staged publication are native policies.
+Type77 dead/inactive target failure releases without refund; a living blocked
+target releases at completion without health/status mutation. Original whole
+creator/follow/setup/animation/release equivalence has not been executed as a
+lifecycle. Projectile delivery, installed parameters/assets, negative magnitudes,
+wizard/special target health, physical audio, native World/campaign-envelope
+embedding and live replacement remain pending. The lab's native integration
+evidence does not promote `CAST.cure-delivery` comparison or whole-spell `SP.041`.

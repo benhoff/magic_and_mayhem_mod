@@ -12459,3 +12459,29 @@ whole-spell completion. Incoming commit45af2ed6 was reviewed against its parent;
 all source/behavior transitions have exact receipts, with no missing accounting.
 Incoming campaign-checkpoint commit441bf567 was also reviewed after landing;
 its20 file and19 behavior transitions have exact receipts, with no gaps.
+
+## Owned native Cure session and continuation (2026-10-16)
+
+CURE03 composes compared admission, Cure effect, ordinary positive health,
+resource and status helpers in an application-owned headless lab. The lab owns
+actors/effects, resource/status/audio consequences, learning/observations and
+version1 portable continuation. Explicit animation result1 completes type77;
+dead/inactive deferred targets release without refund. Native policies own the
+fixed first-free generation pool, logical following, empty contribution chains,
+staged publication and release without spatial/render registration.
+
+Fresh native32/native64/sanitizer and CMake/CTest evidence covers4096 cases,
+exact state/events across admission/deferral/waiting/resume, separate-process
+checkpoint loading, atomic stale/duplicate/missing-input refusals and malformed
+checkpoint payloads with both invalid and valid checksums. The demo restores
+mid-delivery and heals9→17 while caster resource20→17. See
+[the lab](../../apps/cure-lab/README.md), [format](../formats/native-cure-session.md)
+and [source-bound execution](native-cure-session-bound-20261016.json).
+
+This is native headless integration, not complete original lifecycle comparison.
+Whole creator/follow/animation setup/release, installed spell/asset parameters,
+projectile delivery6/7/30, wizard/special targets, negative magnitude, physical
+audio, native World/campaign-envelope embedding and live replacement remain
+pending. CAST.cure-delivery comparison and SP.041 whole-spell scope are unchanged.
+Incoming helper commit0ee4d16d was reviewed against441bf567: all16 file
+and6 behavior transitions have exact receipts, with no missing accounting.
