@@ -1,6 +1,53 @@
 # EGL completion and final-source presentation diagnostics
 
-## Confirmed result
+## Current scoped correction
+
+The full original-active corrected session completes222observed EGL frames and
+normal Quit. `egl-destination-native-corrected-20261016.json` compares every frame
+from source-only native inputs: native GPU, original source texture, pre-swap
+destination and physical X11 output all agree, with zero differing pixels/words.
+Exactly one upload is cropped, at the first640×480 frame (ordinal160 in this run).
+The old238frame reference and its remaining126pixel-per-cohort failure are kept
+unchanged; this new record is an explicitly modified-driver policy profile.
+
+The unmodified-upload XCB trace has219frames. At its first640×480 swap, EGL reports
+640×480 but the software path submits a full832×640 SHM image, the dimensions used
+for the preceding800×600 extent. The following swap submits640×512. Buffers are
+padded and SHM segment IDs change; this is stale **image geometry**, not evidence
+that the same SHM allocation survived. Source and nominal pre-swap destination
+already agree. Rebinding or releasing/restoring the same EGL objects does not fix
+the physical shift; those experimental modes remain disabled by default.
+
+`--egl-correct-stale-upload` is an explicit capture-profile policy requiring the
+storage case and independent source/destination/XCB witnesses. It is separate
+from the rebind experiments. For the observed pinned Wine/llvmpipe path, it checks
+the known native window/generation, preceding successful logical/image extents,
+full GL source/destination projection, exact full-image SHM packet and source
+bounds. It crops only the source rectangle, using the600→480logical change to
+select `(0,120,640,480)` in this run. No frame number, constant120, pixel colour or
+oracle chooses the correction. Destination, current SHM reference, event and
+return cookie stay unchanged; no extra swap is issued.
+
+This is intentional driver policy, not recovered universal image-origin behavior.
+Another driver could retain oversized storage while already using the new origin;
+that case is outside scope. The policy remains opt-in. Source ownership, complete
+SHM lifetimes/routes, hardware and full native rendering replacement are separate.
+
+Actual owned SHM controls reproduce a shifted source in an832×640 image: the
+uncorrected upload differs in307196pixels and the cropped upload matches every
+pixel. Normal, fresh-dimension shrink, grow and repeated uploads remain unchanged;
+six unsupported identity/partial-route cases preserve their arguments. Seven
+owned EGL modes across seven resize frames preserve pixels, read state, viewport
+and GL error checks; the crop mode makes no correction to the already-correct
+fresh images. The wire and original/forwarded packet checks are specified in
+[the format contract](../formats/egl-presentation-witnesses.md).
+
+A same-current policy attempt exhausted its128MiB transient acquisition budget;
+its incomplete result is preserved. The repeated256MiB bounded acquisition closes
+normally and still fails physical parity. The final correction changes no pixel
+tolerance, frame denominator or generic14journey/21operation gate.
+
+## Historical source-only diagnostic result
 
 After correcting COPY driver order, native replay matches the original final GL
 source texture exactly on all228frames of `cursor-source-native-20261016.json`.
@@ -35,6 +82,28 @@ rejected because it broke the opposite resize direction. It is absent from the
 implementation. No frame/colour-specific compensation, skipped comparisons or
 relaxed tolerance is used. The original238frame corpus remains unchanged and
 retains its one remaining ordinal170 failure after the nine ordering fixes.
+
+## Updated boundary: destination pixels are correct before swap
+
+`egl-destination-native-baseline-20261016.json` compares all236observed frames.
+Native GPU output, the original final source texture and the original default
+framebuffer's nominal pre-swap rectangle match exactly in RGB565 on every frame.
+Only ordinal170 differs after swap:126physical pixels. Destination readback does
+not eliminate it. This narrows the demonstrated boundary to after correct
+pre-swap destination content and before the physical witness; the exact internal
+swap/window/driver mechanism is still unproved. Nominal EGL dimensions do not
+establish the underlying default-framebuffer allocation dimensions.
+
+The new opt-in `--egl-rebind-drawable` policy tests that boundary by rebinding the
+same current EGL display, draw/read surfaces and context before the first observed
+final blit or a nominal extent change. It verifies identical current objects,
+read/draw FBO/buffer state and viewport afterward. It does not translate pixels,
+replace sources, skip a frame or issue an extra swap. `MNMERB01` records applied
+or explicit no-op state, run-local call/PID/TID, first-context/extent-change reason,
+prior/new extents and verified success/state preservation in96bytes. No host
+pointer is exported. Owned controls require four applications and three no-op
+swaps across the seven frames. This is a driver policy experiment, with no
+original error-state neutrality or unrestricted equivalence claim.
 
 ## Explicit diagnostic modes
 
@@ -102,3 +171,43 @@ records retain exact prospective claims, sources and raw report hashes. Source
 changes leave earlier results historical; their hashes are never refreshed.
 Broader journeys, native Qt layout policy, original caller results/global routes,
 source ownership, hardware/performance and live replacement remain outstanding.
+
+
+## Destination-before-swap diagnostic
+
+`--egl-destination-gpu-witness` separately enables
+`MNM_DRAW_EGL_GPU_DESTINATION_WITNESS=1` and requires completion mode. Immediately
+before forwarding the real EGL swap, it verifies the current display/draw surface
+and context, queries nominal EGL dimensions and reads that rectangle from the
+current default draw buffer as RGB565. It saves the source read framebuffer and
+its read-buffer selection, binds the default read framebuffer, saves its own
+read-buffer selection, selects the actual draw buffer for readback, then restores
+both selections/bindings. It verifies original read/draw state and context before
+publication. Unsupported draw routes, pack layout, extent, budget or restoration
+refuse. Each run is bounded to512MiB of destination readback.
+
+`MNMEDB01` is a128-byte little-endian version1 record: EGL call/PID/TID, nominal
+width/height, default draw FBO0, prior read FBO/buffer, prior default read buffer,
+selected draw buffer, exact pixel length, verified-restoration flag, pack state,
+monotonic begin/end, unchanged-context and before-real-swap flags, with trailing
+reserved words zero. Immutable `egl-destination-before-swap-<call>.565` retains
+raw GL lower-left rows; only the external comparator flips them to nominal
+image coordinates. The matching `.bin` metadata and `.565` SHA-256, identity,
+extent and end preceding the post-return completion witness are checked.
+
+The external comparison reports native→destination, source→destination and
+destination→post-swap physical differences independently, with explicit witness
+counts. Missing source/destination evidence is not a matching comparison. No
+original destination/source pixels enter native input preparation or select
+rendering. Nominal EGL extent is not proof of underlying allocation dimensions.
+Default-framebuffer binding/readback can itself refresh driver drawable state;
+changed physical results must be recorded as perturbation evidence. Error-state
+neutrality, source ownership, all routes and hardware remain unproved.
+
+Seven owned known-pattern frames across800×600→640×480→800×600→640×480 run in
+control, completion-only, destination-readback and drawable-rebind modes. They compare exact
+destination words and physical pixels, source/default read-buffer restoration,
+viewport preservation and GL error checks. The default framebuffer deliberately
+retains `GL_FRONT` for reading while the source FBO reads `GL_COLOR_ATTACHMENT0`
+and drawing targets `GL_BACK`, so restoration is checked independently of merely
+returning to the original FBO. Original-game findings remain separately recorded.

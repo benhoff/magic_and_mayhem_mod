@@ -1,4 +1,5 @@
 #include "egl_viewport_policy.h"
+#include "egl_drawable_rebind.h"
 /* Opt-in metadata only. Unknown/RTLD_NEXT GL routes remain unobserved. */
 typedef void(*EglBlit)(int,int,int,int,int,int,int,int,unsigned,unsigned);
 static EglBlit egl_blit_originals[16];
@@ -25,6 +26,7 @@ static void egl_blit_call(unsigned slot,int a,int b,int c,int d,int e,int f,int 
   int read,draw,buffer;get(0x8caa,&read);get(0x8ca6,&draw);get(0x0c02,&buffer);row[10]=read;row[11]=draw;row[15]=buffer;
   if(read&&buffer>=0x8ce0&&buffer<=0x8cef){int type=0,object=0,width=0,height=0;attachment(0x8ca8,(unsigned)buffer,0x8cd0,&type);if(type==0x1702){attachment(0x8ca8,(unsigned)buffer,0x8cd1,&object);if(object){level((unsigned)object,0,0x1000,&width);level((unsigned)object,0,0x1001,&height);row[12]=object;row[13]=width;row[14]=height;}}}
  }
+ if(enabled)egl_drawable_rebind(row);
  int previous[4];int refresh=enabled?egl_viewport_policy_begin(row,previous):0;
  errno=saved;real(a,b,c,d,e,f,g,h,mask,filter);saved=errno;
  if(refresh)egl_viewport_policy_end(previous);
@@ -44,7 +46,7 @@ static void* bind_egl_blit(void* pointer){
 }
 static void egl_blit_publish(uint32_t call){
  const char* directory=getenv("MNM_DRAW_X11_DIRECTORY");unsigned char raw[96]={0};memcpy(raw,"MNMEGBT1",8);put(raw+8,1);put(raw+12,96);put(raw+16,call);put(raw+20,(uint32_t)getpid());put(raw+24,(uint32_t)syscall(SYS_gettid));put(raw+28,egl_blit_count);for(unsigned i=0;i<16;++i)put(raw+32+i*4,egl_blit_last[i]);
- egl_viewport_policy_publish(call);
+ egl_viewport_policy_publish(call);egl_drawable_rebind_publish(call);
  char path[4096];if(!directory||snprintf(path,sizeof(path),"%s/egl-blit-before-swap-%06u.bin",directory,call)>=(int)sizeof(path))refuse("EGL blit path");int fd=open(path,O_WRONLY|O_CREAT|O_EXCL|O_CLOEXEC,0600);if(fd<0||write(fd,raw,96)!=96||close(fd))refuse("EGL blit publication");if(egl_blit_gpu_bytes){if(snprintf(path,sizeof(path),"%s/egl-gl-source-%06u.565",directory,call)>=(int)sizeof(path))refuse("EGL GPU source path");int output=open(path,O_WRONLY|O_CREAT|O_EXCL|O_CLOEXEC,0600);if(output<0||write(output,egl_blit_gpu_bytes,egl_blit_gpu_size)!=(ssize_t)egl_blit_gpu_size||close(output))refuse("EGL GPU source publication");free(egl_blit_gpu_bytes);egl_blit_gpu_bytes=0;egl_blit_gpu_size=0;}memset(egl_blit_last,0,sizeof(egl_blit_last));egl_blit_count=0;
 }
 #undef EGL_BLIT_SLOT

@@ -142,7 +142,7 @@ def main():
     a=p.parse_args()
     if a.report.exists():p.error('Refusing evidence overwrite')
     claims=json.loads(a.claims.read_bytes());sources=dict(claims['sources'])
-    for name in ['tools/drawing_egl_gpu_reference.py','tools/drawing_copy_order.py','tools/compare-drawing-quick-battle.py','tools/recorded_drawing_plan.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp']:
+    for name in ['tools/drawing_egl_destination.py','tools/drawing_egl_gpu_reference.py','tools/drawing_copy_order.py','tools/compare-drawing-quick-battle.py','tools/recorded_drawing_plan.py','apps/drawing-session/main.cpp','apps/drawing-session/recorded_composition.hpp']:
         sources[name]=sha((ROOT/name).read_bytes())
     for directory in ('renderer','assets','compat/legacy','protocols/include','reconstruction/rendering'):
         for f in (ROOT/directory).rglob('*'):
@@ -240,7 +240,9 @@ def main():
                     physical=dict(pixels=outw*outh,mismatching_pixels=int(np.count_nonzero(delta>1)),max_channel_difference=int(delta.max()),channel_tolerance=1,alpha_compared=False,native_sha256=sha(physical_bytes),original_sha256=sha(oracle))
                     from drawing_egl_gpu_reference import compare as compare_gpu_source
                     source_gpu=compare_gpu_source(original,capture,frame['ordinal'],native_bytes,outw,outh)
-                    comparisons.append(dict(source_gpu_comparison=source_gpu,ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle,outw,outh)))
+                    from drawing_egl_destination import compare_frame as compare_destination
+                    destination=compare_destination(original,capture,frame['ordinal'],native_bytes,oracle,outw,outh)
+                    comparisons.append(dict(destination_gpu_comparison=destination,source_gpu_comparison=source_gpu,ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],native_gpu_path=str(native_plane.relative_to(run)),physical_comparison=physical,**compare_plane(native_bytes,oracle,outw,outh)))
                     continue
                 source=None
                 bg=frame.get('background')
@@ -261,6 +263,12 @@ def main():
                 path=composed/f"frame-{frame['ordinal']:06d}.565";path.write_bytes(previous)
                 comparisons.append(dict(ordinal=frame['ordinal'],sequence=frame['sequence'],canvas=frame['canvas'],transfer=frame['transfer'],background=frame.get('background'),fill=frame['fill'],refresh=frame['refresh'],native_path=str(path.relative_to(run)),**compare_plane(previous,oracle,outw,outh)))
         result.update(comparisons=comparisons,compared_presentations=len(comparisons),mismatched_presentations=sum(c['mismatching_pixels']>0 for c in comparisons),mismatching_pixels=sum(c['mismatching_pixels'] for c in comparisons),pixels_compared=sum(c['pixels'] for c in comparisons),all_observed_presentations_compared=len(comparisons)==result['observed_presentations'],native_input_bytes=sum(f.stat().st_size for f in owned.rglob('*') if f.is_file()))
+        destinations=[c['destination_gpu_comparison'] for c in comparisons if c.get('destination_gpu_comparison') is not None]
+        result['original_destination_comparisons']=len(destinations)
+        result['native_destination_mismatching_words']=sum(c['native_destination_mismatching_words'] for c in destinations)
+        result['source_destination_comparisons']=sum(c['source_destination_mismatching_words'] is not None for c in destinations)
+        result['source_destination_mismatching_words']=sum(c['source_destination_mismatching_words'] or 0 for c in destinations)
+        result['destination_physical_mismatching_pixels']=sum(c['destination_physical_mismatching_pixels'] for c in destinations)
         result['physical_mismatching_pixels']=sum(c.get('physical_comparison',{}).get('mismatching_pixels',0) for c in comparisons)
         gpu_sources=[c['source_gpu_comparison'] for c in comparisons if c.get('source_gpu_comparison') is not None]
         result['original_gpu_source_comparisons']=len(gpu_sources)

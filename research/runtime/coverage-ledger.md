@@ -13031,3 +13031,38 @@ ownership, Qt layout policy, full14journey/21operation acceptance, hardware and
 live replacement remain explicit. No rendering completion/status promotion is
 claimed. Exact77b3f0a5..29688531 history review covers46file/34behavior transitions
 with zero missing receipts, separately from these new results.
+
+
+## Correct pre-swap pixels and scoped software-upload correction (2026-10-16)
+
+The new destination witness confirms source/native/default-framebuffer agreement
+before swap, while the unmodified physical first-shrink frame is wrong. A lower
+XCB trace identifies a full832×640 SHM image submitted for the first640×480 frame
+after800×600; the next frame uses640×512. Padding and changing SHM IDs are explicit:
+this identifies stale image geometry, not complete allocation ownership. Same-
+current rebind and release/restore experiments preserve the failure; one incomplete
+128MiB transient-budget acquisition is retained separately from its completed
+256MiB repeat.
+
+The explicit pinned Wine/llvmpipe crop policy checks independent prior logical/
+image extents, window identity/generation, full GL projection and full-image SHM
+packet. It changes only source_y/width/height inside existing bounds, preserves
+other packet fields/cookie and uses no pixel values. New222frame original-active
+acquisition and native replay match all source, destination and physical planes;
+exactly one first-shrink upload is corrected. Normal Quit and original manifest/
+sections remain verified. No original physical reference is rewritten.
+
+Owned actual-SHM controls have a307196pixel negative and zero-pixel corrected
+positive, four unchanged normal/fresh/grow/repeat cases and six unsupported route/
+identity refusals. Seven EGL modes preserve known pixels, read bindings/selections,
+viewport and bounded GL error checks across both resize directions. The crop is
+an intentional opt-in software-path policy; arbitrary oversized-buffer origins,
+complete lifetimes/routes, hardware and live native renderer replacement remain
+unproved. Historical238frame and323frame regression denominators are preserved;
+full14journey/21operation admission is unchanged.
+
+[Findings](drawing-egl-swap-completion.md) and
+[wire contract](../formats/egl-presentation-witnesses.md) retain separate original,
+native and driver-policy outcomes. Exact29688531..faa6ecab committed-history review
+covers38file/58behavior transitions with zero missing receipts; it is independent
+of this new execution and makes no retrospective gate-pass assertion.

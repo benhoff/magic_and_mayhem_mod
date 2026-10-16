@@ -18,6 +18,8 @@ static struct {void* handle;unsigned kind,id;} egl_handles[256];
 #include "egl_physical.h"
 #include "egl_worker_context.h"
 #include "egl_swap_completion.h"
+#include "egl_destination_trace.h"
+#include "egl_xcb_image.h"
 /* Equality is local only; reuse/lifetime is not inferred from these handles. */
 static unsigned egl_handle(void* handle,unsigned kind){
  int saved=errno;if(pthread_mutex_lock(&mutex))fail();unsigned id=0;
@@ -30,14 +32,15 @@ static unsigned egl_handle(void* handle,unsigned kind){
 static EGLBoolean egl_swap_call(unsigned slot,EGLDisplay display,EGLSurface surface){
  EglSwap real=__atomic_load_n(&egl_originals[slot],__ATOMIC_ACQUIRE);if(!real)fail();
  uint32_t before_action[12]={0},after_action[12]={0};egl_action_state(before_action);
- uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);egl_worker_context(id,1);egl_surface_before_swap(id,display,surface);egl_window_point(id,display,surface,1);
- EGLBoolean result=real(display,surface);int saved=errno;egl_worker_context(id,2);record(2,id,11,args,(int)result,saved);egl_action_state(after_action);EGLint width=800,height=600;
+ uint32_t args[8]={egl_handle(display,1),egl_handle(surface,2),slot+1,0,0,0,0,0};uint32_t id=begin(11,args);egl_worker_context(id,1);egl_surface_before_swap(id,display,surface);egl_window_point(id,display,surface,1);egl_destination_before_swap(id,display,surface);
+ egl_xcb_begin(id,display,surface);
+ EGLBoolean result=real(display,surface);int saved=errno;egl_xcb_call=0;egl_worker_context(id,2);record(2,id,11,args,(int)result,saved);egl_action_state(after_action);EGLint width=800,height=600;
  if(result&&(getenv("MNM_DRAW_ACTION_BOUNDARIES")||getenv("MNM_DRAW_EGL_SWAP_COMPLETION"))){
   typedef EGLBoolean(*QuerySurface)(EGLDisplay,EGLSurface,EGLint,EGLint*);
   void* pointer=symbol_resolver()(RTLD_NEXT,"eglQuerySurface");QuerySurface query;memcpy(&query,&pointer,sizeof(query));
   if(!query||!query(display,surface,EGL_WIDTH,&width)||!query(display,surface,EGL_HEIGHT,&height)||width<1||height<1||width>2048||height>2048)refuse("EGL action extent query");
  }
- if(result){egl_swap_completion(id,(uint32_t)width,(uint32_t)height);egl_window_point(id,display,surface,2);}
+ if(result){egl_xcb_end(result,(uint32_t)width,(uint32_t)height);egl_swap_completion(id,(uint32_t)width,(uint32_t)height);egl_window_point(id,display,surface,2);}
  egl_physical(id,args,result,saved,before_action,after_action,(uint32_t)width,(uint32_t)height);errno=saved;return result;
 }
 #define EGL_SLOT(n) static EGLBoolean egl_swap_##n(EGLDisplay d,EGLSurface s){return egl_swap_call(n,d,s);}

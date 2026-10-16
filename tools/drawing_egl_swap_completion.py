@@ -68,5 +68,7 @@ def analyze(directory,physical):
     pixels=source.read_bytes()
     if len(pixels)!=b['read_width']*b['read_height']*2:raise ValueError('EGL GPU source extent differs')
     row['gpu_source']=dict(path=source.name,sha256=hashlib.sha256(pixels).hexdigest(),bytes=len(pixels),original_oracle_only=True)
+  from drawing_egl_destination import attach
+  attach(directory,row)
   result.append(dict(ordinal=frame['ordinal'],**row))
  return dict(schema=1,success=True,frames=result,other_returned_calls=len(observed)-len(result),original_pixels_used_as_native_inputs=False,hardware_scanout_established=False,scope='Post-return same-context GL fence completion plus viewport/scissor/buffer metadata; explicit diagnostic perturbation. Optional source-GPU pixels remain separately labelled comparator-only oracles. No source ownership or query/error-state neutrality assertion.')

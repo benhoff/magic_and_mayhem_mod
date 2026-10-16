@@ -2,7 +2,7 @@
 typedef EGLSurface(*EglWindowCreate)(EGLDisplay,EGLConfig,uintptr_t,const void*);
 typedef EGLBoolean(*EglWindowDestroy)(EGLDisplay,EGLSurface);
 static EglWindowCreate egl_window_creates[3][16];static EglWindowDestroy egl_window_destroys[16];
-static struct {EGLSurface surface;EGLDisplay display;uint32_t generation;Window window;} egl_window_objects[256];
+static struct {EGLSurface surface;EGLDisplay display;uint32_t generation;Window window;uint32_t last_width,last_height,last_image_width,last_image_height;} egl_window_objects[256];
 static uint32_t egl_window_generation;static pthread_mutex_t egl_window_lock=PTHREAD_MUTEX_INITIALIZER;
 static EGLSurface egl_window_create_call(unsigned kind,unsigned slot,EGLDisplay display,EGLConfig config,uintptr_t native,const void* attributes){
  EglWindowCreate real=__atomic_load_n(&egl_window_creates[kind][slot],__ATOMIC_ACQUIRE);if(!real)fail();EGLSurface surface=real(display,config,native,attributes);int saved=errno;

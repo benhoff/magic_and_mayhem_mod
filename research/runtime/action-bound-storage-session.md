@@ -25,7 +25,22 @@ layout/semantic policy; replaying the original layout is not Qt menu parity.
 Generic `presented_frame` acceptance and the fourteen-journey/twenty-one-operation
 denominator remain unchanged.
 
-## Current result after driver-order correction
+## Corrected software-upload profile
+
+The new opt-in stale-upload policy produces a complete222frame original-active
+Save/Load/HighLowHigh/MainLoad/resume interval with normal Quit. Independent native
+replay matches original source textures, nominal pre-swap destination pixels and
+post-swap physical output across every frame, with zero differences. The correction
+changes only one SHM upload's source rectangle using independently observed prior/
+current geometry. It is scoped to the pinned Wine/llvmpipe path, with original
+packet fields retained; no oracle supplies native inputs or selects output.
+
+The old238frame corpus still reproduces its historical physical failure. Its
+reference is not rewritten. Full14journey/21operation acceptance, global routes,
+source/SHM ownership, Qt policy, hardware and native replacement remain separate.
+See [diagnosis, scoped policy and negative controls](drawing-egl-swap-completion.md).
+
+## Historical result after driver-order correction
 
 `cursor-storage-portable-20261016.json` compares all238retained frames: only
 ordinal170 still fails, with126 differing pixels per GPU/physical cohort
