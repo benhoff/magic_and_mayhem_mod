@@ -6,6 +6,7 @@
 namespace mnm::skirmish {
 enum class CursorMode { select, summon, bolt, cure, sphere };
 class Controller {
+    std::shared_ptr<const game::CombatDriver> driver_;
     game::SkirmishSession session_;
     std::unique_ptr<game::CampaignSession> campaign_;
     scene::Playback playback_;
@@ -19,7 +20,7 @@ class Controller {
     void adopted(const QString &);
 
   public:
-    Controller();
+    explicit Controller(std::shared_ptr<const game::CombatDriver> = {});
     const game::SkirmishSession &session() const;
     const game::CampaignSession *campaign() const { return campaign_.get(); }
     bool hasBattle() const { return !campaign_ || campaign_->battle(); }

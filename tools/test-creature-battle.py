@@ -31,7 +31,7 @@ def main():
     sources = declaration['sources']
     assert all(sha(ROOT/k) == v for k, v in sources.items())
     report = dict(success=False, claims=declaration['claims'], source_sha256=sources,
-                  scope='Native same-installed-profile type17 creature rules, shared health and generation-bound actors alongside Cure/Sphere; saved RNG/ANI/stun/target continuation, 2x2 standing/edge admission over native point navigation. Wizards excluded from type17 melee; authored scheduling and wizard AI, no complete original AI/movement/encounter/live replacement.',
+                  scope='Native same-installed-profile type17 creature rules, shared health and generation-bound actors alongside Cure/Sphere; saved RNG/ANI/stun/target continuation, 2x2 standing/edge admission over native point navigation. Moving melee interruption cancels movement atomically and Stop preserves physical stun clocks. Wizards excluded from type17 melee; authored scheduling and wizard AI, no complete original AI/movement/encounter/live replacement.',
                   compiler=subprocess.check_output(['g++', '--version'], text=True).splitlines()[0],
                   qt_version=subprocess.check_output(['pkg-config', '--modversion', 'Qt6Core'], text=True).strip(), commands=[])
 
@@ -58,7 +58,7 @@ def main():
             run(name+'-build', ['cmake', '--build', build, '-j4', *targets])
             env = dict(os.environ, ASAN_OPTIONS='detect_leaks=1:halt_on_error=1', UBSAN_OPTIONS='halt_on_error=1:print_stacktrace=1')
             report[name] = json.loads(run(name+'-creatures', [build/'creature-battle-test', a.assets], env))
-            assert report[name]['success']
+            assert report[name]['success'] and report[name]['moving_stun'] and report[name]['held_stun']
             filters = ['-R', 'native-(sphere-battle|battle-effects|cure-battle|skirmish-contract|health-rules-contract|campaign-arena-contract)$'] if name == 'sanitized' else []
             result = run(name+'-ctest', ['ctest', '--test-dir', build, '--output-on-failure', *filters], env)
             match = re.search(r'100% tests passed[^\n]*out of (\d+)', result)

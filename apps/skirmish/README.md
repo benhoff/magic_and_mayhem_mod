@@ -115,3 +115,36 @@ The CLI accepts `TICK sphere WIZARD-SLOT TARGET-SLOT`; campaign CLI accepts
 `cast INPUT OUTPUT sphere TARGET-SLOT`. Cure-only and effects-free campaign saves
 retain their exact earlier profiles. See
 [native Sphere scope](../../research/runtime/native-sphere-battle.md).
+
+## Installed Crocodile rules
+
+Opt into the installed type17 creature adapter for new skirmishes or campaigns:
+
+```sh
+working/build/skirmish/mnm-skirmish --installation working/game-nocd --campaign
+working/build/skirmish/mnm-campaign-cli --installation working/game-nocd create crocodiles.mnmc
+working/build/skirmish/mnm-campaign-cli --installation working/game-nocd start crocodiles.mnmc battle.mnmc
+```
+
+Summon Crocodile creates a360-health creature using the installed configuration,
+HTH/selection matrices and attack/stun ANI bytes. Creatures acquire enemies,
+pursue a moving target, attack on ANI events, recover from stun/knockback and
+retarget after death. The window names the profile, shows current actions and
+outlines its native2x2 standing footprint; clicking any cell in that footprint
+selects/targets it. Cure and Sphere use the same authoritative battle health.
+
+Save/load preserves pending player orders, RNG, attack/stun cursors, targets and
+movement. Supply the same `--installation` for campaign create/load/inspect/start/
+cast/resume, including between duels: its three profile inputs form part of the
+campaign content revision. Missing or mismatched binding refuses publication.
+Standalone skirmish snapshots embed the profile and resolve it from saved bytes.
+Existing asset-free, Cure-only and Sphere campaigns retain their prior profiles.
+Next/retry creates the selected installed profile again; attempts settle once.
+
+This is bounded native composition: same-type17 melee excludes wizards, whose
+AI/spells still use the authored arena policy. Bravery30/all-visible admission,
+attack24/stun112 selection and four-tick approach requests are native policies.
+The2x2 standing/edge checks supplement point navigation; Sphere retains its earlier
+collision fixture. Original full AI/cadence, installed world/geometry, other
+species/wizard melee, physical sprites/audio and live replacement remain pending.
+See [scope](../../research/runtime/native-creature-battle.md).

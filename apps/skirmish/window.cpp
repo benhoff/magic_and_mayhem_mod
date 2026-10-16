@@ -38,6 +38,11 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
         }
     for (const auto &u : view_.units) {
         const QPoint center = cellCenter(u.cell);
+        if(u.health && u.width>1) {
+            p.setPen(QPen(QColor(u.owner?"#f09078":"#7bd9dd"),1,Qt::DashLine));
+            p.setBrush(Qt::NoBrush);
+            p.drawRect(QRect(24+u.cell.x*64+4,24+u.cell.y*64+4,int(u.width)*64-8,int(u.width)*64-8));
+        }
         const QColor color = u.owner ? QColor("#f09078") : QColor("#7bd9dd");
         if (!u.health) {
             p.setPen(QPen(QColor("#818a83"), 2));
@@ -191,9 +196,10 @@ Window::Window(Controller &c) {
     side->addWidget(status);
     side->addStretch();
     auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, sphere, cure, stop, play, pause,
-                    step, save, campaignStatus, saveCampaign, continueCampaign] {
+                    step, save, campaignStatus, saveCampaign, continueCampaign, help] {
         auto v = c.view();
         canvas->present(v);
+        help->setText(QString("Select your wizard to cast.\nSummon: nearby empty cell.\nArc Bolt: click an enemy.\n%1: right-click to move/attack.\nSpace: Play/Pause.").arg(v.creatureName));
         player->setVisible(c.hasBattle());
         enemy->setVisible(c.hasBattle());
         player->setText(
@@ -202,6 +208,8 @@ Window::Window(Controller &c) {
             QString("Rival wizard · %1 HP\nMana %2 / 20").arg(v.wizardHealth[1]).arg(v.mana[1]));
         selection->setText(v.selection);
         status->setText(v.feedback);
+        summon->setText(QString("Summon %1 · 8 mana").arg(v.creatureName));
+        cure->setToolTip(QString("Heal a living friendly %1 by 8, up to its maximum health.").arg(v.creatureName));
         summon->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::summonCost);
         bolt->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::boltCost);
         sphere->setEnabled(v.sphereEnabled && v.canCast && !v.busy && v.mana[0] >= 8);

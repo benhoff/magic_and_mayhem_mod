@@ -1,5 +1,6 @@
 #include "trace.hpp"
 #include "cure_runtime.hpp"
+#include "creature_runtime.hpp"
 #include <algorithm>
 namespace mnm::skirmish {
 void trace(std::ostream &out, const game::SkirmishSession &session,
@@ -79,6 +80,24 @@ void trace(std::ostream &out, const game::SkirmishSession &session,
         << ",\"actor\":" << e.actor.slot
         << ",\"refusal\":" << static_cast<unsigned>(e.refusal) << '}';
   }
-  out << "]}\n";
+  out << ']';
+  if (session.combat().driver()) {
+    out << ",\"creature_rules\":[";
+    comma = false;
+    for (const auto &a : creatureBattleViews(session.combat())) {
+      if (comma) out << ',';
+      comma = true;
+      out << "{\"slot\":" << a.actor.slot
+          << ",\"generation\":" << a.actor.generation
+          << ",\"phase\":" << unsigned(a.phase) << ",\"target\":";
+      if (a.target)
+        out << "{\"slot\":" << a.target->slot
+            << ",\"generation\":" << a.target->generation << '}';
+      else out << "null";
+      out << '}';
+    }
+    out << ']';
+  }
+  out << "}\n";
 }
 } // namespace mnm::skirmish

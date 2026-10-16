@@ -12957,3 +12957,46 @@ additions in77b3f0a5 gain pending hash receipts. The remaining committed source 
 behavior transitions already have exact receipts. No past gate pass or engine
 validation is inferred; [history](coverage/creature-battle-incoming-history-20261016.json)
 is separate from this new execution and retains zero unresolved accounting gaps.
+
+## Installed-creature campaign/window continuation and interruption safety (2026-10-16)
+
+The new profile is now opt-in through native window/campaign CLI `--installation`.
+Campaign content binds the exact initial installed profile; idle/next/retry reloads
+keep that binding and attempts settle once. Standalone snapshots embed the profile.
+Legacy asset-free/Cure-only/Sphere campaign fallbacks retain their previous rules.
+Widgets consume Crocodile labels, native2x2 footprints/picking and semantic saved
+rule phases. No original executable or installed balance configuration changes.
+
+CREATUREB02's initial positive407-source window result is retained unchanged with
+its exact intermediate source snapshot and native/sanitized binaries. Subsequent
+review found a move-control publication mismatch and physical-stun loss on Stop
+or target loss. The new semantic regression, linked against the retained prior
+arena archive, fails with `ordered movement/control mismatch`; its command,
+archive/test hashes and original-manifest checks are retained separately. This
+is a native regression control, not an original-engine comparison.
+
+CREATUREB03 binds407 current sources, four native contracts and six scenarios.
+Normal and ASan/UBSan/LSan runs agree on the native encounter, moving/held stun,
+refused interrupted orders, target death/removal while stunned and campaign
+victory/defeat/next/retry checks.58 normal CTests, six additional sanitizer CTests
+and installed Cure ANI checks pass.17 installed inputs and original manifests
+match before/after. Real Qt secondary-footprint Cure/Sphere picking, phase2
+attack/flight save and fresh14-phase continuation produce identical campaign
+bytes in Qt, CLI and event-counting consumers: two melee hits, one8-point Cure and
+one20-point Sphere impact. A player-move/pursuit checkpoint resumes eight phases
+identically with an actually moving enemy. Missing profile refuses publication;
+idle campaign reload/start is checked. Native creature integration advances only
+to preview. Initial evidence keeps its historical fingerprints and limitations.
+
+[Scope and limits](native-creature-battle.md),
+[initial window execution](creature-window-initial-bound-20261016.json), and
+[final execution](creature-window-bound-20261016.json) keep native composition,
+original comparison and live replacement independent. Same-type17-only melee,
+authored wizard policy/cadence, native standing/point navigation, existing Sphere
+collision fixture, original full AI/world/geometry, other species, physical audio/
+sprites and live replacement remain explicit boundaries. A runnable copy is
+retained under `working/build/creature-battle-20261016/`.
+
+The exact77b3f0a5..3cc1dfee committed-history review checks22 file and21 behavior
+transitions with no missing receipts. [History](coverage/creature-window-incoming-history-20261016.json)
+is separate from this execution and does not infer new validation of past code.

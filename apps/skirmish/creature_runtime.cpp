@@ -1,5 +1,6 @@
 #include "creature_runtime.hpp"
 #include "../creature-lab/profile.hpp"
+#include "health_rules.hpp"
 #include "simulation/skirmish.hpp"
 #include <algorithm>
 #include <array>
@@ -153,7 +154,8 @@ void sync(Stored &s, const g::State &w, g::CombatState c) {
       auto *t = fighter(c, *a.target);
       if (!t || !t->health) {
         a.target.reset();
-        if (f->health)
+        if (f->health && a.state.phase != g::CreaturePhase::stunned &&
+            a.state.phase != g::CreaturePhase::knockback)
           cancel(a, g::CreaturePhase::idle);
       }
     }
@@ -163,7 +165,9 @@ void sync(Stored &s, const g::State &w, g::CombatState c) {
     }
     if (f->health && (f->control == g::CombatControl::hold ||
                       f->control == g::CombatControl::move)) {
-      cancel(a, g::CreaturePhase::idle);
+      if (a.state.phase != g::CreaturePhase::stunned &&
+          a.state.phase != g::CreaturePhase::knockback)
+        cancel(a, g::CreaturePhase::idle);
       a.target.reset();
     }
   }
@@ -297,6 +301,10 @@ public:
     c.updateRules(encode(s));
   }
   void validate(const g::CombatSession &c) const override {
+    need(c.world().state().map == "native-skirmish-arena-v1" &&
+             c.navigation()->binding().dimensions == g::Point{8, 8, 3} &&
+             c.healthRules()->identity() == ordinaryHealthIdentity,
+         "creature battle arena/health admission");
     need(c.rules().identity == identity(), "creature battle runtime binding");
     auto s = decode(c.rules().data);
     need(s.profile == profile_.bytes, "creature battle profile mismatch");
@@ -349,6 +357,11 @@ public:
       need(a.state.phase == g::CreaturePhase::stunned ? a.state.stunTimer >= 0
                                                       : a.state.stunTimer == 0,
            "creature battle stun timer");
+      if (a.state.phase == g::CreaturePhase::stunned ||
+          a.state.phase == g::CreaturePhase::knockback)
+        need(f->control != g::CombatControl::move && !f->destination &&
+                 !g::active(e->motion->action),
+             "interrupted creature retains movement");
       if (a.target) {
         auto *t = fighter(combat, *a.target);
         need(t && t->health &&
@@ -415,6 +428,9 @@ public:
             auto *f = fighter(state, o.subject);
             auto *target = o.target ? findActor(*o.target) : nullptr;
             if (!a || !f || !f->health ||
+                ((a->state.phase == g::CreaturePhase::stunned ||
+                  a->state.phase == g::CreaturePhase::knockback) &&
+                 o.kind != g::CombatOrderKind::stop) ||
                 (o.kind == g::CombatOrderKind::attack &&
                  (!target || !fighter(state, *o.target)->health ||
                   movement.world().find(*o.target)->owner ==
@@ -425,7 +441,9 @@ public:
               ++out.rejectedOrders;
               continue;
             }
-            cancel(*a, g::CreaturePhase::idle);
+            if (a->state.phase != g::CreaturePhase::stunned &&
+                a->state.phase != g::CreaturePhase::knockback)
+              cancel(*a, g::CreaturePhase::idle);
             a->target.reset();
             f->target.reset();
             f->action = g::CombatAction::idle;
@@ -536,8 +554,6 @@ public:
               }
               continue;
             }
-            if (f->control == g::CombatControl::hold)
-              continue;
             if (v.phase == g::CreaturePhase::stunned) {
               auto ev = rules.animation(v.cursor, true, v.facing);
               int before = v.stunTimer;
@@ -554,6 +570,8 @@ public:
               cancel(a, g::CreaturePhase::idle);
               continue;
             }
+            if (f->control == g::CombatControl::hold)
+              continue;
             if (v.phase == g::CreaturePhase::ready) {
               if (--v.cooldown)
                 continue;
@@ -597,6 +615,9 @@ public:
                                });
                 if (victim->health) {
                   g::stopCombatMotion(target);
+                  if (victim->control == g::CombatControl::move)
+                    victim->control = g::CombatControl::automatic;
+                  victim->destination.reset();
                   if (stun.knockback) {
                     target.x = stun.knockback->x;
                     target.y = stun.knockback->y;

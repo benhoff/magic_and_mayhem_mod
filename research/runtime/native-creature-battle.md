@@ -49,3 +49,65 @@ All-visible hostility, bravery30 and application-supplied admission remain nativ
 adapter choices. Sphere keeps its existing declared one-cell collision fixture;
 the new2x2 policy is standing/navigation/melee admission, not installed projectile
 collision-catalog equivalence. No original configuration or balance data changes.
+
+## Campaign and window integration
+
+The installed profile is opt-in through `--installation ROOT` in the skirmish
+window and campaign CLI. Native standalone checkpoints resolve their embedded
+profile. Campaign definitions fingerprint the exact initial installed battle;
+matching installation bytes must be supplied on create/load/inspect/start/cast/
+resume, even between duels where no battle world remains. This reuses the existing
+campaign resource-binding boundary without changing its wire format. Missing or
+mismatched binding refuses before publication. Legacy campaign profile fallbacks
+remain independent, and next/retry keeps the selected installed driver.
+
+The controller translates saved rule phases to Attacking/Pursuing/Recovering/
+Stunned/Knocked back/Blocked and a Crocodile label. Widgets consume those semantic
+views, display the native2x2 footprint and pick all its cells. Headless inspection
+adds `creature_rules` only for a bound profile; legacy trace bytes remain unchanged.
+Explicit arena/ordinary-health admission bounds the adapter's supplied world.
+
+The retained development window journey selects Cure and Sphere through actual
+secondary footprint cells, saves at phase2 during attack/flight, pauses and resumes
+14 phases in fresh Qt, CLI and event-counting processes. Campaign bytes agree;
+the tail contains two melee hits, one8-point Cure and one20-point Sphere impact.
+A second journey queues a player move, saves during movement and resumes eight
+phases while the enemy pursues; all three consumers agree and the enemy moves.
+Missing campaign binding refuses without changing its input or creating output.
+Idle campaigns reload/start with their selected profile. Native tests additionally
+force victory/defeat, restore between missions, verify next/retry driver binding
+and reject a second settlement. These are native resource/progression policies,
+not a recovered original campaign or wizard AI comparison.
+
+The initial407-source positive window run is preserved separately as
+[CREATUREB02 initial execution](creature-window-initial-bound-20261016.json),
+with its exact intermediate sources and two binaries under
+`working/tests/creature-window-initial-bound-20261016-v2/`. It predates the
+subsequent interruption safety review and does not establish current-code or
+exhaustive move/stun interaction validation.
+
+The review found that cancelling native movement without cancelling move control
+could fail publication, and broad target/hold resets could clear a physical stun.
+The new semantic-order regression reuses an actual pre-stun opaque continuation,
+without changing RNG algorithms or installed balance. Linked against the retained
+prior arena archive, it fails with `ordered movement/control mismatch`; that
+failure and link/input provenance remain under
+`working/tests/creature-stun-prior-backend-20261016/`.
+
+The fix clears a stunned mover's destination/control atomically, preserves stun
+ANI/timers through Stop and target death/removal, advances physical recovery while
+held, and refuses new move/attack orders during interruption. Held actors display
+Stunned rather than hiding that state behind Holding. Final source-bound safety
+validation remains a separate execution from the initial positive window run.
+
+[CREATUREB03 final execution](creature-window-bound-20261016.json) now validates
+these safety branches on407 current sources, four native contracts and six
+scenarios. Native and sanitized results agree, including interrupted-order
+refusal and physical stun across target death/removal. All58 legacy CTests, six
+additional sanitizer contracts, installed Cure checks and both retained new Qt
+journeys pass.17 installed inputs and original manifests match before/after.
+The new creature milestone is native preview; original full AI/movement/cadence,
+installed world/collision catalogs and live replacement remain independent.
+
+The runnable local copy is `working/build/creature-battle-20261016/mnm-skirmish`;
+use `--installation working/game-nocd --campaign` for the installed profile.

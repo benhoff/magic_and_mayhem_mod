@@ -166,6 +166,13 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                         const auto view=c.view();auto it=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==unsigned(action["actor"].toInt());});
                         require(it!=view.units.end() && it->health==unsigned(action["health"].toInt()),"Wrong actor health");
                     }
+                    if(action.contains("creature_name")) require(c.view().creatureName==action["creature_name"].toString(),"Wrong creature profile label");
+                    if(action.contains("actor_action") || action.contains("maximum")) {
+                        const auto view=c.view();auto it=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==unsigned(action["actor"].toInt());});
+                        require(it!=view.units.end(),"Missing displayed creature");
+                        if(action.contains("actor_action")) require(it->action==action["actor_action"].toString(),"Wrong displayed creature action");
+                        if(action.contains("maximum")) require(it->maximum==unsigned(action["maximum"].toInt()),"Wrong installed maximum health");
+                    }
                     if (action.contains("transition"))
                         require(p.transition == unsigned(action["transition"].toInt()),
                                 "Wrong campaign transition");

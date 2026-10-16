@@ -1,5 +1,6 @@
 #include "controller.hpp"
 #include "cure_runtime.hpp"
+#include "creature_runtime.hpp"
 #include "persistence/snapshot.hpp"
 #include <algorithm>
 #include <stdexcept>
@@ -22,9 +23,9 @@ QString refusal(game::SkirmishRefusal r) {
     }
 }
 } // namespace
-Controller::Controller() : session_(newSession()), playback_([this] { advance(); }) {
+Controller::Controller(std::shared_ptr<const game::CombatDriver> driver) : driver_(std::move(driver)), session_(newSession(driver_)), playback_([this] { advance(); }) {
     selected_ = session().state().wizards[0].actor;
-    feedback_ = "Summon a Sentinel near your wizard, then attack the rival.";
+    feedback_ = driver_ ? "Summon a Crocodile near your wizard, then attack the rival." : "Summon a Sentinel near your wizard, then attack the rival.";
     playback_.onRefresh = [this] { changed(); };
     playback_.onPlaying = [this](bool) { changed(); };
     playback_.onError = [this](const std::string &e) {
@@ -64,6 +65,8 @@ ArenaView Controller::view() const {
     }
     const auto s = session().state();
     const auto c = session().combat().combat();
+    v.creatureName = session().combat().driver() ? "Crocodile" : "Sentinel";
+    const auto creatureViews=creatureBattleViews(session().combat());
     v.outcome = s.outcome;
     v.projectiles = s.projectiles;
     v.cureEnabled = bool(session().effectsRuntime());
@@ -99,12 +102,27 @@ ArenaView Controller::view() const {
             action = "Moving";
         else if (f.control == game::CombatControl::hold)
             action = "Holding";
+        if(r.role==game::UnitRole::sentinel && f.health) {
+            auto found=std::find_if(creatureViews.begin(),creatureViews.end(),[&](const auto &a){return a.actor==r.actor;});
+            if(found!=creatureViews.end()) {
+                switch(found->phase) {
+                case game::CreaturePhase::attacking:action="Attacking";break;
+                case game::CreaturePhase::stunned:action="Stunned";break;
+                case game::CreaturePhase::knockback:action="Knocked back";break;
+                case game::CreaturePhase::ready:action="Recovering";break;
+                case game::CreaturePhase::blocked:action="Blocked";break;
+                case game::CreaturePhase::pursuing:action="Pursuing";break;
+                default:break;
+                }
+            }
+        }
         v.units.push_back(
-            {r.actor, {e.x, e.y, e.z}, r.role, e.owner, f.health, f.stats.maximumHealth, action});
+            {r.actor, {e.x, e.y, e.z}, r.role, e.owner, f.health, f.stats.maximumHealth, action,
+             r.role==game::UnitRole::sentinel && session().combat().driver()?2U:1U});
         if (selected_ == std::optional<game::Handle>(r.actor)) {
             v.selection = QString("%1 %2 · %3/%4 HP · %5")
                               .arg(e.owner ? "Rival" : "Your",
-                                   r.role == game::UnitRole::wizard ? "wizard" : "Sentinel")
+                                   r.role == game::UnitRole::wizard ? QString("wizard") : v.creatureName)
                               .arg(f.health)
                               .arg(f.stats.maximumHealth)
                               .arg(action);
@@ -115,7 +133,7 @@ ArenaView Controller::view() const {
         }
     }
     if (v.selection.isEmpty())
-        v.selection = "Select your wizard or a Sentinel.";
+        v.selection = QString("Select your wizard or a %1.").arg(v.creatureName);
     return v;
 }
 void Controller::advance() {
@@ -154,7 +172,7 @@ void Controller::step() {
 }
 void Controller::restart() {
     pause();
-    auto fresh = newSession();
+    auto fresh = newSession(driver_);
     session_ = std::move(fresh);
     campaign_.reset();
     selected_ = session().state().wizards[0].actor;
@@ -168,7 +186,7 @@ void Controller::setMode(CursorMode m) {
         throw std::invalid_argument("Select your wizard to cast");
     mode_ = m;
     feedback_ = m == CursorMode::summon ? "Click an empty cell within two cells of your wizard."
-                : m == CursorMode::cure ? "Click a living friendly Sentinel to cast Cure."
+                : m == CursorMode::cure ? "Click a living friendly creature to cast Cure."
                 : m == CursorMode::sphere ? "Click a living enemy to cast Magic Sphere."
                 : m == CursorMode::bolt ? "Click a living enemy to cast Arc Bolt."
                                         : "Select a unit.";
@@ -181,7 +199,7 @@ void Controller::cell(game::Point p, bool right) {
         throw std::invalid_argument("Choose a cell inside the arena");
     const auto v = view();
     const auto hit = std::find_if(v.units.begin(), v.units.end(),
-                                  [&](const UnitView &u) { return u.health && u.cell == p; });
+                                  [&](const UnitView &u) { return u.health && p.z==u.cell.z && p.x>=u.cell.x && p.x<u.cell.x+int(u.width) && p.y>=u.cell.y && p.y<u.cell.y+int(u.width); });
     std::optional<game::SkirmishOrder> order;
     if (mode_ == CursorMode::summon) {
         if (!selected_)
@@ -189,7 +207,7 @@ void Controller::cell(game::Point p, bool right) {
         order = game::SkirmishOrder{game::SkirmishOrderKind::summon, *selected_, {}, p};
     } else if (mode_ == CursorMode::cure) {
         if (!selected_ || !v.cureEnabled || hit == v.units.end() || hit->owner || hit->role != game::UnitRole::sentinel)
-            throw std::invalid_argument("Choose a living friendly Sentinel");
+            throw std::invalid_argument("Choose a living friendly creature");
         order = game::SkirmishOrder{game::SkirmishOrderKind::cure, *selected_, hit->actor, {}};
     } else if ((mode_ == CursorMode::bolt || mode_ == CursorMode::sphere)) {
         if (!selected_ || hit == v.units.end() || !hit->owner)
@@ -209,7 +227,7 @@ void Controller::cell(game::Point p, bool right) {
                                                    : std::nullopt,
                 hit != v.units.end() && hit->owner ? std::nullopt : std::optional<game::Point>(p)};
         else
-            throw std::invalid_argument("Select a Sentinel to move or attack");
+            throw std::invalid_argument("Select a creature to move or attack");
     } else
         selected_ = hit == v.units.end() ? std::nullopt : std::optional<game::Handle>(hit->actor);
     if (order) {
@@ -223,7 +241,7 @@ void Controller::cell(game::Point p, bool right) {
 }
 void Controller::stop() {
     if (!selected_ || !view().canOrder)
-        throw std::invalid_argument("Select a friendly Sentinel");
+        throw std::invalid_argument("Select a friendly creature");
     game::SkirmishOrder o{game::SkirmishOrderKind::stop, *selected_, {}, {}};
     enqueue(o);
     if (onOrder)
@@ -275,14 +293,14 @@ void Controller::adopted(const QString &message) {
 }
 void Controller::newCampaign() {
     pause();
-    auto candidate = std::make_unique<game::CampaignSession>(skirmish::newCampaign());
+    auto candidate = std::make_unique<game::CampaignSession>(skirmish::newCampaign(true,true,driver_));
     candidate->startMission();
     campaign_ = std::move(candidate);
     adopted("New campaign. First duel is paused.");
 }
 void Controller::loadCampaign(const std::filesystem::path &path) {
     pause();
-    auto candidate = std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path));
+    auto candidate = std::make_unique<game::CampaignSession>(skirmish::loadCampaign(path,driver_));
     campaign_ = std::move(candidate);
     adopted("Campaign loaded. Playback is paused.");
 }

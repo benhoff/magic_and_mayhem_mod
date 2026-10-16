@@ -1,4 +1,5 @@
 #include "arena.hpp"
+#include "campaign.hpp"
 #include "creature_runtime.hpp"
 #include "cure_runtime.hpp"
 #include "health_rules.hpp"
@@ -145,11 +146,13 @@ void tests(const std::shared_ptr<const CombatDriver> &driver) {
   // Keep the authored wizard AI quiescent in this isolated control fixture so
   // a long installed stun can expire before an unrelated wizard defeat.
   auto ordinary = pair(driver);
+  std::optional<SkirmishSession> beforeStun, afterStun;
   for (unsigned i = 0; i < 120; ++i) {
     auto quiet = ordinary.state();
     quiet.wizards[1].mana = 0;
     quiet.aiWait = 8;
     ordinary = edit(ordinary, ordinary.combat(), quiet);
+    auto prior = ordinary;
     auto copy = resume(ordinary);
     auto r = ordinary.step();
     copy.step();
@@ -160,6 +163,11 @@ void tests(const std::shared_ptr<const CombatDriver> &driver) {
     for (auto v : app::creatureBattleViews(ordinary.combat())) {
       if (v.phase == CreaturePhase::stunned ||
           v.phase == CreaturePhase::knockback) {
+        if (v.actor == Handle{3, 1} && v.phase == CreaturePhase::stunned &&
+            !beforeStun) {
+          beforeStun = prior;
+          afterStun = ordinary;
+        }
         ++interruptions;
         interrupted.insert(v.actor.slot);
       } else if (interrupted.count(v.actor.slot) &&
@@ -278,15 +286,204 @@ void tests(const std::shared_ptr<const CombatDriver> &driver) {
   sections.rules.data.pop_back();
   w.systems = encodeBattleSystems(sections);
   refuses([&] { app::resolveCreatureRuntime(w); });
-  std::cout << "{\"success\":true,\"installed_maximum\":360,\"melee_hits\":"
-            << hits << ",\"interruptions\":" << interruptions
-            << ",\"recovery\":true,\"sphere_impacts\":" << sphereHits
-            << ",\"cure_heals\":" << heals
-            << ",\"pursuit\":true,\"death_retarget\":true,\"generation_reuse\":"
-               "true,\"rollback\":true,\"fresh_continuation\":true}\n";
+  need(beforeStun.has_value(), "installed stun fixture missing");
+  // Reuse the opaque rule continuation just before an observed stun, retaining
+  // its real RNG stream. Cancel attacks, reenable native automatic controls and
+  // place the victim against the east wall to force stun instead of knockback.
+  auto interruptedMove = *beforeStun;
+  auto primed = interruptedMove.combat();
+  primed.holdAll();
+  auto primeWorld = primed.world().state();
+  auto primeCombat = primed.combat();
+  for (unsigned slot : {2U, 3U}) {
+    auto &e = *primeWorld.slots[slot].entity;
+    e.x = slot == 2 ? 5 : 3;
+    e.y = 4;
+    e.z = 1;
+    stopCombatMotion(e);
+    primeCombat.fighters[slot].control = CombatControl::automatic;
+  }
+  auto primeSections = decodeBattleSystems(primeWorld.systems);
+  primeSections.combat = encodeCombat(primeCombat);
+  primeWorld.systems = encodeBattleSystems(primeSections);
+  World prime(0);
+  prime.restore(std::move(primeWorld));
+  interruptedMove =
+      SkirmishSession(std::move(prime), app::arenaNavigation(),
+                      app::ordinaryHealthRules(), app::battleRuntime(), driver);
+  unsigned streamHits = 0;
+  bool movingStun = false, heldStun = false, interruptedOrderRefused = false;
+  for (unsigned tick = 0; tick < 240 && !heldStun; ++tick) {
+    auto quiet = interruptedMove.state();
+    quiet.wizards[1].mana = 0;
+    quiet.aiWait = 8;
+    interruptedMove = edit(interruptedMove, interruptedMove.combat(), quiet);
+    auto beforeViews = app::creatureBattleViews(interruptedMove.combat());
+    bool stunned =
+        !beforeViews.empty() && beforeViews[0].phase == CreaturePhase::stunned;
+    const bool stopping = stunned && interruptedOrderRefused;
+    interruptedMove.enqueue(
+        {stopping ? SkirmishOrderKind::stop : SkirmishOrderKind::move,
+         {2, 1},
+         {},
+         stopping ? std::nullopt
+                  : std::optional<Point>({5, tick % 2 ? 3 : 5, 1})});
+    auto copy = resume(interruptedMove);
+    auto stream = interruptedMove.step();
+    if (stunned && !stopping) {
+      need(stream.combat.rejectedOrders == 1, "stunned actor accepted a move");
+      interruptedOrderRefused = true;
+    }
+    for (auto ev : stream.combat.events)
+      if (ev.kind == CombatEventKind::hit && ev.target == Handle{2, 1})
+        ++streamHits;
+    copy.step();
+    need(bytes(interruptedMove) == bytes(copy),
+         "moving/held stun continuation mismatch");
+    auto views = app::creatureBattleViews(interruptedMove.combat());
+    if (views[0].phase == CreaturePhase::stunned) {
+      movingStun = true;
+      const auto state = interruptedMove.combat().combat();
+      const auto &f = state.fighters[2];
+      need(f.control != CombatControl::move && !f.destination &&
+               !active(interruptedMove.world().find({2, 1})->motion->action),
+           "stun retained move continuation");
+      if (stopping) {
+        need(f.control == CombatControl::hold,
+             "Stop did not hold stunned actor");
+        heldStun = true;
+      }
+    } else
+      need(!stunned, "Stop cleared physical stun");
+  }
+  if (!movingStun || !heldStun || !interruptedOrderRefused)
+    throw std::runtime_error("moving/held stun branch absent after " +
+                             std::to_string(streamHits) + " hits");
+  need(afterStun.has_value(), "post-stun fixture missing");
+  for (bool remove : {true, false}) {
+    auto lingering = *afterStun;
+    if (remove)
+      lingering.removeCreature({2, 1});
+    else {
+      auto combat = lingering.combat();
+      combat.damage({2, 1}, 1000000, {1, 1});
+      lingering = edit(lingering, std::move(combat), lingering.state());
+    }
+    auto views = app::creatureBattleViews(lingering.combat());
+    auto target = std::find_if(views.begin(), views.end(),
+                               [](auto v) { return v.actor == Handle{3, 1}; });
+    need(target != views.end() && target->phase == CreaturePhase::stunned &&
+             !target->target,
+         "target loss cleared physical stun");
+    auto restored = resume(lingering);
+    lingering.step();
+    restored.step();
+    need(bytes(lingering) == bytes(restored),
+         "target-loss stun continuation mismatch");
+  }
+  for (bool victory : {true, false}) {
+    auto campaign = app::newCampaign(true, true, driver);
+    campaign.startMission();
+    auto ready = app::newSession(driver);
+    auto combat = ready.combat();
+    combat.damage(victory ? Handle{1, 1} : Handle{0, 1}, 47,
+                  victory ? Handle{0, 1} : Handle{1, 1});
+    auto meta = ready.state();
+    meta.aiWait = 0;
+    meta.wizards[1].mana = victory ? 0 : 4;
+    ready = edit(ready, std::move(combat), meta);
+    auto checkpoint = campaign.checkpoint();
+    checkpoint.world = ready.world().state();
+    campaign.restore(checkpoint);
+    if (victory)
+      campaign.enqueue({SkirmishOrderKind::bolt, {0, 1}, Handle{1, 1}, {}});
+    unsigned settlements = 0;
+    for (unsigned i = 0; i < 20 && campaign.battle(); ++i)
+      if (campaign.step().result)
+        ++settlements;
+    need(settlements == 1 && !campaign.battle() &&
+             campaign.progress().lastResult &&
+             campaign.progress().lastResult->outcome ==
+                 (victory ? CampaignOutcome::victory : CampaignOutcome::defeat),
+         "installed campaign settlement");
+    auto restored = app::newCampaign(true, true, driver);
+    restored.restore(campaign.checkpoint());
+    need(!restored.step().result,
+         "installed campaign settled twice after restore");
+    restored.startMission();
+    need(restored.battle()->combat().driver() &&
+             restored.battle()->combat().rules().identity ==
+                 app::creatureBattleIdentity,
+         "next/retry lost installed driver");
+    auto legacy = app::newCampaign();
+    refuses([&] { legacy.restore(campaign.checkpoint()); });
+  }
+  std::cout
+      << "{\"success\":true,\"installed_maximum\":360,\"melee_hits\":" << hits
+      << ",\"interruptions\":" << interruptions
+      << ",\"recovery\":true,\"sphere_impacts\":" << sphereHits
+      << ",\"cure_heals\":" << heals
+      << ",\"pursuit\":true,\"death_retarget\":true,\"generation_reuse\":"
+         "true,\"rollback\":true,\"fresh_continuation\":true,\"campaign_"
+         "profiles\":true,\"moving_stun\":true,\"held_stun\":true,"
+         "\"interrupted_order_refused\":true,\"target_loss_stun\":true}\n";
 }
 } // namespace
 int main(int argc, char **argv) try {
+  if (argc == 4 && (std::string(argv[1]) == "seed-campaign" ||
+                    std::string(argv[1]) == "seed-pursuit")) {
+    auto driver = app::installedCreatureRuntime(argv[2]);
+    auto battle = pair(driver);
+    if (std::string(argv[1]) == "seed-campaign") {
+      auto combat = battle.combat();
+      combat.damage({2, 1}, 40, {0, 1});
+      battle = edit(battle, std::move(combat), battle.state());
+    } else
+      battle.step();
+    auto campaign = app::newCampaign(true, true, driver);
+    campaign.startMission();
+    auto checkpoint = campaign.checkpoint();
+    checkpoint.world = battle.world().state();
+    campaign.restore(std::move(checkpoint));
+    need(campaign.save(argv[3]).durable, "creature campaign seed publication");
+    return 0;
+  }
+  if (argc == 6 && std::string(argv[1]) == "resume-campaign") {
+    auto driver = app::installedCreatureRuntime(argv[2]);
+    auto campaign = app::loadCampaign(argv[3], driver);
+    auto count = std::stoul(argv[5]);
+    need(count <= 256 && campaign.battle(), "creature resume count/battle");
+    auto before = *campaign.battle()->world().find({3, 1});
+    unsigned melee = 0, heals = 0, healed = 0, spheres = 0, damage = 0;
+    for (unsigned n = 0; n < count; ++n) {
+      auto r = campaign.step();
+      need(r.battle.has_value(), "creature resume ended early");
+      for (const auto &ev : r.battle->combat.events) {
+        if (ev.kind == CombatEventKind::hit && ev.actor.slot >= 2)
+          ++melee;
+        if (ev.kind == CombatEventKind::healed) {
+          ++heals;
+          healed += ev.amount;
+        }
+        if (ev.kind == CombatEventKind::hit && ev.actor == Handle{0, 1} &&
+            ev.target == Handle{3, 1}) {
+          ++spheres;
+          damage += ev.amount;
+        }
+      }
+    }
+    need(campaign.battle() && campaign.save(argv[4]).durable,
+         "creature resume publication");
+    const auto *after = campaign.battle()->world().find({3, 1});
+    std::cout << "{\"success\":true,\"melee_hits\":" << melee
+              << ",\"cure_heals\":" << heals << ",\"healed\":" << healed
+              << ",\"sphere_impacts\":" << spheres
+              << ",\"sphere_damage\":" << damage << ",\"enemy_moved\":"
+              << ((after->x != before.x || after->y != before.y) ? "true"
+                                                                 : "false")
+              << "}\n";
+    return 0;
+  }
   need(argc == 2, "Use creature-battle-test INSTALLATION");
   tests(app::installedCreatureRuntime(argv[1]));
 } catch (const std::exception &e) {

@@ -73782,6 +73782,7 @@
         "tests/sprite-binary-reference.cpp",
         "tests/test-campaign-arena.py",
         "tests/test-campaign-window.py",
+        "tests/test-creature-battle-window.py",
         "tests/test-cure-battle.py",
         "tests/test-native-ani-motion.py",
         "tests/test-native-campaign-persistence.py",
@@ -73811,7 +73812,9 @@
         "BATTLE01.sections-native",
         "BATTLE02.cure-native",
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -74222,6 +74225,7 @@
         "tests/sprite-binary-reference.cpp",
         "tests/test-campaign-arena.py",
         "tests/test-campaign-window.py",
+        "tests/test-creature-battle-window.py",
         "tests/test-native-ani-motion.py",
         "tests/test-native-campaign-persistence.py",
         "tests/test-native-combat.py",
@@ -74249,7 +74253,9 @@
       "evidence": [
         "BATTLE02.cure-native",
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -74823,6 +74829,7 @@
         "tests/sprite-binary-reference.cpp",
         "tests/test-campaign-arena.py",
         "tests/test-campaign-window.py",
+        "tests/test-creature-battle-window.py",
         "tests/test-cure-battle.py",
         "tests/test-native-ani-motion.py",
         "tests/test-native-campaign-persistence.py",
@@ -74849,7 +74856,9 @@
       "evidence": [
         "PROJECTILE03.battle-native",
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -75098,7 +75107,7 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Installed ordinary creature rules in the shared native battle",
-      "scope": "Native authored arena composition of the installed type17 Crocodile adapter: same-profile enemy selection/reach/facing, ANI-event melee RNG and stun/knockback operate on authoritative combat health and full-generation actors alongside Cure and Sphere. Owned rule/profile/RNG/ANI/target continuation, native 2x2 standing/edge admission over existing point navigation and four-tick approach requests. Wizards are excluded from type17-only melee/selector projection; their AI/spells remain authored. Original full scheduling/movement/AI, other species, physical presentation and live replacement remain pending.",
+      "scope": "Native authored arena composition of the installed type17 Crocodile adapter: same-profile enemy selection/reach/facing, ANI-event melee RNG and stun/knockback operate on authoritative combat health and full-generation actors alongside Cure and Sphere. Owned rule/profile/RNG/ANI/target continuation, native 2x2 standing/edge admission over existing point navigation and four-tick approach requests. Wizards are excluded from type17-only melee/selector projection; their AI/spells remain authored. Original full scheduling/movement/AI, other species, physical presentation and live replacement remain pending. Opt-in installed-profile Qt/CLI campaign binding preserves attack/flight and player-move/pursuit continuation through fresh processes, plus idle/next/retry content binding. Existing unbound/Cure-only/Sphere profiles retain their exact fallback rules.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -75115,20 +75124,33 @@
         "game/simulation/skirmish.cpp",
         "game/simulation/skirmish.hpp",
         "apps/skirmish/arena.cpp",
-        "apps/skirmish/arena.hpp"
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/campaign.cpp",
+        "apps/skirmish/campaign.hpp",
+        "apps/skirmish/campaign_cli.cpp",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/trace.cpp"
       ],
       "tests": [
         "tests/creature-battle-test.cpp",
-        "tools/test-creature-battle.py"
+        "tools/test-creature-battle.py",
+        "tests/test-creature-battle-window.py",
+        "tests/campaign-window-driver.cpp"
       ],
       "evidence": [
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "preview",
         "replacement": "none"
       },
       "validation_dependencies": [
@@ -75221,23 +75243,14 @@
         "apps/skirmish/../cure-lab/session.hpp",
         "apps/skirmish/../world-scene/playback.hpp",
         "apps/skirmish/CMakeLists.txt",
-        "apps/skirmish/campaign.cpp",
-        "apps/skirmish/campaign.hpp",
-        "apps/skirmish/campaign_cli.cpp",
         "apps/skirmish/cli.cpp",
-        "apps/skirmish/controller.cpp",
-        "apps/skirmish/controller.hpp",
         "apps/skirmish/cure_runtime.cpp",
         "apps/skirmish/cure_runtime.hpp",
         "apps/skirmish/health_rules.cpp",
         "apps/skirmish/health_rules.hpp",
-        "apps/skirmish/main.cpp",
         "apps/skirmish/sphere_runtime.cpp",
         "apps/skirmish/sphere_runtime.hpp",
-        "apps/skirmish/trace.cpp",
         "apps/skirmish/trace.hpp",
-        "apps/skirmish/view.hpp",
-        "apps/skirmish/window.cpp",
         "apps/skirmish/window.hpp",
         "apps/world-sandbox/frozen_navigation.cpp",
         "apps/world-sandbox/frozen_navigation.hpp",
@@ -75458,7 +75471,6 @@
         "tests/battle-effects-test.cpp",
         "tests/campaign-arena-test.cpp",
         "tests/campaign-session-test.cpp",
-        "tests/campaign-window-driver.cpp",
         "tests/campaign-window-driver.hpp",
         "tests/creature-motion-test.cpp",
         "tests/cure-battle-test.cpp",
@@ -75526,7 +75538,22 @@
         "tools/test-projectile-motion.py",
         "tools/test-sphere-battle.py",
         "tools/test-sphere-window.py"
-      ]
+      ],
+      "validation_domain": {
+        "actors": "Installed type17 Crocodiles in the native8x8x3 arena with ordinary health; wizards excluded from same-type melee/selector projection.",
+        "branches": [
+          "acquisition and pursuit of an already acquired moving target",
+          "ANI-driven damage and saved RNG/cursor replay",
+          "stun/knockback recovery and atomic movement interruption including an earlier-slot victim",
+          "Stop holds without clearing physical stun, blocked new orders while interrupted",
+          "Cure/Sphere shared health, death/retarget and full-generation removal/reuse",
+          "installed profile summons, malformed/missing bindings, footprint refusal and whole-tick failure rollback",
+          "Qt secondary-footprint picking, attack/flight/move/pursuit save dialogs and fresh consumers",
+          "idle campaign rebind, victory/defeat, next/retry and once-only settlement",
+          "physical stun survives its target dying or being removed"
+        ],
+        "exclusions": "Native visibility/bravery, animation selection, movement/cadence and wizard policy remain supplied; no complete original AI/world/profile geometry/projectile catalog/physical presentation/live replacement."
+      }
     }
   ],
   "evidence": [
@@ -155057,6 +155084,192 @@
           }
         }
       ]
+    },
+    {
+      "id": "CREATUREB02.window-native-initial",
+      "kind": "native_integration",
+      "scope": "Native same-installed-profile type17 creature rules, shared health and generation-bound actors alongside Cure/Sphere; saved RNG/ANI/stun/target continuation, 2x2 standing/edge admission over native point navigation. Wizards excluded from type17 melee; authored scheduling and wizard AI, no complete original AI/movement/encounter/live replacement. Initial positive campaign/window execution before moving/held-stun safety review; retain historical source hashes and selected successful cases without current-code or exhaustive interruption claims.",
+      "record": "research/runtime/creature-window-initial-bound-20261016.json",
+      "sha256": "a40ce0df8923fb9fb6bbc710e44b9179578e9d1eff115e7d5593ffb57524cfb4",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        },
+        {
+          "pointer": "/window/exact_campaign_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/window/fresh_process",
+          "equals": true
+        },
+        {
+          "pointer": "/window/idle_campaign",
+          "equals": true
+        },
+        {
+          "pointer": "/window/missing_profile_refused",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CREATUREB03.window-native",
+      "kind": "native_integration",
+      "scope": "Native same-installed-profile type17 creature rules, shared health and generation-bound actors alongside Cure/Sphere; saved RNG/ANI/stun/target continuation, 2x2 standing/edge admission over native point navigation. Moving melee interruption cancels movement atomically and Stop preserves physical stun clocks. Wizards excluded from type17 melee; authored scheduling and wizard AI, no complete original AI/movement/encounter/live replacement. Native profile campaign next/retry/once-only results and actual Qt secondary-footprint picking, attack/flight and moving-target pursuit resume through three independent process consumers.",
+      "record": "research/runtime/creature-window-bound-20261016.json",
+      "sha256": "2bee0204bab3344fec23084df9b41ca5b4df8f4a6bbbdd23e92ad7b4fafd82ea",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/normal",
+          "equals": {
+            "success": true,
+            "installed_maximum": 360,
+            "melee_hits": 8,
+            "interruptions": 39,
+            "recovery": true,
+            "sphere_impacts": 1,
+            "cure_heals": 1,
+            "pursuit": true,
+            "death_retarget": true,
+            "generation_reuse": true,
+            "rollback": true,
+            "fresh_continuation": true,
+            "campaign_profiles": true,
+            "moving_stun": true,
+            "held_stun": true,
+            "interrupted_order_refused": true,
+            "target_loss_stun": true
+          }
+        },
+        {
+          "pointer": "/sanitized",
+          "equals": {
+            "success": true,
+            "installed_maximum": 360,
+            "melee_hits": 8,
+            "interruptions": 39,
+            "recovery": true,
+            "sphere_impacts": 1,
+            "cure_heals": 1,
+            "pursuit": true,
+            "death_retarget": true,
+            "generation_reuse": true,
+            "rollback": true,
+            "fresh_continuation": true,
+            "campaign_profiles": true,
+            "moving_stun": true,
+            "held_stun": true,
+            "interrupted_order_refused": true,
+            "target_loss_stun": true
+          }
+        },
+        {
+          "pointer": "/normal_ctests",
+          "equals": 58
+        },
+        {
+          "pointer": "/sanitized_ctests",
+          "equals": 6
+        },
+        {
+          "pointer": "/normal_installed_cure",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        },
+        {
+          "pointer": "/sanitized_installed_cure",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        },
+        {
+          "pointer": "/window/success",
+          "equals": true
+        },
+        {
+          "pointer": "/window/exact_campaign_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/window/fresh_process",
+          "equals": true
+        },
+        {
+          "pointer": "/window/idle_campaign",
+          "equals": true
+        },
+        {
+          "pointer": "/window/missing_profile_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/window/attack_events",
+          "equals": {
+            "success": true,
+            "melee_hits": 2,
+            "cure_heals": 1,
+            "healed": 8,
+            "sphere_impacts": 1,
+            "sphere_damage": 20,
+            "enemy_moved": false
+          }
+        },
+        {
+          "pointer": "/window/pursuit_events",
+          "equals": {
+            "success": true,
+            "melee_hits": 0,
+            "cure_heals": 0,
+            "healed": 0,
+            "sphere_impacts": 0,
+            "sphere_damage": 0,
+            "enemy_moved": true
+          }
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -171766,7 +171979,9 @@
       "evidence": [
         "BATTLE02.cure-native",
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ]
     },
     {
@@ -171784,7 +171999,9 @@
         "BATTLE01.sections-native",
         "BATTLE02.cure-native",
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ]
     },
     {
@@ -171865,7 +172082,9 @@
       "evidence": [
         "PROJECTILE03.battle-native",
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ]
     },
     {
@@ -171883,7 +172102,9 @@
       ],
       "evidence": [
         "PROJECTILE04.window-native",
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ]
     },
     {
@@ -171988,7 +172209,27 @@
         "tools/test-creature-battle.py"
       ],
       "evidence": [
-        "CREATUREB01.native"
+        "CREATUREB01.native",
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
+      ]
+    },
+    {
+      "id": "CREATUREB02.window",
+      "level": "preview",
+      "scope": "Opt-in installed Crocodile Qt campaign labels/actions and 2x2 picking; real Cure/Sphere buttons and save dialogs preserve attack/flight and player-move/pursuit checkpoints across fresh window, CLI and event-counting processes with exact campaign bytes. First16 attack phases contain two melee hits, one8-point Cure and one20-point Sphere impact. Matching installed campaign content is required, including idle reload; headless next/retry settles each attempt once and preserves the driver. Missing profile refuses publication.",
+      "behaviors": [
+        "NP.creature-battle"
+      ],
+      "tests": [
+        "tests/test-creature-battle-window.py",
+        "tests/campaign-window-driver.cpp",
+        "tests/creature-battle-test.cpp",
+        "tools/test-creature-battle.py"
+      ],
+      "evidence": [
+        "CREATUREB02.window-native-initial",
+        "CREATUREB03.window-native"
       ]
     }
   ],
@@ -172606,8 +172847,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-creature-battle-20261016.json",
-    "sha256": "e8efc162d410b55b3e7245cf08d6cf3527008f0fcf8da4f2c82fce0c5ddb9083"
+    "path": "research/runtime/coverage/source-index-creature-window-tested-20261016.json",
+    "sha256": "e703768a51e033dd70bb4987d220f88f309c54d9366a1d5a31c20957db952060"
   },
   "claim_bindings_required": true
 }

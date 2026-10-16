@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "creature_runtime.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <iostream>
@@ -15,6 +16,7 @@ int main(int argc, char **argv) try {
     QApplication app(argc, argv);
     QCommandLineParser p;
     p.addHelpOption();
+    p.addOption({"installation", "Use installed Crocodile rules in new battles and rebind matching campaigns", "directory"});
     p.addOption({"campaign", "Start a new native campaign"});
     p.addOption({"load-campaign", "Load a native campaign checkpoint", "file"});
     p.addOption({"load", "Load a native skirmish checkpoint", "file"});
@@ -23,7 +25,8 @@ int main(int argc, char **argv) try {
     p.addOption({"test-output", "New test-only output directory", "directory"});
 #endif
     p.process(app);
-    mnm::skirmish::Controller c;
+    auto creatureDriver = p.isSet("installation") ? mnm::skirmish::installedCreatureRuntime(p.value("installation").toStdString()) : nullptr;
+    mnm::skirmish::Controller c(creatureDriver);
     if (int(p.isSet("load")) + int(p.isSet("campaign")) + int(p.isSet("load-campaign")) > 1)
         throw std::invalid_argument("Choose one startup mode");
     if (p.isSet("campaign"))

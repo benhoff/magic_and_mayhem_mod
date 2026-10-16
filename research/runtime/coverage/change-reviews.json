@@ -1036425,6 +1036425,271 @@
         "status": "pending",
         "reason": "Shared-source/index/history accounting does not rerun unrelated recovered simulation, rendering, audio, campaign or tooling contracts. The fresh execution receipt is limited to four native battle contracts. Preserve every newly stale evidence/source pair; full original AI/movement, installed projectile catalogs, profile-specific campaign/window integration, physical presentation and live replacement remain pending."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a72079009af503d10a1a6aa95af9c5a15b7dd84d9b56c3730353f9ace2a5ecd8",
+          "before_sha256": "920a063fede67ad43609065df574f34f006c497c7cde266c77e677b2fda6e7b2",
+          "id": "NP.battle-effects"
+        },
+        {
+          "after_sha256": "50b5dfa4aeafa727097dc23cf53fe7d6a72e66160a309bc71c789f1fbdbff927",
+          "before_sha256": "c72511d1aed4bc27c504b29bf6a22496aac365601ddc8541006c7a11a6f43854",
+          "id": "NP.creature-battle"
+        },
+        {
+          "after_sha256": "bc72b5169b8e59236fe2d57e2314bcc409b5f8ed940311e694cac90d04d9af7a",
+          "before_sha256": "5f0b3b9f10dab5affec5587e4dcb3facbc6514ccc2c325f62d3677cbcf425eec",
+          "id": "NP.cure-battle"
+        },
+        {
+          "after_sha256": "db518ff5fca941fdcef406eed924712632fe8901301c2f6dae410d7bed1eb069",
+          "before_sha256": "f4a31d7000bbd67e3bee262f5a7fc3711cdd010583aac44b91fb0e87f5405ee9",
+          "id": "NP.sphere-battle"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "e807aff7d7f6143da303fe52c209819a76ce4add3cd01cd060b96dc4a73d6507",
+          "before_sha256": "d8533807854ef2552709c9d94f4321a79fb3fc8cbddc7463ed3df9811850d84e",
+          "path": "apps/skirmish/campaign.cpp"
+        },
+        {
+          "after_sha256": "023ca0e54ca5cd893c9237815d01f18ae4eedf2c8aa4d43c9e44d9fb80e7b797",
+          "before_sha256": "926159424eb833f4891b2466c4736cb501b5e2f34b38731ddfddba836035b672",
+          "path": "apps/skirmish/campaign.hpp"
+        },
+        {
+          "after_sha256": "bc6edd1ed1e147beefa62577789cf1905f75d76859916d832d1a7571fd2a23a5",
+          "before_sha256": "c9c65fede516cc2687d4ebf569588b4aafe22c968bea036ba0884d1b002ba442",
+          "path": "apps/skirmish/campaign_cli.cpp"
+        },
+        {
+          "after_sha256": "cbf547ceee1972c8c7ea0026c258ed15f1a4e7806c86863a9aa6b17e317bbf8b",
+          "before_sha256": "6b0a892f1e5018af2a84daeae40fe85da85e082ccad1bc643f8c42fde850d263",
+          "path": "apps/skirmish/controller.cpp"
+        },
+        {
+          "after_sha256": "b96f4cb7914671de2ca00552c4dbb8658e449c2c69504c30a53f3962bcfeee0c",
+          "before_sha256": "1a0b0758691b5d77b54569f4b25369ee6204baf78093a79effe30fdff75891e3",
+          "path": "apps/skirmish/controller.hpp"
+        },
+        {
+          "after_sha256": "6c212f225ef664e2779ced075bba007bc4cfdf7d564b85bc36c1619382f041e2",
+          "before_sha256": "c32d56ba4ca74b1c00ab799c6166345897e7166fd4cc61b029173bf97b153a36",
+          "path": "apps/skirmish/creature_runtime.cpp"
+        },
+        {
+          "after_sha256": "01d23219123b7409dbc191c169fa143fff55d960ed9321315432f21f382ac813",
+          "before_sha256": "43648d4bc1f9b832919c2668d7eb8b44baf86955f4b6a3dd98473e296b7b6ed1",
+          "path": "apps/skirmish/main.cpp"
+        },
+        {
+          "after_sha256": "49c422e13d6044feaafd7b12640b61e9a0efe3bfabcdf4e1f2a1dc5692eaf17b",
+          "before_sha256": "b24f19fae39e41a3b65b837d8f8d45740fe49705b673a1e18e5c2047e7079df2",
+          "path": "apps/skirmish/trace.cpp"
+        },
+        {
+          "after_sha256": "8d053f97071ef4d36913bc2e49652264741de382091c11fc743d2aa38db0c436",
+          "before_sha256": "927efaa9629141fa3b6cc630fa80c529f07450660572e26b0c451c6c4d963ce4",
+          "path": "apps/skirmish/view.hpp"
+        },
+        {
+          "after_sha256": "1f3a477919c18c7ea0c66d8d5da40fd2d57a01679e7693af15239efaa9a3bf30",
+          "before_sha256": "5505bc198d3d143f3f44d209963d00755ceef3cfb1f5be3e3c53d695fb401f10",
+          "path": "apps/skirmish/window.cpp"
+        },
+        {
+          "after_sha256": "2bee0204bab3344fec23084df9b41ca5b4df8f4a6bbbdd23e92ad7b4fafd82ea",
+          "before_sha256": null,
+          "path": "research/runtime/creature-window-bound-20261016.json"
+        },
+        {
+          "after_sha256": "3f094da7eea07c6e95002479f481249ba3d9e05f9be0991113cf21ca632aa18d",
+          "before_sha256": "b4ae5b432b711106a002afedcf59601f5d12967389c0cf1721ca09d6c22b78a4",
+          "path": "tests/campaign-window-driver.cpp"
+        },
+        {
+          "after_sha256": "ee357d77bdef549dc899170a651992fe1cd2222096ddb0d1eefaeefb93960bcd",
+          "before_sha256": "7eb7d144e22a2ed13a867a3c572a98fb46373b52d4de115c8ee4f470bfc4fbe6",
+          "path": "tests/creature-battle-test.cpp"
+        },
+        {
+          "after_sha256": "a085e5aadd9642a80c871e8ae67771490de77318f4e500d556a36d7672026124",
+          "before_sha256": null,
+          "path": "tests/test-creature-battle-window.py"
+        },
+        {
+          "after_sha256": "ae68ffd293e51878b8c539ee69dba88399b768e44783d308ac39093804389291",
+          "before_sha256": "84983712355975894d86ff4cb1a2860ffe7e7a0bd8a0cf150872fa5d249a9158",
+          "path": "tools/test-creature-battle.py"
+        }
+      ],
+      "id": "creature-window-campaign-safety-execution-20261016",
+      "pending_gaps": [],
+      "reason": "Reviewed opt-in installed-profile campaign/CLI/Qt binding, semantic action/2x2 views and full saved continuation. Real secondary-footprint Cure/Sphere clicks preserve attack/flight and player-move/pursuit across fresh Qt/CLI/event-counting consumers with identical bytes. Native/sanitized checks validate moving-stun control cancellation, Stop-preserved physical recovery, interrupted-order refusal and stun across target death/removal, plus idle/next/retry/once-only campaign results. The exact earlier arena archive fails the new semantic regression with ordered movement/control mismatch; the final code passes.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh CREATUREB03 binds407 current sources, four native contracts and six scenarios.58 normal CTests, six additional sanitizer CTests, installed creature contracts under native/ASan/UBSan/LSan, installed Cure ANI and both new Qt journeys pass with17 installed inputs and original manifests unchanged. Promote only native creature integration from headless to preview; no original AI/encounter/cadence or live replacement claim.",
+        "evidence": [
+          "CREATUREB03.window-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "987aa898c15202f9447d69fec62f012f73d9d28c831f58f3a9060694c83efbfa",
+          "before_sha256": "ff67f637f4bcd8f4ca53a5aa3450647b54ef31f6c5a3a144acfd06f5e37a1c3a",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "84857f0b11b06c48dd8f7e5914078fba8e60758bf82334bd4ef9e56bf89d1e7a",
+          "before_sha256": "16bc1b016e87173ea28740a764d385fde3ebe8aca6d02922e22f90121a89684c",
+          "id": "NP.campaign-arena"
+        },
+        {
+          "after_sha256": "c8586fab92926b505b2d0538a17993aaa1ee19700f78b9935931a39b7a10a0b3",
+          "before_sha256": "4eb35304bdebdc75cf4c6dbd8c1ef07b28890f0b361337f228f3c73c44475cc2",
+          "id": "NP.campaign-window"
+        },
+        {
+          "after_sha256": "8154fcbd63f52d634306a9bb8cb33397722788080f53220880808d095e3baead",
+          "before_sha256": "63098e78fc45183db078467e1e49ba7bb3f5c895dc85993a80a51f2511bb6ee3",
+          "id": "NP.combat-orders"
+        },
+        {
+          "after_sha256": "be7383bee399fda9f4f5c857164968471d06fd302f725dcc4d5504a636db0516",
+          "before_sha256": "148a3bbed026face44e1454f3448d51152b7ef0cd61966ef04246ed5df71ec6b",
+          "id": "NP.ordinary-health-adapter"
+        },
+        {
+          "after_sha256": "45608b1c18f19875204d4d43c3ff69732ee898edeb3847c54dc5a531c6028886",
+          "before_sha256": "9b8708d0e20a2f8e02ccecb72010ae33be00317145baf04dca3ccf6232edc5c9",
+          "id": "NP.skirmish-simulation"
+        },
+        {
+          "after_sha256": "5fb339e196a7c54858d788b9e3da4523076e26cb91a593b10e275c1abf0da06f",
+          "before_sha256": "47d9647f3eaa268a04280b7dc9bca26f7af0a48df5edaabe9ecbef38854180e0",
+          "id": "NP.skirmish-window"
+        },
+        {
+          "after_sha256": "dd96152f94b70feeda6f42fee736d558d021ff392db90c12d6698ad6b5515810",
+          "before_sha256": "1da1f969b3d29511d398621152363a69d32b9a4ded5e09d3982ade41cc115ac6",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "cf4f436ba76b22256173f7eb29d84d45c384e0a0bd09d315f2dccb26740840f2",
+          "before_sha256": "75259077eed2642ac90859ed4e73eef39435795959ea77b71c72b40b1030113d",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "03406087644d1ddfbcbc0338bf0c344e7bb44c4a0e55d6dab227bacdbc8a54ef",
+          "before_sha256": "c380b184ddfb7f3421dd7cf1135b96be40d2791dedc284320273403c122773be",
+          "path": "apps/skirmish/README.md"
+        },
+        {
+          "after_sha256": "b931bcd1c6e3681651a4179d76ac335a8674095703b37870281b4008e1f6d6a7",
+          "before_sha256": "e1ff1977e9e5d8e2d795dab5f2e088a368ff5925523b4ec0bfeffac2a9134163",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1b3a502ee5de0fb9ba1d1a37052d0a15f4e8cfd4323b55796631ada66a3ce7ec",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/creature-window-incoming-history-20261016.json"
+        },
+        {
+          "after_sha256": "a6cda931cf86ed8f80ac94064dc42e6faf68649866416183fbaea0390d9b4511",
+          "before_sha256": "2c565b7a9d0d7467248a22bc362384910f10a510f40c265356cdf43f41579075",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e703768a51e033dd70bb4987d220f88f309c54d9366a1d5a31c20957db952060",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-creature-window-tested-20261016.json"
+        },
+        {
+          "after_sha256": "b5f3382d98671d98b891c036b1d79815c977fb9dbd2e6b61cfa28135f96c0bc7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-creature-window-20261016.md"
+        },
+        {
+          "after_sha256": "a40ce0df8923fb9fb6bbc710e44b9179578e9d1eff115e7d5593ffb57524cfb4",
+          "before_sha256": null,
+          "path": "research/runtime/creature-window-initial-bound-20261016.json"
+        },
+        {
+          "after_sha256": "910373bec14a14474212710b967b195faf516f3883fbedbbc99cb12a27175ee6",
+          "before_sha256": "5ba34edda7770ff6a89c562a402f5fbf155021546aedfe39f07fefb575641167",
+          "path": "research/runtime/native-creature-battle.md"
+        }
+      ],
+      "id": "creature-window-history-index-and-historical-evidence-20261016",
+      "pending_gaps": [
+        "stale_evidence:001a62d2fc04b09bdeae236ef656f80112c497c2f205726cb238221d0f31b793",
+        "stale_evidence:0fc62cabb78bd27a7b332d9514ddcab785b9c28ea06e306e00c3e1ef98d37617",
+        "stale_evidence:1a465b826a0cdf790a8527c717d975e6c60cd51955df20314daab7e05a3e1aee",
+        "stale_evidence:21ae8d7a3ca1292c5243de08843ad7a2edd9ebb87139afe3895ca2da702240f6",
+        "stale_evidence:22f2b959781962f8abe9f3f471a8c4e844c54f618cde11718b98b8258de61783",
+        "stale_evidence:30f0962d30ee7e81a36c70e2ad82e8a6d102658cec8ee726befd457117ab7bf4",
+        "stale_evidence:36b8328089bcf8e60b5c31df4ac3a46011f39c684e9221a5ea319973718f6a04",
+        "stale_evidence:380eedd07315ec0d9d4924219a8f4e89c65f6f179099093443cda13d173e50bd",
+        "stale_evidence:389f46a071331db8c72dbf6c987753d242e6893e2447553158b0f13d7e05cb8d",
+        "stale_evidence:3a0a86ac507beb3ff57009cc10cee3f80d5613cadcaeb8d3ae2520dc7abb610f",
+        "stale_evidence:4f43c20701c4fed8c9a9c3f088cc019d2a269f1dd01d7283410d64364512c54d",
+        "stale_evidence:508153e87e1c45a6b1e071b1381f597074254bbab093d1b32df33aea491b9943",
+        "stale_evidence:5173e02dc707bcc95dfd55b452962a1f81815550185277caaab045f17dac6718",
+        "stale_evidence:5714bf9e8bbf3e7257c3b96d25174ab3a3606132e8eccdee0201b4e9040e1c4f",
+        "stale_evidence:5a88c50db42d5cb0f6b06470e913b1844c160b68736da9c4bab3a45a3002d504",
+        "stale_evidence:5ceb2e998d1673049caacd8ea2d8695356375e8c4315feef76756c03228ffbc2",
+        "stale_evidence:5d5b17b656447be6772d3e2d1002ab1fcd920bdd7ab87b902227f1c21e020038",
+        "stale_evidence:6825fae00308c960af9689875c8fb28676c10b5835bfd91bdbd816300bf4c64a",
+        "stale_evidence:6866fc78f708f97cc131d657bada8f4fb1ba35829cafbe12e80636cff132f04e",
+        "stale_evidence:71aa0ce54a84012ba21aa5f4cc30b63d16d8de80eb8abe43a8b3c8003e7ee179",
+        "stale_evidence:74b724ec28b3c6f4b22ffd9d1ea8e814c50ae90cd9aa550f962d97c72bed2f0d",
+        "stale_evidence:75c2e3b5cbdd9ac91b6768e82b728bad5374555df5efc8d202403985f72f2013",
+        "stale_evidence:79e2ff93321c05a68d8d7e31c5c43924eb590d8d90ffe8d08dc21e2e385664b9",
+        "stale_evidence:7aea05e029f7a2576d79bfad8f5d466411fe34c1ffbe989cc2fb8243c49c1741",
+        "stale_evidence:7cd38d570cbfdf50adbb887f723071309a101f8abeb3a2db9af8147a713c0aec",
+        "stale_evidence:82f94ec5016445bd27735caf7720148e2b4697de4252458194ab05c661961b94",
+        "stale_evidence:8e5829d8f81f8a6c517397d3099e82f76bd3931a09097da7903271bb6709425f",
+        "stale_evidence:904cf10ae8fd81423daa961d61cf4a22b074b7c4b7ac8d3c34ac409264f9896f",
+        "stale_evidence:911196ef845e06d00b5d9cd77cbc891caec3bf6cb013bc89c32e74d0164fbedc",
+        "stale_evidence:95487c65c10cfcf237e040101e741431c68c1eecc7f098c86afd97af0e250e24",
+        "stale_evidence:992e6da167191edf3081a0d6900db1e5db010e12f3b16c8caa8e06b5f32a0597",
+        "stale_evidence:9b981065275b2e565f7e88c265e6528b7d2e31ce857358646408fc3da38dc60c",
+        "stale_evidence:a23cba4bfaee70e3ebb116ebce3c073be1bdd49a7adbb71cd294f3a0e334a8ff",
+        "stale_evidence:a356c79915b89efec154c943e2fa129f95fc7b79fee042cb9350ac56a1c7025b",
+        "stale_evidence:a73ba7ee6eef13c9aaa52e0e9f433ba2c5c2f2ba79714e722e9707a2a6822df4",
+        "stale_evidence:a8f3a84d6ec3335c4f69ac7d06adcffb45c65ef228bb85fee9ea228c74061b6c",
+        "stale_evidence:aac2e2856a17a1569b047484c953f2cc7bb56b434bd370925d688b81e0f911e7",
+        "stale_evidence:b17f5c7a8ce7d8b28e96bd074e849a4317448aaa21fb3cf09f437666ce34c164",
+        "stale_evidence:b39418012c771c96bf8ef2f3658b64b07cbe9a44383a5a1240575990f59c92d4",
+        "stale_evidence:b8d70f96b4343824e139863a4e9eda3132d154bfa8f304e2a2ad825e8a70b96c",
+        "stale_evidence:bd05e5e6a23293dfc7aed43c8adc738b51a452843806c2288c04261c85134a11",
+        "stale_evidence:c041a049b9bfb4f4285fa2d705226cb283641ace1ad48dcc1a94376fc53cac64",
+        "stale_evidence:c46055f57fbc9261fb5fd68350e70181eb8357895344e7428a36e7481baf852b",
+        "stale_evidence:c860da2f66ae2a92ac180eb2d4bf7e5824657cbdfc38abd5bc9d66ebca19b363",
+        "stale_evidence:cb64035c685557673c0173c03392196dc0ad5ff0a482c6b05913311b697c1398",
+        "stale_evidence:d1bf824cea80842c60601d68f0af507d1b87363da35c3815ec53371e96856826",
+        "stale_evidence:d2f93b3ed351259df10ae938bd4cc806e9dc9d3212d486ea9bcdb7a116379271",
+        "stale_evidence:e425daac1403d73b8101a5fe4eef2d40c8994b0a4f3c48d69ff8aae9659de57a",
+        "stale_evidence:e44a8d559a854a2211064040ba3af5458ea84412a0c8804fd24d953dda616a01",
+        "stale_evidence:e532111e8f0bb6eb937218fb1cabba2fa96c1a76582accd4fd2d90f0bee624d5",
+        "stale_evidence:eab7e15b84cb1268306716c0c7be2bbb7981fe2278ed59ad0ea9a46a52590b86",
+        "stale_evidence:f252da32a3d58be1e3407c07ee08376df78667bd905e695c5e3182819e6fd84b",
+        "stale_evidence:f62e8ba4ce02d934ac42cdc8144e3d8799d31944710e54114b273e3fbb2322ac",
+        "stale_evidence:f7138b940bb244f1476b6e133b7877703ce3d5e6a3d0d71fa876814573828474",
+        "stale_evidence:fdbfa81ad27083cd182ee518889734c5da4b7ddb1654285c6056e8d9e947e83f"
+      ],
+      "reason": "Reviewed exact77b3f0a5..3cc1dfee committed history with22 files/21 behaviors and no missing receipts, refreshed the source census and central links, and retained the initial407-source positive window report with exact source snapshot and binaries. Shared source/document changes and strengthened creature input domain leave55 historical source/claim gap identities explicitly pending. Initial evidence is not refreshed to conceal the later move/held/target-loss safety fix.",
+      "validation": {
+        "status": "pending",
+        "reason": "Preserve historical CREATUREB01/CREATUREB02 and unrelated evidence hashes and scopes. Initial positive window cases do not cover the subsequent interruption review or current code. Shared campaign/view/control/index effects on other contracts are accounted for without rerunning their unrelated original comparisons. Whole original AI, movement/cadence, installed map/projectile collision catalogs, other species/wizard melee, physical audio/sprites and live replacement remain separate."
+      }
     }
   ],
   "schema": 1

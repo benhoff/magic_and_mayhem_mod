@@ -1,5 +1,6 @@
 #include "campaign.hpp"
 #include "trace.hpp"
+#include "creature_runtime.hpp"
 #include <charconv>
 #include <iostream>
 #include <sstream>
@@ -49,16 +50,18 @@ void save(const char* path,const mnm::game::CampaignSession& s) {
 }
 int main(int argc,char** argv) try {
     using namespace mnm::game;
+    std::shared_ptr<const CombatDriver> driver;
+    if(argc>=4 && std::string_view(argv[1])=="--installation") {driver=mnm::skirmish::installedCreatureRuntime(argv[2]);argc-=2;argv+=2;}
     const std::string_view command=argc>1?argv[1]:"";
     if(command=="create" && argc==3) {
-        auto s=mnm::skirmish::newCampaign();save(argv[2],s);view(s);return 0;
+        auto s=mnm::skirmish::newCampaign(true,true,driver);save(argv[2],s);view(s);return 0;
     }
-    if(command=="inspect" && argc==3) {view(mnm::skirmish::loadCampaign(argv[2]));return 0;}
+    if(command=="inspect" && argc==3) {view(mnm::skirmish::loadCampaign(argv[2],driver));return 0;}
     if(command=="start" && argc==4) {
-        auto s=mnm::skirmish::loadCampaign(argv[2]);s.startMission();save(argv[3],s);view(s);return 0;
+        auto s=mnm::skirmish::loadCampaign(argv[2],driver);s.startMission();save(argv[3],s);view(s);return 0;
     }
     if(command=="cast" && (argc==5 || argc==6 || argc==7)) {
-        auto s=mnm::skirmish::loadCampaign(argv[2]);
+        auto s=mnm::skirmish::loadCampaign(argv[2],driver);
         if(!s.battle()) throw std::invalid_argument("Start a campaign mission before casting");
         const auto meta=s.battle()->state();SkirmishOrder order;order.subject=meta.wizards[0].actor;
         if(std::string_view(argv[4])=="bolt" && argc==5) {
@@ -76,10 +79,10 @@ int main(int argc,char** argv) try {
     if(command=="resume" && argc==5) {
         const auto ticks=number<unsigned>(argv[4]);
         if(ticks>4096) throw std::invalid_argument("Ticks must be 0..4096");
-        auto s=mnm::skirmish::loadCampaign(argv[2]);unsigned settlements=0;
+        auto s=mnm::skirmish::loadCampaign(argv[2],driver);unsigned settlements=0;
         for(unsigned i=0;i<ticks && s.battle();++i) if(s.step().result) ++settlements;
         save(argv[3],s);view(s,settlements);return 0;
     }
-    throw std::invalid_argument("Usage: mnm-campaign-cli create OUTPUT | inspect INPUT | start INPUT OUTPUT | "
+    throw std::invalid_argument("Usage: mnm-campaign-cli [--installation ROOT] create OUTPUT | inspect INPUT | start INPUT OUTPUT | "
                                 "cast INPUT OUTPUT bolt | cast INPUT OUTPUT summon X Y | cast INPUT OUTPUT cure/sphere TARGET-SLOT | resume INPUT OUTPUT TICKS");
 } catch(const std::exception& error) {std::cerr<<error.what()<<'\n';return 1;}

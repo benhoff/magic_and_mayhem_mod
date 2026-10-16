@@ -11,15 +11,17 @@ namespace mnm::skirmish {
 namespace {
 class Resources final:public game::CampaignResources {
     bool cure_, sphere_;
+    std::shared_ptr<const game::CombatDriver> driver_;
     std::shared_ptr<const game::Navigation> navigation_=arenaNavigation();
     std::shared_ptr<const game::HealthRules> rules_=ordinaryHealthRules();
 public:
-    explicit Resources(bool cure, bool sphere):cure_(cure), sphere_(cure && sphere) {}
+    explicit Resources(bool cure, bool sphere, std::shared_ptr<const game::CombatDriver> driver={}):cure_(cure), sphere_(cure && sphere), driver_(std::move(driver)) {}
+    bool hasCreatures() const {return bool(driver_);}
     bool hasCure() const {return cure_;}
     bool hasSphere() const {return sphere_;}
     game::SkirmishSession create(const game::CampaignMission& mission) const override {
         if(mission.map!="native-skirmish-arena-v1") throw std::invalid_argument("unknown campaign arena");
-        return game::SkirmishSession(navigation_,rules_,sphere_ ? battleRuntime() : cure_ ? cureRuntime() : nullptr);
+        return game::SkirmishSession(navigation_,rules_,sphere_ ? battleRuntime() : cure_ ? cureRuntime() : nullptr,driver_);
     }
     game::SkirmishSession restore(const game::CampaignMission& mission,game::State state) const override {
         if(mission.map!="native-skirmish-arena-v1" || state.map!=mission.map)
@@ -27,7 +29,7 @@ public:
         auto effects=resolveCureRuntime(state);
         if(bool(effects)!=cure_ || (effects && (effects->identity()==sphereBattleIdentity)!=sphere_)) throw std::invalid_argument("campaign effect runtime binding mismatch");
         game::World world(0);world.restore(std::move(state));
-        return {std::move(world),navigation_,rules_,std::move(effects)};
+        return {std::move(world),navigation_,rules_,std::move(effects),driver_};
     }
 };
 void append(game::Bytes& bytes,const game::Bytes& value) {
@@ -40,7 +42,7 @@ game::CampaignDefinition definition(const Resources& resources) {
     game::CampaignDefinition content;auto& p=content.initial;
     p.identity={"native-skirmish-campaign","binding-pending"};
     p.player="player";p.realm="arena";p.region="first-duel";
-    game::CampaignWizard player;player.id="player";player.spells={"summon-sentinel","arc-bolt"};
+    game::CampaignWizard player;player.id="player";player.spells={resources.hasCreatures()?"summon-crocodile":"summon-sentinel","arc-bolt"};
     if(resources.hasCure()) player.spells.push_back("cure");
     if(resources.hasSphere()) player.spells.push_back("magic-sphere");
     game::CampaignWizard rival;rival.id="rival";p.wizards={player,rival};
@@ -60,11 +62,15 @@ game::CampaignDefinition definition(const Resources& resources) {
     p.identity.contentRevision=revision.str();return content;
 }
 }
-game::CampaignSession newCampaign(bool enableCure, bool enableSphere) {
-    auto resources=std::make_shared<Resources>(enableCure,enableSphere);
+game::CampaignSession newCampaign(bool enableCure, bool enableSphere, std::shared_ptr<const game::CombatDriver> driver) {
+    auto resources=std::make_shared<Resources>(enableCure,enableSphere,std::move(driver));
     return {definition(*resources),std::move(resources)};
 }
-game::CampaignSession loadCampaign(const std::filesystem::path& path) {
+game::CampaignSession loadCampaign(const std::filesystem::path& path, std::shared_ptr<const game::CombatDriver> driver) {
+    if(driver) {
+        auto installed=newCampaign(true,true,std::move(driver));
+        try {installed.restore(path);return installed;} catch(const std::exception&) {}
+    }
     auto campaign=newCampaign();
     try {campaign.restore(path);return campaign;}
     catch(const std::exception&) {
