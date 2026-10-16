@@ -1,4 +1,4 @@
-# Native campaign persistence, version 1
+# Native campaign persistence
 
 This is an intentional native data policy, separate from original version-20
 `.sav` files and the recovered [campaign rules](../runtime/persistence-progression.md).
@@ -98,3 +98,19 @@ Build target `mnm-campaign` links `mnm-world`, with no Qt, original assets,
 reconstruction or hook dependencies. Reproduce through
 `tools/test-native-campaign-persistence.py` under the storage guard. Coverage ID:
 `NP.campaign-persistence`.
+
+## Version-2 attempt and result continuation
+
+The version-1 layout and byte encoding remain unchanged when there is no
+session attempt/result data. Version 2 uses the same fields, then adds a u64
+attempt immediately after an active battle's participant list. After the battle
+branch it adds a u8 last-result-present flag; a present result is u64 attempt,
+string realm, string region, u32 outcome (1 victory, 2 defeat, 3 draw).
+
+Attempts are nonzero, no greater than the transition counter. A result must
+refer to an existing realm/region. A simultaneous active attempt must be newer
+than the last result. The session imposes its additional start/settlement order;
+the general codec does not derive rewards or battle outcomes. A decoded
+version-1 battle has attempt zero. Version 2 without attempt/result data refuses
+as noncanonical. Standalone blocks still rely on the outer snapshot checksum.
+See [session ownership and limitations](../runtime/native-campaign-session.md).

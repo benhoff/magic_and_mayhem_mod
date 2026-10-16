@@ -982302,6 +982302,336 @@
         "status": "pending",
         "reason": "Fresh stable-source campaign envelope execution separately supports native implementation/headless continuation through NP.campaign-persistence.envelope-20261016 and its exact execution receipt. Shared build/README fingerprints retain earlier native/renderer validation as historical; this accounting does not renew those scopes. Prototype source staleness is intentional. Real content, session resource rebinding, campaign outcome rules, UI and crash/injected-I/O cases remain pending."
       }
+    },
+    {
+      "id": "campaign-core-execution-review-20261016",
+      "reason": "Reviewed scoped native campaign implementation/test paths and complete declared dependency fingerprints. Fresh execution covers the registered campaign contracts/scenarios only; existing original/recovered contracts and unrelated native claims are not renewed.",
+      "files": [
+        {
+          "after_sha256": "a10bf27604340dcfc750d8ad5275a2f669ea11e8daaab5c8a4d3b8bddfd2830a",
+          "before_sha256": "2b6146151323180d4069054fab7efdb028edb45c38045fce176c180aba343d23",
+          "path": "game/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "a3f948942ac516351719304a19cee6488ca8c091f531efddb7c56ac50121d0a1",
+          "before_sha256": "2bc41e0a137ac04f7f8ebbf775c585fcbdb7c464aab8a2c8dff5222c459dbf4d",
+          "path": "game/persistence/campaign.cpp"
+        },
+        {
+          "after_sha256": "2ba42641e3a67181575e609fa07f075ad32f4a07c30d475492e9cbe249cbc4fc",
+          "before_sha256": "a6a7723d0c751066cd04e56a71df1d254d7bdf8b87b5e3f5da03897384134e41",
+          "path": "game/persistence/campaign.hpp"
+        },
+        {
+          "after_sha256": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+          "before_sha256": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+          "path": "game/persistence/snapshot.cpp"
+        },
+        {
+          "after_sha256": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+          "before_sha256": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+          "path": "game/persistence/snapshot.hpp"
+        },
+        {
+          "after_sha256": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+          "before_sha256": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+          "path": "game/persistence/store_posix.cpp"
+        },
+        {
+          "after_sha256": "8f53a7156ed1e5b89d52644acbd08478dab136628de7961785410971cee0d981",
+          "before_sha256": null,
+          "path": "game/simulation/campaign_session.cpp"
+        },
+        {
+          "after_sha256": "6c5913043dae27ce6224de8c498966ee8c743da9a0d3c9e7a7172436aa654254",
+          "before_sha256": null,
+          "path": "game/simulation/campaign_session.hpp"
+        },
+        {
+          "after_sha256": "9d72f6cdfb7444620bb3a020a673ca08fc286b14c6a2ae5a5ead97ca6db9a8c5",
+          "before_sha256": "9d72f6cdfb7444620bb3a020a673ca08fc286b14c6a2ae5a5ead97ca6db9a8c5",
+          "path": "game/simulation/combat.cpp"
+        },
+        {
+          "after_sha256": "ba4b04e90a9a2f9070fc8a0339436b4b4c9413d360c667ff834d086dc8a90dee",
+          "before_sha256": "ba4b04e90a9a2f9070fc8a0339436b4b4c9413d360c667ff834d086dc8a90dee",
+          "path": "game/simulation/combat.hpp"
+        },
+        {
+          "after_sha256": "3799dab0d63238583ffa9223caa2f8aeb79ba5af189e8dcf2b69ebe25f2b3b12",
+          "before_sha256": "3799dab0d63238583ffa9223caa2f8aeb79ba5af189e8dcf2b69ebe25f2b3b12",
+          "path": "game/simulation/health_rules.cpp"
+        },
+        {
+          "after_sha256": "8f13dc356188a914adea0632c1b7c5a9c5559d97749f8c250402663bf487d1d4",
+          "before_sha256": "8f13dc356188a914adea0632c1b7c5a9c5559d97749f8c250402663bf487d1d4",
+          "path": "game/simulation/health_rules.hpp"
+        },
+        {
+          "after_sha256": "8880e491dbd23e55378cd155366fa46c8cedd603c0ce5aaf7d7950f6ae3c4cba",
+          "before_sha256": "8880e491dbd23e55378cd155366fa46c8cedd603c0ce5aaf7d7950f6ae3c4cba",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+          "before_sha256": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+          "before_sha256": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+          "path": "game/simulation/occupancy.cpp"
+        },
+        {
+          "after_sha256": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+          "before_sha256": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+          "path": "game/simulation/occupancy.hpp"
+        },
+        {
+          "after_sha256": "35a23758a06237fe735d8ac7ac80d2168002c6daa1da58b718e58606bc4f6748",
+          "before_sha256": "35a23758a06237fe735d8ac7ac80d2168002c6daa1da58b718e58606bc4f6748",
+          "path": "game/simulation/skirmish.cpp"
+        },
+        {
+          "after_sha256": "ac80214484383815a0e3f4d8d137afe9a0573e71cb6396d060d09d2e33f5a753",
+          "before_sha256": "ac80214484383815a0e3f4d8d137afe9a0573e71cb6396d060d09d2e33f5a753",
+          "path": "game/simulation/skirmish.hpp"
+        },
+        {
+          "after_sha256": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+          "before_sha256": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+          "path": "game/simulation/tick_clock.cpp"
+        },
+        {
+          "after_sha256": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+          "before_sha256": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+          "path": "game/simulation/tick_clock.hpp"
+        },
+        {
+          "after_sha256": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+          "before_sha256": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+          "path": "game/simulation/world.cpp"
+        },
+        {
+          "after_sha256": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+          "before_sha256": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+          "path": "game/simulation/world.hpp"
+        },
+        {
+          "after_sha256": "be2689a5184888c49e5262db641b229ec1395cda5030058b9b6fa5f362f4e28c",
+          "before_sha256": null,
+          "path": "tests/campaign-session-test.cpp"
+        },
+        {
+          "after_sha256": "e43a1612a61212e1ae63aa432d006e86de4b8f6dbe5b330f24bf963d79c74542",
+          "before_sha256": null,
+          "path": "tools/test-native-campaign-session.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "5fdad487060761e595b04bc1b53bd7ee1b2a7720e1f63eaac7f2a0aff33b91e6",
+          "before_sha256": "cfb2b43853fc7ba7a87b62295e65161a3f9401057ce8b9581854bef201508cba",
+          "id": "NP.campaign-persistence"
+        },
+        {
+          "after_sha256": "85de6f7b36d6ecd184b66e70096db132bf9177dba1f3ba4851345560c0e6f1e2",
+          "before_sha256": null,
+          "id": "NP.campaign-session"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Prospectively declared source-stable CMake/CTest execution passed with the registered immutable report. Native authored policy and resource/continuation checks remain separate from original campaign/rules/UI equivalence.",
+        "evidence": [
+          "NP.campaign-session.core-20261016"
+        ]
+      }
+    },
+    {
+      "id": "campaign-core-accounting-review-20261016",
+      "reason": "Reviewed campaign format/session/app boundaries, library/test wiring, explicit source links, updated census/summary, ledger milestone and preserved historical results. The isolated branch contains only this campaign increment. Shared-file link/fingerprint changes retain earlier behavior claims and source hashes as historical, with the affected limitations named by this exact receipt.",
+      "files": [
+        {
+          "after_sha256": "d87c6a0d78c9e6b163987f4f5bf83486d21d4f8de07f5bc40a356af654481d04",
+          "before_sha256": "7f9e1b111b14fd3a13079fea10e7322215e1f987dab08e943cc49991b6558752",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "7195ae92ad22d8ccbfcd579d881739f535ed411efd4bcd51d59748a06d8fdf92",
+          "before_sha256": "124dcad1379a989bd448dd785769935109ef663e5129688374a87dd3c2418205",
+          "path": "research/formats/native-campaign-state.md"
+        },
+        {
+          "after_sha256": "d921a2b4628f6de2760d8f9f373bfa043317cc737d028701039a00f877578ad8",
+          "before_sha256": "5bf9572524bef4d7d4ad707658546b06783c1ce82af760dd79c0e31ae16dced6",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a1dc4d5ad9b666c631d2112c859aa1971add57009fa06b1c138f4acb841087ae",
+          "before_sha256": "da03aa7e3b06719107c0af6c7890d92bc5e2de7df66fd0290548b97e147ceb3b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7c3b5d86753e64ce99de978faf7e01542ce017ce5c4be4383204e69463e5041d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-campaign-session-core-20261016.json"
+        },
+        {
+          "after_sha256": "05cab76082391ef818a5eac6f41aa2a70c7112ddd4d57175083a8ba812f56856",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-campaign-session-core-20261016.md"
+        },
+        {
+          "after_sha256": "e064d64e596b6eea892ac416e409df9d6aedcf3e3339fce421c8853ed9217be6",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-session-core-20261016.json"
+        },
+        {
+          "after_sha256": "724fed67d4e6911e762cfdd2036eeaa78900a95892bd9d5871c9110f35db25b6",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-session.md"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "4d2f79fda2b921e2d3bda2cad8fc72d482375a358b71cbf9aa99392e03275c81",
+          "before_sha256": "77a03ac6bd14feec5c36f4bcf2a9edc8f49fb4556169feadb9bf45e3cd267a4b",
+          "id": "DRAW.hud-selection-input-state"
+        },
+        {
+          "after_sha256": "dd2cbf3506326863a3e91c6583e2874a6940cc54d5f36a0d8693edef43d44296",
+          "before_sha256": "b0de9b6a3fd2f1c766cdf7692ba25cf7f1db776a2ad4ea422e3e1149937f7a82",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "b9de4337d1c8eaa0716b0b068671857af927593c3b07c205619cacaeb1a46a5f",
+          "before_sha256": "cf47c724fae49923473a98b3a82c783f2062a76e585b9de6d89aa62842278be9",
+          "id": "NP.combat-encounter"
+        },
+        {
+          "after_sha256": "d7444010a57047777d59427ca5f81c04d783a3f561d8405da923dd42d17c903d",
+          "before_sha256": "02a9ddb15530cc9de5f420d0b075922272d9443680cac1790cd855083d8d3375",
+          "id": "NP.combat-orders"
+        },
+        {
+          "after_sha256": "246a4ac6d53104d6e6304e94d2cecdaf6f74c35f965cec1a95132df3c9a9d9d3",
+          "before_sha256": "c652f29798f957674e1f688c914e65af13b84d6b541212298836b25e660813ea",
+          "id": "NP.creature-encounter"
+        },
+        {
+          "after_sha256": "f8758cdb9878ca4e8908e56774930178e3c404a2ea3461ddae1e646bd3112478",
+          "before_sha256": "873ccfba7096c8b19d69eef63a8e94a5b379299f236aaf5aa92e546750b32563",
+          "id": "NP.creature-rule-session"
+        },
+        {
+          "after_sha256": "2b8a7a804ba44e5d52094c7be3f3e016d652b9880355d1407546cfeb935f6b67",
+          "before_sha256": "4bd04bad18b0aeb5491cfa98a88da23fcdcae1167021307d845ab87d037b1db2",
+          "id": "NP.creature-window"
+        },
+        {
+          "after_sha256": "aa35896d38552c978b50792cedfd9f609e28b5671da316dfeabb0463b17403aa",
+          "before_sha256": "aa35896d38552c978b50792cedfd9f609e28b5671da316dfeabb0463b17403aa",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "655dffa64ef6eb802a5d9047d83af2846a7e0a729420e79e732b69b10bbc3ab5",
+          "before_sha256": "bc3d4b54f698789ed4b48d5a5b25043b19c83c28d613e65f51259116f58878d0",
+          "id": "NP.melee-exchange"
+        },
+        {
+          "after_sha256": "f4f2f3df0ab4f161a9adeeb806af443d15394ed2624df54ea9996908072c1c6f",
+          "before_sha256": "c677d623bacc0bb1a302cea992a19a86eebedf60856e28b66370d9586aef71f3",
+          "id": "NP.melee-lab-window"
+        },
+        {
+          "after_sha256": "d83089d6c29b66c5d10ffa0f26d505485648acc7aa9c71ca9509cbab1ed9c302",
+          "before_sha256": "483f2adced36f4fb67b1ee35e5f30a758e0a73d4385d12aaa0d13028043b1dbb",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "8fc52a501558f80cf00169924afe1ebfb6452417e8c058a344681c4e9cca2fb2",
+          "before_sha256": "8fc52a501558f80cf00169924afe1ebfb6452417e8c058a344681c4e9cca2fb2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "d9a1e7b7144129ad0ed86560b197a32964d9722497b7da48cdf40c4991230599",
+          "before_sha256": "a3e869ea6b4fa1cfc3abc7d5d6da3bd7ba20406645220e94266f532f22ddda1d",
+          "id": "NP.ordinary-health-adapter"
+        },
+        {
+          "after_sha256": "0b53b0c2f8f8677ff5041385071f7944b3293074285fd08391a26100eb098d10",
+          "before_sha256": "0b53b0c2f8f8677ff5041385071f7944b3293074285fd08391a26100eb098d10",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "b048a11dd4479d9e059bae0e4c369b8e7e20fb775e4971dfd8f1b6d2b3fc5565",
+          "before_sha256": "b048a11dd4479d9e059bae0e4c369b8e7e20fb775e4971dfd8f1b6d2b3fc5565",
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "0bfca59ec0c425c41b4c2165f4278d99612b0191c2d3325f692613122dd9696b",
+          "before_sha256": "44c4ff4709fd047ebec87a2268494c38a4f51a4496ebc4c9647c8a240ad73ff1",
+          "id": "NP.skirmish-simulation"
+        },
+        {
+          "after_sha256": "4f1f5c04ea0b1fb0898d1fe57c77a7f94335648eea218449606ad3a79c1fe1c9",
+          "before_sha256": "fe563d5a7319377eec92b83d5aa1678a0216451bf7b0cdea7a64433225b93186",
+          "id": "NP.skirmish-window"
+        },
+        {
+          "after_sha256": "aa1462688485b1beab631d2546664281c5f3c4138325570a55e486b4f6618bef",
+          "before_sha256": "aa1462688485b1beab631d2546664281c5f3c4138325570a55e486b4f6618bef",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "7b2092b4333220ef86ffdc15ecbc5598ca2b7af73e5ba6efdf72cd0037e51718",
+          "before_sha256": "7b2092b4333220ef86ffdc15ecbc5598ca2b7af73e5ba6efdf72cd0037e51718",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "855441a1c3b65512b5a2e88e713ec7e724f3215611b782db5f5afbe4c83a1ddd",
+          "before_sha256": "855441a1c3b65512b5a2e88e713ec7e724f3215611b782db5f5afbe4c83a1ddd",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "f50b4eff63c65bd2ca4694a316c23a39cfa828611e2b91f3b771e7da93e09f9a",
+          "before_sha256": "35b8cc13be69d7323b89adffe67d98b152b815e13af7f6d97ed25b37ad4a44d2",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "55a5f3b8f58f90033088fde7777a19e64490b8a8f2482b1dd4b36b8ca9158136",
+          "before_sha256": "a1ea4556085bd9ad8ebf8dc209f4c9b6ce10f4d205c2c61643a5dd3580b47518",
+          "id": "NR.qt-quick-battle-app-journey"
+        },
+        {
+          "after_sha256": "038ab918c1d2d8d08e57e0bbc8bb881cadc264f2d5c397808c6133fd2d75991e",
+          "before_sha256": "c2bdcce6477eeb2b39c70dcb347c8967196db703d13eda343f9e0e3d972f59fa",
+          "id": "NR.qt-results-action-readiness"
+        },
+        {
+          "after_sha256": "497a80cfa4ff97b42db4741cd35ed8d630e133c062409f7454e0277b113da48d",
+          "before_sha256": "f3e69ab7937b2b4dbd5269c41beb0063289f1cd7b87fc22546292b97123a3ba9",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "d2a66a2dcd338272f156f29de415d9b6cd3c7eabaadd725635740532cffe169c",
+          "before_sha256": "36c57bec4507ec759ef3a9bbe9d928ade016615606f5479303cbd28c215d72e9",
+          "id": "WORLD.owned"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:e0aca4d58eb64ff25459c8f5e77acad9988cd1fc7d386385c26b9ae6dae5c526",
+        "stale_evidence:194c20bc1e4bdd10a234030d0a7c5e8740a7755df60aeed9ab81ad9a8b4bad44",
+        "stale_evidence:6c7133f91dc4ebab89f14794c5d93a01288881153e148cde29286a83899679a1",
+        "stale_evidence:83f4243b7beea3e979268f004102e4b507b36044e16376b2de2115c73055b61a",
+        "stale_evidence:90a636616105ab60c6187a6e15f679c2fe0f29f4debd5305607d2140b7b17e62"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh execution is recorded separately for declared campaign behaviors. Shared native build/README/source-link fingerprints do not renew other historical scenarios. Original campaign progression/rewards, UI, arbitrary original resource restoration, external side-effect transactions, cross-process merge and injected file/durability failures remain pending."
+      }
     }
   ],
   "schema": 1

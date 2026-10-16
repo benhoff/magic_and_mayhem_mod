@@ -21,6 +21,13 @@ struct CampaignRealm { std::string id; std::vector<CampaignRegion> regions; };
 struct CampaignBattle {
     std::string realm, region, map;
     std::vector<std::string> participants;
+    std::uint64_t attempt=0; // Zero denotes legacy version-1 data without a session token.
+};
+enum class CampaignOutcome : std::uint32_t { victory=1, defeat=2, draw=3 };
+struct CampaignResult {
+    std::uint64_t attempt=0;
+    std::string realm, region;
+    CampaignOutcome outcome=CampaignOutcome::victory;
 };
 struct CampaignState {
     CampaignIdentity identity;
@@ -31,6 +38,7 @@ struct CampaignState {
     std::vector<CampaignWizard> wizards;
     std::vector<CampaignRealm> realms;
     std::optional<CampaignBattle> battle;
+    std::optional<CampaignResult> lastResult;
 };
 struct CampaignLimits {
     std::uint32_t bytes=4*1024*1024, wizards=80, realms=32, regions=4096;

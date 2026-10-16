@@ -241,6 +241,12 @@ resolve handles again after mutation.
 
 ## Persistence
 
+`mnm-campaign-session` adds a [native linear campaign coordinator](../research/runtime/native-campaign-session.md)
+around the existing skirmish. It stages campaign and battle ownership together,
+rebinds application-owned resources before restoring, and records each terminal
+attempt once. Authored victory/defeat/retry policy is separate from original
+campaign behavior and rewards.
+
 The `mnm-campaign` library adds [typed native campaign persistence](../research/formats/native-campaign-state.md)
 alongside complete world snapshots: wizard records, realm/region ownership
 and completion, difficulty, selection and active battle identity. Existing battle profile/system bytes retain their original owner. Updates validate

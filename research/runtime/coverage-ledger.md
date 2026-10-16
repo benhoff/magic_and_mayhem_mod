@@ -12439,3 +12439,32 @@ must validate/rebind their own resources before publishing restored state.
 Existing reverse-engineering evidence and gameplay-gap statuses remain historical
 and unchanged. Shared `game/README.md` edits may make earlier linked evidence
 stale; this run does not renew those unrelated validation claims.
+
+
+## Native campaign session — 2026-10-16
+
+`NP.campaign-session` coordinates typed progress with a real native skirmish.
+Start, queued orders, ticks and resource restoration publish staged ownership
+together. Version-2 campaign records preserve active attempt identity and the
+last result while existing version-1 records retain their bytes. A terminal
+tick emits and records its result once per adopted checkpoint lineage, releases
+the battle and advances the declared linear mission on victory. Defeat/draw
+allow retry without changing campaign ownership. No rewards or arena tuning
+are introduced. Old-save rewinds and concurrent save forks are separate.
+
+[Current core execution](native-campaign-session-core-20261016.json) passes all42
+native game CTest checks. Synthetic navigation drives actual skirmish casts,
+projectiles, damage and terminal outcomes; tests cover exact restored
+continuation, wrong/missing/altering resources, throwing health, invalid state,
+recursive mutation, repeated start/result/reopen, retry and counter exhaustion.
+The run also renews scoped version-1 campaign persistence checks on current
+source. Raw logs/claims are pinned at
+`working/tests/campaign-session/run-0x9v3gej/`. No original artifacts were consumed.
+[Contract and limitations](native-campaign-session.md).
+
+Actual frozen-arena/content binding and independent-process mission journeys
+remain the next integration step. Campaign GUI, branching/original progression
+and rewards, original assets, external award transactions, power loss and
+injected file-system failures remain pending. Shared native build/README
+changes retain other historical evidence hashes/statuses without renewing their
+current validation.

@@ -72364,7 +72364,61 @@
       ],
       "evidence": [
         "NP.campaign-persistence.synthetic-20261016",
-        "NP.campaign-persistence.envelope-20261016"
+        "NP.campaign-persistence.envelope-20261016",
+        "NP.campaign-session.core-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.campaign-session",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Transactional native campaign attempts, resource restore and one-time result settlement",
+      "scope": "Owned linear authored campaign coordinator around SkirmishSession; immutable mission roster, campaign/battle staged publication, native v2 attempt/last-result storage with unchanged v1 records, exact world-byte resource rebinding, pending cast/projectile continuation, counter exhaustion and recursive/failing mutation refusal. Victory completes/owns one region and selects the successor/final completion; defeat/draw retain mission for retry. Result emitted once per adopted checkpoint lineage and retained across reopen; intentional old-save rewind and concurrent save forks are separate. No original campaign rules/rewards, branching content, UI, arbitrary original assets or file-failure equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-session.md",
+        "research/formats/native-campaign-state.md"
+      ],
+      "implementation": [
+        "game/simulation/campaign_session.hpp",
+        "game/simulation/campaign_session.cpp",
+        "game/persistence/campaign.hpp",
+        "game/persistence/campaign.cpp"
+      ],
+      "tests": [
+        "tests/campaign-session-test.cpp",
+        "tools/test-native-campaign-session.py"
+      ],
+      "validation_dependencies": [
+        "game/CMakeLists.txt",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp"
+      ],
+      "evidence": [
+        "NP.campaign-session.core-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -149269,6 +149323,25 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NP.campaign-session.core-20261016",
+      "kind": "native_integration",
+      "scope": "42 native game CTest checks: version-1 campaign compatibility plus version-2 attempts/results and transactional actual skirmish sessions over synthetic navigation, resource/backend/recursive/counter rollback and victory/defeat/draw/retry/reopen continuation. No original rules, actual arena adapter or UI claim.",
+      "record": "research/runtime/native-campaign-session-core-20261016.json",
+      "sha256": "e064d64e596b6eea892ac416e409df9d6aedcf3e3339fce421c8853ed9217be6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/arena",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -165751,7 +165824,23 @@
       ],
       "evidence": [
         "NP.campaign-persistence.synthetic-20261016",
-        "NP.campaign-persistence.envelope-20261016"
+        "NP.campaign-persistence.envelope-20261016",
+        "NP.campaign-session.core-20261016"
+      ]
+    },
+    {
+      "id": "NP.campaign-session.transaction",
+      "level": "headless",
+      "scope": "Synthetic owned navigation and real skirmish stepping through pending casts/projectiles, resource-bound session restore and identical continuation, victory across realms/final completion, defeat/draw/retry, repeated result/reopen refusal, resource/backend/counter/recursive failure rollback and v2 malformed/truncation checks. No installed/original assets or arena app adapter proof.",
+      "behaviors": [
+        "NP.campaign-session"
+      ],
+      "tests": [
+        "tests/campaign-session-test.cpp",
+        "tools/test-native-campaign-session.py"
+      ],
+      "evidence": [
+        "NP.campaign-session.core-20261016"
       ]
     }
   ],
@@ -166369,8 +166458,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-campaign-commit-20261016.json",
-    "sha256": "aa4ab3fb9f7a472a4071d691ff14d402d86b51ae04bfb3e103a7cf170bb3ca9f"
+    "path": "research/runtime/coverage/source-index-campaign-session-core-20261016.json",
+    "sha256": "7c3b5d86753e64ce99de978faf7e01542ce017ce5c4be4383204e69463e5041d"
   },
   "claim_bindings_required": true
 }
