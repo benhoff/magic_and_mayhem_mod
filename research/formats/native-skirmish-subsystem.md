@@ -34,3 +34,17 @@ positions, mana/phase ranges, target hostility, projectile ordering and terminal
 cleanup. Restore builds a complete candidate before replacing active state.
 A pending target may have died after admission, and an airborne bolt retains its
 source identity after source death; tick rules decide refusal, miss or impact.
+
+## Authored mission extension (version2)
+
+`MNMARM02` retains the v1 rules fingerprint and body. Immediately after the
+8-byte magic and 8-byte rules fingerprint it inserts: map-byte-count(u32), map
+ASCII bytes(1..128, no terminator), dimensions(3 signed32), two wizard positions
+(each3 signed32), AI count(u32,1..32), AI positions, standing count(u32,2..4096),
+standing positions. Coordinates and counts are little endian. Standing cells
+are strictly ordered by x,y,z and exclude the perimeter/zero layer. Mission
+validation also checks spawns, duplicate AI positions and summon distance.
+The complete subsystem is at most65536 bytes. A default arena policy must use
+v1; a v2 arena record is rejected as noncanonical. Existing `MNMARM01` bytes
+and rules fingerprint remain unchanged. The owning campaign binds the complete
+policy and resources; embedded coordinates are not trusted as resource authority.

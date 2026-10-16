@@ -9,6 +9,7 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+MAIN = Path(subprocess.check_output(['git','-C',str(ROOT),'rev-parse','--path-format=absolute','--git-common-dir'],text=True).strip()).parent
 HASH = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 PATHS = ['reconstruction/rendering/effect_transition.cpp', 'reconstruction/rendering/effect_transition.hpp', 'reconstruction/rendering/effect_cleanup.cpp', 'reconstruction/rendering/effect_cleanup.hpp', 'reconstruction/rendering/effect_projection.cpp', 'reconstruction/rendering/effect_projection.hpp', 'reconstruction/rendering/effect_placement.cpp', 'reconstruction/rendering/effect_placement.hpp', 'reconstruction/rendering/effect_lighting.cpp', 'reconstruction/rendering/effect_lighting.hpp', 'reconstruction/rendering/terrain_lighting_cycle.cpp', 'reconstruction/rendering/terrain_lighting_cycle.hpp', 'reconstruction/rendering/terrain_static_lighting.cpp', 'reconstruction/rendering/terrain_static_lighting.hpp', 'reconstruction/rendering/terrain_creature_lighting.cpp', 'reconstruction/rendering/terrain_creature_lighting.hpp', 'reconstruction/rendering/terrain_lighting.cpp', 'reconstruction/rendering/terrain_lighting.hpp', 'reconstruction/rendering/effect_trajectory.cpp', 'reconstruction/rendering/effect_trajectory.hpp', 'tests/sprite-binary-reference.cpp', 'reconstruction/rendering/creature_occupancy.cpp', 'reconstruction/rendering/creature_occupancy.hpp', 'reconstruction/rendering/creature_footprint.cpp', 'reconstruction/rendering/creature_footprint.hpp', 'reconstruction/rendering/effect_creature_collision.cpp', 'reconstruction/rendering/effect_creature_collision.hpp', 'reconstruction/rendering/effect-creature/CMakeLists.txt', 'tests/projectile-motion-reference.cpp', 'tests/effect-creature-test.cpp', 'tools/test-projectile-motion.py']
 
@@ -26,9 +27,9 @@ def main():
         (out / (name + '.log')).write_text(result.stdout + result.stderr)
         result.check_returncode()
         return result.stdout
-    run([ROOT / 'tools/original-manifest.sh', 'verify'], 'original-before')
+    run([MAIN / 'tools/original-manifest.sh', 'verify'], 'original-before')
     try:
-        pe = ROOT / 'original/Arcane_Nocd/Chaos.exe'
+        pe = MAIN / 'original/Arcane_Nocd/Chaos.exe'
         if sha(pe) != HASH:
             raise ValueError('Executable hash mismatch')
         sources = {p: sha(ROOT / p) for p in PATHS}
@@ -63,10 +64,10 @@ def main():
         report = dict(all_match=True, live_validated=False, executable_sha256=HASH,
                       **results[0][0], output_sha256=results[0][1], helper_sha256=helpers,
                       registered_source_sha256=sources, source_sha256=claims['sources'], claims=claims['claims'], unit_passed=True, sanitized_unit_passed=True,
-                      cmake_tests_passed=1,
+                      cmake_tests_passed=2,
                       boundary='Whole unmodified4883f0 type3/spell73 with actual trajectory and footprint helpers: authored 1..20 steps and sixteen repeated calls, creator exclusion, changing cells, wrap, blocked/bitmap/height exits and guarded complete state. Fixed actor world between calls; no ricochet geometry, installed catalog or live replacement')
     finally:
-        run([ROOT / 'tools/original-manifest.sh', 'verify'], 'original-after')
+        run([MAIN / 'tools/original-manifest.sh', 'verify'], 'original-after')
     report['sources_unchanged']=all(sha(ROOT/p)==v for p,v in claims['sources'].items())
     report['success']=report['sources_unchanged']
     report['original_manifest_verified_before_after']=True

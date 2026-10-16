@@ -16,6 +16,7 @@ class ArenaCanvas final : public QWidget {
         update();
     }
     static QPoint cellCenter(game::Point);
+    QPoint presentedCenter(game::Point) const;
     std::function<void(game::Point, bool)> onCell;
 };
 class Window final : public QWidget {

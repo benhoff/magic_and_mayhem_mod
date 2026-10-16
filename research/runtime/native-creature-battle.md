@@ -111,3 +111,12 @@ installed world/collision catalogs and live replacement remain independent.
 
 The runnable local copy is `working/build/creature-battle-20261016/mnm-skirmish`;
 use `--installation working/game-nocd --campaign` for the installed profile.
+
+The consolidated application also hosts installed Plains terrain campaigns.
+The optional creature driver is retained through mission-aware SkirmishSession
+creation/restoration and remains selected only for arena resource definitions.
+Map saves resolve their own resource/effect environment; loading a map/legacy
+arena/installed arena replaces terrain presentation transactionally. The real
+Qt profile-switch scenario covers both resource flags, New buttons, exact saves
+and refusal without mutation when either required binding is absent. This adds
+no recovered creature AI, terrain creature movement or original campaign claim.

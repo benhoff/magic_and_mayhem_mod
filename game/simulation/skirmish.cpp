@@ -5,9 +5,11 @@
 #include <cstdlib>
 #include <limits>
 #include <stdexcept>
+#include <tuple>
 
 namespace mnm::game {
 namespace {
+constexpr std::array<std::uint8_t, 8> customMagic{{'M', 'N', 'M', 'A', 'R', 'M', '0', '2'}};
 constexpr std::array<std::uint8_t, 8> magic{{'M', 'N', 'M', 'A', 'R', 'M', '0', '1'}};
 void require(bool v, const char *message) {
     if (!v)
@@ -57,8 +59,7 @@ void orderShape(const SkirmishOrder &o) {
                 ((o.kind == SkirmishOrderKind::summon || o.kind == SkirmishOrderKind::move) ==
                  bool(o.destination)),
             "invalid skirmish order encoding");
-    if (o.destination)
-        require(arenaCell(*o.destination), "Order outside the arena");
+
 }
 unsigned creatures(const CombatSession &combat, const SkirmishState &s, unsigned owner) {
     const auto c = combat.combat();
@@ -69,8 +70,8 @@ unsigned creatures(const CombatSession &combat, const SkirmishState &s, unsigned
             ++n;
     return n;
 }
-bool placement(const CombatSession &combat, const Navigation &nav, Point p) {
-    if (!arenaCell(p))
+bool placement(const CombatSession &combat, const Navigation &nav, const SkirmishMission &mission, Point p) {
+    if (!missionCell(mission, p))
         return false;
     nav.validateSpawnPosition(p);
     for (const auto &slot : combat.world().state().slots)
@@ -86,11 +87,74 @@ Outcome outcome(const CombatState &c, const SkirmishState &s) {
 }
 } // namespace
 bool arenaCell(Point p) { return p.x >= 1 && p.x <= 6 && p.y >= 1 && p.y <= 6 && p.z == 1; }
+namespace {
+bool pointLess(Point a, Point b) {
+    return std::tie(a.x, a.y, a.z) < std::tie(b.x, b.y, b.z);
+}
+const SkirmishMission &effective(const SkirmishState &s) {
+    return s.mission ? *s.mission : arenaMission();
+}
+void missionOrder(const SkirmishMission &m, const SkirmishOrder &o) {
+    orderShape(o);
+    require(!o.destination || missionCell(m, *o.destination), "Order outside mission standing cells");
+}
+void navigationMission(const SkirmishMission &m, const Navigation &nav) {
+    validateMission(m);
+    require(nav.binding().dimensions == m.dimensions, "mission navigation dimensions mismatch");
+    for (const auto p : m.standing) nav.validateSpawnPosition(p);
+}
+}
+const SkirmishMission &arenaMission() {
+    static const auto mission = [] {
+        SkirmishMission m{"native-skirmish-arena-v1", {8,8,3}, {{{1,6,1},{6,1,1}}},
+                          {{5,2,1},{5,1,1},{6,2,1},{4,2,1}}, {}};
+        for (int x=1; x<=6; ++x) for (int y=1; y<=6; ++y) m.standing.push_back({x,y,1});
+        return m;
+    }();
+    return mission;
+}
+bool missionCell(const SkirmishMission &m, Point p) {
+    return std::binary_search(m.standing.begin(), m.standing.end(), p, pointLess);
+}
+void validateMission(const SkirmishMission &m) {
+    require(!m.map.empty() && m.map.size() <= 128 &&
+                std::all_of(m.map.begin(),m.map.end(),[](unsigned char c){return c>=33 && c<=126;}),
+            "invalid mission map identity");
+    require(m.dimensions.x>=4 && m.dimensions.x<=16 && m.dimensions.y>=4 && m.dimensions.y<=16 &&
+                m.dimensions.z>=2 && m.dimensions.z<=32 && m.standing.size()>=2 &&
+                m.standing.size()<=4096 && !m.aiSummons.empty() && m.aiSummons.size()<=32,
+            "mission bounds exceeded");
+    std::optional<Point> previous;
+    for (auto p:m.standing) {
+        require(p.x>0 && p.x<m.dimensions.x-1 && p.y>0 && p.y<m.dimensions.y-1 &&
+                    p.z>0 && p.z<m.dimensions.z && (!previous || pointLess(*previous,p)),
+                "invalid/duplicate/unordered mission standing cell");
+        previous=p;
+    }
+    require(!(m.wizards[0]==m.wizards[1]) && missionCell(m,m.wizards[0]) &&
+                missionCell(m,m.wizards[1]), "invalid mission wizard spawns");
+    std::vector<Point> seen;
+    for (auto p:m.aiSummons) {
+        require(missionCell(m,p) && distance(p,m.wizards[1])<=2 &&
+                    !(p==m.wizards[0]) && !(p==m.wizards[1]) &&
+                    std::find(seen.begin(),seen.end(),p)==seen.end(), "invalid mission AI summon cell");
+        seen.push_back(p);
+    }
+}
+bool sameMission(const SkirmishMission &a, const SkirmishMission &b) {
+    return a.map==b.map && a.dimensions==b.dimensions && a.wizards==b.wizards &&
+           a.aiSummons==b.aiSummons && a.standing==b.standing;
+}
+
 Bytes encodeSkirmish(const SkirmishState &s) {
     require(s.units.size() >= 2 && s.units.size() <= 32 && s.projectiles.size() <= 32 &&
                 s.pending.size() <= 64,
             "skirmish storage bounds exceeded");
-    Bytes b(magic.begin(), magic.end());
+    const auto &mission=effective(s);
+    validateMission(mission);
+    const bool custom=!sameMission(mission,arenaMission());
+    const auto &header=custom ? customMagic : magic;
+    Bytes b(header.begin(), header.end());
     auto word = [&](std::uint32_t n) {
         for (unsigned i = 0; i < 4; ++i)
             b.push_back(std::uint8_t(n >> (8 * i)));
@@ -111,6 +175,14 @@ Bytes encodeSkirmish(const SkirmishState &s) {
     const auto hash = rulesHash();
     word(std::uint32_t(hash));
     word(std::uint32_t(hash >> 32));
+    if (custom) {
+        word(unsigned(mission.map.size()));
+        b.insert(b.end(),mission.map.begin(),mission.map.end());
+        pos(mission.dimensions);
+        for (auto p:mission.wizards) pos(p);
+        word(unsigned(mission.aiSummons.size()));for (auto p:mission.aiSummons) pos(p);
+        word(unsigned(mission.standing.size()));for (auto p:mission.standing) pos(p);
+    }
     word(static_cast<unsigned>(s.outcome));
     word(s.aiWait);
     word(s.nextProjectile);
@@ -140,7 +212,7 @@ Bytes encodeSkirmish(const SkirmishState &s) {
     }
     word(unsigned(s.pending.size()));
     for (const auto &o : s.pending) {
-        orderShape(o);
+        missionOrder(mission,o);
         word(static_cast<unsigned>(o.kind));
         handle(o.subject);
         target(o.target);
@@ -149,7 +221,9 @@ Bytes encodeSkirmish(const SkirmishState &s) {
     return b;
 }
 SkirmishState decodeSkirmish(const Bytes &b) {
-    require(b.size() >= 28 && b.size() <= 8192 && std::equal(magic.begin(), magic.end(), b.begin()),
+    const bool custom=b.size()>=8 && std::equal(customMagic.begin(),customMagic.end(),b.begin());
+    require(b.size() >= 28 && b.size() <= (custom ? 65536U : 8192U) &&
+                (custom || std::equal(magic.begin(), magic.end(), b.begin())),
             "unknown or oversized skirmish subsystem");
     std::size_t p = 8;
     auto word = [&]() {
@@ -180,6 +254,19 @@ SkirmishState decodeSkirmish(const Bytes &b) {
     require((std::uint64_t(high) << 32 | low) == rulesHash(),
             "skirmish rules fingerprint mismatch");
     SkirmishState s;
+    if (custom) {
+        SkirmishMission m;
+        const auto length=word();
+        require(length>=1 && length<=128 && length<=b.size()-p,"invalid mission identity size");
+        m.map.assign(b.begin()+p,b.begin()+p+length);p+=length;
+        m.dimensions=pos();for (auto &v:m.wizards) v=pos();
+        auto count=word();require(count>=1 && count<=32,"invalid mission AI count");
+        for (unsigned i=0;i<count;++i) m.aiSummons.push_back(pos());
+        count=word();require(count>=2 && count<=4096,"invalid mission standing count");
+        for (unsigned i=0;i<count;++i) m.standing.push_back(pos());
+        validateMission(m);require(!sameMission(m,arenaMission()),"noncanonical mission encoding");
+        s.mission=std::move(m);
+    }
     s.outcome = static_cast<Outcome>(word());
     s.aiWait = word();
     s.nextProjectile = word();
@@ -221,7 +308,7 @@ SkirmishState decodeSkirmish(const Bytes &b) {
             o.destination = cell;
         else
             require(cell == Point{}, "unexpected skirmish order coordinates");
-        orderShape(o);
+        missionOrder(effective(s),o);
         s.pending.push_back(o);
     }
     require(p == b.size(), "skirmish trailing bytes");
@@ -229,8 +316,9 @@ SkirmishState decodeSkirmish(const Bytes &b) {
 }
 void validateSkirmish(const State &world, const CombatState &combat, const SkirmishState &s) {
     (void)encodeSkirmish(s);
-    require(world.map == "native-skirmish-arena-v1" && world.navigation &&
-                world.navigation->dimensions == Point{8, 8, 3},
+    const auto &mission=effective(s);
+    require(world.map == mission.map && world.navigation &&
+                world.navigation->dimensions == mission.dimensions,
             "skirmish arena binding mismatch");
     require(s.units.size() == combat.fighters.size() && static_cast<unsigned>(s.outcome) <= 3 &&
                 s.aiWait <= SkirmishRules::aiInterval && s.nextProjectile >= 1,
@@ -239,7 +327,7 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
     for (const auto &r : s.units) {
         const auto *f = fighter(combat, r.actor);
         const auto *e = entity(world, r.actor);
-        require(f && e && e->owner <= 1 && arenaCell(point(*e)) &&
+        require(f && e && e->owner <= 1 && missionCell(mission,point(*e)) &&
                     static_cast<unsigned>(r.role) <= 1 && (!previous || r.actor.slot > *previous),
                 "invalid skirmish unit identity/role/order");
         previous = r.actor.slot;
@@ -267,7 +355,7 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
                                 [&](const UnitRoleRecord &r) {
                                     return r.actor == w.actor && r.role == UnitRole::wizard;
                                 }) &&
-                    e->owner == owner && point(*e) == (owner ? Point{6, 1, 1} : Point{1, 6, 1}),
+                    e->owner == owner && point(*e) == mission.wizards[owner],
                 "wizard role/position mismatch");
         require(w.mana <= SkirmishRules::manaMaximum &&
                     w.regeneration < SkirmishRules::regenerationTicks &&
@@ -278,7 +366,7 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
                     "idle wizard retains cast state");
         else {
             require(f->health && w.remaining >= 1 && w.remaining <= SkirmishRules::castTicks &&
-                        arenaCell(w.aim),
+                        missionCell(mission,w.aim),
                     "invalid cast continuation");
             require((w.spell == Spell::bolt) == bool(w.target), "cast target/phase mismatch");
             if (w.target) {
@@ -293,14 +381,14 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
         const auto *t = entity(world, p.target);
         require(p.id > last && p.id < s.nextProjectile && p.owner <= 1 &&
                     p.source == s.wizards[p.owner].actor && t && t->owner != p.owner &&
-                    fighter(combat, p.target) && arenaCell(p.origin) && arenaCell(p.destination) &&
+                    fighter(combat, p.target) && missionCell(mission,p.origin) && missionCell(mission,p.destination) &&
                     p.origin == point(*entity(world, p.source)) && p.remaining >= 1 &&
                     p.remaining <= SkirmishRules::flightTicks,
                 "invalid projectile continuation");
         last = p.id;
     }
     for (const auto &o : s.pending) {
-        orderShape(o);
+        missionOrder(mission,o);
         const auto *e = entity(world, o.subject);
         const auto role =
             std::find_if(s.units.begin(), s.units.end(),
@@ -338,33 +426,33 @@ SkirmishSession::SkirmishSession(std::shared_ptr<const Navigation> nav,
                                  std::shared_ptr<const HealthRules> rules,
                                  std::shared_ptr<const SkirmishEffects> effects,
                                  std::shared_ptr<const CombatDriver> driver)
-    : combat_(
+    : SkirmishSession(arenaMission(),std::move(nav),std::move(rules),std::move(effects),std::move(driver)) {}
+SkirmishSession::SkirmishSession(SkirmishMission mission, std::shared_ptr<const Navigation> nav,
+                                 std::shared_ptr<const HealthRules> rules,
+                                 std::shared_ptr<const SkirmishEffects> effects,
+                                 std::shared_ptr<const CombatDriver> driver)
+    : mission_(std::move(mission)), combat_(
           [&] {
-              require(bool(nav), "arena navigation required");
+              require(bool(nav), "mission navigation required");
+              navigationMission(mission_,*nav);
               World w(32);
               auto state = w.state();
-              state.map = "native-skirmish-arena-v1";
+              state.map = mission_.map;
               state.navigation = nav->binding();
               w.restore(state);
               return w;
-          }(),
-          nav, std::move(rules), std::move(driver)),
-      navigation_(std::move(nav)), effects_(std::move(effects)) {
+          }(), nav, std::move(rules), std::move(driver)), navigation_(std::move(nav)), effects_(std::move(effects)) {
     if (effects_) combat_.bindEffects(effects_->identity(), effects_->initial());
     SkirmishState s;
+    if (!sameMission(mission_,arenaMission())) s.mission=mission_;
     for (unsigned owner = 0; owner < 2; ++owner) {
-        const auto p = owner ? Point{6, 1, 1} : Point{1, 6, 1};
-        navigation_->validateSpawnPosition(p);
+        const auto p = mission_.wizards[owner];
         Entity e;
         e.type = navigation_->creatureType();
         e.owner = owner;
-        e.x = p.x;
-        e.y = p.y;
-        e.z = p.z;
-        auto h =
-            combat_.spawn(e, {SkirmishRules::wizardHealth, 1, 2, 3}, false, CombatControl::hold);
-        s.wizards[owner].actor = h;
-        s.units.push_back({h, UnitRole::wizard});
+        e.x = p.x;e.y = p.y;e.z = p.z;
+        auto h = combat_.spawn(e, {SkirmishRules::wizardHealth, 1, 2, 3}, false, CombatControl::hold);
+        s.wizards[owner].actor = h;s.units.push_back({h, UnitRole::wizard});
     }
     publish(combat_, std::move(s));
 }
@@ -372,7 +460,9 @@ SkirmishSession::SkirmishSession(World world, std::shared_ptr<const Navigation> 
                                  std::shared_ptr<const HealthRules> rules,
                                  std::shared_ptr<const SkirmishEffects> effects,
                                  std::shared_ptr<const CombatDriver> driver)
-    : combat_(std::move(world), nav, std::move(rules), std::move(driver)), navigation_(std::move(nav)), effects_(std::move(effects)) {
+    : mission_(effective(decodeSkirmish(world.state().campaign))),
+      combat_(std::move(world), nav, std::move(rules), std::move(driver)), navigation_(std::move(nav)), effects_(std::move(effects)) {
+    navigationMission(mission_,*navigation_);
     require(combat_.effects().identity == (effects_ ? effects_->identity() : 0), "battle effect runtime binding mismatch");
     if (effects_) effects_->validate(combat_, state());
     validateSkirmish(this->world().state(), combat_.combat(), state());
@@ -389,7 +479,7 @@ void SkirmishSession::publish(CombatSession combat, SkirmishState s) {
     combat_ = std::move(complete);
 }
 void SkirmishSession::enqueue(SkirmishOrder o) {
-    orderShape(o);
+    missionOrder(mission_,o);
     auto s = state();
     require(s.outcome == Outcome::running, "The skirmish has ended");
     const auto c = combat_.combat();
@@ -477,7 +567,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
                 s.units.size() >= 32)
                 refusal = SkirmishRefusal::capacity;
             else if (distance(point(*combat.world().find(w.actor)), aim) > 2 ||
-                     (!placement(combat, *navigation_, aim) || (combat.driver() && !combat.driver()->canSpawn(combat, aim))))
+                     (!placement(combat, *navigation_, mission_, aim) || (combat.driver() && !combat.driver()->canSpawn(combat, aim))))
                 refusal = SkirmishRefusal::placement;
         }
         if (refusal == SkirmishRefusal::none && spell == Spell::bolt) {
@@ -541,8 +631,8 @@ SkirmishReport SkirmishSession::step(TickInput input) {
         if (fighter(combat.combat(), w.actor)->health && w.spell == Spell::none) {
             if (creatures(combat, s, 1) < 1 && w.mana >= SkirmishRules::summonCost) {
                 bool found = false;
-                for (Point p : std::array<Point, 4>{{{5, 2, 1}, {5, 1, 1}, {6, 2, 1}, {4, 2, 1}}})
-                    if (placement(combat, *navigation_, p) && (!combat.driver() || combat.driver()->canSpawn(combat, p))) {
+                for (Point p : mission_.aiSummons)
+                    if (placement(combat, *navigation_, mission_, p) && (!combat.driver() || combat.driver()->canSpawn(combat, p))) {
                         cast(1, Spell::summon, p, {});
                         found = true;
                         break;
@@ -566,7 +656,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
             continue;
         if (w.spell == Spell::summon) {
             if (creatures(combat, s, owner) < SkirmishRules::livingCreatures &&
-                s.units.size() < 32 && placement(combat, *navigation_, w.aim) &&
+                s.units.size() < 32 && placement(combat, *navigation_, mission_, w.aim) &&
                 (!combat.driver() || combat.driver()->canSpawn(combat, w.aim))) {
                 Entity e;
                 e.type = navigation_->creatureType();
@@ -640,6 +730,7 @@ void SkirmishSession::restore(const std::filesystem::path &path,
     World w(0, world().limits());
     w.restore(std::move(state));
     SkirmishSession candidate(std::move(w), std::move(nav), combat_.healthRules(), effects_, combat_.driver());
+    require(sameMission(candidate.mission(),mission_),"skirmish mission resources mismatch");
     *this = std::move(candidate);
 }
 } // namespace mnm::game

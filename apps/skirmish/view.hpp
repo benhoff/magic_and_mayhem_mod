@@ -10,7 +10,9 @@ struct UnitView {
     QString action;
     unsigned width = 1;
 };
+class MissionPresentation;
 struct ArenaView {
+    std::shared_ptr<const MissionPresentation> mission;
     std::vector<UnitView> units;
     std::vector<game::Projectile> projectiles;
     std::vector<game::Point> cures, spheres;
