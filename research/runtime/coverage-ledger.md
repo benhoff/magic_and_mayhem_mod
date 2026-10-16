@@ -12734,3 +12734,20 @@ See `native-skirmish-mission.md` and its registered execution record. A failed
 sandbox run is retained under working; the Xvfb socket admission failure is not
 an application behavior finding. The subsequent run uses the local display
 outside that sandbox boundary.
+
+## Installed crop campaign ownership (2026-10-16)
+
+`NP.map-campaign` connects the existing ordinary Plains MAP/TTD projection to
+native campaign ownership. The sealed (0,0,8,8) crop retains23 layers and uses
+supported layer3 wizard spawns with unchanged native skirmish rules. SHA256
+revision binding includes complete MAP/TTD/SPR bytes, crop policy, mission roster
+and initial snapshots; restoration additionally requires expected mission policy,
+navigation and health identity. The headless journey moves a summoned creature,
+casts, splits/reopens in-flight continuation, wins, reopens a settled result and
+advances to the unchanged arena finale. Missing/altered resources and repaired
+policy/navigation/health counterexamples refuse without partial adoption.
+
+This is authored native campaign integration; original map population, campaign
+rules, rewards, full-map loading, rendered-pixel equivalence and live replacement
+remain pending. See `native-map-campaign.md` and its bound execution record.
+Historical original/recovered evidence retains its recorded source hashes.

@@ -1,4 +1,7 @@
 #include "campaign.hpp"
+#ifdef MNM_MAP_CAMPAIGN_CLI
+#include "map_campaign.hpp"
+#endif
 #include "trace.hpp"
 #include <charconv>
 #include <iostream>
@@ -49,29 +52,48 @@ void save(const char* path,const mnm::game::CampaignSession& s) {
 }
 int main(int argc,char** argv) try {
     using namespace mnm::game;
+#ifdef MNM_MAP_CAMPAIGN_CLI
+    if(argc<3) throw std::invalid_argument("Usage: mnm-map-campaign-cli ASSET_ROOT COMMAND ...");
+    auto resources=mnm::skirmish::mapCampaignResources(argv[1]);--argc;++argv;
+    const auto make=[&]{return mnm::skirmish::newMapCampaign(resources);};
+    const auto load=[&](const char* path){return mnm::skirmish::loadMapCampaign(resources,path);};
+#else
+    const auto make=[]{return mnm::skirmish::newCampaign();};
+    const auto load=[](const char* path){return mnm::skirmish::loadCampaign(path);};
+#endif
     const std::string_view command=argc>1?argv[1]:"";
     if(command=="create" && argc==3) {
-        auto s=mnm::skirmish::newCampaign();save(argv[2],s);view(s);return 0;
+        auto s=make();save(argv[2],s);view(s);return 0;
     }
-    if(command=="inspect" && argc==3) {view(mnm::skirmish::loadCampaign(argv[2]));return 0;}
+    if(command=="inspect" && argc==3) {view(load(argv[2]));return 0;}
     if(command=="start" && argc==4) {
-        auto s=mnm::skirmish::loadCampaign(argv[2]);s.startMission();save(argv[3],s);view(s);return 0;
+        auto s=load(argv[2]);s.startMission();save(argv[3],s);view(s);return 0;
     }
-    if(command=="cast" && (argc==5 || argc==7)) {
-        auto s=mnm::skirmish::loadCampaign(argv[2]);
+    if(command=="cast" && (argc==5 || argc==7 || argc==8)) {
+        auto s=load(argv[2]);
         if(!s.battle()) throw std::invalid_argument("Start a campaign mission before casting");
         const auto meta=s.battle()->state();SkirmishOrder order;order.subject=meta.wizards[0].actor;
         if(std::string_view(argv[4])=="bolt" && argc==5) {
             order.kind=SkirmishOrderKind::bolt;order.target=meta.wizards[1].actor;
-        } else if(std::string_view(argv[4])=="summon" && argc==7) {
-            order.kind=SkirmishOrderKind::summon;order.destination=Point{number<int>(argv[5]),number<int>(argv[6]),1};
+        } else if(std::string_view(argv[4])=="summon" && (argc==7 || argc==8)) {
+            order.kind=SkirmishOrderKind::summon;order.destination=Point{number<int>(argv[5]),number<int>(argv[6]),argc==8?number<int>(argv[7]):1};
         } else throw std::invalid_argument("Use bolt or summon X Y");
         s.enqueue(order);save(argv[3],s);view(s);return 0;
+    }
+    if(command=="move" && argc==7) {
+        auto s=load(argv[2]);
+        if(!s.battle()) throw std::invalid_argument("Start a campaign mission before moving");
+        std::optional<Handle> actor;
+        for(const auto &unit:s.battle()->state().units)
+            if(unit.role==UnitRole::sentinel && s.battle()->world().find(unit.actor)->owner==0) {actor=unit.actor;break;}
+        if(!actor) throw std::invalid_argument("Summon a friendly Sentinel before moving");
+        s.enqueue({SkirmishOrderKind::move,*actor,{},Point{number<int>(argv[4]),number<int>(argv[5]),number<int>(argv[6])}});
+        save(argv[3],s);view(s);return 0;
     }
     if(command=="resume" && argc==5) {
         const auto ticks=number<unsigned>(argv[4]);
         if(ticks>4096) throw std::invalid_argument("Ticks must be 0..4096");
-        auto s=mnm::skirmish::loadCampaign(argv[2]);unsigned settlements=0;
+        auto s=load(argv[2]);unsigned settlements=0;
         for(unsigned i=0;i<ticks && s.battle();++i) if(s.step().result) ++settlements;
         save(argv[3],s);view(s,settlements);return 0;
     }

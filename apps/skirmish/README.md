@@ -85,3 +85,26 @@ After a duel, Continue advances on victory and Retry starts another attempt afte
 defeat/draw. Save between duels or during play; pending commands, casts and
 projectiles resume with the campaign. Final completion disables Continue.
 Standalone skirmish save/load remains available as a separate mode.
+
+## Installed Plains campaign
+
+The map campaign plays an authored first mission on a sealed8x8 crop of the
+installed Plains terrain, then advances to the existing arena finale. The
+synthetic one-cell movement profile and native combat rules are unchanged.
+MAP, terrain catalog and sprite bytes bind the campaign content revision; select
+the same installed content when reopening a checkpoint.
+
+```sh
+working/build/native-map-campaign/mnm-map-campaign-cli working/game-clean create working/plains-seed.mnmc
+working/build/native-map-campaign/mnm-map-campaign-cli working/game-clean start working/plains-seed.mnmc working/plains-active.mnmc
+working/build/native-map-campaign/mnm-map-campaign-cli working/game-clean cast working/plains-active.mnmc working/plains-summon.mnmc summon 2 5 3
+```
+
+The map CLI takes `ASSET_ROOT` before the existing create/start/cast/resume/inspect
+commands. Summon accepts optional Z (default1 for the arena); `move INPUT OUTPUT
+X Y Z` orders the first friendly Sentinel. All output files must be new.
+`tools/test-native-map-campaign.py ASSET_ROOT` records the installed-process
+journey and core/asset regressions, with original-manifest verification before
+and after. Run it under the main checkout's storage guard. Retained execution
+reports are separate from the reusable `working/build/native-map-campaign`
+build directory. See `research/runtime/native-map-campaign.md` for scope.
