@@ -241,6 +241,15 @@ resolve handles again after mutation.
 
 ## Persistence
 
+The `mnm-campaign` library adds [typed native campaign persistence](../research/formats/native-campaign-state.md)
+alongside complete world snapshots: wizard records, realm/region ownership
+and completion, difficulty, selection and active battle identity. Existing battle profile/system bytes retain their original owner. Updates validate
+the staged world before publication; checkpoint reads require matching campaign
+content identity. Persistence stores caller-supplied progress without implementing
+campaign rules or rewards. Resource-owning sessions still validate/rebind their
+own restored worlds. `native-campaign-persistence` and
+`native-campaign-persistence-process` exercise synthetic continuation and failures.
+
 The [native format](../research/formats/native-world-snapshot.md) has explicit
 little-endian fields, size/version checks and a corruption checksum. Parsing
 checks count/storage bounds before allocating nested data and rejects dangling

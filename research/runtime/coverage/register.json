@@ -72333,6 +72333,46 @@
         "reconstruction/casting/cure/CMakeLists.txt",
         "tests/sprite-binary-reference.cpp"
       ]
+    },
+    {
+      "id": "NP.campaign-persistence",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Typed native campaign checkpoints and staged restoration",
+      "scope": "Version-1 owned campaign checkpoint pairs typed progress with a complete unchanged native world snapshot in a strict native snapshot envelope: campaign/content identity, six native attribute slots and caller-supplied experience, spells/inventory, realm/region ownership and completion, difficulty/selection, transition counter and optional active battle. Bounded codec, cross-reference/content/map validation, staged update and POSIX publication preserve existing opaque battle profile/system bytes. No reward/progression rules, original .sav compatibility, resource rebinding, UI/live replacement or crash/power-loss claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/native-campaign-state.md"
+      ],
+      "implementation": [
+        "game/persistence/campaign.hpp",
+        "game/persistence/campaign.cpp"
+      ],
+      "tests": [
+        "tests/native-campaign-persistence-test.cpp",
+        "tests/test-native-campaign-persistence.py",
+        "tools/test-native-campaign-persistence.py"
+      ],
+      "validation_dependencies": [
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp"
+      ],
+      "evidence": [
+        "NP.campaign-persistence.synthetic-20261016",
+        "NP.campaign-persistence.envelope-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -149199,6 +149239,36 @@
           ]
         }
       ]
+    },
+    {
+      "id": "NP.campaign-persistence.synthetic-20261016",
+      "kind": "native_integration",
+      "scope": "Synthetic version-1 campaign codec, staged world validation, active-battle/fresh-process continuation and independent wire/overwrite/corrupt-input checks; full 41-test game CTest suite passed. No original campaign/rules or resource-backed battle restoration claim.",
+      "record": "research/runtime/native-campaign-persistence-20261016.json",
+      "sha256": "0c9e08f98cf7d2a2a652808ffba5d405a39dba89487e0dec74589401111319b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NP.campaign-persistence.envelope-20261016",
+      "kind": "native_integration",
+      "scope": "Typed native campaign/world envelope preserving existing opaque battle profile/system bytes; synthetic codec, transactional update, active-battle/fresh-process continuation, independent wire and selected file/input failures. All41 game CTest checks pass; no original campaign/rules, UI, resource rebind or crash claim.",
+      "record": "research/runtime/native-campaign-checkpoint-envelope-20261016.json",
+      "sha256": "16a44de6919ae0fd166c40ff12b1e6d0639f0ec92d4126c95b9f7eafc5853048",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -165666,6 +165736,23 @@
         "tests/cure-effect-test.cpp",
         "tools/test-cure-effect.py"
       ]
+    },
+    {
+      "id": "NP.campaign-persistence.restart",
+      "level": "headless",
+      "scope": "Synthetic two-realm campaign and lifecycle world checkpoint in independent processes, active-battle continuation through explicit authored region/realm/completion events, byte-identical uninterrupted/resumed checkpoints, independent wire checks and selected malformed/content/map/storage/overwrite failures. No resource-backed battle restore or original campaign rules.",
+      "behaviors": [
+        "NP.campaign-persistence"
+      ],
+      "tests": [
+        "tests/native-campaign-persistence-test.cpp",
+        "tests/test-native-campaign-persistence.py",
+        "tools/test-native-campaign-persistence.py"
+      ],
+      "evidence": [
+        "NP.campaign-persistence.synthetic-20261016",
+        "NP.campaign-persistence.envelope-20261016"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -166282,8 +166369,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cure-effect-commit-20261016.json",
-    "sha256": "b1186a0a5ef686c31018228cc373cc02b4a843b285d799aca4350af448c169dd"
+    "path": "research/runtime/coverage/source-index-native-campaign-commit-20261016.json",
+    "sha256": "aa4ab3fb9f7a472a4071d691ff14d402d86b51ae04bfb3e103a7cf170bb3ca9f"
   },
   "claim_bindings_required": true
 }

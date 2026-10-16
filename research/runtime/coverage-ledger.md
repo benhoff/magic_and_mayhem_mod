@@ -12405,3 +12405,37 @@ checks both incoming commits3981e981..7c40c187 with normalized Git source paths:
 7c40c187 match existing exact receipt chains. No history gap or retrospective
 receipt is needed. This is committed-history accounting, separate from current
 Cure validation and other uncommitted work; no past gate pass is asserted.
+
+
+## Typed native campaign persistence — 2026-10-16
+
+`NP.campaign-persistence` adds an explicitly native version-1 campaign block
+alongside complete existing world snapshots: wizard IDs/attributes/caller-supplied experience,
+spells and duplicate-preserving inventory; realm/region ownership/completion;
+difficulty/selection and optional active battle. Exact content identity and
+cross-reference/map validation precede staged publication. The POSIX writer
+retains atomic publication, default overwrite refusal and explicit durability
+reporting. The strict native snapshot envelope retains the existing battle world's
+opaque profile/campaign and systems bytes, preserving their consumers and world
+wire layouts.
+
+[Current synthetic evidence](native-campaign-checkpoint-envelope-20261016.json) records
+41 passing game CTest checks, including the new codec/rollback test and an
+independent-process active-battle checkpoint journey. Resumed authored test
+events across region/realm/completion produce byte-identical world checkpoints
+to uninterrupted execution; independent Python wire checks, all truncated
+campaign prefixes and selected malformed/reference/content/storage failures
+pass. Raw commands/logs are pinned at
+`working/tests/native-campaign-persistence/run-xe_d4wwg/`. The earlier direct-block
+prototype report is retained as historical evidence; it does not validate the
+current envelope. No original artifacts
+were consumed. [Format/API and limits](../formats/native-campaign-state.md).
+
+This is native persistence and headless integration only. Real campaign content,
+progression/reward rules, original `.sav` import/equivalence, UI integration,
+resource-backed battle restore, crash/power-loss and injected file-sync/write
+failures remain pending. Read/decode APIs return staged worlds; owning sessions
+must validate/rebind their own resources before publishing restored state.
+Existing reverse-engineering evidence and gameplay-gap statuses remain historical
+and unchanged. Shared `game/README.md` edits may make earlier linked evidence
+stale; this run does not renew those unrelated validation claims.
