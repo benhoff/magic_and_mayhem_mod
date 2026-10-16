@@ -50076,7 +50076,8 @@
         "NS23.arena-sanitized",
         "NS24.arena-regression",
         "NS25.arena-regression",
-        "NS27.checkpoint-skirmish-normal"
+        "NS27.checkpoint-skirmish-normal",
+        "NP.skirmish-mission.native-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -50275,7 +50276,8 @@
         "NS24.window-regression",
         "NS25.arena-window-regression",
         "NS27.checkpoint-skirmish-window",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -72422,7 +72424,8 @@
         "NP.campaign-persistence.envelope-20261016",
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -72477,7 +72480,8 @@
       "evidence": [
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -72598,7 +72602,8 @@
       ],
       "evidence": [
         "NP.campaign-session.arena-20261016",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -72778,7 +72783,8 @@
         "tools/create-movement-fixture.py"
       ],
       "evidence": [
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ],
       "status": {
         "understanding": "scoped",
@@ -73313,6 +73319,125 @@
           "Installed spell parameters/actor profiles, projectile types, negative Cure magnitude, wizard/special target health",
           "Physical audio backend, SPR pixels/drawing and live campaign replacement"
         ]
+      }
+    },
+    {
+      "id": "NP.skirmish-mission",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Bounded authored mission geometry and versioned continuation",
+      "scope": "Native mission-defined map identity, dimensions, supported standing cells, stationary wizard spawns and ordered AI summon candidates. Version2 embeds canonical mission policy and preserves exact v1 arena bytes; restore validates policy/navigation and owning app requires expected mission. Combat stats/costs/timing unchanged. No original mission/spawn/AI equivalence or arbitrary original map entities.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-skirmish-mission.md",
+        "research/formats/native-skirmish-subsystem.md"
+      ],
+      "implementation": [
+        "game/simulation/skirmish.hpp",
+        "game/simulation/skirmish.cpp"
+      ],
+      "tests": [
+        "tests/skirmish-mission-test.cpp",
+        "tools/test-native-campaign-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/campaign.cpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/trace.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/campaign.cpp",
+        "game/persistence/campaign.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/campaign_session.cpp",
+        "game/simulation/campaign_session.hpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/CMakeLists.txt",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp"
+      ],
+      "evidence": [
+        "NP.skirmish-mission.native-20261016"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
       }
     }
   ],
@@ -151075,6 +151200,21 @@
           }
         }
       ]
+    },
+    {
+      "id": "NP.skirmish-mission.native-20261016",
+      "kind": "native_integration",
+      "scope": "Native authored campaign session: transactional attempts and resource-bound checkpoint ownership; no original campaign/reward equivalence.",
+      "record": "research/runtime/native-mission-20261016.json",
+      "sha256": "a8ff15f408142da5428045e15958291b9b7b283660cc61c6403af73f4b9d481d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -164247,7 +164387,8 @@
         "NS23.arena-normal",
         "NS23.arena-sanitized",
         "NS24.arena-regression",
-        "NS25.arena-regression"
+        "NS25.arena-regression",
+        "NP.skirmish-mission.native-20261016"
       ]
     },
     {
@@ -164267,7 +164408,8 @@
         "NS23.window",
         "NS24.window-regression",
         "NS25.arena-window-regression",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ]
     },
     {
@@ -167561,7 +167703,8 @@
         "NP.campaign-persistence.envelope-20261016",
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ]
     },
     {
@@ -167578,7 +167721,8 @@
       "evidence": [
         "NP.campaign-session.core-20261016",
         "NP.campaign-session.arena-20261016",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ]
     },
     {
@@ -167595,7 +167739,8 @@
       ],
       "evidence": [
         "NP.campaign-session.arena-20261016",
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ]
     },
     {
@@ -167612,7 +167757,8 @@
         "tools/test-native-campaign-session.py"
       ],
       "evidence": [
-        "NP.campaign-session.window-20261016"
+        "NP.campaign-session.window-20261016",
+        "NP.skirmish-mission.native-20261016"
       ]
     },
     {
@@ -167691,6 +167837,21 @@
       ],
       "evidence": [
         "CURE05.world-ani-bounded-native"
+      ]
+    },
+    {
+      "id": "NP.skirmish-mission.continuation",
+      "level": "headless",
+      "scope": "Non-arena dimensions/elevation/spawns, player and ordered AI summons, creature movement and spell split continuation, codec canonicality/bounds and malformed policy/navigation refusal. Exact legacy arena regression is separate.",
+      "behaviors": [
+        "NP.skirmish-mission"
+      ],
+      "tests": [
+        "tests/skirmish-mission-test.cpp",
+        "tools/test-native-campaign-session.py"
+      ],
+      "evidence": [
+        "NP.skirmish-mission.native-20261016"
       ]
     }
   ],
@@ -168308,8 +168469,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-campaign-latest-main-20261016.json",
-    "sha256": "cd13d26c23263c2c6b21f880e4706863f2dfc4084032f20f2a3e21a235a926b9"
+    "path": "research/runtime/coverage/source-index-mission-20261016.json",
+    "sha256": "503f91533c2346149ddf7fdba0accb49842b05744f871ca6d59081ff96def1a4"
   },
   "claim_bindings_required": true
 }

@@ -39,7 +39,20 @@ struct Projectile {
     Point origin, destination;
     std::uint32_t remaining = SkirmishRules::flightTicks;
 };
+// Bounded authored mission policy; independent of original campaign/rules.
+// Standing cells are strictly lexicographically ordered (x,y,z), perimeter excluded.
+struct SkirmishMission {
+    std::string map;
+    Point dimensions;
+    std::array<Point, 2> wizards;
+    std::vector<Point> aiSummons, standing;
+};
+const SkirmishMission &arenaMission();
+void validateMission(const SkirmishMission &);
+bool missionCell(const SkirmishMission &, Point);
+bool sameMission(const SkirmishMission &, const SkirmishMission &);
 struct SkirmishState {
+    std::optional<SkirmishMission> mission; // absent means the byte-compatible v1 arena
     Outcome outcome = Outcome::running;
     std::uint32_t aiWait = 0, nextProjectile = 1;
     std::array<Wizard, 2> wizards;
@@ -65,6 +78,7 @@ struct SkirmishReport {
     std::vector<SkirmishEvent> events;
 };
 class SkirmishSession {
+    SkirmishMission mission_;
     CombatSession combat_;
     std::shared_ptr<const Navigation> navigation_;
     void publish(CombatSession, SkirmishState);
@@ -72,6 +86,9 @@ class SkirmishSession {
   public:
     explicit SkirmishSession(std::shared_ptr<const Navigation>,
                              std::shared_ptr<const HealthRules> = {});
+    SkirmishSession(SkirmishMission, std::shared_ptr<const Navigation>,
+                    std::shared_ptr<const HealthRules> = {});
+    const SkirmishMission &mission() const { return mission_; }
     SkirmishSession(World, std::shared_ptr<const Navigation>,
                     std::shared_ptr<const HealthRules> = {});
     const World &world() const { return combat_.world(); }

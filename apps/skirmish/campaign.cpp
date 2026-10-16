@@ -19,7 +19,10 @@ public:
         if(mission.map!="native-skirmish-arena-v1" || state.map!=mission.map)
             throw std::invalid_argument("unknown campaign arena binding");
         game::World world(0);world.restore(std::move(state));
-        return {std::move(world),navigation_,rules_};
+        game::SkirmishSession restored(std::move(world),navigation_,rules_);
+        if(!game::sameMission(restored.mission(),game::arenaMission()))
+            throw std::invalid_argument("campaign arena mission mismatch");
+        return restored;
     }
 };
 void append(game::Bytes& bytes,const game::Bytes& value) {

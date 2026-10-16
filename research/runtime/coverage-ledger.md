@@ -12719,3 +12719,18 @@ All source fingerprints in the successful campaign-window execution remain
 unchanged after integration, so its all50 native CTest result and bound campaign
 and standalone-window scenarios remain current. New renderer/Cure findings keep
 their independent evidence, scope and status; no campaign rules or balance change.
+
+## Authored mission geometry (2026-10-16)
+
+`NP.skirmish-mission` separates map identity, dimensions, standing cells,
+stationary wizard spawns and ordered AI summon candidates from arena rules.
+Custom policy uses version2 continuation; the existing arena remains exact v1.
+The native session validates policy against navigation, and owning app adapters
+check the expected mission on restore. Costs, health, damage, timing and rewards
+are unchanged. Non-arena elevated continuation and all existing native campaign
+and window regressions are the bounded execution milestone; original mission
+behavior/comparison, arbitrary map entities and live replacement remain pending.
+See `native-skirmish-mission.md` and its registered execution record. A failed
+sandbox run is retained under working; the Xvfb socket admission failure is not
+an application behavior finding. The subsequent run uses the local display
+outside that sandbox boundary.
