@@ -85,3 +85,21 @@ After a duel, Continue advances on victory and Retry starts another attempt afte
 defeat/draw. Save between duels or during play; pending commands, casts and
 projectiles resume with the campaign. Final completion disables Continue.
 Standalone skirmish save/load remains available as a separate mode.
+
+## Cure in shared native battles
+
+Select your wizard, choose **Cure**, then click a living friendly Sentinel.
+Cure costs3 mana and heals8 up to that creature's combat maximum. Its vector halo
+follows logical movement while the owned ANI player runs. Dead/removed targets
+receive no healing or refund. Cure, melee, movement and bolts share one native
+battle transaction and authoritative health/mana. Save/load retains pending Cure
+orders and in-flight playback, including in the campaign window.
+
+The asset-free arena uses a declared short ANI fixture; separate integration checks
+load real installed Cure recipe74 into the same runtime. No original spell balance
+or animation cadence equivalence is claimed. New campaigns bind this profile;
+older campaign and skirmish checkpoints retain their original behavior.
+
+CLI script rows accept `TICK cure WIZARD-SLOT TARGET-SLOT`. Campaign commands accept
+`mnm-campaign-cli cast INPUT OUTPUT cure TARGET-SLOT`. Target generation is checked
+against the active battle. See [scope and evidence](../../research/runtime/native-cure-battle.md).

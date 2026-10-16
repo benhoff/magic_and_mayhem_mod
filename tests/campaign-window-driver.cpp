@@ -13,6 +13,7 @@
 #include <QPushButton>
 #include <QTimer>
 #include <fstream>
+#include <algorithm>
 #include <stdexcept>
 namespace mnm::skirmish::test {
 namespace {
@@ -95,9 +96,15 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                         require(e, "Missing wizard");
                         point = {e->x, e->y, e->z};
                     }
+                    if (action.contains("actor")) {
+                        const auto slot=unsigned(action["actor"].toInt());
+                        require(slot<c.session().world().state().slots.size() && c.session().world().state().slots[slot].entity,"Missing target actor");
+                        const auto &body=*c.session().world().state().slots[slot].entity;
+                        point={body.x,body.y,body.z};
+                    }
                     auto *canvas = window.findChild<QWidget *>("arenaCanvas");
                     require(canvas, "Missing arena canvas");
-                    mouse(canvas, ArenaCanvas::cellCenter(point));
+                    mouse(canvas, ArenaCanvas::cellCenter(point), action["right"].toBool() ? Qt::RightButton : Qt::LeftButton);
                 } else if (kind == "steps") {
                     const auto count = action["count"].toInt();
                     require(count >= 0 && count <= 256 && !c.playing(), "Invalid step count/state");
@@ -153,6 +160,11 @@ void campaignWindow(const QString &script, const QString &output, Window &window
                     }
                 } else if (kind == "expect") {
                     const auto &p = c.campaign()->progress();
+                    if (action.contains("cures")) require(c.view().cures.size()==unsigned(action["cures"].toInt()),"Wrong active Cure count");
+                    if (action.contains("health")) {
+                        const auto view=c.view();auto it=std::find_if(view.units.begin(),view.units.end(),[&](const auto &u){return u.actor.slot==unsigned(action["actor"].toInt());});
+                        require(it!=view.units.end() && it->health==unsigned(action["health"].toInt()),"Wrong actor health");
+                    }
                     if (action.contains("transition"))
                         require(p.transition == unsigned(action["transition"].toInt()),
                                 "Wrong campaign transition");

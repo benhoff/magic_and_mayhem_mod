@@ -637,6 +637,18 @@ void CombatSession::enqueue(CombatOrder order) {
     c.pending.push_back(order);
     publish(movement_, std::move(c));
 }
+void CombatSession::remove(Handle h) {
+    auto c=combat();auto it=std::find_if(c.fighters.begin(),c.fighters.end(),[&](const auto &f){return f.actor==h;});
+    require(it!=c.fighters.end(),"stale combat removal");c.fighters.erase(it);
+    c.pending.erase(std::remove_if(c.pending.begin(),c.pending.end(),[&](const auto &o){return o.subject==h || o.target==std::optional<Handle>(h);}),c.pending.end());
+    World candidate(0,world().limits());candidate.restore(world().state());candidate.release(h);auto state=candidate.state();
+    for(auto &f:c.fighters) {
+        auto &e=*state.slots.at(f.actor.slot).entity;
+        if(f.target==std::optional<Handle>(h)) {clearAttack(f);stopMotion(e);}
+        if(f.control==CombatControl::move && !active(e.motion->action)) {f.control=CombatControl::hold;f.destination.reset();}
+    }
+    candidate.restore(std::move(state));publish(MovementSession(std::move(candidate),navigation_),std::move(c));
+}
 CombatReport CombatSession::damage(Handle target, std::uint32_t amount, Handle source) {
     require(amount >= 1 && amount <= 1000000, "invalid external damage");
     auto c = combat();

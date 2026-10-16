@@ -74,7 +74,7 @@ bool placement(const CombatSession &combat, const Navigation &nav, Point p) {
         return false;
     nav.validateSpawnPosition(p);
     for (const auto &slot : combat.world().state().slots)
-        if (slot.entity && !slot.entity->cleaned && point(*slot.entity) == p)
+        if (slot.entity && slot.entity->family == Family::creature && !slot.entity->cleaned && point(*slot.entity) == p)
             return false;
     return true;
 }
@@ -314,6 +314,8 @@ void validateSkirmish(const State &world, const CombatState &combat, const Skirm
             const auto *t = entity(world, *o.target);
             require(t && t->owner == (o.kind == SkirmishOrderKind::cure ? 0U : 1U) && fighter(combat, *o.target),
                     "pending target identity/hostility mismatch");
+            if (o.kind==SkirmishOrderKind::cure)
+                require(decodeBattleSystems(world.systems).effects.identity && std::any_of(s.units.begin(),s.units.end(),[&](const auto &r){return r.actor==*o.target && r.role==UnitRole::sentinel;}), "pending Cure target/runtime mismatch");
         }
     }
     require(world.pending.empty() && combat.pending.empty(),
@@ -407,6 +409,16 @@ void SkirmishSession::enqueue(SkirmishOrder o) {
     s.pending.push_back(o);
     publish(combat_, std::move(s));
 }
+void SkirmishSession::removeCreature(Handle h) {
+    auto s=state();auto role=std::find_if(s.units.begin(),s.units.end(),[&](const auto &r){return r.actor==h;});
+    require(role!=s.units.end() && role->role==UnitRole::sentinel,"Only enrolled creatures may be removed");
+    auto combat=combat_;combat.remove(h);s.units.erase(role);
+    s.pending.erase(std::remove_if(s.pending.begin(),s.pending.end(),[&](const auto &o){return o.subject==h || o.target==std::optional<Handle>(h);}),s.pending.end());
+    for(auto &w:s.wizards)if(w.target==std::optional<Handle>(h))clear(w);
+    s.projectiles.erase(std::remove_if(s.projectiles.begin(),s.projectiles.end(),[&](const auto &p){return p.target==h;}),s.projectiles.end());
+    if(effects_)effects_->removed(combat,s,h);
+    publish(std::move(combat),std::move(s));
+}
 SkirmishReport SkirmishSession::step(TickInput input) {
     SkirmishReport report;
     auto s = state();
@@ -471,7 +483,11 @@ SkirmishReport SkirmishSession::step(TickInput input) {
         started[owner] = true;
         emit(SkirmishEventKind::casting, w.actor, target, spell);
     };
-    for (const auto &o : s.pending) {
+    // Runtimes may publish a replacement metadata value; retain the admitted
+    // batch independently so its current order/iterator cannot be invalidated.
+    auto admittedOrders = std::move(s.pending);
+    s.pending.clear();
+    for (const auto &o : admittedOrders) {
         const auto *e = combat.world().find(o.subject);
         const auto c = combat.combat();
         const auto *f = fighter(c, o.subject);
@@ -545,6 +561,7 @@ SkirmishReport SkirmishSession::step(TickInput input) {
                 const auto h = combat.spawn(
                     e, {SkirmishRules::creatureHealth, SkirmishRules::creatureDamage, 2, 3});
                 s.units.push_back({h, UnitRole::sentinel});
+                std::sort(s.units.begin(),s.units.end(),[](const auto &a,const auto &b){return a.actor.slot<b.actor.slot;});
                 emit(SkirmishEventKind::summoned, w.actor, h, w.spell);
             } else {
                 w.mana = std::min(w.mana + SkirmishRules::summonCost, SkirmishRules::manaMaximum);

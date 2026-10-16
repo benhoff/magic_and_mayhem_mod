@@ -75,6 +75,7 @@ class SkirmishEffects {
     virtual SkirmishRefusal cast(CombatSession &, SkirmishState &, Handle source, Handle target) const = 0;
     virtual CombatReport step(CombatSession &, SkirmishState &, TickInput) const = 0;
     virtual void cancel(CombatSession &, SkirmishState &) const = 0;
+    virtual void removed(CombatSession &, SkirmishState &, Handle) const {}
 };
 class SkirmishSession {
     CombatSession combat_;
@@ -94,6 +95,7 @@ class SkirmishSession {
     const CombatSession &combat() const { return combat_; }
     SkirmishState state() const { return decodeSkirmish(world().state().campaign); }
     void enqueue(SkirmishOrder);
+    void removeCreature(Handle);
     SkirmishReport step(TickInput = {});
     void restore(const std::filesystem::path &, const NavigationResolver &);
 };

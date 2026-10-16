@@ -1,5 +1,6 @@
 #include "arena.hpp"
 #include "health_rules.hpp"
+#include "cure_runtime.hpp"
 #include "frozen_navigation.hpp"
 #include "persistence/snapshot.hpp"
 #include <array>
@@ -62,12 +63,13 @@ Buffer fixture() {
 std::shared_ptr<const game::Navigation> arenaNavigation() {
     return sandbox::loadFrozenNavigationBytes(fixture(), {}, true, true);
 }
-game::SkirmishSession newSession() { return game::SkirmishSession(arenaNavigation(), ordinaryHealthRules()); }
+game::SkirmishSession newSession() { return game::SkirmishSession(arenaNavigation(), ordinaryHealthRules(), cureRuntime()); }
 game::SkirmishSession load(const std::filesystem::path &path) {
     auto state = game::readSnapshot(path);
     const auto rules = resolveHealthRules(game::decodeCombat(state.systems).healthRulesIdentity);
+    auto effects = resolveCureRuntime(state);
     game::World w(0);
     w.restore(std::move(state));
-    return {std::move(w), arenaNavigation(), rules};
+    return {std::move(w), arenaNavigation(), rules, std::move(effects)};
 }
 } // namespace mnm::skirmish

@@ -4,7 +4,7 @@
 #include "playback.hpp"
 #include "view.hpp"
 namespace mnm::skirmish {
-enum class CursorMode { select, summon, bolt };
+enum class CursorMode { select, summon, bolt, cure };
 class Controller {
     game::SkirmishSession session_;
     std::unique_ptr<game::CampaignSession> campaign_;

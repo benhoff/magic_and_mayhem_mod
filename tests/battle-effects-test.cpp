@@ -15,7 +15,9 @@ public:
     void validate(const CombatSession& c,const SkirmishState&)const override {
         need(c.effects().identity==identity() && c.effects().data.size()==1,"effect runtime binding");
     }
-    SkirmishRefusal cast(CombatSession&,SkirmishState&,Handle,Handle)const override {return SkirmishRefusal::target;}
+    SkirmishRefusal cast(CombatSession&,SkirmishState& meta,Handle,Handle)const override {
+        auto replacement=meta;meta=std::move(replacement);return SkirmishRefusal::target;
+    }
     CombatReport step(CombatSession& c,SkirmishState&,TickInput)const override {
         auto bytes=c.effects().data;++bytes[0];c.updateEffects(bytes);
         if(fail) throw std::runtime_error("injected effect failure after movement");
@@ -42,6 +44,7 @@ int main()try {
     // Lower-level queued controls are consumed before a skirmish checkpoint.
     auto combat=decodeCombat(state.systems);combat.pending.clear();auto sections=decodeBattleSystems(state.systems);sections.combat=encodeCombat(combat);state.systems=encodeBattleSystems(sections);
     World w(0);w.restore(state);SkirmishSession combined(std::move(w),nav,{},runtime);
+    combined.enqueue({SkirmishOrderKind::cure,{0,1},Handle{2,1},{}});
     combined.enqueue({SkirmishOrderKind::move,{2,1},{},Point{3,5,1}});
     auto before=encodeSnapshot(combined.world().state());runtime->fail=true;refuses([&]{combined.step();});
     need(encodeSnapshot(combined.world().state())==before,"whole movement/effect rollback");runtime->fail=false;

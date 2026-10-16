@@ -74,6 +74,7 @@ class CombatSession {
     Handle spawn(Entity, CombatStats = {}, bool fineMotion = false,
                  CombatControl = CombatControl::automatic);
     void enqueue(CombatOrder);
+    void remove(Handle);
     CombatReport damage(Handle target, std::uint32_t amount, Handle source);
     CombatReport heal(Handle target, std::uint32_t amount, Handle source);
     void holdAll();

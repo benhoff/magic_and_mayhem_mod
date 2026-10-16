@@ -73483,13 +73483,259 @@
         "tests/skirmish-window-driver.hpp"
       ],
       "evidence": [
-        "BATTLE01.sections-native"
+        "BATTLE01.sections-native",
+        "BATTLE02.cure-native"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.cure-battle",
+      "subsystem": "casting",
+      "kind": "native_policy",
+      "title": "Playable native Cure with shared combat state and campaign continuation",
+      "scope": "Application-owned direct positive Cure for friendly ordinary Sentinels in the native authored arena: recovered admission/effect/resource/health/presentation contracts consume authoritative combat health, wizard mana and live movement; generation-bound effect entities, bounded actor reenrollment and cancellation on removal; owned ANI/status/effect continuation through campaign and skirmish save/load. UI/CLI use the same order path. Asset-free authored ANI default with separate installed recipe74 adapter execution. No original balance/full dispatcher/cadence/SPR/physical audio/live original campaign replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-cure-battle.md",
+        "research/formats/native-cure-battle.md",
+        "apps/skirmish/README.md"
+      ],
+      "implementation": [
+        "apps/skirmish/cure_runtime.cpp",
+        "apps/skirmish/cure_runtime.hpp",
+        "apps/skirmish/arena.cpp",
+        "apps/skirmish/campaign.cpp",
+        "apps/skirmish/controller.cpp",
+        "apps/skirmish/view.hpp",
+        "apps/skirmish/window.cpp",
+        "apps/skirmish/cli.cpp",
+        "apps/skirmish/campaign_cli.cpp",
+        "apps/skirmish/trace.cpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp"
+      ],
+      "tests": [
+        "tests/cure-battle-test.cpp",
+        "tests/test-cure-battle.py",
+        "tests/campaign-window-driver.cpp",
+        "tools/test-cure-battle.py"
+      ],
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/cure-lab/session.cpp",
+        "apps/cure-lab/session.hpp",
+        "apps/cure-world/installed.cpp",
+        "apps/cure-world/installed.hpp",
+        "apps/cure-world/session.hpp",
+        "apps/skirmish/CMakeLists.txt",
+        "apps/skirmish/arena.hpp",
+        "apps/skirmish/campaign.hpp",
+        "apps/skirmish/controller.hpp",
+        "apps/skirmish/health_rules.cpp",
+        "apps/skirmish/health_rules.hpp",
+        "apps/skirmish/main.cpp",
+        "apps/skirmish/trace.hpp",
+        "apps/skirmish/window.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "audio/buffers.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/campaign.cpp",
+        "game/persistence/campaign.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/battle_systems.cpp",
+        "game/simulation/battle_systems.hpp",
+        "game/simulation/campaign_session.cpp",
+        "game/simulation/campaign_session.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission_tables.hpp",
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp",
+        "reconstruction/casting/cure_presentation.cpp",
+        "reconstruction/casting/cure_presentation.hpp",
+        "reconstruction/casting/cure_services.cpp",
+        "reconstruction/casting/cure_services.hpp",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/effect_animation_binding.cpp",
+        "reconstruction/rendering/effect_animation_binding.hpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.cpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.hpp",
+        "reconstruction/rendering/effect_animation_selection.cpp",
+        "reconstruction/rendering/effect_animation_selection.hpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "tests/ani-motion-test.cpp",
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-model-test.cpp",
+        "tests/animation-placement-test.cpp",
+        "tests/battle-effects-test.cpp",
+        "tests/campaign-arena-test.cpp",
+        "tests/campaign-session-test.cpp",
+        "tests/campaign-window-driver.hpp",
+        "tests/creature-motion-test.cpp",
+        "tests/native-ani-restore-test.cpp",
+        "tests/native-campaign-persistence-test.cpp",
+        "tests/native-combat-test.cpp",
+        "tests/native-creature-rules-session-test.cpp",
+        "tests/native-health-rules-test.cpp",
+        "tests/native-idle-display-test.cpp",
+        "tests/native-movement-test.cpp",
+        "tests/native-multi-movement-test.cpp",
+        "tests/native-occupancy-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/native-terrain-restore-test.cpp",
+        "tests/native-world-test.cpp",
+        "tests/ordinary-health-test.cpp",
+        "tests/route-boundary-test.cpp",
+        "tests/route-cell-support-test.cpp",
+        "tests/route-cell-test.cpp",
+        "tests/route-cell-validity-test.cpp",
+        "tests/route-clearance-test.cpp",
+        "tests/route-creature-acceptance-test.cpp",
+        "tests/route-movement-test.cpp",
+        "tests/route-neighbors-test.cpp",
+        "tests/route-occupancy-test.cpp",
+        "tests/route-record-query-test.cpp",
+        "tests/route-request-test.cpp",
+        "tests/route-scalar-test.cpp",
+        "tests/route-search-test.cpp",
+        "tests/route-validity-test.cpp",
+        "tests/route-world-test.cpp",
+        "tests/segment-setup-test.cpp",
+        "tests/skirmish-test.cpp",
+        "tests/skirmish-window-driver.cpp",
+        "tests/skirmish-window-driver.hpp",
+        "tests/test-campaign-arena.py",
+        "tests/test-campaign-window.py",
+        "tests/test-native-ani-motion.py",
+        "tests/test-native-campaign-persistence.py",
+        "tests/test-native-combat.py",
+        "tests/test-native-fine-motion.py",
+        "tests/test-native-idle-display.py",
+        "tests/test-native-movement-session.py",
+        "tests/test-native-multi-movement.py",
+        "tests/test-native-occupancy.py",
+        "tests/test-native-segment-continuity.py",
+        "tests/test-native-spawn-display.py",
+        "tests/test-native-terrain-motion.py",
+        "tests/test-native-world.py",
+        "tests/test-neighbor-shadow.py",
+        "tests/test-route-world.py",
+        "tests/test-search-sequence.py",
+        "tests/test-skirmish-window.py",
+        "tests/test-skirmish.py",
+        "tools/test-battle-effects.py"
+      ],
+      "evidence": [
+        "BATTLE02.cure-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -151292,6 +151538,147 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "BATTLE02.cure-native",
+      "kind": "native_integration",
+      "scope": "Native authored arena Cure with shared authoritative health/mana, real movement/combat/effect transaction, generation-safe removal/reenrollment and self-contained campaign/window continuation. Default declared ANI fixture plus installed recipe74 execution; no original balance/cadence/full dispatcher/SPR/physical audio/live replacement claim.",
+      "record": "research/runtime/cure-battle-bound-20261016.json",
+      "sha256": "c1cce5e112f5d7af51220491856cb08b9546ef8965c7c8477d2bfadf83a2044b",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal",
+          "equals": {
+            "success": true,
+            "moving_cure": true,
+            "shared_health": true,
+            "checkpoint_continuation": true,
+            "generation_reenrollment": 40,
+            "legacy_campaign": true
+          }
+        },
+        {
+          "pointer": "/sanitized",
+          "equals": {
+            "success": true,
+            "moving_cure": true,
+            "shared_health": true,
+            "checkpoint_continuation": true,
+            "generation_reenrollment": 40,
+            "legacy_campaign": true
+          }
+        },
+        {
+          "pointer": "/normal_installed",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        },
+        {
+          "pointer": "/sanitized_installed",
+          "equals": {
+            "success": true,
+            "installed": true,
+            "health": 17
+          }
+        },
+        {
+          "pointer": "/window",
+          "equals": {
+            "success": true,
+            "scope": "Real Qt campaign Cure button/friendly target/move and save dialogs; fresh-window and headless continuation share exact campaign bytes.",
+            "moving_target": true,
+            "health_before": 9,
+            "health_after": 17,
+            "single_heal": 8,
+            "fresh_process": true,
+            "exact_campaign_bytes": true,
+            "checkpoint_sha256": "54d17f260bf3d1145a5e77185af4b21b60dc530bb9c7d0a6b668a05322fd9916",
+            "result_sha256": "a57f1e89ba4eafc0ca75270ec04ac08e9688471fc6d32af81eb8ee4e359f2975",
+            "commands": [
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/cure-battle-test",
+                "seed-legacy-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/legacy.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "inspect",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/legacy.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/cure-battle-test",
+                "seed-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/seed.mnmc"
+              ],
+              [
+                "xvfb-run",
+                "-a",
+                "-s",
+                "-screen 0 1280x1200x24",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/campaign-window-test",
+                "--test-script",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/in-flight.json",
+                "--test-output",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/in-flight",
+                "--load-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/seed.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "inspect",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/mnm-campaign-cli",
+                "resume",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/reference.mnmc",
+                "16"
+              ],
+              [
+                "xvfb-run",
+                "-a",
+                "-s",
+                "-screen 0 1280x1200x24",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/campaign-window-test",
+                "--test-script",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/fresh-process.json",
+                "--test-output",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/fresh-process",
+                "--load-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc"
+              ],
+              [
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/normal/cure-battle-test",
+                "resume-campaign",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/in-flight/final.mnmc",
+                "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/cure-battle-bound-20261016-v3/window-journey/completed.mnmc"
+              ]
+            ]
+          }
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -167922,7 +168309,25 @@
         "tools/test-battle-effects.py"
       ],
       "evidence": [
-        "BATTLE01.sections-native"
+        "BATTLE01.sections-native",
+        "BATTLE02.cure-native"
+      ]
+    },
+    {
+      "id": "BATTLE02.cure-playable",
+      "level": "preview",
+      "scope": "Native Qt campaign friendly-target Cure while a creature moves, save during playback, restart the window and finish identically to headless continuation; native/sanitized health/cap/death/pool/generation/removal and installed recipe74 playback checks.",
+      "behaviors": [
+        "NP.cure-battle"
+      ],
+      "tests": [
+        "tests/cure-battle-test.cpp",
+        "tests/test-cure-battle.py",
+        "tests/campaign-window-driver.cpp",
+        "tools/test-cure-battle.py"
+      ],
+      "evidence": [
+        "BATTLE02.cure-native"
       ]
     }
   ],
@@ -168540,8 +168945,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-battle-effects-20261016.json",
-    "sha256": "ae26a3a49046633eceb9b803080ee93dbc35a4d4fd197a33fb5b6477afd8532d"
+    "path": "research/runtime/coverage/source-index-cure-battle-20261016.json",
+    "sha256": "21ad8d0d12351c4e3d500f8c286a16980bb9cc1f2dfcb1701292078fb4a52b55"
   },
   "claim_bindings_required": true
 }

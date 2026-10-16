@@ -127,8 +127,13 @@ def main():
     _, system_start, system_size = wire.system_offsets(raw)
     for identity in [0, 99]:
         system = bytearray(raw[system_start:system_start + system_size])
-        assert system[:8] == b'MNMCOM03'
-        struct.pack_into('<Q', system, 16, identity)
+        combat_start = 0
+        if system[:8] == b'MNMBAT01':
+            combat_size, = struct.unpack_from('<I', system, 16)
+            combat_start = 20
+            assert combat_size >= 24 and combat_start + combat_size <= len(system)
+        assert system[combat_start:combat_start + 8] == b'MNMCOM03'
+        struct.pack_into('<Q', system, combat_start + 16, identity)
         path = out / f'bad-health-rules-{identity}.mnms'
         path.write_bytes(wire.replace_system(raw, system))
         run('inspect', path, good=False)

@@ -12745,3 +12745,44 @@ Shared source edits leave prior source-bound evidence historical where stale;
 this regression does not refresh original comparison or other consumers' scopes.
 Exact incoming6365e657..9fc6b28f file/behavior receipts were reviewed separately;
 all transitions have receipts, with no remaining accounting gaps.
+
+## Cure with native movement, combat and campaign continuation (2026-10-16)
+
+BATTLE02 connects the recovered direct Cure contracts to the same authored arena
+battle as movement, melee and Arc Bolt. CombatState remains the only health owner;
+Wizard remains the only mana owner. The app adapter builds a transient Cure view,
+then publishes health/resource/effect/ANI changes in one battle transaction.
+The admitted order batch is owned independently before runtime callbacks, so a
+metadata replacement cannot invalidate its iterator/current order. Sanitizers
+exposed this during the second attempt; retained failure logs are not validation.
+Eight generation-bound native effects and32 actor records own status, learning,
+spatial and playback continuation. Removed actor records recycle only after all
+active references retire, allowing repeated same-slot enrollment without aliases.
+
+Fresh source-bound normal/sanitized cases cover live movement/following, damage
+arriving mid-Cure, simultaneous melee, capped healing, concurrent casts, insufficient
+mana, native pool exhaustion, death, removal and40 actor reuse cycles. Native and
+sanitized installed catalog checks run recipe74 through this same adapter. All53
+normal CTests and five selected sanitized contracts pass. A retained actual Qt
+campaign journey queues movement and Cure, saves during playback, restarts the
+window and heals9→17 exactly once. Its final campaign bytes match headless resume.
+Separate headless restart emits one8-point heal. Original manifests, selected
+installed inputs and the declared build/test source closure remain unchanged.
+
+The asset-free arena declares cost3/magnitude8 and an authored ANI fixture;
+installed selected records are a separate adapter execution, not a new original
+balance/cadence claim. New campaign content binds Cure; legacy profiles load under
+their original exact identity. UI and CLI share the same semantic order, and
+selected ANI/cursors are embedded without requiring assets for continuation.
+See [implementation scope](native-cure-battle.md),
+[format](../formats/native-cure-battle.md) and
+[bound execution](cure-battle-bound-20261016.json).
+
+The complete recovered creature-rules laboratory is not integrated here: AI and
+battle policy remain the existing authored arena. Original full update/cadence,
+allocator/auxiliary effects, wizard/special targets/negative magnitude, physical
+audio, SPR pixels and live original campaign replacement remain pending. Shared
+source edits retain prior evidence as historical where stale; BATTLE01 gains fresh
+current integration through this new result, without refreshing old fingerprints.
+Incoming foundation3fbfffe2 was reviewed against9fc6b28f; all20 file and26 behavior
+transitions have exact receipts with no missing committed-history accounting.

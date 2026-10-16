@@ -75,6 +75,11 @@ void ArenaCanvas::paintEvent(QPaintEvent *) {
         p.fillRect(QRect(center.x() - 22, center.y() - 31, int(44 * u.health / u.maximum), 5),
                    color);
     }
+    for (const auto &cell : view_.cures) {
+        p.setPen(QPen(QColor("#75e8aa"), 3));
+        p.setBrush(Qt::NoBrush);
+        p.drawEllipse(cellCenter(cell), 25, 25);
+    }
     for (const auto &projectile : view_.projectiles) {
         const auto a = cellCenter(projectile.origin), b = cellCenter(projectile.destination);
         const double t = 1.0 - double(projectile.remaining) / game::SkirmishRules::flightTicks;
@@ -140,6 +145,8 @@ Window::Window(Controller &c) {
     };
     auto *summon = button("Summon Sentinel · 8 mana", "summonButton");
     auto *bolt = button("Arc Bolt · 4 mana", "boltButton");
+    auto *cure = button("Cure · 3 mana", "cureButton");
+    cure->setToolTip("Heal a living friendly Sentinel by 8, up to its maximum health.");
     auto *stop = button("Stop creature", "stopButton");
     auto *playbackRow = new QHBoxLayout;
     side->addLayout(playbackRow);
@@ -174,7 +181,7 @@ Window::Window(Controller &c) {
     status->setObjectName("feedbackStatus");
     side->addWidget(status);
     side->addStretch();
-    auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, stop, play, pause,
+    auto refresh = [&c, canvas, player, enemy, selection, status, summon, bolt, cure, stop, play, pause,
                     step, save, campaignStatus, saveCampaign, continueCampaign] {
         auto v = c.view();
         canvas->present(v);
@@ -188,6 +195,7 @@ Window::Window(Controller &c) {
         status->setText(v.feedback);
         summon->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::summonCost);
         bolt->setEnabled(v.canCast && !v.busy && v.mana[0] >= game::SkirmishRules::boltCost);
+        cure->setEnabled(v.cureEnabled && v.canCast && !v.busy && v.mana[0] >= v.cureMana);
         stop->setEnabled(v.canOrder);
         const bool running = c.hasBattle() && v.outcome == game::Outcome::running;
         save->setEnabled(!c.campaign());
@@ -233,6 +241,8 @@ Window::Window(Controller &c) {
                      guarded([&c] { c.setMode(CursorMode::summon); }));
     QObject::connect(bolt, &QPushButton::clicked, this,
                      guarded([&c] { c.setMode(CursorMode::bolt); }));
+    QObject::connect(cure, &QPushButton::clicked, this,
+                     guarded([&c] { c.setMode(CursorMode::cure); }));
     QObject::connect(stop, &QPushButton::clicked, this, guarded([&c] { c.stop(); }));
     QObject::connect(play, &QPushButton::clicked, this, [&c] { c.play(); });
     QObject::connect(pause, &QPushButton::clicked, this, [&c] { c.pause(); });

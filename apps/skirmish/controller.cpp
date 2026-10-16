@@ -1,4 +1,5 @@
 #include "controller.hpp"
+#include "cure_runtime.hpp"
 #include "persistence/snapshot.hpp"
 #include <algorithm>
 #include <stdexcept>
@@ -65,6 +66,9 @@ ArenaView Controller::view() const {
     const auto c = session().combat().combat();
     v.outcome = s.outcome;
     v.projectiles = s.projectiles;
+    v.cureEnabled = bool(session().effectsRuntime());
+    v.cureMana = cureCost;
+    for (const auto &effect : cureViews(session().combat())) v.cures.push_back(effect.position);
     v.selected = selected_;
     v.feedback = feedback_;
     for (unsigned i = 0; i < 2; ++i) {
@@ -162,6 +166,7 @@ void Controller::setMode(CursorMode m) {
         throw std::invalid_argument("Select your wizard to cast");
     mode_ = m;
     feedback_ = m == CursorMode::summon ? "Click an empty cell within two cells of your wizard."
+                : m == CursorMode::cure ? "Click a living friendly Sentinel to cast Cure."
                 : m == CursorMode::bolt ? "Click a living enemy to cast Arc Bolt."
                                         : "Select a unit.";
     changed();
@@ -179,6 +184,10 @@ void Controller::cell(game::Point p, bool right) {
         if (!selected_)
             throw std::invalid_argument("Select your wizard");
         order = game::SkirmishOrder{game::SkirmishOrderKind::summon, *selected_, {}, p};
+    } else if (mode_ == CursorMode::cure) {
+        if (!selected_ || !v.cureEnabled || hit == v.units.end() || hit->owner || hit->role != game::UnitRole::sentinel)
+            throw std::invalid_argument("Choose a living friendly Sentinel");
+        order = game::SkirmishOrder{game::SkirmishOrderKind::cure, *selected_, hit->actor, {}};
     } else if (mode_ == CursorMode::bolt) {
         if (!selected_ || hit == v.units.end() || !hit->owner)
             throw std::invalid_argument("Choose a living enemy");
