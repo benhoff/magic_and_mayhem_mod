@@ -72837,6 +72837,115 @@
       "remaining_gaps": [
         "Original global-route/physical-change completeness and broader semantic/action outcomes remain unproved. New campaign/SaveLoad/movie/real-driver intervals, full14journey/21operation acceptance, sustained hardware performance and live replacement remain separate."
       ]
+    },
+    {
+      "id": "NP.cure-world-session",
+      "subsystem": "casting",
+      "kind": "native_policy",
+      "title": "ANI-driven Cure on native World identities and snapshots",
+      "scope": "Application-owned native World adapter for bounded direct positive Cure: actual forward ANI cursor drives completion, generation-bound creature/effect entities, queued World cleanup/release, target following, staged resource/health/status publication and self-contained native World snapshots. Reuses recovered Cure presentation and lab contracts. Native scheduling/spatial movement policies; installed animation loading is offline, no complete original lifecycle, live campaign replacement or other World systems composition.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "apps/cure-world/README.md",
+        "research/formats/native-cure-world.md"
+      ],
+      "implementation": [
+        "apps/cure-world/session.cpp",
+        "apps/cure-world/session.hpp",
+        "apps/cure-world/installed.cpp",
+        "apps/cure-world/installed.hpp",
+        "apps/cure-world/main.cpp"
+      ],
+      "tests": [
+        "tests/cure-world-test.cpp",
+        "tools/test-cure-world.py"
+      ],
+      "evidence": [
+        "CURE05.world-ani-bounded-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/cure-lab/session.cpp",
+        "apps/cure-lab/session.hpp",
+        "apps/cure-world/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "audio/buffers.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/casting/admission.cpp",
+        "reconstruction/casting/admission.hpp",
+        "reconstruction/casting/admission_tables.hpp",
+        "reconstruction/casting/cure_effect.cpp",
+        "reconstruction/casting/cure_effect.hpp",
+        "reconstruction/casting/cure_presentation.cpp",
+        "reconstruction/casting/cure_presentation.hpp",
+        "reconstruction/casting/cure_services.cpp",
+        "reconstruction/casting/cure_services.hpp",
+        "reconstruction/casting/descriptor.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/rendering/effect_animation_binding.cpp",
+        "reconstruction/rendering/effect_animation_binding.hpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.cpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.hpp",
+        "reconstruction/rendering/effect_animation_selection.cpp",
+        "reconstruction/rendering/effect_animation_selection.hpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp"
+      ],
+      "validation_domain": {
+        "included": [
+          "512 authored native World cases with actual forward ANI cursor, generation-bound actor/effect entities and complete per-tick snapshot continuation",
+          "Original-comparison-backed Cure creator/setup/controller/release, real resource/status/ordinary-health consequences and native World release/reference clearing",
+          "World pool exhaustion, stale actor/effect handles and slot reuse; queued cleanup/release during both11/77 phases; atomic failure publication",
+          "Embedded selected recipe/cursors, actor/effect/spatial binding validation and malformed native World systems rejection; alternate-mode/unadmitted phase policies",
+          "Offline installed catalog load and recipe74 playback, separate-process resume with embedded records and no asset argument"
+        ],
+        "excluded": [
+          "Original full4970e0 update/follow/allocator/auxiliary child/effect-audio and wall-clock cadence equivalence",
+          "Actor motion components or concurrent creature-AI/campaign systems; newly spawned actor enrollment",
+          "Installed spell parameters/actor profiles, projectile types, negative Cure magnitude, wizard/special target health",
+          "Physical audio backend, SPR pixels/drawing and live campaign replacement"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -150378,6 +150487,95 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CURE05.world-ani-bounded-native",
+      "kind": "native_integration",
+      "scope": "Native World direct positive Cure adapter: real owned ANI cursor drives completion, generation-bound actors/effects, native effect-phase release and checkpoint continuation with embedded selected records.512 authored cases plus installed recipe74 load/playback and separate-process asset-free resume. Native scheduling/follow/cancellation policies; no full original lifecycle, original cadence, live campaign replacement, sprite rendering, projectile or AI-systems composition equivalence.",
+      "record": "research/runtime/native-cure-world-bounded-20261016.json",
+      "sha256": "364c8dcb9ae4b74f0ef7e48ebb06cc0da94991e7cd29e6989d4ed1fd19979e22",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native32_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_catalog_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/separate_process_asset_free_resume_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/world_checkpoint_continuation",
+          "equals": true
+        },
+        {
+          "pointer": "/generation_refusals",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/animation_ticks",
+          "equals": 4814
+        },
+        {
+          "pointer": "/demo",
+          "equals": {
+            "success": true,
+            "recipe": 74,
+            "animation_ticks": 31,
+            "selected_sequence": 14,
+            "selected_asset": 3,
+            "printer_property": 2,
+            "opaque_data1": 0,
+            "health_before": 9,
+            "health_after": 17,
+            "caster_resource_q8": 4352,
+            "world_tick": 32,
+            "effect_released": true,
+            "status_after": 0
+          }
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -166925,6 +167123,21 @@
       "evidence": [
         "DRAW02.recorded-session.portable-03-20261016"
       ]
+    },
+    {
+      "id": "CURE05.world-ani",
+      "level": "headless",
+      "scope": "512 native World ANI-driven Cure cases, exact continuation/generation and failure checks plus installed recipe74 playback and separate-process asset-free snapshot resume.",
+      "behaviors": [
+        "NP.cure-world-session"
+      ],
+      "tests": [
+        "tests/cure-world-test.cpp",
+        "tools/test-cure-world.py"
+      ],
+      "evidence": [
+        "CURE05.world-ani-bounded-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -167541,8 +167754,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-render-lifetime-session-20261016.json",
-    "sha256": "a97cc98c97bec30e405e9de0755165317aac9dcdaf51f5b2201e0659197a54c8"
+    "path": "research/runtime/coverage/source-index-cure-world-integrated-20261016.json",
+    "sha256": "8dcc9bbb1ba6d4bbaa8d4cf7c09b848846a3a8bb638214ee8f8c413ebf5afbfd"
   },
   "claim_bindings_required": true
 }

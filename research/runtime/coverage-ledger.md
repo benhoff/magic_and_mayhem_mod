@@ -12578,3 +12578,40 @@ wrap acceptance; the old empty-counter OVERFLOW evidence stays historical.
 [Incoming committed-history accounting](coverage/native-render-rollover-incoming-history-20261016.json)
 reviews 45af2ed6 through the recorded current head separately from uncommitted work;
 it makes no retrospective gate-pass or behavior-validation assertion.
+
+## ANI-driven Cure on native World (2026-10-16)
+
+CURE05 connects Cure presentation and the owned lab rules to native World entity
+identities, effects phases, queued cleanup/release and native snapshots. Real
+recipe74 forward ANI state drives completion; no caller completion signal or
+wall-clock timer is supplied. Cast and tick stage World/Cure/resource/status/ANI
+state together. Generation reuse does not retarget old spells. Self-contained
+World systems data embeds selected ANI records/cursors and spatial/identity maps.
+
+Fresh native32/native64/sanitizer and CMake/CTest execution covers512 authored
+cases/4814 ANI-driving World ticks, exact per-step checkpoint continuation,
+stale/retired/reused identities, queued cleanup/release during11/77, target death,
+World pool exhaustion, alternate/unadmitted phase clocks and malformed component
+bindings/extents, including exact actor/effect/presentation count checks before
+allocation or ANI player construction. Installed CFG plus13 ANI inputs load recipe74 (asset3,sequence14,
+printer2,Data1=0). The demo completes after31 ANI ticks (World tick32), heals9→17,
+debits20→17 and retires the native effect. Separate-process resume reads embedded
+records with no asset argument and produces the identical result. All source/
+installed input fingerprints and immutable manifests remain unchanged.
+
+See [the adapter](../../apps/cure-world/README.md),
+[component format](../formats/native-cure-world.md) and
+[source-bound execution](native-cure-world-bounded-20261016.json).
+This consumer exclusively owns systems and direct grid positions: actor motion,
+concurrent AI/campaign systems and new actor enrollment remain future integration.
+Original allocator/auxiliary child/effect audio/follow/full update/real-time cadence,
+installed spell/actor parameters, projectiles, physical audio, SPR drawing and live
+campaign replacement remain pending. The GCC16 optional-copy diagnostic stays
+nonfatal only on unchanged movement.cpp; movement behavior is not validated here.
+Incoming b190f271 was reviewed against e89f2282; all15 file and4 behavior transitions
+have exact receipts, with no missing accounting. Existing comparison stages and
+historical evidence remain independent from this native integration milestone.
+
+Incoming rendering commit910046b3 was reviewed against b190f271 before this
+coverage update. Exact hash/receipt findings are retained in the Cure World
+render incoming-history report; this accounting makes no new rendering claim.
