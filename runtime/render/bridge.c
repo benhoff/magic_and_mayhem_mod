@@ -678,6 +678,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
         game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
         game_copy_native_defer=(void (WIN *)(u32))GetProcAddress(native_draw,"NativeDrawStatusDeferV1");
         game_cpu_history=(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(native_draw,"NativeDrawCpuHistoryV1");
+        game_native_gpu_plan=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyPlanV1");
         game_native_gpu_copy=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,u16*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyV1");
         game_native_cpu_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuTransferV1");
     }

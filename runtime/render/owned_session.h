@@ -1,5 +1,6 @@
 #include "../../protocols/include/mnm/render_stream_v5.h"
 #include "dirty_region.h"
+#include "gpu_copy_commands.h"
 #include "../../protocols/include/mnm/resident_frame_budget.h"
 /* Ordered opt-in production, independent of bounded diagnostic archives.
  * Every entry point holds game_locks_busy; pixels are owned snapshots only. */
@@ -128,7 +129,7 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
     if(owned && owned->gpu_history){game_session_gap(4);return 0;}
     const u32 pixel_limit=mnm_resident_source_pixel_limit(game_prepared_world);
     u32 count=pixels->width*pixels->height;
-    if(count>pixel_limit || (game_session_continuous && session_last_id==0xffffffffu)){game_session_gap(2);return 0;}
+    if(count>pixel_limit || session_last_id==0xffffffffu){game_session_gap(2);return 0;}
     for(;;){
         s=0;for(u32 i=0;i<32;++i)if(!session_surfaces[i].id){s=session_surfaces+i;break;}
         if(s && count<=pixel_limit-session_pixels)break;
@@ -139,7 +140,7 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
         lock_diagnostic("session_cache_evicted",victim->object,0,old_id,session_pixels,0,0,0);
         session_pixels-=victim->width*victim->height;zero(victim,sizeof(*victim));
     }
-    s->object=object;s->id=game_session_continuous?++session_last_id:(u32)(s-session_surfaces)+1;
+    s->object=object;s->id=++session_last_id;
     s->width=pixels->width;s->height=pixels->height;s->bits=pixels->bits;
     s->r=pixels->r;s->g=pixels->g;s->b=pixels->b;s->used=session_sequence;session_pixels+=count;
     u32 fields[7]={s->id,s->width,s->height,s->bits,s->r,s->g,s->b};
@@ -178,6 +179,7 @@ static void game_native_primary_initial(struct GameSurface* surface,const u32* d
     lock_diagnostic("native_primary_initial_zero",surface->object,0,identity[1],identity[2],0,initial.length,0);
 }
 static i32 (WIN *game_native_gpu_copy)(void*,const i32*,void*,const i32*,u32,u16*,u32);
+static i32 (WIN *game_native_gpu_plan)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32);
 /* Called by the fixed-build scene adapter after its validated ACK restores the
  * original page guard, before any post-World UI drawing. Only the already-owned
  * current-thread full Lock may supply the opaque identity and private baseline.
@@ -356,42 +358,72 @@ static void game_gpu_refuse(u32 stage,const struct GameBlit* p){
     if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
     ExitProcess(124);
 }
+static int game_gpu_emit_copy(void* context,const u32* fields){
+    (void)context;return session_record(3,fields,40,0,0);
+}
+/* A blank CREATE is overwritten in full on the GPU before it is sampled. CPU
+ * history supplies shape only. The scratch is never a CPU reader or PRESENT. */
+static struct SessionSurface* game_gpu_scratch(const struct Snapshot* shape){
+    struct SessionSurface* s=0;struct Snapshot blank;zero(&blank,sizeof(blank));
+    const u32 count=shape->width*shape->height,limit=mnm_resident_source_pixel_limit(game_prepared_world);
+    for(u32 i=0;i<32;++i)if(!session_surfaces[i].id){s=session_surfaces+i;break;}
+    if(!s || session_last_id==0xffffffffu || session_pixels>limit || count>limit-session_pixels || !game_surface_blank(&blank,shape))return 0;
+    zero(s,sizeof(*s));s->id=++session_last_id;s->width=shape->width;s->height=shape->height;
+    s->bits=shape->bits;s->r=shape->r;s->g=shape->g;s->b=shape->b;session_pixels+=count;
+    u32 fields[7]={s->id,s->width,s->height,s->bits,s->r,s->g,s->b};
+    const int ok=session_record(1,fields,28,blank.data,blank.length);
+    __atomic_sub_fetch(&lock_capture_reserved,blank.length,__ATOMIC_RELAXED);free_snapshot(&blank);
+    return ok?s:0;
+}
 static i32 game_gpu_blit(struct GameBlit* p){
     u32 error=GetLastError();
     if(!p->valid || !p->gpu || !game_resident_world || !game_copy_order_enabled ||
-       !game_native_gpu_copy || !game_surface_pixels_enter(p->target))game_gpu_refuse(1,p);
+       !game_native_gpu_copy || !game_native_gpu_plan || !game_surface_pixels_enter(p->target))game_gpu_refuse(1,p);
     struct GameSurface *src=game_surface_find(p->source,0),*dst=game_surface_find(p->target,0);
-    struct SessionSurface *a=session_find(p->source),*b=0;
+    struct SessionSurface *a=session_find(p->source),*b=0,*scratch=0;
     if(!session_active || !a || !src || !dst || !src->gpu_history || !p->source_generation ||
        p->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) ||
        src->generation!=p->source_generation || dst->generation!=p->target_generation)game_gpu_refuse(2,p);
-    if(p->bootstrap){
-        /* A full opaque COPY overwrites this synthetic initial image before
-         * any PRESENT. Keep its zeros separate from the facade's private CPU
-         * baseline, which is never CREATE input. */
-        if(!game_surface_blank(&p->src,&dst->pixels) || !game_surface_blank(&p->dst,&dst->pixels))game_gpu_refuse(3,p);
-    }
+    if(p->bootstrap && (!game_surface_blank(&p->src,&dst->pixels) || !game_surface_blank(&p->dst,&dst->pixels)))game_gpu_refuse(3,p);
     i32 sr[4]={(i32)p->fields[2],(i32)p->fields[3],(i32)p->fields[4],(i32)p->fields[5]};
     i32 dr[4]={(i32)p->fields[6],(i32)p->fields[7],(i32)(p->fields[6]+p->fields[4]-p->fields[2]),(i32)(p->fields[7]+p->fields[5]-p->fields[3])};
-    SetLastError(error);
-    i32 result=game_native_gpu_copy(p->target,dr,p->source,sr,p->fields[8]?0x8000:0,
-        p->bootstrap?(u16*)p->dst.data:0,p->bootstrap?p->dst.length:0);
-    error=GetLastError();
-    if(result>=0){
-        b=session_surface(p->target,p->bootstrap?&p->src:&dst->pixels,p->source);if(!b || a==b)game_gpu_refuse(4,p);
-        u32 fields[10];copy(fields,p->fields,40);fields[0]=a->id;fields[1]=b->id;
-        if(!session_record(3,fields,40,0,0) || (dst->primary && !session_present(b)))game_gpu_refuse(5,p);
-        /* The private CPU baseline remains unchanged, matching facade storage.
-         * It is usable only for later CPU write masks, never CREATE/readback. */
-        dst->gpu_history=1;dst->generation=++game_surface_generation;dst->generation_origin=8;
-        dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();
+    struct MnmGpuCopyPlan* plan=HeapAlloc(GetProcessHeap(),8,sizeof(*plan));if(!plan)game_gpu_refuse(6,p);SetLastError(error);
+    i32 admission=game_native_gpu_plan(p->target,dr,p->source,sr,p->fields[8]?0x8000:0,plan,sizeof(*plan));
+    error=GetLastError();i32 result=admission;
+    if(admission>=0){
+        if(plan->source_width!=src->pixels.width || plan->source_height!=src->pixels.height ||
+           plan->target_width!=dst->pixels.width || plan->target_height!=dst->pixels.height ||
+           plan->keyed!=p->fields[8] || plan->key!=p->fields[9] || plan->self!=(src==dst))game_gpu_refuse(4,p);
+        /* Validate before CREATE, publication, private-baseline adoption or any
+         * successful application return. A source failure retains its prefix. */
+        if(!mnm_gpu_copy_plan_valid(plan,1,plan->self?1:2,plan->self&&plan->count?3:0))game_gpu_refuse(4,p);
+        result=(i32)plan->result;
+        if(p->bootstrap){
+            /* Keep the legacy full-overwrite bootstrap's unchanged private CPU
+             * mask baseline; it never seeds a GPU image or satisfies a reader. */
+            SetLastError(error);
+            i32 baseline=game_native_gpu_copy(p->target,dr,p->source,sr,0,(u16*)p->dst.data,p->dst.length);
+            error=GetLastError();if(baseline<0 || result<0 || plan->count!=1 || plan->self)game_gpu_refuse(3,p);
+        }
+        b=session_surface(p->target,p->bootstrap?&p->src:&dst->pixels,p->source);if(!b)game_gpu_refuse(4,p);
+        if(plan->self && plan->count){scratch=game_gpu_scratch(&src->pixels);if(!scratch)game_gpu_refuse(6,p);}
+        if(!mnm_gpu_copy_commands(plan,a->id,b->id,scratch?scratch->id:0,game_gpu_emit_copy,0))game_gpu_refuse(5,p);
+        if(scratch){
+            if(!session_record(7,&scratch->id,4,0,0))game_gpu_refuse(5,p);
+            session_pixels-=scratch->width*scratch->height;zero(scratch,sizeof(*scratch));
+        }
+        if(dst->primary && (result>=0 || plan->count) && !session_present(b))game_gpu_refuse(5,p);
+        if(plan->count){
+            dst->gpu_history=1;dst->generation=++game_surface_generation;dst->generation_origin=8;
+            dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();
+        }
         if(p->bootstrap){
             copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;
             game_surface_bytes+=dst->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
         }
-        session_done();lock_diagnostic("resident_gpu_copy",p->target,0,(u32)p->source,0,0,0,0);
+        session_done();lock_diagnostic("resident_gpu_copy",p->target,0,(u32)p->source,plan->count,(u32)result,plan->self,0);
     }
-    game_blit_free(p);p->gpu=2;game_tracker_release();SetLastError(error);return result;
+    HeapFree(GetProcessHeap(),0,plan);game_blit_free(p);p->gpu=2;game_tracker_release();SetLastError(error);return result;
 }
 /* Explicit CPU reader only. FIFO execution fixes the image boundary; physical
  * identity is rechecked after waiting without holding the tracker. The ordered

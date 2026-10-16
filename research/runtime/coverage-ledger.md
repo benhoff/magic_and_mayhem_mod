@@ -13362,3 +13362,43 @@ cases, including the twelve evidence-ID import/refusal fixtures, in
 history and normal commit hooks remain enforced. Initial quota failure logs
 and earlier proof/snapshot bytes remain retained. All409 native execution
 source hashes remain unchanged; native campaign results do not need renewal.
+
+### Owned clipped and overlapping GPU copies — 2026-10-16
+
+`NP.native-gpu-copy-plan` adds the process-local scalar
+`NativeDrawGpuCopyPlanV1` service and production bridge routing for matching
+owned RGB565 GPU sources. Current canonical clipping supports up to 256 ordered
+pieces. Aliased/self copies freeze the entire GPU source once before all pieces,
+including keyed overlap; successful pieces survive a later source-bounds error.
+Stale CPU allocations remain untouched, and empty clips preserve authority.
+Bounded temporary resources receive monotonic IDs and FIFO deletion. Complete
+plan validation precedes emission; unsupported capability, lease, resource and
+publication failures retain strict refusal. Full opaque bootstrap keeps its
+separate private CPU write-mask baseline. No World pixel readback is introduced.
+
+All 23 actual facade/production-bridge/GL cases pass against separate CPU facade
+expectations, with poisoned CPU storage and zero final native owners/surfaces.
+The 25 prepublication refusal controls, three publication failures, legacy
+baseline/CPU restore probe and command-consumer/resident-World compatibility
+executables pass. Production PE32 builds succeed. Immutable manifests verify
+2,927 files before and after. This establishes scoped headless native integration,
+not original-game caller coverage or recovered driver semantics.
+
+The independent portable regressions pass all 222 corrected storage frames and
+exact source/default-framebuffer witnesses, plus all 323 Quick Battle GPU/X11
+frames. Final RGB tolerance remains one channel value, alpha excluded. The
+portable compositor does not execute the new live bridge route; complete generic
+journey/replacement acceptance remains false. Raw failed setup/unstable-metadata
+attempts remain retained and receive no passing credit. The unchanged historical
+238-frame baseline was not rerun or relabeled in this change.
+
+Updated the current dependency-gap documents and source census. Reviewed exact
+committed transitions from `2afa1ea8` through `bebe9aaa`, separately from this
+change. The 1,148 gzip-fixture receipts missing in their introducing commit were
+already added retrospectively by the later campaign commit; compressed/current
+Git hashes and decompressed content identities were independently checked and
+all later receipt links resolve. No historical evidence hashes were refreshed.
+Arbitrary raw readers, range-key/stretch GPU copies, installed-game caller/output
+validation, asynchronous World source readback, hardware/context-loss acceptance
+and complete live renderer replacement remain open. See
+[copy-plan evidence and boundaries](native-gpu-copy-plan.md).

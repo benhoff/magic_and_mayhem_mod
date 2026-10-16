@@ -85,11 +85,16 @@ session, extent, generation and nonce and executes after preceding GPU work.
 `RenderPrepareStorageV1` synchronizes selected storage panels before original
 callbacks. These are current implementations, not TODOs.
 
-`NativeDrawGpuCopyV1` handles an admitted disjoint, unclipped, non-stretched
-owned copy and propagates GPU authority without pretending its CPU baseline is
-rendered World output. Clipped/self GPU source copies still refuse. Partial
-writes cannot establish previously unknown/full CPU history. Arbitrary pointer
-reads outside selected adapters are not intercepted.
+`NativeDrawGpuCopyPlanV1` now admits owned non-stretched RGB565 GPU copies with
+up to 256 canonical clip pieces and an immutable GPU snapshot for aliased/self
+sources, including single-key overlap. It retains successful pieces before a
+later source-bounds error. All 23 actual facade/bridge/GL controls pass, with
+untouched stale CPU storage and temporary resource cleanup. The legacy
+`NativeDrawGpuCopyV1` retains its strict full opaque bootstrap role. See
+[copy-plan evidence and boundaries](native-gpu-copy-plan.md). Installed-game
+caller/output validation remains open. Partial writes cannot establish previously
+unknown/full CPU history. Arbitrary pointer reads outside selected adapters are
+not intercepted.
 
 The earlier blanket phrase "asynchronous CPU reads unsupported" needs precision:
 explicit command CPU_READ and the asynchronous native host worker are separate
