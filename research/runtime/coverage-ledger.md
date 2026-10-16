@@ -12929,3 +12929,31 @@ reviewed against exact parent/current Git hashes and receipts in
 `coverage/map-cure-incoming-history-20261016.json`, with no missing versions.
 Original/recovered shared dependencies retain their historical evidence and
 explicit pending limitations rather than acquiring native equivalence credit.
+
+## Type3 projectile update and actor impact (2026-10-16)
+
+PROJECTILE01 recovers the Magic Sphere73 update type3 arm of4970e0 and selected
+actor-target48ecf0 dispatch.32,768 bounded original/native64/sanitized cases and
+standalone CMake pass with guarded effect/actor state, ordered supplied service
+calls, immutable text/dispatch and original manifests before/after. Hits retain
+the projectile, update its next creator exclusion and record attacker+1/time100;
+timeout wrapping, height exit, bounce dispatch, ANI restart and logical audio
+start/follow are distinct branches. Lower motion/ricochet/health/ANI/audio/release
+services are supplied; no complete lower lifecycle or live replacement is claimed.
+See [contract](projectile-delivery.md) and
+[execution](original-projectile-bound-20261016.json). The incoming6f3f7037..b340b291
+range has42 file and197 behavior transitions reviewed with exact receipts and no
+missing accounting. Historical evidence remains immutable.
+
+## Magic Sphere motion continuation (2026-10-16)
+
+The incoming projectile foundation63f60a9e is combined with the tested Plains/Cure
+branch. Exact committed parent/current versions and receipts are reviewed in
+`coverage/sphere-motion-incoming-history-20261016.json`. The bounded type3/spell73
+motion path now has2048 original/native/sanitized calls across128 authored worlds,
+601 hit returns and identical guarded state/output streams, plus unit/sanitized
+unit and two CMake cases. Original executable and manifests remain unchanged.
+See `sphere-motion.md` and `sphere-motion-bound-20261016.json`. Actor worlds stay
+fixed within fixtures; real moving actors, installed map binding and native Sphere
+battle integration are subsequent milestones. Native admission bounds do not
+assert comparison of every newly permitted counter/iteration value.

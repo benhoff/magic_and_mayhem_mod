@@ -74936,6 +74936,120 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CAST.projectile-update",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original type3 projectile update and actor impact",
+      "scope": "Whole4970e0 type3 arm with auxiliary222 absent and actual48ecf0 actor-target dispatch. Supplied motion/bounce/defended-damage/release/ANI/logical audio services, DWORD lifetime wrap and signed timeout, hit-exclusion/attacker/cache/visibility writes and ordered calls. No terrain damage, complete lower ownership, installed profiles or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4813024,
+          "scope": "Type3 arm and ordinary epilogue only; other update types excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4779248,
+          "scope": "Actor-target branch only; terrain and area branches excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/projectile-delivery.md"
+      ],
+      "implementation": [
+        "reconstruction/casting/projectile.cpp",
+        "reconstruction/casting/projectile.hpp"
+      ],
+      "tests": [
+        "tests/projectile-test.cpp",
+        "tools/test-projectile.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/casting/projectile/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-projectile.py"
+      ],
+      "evidence": [
+        "PROJECTILE01.original",
+        "PROJECTILE01.native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CAST.sphere-motion",
+      "subsystem": "casting",
+      "kind": "recovered",
+      "title": "Original type3 Magic Sphere creature-aware motion continuation",
+      "scope": "Whole4883f0 type3/spell73 with original trajectory and footprint helpers:128 authored bounded fixtures,1..20 iteration count and sixteen repeated calls, initial/changed-cell ordered candidate collection, creator exclusion, type3 hit retention, wrapped coordinates and guarded full records/cells/actors/catalog; fixed actor world within each repeated fixture, bitmap/blocked/height exits as authored. No original ricochet geometry, installed profiles or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected type3/spell73 creature-aware motion; authored bounded trajectory and world."
+        }
+      ],
+      "documents": [
+        "research/runtime/projectile-delivery.md",
+        "research/runtime/sphere-motion.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/creature_occupancy.cpp",
+        "reconstruction/rendering/creature_occupancy.hpp",
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp"
+      ],
+      "tests": [
+        "tests/projectile-motion-reference.cpp",
+        "tools/test-projectile-motion.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/effect-creature/CMakeLists.txt",
+        "tests/effect-creature-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "PROJECTILE02.motion-original",
+        "PROJECTILE02.motion-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -153254,6 +153368,166 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "PROJECTILE01.original",
+      "kind": "isolated_original",
+      "scope": "Whole unchanged4970e0 type3 arm and actual48ecf0 actor-target dispatch: supplied motion, defended damage, bounce, release, ANI and logical audio services; full guarded effect/actor state, FS restoration and ordered calls. No terrain damage, original lower ownership, installed profiles or live replacement",
+      "record": "research/runtime/original-projectile-bound-20261016.json",
+      "sha256": "20ace58026f2d828a56f2e270fe8822dd3e65971440a142576d6963b4ce1c69d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "PROJECTILE01.native",
+      "kind": "native_integration",
+      "scope": "Whole unchanged4970e0 type3 arm and actual48ecf0 actor-target dispatch: supplied motion, defended damage, bounce, release, ANI and logical audio services; full guarded effect/actor state, FS restoration and ordered calls. No terrain damage, original lower ownership, installed profiles or live replacement",
+      "record": "research/runtime/original-projectile-bound-20261016.json",
+      "sha256": "20ace58026f2d828a56f2e270fe8822dd3e65971440a142576d6963b4ce1c69d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_cmake_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/object_write_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 32768
+        }
+      ]
+    },
+    {
+      "id": "PROJECTILE02.motion-original",
+      "kind": "isolated_original",
+      "scope": "Whole unmodified4883f0 type3/spell73 with actual trajectory and footprint helpers: authored 1..20 steps and sixteen repeated calls, creator exclusion, changing cells, wrap, blocked/bitmap/height exits and guarded complete state. Fixed actor world between calls; no ricochet geometry, installed catalog or live replacement",
+      "record": "research/runtime/sphere-motion-bound-20261016.json",
+      "sha256": "b90d067da8a20ffd9749b135176afb9a52198e389daac903aa72ba4026aeab85",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 2048
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/executable_sha256"
+    },
+    {
+      "id": "PROJECTILE02.motion-native",
+      "kind": "native_integration",
+      "scope": "Native and sanitized execution of the same declared bounded Sphere motion fixtures; no moving-world or application integration.",
+      "record": "research/runtime/sphere-motion-bound-20261016.json",
+      "sha256": "b90d067da8a20ffd9749b135176afb9a52198e389daac903aa72ba4026aeab85",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 2048
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -170075,6 +170349,38 @@
       "evidence": [
         "NP.map-cure.automation-20261016"
       ]
+    },
+    {
+      "id": "PROJECTILE01.dispatch",
+      "level": "headless",
+      "scope": "32768 bounded whole-entry type3 cases, actual actor impact, full guarded effect/actor state and ordered supplied lower calls; native/sanitized/32-bit original and standalone CMake.",
+      "behaviors": [
+        "CAST.projectile-update"
+      ],
+      "tests": [
+        "tests/projectile-test.cpp",
+        "tools/test-projectile.py"
+      ],
+      "evidence": [
+        "PROJECTILE01.original",
+        "PROJECTILE01.native"
+      ]
+    },
+    {
+      "id": "PROJECTILE02.motion",
+      "level": "headless",
+      "scope": "128 authored Magic Sphere73 type3 worlds,2048 original/native/sanitized movement calls and fixed creature catalogs with full state/guard comparison; existing unit/CMake regression.",
+      "behaviors": [
+        "CAST.sphere-motion"
+      ],
+      "tests": [
+        "tests/projectile-motion-reference.cpp",
+        "tools/test-projectile-motion.py"
+      ],
+      "evidence": [
+        "PROJECTILE02.motion-original",
+        "PROJECTILE02.motion-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -170691,8 +170997,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-map-cure-integration-20261016.json",
-    "sha256": "304ebd754b07bc9cfaa58fed646eec4ffa95e4b0dbe31c2c425c2e62ba960420"
+    "path": "research/runtime/coverage/source-index-sphere-motion-20261016.json",
+    "sha256": "31e30ded2b3e49ac7ea9cc3a6549fc810e17634d997df19e9dabc156ddf969bc"
   },
   "claim_bindings_required": true
 }
