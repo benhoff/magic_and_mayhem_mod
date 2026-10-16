@@ -13,6 +13,8 @@
 #include "../../reconstruction/creature-ai/owner_planner.hpp"
 #include "../../reconstruction/creature-ai/owner_hostile_task.hpp"
 #include "../../reconstruction/creature-ai/brain_inference.hpp"
+#include "../../reconstruction/creature-ai/owner_group_task.hpp"
+#include "../../reconstruction/creature-ai/owner_task_probe.hpp"
 namespace mnm::command_session {
 struct NativeAnimationChannel {
   unsigned asset=0,sequence=0;
@@ -53,6 +55,14 @@ struct NativeOwnerVisibility {
   std::vector<reconstruction::combat::SightDefinition> definitions;
   std::vector<std::array<int,8>> observers;
 };
+struct NativeOwnerGroupPlanner {
+  reconstruction::combat::OwnerMemoryGroups groups;
+  std::vector<reconstruction::combat::OwnerMemory> observations;
+  unsigned cursor=0;
+  int deadline=0,from=-1,to=-1,excessPercent=0;
+  reconstruction::combat::OwnerTaskProbe probe;
+  std::optional<reconstruction::combat::OwnerGroupTask> candidate,best,active;
+};
 struct NativeOwnerPlanner {
   unsigned owner=0,actor=0,nextSerial=1,activeSerial=0;
   reconstruction::combat::BrainInferenceModel model;
@@ -65,6 +75,7 @@ struct NativeOwnerPlanner {
   float candidateScore=0;
   std::vector<int> features;
   std::optional<reconstruction::combat::OwnerHostileTask> active;
+  std::optional<NativeOwnerGroupPlanner> grouped;
 };
 struct NativeProviderState {
   bool present=false,randomSeeded=false,alternate=false;

@@ -59,3 +59,11 @@ retention are explicit lab policies. Multiple-memory grouping, original probe
 production/risk rejection, other task families and full World AI remain pending.
 See [owner strategic planner](../../research/runtime/owner-strategic-planner.md)
 and `tools/test-owner-planner-integration.py` for the comparison boundaries.
+
+Fresh `run-planner` sessions now use the NS79 grouped owner adapter: anonymous
+memory groups, ordinary regional candidate probes, produced path/danger features,
+installed model inference and risk-aware pursuit. CMD1v13 preserves unfinished
+group/probe/best/active task work; old v12 checkpoints retain their singleton
+policy. See [scope and evidence](../../research/runtime/owner-grouped-planner.md).
+The full original owner scheduler, task replacement and other strategic families
+remain outstanding.

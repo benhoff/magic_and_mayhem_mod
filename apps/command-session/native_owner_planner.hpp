@@ -9,6 +9,9 @@ void prepareNativeOwnerPlanner(Continuation &, model::BrainInferenceModel,
                                std::array<float, 3> weights = {{1, 0, 1}},
                                int percent = 100);
 void validateNativeOwnerPlanner(const Continuation &);
+void validateNativeOwnerGroupPlanner(const Continuation &);
+void updateNativeOwnerGroupPlanner(Continuation &, const NativeCreatureProfile &,
+                                   model::OwnedCreatureCommands &);
 void updateNativeOwnerPlanner(Continuation &, const NativeCreatureProfile &,
                               model::OwnedCreatureCommands &);
 } // namespace mnm::command_session

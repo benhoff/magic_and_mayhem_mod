@@ -9,7 +9,7 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-SUITES = ['native-owner-planner-test', 'native-owner-visibility-test',
+SUITES = ['native-owner-planner-test', 'native-owner-group-planner-test', 'native-owner-visibility-test',
           'native-owner-knowledge-test', 'native-regional-danger-test']
 CORE = ['native-command-session-test', 'native-command-behavior-session-test',
         'native-command-action-session-test', 'native-command-action-bodies-session-test',
@@ -31,12 +31,12 @@ def main():
     a = parser.parse_args()
     out = a.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    (out/'.retain').write_text('NS78 native planner raw continuation evidence.\n')
+    (out/'.retain').write_text('NS79 native grouped planner raw continuation evidence.\n')
     declaration = json.loads(a.claims.read_text()) if a.claims else dict(sources={}, claims=[])
     if any(sha(ROOT/k) != v for k, v in declaration['sources'].items()):
         raise ValueError('Declared sources changed before execution')
     r = dict(success=False, claims=declaration['claims'], source_sha256=declaration['sources'],
-             scope='Native lab policy: ordinary two-actor installed32x32x23 encounter; taskless selector plus single-record same-region task6 candidate with supplied zero path summaries, explicit1/0/1 weights and100 percent, independent strategic RNG and active-task retention. No original grouping/probe/risk/replacement/World cadence equivalence. CMD1v12, two seeds x512 frames, restore every8 frames, cold-process continuation and legacy regression suites.',
+             scope='Native lab policy: ordinary two-actor installed32x32x23 encounter; taskless selector, ordered anonymous-memory groups, ordinary regional probes, 72 produced features and original DAT inference; explicit1/0/1 weights and100 percent, danger excess0, independent strategic RNG, fresh-sweep caches and origin-change probe restart, active-task retention. No full World cadence or task replacement equivalence. CMD1v13, two seeds x512 frames, every8-frame restore, cold-process continuation and legacy regressions',
              wine_required=False, live_replacement=False, commands=[])
 
     def run(name, command, env=None):

@@ -9858,3 +9858,65 @@ changes leave older evidence historical/pending; prior source hashes and statuse
 are preserved. See owner-strategic-planner.md and owner-planner-*-ns78-20261016.json.
 
 The generated scope/freshness snapshot is coverage/summary-owner-planner-20261016-v1.md; the full machine report is retained under working/tests/planner-ns78-accounting/audit-final-v1.json.
+
+### NS79: memory groups, actual task6 probes and grouped pursuit
+
+The bounded task6 model now owns original413330 anonymous-memory clustering,
+ordinary grouped67-feature aggregation, real431ce0 regional probe continuation,
+route-derived feature/risk production, and grouped432900 pursuit with actual
+52a430 danger rejection. Fresh source/scope-bound native64/original32/sanitizer
+comparisons pass8,832 cases and580,499 checks: grouping2,048 cases/253,621 checks,
+group features2,048/137,216, probes512/15,501 (1,330 slices), grouped execution
+4,096/161,233, and128 coupled episodes/12,928 (384 probe slices). The coupled
+fixture retains original-generated groups through original probe/features and
+execution; supplied sightings/world motion, inference and lower command recorders
+remain explicit boundaries. The parameter-zero terrain-cover composition remains
+static recovery with native movement-line composition, not a new original terrain
+comparison.
+
+Two earlier hypotheses are corrected: grouping matches copied flag104, not enemy
+owner, and suffix71 measures terrain cover, not task assignment. The grouping
+metric/spread uses wrapped XY plus floor(dz²/4). Nested wrappers remain owned:
+flattening inactive leaves would change the original near-center completion gate.
+Saved risk is the maximum raw danger along the full reverse path, independently
+of travel time/cumulative danger/destination danger feature summaries. Pinned
+binary32 0.2 grant/refund and per-friendly20 work limits retain yielded, failed and
+last-discarded-expansion cases. Original input manifests and RX target text guards
+passed; historical NS78 evidence and source hashes remain unchanged.
+
+Fresh native lab activations implement ordered multi-record, cross-region
+candidates and grouped active pursuit. CMD1v13 owns frozen observations, logical
+group trees, unfinished search/path state and separate candidate/best/active task
+copies. v12 reads preserve the singleton policy; lossy writes refuse. Native
+fresh-sweep cache timing, origin-change probe restart, two-unit frame budget,
+preparation tick+22 deadline, active-task retention, coefficients1/0/1,100 percent
+and danger excess0 remain explicit native policies. Complete original task
+eligibility, previous-task replacement/replanning, other strategic families,
+notification consequences,415c40 dual-brain/World cadence, campaign integration
+and live replacement remain pending. The original-backed full game still needs
+Wine. Commander orders, veterancy and mana balance remain separate work.
+
+The incoming8cb7fbdc..454d7d08 range has296 file/597 behavior transitions and71
+committed files with exact receipts and no unresolved transition, retained in
+coverage/history-review-ns78-to-ns79-20261016.json. This is committed-history
+accounting, not a past gate-pass or new engine execution claim. The reviewed
+source/build census is coverage/source-index-owner-group-planner-20261016-v3.json:
+2,531 files,2,337 explicitly linked;22 additions,14 content edits and no removals.
+Older evidence affected by shared codec/header/build edits remains historical and
+pending; no recorded hashes were refreshed. See owner-grouped-planner.md and
+owner-planner-*-ns79-20261016.json for individual evidence boundaries.
+
+Fresh native/sanitizer integration now passes two512-frame seeds,128 restore
+checkpoints,1,062 planner state checks and29 refusals, plus the10-check controlled
+multi-memory/cross-region probe and pursuit/loss/reacquisition/risk-stop restore
+journey. Six cold process resumes need neither installation access nor Wine/Qt;
+CLI whole/split/resumed snapshots agree. Both five-test core suites and native
+visibility/knowledge/danger regressions pass, and failed inference rolls back the
+staged frame. Frozen observations now reject out-of-map coordinates on all three
+axes. The final result is owner-planner-native-ns79-20261016.json; interrupted
+storage/development runs remain retained without new validation claims. The
+user-approved1.7 GiB active build-cache relocation verified2,591 files and kept
+original paths as symlinks, recorded under working/retention/; it is storage
+provenance, not fresh engine evidence.
+
+The generated scope/freshness snapshot is coverage/summary-owner-group-planner-20261016-v1.md; the full machine report is retained under working/tests/planner-ns79-accounting/audit-final-v1.json.

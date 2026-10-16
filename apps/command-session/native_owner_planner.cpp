@@ -83,6 +83,7 @@ void validateNativeOwnerPlanner(const Continuation &c) {
        "owner planner candidate identity");
   if (s.active)
     need(s.active->memoryKey >= 0, "owner planner active memory key");
+  validateNativeOwnerGroupPlanner(c);
   for (const auto &rows : c.native.ownerKnowledge->records)
     for (const auto &r : rows) {
       need(r.planning.has_value(),
@@ -104,6 +105,7 @@ void prepareNativeOwnerPlanner(Continuation &c,
   auto staged = c;
   staged.native.ownerPlanner.emplace();
   auto &s = *staged.native.ownerPlanner;
+  s.grouped.emplace();
   s.owner = owner;
   s.actor = actor;
   s.model = std::move(model);
@@ -118,6 +120,10 @@ void updateNativeOwnerPlanner(Continuation &c, const NativeCreatureProfile &p,
   if (!c.native.ownerPlanner)
     return;
   validateNativeOwnerPlanner(c);
+  if (c.native.ownerPlanner->grouped) {
+    updateNativeOwnerGroupPlanner(c, p, commands);
+    return;
+  }
   auto &s = *c.native.ownerPlanner;
   const int tick = int(c.native.tick);
   auto &actor = c.world.creatures.at(s.actor);

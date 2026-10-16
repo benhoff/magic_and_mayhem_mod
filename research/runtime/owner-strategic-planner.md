@@ -118,3 +118,19 @@ reacquisition in a coupled original/native owner journey before widening the
 native lab. The full415c40 dual-brain/World scheduler, resource/spell task families,
 notification consequences, campaign construction and live replacement remain
 pending. Commander orders, veterancy and mana balance changes are separate work.
+
+## NS79 correction and extension
+
+The NS78 singleton results above remain historical. NS79 supersedes the proposed
+same-owner grouping hypothesis: direct whole413330 comparison shows that node+21
+is the copied movement flag104, not owner. Different hostile owners can merge.
+The last candidate suffix is a terrain-cover test (415550), not assigned-task
+state. Its parameter-nonzero case returns false; otherwise it tests the vertical
+line from the top layer down to the region with shape1/1/flag1041/kind0 and
+returns the negated result. These corrections do not rewrite NS78 evidence.
+
+The new implementation, evidence boundaries and remaining work are documented in
+[owner grouped planner](owner-grouped-planner.md). Fresh native activations use
+CMD1v13 grouped work. Decoded v12 planner continuations retain their singleton
+policy. Full World scheduling, previous-task replacement, other task families,
+campaign integration and live replacement remain outstanding.

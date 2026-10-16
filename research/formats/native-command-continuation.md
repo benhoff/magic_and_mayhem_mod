@@ -281,3 +281,29 @@ leave v1..11 planner/projections absent; writing old versions rejects losing the
 Planning metadata without its planner is rejected. This is a native checkpoint
 policy, not a recovered original owner-save format. Inference range failures are
 checked during a staged frame and retain the preceding published snapshot.
+
+## CMD1 version13: grouped owner task continuation
+
+v13 appends an optional grouped-work tag after the complete v12 owner-planner
+fields. A missing grouped-work value preserves v12 singleton behavior. A present
+value contains, in order: memory-group node vector, frozen OwnerMemory observation
+vector, candidate cursor, preparation deadline, origin region, destination region,
+danger excess percentage, task probe, and optional candidate/best/active group
+tasks. No host pointer enters the wire.
+
+Each group node contains signed memory key/parent, Cell position, region,
+uncertaintySquared, flag104, unsigned activity, ordered unsigned child indices.
+The root is index0 with key/parent=-1; at most251 nodes and125 observations are
+admitted. Unique keys, parent links, reachable acyclic topology, canonical cells,
+activity, radius and region bounds are validated. Observations retain planning
+values independently of later owner-memory updates.
+
+The probe contains remaining work, result enum(pending0,failed1,reached2), existing
+RegionalSearchState fields and full reverse region path. Search records/queue/path
+are bounded to4096; origin/destination/best/record references are validated. A group
+task contains its owned group vector, selected root and maximum path risk. The
+best task is distinct from the last candidate. Active grouped state agrees with
+the legacy logical active/serial fields. The existing 32-bit word/vector/optional
+encoding applies. v1..v12 reads remain supported; writes below13 reject present
+grouped work. v12 planners decode without upgrading their native scheduling
+policy. The format is native policy, not an original save-game layout.

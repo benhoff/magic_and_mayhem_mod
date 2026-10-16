@@ -35,9 +35,15 @@ int main(int argc, char **argv) try {
     ++refusals;
   };
   const auto initial = cs::encode(p.initial);
-  check(initial.at(4) == 12, "CMD1v12");
-  for (unsigned version : {10u, 11u})
+  check(initial.at(4) == 13, "CMD1v13");
+  for (unsigned version : {10u, 11u, 12u})
     rejects([&] { (void)cs::encode(p.initial, version); });
+  auto oldPlanner = p.initial;
+  oldPlanner.native.ownerPlanner->grouped.reset();
+  auto v12 = cs::encode(oldPlanner, 12);
+  check(cs::encode(cs::decode(v12), 12) == v12 &&
+            !cs::decode(v12).native.ownerPlanner->grouped,
+        "v12 planner compatibility");
   auto bad = [&](auto change) {
     auto c = p.initial;
     change(c);
@@ -58,6 +64,39 @@ int main(int argc, char **argv) try {
   bad([](auto &c) { c.native.ownerPlanner->candidateReady = true; });
   bad([](auto &c) { c.native.ownerPlanner->features = {1}; });
   bad([](auto &c) { c.native.ownerKnowledge.reset(); });
+  bad([](auto &c) { c.native.ownerPlanner->grouped->cursor = 1; });
+  bad([](auto &c) { c.native.ownerPlanner->grouped->probe.remaining = 21; });
+  bad([](auto &c) { c.native.ownerPlanner->grouped->from = 9999; });
+  bad([](auto &c) { c.native.ownerPlanner->grouped->excessPercent = -1; });
+  bad([](auto &c) { c.native.ownerPlanner->grouped->active.emplace(); });
+  bad([](auto &c) {
+    auto &g = c.native.ownerPlanner->grouped->groups;
+    g.nodes.resize(2);
+    g.nodes[0].children = {1};
+    g.nodes[1].parent = 0;
+    g.nodes[1].children = {1};
+  });
+  for (unsigned axis : {0u, 1u, 2u})
+    bad([axis](auto &c) {
+      cs::model::OwnerMemory r;
+      r.memory.key = 0;
+      r.memory.actor.owner = 1;
+      r.memory.actor.slot = 1;
+      r.memory.actor.position = c.world.creatures[1].ai.position;
+      if (axis == 0)
+        r.memory.actor.position.x = -1;
+      if (axis == 1)
+        r.memory.actor.position.y = c.world.dimensions.y;
+      if (axis == 2)
+        r.memory.actor.position.z = c.world.dimensions.z;
+      r.planning.emplace();
+      r.planning->position = r.memory.actor.position;
+      c.native.ownerPlanner->grouped->observations.push_back(r);
+    });
+  bad([](auto &c) {
+    c.native.ownerPlanner->selection.reset = false;
+    c.native.ownerPlanner->selection.evaluator = 1;
+  });
   auto truncated = initial;
   truncated.pop_back();
   rejects([&] { (void)cs::decode(truncated); });

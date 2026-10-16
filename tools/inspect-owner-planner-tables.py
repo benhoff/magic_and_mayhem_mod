@@ -33,7 +33,7 @@ def main():
                   for va in [0x5c5358,0x5c53c0,*range(0x5c53f4,0x5c5a68,28)]}
         constants = {hex(va): {'bytes': data(va,8).hex(),
                      'double': struct.unpack('<d',data(va,8))[0], 'float': struct.unpack('<f',data(va,4))[0]}
-                     for va in [*range(0x5c5378,0x5c53a8,8),0x5c53b4,0x5c53b8,0x5c5a88,0x5c5bb0,0x5c5f80,0x5c5f88]}
+                     for va in [*range(0x5c5378,0x5c53a8,8),0x5c53b4,0x5c53b8,0x5c5a68,0x5c5a88,0x5c5bb0,0x5c5f80,0x5c5f88]}
         result = dict(original_sha256=PIN, scope='Static vtable words and double constants only; no execution claim.',
                       tables=tables, constants=constants,
                       sources={str(Path(__file__).relative_to(ROOT)):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})

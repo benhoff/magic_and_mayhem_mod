@@ -70951,7 +70951,7 @@
       "title": "Original owner strategic task production and selection",
       "subsystem": "creature-ai",
       "kind": "recovered",
-      "scope": "Partial owner strategic pipeline discovery: scoped taskless selector, present-model inference and singleton task6 feature/completion/execution projections are separate contracts. Original anonymous-memory grouping, probe production, risk-stop, previous-task replacement, other task families and415c40 dual-brain World scheduling remain pending. Native lab integration is an explicit policy, not complete original AI equivalence.",
+      "scope": "Partial original owner strategic pipeline: scoped taskless selection, model inference, ordinary memory grouping, grouped features, actual task6 regional probes/risk summaries and grouped pursuit/risk rejection have separate bounded contracts and a coupled supplied-sighting journey. Full preparation eligibility, previous-task replacement, other task families, notification consequences and415c40 dual-brain World scheduling remain pending. Native scheduling/continuation are explicit policies.",
       "confidence": "provisional",
       "original": [
         {
@@ -70963,16 +70963,29 @@
           "build": "nocd-40209ca7",
           "address": 4293072,
           "scope": "Nonempty sighting-to-task consequences under investigation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5128816,
+          "scope": "Static narrow GLOBAL_OPTIONS/AI_danger_excess_limit read into5faf1c only; other initialization branches unclaimed."
         }
       ],
       "documents": [
         "research/runtime/owner-strategic-planner.md"
       ],
       "implementation": [
-        "reconstruction/creature-ai/owner_planner.cpp",
         "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
         "reconstruction/creature-ai/owner_planner_features.cpp",
-        "reconstruction/creature-ai/owner_hostile_task.cpp"
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp"
       ],
       "tests": [
         "tools/export-owner-planner.py",
@@ -70980,9 +70993,14 @@
         "tools/ghidra/ExportOwnerPlanner.java",
         "tools/export-owner-planner-inventory.py",
         "tools/ghidra/ExportOwnerPlannerInventory.java",
-        "tools/review-owner-planner-inventory.py"
+        "tools/review-owner-planner-inventory.py",
+        "tools/export-owner-risk.py",
+        "tools/ghidra/ExportOwnerRisk.java"
       ],
-      "evidence": [],
+      "evidence": [
+        "NS79.owner-planner-risk-static",
+        "NS79.owner-planner-constants-static"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
@@ -71615,6 +71633,719 @@
         "branches": "Mid-selection and active-task checkpoints, native command handoff; missing/stale/dead/allied memory transitions compared independently in task component.",
         "failures": "Malformed model extents/nonfinite/scales/cursors/serials/missing roots, legacy lossy write, truncated state, repeat activation and inference-failure frame rollback.",
         "exclusions": "Multi-record grouping, actual task probes/risk rejection/replacement and complete original owner cadence; species/spell/campaign/live."
+      }
+    },
+    {
+      "id": "AI.owner-memory-grouping",
+      "title": "Owner hostile memory clustering",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole413330 with at most125 supplied memory records, ordinary copied flag104 and B63, hostile/dead/current-marker filtering, cached vector return, ordered nested closest-pair merging by movement flag, wrapped midpoint/quarter-height metric, unsigned uncertainty radius<=32000 and threshold100; regional542810 and line4f4ba0 are supplied recorders in the component comparison. Native validation bounds/topology are separate admission. Full cache epoch scheduling, task eligibility and World excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4272944,
+          "scope": "Memory snapshot grouping and cache projection"
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-grouped-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp"
+      ],
+      "tests": [
+        "tests/owner-memory-groups-test.cpp",
+        "tools/test-owner-groups.py"
+      ],
+      "evidence": [
+        "NS79.owner-planner-groups-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-memory-groups-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-groups.py"
+      ]
+    },
+    {
+      "id": "AI.owner-hostile-task-probes",
+      "title": "Owner task6 ordinary candidate probe production",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole431ce0 from ordinary one-friendly/one-enemy phase0 through real53a380 regional neighbors and original search containers: count budget, pinned binary32 0.2 grant/refund, per-actor20 limit, final discarded expansion, full reverse path, records/queue, reached/failed/yield, travel/cumulative raw danger/destination danger and max-risk summaries. Graph<=4096; comparison512 graphs. Inference is a recorder and regions have parameter1. Preparation eligibility/grouping, caster resources, covered terrain and full World scheduling excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398304,
+          "scope": "Ordinary task6 path probe and summaries"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5384096,
+          "scope": "Modified movement speed"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5482032,
+          "scope": "Travel-time integer formula"
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-grouped-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp"
+      ],
+      "tests": [
+        "tests/owner-task-probe-test.cpp",
+        "tools/test-owner-probes.py"
+      ],
+      "evidence": [
+        "NS79.owner-planner-probes-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-task-probe-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-probes.py"
+      ]
+    },
+    {
+      "id": "AI.owner-hostile-group-features",
+      "title": "Ordinary grouped hostile-task feature aggregation",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole40b420 exact ordered67 task6 IDs, ordinary noncasting friendly/enemy groups with empty inventory/resource/block7c/fog points: selected sums, means, maximum wrapped quarter-height spread, flags/config/value/current supplied danger and ordinary no-wizard fallback. Comparison corpus1..3 friendly and1..8 enemy actors; native accumulation admission up to125 each. Other feature IDs, wizard/casting/resource branches and World excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4240416,
+          "scope": "Ordinary grouped prefix only"
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-grouped-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp"
+      ],
+      "tests": [
+        "tests/owner-group-features-test.cpp",
+        "tools/test-owner-group-features.py"
+      ],
+      "evidence": [
+        "NS79.owner-planner-group-features-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-group-features-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-group-features.py"
+      ]
+    },
+    {
+      "id": "AI.owner-hostile-group-execution",
+      "title": "Ordinary grouped hostile-task refresh and danger rejection",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "Whole432900 with one ordinary nonranged friendly actor, two live pool slots and nested anonymous memory groups, repeated enemy aliases, empty opposite assignments/resources and no wizard formations. Actual407c10 marker-to-live refresh, retained stale centers, dead/allied leaves, ordered wrapped averaging, immediate-child completion, quarter-height distance, ordinary unsigned threat/health priority, engagement/incoming/readiness/dirty gates and actual52a430 raw/net risk-stop. Lower target/move/stop commands are recorders. Extra live attackers, multi-friendly distribution, full stop-wrapper delivery, previous tasks and World excluded. Friendly alive/owner checks and bounded arithmetic/topology are native admission.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4401408,
+          "scope": "Ordinary grouped execution"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4226064,
+          "scope": "Memory group live refresh"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5415984,
+          "scope": "Danger excess comparison"
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-grouped-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp"
+      ],
+      "tests": [
+        "tests/owner-group-task-test.cpp",
+        "tools/test-owner-group-task.py"
+      ],
+      "evidence": [
+        "NS79.owner-planner-group-task-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-group-task-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-group-task.py"
+      ]
+    },
+    {
+      "id": "AI.owner-grouped-task-journey",
+      "title": "Coupled memory grouping, ordinary probes and pursuit journey",
+      "subsystem": "creature-ai",
+      "kind": "recovered",
+      "scope": "128 bounded episodes connecting whole413330 snapshot grouping with real542810, whole431ce0 real ordinary probes and produced72 features, and whole432900 nested-group pursuit/loss/reacquisition/risk stop on supplied sightings, graph and two-slot live world. One friendly/two anonymous snapshots, parameter1 graph, empty casting/resources/opposite assignments. Inference and lower commands are recorders; no selector, original perception,415c40 admission/cadence, save-game equivalence or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4272944,
+          "scope": "Coupled snapshot grouping"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4398304,
+          "scope": "Coupled path/feature generation"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4401408,
+          "scope": "Coupled pursuit lifecycle"
+        }
+      ],
+      "documents": [
+        "research/runtime/owner-grouped-planner.md"
+      ],
+      "implementation": [
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp"
+      ],
+      "tests": [
+        "tests/owner-planner-journey-test.cpp",
+        "tools/test-owner-planner-journey.py"
+      ],
+      "evidence": [
+        "NS79.owner-planner-journey-original",
+        "NS79.owner-planner-journey-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "assets/asset_file.hpp",
+        "assets/dat.hpp",
+        "assets/path_resolver.hpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "tests/owner-brain-inference-test.cpp",
+        "tests/owner-planner-journey-test.cpp",
+        "tests/owner-task-probe-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/owner_planner_comparison.py",
+        "tools/test-owner-planner-journey.py"
+      ]
+    },
+    {
+      "id": "NP.owner-group-planner-continuation",
+      "title": "Native grouped owner planner and portable task probes",
+      "subsystem": "creature-ai",
+      "kind": "native_policy",
+      "scope": "Fresh two-ordinary-type17 lab activation uses frozen anonymous-memory groups and ordered cross-region task6 probes, actual72 path/danger/cover features and installed model6 inference; explicit1/0/1 coefficients,100 percent,danger excess0 and independent strategic RNG. Two count units after perception/knowledge/danger, fresh-sweep caches, origin-change probe restart, tick+22 deadline, separate best candidate and retained active grouped pursuit until completion/risk stop are explicit native policies. CMD1v13 embeds group topology/observations/search/path/candidate/best/active tasks; v12 reads retain singleton policy and lossy writes refuse. Two seeds x512 frames,128 restores,6 cold resumes, controlled multi-memory/cross-region/loss/reacquisition/risk-stop restore journey, malformed/model/legacy/rollback and core/perception regressions. Full original preparation/replacement/World cadence, covered-terrain original composition, campaigns/species/spells and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/owner-grouped-planner.md",
+        "research/formats/native-command-continuation.md",
+        "apps/native-encounter/README.md"
+      ],
+      "implementation": [
+        "apps/command-session/codec.cpp",
+        "apps/command-session/native_owner_group_planner.cpp",
+        "apps/command-session/native_owner_planner.cpp",
+        "apps/command-session/native_owner_planner.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/native_regional_danger.cpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/runtime.hpp",
+        "apps/native-encounter/encounter.hpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/navigation.cpp",
+        "apps/native-encounter/profile.cpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp"
+      ],
+      "tests": [
+        "tests/native-owner-planner-test.cpp",
+        "tests/native-owner-group-planner-test.cpp",
+        "tools/test-owner-planner-integration.py"
+      ],
+      "evidence": [
+        "NS79.owner-planner-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/combat-sandbox/main.cpp",
+        "apps/command-session/CMakeLists.txt",
+        "apps/command-session/codec.cpp",
+        "apps/command-session/native_geometry.cpp",
+        "apps/command-session/native_geometry.hpp",
+        "apps/command-session/native_owner_group_planner.cpp",
+        "apps/command-session/native_owner_planner.cpp",
+        "apps/command-session/native_owner_planner.hpp",
+        "apps/command-session/native_owner_visibility.cpp",
+        "apps/command-session/native_owner_visibility.hpp",
+        "apps/command-session/native_providers.cpp",
+        "apps/command-session/native_providers.hpp",
+        "apps/command-session/native_regional.cpp",
+        "apps/command-session/native_regional.hpp",
+        "apps/command-session/native_regional_danger.cpp",
+        "apps/command-session/native_regional_danger.hpp",
+        "apps/command-session/native_regional_graph.cpp",
+        "apps/command-session/native_regional_graph.hpp",
+        "apps/command-session/native_route.cpp",
+        "apps/command-session/native_route.hpp",
+        "apps/command-session/native_state.hpp",
+        "apps/command-session/runtime.cpp",
+        "apps/command-session/runtime.hpp",
+        "apps/native-encounter/CMakeLists.txt",
+        "apps/native-encounter/combat.cpp",
+        "apps/native-encounter/encounter.hpp",
+        "apps/native-encounter/main.cpp",
+        "apps/native-encounter/navigation.cpp",
+        "apps/native-encounter/profile.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-scene/map_navigation.cpp",
+        "apps/world-scene/map_navigation.hpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.hpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/packed_container.cpp",
+        "assets/path_resolver.hpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "game/CMakeLists.txt",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp",
+        "game/simulation/combat.cpp",
+        "game/simulation/combat.hpp",
+        "game/simulation/creature_encounter.cpp",
+        "game/simulation/creature_encounter.hpp",
+        "game/simulation/creature_rules_session.cpp",
+        "game/simulation/creature_rules_session.hpp",
+        "game/simulation/health_rules.cpp",
+        "game/simulation/health_rules.hpp",
+        "game/simulation/melee_exchange.cpp",
+        "game/simulation/melee_exchange.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/skirmish.cpp",
+        "game/simulation/skirmish.hpp",
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "reconstruction/animation/CMakeLists.txt",
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp",
+        "reconstruction/animation/controller.cpp",
+        "reconstruction/animation/controller.hpp",
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp",
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp",
+        "reconstruction/combat/ai.cpp",
+        "reconstruction/combat/ai.hpp",
+        "reconstruction/combat/autonomy.cpp",
+        "reconstruction/combat/autonomy.hpp",
+        "reconstruction/combat/autonomy_tables.hpp",
+        "reconstruction/combat/control.cpp",
+        "reconstruction/combat/control.hpp",
+        "reconstruction/combat/health.cpp",
+        "reconstruction/combat/health.hpp",
+        "reconstruction/combat/melee.cpp",
+        "reconstruction/combat/melee.hpp",
+        "reconstruction/creature-ai/action_callbacks.cpp",
+        "reconstruction/creature-ai/action_callbacks.hpp",
+        "reconstruction/creature-ai/action_execution.cpp",
+        "reconstruction/creature-ai/actor_displacement.cpp",
+        "reconstruction/creature-ai/actor_route_request.cpp",
+        "reconstruction/creature-ai/actor_route_request.hpp",
+        "reconstruction/creature-ai/actor_routing.hpp",
+        "reconstruction/creature-ai/attack_selection.cpp",
+        "reconstruction/creature-ai/attack_selection.hpp",
+        "reconstruction/creature-ai/behavior_execution.cpp",
+        "reconstruction/creature-ai/brain_inference.cpp",
+        "reconstruction/creature-ai/brain_inference.hpp",
+        "reconstruction/creature-ai/cached_attack.cpp",
+        "reconstruction/creature-ai/cached_attack.hpp",
+        "reconstruction/creature-ai/coarse_route.cpp",
+        "reconstruction/creature-ai/coarse_route.hpp",
+        "reconstruction/creature-ai/command_action_bodies.cpp",
+        "reconstruction/creature-ai/command_action_bodies.hpp",
+        "reconstruction/creature-ai/command_actions_owned.cpp",
+        "reconstruction/creature-ai/command_actions_owned.hpp",
+        "reconstruction/creature-ai/command_behaviors_owned.cpp",
+        "reconstruction/creature-ai/command_behaviors_owned.hpp",
+        "reconstruction/creature-ai/death_behavior.cpp",
+        "reconstruction/creature-ai/death_behavior.hpp",
+        "reconstruction/creature-ai/environment_pass.cpp",
+        "reconstruction/creature-ai/environment_pass.hpp",
+        "reconstruction/creature-ai/execution.cpp",
+        "reconstruction/creature-ai/execution.hpp",
+        "reconstruction/creature-ai/friendly_displacement.cpp",
+        "reconstruction/creature-ai/friendly_displacement.hpp",
+        "reconstruction/creature-ai/full_motion_action.cpp",
+        "reconstruction/creature-ai/full_motion_action.hpp",
+        "reconstruction/creature-ai/full_segment_setup.cpp",
+        "reconstruction/creature-ai/full_segment_setup.hpp",
+        "reconstruction/creature-ai/idle_gesture.cpp",
+        "reconstruction/creature-ai/idle_gesture.hpp",
+        "reconstruction/creature-ai/maintenance.cpp",
+        "reconstruction/creature-ai/maintenance.hpp",
+        "reconstruction/creature-ai/motion_response.cpp",
+        "reconstruction/creature-ai/motion_response.hpp",
+        "reconstruction/creature-ai/movement_behavior.cpp",
+        "reconstruction/creature-ai/movement_behavior.hpp",
+        "reconstruction/creature-ai/object_action.cpp",
+        "reconstruction/creature-ai/object_action.hpp",
+        "reconstruction/creature-ai/orders.cpp",
+        "reconstruction/creature-ai/owner_conversion.hpp",
+        "reconstruction/creature-ai/owner_counts.cpp",
+        "reconstruction/creature-ai/owner_counts.hpp",
+        "reconstruction/creature-ai/owner_group_features.cpp",
+        "reconstruction/creature-ai/owner_group_features.hpp",
+        "reconstruction/creature-ai/owner_group_task.cpp",
+        "reconstruction/creature-ai/owner_group_task.hpp",
+        "reconstruction/creature-ai/owner_hostile_task.cpp",
+        "reconstruction/creature-ai/owner_hostile_task.hpp",
+        "reconstruction/creature-ai/owner_knowledge.cpp",
+        "reconstruction/creature-ai/owner_knowledge.hpp",
+        "reconstruction/creature-ai/owner_memory_groups.cpp",
+        "reconstruction/creature-ai/owner_memory_groups.hpp",
+        "reconstruction/creature-ai/owner_planner.cpp",
+        "reconstruction/creature-ai/owner_planner.hpp",
+        "reconstruction/creature-ai/owner_planner_features.cpp",
+        "reconstruction/creature-ai/owner_planner_features.hpp",
+        "reconstruction/creature-ai/owner_target_repair.cpp",
+        "reconstruction/creature-ai/owner_target_repair.hpp",
+        "reconstruction/creature-ai/owner_task_probe.cpp",
+        "reconstruction/creature-ai/owner_task_probe.hpp",
+        "reconstruction/creature-ai/owner_transfer.cpp",
+        "reconstruction/creature-ai/owner_transfer.hpp",
+        "reconstruction/creature-ai/owner_visibility.cpp",
+        "reconstruction/creature-ai/owner_visibility.hpp",
+        "reconstruction/creature-ai/ownership_helpers.cpp",
+        "reconstruction/creature-ai/ownership_helpers.hpp",
+        "reconstruction/creature-ai/periodic.cpp",
+        "reconstruction/creature-ai/ranged_execution.cpp",
+        "reconstruction/creature-ai/regional_danger.cpp",
+        "reconstruction/creature-ai/regional_danger.hpp",
+        "reconstruction/creature-ai/regional_graph.cpp",
+        "reconstruction/creature-ai/regional_graph.hpp",
+        "reconstruction/creature-ai/regional_maintenance.cpp",
+        "reconstruction/creature-ai/regional_maintenance.hpp",
+        "reconstruction/creature-ai/regional_navigation.cpp",
+        "reconstruction/creature-ai/regional_navigation.hpp",
+        "reconstruction/creature-ai/resource.cpp",
+        "reconstruction/creature-ai/resource.hpp",
+        "reconstruction/creature-ai/route_execution.cpp",
+        "reconstruction/creature-ai/segment_completion.cpp",
+        "reconstruction/creature-ai/segment_completion.hpp",
+        "reconstruction/creature-ai/source_graph.hpp",
+        "reconstruction/creature-ai/special_flight_actions.cpp",
+        "reconstruction/creature-ai/special_flight_actions.hpp",
+        "reconstruction/creature-ai/transfer-commands-owned/CMakeLists.txt",
+        "reconstruction/creature-ai/transfer_commands_owned.cpp",
+        "reconstruction/creature-ai/transfer_commands_owned.hpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.cpp",
+        "reconstruction/creature-ai/transfer_delivery_owned.hpp",
+        "reconstruction/creature-ai/transfer_follow_owned.cpp",
+        "reconstruction/creature-ai/transfer_follow_owned.hpp",
+        "reconstruction/creature-ai/transfer_idle_owned.cpp",
+        "reconstruction/creature-ai/transfer_idle_owned.hpp",
+        "reconstruction/creature-ai/transfer_owned.cpp",
+        "reconstruction/creature-ai/transfer_owned.hpp",
+        "reconstruction/creature-ai/transfer_queue_owned.cpp",
+        "reconstruction/creature-ai/transfer_queue_owned.hpp",
+        "reconstruction/creature-ai/transfer_reset_owned.cpp",
+        "reconstruction/creature-ai/transfer_reset_owned.hpp",
+        "reconstruction/creature-ai/transfer_targets_owned.cpp",
+        "reconstruction/creature-ai/transfer_targets_owned.hpp",
+        "reconstruction/motion/CMakeLists.txt",
+        "reconstruction/motion/creature_motion.cpp",
+        "reconstruction/motion/creature_motion.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp",
+        "reconstruction/motion/segment_setup.cpp",
+        "reconstruction/motion/segment_setup.hpp",
+        "reconstruction/pathfinding/CMakeLists.txt",
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp",
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp",
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp",
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp",
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp",
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp",
+        "reconstruction/pathfinding/route_footprint_height.cpp",
+        "reconstruction/pathfinding/route_footprint_height.hpp",
+        "reconstruction/pathfinding/route_line.cpp",
+        "reconstruction/pathfinding/route_line.hpp",
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_neighbors.cpp",
+        "reconstruction/pathfinding/route_neighbors.hpp",
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp",
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp",
+        "reconstruction/pathfinding/route_replay.cpp",
+        "reconstruction/pathfinding/route_request.cpp",
+        "reconstruction/pathfinding/route_request.hpp",
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp",
+        "reconstruction/pathfinding/route_search.cpp",
+        "reconstruction/pathfinding/route_search.hpp",
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp",
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/effect_trajectory_initializer.cpp",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp",
+        "reconstruction/rendering/terrain_map.cpp",
+        "reconstruction/rendering/terrain_map.hpp",
+        "tests/native-command-action-bodies-session-test.cpp",
+        "tests/native-command-action-session-test.cpp",
+        "tests/native-command-behavior-session-test.cpp",
+        "tests/native-command-session-test.cpp",
+        "tests/native-creature-providers-test.cpp",
+        "tests/native-encounter-test.cpp",
+        "tests/native-owner-group-planner-test.cpp",
+        "tests/native-owner-knowledge-test.cpp",
+        "tests/native-owner-planner-test.cpp",
+        "tests/native-owner-visibility-test.cpp",
+        "tests/native-regional-danger-test.cpp",
+        "tools/test-installed-encounter.py",
+        "tools/test-owner-planner-integration.py"
+      ],
+      "validation_domain": {
+        "required_inputs": "Installed CFG/HTH/ANI/MAP/TTD/Brain.dat; portable owned model/profile. Fixed legal same-region initial stands remain lab setup; generated controlled cross-region graph adds probe coverage.",
+        "branches": "Selection/probe/active snapshots, multiple anonymous records and candidate groups, real path/danger summaries, controlled lost/reacquired/risk-stop and cold-process continuation.",
+        "failures": "Malformed model/group topology/search references/cursors/serials, lossy v12 write, v12 unchanged-policy migration, truncated state, repeat activation, inference failure transactional rollback.",
+        "exclusions": "Original fullWorld/task admission/replacement/cadence, covered-terrain composition equivalence, other species/resources/spells/campaign/live."
       }
     }
   ],
@@ -136883,6 +137614,401 @@
           "equals": 128
         }
       ]
+    },
+    {
+      "id": "NS79.owner-planner-groups-original",
+      "kind": "isolated_original",
+      "scope": "Whole413330 fresh and cached hostile-memory grouping, actual node construction/clone/ordered child mutation and unsigned observation uncertainty. Living hostile snapshot admission, current-marker versus include-stale modes, closest reachable same-flag104 pairing, threshold100, wrapped midpoint and nested tree order. Regional542810 and fallback line are explicit ordered fixture services; their production, cache epoch scheduling and teardown are separate contracts.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-groups-ns79-20261016.json",
+      "sha256": "18b05561c375c95428b4f14a428f4d7b972f9d3246d09862ccdec5769fb446a9",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 253621
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-group-features-original",
+      "kind": "isolated_original",
+      "scope": "Whole40b420 exact67 IDs for one to three ordinary friendly actors and one to eight ordinary enemy snapshots. Explicit CFG/value/flag/raw regional danger inputs, empty resources/inventories/observation points and no block7c. Summed threat values, averaged stats/flags/danger and wrapped fine-scaled within-group spread; no text redirects. Casting/species/resource and other feature IDs excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-group-features-ns79-20261016.json",
+      "sha256": "e35d52a19c48da66163c60c03178967e3541165f8c40c0da3359b2717b026402",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 137216
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-probes-original",
+      "kind": "isolated_original",
+      "scope": "Whole431ce0 ordinary one-friendly/one-enemy candidate search through real53a380 regional neighbors and original containers. Count budgets, binary32 0.2 grant/refund, per-actor20 limit, last discarded expansion, full reverse path, search records/ordered queue, reached/failed/yield and produced duration/cumulative danger/destination danger/max-risk summaries. Inference is an explicit recorder; grouping/prepare admission, caster resource projections, covered regions and full World scheduling excluded.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-probes-ns79-20261016.json",
+      "sha256": "e36c26ec7904e455a429c9bac43d02900846af808c6d6099e814835a8bc9e413",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 15501
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-group-task-original",
+      "kind": "isolated_original",
+      "scope": "Whole432900 with one ordinary friendly actor and two live pool slots, nested anonymous-key groups, repeated target aliases, actual407c10 leaf refresh and wrapped quarter-height center distance, live marker/stale/missing/dead/allied/engaged/dirty gates and actual52a430 raw/net danger rejection. Command endpoints are explicit recorders; no full World scheduling, opposite assignments, wizard/formations or extra live attackers.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-group-task-ns79-20261016.json",
+      "sha256": "bedf637d33d26c3e3af8a954849c2432695f07ab564d8b086043f447bb450afc",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 161233
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-journey-original",
+      "kind": "isolated_original",
+      "scope": "128 coupled bounded episodes: whole413330 memory snapshots and real542810 grouping, whole431ce0 real ordinary regional probes and produced72 features, whole432900 nested group sight/pursue/lost/reacquired/risk-stop orders. Explicit input sightings, regional graph, ordinary two-slot world and lower inference/command recorder boundaries; no World415c40 admission/cadence, model inference, selector or live replacement claim. Save/resume is checked independently by the native integration scenario.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/owner-planner-journey-ns79-20261016.json",
+      "sha256": "0d48dc1e2fa0bf6e48c318b4bd5ab7189780a4e15da58f655f4c3e10917300fa",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 12928
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-risk-static",
+      "kind": "static",
+      "scope": "Read-only static owner risk data/write-reference discovery; no execution validation.",
+      "record": "research/runtime/owner-planner-risk-static-ns79-20261016.json",
+      "sha256": "90eaa9477d69372fa79d04517eea1dccd77a889f7372d4cb96938b8b92e4cbcc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-constants-static",
+      "kind": "static",
+      "scope": "Static vtable words and double constants only; no execution claim.",
+      "record": "research/runtime/owner-planner-constants-static-ns79-20261016.json",
+      "sha256": "cc69d1ddd3b19a3322f255e3a2b9da6ebad562640fc94c60a308345865d5e414",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/constants/0x5c5a68/bytes",
+          "equals": "cdcc4c3e00000000"
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-journey-native",
+      "kind": "native_integration",
+      "scope": "Native64 and sanitized composed memory grouping, real regional probe/features and grouped pursuit/loss/reacquisition/risk-stop journey on controlled inputs; original-world cadence, original perception, model inference and save/resume excluded. Original comparison is separately registered against the same immutable report.",
+      "record": "research/runtime/owner-planner-journey-ns79-20261016.json",
+      "sha256": "0d48dc1e2fa0bf6e48c318b4bd5ab7189780a4e15da58f655f4c3e10917300fa",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_target_text_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 12928
+        }
+      ]
+    },
+    {
+      "id": "NS79.owner-planner-native",
+      "kind": "native_integration",
+      "scope": "Native lab policy: ordinary two-actor installed32x32x23 encounter; taskless selector, ordered anonymous-memory groups, ordinary regional probes, 72 produced features and original DAT inference; explicit1/0/1 weights and100 percent, danger excess0, independent strategic RNG, fresh-sweep caches and origin-change probe restart, active-task retention. No full World cadence or task replacement equivalence. CMD1v13, two seeds x512 frames, every8-frame restore, cold-process continuation and legacy regressions",
+      "record": "research/runtime/owner-planner-native-ns79-20261016.json",
+      "sha256": "df2f29ac71535146f73b0f6927b45e26f2400d79b8fb446a44a40621feec9a4d",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/core_suites_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/build_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cli_resume_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cold_process_restores",
+          "equals": 6
+        },
+        {
+          "pointer": "/suites/native-owner-planner-test/checks",
+          "equals": 1062
+        },
+        {
+          "pointer": "/suites/native-owner-planner-test/refusals",
+          "equals": 29
+        },
+        {
+          "pointer": "/suites/native-owner-planner-test/restores",
+          "equals": 128
+        },
+        {
+          "pointer": "/suites/native-owner-group-planner-test/lost",
+          "equals": 1
+        },
+        {
+          "pointer": "/suites/native-owner-group-planner-test/reacquired",
+          "equals": 1
+        },
+        {
+          "pointer": "/suites/native-owner-group-planner-test/risk_stops",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -141505,7 +142631,7 @@
         "scope": "54-entry factory pointer table; sparse task0 and task6 mapping only."
       },
       "document": "research/runtime/owner-strategic-planner.md",
-      "scope": "Partial task factory/vtable attribution; other families and all-family completeness remain pending.",
+      "scope": "Partial task0/task6 factory and bounded task6 singleton/grouped feature, probe and execution attribution; factory admission/constructor equivalence, other families and all-family completeness remain pending.",
       "complete": false,
       "entries": [
         {
@@ -141519,7 +142645,10 @@
           "behaviors": [
             "AI.owner-hostile-task-features",
             "AI.owner-hostile-task-candidate",
-            "AI.owner-hostile-task-execution"
+            "AI.owner-hostile-task-execution",
+            "AI.owner-hostile-group-features",
+            "AI.owner-hostile-task-probes",
+            "AI.owner-hostile-group-execution"
           ]
         },
         {
@@ -150984,6 +152113,38 @@
         "tests/native-owner-planner-test.cpp",
         "tools/test-owner-planner-integration.py"
       ]
+    },
+    {
+      "id": "owner-grouped-task-ns79-20261016",
+      "level": "headless",
+      "scope": "128 isolated original32/native64/sanitized coupled supplied-memory grouping, real ordinary path probes/72 features and pursue/lost/reacquired/risk-stop episodes. Lower inference/command recorders; no World/perception/selector/campaign/live equivalence.",
+      "behaviors": [
+        "AI.owner-grouped-task-journey"
+      ],
+      "evidence": [
+        "NS79.owner-planner-journey-original",
+        "NS79.owner-planner-journey-native"
+      ],
+      "tests": [
+        "tests/owner-planner-journey-test.cpp",
+        "tools/test-owner-planner-journey.py"
+      ]
+    },
+    {
+      "id": "owner-group-planner-native-ns79-20261016",
+      "level": "headless",
+      "scope": "Native installed-data512 frames x2seeds,128 restores,6 cold resumes, controlled multi-memory/cross-region probe and lost/reacquired/risk-stop CMD1v13 continuation, model/group/search/legacy refusals and core/perception regressions. Native scheduling policy, no full original World equivalence.",
+      "behaviors": [
+        "NP.owner-group-planner-continuation"
+      ],
+      "evidence": [
+        "NS79.owner-planner-native"
+      ],
+      "tests": [
+        "tests/native-owner-planner-test.cpp",
+        "tests/native-owner-group-planner-test.cpp",
+        "tools/test-owner-planner-integration.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -151519,8 +152680,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-owner-planner-20261016-v2.json",
-    "sha256": "6921d6178472d2aa0c91494a87300eeb255e0e0cab4a734c8904494e4758aa85"
+    "path": "research/runtime/coverage/source-index-owner-group-planner-20261016-v3.json",
+    "sha256": "e1c65adbb0453aa7455e65f342adaf76bdc51758687e97fd4162975c39a79eb4"
   },
   "claim_bindings_required": true
 }
